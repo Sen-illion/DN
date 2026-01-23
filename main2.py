@@ -275,13 +275,14 @@ def _merge_template_with_input(template_view: Dict, protagonist_attr: Dict, diff
 
 
 def _background_fill_worldview_details(cache_key: str, user_idea: str, protagonist_attr: Dict, difficulty: str, tone_key: str):
-    """后台补全世界观细节，生成完成后写入缓存"""
+    """后台补全世界观细节"""
     try:
         print("🧵 正在后台补全世界观细节...")
         detailed_state = llm_generate_global(user_idea, protagonist_attr, difficulty, tone_key, force_full=True)
         if detailed_state:
-            _save_worldview_cache(cache_key, detailed_state)
-            print("✅ 世界观细节补全完成并已缓存")
+            # 🔑 缓存机制已删除：不再保存缓存
+            # _save_worldview_cache(cache_key, detailed_state)
+            print("✅ 世界观细节补全完成")
     except Exception as e:
         print(f"⚠️ 后台补全世界观失败：{e}")
 
@@ -294,9 +295,9 @@ _REGEX_WORLD_BASIC = re.compile(r"世界观基础设定：(.+)", re.UNICODE)
 _REGEX_PROTAGONIST_ABILITY = re.compile(r"主角核心能力：(.+)", re.UNICODE)
 _REGEX_MAIN_QUEST = re.compile(r"游戏主线任务：(.+)", re.UNICODE)
 _REGEX_END_TRIGGER = re.compile(r"游戏结束触发条件：(.+)", re.UNICODE)
-_REGEX_CHAPTER = re.compile(r"第(\\d+)章：", re.UNICODE)
-_REGEX_CHAPTER_CONFLICT = re.compile(r"- 核心矛盾：(.+)")
-_REGEX_CHAPTER_END = re.compile(r"- 矛盾结束条件：(.+)")
+_REGEX_CHAPTER = re.compile(r"第(\d+)章[：:]?", re.UNICODE)
+_REGEX_CHAPTER_CONFLICT = re.compile(r"(?:- )?核心矛盾[：:]\s*(.+)", re.UNICODE | re.MULTILINE | re.DOTALL)
+_REGEX_CHAPTER_END = re.compile(r"(?:- )?矛盾结束条件[：:]\s*(.+)", re.UNICODE | re.MULTILINE | re.DOTALL)
 
 
 def _regex_fill_worldview(raw_text: str, core_worldview: Dict, chapters: Dict):
@@ -322,24 +323,45 @@ def _regex_fill_worldview(raw_text: str, core_worldview: Dict, chapters: Dict):
         if m:
             core_worldview["end_trigger_condition"] = m.group(1).strip()
 
-    # 回填章节
-    if not chapters:
-        return
+    # 回填章节（即使chapters为空字典也要执行，用于创建章节结构）
+    if chapters is None:
+        chapters = {}
+    print(f"🔍 [正则回填] 开始回填，chapters状态: {chapters}")
     # 逐章匹配
     chapter_matches = list(_REGEX_CHAPTER.finditer(raw_text))
+    print(f"🔍 [正则回填] 找到 {len(chapter_matches)} 个章节匹配")
+    if not chapter_matches:
+        # 如果没有找到章节，尝试创建默认章节结构
+        print(f"🔍 [正则回填] 未找到章节匹配，返回")
+        return
     for idx, match in enumerate(chapter_matches):
         chap_num = match.group(1)
         chap_key = f"chapter{chap_num}"
+        print(f"🔍 [正则回填] 处理章节 {chap_key}")
         start = match.end()
         end = chapter_matches[idx + 1].start() if idx + 1 < len(chapter_matches) else None
         segment = raw_text[start:end]
-        conflict = _REGEX_CHAPTER_CONFLICT.search(segment or "")
-        end_cond = _REGEX_CHAPTER_END.search(segment or "")
+        print(f"🔍 [正则回填] 章节 {chap_key} 文本段长度: {len(segment)} 字符")
+        if len(segment) > 0:
+            print(f"🔍 [正则回填] 章节 {chap_key} 文本段预览: {segment[:200]}...")
+        # 使用多行模式匹配，支持跨行内容（注意：已编译的正则对象search方法不接受flags参数）
+        # 需要在编译时就设置MULTILINE和DOTALL标志
+        conflict_match = _REGEX_CHAPTER_CONFLICT.search(segment or "")
+        end_cond_match = _REGEX_CHAPTER_END.search(segment or "")
+        print(f"🔍 [正则回填] 章节 {chap_key} - 核心矛盾匹配: {conflict_match is not None}, 结束条件匹配: {end_cond_match is not None}")
         chap = chapters.setdefault(chap_key, {})
-        if conflict and not chap.get("main_conflict"):
-            chap["main_conflict"] = conflict.group(1).strip()
-        if end_cond and not chap.get("conflict_end_condition"):
-            chap["conflict_end_condition"] = end_cond.group(1).strip()
+        if conflict_match and not chap.get("main_conflict"):
+            conflict_text = conflict_match.group(1).strip()
+            # 清理可能的换行和多余空格
+            conflict_text = ' '.join(conflict_text.split())
+            chap["main_conflict"] = conflict_text
+            print(f"🔍 [正则回填] 已回填章节 {chap_key} 的核心矛盾: {conflict_text[:60]}...")
+        if end_cond_match and not chap.get("conflict_end_condition"):
+            end_cond_text = end_cond_match.group(1).strip()
+            # 清理可能的换行和多余空格
+            end_cond_text = ' '.join(end_cond_text.split())
+            chap["conflict_end_condition"] = end_cond_text
+            print(f"🔍 [正则回填] 已回填章节 {chap_key} 的矛盾结束条件: {end_cond_text[:60]}...")
 
 # ------------------------------
 # 新增：通用API请求函数（带自动重试）
@@ -1644,18 +1666,7 @@ def llm_generate_global(user_idea: str, protagonist_attr: Dict, difficulty: str,
     perf = PERFORMANCE_OPTIMIZATION
     perf_enabled = perf.get("enabled", True)
     staged_mode = perf_enabled and perf.get("staged_worldview", True) and not force_full
-    cache_key = _make_worldview_cache_key(user_idea, protagonist_attr, difficulty, tone_key)
-    
-    # 优先使用缓存
-    if perf_enabled and not force_full:
-        cached = _load_worldview_cache(cache_key)
-        if cached:
-            # 🔑 确保缓存中包含tone字段（兼容旧缓存）
-            if 'tone' not in cached:
-                cached['tone'] = tone_key
-                print(f"⚠️ 旧缓存缺少tone字段，已补充: {tone_key}")
-            print("✅ 命中世界观缓存，直接返回")
-            return cached
+
     
     # 环境变量验证：检查必填字段是否齐全
     required_configs = ["api_key", "base_url", "model"]
@@ -1710,9 +1721,15 @@ def llm_generate_global(user_idea: str, protagonist_attr: Dict, difficulty: str,
         游戏主线任务：至少150字，说明目标、步骤、挑战
 
         ### 【章节设定】
-        第1章：核心矛盾≥80字；矛盾结束条件≥60字
-        第2章：核心矛盾≥80字；矛盾结束条件≥60字
-        第3章：核心矛盾≥80字；矛盾结束条件≥60字
+        第1章：
+        - 核心矛盾：≥80字
+        - 矛盾结束条件：≥60字
+        第2章：
+        - 核心矛盾：≥80字
+        - 矛盾结束条件：≥60字
+        第3章：
+        - 核心矛盾：≥80字
+        - 矛盾结束条件：≥60字
 
         ## 【初始世界线】
         当前章节：chapter1
@@ -1746,7 +1763,15 @@ def llm_generate_global(user_idea: str, protagonist_attr: Dict, difficulty: str,
         游戏主线任务：≥180字
         
         ### 【章节设定】
-        第1-3章：每章核心矛盾≥90字；矛盾结束条件≥70字
+        第1章：
+        - 核心矛盾：≥90字
+        - 矛盾结束条件：≥70字
+        第2章：
+        - 核心矛盾：≥90字
+        - 矛盾结束条件：≥70字
+        第3章：
+        - 核心矛盾：≥90字
+        - 矛盾结束条件：≥70字
         
         ### 【游戏结束触发条件】
         游戏结束触发条件：≥90字
@@ -1830,9 +1855,16 @@ def llm_generate_global(user_idea: str, protagonist_attr: Dict, difficulty: str,
             current_chapter = ""
             current_field = None  # 当前正在收集的字段
             current_field_content = []  # 当前字段的内容（支持多行）
+            current_conflict_content = []  # 当前章节核心矛盾的内容（支持多行）
+            current_end_condition_content = []  # 当前章节矛盾结束条件的内容（支持多行）
             
-            for line in lines:
+            print(f"🔍 [调试] 开始解析AI返回文本，总行数: {len(lines)}")
+            for line_idx, line in enumerate(lines):
+                original_line = line
                 line = line.strip()
+                # 只在关键行显示调试信息（避免输出过多）
+                if line.startswith('第') or line.startswith('### 【章节') or ('核心矛盾' in line and current_chapter) or ('矛盾结束条件' in line and current_chapter):
+                    print(f"🔍 [调试] 行{line_idx+1}: {line[:100]}")
                 if not line:
                     # 空行：如果正在收集字段内容，继续收集（可能是多行内容的一部分）
                     if current_field and current_field_content:
@@ -1843,8 +1875,10 @@ def llm_generate_global(user_idea: str, protagonist_attr: Dict, difficulty: str,
                 # 检测章节
                 if line.startswith('## 【核心世界观】'):
                     core_section = True
+                    print(f"🔍 [调试] 进入核心世界观章节")
                     continue
                 elif line.startswith('## 【初始世界线】'):
+                    print(f"🔍 [调试] 进入初始世界线章节，退出核心世界观解析")
                     # 保存最后一个字段的内容
                     if current_field and current_field_content:
                         content = ' '.join(current_field_content).strip()
@@ -1857,6 +1891,7 @@ def llm_generate_global(user_idea: str, protagonist_attr: Dict, difficulty: str,
                 if core_section:
                     # 检测子章节
                     if line.startswith('### 【'):
+                        print(f"🔍 [调试] 检测到子章节: {line}")
                         # 保存上一个字段的内容
                         if current_field and current_field_content:
                             content = ' '.join(current_field_content).strip()
@@ -1962,9 +1997,11 @@ def llm_generate_global(user_idea: str, protagonist_attr: Dict, difficulty: str,
                         characters[current_character]['shallow_background'] = line.split('- 浅层背景：')[1].strip()
                     elif current_character and line.startswith('- 深层背景：'):
                         characters[current_character]['deep_background'] = line.split('- 深层背景：')[1].strip()
-                    # 章节设定
-                    elif line.startswith('第') and '章：' in line:
-                        # 保存当前字段
+                    # 章节设定（优先检查，避免被其他条件拦截）
+                    if line.startswith('第') and ('章：' in line or '章' in line):
+                        print(f"🔍 [调试] 检测到章节行: {line[:100]}")
+                        print(f"🔍 [调试] 当前状态: current_field={current_field}, current_chapter={current_chapter}, core_section={core_section}")
+                        # 保存当前字段和章节矛盾内容
                         if current_field and current_field_content:
                             content = ' '.join(current_field_content).strip()
                             content = content.replace('**', '').replace('*', '')
@@ -1972,36 +2009,113 @@ def llm_generate_global(user_idea: str, protagonist_attr: Dict, difficulty: str,
                                 core_worldview[current_field] = content
                             current_field = None
                             current_field_content = []
-                        chapter_num = line.split('章：')[0].replace('第', '')
+                        # 保存上一个章节的矛盾信息
+                        if current_chapter:
+                            print(f"🔍 [调试] 保存上一章节 {current_chapter} 的矛盾信息")
+                            if current_conflict_content:
+                                conflict_text = ' '.join(current_conflict_content).strip()
+                                conflict_text = conflict_text.replace('**', '').replace('*', '').strip()
+                                if conflict_text:
+                                    chapters[current_chapter]['main_conflict'] = conflict_text
+                                    print(f"🔍 [调试] 已保存章节 {current_chapter} 的核心矛盾: {conflict_text[:60]}...")
+                            if current_end_condition_content:
+                                end_condition_text = ' '.join(current_end_condition_content).strip()
+                                end_condition_text = end_condition_text.replace('**', '').replace('*', '').strip()
+                                if end_condition_text:
+                                    chapters[current_chapter]['conflict_end_condition'] = end_condition_text
+                                    print(f"🔍 [调试] 已保存章节 {current_chapter} 的矛盾结束条件: {end_condition_text[:60]}...")
+                        # 提取章节号（支持"第1章："或"第1章"格式）
+                        if '章：' in line:
+                            chapter_num = line.split('章：')[0].replace('第', '').strip()
+                        else:
+                            # 处理"第1章"格式
+                            match = re.search(r'第(\d+)章', line)
+                            chapter_num = match.group(1) if match else line.replace('第', '').replace('章', '').strip()
                         current_chapter = f"chapter{chapter_num}"
                         chapters[current_chapter] = {}
+                        current_conflict_content = []
+                        current_end_condition_content = []
+                        print(f"🔍 [调试] 创建新章节: {current_chapter}")
+                        
+                        # 检查同一行是否包含矛盾信息（容错处理）
+                        remaining_line = line.split('章：', 1)[1] if '章：' in line else ''
+                        if remaining_line and ('核心矛盾' in remaining_line or '矛盾：' in remaining_line):
+                            # 尝试提取同一行的矛盾信息
+                            if '- 核心矛盾：' in remaining_line:
+                                conflict_part = remaining_line.split('- 核心矛盾：', 1)[1].strip()
+                                if conflict_part:
+                                    current_conflict_content.append(conflict_part)
+                            elif '核心矛盾：' in remaining_line:
+                                conflict_part = remaining_line.split('核心矛盾：', 1)[1].strip()
+                                if conflict_part:
+                                    current_conflict_content.append(conflict_part)
+                            if '- 矛盾结束条件：' in remaining_line:
+                                end_part = remaining_line.split('- 矛盾结束条件：', 1)[1].strip()
+                                if end_part:
+                                    current_end_condition_content.append(end_part)
+                            elif '矛盾结束条件：' in remaining_line:
+                                end_part = remaining_line.split('矛盾结束条件：', 1)[1].strip()
+                                if end_part:
+                                    current_end_condition_content.append(end_part)
                     elif current_chapter and ('核心矛盾' in line or '矛盾：' in line):
+                        print(f"🔍 [调试] 检测到核心矛盾行 (章节: {current_chapter}): {line[:100]}")
                         # 支持多种格式：- 核心矛盾： 或 核心矛盾： 或 核心矛盾
+                        conflict_text = None
                         if '- 核心矛盾：' in line:
-                            conflict_text = line.split('- 核心矛盾：')[1].strip()
+                            conflict_text = line.split('- 核心矛盾：', 1)[1].strip()
+                            print(f"🔍 [调试] 匹配格式: - 核心矛盾：")
                         elif '核心矛盾：' in line:
-                            conflict_text = line.split('核心矛盾：')[1].strip()
-                        else:
+                            conflict_text = line.split('核心矛盾：', 1)[1].strip()
+                            print(f"🔍 [调试] 匹配格式: 核心矛盾：")
+                        elif line.strip().startswith('核心矛盾') and '：' not in line:
                             # 如果没有冒号，整行作为内容
                             conflict_text = line.replace('核心矛盾', '').strip()
-                        # 移除Markdown格式标记
-                        conflict_text = conflict_text.replace('**', '').replace('*', '').strip()
+                            print(f"🔍 [调试] 匹配格式: 核心矛盾 (无冒号)")
+                        
                         if conflict_text:
-                            chapters[current_chapter]['main_conflict'] = conflict_text
+                            # 移除Markdown格式标记
+                            conflict_text = conflict_text.replace('**', '').replace('*', '').strip()
+                            if conflict_text:
+                                current_conflict_content.append(conflict_text)
+                                print(f"🔍 [调试] 已添加核心矛盾内容: {conflict_text[:60]}...")
+                        elif current_conflict_content:
+                            # 如果当前行没有冒号分隔，可能是多行内容的延续
+                            stripped_line = line.strip()
+                            if stripped_line and not stripped_line.startswith('-') and not stripped_line.startswith('第') and '：' not in stripped_line:
+                                current_conflict_content.append(stripped_line)
+                                print(f"🔍 [调试] 添加多行内容延续: {stripped_line[:60]}...")
                     elif current_chapter and ('矛盾结束条件' in line or '结束条件' in line):
+                        print(f"🔍 [调试] 检测到矛盾结束条件行 (章节: {current_chapter}): {line[:100]}")
                         # 支持多种格式
+                        end_condition_text = None
                         if '- 矛盾结束条件：' in line:
-                            end_condition_text = line.split('- 矛盾结束条件：')[1].strip()
+                            end_condition_text = line.split('- 矛盾结束条件：', 1)[1].strip()
+                            print(f"🔍 [调试] 匹配格式: - 矛盾结束条件：")
                         elif '矛盾结束条件：' in line:
-                            end_condition_text = line.split('矛盾结束条件：')[1].strip()
+                            end_condition_text = line.split('矛盾结束条件：', 1)[1].strip()
+                            print(f"🔍 [调试] 匹配格式: 矛盾结束条件：")
+                        elif '- 结束条件：' in line:
+                            end_condition_text = line.split('- 结束条件：', 1)[1].strip()
+                            print(f"🔍 [调试] 匹配格式: - 结束条件：")
                         elif '结束条件：' in line:
-                            end_condition_text = line.split('结束条件：')[1].strip()
-                        else:
+                            end_condition_text = line.split('结束条件：', 1)[1].strip()
+                            print(f"🔍 [调试] 匹配格式: 结束条件：")
+                        elif line.strip().startswith('矛盾结束条件') or line.strip().startswith('结束条件'):
                             end_condition_text = line.replace('矛盾结束条件', '').replace('结束条件', '').strip()
-                        # 移除Markdown格式标记
-                        end_condition_text = end_condition_text.replace('**', '').replace('*', '').strip()
+                            print(f"🔍 [调试] 匹配格式: 矛盾结束条件/结束条件 (无冒号)")
+                        
                         if end_condition_text:
-                            chapters[current_chapter]['conflict_end_condition'] = end_condition_text
+                            # 移除Markdown格式标记
+                            end_condition_text = end_condition_text.replace('**', '').replace('*', '').strip()
+                            if end_condition_text:
+                                current_end_condition_content.append(end_condition_text)
+                                print(f"🔍 [调试] 已添加矛盾结束条件内容: {end_condition_text[:60]}...")
+                        elif current_end_condition_content:
+                            # 如果当前行没有冒号分隔，可能是多行内容的延续
+                            stripped_line = line.strip()
+                            if stripped_line and not stripped_line.startswith('-') and not stripped_line.startswith('第') and '：' not in stripped_line:
+                                current_end_condition_content.append(stripped_line)
+                                print(f"🔍 [调试] 添加多行内容延续: {stripped_line[:60]}...")
                     elif current_field and not line.startswith('-') and not line.startswith('第') and '：' not in line:
                         # 如果当前正在收集字段内容，且这行不是新字段的开始，则追加到当前字段
                         # 但排除以"-"开头的列表项、章节标题、和其他带冒号的字段
@@ -2015,19 +2129,57 @@ def llm_generate_global(user_idea: str, protagonist_attr: Dict, difficulty: str,
                 if content:
                     core_worldview[current_field] = content
             
+            # 保存最后一个章节的矛盾信息（如果还在收集）
+            if current_chapter:
+                print(f"🔍 [调试] 循环结束，保存最后一个章节 {current_chapter} 的矛盾信息")
+                if current_conflict_content:
+                    conflict_text = ' '.join(current_conflict_content).strip()
+                    conflict_text = conflict_text.replace('**', '').replace('*', '').strip()
+                    if conflict_text:
+                        chapters[current_chapter]['main_conflict'] = conflict_text
+                        print(f"🔍 [调试] 已保存章节 {current_chapter} 的核心矛盾: {conflict_text[:60]}...")
+                if current_end_condition_content:
+                    end_condition_text = ' '.join(current_end_condition_content).strip()
+                    end_condition_text = end_condition_text.replace('**', '').replace('*', '').strip()
+                    if end_condition_text:
+                        chapters[current_chapter]['conflict_end_condition'] = end_condition_text
+                        print(f"🔍 [调试] 已保存章节 {current_chapter} 的矛盾结束条件: {end_condition_text[:60]}...")
+            
             # 填充核心世界观
             core_worldview['characters'] = characters
             core_worldview['forces'] = forces
             core_worldview['chapters'] = chapters
+            
+            # 使用正则表达式回填缺失的章节矛盾信息（作为备用方案）
+            print(f"🔍 [调试] 开始正则回填，当前chapters数量: {len(chapters)}")
+            _regex_fill_worldview(raw_content, core_worldview, chapters)
+            print(f"🔍 [调试] 正则回填完成，chapters数量: {len(chapters)}")
             
             # 调试：打印解析结果
             print(f"📊 解析结果:")
             print(f"   - game_style: {core_worldview.get('game_style', '未找到')[:50] if core_worldview.get('game_style') else '未找到'}")
             print(f"   - world_basic_setting: {core_worldview.get('world_basic_setting', '未找到')[:50] if core_worldview.get('world_basic_setting') else '未找到'}")
             print(f"   - protagonist_ability: {core_worldview.get('protagonist_ability', '未找到')[:50] if core_worldview.get('protagonist_ability') else '未找到'}")
-            print(f"   - chapters: {list(chapters.keys())}")
+            print(f"   - chapters: {list(chapters.keys())} (共{len(chapters)}个章节)")
+            if len(chapters) == 0:
+                print(f"   ⚠️ [警告] chapters为空！")
+                print(f"   🔍 [调试] 检查原始文本中是否包含章节信息...")
+                # 检查原始文本中是否包含章节关键词
+                if '第' in raw_content and '章' in raw_content:
+                    print(f"   🔍 [调试] 原始文本中包含'第'和'章'，但未解析成功")
+                    # 查找所有包含"第"和"章"的行
+                    chapter_lines = [line for line in raw_content.split('\n') if '第' in line and '章' in line]
+                    print(f"   🔍 [调试] 找到 {len(chapter_lines)} 行包含章节关键词:")
+                    for i, cl in enumerate(chapter_lines[:5]):  # 只显示前5行
+                        print(f"      {i+1}. {cl[:100]}")
             for chap_key, chap_data in chapters.items():
-                print(f"     - {chap_key}: main_conflict={bool(chap_data.get('main_conflict'))}, conflict_end_condition={bool(chap_data.get('conflict_end_condition'))}")
+                main_conflict = chap_data.get('main_conflict', '')
+                end_condition = chap_data.get('conflict_end_condition', '')
+                print(f"     - {chap_key}: main_conflict={bool(main_conflict)} ({len(main_conflict)}字), conflict_end_condition={bool(end_condition)} ({len(end_condition)}字)")
+                if main_conflict:
+                    print(f"       矛盾内容: {main_conflict[:60]}...")
+                if end_condition:
+                    print(f"       结束条件: {end_condition[:60]}...")
             
             # 确保chapters结构完整，如果缺失则填充默认值
             if not chapters or len(chapters) == 0:
@@ -2149,15 +2301,17 @@ def llm_generate_global(user_idea: str, protagonist_attr: Dict, difficulty: str,
             
             # 验证基本完整性
             if core_wv.get('game_style') and core_wv.get('world_basic_setting') and core_wv.get('chapters'):
-                if perf_enabled and not force_full:
-                    _save_worldview_cache(cache_key, global_state)
-                    if staged_mode:
-                        threading.Thread(
-                            target=_background_fill_worldview_details,
-                            args=(cache_key, user_idea, protagonist_attr, difficulty, tone_key),
-                            daemon=True
-                        ).start()
-                        global_state.setdefault("meta", {})["detail_async"] = True
+                # 🔑 缓存机制已删除：不再保存缓存
+                # if perf_enabled and not force_full:
+                #     _save_worldview_cache(cache_key, global_state)
+                if staged_mode:
+                    # cache_key 不再生成，传入空字符串（后台补全函数不再使用它）
+                    threading.Thread(
+                        target=_background_fill_worldview_details,
+                        args=("", user_idea, protagonist_attr, difficulty, tone_key),
+                        daemon=True
+                    ).start()
+                    global_state.setdefault("meta", {})["detail_async"] = True
                 return global_state
             else:
                 print("❌ 错误：生成的世界观不完整，将重试...")
