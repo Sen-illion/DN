@@ -71,18 +71,6 @@ IMAGE_GENERATION_CONFIG = {
     "comfyui_host": os.getenv("COMFYUI_HOST", ""),
 }
 
-# ==================== 视频生成功能已禁用（性能优化） ====================
-# VIDEO_GENERATION_CONFIG = {
-#     "provider": os.getenv("VIDEO_GENERATION_PROVIDER", "yunwu"),  # yunwu, runway, pika, stable_video
-#     "yunwu_api_key": os.getenv("Image_Generation_API_KEY", ""),  # 使用yunwu.ai的视频生成API
-#     "yunwu_base_url": os.getenv("Image_Generation_BASE_URL", "https://yunwu.ai/v1"),
-#     "yunwu_model": os.getenv("VIDEO_GENERATION_MODEL", "sora"),  # 视频生成模型
-#     "runway_api_key": os.getenv("RUNWAY_API_KEY", ""),
-#     "pika_api_key": os.getenv("PIKA_API_KEY", ""),
-#     "stable_video_api_key": os.getenv("STABLE_VIDEO_API_KEY", ""),
-#     "min_duration": int(os.getenv("MIN_VIDEO_DURATION", "5")),
-#     "max_duration": int(os.getenv("MAX_VIDEO_DURATION", "10")),
-# }
 
 DIFFICULTY_SETTINGS = {
     "简单": {"剧情容错率": "高", "矛盾解决难度": "低", "提示频率": "高"},
@@ -794,6 +782,47 @@ def generate_scene_image(
                         "height": 1024,
                         "cached": True
                     }
+                
+                # 检查image_url是否是相对路径（本地缓存路径）
+                if image_url.startswith('/image_cache/') or image_url.startswith('image_cache/'):
+                    # 如果image_url已经是相对路径，说明可能是从其他地方传入的缓存路径
+                    # 检查对应的文件是否存在
+                    import re
+                    hash_match = re.search(r'([a-f0-9]{32})\.png', image_url)
+                    if hash_match:
+                        existing_hash = hash_match.group(1)
+                        existing_path = Path(IMAGE_CACHE_DIR) / f"{existing_hash}.png"
+                        if existing_path.exists():
+                            # 如果文件存在，使用现有的hash，或者复制到新的hash
+                            if existing_hash == prompt_hash:
+                                print(f"✅ 使用现有的本地缓存图片：{existing_path}")
+                                return {
+                                    "url": f"/image_cache/{prompt_hash}.png",
+                                    "prompt": prompt,
+                                    "style": style,
+                                    "width": 1024,
+                                    "height": 1024,
+                                    "cached": True
+                                }
+                            else:
+                                # 复制到新的hash名称
+                                import shutil
+                                shutil.copy2(existing_path, cache_path)
+                                print(f"✅ 从现有缓存复制图片到新hash：{cache_path}")
+                                return {
+                                    "url": f"/image_cache/{prompt_hash}.png",
+                                    "prompt": prompt,
+                                    "style": style,
+                                    "width": 1024,
+                                    "height": 1024,
+                                    "cached": True
+                                }
+                    # 如果相对路径对应的文件不存在，抛出错误
+                    raise ValueError(f"本地缓存路径对应的文件不存在：{image_url}")
+                
+                # 检查是否是完整的URL
+                if not (image_url.startswith('http://') or image_url.startswith('https://')):
+                    raise ValueError(f"无效的图片URL格式：{image_url}（需要完整的HTTP/HTTPS URL或本地缓存路径）")
                 
                 # 下载图片到本地
                 print(f"📥 正在下载图片到本地缓存：{image_url[:80]}...")
@@ -1621,6 +1650,10 @@ def llm_generate_global(user_idea: str, protagonist_attr: Dict, difficulty: str,
     if perf_enabled and not force_full:
         cached = _load_worldview_cache(cache_key)
         if cached:
+            # 🔑 确保缓存中包含tone字段（兼容旧缓存）
+            if 'tone' not in cached:
+                cached['tone'] = tone_key
+                print(f"⚠️ 旧缓存缺少tone字段，已补充: {tone_key}")
             print("✅ 命中世界观缓存，直接返回")
             return cached
     
@@ -2110,6 +2143,10 @@ def llm_generate_global(user_idea: str, protagonist_attr: Dict, difficulty: str,
             
             global_state['core_worldview'] = core_wv
             
+            # 🔑 重要：保存基调信息到global_state，确保后续生成时能正确获取
+            global_state['tone'] = tone_key
+            print(f"✅ 基调已保存到global_state: {tone_key} ({TONE_CONFIGS.get(tone_key, {}).get('name', '未知')})")
+            
             # 验证基本完整性
             if core_wv.get('game_style') and core_wv.get('world_basic_setting') and core_wv.get('chapters'):
                 if perf_enabled and not force_full:
@@ -2212,8 +2249,11 @@ def _get_default_worldview(user_idea: str, protagonist_attr: Dict, difficulty: s
                     "current_super_choice": None,  # 当前生成的爽点剧情选项
                     "pending_super_plot": None  # 等待触发的爽点剧情
                 }
-            }
+            },
+            # 🔑 重要：保存基调信息到顶层，确保后续生成时能正确获取
+            "tone": tone_key
         }
+        print(f"✅ 默认世界观已创建，基调: {tone_key} ({TONE_CONFIGS.get(tone_key, {}).get('name', '未知')})")
         return default_worldview
     except Exception as e:
         # 如果构建默认世界观失败，返回一个最基本的世界观

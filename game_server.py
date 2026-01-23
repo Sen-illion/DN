@@ -803,9 +803,11 @@ def _pregenerate_next_layers_logic(global_state, current_options, scene_id):
                     pregeneration_cache[scene_id]['current_generating_index'] = None
             
             print(f"✅ 第一层预生成完成，共生成 {len(pregeneration_cache.get(scene_id, {}).get('layer1', {}))} 个选项的剧情")
+            print("---------------------------------------------- 第一层预生成完成 ----------------------------------------------")
             
             # 第二层：为第一层的每个选项的next_options预生成再下一层剧情（继续在后台异步生成）
             print(f"📝 预生成第二层：为下一轮选项生成再下一层剧情...")
+            print("---------------------------------------------- 开始第二层预生成 ----------------------------------------------")
             
             def generate_layer2():
                 try:
@@ -874,6 +876,7 @@ def _pregenerate_next_layers_logic(global_state, current_options, scene_id):
                                 print(f"❌ 生成选项 {opt_idx} 的第二层失败：{str(e)}")
                         
                         print(f"✅ 第二层预生成完成（仅生成用户选择的选项）")
+                        print("---------------------------------------------- 第二层预生成完成（用户选择模式） ----------------------------------------------")
                     else:
                         # 用户还未选择，为所有第一层选项生成第二层
                         layer2_count = 0
@@ -920,6 +923,7 @@ def _pregenerate_next_layers_logic(global_state, current_options, scene_id):
                         
                         print(f"✅ 第二层预生成完成，共生成 {layer2_count} 个选项的剧情")
                         print(f"✅ 场景 {scene_id} 的两层内容预生成全部完成")
+                        print("---------------------------------------------- 第二层预生成完成（全量模式） ----------------------------------------------")
                 except Exception as e:
                     print(f"❌ 生成第二层时发生错误：{str(e)}")
                     import traceback
@@ -1297,6 +1301,32 @@ def get_cached_image(prompt_hash: str) -> str:
 def cache_image(prompt_hash: str, image_url: str) -> str:
     """缓存图片到本地"""
     try:
+        # 检查是否是相对路径（本地缓存路径）
+        if image_url.startswith('/image_cache/') or image_url.startswith('image_cache/'):
+            # 已经是本地缓存路径，不需要下载
+            cache_path = Path(IMAGE_CACHE_DIR) / f"{prompt_hash}.png"
+            if cache_path.exists():
+                print(f"✅ 图片已在本地缓存：{cache_path}")
+                return str(cache_path)
+            else:
+                # 如果文件不存在，尝试从相对路径提取hash
+                import re
+                hash_match = re.search(r'([a-f0-9]{32})\.png', image_url)
+                if hash_match:
+                    existing_hash = hash_match.group(1)
+                    existing_path = Path(IMAGE_CACHE_DIR) / f"{existing_hash}.png"
+                    if existing_path.exists():
+                        # 复制文件到新的hash名称
+                        import shutil
+                        shutil.copy2(existing_path, cache_path)
+                        print(f"✅ 从现有缓存复制图片：{cache_path}")
+                        return str(cache_path)
+                raise ValueError(f"本地缓存文件不存在：{image_url}")
+        
+        # 检查是否是完整的URL
+        if not (image_url.startswith('http://') or image_url.startswith('https://')):
+            raise ValueError(f"无效的图片URL格式：{image_url}（需要完整的HTTP/HTTPS URL或本地缓存路径）")
+        
         # 下载图片
         response = requests.get(image_url, timeout=30)
         response.raise_for_status()
@@ -1337,7 +1367,20 @@ def generate_image_with_cache(scene_description: str, style: str, global_state: 
     
     image_url = image_data['url']
     
-    # 缓存图片
+    # 检查图片URL是否是本地缓存路径（说明已经在main2.py中缓存过了）
+    if image_url.startswith('/image_cache/') or image_url.startswith('image_cache/'):
+        # 已经是本地缓存路径，直接返回，不需要再次缓存
+        print(f"✅ 图片已在main2.py中缓存，使用现有路径：{image_url}")
+        return {
+            "url": image_url,
+            "prompt": scene_description,
+            "style": style,
+            "width": 1024,
+            "height": 1024,
+            "cached": True
+        }
+    
+    # 缓存图片（只有当image_url是完整的HTTP/HTTPS URL时才需要下载）
     try:
         local_path = cache_image(prompt_hash, image_url)
         return {
