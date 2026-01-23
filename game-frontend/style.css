@@ -1,0 +1,913 @@
+/* 全局动画定义 */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes zoomIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* 响应式设计 */
+@media (max-width: 1200px) {
+    .attr-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .attr-desc, .attr-controls {
+        width: 100% !important;
+    }
+    
+    .attr-controls {
+        gap: 40px !important;
+    }
+    
+    .progress-bar {
+        width: 300px !important;
+    }
+    
+    .scene-text-container {
+        width: 90% !important;
+    }
+    
+    .options-list {
+        width: 80% !important;
+    }
+    
+    .character-panel {
+        width: 250px !important;
+        height: 400px !important;
+    }
+}
+
+@media (max-width: 992px) {
+    .difficulty-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .tone-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .save-cards {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .progress-bar-container {
+        flex-direction: column;
+        gap: 10px;
+        height: auto !important;
+        padding: 10px;
+    }
+    
+    .progress-bar {
+        width: 250px !important;
+    }
+    
+    .ending-container {
+        padding: 30px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    h2 {
+        font-size: 32px !important;
+    }
+    
+    .title {
+        font-size: 20px !important;
+    }
+    
+    .btn-main, .btn-attr, .btn-confirm-difficulty, .btn-confirm-tone, .btn-submit-theme, .btn-start-game, .btn-save, .btn-ending {
+        width: 180px !important;
+        height: 50px !important;
+        font-size: 16px !important;
+    }
+    
+    .theme-input {
+        width: 300px !important;
+        height: 50px !important;
+    }
+    
+    .setting-container {
+        flex-direction: column;
+    }
+    
+    .setting-nav {
+        width: 100% !important;
+        display: flex;
+        overflow-x: auto;
+    }
+    
+    .nav-item {
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+    
+    .setting-content {
+        width: 100% !important;
+    }
+    
+    .scene-container {
+        padding: 20px !important;
+    }
+    
+    .scene-text-container {
+        padding: 20px !important;
+    }
+    
+    .options-container {
+        padding: 20px !important;
+        /* 移动端保持滚动功能 */
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+    }
+    
+    .character-panel {
+        position: fixed !important;
+        bottom: 20px !important;
+        right: 20px !important;
+        top: auto !important;
+        transform: none !important;
+        width: calc(100% - 40px) !important;
+        height: 200px !important;
+        flex-direction: row;
+    }
+    
+    .protagonist-card, .support-card {
+        width: 50%;
+        height: auto !important;
+    }
+    
+    .ending-buttons {
+        flex-direction: column;
+        gap: 15px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    h2 {
+        font-size: 24px !important;
+    }
+    
+    .title {
+        font-size: 18px !important;
+        margin-bottom: 20px !important;
+    }
+    
+    .btn-main, .btn-attr, .btn-confirm-difficulty, .btn-confirm-tone, .btn-submit-theme, .btn-start-game, .btn-save, .btn-ending {
+        width: 150px !important;
+        height: 45px !important;
+        font-size: 14px !important;
+    }
+    
+    .theme-input {
+        width: 250px !important;
+    }
+    
+    .word-count {
+        right: 20px !important;
+        top: auto !important;
+        bottom: 20px !important;
+    }
+    
+    .progress-bar {
+        width: 200px !important;
+    }
+    
+    .scene-text {
+        font-size: 16px !important;
+    }
+    
+    .ending-container {
+        padding: 20px !important;
+    }
+    
+    .ending-content-container {
+        height: 200px !important;
+    }
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #7F8C8D;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #1ABC9C;
+}
+
+/* 基础样式覆盖 */
+.screen {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* 按钮状态强化 */
+.btn-main:hover {
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+}
+
+.btn-main.active {
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+/* 难度卡片选中状态 - 修正 box-shadow-color 错误 */
+.difficulty-card.selected {
+    border: 3px solid;
+    transform: translateY(-5px);
+}
+
+.difficulty-card.selected[data-difficulty="简单"] {
+    border-color: green;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.5); /* 修正：合并颜色到 box-shadow */
+}
+
+.difficulty-card.selected[data-difficulty="中等"] {
+    border-color: #F39C12;
+    box-shadow: 0 0 20px rgba(243, 156, 18, 0.5); /* 修正：合并颜色到 box-shadow */
+}
+
+.difficulty-card.selected[data-difficulty="困难"] {
+    border-color: #E74C3C;
+    box-shadow: 0 0 20px rgba(231, 76, 60, 0.5); /* 修正：合并颜色到 box-shadow */
+}
+
+/* 基调卡片选中状态 */
+.tone-card.selected {
+    background-color: var(--tone-bg);
+    border: 2px solid var(--tone-color);
+}
+
+.tone-card.selected[data-tone="happy_ending"] {
+    --tone-bg: rgba(46, 204, 113, 0.2);
+    --tone-color: #2ECC71;
+}
+
+.tone-card.selected[data-tone="bad_ending"] {
+    --tone-bg: rgba(155, 89, 182, 0.2);
+    --tone-color: #9B59B6;
+}
+
+.tone-card.selected[data-tone="dark_depressing"] {
+    --tone-bg: rgba(52, 73, 94, 0.3);
+    --tone-color: #34495E;
+}
+
+.tone-card.selected[data-tone="humorous"] {
+    --tone-bg: rgba(241, 196, 15, 0.2);
+    --tone-color: #F1C40F;
+}
+
+/* 游戏结束按钮样式 */
+.end-game-btn {
+    cursor: pointer;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    outline: none;
+}
+
+.end-game-btn:hover {
+    border-color: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 0 20px rgba(231, 76, 60, 0.6);
+}
+
+.end-game-btn:active {
+    box-shadow: 0 0 10px rgba(231, 76, 60, 0.4);
+}
+
+/* 选项卡片样式 */
+.option-card {
+    width: 100%;
+    height: 80px;
+    border-radius: 8px;
+    background-color: transparent; /* 透明背景，让背景图片完全显示 */
+    border: 1px solid #34495E;
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    color: white; /* 确保文字颜色为白色 */
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8), 0 0 4px rgba(0, 0, 0, 0.6); /* 增强文字阴影以保证可读性 */
+}
+
+.option-card:hover {
+    background-color: transparent; /* 透明背景，保持与背景图片融合 */
+    border-color: #1ABC9C;
+    box-shadow: 0 0 10px rgba(26, 188, 156, 0.3); /* 使用阴影效果替代背景色 */
+}
+
+.option-card.selected {
+    background-color: transparent; /* 透明背景，保持与背景图片融合 */
+    border: 2px solid #1ABC9C;
+    box-shadow: 0 0 15px rgba(26, 188, 156, 0.5); /* 使用阴影效果替代背景色 */
+    animation: shake 0.2s ease;
+}
+
+.option-card.disabled {
+    background-color: transparent; /* 透明背景 */
+    color: rgba(189, 195, 199, 0.6); /* 降低文字透明度表示禁用状态 */
+    cursor: not-allowed;
+    opacity: 0.6; /* 整体降低透明度 */
+}
+
+.option-number {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: #1ABC9C;
+    color: white;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+}
+
+.option-card.selected .option-number {
+    background-color: white;
+    color: #1ABC9C;
+}
+
+.option-card.disabled .option-number {
+    background-color: #BDC3C7;
+}
+
+/* 选项文字样式 */
+.option-text {
+    color: white; /* 确保文字颜色为白色 */
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8), 0 0 4px rgba(0, 0, 0, 0.6); /* 增强文字阴影以保证可读性 */
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* 滑块样式优化 */
+.attr-slider:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(26, 188, 156, 0.3);
+}
+
+.attr-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 0 4px rgba(26, 188, 156, 0.2);
+}
+
+/* 弹窗动画 */
+#modal.active #modal-content {
+    transform: scale(1);
+    opacity: 1;
+}
+
+/* 关键信息高亮样式 */
+.highlight {
+    background-color: rgba(243, 156, 18, 0.2);
+    border-radius: 4px;
+    padding: 0 5px;
+}
+
+/* 解锁提示样式 */
+.unlock-toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: rgba(155, 89, 182, 0.8);
+    border-radius: 8px;
+    padding: 15px 20px;
+    color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    animation: zoomIn 0.3s ease, fadeOut 0.3s ease 4.7s forwards;
+    z-index: 100;
+}
+
+/* 爽点触发提示 */
+.super-toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: rgba(255, 215, 0, 0.8);
+    border-radius: 8px;
+    padding: 15px 20px;
+    color: black;
+    font-weight: bold;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    animation: zoomIn 0.3s ease, bounce 2s ease infinite, fadeOut 0.3s ease 2.7s forwards;
+    z-index: 100;
+}
+
+/* 隐藏剧情标识 */
+.hidden-plot-tag {
+    position: fixed;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%) rotate(90deg);
+    background-color: rgba(46, 204, 113, 0.8);
+    border-radius: 4px;
+    padding: 8px 15px;
+    color: white;
+    font-size: 14px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    z-index: 100;
+}
+
+/* 基调变化提示 */
+.tone-change-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(8px);
+    border-radius: 8px;
+    padding: 20px 30px;
+    color: white;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    animation: zoomIn 0.3s ease, fadeOut 0.3s ease 2.7s forwards;
+    z-index: 100;
+    text-align: center;
+}
+
+/* 动画辅助类 */
+.animate-spin {
+    animation: spin 1.5s linear infinite;
+}
+
+.animate-bounce {
+    animation: bounce 1.5s ease infinite;
+}
+
+.animate-fadeIn {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.animate-zoomIn {
+    animation: zoomIn 0.3s ease-in-out;
+}
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+/* 文本逐字渐显动画 - 修正：适配多行文本 */
+.typewriter {
+    overflow: hidden;
+    border-right: 0.15em solid #1ABC9C;
+    white-space: pre-wrap; /* 修正：从 nowrap 改为 pre-wrap 支持多行 */
+    margin: 0 auto;
+    animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: #1ABC9C; }
+}
+
+/* 属性选择界面按钮组样式 */
+.btn-group {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1.25rem;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 属性选择按钮样式 */
+.btn-attr {
+    width: 180px;
+    height: 50px;
+    border-radius: 8px;
+    background-color: #2C3E50;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+
+.btn-attr:hover {
+    background-color: #34495E;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.btn-attr:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* 响应式适配 - 新增：tone-cards 移动端适配 + 优化布局 */
+@media (max-width: 768px) {
+    .attr-container {
+        flex-direction: column;
+        gap: 1.25rem;
+    }
+
+    .attr-desc, .attr-controls {
+        width: 100%;
+    }
+
+    .difficulty-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* 新增：故事基调卡片移动端垂直排列 */
+    .tone-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .tone-card {
+        width: 90%;
+        margin-bottom: 20px;
+    }
+
+    .progress-bar-container {
+        flex-direction: column;
+        height: auto;
+        padding: 10px;
+    }
+
+    .current-chapter, .progress-bar, .core-conflict {
+        margin: 5px 0;
+        width: 100%;
+    }
+
+    .scene-container {
+        height: 50%;
+        padding: 20px;
+    }
+
+    .options-container {
+        height: 50%;
+        padding: 20px;
+        /* 移动端保持滚动功能 */
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+    }
+
+    .options-list {
+        width: 90%;
+    }
+
+    .character-panel {
+        width: 90%;
+        left: 5%;
+        top: auto;
+        bottom: 20px;
+        transform: none;
+        height: auto;
+    }
+}
+
+/* ------------------------------
+   视觉内容样式（新增）
+   ------------------------------ */
+
+/* 场景媒体容器 */
+.scene-media-container {
+    position: relative;
+    overflow-y: auto; /* 允许垂直滚动，让长文本可以滚动查看 */
+    overflow-x: hidden; /* 禁止水平滚动 */
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    /* 不使用背景图片，只使用图片层，避免错位问题 */
+    background-image: none !important;
+    /* 移除平滑滚动以提升性能（首次加载时避免性能问题） */
+    /* scroll-behavior: smooth; */
+    /* 自定义滚动条样式 */
+    scrollbar-width: thin;
+    scrollbar-color: rgba(26, 188, 156, 0.5) transparent;
+    /* 确保容器可以接收滚动事件 */
+    touch-action: pan-y; /* 允许垂直滚动 */
+    -webkit-overflow-scrolling: touch; /* iOS 平滑滚动 */
+}
+
+/* 场景媒体容器 - WebKit 滚动条样式 */
+.scene-media-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.scene-media-container::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 4px;
+}
+
+.scene-media-container::-webkit-scrollbar-thumb {
+    background: rgba(26, 188, 156, 0.5);
+    border-radius: 4px;
+}
+
+.scene-media-container::-webkit-scrollbar-thumb:hover {
+    background: rgba(26, 188, 156, 0.7);
+}
+
+/* 文本元素 - WebKit 滚动条样式 */
+#scene-text::-webkit-scrollbar,
+.scene-text::-webkit-scrollbar {
+    width: 6px;
+}
+
+#scene-text::-webkit-scrollbar-track,
+.scene-text::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 3px;
+}
+
+#scene-text::-webkit-scrollbar-thumb,
+.scene-text::-webkit-scrollbar-thumb {
+    background: rgba(26, 188, 156, 0.3);
+    border-radius: 3px;
+}
+
+#scene-text::-webkit-scrollbar-thumb:hover,
+.scene-text::-webkit-scrollbar-thumb:hover {
+    background: rgba(26, 188, 156, 0.5);
+}
+
+
+/* 场景图片 - 已移除，只使用全屏背景图片 */
+/* 
+.scene-image {
+    transition: opacity 0.5s ease-in-out, transform 0.3s ease;
+    object-fit: cover;
+    object-position: 50% 50%;
+    position: absolute;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    z-index: 0;
+}
+*/
+
+/*
+.scene-image:hover {
+    transform: scale(1.02);
+}
+
+/* 场景视频 */
+/*
+.scene-video {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+*/
+
+/* 旁白文本 - 直接定位在图片上，移除覆盖层 */
+/* 重要：文本元素应该只有文字，没有任何背景层 */
+.scene-text,
+.scene-text *,
+#scene-text,
+#scene-text *,
+p.scene-text,
+p#scene-text {
+    /* 定位样式 - 从.narration-overlay迁移 */
+    position: absolute !important; /* 绝对定位，相对于.scene-media-container */
+    z-index: 5 !important; /* 在图片上方（z-index: 0），但低于加载指示器（z-index: 20） */
+    bottom: 20px !important; /* 距离容器底部20px */
+    left: 20px !important;
+    right: 20px !important;
+    max-width: 78% !important;
+    top: 20px !important; /* 设置顶部边距，让文本可以从顶部开始显示 */
+    width: auto !important; /* 让left和right控制宽度 */
+    min-height: auto !important; /* 让内容决定高度 */
+    /* 关键修改：让文本元素可以超出容器，由容器来滚动 */
+    max-height: none !important; /* 不限制最大高度，让文本可以超出容器 */
+    overflow-y: auto !important; /* 文本元素本身也可以滚动 */
+    overflow-x: hidden !important; /* 禁止水平滚动 */
+    /* 文本内容滚动条样式 */
+    scrollbar-width: thin;
+    scrollbar-color: rgba(26, 188, 156, 0.3) transparent;
+    
+    /* 文本样式 */
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8), 0 0 4px rgba(0, 0, 0, 0.6) !important; /* 与选项层一致的文字阴影 */
+    
+    /* ========== 强制完全透明背景 - 移除所有可能的背景样式 ========== */
+    /* 重要：文本应该只有文字，没有任何背景层 */
+    background: none !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    background-clip: border-box !important;
+    background-origin: padding-box !important;
+    background-size: auto !important;
+    background-position: 0% 0% !important;
+    background-repeat: repeat !important;
+    background-attachment: scroll !important;
+    
+    /* 移除所有可能创建视觉层的样式 */
+    padding: 0 !important;
+    border-radius: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    display: block !important;
+    margin: 0 !important;
+    
+    /* 重置浏览器默认样式 */
+    -webkit-margin-before: 0 !important;
+    -webkit-margin-after: 0 !important;
+    -webkit-margin-start: 0 !important;
+    -webkit-margin-end: 0 !important;
+    
+    /* 动画 */
+    animation: fadeInUpText 0.5s ease-out !important; /* 使用修改后的动画 */
+    
+    /* 交互禁用 - 但允许滚动 */
+    user-select: none !important; /* 禁用文本选择 */
+    outline: none !important; /* 禁用焦点轮廓 */
+    /* 关键：允许滚动，但阻止点击等交互 */
+    pointer-events: auto !important; /* 允许滚动事件 */
+    touch-action: pan-y !important; /* 允许垂直滚动，禁用其他触摸操作（包括双击缩放） */
+    -webkit-touch-callout: none !important; /* 禁用iOS长按菜单 */
+    -webkit-user-select: none !important; /* 禁用选择 */
+    -webkit-tap-highlight-color: transparent !important; /* 禁用点击高亮 */
+    tap-highlight-color: transparent !important; /* 禁用点击高亮 */
+    
+    /* 变换禁用 */
+    transform: none !important; /* 禁用所有变换效果，包括点击时的缩放 */
+    scale: 1 !important; /* CSS scale属性 */
+    -webkit-transform: none !important;
+    -moz-transform: none !important;
+    -ms-transform: none !important;
+    -o-transform: none !important;
+    will-change: auto !important; /* 禁用GPU加速可能导致的变换 */
+    transition: none !important; /* 禁用过渡效果 */
+}
+
+/* 修改动画，确保结束时transform为none */
+@keyframes fadeInUpText {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+        transform: none !important; /* 确保动画结束时transform为none */
+    }
+}
+
+/* 确保所有交互状态都没有缩放效果和背景 */
+.scene-text:active,
+.scene-text:hover,
+.scene-text:focus,
+.scene-text:focus-visible,
+.scene-text:focus-within,
+.scene-text:visited,
+.scene-text:link,
+#scene-text:active,
+#scene-text:hover,
+#scene-text:focus,
+#scene-text:focus-visible,
+#scene-text:focus-within,
+#scene-text:visited,
+#scene-text:link,
+p.scene-text:active,
+p.scene-text:hover,
+p.scene-text:focus,
+p#scene-text:active,
+p#scene-text:hover,
+p#scene-text:focus {
+    transform: none !important;
+    scale: 1 !important;
+    transition: none !important;
+    animation: none !important; /* 禁用动画 */
+    -webkit-transform: none !important;
+    -moz-transform: none !important;
+    -ms-transform: none !important;
+    -o-transform: none !important;
+    will-change: auto !important;
+    /* 确保所有状态下背景都是透明的 */
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+/* 使用CSS变量确保scale始终为1 */
+.scene-text,
+#scene-text {
+    --tw-scale-x: 1 !important;
+    --tw-scale-y: 1 !important;
+}
+
+/* 图片/视频加载动画 */
+#image-loading {
+    backdrop-filter: blur(4px);
+    z-index: 20;
+}
+
+/* 选项容器 - 添加滚动功能 */
+.options-container {
+    overflow-y: auto; /* 允许垂直滚动，让所有选项都可以滚动查看 */
+    overflow-x: hidden; /* 禁止水平滚动 */
+    /* 移除平滑滚动以提升性能（首次加载时避免性能问题） */
+    /* scroll-behavior: smooth; */
+    /* 自定义滚动条样式 */
+    scrollbar-width: thin;
+    scrollbar-color: rgba(26, 188, 156, 0.5) transparent;
+}
+
+/* 选项容器 - WebKit 滚动条样式 */
+.options-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.options-container::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 4px;
+}
+
+.options-container::-webkit-scrollbar-thumb {
+    background: rgba(26, 188, 156, 0.5);
+    border-radius: 4px;
+}
+
+.options-container::-webkit-scrollbar-thumb:hover {
+    background: rgba(26, 188, 156, 0.7);
+}
+
+/* 选项列表 - 确保内容可以正常滚动 */
+.options-list {
+    /* 允许内容超出时滚动 */
+    min-height: 0; /* 允许 flex 子元素缩小 */
+}
+
+/* 角色状态面板 - 图层问题修复：明确z-index层级 */
+.character-panel {
+    z-index: 40 !important; /* 确保在文本层(z-index:5)和加载层(z-index:20)之上 */
+}
+
+#image-loading .loading-spinner {
+    animation: spin 1.5s linear infinite;
+}
+
+/* 响应式适配 - 视觉内容 */
+@media (max-width: 768px) {
+    .scene-media-container {
+        height: 50vh;
+    }
+    
+    .scene-text,
+    #scene-text {
+        font-size: 14px;
+        padding: 0 !important; /* 确保移动端也没有padding */
+        margin: 0 !important; /* 确保移动端也没有margin */
+    }
+    
+    #image-loading .loading-spinner {
+        width: 60px;
+        height: 60px;
+    }
+    
+    #image-loading p {
+        font-size: 14px;
+    }
+}

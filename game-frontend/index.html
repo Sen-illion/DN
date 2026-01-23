@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>AI沉浸式文本冒险游戏</title>
+    <!-- 引入Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 路径改回：和index.html同目录，直接写style.css -->
+    <link rel="stylesheet" href="style.css">
+    <!-- 引入图标库（适配属性/难度/基调图标） -->
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body class="bg-black text-white overflow-hidden font-sans">
+    <!-- 全局背景（各阶段动态切换） -->
+    <div id="global-bg" class="fixed inset-0 bg-cover bg-center opacity-60 z-0"></div>
+    
+    <!-- 主菜单界面（默认显示） -->
+    <div id="menu-screen" class="screen flex flex-col items-center justify-center h-screen relative z-10" role="main" aria-labelledby="game-logo">
+        <div id="game-logo" class="game-logo w-[200px] h-[80px] bg-white/10 rounded-lg flex items-center justify-center mb-16" aria-hidden="true">
+            <span class="text-2xl font-bold">文本冒险游戏</span>
+        </div>
+        <div class="button-group flex flex-col gap-[30px]" role="group" aria-label="游戏主菜单">
+            <button id="start-btn" class="btn-main w-[220px] h-[60px] rounded-[8px] bg-[#2C3E50] text-[18px] font-bold text-white transition-all duration-300 shadow-lg hover:bg-[#34495E] hover:border-2 hover:border-white hover:text-[19px] hover:shadow-xl active:bg-[#1ABC9C] active:border-2 active:border-[#16A085] active:translate-y-1 active:shadow-inner" role="button" aria-label="开始新游戏">
+                开始新游戏
+            </button>
+            <button id="load-btn" class="btn-main w-[220px] h-[60px] rounded-[8px] bg-[#2C3E50] text-[18px] font-bold text-white transition-all duration-300 shadow-lg hover:bg-[#34495E] hover:border-2 hover:border-white hover:text-[19px] hover:shadow-xl active:bg-[#1ABC9C] active:border-2 active:border-[#16A085] active:translate-y-1 active:shadow-inner" role="button" aria-label="加载游戏">
+                加载游戏
+            </button>
+            <button id="save-manage-btn" class="btn-main w-[220px] h-[60px] rounded-[8px] bg-[#2C3E50] text-[18px] font-bold text-white transition-all duration-300 shadow-lg hover:bg-[#34495E] hover:border-2 hover:border-white hover:text-[19px] hover:shadow-xl active:bg-[#1ABC9C] active:border-2 active:border-[#16A085] active:translate-y-1 active:shadow-inner" role="button" aria-label="存档管理">
+                存档管理
+            </button>
+            <button id="exit-btn" class="btn-main w-[220px] h-[60px] rounded-[8px] bg-[#E74C3C] text-[18px] font-bold text-white transition-all duration-300 shadow-lg hover:bg-[#C0392B] hover:border-2 hover:border-white hover:text-[19px] hover:shadow-xl active:bg-[#1ABC9C] active:border-2 active:border-[#16A085] active:translate-y-1 active:shadow-inner" role="button" aria-label="退出游戏">
+                退出游戏
+            </button>
+        </div>
+        <div class="version text-[12px] text-[#999999] absolute bottom-6" aria-hidden="true">v1.0.0 © 2026 文本冒险游戏版权所有</div>
+    </div>
+
+    <!-- 主角属性选择界面 -->
+    <div id="attr-selection-screen" class="screen hidden flex flex-col items-center justify-start h-screen relative z-10 p-8">
+        <div class="title text-[24px] font-bold text-[#ECF0F1] mb-8">塑造你的主角</div>
+        <div class="attr-container flex w-full max-w-5xl gap-8">
+            <!-- 左侧属性说明区 -->
+            <div class="attr-desc w-[30%] bg-black/30 p-6 rounded-lg">
+                <h3 class="text-xl font-bold mb-4 text-[#1ABC9C]">属性说明</h3>
+                <p class="text-sm leading-relaxed">为你的主角选择各项属性等级</p>
+                <p class="text-sm leading-relaxed mt-4">部分属性组合可解锁特殊剧情</p>
+            </div>
+            <!-- 右侧属性选择区 -->
+            <div class="attr-controls w-[70%] bg-black/30 p-8 rounded-lg flex flex-col gap-[60px]">
+                <!-- 颜值属性 -->
+                <div class="attr-item">
+                    <div class="attr-label flex items-center gap-4 mb-4">
+                        <div class="attr-icon w-[40px] h-[40px] bg-[#1ABC9C]/30 rounded-full flex items-center justify-center">
+                            <i class="fa fa-smile-o text-[#1ABC9C] text-xl"></i>
+                        </div>
+                        <span class="attr-name text-[16px]">颜值</span>
+                    </div>
+                    <div class="attr-options flex gap-4" data-attr="颜值">
+                        <button class="attr-option-btn px-4 py-2 rounded-lg bg-[#7F8C8D] text-white transition-all hover:bg-[#95A5A6]" data-value="极低">极低</button>
+                        <button class="attr-option-btn px-4 py-2 rounded-lg bg-[#7F8C8D] text-white transition-all hover:bg-[#95A5A6]" data-value="低">低</button>
+                        <button class="attr-option-btn px-4 py-2 rounded-lg bg-[#3498DB] text-white transition-all hover:bg-[#2980B9]" data-value="普通">普通</button>
+                        <button class="attr-option-btn px-4 py-2 rounded-lg bg-[#7F8C8D] text-white transition-all hover:bg-[#95A5A6]" data-value="高">高</button>
+                        <button class="attr-option-btn px-4 py-2 rounded-lg bg-[#7F8C8D] text-white transition-all hover:bg-[#95A5A6]" data-value="极高">极高</button>
+                    </div>
+                </div>
+                <!-- 智商属性 -->
+                <div class="attr-item">
+                    <div class="attr-label flex items-center gap-4 mb-4">
+                        <div class="attr-icon w-[40px] h-[40px] bg-[#1ABC9C]/30 rounded-full flex items-center justify-center">
+                            <i class="fa fa-lightbulb-o text-[#1ABC9C] text-xl"></i>
+                        </div>
+                        <span class="attr-name text-[16px]">智商</span>
+                    </div>
+                    <div class="attr-options flex gap-4" data-attr="智商">
+                        <button class="attr-option-btn px-4 py-2 rounded-lg bg-[#7F8C8D] text-white transition-all hover:bg-[#95A5A6]" data-value="极低">极低</button>
+                        <button class="attr-option-btn px-4 py-2 rounded-lg bg-[#7F8C8D] text-white transition-all hover:bg-[#95A5A6]" data-value="低">低</button>
+                        <button class="attr-option-btn px-4 py-2 rounded-lg bg-[#3498DB] text-white transition-all hover:bg-[#2980B9]" data-value="普通">普通</button>
+                        <button class="attr-option-btn px-4 py-2 rounded-lg bg-[#7F8C8D] text-white transition-all hover:bg-[#95A5A6]" data-value="高">高</button>
+                        <button class="attr-option-btn px-4 py-2 rounded-lg bg-[#7F8C8D] text-white transition-all hover:bg-[#95A5A6]" data-value="极高">极高</button>
+                    </div>
+                </div>
+                <!-- 体力属性 -->
+                <div class="attr-item">
+                    <div class="attr-label flex items-center gap-4 mb-4">
+                        <div class="attr-icon w-[40px] h-[40px] bg-[#1ABC9C]/30 rounded-full flex items-center justify-center">
+                            <i class="fa fa-heartbeat text-[#1ABC9C] text-xl"></i>
+                        </div>
+                        <span class="attr-name text-[16px]">体力</span>
+                    </div>
+                    <div class="attr-options flex gap-4" data-attr="体力">
+                        <button class="attr-option-btn px-4 py-2 rounded-lg bg-[#7F8C8D] text-white transition-all hover:bg-[#95A5A6]" data-value="极低">极低</button>
+                        <button class="attr-option-btn px-4 py-2 rounded-lg bg-[#7F8C8D] text-white transition-all hover:bg-[#95A5A6]" data-value="低">低</button>
+                        <button class="attr-option-btn px-4 py-2 rounded-lg bg-[#3498DB] text-white transition-all hover:bg-[#2980B9]" data-value="普通">普通</button>
+                        <button class="attr-option-btn px-4 py-2 rounded-lg bg-[#7F8C8D] text-white transition-all hover:bg-[#95A5A6]" data-value="高">高</button>
+                        <button class="attr-option-btn px-4 py-2 rounded-lg bg-[#7F8C8D] text-white transition-all hover:bg-[#95A5A6]" data-value="极高">极高</button>
+                    </div>
+                </div>
+                <!-- 魅力属性 -->
+                <div class="attr-item">
+                    <div class="attr-label flex items-center gap-4 mb-4">
+                        <div class="attr-icon w-[40px] h-[40px] bg-[#1ABC9C]/30 rounded-full flex items-center justify-center">
+                            <i class="fa fa-star text-[#1ABC9C] text-xl"></i>
+                        </div>
+                        <span class="attr-name text-[16px]">魅力</span>
+                    </div>
+                    <div class="attr-options flex gap-4" data-attr="魅力">
+                        <button class="attr-option-btn px-4 py-2 rounded-lg bg-[#7F8C8D] text-white transition-all hover:bg-[#95A5A6]" data-value="极低">极低</button>
+                        <button class="attr-option-btn px-4 py-2 rounded-lg bg-[#7F8C8D] text-white transition-all hover:bg-[#95A5A6]" data-value="低">低</button>
+                        <button class="attr-option-btn px-4 py-2 rounded-lg bg-[#3498DB] text-white transition-all hover:bg-[#2980B9]" data-value="普通">普通</button>
+                        <button class="attr-option-btn px-4 py-2 rounded-lg bg-[#7F8C8D] text-white transition-all hover:bg-[#95A5A6]" data-value="高">高</button>
+                        <button class="attr-option-btn px-4 py-2 rounded-lg bg-[#7F8C8D] text-white transition-all hover:bg-[#95A5A6]" data-value="极高">极高</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 按钮组固定在屏幕底部右侧 -->
+        <div class="fixed bottom-8 right-8 flex justify-end gap-[20px] z-20">
+            <button id="confirm-attr-btn" class="btn-attr w-[180px] h-[50px] rounded-[8px] bg-[#2C3E50] text-[16px] font-bold text-white transition-all hover:bg-[#34495E] hover:scale-105 shadow-lg">确认选择</button>
+            <button id="reset-attr-btn" class="btn-attr w-[180px] h-[50px] rounded-[8px] bg-[#7F8C8D] text-[16px] font-bold text-white transition-all hover:bg-[#95A5A6] hover:scale-105 shadow-lg">重新分配</button>
+        </div>
+    </div>
+
+    <!-- 游戏难度选择界面 -->
+    <div id="difficulty-selection-screen" class="screen hidden flex flex-col items-center justify-center h-screen relative z-10 p-8">
+        <div class="title text-[24px] font-bold text-[#ECF0F1] mb-12">选择游戏难度</div>
+        <div class="difficulty-cards flex gap-[40px] justify-center">
+            <!-- 简单难度 -->
+            <div class="difficulty-card w-[200px] h-[280px] rounded-lg bg-white/10 p-6 flex flex-col items-center justify-start relative transition-all duration-300 hover:scale-105 cursor-pointer" data-difficulty="简单">
+                <div class="difficulty-icon w-[48px] h-[48px] bg-green-500/30 rounded-full flex items-center justify-center mb-4">
+                    <i class="fa fa-leaf text-white text-2xl"></i>
+                </div>
+                <div class="difficulty-name text-[22px] font-bold text-white mb-4">简单</div>
+                <div class="difficulty-desc h-[120px] text-[14px] text-white leading-[1.5] text-left">
+                    剧情提示多、失败惩罚低，适合新手玩家快速体验剧情
+                </div>
+                <div class="selected-mark hidden absolute bottom-4 text-[14px] text-green-500">已选中</div>
+            </div>
+            <!-- 中等难度 -->
+            <div class="difficulty-card w-[200px] h-[280px] rounded-lg bg-white/10 p-6 flex flex-col items-center justify-start relative transition-all duration-300 hover:scale-105 cursor-pointer" data-difficulty="中等">
+                <div class="difficulty-icon w-[48px] h-[48px] bg-orange-500/30 rounded-full flex items-center justify-center mb-4">
+                    <i class="fa fa-cog text-white text-2xl"></i>
+                </div>
+                <div class="difficulty-name text-[22px] font-bold text-[#F39C12] mb-4">中等</div>
+                <div class="difficulty-desc h-[120px] text-[14px] text-white leading-[1.5] text-left">
+                    剧情提示适中、失败惩罚中等，平衡剧情与挑战
+                </div>
+                <div class="selected-mark hidden absolute bottom-4 text-[14px] text-[#F39C12]">已选中</div>
+            </div>
+            <!-- 困难难度 -->
+            <div class="difficulty-card w-[200px] h-[280px] rounded-lg bg-white/10 p-6 flex flex-col items-center justify-start relative transition-all duration-300 hover:scale-105 cursor-pointer" data-difficulty="困难">
+                <div class="difficulty-icon w-[48px] h-[48px] bg-red-500/30 rounded-full flex items-center justify-center mb-4">
+                    <i class="fa fa-skull text-white text-2xl"></i>
+                </div>
+                <div class="difficulty-name text-[22px] font-bold text-[#E74C3C] mb-4">困难</div>
+                <div class="difficulty-desc h-[120px] text-[14px] text-white leading-[1.5] text-left">
+                    隐藏剧情多、属性要求高，失败惩罚严重，适合硬核玩家
+                </div>
+                <div class="selected-mark hidden absolute bottom-4 text-[14px] text-[#E74C3C]">已选中</div>
+            </div>
+        </div>
+        <button id="confirm-difficulty-btn" class="btn-confirm-difficulty w-[200px] h-[50px] rounded-[8px] bg-[#7F8C8D] text-[16px] font-bold text-white transition-all mt-12 cursor-not-allowed">确认难度</button>
+    </div>
+
+    <!-- 故事基调选择界面 -->
+    <div id="tone-selection-screen" class="screen hidden flex flex-col items-center justify-center h-screen relative z-10 p-8">
+        <div class="title text-[24px] font-bold text-[#ECF0F1] mb-12">选择故事基调</div>
+        <div class="tone-scroll-container w-full max-w-5xl overflow-x-auto pb-8">
+            <div class="tone-cards flex gap-[30px]">
+                <!-- 圆满结局 -->
+                <div class="tone-card w-[240px] h-[320px] rounded-[12px] bg-[rgba(0,0,0,0.6)] backdrop-blur-sm p-6 flex flex-col transition-all duration-300 cursor-pointer" data-tone="happy_ending">
+                    <div class="tone-name text-[20px] font-bold text-[#2ECC71] mb-4">圆满结局</div>
+                    <div class="tone-icon w-[40px] h-[40px] bg-green-500/30 rounded-full flex items-center justify-center mb-6">
+                        <i class="fa fa-rainbow text-[#2ECC71] text-xl"></i>
+                    </div>
+                    <div class="tone-desc h-[180px] text-[14px] text-white leading-[1.5] text-left indent-4">
+                        故事以积极、乐观、圆满的方式结束，主角达成目标，所有矛盾得到解决，人际关系和谐
+                    </div>
+                    <div class="tone-tip text-[12px] text-[#999999] mt-auto">影响剧情分支走向、结局呈现风格</div>
+                </div>
+                <!-- 悲剧结局 -->
+                <div class="tone-card w-[240px] h-[320px] rounded-[12px] bg-[rgba(0,0,0,0.6)] backdrop-blur-sm p-6 flex flex-col transition-all duration-300 cursor-pointer" data-tone="bad_ending">
+                    <div class="tone-name text-[20px] font-bold text-[#9B59B6] mb-4">悲剧结局</div>
+                    <div class="tone-icon w-[40px] h-[40px] bg-purple-500/30 rounded-full flex items-center justify-center mb-6">
+                        <i class="fa fa-heart-o text-[#9B59B6] text-xl"></i>
+                    </div>
+                    <div class="tone-desc h-[180px] text-[14px] text-white leading-[1.5] text-left indent-4">
+                        故事以悲惨、绝望的方式结束，主角未能达成目标，或付出惨重代价，结局令人悲伤
+                    </div>
+                    <div class="tone-tip text-[12px] text-[#999999] mt-auto">影响剧情分支走向、结局呈现风格</div>
+                </div>
+                <!-- 普通结局 -->
+                <div class="tone-card w-[240px] h-[320px] rounded-[12px] bg-[rgba(0,0,0,0.6)] backdrop-blur-sm p-6 flex flex-col transition-all duration-300 cursor-pointer" data-tone="normal_ending">
+                    <div class="tone-name text-[20px] font-bold text-[#3498DB] mb-4">普通结局</div>
+                    <div class="tone-icon w-[40px] h-[40px] bg-blue-500/30 rounded-full flex items-center justify-center mb-6">
+                        <i class="fa fa-balance-scale text-[#3498DB] text-xl"></i>
+                    </div>
+                    <div class="tone-desc h-[180px] text-[14px] text-white leading-[1.5] text-left indent-4">
+                        故事以平淡、真实的方式结束，主角达成部分目标，存在遗憾但也有收获，符合现实逻辑
+                    </div>
+                    <div class="tone-tip text-[12px] text-[#999999] mt-auto">影响剧情分支走向、结局呈现风格</div>
+                </div>
+                <!-- 黑深残 -->
+                <div class="tone-card w-[240px] h-[320px] rounded-[12px] bg-[rgba(0,0,0,0.6)] backdrop-blur-sm p-6 flex flex-col transition-all duration-300 cursor-pointer" data-tone="dark_depressing">
+                    <div class="tone-name text-[20px] font-bold text-[#34495E] mb-4">黑深残</div>
+                    <div class="tone-icon w-[40px] h-[40px] bg-gray-500/30 rounded-full flex items-center justify-center mb-6">
+                        <i class="fa fa-pagelines text-[#34495E] text-xl"></i>
+                    </div>
+                    <div class="tone-desc h-[180px] text-[14px] text-white leading-[1.5] text-left indent-4">
+                        故事充满黑暗、压抑、残酷的元素，揭示人性的阴暗面，结局大概率悲剧，强调命运的残酷
+                    </div>
+                    <div class="tone-tip text-[12px] text-[#999999] mt-auto">影响剧情分支走向、结局呈现风格</div>
+                </div>
+                <!-- 幽默 -->
+                <div class="tone-card w-[240px] h-[320px] rounded-[12px] bg-[rgba(0,0,0,0.6)] backdrop-blur-sm p-6 flex flex-col transition-all duration-300 cursor-pointer" data-tone="humorous">
+                    <div class="tone-name text-[20px] font-bold text-[#F1C40F] mb-4">幽默</div>
+                    <div class="tone-icon w-[40px] h-[40px] bg-yellow-500/30 rounded-full flex items-center justify-center mb-6">
+                        <i class="fa fa-smile text-[#F1C40F] text-xl"></i>
+                    </div>
+                    <div class="tone-desc h-[180px] text-[14px] text-white leading-[1.5] text-left indent-4">
+                        故事充满笑点，语言轻松诙谐，情节有趣，对话风趣，结局轻松愉快，带有喜剧元素
+                    </div>
+                    <div class="tone-tip text-[12px] text-[#999999] mt-auto">影响剧情分支走向、结局呈现风格</div>
+                </div>
+                <!-- 抽象 -->
+                <div class="tone-card w-[240px] h-[320px] rounded-[12px] bg-[rgba(0,0,0,0.6)] backdrop-blur-sm p-6 flex flex-col transition-all duration-300 cursor-pointer" data-tone="abstract">
+                    <div class="tone-name text-[20px] font-bold text-[#9B59B6] mb-4">抽象</div>
+                    <div class="tone-icon w-[40px] h-[40px] bg-purple-500/30 rounded-full flex items-center justify-center mb-6">
+                        <i class="fa fa-cubes text-[#9B59B6] text-xl"></i>
+                    </div>
+                    <div class="tone-desc h-[180px] text-[14px] text-white leading-[1.5] text-left indent-4">
+                        故事结构松散，情节跳跃，充满象征和隐喻，结局可能开放，强调思考和感受
+                    </div>
+                    <div class="tone-tip text-[12px] text-[#999999] mt-auto">影响剧情分支走向、结局呈现风格</div>
+                </div>
+                <!-- 唯美 -->
+                <div class="tone-card w-[240px] h-[320px] rounded-[12px] bg-[rgba(0,0,0,0.6)] backdrop-blur-sm p-6 flex flex-col transition-all duration-300 cursor-pointer" data-tone="aesthetic">
+                    <div class="tone-name text-[20px] font-bold text-[#E91E63] mb-4">唯美</div>
+                    <div class="tone-icon w-[40px] h-[40px] bg-pink-500/30 rounded-full flex items-center justify-center mb-6">
+                        <i class="fa fa-paint-brush text-[#E91E63] text-xl"></i>
+                    </div>
+                    <div class="tone-desc h-[180px] text-[14px] text-white leading-[1.5] text-left indent-4">
+                        故事充满美感，语言优美，场景描写细腻，结局可能悲剧但充满美感，强调美的体验
+                    </div>
+                    <div class="tone-tip text-[12px] text-[#999999] mt-auto">影响剧情分支走向、结局呈现风格</div>
+                </div>
+                <!-- 逻辑推理严谨 -->
+                <div class="tone-card w-[240px] h-[320px] rounded-[12px] bg-[rgba(0,0,0,0.6)] backdrop-blur-sm p-6 flex flex-col transition-all duration-300 cursor-pointer" data-tone="logical">
+                    <div class="tone-name text-[20px] font-bold text-[#4CAF50] mb-4">逻辑推理严谨</div>
+                    <div class="tone-icon w-[40px] h-[40px] bg-green-500/30 rounded-full flex items-center justify-center mb-6">
+                        <i class="fa fa-search text-[#4CAF50] text-xl"></i>
+                    </div>
+                    <div class="tone-desc h-[180px] text-[14px] text-white leading-[1.5] text-left indent-4">
+                        故事注重逻辑推理，情节严谨，谜题设计合理，结局符合逻辑，谜题得到合理解决
+                    </div>
+                    <div class="tone-tip text-[12px] text-[#999999] mt-auto">影响剧情分支走向、结局呈现风格</div>
+                </div>
+                <!-- 神秘 -->
+                <div class="tone-card w-[240px] h-[320px] rounded-[12px] bg-[rgba(0,0,0,0.6)] backdrop-blur-sm p-6 flex flex-col transition-all duration-300 cursor-pointer" data-tone="mysterious">
+                    <div class="tone-name text-[20px] font-bold text-[#FF9800] mb-4">神秘</div>
+                    <div class="tone-icon w-[40px] h-[40px] bg-orange-500/30 rounded-full flex items-center justify-center mb-6">
+                        <i class="fa fa-moon-o text-[#FF9800] text-xl"></i>
+                    </div>
+                    <div class="tone-desc h-[180px] text-[14px] text-white leading-[1.5] text-left indent-4">
+                        故事充满神秘色彩，情节扑朔迷离，悬念丛生，结局可能保留悬念，强调神秘和未知
+                    </div>
+                    <div class="tone-tip text-[12px] text-[#999999] mt-auto">影响剧情分支走向、结局呈现风格</div>
+                </div>
+                <!-- 意识流 -->
+                <div class="tone-card w-[240px] h-[320px] rounded-[12px] bg-[rgba(0,0,0,0.6)] backdrop-blur-sm p-6 flex flex-col transition-all duration-300 cursor-pointer" data-tone="stream_of_consciousness">
+                    <div class="tone-name text-[20px] font-bold text-[#673AB7] mb-4">意识流</div>
+                    <div class="tone-icon w-[40px] h-[40px] bg-indigo-500/30 rounded-full flex items-center justify-center mb-6">
+                        <i class="fa fa-mind text-[#673AB7] text-xl"></i>
+                    </div>
+                    <div class="tone-desc h-[180px] text-[14px] text-white leading-[1.5] text-left indent-4">
+                        故事以主角的意识流动为线索，情节跳跃，注重内心描写，结局可能开放，强调内心变化
+                    </div>
+                    <div class="tone-tip text-[12px] text-[#999999] mt-auto">影响剧情分支走向、结局呈现风格</div>
+                </div>
+            </div>
+        </div>
+        <button id="confirm-tone-btn" class="btn-confirm-tone w-[200px] h-[50px] rounded-[8px] bg-[#27AE60] text-[16px] font-bold text-white transition-all mt-8">确认基调</button>
+    </div>
+
+    <!-- 游戏主题输入界面 -->
+    <div id="theme-input-screen" class="screen hidden flex flex-col items-center justify-center h-screen relative z-10 p-8" role="region" aria-labelledby="theme-title" aria-describedby="theme-examples">
+        <div id="theme-title" class="title text-[24px] font-bold text-[#ECF0F1] mb-12">输入游戏主题</div>
+        <div class="theme-input-container flex flex-col items-center gap-6">
+            <input type="text" id="theme-input" class="theme-input w-[400px] h-[60px] bg-[rgba(255,255,255,0.1)] border-2 border-[#3498DB] rounded-[8px] text-[18px] text-white px-[20px] outline-none transition-all duration-300 hover:border-[#2980B9]" placeholder="请输入游戏主题，如'古风权谋'、'科幻救赎'" aria-label="游戏主题输入" aria-required="true" aria-describedby="word-count">
+            <div id="theme-examples" class="theme-examples text-[14px] text-[#999999]">示例：古风权谋 / 科幻救赎 / 校园悬疑</div>
+            <div id="word-count" class="word-count text-[14px] text-white absolute top-[calc(50%+80px)] right-[calc(50%-200px)]">0/20</div>
+            <button id="submit-theme-btn" class="btn-submit-theme w-[180px] h-[50px] rounded-[8px] bg-[#3498DB] text-[16px] font-bold text-white transition-all mt-4 hover:bg-[#2980B9]" role="button" aria-label="提交游戏主题">提交主题</button>
+        </div>
+    </div>
+
+    <!-- 图片风格选择界面 -->
+    <div id="image-style-selection-screen" class="screen hidden flex flex-col items-center justify-center h-screen relative z-10 p-8" role="region" aria-labelledby="image-style-title">
+        <div id="image-style-title" class="title text-[24px] font-bold text-[#ECF0F1] mb-12">选择图片风格</div>
+        <div class="image-style-container flex flex-col items-center gap-6 w-full max-w-4xl">
+            <!-- 风格选项按钮组 -->
+            <div class="style-buttons-grid grid grid-cols-3 gap-4 w-full mb-4">
+                <!-- 写实风格 -->
+                <button class="style-btn w-full h-[80px] rounded-[8px] bg-[#3498DB] text-[16px] font-bold text-white transition-all hover:bg-[#2980B9] hover:scale-105 shadow-lg" data-style="realistic" data-style-name="写实风格">
+                    写实风格
+                </button>
+                <!-- 动漫风格 -->
+                <button class="style-btn w-full h-[80px] rounded-[8px] bg-[#E74C3C] text-[16px] font-bold text-white transition-all hover:bg-[#C0392B] hover:scale-105 shadow-lg" data-style="anime" data-style-name="动漫风格">
+                    动漫风格
+                </button>
+                <!-- 水墨画风格 -->
+                <button class="style-btn w-full h-[80px] rounded-[8px] bg-[#2C3E50] text-[16px] font-bold text-white transition-all hover:bg-[#34495E] hover:scale-105 shadow-lg" data-style="ink_painting" data-style-name="水墨画风格">
+                    水墨画风格
+                </button>
+                <!-- 油画风格 -->
+                <button class="style-btn w-full h-[80px] rounded-[8px] bg-[#F39C12] text-[16px] font-bold text-white transition-all hover:bg-[#E67E22] hover:scale-105 shadow-lg" data-style="oil_painting" data-style-name="油画风格">
+                    油画风格
+                </button>
+                <!-- 赛博朋克风 -->
+                <button class="style-btn w-full h-[80px] rounded-[8px] bg-[#9B59B6] text-[16px] font-bold text-white transition-all hover:bg-[#8E44AD] hover:scale-105 shadow-lg" data-style="cyberpunk" data-style-name="赛博朋克风">
+                    赛博朋克风
+                </button>
+                <!-- 自定义 -->
+                <button class="style-btn w-full h-[80px] rounded-[8px] bg-[#1ABC9C] text-[16px] font-bold text-white transition-all hover:bg-[#16A085] hover:scale-105 shadow-lg" data-style="custom" data-style-name="自定义">
+                    自定义
+                </button>
+            </div>
+            
+            <!-- 油画风格子选项（初始隐藏） -->
+            <div id="oil-painting-submenu" class="oil-painting-submenu hidden w-full max-w-2xl mt-4">
+                <div class="submenu-title text-[18px] font-bold text-[#ECF0F1] mb-4 text-center">选择油画风格类型</div>
+                <div class="submenu-buttons flex gap-4 justify-center">
+                    <button class="submenu-btn w-[180px] h-[60px] rounded-[8px] bg-[#E67E22] text-[14px] font-bold text-white transition-all hover:bg-[#D35400] hover:scale-105 shadow-lg" data-substyle="impressionist" data-substyle-name="印象派">
+                        印象派
+                    </button>
+                    <button class="submenu-btn w-[180px] h-[60px] rounded-[8px] bg-[#E67E22] text-[14px] font-bold text-white transition-all hover:bg-[#D35400] hover:scale-105 shadow-lg" data-substyle="rococo" data-substyle-name="洛可可风格">
+                        洛可可风格
+                    </button>
+                    <button class="submenu-btn w-[180px] h-[60px] rounded-[8px] bg-[#E67E22] text-[14px] font-bold text-white transition-all hover:bg-[#D35400] hover:scale-105 shadow-lg" data-substyle="classic_oil" data-substyle-name="普通油画">
+                        普通油画
+                    </button>
+                </div>
+            </div>
+            
+            <!-- 自定义输入框（初始隐藏） -->
+            <div id="custom-style-input" class="custom-style-input hidden w-full max-w-2xl mt-4">
+                <div class="input-label text-[16px] font-bold text-[#ECF0F1] mb-3 text-center">请输入自定义风格</div>
+                <input type="text" id="custom-style-text" class="custom-style-text w-full h-[50px] bg-[rgba(255,255,255,0.1)] border-2 border-[#1ABC9C] rounded-[8px] text-[16px] text-white px-[20px] outline-none transition-all duration-300 hover:border-[#16A085]" placeholder="例如：水彩画、像素艺术、蒸汽波等" aria-label="自定义风格输入">
+            </div>
+            
+            <!-- 当前选择显示 -->
+            <div id="selected-style-display" class="selected-style-display text-[16px] text-[#1ABC9C] font-bold mt-4 min-h-[24px]">
+                请选择一个风格
+            </div>
+            
+            <!-- 确认按钮 -->
+            <button id="confirm-style-btn" class="btn-confirm-style w-[200px] h-[50px] rounded-[8px] bg-[#7F8C8D] text-[16px] font-bold text-white transition-all mt-6 cursor-not-allowed" disabled>确认风格</button>
+        </div>
+    </div>
+
+    <!-- 核心设定告知界面 -->
+    <div id="setting-screen" class="screen hidden flex flex-col h-screen relative z-10">
+        <div class="title text-[24px] font-bold text-white text-center py-6 bg-black/30">游戏核心设定</div>
+        <div class="setting-container flex h-[calc(100%-120px)]">
+            <!-- 左侧导航 -->
+            <div class="setting-nav w-[25%] bg-[#2C3E50]">
+                <div class="nav-item h-[60px] flex items-center pl-[20px] text-[16px] text-white cursor-pointer hover:bg-[#34495E] transition-all" data-tab="game-style">游戏风格</div>
+                <div class="nav-item h-[60px] flex items-center pl-[20px] text-[16px] text-white cursor-pointer hover:bg-[#34495E] transition-all" data-tab="worldview">世界观</div>
+                <div class="nav-item h-[60px] flex items-center pl-[20px] text-[16px] text-white cursor-pointer hover:bg-[#34495E] transition-all" data-tab="protagonist-ability">主角能力</div>
+                <div class="nav-item h-[60px] flex items-center pl-[20px] text-[16px] text-white cursor-pointer hover:bg-[#34495E] transition-all" data-tab="chapter-conflict">章节矛盾</div>
+            </div>
+            <!-- 右侧内容 -->
+            <div class="setting-content w-[75%] bg-gray-900/30 p-[30px] overflow-y-auto">
+                <div class="content-tab active" id="game-style-tab">
+                    <h3 class="text-[20px] font-bold text-[#1ABC9C] mb-4">游戏风格</h3>
+                    <p class="text-[16px] text-white leading-[1.8] mb-[20px]" id="game-style-content">
+                        加载中...
+                    </p>
+                </div>
+                <div class="content-tab hidden" id="worldview-tab">
+                    <h3 class="text-[20px] font-bold text-[#1ABC9C] mb-4">世界观</h3>
+                    <p class="text-[16px] text-white leading-[1.8] mb-[20px]" id="worldview-content">
+                        加载中...
+                    </p>
+                </div>
+                <div class="content-tab hidden" id="protagonist-ability-tab">
+                    <h3 class="text-[20px] font-bold text-[#1ABC9C] mb-4">主角核心能力</h3>
+                    <p class="text-[16px] text-white leading-[1.8] mb-[20px]" id="protagonist-ability-content">
+                        加载中...
+                    </p>
+                </div>
+                <div class="content-tab hidden" id="chapter-conflict-tab">
+                    <h3 class="text-[20px] font-bold text-[#1ABC9C] mb-4">章节矛盾</h3>
+                    <p class="text-[16px] text-white leading-[1.8] mb-[20px]" id="chapter-conflict-content">
+                        加载中...
+                    </p>
+                </div>
+            </div>
+        </div>
+        <button id="start-game-btn" class="btn-start-game w-[200px] h-[50px] bg-[#1ABC9C] text-[16px] font-bold text-white rounded-lg self-center mb-6 transition-all hover:bg-[#16A085]">开始游戏</button>
+    </div>
+
+    <!-- 剧情加载界面 -->
+    <div id="loading-screen" class="screen hidden flex flex-col items-center justify-center h-screen relative z-10">
+        <div class="loading-spinner w-[80px] h-[80px] rounded-full border-[8px] border-[#1ABC9C] border-t-transparent animate-spin mb-6"></div>
+        <div class="loading-text text-[18px] text-white mb-2" id="loading-status">生成世界观...</div>
+        <div class="loading-percent text-[20px] font-bold text-white" id="loading-percent">0%</div>
+    </div>
+
+    <!-- 核心剧情交互界面 -->
+    <div id="gameplay-screen" class="screen hidden flex flex-col h-screen relative z-10" role="region" aria-labelledby="current-chapter">
+        <!-- 游戏结束按钮（右上角固定位置） -->
+        <button id="end-game-btn" class="end-game-btn fixed top-4 right-4 w-[50px] h-[50px] bg-[rgba(231,76,60,0.8)] hover:bg-[rgba(231,76,60,1)] rounded-full flex items-center justify-center z-50 transition-all duration-300 shadow-lg hover:scale-110 active:scale-95" title="结束游戏" aria-label="结束游戏">
+            <i class="fa fa-power-off text-white text-xl"></i>
+        </button>
+        <!-- 顶部进度条 -->
+        <div class="progress-bar-container h-[60px] bg-black/50 flex items-center px-8" role="banner">
+            <div id="current-chapter" class="current-chapter text-[18px] font-bold text-white mr-8">第一章：初入江湖</div>
+            <div class="progress-bar w-[400px] h-[8px] bg-[#7F8C8D] rounded-[4px] overflow-hidden mr-8" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="章节进度">
+                <div class="progress-fill h-full bg-[#1ABC9C] rounded-[4px] transition-all duration-300" style="width: 0%"></div>
+            </div>
+            <div class="core-conflict text-[14px] text-white" role="status">核心矛盾：寻找失窃的玉佩，揭穿反派阴谋</div>
+        </div>
+        <!-- 场景描述区 - 支持图片/视频显示 -->
+        <div class="scene-container h-[60%] p-[40px] flex items-center justify-center" role="main">
+            <!-- 图片/视频展示区 -->
+            <div class="scene-media-container w-full h-full relative rounded-lg">
+                <!-- 场景图片 - 已移除，只使用全屏背景图片 -->
+                <!-- 
+                <img 
+                    id="scene-image" 
+                    class="scene-image w-full h-full object-cover opacity-0 transition-opacity duration-500"
+                    src="" 
+                    alt="场景图片"
+                    style="display: none; visibility: hidden;"
+                />
+                -->
+                
+                <!-- 场景视频（5-10秒） -->
+                <video 
+                    id="scene-video" 
+                    class="scene-video w-full h-full object-cover"
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    style="display: none;"
+                >
+                    <source id="scene-video-source" src="" type="video/mp4">
+                    您的浏览器不支持视频播放
+                </video>
+                
+                <!-- 旁白文案 - 直接定位在图片上 -->
+                    <p 
+                        id="scene-text" 
+                    class="scene-text text-[18px] text-white leading-[1.8]"
+                    role="text" 
+                        aria-live="polite"
+                    >
+                        加载中...
+                    </p>
+                
+                <!-- 图片/视频加载占位符 -->
+                <div id="image-loading" class="absolute inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm" style="display: none;">
+                    <div class="text-center">
+                        <div class="loading-spinner w-[80px] h-[80px] rounded-full border-[8px] border-[#1ABC9C] border-t-transparent animate-spin mx-auto mb-4"></div>
+                        <p class="text-white text-lg" id="loading-text">正在生成场景内容...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 选项列表区 -->
+        <div class="options-container h-[40%] p-[40px] flex flex-col items-center justify-center" role="region" aria-label="剧情选项">
+            <div class="options-list flex flex-col gap-[20px] w-60%" id="options-list" role="list"></div>
+        </div>
+        <!-- 角色状态面板（悬浮） -->
+        <div class="character-panel fixed right-8 top-1/2 -translate-y-1/2 w-[300px] h-[450px] bg-[rgba(0,0,0,0.7)] backdrop-blur-sm rounded-[12px] border border-[#34495E] p-[25px] cursor-move" id="character-panel">
+            <div class="panel-header flex justify-between items-center mb-6">
+                <h3 class="text-[20px] font-bold text-white">角色状态</h3>
+                <button class="close-panel text-white hover:text-[#E74C3C]">
+                    <i class="fa fa-times"></i>
+                </button>
+            </div>
+            <!-- 主角卡片 -->
+            <div class="protagonist-card h-[180px] mb-6">
+                <div class="protagonist-avatar w-[80px] h-[80px] rounded-full border-2 border-[#1ABC9C] mx-auto mb-3">
+                    <i class="fa fa-user text-[#1ABC9C] text-3xl flex items-center justify-center h-full"></i>
+                </div>
+                <div class="protagonist-name text-[18px] font-bold text-white text-center mb-2" id="protagonist-name">主角</div>
+                <div class="protagonist-personality text-[14px] text-[#3498DB] text-center mb-4" id="protagonist-personality">冷静理智</div>
+                <div class="protagonist-attrs flex justify-around">
+                    <div class="attr-item flex flex-col items-center">
+                        <i class="fa fa-lightbulb-o text-[24px] text-white mb-1"></i>
+                        <span class="attr-value text-[14px] text-white" id="protagonist-iq">50</span>
+                    </div>
+                    <div class="attr-item flex flex-col items-center">
+                        <i class="fa fa-heartbeat text-[24px] text-white mb-1"></i>
+                        <span class="attr-value text-[14px] text-white" id="protagonist-strength">50</span>
+                    </div>
+                    <div class="attr-item flex flex-col items-center">
+                        <i class="fa fa-star text-[24px] text-white mb-1"></i>
+                        <span class="attr-value text-[14px] text-white" id="protagonist-charm">50</span>
+                    </div>
+                </div>
+            </div>
+            <!-- 配角卡片 -->
+            <div class="support-card h-[120px] border-t border-gray-700 pt-4">
+                <div class="support-header flex items-center mb-2">
+                    <div class="support-avatar w-[60px] h-[60px] rounded-full border-2 border-gray-600 mr-3">
+                        <i class="fa fa-user-friends text-gray-400 text-2xl flex items-center justify-center h-full"></i>
+                    </div>
+                    <div>
+                        <div class="support-name text-[16px] text-white" id="support-name">配角1</div>
+                        <div class="support-relation bg-green-500/30 text-white text-xs px-2 py-1 rounded-[4px]" id="support-relation">盟友</div>
+                    </div>
+                </div>
+                <div class="support-background text-[14px] text-white truncate" id="support-background">
+                    经验丰富的向导，隐藏着神秘背景
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 存档管理界面 -->
+    <div id="save-management-screen" class="screen hidden flex flex-col h-screen relative z-10 p-8 overflow-hidden">
+        <div class="title text-[24px] font-bold text-[#ECF0F1] mb-8 flex-shrink-0">存档管理</div>
+        <div class="save-cards-container flex-1 overflow-y-auto mb-4">
+            <div class="save-cards grid grid-cols-2 gap-[30px] w-full max-w-4xl mx-auto">
+                <!-- 存档卡片动态生成 -->
+            </div>
+        </div>
+        <div class="btn-group mt-4 flex gap-[20px] justify-center flex-shrink-0">
+            <button id="load-selected-save-btn" class="btn-save w-[180px] h-[50px] rounded-[8px] bg-[#27AE60] text-[16px] font-bold text-white transition-all">加载选中存档</button>
+            <button id="delete-selected-save-btn" class="btn-save w-[180px] h-[50px] rounded-[8px] bg-[#E74C3C] text-[16px] font-bold text-white transition-all">删除选中存档</button>
+            <button id="back-to-menu-btn" class="btn-save w-[180px] h-[50px] rounded-[8px] bg-[#7F8C8D] text-[16px] font-bold text-white transition-all">返回主菜单</button>
+        </div>
+    </div>
+
+    <!-- 结局界面 -->
+    <div id="ending-screen" class="screen hidden flex flex-col items-center justify-center h-screen relative z-10 p-8">
+        <div class="ending-container w-full max-w-3xl bg-black/30 rounded-[16px] p-[60px] text-center">
+            <h2 id="ending-title" class="text-[48px] font-bold text-white mb-12">圆满结局</h2>
+            <div class="ending-content-container h-[300px] overflow-y-auto mb-8">
+                <div id="ending-content" class="text-[18px] text-white leading-[1.8] text-left indent-4"></div>
+            </div>
+            <div id="ending-summary" class="text-[20px] text-white mb-12"></div>
+            <div class="ending-buttons flex gap-[30px] justify-center">
+                <button id="restart-game-btn" class="btn-ending w-[180px] h-[60px] rounded-[8px] bg-[#2C3E50] text-[18px] font-bold text-white transition-all duration-300 hover:bg-[#34495E]">重新开始</button>
+                <button id="back-to-menu-btn" class="btn-ending w-[180px] h-[60px] rounded-[8px] bg-[#3498DB] text-[18px] font-bold text-white transition-all duration-300 hover:bg-[#2980B9]">返回主菜单</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 通用弹窗组件 -->
+    <div id="modal" class="fixed inset-0 bg-black/70 flex items-center justify-center z-50 hidden">
+        <div class="modal-content bg-[rgba(0,0,0,0.8)] backdrop-blur-sm rounded-[8px] p-6 transition-all duration-300 transform scale-95 opacity-0" id="modal-content">
+            <div class="modal-header flex justify-between items-center mb-4">
+                <h3 class="modal-title text-[18px] font-bold text-white" id="modal-title">提示</h3>
+                <button class="close-modal text-white hover:text-[#E74C3C]">
+                    <i class="fa fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body mb-6">
+                <p class="modal-text text-[16px] text-white" id="modal-text">这是一个提示弹窗</p>
+            </div>
+            <div class="modal-footer flex justify-end gap-4">
+                <button class="btn-modal cancel w-[100px] h-[40px] rounded-[4px] bg-[#7F8C8D] text-white transition-all" id="modal-cancel">取消</button>
+                <button class="btn-modal confirm w-[100px] h-[40px] rounded-[4px] bg-[#1ABC9C] text-white transition-all" id="modal-confirm">确认</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 使用模块化脚本 -->
+    <script src="script-modular.js"></script>
+</body>
+</html>
