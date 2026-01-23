@@ -728,6 +728,9 @@ p#scene-text {
     /* 文本样式 */
     text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8), 0 0 4px rgba(0, 0, 0, 0.6) !important; /* 与选项层一致的文字阴影 */
     
+    /* 字体过渡效果 - 允许字体平滑切换 */
+    transition: font-family 0.3s ease, font-weight 0.3s ease !important;
+    
     /* ========== 强制完全透明背景 - 移除所有可能的背景样式 ========== */
     /* 重要：文本应该只有文字，没有任何背景层 */
     background: none !important;
@@ -778,7 +781,7 @@ p#scene-text {
     -ms-transform: none !important;
     -o-transform: none !important;
     will-change: auto !important; /* 禁用GPU加速可能导致的变换 */
-    transition: none !important; /* 禁用过渡效果 */
+    /* 注意：字体过渡效果在上面单独定义，这里不再覆盖 */
 }
 
 /* 修改动画，确保结束时transform为none */
@@ -878,11 +881,25 @@ p#scene-text:focus {
 .options-list {
     /* 允许内容超出时滚动 */
     min-height: 0; /* 允许 flex 子元素缩小 */
+    /* 字体过渡效果 */
+    transition: font-family 0.3s ease, font-weight 0.3s ease;
+}
+
+/* 选项项 - 字体过渡效果 */
+.option-item {
+    transition: font-family 0.3s ease, font-weight 0.3s ease;
 }
 
 /* 角色状态面板 - 图层问题修复：明确z-index层级 */
 .character-panel {
     z-index: 40 !important; /* 确保在文本层(z-index:5)和加载层(z-index:20)之上 */
+    /* 字体过渡效果 */
+    transition: font-family 0.3s ease, font-weight 0.3s ease;
+}
+
+/* 角色面板内的文本元素 */
+.character-panel * {
+    transition: font-family 0.3s ease, font-weight 0.3s ease;
 }
 
 #image-loading .loading-spinner {

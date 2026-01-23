@@ -290,11 +290,13 @@ def _background_fill_worldview_details(cache_key: str, user_idea: str, protagoni
 # ------------------------------
 # 文本解析优化（正则回填缺失字段）
 # ------------------------------
-_REGEX_GAME_STYLE = re.compile(r"游戏风格：(.+)", re.UNICODE)
-_REGEX_WORLD_BASIC = re.compile(r"世界观基础设定：(.+)", re.UNICODE)
-_REGEX_PROTAGONIST_ABILITY = re.compile(r"主角核心能力：(.+)", re.UNICODE)
-_REGEX_MAIN_QUEST = re.compile(r"游戏主线任务：(.+)", re.UNICODE)
-_REGEX_END_TRIGGER = re.compile(r"游戏结束触发条件：(.+)", re.UNICODE)
+# 修改正则表达式以支持多行内容，匹配到下一个字段标签之前
+# 使用非贪婪匹配，遇到下一个字段标签或章节标题时停止
+_REGEX_GAME_STYLE = re.compile(r"游戏风格[：:]\s*(.+?)(?=\n\s*(?:世界观基础设定|主角核心能力|游戏主线任务|游戏结束触发条件|第\d+章|##\s*【|$))", re.UNICODE | re.DOTALL | re.MULTILINE)
+_REGEX_WORLD_BASIC = re.compile(r"世界观基础设定[：:]\s*(.+?)(?=\n\s*(?:主角核心能力|游戏主线任务|游戏结束触发条件|游戏风格|第\d+章|##\s*【|$))", re.UNICODE | re.DOTALL | re.MULTILINE)
+_REGEX_PROTAGONIST_ABILITY = re.compile(r"主角核心能力[：:]\s*(.+?)(?=\n\s*(?:游戏主线任务|游戏结束触发条件|世界观基础设定|游戏风格|第\d+章|##\s*【|$))", re.UNICODE | re.DOTALL | re.MULTILINE)
+_REGEX_MAIN_QUEST = re.compile(r"游戏主线任务[：:]\s*(.+?)(?=\n\s*(?:游戏结束触发条件|世界观基础设定|主角核心能力|游戏风格|第\d+章|##\s*【|$))", re.UNICODE | re.DOTALL | re.MULTILINE)
+_REGEX_END_TRIGGER = re.compile(r"游戏结束触发条件[：:]\s*(.+?)(?=\n\s*(?:游戏主线任务|世界观基础设定|主角核心能力|游戏风格|第\d+章|##\s*【|$))", re.UNICODE | re.DOTALL | re.MULTILINE)
 _REGEX_CHAPTER = re.compile(r"第(\d+)章[：:]?", re.UNICODE)
 _REGEX_CHAPTER_CONFLICT = re.compile(r"(?:- )?核心矛盾[：:]\s*(.+)", re.UNICODE | re.MULTILINE | re.DOTALL)
 _REGEX_CHAPTER_END = re.compile(r"(?:- )?矛盾结束条件[：:]\s*(.+)", re.UNICODE | re.MULTILINE | re.DOTALL)
@@ -305,23 +307,50 @@ def _regex_fill_worldview(raw_text: str, core_worldview: Dict, chapters: Dict):
     if not core_worldview.get("game_style"):
         m = _REGEX_GAME_STYLE.search(raw_text)
         if m:
-            core_worldview["game_style"] = m.group(1).strip()
+            content = m.group(1).strip()
+            # 清理Markdown格式和多余空格
+            content = content.replace('**', '').replace('*', '').strip()
+            # 合并多行空格
+            content = ' '.join(content.split())
+            if content:
+                core_worldview["game_style"] = content
+                print(f"🔍 [正则回填] ✅ 已回填 game_style: {content[:60]}...")
     if not core_worldview.get("world_basic_setting"):
         m = _REGEX_WORLD_BASIC.search(raw_text)
         if m:
-            core_worldview["world_basic_setting"] = m.group(1).strip()
+            content = m.group(1).strip()
+            content = content.replace('**', '').replace('*', '').strip()
+            content = ' '.join(content.split())
+            if content:
+                core_worldview["world_basic_setting"] = content
+                print(f"🔍 [正则回填] ✅ 已回填 world_basic_setting: {content[:60]}...")
     if not core_worldview.get("protagonist_ability"):
         m = _REGEX_PROTAGONIST_ABILITY.search(raw_text)
         if m:
-            core_worldview["protagonist_ability"] = m.group(1).strip()
+            content = m.group(1).strip()
+            content = content.replace('**', '').replace('*', '').strip()
+            content = ' '.join(content.split())
+            if content:
+                core_worldview["protagonist_ability"] = content
+                print(f"🔍 [正则回填] ✅ 已回填 protagonist_ability: {content[:60]}...")
     if not core_worldview.get("main_quest"):
         m = _REGEX_MAIN_QUEST.search(raw_text)
         if m:
-            core_worldview["main_quest"] = m.group(1).strip()
+            content = m.group(1).strip()
+            content = content.replace('**', '').replace('*', '').strip()
+            content = ' '.join(content.split())
+            if content:
+                core_worldview["main_quest"] = content
+                print(f"🔍 [正则回填] ✅ 已回填 main_quest: {content[:60]}...")
     if not core_worldview.get("end_trigger_condition"):
         m = _REGEX_END_TRIGGER.search(raw_text)
         if m:
-            core_worldview["end_trigger_condition"] = m.group(1).strip()
+            content = m.group(1).strip()
+            content = content.replace('**', '').replace('*', '').strip()
+            content = ' '.join(content.split())
+            if content:
+                core_worldview["end_trigger_condition"] = content
+                print(f"🔍 [正则回填] ✅ 已回填 end_trigger_condition: {content[:60]}...")
 
     # 回填章节（即使chapters为空字典也要执行，用于创建章节结构）
     if chapters is None:
@@ -2181,11 +2210,30 @@ def llm_generate_global(user_idea: str, protagonist_attr: Dict, difficulty: str,
             
             # 使用正则表达式回填缺失的章节矛盾信息（作为备用方案）
             print(f"🔍 [调试] 开始正则回填，当前chapters数量: {len(chapters)}")
+            print(f"🔍 [调试] 回填前字段状态:")
+            print(f"   - game_style: {'存在' if core_worldview.get('game_style') else '缺失'}")
+            print(f"   - world_basic_setting: {'存在' if core_worldview.get('world_basic_setting') else '缺失'}")
+            print(f"   - protagonist_ability: {'存在' if core_worldview.get('protagonist_ability') else '缺失'}")
             _regex_fill_worldview(raw_content, core_worldview, chapters)
             print(f"🔍 [调试] 正则回填完成，chapters数量: {len(chapters)}")
+            print(f"🔍 [调试] 回填后字段状态:")
+            print(f"   - game_style: {'存在' if core_worldview.get('game_style') else '缺失'}")
+            print(f"   - world_basic_setting: {'存在' if core_worldview.get('world_basic_setting') else '缺失'}")
+            print(f"   - protagonist_ability: {'存在' if core_worldview.get('protagonist_ability') else '缺失'}")
+            
+            # 如果字段仍然缺失，设置默认值（避免完全为空）
+            if not core_worldview.get('game_style'):
+                core_worldview['game_style'] = f"基于主题'{user_idea}'的文本冒险游戏"
+                print(f"⚠️ [警告] game_style缺失，已设置默认值")
+            if not core_worldview.get('world_basic_setting'):
+                core_worldview['world_basic_setting'] = f"游戏世界设定待完善，主题：{user_idea}"
+                print(f"⚠️ [警告] world_basic_setting缺失，已设置默认值")
+            if not core_worldview.get('protagonist_ability'):
+                core_worldview['protagonist_ability'] = "主角能力待定义"
+                print(f"⚠️ [警告] protagonist_ability缺失，已设置默认值")
             
             # 调试：打印解析结果
-            print(f"📊 解析结果:")
+            print(f"📊 最终解析结果:")
             print(f"   - game_style: {core_worldview.get('game_style', '未找到')[:50] if core_worldview.get('game_style') else '未找到'}")
             print(f"   - world_basic_setting: {core_worldview.get('world_basic_setting', '未找到')[:50] if core_worldview.get('world_basic_setting') else '未找到'}")
             print(f"   - protagonist_ability: {core_worldview.get('protagonist_ability', '未找到')[:50] if core_worldview.get('protagonist_ability') else '未找到'}")

@@ -122,14 +122,19 @@ const Game = (() => {
                     description: '自定义'
                 }
             },
-            // 根据游戏基调映射字体
+            // 根据游戏基调映射字体（与HTML中的data-tone值对应）
             tone: {
                 'happy_ending': {
                     fontFamily: '"ZCOOL KuaiLe", cursive',
                     fontWeight: '400',
                     description: '轻松愉快'
                 },
-                'tragic_ending': {
+                'bad_ending': {  // HTML中使用bad_ending
+                    fontFamily: '"Noto Serif SC", serif',
+                    fontWeight: '500',
+                    description: '沉重肃穆'
+                },
+                'tragic_ending': {  // 兼容旧名称
                     fontFamily: '"Noto Serif SC", serif',
                     fontWeight: '500',
                     description: '沉重肃穆'
@@ -139,12 +144,22 @@ const Game = (() => {
                     fontWeight: '400',
                     description: '标准'
                 },
-                'dark_deep': {
+                'dark_depressing': {  // HTML中使用dark_depressing
                     fontFamily: '"ZCOOL XiaoWei", serif',
                     fontWeight: '400',
                     description: '神秘深沉'
                 },
-                'humor': {
+                'dark_deep': {  // 兼容旧名称
+                    fontFamily: '"ZCOOL XiaoWei", serif',
+                    fontWeight: '400',
+                    description: '神秘深沉'
+                },
+                'humorous': {  // HTML中使用humorous
+                    fontFamily: '"ZCOOL KuaiLe", cursive',
+                    fontWeight: '400',
+                    description: '幽默风趣'
+                },
+                'humor': {  // 兼容旧名称
                     fontFamily: '"ZCOOL KuaiLe", cursive',
                     fontWeight: '400',
                     description: '幽默风趣'
@@ -1627,6 +1642,9 @@ const Game = (() => {
     
     // 模拟游戏加载（进入剧情）
     function simulateGameLoading() {
+        // 应用字体（根据风格和基调）
+        FontManager.applyFontToGame(gameState.imageStyle, gameState.tone);
+        
         let progress = 0;
         elements.content.loadingStatus.textContent = '加载剧情场景...';
         elements.content.loadingPercent.textContent = '0%';
@@ -3244,6 +3262,11 @@ const Game = (() => {
                     switchScreen('gameplay');
                     updateChapterProgress(gameState.chapterProgress);
                     
+                    // 应用字体（根据风格和基调）
+                    const imageStyle = gameState.gameData.image_style || gameState.imageStyle;
+                    const tone = gameState.currentTone || gameState.tone;
+                    FontManager.applyFontToGame(imageStyle, tone);
+                    
                     // 准备世界观和世界线信息
                     const coreWorldview = gameState.gameData.core_worldview || {};
                     const worldviewSummary = coreWorldview.world_basic_setting || coreWorldview.game_style || '暂无世界观信息';
@@ -3287,6 +3310,11 @@ const Game = (() => {
                 // 切换到游戏界面
                 switchScreen('gameplay');
                 updateChapterProgress(gameState.chapterProgress);
+                
+                // 应用字体（根据风格和基调）
+                const imageStyle = gameState.gameData.image_style || gameState.imageStyle;
+                const tone = gameState.currentTone || gameState.tone;
+                FontManager.applyFontToGame(imageStyle, tone);
                 
                 // 准备世界观和世界线信息
                 const coreWorldview = gameState.gameData.core_worldview || {};
