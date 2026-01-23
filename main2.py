@@ -1225,6 +1225,10 @@ def call_yunwu_image_api(prompt: str, style: str) -> str:
             
             # 如果所有解析方式都失败，打印详细内容用于调试
             print(f"⚠️ yunwu.ai返回格式无法解析，原始内容：{content[:500]}")
+            # 检查返回内容是否是文本描述（而非图片数据）
+            if len(content) > 100 and not any(keyword in content.lower() for keyword in ['http', 'data:image', 'base64', 'url', 'image']):
+                print(f"💡 提示：yunwu.ai返回的是文本描述而非图片数据，可能是API生成失败或返回格式异常")
+                print(f"💡 建议：检查API配置或重试图片生成")
             return None
         else:
             print(f"⚠️ yunwu.ai返回格式异常：{result}")
@@ -1915,23 +1919,31 @@ def llm_generate_global(user_idea: str, protagonist_attr: Dict, difficulty: str,
                         part = line.split("游戏风格：")[1].strip()
                         current_field_content = [part] if part else []
                     elif "世界观基础设定：" in line:
+                        print(f"🔍 [调试] 检测到世界观基础设定行: {line[:100]}")
                         if current_field and current_field_content:
                             content = ' '.join(current_field_content).strip()
+                            print(f"🔍 [调试] 保存上一个字段 {current_field}，内容长度: {len(content)}")
                             content = content.replace('**', '').replace('*', '')
                             if content:
                                 core_worldview[current_field] = content
+                                print(f"🔍 [调试] 已保存字段 {current_field}: {content[:60]}...")
                         current_field = 'world_basic_setting'
                         part = line.split("世界观基础设定：")[1].strip()
                         current_field_content = [part] if part else []
+                        print(f"🔍 [调试] 开始收集世界观基础设定，初始内容: {current_field_content}")
                     elif "主角核心能力：" in line:
+                        print(f"🔍 [调试] 检测到主角核心能力行: {line[:100]}")
                         if current_field and current_field_content:
                             content = ' '.join(current_field_content).strip()
+                            print(f"🔍 [调试] 保存上一个字段 {current_field}，内容长度: {len(content)}")
                             content = content.replace('**', '').replace('*', '')
                             if content:
                                 core_worldview[current_field] = content
+                                print(f"🔍 [调试] 已保存字段 {current_field}: {content[:60]}...")
                         current_field = 'protagonist_ability'
                         part = line.split("主角核心能力：")[1].strip()
                         current_field_content = [part] if part else []
+                        print(f"🔍 [调试] 开始收集主角核心能力，初始内容: {current_field_content}")
                     # 先检查是否是其他字段的开始（需要先保存当前字段）
                     elif "游戏主线任务：" in line:
                         # 保存当前字段
@@ -2001,12 +2013,19 @@ def llm_generate_global(user_idea: str, protagonist_attr: Dict, difficulty: str,
                     if line.startswith('第') and ('章：' in line or '章' in line):
                         print(f"🔍 [调试] 检测到章节行: {line[:100]}")
                         print(f"🔍 [调试] 当前状态: current_field={current_field}, current_chapter={current_chapter}, core_section={core_section}")
+                        print(f"🔍 [调试] 当前字段内容: {current_field_content[:3] if current_field_content else '[]'} (共{len(current_field_content)}行)")
                         # 保存当前字段和章节矛盾内容
                         if current_field and current_field_content:
                             content = ' '.join(current_field_content).strip()
+                            print(f"🔍 [调试] 章节行触发：保存字段 {current_field}，原始内容长度: {len(content)}")
+                            print(f"🔍 [调试] 原始内容预览: {content[:100]}")
                             content = content.replace('**', '').replace('*', '')
+                            print(f"🔍 [调试] 移除Markdown后内容长度: {len(content)}")
                             if content:
                                 core_worldview[current_field] = content
+                                print(f"🔍 [调试] ✅ 已保存字段 {current_field}: {content[:60]}...")
+                            else:
+                                print(f"🔍 [调试] ⚠️ 字段 {current_field} 内容为空，未保存")
                             current_field = None
                             current_field_content = []
                         # 保存上一个章节的矛盾信息
@@ -2121,13 +2140,23 @@ def llm_generate_global(user_idea: str, protagonist_attr: Dict, difficulty: str,
                         # 但排除以"-"开头的列表项、章节标题、和其他带冒号的字段
                         if line and not line.startswith('###'):
                             current_field_content.append(line)
+                            # 只在关键字段时输出调试信息
+                            if current_field in ['world_basic_setting', 'protagonist_ability']:
+                                print(f"🔍 [调试] 添加多行内容到 {current_field}: {line[:60]}...")
             
             # 保存最后一个字段（如果还在收集）
             if current_field and current_field_content:
+                print(f"🔍 [调试] 循环结束：保存最后一个字段 {current_field}")
                 content = ' '.join(current_field_content).strip()
+                print(f"🔍 [调试] 字段 {current_field} 原始内容长度: {len(content)}")
+                print(f"🔍 [调试] 原始内容预览: {content[:100]}")
                 content = content.replace('**', '').replace('*', '')
+                print(f"🔍 [调试] 移除Markdown后内容长度: {len(content)}")
                 if content:
                     core_worldview[current_field] = content
+                    print(f"🔍 [调试] ✅ 已保存字段 {current_field}: {content[:60]}...")
+                else:
+                    print(f"🔍 [调试] ⚠️ 字段 {current_field} 内容为空，未保存")
             
             # 保存最后一个章节的矛盾信息（如果还在收集）
             if current_chapter:
@@ -3531,6 +3560,8 @@ def _generate_images_parallel(scenes_dict: Dict[int, str], global_state: Dict) -
                         return (option_index, None, "URL无效")
             else:
                 print(f"⚠️ 选项 {option_index+1} 图片生成失败，无返回数据")
+                print(f"💡 提示：yunwu.ai API可能返回了文本描述而非图片数据，这是API行为不一致导致的")
+                print(f"💡 前端可能会使用缓存的图片或其他选项的图片作为替代")
                 return (option_index, None, "无返回数据")
         
         except Exception as e:

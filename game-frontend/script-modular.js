@@ -85,6 +85,162 @@ const Game = (() => {
         soundManager.init();
     }
     
+    // 字体管理模块
+    const FontManager = (() => {
+        // 字体映射配置：根据游戏风格和主题选择合适的字体
+        const fontMapping = {
+            // 根据图片风格映射字体
+            style: {
+                'realistic': {
+                    fontFamily: '"Noto Sans SC", sans-serif',
+                    fontWeight: '400',
+                    description: '现代简洁'
+                },
+                'anime': {
+                    fontFamily: '"ZCOOL KuaiLe", cursive',
+                    fontWeight: '400',
+                    description: '活泼可爱'
+                },
+                'ink_painting': {
+                    fontFamily: '"Long Cang", cursive',
+                    fontWeight: '400',
+                    description: '古典优雅'
+                },
+                'oil_painting': {
+                    fontFamily: '"Noto Serif SC", serif',
+                    fontWeight: '500',
+                    description: '典雅庄重'
+                },
+                'cyberpunk': {
+                    fontFamily: '"ZCOOL QingKe HuangYou", sans-serif',
+                    fontWeight: '400',
+                    description: '科技未来'
+                },
+                'custom': {
+                    fontFamily: '"Noto Sans SC", sans-serif',
+                    fontWeight: '400',
+                    description: '自定义'
+                }
+            },
+            // 根据游戏基调映射字体
+            tone: {
+                'happy_ending': {
+                    fontFamily: '"ZCOOL KuaiLe", cursive',
+                    fontWeight: '400',
+                    description: '轻松愉快'
+                },
+                'tragic_ending': {
+                    fontFamily: '"Noto Serif SC", serif',
+                    fontWeight: '500',
+                    description: '沉重肃穆'
+                },
+                'normal_ending': {
+                    fontFamily: '"Noto Sans SC", sans-serif',
+                    fontWeight: '400',
+                    description: '标准'
+                },
+                'dark_deep': {
+                    fontFamily: '"ZCOOL XiaoWei", serif',
+                    fontWeight: '400',
+                    description: '神秘深沉'
+                },
+                'humor': {
+                    fontFamily: '"ZCOOL KuaiLe", cursive',
+                    fontWeight: '400',
+                    description: '幽默风趣'
+                },
+                'abstract': {
+                    fontFamily: '"Ma Shan Zheng", cursive',
+                    fontWeight: '400',
+                    description: '抽象艺术'
+                },
+                'aesthetic': {
+                    fontFamily: '"Long Cang", cursive',
+                    fontWeight: '400',
+                    description: '唯美诗意'
+                },
+                'logical': {
+                    fontFamily: '"Noto Sans SC", sans-serif',
+                    fontWeight: '500',
+                    description: '严谨理性'
+                },
+                'mysterious': {
+                    fontFamily: '"ZCOOL XiaoWei", serif',
+                    fontWeight: '400',
+                    description: '神秘莫测'
+                },
+                'stream_of_consciousness': {
+                    fontFamily: '"Ma Shan Zheng", cursive',
+                    fontWeight: '400',
+                    description: '意识流'
+                }
+            }
+        };
+        
+        // 默认字体
+        const defaultFont = {
+            fontFamily: '"Noto Sans SC", sans-serif',
+            fontWeight: '400',
+            description: '默认'
+        };
+        
+        // 获取字体配置（优先级：风格 > 基调 > 默认）
+        function getFontConfig(imageStyle, tone) {
+            let fontConfig = defaultFont;
+            
+            // 优先使用图片风格对应的字体
+            if (imageStyle && imageStyle.type && fontMapping.style[imageStyle.type]) {
+                fontConfig = fontMapping.style[imageStyle.type];
+            }
+            // 如果没有图片风格，使用基调对应的字体
+            else if (tone && fontMapping.tone[tone]) {
+                fontConfig = fontMapping.tone[tone];
+            }
+            
+            return fontConfig;
+        }
+        
+        // 应用字体到指定元素
+        function applyFont(element, fontConfig) {
+            if (!element || !fontConfig) return;
+            
+            element.style.fontFamily = fontConfig.fontFamily;
+            element.style.fontWeight = fontConfig.fontWeight;
+            element.style.transition = 'font-family 0.3s ease, font-weight 0.3s ease';
+        }
+        
+        // 应用字体到游戏文本元素
+        function applyFontToGame(imageStyle, tone) {
+            const fontConfig = getFontConfig(imageStyle, tone);
+            
+            // 应用到场景文本
+            const sceneText = document.getElementById('scene-text');
+            if (sceneText) {
+                applyFont(sceneText, fontConfig);
+            }
+            
+            // 应用到选项列表
+            const optionsList = document.getElementById('options-list');
+            if (optionsList) {
+                applyFont(optionsList, fontConfig);
+            }
+            
+            // 应用到角色面板
+            const characterPanel = document.querySelector('.character-panel');
+            if (characterPanel) {
+                applyFont(characterPanel, fontConfig);
+            }
+            
+            console.log(`✅ 字体已应用: ${fontConfig.description} (${fontConfig.fontFamily})`);
+        }
+        
+        return {
+            getFontConfig,
+            applyFont,
+            applyFontToGame
+        };
+    })();
+    
     // 工具函数：HTML转义，防止XSS攻击
     function escapeHtml(text) {
         const div = document.createElement('div');
@@ -3815,6 +3971,9 @@ const Game = (() => {
             }
             
             console.log('✅ 图片风格已选择:', gameState.imageStyle);
+            
+            // 应用字体（根据风格和基调）
+            FontManager.applyFontToGame(gameState.imageStyle, gameState.tone);
             
             // 跳转到加载界面，开始生成世界观
             switchScreen('loading');
