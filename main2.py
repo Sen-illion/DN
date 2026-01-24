@@ -605,6 +605,58 @@ def optimize_image_prompt_with_llm(
     :return: 优化后的视觉描述提示词
     """
     try:
+        # ------------------------------
+        # 视觉连续性上下文（新功能）：
+        # - 同一场景统一风格/物件
+        # - 下一剧情图片参考上一剧情图片（至少在提示词层面；SD可走img2img）
+        #
+        # 上游可在 global_state['_visual_context'] 注入（可选）：
+        # - previousSceneImage / currentSceneImage: {url, prompt, ...}
+        # - previous_image_url / previous_image_prompt（拆分字段）
+        # - previousSceneText / currentSceneText
+        # - sceneId
+        # ------------------------------
+        visual_context = global_state.get('_visual_context') if isinstance(global_state, dict) else None
+        if not isinstance(visual_context, dict):
+            visual_context = {}
+
+        prev_img_obj = visual_context.get('previousSceneImage') or visual_context.get('currentSceneImage') or {}
+        if not isinstance(prev_img_obj, dict):
+            prev_img_obj = {}
+
+        previous_image_prompt = (
+            visual_context.get('previous_image_prompt')
+            or prev_img_obj.get('prompt')
+            or prev_img_obj.get('optimized_prompt')
+            or ""
+        )
+        previous_image_url = (
+            visual_context.get('previous_image_url')
+            or prev_img_obj.get('url')
+            or prev_img_obj.get('image_url')
+            or ""
+        )
+        previous_scene_text = (
+            visual_context.get('previousSceneText')
+            or visual_context.get('currentSceneText')
+            or ""
+        )
+        scene_id_for_lock = visual_context.get('sceneId') or ""
+
+        continuity_requirements = ""
+        if previous_image_prompt or previous_scene_text or previous_image_url or scene_id_for_lock:
+            continuity_requirements = f"""【连续性/一致性要求（重要）】
+1) 同一场景保持统一画风与物件：角色外观（发型、脸部特征、服装配色/材质）、关键道具/武器/饰品、环境主色调与光线风格要前后一致。
+2) 下一剧情的图片需要延续上一剧情的“画面设定”：尽量沿用上一张图的镜头语言、色彩、角色造型与关键物件，不要无故更换造型/服装/装备。
+3) 最终提示词中不要包含URL/文件路径/任何可被当作文字的字符串（例如 http://...），避免图片里出现文字。
+
+上一剧情文本（可选）：
+{previous_scene_text[:800] if previous_scene_text else '（无）'}
+
+上一张图的提示词（可选，作为画面设定参照）：
+{previous_image_prompt[:1200] if previous_image_prompt else '（无）'}
+"""
+
         # 提取游戏背景信息
         core_worldview = global_state.get('core_worldview', {})
         game_theme = core_worldview.get('game_style', '')
@@ -678,6 +730,8 @@ def optimize_image_prompt_with_llm(
 【图片风格要求】
 {style_description if style_description else '默认风格'}
 
+{continuity_requirements if continuity_requirements else ''}
+
 请根据以上信息，生成一个详细的视觉描述提示词，要求：
 1. 准确反映当前剧情场景
 2. 体现主角的外貌特征和能力特点
@@ -728,8 +782,15 @@ def optimize_image_prompt_with_llm(
         if choices and len(choices) > 0:
             optimized_prompt = choices[0].get("message", {}).get("content", "").strip()
             if optimized_prompt:
+                # 清理：避免把URL/路径等带入最终提示词（否则容易生成“文字”）
+                optimized_prompt = re.sub(r'https?://\S+', '', optimized_prompt).strip()
+                optimized_prompt = re.sub(r'data:image/\S+', '', optimized_prompt).strip()
+                optimized_prompt = re.sub(r'[/\\]image_cache[/\\]\S+', '', optimized_prompt).strip()
                 # 在优化后的提示词末尾添加禁止文字乱码的明确指令
                 optimized_prompt = f"{optimized_prompt}, no text, no symbols, no garbled characters, no words"
+                # 强制连续性补丁（即使LLM未显式保留，也尽量保持一致性）
+                if continuity_requirements:
+                    optimized_prompt = f"{optimized_prompt}, consistent character design, consistent outfit and key props, consistent color palette and lighting"
                 print(f"✅ LLM提示词优化完成，长度：{len(optimized_prompt)}字符")
                 return optimized_prompt
         
@@ -781,6 +842,26 @@ def generate_scene_image(
     
     # 1. 提取图片风格信息
     image_style = global_state.get('image_style', None)
+
+    # 1.5 视觉连续性上下文（用于同场景统一风格/物件 & 参考上一剧情）
+    visual_context = global_state.get('_visual_context') if isinstance(global_state, dict) else None
+    if not isinstance(visual_context, dict):
+        visual_context = {}
+    prev_img_obj = visual_context.get('previousSceneImage') or visual_context.get('currentSceneImage') or {}
+    if not isinstance(prev_img_obj, dict):
+        prev_img_obj = {}
+    reference_image_url = (
+        visual_context.get('previous_image_url')
+        or prev_img_obj.get('url')
+        or prev_img_obj.get('image_url')
+        or ""
+    )
+    reference_image_prompt = (
+        visual_context.get('previous_image_prompt')
+        or prev_img_obj.get('prompt')
+        or prev_img_obj.get('optimized_prompt')
+        or ""
+    )
     
     # 2. 使用LLM优化图片生成提示词
     prompt = optimize_image_prompt_with_llm(scene_description, global_state, image_style)
@@ -794,7 +875,7 @@ def generate_scene_image(
         elif provider == "openai":
             image_url = call_dalle_api(prompt)
         elif provider == "stable_diffusion":
-            image_url = call_stable_diffusion_api(prompt, style)
+            image_url = call_stable_diffusion_api(prompt, style, reference_image_url=reference_image_url)
         elif provider == "comfyui":
             image_url = call_comfyui_api(prompt, style)
         else:
@@ -818,7 +899,13 @@ def generate_scene_image(
                 os.makedirs(IMAGE_CACHE_DIR, exist_ok=True)
                 
                 # 生成缓存键
-                cache_key_seed = f"{provider}_{style}_{scene_description}"
+                # 新增：当存在“参考上一剧情图片/提示词”时，把参考信息纳入缓存键，避免误用旧缓存。
+                ref_sig = (reference_image_prompt or reference_image_url or "").strip()
+                if ref_sig:
+                    ref_hash = hashlib.md5(ref_sig.encode("utf-8")).hexdigest()[:10]
+                    cache_key_seed = f"{provider}_{style}_{scene_description}_{ref_hash}"
+                else:
+                    cache_key_seed = f"{provider}_{style}_{scene_description}"
                 prompt_hash = hashlib.md5(cache_key_seed.encode()).hexdigest()
                 cache_path = Path(IMAGE_CACHE_DIR) / f"{prompt_hash}.png"
                 
@@ -1578,37 +1665,104 @@ def call_dalle_api(prompt: str) -> str:
         print(f"❌ DALL-E API调用失败：{str(e)}")
         raise
 
-def call_stable_diffusion_api(prompt: str, style: str) -> str:
-    """调用本地Stable Diffusion API生成图片"""
+def call_stable_diffusion_api(prompt: str, style: str, reference_image_url: str = "") -> str:
+    """调用本地Stable Diffusion API生成图片（支持img2img参考图）"""
     try:
+        import base64
+        from pathlib import Path
+
         base_url = IMAGE_GENERATION_CONFIG.get("stable_diffusion_base_url", "http://localhost:7860")
         api_key = IMAGE_GENERATION_CONFIG.get("stable_diffusion_api_key", "")
-        
+
         headers = {}
         if api_key:
             headers["Authorization"] = f"Bearer {api_key}"
-        
-        # 调用Stable Diffusion WebUI API
-        response = requests.post(
-            f"{base_url}/sdapi/v1/txt2img",
-            headers=headers,
-            json={
-                "prompt": prompt,
-                "width": 1024,
-                "height": 1024,
-                "steps": 20,
-                "cfg_scale": 7
-            },
-            timeout=120
-        )
+
+        def _load_ref_image_b64(ref: str) -> str:
+            """把参考图读成 base64（不带 data:image 前缀），失败返回空串。"""
+            if not ref or not isinstance(ref, str):
+                return ""
+            ref = ref.strip()
+            if not ref:
+                return ""
+
+            # data URL
+            if ref.startswith("data:image"):
+                try:
+                    b64_part = ref.split("base64,", 1)[1]
+                    b64_part = re.sub(r"\s+", "", b64_part)
+                    base64.b64decode(b64_part, validate=False)
+                    return b64_part
+                except Exception:
+                    return ""
+
+            # 本地缓存路径（前端常传 /image_cache/...）
+            if ref.startswith("/image_cache/") or ref.startswith("image_cache/"):
+                rel = ref[1:] if ref.startswith("/") else ref
+                local_path = Path(rel)
+                if local_path.exists():
+                    data = local_path.read_bytes()
+                    return base64.b64encode(data).decode("utf-8")
+                return ""
+
+            # HTTP/HTTPS
+            if ref.startswith("http://") or ref.startswith("https://"):
+                try:
+                    r = requests.get(ref, timeout=30)
+                    r.raise_for_status()
+                    return base64.b64encode(r.content).decode("utf-8")
+                except Exception:
+                    return ""
+
+            return ""
+
+        # 参数：可通过环境变量调节（给“同一场景统一风格/物件”留调参口）
+        denoising_strength = float(os.getenv("STABLE_DIFFUSION_DENOISING_STRENGTH", "0.55"))
+        steps = int(os.getenv("STABLE_DIFFUSION_STEPS", "20"))
+        cfg_scale = float(os.getenv("STABLE_DIFFUSION_CFG_SCALE", "7"))
+
+        ref_b64 = _load_ref_image_b64(reference_image_url)
+        if ref_b64:
+            # img2img：参考上一剧情图片，保持人物/物件一致性更强
+            response = requests.post(
+                f"{base_url}/sdapi/v1/img2img",
+                headers=headers,
+                json={
+                    "init_images": [ref_b64],
+                    "prompt": prompt,
+                    "denoising_strength": max(0.0, min(1.0, denoising_strength)),
+                    "width": 1024,
+                    "height": 1024,
+                    "steps": steps,
+                    "cfg_scale": cfg_scale
+                },
+                timeout=180
+            )
+        else:
+            # txt2img
+            response = requests.post(
+                f"{base_url}/sdapi/v1/txt2img",
+                headers=headers,
+                json={
+                    "prompt": prompt,
+                    "width": 1024,
+                    "height": 1024,
+                    "steps": steps,
+                    "cfg_scale": cfg_scale
+                },
+                timeout=180
+            )
+
         response.raise_for_status()
-        
         result = response.json()
-        # 返回base64编码的图片（需要转换为URL或保存）
-        if "images" in result and len(result["images"]) > 0:
-            # 这里需要将base64图片保存或转换为URL
-            # 暂时返回base64数据，由game_server处理
-            return result["images"][0]
+
+        if "images" in result and isinstance(result["images"], list) and len(result["images"]) > 0:
+            b64 = result["images"][0]
+            if isinstance(b64, str) and b64.strip():
+                # SD WebUI 返回的是纯base64，这里转为 data URI 保存到本地缓存
+                data_uri = f"data:image/png;base64,{b64.strip()}"
+                saved_path = save_base64_image(data_uri, prompt)
+                return saved_path
         return None
     except Exception as e:
         print(f"❌ Stable Diffusion API调用失败：{str(e)}")

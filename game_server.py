@@ -2,6 +2,7 @@
 import os
 import sys
 import json
+import requests
 import threading
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
@@ -322,6 +323,23 @@ def generate_option():
         option_index = data.get('optionIndex', 0)
         scene_id = data.get('sceneId', None)  # 前端传入的场景ID，用于缓存查找
         current_options = data.get('currentOptions', [])  # 当前选项列表，用于触发优先生成
+        
+        # 新增：图片依赖生成（视觉连续性上下文）
+        # - 同一场景统一风格/物件
+        # - 下一剧情图片参考上一剧情图片生成
+        previous_scene_image = data.get('previousSceneImage', None)  # {url,prompt,...}（可选）
+        previous_scene_text = data.get('previousSceneText', '')  # 可选：上一剧情文本（用于提示词连续性）
+        if isinstance(global_state, dict) and (previous_scene_image or previous_scene_text):
+            global_state['_visual_context'] = {
+                "sceneId": scene_id,
+                "previousSceneImage": previous_scene_image,
+                "previousSceneText": previous_scene_text
+            }
+            # 也写入缓存（便于后续在该 scene_id 下触发的优先生成/补生成复用）
+            if scene_id:
+                with cache_lock:
+                    if scene_id in pregeneration_cache:
+                        pregeneration_cache[scene_id]['visual_context'] = global_state['_visual_context']
         
         # 基础校验
         if not option:
@@ -970,6 +988,21 @@ def pregenerate_next_layers():
         global_state = data.get('globalState', {})
         current_options = data.get('currentOptions', [])
         scene_id = data.get('sceneId', None)  # 当前场景ID
+        
+        # 新增：图片依赖生成（用于预生成时也带上“上一剧情图片参考”）
+        current_scene_image = data.get('currentSceneImage', None)  # {url,prompt,...}（可选）
+        current_scene_text = data.get('currentSceneText', '')  # 可选：当前剧情文本（作为连续性信息）
+        if isinstance(global_state, dict) and (current_scene_image or current_scene_text):
+            global_state['_visual_context'] = {
+                "sceneId": scene_id,
+                "currentSceneImage": current_scene_image,
+                "currentSceneText": current_scene_text
+            }
+            # 尝试写入缓存条目（若已存在）
+            if scene_id:
+                with cache_lock:
+                    if scene_id in pregeneration_cache:
+                        pregeneration_cache[scene_id]['visual_context'] = global_state['_visual_context']
         
         # 基础校验
         if not global_state:

@@ -737,6 +737,7 @@ const Game = (() => {
             gameTheme: '',
             imageStyle: null, // 图片风格选择
             currentScene: null,
+            lastSceneImage: null, // 上一剧情图片（用于“下一剧情参考上一剧情图片生成”）
             currentOptions: [],
             selectedSave: null,
             chapterProgress: 0, // 章节进度（0%-100%）
@@ -1654,7 +1655,7 @@ const Game = (() => {
                             
                             // displayScene会自动触发预生成
                             // 提取视觉内容数据
-                            const sceneImage = optionData.scene_image || null;
+                            let sceneImage = optionData.scene_image || null;
                             // const sceneVideo = optionData.scene_video || null;  // 视频功能已禁用
                             
                             // 问题5修复：验证初始场景的图片数据格式
@@ -1741,7 +1742,10 @@ const Game = (() => {
                 body: JSON.stringify({
                     globalState: globalState,
                     currentOptions: currentOptions,
-                    sceneId: sceneId
+                    sceneId: sceneId,
+                    // 新增：图片依赖生成（预生成也带上当前剧情图片作为参考）
+                    currentSceneImage: gameState.lastSceneImage,
+                    currentSceneText: gameState.currentScene
                 })
             }).then(response => response.json())
               .then(result => {
@@ -1832,6 +1836,9 @@ const Game = (() => {
             segments: segments
         });
         
+        // 更新当前剧情文本（用于下一次请求传给后端做连续性）
+        gameState.currentScene = text || '';
+
         // 保存分段状态
         gameState.textSegments = segments;
         gameState.currentTextSegmentIndex = 0;
@@ -1867,6 +1874,14 @@ const Game = (() => {
                     imageData = null;
                 }
             }
+        }
+        
+        // 同步更新 pendingImageData 为“校验后的”版本，避免分段显示时拿到旧格式
+        gameState.pendingImageData = imageData;
+
+        // 只有当这次有“有效新图片”时，才更新 lastSceneImage（否则保留上一张）
+        if (imageData && imageData.url && typeof imageData.url === 'string' && imageData.url.trim() !== '') {
+            gameState.lastSceneImage = imageData;
         }
         
         // 只在第一次显示时设置背景图片，分段显示过程中不更换
@@ -2346,7 +2361,10 @@ const Game = (() => {
                                     globalState: gameState.gameData,
                                     optionIndex: index,
                                     sceneId: gameState.currentSceneId,  // 传入场景ID，从缓存读取预生成内容
-                                    previousSceneId: previousSceneId  // 传入上一轮的sceneId用于缓存清理
+                                    previousSceneId: previousSceneId,  // 传入上一轮的sceneId用于缓存清理
+                                    // 新增：图片依赖生成（把上一剧情图片与文本传给后端）
+                                    previousSceneImage: gameState.lastSceneImage,
+                                    previousSceneText: gameState.currentScene
                                 }),
                                 signal: controller.signal
                             });
