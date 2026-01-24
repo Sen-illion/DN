@@ -1256,13 +1256,39 @@ def call_yunwu_image_api(prompt: str, style: str) -> str:
                 if any(rate_limit_headers.values()):
                     print(f"🔍 速率限制响应头：{json.dumps({k: v for k, v in rate_limit_headers.items() if v}, ensure_ascii=False)}")
                 
+                # Retry-After 可能是秒数（整数）或 HTTP-date（如 RFC 7231 指定）
+                wait_time = None
                 if retry_after:
-                    wait_time = int(retry_after)
-                    print(f"⚠️ 遇到速率限制（429），API建议等待 {wait_time} 秒后重试（尝试 {attempt + 1}/{max_retries}）")
-                else:
-                    # 指数退避：10s, 20s, 40s
+                    retry_after_raw = str(retry_after).strip()
+                    # 先尝试按“秒数”解析
+                    try:
+                        wait_time = int(retry_after_raw)
+                        if wait_time < 0:
+                            wait_time = 0
+                        print(f"⚠️ 遇到速率限制（429），API建议等待 {wait_time} 秒后重试（尝试 {attempt + 1}/{max_retries}）")
+                    except (TypeError, ValueError):
+                        # 再尝试按 HTTP-date 解析
+                        try:
+                            from email.utils import parsedate_to_datetime
+                            from datetime import datetime, timezone
+                            dt = parsedate_to_datetime(retry_after_raw)
+                            if dt is not None:
+                                if dt.tzinfo is None:
+                                    dt = dt.replace(tzinfo=timezone.utc)
+                                now = datetime.now(timezone.utc)
+                                wait_seconds = int((dt.astimezone(timezone.utc) - now).total_seconds())
+                                wait_time = max(0, wait_seconds)
+                                print(f"⚠️ 遇到速率限制（429），API建议等待 {wait_time} 秒后重试（尝试 {attempt + 1}/{max_retries}）")
+                        except Exception:
+                            wait_time = None
+                
+                if wait_time is None:
+                    # 如果 Retry-After 不存在或无法解析，使用指数退避：10s, 20s, 40s
                     wait_time = 10 * (2 ** attempt)
-                    print(f"⚠️ 遇到速率限制（429），等待 {wait_time} 秒后重试（尝试 {attempt + 1}/{max_retries}）")
+                    if retry_after:
+                        print(f"⚠️ 遇到速率限制（429），但 Retry-After 无法解析（{retry_after!r}），改用指数退避等待 {wait_time} 秒后重试（尝试 {attempt + 1}/{max_retries}）")
+                    else:
+                        print(f"⚠️ 遇到速率限制（429），等待 {wait_time} 秒后重试（尝试 {attempt + 1}/{max_retries}）")
                 
                 print(f"💡 可能的原因：")
                 print(f"   1. yunwu.ai 最近调整了速率限制策略")
@@ -3207,7 +3233,7 @@ def _generate_single_option(i: int, option: str, global_state: Dict) -> Dict:
                         # 成功生成
                         scene_image = result_queue.get()
                         if scene_image:
-                            print(f"✅ 选项 {i+1} 图片生成完成并已保存到本地")
+                            print(f"✅ 选项 {i+1} 图片生成完成")
                     else:
                         # 没有结果（不应该发生）
                         print(f"⚠️ 选项 {i+1} 图片生成无结果，继续使用文本模式")
@@ -3240,10 +3266,15 @@ def _generate_single_option(i: int, option: str, global_state: Dict) -> Dict:
                                 "style": scene_image.get("style", "default"),
                                 "width": scene_image.get("width", 1024),
                                 "height": scene_image.get("height", 1024),
-                                "cached": scene_image.get("cached", True)  # 本地路径表示已缓存
+                                # 本地路径表示已缓存；远程URL默认视为未缓存（除非上游明确标记）
+                                "cached": True if is_local_path else scene_image.get("cached", False)
                             }
-                            print(f"✅ 选项 {i+1} 场景图片生成成功并已保存到本地")
-                            print(f"   本地路径: {image_url}")
+                            if is_local_path:
+                                print(f"✅ 选项 {i+1} 场景图片生成成功并已保存到本地")
+                                print(f"   本地路径: {image_url}")
+                            else:
+                                print(f"✅ 选项 {i+1} 场景图片生成成功（远程URL）")
+                                print(f"   图片URL: {image_url[:80]}...")
                         else:
                             # URL无效，尝试修复（仅对HTTP(S) URL）
                             if not is_local_path:
