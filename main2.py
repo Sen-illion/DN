@@ -63,7 +63,7 @@ IMAGE_GENERATION_CONFIG = {
     "provider": os.getenv("IMAGE_GENERATION_PROVIDER", "yunwu"),  # yunwu, replicate, openai, stable_diffusion, comfyui
     "yunwu_api_key": os.getenv("Image_Generation_API_KEY", ""),  # 使用yunwu.ai的图片生成API
     "yunwu_base_url": os.getenv("Image_Generation_BASE_URL", "https://yunwu.ai/v1"),
-    "yunwu_model": os.getenv("Image_Generation_MODEL", "gemini-2.5-flash-image-preview"),
+    "yunwu_model": os.getenv("Image_Generation_MODEL", "sora_image"),
     "replicate_api_token": os.getenv("REPLICATE_API_TOKEN", ""),
     "openai_api_key": os.getenv("OPENAI_API_KEY", ""),
     "stable_diffusion_base_url": os.getenv("STABLE_DIFFUSION_BASE_URL", ""),
@@ -875,56 +875,59 @@ def generate_scene_image(
                 if not (image_url.startswith('http://') or image_url.startswith('https://')):
                     raise ValueError(f"无效的图片URL格式：{image_url}（需要完整的HTTP/HTTPS URL或本地缓存路径）")
                 
-                # 下载图片到本地（带重试，应对 SSL/连接重置/403 等）
-                import time as _time
-                last_dl_err = None
-                for dl_attempt in range(3):
-                    try:
-                        print(f"📥 正在下载图片到本地缓存：{image_url[:80]}...")
-                        response = requests.get(image_url, timeout=30, stream=True)
-                        response.raise_for_status()
-                        content_type = response.headers.get("Content-Type", "")
-                        if VALID_IMAGE_PREFIX not in content_type:
-                            raise ValueError(f"响应类型异常：{content_type}")
-                        downloaded = 0
-                        with open(cache_path, 'wb') as f:
-                            for chunk in response.iter_content(chunk_size=8192):
-                                if not chunk:
-                                    continue
-                                downloaded += len(chunk)
-                                if downloaded > MAX_DOWNLOAD_BYTES:
-                                    raise ValueError("图片过大，已终止下载（>10MB）")
-                                f.write(chunk)
-                        print(f"✅ 图片已缓存到本地：{cache_path}")
+                # 检查是否是私有Azure Blob Storage URL（无法直接下载）
+                is_private_blob = 'blob.core.windows.net/private' in image_url or '/private/' in image_url
+                if is_private_blob:
+                    print(f"⚠️ 检测到私有Azure Blob Storage URL，无法直接下载")
+                    print(f"   将直接返回URL，由前端处理：{image_url[:80]}...")
+                    # 对于私有URL，直接返回URL，不尝试下载
+                    return {
+                        "url": image_url,
+                        "prompt": prompt,
+                        "style": style,
+                        "width": 1024,
+                        "height": 1024,
+                        "cached": False  # 私有URL无法缓存
+                    }
+                
+                # 下载图片到本地
+                print(f"📥 正在下载图片到本地缓存：{image_url[:80]}...")
+                try:
+                    response = requests.get(image_url, timeout=30, stream=True)
+                    response.raise_for_status()
+                except requests.exceptions.HTTPError as e:
+                    if e.response and e.response.status_code == 409:
+                        # 409错误表示私有存储，无法公开访问
+                        print(f"⚠️ 图片URL是私有存储，无法直接下载（409错误）")
+                        print(f"   将直接返回URL，由前端处理：{image_url[:80]}...")
                         return {
-                            "url": f"/image_cache/{prompt_hash}.png",
+                            "url": image_url,
                             "prompt": prompt,
                             "style": style,
                             "width": 1024,
                             "height": 1024,
-                            "cached": False
+                            "cached": False  # 私有URL无法缓存
                         }
-                    except Exception as dl_err:
-                        last_dl_err = dl_err
-                        try:
-                            if cache_path.exists():
-                                cache_path.unlink()
-                        except Exception:
-                            pass
-                        if dl_attempt < 2:
-                            wait = 5 * (dl_attempt + 1)
-                            print(f"⚠️ 下载失败，{wait}秒后重试（{dl_attempt + 1}/3）：{str(dl_err)[:60]}")
-                            _time.sleep(wait)
-                        else:
-                            break
-                # 所有重试均失败
-                print(f"⚠️ 图片缓存失败，使用原始URL：{str(last_dl_err)}")
-                # Azure 临时链接常因过期/403/SSL 无法下载，不再回退使用，避免前端加载失败
-                if "blob.core.windows.net" in (image_url or ""):
-                    print("💡 Azure 临时链接不可用，已跳过该图片")
-                    return None
+                    raise  # 其他HTTP错误继续抛出
+
+                # 基础类型校验
+                content_type = response.headers.get("Content-Type", "")
+                if VALID_IMAGE_PREFIX not in content_type:
+                    raise ValueError(f"响应类型异常：{content_type}")
+
+                downloaded = 0
+                with open(cache_path, 'wb') as f:
+                    for chunk in response.iter_content(chunk_size=8192):
+                        if not chunk:
+                            continue
+                        downloaded += len(chunk)
+                        if downloaded > MAX_DOWNLOAD_BYTES:
+                            raise ValueError("图片过大，已终止下载（>10MB）")
+                        f.write(chunk)
+                
+                print(f"✅ 图片已缓存到本地：{cache_path}")
                 return {
-                    "url": image_url,
+                    "url": f"/image_cache/{prompt_hash}.png",
                     "prompt": prompt,
                     "style": style,
                     "width": 1024,
@@ -932,16 +935,14 @@ def generate_scene_image(
                     "cached": False
                 }
             except Exception as cache_error:
-                # 其他缓存逻辑异常（如校验、路径等）
+                # 如果缓存过程中写入失败，确保不留空文件
                 try:
                     if 'cache_path' in locals() and cache_path.exists():
                         cache_path.unlink()
                 except Exception:
                     pass
                 print(f"⚠️ 图片缓存失败，使用原始URL：{str(cache_error)}")
-                if "blob.core.windows.net" in (image_url or ""):
-                    print("💡 Azure 临时链接已跳过")
-                    return None
+                # 缓存失败时返回原始URL
                 return {
                     "url": image_url,
                     "prompt": prompt,
@@ -1016,6 +1017,33 @@ def fix_incomplete_url(url: str) -> str:
         pass
     
     return url if validate_image_url(url) else None
+
+def validate_image_url(url: str) -> bool:
+    """
+    验证图片URL是否完整有效
+    :param url: 待验证的URL
+    :return: True if valid, False otherwise
+    """
+    if not url or not isinstance(url, str):
+        return False
+    
+    # 基本格式检查
+    if not url.startswith(('http://', 'https://')):
+        return False
+    
+    # 检查是否包含域名和路径
+    try:
+        from urllib.parse import urlparse
+        parsed = urlparse(url)
+        if not parsed.netloc:  # 没有域名
+            return False
+        if not parsed.path or parsed.path == '/':  # 没有路径或只有根路径
+            # 对于OSS URL，路径可能包含文件名，检查是否有文件扩展名
+            if '.' not in url.split('/')[-1]:
+                return False
+        return True
+    except Exception:
+        return False
 
 def fix_incomplete_url(url: str) -> str:
     """
@@ -1112,7 +1140,7 @@ def call_yunwu_image_api(prompt: str, style: str) -> str:
     
     api_key = IMAGE_GENERATION_CONFIG.get("yunwu_api_key")
     base_url = IMAGE_GENERATION_CONFIG.get("yunwu_base_url", "https://yunwu.ai/v1")
-    model = IMAGE_GENERATION_CONFIG.get("yunwu_model", "gemini-2.5-flash-image-preview")
+    model = IMAGE_GENERATION_CONFIG.get("yunwu_model", "sora_image")
     
     if not api_key:
         raise ValueError("yunwu.ai API Key未配置")
@@ -1122,52 +1150,130 @@ def call_yunwu_image_api(prompt: str, style: str) -> str:
         "Content-Type": "application/json"
     }
     
-    # 调用图片生成API（chat/completions 接口，默认模型 gemini-2.5-flash-image-preview）
-    # 明确要求返回JSON格式的图片URL
+    # 调用yunwu.ai的图片生成API（使用chat/completions接口）
+    # 注意：gemini-2.5-flash-image 模型可能不支持 response_format 参数
     request_body = {
         "model": model,
         "messages": [
             {
                 "role": "system",
-                "content": "你是一个图片生成API。用户会提供图片描述，你必须生成图片并返回JSON格式的结果，格式为：{\"image_url\": \"图片URL\"} 或 {\"url\": \"图片URL\"}。不要返回任何文本描述，只返回JSON格式的图片URL。"
+                "content": "你是一个图片生成API。用户会提供图片描述，你必须生成图片并返回图片URL或base64数据。优先返回base64格式的图片数据（data:image/png;base64,...），如果没有则返回图片URL。"
             },
             {
                 "role": "user",
-                "content": f"请生成一张图片，描述：{prompt}\n\n请以JSON格式返回图片URL，格式：{{\"image_url\": \"图片URL\"}} 或 {{\"url\": \"图片URL\"}}。不要返回任何其他文本。"
+                "content": f"请生成一张图片，描述：{prompt}\n\n请返回图片URL或base64格式的图片数据。"
             }
         ],
         "temperature": 0.3,  # 降低temperature以提高格式一致性
         "max_tokens": 2000
     }
     
-    # 尝试添加response_format参数（如果API支持）
-    try:
-        request_body["response_format"] = {"type": "json_object"}
-    except:
-        pass  # 如果API不支持，忽略此参数
+    # 注意：gemini-2.5-flash-image 模型不支持 response_format 参数，不要添加
+    # 如果模型是 sora_image 或其他支持JSON模式的模型，可以尝试添加
+    # 但 gemini-2.5-flash-image 不支持，会导致400错误
     
     # 重试机制：最多重试3次，针对429错误
     max_retries = 3
     for attempt in range(max_retries):
         try:
+            # 图片生成通常需要更长时间，增加超时时间到300秒（5分钟）
             response = requests.post(
                 f"{base_url}/chat/completions",
                 headers=headers,
                 json=request_body,
-                timeout=120
+                timeout=300  # 从120秒增加到300秒，适应图片生成的较长响应时间
             )
             
-            # 检查是否是429错误（速率限制）
-            if response.status_code == 429:
-                # 尝试从响应头获取重试时间
+            # 先检查HTTP状态码，区分不同类型的错误
+            if response.status_code == 400:
+                # 400错误：请求格式错误
+                try:
+                    error_body = response.json()
+                    error_message = ""
+                    if isinstance(error_body, dict):
+                        error_obj = error_body.get("error", {})
+                        if isinstance(error_obj, dict):
+                            error_message = error_obj.get("message", "")
+                        else:
+                            error_message = str(error_obj)
+                    else:
+                        error_message = str(error_body)
+                    
+                    print(f"❌ yunwu.ai图片生成API请求格式错误（400）：{error_message}")
+                    
+                    # 检查是否是JSON mode不支持的错误
+                    if "JSON mode is not enabled" in error_message or "response_format" in error_message:
+                        print(f"💡 提示：模型 {model} 不支持 response_format 参数")
+                        # 移除 response_format 参数后重试（如果还有重试机会）
+                        if attempt < max_retries - 1:
+                            # 确保 request_body 中没有 response_format
+                            if "response_format" in request_body:
+                                request_body.pop("response_format")
+                                print(f"   移除 response_format 参数后重试（尝试 {attempt + 2}/{max_retries}）...")
+                                time.sleep(2)  # 等待2秒后重试
+                                continue
+                    
+                    # 检查是否是API格式错误（messages字段不存在）
+                    if "Unknown name" in error_message or "Cannot find field" in error_message or "messages" in error_message:
+                        print(f"💡 提示：API请求格式可能不正确，模型 {model} 可能使用不同的API格式")
+                        print(f"💡 当前使用的格式：chat/completions（标准OpenAI格式）")
+                        print(f"💡 建议：")
+                        print(f"   1. 检查 yunwu.ai API 文档，确认 {model} 模型的正确调用方式")
+                        print(f"   2. 确认模型名称是否正确：{model}")
+                        print(f"   3. 可能需要使用不同的API端点或请求格式")
+                        # 400错误不应该重试（格式错误重试也没用），直接抛出
+                        response.raise_for_status()
+                    
+                    # 其他400错误直接抛出
+                    response.raise_for_status()
+                except Exception as parse_error:
+                    print(f"❌ 无法解析400错误响应：{str(parse_error)}")
+                    response.raise_for_status()
+            
+            elif response.status_code == 429:
+                # 尝试从响应头获取重试时间和详细信息
                 retry_after = response.headers.get('Retry-After')
+                rate_limit_info = {}
+                
+                # 尝试解析响应体获取更多信息
+                try:
+                    error_body = response.json()
+                    if isinstance(error_body, dict):
+                        rate_limit_info = error_body
+                        print(f"🔍 速率限制详细信息：{json.dumps(rate_limit_info, ensure_ascii=False)}")
+                except:
+                    error_text = response.text[:200] if hasattr(response, 'text') else ""
+                    if error_text:
+                        print(f"🔍 速率限制响应内容：{error_text}")
+                
+                # 检查响应头中的速率限制信息
+                rate_limit_headers = {
+                    'X-RateLimit-Limit': response.headers.get('X-RateLimit-Limit'),
+                    'X-RateLimit-Remaining': response.headers.get('X-RateLimit-Remaining'),
+                    'X-RateLimit-Reset': response.headers.get('X-RateLimit-Reset'),
+                    'Retry-After': retry_after
+                }
+                if any(rate_limit_headers.values()):
+                    print(f"🔍 速率限制响应头：{json.dumps({k: v for k, v in rate_limit_headers.items() if v}, ensure_ascii=False)}")
+                
                 if retry_after:
                     wait_time = int(retry_after)
                     print(f"⚠️ 遇到速率限制（429），API建议等待 {wait_time} 秒后重试（尝试 {attempt + 1}/{max_retries}）")
                 else:
-                    # 指数退避：15s, 30s, 60s，减轻持续限流
-                    wait_time = 15 * (2 ** attempt)
+                    # 指数退避：10s, 20s, 40s
+                    wait_time = 10 * (2 ** attempt)
                     print(f"⚠️ 遇到速率限制（429），等待 {wait_time} 秒后重试（尝试 {attempt + 1}/{max_retries}）")
+                
+                print(f"💡 可能的原因：")
+                print(f"   1. yunwu.ai 最近调整了速率限制策略")
+                print(f"   2. API配额已用完（免费额度用尽）")
+                print(f"   3. 账户级别变化（可能降级到免费版）")
+                print(f"   4. 使用量增加导致触发限制")
+                print(f"   5. 图片生成API的限制比文本生成更严格")
+                print(f"💡 建议：")
+                print(f"   - 检查 yunwu.ai 账户状态和配额")
+                print(f"   - 考虑切换到其他图片生成服务（ComfyUI、Replicate等）")
+                print(f"   - 增加请求间隔时间")
                 
                 # 如果还有重试机会，等待后继续
                 if attempt < max_retries - 1:
@@ -1312,6 +1418,20 @@ def call_yunwu_image_api(prompt: str, style: str) -> str:
                 print(f"⚠️ yunwu.ai返回格式异常：{result}")
                 return None
                 
+        except requests.exceptions.Timeout as e:
+            # 超时错误：图片生成可能需要更长时间，重试
+            print(f"⚠️ yunwu.ai图片生成API请求超时（尝试 {attempt + 1}/{max_retries}）")
+            print(f"   图片生成通常需要较长时间，可能是API响应慢或网络问题")
+            if attempt < max_retries - 1:
+                # 超时后等待更长时间再重试
+                wait_time = 10 * (attempt + 1)  # 10s, 20s, 30s
+                print(f"   等待 {wait_time} 秒后重试...")
+                time.sleep(wait_time)
+                continue
+            else:
+                # 最后一次尝试也超时，抛出异常
+                print(f"❌ 达到最大重试次数（{max_retries}），图片生成超时")
+                raise
         except requests.exceptions.HTTPError as e:
             # 429错误已经在上面处理，这里处理其他HTTP错误
             if e.response and e.response.status_code == 429:
@@ -1321,19 +1441,19 @@ def call_yunwu_image_api(prompt: str, style: str) -> str:
                 # 其他HTTP错误直接抛出
                 print(f"❌ yunwu.ai图片生成API调用失败（HTTP错误）：{str(e)}")
                 raise
-        except (requests.exceptions.ConnectionError, requests.exceptions.Timeout, OSError) as e:
-            # 网络错误、连接被重置、超时等：重试最多 max_retries 次
-            print(f"⚠️ 网络异常（连接重置/超时等），等待后重试：{str(e)[:80]}")
-            if attempt < max_retries - 1:
-                wait = 5 * (attempt + 1)
-                print(f"⚠️ 等待 {wait} 秒后重试（尝试 {attempt + 1}/{max_retries}）")
-                time.sleep(wait)
-                continue
-            print(f"❌ yunwu.ai图片生成API调用失败（网络异常）：{str(e)}")
-            raise
         except Exception as e:
-            # 其他异常直接抛出
-            print(f"❌ yunwu.ai图片生成API调用失败：{str(e)}")
+            # 其他错误（如网络错误等）
+            error_msg = str(e)
+            if "timeout" in error_msg.lower() or "timed out" in error_msg.lower():
+                # 超时错误，重试
+                print(f"⚠️ yunwu.ai图片生成API请求超时（尝试 {attempt + 1}/{max_retries}）")
+                if attempt < max_retries - 1:
+                    wait_time = 10 * (attempt + 1)
+                    print(f"   等待 {wait_time} 秒后重试...")
+                    time.sleep(wait_time)
+                    continue
+            # 其他错误直接抛出
+            print(f"❌ yunwu.ai图片生成API调用失败：{error_msg}")
             raise
 
 def call_comfyui_api(prompt: str, style: str) -> str:
@@ -3122,12 +3242,8 @@ def _generate_single_option(i: int, option: str, global_state: Dict) -> Dict:
                                 "height": scene_image.get("height", 1024),
                                 "cached": scene_image.get("cached", True)  # 本地路径表示已缓存
                             }
-                            if is_local_path:
-                                print(f"✅ 选项 {i+1} 场景图片生成成功并已保存到本地")
-                                print(f"   本地路径: {image_url}")
-                            else:
-                                print(f"✅ 选项 {i+1} 场景图片生成成功（远程URL）")
-                                print(f"   图片URL: {image_url[:80]}...")
+                            print(f"✅ 选项 {i+1} 场景图片生成成功并已保存到本地")
+                            print(f"   本地路径: {image_url}")
                         else:
                             # URL无效，尝试修复（仅对HTTP(S) URL）
                             if not is_local_path:
@@ -3641,14 +3757,11 @@ def _generate_images_parallel(scenes_dict: Dict[int, str], global_state: Dict) -
         print(f"✅ 所有图片都已缓存，跳过生成")
         return cached_images
     
-    # 并行生成图片。使用 yunwu 时改为串行( max_workers=1 )，避免并行请求触发 429 限流
-    provider = IMAGE_GENERATION_CONFIG.get("provider", "yunwu")
-    if provider == "yunwu":
-        max_workers = 1
-        print(f"📊 需要生成 {len(scenes_to_generate)} 张图片，使用串行模式（避免 yunwu 429 限流）")
-    else:
-        max_workers = min(len(scenes_to_generate), 4)
-        print(f"📊 需要生成 {len(scenes_to_generate)} 张图片，使用 {max_workers} 个并发线程")
+    # 并行生成图片（限制并发数，避免API限流）
+    # 注意：虽然之前版本也是并行生成，但yunwu.ai可能最近收紧了速率限制
+    # 降低并发数并添加延迟，避免触发429错误
+    max_workers = min(len(scenes_to_generate), 2)  # 降低并发数从4到2，避免速率限制
+    print(f"📊 需要生成 {len(scenes_to_generate)} 张图片，使用 {max_workers} 个并发线程（降低并发数避免速率限制）")
     
     def generate_single_image(option_index: int, scene: str) -> tuple:
         """生成单个图片的包装函数，返回 (option_index, image_data, error)"""
@@ -3698,14 +3811,20 @@ def _generate_images_parallel(scenes_dict: Dict[int, str], global_state: Dict) -
             traceback.print_exc()
             return (option_index, None, error_msg)
     
-    # 使用线程池并行生成
+    # 使用线程池并行生成（添加延迟避免速率限制）
+    import time
     total_images = len(scenes_to_generate)
     completed_images = 0
     failed_images = 0
     with ThreadPoolExecutor(max_workers=max_workers) as executor:
-        # 提交所有任务
+        # 提交所有任务（添加延迟避免同时发送过多请求）
         futures = {}
-        for option_index, scene in scenes_to_generate.items():
+        for idx, (option_index, scene) in enumerate(scenes_to_generate.items()):
+            # 如果不是第一个任务，添加延迟（避免同时发送过多请求触发速率限制）
+            if idx > 0:
+                delay_seconds = 3  # 每个任务之间延迟3秒
+                print(f"⏳ 等待 {delay_seconds} 秒后提交下一个图片生成任务（避免API速率限制）...")
+                time.sleep(delay_seconds)
             future = executor.submit(generate_single_image, option_index, scene)
             futures[option_index] = future
         
