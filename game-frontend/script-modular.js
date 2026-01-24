@@ -1837,6 +1837,8 @@ const Game = (() => {
         });
         
         // 更新当前剧情文本（用于下一次请求传给后端做连续性）
+        // 同时保留上一段剧情文本，便于补图/连续性上下文
+        const previousSceneText = gameState.currentScene || '';
         gameState.currentScene = text || '';
 
         // 保存分段状态
@@ -1905,6 +1907,74 @@ const Game = (() => {
         } else {
             console.log('⚠️ 没有有效的图片数据，保留上一张全屏背景图片显示');
             console.log('   - imageData:', imageData);
+
+            // 补救：如果后端没返回图片（或下载/解析失败），前端异步补图，不阻塞文本/选项显示
+            // - 通过独立接口生成图片，避免 /generate-option 因图片耗时而卡住
+            // - 做去重与“只在仍处于该剧情时才应用结果”的保护
+            try {
+                const sceneTextForRequest = (text || '').trim();
+                if (sceneTextForRequest) {
+                    const requestKey = `${gameState.currentSceneId || 'no_scene_id'}|${sceneTextForRequest.slice(0, 200)}`;
+                    if (gameState._sceneImageRequestKey !== requestKey) {
+                        gameState._sceneImageRequestKey = requestKey;
+
+                        // 取消上一条补图请求（如果还在进行）
+                        if (gameState._sceneImageAbortController) {
+                            try { gameState._sceneImageAbortController.abort(); } catch (_) {}
+                        }
+                        const controller = new AbortController();
+                        gameState._sceneImageAbortController = controller;
+
+                        const style = (gameState.gameData && gameState.gameData.image_style) ? gameState.gameData.image_style : 'default';
+                        const globalStatePayload = {
+                            ...(gameState.gameData || {}),
+                            _visual_context: {
+                                sceneId: gameState.currentSceneId || null,
+                                previousSceneImage: gameState.lastSceneImage || null,
+                                previousSceneText: previousSceneText || ''
+                            }
+                        };
+
+                        fetch('http://127.0.0.1:5001/generate-scene-image', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                sceneDescription: sceneTextForRequest,
+                                globalState: globalStatePayload,
+                                style: style
+                            }),
+                            signal: controller.signal
+                        })
+                        .then(r => r.json())
+                        .then(result => {
+                            // 只在“仍是当前剧情”且 key 未变化时应用
+                            if (gameState._sceneImageRequestKey !== requestKey) return;
+                            if (sceneTextForRequest !== (gameState.currentScene || '').trim()) return;
+                            if (result && result.status === 'success' && result.image && result.image.url) {
+                                const img = result.image;
+                                console.log('✅ 异步补图成功:', img.url);
+                                try {
+                                    VisualContentManager.displaySceneImage(img);
+                                } catch (e) {
+                                    console.warn('⚠️ 异步补图展示失败:', e);
+                                }
+                                // 更新状态，供“下一剧情参考上一剧情图片”使用
+                                gameState.pendingImageData = img;
+                                gameState.lastSceneImage = img;
+                            } else {
+                                console.warn('⚠️ 异步补图失败:', result && result.message ? result.message : result);
+                            }
+                        })
+                        .catch(err => {
+                            if (err && err.name === 'AbortError') return;
+                            console.warn('⚠️ 异步补图请求异常:', err);
+                        });
+                    }
+                }
+            } catch (e) {
+                console.warn('⚠️ 异步补图逻辑异常:', e);
+            }
+
             // 已移除场景图片层，只使用全屏背景图片（#global-bg）
             // 如果没有新图片，全屏背景会保留上一张图片
             const sceneVideo = document.getElementById('scene-video');

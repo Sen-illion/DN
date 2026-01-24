@@ -71,6 +71,14 @@ IMAGE_GENERATION_CONFIG = {
     "comfyui_host": os.getenv("COMFYUI_HOST", ""),
 }
 
+# ------------------------------
+# 图片生成：全局限速（避免 429 / 请求过于频繁）
+# ------------------------------
+# yunwu.ai 图片生成接口通常有更严格的速率限制；项目内又有多线程并行路径（预生成/批量图片），
+# 因此需要跨线程的“最小间隔”控制，降低 429 概率与重试等待时间。
+_YUNWU_RATE_LOCK = threading.Lock()
+_YUNWU_LAST_CALL_TS = 0.0
+
 
 DIFFICULTY_SETTINGS = {
     "简单": {"剧情容错率": "高", "矛盾解决难度": "低", "提示频率": "高"},
@@ -869,7 +877,22 @@ def generate_scene_image(
     # 3. 调用AI图片生成API
     try:
         if provider == "yunwu":
-            image_url = call_yunwu_image_api(prompt, style)
+            # yunwu.ai 易受 429 / 返回格式波动影响：失败时可选用本地 SD 兜底
+            image_url = None
+            try:
+                image_url = call_yunwu_image_api(prompt, style)
+            except Exception as e:
+                print(f"⚠️ yunwu.ai 生图失败，将尝试兜底（如已配置）：{str(e)}")
+                image_url = None
+
+            if not image_url:
+                sd_base = IMAGE_GENERATION_CONFIG.get("stable_diffusion_base_url", "")
+                if sd_base:
+                    try:
+                        print("🛟 使用 Stable Diffusion 作为兜底生图（yunwu 失败/无返回）")
+                        image_url = call_stable_diffusion_api(prompt, style, reference_image_url=reference_image_url)
+                    except Exception as e:
+                        print(f"⚠️ Stable Diffusion 兜底失败：{str(e)}")
         elif provider == "replicate":
             image_url = call_replicate_api(prompt, style)
         elif provider == "openai":
@@ -977,25 +1000,48 @@ def generate_scene_image(
                         "cached": False  # 私有URL无法缓存
                     }
                 
-                # 下载图片到本地
+                # 下载图片到本地（带重试 + 流式写入，降低 image.pollinations.ai 等站点超时概率）
                 print(f"📥 正在下载图片到本地缓存：{image_url[:80]}...")
-                try:
-                    response = requests.get(image_url, timeout=30, stream=True)
-                    response.raise_for_status()
-                except requests.exceptions.HTTPError as e:
-                    if e.response and e.response.status_code == 409:
-                        # 409错误表示私有存储，无法公开访问
-                        print(f"⚠️ 图片URL是私有存储，无法直接下载（409错误）")
-                        print(f"   将直接返回URL，由前端处理：{image_url[:80]}...")
-                        return {
-                            "url": image_url,
-                            "prompt": prompt,
-                            "style": style,
-                            "width": 1024,
-                            "height": 1024,
-                            "cached": False  # 私有URL无法缓存
-                        }
-                    raise  # 其他HTTP错误继续抛出
+                import time
+                download_retries = int(os.getenv("IMAGE_DOWNLOAD_MAX_RETRIES", "3"))
+                connect_timeout = float(os.getenv("IMAGE_DOWNLOAD_CONNECT_TIMEOUT", "10"))
+                read_timeout = float(os.getenv("IMAGE_DOWNLOAD_READ_TIMEOUT", "60"))
+                ua = os.getenv("IMAGE_DOWNLOAD_USER_AGENT", "DN-GameServer/1.0")
+
+                response = None
+                last_err = None
+                for dl_attempt in range(download_retries):
+                    try:
+                        response = requests.get(
+                            image_url,
+                            timeout=(connect_timeout, read_timeout),
+                            stream=True,
+                            headers={"User-Agent": ua}
+                        )
+                        response.raise_for_status()
+                        break
+                    except requests.exceptions.HTTPError as e:
+                        if e.response and e.response.status_code == 409:
+                            # 409错误表示私有存储，无法公开访问
+                            print(f"⚠️ 图片URL是私有存储，无法直接下载（409错误）")
+                            print(f"   将直接返回URL，由前端处理：{image_url[:80]}...")
+                            return {
+                                "url": image_url,
+                                "prompt": prompt,
+                                "style": style,
+                                "width": 1024,
+                                "height": 1024,
+                                "cached": False
+                            }
+                        raise
+                    except (requests.exceptions.Timeout, requests.exceptions.ConnectionError) as e:
+                        last_err = e
+                        if dl_attempt < download_retries - 1:
+                            backoff = (1.5 * (2 ** dl_attempt)) + random.random()
+                            print(f"⚠️ 图片下载超时/连接失败，{backoff:.1f}s 后重试（{dl_attempt+1}/{download_retries}）: {e}")
+                            time.sleep(backoff)
+                            continue
+                        raise
 
                 # 基础类型校验
                 content_type = response.headers.get("Content-Type", "")
@@ -1202,6 +1248,30 @@ def save_base64_image(data_uri: str, prompt: str) -> str:
         except Exception as e:
             print(f"❌ base64解码失败：{str(e)}")
             return None
+
+        # 过滤“空白/占位符”图片（常见：1x1 PNG base64 占位）
+        # 例如：iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwC...
+        def _is_tiny_png_placeholder(data: bytes) -> bool:
+            try:
+                if not data or len(data) < 33:
+                    return True
+                if not data.startswith(b"\x89PNG\r\n\x1a\n"):
+                    return False
+                # IHDR: length(4) + type(4) + data(13)
+                ihdr_pos = 8
+                if data[ihdr_pos + 4:ihdr_pos + 8] != b'IHDR':
+                    return False
+                width = int.from_bytes(data[ihdr_pos + 8:ihdr_pos + 12], "big", signed=False)
+                height = int.from_bytes(data[ihdr_pos + 12:ihdr_pos + 16], "big", signed=False)
+                if width <= 2 and height <= 2 and len(data) < 2048:
+                    return True
+                return False
+            except Exception:
+                return False
+
+        if _is_tiny_png_placeholder(image_data):
+            print("⚠️ 检测到 1x1/2x2 PNG 占位 base64，已丢弃该图片数据")
+            return None
         
         # 创建缓存目录
         IMAGE_CACHE_DIR = "image_cache"
@@ -1267,16 +1337,29 @@ def call_yunwu_image_api(prompt: str, style: str) -> str:
     # 如果模型是 sora_image 或其他支持JSON模式的模型，可以尝试添加
     # 但 gemini-2.5-flash-image 不支持，会导致400错误
     
-    # 重试机制：最多重试3次，针对429错误
-    max_retries = 3
+    # 可配置：超时/最小间隔/重试次数（避免长时间卡住 + 降低 429 概率）
+    request_timeout = int(os.getenv("YUNWU_IMAGE_TIMEOUT_SECONDS", "90"))
+    min_interval = float(os.getenv("YUNWU_MIN_INTERVAL_SECONDS", "12"))
+    max_retries = int(os.getenv("YUNWU_IMAGE_MAX_RETRIES", "3"))
     for attempt in range(max_retries):
         try:
-            # 图片生成通常需要更长时间，增加超时时间到300秒（5分钟）
+            # 跨线程限速：保证相邻请求之间至少间隔 min_interval 秒
+            global _YUNWU_LAST_CALL_TS
+            with _YUNWU_RATE_LOCK:
+                now = time.time()
+                delta = now - _YUNWU_LAST_CALL_TS
+                if delta < min_interval:
+                    sleep_s = (min_interval - delta) + random.random() * 0.5
+                    print(f"⏳ yunwu.ai 限速：等待 {sleep_s:.1f}s（最小间隔 {min_interval}s）")
+                    time.sleep(sleep_s)
+                _YUNWU_LAST_CALL_TS = time.time()
+
+            # 图片生成可能耗时，但不应无限期阻塞
             response = requests.post(
                 f"{base_url}/chat/completions",
                 headers=headers,
                 json=request_body,
-                timeout=300  # 从120秒增加到300秒，适应图片生成的较长响应时间
+                timeout=request_timeout
             )
             
             # 先检查HTTP状态码，区分不同类型的错误
@@ -1407,8 +1490,64 @@ def call_yunwu_image_api(prompt: str, style: str) -> str:
             # 其他HTTP错误直接抛出
             response.raise_for_status()
             
-            # 如果成功，解析响应
-            result = response.json()
+            # 如果成功，解析响应（兼容：返回体不是 JSON / 结构变化）
+            try:
+                result = response.json()
+            except Exception:
+                text_preview = (response.text or "")[:500]
+                print(f"⚠️ yunwu.ai 返回非JSON内容，无法解析：{text_preview}")
+                return None
+
+            # 解析策略0：优先从“结构化字段”提取（避免只依赖 choices[0].message.content）
+            def _extract_from_structured(obj) -> str:
+                try:
+                    if not isinstance(obj, dict):
+                        return ""
+                    # 顶层直接给 url
+                    for k in ("image_url", "url"):
+                        v = obj.get(k)
+                        if isinstance(v, str) and v.strip():
+                            return v.strip()
+                    # 常见：images: [<base64>, ...]
+                    images = obj.get("images")
+                    if isinstance(images, list) and images:
+                        first = images[0]
+                        if isinstance(first, str) and first.strip():
+                            s = first.strip()
+                            if s.startswith("data:image"):
+                                return save_base64_image(s, prompt) or ""
+                            return save_base64_image(f"data:image/png;base64,{s}", prompt) or ""
+                    # 常见：data: {url:...} 或 data: [{url:...}]
+                    data = obj.get("data")
+                    if isinstance(data, dict):
+                        for k in ("url", "image_url"):
+                            v = data.get(k)
+                            if isinstance(v, str) and v.strip():
+                                return v.strip()
+                        for k in ("b64_json", "base64", "image_base64"):
+                            v = data.get(k)
+                            if isinstance(v, str) and v.strip():
+                                return save_base64_image(f"data:image/png;base64,{v.strip()}", prompt) or ""
+                    if isinstance(data, list) and data:
+                        for item in data:
+                            if not isinstance(item, dict):
+                                continue
+                            for k in ("url", "image_url"):
+                                v = item.get(k)
+                                if isinstance(v, str) and v.strip():
+                                    return v.strip()
+                            for k in ("b64_json", "base64", "image_base64"):
+                                v = item.get(k)
+                                if isinstance(v, str) and v.strip():
+                                    return save_base64_image(f"data:image/png;base64,{v.strip()}", prompt) or ""
+                    return ""
+                except Exception:
+                    return ""
+
+            structured = _extract_from_structured(result)
+            if structured:
+                return structured
+
             choices = result.get("choices", [])
             if choices and len(choices) > 0:
                 message = choices[0].get("message", {})
@@ -1699,7 +1838,9 @@ def call_stable_diffusion_api(prompt: str, style: str, reference_image_url: str 
             # 本地缓存路径（前端常传 /image_cache/...）
             if ref.startswith("/image_cache/") or ref.startswith("image_cache/"):
                 rel = ref[1:] if ref.startswith("/") else ref
-                local_path = Path(rel)
+                # 以项目目录为基准，避免工作目录变化导致找不到文件
+                base_dir = Path(__file__).resolve().parent
+                local_path = (base_dir / rel).resolve()
                 if local_path.exists():
                     data = local_path.read_bytes()
                     return base64.b64encode(data).decode("utf-8")
@@ -2738,8 +2879,7 @@ def llm_generate_global(user_idea: str, protagonist_attr: Dict, difficulty: str,
             global_state['flow_worldline'] = flow_worldline
             
             # 正则回填缺失字段（解析优化）
-            if perf.get("optimize_parsing", True):
-                _regex_fill_worldview(raw_content, core_worldview, chapters)
+            # 说明：上方已执行过一次正则回填（备用方案），这里不再重复执行，避免重复计算与日志刷屏。
             
             # 验证世界观完整性并填充缺失字段
             core_wv = global_state.get('core_worldview', {})
@@ -3371,61 +3511,12 @@ def _generate_single_option(i: int, option: str, global_state: Dict) -> Dict:
             }
             
             # 新增：生成场景图片（使用本地缓存，避免OSS URL失效问题）
-            # 优化：等待图片生成完成，图片会先保存到本地，然后返回本地路径
-            # 超时时间：6分钟，超时后先返回场景文本，图片稍后生成
+            # 修复：移除“线程 join 6分钟后丢结果”的逻辑，改为同步调用 + 可控的网络超时/重试。
             scene_image = None
-            if scene:  # 如果场景描述生成成功
+            if scene:
                 try:
-                    print(f"🎨 正在为选项 {i+1} 生成场景图片（启用本地缓存，等待最多6分钟）...")
-                    
-                    # 使用线程和超时机制，等待图片生成完成
-                    import threading
-                    import queue
-                    result_queue = queue.Queue()
-                    exception_queue = queue.Queue()
-                    
-                    def generate_image_thread():
-                        try:
-                            # 使用带缓存的图片生成，自动下载到本地（避免OSS URL失效）
-                            # generate_scene_image函数会：
-                            # 1. 调用外部API生成图片
-                            # 2. 下载图片到本地 image_cache/ 目录
-                            # 3. 返回本地路径格式：/image_cache/{hash}.png
-                            img_result = generate_scene_image(scene, global_state, "default", use_cache=True)
-                            result_queue.put(img_result)
-                        except Exception as e:
-                            exception_queue.put(e)
-                    
-                    # 启动图片生成线程
-                    img_thread = threading.Thread(target=generate_image_thread, daemon=True)
-                    img_thread.start()
-                    img_thread.join(timeout=360)  # 最多等待6分钟（360秒）
-                    
-                    # 检查结果
-                    if img_thread.is_alive():
-                        # 线程仍在运行，说明超时了（6分钟）
-                        print(f"⚠️⚠️⚠️ 选项 {i+1} 图片生成超时（6分钟）！")
-                        print(f"   场景描述: {scene[:100]}...")
-                        print(f"   先返回场景文本和选项，图片将在后台继续生成")
-                        print(f"   图片生成完成后会保存到本地 image_cache/ 目录")
-                        scene_image = None
-                    elif not exception_queue.empty():
-                        # 生成过程中出现异常
-                        exc = exception_queue.get()
-                        print(f"⚠️ 选项 {i+1} 图片生成异常，继续使用文本模式：{str(exc)}")
-                        import traceback
-                        traceback.print_exc()
-                        scene_image = None
-                    elif not result_queue.empty():
-                        # 成功生成
-                        scene_image = result_queue.get()
-                        if scene_image:
-                            print(f"✅ 选项 {i+1} 图片生成完成")
-                    else:
-                        # 没有结果（不应该发生）
-                        print(f"⚠️ 选项 {i+1} 图片生成无结果，继续使用文本模式")
-                        scene_image = None
-                    
+                    print(f"🎨 正在为选项 {i+1} 生成场景图片（启用本地缓存）...")
+                    scene_image = generate_scene_image(scene, global_state, "default", use_cache=True)
                     if scene_image and scene_image.get('url'):
                         # 验证图片URL是否有效，确保返回格式正确
                         image_url = scene_image.get('url')
@@ -3483,7 +3574,7 @@ def _generate_single_option(i: int, option: str, global_state: Dict) -> Dict:
                                 print(f"⚠️ 选项 {i+1} 场景图片本地路径格式异常: {image_url}")
                                 scene_image = None
                     else:
-                        print(f"⚠️ 选项 {i+1} 场景图片生成失败或超时，继续使用文本模式")
+                        print(f"⚠️ 选项 {i+1} 场景图片生成失败，继续使用文本模式")
                 except Exception as e:
                     print(f"⚠️ 选项 {i+1} 图片生成异常，继续使用文本模式：{str(e)}")
                     import traceback
@@ -3976,10 +4067,13 @@ def _generate_images_parallel(scenes_dict: Dict[int, str], global_state: Dict) -
         return cached_images
     
     # 并行生成图片（限制并发数，避免API限流）
-    # 注意：虽然之前版本也是并行生成，但yunwu.ai可能最近收紧了速率限制
-    # 降低并发数并添加延迟，避免触发429错误
-    max_workers = min(len(scenes_to_generate), 2)  # 降低并发数从4到2，避免速率限制
-    print(f"📊 需要生成 {len(scenes_to_generate)} 张图片，使用 {max_workers} 个并发线程（降低并发数避免速率限制）")
+    # - yunwu.ai 速率限制更严格：默认只开 1 并发（再配合全局最小间隔）
+    # - 其它 provider 可适当并发
+    provider = IMAGE_GENERATION_CONFIG.get("provider", "yunwu")
+    default_workers = 1 if provider == "yunwu" else 2
+    max_workers_env = int(os.getenv("IMAGE_PARALLEL_MAX_WORKERS", str(default_workers)))
+    max_workers = max(1, min(len(scenes_to_generate), max_workers_env))
+    print(f"📊 需要生成 {len(scenes_to_generate)} 张图片，使用 {max_workers} 个并发线程（provider={provider}）")
     
     def generate_single_image(option_index: int, scene: str) -> tuple:
         """生成单个图片的包装函数，返回 (option_index, image_data, error)"""
@@ -4031,6 +4125,8 @@ def _generate_images_parallel(scenes_dict: Dict[int, str], global_state: Dict) -
     
     # 使用线程池并行生成（添加延迟避免速率限制）
     import time
+    per_task_timeout = int(os.getenv("IMAGE_TASK_TIMEOUT_SECONDS", "120"))
+    submit_delay = float(os.getenv("IMAGE_SUBMIT_DELAY_SECONDS", "2.0"))
     total_images = len(scenes_to_generate)
     completed_images = 0
     failed_images = 0
@@ -4040,18 +4136,18 @@ def _generate_images_parallel(scenes_dict: Dict[int, str], global_state: Dict) -
         for idx, (option_index, scene) in enumerate(scenes_to_generate.items()):
             # 如果不是第一个任务，添加延迟（避免同时发送过多请求触发速率限制）
             if idx > 0:
-                delay_seconds = 3  # 每个任务之间延迟3秒
-                print(f"⏳ 等待 {delay_seconds} 秒后提交下一个图片生成任务（避免API速率限制）...")
-                time.sleep(delay_seconds)
+                if submit_delay > 0:
+                    print(f"⏳ 等待 {submit_delay:.1f} 秒后提交下一个图片生成任务（避免API速率限制）...")
+                    time.sleep(submit_delay)
             future = executor.submit(generate_single_image, option_index, scene)
             futures[option_index] = future
         
-        # 收集结果（带超时控制，每个任务最多6分钟）
+        # 收集结果（带超时控制，避免单张图卡住整轮）
         for option_index, future in futures.items():
             completed_images += 1
             print(f"🎨 图片生成进度：{completed_images}/{total_images}")
             try:
-                result = future.result(timeout=360)  # 6分钟超时
+                result = future.result(timeout=per_task_timeout)
                 result_option_index, image_data, error = result
                 
                 if error:
@@ -4067,7 +4163,7 @@ def _generate_images_parallel(scenes_dict: Dict[int, str], global_state: Dict) -
                 error_msg = str(e)
                 if "timeout" in error_msg.lower() or "超时" in error_msg:
                     failed_images += 1
-                    print(f"⚠️⚠️⚠️ 选项 {option_index+1} 图片生成超时（6分钟）！将在后台继续生成")
+                    print(f"⚠️ 选项 {option_index+1} 图片生成超时（{per_task_timeout}s）")
                 else:
                     failed_images += 1
                     print(f"⚠️ 选项 {option_index+1} 图片生成异常：{error_msg}")

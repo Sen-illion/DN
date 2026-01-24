@@ -18,6 +18,7 @@ if sys.platform == 'win32':
 from main2 import (
     llm_generate_global, 
     _generate_single_option, 
+    _generate_single_option_text_only,
     generate_all_options, 
     modify_ending_content, 
     generate_ending_prediction,
@@ -225,7 +226,9 @@ def generate_worldview():
                 
                 # 为这2个初始选项生成对应的剧情（并行生成）
                 print(f"📝 为 {len(initial_options)} 个初始选项生成剧情...")
-                all_initial_options_data = generate_all_options(global_state, initial_options)
+                # 初始选项的剧情会被缓存，用户尚未进入这些分支；
+                # 为了避免图片接口限流/超时（429、下载超时），这里先只预生成文本。
+                all_initial_options_data = generate_all_options(global_state, initial_options, skip_images=True)
                 
                 # 存储到特殊缓存位置（不使用预生成机制）
                 with cache_lock:
@@ -554,8 +557,9 @@ def generate_option():
         # 如果需要等待，则等待生成完成
         if need_wait and wait_event:
             try:
-                # 等待最多6分钟（360秒），以匹配图片生成的超时时间
-                wait_event.wait(timeout=360)
+                # 等待超时（默认180秒，可通过环境变量调节），避免前端卡死太久
+                wait_timeout = int(os.getenv("OPTION_WAIT_TIMEOUT_SECONDS", "180"))
+                wait_event.wait(timeout=wait_timeout)
                 
                 # 再次尝试从缓存读取
                 with cache_lock:
@@ -665,6 +669,27 @@ def generate_option():
         
         # 定期清理旧缓存
         cleanup_old_cache(scene_id)
+
+        # 如果返回的剧情数据缺少图片：默认不在 /generate-option 阻塞生成（避免长等待）。
+        # 如需“选择后立即同步补图”，可设置环境变量：GENERATE_OPTION_ON_DEMAND_IMAGE=1
+        if os.getenv("GENERATE_OPTION_ON_DEMAND_IMAGE", "0") == "1":
+            try:
+                if isinstance(option_data, dict) and option_data.get("scene") and not option_data.get("scene_image"):
+                    scene_text = option_data.get("scene", "")
+                    if isinstance(scene_text, str) and scene_text.strip():
+                        img = generate_scene_image(scene_text, global_state, "default", use_cache=True)
+                        if img and isinstance(img, dict) and img.get("url"):
+                            option_data["scene_image"] = {
+                                "url": img.get("url"),
+                                "prompt": img.get("prompt", ""),
+                                "style": img.get("style", "default"),
+                                "width": img.get("width", 1024),
+                                "height": img.get("height", 1024),
+                                "cached": img.get("cached", True)
+                            }
+                            print("✅ 已按需补齐 scene_image（同步模式）")
+            except Exception as e:
+                print(f"⚠️ 按需生成 scene_image 失败，继续返回文本：{str(e)}")
         
         # 返回结果
         return jsonify({
@@ -766,7 +791,8 @@ def _pregenerate_next_layers_logic(global_state, current_options, scene_id):
                 
                 # 生成单个选项的剧情
                 try:
-                    result = _generate_single_option(opt_idx, option, global_state)
+                    # 预生成阶段：只生成文本，避免图片接口限流/长等待
+                    result = _generate_single_option_text_only(opt_idx, option, global_state)
                     if isinstance(result, dict):
                         option_data = result.get('data', result)
                     else:
@@ -800,7 +826,9 @@ def _pregenerate_next_layers_logic(global_state, current_options, scene_id):
                                 events[opt_idx].set()
             
             # 使用线程池并行生成所有选项（按优先级顺序提交任务）
-            with ThreadPoolExecutor(max_workers=len(current_options)) as executor:
+            # 限制并发，避免同时触发过多 LLM/下游调用导致排队或限流
+            max_workers = min(len(current_options), int(os.getenv("PREGEN_MAX_WORKERS", "2")))
+            with ThreadPoolExecutor(max_workers=max_workers) as executor:
                 # 按优先级顺序（0→1→2→3）提交所有任务
                 futures = []
                 for opt_idx in range(len(current_options)):
@@ -876,7 +904,7 @@ def _pregenerate_next_layers_logic(global_state, current_options, scene_id):
                             
                             # 为下一轮的每个选项生成再下一层剧情（在锁外执行，避免长时间持有锁）
                             try:
-                                layer2_data = generate_all_options(updated_global_state, next_options)
+                                layer2_data = generate_all_options(updated_global_state, next_options, skip_images=True)
                                 
                                 # 再次检查取消标志并写入缓存（生成过程中可能被取消）
                                 with cache_lock:
@@ -922,7 +950,7 @@ def _pregenerate_next_layers_logic(global_state, current_options, scene_id):
                                 
                                 # 为下一轮的每个选项生成再下一层剧情（在锁外执行，避免长时间持有锁）
                                 try:
-                                    layer2_data = generate_all_options(updated_global_state, next_options)
+                                    layer2_data = generate_all_options(updated_global_state, next_options, skip_images=True)
                                     
                                     # 再次检查取消标志并写入缓存（生成过程中可能被取消）
                                     with cache_lock:
