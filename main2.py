@@ -932,7 +932,7 @@ def generate_scene_image(
                     "style": style,
                     "width": 1024,
                     "height": 1024,
-                    "cached": False
+                    "cached": True
                 }
             except Exception as cache_error:
                 # 如果缓存过程中写入失败，确保不留空文件
