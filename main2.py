@@ -63,7 +63,7 @@ IMAGE_GENERATION_CONFIG = {
     "provider": os.getenv("IMAGE_GENERATION_PROVIDER", "yunwu"),  # yunwu, replicate, openai, stable_diffusion, comfyui
     "yunwu_api_key": os.getenv("Image_Generation_API_KEY", ""),  # 使用yunwu.ai的图片生成API
     "yunwu_base_url": os.getenv("Image_Generation_BASE_URL", "https://yunwu.ai/v1"),
-    "yunwu_model": os.getenv("Image_Generation_MODEL", "sora_image"),
+    "yunwu_model": os.getenv("Image_Generation_MODEL", "gemini-2.5-flash-image-preview"),
     "replicate_api_token": os.getenv("REPLICATE_API_TOKEN", ""),
     "openai_api_key": os.getenv("OPENAI_API_KEY", ""),
     "stable_diffusion_base_url": os.getenv("STABLE_DIFFUSION_BASE_URL", ""),
@@ -875,29 +875,56 @@ def generate_scene_image(
                 if not (image_url.startswith('http://') or image_url.startswith('https://')):
                     raise ValueError(f"无效的图片URL格式：{image_url}（需要完整的HTTP/HTTPS URL或本地缓存路径）")
                 
-                # 下载图片到本地
-                print(f"📥 正在下载图片到本地缓存：{image_url[:80]}...")
-                response = requests.get(image_url, timeout=30, stream=True)
-                response.raise_for_status()
-
-                # 基础类型校验
-                content_type = response.headers.get("Content-Type", "")
-                if VALID_IMAGE_PREFIX not in content_type:
-                    raise ValueError(f"响应类型异常：{content_type}")
-
-                downloaded = 0
-                with open(cache_path, 'wb') as f:
-                    for chunk in response.iter_content(chunk_size=8192):
-                        if not chunk:
-                            continue
-                        downloaded += len(chunk)
-                        if downloaded > MAX_DOWNLOAD_BYTES:
-                            raise ValueError("图片过大，已终止下载（>10MB）")
-                        f.write(chunk)
-                
-                print(f"✅ 图片已缓存到本地：{cache_path}")
+                # 下载图片到本地（带重试，应对 SSL/连接重置/403 等）
+                import time as _time
+                last_dl_err = None
+                for dl_attempt in range(3):
+                    try:
+                        print(f"📥 正在下载图片到本地缓存：{image_url[:80]}...")
+                        response = requests.get(image_url, timeout=30, stream=True)
+                        response.raise_for_status()
+                        content_type = response.headers.get("Content-Type", "")
+                        if VALID_IMAGE_PREFIX not in content_type:
+                            raise ValueError(f"响应类型异常：{content_type}")
+                        downloaded = 0
+                        with open(cache_path, 'wb') as f:
+                            for chunk in response.iter_content(chunk_size=8192):
+                                if not chunk:
+                                    continue
+                                downloaded += len(chunk)
+                                if downloaded > MAX_DOWNLOAD_BYTES:
+                                    raise ValueError("图片过大，已终止下载（>10MB）")
+                                f.write(chunk)
+                        print(f"✅ 图片已缓存到本地：{cache_path}")
+                        return {
+                            "url": f"/image_cache/{prompt_hash}.png",
+                            "prompt": prompt,
+                            "style": style,
+                            "width": 1024,
+                            "height": 1024,
+                            "cached": False
+                        }
+                    except Exception as dl_err:
+                        last_dl_err = dl_err
+                        try:
+                            if cache_path.exists():
+                                cache_path.unlink()
+                        except Exception:
+                            pass
+                        if dl_attempt < 2:
+                            wait = 5 * (dl_attempt + 1)
+                            print(f"⚠️ 下载失败，{wait}秒后重试（{dl_attempt + 1}/3）：{str(dl_err)[:60]}")
+                            _time.sleep(wait)
+                        else:
+                            break
+                # 所有重试均失败
+                print(f"⚠️ 图片缓存失败，使用原始URL：{str(last_dl_err)}")
+                # Azure 临时链接常因过期/403/SSL 无法下载，不再回退使用，避免前端加载失败
+                if "blob.core.windows.net" in (image_url or ""):
+                    print("💡 Azure 临时链接不可用，已跳过该图片")
+                    return None
                 return {
-                    "url": f"/image_cache/{prompt_hash}.png",
+                    "url": image_url,
                     "prompt": prompt,
                     "style": style,
                     "width": 1024,
@@ -905,14 +932,16 @@ def generate_scene_image(
                     "cached": False
                 }
             except Exception as cache_error:
-                # 如果缓存过程中写入失败，确保不留空文件
+                # 其他缓存逻辑异常（如校验、路径等）
                 try:
                     if 'cache_path' in locals() and cache_path.exists():
                         cache_path.unlink()
                 except Exception:
                     pass
                 print(f"⚠️ 图片缓存失败，使用原始URL：{str(cache_error)}")
-                # 缓存失败时返回原始URL
+                if "blob.core.windows.net" in (image_url or ""):
+                    print("💡 Azure 临时链接已跳过")
+                    return None
                 return {
                     "url": image_url,
                     "prompt": prompt,
@@ -987,33 +1016,6 @@ def fix_incomplete_url(url: str) -> str:
         pass
     
     return url if validate_image_url(url) else None
-
-def validate_image_url(url: str) -> bool:
-    """
-    验证图片URL是否完整有效
-    :param url: 待验证的URL
-    :return: True if valid, False otherwise
-    """
-    if not url or not isinstance(url, str):
-        return False
-    
-    # 基本格式检查
-    if not url.startswith(('http://', 'https://')):
-        return False
-    
-    # 检查是否包含域名和路径
-    try:
-        from urllib.parse import urlparse
-        parsed = urlparse(url)
-        if not parsed.netloc:  # 没有域名
-            return False
-        if not parsed.path or parsed.path == '/':  # 没有路径或只有根路径
-            # 对于OSS URL，路径可能包含文件名，检查是否有文件扩展名
-            if '.' not in url.split('/')[-1]:
-                return False
-        return True
-    except Exception:
-        return False
 
 def fix_incomplete_url(url: str) -> str:
     """
@@ -1110,7 +1112,7 @@ def call_yunwu_image_api(prompt: str, style: str) -> str:
     
     api_key = IMAGE_GENERATION_CONFIG.get("yunwu_api_key")
     base_url = IMAGE_GENERATION_CONFIG.get("yunwu_base_url", "https://yunwu.ai/v1")
-    model = IMAGE_GENERATION_CONFIG.get("yunwu_model", "sora_image")
+    model = IMAGE_GENERATION_CONFIG.get("yunwu_model", "gemini-2.5-flash-image-preview")
     
     if not api_key:
         raise ValueError("yunwu.ai API Key未配置")
@@ -1120,7 +1122,7 @@ def call_yunwu_image_api(prompt: str, style: str) -> str:
         "Content-Type": "application/json"
     }
     
-    # 调用yunwu.ai的图片生成API（使用chat/completions接口，模型为sora_image）
+    # 调用图片生成API（chat/completions 接口，默认模型 gemini-2.5-flash-image-preview）
     # 明确要求返回JSON格式的图片URL
     request_body = {
         "model": model,
@@ -1163,8 +1165,8 @@ def call_yunwu_image_api(prompt: str, style: str) -> str:
                     wait_time = int(retry_after)
                     print(f"⚠️ 遇到速率限制（429），API建议等待 {wait_time} 秒后重试（尝试 {attempt + 1}/{max_retries}）")
                 else:
-                    # 指数退避：10s, 20s, 40s
-                    wait_time = 10 * (2 ** attempt)
+                    # 指数退避：15s, 30s, 60s，减轻持续限流
+                    wait_time = 15 * (2 ** attempt)
                     print(f"⚠️ 遇到速率限制（429），等待 {wait_time} 秒后重试（尝试 {attempt + 1}/{max_retries}）")
                 
                 # 如果还有重试机会，等待后继续
@@ -1319,8 +1321,18 @@ def call_yunwu_image_api(prompt: str, style: str) -> str:
                 # 其他HTTP错误直接抛出
                 print(f"❌ yunwu.ai图片生成API调用失败（HTTP错误）：{str(e)}")
                 raise
+        except (requests.exceptions.ConnectionError, requests.exceptions.Timeout, OSError) as e:
+            # 网络错误、连接被重置、超时等：重试最多 max_retries 次
+            print(f"⚠️ 网络异常（连接重置/超时等），等待后重试：{str(e)[:80]}")
+            if attempt < max_retries - 1:
+                wait = 5 * (attempt + 1)
+                print(f"⚠️ 等待 {wait} 秒后重试（尝试 {attempt + 1}/{max_retries}）")
+                time.sleep(wait)
+                continue
+            print(f"❌ yunwu.ai图片生成API调用失败（网络异常）：{str(e)}")
+            raise
         except Exception as e:
-            # 非HTTP错误（如网络错误、超时等）直接抛出
+            # 其他异常直接抛出
             print(f"❌ yunwu.ai图片生成API调用失败：{str(e)}")
             raise
 
@@ -3110,8 +3122,12 @@ def _generate_single_option(i: int, option: str, global_state: Dict) -> Dict:
                                 "height": scene_image.get("height", 1024),
                                 "cached": scene_image.get("cached", True)  # 本地路径表示已缓存
                             }
-                            print(f"✅ 选项 {i+1} 场景图片生成成功并已保存到本地")
-                            print(f"   本地路径: {image_url}")
+                            if is_local_path:
+                                print(f"✅ 选项 {i+1} 场景图片生成成功并已保存到本地")
+                                print(f"   本地路径: {image_url}")
+                            else:
+                                print(f"✅ 选项 {i+1} 场景图片生成成功（远程URL）")
+                                print(f"   图片URL: {image_url[:80]}...")
                         else:
                             # URL无效，尝试修复（仅对HTTP(S) URL）
                             if not is_local_path:
@@ -3625,9 +3641,14 @@ def _generate_images_parallel(scenes_dict: Dict[int, str], global_state: Dict) -
         print(f"✅ 所有图片都已缓存，跳过生成")
         return cached_images
     
-    # 并行生成图片（限制并发数为4，避免API限流）
-    max_workers = min(len(scenes_to_generate), 4)
-    print(f"📊 需要生成 {len(scenes_to_generate)} 张图片，使用 {max_workers} 个并发线程")
+    # 并行生成图片。使用 yunwu 时改为串行( max_workers=1 )，避免并行请求触发 429 限流
+    provider = IMAGE_GENERATION_CONFIG.get("provider", "yunwu")
+    if provider == "yunwu":
+        max_workers = 1
+        print(f"📊 需要生成 {len(scenes_to_generate)} 张图片，使用串行模式（避免 yunwu 429 限流）")
+    else:
+        max_workers = min(len(scenes_to_generate), 4)
+        print(f"📊 需要生成 {len(scenes_to_generate)} 张图片，使用 {max_workers} 个并发线程")
     
     def generate_single_image(option_index: int, scene: str) -> tuple:
         """生成单个图片的包装函数，返回 (option_index, image_data, error)"""
