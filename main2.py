@@ -841,6 +841,11 @@ def optimize_main_character_prompt_with_llm(
         # 构建主角属性描述
         attr_description = f"颜值{protagonist_attr.get('颜值', '普通')}，智商{protagonist_attr.get('智商', '普通')}，体力{protagonist_attr.get('体力', '普通')}，魅力{protagonist_attr.get('魅力', '普通')}"
         
+        # 随机选择主角性别
+        import random
+        protagonist_gender = random.choice(['男性', '女性'])
+        print(f"🎲 随机选择主角性别：{protagonist_gender}")
+        
         # 构建发送给LLM的提示词
         llm_prompt = f"""你现在是一个专业的角色设计师，要将具体角色描述给生图ai，让生图ai能够生成准确的主角形象。
 
@@ -850,6 +855,7 @@ def optimize_main_character_prompt_with_llm(
 - 游戏基调：{tone_description}
 
 【主角信息】
+- 主角性别：{protagonist_gender}（随机选择）
 - 主角属性：{attr_description}
 - 主角能力：{protagonist_ability}
 - 主角性格：{protagonist_info.get('personality', '')}
@@ -859,16 +865,18 @@ def optimize_main_character_prompt_with_llm(
 {style_description if style_description else '默认风格'}
 
 请根据以上信息，生成一个详细的主角形象描述提示词，要求：
-1. 详细描述主角的外貌特征（面部特征、五官、肤色、表情等，重点突出脸部容貌）
-2. 详细描述主角的穿着（服装风格、颜色、材质等）
-3. 详细描述主角的发型（长度、颜色、样式等）
-4. 体现主角的属性特点（如高颜值、高智商等应在形象中有所体现）
-5. 符合游戏主题和世界观设定
-6. 匹配游戏基调（如悲剧基调应体现沉重氛围）
-7. 符合指定的图片风格
-8. 强调这是半身照，重点突出脸部容貌
-9. 不要包含任何文字、符号、乱码（重要：必须在提示词中明确告诉生图AI不要生成任何文字、符号、乱码）
-10. 描述要具体、生动，包含细节
+1. 主角性别为{protagonist_gender}，请根据性别特征进行描述
+2. 详细描述主角的外貌特征（面部特征、五官、肤色、表情等，重点突出脸部容貌）
+3. 尽量生成长得好看一点的主角（符合高颜值的要求，五官精致，面容姣好）
+4. 详细描述主角的穿着（服装风格、颜色、材质等）
+5. 详细描述主角的发型（长度、颜色、样式等）
+6. 体现主角的属性特点（如高颜值、高智商等应在形象中有所体现）
+7. 符合游戏主题和世界观设定
+8. 匹配游戏基调（如悲剧基调应体现沉重氛围）
+9. 符合指定的图片风格
+10. 强调这是半身照，重点突出脸部容貌
+11. 不要包含任何文字、符号、乱码（重要：必须在提示词中明确告诉生图AI不要生成任何文字、符号、乱码）
+12. 描述要具体、生动，包含细节
 
 只输出视觉描述，不要输出其他内容。"""
 
