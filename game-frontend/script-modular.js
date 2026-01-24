@@ -2,8 +2,8 @@
 // 版本：使用同一定位上下文方案
 // 更新时间：2024-12-XX
 // 改动说明：
-// 1. 图片层和文本覆盖层都相对于.scene-media-container绝对定位
-// 2. 背景图片只设置在.scene-media-container上，使用center定位
+// 1. 背景图片通过全屏背景（#global-bg）显示
+// 2. 文本和选项在选项容器内切换显示
 // 3. 移除了复杂的位置计算逻辑
 // ====================================
 console.log('🚀 [代码版本] 使用同一定位上下文方案已加载');
@@ -337,21 +337,9 @@ const Game = (() => {
         // 更新场景媒体容器的背景图片位置（已废弃：不再使用背景图片，只使用图片层）
         // 注意：此函数已废弃，不再设置容器背景图片，只确保移除任何残留的背景图片
         function updateSceneMediaContainerBackground(imageUrl) {
-            const sceneMediaContainer = document.querySelector('.scene-media-container');
-            if (!sceneMediaContainer) return;
-            
-            // 重要：不再设置背景图片，只确保移除任何残留的背景图片
-            // 当前方案：不使用背景图片，只使用图片层（#scene-image）
-            sceneMediaContainer.style.setProperty('background-image', 'none', 'important');
-            sceneMediaContainer.style.removeProperty('background-image');
-            sceneMediaContainer.style.setProperty('background-size', 'auto', 'important');
-            sceneMediaContainer.style.setProperty('background-position', '0% 0%', 'important');
-            sceneMediaContainer.style.setProperty('background-repeat', 'repeat', 'important');
-            sceneMediaContainer.style.setProperty('background-attachment', 'scroll', 'important');
-            
-            console.log('🔧 [背景图片移除] 已移除容器背景图片，只使用图片层');
-            console.log('📋 [方案说明] 当前方案：不使用背景图片，只使用图片层（#scene-image）');
-            console.log('📋 [方案说明] 文本元素直接定位在图片层上，它们看到的是同一张图片');
+            // 已移除scene-container，背景图片通过#global-bg全屏显示
+            // 此函数保留用于兼容性，但不再执行任何操作
+            console.log('🔧 [背景图片] 使用全屏背景图片（#global-bg）显示');
         }
         
         // 显示场景图片
@@ -359,7 +347,7 @@ const Game = (() => {
             // ========== 代码版本标识 ==========
             // 版本：文本直接定位在图片上，无覆盖层（2024-12-XX）
             // 改动说明：已移除.narration-overlay覆盖层，文本元素直接定位在图片层上
-            // 图片层和文本元素都相对于.scene-media-container绝对定位
+            // 背景图片通过全屏背景（#global-bg）显示
             // 不使用背景图片，只使用图片层，文本元素直接覆盖在图片层上
             // ====================================
             console.log('🎨 displaySceneImage被调用，参数:', imageData);
@@ -371,7 +359,7 @@ const Game = (() => {
             const loadingDiv = document.getElementById('image-loading');
             const loadingText = document.getElementById('loading-text');
             const globalBg = document.getElementById('global-bg');
-            const sceneMediaContainer = document.querySelector('.scene-media-container'); // 获取场景媒体容器
+            // 已移除scene-container，不再需要
             
             // 注意：不再需要验证 sceneImage，因为已移除场景图片层
             
@@ -478,233 +466,9 @@ const Game = (() => {
                     console.log('✅ 图片预加载成功:', imageUrl);
                     
                     // ========== 方案：使用同一定位上下文 ==========
-                    // 图片层和文本覆盖层都相对于.scene-media-container绝对定位
-                    // 背景图片只设置在.scene-media-container上，使用简单的center定位
-                    // 这样背景图片、图片层和文本覆盖层都在同一个定位上下文中，不会错位
-                    // ============================================
-                    if (sceneMediaContainer) {
-                        console.log('🔧 [定位上下文方案] 开始设置场景媒体容器背景图片');
-                        console.log('📍 [定位上下文] .scene-media-container:', {
-                            position: window.getComputedStyle(sceneMediaContainer).position,
-                            width: sceneMediaContainer.offsetWidth,
-                            height: sceneMediaContainer.offsetHeight,
-                            rect: sceneMediaContainer.getBoundingClientRect()
-                        });
-                        
-                        // ========== 关键方案：不使用背景图片，只使用图片层 ==========
-                        // 已移除.narration-overlay覆盖层，文本元素直接定位在图片层上
-                        // 解决方案：不使用背景图片，只使用图片层，让文本元素直接覆盖在图片层上
-                        // 这样它们看到的就是同一张图片，不会错位
-                        // ============================================================
-                        // 移除容器的背景图片设置（不使用背景图片）
-                        sceneMediaContainer.style.setProperty('background-image', 'none', 'important');
-                        sceneMediaContainer.style.removeProperty('background-image');
-                        
-                        console.log('🔧 [定位方案] 已移除容器背景图片，只使用图片层');
-                        console.log('📋 [方案说明] 图片层完全覆盖容器，文本元素直接定位在图片层上（无覆盖层）');
-                        console.log('📋 [方案说明] 这样它们看到的是同一张图片，不会错位');
-                        
-                        // ========== 关键诊断：检查定位基准是否一致 ==========
-                        const containerRect = sceneMediaContainer.getBoundingClientRect();
-                        const sceneTextElement = document.getElementById('scene-text');
-                        const imageRect = sceneImage ? sceneImage.getBoundingClientRect() : null;
-                        const textRect = sceneTextElement ? sceneTextElement.getBoundingClientRect() : null;
-                        
-                        console.log('🔍 [关键诊断] 定位基准检查:');
-                        console.log('  容器 .scene-media-container rect:', containerRect);
-                        console.log('  图片层 #scene-image rect:', imageRect);
-                        console.log('  文本元素 #scene-text rect:', textRect);
-                        
-                        if (imageRect && textRect) {
-                            // 计算相对于容器的位置
-                            const imageRelativeX = imageRect.left - containerRect.left;
-                            const imageRelativeY = imageRect.top - containerRect.top;
-                            const textRelativeX = textRect.left - containerRect.left;
-                            const textRelativeY = textRect.top - containerRect.top;
-                            
-                            console.log('🔍 [关键诊断] 相对于容器的位置:');
-                            console.log('  图片层相对位置:', { x: imageRelativeX, y: imageRelativeY });
-                            console.log('  文本元素相对位置:', { x: textRelativeX, y: textRelativeY });
-                            console.log('  是否对齐:', {
-                                图片层在容器内: imageRelativeX === 0 && imageRelativeY === 0,
-                                文本元素在容器内: textRelativeX >= 0 && textRelativeY >= 0,
-                                位置差异: {
-                                    x: textRelativeX - imageRelativeX,
-                                    y: textRelativeY - imageRelativeY
-                                }
-                            });
-                            
-                            // 检查背景图片位置（应该已经被移除）
-                            const bgImage = window.getComputedStyle(sceneMediaContainer).backgroundImage;
-                            const bgSize = window.getComputedStyle(sceneMediaContainer).backgroundSize;
-                            const bgPosition = window.getComputedStyle(sceneMediaContainer).backgroundPosition;
-                            console.log('🔍 [关键诊断] 背景图片设置检查:');
-                            console.log('  background-image:', bgImage === 'none' || bgImage === '' ? '已移除（正确）' : bgImage);
-                            console.log('  background-size:', bgSize);
-                            console.log('  background-position:', bgPosition);
-                            console.log('  容器尺寸:', { width: containerRect.width, height: containerRect.height });
-                            console.log('  图片层尺寸:', { width: imageRect.width, height: imageRect.height });
-                            console.log('  文本元素尺寸:', { width: textRect.width, height: textRect.height });
-                            
-                            // 判断错位原因
-                            if (imageRelativeX !== 0 || imageRelativeY !== 0) {
-                                console.warn('⚠️ [错位诊断] 图片层没有完全对齐到容器左上角！');
-                                console.warn('  图片层相对位置:', { x: imageRelativeX, y: imageRelativeY });
-                                console.warn('  应该都是0，如果不是0，说明图片层定位有问题');
-                            } else {
-                                console.log('✅ [错位诊断] 图片层已完全对齐到容器左上角');
-                            }
-                            
-                            if (imageRect.width !== containerRect.width || imageRect.height !== containerRect.height) {
-                                console.warn('⚠️ [错位诊断] 图片层尺寸与容器尺寸不一致！');
-                                console.warn('  图片层尺寸:', imageRect.width, 'x', imageRect.height);
-                                console.warn('  容器尺寸:', containerRect.width, 'x', containerRect.height);
-                            } else {
-                                console.log('✅ [错位诊断] 图片层尺寸与容器尺寸一致');
-                            }
-                            
-                            // 关键：检查背景图片是否已移除
-                            if (bgImage !== 'none' && bgImage !== '') {
-                                console.warn('⚠️ [错位诊断] 检测到容器仍有背景图片！这会导致错位问题！');
-                                console.warn('  正在强制移除背景图片...');
-                                sceneMediaContainer.style.setProperty('background-image', 'none', 'important');
-                                sceneMediaContainer.style.removeProperty('background-image');
-                            } else {
-                                console.log('✅ [错位诊断] 容器背景图片已移除，使用图片层方案');
-                            }
-                        }
-                        
-                        // 验证文本元素的定位上下文（文本直接定位在图片上，无覆盖层）
-                        if (sceneTextElement) {
-                            const textComputedStyle = window.getComputedStyle(sceneTextElement);
-                            const textRect = sceneTextElement.getBoundingClientRect();
-                            const containerRect = sceneMediaContainer.getBoundingClientRect();
-                            
-                            console.log('📍 [文本元素定位] #scene-text（直接定位在图片上，无覆盖层）:', {
-                                position: textComputedStyle.position,
-                                parent: sceneTextElement.parentElement?.className,
-                                rect: textRect,
-                                zIndex: textComputedStyle.zIndex,
-                                computedTop: textComputedStyle.top,
-                                computedLeft: textComputedStyle.left,
-                                computedBottom: textComputedStyle.bottom,
-                                computedRight: textComputedStyle.right,
-                                computedHeight: textComputedStyle.height,
-                                容器高度: containerRect.height,
-                                文本元素高度: textRect.height,
-                                距离容器顶部: textRect.top - containerRect.top,
-                                距离容器底部: containerRect.bottom - textRect.bottom,
-                                应该距离底部: '20px（根据CSS设置）'
-                            });
-                            
-                            // 检查文本元素的位置是否正确
-                            const distanceFromBottom = containerRect.bottom - textRect.bottom;
-                            const expectedDistanceFromBottom = 20; // CSS中设置的bottom: 20px
-                            
-                            if (Math.abs(distanceFromBottom - expectedDistanceFromBottom) > 5) {
-                                console.warn('⚠️ [文本元素定位] 距离容器底部的距离不正确！');
-                                console.warn('  当前距离:', distanceFromBottom, 'px');
-                                console.warn('  期望距离:', expectedDistanceFromBottom, 'px');
-                                console.warn('  差异:', Math.abs(distanceFromBottom - expectedDistanceFromBottom), 'px');
-                                
-                                // 强制设置正确的位置
-                                sceneTextElement.style.setProperty('position', 'absolute', 'important');
-                                sceneTextElement.style.setProperty('bottom', '20px', 'important');
-                                sceneTextElement.style.setProperty('left', '20px', 'important');
-                                sceneTextElement.style.setProperty('right', '20px', 'important');
-                                sceneTextElement.style.setProperty('top', 'auto', 'important');
-                                sceneTextElement.style.setProperty('margin', '0', 'important');
-                                sceneTextElement.style.setProperty('padding', '0', 'important');
-                                
-                                console.log('🔧 [文本元素定位] 已强制设置正确的位置');
-                            } else {
-                                console.log('✅ [文本元素定位] 位置正确');
-                            }
-                        }
-                        
-                        // 验证图片层的定位上下文
-                        if (sceneImage) {
-                            console.log('📍 [图片层定位] #scene-image:', {
-                                position: window.getComputedStyle(sceneImage).position,
-                                parent: sceneImage.parentElement?.className,
-                                rect: sceneImage.getBoundingClientRect(),
-                                zIndex: window.getComputedStyle(sceneImage).zIndex,
-                                src: sceneImage.src,
-                                objectFit: window.getComputedStyle(sceneImage).objectFit,
-                                computedTop: window.getComputedStyle(sceneImage).top,
-                                computedLeft: window.getComputedStyle(sceneImage).left,
-                                computedRight: window.getComputedStyle(sceneImage).right,
-                                computedBottom: window.getComputedStyle(sceneImage).bottom,
-                                computedWidth: window.getComputedStyle(sceneImage).width,
-                                computedHeight: window.getComputedStyle(sceneImage).height
-                            });
-                            
-                            // 强制确保图片层完全覆盖容器，从(0,0)开始
-                            sceneImage.style.setProperty('position', 'absolute', 'important');
-                            sceneImage.style.setProperty('top', '0', 'important');
-                            sceneImage.style.setProperty('left', '0', 'important');
-                            sceneImage.style.setProperty('right', '0', 'important');
-                            sceneImage.style.setProperty('bottom', '0', 'important');
-                            sceneImage.style.setProperty('width', '100%', 'important');
-                            sceneImage.style.setProperty('height', '100%', 'important');
-                            sceneImage.style.setProperty('margin', '0', 'important');
-                            sceneImage.style.setProperty('padding', '0', 'important');
-                            sceneImage.style.setProperty('object-fit', 'cover', 'important');
-                            sceneImage.style.setProperty('object-position', '50% 50%', 'important');
-                            sceneImage.style.setProperty('z-index', '0', 'important');
-                            
-                            console.log('🔧 [定位修复] 图片层定位已强制设置为完全覆盖容器');
-                            
-                            // 立即验证修复效果
-                            setTimeout(() => {
-                                const newImageRect = sceneImage.getBoundingClientRect();
-                                const newContainerRect = sceneMediaContainer.getBoundingClientRect();
-                                const newRelativeX = newImageRect.left - newContainerRect.left;
-                                const newRelativeY = newImageRect.top - newContainerRect.top;
-                                
-                                console.log('✅ [定位修复验证] 修复后的位置:');
-                                console.log('  图片层绝对位置（相对于视口）:', { x: newImageRect.left, y: newImageRect.top });
-                                console.log('  容器绝对位置（相对于视口）:', { x: newContainerRect.left, y: newContainerRect.top });
-                                console.log('  图片层相对位置（相对于容器）:', { x: newRelativeX, y: newRelativeY });
-                                console.log('  是否完全对齐:', newRelativeX === 0 && newRelativeY === 0);
-                                console.log('  尺寸是否一致:', {
-                                    宽度一致: Math.abs(newImageRect.width - newContainerRect.width) < 1,
-                                    高度一致: Math.abs(newImageRect.height - newContainerRect.height) < 1
-                                });
-                                
-                                // 验证文本元素（文本直接定位在图片上，无覆盖层）
-                                const sceneTextElement = document.getElementById('scene-text');
-                                if (sceneTextElement) {
-                                    const textRect = sceneTextElement.getBoundingClientRect();
-                                    const textRelativeX = textRect.left - newContainerRect.left;
-                                    const textRelativeY = textRect.top - newContainerRect.top;
-                                    
-                                    console.log('✅ [定位修复验证] 文本元素位置（文本直接定位在图片上）:');
-                                    console.log('  文本元素绝对位置（相对于视口）:', { x: textRect.left, y: textRect.top });
-                                    console.log('  文本元素相对位置（相对于容器）:', { x: textRelativeX, y: textRelativeY });
-                                    console.log('  图片层和文本元素位置差异:', {
-                                        x差异: textRelativeX - newRelativeX,
-                                        y差异: textRelativeY - newRelativeY
-                                    });
-                                    
-                                    // 关键判断：它们看到的图片是否一致
-                                    // 当前方案：不使用背景图片，只使用图片层
-                                    // 图片层在容器的(0,0)，完全覆盖容器
-                                    // 文本元素直接定位在图片层上，它们看到的是同一张图片
-                                    console.log('🔍 [错位判断] 关键分析:');
-                                    console.log('  当前方案: 不使用背景图片，只使用图片层');
-                                    console.log('  图片层位置: 容器的(0, 0)，完全覆盖容器');
-                                    console.log('  文本元素位置: 容器的(' + textRelativeX + ', ' + textRelativeY + ')');
-                                    console.log('  解决方案: 文本元素直接定位在图片层上（无覆盖层），它们看到的是同一张图片');
-                                    console.log('  结果: 不会错位，因为图片层和文本元素看到的是同一张图片');
-                                }
-                            }, 100);
-                            
-                            // 注意：sceneImage.onload 会在后面设置图片src时定义，这里不重复定义
-                        }
-                    } else {
-                        console.error('❌ [定位上下文方案] 找不到.scene-media-container元素！');
-                    }
+                    // 背景图片通过全屏背景（#global-bg）显示
+                    // 已移除scene-container，背景图片通过#global-bg全屏显示
+                    console.log('🔧 [定位方案] 使用全屏背景图片（#global-bg）');
                     
                     // ========== 只设置全屏背景图片（已移除场景图片层） ==========
                     if (globalBg) {
@@ -750,7 +514,8 @@ const Game = (() => {
                             // ========== 诊断工具：检测图片裁剪和错位 ==========
                             setTimeout(() => {
                                 // 重新获取元素，确保在作用域内
-                                const containerRect = sceneMediaContainer.getBoundingClientRect();
+                                // 已移除scene-container，不再需要容器检查
+                                const containerRect = null;
                                 const imageRect = sceneImage.getBoundingClientRect();
                                 const sceneTextElement = document.getElementById('scene-text');
                                 const textRect = sceneTextElement ? sceneTextElement.getBoundingClientRect() : null;
@@ -809,8 +574,9 @@ const Game = (() => {
                                     文本元素位置: textRect
                                 });
                                 
-                                // 检查背景图片和图片层设置
-                                const bgImage = window.getComputedStyle(sceneMediaContainer).backgroundImage;
+                                // 检查背景图片和图片层设置（已移除scene-container）
+                                // 背景图片通过#global-bg全屏显示
+                                const bgImage = 'none';
                                 const imgObjectFit = window.getComputedStyle(sceneImage).objectFit;
                                 const imgObjectPosition = window.getComputedStyle(sceneImage).objectPosition;
                                 
@@ -826,8 +592,7 @@ const Game = (() => {
                                 // 如果检测到仍有背景图片，输出警告并移除
                                 if (bgImage !== 'none' && bgImage !== '') {
                                     console.warn('⚠️ [错位诊断] 检测到容器仍有背景图片！正在移除...');
-                                    sceneMediaContainer.style.setProperty('background-image', 'none', 'important');
-                                    sceneMediaContainer.style.removeProperty('background-image');
+                                    // 已移除scene-container，不再需要移除背景图片
                                     console.log('✅ [错位诊断] 背景图片已移除');
                                 }
                                 
@@ -846,16 +611,11 @@ const Game = (() => {
                                 existingOnload.call(sceneImage);
                             }
                             
-                            // 验证定位
+                            // 验证定位（已移除scene-container）
                             const imageRect = sceneImage.getBoundingClientRect();
-                            const containerRect = sceneMediaContainer.getBoundingClientRect();
                             console.log('🔍 [定位验证] 图片加载后:', {
                                 图片层rect: imageRect,
-                                容器rect: containerRect,
-                                是否完全覆盖: imageRect.left === containerRect.left && 
-                                            imageRect.top === containerRect.top &&
-                                            imageRect.width === containerRect.width &&
-                                            imageRect.height === containerRect.height
+                                背景图片: '通过#global-bg全屏显示'
                             });
                             
                             // 问题1和问题4修复：确保图片元素可见且opacity正确设置
@@ -898,20 +658,11 @@ const Game = (() => {
                     console.log('🔄 预加载失败，尝试直接设置图片src...');
                     
                     // ========== 方案：不使用背景图片，只使用图片层（直接模式） ==========
-                    // 图片层和文本覆盖层都相对于.scene-media-container绝对定位
+                    // 背景图片通过全屏背景（#global-bg）显示
                     // 不使用背景图片，只使用图片层，让文本覆盖层直接覆盖在图片层上
                     // ====================================================
-                    if (sceneMediaContainer) {
-                        console.log('🔧 [定位方案-直接模式] 移除容器背景图片，只使用图片层');
-                        
-                        // 移除容器的背景图片设置（不使用背景图片）
-                        sceneMediaContainer.style.setProperty('background-image', 'none', 'important');
-                        sceneMediaContainer.style.removeProperty('background-image');
-                        
-                        console.log('✅ [定位方案-直接模式] 容器背景图片已移除');
-                    } else {
-                        console.error('❌ [定位方案-直接模式] 找不到.scene-media-container元素！');
-                    }
+                    // 已移除scene-container，背景图片通过#global-bg全屏显示
+                    console.log('🔧 [定位方案-直接模式] 使用全屏背景图片（#global-bg）');
                     
                     // 可选：也设置全屏背景（用于选项区域等其他地方）
                     if (globalBg) {
@@ -1682,16 +1433,22 @@ const Game = (() => {
                     }
                     
                     // 显示加载指示器
-                    const sceneContainer = document.querySelector('.scene-container');
+                    // 已移除scene-container，不再需要
                     const loadingIndicator = document.createElement('div');
-                    loadingIndicator.className = 'loading-overlay flex items-center justify-center bg-black/70 absolute inset-0 z-50';
+                    loadingIndicator.className = 'loading-overlay flex items-center justify-center bg-black/70 fixed inset-0 z-50';
                     loadingIndicator.innerHTML = `
                         <div class="loading-content text-center">
                             <div class="spinner animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto mb-4"></div>
                             <p class="text-white">生成初始剧情中...</p>
                         </div>
                     `;
-                    sceneContainer.appendChild(loadingIndicator);
+                    const gameplayScreen = document.getElementById('gameplay-screen');
+                    if (gameplayScreen) {
+                        gameplayScreen.appendChild(loadingIndicator);
+                    } else {
+                        // 如果找不到gameplay-screen，添加到body
+                        document.body.appendChild(loadingIndicator);
+                    }
                     
                     try {
                         // 调用后端API生成初始场景和选项（初始场景不需要sceneId，因为没有缓存）
@@ -2149,6 +1906,16 @@ const Game = (() => {
         // }
         
         // 显示场景文本（打字机效果）
+        // 首先切换显示区域：显示文本区域，隐藏选项区域
+        const textDisplayArea = document.getElementById('text-display-area');
+        const optionsListArea = document.getElementById('options-list-area');
+        if (textDisplayArea) {
+            textDisplayArea.classList.remove('hidden');
+        }
+        if (optionsListArea) {
+            optionsListArea.classList.add('hidden');
+        }
+        
         const sceneTextElement = elements.content.sceneText || document.getElementById('scene-text');
         if (sceneTextElement) {
             // 强制禁用所有缩放和变换效果（JavaScript强制设置，覆盖所有CSS和浏览器默认样式）
@@ -2297,8 +2064,17 @@ const Game = (() => {
                                 nextSegmentBtn.classList.remove('hidden');
                             }
                         } else {
-                            // 所有段落都显示完了，显示选项
+                            // 所有段落都显示完了，切换到选项显示
                             console.log('✅ 所有段落显示完成，准备显示选项');
+                            
+                            // 隐藏文本显示区域，显示选项区域
+                            if (textDisplayArea) {
+                                textDisplayArea.classList.add('hidden');
+                            }
+                            if (optionsListArea) {
+                                optionsListArea.classList.remove('hidden');
+                            }
+                            
                             generateOptions(options);
                             
                             // 在显示当前轮场景和选项后，立即触发预生成下一轮内容
@@ -2403,8 +2179,19 @@ const Game = (() => {
                             nextSegmentBtn.classList.remove('hidden');
                         }
                     } else {
-                        // 所有段落都显示完了，显示选项
+                        // 所有段落都显示完了，切换到选项显示
                         console.log('✅ 所有段落显示完成，准备显示选项');
+                        
+                        // 隐藏文本显示区域，显示选项区域
+                        const textDisplayArea = document.getElementById('text-display-area');
+                        const optionsListArea = document.getElementById('options-list-area');
+                        if (textDisplayArea) {
+                            textDisplayArea.classList.add('hidden');
+                        }
+                        if (optionsListArea) {
+                            optionsListArea.classList.remove('hidden');
+                        }
+                        
                         generateOptions(gameState.pendingOptions);
                         
                         // 在显示当前轮场景和选项后，立即触发预生成下一轮内容
@@ -2434,6 +2221,22 @@ const Game = (() => {
     
     // 生成选项列表
     function generateOptions(options) {
+        // 确保选项区域是显示的，文本区域是隐藏的
+        const textDisplayArea = document.getElementById('text-display-area');
+        const optionsListArea = document.getElementById('options-list-area');
+        if (textDisplayArea) {
+            textDisplayArea.classList.add('hidden');
+        }
+        if (optionsListArea) {
+            optionsListArea.classList.remove('hidden');
+        }
+        
+        // 清空现有选项列表
+        const optionsList = document.getElementById('options-list');
+        if (optionsList) {
+            optionsList.innerHTML = '';
+        }
+        
         // 使用documentFragment批量处理DOM插入，减少回流和重绘
         const fragment = document.createDocumentFragment();
         
@@ -2484,17 +2287,33 @@ const Game = (() => {
                         return;
                     }
                     
+                    // 隐藏选项区域，清空选项列表
+                    const optionsListArea = document.getElementById('options-list-area');
+                    const optionsList = document.getElementById('options-list');
+                    if (optionsListArea) {
+                        optionsListArea.classList.add('hidden');
+                    }
+                    if (optionsList) {
+                        optionsList.innerHTML = ''; // 清空选项列表
+                    }
+                    
                     // 显示加载状态
-                    const sceneContainer = document.querySelector('.scene-container');
+                    // 已移除scene-container，不再需要
                     const loadingIndicator = document.createElement('div');
-                    loadingIndicator.className = 'loading-overlay flex items-center justify-center bg-black/70 absolute inset-0 z-50';
+                    loadingIndicator.className = 'loading-overlay flex items-center justify-center bg-black/70 fixed inset-0 z-50';
                     loadingIndicator.innerHTML = `
                         <div class="loading-content text-center">
                             <div class="spinner animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto mb-4"></div>
                             <p class="text-white">生成剧情中...</p>
                         </div>
                     `;
-                    sceneContainer.appendChild(loadingIndicator);
+                    const gameplayScreen = document.getElementById('gameplay-screen');
+                    if (gameplayScreen) {
+                        gameplayScreen.appendChild(loadingIndicator);
+                    } else {
+                        // 如果找不到gameplay-screen，添加到body
+                        document.body.appendChild(loadingIndicator);
+                    }
                     
                     try {
                         // 保存上一轮的sceneId用于缓存清理
@@ -4430,19 +4249,11 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // 验证定位上下文结构
     setTimeout(() => {
-        const sceneMediaContainer = document.querySelector('.scene-media-container');
         const sceneTextElement = document.getElementById('scene-text');
         const sceneImage = document.getElementById('scene-image');
         
-        console.log('🔍 [初始化验证] 定位上下文结构检查:');
-        if (sceneMediaContainer) {
-            console.log('  ✅ .scene-media-container 存在:', {
-                position: window.getComputedStyle(sceneMediaContainer).position,
-                className: sceneMediaContainer.className
-            });
-        } else {
-            console.log('  ❌ .scene-media-container 不存在');
-        }
+        console.log('🔍 [初始化验证] 结构检查:');
+        console.log('  ✅ 已移除scene-container，背景图片通过#global-bg全屏显示');
         
         if (sceneTextElement) {
             console.log('  ✅ #scene-text 存在:', {
