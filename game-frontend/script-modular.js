@@ -995,6 +995,11 @@ const Game = (() => {
             isLoadedGame: false, // 是否是从加载开始的游戏
             loadedSaveName: null, // 如果是从加载开始的，记录加载的存档名称
             currentTypeInterval: null, // 当前打字机动画的interval，用于清理防止重复
+            textSegments: [], // 文本分段数组，每段1-2句话
+            currentTextSegmentIndex: 0, // 当前显示的段落索引
+            isShowingSegments: false, // 是否处于分段显示状态
+            pendingOptions: null, // 待显示的选项（在所有段落显示完成后显示）
+            pendingImageData: null, // 待显示的图片数据（在分段显示过程中保持不变）
             gameData: {
                 core_worldview: {}, // 与后端一致的命名
                 flow_worldline: {}, // 与后端一致的命名
@@ -2008,6 +2013,52 @@ const Game = (() => {
         return `scene_${timestamp}_${random}`;
     }
     
+    // 文本切分函数：将完整文本切分成1-2句话的段落
+    function splitTextIntoSegments(text) {
+        if (!text || typeof text !== 'string') {
+            return [];
+        }
+        
+        // 按句号、问号、感叹号切分，保留分隔符
+        const parts = text.split(/([。！？])/);
+        
+        // 合并成完整的句子（包含标点）
+        const completeSentences = [];
+        for (let i = 0; i < parts.length; i += 2) {
+            const content = parts[i] ? parts[i].trim() : '';
+            const punctuation = (i + 1 < parts.length) ? parts[i + 1] : '';
+            
+            if (content) {
+                completeSentences.push(content + punctuation);
+            } else if (punctuation && completeSentences.length > 0) {
+                // 如果只有标点符号，追加到上一句
+                completeSentences[completeSentences.length - 1] += punctuation;
+            }
+        }
+        
+        // 过滤空句子
+        const validSentences = completeSentences.filter(s => s.trim().length > 0);
+        
+        // 如果没有找到句子分隔符，返回整个文本作为一段
+        if (validSentences.length === 0) {
+            return [text.trim()];
+        }
+        
+        // 将句子合并成段落，每段1-2句话
+        const segments = [];
+        for (let i = 0; i < validSentences.length; i += 2) {
+            if (i + 1 < validSentences.length) {
+                // 合并两句话
+                segments.push(validSentences[i] + validSentences[i + 1]);
+            } else {
+                // 只有一句话
+                segments.push(validSentences[i]);
+            }
+        }
+        
+        return segments;
+    }
+    
     // 显示场景文本（支持图片和视频）
     function displayScene(text, options, imageData = null, videoData = null) {
         console.log('🔍 displayScene调用:', {
@@ -2017,10 +2068,25 @@ const Game = (() => {
             imageUrl: imageData ? imageData.url : null
         });
         
+        // 文本切分：将完整文本切分成段落
+        const segments = splitTextIntoSegments(text);
+        console.log('📝 文本切分结果:', {
+            totalSegments: segments.length,
+            segments: segments
+        });
+        
+        // 保存分段状态
+        gameState.textSegments = segments;
+        gameState.currentTextSegmentIndex = 0;
+        gameState.isShowingSegments = segments.length > 1; // 如果只有一段，不需要分段显示
+        gameState.pendingOptions = options;
+        gameState.pendingImageData = imageData;
+        
         // 重要：先显示场景文本和选项，图片加载是异步的，不应该阻塞
         // 这样可以确保即使图片加载失败，用户也能看到剧情和选项
         
-        // 显示场景图片（如果有）- 立即执行，不阻塞场景显示
+        // 显示场景图片（如果有）- 只在第一次显示时设置，分段显示过程中不更换
+        // 注意：只在第一次调用displayScene时设置图片，分段显示过程中保持同一张图片
         // 重要：先验证图片数据格式，确保数据有效
         if (imageData) {
             // 验证图片数据格式
@@ -2046,8 +2112,9 @@ const Game = (() => {
             }
         }
         
+        // 只在第一次显示时设置背景图片，分段显示过程中不更换
         if (imageData && imageData.url && typeof imageData.url === 'string' && imageData.url.trim() !== '') {
-            console.log('✅ 开始加载场景图片');
+            console.log('✅ 开始加载场景图片（分段显示过程中将保持不变）');
             console.log('   - 图片URL:', imageData.url);
             console.log('   - 图片数据完整对象:', JSON.stringify(imageData, null, 2));
             
@@ -2178,6 +2245,16 @@ const Game = (() => {
             sceneTextElement.textContent = '';
             sceneTextElement.innerHTML = '';
             
+            // 隐藏"->"按钮（如果存在）
+            const nextSegmentBtn = document.getElementById('next-segment-btn');
+            if (nextSegmentBtn) {
+                nextSegmentBtn.classList.add('hidden');
+            }
+            
+            // 获取要显示的文本段落
+            const currentSegment = segments.length > 0 ? segments[0] : text;
+            const segmentText = currentSegment || text;
+            
             // 等待一帧确保DOM完全更新后再开始新动画
             requestAnimationFrame(() => {
                 // 再次强制设置样式，确保动画不会覆盖我们的设置
@@ -2189,8 +2266,8 @@ const Game = (() => {
                 let index = 0;
                 
                 const typeInterval = setInterval(() => {
-                    if (index < text.length) {
-                        sceneTextElement.textContent += text.charAt(index);
+                    if (index < segmentText.length) {
+                        sceneTextElement.textContent += segmentText.charAt(index);
                         index++;
                         // 关键信息高亮
                         const highlightedText = sceneTextElement.textContent
@@ -2210,23 +2287,32 @@ const Game = (() => {
                         sceneTextElement.style.setProperty('transition', 'none', 'important');
                         sceneTextElement.style.setProperty('animation', 'none', 'important');
                         
-                        console.log('✅ 场景文本显示完成，准备显示选项');
-                        
-                        // 生成选项
-                        generateOptions(options);
                         playSound('typeend');
                         
-                        // 在显示当前轮场景和选项后，立即触发预生成下一轮内容
-                        // 生成新的场景ID用于缓存（每次显示新场景时都生成新的ID）
-                        const newSceneId = generateNewSceneId();
-                        gameState.currentSceneId = newSceneId;
-                        
-                        // 异步调用预生成接口（不阻塞显示）
-                        if (gameState.gameData && options && options.length > 0) {
-                            pregenerateNextLayers(gameState.gameData, options, newSceneId);
+                        // 判断是否还有更多段落需要显示
+                        if (gameState.isShowingSegments && gameState.currentTextSegmentIndex < segments.length - 1) {
+                            // 还有更多段落，显示"->"按钮
+                            console.log('✅ 当前段落显示完成，显示"->"按钮等待用户点击');
+                            if (nextSegmentBtn) {
+                                nextSegmentBtn.classList.remove('hidden');
+                            }
+                        } else {
+                            // 所有段落都显示完了，显示选项
+                            console.log('✅ 所有段落显示完成，准备显示选项');
+                            generateOptions(options);
+                            
+                            // 在显示当前轮场景和选项后，立即触发预生成下一轮内容
+                            // 生成新的场景ID用于缓存（每次显示新场景时都生成新的ID）
+                            const newSceneId = generateNewSceneId();
+                            gameState.currentSceneId = newSceneId;
+                            
+                            // 异步调用预生成接口（不阻塞显示）
+                            if (gameState.gameData && options && options.length > 0) {
+                                pregenerateNextLayers(gameState.gameData, options, newSceneId);
+                            }
+                            
+                            console.log('✅ 场景和选项显示完成');
                         }
-                        
-                        console.log('✅ 场景和选项显示完成');
                     }
                 }, 30);
                 
@@ -2241,6 +2327,109 @@ const Game = (() => {
         
         gameState.currentScene = text;
         gameState.currentOptions = options;
+    }
+    
+    // 显示下一段文本
+    function showNextTextSegment() {
+        if (!gameState.isShowingSegments || gameState.currentTextSegmentIndex >= gameState.textSegments.length - 1) {
+            console.warn('⚠️ 没有更多段落需要显示');
+            return;
+        }
+        
+        // 隐藏"->"按钮
+        const nextSegmentBtn = document.getElementById('next-segment-btn');
+        if (nextSegmentBtn) {
+            nextSegmentBtn.classList.add('hidden');
+        }
+        
+        // 移动到下一段
+        gameState.currentTextSegmentIndex++;
+        const nextSegment = gameState.textSegments[gameState.currentTextSegmentIndex];
+        
+        if (!nextSegment) {
+            console.warn('⚠️ 下一段文本为空');
+            return;
+        }
+        
+        const sceneTextElement = elements.content.sceneText || document.getElementById('scene-text');
+        if (!sceneTextElement) {
+            console.error('❌ 找不到sceneText元素');
+            return;
+        }
+        
+        // 清理旧文本
+        sceneTextElement.classList.remove('typewriter');
+        sceneTextElement.textContent = '';
+        sceneTextElement.innerHTML = '';
+        
+        // 显示下一段文本（打字机效果）
+        requestAnimationFrame(() => {
+            sceneTextElement.style.setProperty('transform', 'none', 'important');
+            sceneTextElement.style.setProperty('scale', '1', 'important');
+            sceneTextElement.style.setProperty('transition', 'none', 'important');
+            
+            sceneTextElement.classList.add('typewriter');
+            let index = 0;
+            
+            const typeInterval = setInterval(() => {
+                if (index < nextSegment.length) {
+                    sceneTextElement.textContent += nextSegment.charAt(index);
+                    index++;
+                    // 关键信息高亮
+                    const highlightedText = sceneTextElement.textContent
+                        .replace(/迷雾森林/g, '<span class="text-[#3498DB] font-bold">迷雾森林</span>')
+                        .replace(/上古神器/g, '<span class="text-[#3498DB] font-bold">上古神器</span>')
+                        .replace(/古老神庙/g, '<span class="text-[#3498DB] font-bold">古老神庙</span>')
+                        .replace(/怪异/g, '<span class="text-[#3498DB] font-bold">怪异</span>');
+                    sceneTextElement.innerHTML = highlightedText;
+                } else {
+                    clearInterval(typeInterval);
+                    gameState.currentTypeInterval = null;
+                    sceneTextElement.classList.remove('typewriter');
+                    
+                    // 动画结束后再次强制设置样式
+                    sceneTextElement.style.setProperty('transform', 'none', 'important');
+                    sceneTextElement.style.setProperty('scale', '1', 'important');
+                    sceneTextElement.style.setProperty('transition', 'none', 'important');
+                    sceneTextElement.style.setProperty('animation', 'none', 'important');
+                    
+                    playSound('typeend');
+                    
+                    // 判断是否还有更多段落
+                    if (gameState.currentTextSegmentIndex < gameState.textSegments.length - 1) {
+                        // 还有更多段落，显示"->"按钮
+                        console.log('✅ 当前段落显示完成，显示"->"按钮等待用户点击');
+                        if (nextSegmentBtn) {
+                            nextSegmentBtn.classList.remove('hidden');
+                        }
+                    } else {
+                        // 所有段落都显示完了，显示选项
+                        console.log('✅ 所有段落显示完成，准备显示选项');
+                        generateOptions(gameState.pendingOptions);
+                        
+                        // 在显示当前轮场景和选项后，立即触发预生成下一轮内容
+                        const newSceneId = generateNewSceneId();
+                        gameState.currentSceneId = newSceneId;
+                        
+                        // 异步调用预生成接口（不阻塞显示）
+                        if (gameState.gameData && gameState.pendingOptions && gameState.pendingOptions.length > 0) {
+                            pregenerateNextLayers(gameState.gameData, gameState.pendingOptions, newSceneId);
+                        }
+                        
+                        // 重置分段显示状态
+                        gameState.isShowingSegments = false;
+                        gameState.currentTextSegmentIndex = 0;
+                        gameState.textSegments = [];
+                        gameState.pendingOptions = null;
+                        
+                        console.log('✅ 场景和选项显示完成');
+                    }
+                }
+            }, 30);
+            
+            // 保存当前interval引用
+            gameState.currentTypeInterval = typeInterval;
+        });
     }
     
     // 生成选项列表
@@ -4121,6 +4310,15 @@ const Game = (() => {
             endGameBtn.addEventListener('click', () => {
                 // 显示退出确认弹窗（包含存档选项）
                 showInGameExitConfirmModal();
+            });
+        }
+        
+        // 下一段文本按钮事件（右下角"->"按钮）
+        const nextSegmentBtn = document.getElementById('next-segment-btn');
+        if (nextSegmentBtn) {
+            nextSegmentBtn.addEventListener('click', () => {
+                playSound('click');
+                showNextTextSegment();
             });
         }
     }
