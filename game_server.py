@@ -24,7 +24,10 @@ from main2 import (
     # ==================== 视频生成功能已禁用（性能优化） ====================
     # generate_scene_video,
     # get_video_task_status
-    get_video_task_status  # 保留占位函数，避免导入错误
+    get_video_task_status,  # 保留占位函数，避免导入错误
+    # ==================== 主角形象生成功能 ====================
+    generate_game_id,
+    generate_main_character_image
 )
 
 # 初始化Flask应用
@@ -177,9 +180,16 @@ def generate_worldview():
         if not game_theme:
             return jsonify({"status": "error", "message": "游戏主题不能为空！"})
         
+        # 生成游戏ID
+        game_id = generate_game_id()
+        print(f"🎮 生成游戏ID: {game_id}")
+        
         # 调用后端生成世界观的函数
         try:
             global_state = llm_generate_global(game_theme, protagonist_attr, difficulty, tone_key)
+            
+            # 保存游戏ID到global_state
+            global_state['game_id'] = game_id
             
             # 保存图片风格到global_state
             if image_style:
@@ -194,6 +204,44 @@ def generate_worldview():
                     "message": f"AI生成功能未配置：{error_msg}\n\n请检查.env文件，确保配置了以下环境变量：\n- Camera_Analyst_API_KEY\n- Camera_Analyst_BASE_URL\n- Camera_Analyst_MODEL"
                 })
             raise  # 其他ValueError继续抛出
+        
+        # 世界观生成成功后，立即启动主角形象生成（后台线程，与世界观生成并行）
+        def generate_main_character():
+            """生成主角形象（后台线程，不阻塞）"""
+            try:
+                print(f"🎨 开始生成主角形象（游戏ID: {game_id}）...")
+                result = generate_main_character_image(
+                    protagonist_attr=protagonist_attr,
+                    global_state=global_state,
+                    image_style=image_style,
+                    game_id=game_id
+                )
+                
+                if result:
+                    # 将主角形象信息保存到global_state
+                    with cache_lock:
+                        if 'main_character' not in global_state:
+                            global_state['main_character'] = {}
+                        global_state['main_character'] = {
+                            'game_id': result.get('game_id'),
+                            'image_url': result.get('image_url'),
+                            'image_path': result.get('image_path'),
+                            'width': result.get('width'),
+                            'height': result.get('height')
+                        }
+                    print(f"✅ 主角形象生成完成并已保存到global_state")
+                else:
+                    print(f"⚠️ 主角形象生成失败，但游戏可以继续")
+            except Exception as e:
+                print(f"❌ 主角形象生成出错：{str(e)}")
+                import traceback
+                traceback.print_exc()
+                # 错误不影响游戏继续
+        
+        # 启动主角形象生成线程（后台执行，不阻塞）
+        main_character_thread = threading.Thread(target=generate_main_character, daemon=True)
+        main_character_thread.start()
+        print(f"✅ 主角形象生成任务已启动（后台线程）")
         
         # 世界观生成成功后，立即启动第一次选项的生成（后台线程，不使用预生成机制）
         def generate_initial_options():
@@ -1457,6 +1505,24 @@ def get_video_status_api(task_id):
         "status": "error",
         "message": "视频生成功能已禁用（性能优化）"
     }), 404
+
+@app.route('/initial/main_character/<game_id>/<filename>')
+def serve_main_character_image(game_id, filename):
+    """提供主角形象图片"""
+    try:
+        # 安全检查：防止路径遍历攻击
+        if '..' in game_id or '..' in filename or '/' in game_id or '\\' in game_id:
+            return jsonify({"status": "error", "message": "Invalid path"}), 400
+        
+        image_path = os.path.join("initial", "main_character", game_id, filename)
+        
+        if not os.path.exists(image_path):
+            return jsonify({"status": "error", "message": "Image not found"}), 404
+        
+        return send_file(image_path)
+    except Exception as e:
+        print(f"❌ 提供主角形象图片错误：{str(e)}")
+        return jsonify({"status": "error", "message": f"Failed to serve image: {str(e)}"}), 500
 
 @app.route('/image_cache/<filename>')
 def serve_cached_image(filename):

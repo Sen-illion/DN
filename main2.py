@@ -746,6 +746,430 @@ def optimize_image_prompt_with_llm(
         return f"{game_style}, {scene_summary}, cinematic, detailed, high quality, 4k, dramatic lighting, atmospheric"
 
 # ------------------------------
+# 主角形象生成函数
+# ------------------------------
+import time
+import random
+from pathlib import Path
+
+def generate_game_id() -> str:
+    """
+    生成游戏ID（时间戳+随机数）
+    :return: 游戏ID，格式：game_{timestamp}_{random}
+    """
+    timestamp = int(time.time())
+    random_str = ''.join(random.choices('abcdefghijklmnopqrstuvwxyz0123456789', k=6))
+    return f"game_{timestamp}_{random_str}"
+
+def ensure_main_character_dir(game_id: str) -> Path:
+    """
+    确保主角形象目录存在
+    :param game_id: 游戏ID
+    :return: 目录路径
+    """
+    main_character_dir = Path("initial") / "main_character" / game_id
+    main_character_dir.mkdir(parents=True, exist_ok=True)
+    return main_character_dir
+
+def optimize_main_character_prompt_with_llm(
+    protagonist_attr: Dict,
+    global_state: Dict,
+    image_style: Dict = None
+) -> str:
+    """
+    使用LLM生成主角形象提示词
+    :param protagonist_attr: 主角属性（颜值、智商、体力、魅力）
+    :param global_state: 全局状态（包含游戏主题、世界观、基调等）
+    :param image_style: 图片风格选择
+    :return: 优化后的主角形象描述提示词
+    """
+    try:
+        # 提取游戏背景信息
+        core_worldview = global_state.get('core_worldview', {})
+        game_theme = core_worldview.get('game_style', '')
+        world_setting = core_worldview.get('world_basic_setting', '')
+        protagonist_ability = core_worldview.get('protagonist_ability', '')
+        
+        # 提取主角信息
+        protagonist_info = {}
+        if 'characters' in core_worldview and '主角' in core_worldview['characters']:
+            protagonist = core_worldview['characters']['主角']
+            protagonist_info = {
+                'personality': protagonist.get('core_personality', ''),
+                'appearance': protagonist.get('shallow_background', '')
+            }
+        
+        # 提取游戏基调
+        game_tone = global_state.get('tone', 'normal_ending')
+        tone_map = {
+            'happy_ending': '圆满结局，积极乐观',
+            'bad_ending': '悲剧结局，沉重悲伤',
+            'normal_ending': '普通结局，真实平淡',
+            'dark_depressing': '黑深残，黑暗压抑',
+            'humorous': '幽默，轻松诙谐',
+            'abstract': '抽象，象征隐喻',
+            'aesthetic': '唯美，优美细腻',
+            'logical': '逻辑推理严谨',
+            'mysterious': '神秘，悬念丛生',
+            'stream_of_consciousness': '意识流，内心描写'
+        }
+        tone_description = tone_map.get(game_tone, '普通结局')
+        
+        # 提取图片风格信息
+        style_description = ''
+        if image_style:
+            style_type = image_style.get('type', '')
+            if style_type == 'realistic':
+                style_description = '写实风格，真实细腻，细节丰富'
+            elif style_type == 'anime':
+                style_description = '动漫风格，日式动画风格，色彩鲜明'
+            elif style_type == 'ink_painting':
+                style_description = '水墨画风格，中国传统水墨画，黑白灰调，意境深远'
+            elif style_type == 'oil_painting':
+                subtype = image_style.get('subtype', 'classic_oil')
+                if subtype == 'impressionist':
+                    style_description = '印象派油画风格，光影变化丰富，笔触明显'
+                elif subtype == 'rococo':
+                    style_description = '洛可可风格油画，华丽精致，装饰性强'
+                else:
+                    style_description = '经典油画风格，厚重质感，色彩丰富'
+            elif style_type == 'cyberpunk':
+                style_description = '赛博朋克风格，未来科技感，霓虹灯效果，高对比度'
+            elif style_type == 'custom':
+                style_description = f"自定义风格：{image_style.get('value', '')}"
+        
+        # 构建主角属性描述
+        attr_description = f"颜值{protagonist_attr.get('颜值', '普通')}，智商{protagonist_attr.get('智商', '普通')}，体力{protagonist_attr.get('体力', '普通')}，魅力{protagonist_attr.get('魅力', '普通')}"
+        
+        # 构建发送给LLM的提示词
+        llm_prompt = f"""你现在是一个专业的角色设计师，要将具体角色描述给生图ai，让生图ai能够生成准确的主角形象。
+
+【游戏背景信息】
+- 游戏主题：{game_theme}
+- 世界观设定：{world_setting}
+- 游戏基调：{tone_description}
+
+【主角信息】
+- 主角属性：{attr_description}
+- 主角能力：{protagonist_ability}
+- 主角性格：{protagonist_info.get('personality', '')}
+- 主角背景：{protagonist_info.get('appearance', '')}
+
+【图片风格要求】
+{style_description if style_description else '默认风格'}
+
+请根据以上信息，生成一个详细的主角形象描述提示词，要求：
+1. 详细描述主角的外貌特征（面部特征、五官、肤色、表情等，重点突出脸部容貌）
+2. 详细描述主角的穿着（服装风格、颜色、材质等）
+3. 详细描述主角的发型（长度、颜色、样式等）
+4. 体现主角的属性特点（如高颜值、高智商等应在形象中有所体现）
+5. 符合游戏主题和世界观设定
+6. 匹配游戏基调（如悲剧基调应体现沉重氛围）
+7. 符合指定的图片风格
+8. 强调这是半身照，重点突出脸部容貌
+9. 不要包含任何文字、符号、乱码（重要：必须在提示词中明确告诉生图AI不要生成任何文字、符号、乱码）
+10. 描述要具体、生动，包含细节
+
+只输出视觉描述，不要输出其他内容。"""
+
+        # 调用LLM API（使用deepseek-v3.2模型）
+        api_key = AI_API_CONFIG.get('api_key', '')
+        base_url = AI_API_CONFIG.get('base_url', '')
+        
+        if not api_key or not base_url:
+            print("⚠️ LLM API未配置，使用默认提示词")
+            return f"半身照，主角形象，{game_theme}风格，{attr_description}，{style_description if style_description else '写实风格'}，突出脸部容貌，detailed, high quality, 4k, no text, no symbols"
+        
+        headers = {
+            "Authorization": f"Bearer {api_key}",
+            "Content-Type": "application/json; charset=utf-8"
+        }
+        
+        request_body = {
+            "model": "deepseek-v3.2",  # 使用deepseek-v3.2模型
+            "messages": [
+                {
+                    "role": "user",
+                    "content": llm_prompt
+                }
+            ],
+            "temperature": 0.7,
+            "max_tokens": 2000
+        }
+        
+        print("🔄 正在使用LLM生成主角形象提示词...")
+        response = requests.post(
+            f"{base_url}/chat/completions",
+            headers=headers,
+            json=request_body,
+            timeout=120
+        )
+        response.raise_for_status()
+        
+        result = response.json()
+        choices = result.get("choices", [])
+        if choices and len(choices) > 0:
+            optimized_prompt = choices[0].get("message", {}).get("content", "").strip()
+            if optimized_prompt:
+                # 在优化后的提示词末尾添加禁止文字乱码的明确指令和半身照要求
+                optimized_prompt = f"{optimized_prompt}, half body portrait, focus on face, detailed facial features, no text, no symbols, no garbled characters, no words"
+                print(f"✅ LLM主角形象提示词生成完成，长度：{len(optimized_prompt)}字符")
+                return optimized_prompt
+        
+        # 如果LLM调用失败，使用默认提示词
+        print("⚠️ LLM生成失败，使用默认提示词")
+        return f"半身照，主角形象，{game_theme}风格，{attr_description}，{style_description if style_description else '写实风格'}，突出脸部容貌，detailed, high quality, 4k, no text, no symbols"
+        
+    except Exception as e:
+        print(f"⚠️ LLM主角形象提示词生成出错：{str(e)}，使用默认提示词")
+        # 出错时使用默认提示词
+        core_worldview = global_state.get('core_worldview', {})
+        game_style = core_worldview.get('game_style', '')
+        attr_description = f"颜值{protagonist_attr.get('颜值', '普通')}，智商{protagonist_attr.get('智商', '普通')}，体力{protagonist_attr.get('体力', '普通')}，魅力{protagonist_attr.get('魅力', '普通')}"
+        return f"半身照，主角形象，{game_style}风格，{attr_description}，突出脸部容貌，detailed, high quality, 4k, no text, no symbols"
+
+def call_image_api_with_custom_size(prompt: str, width: int = 1024, height: int = 1536) -> str:
+    """
+    调用生图API生成指定尺寸的图片
+    :param prompt: 图片生成提示词
+    :param width: 图片宽度
+    :param height: 图片高度
+    :return: 图片URL或base64数据
+    """
+    provider = IMAGE_GENERATION_CONFIG.get("provider", "yunwu")
+    
+    if provider == "yunwu":
+        # yunwu.ai可能不支持自定义尺寸，先尝试标准调用
+        # 在提示词中添加尺寸要求
+        size_prompt = f"{prompt}, aspect ratio {width}:{height}, portrait orientation"
+        return call_yunwu_image_api(size_prompt, "default")
+    elif provider == "replicate":
+        return call_replicate_api(prompt, "default")
+    elif provider == "openai":
+        # DALL-E 3支持1024x1024, 1024x1792, 1792x1024
+        # 1024x1536不在支持列表中，使用最接近的1792x1024或1024x1024
+        if height > width:
+            # 竖版，使用1024x1792（最接近1024x1536）
+            size = "1024x1792"
+        else:
+            size = "1024x1024"
+        return call_dalle_api_with_size(prompt, size)
+    elif provider == "stable_diffusion":
+        return call_stable_diffusion_api_with_size(prompt, width, height)
+    elif provider == "comfyui":
+        return call_comfyui_api(prompt, "default")
+    else:
+        print(f"⚠️ 不支持的图片生成服务：{provider}")
+        return None
+
+def call_dalle_api_with_size(prompt: str, size: str) -> str:
+    """调用DALL-E API生成指定尺寸的图片"""
+    try:
+        from openai import OpenAI
+        client = OpenAI(api_key=IMAGE_GENERATION_CONFIG.get("openai_api_key"))
+        
+        response = client.images.generate(
+            model="dall-e-3",
+            prompt=prompt[:1000],  # DALL-E 3限制提示词长度
+            size=size,
+            quality="standard",
+            n=1,
+        )
+        
+        return response.data[0].url
+    except Exception as e:
+        print(f"❌ DALL-E API调用失败：{str(e)}")
+        raise
+
+def call_stable_diffusion_api_with_size(prompt: str, width: int, height: int) -> str:
+    """调用本地Stable Diffusion API生成指定尺寸的图片"""
+    try:
+        base_url = IMAGE_GENERATION_CONFIG.get("stable_diffusion_base_url", "http://localhost:7860")
+        api_key = IMAGE_GENERATION_CONFIG.get("stable_diffusion_api_key", "")
+        
+        headers = {}
+        if api_key:
+            headers["Authorization"] = f"Bearer {api_key}"
+        
+        # 调用Stable Diffusion WebUI API
+        response = requests.post(
+            f"{base_url}/sdapi/v1/txt2img",
+            headers=headers,
+            json={
+                "prompt": prompt,
+                "width": width,
+                "height": height,
+                "steps": 20,
+                "cfg_scale": 7
+            },
+            timeout=120
+        )
+        response.raise_for_status()
+        
+        result = response.json()
+        if "images" in result and len(result["images"]) > 0:
+            # 返回base64数据
+            return result["images"][0]
+        return None
+    except Exception as e:
+        print(f"❌ Stable Diffusion API调用失败：{str(e)}")
+        raise
+
+def generate_main_character_image(
+    protagonist_attr: Dict,
+    global_state: Dict,
+    image_style: Dict = None,
+    game_id: str = None
+) -> Dict:
+    """
+    生成主角形象图片
+    :param protagonist_attr: 主角属性
+    :param global_state: 全局状态
+    :param image_style: 图片风格
+    :param game_id: 游戏ID（如果为None，会自动生成）
+    :return: 包含图片路径和元数据的字典，如果失败返回None
+    """
+    try:
+        # 生成游戏ID（如果未提供）
+        if not game_id:
+            game_id = generate_game_id()
+        
+        # 确保目录存在
+        main_character_dir = ensure_main_character_dir(game_id)
+        
+        # 检查是否已存在主角形象
+        existing_image_path = main_character_dir / "main_character.png"
+        if existing_image_path.exists():
+            print(f"✅ 主角形象已存在，使用现有图片：{existing_image_path}")
+            # 读取元数据
+            metadata_path = main_character_dir / "metadata.json"
+            metadata = {}
+            if metadata_path.exists():
+                try:
+                    with open(metadata_path, 'r', encoding='utf-8') as f:
+                        metadata = json.load(f)
+                except:
+                    pass
+            
+            return {
+                "game_id": game_id,
+                "image_path": str(existing_image_path),
+                "image_url": f"/initial/main_character/{game_id}/main_character.png",
+                "width": 1024,
+                "height": 1536,
+                "metadata": metadata
+            }
+        
+        # 1. 使用LLM生成提示词
+        prompt = optimize_main_character_prompt_with_llm(protagonist_attr, global_state, image_style)
+        
+        # 2. 调用生图API生成图片（1024x1536）
+        # 获取使用的模型信息（用于日志）
+        provider = IMAGE_GENERATION_CONFIG.get("provider", "yunwu")
+        model = IMAGE_GENERATION_CONFIG.get("yunwu_model", "sora_image") if provider == "yunwu" else "N/A"
+        print(f"🎨 正在生成主角形象图片（1024x1536），使用模型：{model}...")
+        image_url_or_data = call_image_api_with_custom_size(prompt, width=1024, height=1536)
+        
+        if not image_url_or_data:
+            print("❌ 主角形象图片生成失败：生图API返回空结果")
+            return None
+        
+        # 3. 下载并保存图片
+        image_path = main_character_dir / "main_character.png"
+        
+        # 处理base64数据、URL或本地路径
+        if image_url_or_data.startswith('data:image'):
+            # base64数据
+            import base64
+            # 提取base64数据部分
+            base64_data = image_url_or_data.split(',')[1] if ',' in image_url_or_data else image_url_or_data
+            image_data = base64.b64decode(base64_data)
+            with open(image_path, 'wb') as f:
+                f.write(image_data)
+            print(f"✅ 主角形象图片已保存（base64）：{image_path}")
+        elif image_url_or_data.startswith('http://') or image_url_or_data.startswith('https://'):
+            # URL，需要下载
+            print(f"📥 正在下载主角形象图片：{image_url_or_data[:80]}...")
+            response = requests.get(image_url_or_data, timeout=60, stream=True)
+            response.raise_for_status()
+            
+            with open(image_path, 'wb') as f:
+                for chunk in response.iter_content(chunk_size=8192):
+                    f.write(chunk)
+            print(f"✅ 主角形象图片已保存（URL下载）：{image_path}")
+        elif image_url_or_data.startswith('/image_cache/') or image_url_or_data.startswith('image_cache/'):
+            # 本地路径，需要复制文件
+            import shutil
+            # 统一路径格式
+            if image_url_or_data.startswith('image_cache/'):
+                source_path = Path("image_cache") / image_url_or_data.replace('image_cache/', '')
+            else:
+                source_path = Path("image_cache") / image_url_or_data.replace('/image_cache/', '')
+            
+            if source_path.exists():
+                # 复制文件到主角形象目录
+                shutil.copy2(source_path, image_path)
+                print(f"✅ 主角形象图片已保存（从本地缓存复制）：{image_path}")
+            else:
+                print(f"❌ 本地缓存文件不存在：{source_path}")
+                return None
+        else:
+            # 可能是其他格式，尝试直接写入（但这种情况应该很少）
+            print(f"⚠️ 未知的图片数据格式，尝试直接保存...")
+            print(f"   返回数据前100字符：{str(image_url_or_data)[:100]}")
+            # 如果是字符串但不是上述格式，可能是base64数据（没有data:image前缀）
+            if isinstance(image_url_or_data, str) and len(image_url_or_data) > 100:
+                # 尝试作为base64解码
+                try:
+                    import base64
+                    image_data = base64.b64decode(image_url_or_data)
+                    with open(image_path, 'wb') as f:
+                        f.write(image_data)
+                    print(f"✅ 主角形象图片已保存（作为base64解码）：{image_path}")
+                except Exception as e:
+                    print(f"❌ base64解码失败：{str(e)}")
+                    return None
+            else:
+                # 最后尝试直接写入（不推荐）
+                with open(image_path, 'wb') as f:
+                    if isinstance(image_url_or_data, str):
+                        f.write(image_url_or_data.encode())
+                    else:
+                        f.write(image_url_or_data)
+                print(f"✅ 主角形象图片已保存（直接写入）：{image_path}")
+        
+        # 4. 保存元数据
+        metadata = {
+            "game_id": game_id,
+            "generated_at": datetime.now().isoformat(),
+            "prompt": prompt,
+            "protagonist_attr": protagonist_attr,
+            "image_style": image_style,
+            "width": 1024,
+            "height": 1536
+        }
+        metadata_path = main_character_dir / "metadata.json"
+        with open(metadata_path, 'w', encoding='utf-8') as f:
+            json.dump(metadata, f, ensure_ascii=False, indent=2)
+        
+        print(f"✅ 主角形象生成完成：{image_path}")
+        
+        return {
+            "game_id": game_id,
+            "image_path": str(image_path),
+            "image_url": f"/initial/main_character/{game_id}/main_character.png",
+            "width": 1024,
+            "height": 1536,
+            "metadata": metadata
+        }
+        
+    except Exception as e:
+        print(f"❌ 主角形象生成失败：{str(e)}")
+        import traceback
+        traceback.print_exc()
+        return None
+
+# ------------------------------
 # 视觉内容生成函数
 # ------------------------------
 import hashlib
@@ -932,7 +1356,7 @@ def generate_scene_image(
                     "style": style,
                     "width": 1024,
                     "height": 1024,
-                    "cached": False
+                    "cached": True
                 }
             except Exception as cache_error:
                 # 如果缓存过程中写入失败，确保不留空文件
@@ -1087,6 +1511,11 @@ def save_base64_image(data_uri: str, prompt: str) -> str:
         import base64
         from pathlib import Path
         
+        # 清理可能的空白/引号包装
+        data_uri = (data_uri or "").strip()
+        if (data_uri.startswith('"') and data_uri.endswith('"')) or (data_uri.startswith("'") and data_uri.endswith("'")):
+            data_uri = data_uri[1:-1].strip()
+        
         # 解析data URI格式：data:image/png;base64,<base64_data>
         if not data_uri.startswith("data:image"):
             return None
@@ -1100,6 +1529,9 @@ def save_base64_image(data_uri: str, prompt: str) -> str:
         image_format = mime_match.group(1)  # png, jpeg, webp等
         if image_format == 'jpeg':
             image_format = 'jpg'
+        
+        # 兼容多行/带空白的base64（模型输出可能自动换行）
+        encoded = re.sub(r'\s+', '', encoded)
         
         # 解码base64数据
         try:
@@ -1256,13 +1688,39 @@ def call_yunwu_image_api(prompt: str, style: str) -> str:
                 if any(rate_limit_headers.values()):
                     print(f"🔍 速率限制响应头：{json.dumps({k: v for k, v in rate_limit_headers.items() if v}, ensure_ascii=False)}")
                 
+                # Retry-After 可能是秒数（整数）或 HTTP-date（如 RFC 7231 指定）
+                wait_time = None
                 if retry_after:
-                    wait_time = int(retry_after)
-                    print(f"⚠️ 遇到速率限制（429），API建议等待 {wait_time} 秒后重试（尝试 {attempt + 1}/{max_retries}）")
-                else:
-                    # 指数退避：10s, 20s, 40s
+                    retry_after_raw = str(retry_after).strip()
+                    # 先尝试按“秒数”解析
+                    try:
+                        wait_time = int(retry_after_raw)
+                        if wait_time < 0:
+                            wait_time = 0
+                        print(f"⚠️ 遇到速率限制（429），API建议等待 {wait_time} 秒后重试（尝试 {attempt + 1}/{max_retries}）")
+                    except (TypeError, ValueError):
+                        # 再尝试按 HTTP-date 解析
+                        try:
+                            from email.utils import parsedate_to_datetime
+                            from datetime import datetime, timezone
+                            dt = parsedate_to_datetime(retry_after_raw)
+                            if dt is not None:
+                                if dt.tzinfo is None:
+                                    dt = dt.replace(tzinfo=timezone.utc)
+                                now = datetime.now(timezone.utc)
+                                wait_seconds = int((dt.astimezone(timezone.utc) - now).total_seconds())
+                                wait_time = max(0, wait_seconds)
+                                print(f"⚠️ 遇到速率限制（429），API建议等待 {wait_time} 秒后重试（尝试 {attempt + 1}/{max_retries}）")
+                        except Exception:
+                            wait_time = None
+                
+                if wait_time is None:
+                    # 如果 Retry-After 不存在或无法解析，使用指数退避：10s, 20s, 40s
                     wait_time = 10 * (2 ** attempt)
-                    print(f"⚠️ 遇到速率限制（429），等待 {wait_time} 秒后重试（尝试 {attempt + 1}/{max_retries}）")
+                    if retry_after:
+                        print(f"⚠️ 遇到速率限制（429），但 Retry-After 无法解析（{retry_after!r}），改用指数退避等待 {wait_time} 秒后重试（尝试 {attempt + 1}/{max_retries}）")
+                    else:
+                        print(f"⚠️ 遇到速率限制（429），等待 {wait_time} 秒后重试（尝试 {attempt + 1}/{max_retries}）")
                 
                 print(f"💡 可能的原因：")
                 print(f"   1. yunwu.ai 最近调整了速率限制策略")
@@ -1292,13 +1750,26 @@ def call_yunwu_image_api(prompt: str, style: str) -> str:
             if choices and len(choices) > 0:
                 message = choices[0].get("message", {})
                 content = message.get("content", "")
+                # 兼容模型把结果包在代码块/引号里（尤其是 data:image/... 或 JSON）
+                content_clean = (content or "").strip()
+                if content_clean.startswith("```"):
+                    lines = content_clean.splitlines()
+                    if len(lines) >= 2 and lines[0].strip().startswith("```"):
+                        # 去掉首行 ``` 或 ```json 等
+                        if lines[-1].strip().startswith("```"):
+                            lines = lines[1:-1]
+                        else:
+                            lines = lines[1:]
+                        content_clean = "\n".join(lines).strip()
+                if (content_clean.startswith('"') and content_clean.endswith('"')) or (content_clean.startswith("'") and content_clean.endswith("'")):
+                    content_clean = content_clean[1:-1].strip()
                 
-                print(f"🔍 yunwu.ai返回的原始内容：{content[:200]}...")
+                print(f"🔍 yunwu.ai返回的原始内容：{content_clean[:200]}...")
                 
                 # 解析策略1：尝试解析JSON格式
                 try:
                     import json
-                    content_json = json.loads(content)
+                    content_json = json.loads(content_clean)
                     if "image_url" in content_json:
                         print(f"✅ 从JSON中提取到image_url：{content_json['image_url']}")
                         return content_json["image_url"]
@@ -1312,7 +1783,7 @@ def call_yunwu_image_api(prompt: str, style: str) -> str:
                 # 匹配格式：![image](https://...) 或 ![alt text](url) 或 ![image](data:image/...)
                 # 改进正则：支持HTTP/HTTPS URL和data URI
                 markdown_image_pattern = r'!\[.*?\]\((https?://[^\s\)]+|data:image/[^\s\)]+)\)'
-                markdown_matches = re.findall(markdown_image_pattern, content)
+                markdown_matches = re.findall(markdown_image_pattern, content_clean)
                 if markdown_matches:
                     image_data = markdown_matches[0]  # 取第一个匹配的内容
                     
@@ -1345,7 +1816,7 @@ def call_yunwu_image_api(prompt: str, style: str) -> str:
                 # 解析策略3：直接查找HTTP/HTTPS URL
                 # 改进正则：更精确地匹配完整URL
                 url_pattern = r'https?://[^\s\)\]\<\>"]+'
-                url_matches = re.findall(url_pattern, content)
+                url_matches = re.findall(url_pattern, content_clean)
                 if url_matches:
                     # 过滤掉明显不是图片的URL（如API端点）
                     for url in url_matches:
@@ -1366,30 +1837,31 @@ def call_yunwu_image_api(prompt: str, style: str) -> str:
                             print(f"⚠️ 提取的URL格式不完整：{first_url}")
                 
                 # 解析策略4：检查是否是直接的URL
-                content_stripped = content.strip()
-                if content_stripped.startswith("http://") or content_stripped.startswith("https://"):
-                    if validate_image_url(content_stripped):
-                        print(f"✅ 内容本身就是URL：{content_stripped}")
-                        return content_stripped
+                if content_clean.startswith("http://") or content_clean.startswith("https://"):
+                    if validate_image_url(content_clean):
+                        print(f"✅ 内容本身就是URL：{content_clean}")
+                        return content_clean
                     else:
-                        print(f"⚠️ 内容看起来像URL但格式不完整：{content_stripped}")
-                        fixed = fix_incomplete_url(content_stripped)
+                        print(f"⚠️ 内容看起来像URL但格式不完整：{content_clean}")
+                        fixed = fix_incomplete_url(content_clean)
                         if fixed:
                             return fixed
                 
-                # 解析策略5：检查是否是base64编码的图片（直接格式，非markdown）
-                if content.startswith("data:image"):
+                # 解析策略5：检查是否是base64编码的图片（直接格式，非markdown / 非JSON / 非markdown图片）
+                # 兼容前后空白、代码块包装等情况（已在 content_clean 中处理）
+                if content_clean.startswith("data:image"):
                     print(f"✅ 检测到base64图片数据（直接格式）")
                     # 处理base64图片
-                    saved_path = save_base64_image(content, prompt)
+                    saved_path = save_base64_image(content_clean, prompt)
                     if saved_path:
                         return saved_path
                     else:
                         print(f"⚠️ base64图片保存失败")
                 
                 # 解析策略6：尝试从文本中提取base64 data URI（非markdown格式）
-                base64_pattern = r'data:image/[^;]+;base64,[A-Za-z0-9+/=]+'
-                base64_matches = re.findall(base64_pattern, content)
+                # 允许base64内容换行/包含空白
+                base64_pattern = r'data:image/[^;]+;base64,[A-Za-z0-9+/=\s]+'
+                base64_matches = re.findall(base64_pattern, content_clean)
                 if base64_matches:
                     print(f"✅ 从文本中提取到base64图片数据")
                     # 处理base64图片
@@ -1400,9 +1872,9 @@ def call_yunwu_image_api(prompt: str, style: str) -> str:
                         print(f"⚠️ base64图片保存失败")
                 
                 # 如果所有解析方式都失败，打印详细内容用于调试
-                print(f"⚠️ yunwu.ai返回格式无法解析，原始内容：{content[:500]}")
+                print(f"⚠️ yunwu.ai返回格式无法解析，原始内容：{content_clean[:500]}")
                 # 检查返回内容是否是文本描述（而非图片数据）
-                if len(content) > 100 and not any(keyword in content.lower() for keyword in ['http', 'data:image', 'base64', 'url', 'image']):
+                if len(content_clean) > 100 and not any(keyword in content_clean.lower() for keyword in ['http', 'data:image', 'base64', 'url', 'image']):
                     print(f"💡 提示：yunwu.ai返回的是文本描述而非图片数据，可能是API生成失败或返回格式异常")
                     print(f"💡 可能的原因：")
                     print(f"   1. yunwu.ai API模型配置不正确（当前模型：{model}）")
@@ -3207,7 +3679,7 @@ def _generate_single_option(i: int, option: str, global_state: Dict) -> Dict:
                         # 成功生成
                         scene_image = result_queue.get()
                         if scene_image:
-                            print(f"✅ 选项 {i+1} 图片生成完成并已保存到本地")
+                            print(f"✅ 选项 {i+1} 图片生成完成")
                     else:
                         # 没有结果（不应该发生）
                         print(f"⚠️ 选项 {i+1} 图片生成无结果，继续使用文本模式")
@@ -3240,10 +3712,15 @@ def _generate_single_option(i: int, option: str, global_state: Dict) -> Dict:
                                 "style": scene_image.get("style", "default"),
                                 "width": scene_image.get("width", 1024),
                                 "height": scene_image.get("height", 1024),
-                                "cached": scene_image.get("cached", True)  # 本地路径表示已缓存
+                                # 本地路径表示已缓存；远程URL默认视为未缓存（除非上游明确标记）
+                                "cached": True if is_local_path else scene_image.get("cached", False)
                             }
-                            print(f"✅ 选项 {i+1} 场景图片生成成功并已保存到本地")
-                            print(f"   本地路径: {image_url}")
+                            if is_local_path:
+                                print(f"✅ 选项 {i+1} 场景图片生成成功并已保存到本地")
+                                print(f"   本地路径: {image_url}")
+                            else:
+                                print(f"✅ 选项 {i+1} 场景图片生成成功（远程URL）")
+                                print(f"   图片URL: {image_url[:80]}...")
                         else:
                             # URL无效，尝试修复（仅对HTTP(S) URL）
                             if not is_local_path:
