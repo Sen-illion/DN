@@ -1328,17 +1328,28 @@ def call_yunwu_image_api(prompt: str, style: str) -> str:
                 content = message.get("content", "")
                 # 兼容模型把结果包在代码块/引号里（尤其是 data:image/... 或 JSON）
                 content_clean = (content or "").strip()
+                # 先去掉最外层引号（有些API会返回形如 "```json ... ```" 的字符串）
+                for _ in range(2):
+                    if (content_clean.startswith('"') and content_clean.endswith('"')) or (content_clean.startswith("'") and content_clean.endswith("'")):
+                        content_clean = content_clean[1:-1].strip()
+                # 再剥离 ``` fenced code block（兼容单行/多行、带语言标记）
                 if content_clean.startswith("```"):
-                    lines = content_clean.splitlines()
-                    if len(lines) >= 2 and lines[0].strip().startswith("```"):
-                        # 去掉首行 ``` 或 ```json 等
-                        if lines[-1].strip().startswith("```"):
-                            lines = lines[1:-1]
-                        else:
-                            lines = lines[1:]
-                        content_clean = "\n".join(lines).strip()
-                if (content_clean.startswith('"') and content_clean.endswith('"')) or (content_clean.startswith("'") and content_clean.endswith("'")):
-                    content_clean = content_clean[1:-1].strip()
+                    fence_match = re.match(r"^```(?:[a-zA-Z0-9_-]+)?\s*([\s\S]*?)\s*```$", content_clean)
+                    if fence_match:
+                        content_clean = (fence_match.group(1) or "").strip()
+                    else:
+                        # 退化处理：按行移除首尾 fence
+                        lines = content_clean.splitlines()
+                        if len(lines) >= 2 and lines[0].strip().startswith("```"):
+                            if lines[-1].strip().startswith("```"):
+                                lines = lines[1:-1]
+                            else:
+                                lines = lines[1:]
+                            content_clean = "\n".join(lines).strip()
+                # fence 解包后再做一次引号去除
+                for _ in range(2):
+                    if (content_clean.startswith('"') and content_clean.endswith('"')) or (content_clean.startswith("'") and content_clean.endswith("'")):
+                        content_clean = content_clean[1:-1].strip()
                 
                 print(f"🔍 yunwu.ai返回的原始内容：{content_clean[:200]}...")
                 
