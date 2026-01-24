@@ -1105,166 +1105,224 @@ def save_base64_image(data_uri: str, prompt: str) -> str:
         return None
 
 def call_yunwu_image_api(prompt: str, style: str) -> str:
-    """调用yunwu.ai图片生成API"""
+    """调用yunwu.ai图片生成API（带重试机制处理速率限制）"""
+    import time
+    
+    api_key = IMAGE_GENERATION_CONFIG.get("yunwu_api_key")
+    base_url = IMAGE_GENERATION_CONFIG.get("yunwu_base_url", "https://yunwu.ai/v1")
+    model = IMAGE_GENERATION_CONFIG.get("yunwu_model", "sora_image")
+    
+    if not api_key:
+        raise ValueError("yunwu.ai API Key未配置")
+    
+    headers = {
+        "Authorization": f"Bearer {api_key}",
+        "Content-Type": "application/json"
+    }
+    
+    # 调用yunwu.ai的图片生成API（使用chat/completions接口，模型为sora_image）
+    # 明确要求返回JSON格式的图片URL
+    request_body = {
+        "model": model,
+        "messages": [
+            {
+                "role": "system",
+                "content": "你是一个图片生成API。用户会提供图片描述，你必须生成图片并返回JSON格式的结果，格式为：{\"image_url\": \"图片URL\"} 或 {\"url\": \"图片URL\"}。不要返回任何文本描述，只返回JSON格式的图片URL。"
+            },
+            {
+                "role": "user",
+                "content": f"请生成一张图片，描述：{prompt}\n\n请以JSON格式返回图片URL，格式：{{\"image_url\": \"图片URL\"}} 或 {{\"url\": \"图片URL\"}}。不要返回任何其他文本。"
+            }
+        ],
+        "temperature": 0.3,  # 降低temperature以提高格式一致性
+        "max_tokens": 2000
+    }
+    
+    # 尝试添加response_format参数（如果API支持）
     try:
-        api_key = IMAGE_GENERATION_CONFIG.get("yunwu_api_key")
-        base_url = IMAGE_GENERATION_CONFIG.get("yunwu_base_url", "https://yunwu.ai/v1")
-        model = IMAGE_GENERATION_CONFIG.get("yunwu_model", "sora_image")
-        
-        if not api_key:
-            raise ValueError("yunwu.ai API Key未配置")
-        
-        headers = {
-            "Authorization": f"Bearer {api_key}",
-            "Content-Type": "application/json"
-        }
-        
-        # 调用yunwu.ai的图片生成API（使用chat/completions接口，模型为sora_image）
-        request_body = {
-            "model": model,
-            "messages": [
-                {
-                    "role": "user",
-                    "content": f"请生成一张图片，描述：{prompt}"
-                }
-            ],
-            "temperature": 0.7,
-            "max_tokens": 2000
-        }
-        
-        response = requests.post(
-            f"{base_url}/chat/completions",
-            headers=headers,
-            json=request_body,
-            timeout=120
-        )
-        response.raise_for_status()
-        
-        result = response.json()
-        choices = result.get("choices", [])
-        if choices and len(choices) > 0:
-            message = choices[0].get("message", {})
-            content = message.get("content", "")
+        request_body["response_format"] = {"type": "json_object"}
+    except:
+        pass  # 如果API不支持，忽略此参数
+    
+    # 重试机制：最多重试3次，针对429错误
+    max_retries = 3
+    for attempt in range(max_retries):
+        try:
+            response = requests.post(
+                f"{base_url}/chat/completions",
+                headers=headers,
+                json=request_body,
+                timeout=120
+            )
             
-            print(f"🔍 yunwu.ai返回的原始内容：{content[:200]}...")
-            
-            # 解析策略1：尝试解析JSON格式
-            try:
-                import json
-                content_json = json.loads(content)
-                if "image_url" in content_json:
-                    print(f"✅ 从JSON中提取到image_url：{content_json['image_url']}")
-                    return content_json["image_url"]
-                elif "url" in content_json:
-                    print(f"✅ 从JSON中提取到url：{content_json['url']}")
-                    return content_json["url"]
-            except json.JSONDecodeError:
-                pass  # 不是JSON格式，继续其他解析方式
-            
-            # 解析策略2：从markdown格式中提取图片URL或base64数据
-            # 匹配格式：![image](https://...) 或 ![alt text](url) 或 ![image](data:image/...)
-            # 改进正则：支持HTTP/HTTPS URL和data URI
-            markdown_image_pattern = r'!\[.*?\]\((https?://[^\s\)]+|data:image/[^\s\)]+)\)'
-            markdown_matches = re.findall(markdown_image_pattern, content)
-            if markdown_matches:
-                image_data = markdown_matches[0]  # 取第一个匹配的内容
+            # 检查是否是429错误（速率限制）
+            if response.status_code == 429:
+                # 尝试从响应头获取重试时间
+                retry_after = response.headers.get('Retry-After')
+                if retry_after:
+                    wait_time = int(retry_after)
+                    print(f"⚠️ 遇到速率限制（429），API建议等待 {wait_time} 秒后重试（尝试 {attempt + 1}/{max_retries}）")
+                else:
+                    # 指数退避：10s, 20s, 40s
+                    wait_time = 10 * (2 ** attempt)
+                    print(f"⚠️ 遇到速率限制（429），等待 {wait_time} 秒后重试（尝试 {attempt + 1}/{max_retries}）")
                 
-                # 检查是否是base64 data URI
-                if image_data.startswith("data:image"):
-                    print(f"✅ 从markdown格式中提取到base64图片数据")
+                # 如果还有重试机会，等待后继续
+                if attempt < max_retries - 1:
+                    time.sleep(wait_time)
+                    continue
+                else:
+                    # 最后一次尝试也失败，抛出异常
+                    response.raise_for_status()
+            
+            # 其他HTTP错误直接抛出
+            response.raise_for_status()
+            
+            # 如果成功，解析响应
+            result = response.json()
+            choices = result.get("choices", [])
+            if choices and len(choices) > 0:
+                message = choices[0].get("message", {})
+                content = message.get("content", "")
+                
+                print(f"🔍 yunwu.ai返回的原始内容：{content[:200]}...")
+                
+                # 解析策略1：尝试解析JSON格式
+                try:
+                    import json
+                    content_json = json.loads(content)
+                    if "image_url" in content_json:
+                        print(f"✅ 从JSON中提取到image_url：{content_json['image_url']}")
+                        return content_json["image_url"]
+                    elif "url" in content_json:
+                        print(f"✅ 从JSON中提取到url：{content_json['url']}")
+                        return content_json["url"]
+                except json.JSONDecodeError:
+                    pass  # 不是JSON格式，继续其他解析方式
+                
+                # 解析策略2：从markdown格式中提取图片URL或base64数据
+                # 匹配格式：![image](https://...) 或 ![alt text](url) 或 ![image](data:image/...)
+                # 改进正则：支持HTTP/HTTPS URL和data URI
+                markdown_image_pattern = r'!\[.*?\]\((https?://[^\s\)]+|data:image/[^\s\)]+)\)'
+                markdown_matches = re.findall(markdown_image_pattern, content)
+                if markdown_matches:
+                    image_data = markdown_matches[0]  # 取第一个匹配的内容
+                    
+                    # 检查是否是base64 data URI
+                    if image_data.startswith("data:image"):
+                        print(f"✅ 从markdown格式中提取到base64图片数据")
+                        # 处理base64图片
+                        saved_path = save_base64_image(image_data, prompt)
+                        if saved_path:
+                            return saved_path
+                        else:
+                            print(f"⚠️ base64图片保存失败")
+                    else:
+                        # 是HTTP/HTTPS URL
+                        image_url = image_data
+                        # 验证URL是否完整（至少包含协议、域名和路径）
+                        if validate_image_url(image_url):
+                            print(f"✅ 从markdown格式中提取到图片URL：{image_url}")
+                            return image_url
+                        else:
+                            print(f"⚠️ 提取的URL格式不完整，尝试修复：{image_url}")
+                            # 尝试修复不完整的URL
+                            fixed_url = fix_incomplete_url(image_url)
+                            if fixed_url and validate_image_url(fixed_url):
+                                print(f"✅ URL修复成功：{fixed_url}")
+                                return fixed_url
+                            else:
+                                print(f"❌ URL修复失败，跳过此URL")
+                
+                # 解析策略3：直接查找HTTP/HTTPS URL
+                # 改进正则：更精确地匹配完整URL
+                url_pattern = r'https?://[^\s\)\]\<\>"]+'
+                url_matches = re.findall(url_pattern, content)
+                if url_matches:
+                    # 过滤掉明显不是图片的URL（如API端点）
+                    for url in url_matches:
+                        # 验证URL完整性
+                        if not validate_image_url(url):
+                            continue
+                        # 优先选择包含图片相关关键词的URL
+                        if any(keyword in url.lower() for keyword in ['image', 'img', 'photo', 'picture', 'oss', 'cdn', 'aliyuncs', 'jpg', 'jpeg', 'png', 'webp']):
+                            print(f"✅ 从文本中提取到图片URL：{url}")
+                            return url
+                    # 如果没有找到明显的图片URL，验证第一个URL后返回
+                    if url_matches:
+                        first_url = url_matches[0]
+                        if validate_image_url(first_url):
+                            print(f"✅ 从文本中提取到URL：{first_url}")
+                            return first_url
+                        else:
+                            print(f"⚠️ 提取的URL格式不完整：{first_url}")
+                
+                # 解析策略4：检查是否是直接的URL
+                content_stripped = content.strip()
+                if content_stripped.startswith("http://") or content_stripped.startswith("https://"):
+                    if validate_image_url(content_stripped):
+                        print(f"✅ 内容本身就是URL：{content_stripped}")
+                        return content_stripped
+                    else:
+                        print(f"⚠️ 内容看起来像URL但格式不完整：{content_stripped}")
+                        fixed = fix_incomplete_url(content_stripped)
+                        if fixed:
+                            return fixed
+                
+                # 解析策略5：检查是否是base64编码的图片（直接格式，非markdown）
+                if content.startswith("data:image"):
+                    print(f"✅ 检测到base64图片数据（直接格式）")
                     # 处理base64图片
-                    saved_path = save_base64_image(image_data, prompt)
+                    saved_path = save_base64_image(content, prompt)
                     if saved_path:
                         return saved_path
                     else:
                         print(f"⚠️ base64图片保存失败")
-                else:
-                    # 是HTTP/HTTPS URL
-                    image_url = image_data
-                    # 验证URL是否完整（至少包含协议、域名和路径）
-                    if validate_image_url(image_url):
-                        print(f"✅ 从markdown格式中提取到图片URL：{image_url}")
-                        return image_url
+                
+                # 解析策略6：尝试从文本中提取base64 data URI（非markdown格式）
+                base64_pattern = r'data:image/[^;]+;base64,[A-Za-z0-9+/=]+'
+                base64_matches = re.findall(base64_pattern, content)
+                if base64_matches:
+                    print(f"✅ 从文本中提取到base64图片数据")
+                    # 处理base64图片
+                    saved_path = save_base64_image(base64_matches[0], prompt)
+                    if saved_path:
+                        return saved_path
                     else:
-                        print(f"⚠️ 提取的URL格式不完整，尝试修复：{image_url}")
-                        # 尝试修复不完整的URL
-                        fixed_url = fix_incomplete_url(image_url)
-                        if fixed_url and validate_image_url(fixed_url):
-                            print(f"✅ URL修复成功：{fixed_url}")
-                            return fixed_url
-                        else:
-                            print(f"❌ URL修复失败，跳过此URL")
-            
-            # 解析策略3：直接查找HTTP/HTTPS URL
-            # 改进正则：更精确地匹配完整URL
-            url_pattern = r'https?://[^\s\)\]\<\>"]+'
-            url_matches = re.findall(url_pattern, content)
-            if url_matches:
-                # 过滤掉明显不是图片的URL（如API端点）
-                for url in url_matches:
-                    # 验证URL完整性
-                    if not validate_image_url(url):
-                        continue
-                    # 优先选择包含图片相关关键词的URL
-                    if any(keyword in url.lower() for keyword in ['image', 'img', 'photo', 'picture', 'oss', 'cdn', 'aliyuncs', 'jpg', 'jpeg', 'png', 'webp']):
-                        print(f"✅ 从文本中提取到图片URL：{url}")
-                        return url
-                # 如果没有找到明显的图片URL，验证第一个URL后返回
-                if url_matches:
-                    first_url = url_matches[0]
-                    if validate_image_url(first_url):
-                        print(f"✅ 从文本中提取到URL：{first_url}")
-                        return first_url
-                    else:
-                        print(f"⚠️ 提取的URL格式不完整：{first_url}")
-            
-            # 解析策略4：检查是否是直接的URL
-            content_stripped = content.strip()
-            if content_stripped.startswith("http://") or content_stripped.startswith("https://"):
-                if validate_image_url(content_stripped):
-                    print(f"✅ 内容本身就是URL：{content_stripped}")
-                    return content_stripped
-                else:
-                    print(f"⚠️ 内容看起来像URL但格式不完整：{content_stripped}")
-                    fixed = fix_incomplete_url(content_stripped)
-                    if fixed:
-                        return fixed
-            
-            # 解析策略5：检查是否是base64编码的图片（直接格式，非markdown）
-            if content.startswith("data:image"):
-                print(f"✅ 检测到base64图片数据（直接格式）")
-                # 处理base64图片
-                saved_path = save_base64_image(content, prompt)
-                if saved_path:
-                    return saved_path
-                else:
-                    print(f"⚠️ base64图片保存失败")
-            
-            # 解析策略6：尝试从文本中提取base64 data URI（非markdown格式）
-            base64_pattern = r'data:image/[^;]+;base64,[A-Za-z0-9+/=]+'
-            base64_matches = re.findall(base64_pattern, content)
-            if base64_matches:
-                print(f"✅ 从文本中提取到base64图片数据")
-                # 处理base64图片
-                saved_path = save_base64_image(base64_matches[0], prompt)
-                if saved_path:
-                    return saved_path
-                else:
-                    print(f"⚠️ base64图片保存失败")
-            
-            # 如果所有解析方式都失败，打印详细内容用于调试
-            print(f"⚠️ yunwu.ai返回格式无法解析，原始内容：{content[:500]}")
-            # 检查返回内容是否是文本描述（而非图片数据）
-            if len(content) > 100 and not any(keyword in content.lower() for keyword in ['http', 'data:image', 'base64', 'url', 'image']):
-                print(f"💡 提示：yunwu.ai返回的是文本描述而非图片数据，可能是API生成失败或返回格式异常")
-                print(f"💡 建议：检查API配置或重试图片生成")
-            return None
-        else:
-            print(f"⚠️ yunwu.ai返回格式异常：{result}")
-            return None
-    except Exception as e:
-        print(f"❌ yunwu.ai图片生成API调用失败：{str(e)}")
-        raise
+                        print(f"⚠️ base64图片保存失败")
+                
+                # 如果所有解析方式都失败，打印详细内容用于调试
+                print(f"⚠️ yunwu.ai返回格式无法解析，原始内容：{content[:500]}")
+                # 检查返回内容是否是文本描述（而非图片数据）
+                if len(content) > 100 and not any(keyword in content.lower() for keyword in ['http', 'data:image', 'base64', 'url', 'image']):
+                    print(f"💡 提示：yunwu.ai返回的是文本描述而非图片数据，可能是API生成失败或返回格式异常")
+                    print(f"💡 可能的原因：")
+                    print(f"   1. yunwu.ai API模型配置不正确（当前模型：{model}）")
+                    print(f"   2. API返回格式不符合预期，需要检查yunwu.ai API文档")
+                    print(f"   3. API密钥权限不足或配置错误")
+                    print(f"💡 建议：")
+                    print(f"   - 检查.env文件中的yunwu_api_key和yunwu_model配置")
+                    print(f"   - 确认yunwu.ai API是否支持图片生成功能")
+                    print(f"   - 查看yunwu.ai API文档确认正确的调用方式")
+                    print(f"   - 如果API不支持图片生成，可以切换到其他图片生成服务（如ComfyUI、Replicate等）")
+                return None
+            else:
+                print(f"⚠️ yunwu.ai返回格式异常：{result}")
+                return None
+                
+        except requests.exceptions.HTTPError as e:
+            # 429错误已经在上面处理，这里处理其他HTTP错误
+            if e.response and e.response.status_code == 429:
+                # 如果429错误没有被上面的逻辑处理（理论上不应该发生），抛出异常
+                raise
+            else:
+                # 其他HTTP错误直接抛出
+                print(f"❌ yunwu.ai图片生成API调用失败（HTTP错误）：{str(e)}")
+                raise
+        except Exception as e:
+            # 非HTTP错误（如网络错误、超时等）直接抛出
+            print(f"❌ yunwu.ai图片生成API调用失败：{str(e)}")
+            raise
 
 def call_comfyui_api(prompt: str, style: str) -> str:
     """调用ComfyUI API生成图片"""

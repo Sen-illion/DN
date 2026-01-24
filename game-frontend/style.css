@@ -710,7 +710,7 @@ p#scene-text {
     /* 定位样式 - 从.narration-overlay迁移 */
     position: absolute !important; /* 绝对定位，相对于.scene-media-container */
     z-index: 5 !important; /* 在图片上方（z-index: 0），但低于加载指示器（z-index: 20） */
-    bottom: 20px !important; /* 距离容器底部20px */
+    bottom: 120px !important; /* 距离容器底部120px，避免挡住主角的脸 */
     left: 20px !important;
     right: 20px !important;
     max-width: 78% !important;
@@ -927,4 +927,24 @@ p#scene-text:focus {
     #image-loading p {
         font-size: 14px;
     }
+}
+
+/* 下一段文本按钮样式（右下角"->"按钮） */
+.scene-arrow {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.scene-arrow:hover {
+    box-shadow: 0 6px 16px rgba(26, 188, 156, 0.5);
+}
+
+.scene-arrow:active {
+    transform: scale(0.95);
+}
+
+.scene-arrow.hidden {
+    display: none !important;
 }
