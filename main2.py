@@ -932,7 +932,7 @@ def generate_scene_image(
                     "style": style,
                     "width": 1024,
                     "height": 1024,
-                    "cached": False
+                    "cached": True
                 }
             except Exception as cache_error:
                 # 如果缓存过程中写入失败，确保不留空文件
@@ -1087,6 +1087,11 @@ def save_base64_image(data_uri: str, prompt: str) -> str:
         import base64
         from pathlib import Path
         
+        # 清理可能的空白/引号包装
+        data_uri = (data_uri or "").strip()
+        if (data_uri.startswith('"') and data_uri.endswith('"')) or (data_uri.startswith("'") and data_uri.endswith("'")):
+            data_uri = data_uri[1:-1].strip()
+        
         # 解析data URI格式：data:image/png;base64,<base64_data>
         if not data_uri.startswith("data:image"):
             return None
@@ -1100,6 +1105,9 @@ def save_base64_image(data_uri: str, prompt: str) -> str:
         image_format = mime_match.group(1)  # png, jpeg, webp等
         if image_format == 'jpeg':
             image_format = 'jpg'
+        
+        # 兼容多行/带空白的base64（模型输出可能自动换行）
+        encoded = re.sub(r'\s+', '', encoded)
         
         # 解码base64数据
         try:
@@ -1256,13 +1264,39 @@ def call_yunwu_image_api(prompt: str, style: str) -> str:
                 if any(rate_limit_headers.values()):
                     print(f"🔍 速率限制响应头：{json.dumps({k: v for k, v in rate_limit_headers.items() if v}, ensure_ascii=False)}")
                 
+                # Retry-After 可能是秒数（整数）或 HTTP-date（如 RFC 7231 指定）
+                wait_time = None
                 if retry_after:
-                    wait_time = int(retry_after)
-                    print(f"⚠️ 遇到速率限制（429），API建议等待 {wait_time} 秒后重试（尝试 {attempt + 1}/{max_retries}）")
-                else:
-                    # 指数退避：10s, 20s, 40s
+                    retry_after_raw = str(retry_after).strip()
+                    # 先尝试按“秒数”解析
+                    try:
+                        wait_time = int(retry_after_raw)
+                        if wait_time < 0:
+                            wait_time = 0
+                        print(f"⚠️ 遇到速率限制（429），API建议等待 {wait_time} 秒后重试（尝试 {attempt + 1}/{max_retries}）")
+                    except (TypeError, ValueError):
+                        # 再尝试按 HTTP-date 解析
+                        try:
+                            from email.utils import parsedate_to_datetime
+                            from datetime import datetime, timezone
+                            dt = parsedate_to_datetime(retry_after_raw)
+                            if dt is not None:
+                                if dt.tzinfo is None:
+                                    dt = dt.replace(tzinfo=timezone.utc)
+                                now = datetime.now(timezone.utc)
+                                wait_seconds = int((dt.astimezone(timezone.utc) - now).total_seconds())
+                                wait_time = max(0, wait_seconds)
+                                print(f"⚠️ 遇到速率限制（429），API建议等待 {wait_time} 秒后重试（尝试 {attempt + 1}/{max_retries}）")
+                        except Exception:
+                            wait_time = None
+                
+                if wait_time is None:
+                    # 如果 Retry-After 不存在或无法解析，使用指数退避：10s, 20s, 40s
                     wait_time = 10 * (2 ** attempt)
-                    print(f"⚠️ 遇到速率限制（429），等待 {wait_time} 秒后重试（尝试 {attempt + 1}/{max_retries}）")
+                    if retry_after:
+                        print(f"⚠️ 遇到速率限制（429），但 Retry-After 无法解析（{retry_after!r}），改用指数退避等待 {wait_time} 秒后重试（尝试 {attempt + 1}/{max_retries}）")
+                    else:
+                        print(f"⚠️ 遇到速率限制（429），等待 {wait_time} 秒后重试（尝试 {attempt + 1}/{max_retries}）")
                 
                 print(f"💡 可能的原因：")
                 print(f"   1. yunwu.ai 最近调整了速率限制策略")
@@ -1292,13 +1326,26 @@ def call_yunwu_image_api(prompt: str, style: str) -> str:
             if choices and len(choices) > 0:
                 message = choices[0].get("message", {})
                 content = message.get("content", "")
+                # 兼容模型把结果包在代码块/引号里（尤其是 data:image/... 或 JSON）
+                content_clean = (content or "").strip()
+                if content_clean.startswith("```"):
+                    lines = content_clean.splitlines()
+                    if len(lines) >= 2 and lines[0].strip().startswith("```"):
+                        # 去掉首行 ``` 或 ```json 等
+                        if lines[-1].strip().startswith("```"):
+                            lines = lines[1:-1]
+                        else:
+                            lines = lines[1:]
+                        content_clean = "\n".join(lines).strip()
+                if (content_clean.startswith('"') and content_clean.endswith('"')) or (content_clean.startswith("'") and content_clean.endswith("'")):
+                    content_clean = content_clean[1:-1].strip()
                 
-                print(f"🔍 yunwu.ai返回的原始内容：{content[:200]}...")
+                print(f"🔍 yunwu.ai返回的原始内容：{content_clean[:200]}...")
                 
                 # 解析策略1：尝试解析JSON格式
                 try:
                     import json
-                    content_json = json.loads(content)
+                    content_json = json.loads(content_clean)
                     if "image_url" in content_json:
                         print(f"✅ 从JSON中提取到image_url：{content_json['image_url']}")
                         return content_json["image_url"]
@@ -1312,7 +1359,7 @@ def call_yunwu_image_api(prompt: str, style: str) -> str:
                 # 匹配格式：![image](https://...) 或 ![alt text](url) 或 ![image](data:image/...)
                 # 改进正则：支持HTTP/HTTPS URL和data URI
                 markdown_image_pattern = r'!\[.*?\]\((https?://[^\s\)]+|data:image/[^\s\)]+)\)'
-                markdown_matches = re.findall(markdown_image_pattern, content)
+                markdown_matches = re.findall(markdown_image_pattern, content_clean)
                 if markdown_matches:
                     image_data = markdown_matches[0]  # 取第一个匹配的内容
                     
@@ -1345,7 +1392,7 @@ def call_yunwu_image_api(prompt: str, style: str) -> str:
                 # 解析策略3：直接查找HTTP/HTTPS URL
                 # 改进正则：更精确地匹配完整URL
                 url_pattern = r'https?://[^\s\)\]\<\>"]+'
-                url_matches = re.findall(url_pattern, content)
+                url_matches = re.findall(url_pattern, content_clean)
                 if url_matches:
                     # 过滤掉明显不是图片的URL（如API端点）
                     for url in url_matches:
@@ -1366,30 +1413,31 @@ def call_yunwu_image_api(prompt: str, style: str) -> str:
                             print(f"⚠️ 提取的URL格式不完整：{first_url}")
                 
                 # 解析策略4：检查是否是直接的URL
-                content_stripped = content.strip()
-                if content_stripped.startswith("http://") or content_stripped.startswith("https://"):
-                    if validate_image_url(content_stripped):
-                        print(f"✅ 内容本身就是URL：{content_stripped}")
-                        return content_stripped
+                if content_clean.startswith("http://") or content_clean.startswith("https://"):
+                    if validate_image_url(content_clean):
+                        print(f"✅ 内容本身就是URL：{content_clean}")
+                        return content_clean
                     else:
-                        print(f"⚠️ 内容看起来像URL但格式不完整：{content_stripped}")
-                        fixed = fix_incomplete_url(content_stripped)
+                        print(f"⚠️ 内容看起来像URL但格式不完整：{content_clean}")
+                        fixed = fix_incomplete_url(content_clean)
                         if fixed:
                             return fixed
                 
-                # 解析策略5：检查是否是base64编码的图片（直接格式，非markdown）
-                if content.startswith("data:image"):
+                # 解析策略5：检查是否是base64编码的图片（直接格式，非markdown / 非JSON / 非markdown图片）
+                # 兼容前后空白、代码块包装等情况（已在 content_clean 中处理）
+                if content_clean.startswith("data:image"):
                     print(f"✅ 检测到base64图片数据（直接格式）")
                     # 处理base64图片
-                    saved_path = save_base64_image(content, prompt)
+                    saved_path = save_base64_image(content_clean, prompt)
                     if saved_path:
                         return saved_path
                     else:
                         print(f"⚠️ base64图片保存失败")
                 
                 # 解析策略6：尝试从文本中提取base64 data URI（非markdown格式）
-                base64_pattern = r'data:image/[^;]+;base64,[A-Za-z0-9+/=]+'
-                base64_matches = re.findall(base64_pattern, content)
+                # 允许base64内容换行/包含空白
+                base64_pattern = r'data:image/[^;]+;base64,[A-Za-z0-9+/=\s]+'
+                base64_matches = re.findall(base64_pattern, content_clean)
                 if base64_matches:
                     print(f"✅ 从文本中提取到base64图片数据")
                     # 处理base64图片
@@ -1400,9 +1448,9 @@ def call_yunwu_image_api(prompt: str, style: str) -> str:
                         print(f"⚠️ base64图片保存失败")
                 
                 # 如果所有解析方式都失败，打印详细内容用于调试
-                print(f"⚠️ yunwu.ai返回格式无法解析，原始内容：{content[:500]}")
+                print(f"⚠️ yunwu.ai返回格式无法解析，原始内容：{content_clean[:500]}")
                 # 检查返回内容是否是文本描述（而非图片数据）
-                if len(content) > 100 and not any(keyword in content.lower() for keyword in ['http', 'data:image', 'base64', 'url', 'image']):
+                if len(content_clean) > 100 and not any(keyword in content_clean.lower() for keyword in ['http', 'data:image', 'base64', 'url', 'image']):
                     print(f"💡 提示：yunwu.ai返回的是文本描述而非图片数据，可能是API生成失败或返回格式异常")
                     print(f"💡 可能的原因：")
                     print(f"   1. yunwu.ai API模型配置不正确（当前模型：{model}）")
@@ -3207,7 +3255,7 @@ def _generate_single_option(i: int, option: str, global_state: Dict) -> Dict:
                         # 成功生成
                         scene_image = result_queue.get()
                         if scene_image:
-                            print(f"✅ 选项 {i+1} 图片生成完成并已保存到本地")
+                            print(f"✅ 选项 {i+1} 图片生成完成")
                     else:
                         # 没有结果（不应该发生）
                         print(f"⚠️ 选项 {i+1} 图片生成无结果，继续使用文本模式")
@@ -3240,10 +3288,15 @@ def _generate_single_option(i: int, option: str, global_state: Dict) -> Dict:
                                 "style": scene_image.get("style", "default"),
                                 "width": scene_image.get("width", 1024),
                                 "height": scene_image.get("height", 1024),
-                                "cached": scene_image.get("cached", True)  # 本地路径表示已缓存
+                                # 本地路径表示已缓存；远程URL默认视为未缓存（除非上游明确标记）
+                                "cached": True if is_local_path else scene_image.get("cached", False)
                             }
-                            print(f"✅ 选项 {i+1} 场景图片生成成功并已保存到本地")
-                            print(f"   本地路径: {image_url}")
+                            if is_local_path:
+                                print(f"✅ 选项 {i+1} 场景图片生成成功并已保存到本地")
+                                print(f"   本地路径: {image_url}")
+                            else:
+                                print(f"✅ 选项 {i+1} 场景图片生成成功（远程URL）")
+                                print(f"   图片URL: {image_url[:80]}...")
                         else:
                             # URL无效，尝试修复（仅对HTTP(S) URL）
                             if not is_local_path:
