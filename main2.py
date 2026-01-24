@@ -1087,6 +1087,11 @@ def save_base64_image(data_uri: str, prompt: str) -> str:
         import base64
         from pathlib import Path
         
+        # 清理可能的空白/引号包装
+        data_uri = (data_uri or "").strip()
+        if (data_uri.startswith('"') and data_uri.endswith('"')) or (data_uri.startswith("'") and data_uri.endswith("'")):
+            data_uri = data_uri[1:-1].strip()
+        
         # 解析data URI格式：data:image/png;base64,<base64_data>
         if not data_uri.startswith("data:image"):
             return None
@@ -1100,6 +1105,9 @@ def save_base64_image(data_uri: str, prompt: str) -> str:
         image_format = mime_match.group(1)  # png, jpeg, webp等
         if image_format == 'jpeg':
             image_format = 'jpg'
+        
+        # 兼容多行/带空白的base64（模型输出可能自动换行）
+        encoded = re.sub(r'\s+', '', encoded)
         
         # 解码base64数据
         try:
@@ -1318,13 +1326,26 @@ def call_yunwu_image_api(prompt: str, style: str) -> str:
             if choices and len(choices) > 0:
                 message = choices[0].get("message", {})
                 content = message.get("content", "")
+                # 兼容模型把结果包在代码块/引号里（尤其是 data:image/... 或 JSON）
+                content_clean = (content or "").strip()
+                if content_clean.startswith("```"):
+                    lines = content_clean.splitlines()
+                    if len(lines) >= 2 and lines[0].strip().startswith("```"):
+                        # 去掉首行 ``` 或 ```json 等
+                        if lines[-1].strip().startswith("```"):
+                            lines = lines[1:-1]
+                        else:
+                            lines = lines[1:]
+                        content_clean = "\n".join(lines).strip()
+                if (content_clean.startswith('"') and content_clean.endswith('"')) or (content_clean.startswith("'") and content_clean.endswith("'")):
+                    content_clean = content_clean[1:-1].strip()
                 
-                print(f"🔍 yunwu.ai返回的原始内容：{content[:200]}...")
+                print(f"🔍 yunwu.ai返回的原始内容：{content_clean[:200]}...")
                 
                 # 解析策略1：尝试解析JSON格式
                 try:
                     import json
-                    content_json = json.loads(content)
+                    content_json = json.loads(content_clean)
                     if "image_url" in content_json:
                         print(f"✅ 从JSON中提取到image_url：{content_json['image_url']}")
                         return content_json["image_url"]
@@ -1338,7 +1359,7 @@ def call_yunwu_image_api(prompt: str, style: str) -> str:
                 # 匹配格式：![image](https://...) 或 ![alt text](url) 或 ![image](data:image/...)
                 # 改进正则：支持HTTP/HTTPS URL和data URI
                 markdown_image_pattern = r'!\[.*?\]\((https?://[^\s\)]+|data:image/[^\s\)]+)\)'
-                markdown_matches = re.findall(markdown_image_pattern, content)
+                markdown_matches = re.findall(markdown_image_pattern, content_clean)
                 if markdown_matches:
                     image_data = markdown_matches[0]  # 取第一个匹配的内容
                     
@@ -1371,7 +1392,7 @@ def call_yunwu_image_api(prompt: str, style: str) -> str:
                 # 解析策略3：直接查找HTTP/HTTPS URL
                 # 改进正则：更精确地匹配完整URL
                 url_pattern = r'https?://[^\s\)\]\<\>"]+'
-                url_matches = re.findall(url_pattern, content)
+                url_matches = re.findall(url_pattern, content_clean)
                 if url_matches:
                     # 过滤掉明显不是图片的URL（如API端点）
                     for url in url_matches:
@@ -1392,30 +1413,31 @@ def call_yunwu_image_api(prompt: str, style: str) -> str:
                             print(f"⚠️ 提取的URL格式不完整：{first_url}")
                 
                 # 解析策略4：检查是否是直接的URL
-                content_stripped = content.strip()
-                if content_stripped.startswith("http://") or content_stripped.startswith("https://"):
-                    if validate_image_url(content_stripped):
-                        print(f"✅ 内容本身就是URL：{content_stripped}")
-                        return content_stripped
+                if content_clean.startswith("http://") or content_clean.startswith("https://"):
+                    if validate_image_url(content_clean):
+                        print(f"✅ 内容本身就是URL：{content_clean}")
+                        return content_clean
                     else:
-                        print(f"⚠️ 内容看起来像URL但格式不完整：{content_stripped}")
-                        fixed = fix_incomplete_url(content_stripped)
+                        print(f"⚠️ 内容看起来像URL但格式不完整：{content_clean}")
+                        fixed = fix_incomplete_url(content_clean)
                         if fixed:
                             return fixed
                 
-                # 解析策略5：检查是否是base64编码的图片（直接格式，非markdown）
-                if content.startswith("data:image"):
+                # 解析策略5：检查是否是base64编码的图片（直接格式，非markdown / 非JSON / 非markdown图片）
+                # 兼容前后空白、代码块包装等情况（已在 content_clean 中处理）
+                if content_clean.startswith("data:image"):
                     print(f"✅ 检测到base64图片数据（直接格式）")
                     # 处理base64图片
-                    saved_path = save_base64_image(content, prompt)
+                    saved_path = save_base64_image(content_clean, prompt)
                     if saved_path:
                         return saved_path
                     else:
                         print(f"⚠️ base64图片保存失败")
                 
                 # 解析策略6：尝试从文本中提取base64 data URI（非markdown格式）
-                base64_pattern = r'data:image/[^;]+;base64,[A-Za-z0-9+/=]+'
-                base64_matches = re.findall(base64_pattern, content)
+                # 允许base64内容换行/包含空白
+                base64_pattern = r'data:image/[^;]+;base64,[A-Za-z0-9+/=\s]+'
+                base64_matches = re.findall(base64_pattern, content_clean)
                 if base64_matches:
                     print(f"✅ 从文本中提取到base64图片数据")
                     # 处理base64图片
@@ -1426,9 +1448,9 @@ def call_yunwu_image_api(prompt: str, style: str) -> str:
                         print(f"⚠️ base64图片保存失败")
                 
                 # 如果所有解析方式都失败，打印详细内容用于调试
-                print(f"⚠️ yunwu.ai返回格式无法解析，原始内容：{content[:500]}")
+                print(f"⚠️ yunwu.ai返回格式无法解析，原始内容：{content_clean[:500]}")
                 # 检查返回内容是否是文本描述（而非图片数据）
-                if len(content) > 100 and not any(keyword in content.lower() for keyword in ['http', 'data:image', 'base64', 'url', 'image']):
+                if len(content_clean) > 100 and not any(keyword in content_clean.lower() for keyword in ['http', 'data:image', 'base64', 'url', 'image']):
                     print(f"💡 提示：yunwu.ai返回的是文本描述而非图片数据，可能是API生成失败或返回格式异常")
                     print(f"💡 可能的原因：")
                     print(f"   1. yunwu.ai API模型配置不正确（当前模型：{model}）")
