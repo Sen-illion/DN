@@ -413,6 +413,14 @@
 
     <!-- 核心剧情交互界面 -->
     <div id="gameplay-screen" class="screen hidden flex flex-col h-screen relative z-10" role="region" aria-labelledby="current-chapter">
+        <!-- 图片/视频加载占位符（全屏显示） -->
+        <div id="image-loading" class="fixed inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm z-50" style="display: none;">
+            <div class="text-center">
+                <div class="loading-spinner w-[80px] h-[80px] rounded-full border-[8px] border-[#1ABC9C] border-t-transparent animate-spin mx-auto mb-4"></div>
+                <p class="text-white text-lg" id="loading-text">正在生成场景内容...</p>
+            </div>
+        </div>
+        
         <!-- 游戏结束按钮（右上角固定位置） -->
         <button id="end-game-btn" class="end-game-btn fixed top-4 right-4 w-[50px] h-[50px] bg-[rgba(231,76,60,0.8)] hover:bg-[rgba(231,76,60,1)] rounded-full flex items-center justify-center z-50 transition-all duration-300 shadow-lg hover:scale-110 active:scale-95" title="结束游戏" aria-label="结束游戏">
             <i class="fa fa-power-off text-white text-xl"></i>
@@ -425,67 +433,49 @@
             </div>
             <div class="core-conflict text-[14px] text-white" role="status">核心矛盾：寻找失窃的玉佩，揭穿反派阴谋</div>
         </div>
-        <!-- 场景描述区 - 支持图片/视频显示 -->
-        <div class="scene-container h-[60%] p-[40px] flex items-center justify-center" role="main">
-            <!-- 图片/视频展示区 -->
-            <div class="scene-media-container w-full h-full relative rounded-lg">
-                <!-- 场景图片 - 已移除，只使用全屏背景图片 -->
-                <!-- 
-                <img 
-                    id="scene-image" 
-                    class="scene-image w-full h-full object-cover opacity-0 transition-opacity duration-500"
-                    src="" 
-                    alt="场景图片"
-                    style="display: none; visibility: hidden;"
-                />
-                -->
-                
-                <!-- 场景视频（5-10秒） -->
-                <video 
-                    id="scene-video" 
-                    class="scene-video w-full h-full object-cover"
-                    autoplay
-                    muted
-                    loop
-                    playsinline
-                    style="display: none;"
-                >
-                    <source id="scene-video-source" src="" type="video/mp4">
-                    您的浏览器不支持视频播放
-                </video>
-                
-                <!-- 旁白文案 - 直接定位在图片上 -->
-                    <p 
-                        id="scene-text" 
-                    class="scene-text text-[18px] text-white leading-[1.8]"
+        
+        <!-- 场景视频（5-10秒，全屏显示） -->
+        <video 
+            id="scene-video" 
+            class="scene-video fixed inset-0 w-full h-full object-cover z-0"
+            autoplay
+            muted
+            loop
+            playsinline
+            style="display: none;"
+        >
+            <source id="scene-video-source" src="" type="video/mp4">
+            您的浏览器不支持视频播放
+        </video>
+        
+        <!-- 选项列表区（合并文本和选项，占据除进度条外的所有空间） -->
+        <div class="options-container h-[calc(100%-60px)] p-[40px] relative" role="region" aria-label="剧情选项">
+            <!-- 文本显示区域 -->
+            <div class="text-display-area absolute inset-0 flex items-center justify-center p-[40px]" id="text-display-area">
+                <p 
+                    id="scene-text" 
+                    class="scene-text text-[25px] text-white leading-[1.6] w-full text-center"
                     role="text" 
-                        aria-live="polite"
-                    >
-                        加载中...
-                    </p>
-                
-                <!-- 图片/视频加载占位符 -->
-                <div id="image-loading" class="absolute inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm" style="display: none;">
-                    <div class="text-center">
-                        <div class="loading-spinner w-[80px] h-[80px] rounded-full border-[8px] border-[#1ABC9C] border-t-transparent animate-spin mx-auto mb-4"></div>
-                        <p class="text-white text-lg" id="loading-text">正在生成场景内容...</p>
-                    </div>
-                </div>
-                
-                <!-- 下一段文本按钮（右下角） -->
-                <button 
-                    id="next-segment-btn" 
-                    class="scene-arrow fixed bottom-8 right-8 w-[60px] h-[60px] bg-[rgba(26,188,156,0.8)] hover:bg-[rgba(26,188,156,1)] rounded-full flex items-center justify-center z-50 transition-all duration-300 shadow-lg hover:scale-110 active:scale-95 hidden"
-                    title="下一段"
-                    aria-label="显示下一段文本"
+                    aria-live="polite"
                 >
-                    <i class="fa fa-arrow-right text-white text-2xl"></i>
-                </button>
+                    加载中...
+                </p>
             </div>
-        </div>
-        <!-- 选项列表区 -->
-        <div class="options-container h-[40%] p-[40px] flex flex-col items-center justify-center" role="region" aria-label="剧情选项">
-            <div class="options-list flex flex-col gap-[20px] w-60%" id="options-list" role="list"></div>
+            
+            <!-- 选项列表区域（初始隐藏） -->
+            <div class="options-list-area absolute inset-0 flex flex-col items-center justify-center p-[40px] hidden" id="options-list-area">
+                <div class="options-list flex flex-col gap-[20px] w-60%" id="options-list" role="list"></div>
+            </div>
+            
+            <!-- 下一段文本按钮（右下角） -->
+            <button 
+                id="next-segment-btn" 
+                class="scene-arrow fixed bottom-8 right-8 w-[60px] h-[60px] bg-[rgba(26,188,156,0.8)] hover:bg-[rgba(26,188,156,1)] rounded-full flex items-center justify-center z-50 transition-all duration-300 shadow-lg hover:scale-110 active:scale-95 hidden"
+                title="下一段"
+                aria-label="显示下一段文本"
+            >
+                <i class="fa fa-arrow-right text-white text-2xl"></i>
+            </button>
         </div>
         <!-- 角色状态面板（悬浮） -->
         <div class="character-panel fixed right-8 top-1/2 -translate-y-1/2 w-[300px] h-[450px] bg-[rgba(0,0,0,0.7)] backdrop-blur-sm rounded-[12px] border border-[#34495E] p-[25px] cursor-move" id="character-panel">
