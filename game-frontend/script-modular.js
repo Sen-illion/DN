@@ -1790,10 +1790,10 @@ const Game = (() => {
             loadingIndicator.remove();
             // 如果API调用异常，使用默认场景和选项
             const flowWorldline = gameState.gameData.flow_worldline;
-            const environment = flowWorldline.environment || {};
+            const environment = flowWorldline ? flowWorldline.environment || {} : {};
             const location = environment.location || '未知地点';
             const weather = environment.weather || '晴朗';
-            const questProgress = flowWorldline.quest_progress || '';
+            const questProgress = flowWorldline ? (flowWorldline.quest_progress || '') : '';
             const fallbackScene = `你站在${location}，${weather}。${questProgress}`;
             
             const initialOptions = [
