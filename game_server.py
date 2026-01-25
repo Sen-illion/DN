@@ -749,24 +749,53 @@ def generate_option():
 
         # 如果返回的剧情数据缺少图片：默认不在 /generate-option 阻塞生成（避免长等待）。
         # 如需“选择后立即同步补图”，可设置环境变量：GENERATE_OPTION_ON_DEMAND_IMAGE=1
-        if os.getenv("GENERATE_OPTION_ON_DEMAND_IMAGE", "0") == "1":
-            try:
-                if isinstance(option_data, dict) and option_data.get("scene") and not option_data.get("scene_image"):
-                    scene_text = option_data.get("scene", "")
-                    if isinstance(scene_text, str) and scene_text.strip():
-                        img = generate_scene_image(scene_text, global_state, "default", use_cache=True)
-                        if img and isinstance(img, dict) and img.get("url"):
-                            option_data["scene_image"] = {
-                                "url": img.get("url"),
-                                "prompt": img.get("prompt", ""),
-                                "style": img.get("style", "default"),
-                                "width": img.get("width", 1024),
-                                "height": img.get("height", 1024),
-                                "cached": img.get("cached", True)
-                            }
-                            print("✅ 已按需补齐 scene_image（同步模式）")
-            except Exception as e:
-                print(f"⚠️ 按需生成 scene_image 失败，继续返回文本：{str(e)}")
+        # 修复：确保图片和文本匹配
+        # 问题：预生成时只生成文本，不生成图片，导致从缓存读取时可能没有图片或图片不匹配
+        # 解决方案：在返回数据前，检查并生成图片，确保图片和当前场景文本匹配
+        try:
+            if isinstance(option_data, dict) and option_data.get("scene"):
+                scene_text = option_data.get("scene", "")
+                scene_image = option_data.get("scene_image", None)
+                
+                # 检查是否需要生成图片：
+                # 1. 没有图片
+                # 2. 有图片但URL无效
+                # 3. 为了确保图片和文本匹配，每次都重新生成（基于当前场景文本）
+                # 这样可以避免"这次的剧情对应的是上一张的图"的问题
+                need_generate_image = False
+                
+                if not scene_image:
+                    need_generate_image = True
+                    print(f"🔄 缓存数据缺少图片，立即生成图片（场景文本长度：{len(scene_text)}）")
+                elif not scene_image.get("url"):
+                    need_generate_image = True
+                    print(f"🔄 缓存数据图片URL无效，立即生成新图片")
+                else:
+                    # 为了确保图片和文本匹配，每次都重新生成
+                    # 因为预生成时可能使用了错误的场景文本，或者图片是上一次场景的
+                    # 这样可以避免"这次的剧情对应的是上一张的图"的问题
+                    need_generate_image = True
+                    print(f"🔄 为确保图片和文本匹配，重新生成图片（场景文本长度：{len(scene_text)}）")
+                
+                if need_generate_image and isinstance(scene_text, str) and scene_text.strip():
+                    print(f"🎨 正在为场景生成图片（确保图片和文本匹配）...")
+                    img = generate_scene_image(scene_text, global_state, "default", use_cache=True)
+                    if img and isinstance(img, dict) and img.get("url"):
+                        option_data["scene_image"] = {
+                            "url": img.get("url"),
+                            "prompt": img.get("prompt", ""),
+                            "style": img.get("style", "default"),
+                            "width": img.get("width", 1024),
+                            "height": img.get("height", 1024),
+                            "cached": img.get("cached", True)
+                        }
+                        print("✅ 已生成场景图片（确保图片和文本匹配）")
+                    else:
+                        print("⚠️ 场景图片生成失败，但继续返回文本")
+        except Exception as e:
+            print(f"⚠️ 生成场景图片失败，继续返回文本：{str(e)}")
+            import traceback
+            traceback.print_exc()
         
         # 返回结果
         return jsonify({
