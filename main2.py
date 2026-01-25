@@ -695,8 +695,21 @@ def analyze_scene_characters(
             try:
                 parsed = json.loads(json_str)
                 characters_list = parsed.get("characters", [])
-                print(f"✅ 分析到 {len(characters_list)} 个角色：{[c.get('name') for c in characters_list]}")
-                return characters_list
+                # 过滤掉非字典类型的项，并安全提取角色名称
+                valid_characters = []
+                for c in characters_list:
+                    if isinstance(c, dict):
+                        valid_characters.append(c)
+                    else:
+                        print(f"⚠️ 跳过无效的角色信息（非字典类型）：{type(c)}")
+                
+                if valid_characters:
+                    char_names = [c.get('name', '') for c in valid_characters if isinstance(c, dict)]
+                    print(f"✅ 分析到 {len(valid_characters)} 个角色：{char_names}")
+                    return valid_characters
+                else:
+                    print(f"⚠️ 没有有效的角色信息")
+                    return []
             except json.JSONDecodeError as e:
                 print(f"⚠️ JSON解析失败：{str(e)}")
         
@@ -1042,11 +1055,24 @@ def get_character_reference_image(
             elif image_url.startswith('/image_cache/') or image_url.startswith('image_cache/'):
                 # 如果是本地缓存路径，复制文件
                 import shutil
-                source_path = Path(image_url.lstrip('/'))
-                if source_path.exists():
+                # 安全检查：防止路径遍历攻击
+                # 规范化路径并确保它在image_cache目录内
+                normalized_url = image_url.lstrip('/')
+                source_path = Path(normalized_url).resolve()
+                image_cache_dir = Path("image_cache").resolve()
+                
+                # 验证解析后的路径在image_cache目录内
+                try:
+                    source_path.relative_to(image_cache_dir)
+                except ValueError:
+                    # 路径不在image_cache目录内，可能是路径遍历攻击
+                    print(f"⚠️ 无效的图片路径（路径遍历检测）：{image_url}")
+                    return None
+                
+                if source_path.exists() and source_path.is_file():
                     shutil.copy2(source_path, existing_image_path)
                 else:
-                    print(f"⚠️ 源图片路径不存在：{image_url}")
+                    print(f"⚠️ 源图片路径不存在或不是文件：{image_url}")
                     return None
             else:
                 # 可能是base64或其他格式
@@ -1784,21 +1810,30 @@ def generate_scene_image(
     if scene_characters:
         print(f"✅ 检测到 {len(scene_characters)} 个角色，开始获取参考图片...")
         for char_info in scene_characters:
-            char_name = char_info.get('name', '')
-            char_desc = char_info.get('description', '')
-            if char_name:
-                char_ref_path = get_character_reference_image(
-                    char_name, 
-                    char_desc, 
-                    global_state, 
-                    image_style
-                )
-                if char_ref_path:
-                    character_reference_paths.append(char_ref_path)
-                    character_names.append(char_name)
-                    print(f"✅ 角色 {char_name} 的参考图片：{char_ref_path}")
-                else:
-                    print(f"⚠️ 角色 {char_name} 的参考图片生成失败")
+            # 安全检查：确保char_info是字典类型
+            if not isinstance(char_info, dict):
+                print(f"⚠️ 角色信息格式错误（非字典类型），跳过：{type(char_info)}")
+                continue
+            
+            try:
+                char_name = char_info.get('name', '')
+                char_desc = char_info.get('description', '')
+                if char_name:
+                    char_ref_path = get_character_reference_image(
+                        char_name, 
+                        char_desc, 
+                        global_state, 
+                        image_style
+                    )
+                    if char_ref_path:
+                        character_reference_paths.append(char_ref_path)
+                        character_names.append(char_name)
+                        print(f"✅ 角色 {char_name} 的参考图片：{char_ref_path}")
+                    else:
+                        print(f"⚠️ 角色 {char_name} 的参考图片生成失败")
+            except (AttributeError, TypeError) as e:
+                print(f"⚠️ 处理角色信息时出错，跳过：{str(e)}")
+                continue
         
         # 检查是否有角色但参考图片生成失败的情况
         if scene_characters and len(scene_characters) > 0 and len(character_reference_paths) == 0:
@@ -1917,12 +1952,13 @@ def generate_scene_image(
                 # 生成缓存键
                 # 新增：当存在“参考上一剧情图片/提示词”时，把参考信息纳入缓存键，避免误用旧缓存。
                 ref_sig = (reference_image_prompt or reference_image_url or "").strip()
-                char_sig = '_'.join(character_names) if character_names else ""
+                # 注意：背景图片的hash不包含角色名称，因为同一背景可以用于不同角色组合
+                # 角色名称只在合成图片的hash中包含（composed_hash）
                 if ref_sig:
                     ref_hash = hashlib.md5(ref_sig.encode("utf-8")).hexdigest()[:10]
-                    cache_key_seed = f"{provider}_{style}_{scene_description}_{ref_hash}_{char_sig}"
+                    cache_key_seed = f"{provider}_{style}_{scene_description}_{ref_hash}"
                 else:
-                    cache_key_seed = f"{provider}_{style}_{scene_description}_{char_sig}"
+                    cache_key_seed = f"{provider}_{style}_{scene_description}"
                 prompt_hash = hashlib.md5(cache_key_seed.encode()).hexdigest()
                 cache_path = Path(IMAGE_CACHE_DIR) / f"{prompt_hash}.png"
                 
@@ -1934,18 +1970,27 @@ def generate_scene_image(
                     ).hexdigest()
                     composed_path = Path(IMAGE_CACHE_DIR) / f"{composed_hash}.png"
                     if composed_path.exists():
+                        # 验证背景图片是否存在，如果不存在则不返回background_url
+                        background_url = None
+                        if cache_path.exists():
+                            background_url = f"/image_cache/{prompt_hash}.png"
+                        else:
+                            print(f"⚠️ 合成图片存在但背景图片不存在：{cache_path}")
+                        
                         print(f"✅ 使用本地缓存的合成图片：{composed_path}")
-                        return {
+                        result = {
                             "url": f"/image_cache/{composed_hash}.png",
                             "prompt": background_prompt,
                             "style": style,
                             "width": 1024,
                             "height": 1024,
                             "cached": True,
-                            "background_url": f"/image_cache/{prompt_hash}.png",
                             "character_references": character_reference_paths,
                             "characters": character_names
                         }
+                        if background_url:
+                            result["background_url"] = background_url
+                        return result
                 
                 # 检查背景图片是否已缓存
                 if cache_path.exists():
