@@ -757,11 +757,10 @@ def generate_option():
                 scene_text = option_data.get("scene", "")
                 scene_image = option_data.get("scene_image", None)
                 
-                # 检查是否需要生成图片：
-                # 1. 没有图片
-                # 2. 有图片但URL无效
-                # 3. 为了确保图片和文本匹配，每次都重新生成（基于当前场景文本）
-                # 这样可以避免"这次的剧情对应的是上一张的图"的问题
+                # 检查是否需要生成图片：仅当缺少或无效时再生成，否则使用缓存
+                # 1. 没有图片 -> 生成
+                # 2. 有图片但 URL 无效 -> 生成
+                # 3. 图片存在且有效 -> 使用缓存，不重新生成
                 need_generate_image = False
                 
                 if not scene_image:
@@ -770,12 +769,6 @@ def generate_option():
                 elif not scene_image.get("url"):
                     need_generate_image = True
                     print(f"🔄 缓存数据图片URL无效，立即生成新图片")
-                else:
-                    # 为了确保图片和文本匹配，每次都重新生成
-                    # 因为预生成时可能使用了错误的场景文本，或者图片是上一次场景的
-                    # 这样可以避免"这次的剧情对应的是上一张的图"的问题
-                    need_generate_image = True
-                    print(f"🔄 为确保图片和文本匹配，重新生成图片（场景文本长度：{len(scene_text)}）")
                 
                 if need_generate_image and isinstance(scene_text, str) and scene_text.strip():
                     print(f"🎨 正在为场景生成图片（确保图片和文本匹配）...")
@@ -1629,8 +1622,9 @@ def get_video_status_api(task_id):
 def serve_main_character_image(game_id, filename):
     """提供主角形象图片"""
     try:
-        # 安全检查：防止路径遍历攻击
-        if '..' in game_id or '..' in filename or '/' in game_id or '\\' in game_id:
+        # 安全检查：防止路径遍历攻击（game_id 与 filename 均禁止 .. / \）
+        if ('..' in game_id or '..' in filename or '/' in game_id or '\\' in game_id or
+                '/' in filename or '\\' in filename):
             return jsonify({"status": "error", "message": "Invalid path"}), 400
         
         image_path = os.path.join("initial", "main_character", game_id, filename)
