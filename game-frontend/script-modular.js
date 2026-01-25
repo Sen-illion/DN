@@ -1414,9 +1414,21 @@ const Game = (() => {
             if (progress === 100) {
                 clearInterval(loadingInterval);
                 setTimeout(async () => {
-                    switchScreen('gameplay');
-                    
-                    // 更新章节信息
+                    // 先检查并展示主角形象（如果已生成）
+                    await showMainCharacterIfReady(() => {
+                        // 主角形象展示完成后，继续原有流程
+                        continueToFirstScene();
+                    });
+                }, 500);
+            }
+        });
+    }
+    
+    // 继续到第一次场景的流程
+    async function continueToFirstScene() {
+        switchScreen('gameplay');
+        
+        // 更新章节信息
                     const flowWorldline = gameState.gameData.flow_worldline;
                     const currentChapter = flowWorldline.current_chapter || 'chapter1';
                     const coreWorldview = gameState.gameData.core_worldview || {};
@@ -1725,9 +1737,6 @@ const Game = (() => {
                         gameState.gameData.flow_worldline.chapter_progress = gameState.chapterProgress;
                     }
                     updateChapterProgress(gameState.chapterProgress);
-                }, 500);
-            }
-        }, 30);
     }
     
     // 预生成下一层内容的辅助函数
@@ -3165,6 +3174,177 @@ const Game = (() => {
         } catch (error) {
             console.error('保存游戏失败:', error);
             showModal('保存失败', `保存失败，请重试：${error.message}`, () => {});
+        }
+    }
+    
+    // 展示主角形象（全屏）
+    function showMainCharacterImage(imageUrl, onContinue) {
+        // 创建全屏展示面板
+        const characterPanel = document.createElement('div');
+        characterPanel.id = 'main-character-panel';
+        characterPanel.className = 'fixed inset-0 bg-black/95 flex flex-col items-center justify-center z-[100]';
+        characterPanel.innerHTML = `
+            <div class="character-content flex flex-col items-center justify-center max-w-4xl w-full px-8 animate-fade-in">
+                <div class="character-title text-[32px] font-bold text-white mb-8 text-center">
+                    这是你的主角形象
+                </div>
+                <div class="character-image-container mb-8 relative">
+                    <img 
+                        id="main-character-img" 
+                        src="${imageUrl}" 
+                        alt="主角形象" 
+                        class="max-w-full max-h-[70vh] object-contain rounded-lg shadow-2xl"
+                        style="animation: fadeIn 0.5s ease-in;"
+                    />
+                    <div id="character-loading" class="absolute inset-0 flex items-center justify-center bg-black/50 rounded-lg" style="display: none;">
+                        <div class="text-center">
+                            <div class="loading-spinner w-[60px] h-[60px] rounded-full border-[6px] border-[#1ABC9C] border-t-transparent animate-spin mx-auto mb-4"></div>
+                            <p class="text-white text-lg">加载中...</p>
+                        </div>
+                    </div>
+                </div>
+                <button 
+                    id="character-continue-btn" 
+                    class="w-[200px] h-[50px] rounded-[8px] bg-[#1ABC9C] text-[18px] font-bold text-white transition-all hover:bg-[#16A085] hover:scale-105 active:scale-95 shadow-lg"
+                >
+                    继续
+                </button>
+            </div>
+        `;
+        document.body.appendChild(characterPanel);
+        
+        // 图片加载处理
+        const img = characterPanel.querySelector('#main-character-img');
+        const loadingDiv = characterPanel.querySelector('#character-loading');
+        
+        img.onload = () => {
+            loadingDiv.style.display = 'none';
+        };
+        
+        img.onerror = () => {
+            loadingDiv.style.display = 'none';
+            console.error('❌ 主角形象图片加载失败');
+            // 如果图片加载失败，显示错误提示
+            const errorMsg = document.createElement('div');
+            errorMsg.className = 'text-red-500 text-center mt-4';
+            errorMsg.textContent = '图片加载失败，但可以继续游戏';
+            characterPanel.querySelector('.character-image-container').appendChild(errorMsg);
+        };
+        
+        // 继续按钮事件
+        const continueBtn = characterPanel.querySelector('#character-continue-btn');
+        continueBtn.addEventListener('click', () => {
+            // 隐藏动画
+            characterPanel.style.opacity = '0';
+            characterPanel.style.transition = 'opacity 0.3s ease-out';
+            setTimeout(() => {
+                document.body.removeChild(characterPanel);
+                if (onContinue) {
+                    onContinue();
+                }
+            }, 300);
+        });
+        
+        // 按ESC键关闭
+        const handleEsc = (e) => {
+            if (e.key === 'Escape') {
+                characterPanel.style.opacity = '0';
+                characterPanel.style.transition = 'opacity 0.3s ease-out';
+                setTimeout(() => {
+                    document.body.removeChild(characterPanel);
+                    document.removeEventListener('keydown', handleEsc);
+                    if (onContinue) {
+                        onContinue();
+                    }
+                }, 300);
+            }
+        };
+        document.addEventListener('keydown', handleEsc);
+    }
+    
+    // 检查并等待主角形象生成完成
+    async function showMainCharacterIfReady(onContinue) {
+        try {
+            // 检查 globalState 中是否有主角形象信息
+            const mainCharacter = gameState.gameData?.main_character;
+            const gameId = gameState.gameData?.game_id;
+            
+            if (!gameId) {
+                console.warn('⚠️ 没有游戏ID，跳过主角形象展示');
+                if (onContinue) onContinue();
+                return;
+            }
+            
+            // 构建主角形象图片URL
+            const imageUrl = mainCharacter && mainCharacter.image_url
+                ? (mainCharacter.image_url.startsWith('http') 
+                    ? mainCharacter.image_url 
+                    : `http://127.0.0.1:5001${mainCharacter.image_url}`)
+                : `http://127.0.0.1:5001/initial/main_character/${gameId}/main_character.png`;
+            
+            // 检查图片是否存在（通过尝试加载）
+            const checkImageExists = () => {
+                return new Promise((resolve) => {
+                    const img = new Image();
+                    img.onload = () => resolve(true);
+                    img.onerror = () => resolve(false);
+                    img.src = imageUrl;
+                });
+            };
+            
+            // 如果已经有主角形象信息，直接展示
+            if (mainCharacter && mainCharacter.image_url) {
+                console.log('✅ 主角形象已生成，开始展示');
+                showMainCharacterImage(imageUrl, onContinue);
+                return;
+            }
+            
+            // 如果主角形象还未生成，等待生成完成
+            console.log('⏳ 主角形象还在生成中，等待完成...');
+            const maxWaitTime = 300000; // 5分钟
+            const checkInterval = 2000; // 每2秒检查一次
+            const startTime = Date.now();
+            
+            const checkMainCharacter = async () => {
+                try {
+                    const exists = await checkImageExists();
+                    
+                    if (exists) {
+                        console.log('✅ 主角形象生成完成，开始展示');
+                        // 更新 gameState
+                        if (!gameState.gameData.main_character) {
+                            gameState.gameData.main_character = {
+                                game_id: gameId,
+                                image_url: `/initial/main_character/${gameId}/main_character.png`
+                            };
+                        }
+                        showMainCharacterImage(imageUrl, onContinue);
+                        return;
+                    }
+                    
+                    // 如果还没生成完成，检查是否超时
+                    if (Date.now() - startTime < maxWaitTime) {
+                        // 继续等待
+                        setTimeout(checkMainCharacter, checkInterval);
+                    } else {
+                        // 超时，跳过展示
+                        console.warn('⚠️ 主角形象生成超时，跳过展示');
+                        if (onContinue) onContinue();
+                    }
+                } catch (error) {
+                    console.error('❌ 检查主角形象状态失败:', error);
+                    // 出错时跳过展示
+                    if (onContinue) onContinue();
+                }
+            };
+            
+            // 开始检查
+            setTimeout(checkMainCharacter, checkInterval);
+            
+        } catch (error) {
+            console.error('❌ 检查主角形象失败:', error);
+            // 出错时跳过展示，继续游戏
+            if (onContinue) onContinue();
         }
     }
     
