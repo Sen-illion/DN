@@ -1919,37 +1919,58 @@ def call_yunwu_image_api(prompt: str, style: str) -> str:
     # 注意：不同模型可能有不同的返回格式，需要兼容处理
     
     # 根据模型类型调整提示词
-    if "gemini" in model.lower():
-        # Gemini 模型可能需要更明确的指令
-        system_content = """你是一个图片生成API。用户会提供图片描述，你必须生成图片。
-
-重要要求：
-1. 必须返回图片数据，不能只返回文本描述
-2. 优先返回base64格式的图片数据，格式：data:image/png;base64,<base64数据>
-3. 如果没有base64数据，则返回完整的图片URL（必须以http://或https://开头）
-4. 不要返回任何解释性文字，只返回图片数据或URL
-5. 如果无法生成图片，返回错误信息（但这种情况应该很少发生）"""
-        user_content = f"请生成一张图片。\n\n图片描述：{prompt}\n\n请直接返回base64格式的图片数据（data:image/png;base64,...）或完整的图片URL（http://...或https://...）。不要添加任何其他文字说明。"
+    if "gemini" in model.lower() and "image" in model.lower():
+        # Gemini 图片生成模型：尝试使用英文提示词（模型可能是英文训练的）
+        # 尝试不使用 system message，只使用 user message，更简洁直接
+        request_body = {
+            "model": model,
+            "messages": [
+                {
+                    "role": "user",
+                    "content": f"Generate an image based on this description: {prompt}\n\nReturn only the image as base64 data (data:image/png;base64,...) or image URL (https://...). Do not include any text, code blocks, or explanations."
+                }
+            ],
+            "temperature": 0.1,
+            "max_tokens": 4000
+        }
+    elif "gemini" in model.lower():
+        # 其他 Gemini 模型
+        system_content = "你是一个图片生成模型。直接生成图片并返回base64数据或URL，不要任何文字说明或代码块。"
+        user_content = f"生成图片：{prompt}\n\n返回格式：data:image/png;base64,<base64数据> 或 https://图片URL"
+        request_body = {
+            "model": model,
+            "messages": [
+                {
+                    "role": "system",
+                    "content": system_content
+                },
+                {
+                    "role": "user",
+                    "content": user_content
+                }
+            ],
+            "temperature": 0.1,
+            "max_tokens": 4000
+        }
     else:
         # 其他模型的提示词
         system_content = "你是一个图片生成API。用户会提供图片描述，你必须生成图片并返回图片URL或base64数据。优先返回base64格式的图片数据（data:image/png;base64,...），如果没有则返回图片URL。"
         user_content = f"请生成一张图片，描述：{prompt}\n\n请返回图片URL或base64格式的图片数据。"
-    
-    request_body = {
-        "model": model,
-        "messages": [
-            {
-                "role": "system",
-                "content": system_content
-            },
-            {
-                "role": "user",
-                "content": user_content
-            }
-        ],
-        "temperature": 0.3,  # 降低temperature以提高格式一致性
-        "max_tokens": 2000
-    }
+        request_body = {
+            "model": model,
+            "messages": [
+                {
+                    "role": "system",
+                    "content": system_content
+                },
+                {
+                    "role": "user",
+                    "content": user_content
+                }
+            ],
+            "temperature": 0.3,
+            "max_tokens": 2000
+        }
     
     # 注意：gemini-2.5-flash-image 模型不支持 response_format 参数，不要添加
     # 如果模型是 sora_image 或其他支持JSON模式的模型，可以尝试添加
@@ -1972,6 +1993,24 @@ def call_yunwu_image_api(prompt: str, style: str) -> str:
                     time.sleep(sleep_s)
                 _YUNWU_LAST_CALL_TS = time.time()
 
+            # 🔍 调试：打印实际发送的请求内容
+            print(f"🔍 ========== 发送给API的请求内容 ==========")
+            print(f"🔍 API端点: {base_url}/chat/completions")
+            print(f"🔍 模型: {model}")
+            try:
+                import json
+                request_str = json.dumps(request_body, ensure_ascii=False, indent=2)
+                # 如果请求太长，只打印前2000字符
+                if len(request_str) > 2000:
+                    print(f"📤 请求内容（前2000字符）:\n{request_str[:2000]}")
+                    print(f"\n📤 请求内容（后500字符）:\n{request_str[-500:]}")
+                else:
+                    print(f"📤 请求内容:\n{request_str}")
+            except Exception as e:
+                print(f"⚠️ 无法序列化请求内容: {str(e)}")
+                print(f"📤 请求内容: {str(request_body)[:1000]}")
+            print(f"🔍 ==========================================")
+            
             # 图片生成可能耗时，但不应无限期阻塞
             response = requests.post(
                 f"{base_url}/chat/completions",
@@ -2114,6 +2153,24 @@ def call_yunwu_image_api(prompt: str, style: str) -> str:
                 # 打印响应状态码和基本信息
                 print(f"✅ yunwu.ai API响应成功（状态码: {response.status_code}）")
                 print(f"🔍 响应结构预览: {str(result)[:200]}...")
+                
+                # 🔍 详细调试：打印完整的响应结构（用于排查解析问题）
+                import json
+                print(f"🔍 ========== 完整API响应（用于调试） ==========")
+                try:
+                    full_response_str = json.dumps(result, ensure_ascii=False, indent=2)
+                    # 如果响应太长，只打印前3000字符和后500字符
+                    if len(full_response_str) > 3500:
+                        print(f"📄 完整响应（前3000字符）:\n{full_response_str[:3000]}")
+                        print(f"\n📄 完整响应（后500字符）:\n{full_response_str[-500:]}")
+                        print(f"📊 总长度: {len(full_response_str)} 字符")
+                    else:
+                        print(f"📄 完整响应:\n{full_response_str}")
+                except Exception as e:
+                    print(f"⚠️ 无法序列化完整响应: {str(e)}")
+                    print(f"📄 响应类型: {type(result)}")
+                    print(f"📄 响应内容: {str(result)[:2000]}")
+                print(f"🔍 ==========================================")
             except Exception as e:
                 text_preview = (response.text or "")[:500]
                 print(f"⚠️ yunwu.ai 返回非JSON内容，无法解析：{text_preview}")
@@ -2175,6 +2232,37 @@ def call_yunwu_image_api(prompt: str, style: str) -> str:
             print(f"   - 响应类型: {type(result)}")
             print(f"   - 响应键: {list(result.keys()) if isinstance(result, dict) else 'N/A'}")
             
+            # 🔍 检查响应中的其他顶层字段（可能包含图片数据）
+            print(f"🔍 检查响应中的其他顶层字段...")
+            for key in ["data", "image", "image_url", "url", "images", "output", "result"]:
+                if key in result:
+                    value = result[key]
+                    value_type = type(value).__name__
+                    if isinstance(value, str):
+                        print(f"   - result['{key}']: {value_type}, 长度={len(value)}, 前200字符={value[:200]}")
+                        if value.startswith("data:image") or value.startswith("http://") or value.startswith("https://"):
+                            print(f"💡 在result['{key}']中发现可能的图片数据！")
+                            if value.startswith("data:image"):
+                                saved_path = save_base64_image(value, prompt)
+                                if saved_path:
+                                    return saved_path
+                            elif value.startswith("http://") or value.startswith("https://"):
+                                return value
+                    else:
+                        print(f"   - result['{key}']: {value_type} = {str(value)[:200]}")
+            
+            # 🔍 检查 usage 字段（可能包含 token 信息，用于确认API确实返回了内容）
+            if "usage" in result:
+                usage = result["usage"]
+                print(f"🔍 API使用情况: {usage}")
+                if isinstance(usage, dict):
+                    total_tokens = usage.get("total_tokens", 0)
+                    prompt_tokens = usage.get("prompt_tokens", 0)
+                    completion_tokens = usage.get("completion_tokens", 0)
+                    print(f"   - 总tokens: {total_tokens}, 输入tokens: {prompt_tokens}, 输出tokens: {completion_tokens}")
+                    if completion_tokens > 0:
+                        print(f"💡 API确实返回了 {completion_tokens} 个输出tokens，说明有内容返回！")
+            
             choices = result.get("choices", [])
             print(f"   - choices数量: {len(choices) if choices else 0}")
             
@@ -2191,6 +2279,19 @@ def call_yunwu_image_api(prompt: str, style: str) -> str:
             print(f"   - message类型: {type(message)}")
             print(f"   - message键: {list(message.keys()) if isinstance(message, dict) else 'N/A'}")
             
+            # 🔍 检查 choices[0] 中的 finish_reason 字段
+            if "finish_reason" in choices[0]:
+                finish_reason = choices[0]["finish_reason"]
+                print(f"🔍 finish_reason: {finish_reason}")
+                if finish_reason and finish_reason != "stop":
+                    print(f"⚠️ finish_reason 不是 'stop'，可能是 '{finish_reason}'")
+                    if finish_reason == "length":
+                        print(f"💡 可能原因：输出被截断（max_tokens 限制）")
+                    elif finish_reason == "content_filter":
+                        print(f"💡 可能原因：内容被过滤")
+                    elif finish_reason == "function_call":
+                        print(f"💡 可能原因：触发了函数调用")
+            
             if not message:
                 print(f"⚠️ yunwu.ai返回的choices[0]中没有message字段")
                 print(f"📄 choices[0]内容: {json.dumps(choices[0], ensure_ascii=False, indent=2)[:1000]}")
@@ -2201,8 +2302,72 @@ def call_yunwu_image_api(prompt: str, style: str) -> str:
             print(f"   - content长度: {len(content) if content else 0}")
             print(f"   - content前100字符: {str(content)[:100] if content else '(空)'}")
             
+            # 🔍 详细调试：如果content很短，打印完整内容（包括不可见字符）
+            if content and len(content) < 100:
+                print(f"🔍 content完整内容（repr格式，显示所有字符）: {repr(content)}")
+                print(f"🔍 content完整内容（原始格式）: {content}")
+            
+            # 🔍 检查message中的所有字段（可能有其他字段包含图片数据）
+            print(f"🔍 检查message中的所有字段...")
+            if isinstance(message, dict):
+                for key, value in message.items():
+                    if key == "content":
+                        continue  # content已经处理过了
+                    value_type = type(value).__name__
+                    if isinstance(value, str):
+                        value_preview = value[:200] if len(value) > 200 else value
+                        print(f"   - message['{key}']: {value_type}, 长度={len(value)}, 内容={repr(value_preview)}")
+                        # 如果这个字段看起来像图片数据，尝试提取
+                        if value.startswith("data:image") or value.startswith("http://") or value.startswith("https://"):
+                            print(f"💡 在message['{key}']中发现可能的图片数据！")
+                            if value.startswith("data:image"):
+                                saved_path = save_base64_image(value, prompt)
+                                if saved_path:
+                                    return saved_path
+                            elif value.startswith("http://") or value.startswith("https://"):
+                                return value
+                    elif isinstance(value, (dict, list)):
+                        print(f"   - message['{key}']: {value_type}, 内容={str(value)[:200]}")
+                        # 递归检查嵌套结构
+                        if isinstance(value, dict):
+                            for sub_key, sub_value in value.items():
+                                if isinstance(sub_value, str) and (sub_value.startswith("data:image") or sub_value.startswith("http")):
+                                    print(f"💡 在message['{key}']['{sub_key}']中发现可能的图片数据！")
+                                    if sub_value.startswith("data:image"):
+                                        saved_path = save_base64_image(sub_value, prompt)
+                                        if saved_path:
+                                            return saved_path
+                                    elif sub_value.startswith("http://") or sub_value.startswith("https://"):
+                                        return sub_value
+                    else:
+                        print(f"   - message['{key}']: {value_type} = {value}")
+            
+            # 🔍 检查choices[0]中的所有字段（可能有其他字段包含图片数据）
+            print(f"🔍 检查choices[0]中的所有字段...")
+            if isinstance(choices[0], dict):
+                for key, value in choices[0].items():
+                    if key in ["index", "message", "finish_reason"]:
+                        continue  # 这些字段已经处理过了
+                    value_type = type(value).__name__
+                    if isinstance(value, str):
+                        value_preview = value[:200] if len(value) > 200 else value
+                        print(f"   - choices[0]['{key}']: {value_type}, 长度={len(value)}, 内容={repr(value_preview)}")
+                        if value.startswith("data:image") or value.startswith("http://") or value.startswith("https://"):
+                            print(f"💡 在choices[0]['{key}']中发现可能的图片数据！")
+                            if value.startswith("data:image"):
+                                saved_path = save_base64_image(value, prompt)
+                                if saved_path:
+                                    return saved_path
+                            elif value.startswith("http://") or value.startswith("https://"):
+                                return value
+                    else:
+                        print(f"   - choices[0]['{key}']: {value_type} = {str(value)[:200]}")
+            
             # 兼容模型把结果包在代码块/引号里（尤其是 data:image/... 或 JSON）
             content_clean = (content or "").strip()
+            
+            # 记录原始内容用于调试
+            original_content = content_clean
             
             if not content_clean:
                 print(f"⚠️ yunwu.ai返回的content字段为空")
@@ -2226,28 +2391,156 @@ def call_yunwu_image_api(prompt: str, style: str) -> str:
                         print(f"⚠️ 注意：finish_reason 不是 'stop'，可能是 '{finish_reason}'，这可能导致内容为空")
                 return None
             
-            # 先去掉最外层引号（有些API会返回形如 "```json ... ```" 的字符串）
-            for _ in range(2):
-                if (content_clean.startswith('"') and content_clean.endswith('"')) or (content_clean.startswith("'") and content_clean.endswith("'")):
-                    content_clean = content_clean[1:-1].strip()
-            # 再剥离 ``` fenced code block（兼容单行/多行、带语言标记）
+            # 保守地去除引号和代码块，避免误删有效内容
+            # 先记录去除前的状态
+            before_cleaning = content_clean
+            print(f"🔍 开始清理content，原始长度: {len(content_clean)} 字符")
+            if len(content_clean) <= 200:
+                print(f"🔍 原始content内容: {repr(content_clean)}")
+            
+            # 策略1：先去掉最外层引号（但要确保去除后还有内容）
+            for i in range(2):
+                if len(content_clean) >= 2:
+                    if (content_clean.startswith('"') and content_clean.endswith('"')) or (content_clean.startswith("'") and content_clean.endswith("'")):
+                        # 检查去除引号后是否还有内容（至少1个字符）
+                        temp_clean = content_clean[1:-1].strip()
+                        if len(temp_clean) > 0:  # 只有去除后还有内容才执行
+                            print(f"🔍 步骤{i+1}: 去除引号，长度从 {len(content_clean)} 变为 {len(temp_clean)}")
+                            content_clean = temp_clean
+                        else:
+                            # 去除后为空，说明可能是空引号，保留原内容
+                            print(f"🔍 步骤{i+1}: 去除引号后为空，保留原内容")
+                            break
+            
+            # 策略2：剥离 ``` fenced code block（但要确保去除后还有内容）
             if content_clean.startswith("```"):
-                fence_match = re.match(r"^```(?:[a-zA-Z0-9_-]+)?\s*([\s\S]*?)\s*```$", content_clean)
+                print(f"🔍 检测到代码块标记，开始提取内容...")
+                fence_match = re.match(r"^```(?:[a-zA-Z0-9_-]+)?\s*([\s\S]*?)\s*```$", content_clean, re.DOTALL)
                 if fence_match:
-                    content_clean = (fence_match.group(1) or "").strip()
+                    extracted = (fence_match.group(1) or "").strip()
+                    if len(extracted) > 0:  # 只有提取到内容才使用
+                        print(f"🔍 从代码块中提取内容，长度从 {len(content_clean)} 变为 {len(extracted)}")
+                        content_clean = extracted
+                    else:
+                        # 如果提取为空，说明代码块是空的，保留原内容
+                        print(f"🔍 代码块提取后为空，保留原内容")
                 else:
-                    # 退化处理：按行移除首尾 fence
+                    # 退化处理：按行移除首尾 fence（但要确保去除后还有内容）
                     lines = content_clean.splitlines()
                     if len(lines) >= 2 and lines[0].strip().startswith("```"):
                         if lines[-1].strip().startswith("```"):
-                            lines = lines[1:-1]
+                            # 移除首尾两行
+                            remaining_lines = lines[1:-1]
+                            temp_clean = "\n".join(remaining_lines).strip()
+                            if len(temp_clean) > 0:  # 只有去除后还有内容才使用
+                                print(f"🔍 按行移除代码块标记，长度从 {len(content_clean)} 变为 {len(temp_clean)}")
+                                content_clean = temp_clean
+                            else:
+                                print(f"🔍 按行移除代码块标记后为空，保留原内容")
                         else:
-                            lines = lines[1:]
-                        content_clean = "\n".join(lines).strip()
-            # fence 解包后再做一次引号去除
-            for _ in range(2):
-                if (content_clean.startswith('"') and content_clean.endswith('"')) or (content_clean.startswith("'") and content_clean.endswith("'")):
-                    content_clean = content_clean[1:-1].strip()
+                            # 只移除第一行
+                            remaining_lines = lines[1:]
+                            temp_clean = "\n".join(remaining_lines).strip()
+                            if len(temp_clean) > 0:  # 只有去除后还有内容才使用
+                                print(f"🔍 移除第一行代码块标记，长度从 {len(content_clean)} 变为 {len(temp_clean)}")
+                                content_clean = temp_clean
+                            else:
+                                print(f"🔍 移除第一行代码块标记后为空，保留原内容")
+            
+            # 策略3：fence 解包后再做一次引号去除（但要确保去除后还有内容）
+            for i in range(2):
+                if len(content_clean) >= 2:
+                    if (content_clean.startswith('"') and content_clean.endswith('"')) or (content_clean.startswith("'") and content_clean.endswith("'")):
+                        temp_clean = content_clean[1:-1].strip()
+                        if len(temp_clean) > 0:  # 只有去除后还有内容才执行
+                            print(f"🔍 代码块解包后再次去除引号，长度从 {len(content_clean)} 变为 {len(temp_clean)}")
+                            content_clean = temp_clean
+                        else:
+                            print(f"🔍 代码块解包后去除引号为空，停止处理")
+                            break
+            
+            print(f"🔍 清理完成，最终长度: {len(content_clean)} 字符")
+            
+            # 检查去除引号和代码块后是否变成空字符串
+            if not content_clean:
+                print(f"⚠️ yunwu.ai返回的content字段在去除引号/代码块后为空")
+                print(f"📄 原始content内容: {repr(original_content[:200])}")
+                print(f"📄 原始content长度: {len(original_content)} 字符")
+                
+                # 检查是否是空的代码块（说明API没有生成图片）
+                # 使用正则表达式匹配各种形式的空代码块
+                empty_code_block_pattern = re.match(r'^```(?:\w+)?\s*\n?\s*```$', original_content.strip(), re.MULTILINE)
+                is_empty_code_block = (
+                    empty_code_block_pattern is not None or
+                    original_content.strip() in ["```", "```\n```", "```\n\n```", "```json\n```", "```json\n\n```"] or
+                    (original_content.strip().startswith("```") and 
+                     original_content.strip().endswith("```") and 
+                     len(original_content.strip().replace("```", "").strip()) == 0)
+                )
+                
+                if is_empty_code_block:
+                    print(f"⚠️ 检测到空的代码块，说明yunwu.ai API没有生成图片数据")
+                    print(f"💡 可能的原因：")
+                    print(f"   1. gemini-2.5-flash-image 模型可能不支持图片生成，或需要不同的调用方式")
+                    print(f"   2. API密钥权限不足，无法使用图片生成功能")
+                    print(f"   3. 提示词格式不符合模型要求")
+                    print(f"   4. 模型可能返回了错误信息，但被包装在空代码块中")
+                    
+                    # 检查finish_reason字段
+                    if isinstance(message, dict) and "finish_reason" in message:
+                        finish_reason = message.get("finish_reason")
+                        print(f"💡 finish_reason: {finish_reason}")
+                        if finish_reason and finish_reason != "stop":
+                            print(f"⚠️ finish_reason 不是 'stop'，可能是 '{finish_reason}'，这可能导致内容为空")
+                    
+                    # 检查choices[0]中是否有其他字段包含图片数据
+                    print(f"🔍 检查choices[0]中的其他字段...")
+                    if isinstance(choices[0], dict):
+                        for key, value in choices[0].items():
+                            if key not in ["index", "message", "finish_reason"]:
+                                print(f"   - {key}: {type(value)} = {str(value)[:100] if isinstance(value, str) else value}")
+                    
+                    # 检查message中是否有其他字段包含图片数据
+                    print(f"🔍 检查message中的其他字段...")
+                    if isinstance(message, dict):
+                        for key, value in message.items():
+                            if key not in ["role", "content"]:
+                                print(f"   - {key}: {type(value)} = {str(value)[:100] if isinstance(value, str) else value}")
+                                # 如果找到可能的图片URL或base64数据
+                                if isinstance(value, str) and (value.startswith("http") or value.startswith("data:image")):
+                                    print(f"💡 在message['{key}']中发现可能的图片数据！")
+                                    return value
+                    
+                    # 检查完整响应中是否有其他字段包含图片数据
+                    print(f"🔍 检查完整响应中的其他字段...")
+                    for key in ["data", "image", "image_url", "url", "images"]:
+                        if key in result:
+                            value = result[key]
+                            print(f"   - {key}: {type(value)} = {str(value)[:200] if isinstance(value, str) else value}")
+                            if isinstance(value, str) and (value.startswith("http") or value.startswith("data:image")):
+                                print(f"💡 在result['{key}']中发现可能的图片数据！")
+                                return value
+                    
+                    print(f"💡 建议：")
+                    print(f"   - 检查.env文件中的yunwu_model配置，尝试切换到其他模型（如 sora_image）")
+                    print(f"   - 检查yunwu.ai API文档，确认gemini-2.5-flash-image模型是否支持图片生成")
+                    print(f"   - 如果API不支持图片生成，可以切换到其他图片生成服务")
+                    return None
+                
+                print(f"💡 可能的原因：")
+                print(f"   1. API返回的内容被错误地包装在引号或代码块中，去除后内容丢失")
+                print(f"   2. API返回的content字段本身就是空字符串或只包含空白字符")
+                print(f"   3. 代码块解析逻辑可能过于激进，误删了有效内容")
+                print(f"💡 建议：")
+                print(f"   - 检查原始content内容（见上方日志）")
+                print(f"   - 如果原始content不为空，可能需要调整引号/代码块去除逻辑")
+                print(f"   - 检查yunwu.ai API返回的完整响应结构")
+                # 如果原始内容不为空，尝试直接使用原始内容（可能包含有效的图片数据）
+                if original_content and len(original_content) > 10:
+                    print(f"💡 尝试直接使用原始content内容进行解析...")
+                    content_clean = original_content
+                else:
+                    return None
             
             print(f"🔍 yunwu.ai返回的原始内容（前500字符）：{content_clean[:500]}")
             if len(content_clean) > 500:
