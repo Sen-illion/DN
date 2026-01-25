@@ -1069,8 +1069,11 @@ def get_character_reference_image(
             choices = result.get("choices", [])
             if choices:
                 prompt = choices[0].get("message", {}).get("content", "").strip()
-                # 清理提示词
-                prompt = re.sub(r'```[a-zA-Z]*\n?', '', prompt).strip()
+                # 清理提示词：移除markdown代码块标记（开头和结尾）
+                # 修复：同时移除开头和结尾的代码块标记
+                prompt = re.sub(r'^```[a-zA-Z]*\n?', '', prompt)  # 移除开头
+                prompt = re.sub(r'\n?```\s*$', '', prompt)  # 移除结尾
+                prompt = prompt.strip()
                 if not prompt:
                     prompt = f"{character_name}, {character_info}, character reference, full body, detailed, high quality"
             else:
@@ -1963,13 +1966,12 @@ def generate_scene_image(
     
     # 4. 生成背景图片提示词（不包含人物描述）
     # 修改提示词，移除人物描述，只保留场景背景
-    background_prompt = optimize_image_prompt_with_llm(scene_description, global_state, image_style)
-    
-    # 如果检测到角色，从提示词中移除人物描述，专注于背景场景
+    # 如果检测到角色，我们需要生成一个不包含角色的背景提示词
     # 注意：使用 scene_characters 而不是 character_names，因为即使参考图片生成失败，
     # 我们仍然希望背景图片不包含角色（角色会通过合成添加）
     if scene_characters and len(scene_characters) > 0:
         # 使用LLM优化背景提示词（不包含人物）
+        background_prompt = None  # 初始化为None，确保必须成功生成
         try:
             api_key = AI_API_CONFIG.get('api_key', '')
             base_url = AI_API_CONFIG.get('base_url', '')
@@ -2019,10 +2021,33 @@ def generate_scene_image(
                 choices = result.get("choices", [])
                 if choices:
                     background_prompt = choices[0].get("message", {}).get("content", "").strip()
-                    # 清理提示词
-                    background_prompt = re.sub(r'```[a-zA-Z]*\n?', '', background_prompt).strip()
+                    # 清理提示词：移除markdown代码块标记（开头和结尾）
+                    # 修复：同时移除开头和结尾的代码块标记
+                    background_prompt = re.sub(r'^```[a-zA-Z]*\n?', '', background_prompt)  # 移除开头
+                    background_prompt = re.sub(r'\n?```\s*$', '', background_prompt)  # 移除结尾
+                    background_prompt = background_prompt.strip()
         except Exception as e:
-            print(f"⚠️ 生成背景提示词失败，使用原始提示词：{str(e)}")
+            print(f"⚠️ 生成背景提示词失败：{str(e)}")
+        
+        # 如果LLM生成失败，手动从场景描述中移除角色相关描述
+        if not background_prompt or not background_prompt.strip():
+            print("⚠️ LLM生成背景提示词失败，尝试手动移除角色描述...")
+            # 使用原始场景描述，但尝试移除明显的角色描述
+            # 这是一个备用方案，可能不够完美，但比使用包含角色的完整提示词要好
+            background_prompt = scene_description
+            # 移除常见的角色描述关键词
+            character_keywords = ['人物', '角色', '人', '主角', '你', '他', '她', '他们', '她们']
+            for keyword in character_keywords:
+                # 简单的移除策略：移除包含关键词的句子
+                sentences = background_prompt.split('。')
+                background_prompt = '。'.join([s for s in sentences if keyword not in s])
+            # 如果移除后为空，使用一个通用的背景描述
+            if not background_prompt or not background_prompt.strip():
+                background_prompt = "一个场景背景，包含环境、建筑、物品和氛围，不包含任何人物"
+            print(f"✅ 使用备用背景提示词（已移除角色描述）")
+    else:
+        # 如果没有检测到角色，使用完整的场景描述生成提示词
+        background_prompt = optimize_image_prompt_with_llm(scene_description, global_state, image_style)
     
     # 5. 调用AI图片生成API生成背景图片
     try:
