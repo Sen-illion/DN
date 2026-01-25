@@ -1601,7 +1601,13 @@ const Game = (() => {
                                             gameState.gameData.flow_worldline.chapter_progress = gameState.chapterProgress;
                                             updateChapterProgress(gameState.chapterProgress);
                                         }
+                                        // 保存已计算的chapter_progress，防止被flowUpdate覆盖
+                                        const preservedChapterProgress = gameState.gameData.flow_worldline.chapter_progress;
                                         Object.assign(gameState.gameData.flow_worldline, flowUpdate);
+                                        // 恢复已计算的chapter_progress，确保与gameState.chapterProgress同步
+                                        if (preservedChapterProgress !== undefined && preservedChapterProgress !== null) {
+                                            gameState.gameData.flow_worldline.chapter_progress = preservedChapterProgress;
+                                        }
                                     } else if (gameState.gameData.flow_worldline) {
                                         // 即使没有flow_update，初始场景生成后也应该有初始进度
                                         initializeChapterProgress();
@@ -1718,6 +1724,16 @@ const Game = (() => {
                         gameState.gameData.flow_worldline.chapter_progress = 100;
                         updateChapterProgress(100);
                     } else {
+                        // 确保chapterProgress已初始化，避免NaN计算
+                        if (gameState.chapterProgress === undefined || gameState.chapterProgress === null || isNaN(gameState.chapterProgress)) {
+                            // 初始进度设为1-3%（表示游戏开始）
+                            const initialProgress = Math.max(1, Math.min(3, Math.random() * 2 + 1));
+                            gameState.chapterProgress = Math.round(initialProgress * 10) / 10;
+                            if (gameState.gameData.flow_worldline) {
+                                gameState.gameData.flow_worldline.chapter_progress = gameState.chapterProgress;
+                            }
+                            updateChapterProgress(gameState.chapterProgress);
+                        }
                         // 根据当前进度在到达结局之前的占比来确定进度更新
                         // 距离100%越近，每次增加的进度越少
                         const remainingProgress = 100 - gameState.chapterProgress;
@@ -1732,7 +1748,13 @@ const Game = (() => {
                         gameState.gameData.flow_worldline.chapter_progress = gameState.chapterProgress;
                         updateChapterProgress(gameState.chapterProgress);
                     }
+                    // 保存已计算的chapter_progress，防止被flowUpdate覆盖
+                    const preservedChapterProgress = gameState.gameData.flow_worldline.chapter_progress;
                     Object.assign(gameState.gameData.flow_worldline, flowUpdate);
+                    // 恢复已计算的chapter_progress，确保与gameState.chapterProgress同步
+                    if (preservedChapterProgress !== undefined && preservedChapterProgress !== null) {
+                        gameState.gameData.flow_worldline.chapter_progress = preservedChapterProgress;
+                    }
                 } else if (gameState.gameData.flow_worldline) {
                     // 即使没有flow_update，初始场景生成后也应该有初始进度
                     // 初始进度设为1-3%（表示游戏开始）
@@ -1810,7 +1832,8 @@ const Game = (() => {
         
         // 初始化章节进度（1-3%，表示游戏开始）
         // 仅在进度尚未初始化时设置（避免覆盖已在成功路径或重试路径中设置的进度）
-        if (gameState.chapterProgress === undefined || gameState.chapterProgress === null) {
+        // 注意：如果进度为0（初始值），也需要初始化，因为0%表示未开始，而1-3%表示游戏已开始
+        if (gameState.chapterProgress === undefined || gameState.chapterProgress === null || isNaN(gameState.chapterProgress) || gameState.chapterProgress === 0) {
             const initialProgress = Math.max(1, Math.min(3, Math.random() * 2 + 1));
             gameState.chapterProgress = Math.round(initialProgress * 10) / 10;
             if (gameState.gameData.flow_worldline) {
