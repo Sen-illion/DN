@@ -1523,9 +1523,21 @@ const Game = (() => {
                     let retryCount = 0;
                     const maxRetries = 2;
                     
+                    // 初始化章节进度的辅助函数
+                    const initializeChapterProgress = () => {
+                        const initialProgress = Math.max(1, Math.min(3, Math.random() * 2 + 1));
+                        gameState.chapterProgress = Math.round(initialProgress * 10) / 10;
+                        if (gameState.gameData.flow_worldline) {
+                            gameState.gameData.flow_worldline.chapter_progress = gameState.chapterProgress;
+                        }
+                        updateChapterProgress(gameState.chapterProgress);
+                    };
+                    
                     // 如果场景无效，等待一段时间后重试（最多重试2次）
                     const retryFunction = async () => {
-                        console.log('🔄 重试获取初始场景...');
+                        retryCount++;
+                        console.log(`🔄 重试获取初始场景... (${retryCount}/${maxRetries})`);
+                        
                         setTimeout(async () => {
                             try {
                                 // 添加超时控制（5分钟超时）
@@ -1566,9 +1578,46 @@ const Game = (() => {
                                     ];
                                     const retrySceneImage = retryOptionData.scene_image || null;
                                     console.log('✅ 重试成功，使用后端生成的初始场景:', retryScene);
+                                    
+                                    // 更新游戏状态（如果有flow_update）
+                                    if (gameState.gameData.flow_worldline && retryOptionData.flow_update) {
+                                        const flowUpdate = retryOptionData.flow_update;
+                                        
+                                        // 更新章节进度
+                                        if (flowUpdate.chapter_conflict_solved === true) {
+                                            gameState.chapterProgress = 100;
+                                            gameState.gameData.flow_worldline.chapter_progress = 100;
+                                            updateChapterProgress(100);
+                                        } else {
+                                            const remainingProgress = 100 - gameState.chapterProgress;
+                                            const baseIncrement = Math.log(remainingProgress + 1) * 1.5;
+                                            const randomFactor = 0.8 + Math.random() * 0.4;
+                                            const progressIncrement = Math.max(0.5, Math.min(remainingProgress * 0.1, baseIncrement * randomFactor));
+                                            const newProgress = Math.min(95, gameState.chapterProgress + progressIncrement);
+                                            gameState.chapterProgress = Math.round(newProgress * 10) / 10;
+                                            gameState.gameData.flow_worldline.chapter_progress = gameState.chapterProgress;
+                                            updateChapterProgress(gameState.chapterProgress);
+                                        }
+                                        Object.assign(gameState.gameData.flow_worldline, flowUpdate);
+                                    } else if (gameState.gameData.flow_worldline) {
+                                        // 即使没有flow_update，初始场景生成后也应该有初始进度
+                                        initializeChapterProgress();
+                                    } else {
+                                        // 如果没有flow_worldline，也初始化进度
+                                        initializeChapterProgress();
+                                    }
+                                    
+                                    loadingIndicator.remove(); // 移除加载指示器
                                     displayScene(retryScene, retryOptions, retrySceneImage, null);
                                 } else {
-                                    // 重试失败，使用备用场景
+                                    // 重试失败，检查是否还有重试次数
+                                    if (retryCount < maxRetries) {
+                                        console.log(`⚠️ 重试 ${retryCount} 失败，继续重试...`);
+                                        retryFunction(); // 递归重试
+                                        return;
+                                    }
+                                    
+                                    // 已达到最大重试次数，使用备用场景
                                     const flowWorldline = gameState.gameData.flow_worldline;
                                     const environment = flowWorldline.environment || {};
                                     const location = environment.location || '未知地点';
@@ -1580,10 +1629,21 @@ const Game = (() => {
                                         '查看周围环境'
                                     ];
                                     console.warn('⚠️ 重试失败，使用备用场景');
+                                    initializeChapterProgress(); // 初始化章节进度
+                                    loadingIndicator.remove(); // 移除加载指示器
                                     displayScene(fallbackScene, fallbackOptions);
                                 }
                             } catch (error) {
                                 console.error('❌ 重试API调用异常:', error);
+                                
+                                // 检查是否还有重试次数
+                                if (retryCount < maxRetries) {
+                                    console.log(`⚠️ 重试 ${retryCount} 异常，继续重试...`);
+                                    retryFunction(); // 递归重试
+                                    return;
+                                }
+                                
+                                // 已达到最大重试次数，使用备用场景
                                 const flowWorldline = gameState.gameData.flow_worldline;
                                 const environment = flowWorldline ? flowWorldline.environment || {} : {};
                                 const location = environment.location || '未知地点';
@@ -1594,6 +1654,8 @@ const Game = (() => {
                                     '继续深入探索',
                                     '查看周围环境'
                                 ];
+                                initializeChapterProgress(); // 初始化章节进度
+                                loadingIndicator.remove(); // 移除加载指示器
                                 displayScene(fallbackScene, fallbackOptions);
                             }
                         }, 2000); // 等待2秒后重试
@@ -1731,12 +1793,15 @@ const Game = (() => {
         }
         
         // 初始化章节进度（1-3%，表示游戏开始）
-        const initialProgress = Math.max(1, Math.min(3, Math.random() * 2 + 1));
-        gameState.chapterProgress = Math.round(initialProgress * 10) / 10;
-        if (gameState.gameData.flow_worldline) {
-            gameState.gameData.flow_worldline.chapter_progress = gameState.chapterProgress;
+        // 仅在进度尚未初始化时设置（避免覆盖已在成功路径或重试路径中设置的进度）
+        if (gameState.chapterProgress === undefined || gameState.chapterProgress === null) {
+            const initialProgress = Math.max(1, Math.min(3, Math.random() * 2 + 1));
+            gameState.chapterProgress = Math.round(initialProgress * 10) / 10;
+            if (gameState.gameData.flow_worldline) {
+                gameState.gameData.flow_worldline.chapter_progress = gameState.chapterProgress;
+            }
+            updateChapterProgress(gameState.chapterProgress);
         }
-        updateChapterProgress(gameState.chapterProgress);
     }
     
     // 预生成下一层内容的辅助函数
