@@ -854,13 +854,25 @@ def compose_layered_image(
             char_width, char_height = character.size
             new_width = int(char_width * scale)
             new_height = int(char_height * scale)
+            
+            # 如果缩放后的角色图片比背景大，自动调整缩放比例以适应背景（保持宽高比）
+            if new_width > bg_width or new_height > bg_height:
+                # 计算需要缩小的比例
+                width_ratio = bg_width / new_width if new_width > 0 else 1.0
+                height_ratio = bg_height / new_height if new_height > 0 else 1.0
+                # 使用较小的比例，确保完全适应背景
+                adjust_ratio = min(width_ratio, height_ratio) * 0.95  # 留5%边距
+                new_width = int(new_width * adjust_ratio)
+                new_height = int(new_height * adjust_ratio)
+                print(f"⚠️ 角色图片缩放后过大，自动调整为 {new_width}x{new_height} 以适应背景")
+            
             character = character.resize((new_width, new_height), Image.Resampling.LANCZOS)
             
             # 计算粘贴位置（居中）
             paste_x = x - new_width // 2
             paste_y = y - new_height
             
-            # 确保不超出边界
+            # 确保不超出边界（现在 new_width <= bg_width 且 new_height <= bg_height，所以不会出现负数）
             paste_x = max(0, min(paste_x, bg_width - new_width))
             paste_y = max(0, min(paste_y, bg_height - new_height))
             
@@ -1785,13 +1797,21 @@ def generate_scene_image(
                     character_reference_paths.append(char_ref_path)
                     character_names.append(char_name)
                     print(f"✅ 角色 {char_name} 的参考图片：{char_ref_path}")
+                else:
+                    print(f"⚠️ 角色 {char_name} 的参考图片生成失败")
+        
+        # 检查是否有角色但参考图片生成失败的情况
+        if scene_characters and len(scene_characters) > 0 and len(character_reference_paths) == 0:
+            print(f"⚠️ 检测到 {len(scene_characters)} 个角色，但所有参考图片生成都失败，将使用纯背景图片")
     
     # 4. 生成背景图片提示词（不包含人物描述）
     # 修改提示词，移除人物描述，只保留场景背景
     background_prompt = optimize_image_prompt_with_llm(scene_description, global_state, image_style)
     
     # 如果检测到角色，从提示词中移除人物描述，专注于背景场景
-    if character_names:
+    # 注意：使用 scene_characters 而不是 character_names，因为即使参考图片生成失败，
+    # 我们仍然希望背景图片不包含角色（角色会通过合成添加）
+    if scene_characters and len(scene_characters) > 0:
         # 使用LLM优化背景提示词（不包含人物）
         try:
             api_key = AI_API_CONFIG.get('api_key', '')
