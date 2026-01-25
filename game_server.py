@@ -240,7 +240,8 @@ def generate_worldview():
         
         # 调用后端生成世界观的函数
         try:
-            global_state = llm_generate_global(game_theme, protagonist_attr, difficulty, tone_key)
+            # 传递game_id以便读取主角形象设定
+            global_state = llm_generate_global(game_theme, protagonist_attr, difficulty, tone_key, force_full=False, game_id=game_id)
             
             # 保存游戏ID到global_state
             global_state['game_id'] = game_id
@@ -1639,10 +1640,20 @@ def get_video_status_api(task_id):
 def serve_main_character_image(game_id, filename):
     """提供主角形象图片"""
     try:
-        # 安全检查：防止路径遍历攻击（game_id 与 filename 均禁止 .. / \）
-        if ('..' in game_id or '..' in filename or '/' in game_id or '\\' in game_id or
-                '/' in filename or '\\' in filename):
-            return jsonify({"status": "error", "message": "Invalid path"}), 400
+        # 导入清理函数（如果可用）
+        try:
+            from main2 import sanitize_game_id
+            game_id = sanitize_game_id(game_id)
+        except ImportError:
+            # 如果无法导入，使用基本检查
+            if ('..' in game_id or '..' in filename or '/' in game_id or '\\' in game_id or
+                    '/' in filename or '\\' in filename):
+                return jsonify({"status": "error", "message": "Invalid path"}), 400
+        
+        # 额外的安全检查：只允许安全的文件名
+        import re
+        if not re.match(r'^[a-zA-Z0-9_\-\.]+$', filename):
+            return jsonify({"status": "error", "message": "Invalid filename"}), 400
         
         image_path = os.path.join("initial", "main_character", game_id, filename)
         
@@ -1658,10 +1669,20 @@ def serve_main_character_image(game_id, filename):
 def serve_character_reference_image(game_id, filename):
     """提供角色参考图片"""
     try:
-        # 安全检查：防止路径遍历攻击
-        if ('..' in game_id or '..' in filename or '/' in game_id or '\\' in game_id or
-                '/' in filename or '\\' in filename):
-            return jsonify({"status": "error", "message": "Invalid path"}), 400
+        # 导入清理函数（如果可用）
+        try:
+            from main2 import sanitize_game_id
+            game_id = sanitize_game_id(game_id)
+        except ImportError:
+            # 如果无法导入，使用基本检查
+            if ('..' in game_id or '..' in filename or '/' in game_id or '\\' in game_id or
+                    '/' in filename or '\\' in filename):
+                return jsonify({"status": "error", "message": "Invalid path"}), 400
+        
+        # 额外的安全检查：只允许安全的文件名
+        import re
+        if not re.match(r'^[a-zA-Z0-9_\-\.]+$', filename):
+            return jsonify({"status": "error", "message": "Invalid filename"}), 400
         
         image_path = os.path.join("initial", "character_references", game_id, filename)
         

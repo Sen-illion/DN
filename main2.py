@@ -926,13 +926,45 @@ def get_character_reference_image(
         game_id = global_state.get('game_id', '')
         if not game_id:
             game_id = generate_game_id()
+        else:
+            # 清理game_id以防止路径遍历攻击
+            game_id = sanitize_game_id(game_id)
+        
+        # 特殊处理：如果是主角（"你"），优先使用已生成的主角主形象图片
+        # 主角的主形象图片路径：initial/main_character/{game_id}/main_character.png
+        # 主角的参考图片路径：initial/character_references/{game_id}/你.png
+        is_protagonist = character_name in ["你", "主角", "玩家", "我"]
+        
+        if is_protagonist:
+            # 使用清理后的game_id构建路径
+            main_character_path = Path("initial") / "main_character" / game_id / "main_character.png"
+            if main_character_path.exists():
+                # 创建角色参考图片目录（如果不存在）
+                character_ref_dir = Path("initial") / "character_references" / game_id
+                character_ref_dir.mkdir(parents=True, exist_ok=True)
+                
+                # 将主角主形象图片复制到角色参考图片目录（保持一致性）
+                # 使用ASCII-only文件名，与Flask端点验证规则一致
+                safe_char_name = sanitize_character_name(character_name)
+                character_ref_path = character_ref_dir / f"{safe_char_name}.png"
+                
+                # 如果参考图片不存在或主形象图片更新了，则复制
+                if not character_ref_path.exists() or main_character_path.stat().st_mtime > character_ref_path.stat().st_mtime:
+                    import shutil
+                    shutil.copy2(main_character_path, character_ref_path)
+                    print(f"✅ 主角主形象图片已复制到角色参考目录：{character_ref_path}")
+                
+                return f"/initial/character_references/{game_id}/{safe_char_name}.png"
+            else:
+                print(f"⚠️ 主角主形象图片不存在，将生成新的参考图片：{main_character_path}")
         
         # 创建角色参考图片目录
         character_ref_dir = Path("initial") / "character_references" / game_id
         character_ref_dir.mkdir(parents=True, exist_ok=True)
         
         # 检查是否已存在该角色的参考图片
-        safe_char_name = re.sub(r'[^\w\-_\.]', '_', character_name)
+        # 使用ASCII-only文件名，与Flask端点验证规则一致
+        safe_char_name = sanitize_character_name(character_name)
         existing_image_path = character_ref_dir / f"{safe_char_name}.png"
         
         if existing_image_path.exists():
@@ -1327,13 +1359,74 @@ def generate_game_id() -> str:
     random_str = ''.join(random.choices('abcdefghijklmnopqrstuvwxyz0123456789', k=6))
     return f"game_{timestamp}_{random_str}"
 
+def sanitize_game_id(game_id: str) -> str:
+    """
+    清理game_id，防止路径遍历攻击
+    :param game_id: 原始game_id（可能来自用户输入）
+    :return: 清理后的安全game_id
+    """
+    if not game_id or not isinstance(game_id, str):
+        # 如果game_id无效，生成一个新的
+        return generate_game_id()
+    
+    # 移除所有危险字符：路径分隔符、路径遍历序列等
+    # 只保留字母、数字、下划线、连字符
+    import re
+    sanitized = re.sub(r'[^a-zA-Z0-9_\-]', '', game_id)
+    
+    # 移除路径遍历序列
+    sanitized = sanitized.replace('..', '').replace('/', '').replace('\\', '')
+    
+    # 如果清理后为空或长度异常（可能被恶意构造），生成新的ID
+    if not sanitized or len(sanitized) > 100 or len(sanitized) < 3:
+        print(f"⚠️ game_id清理后无效或异常，生成新的ID。原始值：{game_id[:50]}")
+        return generate_game_id()
+    
+    return sanitized
+
+def sanitize_character_name(character_name: str) -> str:
+    """
+    将角色名称转换为安全的ASCII-only文件名
+    与Flask端点的验证规则一致：^[a-zA-Z0-9_\-\.]+$
+    :param character_name: 原始角色名称（可能包含非ASCII字符）
+    :return: 安全的ASCII-only文件名
+    """
+    if not character_name or not isinstance(character_name, str):
+        return "unknown"
+    
+    import re
+    import hashlib
+    
+    # 先尝试保留ASCII字符（字母、数字、下划线、连字符、点）
+    ascii_only = re.sub(r'[^a-zA-Z0-9_\-\.]', '', character_name)
+    
+    # 如果已经是ASCII-only且不为空，直接返回
+    if ascii_only and len(ascii_only) == len(character_name):
+        return ascii_only
+    
+    # 如果有非ASCII字符，使用哈希生成固定长度的标识符
+    # 这样可以确保文件名唯一且符合验证规则
+    hash_obj = hashlib.md5(character_name.encode('utf-8'))
+    hash_hex = hash_obj.hexdigest()[:16]  # 使用前16个字符（32位）
+    
+    # 如果原名称有ASCII部分，尝试保留部分可读性
+    if ascii_only:
+        # 保留ASCII部分的前20个字符（如果存在），加上哈希
+        ascii_part = ascii_only[:20] if len(ascii_only) <= 20 else ascii_only[:20]
+        return f"{ascii_part}_{hash_hex}"
+    else:
+        # 如果完全没有ASCII字符，使用哈希
+        return f"char_{hash_hex}"
+
 def ensure_main_character_dir(game_id: str) -> Path:
     """
     确保主角形象目录存在
-    :param game_id: 游戏ID
+    :param game_id: 游戏ID（会自动清理）
     :return: 目录路径
     """
-    main_character_dir = Path("initial") / "main_character" / game_id
+    # 清理game_id以防止路径遍历攻击
+    safe_game_id = sanitize_game_id(game_id)
+    main_character_dir = Path("initial") / "main_character" / safe_game_id
     main_character_dir.mkdir(parents=True, exist_ok=True)
     return main_character_dir
 
@@ -1607,8 +1700,11 @@ def generate_main_character_image(
         # 生成游戏ID（如果未提供）
         if not game_id:
             game_id = generate_game_id()
+        else:
+            # 清理game_id以防止路径遍历攻击
+            game_id = sanitize_game_id(game_id)
         
-        # 确保目录存在
+        # 确保目录存在（ensure_main_character_dir内部也会清理，但这里先清理确保一致性）
         main_character_dir = ensure_main_character_dir(game_id)
         
         # 检查是否已存在主角形象
@@ -1965,8 +2061,10 @@ def generate_scene_image(
                 # 检查是否已缓存（考虑角色参考图片）
                 if character_reference_paths and len(character_reference_paths) > 0:
                     # 如果有角色，检查合成后的图片
+                    # 使用JSON编码避免hash碰撞（例如：["Alice_Bob", "Smith"] vs ["Alice", "Bob_Smith"]）
+                    char_names_json = json.dumps(character_names, sort_keys=False, ensure_ascii=False)
                     composed_hash = hashlib.md5(
-                        f"{prompt_hash}_{'_'.join(character_names)}".encode()
+                        f"{prompt_hash}_{char_names_json}".encode('utf-8')
                     ).hexdigest()
                     composed_path = Path(IMAGE_CACHE_DIR) / f"{composed_hash}.png"
                     if composed_path.exists():
@@ -1997,8 +2095,10 @@ def generate_scene_image(
                     print(f"✅ 使用本地缓存的背景图片：{cache_path}")
                     # 如果有角色参考图片，尝试合成
                     if character_reference_paths and len(character_reference_paths) > 0:
+                        # 使用JSON编码避免hash碰撞（例如：["Alice_Bob", "Smith"] vs ["Alice", "Bob_Smith"]）
+                        char_names_json = json.dumps(character_names, sort_keys=False, ensure_ascii=False)
                         composed_hash = hashlib.md5(
-                            f"{prompt_hash}_{'_'.join(character_names)}".encode()
+                            f"{prompt_hash}_{char_names_json}".encode('utf-8')
                         ).hexdigest()
                         composed_path = Path(IMAGE_CACHE_DIR) / f"{composed_hash}.png"
                         if compose_layered_image(
@@ -2147,8 +2247,10 @@ def generate_scene_image(
                 if character_reference_paths and len(character_reference_paths) > 0:
                     print(f"🔄 开始合成背景层和人物层...")
                     # 生成合成后的图片路径
+                    # 使用JSON编码避免hash碰撞（例如：["Alice_Bob", "Smith"] vs ["Alice", "Bob_Smith"]）
+                    char_names_json = json.dumps(character_names, sort_keys=False, ensure_ascii=False)
                     composed_hash = hashlib.md5(
-                        f"{prompt_hash}_{'_'.join(character_names)}".encode()
+                        f"{prompt_hash}_{char_names_json}".encode('utf-8')
                     ).hexdigest()
                     composed_path = Path(IMAGE_CACHE_DIR) / f"{composed_hash}.png"
                     
@@ -3346,13 +3448,34 @@ def generate_ending_prediction(global_state: Dict) -> Dict:
 # ------------------------------
 # LLM生成函数（修复JSON解析+强制贴合用户选择+自动重试）
 # ------------------------------
-def llm_generate_global(user_idea: str, protagonist_attr: Dict, difficulty: str, tone_key: str = "normal_ending", force_full: bool = False) -> Dict:
+def llm_generate_global(user_idea: str, protagonist_attr: Dict, difficulty: str, tone_key: str = "normal_ending", force_full: bool = False, game_id: str = None) -> Dict:
     """调用yunwu.ai生成包含章节矛盾、适配主角属性/难度的Global世界观
     
     force_full: True 时跳过分阶段/模板/缓存，加速生成完整版本（用于后台补全）
+    game_id: 游戏ID，用于读取主角形象设定（可选）
     """
     if not user_idea.strip():
         raise ValueError("游戏主题idea不能为空")
+    
+    # 读取主角形象设定（如果已生成）
+    protagonist_appearance_info = ""
+    if game_id:
+        try:
+            # 清理game_id以防止路径遍历攻击
+            safe_game_id = sanitize_game_id(game_id)
+            metadata_path = Path("initial") / "main_character" / safe_game_id / "metadata.json"
+            if metadata_path.exists():
+                with open(metadata_path, 'r', encoding='utf-8') as f:
+                    metadata = json.load(f)
+                    # 提取主角形象描述（从prompt中提取关键信息）
+                    prompt = metadata.get('prompt', '')
+                    if prompt:
+                        # 提取prompt中的外貌描述部分（通常在前半部分）
+                        # 简化处理：使用prompt的前500字符作为形象描述
+                        protagonist_appearance_info = prompt[:500] if len(prompt) > 500 else prompt
+                        print(f"✅ 已读取主角形象设定（从metadata），长度：{len(protagonist_appearance_info)}")
+        except Exception as e:
+            print(f"⚠️ 读取主角形象设定失败：{str(e)}")
     
     perf = PERFORMANCE_OPTIMIZATION
     perf_enabled = perf.get("enabled", True)
@@ -3399,17 +3522,30 @@ def llm_generate_global(user_idea: str, protagonist_attr: Dict, difficulty: str,
     
     # 修改Prompt：根据配置选择核心版或完整版
     if staged_mode:
+        # 构建主角形象信息部分
+        protagonist_info_section = ""
+        if protagonist_appearance_info:
+            protagonist_info_section = f"""
+        ### 【主角形象设定】（重要：必须严格遵循此设定）
+        主角已生成的形象描述：{protagonist_appearance_info}
+        
+        要求：
+        1. 世界观、主线任务、剧情描述必须与主角的已生成形象完全匹配
+        2. 主角的外貌、特征、气质等必须与形象描述一致
+        3. 避免生成与主角形象不符的剧情内容
+        """
+        
         prompt = f"""
         你是资深游戏编剧，请生成【核心世界观速写】，简洁但覆盖关键要素。
         要求：中文输出，无代码块，无多余解释；严格贴合基调：{tone['name']}（{tone['description']}），语言特征：{tone['language_features']}，禁忌：{tone['taboo_content']}
-
+{protagonist_info_section}
         ## 【核心世界观】
         游戏风格：至少60字
         世界观基础设定：至少250字，包含背景/历史/地理/社会/文化/关键事件
         主角核心能力：至少80字，包含来源、使用方式、限制
 
         ### 【主线任务】
-        游戏主线任务：至少150字，说明目标、步骤、挑战
+        游戏主线任务：至少150字，说明目标、步骤、挑战（必须与主角形象匹配）
 
         ### 【章节设定】
         第1章：
@@ -3434,24 +3570,37 @@ def llm_generate_global(user_idea: str, protagonist_attr: Dict, difficulty: str,
         - 基调：{tone['name']}
         """
     else:
+        # 构建主角形象信息部分
+        protagonist_info_section = ""
+        if protagonist_appearance_info:
+            protagonist_info_section = f"""
+        ### 【主角形象设定】（重要：必须严格遵循此设定）
+        主角已生成的形象描述：{protagonist_appearance_info}
+        
+        要求：
+        1. 世界观、主线任务、剧情描述必须与主角的已生成形象完全匹配
+        2. 主角的外貌、特征、气质等必须与形象描述一致
+        3. 避免生成与主角形象不符的剧情内容
+        """
+        
         prompt = f"""
         你是资深游戏编剧，请生成完整的文本冒险游戏世界观。
         规则：中文输出；无代码块/解释；按分隔符输出且字段齐全；必须贴合基调：{tone['name']}（{tone['description']}），语言特征：{tone['language_features']}，禁忌：{tone['taboo_content']}
-
+{protagonist_info_section}
         ## 【核心世界观】
         游戏风格：≥80字
         世界观基础设定：≥320字，包含背景/历史/地理/社会/文化/关键事件，为首轮选项提供足够信息
         主角核心能力：≥100字
         
         ### 【角色设定】
-        主角：核心性格≥70字；浅层背景≥120字；深层背景≥250字（含主线相关秘密）
+        主角：核心性格≥70字；浅层背景≥120字；深层背景≥250字（含主线相关秘密，必须与主角形象匹配）
         配角1：核心性格≥70字；浅层背景≥120字；深层背景≥250字
         
         ### 【势力设定】
         正派势力：每个≥50字；反派势力：每个≥50字；中立势力：每个≥50字
         
         ### 【主线任务】
-        游戏主线任务：≥180字
+        游戏主线任务：≥180字（必须与主角形象匹配）
         
         ### 【章节设定】
         第1章：
