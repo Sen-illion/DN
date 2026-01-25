@@ -1654,6 +1654,25 @@ def serve_main_character_image(game_id, filename):
         print(f"❌ 提供主角形象图片错误：{str(e)}")
         return jsonify({"status": "error", "message": f"Failed to serve image: {str(e)}"}), 500
 
+@app.route('/initial/character_references/<game_id>/<filename>')
+def serve_character_reference_image(game_id, filename):
+    """提供角色参考图片"""
+    try:
+        # 安全检查：防止路径遍历攻击
+        if ('..' in game_id or '..' in filename or '/' in game_id or '\\' in game_id or
+                '/' in filename or '\\' in filename):
+            return jsonify({"status": "error", "message": "Invalid path"}), 400
+        
+        image_path = os.path.join("initial", "character_references", game_id, filename)
+        
+        if not os.path.exists(image_path):
+            return jsonify({"status": "error", "message": "Image not found"}), 404
+        
+        return send_file(image_path)
+    except Exception as e:
+        print(f"❌ 提供角色参考图片错误：{str(e)}")
+        return jsonify({"status": "error", "message": f"Failed to serve image: {str(e)}"}), 500
+
 @app.route('/image_cache/<filename>')
 def serve_cached_image(filename):
     """提供缓存的图片文件"""

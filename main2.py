@@ -8,8 +8,10 @@ import requests
 import threading
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime
-from typing import Dict, List
+from typing import Dict, List, Optional
+from pathlib import Path
 from dotenv import load_dotenv
+from PIL import Image
 # 新增：导入重试相关模块
 from tenacity import retry, stop_after_attempt, wait_exponential, retry_if_exception_type, retry_if_result
 
@@ -596,6 +598,463 @@ def extract_and_validate_json(raw_text: str) -> str:
             return json_str
     
     return json_str
+
+# ------------------------------
+# 角色分析函数（分析场景中出现的角色）
+# ------------------------------
+def analyze_scene_characters(
+    scene_description: str,
+    global_state: Dict
+) -> List[Dict]:
+    """
+    使用LLM分析场景描述中出现的角色
+    :param scene_description: 场景描述文本
+    :param global_state: 全局状态（包含角色信息）
+    :return: 角色列表，每个角色包含名称、描述等信息
+    """
+    try:
+        # 获取已知角色信息
+        core_worldview = global_state.get('core_worldview', {})
+        characters = core_worldview.get('characters', {})
+        
+        # 构建角色信息提示
+        character_info = ""
+        if characters:
+            for char_name, char_data in characters.items():
+                appearance = char_data.get('shallow_background', '') or char_data.get('appearance', '')
+                personality = char_data.get('core_personality', '') or char_data.get('personality', '')
+                character_info += f"\n- {char_name}：外貌：{appearance[:200]}，性格：{personality[:200]}"
+        
+        llm_prompt = f"""请分析以下场景描述中出现的角色。
+
+场景描述：
+{scene_description}
+
+已知角色信息：
+{character_info if character_info else "（无已知角色信息）"}
+
+请分析场景中出现了哪些角色，并返回JSON格式：
+{{
+    "characters": [
+        {{
+            "name": "角色名称",
+            "description": "角色在场景中的描述",
+            "is_known": true/false,  // 是否为已知角色
+            "appearance": "外貌描述（如果场景中有描述）"
+        }}
+    ]
+}}
+
+只输出JSON，不要输出其他内容。"""
+
+        # 调用LLM API
+        api_key = AI_API_CONFIG.get('api_key', '')
+        base_url = AI_API_CONFIG.get('base_url', '')
+        
+        if not api_key or not base_url:
+            print("⚠️ LLM API未配置，无法分析角色")
+            return []
+        
+        headers = {
+            "Authorization": f"Bearer {api_key}",
+            "Content-Type": "application/json; charset=utf-8"
+        }
+        
+        request_body = {
+            "model": AI_API_CONFIG.get("model", "deepseek-v3.2"),
+            "messages": [
+                {
+                    "role": "user",
+                    "content": llm_prompt
+                }
+            ],
+            "temperature": 0.3,
+            "max_tokens": 1000
+        }
+        
+        print("🔄 正在使用LLM分析场景中的角色...")
+        response = requests.post(
+            f"{base_url}/chat/completions",
+            headers=headers,
+            json=request_body,
+            timeout=60
+        )
+        response.raise_for_status()
+        
+        result = response.json()
+        choices = result.get("choices", [])
+        if not choices:
+            return []
+        
+        content = choices[0].get("message", {}).get("content", "").strip()
+        
+        # 尝试提取JSON
+        json_match = re.search(r'\{[\s\S]*\}', content)
+        if json_match:
+            json_str = json_match.group(0)
+            try:
+                parsed = json.loads(json_str)
+                characters_list = parsed.get("characters", [])
+                print(f"✅ 分析到 {len(characters_list)} 个角色：{[c.get('name') for c in characters_list]}")
+                return characters_list
+            except json.JSONDecodeError as e:
+                print(f"⚠️ JSON解析失败：{str(e)}")
+        
+        return []
+    except Exception as e:
+        print(f"❌ 角色分析失败：{str(e)}")
+        import traceback
+        traceback.print_exc()
+        return []
+
+# ------------------------------
+# 对话时只更换人物层参考图片的函数
+# ------------------------------
+def update_scene_with_new_characters(
+    background_image_url: str,
+    new_character_references: List[str],
+    global_state: Dict,
+    output_cache_key: str = None
+) -> Dict:
+    """
+    在对话时只更换人物层参考图片，背景层保持不变
+    :param background_image_url: 背景图片URL或路径
+    :param new_character_references: 新的角色参考图片路径列表
+    :param global_state: 全局状态
+    :param output_cache_key: 输出缓存键（如果为None，自动生成）
+    :return: 包含合成后图片URL的字典
+    """
+    try:
+        import hashlib
+        
+        # 生成输出缓存键
+        if not output_cache_key:
+            char_sig = '_'.join([Path(p).stem for p in new_character_references])
+            bg_sig = Path(background_image_url).stem if '/' in background_image_url else background_image_url[:20]
+            output_cache_key = hashlib.md5(f"{bg_sig}_{char_sig}".encode()).hexdigest()
+        
+        IMAGE_CACHE_DIR = "image_cache"
+        os.makedirs(IMAGE_CACHE_DIR, exist_ok=True)
+        output_path = Path(IMAGE_CACHE_DIR) / f"{output_cache_key}.png"
+        
+        # 检查是否已存在合成图片
+        if output_path.exists():
+            print(f"✅ 使用已存在的合成图片：{output_path}")
+            return {
+                "url": f"/image_cache/{output_cache_key}.png",
+                "background_url": background_image_url,
+                "character_references": new_character_references,
+                "cached": True
+            }
+        
+        # 合成图片
+        if compose_layered_image(
+            background_image_url,
+            new_character_references,
+            str(output_path)
+        ):
+            print(f"✅ 人物层更新成功：{output_path}")
+            return {
+                "url": f"/image_cache/{output_cache_key}.png",
+                "background_url": background_image_url,
+                "character_references": new_character_references,
+                "cached": True
+            }
+        else:
+            print(f"⚠️ 人物层更新失败，返回背景图片")
+            return {
+                "url": background_image_url,
+                "background_url": background_image_url,
+                "character_references": new_character_references,
+                "cached": False
+            }
+    except Exception as e:
+        print(f"❌ 更新人物层失败：{str(e)}")
+        import traceback
+        traceback.print_exc()
+        return {
+            "url": background_image_url,
+            "background_url": background_image_url,
+            "character_references": new_character_references,
+            "cached": False
+        }
+
+# ------------------------------
+# 图片合成函数（背景层+人物层）
+# ------------------------------
+def compose_layered_image(
+    background_image_path: str,
+    character_reference_paths: List[str],
+    output_path: str,
+    character_positions: Optional[List[Dict]] = None
+) -> bool:
+    """
+    合成背景层和人物层的图片
+    :param background_image_path: 背景图片路径
+    :param character_reference_paths: 角色参考图片路径列表
+    :param output_path: 输出图片路径
+    :param character_positions: 角色位置列表，每个元素包含 {'x': int, 'y': int, 'scale': float}
+    :return: 是否成功
+    """
+    try:
+        # 加载背景图片
+        if background_image_path.startswith('/'):
+            bg_path = Path(background_image_path.lstrip('/'))
+        else:
+            bg_path = Path(background_image_path)
+        
+        if not bg_path.exists():
+            print(f"⚠️ 背景图片不存在：{bg_path}")
+            return False
+        
+        background = Image.open(bg_path).convert('RGBA')
+        bg_width, bg_height = background.size
+        
+        # 如果没有指定位置，使用默认布局（人物在画面中下方）
+        if not character_positions:
+            character_positions = []
+            num_chars = len(character_reference_paths)
+            for i, _ in enumerate(character_reference_paths):
+                # 默认位置：多个角色横向排列在画面中下方
+                if num_chars == 1:
+                    x = bg_width // 2
+                    y = int(bg_height * 0.7)
+                    scale = 0.6
+                else:
+                    spacing = bg_width // (num_chars + 1)
+                    x = spacing * (i + 1)
+                    y = int(bg_height * 0.7)
+                    scale = 0.5
+                character_positions.append({'x': x, 'y': y, 'scale': scale})
+        
+        # 合成每个角色
+        for i, char_path in enumerate(character_reference_paths):
+            if not char_path:
+                continue
+            
+            # 加载角色参考图片
+            if char_path.startswith('/'):
+                char_img_path = Path(char_path.lstrip('/'))
+            else:
+                char_img_path = Path(char_path)
+            
+            if not char_img_path.exists():
+                print(f"⚠️ 角色参考图片不存在：{char_img_path}")
+                continue
+            
+            character = Image.open(char_img_path).convert('RGBA')
+            
+            # 获取位置和缩放
+            pos = character_positions[i] if i < len(character_positions) else character_positions[0]
+            scale = pos.get('scale', 0.6)
+            x = pos.get('x', bg_width // 2)
+            y = pos.get('y', int(bg_height * 0.7))
+            
+            # 缩放角色图片
+            char_width, char_height = character.size
+            new_width = int(char_width * scale)
+            new_height = int(char_height * scale)
+            character = character.resize((new_width, new_height), Image.Resampling.LANCZOS)
+            
+            # 计算粘贴位置（居中）
+            paste_x = x - new_width // 2
+            paste_y = y - new_height
+            
+            # 确保不超出边界
+            paste_x = max(0, min(paste_x, bg_width - new_width))
+            paste_y = max(0, min(paste_y, bg_height - new_height))
+            
+            # 合成图片
+            background.paste(character, (paste_x, paste_y), character)
+        
+        # 保存合成后的图片
+        output = Path(output_path)
+        output.parent.mkdir(parents=True, exist_ok=True)
+        background.save(output, 'PNG')
+        print(f"✅ 图片合成成功：{output_path}")
+        return True
+        
+    except Exception as e:
+        print(f"❌ 图片合成失败：{str(e)}")
+        import traceback
+        traceback.print_exc()
+        return False
+
+# ------------------------------
+# 获取角色参考图片函数
+# ------------------------------
+def get_character_reference_image(
+    character_name: str,
+    character_description: str,
+    global_state: Dict,
+    image_style: Dict = None
+) -> str:
+    """
+    获取角色的参考图片（如果不存在则生成）
+    :param character_name: 角色名称
+    :param character_description: 角色描述
+    :param global_state: 全局状态
+    :param image_style: 图片风格
+    :return: 角色参考图片的URL或路径
+    """
+    try:
+        game_id = global_state.get('game_id', '')
+        if not game_id:
+            game_id = generate_game_id()
+        
+        # 创建角色参考图片目录
+        character_ref_dir = Path("initial") / "character_references" / game_id
+        character_ref_dir.mkdir(parents=True, exist_ok=True)
+        
+        # 检查是否已存在该角色的参考图片
+        safe_char_name = re.sub(r'[^\w\-_\.]', '_', character_name)
+        existing_image_path = character_ref_dir / f"{safe_char_name}.png"
+        
+        if existing_image_path.exists():
+            print(f"✅ 角色 {character_name} 的参考图片已存在")
+            return f"/initial/character_references/{game_id}/{safe_char_name}.png"
+        
+        # 使用LLM生成角色参考图片的提示词
+        core_worldview = global_state.get('core_worldview', {})
+        characters = core_worldview.get('characters', {})
+        
+        character_info = ""
+        if character_name in characters:
+            char_data = characters[character_name]
+            appearance = char_data.get('shallow_background', '') or char_data.get('appearance', '')
+            personality = char_data.get('core_personality', '') or char_data.get('personality', '')
+            character_info = f"外貌：{appearance}，性格：{personality}"
+        else:
+            character_info = character_description
+        
+        # 提取图片风格信息
+        style_description = ''
+        if image_style:
+            style_type = image_style.get('type', '')
+            if style_type == 'realistic':
+                style_description = '写实风格，真实细腻，细节丰富'
+            elif style_type == 'anime':
+                style_description = '动漫风格，色彩鲜艳，线条清晰'
+            elif style_type == 'fantasy':
+                style_description = '奇幻风格，充满想象力和魔幻元素'
+        
+        llm_prompt = f"""请为以下角色生成一个详细的视觉描述提示词，用于生成角色参考图片。
+
+角色名称：{character_name}
+角色信息：{character_info}
+场景描述：{character_description}
+
+图片风格：{style_description if style_description else '默认风格'}
+
+要求：
+1. 详细描述角色的外貌特征（发型、脸型、眼睛、服装、身材等）
+2. 体现角色的性格特点（通过表情、姿态等）
+3. 符合游戏世界观设定
+4. 适合作为参考图片（半身或全身，清晰可见）
+5. 不要包含任何文字、符号、乱码
+6. 描述要具体、生动
+
+只输出视觉描述，不要输出其他内容。"""
+
+        # 调用LLM生成提示词
+        api_key = AI_API_CONFIG.get('api_key', '')
+        base_url = AI_API_CONFIG.get('base_url', '')
+        
+        if not api_key or not base_url:
+            print("⚠️ LLM API未配置，使用默认提示词")
+            prompt = f"{character_name}, {character_info}, character reference, full body, detailed, high quality"
+        else:
+            headers = {
+                "Authorization": f"Bearer {api_key}",
+                "Content-Type": "application/json; charset=utf-8"
+            }
+            
+            request_body = {
+                "model": AI_API_CONFIG.get("model", "deepseek-v3.2"),
+                "messages": [
+                    {
+                        "role": "user",
+                        "content": llm_prompt
+                    }
+                ],
+                "temperature": 0.7,
+                "max_tokens": 1000
+            }
+            
+            print(f"🔄 正在为角色 {character_name} 生成参考图片提示词...")
+            response = requests.post(
+                f"{base_url}/chat/completions",
+                headers=headers,
+                json=request_body,
+                timeout=60
+            )
+            response.raise_for_status()
+            
+            result = response.json()
+            choices = result.get("choices", [])
+            if choices:
+                prompt = choices[0].get("message", {}).get("content", "").strip()
+                # 清理提示词
+                prompt = re.sub(r'```[a-zA-Z]*\n?', '', prompt).strip()
+                if not prompt:
+                    prompt = f"{character_name}, {character_info}, character reference, full body, detailed, high quality"
+            else:
+                prompt = f"{character_name}, {character_info}, character reference, full body, detailed, high quality"
+        
+        # 生成角色参考图片
+        provider = IMAGE_GENERATION_CONFIG.get("provider", "yunwu")
+        style = image_style.get('type', 'default') if image_style else 'default'
+        
+        try:
+            if provider == "yunwu":
+                image_url = call_yunwu_image_api(prompt, style)
+            elif provider == "stable_diffusion":
+                image_url = call_stable_diffusion_api(prompt, style)
+            elif provider == "replicate":
+                image_url = call_replicate_api(prompt, style)
+            elif provider == "openai":
+                image_url = call_dalle_api(prompt)
+            else:
+                print(f"⚠️ 不支持的图片生成服务：{provider}")
+                return None
+            
+            if not image_url:
+                return None
+            
+            # 下载并保存角色参考图片
+            if image_url.startswith('http://') or image_url.startswith('https://'):
+                response = requests.get(image_url, timeout=60)
+                response.raise_for_status()
+                with open(existing_image_path, 'wb') as f:
+                    f.write(response.content)
+            elif image_url.startswith('/image_cache/') or image_url.startswith('image_cache/'):
+                # 如果是本地缓存路径，复制文件
+                import shutil
+                source_path = Path(image_url.lstrip('/'))
+                if source_path.exists():
+                    shutil.copy2(source_path, existing_image_path)
+                else:
+                    print(f"⚠️ 源图片路径不存在：{image_url}")
+                    return None
+            else:
+                # 可能是base64或其他格式
+                print(f"⚠️ 不支持的图片URL格式：{image_url}")
+                return None
+            
+            print(f"✅ 角色 {character_name} 的参考图片已保存：{existing_image_path}")
+            return f"/initial/character_references/{game_id}/{safe_char_name}.png"
+            
+        except Exception as e:
+            print(f"❌ 生成角色参考图片失败：{str(e)}")
+            import traceback
+            traceback.print_exc()
+            return None
+            
+    except Exception as e:
+        print(f"❌ 获取角色参考图片失败：{str(e)}")
+        import traceback
+        traceback.print_exc()
+        return None
 
 # ------------------------------
 # LLM提示词优化函数（用于图片生成）
@@ -1303,16 +1762,98 @@ def generate_scene_image(
         or ""
     )
     
-    # 2. 使用LLM优化图片生成提示词
-    prompt = optimize_image_prompt_with_llm(scene_description, global_state, image_style)
+    # 2. 分析场景中的角色
+    print("🔄 正在分析场景中的角色...")
+    scene_characters = analyze_scene_characters(scene_description, global_state)
     
-    # 3. 调用AI图片生成API
+    # 3. 获取或生成角色参考图片
+    character_reference_paths = []
+    character_names = []
+    if scene_characters:
+        print(f"✅ 检测到 {len(scene_characters)} 个角色，开始获取参考图片...")
+        for char_info in scene_characters:
+            char_name = char_info.get('name', '')
+            char_desc = char_info.get('description', '')
+            if char_name:
+                char_ref_path = get_character_reference_image(
+                    char_name, 
+                    char_desc, 
+                    global_state, 
+                    image_style
+                )
+                if char_ref_path:
+                    character_reference_paths.append(char_ref_path)
+                    character_names.append(char_name)
+                    print(f"✅ 角色 {char_name} 的参考图片：{char_ref_path}")
+    
+    # 4. 生成背景图片提示词（不包含人物描述）
+    # 修改提示词，移除人物描述，只保留场景背景
+    background_prompt = optimize_image_prompt_with_llm(scene_description, global_state, image_style)
+    
+    # 如果检测到角色，从提示词中移除人物描述，专注于背景场景
+    if character_names:
+        # 使用LLM优化背景提示词（不包含人物）
+        try:
+            api_key = AI_API_CONFIG.get('api_key', '')
+            base_url = AI_API_CONFIG.get('base_url', '')
+            
+            if api_key and base_url:
+                background_llm_prompt = f"""请根据以下场景描述，生成一个只包含背景环境的视觉描述提示词（不包含任何人物）。
+
+场景描述：
+{scene_description}
+
+要求：
+1. 只描述场景背景、环境、建筑、物品、光线、氛围等
+2. 不要包含任何人物、角色、角色的外貌描述
+3. 描述要具体、生动，包含场景细节
+4. 不要包含任何文字、符号、乱码
+5. 适合作为背景图层使用
+
+只输出视觉描述，不要输出其他内容。"""
+                
+                headers = {
+                    "Authorization": f"Bearer {api_key}",
+                    "Content-Type": "application/json; charset=utf-8"
+                }
+                
+                request_body = {
+                    "model": AI_API_CONFIG.get("model", "deepseek-v3.2"),
+                    "messages": [
+                        {
+                            "role": "user",
+                            "content": background_llm_prompt
+                        }
+                    ],
+                    "temperature": 0.7,
+                    "max_tokens": 1000
+                }
+                
+                print("🔄 正在使用LLM生成背景场景提示词...")
+                response = requests.post(
+                    f"{base_url}/chat/completions",
+                    headers=headers,
+                    json=request_body,
+                    timeout=60
+                )
+                response.raise_for_status()
+                
+                result = response.json()
+                choices = result.get("choices", [])
+                if choices:
+                    background_prompt = choices[0].get("message", {}).get("content", "").strip()
+                    # 清理提示词
+                    background_prompt = re.sub(r'```[a-zA-Z]*\n?', '', background_prompt).strip()
+        except Exception as e:
+            print(f"⚠️ 生成背景提示词失败，使用原始提示词：{str(e)}")
+    
+    # 5. 调用AI图片生成API生成背景图片
     try:
         if provider == "yunwu":
             # yunwu.ai 易受 429 / 返回格式波动影响：失败时可选用本地 SD 兜底
             image_url = None
             try:
-                image_url = call_yunwu_image_api(prompt, style)
+                image_url = call_yunwu_image_api(background_prompt, style)
             except Exception as e:
                 print(f"⚠️ yunwu.ai 生图失败，将尝试兜底（如已配置）：{str(e)}")
                 image_url = None
@@ -1322,17 +1863,17 @@ def generate_scene_image(
                 if sd_base:
                     try:
                         print("🛟 使用 Stable Diffusion 作为兜底生图（yunwu 失败/无返回）")
-                        image_url = call_stable_diffusion_api(prompt, style, reference_image_url=reference_image_url)
+                        image_url = call_stable_diffusion_api(background_prompt, style, reference_image_url=reference_image_url)
                     except Exception as e:
                         print(f"⚠️ Stable Diffusion 兜底失败：{str(e)}")
         elif provider == "replicate":
-            image_url = call_replicate_api(prompt, style)
+            image_url = call_replicate_api(background_prompt, style)
         elif provider == "openai":
-            image_url = call_dalle_api(prompt)
+            image_url = call_dalle_api(background_prompt)
         elif provider == "stable_diffusion":
-            image_url = call_stable_diffusion_api(prompt, style, reference_image_url=reference_image_url)
+            image_url = call_stable_diffusion_api(background_prompt, style, reference_image_url=reference_image_url)
         elif provider == "comfyui":
-            image_url = call_comfyui_api(prompt, style)
+            image_url = call_comfyui_api(background_prompt, style)
         else:
             print(f"⚠️ 不支持的图片生成服务：{provider}")
             return None
@@ -1356,20 +1897,65 @@ def generate_scene_image(
                 # 生成缓存键
                 # 新增：当存在“参考上一剧情图片/提示词”时，把参考信息纳入缓存键，避免误用旧缓存。
                 ref_sig = (reference_image_prompt or reference_image_url or "").strip()
+                char_sig = '_'.join(character_names) if character_names else ""
                 if ref_sig:
                     ref_hash = hashlib.md5(ref_sig.encode("utf-8")).hexdigest()[:10]
-                    cache_key_seed = f"{provider}_{style}_{scene_description}_{ref_hash}"
+                    cache_key_seed = f"{provider}_{style}_{scene_description}_{ref_hash}_{char_sig}"
                 else:
-                    cache_key_seed = f"{provider}_{style}_{scene_description}"
+                    cache_key_seed = f"{provider}_{style}_{scene_description}_{char_sig}"
                 prompt_hash = hashlib.md5(cache_key_seed.encode()).hexdigest()
                 cache_path = Path(IMAGE_CACHE_DIR) / f"{prompt_hash}.png"
                 
-                # 检查是否已缓存
+                # 检查是否已缓存（考虑角色参考图片）
+                if character_reference_paths and len(character_reference_paths) > 0:
+                    # 如果有角色，检查合成后的图片
+                    composed_hash = hashlib.md5(
+                        f"{prompt_hash}_{'_'.join(character_names)}".encode()
+                    ).hexdigest()
+                    composed_path = Path(IMAGE_CACHE_DIR) / f"{composed_hash}.png"
+                    if composed_path.exists():
+                        print(f"✅ 使用本地缓存的合成图片：{composed_path}")
+                        return {
+                            "url": f"/image_cache/{composed_hash}.png",
+                            "prompt": background_prompt,
+                            "style": style,
+                            "width": 1024,
+                            "height": 1024,
+                            "cached": True,
+                            "background_url": f"/image_cache/{prompt_hash}.png",
+                            "character_references": character_reference_paths,
+                            "characters": character_names
+                        }
+                
+                # 检查背景图片是否已缓存
                 if cache_path.exists():
-                    print(f"✅ 使用本地缓存的图片：{cache_path}")
+                    print(f"✅ 使用本地缓存的背景图片：{cache_path}")
+                    # 如果有角色参考图片，尝试合成
+                    if character_reference_paths and len(character_reference_paths) > 0:
+                        composed_hash = hashlib.md5(
+                            f"{prompt_hash}_{'_'.join(character_names)}".encode()
+                        ).hexdigest()
+                        composed_path = Path(IMAGE_CACHE_DIR) / f"{composed_hash}.png"
+                        if compose_layered_image(
+                            str(cache_path),
+                            character_reference_paths,
+                            str(composed_path)
+                        ):
+                            return {
+                                "url": f"/image_cache/{composed_hash}.png",
+                                "prompt": background_prompt,
+                                "style": style,
+                                "width": 1024,
+                                "height": 1024,
+                                "cached": True,
+                                "background_url": f"/image_cache/{prompt_hash}.png",
+                                "character_references": character_reference_paths,
+                                "characters": character_names
+                            }
+                    
                     return {
                         "url": f"/image_cache/{prompt_hash}.png",
-                        "prompt": prompt,
+                        "prompt": background_prompt,
                         "style": style,
                         "width": 1024,
                         "height": 1024,
@@ -1391,7 +1977,7 @@ def generate_scene_image(
                                 print(f"✅ 使用现有的本地缓存图片：{existing_path}")
                                 return {
                                     "url": f"/image_cache/{prompt_hash}.png",
-                                    "prompt": prompt,
+                                    "prompt": background_prompt,
                                     "style": style,
                                     "width": 1024,
                                     "height": 1024,
@@ -1404,7 +1990,7 @@ def generate_scene_image(
                                 print(f"✅ 从现有缓存复制图片到新hash：{cache_path}")
                                 return {
                                     "url": f"/image_cache/{prompt_hash}.png",
-                                    "prompt": prompt,
+                                    "prompt": background_prompt,
                                     "style": style,
                                     "width": 1024,
                                     "height": 1024,
@@ -1425,7 +2011,7 @@ def generate_scene_image(
                     # 对于私有URL，直接返回URL，不尝试下载
                     return {
                         "url": image_url,
-                        "prompt": prompt,
+                        "prompt": background_prompt,
                         "style": style,
                         "width": 1024,
                         "height": 1024,
@@ -1459,7 +2045,7 @@ def generate_scene_image(
                             print(f"   将直接返回URL，由前端处理：{image_url[:80]}...")
                             return {
                                 "url": image_url,
-                                "prompt": prompt,
+                                "prompt": background_prompt,
                                 "style": style,
                                 "width": 1024,
                                 "height": 1024,
@@ -1491,9 +2077,40 @@ def generate_scene_image(
                         f.write(chunk)
                 
                 print(f"✅ 图片已缓存到本地：{cache_path}")
+                
+                # 如果有角色参考图片，进行合成
+                if character_reference_paths and len(character_reference_paths) > 0:
+                    print(f"🔄 开始合成背景层和人物层...")
+                    # 生成合成后的图片路径
+                    composed_hash = hashlib.md5(
+                        f"{prompt_hash}_{'_'.join(character_names)}".encode()
+                    ).hexdigest()
+                    composed_path = Path(IMAGE_CACHE_DIR) / f"{composed_hash}.png"
+                    
+                    # 合成图片
+                    if compose_layered_image(
+                        str(cache_path),
+                        character_reference_paths,
+                        str(composed_path)
+                    ):
+                        print(f"✅ 图片合成成功：{composed_path}")
+                        return {
+                            "url": f"/image_cache/{composed_hash}.png",
+                            "prompt": background_prompt,
+                            "style": style,
+                            "width": 1024,
+                            "height": 1024,
+                            "cached": True,
+                            "background_url": f"/image_cache/{prompt_hash}.png",
+                            "character_references": character_reference_paths,
+                            "characters": character_names
+                        }
+                    else:
+                        print(f"⚠️ 图片合成失败，使用背景图片")
+                
                 return {
                     "url": f"/image_cache/{prompt_hash}.png",
-                    "prompt": prompt,
+                    "prompt": background_prompt,
                     "style": style,
                     "width": 1024,
                     "height": 1024,
@@ -1510,7 +2127,7 @@ def generate_scene_image(
                 # 缓存失败时返回原始URL
                 return {
                     "url": image_url,
-                    "prompt": prompt,
+                    "prompt": background_prompt,
                     "style": style,
                     "width": 1024,
                     "height": 1024,
@@ -1520,7 +2137,7 @@ def generate_scene_image(
         # 不使用缓存，直接返回OSS URL
         return {
             "url": image_url,
-            "prompt": prompt,
+            "prompt": background_prompt,
             "style": style,
             "width": 1024,
             "height": 1024
