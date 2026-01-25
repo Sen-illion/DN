@@ -1588,6 +1588,10 @@ const Game = (() => {
                                             gameState.gameData.flow_worldline.chapter_progress = 100;
                                             updateChapterProgress(100);
                                         } else {
+                                            // 确保chapterProgress已初始化，避免NaN计算
+                                            if (gameState.chapterProgress === undefined || gameState.chapterProgress === null || isNaN(gameState.chapterProgress)) {
+                                                initializeChapterProgress();
+                                            }
                                             const remainingProgress = 100 - gameState.chapterProgress;
                                             const baseIncrement = Math.log(remainingProgress + 1) * 1.5;
                                             const randomFactor = 0.8 + Math.random() * 0.4;
