@@ -1495,7 +1495,6 @@ const Game = (() => {
             clearTimeout(timeoutId);
             
             const result = await response.json();
-            loadingIndicator.remove();
             
             if (result.status === 'success') {
                 const optionData = result.optionData;
@@ -1607,7 +1606,10 @@ const Game = (() => {
                                         initializeChapterProgress();
                                     }
                                     
-                                    loadingIndicator.remove(); // 移除加载指示器
+                                    // 安全移除加载指示器（如果还存在）
+                                    if (loadingIndicator && loadingIndicator.parentNode) {
+                                        loadingIndicator.remove();
+                                    }
                                     displayScene(retryScene, retryOptions, retrySceneImage, null);
                                 } else {
                                     // 重试失败，检查是否还有重试次数
@@ -1619,10 +1621,10 @@ const Game = (() => {
                                     
                                     // 已达到最大重试次数，使用备用场景
                                     const flowWorldline = gameState.gameData.flow_worldline;
-                                    const environment = flowWorldline.environment || {};
+                                    const environment = flowWorldline ? flowWorldline.environment || {} : {};
                                     const location = environment.location || '未知地点';
                                     const weather = environment.weather || '晴朗';
-                                    const questProgress = flowWorldline.quest_progress || '';
+                                    const questProgress = flowWorldline ? (flowWorldline.quest_progress || '') : '';
                                     const fallbackScene = `你站在${location}，${weather}。${questProgress}`;
                                     const fallbackOptions = [
                                         '继续深入探索',
@@ -1630,7 +1632,10 @@ const Game = (() => {
                                     ];
                                     console.warn('⚠️ 重试失败，使用备用场景');
                                     initializeChapterProgress(); // 初始化章节进度
-                                    loadingIndicator.remove(); // 移除加载指示器
+                                    // 安全移除加载指示器（如果还存在）
+                                    if (loadingIndicator && loadingIndicator.parentNode) {
+                                        loadingIndicator.remove();
+                                    }
                                     displayScene(fallbackScene, fallbackOptions);
                                 }
                             } catch (error) {
@@ -1655,7 +1660,10 @@ const Game = (() => {
                                     '查看周围环境'
                                 ];
                                 initializeChapterProgress(); // 初始化章节进度
-                                loadingIndicator.remove(); // 移除加载指示器
+                                // 安全移除加载指示器（如果还存在）
+                                if (loadingIndicator && loadingIndicator.parentNode) {
+                                    loadingIndicator.remove();
+                                }
                                 displayScene(fallbackScene, fallbackOptions);
                             }
                         }, 2000); // 等待2秒后重试
@@ -1664,6 +1672,9 @@ const Game = (() => {
                     retryFunction();
                     return; // 退出当前函数，等待重试
                 }
+                
+                // 场景验证通过，移除加载指示器
+                loadingIndicator.remove();
                 
                 let initialOptions = optionData.next_options || [
                     '继续深入探索',
