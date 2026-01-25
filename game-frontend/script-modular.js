@@ -1838,6 +1838,9 @@ const Game = (() => {
             imageUrl: imageData ? imageData.url : null
         });
         
+        // 重置预生成触发标志，确保每次新场景显示时都可以触发预生成
+        gameState._pregenerationTriggered = false;
+        
         // 文本切分：将完整文本切分成段落
         const segments = splitTextIntoSegments(text);
         console.log('📝 文本切分结果:', {
@@ -1944,13 +1947,20 @@ const Game = (() => {
                             }
                         };
 
+                        // 获取视口尺寸，用于按视口宽高比生成图片
+                        const viewportWidth = window.innerWidth;
+                        const viewportHeight = window.innerHeight;
+                        console.log(`📐 视口尺寸: ${viewportWidth}x${viewportHeight}`);
+                        
                         fetch('http://127.0.0.1:5001/generate-scene-image', {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
                             body: JSON.stringify({
                                 sceneDescription: sceneTextForRequest,
                                 globalState: globalStatePayload,
-                                style: style
+                                style: style,
+                                viewportWidth: viewportWidth,
+                                viewportHeight: viewportHeight
                             }),
                             signal: controller.signal
                         })
@@ -2118,6 +2128,23 @@ const Game = (() => {
             
             // 等待一帧确保DOM完全更新后再开始新动画
             requestAnimationFrame(() => {
+                // 在开始显示第一段文本时，立即触发预生成（利用用户阅读时间）
+                // 检查是否已经触发过预生成（避免重复触发）
+                if (!gameState._pregenerationTriggered && options && options.length > 0) {
+                    gameState._pregenerationTriggered = true;
+                    
+                    // 生成新的场景ID用于预生成缓存
+                    const newSceneId = generateNewSceneId();
+                    gameState.currentSceneId = newSceneId;
+                    
+                    console.log('🚀 文本开始显示，立即触发预生成（场景ID:', newSceneId, '）');
+                    
+                    // 异步调用预生成接口（不阻塞文本显示）
+                    if (gameState.gameData && options && options.length > 0) {
+                        pregenerateNextLayers(gameState.gameData, options, newSceneId);
+                    }
+                }
+                
                 // 再次强制设置样式，确保动画不会覆盖我们的设置
                 sceneTextElement.style.setProperty('transform', 'none', 'important');
                 sceneTextElement.style.setProperty('scale', '1', 'important');
@@ -2171,14 +2198,16 @@ const Game = (() => {
                             
                             generateOptions(options);
                             
-                            // 在显示当前轮场景和选项后，立即触发预生成下一轮内容
-                            // 生成新的场景ID用于缓存（每次显示新场景时都生成新的ID）
-                            const newSceneId = generateNewSceneId();
-                            gameState.currentSceneId = newSceneId;
-                            
-                            // 异步调用预生成接口（不阻塞显示）
-                            if (gameState.gameData && options && options.length > 0) {
-                                pregenerateNextLayers(gameState.gameData, options, newSceneId);
+                            // 注意：预生成已经在文本开始显示时触发，这里不再重复触发
+                            // 如果预生成没有在文本开始显示时触发，这里作为备用触发
+                            if (!gameState._pregenerationTriggered && options && options.length > 0) {
+                                const newSceneId = generateNewSceneId();
+                                gameState.currentSceneId = newSceneId;
+                                console.log('🚀 备用触发预生成（场景ID:', newSceneId, '）');
+                                if (gameState.gameData) {
+                                    pregenerateNextLayers(gameState.gameData, options, newSceneId);
+                                }
+                                gameState._pregenerationTriggered = true;
                             }
                             
                             console.log('✅ 场景和选项显示完成');
@@ -2288,13 +2317,16 @@ const Game = (() => {
                         
                         generateOptions(gameState.pendingOptions);
                         
-                        // 在显示当前轮场景和选项后，立即触发预生成下一轮内容
-                        const newSceneId = generateNewSceneId();
-                        gameState.currentSceneId = newSceneId;
-                        
-                        // 异步调用预生成接口（不阻塞显示）
-                        if (gameState.gameData && gameState.pendingOptions && gameState.pendingOptions.length > 0) {
-                            pregenerateNextLayers(gameState.gameData, gameState.pendingOptions, newSceneId);
+                        // 注意：预生成已经在文本开始显示时触发，这里不再重复触发
+                        // 如果预生成没有在文本开始显示时触发（例如单段文本的情况），这里作为备用触发
+                        if (!gameState._pregenerationTriggered && gameState.pendingOptions && gameState.pendingOptions.length > 0) {
+                            const newSceneId = generateNewSceneId();
+                            gameState.currentSceneId = newSceneId;
+                            console.log('🚀 备用触发预生成（场景ID:', newSceneId, '）');
+                            if (gameState.gameData) {
+                                pregenerateNextLayers(gameState.gameData, gameState.pendingOptions, newSceneId);
+                            }
+                            gameState._pregenerationTriggered = true;
                         }
                         
                         // 重置分段显示状态

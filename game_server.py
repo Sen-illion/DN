@@ -1574,11 +1574,31 @@ def generate_scene_image_api():
         scene_description = data.get('sceneDescription', '')
         global_state = data.get('globalState', {})
         style = data.get('style', 'default')
+        viewport_width = data.get('viewportWidth', None)
+        viewport_height = data.get('viewportHeight', None)
         
         if not scene_description:
             return jsonify({"status": "error", "message": "场景描述不能为空"})
         
-        image_data = generate_scene_image(scene_description, global_state, style)
+        # 转换视口尺寸为整数（如果提供）
+        if viewport_width is not None:
+            try:
+                viewport_width = int(viewport_width)
+            except (ValueError, TypeError):
+                viewport_width = None
+        if viewport_height is not None:
+            try:
+                viewport_height = int(viewport_height)
+            except (ValueError, TypeError):
+                viewport_height = None
+        
+        image_data = generate_scene_image(
+            scene_description, 
+            global_state, 
+            style,
+            viewport_width=viewport_width,
+            viewport_height=viewport_height
+        )
         
         if image_data:
             return jsonify({
