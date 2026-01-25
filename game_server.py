@@ -302,11 +302,9 @@ def generate_worldview():
                 if len(initial_options) > 2:
                     initial_options = initial_options[:2]
                 
-                # 为这2个初始选项生成对应的剧情（并行生成）
-                print(f"📝 为 {len(initial_options)} 个初始选项生成剧情...")
-                # 初始选项的剧情会被缓存，用户尚未进入这些分支；
-                # 为了避免图片接口限流/超时（429、下载超时），这里先只预生成文本。
-                all_initial_options_data = generate_all_options(global_state, initial_options, skip_images=True)
+                # 为这2个初始选项生成对应的剧情（方案A：文本+图片一一对应预生成，限速3秒）
+                print(f"📝 为 {len(initial_options)} 个初始选项生成剧情+图片...")
+                all_initial_options_data = generate_all_options(global_state, initial_options, skip_images=False)
                 
                 # 存储到特殊缓存位置（不使用预生成机制）
                 with cache_lock:
@@ -339,7 +337,7 @@ def generate_worldview():
                     if 'main' in events:
                         events['main'].set()
                 
-                print(f"✅ 第一次选项生成完成，共生成 {len(all_initial_options_data)} 个选项的剧情")
+                print(f"✅ 第一次选项生成完成，共生成 {len(all_initial_options_data)} 个选项的剧情+图片")
                 
             except Exception as e:
                 print(f"❌ 生成第一次选项失败：{str(e)}")
@@ -473,7 +471,7 @@ def generate_option():
                             else:
                                 print(f"✅ 从initial缓存中读取初始场景和选项，场景长度: {len(initial_scene)}，无图片数据")
                             
-                            # 第一次生成完成后，触发预生成（为第一次的4个选项预生成下一层）
+                            # 第一次生成完成后，触发预生成（为第一次的 2 个选项预生成下一层）
                             # 检查是否已经触发过预生成（避免重复触发）
                             if not initial_cache.get('pregeneration_triggered', False):
                                 initial_cache['pregeneration_triggered'] = True
@@ -905,14 +903,35 @@ def _pregenerate_next_layers_logic(global_state, current_options, scene_id):
                 
                 print(f"📝 开始并行生成选项 {opt_idx + 1}/{len(current_options)}: {option[:30]}...")
                 
-                # 生成单个选项的剧情
+                # 生成单个选项的剧情（方案A：文本+图片一一对应预生成）
                 try:
-                    # 预生成阶段：只生成文本，避免图片接口限流/长等待
                     result = _generate_single_option_text_only(opt_idx, option, global_state)
                     if isinstance(result, dict):
                         option_data = result.get('data', result)
+                        scene_for_image = result.get('scene_for_image')
                     else:
                         option_data = result
+                        scene_for_image = (option_data.get('scene') or '').strip() or None
+                    # 为当前场景生成图片（限速由 yunwu 全局限速锁 + IMAGE_SUBMIT_DELAY 控制）
+                    if scene_for_image:
+                        try:
+                            img = generate_scene_image(scene_for_image, global_state, "default", use_cache=True)
+                            if img and isinstance(img, dict) and img.get('url'):
+                                scene_text_hash = hashlib.md5(scene_for_image.encode('utf-8')).hexdigest()
+                                option_data['scene_image'] = {
+                                    "url": img.get("url"),
+                                    "prompt": img.get("prompt", ""),
+                                    "style": img.get("style", "default"),
+                                    "width": img.get("width", 1024),
+                                    "height": img.get("height", 1024),
+                                    "cached": img.get("cached", True),
+                                    "scene_text_hash": scene_text_hash,
+                                }
+                                print(f"✅ 选项 {opt_idx + 1} 场景图片已预生成")
+                            else:
+                                print(f"⚠️ 选项 {opt_idx + 1} 场景图片生成失败，将按需补图")
+                        except Exception as img_err:
+                            print(f"⚠️ 选项 {opt_idx + 1} 场景图片生成异常：{img_err}，将按需补图")
                     
                     # 立即写入缓存（渐进式缓存）
                     with cache_lock:
@@ -964,7 +983,7 @@ def _pregenerate_next_layers_logic(global_state, current_options, scene_id):
                 if scene_id in pregeneration_cache:
                     pregeneration_cache[scene_id]['current_generating_index'] = None
             
-            print(f"✅ 第一层预生成完成，共生成 {len(pregeneration_cache.get(scene_id, {}).get('layer1', {}))} 个选项的剧情")
+            print(f"✅ 第一层预生成完成，共生成 {len(pregeneration_cache.get(scene_id, {}).get('layer1', {}))} 个选项的剧情+图片")
             print("---------------------------------------------- 第一层预生成完成 ----------------------------------------------")
             
             # 第二层：为第一层的每个选项的next_options预生成再下一层剧情（继续在后台异步生成）

@@ -5242,18 +5242,21 @@ def generate_all_options(global_state: Dict, current_options: List[str], skip_im
             # 并行生成所有图片（包含缓存检查和错误处理）
             image_results = _generate_images_parallel(scenes_for_images, global_state)
             
-            # 将图片结果合并回选项数据
+            # 将图片结果合并回选项数据（含 scene_text_hash，确保图片与文本一一对应）
             for option_index, image_data in image_results.items():
                 if option_index in all_options_data and image_data:
                     # 验证图片数据格式
                     if image_data.get('url'):
+                        scene_text = all_options_data[option_index].get("scene", "") or ""
+                        scene_text_hash = hashlib.md5(scene_text.encode("utf-8")).hexdigest() if scene_text.strip() else None
                         all_options_data[option_index]["scene_image"] = {
                             "url": image_data.get("url"),
                             "prompt": image_data.get("prompt", ""),
                             "style": image_data.get("style", "default"),
                             "width": image_data.get("width", 1024),
                             "height": image_data.get("height", 1024),
-                            "cached": image_data.get("cached", True)
+                            "cached": image_data.get("cached", True),
+                            "scene_text_hash": scene_text_hash,
                         }
                         print(f"✅ 选项 {option_index+1} 图片已合并到选项数据")
                     else:
