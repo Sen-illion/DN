@@ -811,10 +811,19 @@ def compose_layered_image(
     """
     try:
         # 加载背景图片
+        # 安全处理：只移除单个前导斜杠，防止路径遍历攻击
         if background_image_path.startswith('/'):
-            bg_path = Path(background_image_path.lstrip('/'))
+            bg_path = Path(background_image_path[1:])  # 只移除第一个斜杠
         else:
             bg_path = Path(background_image_path)
+        
+        # 安全检查：确保路径是相对路径，防止路径遍历
+        try:
+            bg_path.resolve().relative_to(Path.cwd())
+        except ValueError:
+            # 路径不在当前工作目录内，可能是路径遍历攻击
+            print(f"⚠️ 无效的背景图片路径（路径遍历检测）：{background_image_path}")
+            return False
         
         if not bg_path.exists():
             print(f"⚠️ 背景图片不存在：{bg_path}")
@@ -846,10 +855,19 @@ def compose_layered_image(
                 continue
             
             # 加载角色参考图片
+            # 安全处理：只移除单个前导斜杠，防止路径遍历攻击
             if char_path.startswith('/'):
-                char_img_path = Path(char_path.lstrip('/'))
+                char_img_path = Path(char_path[1:])  # 只移除第一个斜杠
             else:
                 char_img_path = Path(char_path)
+            
+            # 安全检查：确保路径是相对路径，防止路径遍历
+            try:
+                char_img_path.resolve().relative_to(Path.cwd())
+            except ValueError:
+                # 路径不在当前工作目录内，可能是路径遍历攻击
+                print(f"⚠️ 无效的角色参考图片路径（路径遍历检测）：{char_path}")
+                continue
             
             if not char_img_path.exists():
                 print(f"⚠️ 角色参考图片不存在：{char_img_path}")
@@ -1089,7 +1107,15 @@ def get_character_reference_image(
                 import shutil
                 # 安全检查：防止路径遍历攻击
                 # 规范化路径并确保它在image_cache目录内
-                normalized_url = image_url.lstrip('/')
+                # 只移除单个前导斜杠，防止路径遍历
+                if image_url.startswith('/image_cache/'):
+                    normalized_url = image_url[1:]  # 只移除第一个斜杠
+                elif image_url.startswith('image_cache/'):
+                    normalized_url = image_url
+                else:
+                    # 兜底处理：只移除单个前导斜杠
+                    normalized_url = image_url[1:] if image_url.startswith('/') else image_url
+                
                 source_path = Path(normalized_url).resolve()
                 image_cache_dir = Path("image_cache").resolve()
                 
