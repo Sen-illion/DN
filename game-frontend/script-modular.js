@@ -1429,314 +1429,418 @@ const Game = (() => {
         switchScreen('gameplay');
         
         // 更新章节信息
-                    const flowWorldline = gameState.gameData.flow_worldline;
-                    const currentChapter = flowWorldline.current_chapter || 'chapter1';
-                    const coreWorldview = gameState.gameData.core_worldview || {};
-                    const chapters = coreWorldview.chapters || {};
-                    const chapterInfo = chapters[currentChapter] || {};
+        const flowWorldline = gameState.gameData.flow_worldline;
+        const currentChapter = flowWorldline.current_chapter || 'chapter1';
+        const coreWorldview = gameState.gameData.core_worldview || {};
+        const chapters = coreWorldview.chapters || {};
+        const chapterInfo = chapters[currentChapter] || {};
+        
+        // 更新当前章节文本
+        if (elements.content.currentChapterText) {
+            elements.content.currentChapterText.textContent = `${currentChapter === 'chapter1' ? '第一章' : currentChapter === 'chapter2' ? '第二章' : '第三章'}：${chapterInfo.main_conflict || '探索中'}`;
+        }
+        
+        // 更新核心矛盾文本
+        if (elements.content.coreConflictText) {
+            elements.content.coreConflictText.textContent = chapterInfo.main_conflict || '核心矛盾未定义';
+        }
+        
+        // 显示加载指示器
+        // 已移除scene-container，不再需要
+        const loadingIndicator = document.createElement('div');
+        loadingIndicator.className = 'loading-overlay flex items-center justify-center bg-black/70 fixed inset-0 z-50';
+        loadingIndicator.innerHTML = `
+            <div class="loading-content text-center">
+                <div class="spinner animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto mb-4"></div>
+                <p class="text-white">生成初始剧情中...</p>
+            </div>
+        `;
+        const gameplayScreen = document.getElementById('gameplay-screen');
+        if (gameplayScreen) {
+            gameplayScreen.appendChild(loadingIndicator);
+        } else {
+            // 如果找不到gameplay-screen，添加到body
+            document.body.appendChild(loadingIndicator);
+        }
+        
+        try {
+            // 调用后端API生成初始场景和选项（初始场景不需要sceneId，因为没有缓存）
+            // 添加超时控制（5分钟超时，因为图片生成最多需要6分钟）
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 300000); // 5分钟超时
+            
+            let response;
+            try {
+                response = await fetch('http://127.0.0.1:5001/generate-option', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        option: '开始游戏',
+                        globalState: gameState.gameData,
+                        optionIndex: 0,
+                        sceneId: null  // 初始场景不需要sceneId
+                    }),
+                    signal: controller.signal
+                });
+            } catch (error) {
+                clearTimeout(timeoutId);
+                if (error.name === 'AbortError') {
+                    throw new Error('请求超时（5分钟），请检查网络连接或稍后重试');
+                }
+                throw error;
+            }
+            
+            clearTimeout(timeoutId);
+            
+            const result = await response.json();
+            
+            if (result.status === 'success') {
+                const optionData = result.optionData;
+                
+                // 重要：验证后端返回的场景数据
+                console.log('🔍 后端返回的optionData:', optionData);
+                console.log('🔍 optionData.scene:', optionData.scene);
+                console.log('🔍 optionData.scene类型:', typeof optionData.scene);
+                console.log('🔍 optionData.scene长度:', optionData.scene ? optionData.scene.length : 0);
+                
+                // 使用后端生成的场景描述，而不是硬编码的简单场景
+                // 检查场景是否为空字符串或无效
+                let initialScene = optionData.scene;
+                
+                // 验证场景文本是否有效
+                if (!initialScene || typeof initialScene !== 'string' || initialScene.trim() === '' || initialScene.length < 10) {
+                    console.error('❌ 后端返回的初始场景无效:', {
+                        scene: initialScene,
+                        type: typeof initialScene,
+                        length: initialScene ? initialScene.length : 0,
+                        fullOptionData: JSON.stringify(optionData, null, 2)
+                    });
                     
-                    // 更新当前章节文本
-                    if (elements.content.currentChapterText) {
-                        elements.content.currentChapterText.textContent = `${currentChapter === 'chapter1' ? '第一章' : currentChapter === 'chapter2' ? '第二章' : '第三章'}：${chapterInfo.main_conflict || '探索中'}`;
-                    }
+                    // 如果场景无效，等待一段时间后重试（最多重试2次）
+                    let retryCount = 0;
+                    const maxRetries = 2;
                     
-                    // 更新核心矛盾文本
-                    if (elements.content.coreConflictText) {
-                        elements.content.coreConflictText.textContent = chapterInfo.main_conflict || '核心矛盾未定义';
-                    }
-                    
-                    // 显示加载指示器
-                    // 已移除scene-container，不再需要
-                    const loadingIndicator = document.createElement('div');
-                    loadingIndicator.className = 'loading-overlay flex items-center justify-center bg-black/70 fixed inset-0 z-50';
-                    loadingIndicator.innerHTML = `
-                        <div class="loading-content text-center">
-                            <div class="spinner animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto mb-4"></div>
-                            <p class="text-white">生成初始剧情中...</p>
-                        </div>
-                    `;
-                    const gameplayScreen = document.getElementById('gameplay-screen');
-                    if (gameplayScreen) {
-                        gameplayScreen.appendChild(loadingIndicator);
-                    } else {
-                        // 如果找不到gameplay-screen，添加到body
-                        document.body.appendChild(loadingIndicator);
-                    }
-                    
-                    try {
-                        // 调用后端API生成初始场景和选项（初始场景不需要sceneId，因为没有缓存）
-                        // 添加超时控制（5分钟超时，因为图片生成最多需要6分钟）
-                        const controller = new AbortController();
-                        const timeoutId = setTimeout(() => controller.abort(), 300000); // 5分钟超时
-                        
-                        let response;
-                        try {
-                            response = await fetch('http://127.0.0.1:5001/generate-option', {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json'
-                                },
-                                body: JSON.stringify({
-                                    option: '开始游戏',
-                                    globalState: gameState.gameData,
-                                    optionIndex: 0,
-                                    sceneId: null  // 初始场景不需要sceneId
-                                }),
-                                signal: controller.signal
-                            });
-                        } catch (error) {
-                            clearTimeout(timeoutId);
-                            if (error.name === 'AbortError') {
-                                throw new Error('请求超时（5分钟），请检查网络连接或稍后重试');
-                            }
-                            throw error;
+                    // 初始化章节进度的辅助函数
+                    const initializeChapterProgress = () => {
+                        const initialProgress = Math.max(1, Math.min(3, Math.random() * 2 + 1));
+                        gameState.chapterProgress = Math.round(initialProgress * 10) / 10;
+                        if (gameState.gameData.flow_worldline) {
+                            gameState.gameData.flow_worldline.chapter_progress = gameState.chapterProgress;
                         }
+                        updateChapterProgress(gameState.chapterProgress);
+                    };
+                    
+                    // 如果场景无效，等待一段时间后重试（最多重试2次）
+                    const retryFunction = async () => {
+                        retryCount++;
+                        console.log(`🔄 重试获取初始场景... (${retryCount}/${maxRetries})`);
                         
-                        clearTimeout(timeoutId);
-                        
-                        const result = await response.json();
-                        loadingIndicator.remove();
-                        
-                        if (result.status === 'success') {
-                            const optionData = result.optionData;
-                            
-                            // 重要：验证后端返回的场景数据
-                            console.log('🔍 后端返回的optionData:', optionData);
-                            console.log('🔍 optionData.scene:', optionData.scene);
-                            console.log('🔍 optionData.scene类型:', typeof optionData.scene);
-                            console.log('🔍 optionData.scene长度:', optionData.scene ? optionData.scene.length : 0);
-                            
-                            // 使用后端生成的场景描述，而不是硬编码的简单场景
-                            // 检查场景是否为空字符串或无效
-                            let initialScene = optionData.scene;
-                            
-                            // 验证场景文本是否有效
-                            if (!initialScene || typeof initialScene !== 'string' || initialScene.trim() === '' || initialScene.length < 10) {
-                                console.error('❌ 后端返回的初始场景无效:', {
-                                    scene: initialScene,
-                                    type: typeof initialScene,
-                                    length: initialScene ? initialScene.length : 0,
-                                    fullOptionData: JSON.stringify(optionData, null, 2)
-                                });
+                        setTimeout(async () => {
+                            try {
+                                // 添加超时控制（5分钟超时）
+                                const retryController = new AbortController();
+                                const retryTimeoutId = setTimeout(() => retryController.abort(), 300000);
                                 
-                                // 如果场景无效，等待一段时间后重试（最多重试2次）
-                                let retryCount = 0;
-                                const maxRetries = 2;
-                                
-                                // 如果场景无效，等待一段时间后重试（最多重试2次）
-                                const retryFunction = async () => {
-                                    console.log('🔄 重试获取初始场景...');
-                                    setTimeout(async () => {
-                                        try {
-                                            // 添加超时控制（5分钟超时）
-                                            const retryController = new AbortController();
-                                            const retryTimeoutId = setTimeout(() => retryController.abort(), 300000);
-                                            
-                                            let retryResponse;
-                                            try {
-                                                retryResponse = await fetch('http://127.0.0.1:5001/generate-option', {
-                                                    method: 'POST',
-                                                    headers: {
-                                                        'Content-Type': 'application/json'
-                                                    },
-                                                    body: JSON.stringify({
-                                                        option: '开始游戏',
-                                                        globalState: gameState.gameData,
-                                                        optionIndex: 0,
-                                                        sceneId: null
-                                                    }),
-                                                    signal: retryController.signal
-                                                });
-                                            } catch (error) {
-                                                clearTimeout(retryTimeoutId);
-                                                if (error.name === 'AbortError') {
-                                                    throw new Error('重试请求超时（5分钟），请检查网络连接或稍后重试');
-                                                }
-                                                throw error;
-                                            }
-                                            
-                                            clearTimeout(retryTimeoutId);
-                                            const retryResult = await retryResponse.json();
-                                            if (retryResult.status === 'success' && retryResult.optionData.scene && retryResult.optionData.scene.trim().length >= 10) {
-                                                const retryOptionData = retryResult.optionData;
-                                                const retryScene = retryOptionData.scene;
-                                                const retryOptions = retryOptionData.next_options || [
-                                                    '继续深入探索',
-                                                    '查看周围环境'
-                                                ];
-                                                const retrySceneImage = retryOptionData.scene_image || null;
-                                                console.log('✅ 重试成功，使用后端生成的初始场景:', retryScene);
-                                                displayScene(retryScene, retryOptions, retrySceneImage, null);
-                                            } else {
-                                                // 重试失败，使用备用场景
-                                                const flowWorldline = gameState.gameData.flow_worldline;
-                                                const environment = flowWorldline.environment || {};
-                                                const location = environment.location || '未知地点';
-                                                const weather = environment.weather || '晴朗';
-                                                const questProgress = flowWorldline.quest_progress || '';
-                                                const fallbackScene = `你站在${location}，${weather}。${questProgress}`;
-                                                const fallbackOptions = [
-                                                    '继续深入探索',
-                                                    '查看周围环境'
-                                                ];
-                                                console.warn('⚠️ 重试失败，使用备用场景');
-                                                displayScene(fallbackScene, fallbackOptions);
-                                            }
-                                        } catch (error) {
-                                            console.error('❌ 重试API调用异常:', error);
-                                            const flowWorldline = gameState.gameData.flow_worldline;
-                                            const environment = flowWorldline ? flowWorldline.environment || {} : {};
-                                            const location = environment.location || '未知地点';
-                                            const weather = environment.weather || '晴朗';
-                                            const questProgress = flowWorldline ? (flowWorldline.quest_progress || '') : '';
-                                            const fallbackScene = `你站在${location}，${weather}。${questProgress}`;
-                                            const fallbackOptions = [
-                                                '继续深入探索',
-                                                '查看周围环境'
-                                            ];
-                                            displayScene(fallbackScene, fallbackOptions);
-                                        }
-                                    }, 2000); // 等待2秒后重试
-                                };
-                                
-                                retryFunction();
-                                return; // 退出当前函数，等待重试
-                            }
-                            
-                            const initialOptions = optionData.next_options || [
-                                '继续深入探索',
-                                '查看周围环境'
-                            ];
-                            
-                            // 限制选项数量为2个
-                            if (initialOptions.length > 2) {
-                                initialOptions = initialOptions.slice(0, 2);
-                            }
-                            
-                            // 验证选项是否有效
-                            if (!initialOptions || !Array.isArray(initialOptions) || initialOptions.length === 0) {
-                                console.warn('⚠️ 后端返回的初始选项无效，使用默认选项');
-                                initialOptions = [
-                                    '继续深入探索',
-                                    '查看周围环境',
-                                    '检查角色状态',
-                                    '了解当前任务'
-                                ];
-                            }
-                            
-                            console.log('✅ 使用后端生成的初始场景');
-                            console.log('   - 场景长度:', initialScene.length);
-                            console.log('   - 场景预览:', initialScene.substring(0, 100) + '...');
-                            console.log('   - 选项数量:', initialOptions.length);
-                            console.log('   - 选项列表:', initialOptions);
-                            
-                            // 更新游戏状态（如果有flow_update）
-                            if (gameState.gameData.flow_worldline && optionData.flow_update) {
-                                const flowUpdate = optionData.flow_update;
-                                
-                                // 更新章节进度
-                                if (flowUpdate.chapter_conflict_solved === true) {
-                                    // 章节矛盾已解决，进度设为100%
-                                    gameState.chapterProgress = 100;
-                                    gameState.gameData.flow_worldline.chapter_progress = 100;
-                                    updateChapterProgress(100);
-                                } else {
-                                    // 根据当前进度在到达结局之前的占比来确定进度更新
-                                    // 距离100%越近，每次增加的进度越少
-                                    const remainingProgress = 100 - gameState.chapterProgress;
-                                    // 基础增量：根据剩余进度计算，剩余越多增加越多
-                                    // 使用对数函数使进度增长更平滑：log(剩余进度 + 1) * 系数
-                                    const baseIncrement = Math.log(remainingProgress + 1) * 1.5;
-                                    // 添加一些随机性（±20%）
-                                    const randomFactor = 0.8 + Math.random() * 0.4;
-                                    const progressIncrement = Math.max(0.5, Math.min(remainingProgress * 0.1, baseIncrement * randomFactor));
-                                    const newProgress = Math.min(95, gameState.chapterProgress + progressIncrement);
-                                    gameState.chapterProgress = Math.round(newProgress * 10) / 10; // 保留一位小数
-                                    gameState.gameData.flow_worldline.chapter_progress = gameState.chapterProgress;
-                                    updateChapterProgress(gameState.chapterProgress);
-                                }
-                                Object.assign(gameState.gameData.flow_worldline, flowUpdate);
-                            } else if (gameState.gameData.flow_worldline) {
-                                // 即使没有flow_update，初始场景生成后也应该有初始进度
-                                // 初始进度设为1-3%（表示游戏开始）
-                                const initialProgress = Math.max(1, Math.min(3, Math.random() * 2 + 1));
-                                gameState.chapterProgress = Math.round(initialProgress * 10) / 10;
-                                gameState.gameData.flow_worldline.chapter_progress = gameState.chapterProgress;
-                                updateChapterProgress(gameState.chapterProgress);
-                            }
-                            
-                            // displayScene会自动触发预生成
-                            // 提取视觉内容数据
-                            let sceneImage = optionData.scene_image || null;
-                            // const sceneVideo = optionData.scene_video || null;  // 视频功能已禁用
-                            
-                            // 问题5修复：验证初始场景的图片数据格式
-                            console.log('🔍 初始场景 - 场景图片数据:', sceneImage);
-                            let validatedSceneImage = null;
-                            if (sceneImage) {
-                                // 验证数据格式
-                                if (typeof sceneImage === 'string') {
-                                    console.warn('⚠️ sceneImage是字符串，转换为对象格式');
-                                    validatedSceneImage = { url: sceneImage };
-                                } else if (sceneImage && typeof sceneImage === 'object') {
-                                    if (sceneImage.url) {
-                                        validatedSceneImage = sceneImage;
-                                        console.log('✅ 初始场景图片URL:', sceneImage.url);
-                                    } else if (sceneImage.image_url) {
-                                        validatedSceneImage = { url: sceneImage.image_url };
-                                        console.log('✅ 使用image_url字段:', sceneImage.image_url);
-                                    } else {
-                                        console.error('❌ sceneImage对象缺少URL字段:', sceneImage);
+                                let retryResponse;
+                                try {
+                                    retryResponse = await fetch('http://127.0.0.1:5001/generate-option', {
+                                        method: 'POST',
+                                        headers: {
+                                            'Content-Type': 'application/json'
+                                        },
+                                        body: JSON.stringify({
+                                            option: '开始游戏',
+                                            globalState: gameState.gameData,
+                                            optionIndex: 0,
+                                            sceneId: null
+                                        }),
+                                        signal: retryController.signal
+                                    });
+                                } catch (error) {
+                                    clearTimeout(retryTimeoutId);
+                                    if (error.name === 'AbortError') {
+                                        throw new Error('重试请求超时（5分钟），请检查网络连接或稍后重试');
                                     }
-                                } else {
-                                    console.error('❌ sceneImage格式无效:', sceneImage);
+                                    throw error;
                                 }
-                            } else {
-                                console.warn('⚠️ 初始场景没有图片数据');
+                                
+                                clearTimeout(retryTimeoutId);
+                                const retryResult = await retryResponse.json();
+                                if (retryResult.status === 'success' && retryResult.optionData.scene && retryResult.optionData.scene.trim().length >= 10) {
+                                    const retryOptionData = retryResult.optionData;
+                                    const retryScene = retryOptionData.scene;
+                                    const retryOptions = retryOptionData.next_options || [
+                                        '继续深入探索',
+                                        '查看周围环境'
+                                    ];
+                                    const retrySceneImage = retryOptionData.scene_image || null;
+                                    console.log('✅ 重试成功，使用后端生成的初始场景:', retryScene);
+                                    
+                                    // 更新游戏状态（如果有flow_update）
+                                    if (gameState.gameData.flow_worldline && retryOptionData.flow_update) {
+                                        const flowUpdate = retryOptionData.flow_update;
+                                        
+                                        // 更新章节进度
+                                        if (flowUpdate.chapter_conflict_solved === true) {
+                                            gameState.chapterProgress = 100;
+                                            gameState.gameData.flow_worldline.chapter_progress = 100;
+                                            updateChapterProgress(100);
+                                        } else {
+                                            // 确保chapterProgress已初始化，避免NaN计算
+                                            if (gameState.chapterProgress === undefined || gameState.chapterProgress === null || isNaN(gameState.chapterProgress)) {
+                                                initializeChapterProgress();
+                                            }
+                                            const remainingProgress = 100 - gameState.chapterProgress;
+                                            const baseIncrement = Math.log(remainingProgress + 1) * 1.5;
+                                            const randomFactor = 0.8 + Math.random() * 0.4;
+                                            const progressIncrement = Math.max(0.5, Math.min(remainingProgress * 0.1, baseIncrement * randomFactor));
+                                            const newProgress = Math.min(95, gameState.chapterProgress + progressIncrement);
+                                            gameState.chapterProgress = Math.round(newProgress * 10) / 10;
+                                            gameState.gameData.flow_worldline.chapter_progress = gameState.chapterProgress;
+                                            updateChapterProgress(gameState.chapterProgress);
+                                        }
+                                        // 保存已计算的chapter_progress，防止被flowUpdate覆盖
+                                        const preservedChapterProgress = gameState.gameData.flow_worldline.chapter_progress;
+                                        Object.assign(gameState.gameData.flow_worldline, flowUpdate);
+                                        // 恢复已计算的chapter_progress，确保与gameState.chapterProgress同步
+                                        if (preservedChapterProgress !== undefined && preservedChapterProgress !== null) {
+                                            gameState.gameData.flow_worldline.chapter_progress = preservedChapterProgress;
+                                        }
+                                    } else if (gameState.gameData.flow_worldline) {
+                                        // 即使没有flow_update，初始场景生成后也应该有初始进度
+                                        initializeChapterProgress();
+                                    } else {
+                                        // 如果没有flow_worldline，也初始化进度
+                                        initializeChapterProgress();
+                                    }
+                                    
+                                    // 安全移除加载指示器（如果还存在）
+                                    if (loadingIndicator && loadingIndicator.parentNode) {
+                                        loadingIndicator.remove();
+                                    }
+                                    displayScene(retryScene, retryOptions, retrySceneImage, null);
+                                } else {
+                                    // 重试失败，检查是否还有重试次数
+                                    if (retryCount < maxRetries) {
+                                        console.log(`⚠️ 重试 ${retryCount} 失败，继续重试...`);
+                                        retryFunction(); // 递归重试
+                                        return;
+                                    }
+                                    
+                                    // 已达到最大重试次数，使用备用场景
+                                    const flowWorldline = gameState.gameData.flow_worldline;
+                                    const environment = flowWorldline ? flowWorldline.environment || {} : {};
+                                    const location = environment.location || '未知地点';
+                                    const weather = environment.weather || '晴朗';
+                                    const questProgress = flowWorldline ? (flowWorldline.quest_progress || '') : '';
+                                    const fallbackScene = `你站在${location}，${weather}。${questProgress}`;
+                                    const fallbackOptions = [
+                                        '继续深入探索',
+                                        '查看周围环境'
+                                    ];
+                                    console.warn('⚠️ 重试失败，使用备用场景');
+                                    initializeChapterProgress(); // 初始化章节进度
+                                    // 安全移除加载指示器（如果还存在）
+                                    if (loadingIndicator && loadingIndicator.parentNode) {
+                                        loadingIndicator.remove();
+                                    }
+                                    displayScene(fallbackScene, fallbackOptions);
+                                }
+                            } catch (error) {
+                                console.error('❌ 重试API调用异常:', error);
+                                
+                                // 检查是否还有重试次数
+                                if (retryCount < maxRetries) {
+                                    console.log(`⚠️ 重试 ${retryCount} 异常，继续重试...`);
+                                    retryFunction(); // 递归重试
+                                    return;
+                                }
+                                
+                                // 已达到最大重试次数，使用备用场景
+                                const flowWorldline = gameState.gameData.flow_worldline;
+                                const environment = flowWorldline ? flowWorldline.environment || {} : {};
+                                const location = environment.location || '未知地点';
+                                const weather = environment.weather || '晴朗';
+                                const questProgress = flowWorldline ? (flowWorldline.quest_progress || '') : '';
+                                const fallbackScene = `你站在${location}，${weather}。${questProgress}`;
+                                const fallbackOptions = [
+                                    '继续深入探索',
+                                    '查看周围环境'
+                                ];
+                                initializeChapterProgress(); // 初始化章节进度
+                                // 安全移除加载指示器（如果还存在）
+                                if (loadingIndicator && loadingIndicator.parentNode) {
+                                    loadingIndicator.remove();
+                                }
+                                displayScene(fallbackScene, fallbackOptions);
                             }
-                            
-                            displayScene(initialScene, initialOptions, validatedSceneImage, null);  // 视频参数设为null
-                        } else {
-                            console.error('❌ API调用失败:', result.message);
-                            // 如果API调用失败，使用默认场景和选项
-                            const flowWorldline = gameState.gameData.flow_worldline;
-                            const environment = flowWorldline.environment || {};
-                            const location = environment.location || '未知地点';
-                            const weather = environment.weather || '晴朗';
-                            const questProgress = flowWorldline.quest_progress || '';
-                            const fallbackScene = `你站在${location}，${weather}。${questProgress}`;
-                            
-                            const initialOptions = [
-                                '继续深入探索',
-                                '查看周围环境'
-                            ];
-                            displayScene(fallbackScene, initialOptions);
-                        }
-                    } catch (error) {
-                        console.error('❌ API调用异常:', error);
-                        loadingIndicator.remove();
-                        // 如果API调用异常，使用默认场景和选项
-                        const flowWorldline = gameState.gameData.flow_worldline;
-                        const environment = flowWorldline.environment || {};
-                        const location = environment.location || '未知地点';
-                        const weather = environment.weather || '晴朗';
-                        const questProgress = flowWorldline.quest_progress || '';
-                        const fallbackScene = `你站在${location}，${weather}。${questProgress}`;
-                        
-                        const initialOptions = [
-                            '继续深入探索',
-                            '查看周围环境'
-                        ];
-                        displayScene(fallbackScene, initialOptions);
-                    }
+                        }, 2000); // 等待2秒后重试
+                    };
                     
-                    // 初始化章节进度（1-3%，表示游戏开始）
+                    retryFunction();
+                    return; // 退出当前函数，等待重试
+                }
+                
+                // 场景验证通过，移除加载指示器
+                loadingIndicator.remove();
+                
+                let initialOptions = optionData.next_options || [
+                    '继续深入探索',
+                    '查看周围环境'
+                ];
+                
+                // 限制选项数量为2个
+                if (initialOptions.length > 2) {
+                    initialOptions = initialOptions.slice(0, 2);
+                }
+                
+                // 验证选项是否有效
+                if (!initialOptions || !Array.isArray(initialOptions) || initialOptions.length === 0) {
+                    console.warn('⚠️ 后端返回的初始选项无效，使用默认选项');
+                    initialOptions = [
+                        '继续深入探索',
+                        '查看周围环境',
+                        '检查角色状态',
+                        '了解当前任务'
+                    ];
+                }
+                
+                console.log('✅ 使用后端生成的初始场景');
+                console.log('   - 场景长度:', initialScene.length);
+                console.log('   - 场景预览:', initialScene.substring(0, 100) + '...');
+                console.log('   - 选项数量:', initialOptions.length);
+                console.log('   - 选项列表:', initialOptions);
+                
+                // 更新游戏状态（如果有flow_update）
+                if (gameState.gameData.flow_worldline && optionData.flow_update) {
+                    const flowUpdate = optionData.flow_update;
+                    
+                    // 更新章节进度
+                    if (flowUpdate.chapter_conflict_solved === true) {
+                        // 章节矛盾已解决，进度设为100%
+                        gameState.chapterProgress = 100;
+                        gameState.gameData.flow_worldline.chapter_progress = 100;
+                        updateChapterProgress(100);
+                    } else {
+                        // 确保chapterProgress已初始化，避免NaN计算
+                        if (gameState.chapterProgress === undefined || gameState.chapterProgress === null || isNaN(gameState.chapterProgress)) {
+                            // 初始进度设为1-3%（表示游戏开始）
+                            const initialProgress = Math.max(1, Math.min(3, Math.random() * 2 + 1));
+                            gameState.chapterProgress = Math.round(initialProgress * 10) / 10;
+                            if (gameState.gameData.flow_worldline) {
+                                gameState.gameData.flow_worldline.chapter_progress = gameState.chapterProgress;
+                            }
+                            updateChapterProgress(gameState.chapterProgress);
+                        }
+                        // 根据当前进度在到达结局之前的占比来确定进度更新
+                        // 距离100%越近，每次增加的进度越少
+                        const remainingProgress = 100 - gameState.chapterProgress;
+                        // 基础增量：根据剩余进度计算，剩余越多增加越多
+                        // 使用对数函数使进度增长更平滑：log(剩余进度 + 1) * 系数
+                        const baseIncrement = Math.log(remainingProgress + 1) * 1.5;
+                        // 添加一些随机性（±20%）
+                        const randomFactor = 0.8 + Math.random() * 0.4;
+                        const progressIncrement = Math.max(0.5, Math.min(remainingProgress * 0.1, baseIncrement * randomFactor));
+                        const newProgress = Math.min(95, gameState.chapterProgress + progressIncrement);
+                        gameState.chapterProgress = Math.round(newProgress * 10) / 10; // 保留一位小数
+                        gameState.gameData.flow_worldline.chapter_progress = gameState.chapterProgress;
+                        updateChapterProgress(gameState.chapterProgress);
+                    }
+                    // 保存已计算的chapter_progress，防止被flowUpdate覆盖
+                    const preservedChapterProgress = gameState.gameData.flow_worldline.chapter_progress;
+                    Object.assign(gameState.gameData.flow_worldline, flowUpdate);
+                    // 恢复已计算的chapter_progress，确保与gameState.chapterProgress同步
+                    if (preservedChapterProgress !== undefined && preservedChapterProgress !== null) {
+                        gameState.gameData.flow_worldline.chapter_progress = preservedChapterProgress;
+                    }
+                } else if (gameState.gameData.flow_worldline) {
+                    // 即使没有flow_update，初始场景生成后也应该有初始进度
+                    // 初始进度设为1-3%（表示游戏开始）
                     const initialProgress = Math.max(1, Math.min(3, Math.random() * 2 + 1));
                     gameState.chapterProgress = Math.round(initialProgress * 10) / 10;
-                    if (gameState.gameData.flow_worldline) {
-                        gameState.gameData.flow_worldline.chapter_progress = gameState.chapterProgress;
-                    }
+                    gameState.gameData.flow_worldline.chapter_progress = gameState.chapterProgress;
                     updateChapterProgress(gameState.chapterProgress);
+                }
+                
+                // displayScene会自动触发预生成
+                // 提取视觉内容数据
+                let sceneImage = optionData.scene_image || null;
+                // const sceneVideo = optionData.scene_video || null;  // 视频功能已禁用
+                
+                // 问题5修复：验证初始场景的图片数据格式
+                console.log('🔍 初始场景 - 场景图片数据:', sceneImage);
+                let validatedSceneImage = null;
+                if (sceneImage) {
+                    // 验证数据格式
+                    if (typeof sceneImage === 'string') {
+                        console.warn('⚠️ sceneImage是字符串，转换为对象格式');
+                        validatedSceneImage = { url: sceneImage };
+                    } else if (sceneImage && typeof sceneImage === 'object') {
+                        if (sceneImage.url) {
+                            validatedSceneImage = sceneImage;
+                            console.log('✅ 初始场景图片URL:', sceneImage.url);
+                        } else if (sceneImage.image_url) {
+                            validatedSceneImage = { url: sceneImage.image_url };
+                            console.log('✅ 使用image_url字段:', sceneImage.image_url);
+                        } else {
+                            console.error('❌ sceneImage对象缺少URL字段:', sceneImage);
+                        }
+                    } else {
+                        console.error('❌ sceneImage格式无效:', sceneImage);
+                    }
+                } else {
+                    console.warn('⚠️ 初始场景没有图片数据');
+                }
+                
+                displayScene(initialScene, initialOptions, validatedSceneImage, null);  // 视频参数设为null
+            } else {
+                console.error('❌ API调用失败:', result.message);
+                loadingIndicator.remove(); // 移除加载指示器
+                // 如果API调用失败，使用默认场景和选项
+                const flowWorldline = gameState.gameData.flow_worldline;
+                const environment = flowWorldline ? flowWorldline.environment || {} : {};
+                const location = environment.location || '未知地点';
+                const weather = environment.weather || '晴朗';
+                const questProgress = flowWorldline ? (flowWorldline.quest_progress || '') : '';
+                const fallbackScene = `你站在${location}，${weather}。${questProgress}`;
+                
+                const initialOptions = [
+                    '继续深入探索',
+                    '查看周围环境'
+                ];
+                displayScene(fallbackScene, initialOptions);
+            }
+        } catch (error) {
+            console.error('❌ API调用异常:', error);
+            loadingIndicator.remove();
+            // 如果API调用异常，使用默认场景和选项
+            const flowWorldline = gameState.gameData.flow_worldline;
+            const environment = flowWorldline ? flowWorldline.environment || {} : {};
+            const location = environment.location || '未知地点';
+            const weather = environment.weather || '晴朗';
+            const questProgress = flowWorldline ? (flowWorldline.quest_progress || '') : '';
+            const fallbackScene = `你站在${location}，${weather}。${questProgress}`;
+            
+            const initialOptions = [
+                '继续深入探索',
+                '查看周围环境'
+            ];
+            displayScene(fallbackScene, initialOptions);
+        }
+        
+        // 初始化章节进度（1-3%，表示游戏开始）
+        // 仅在进度尚未初始化时设置（避免覆盖已在成功路径或重试路径中设置的进度）
+        // 注意：如果进度为0（初始值），也需要初始化，因为0%表示未开始，而1-3%表示游戏已开始
+        if (gameState.chapterProgress === undefined || gameState.chapterProgress === null || isNaN(gameState.chapterProgress) || gameState.chapterProgress === 0) {
+            const initialProgress = Math.max(1, Math.min(3, Math.random() * 2 + 1));
+            gameState.chapterProgress = Math.round(initialProgress * 10) / 10;
+            if (gameState.gameData.flow_worldline) {
+                gameState.gameData.flow_worldline.chapter_progress = gameState.chapterProgress;
+            }
+            updateChapterProgress(gameState.chapterProgress);
+        }
     }
     
     // 预生成下一层内容的辅助函数

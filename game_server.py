@@ -4,6 +4,7 @@ import sys
 import json
 import requests
 import threading
+import hashlib
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from datetime import datetime
@@ -757,37 +758,46 @@ def generate_option():
                 scene_text = option_data.get("scene", "")
                 scene_image = option_data.get("scene_image", None)
                 
-                # 检查是否需要生成图片：
-                # 1. 没有图片
-                # 2. 有图片但URL无效
-                # 3. 为了确保图片和文本匹配，每次都重新生成（基于当前场景文本）
-                # 这样可以避免"这次的剧情对应的是上一张的图"的问题
+                # 检查是否需要生成图片：确保图片和场景文本匹配
+                # 1. 没有图片 -> 生成
+                # 2. 有图片但 URL 无效 -> 生成
+                # 3. 图片存在且有效，但场景文本已变化 -> 重新生成（确保图片和文本匹配）
+                # 4. 图片存在且有效，且场景文本未变化 -> 使用缓存
                 need_generate_image = False
                 
                 if not scene_image:
                     need_generate_image = True
                     print(f"🔄 缓存数据缺少图片，立即生成图片（场景文本长度：{len(scene_text)}）")
+                elif not isinstance(scene_image, dict):
+                    need_generate_image = True
+                    print(f"🔄 缓存数据图片格式无效（非字典类型），立即生成新图片")
                 elif not scene_image.get("url"):
                     need_generate_image = True
                     print(f"🔄 缓存数据图片URL无效，立即生成新图片")
-                else:
-                    # 为了确保图片和文本匹配，每次都重新生成
-                    # 因为预生成时可能使用了错误的场景文本，或者图片是上一次场景的
-                    # 这样可以避免"这次的剧情对应的是上一张的图"的问题
-                    need_generate_image = True
-                    print(f"🔄 为确保图片和文本匹配，重新生成图片（场景文本长度：{len(scene_text)}）")
+                elif isinstance(scene_text, str) and scene_text.strip():
+                    # 计算当前场景文本的哈希值
+                    current_scene_hash = hashlib.md5(scene_text.encode('utf-8')).hexdigest()
+                    # 获取缓存图片关联的场景文本哈希（如果存在）
+                    cached_scene_hash = scene_image.get("scene_text_hash", None)
+                    # 如果场景文本已变化，需要重新生成图片以确保匹配
+                    if cached_scene_hash != current_scene_hash:
+                        need_generate_image = True
+                        print(f"🔄 场景文本已变化（缓存哈希: {cached_scene_hash[:8] if cached_scene_hash else 'N/A'} vs 当前哈希: {current_scene_hash[:8]}），重新生成图片以确保匹配")
                 
                 if need_generate_image and isinstance(scene_text, str) and scene_text.strip():
                     print(f"🎨 正在为场景生成图片（确保图片和文本匹配）...")
                     img = generate_scene_image(scene_text, global_state, "default", use_cache=True)
                     if img and isinstance(img, dict) and img.get("url"):
+                        # 计算并存储场景文本哈希，用于后续匹配检查
+                        scene_text_hash = hashlib.md5(scene_text.encode('utf-8')).hexdigest()
                         option_data["scene_image"] = {
                             "url": img.get("url"),
                             "prompt": img.get("prompt", ""),
                             "style": img.get("style", "default"),
                             "width": img.get("width", 1024),
                             "height": img.get("height", 1024),
-                            "cached": img.get("cached", True)
+                            "cached": img.get("cached", True),
+                            "scene_text_hash": scene_text_hash  # 存储场景文本哈希，用于匹配检查
                         }
                         print("✅ 已生成场景图片（确保图片和文本匹配）")
                     else:
@@ -1649,8 +1659,9 @@ def get_video_status_api(task_id):
 def serve_main_character_image(game_id, filename):
     """提供主角形象图片"""
     try:
-        # 安全检查：防止路径遍历攻击
-        if '..' in game_id or '..' in filename or '/' in game_id or '\\' in game_id:
+        # 安全检查：防止路径遍历攻击（game_id 与 filename 均禁止 .. / \）
+        if ('..' in game_id or '..' in filename or '/' in game_id or '\\' in game_id or
+                '/' in filename or '\\' in filename):
             return jsonify({"status": "error", "message": "Invalid path"}), 400
         
         image_path = os.path.join("initial", "main_character", game_id, filename)
