@@ -1864,9 +1864,14 @@ const Game = (() => {
               .then(result => {
                   if (result.status === 'success') {
                       console.log('✅ 预生成任务已启动，场景ID:', result.sceneId);
-                      // 更新场景ID（如果服务器生成了新的）
-                      if (result.sceneId && !sceneId) {
+                      console.log('🔍 [前端] 预生成返回的 sceneId:', result.sceneId);
+                      console.log('🔍 [前端] 前端传入的 sceneId:', sceneId);
+                      console.log('🔍 [前端] 更新前的 gameState.currentSceneId:', gameState.currentSceneId);
+                      
+                      // 更新场景ID（总是更新为后端返回的 sceneId，确保匹配）
+                      if (result.sceneId) {
                           gameState.currentSceneId = result.sceneId;
+                          console.log('🔍 [前端] 更新后的 gameState.currentSceneId:', gameState.currentSceneId);
                       }
                   } else {
                       console.warn('⚠️ 预生成任务启动失败:', result.message);
@@ -2566,6 +2571,13 @@ const Game = (() => {
                         
                         let response;
                         try {
+                            // 🔍 调试日志：显示前端发送的参数
+                            console.log('🔍 [前端] 调用 /generate-option：');
+                            console.log('   - 选项内容：', selectedOption);
+                            console.log('   - 选项索引：', index);
+                            console.log('   - 发送的 sceneId：', gameState.currentSceneId);
+                            console.log('   - previousSceneId：', previousSceneId);
+                            
                             response = await fetch('http://127.0.0.1:5001/generate-option', {
                                 method: 'POST',
                                 headers: {

@@ -403,6 +403,13 @@ def generate_option():
         scene_id = data.get('sceneId', None)  # 前端传入的场景ID，用于缓存查找
         current_options = data.get('currentOptions', [])  # 当前选项列表，用于触发优先生成
         
+        # 🔍 调试日志：显示前端传入的参数
+        print(f"🔍 [generate-option] 收到请求：")
+        print(f"   - 选项内容：{option[:50]}...")
+        print(f"   - 选项索引：{option_index}")
+        print(f"   - 前端传入的 sceneId：{scene_id}")
+        print(f"   - 当前缓存中的所有 scene_id：{list(pregeneration_cache.keys())}")
+        
         # 新增：图片依赖生成（视觉连续性上下文）
         # - 同一场景统一风格/物件
         # - 下一剧情图片参考上一剧情图片生成
@@ -514,8 +521,17 @@ def generate_option():
         
         if scene_id and scene_id != 'initial':
             with cache_lock:
+                # 🔍 调试日志：检查 scene_id 是否在缓存中
+                print(f"🔍 [generate-option] 检查 scene_id 是否在缓存中...")
+                print(f"   - 查找的 scene_id：{scene_id}")
+                print(f"   - 缓存中的 scene_id 列表：{list(pregeneration_cache.keys())}")
+                print(f"   - scene_id 是否在缓存中：{scene_id in pregeneration_cache}")
+                
                 if scene_id in pregeneration_cache:
                     cache_entry = pregeneration_cache[scene_id]
+                    print(f"✅ [generate-option] scene_id 匹配成功，找到缓存条目")
+                    print(f"   - 缓存条目中的 layer1 选项索引：{list(cache_entry.get('layer1', {}).keys())}")
+                    print(f"   - 缓存条目中的生成状态：{cache_entry.get('generation_status', {})}")
                     
                     # 情况1：缓存中已有该选项的数据
                     if 'layer1' in cache_entry and option_index in cache_entry['layer1']:
@@ -555,11 +571,16 @@ def generate_option():
                         if status == 'generating':
                             # 情况2a：正在生成中，等待生成完成
                             print(f"⏳ 选项 {option_index} 正在生成中，等待完成...")
+                            print(f"   - 当前缓存中的 layer1 选项索引：{list(cache_entry.get('layer1', {}).keys())}")
+                            print(f"   - 当前生成状态：{generation_status}")
                             need_wait = True
                             # 获取对应的事件对象
                             events = cache_entry.setdefault('generation_events', {})
                             if option_index not in events:
                                 events[option_index] = threading.Event()
+                                print(f"   - 创建了选项 {option_index} 的等待事件")
+                            else:
+                                print(f"   - 使用已存在的选项 {option_index} 的等待事件")
                             wait_event = events[option_index]
                         
                         elif status == 'pending':
@@ -612,7 +633,10 @@ def generate_option():
                     else:
                         # 情况3：scene_id不在缓存中，可能是第一次选择（前端传入了新生成的sceneId）
                         # 尝试从initial缓存中查找（第一次的选项数据在initial缓存中）
-                        print(f"⚠️ 场景 {scene_id} 不在缓存中，尝试从initial缓存查找...")
+                        print(f"⚠️ [generate-option] 场景 {scene_id} 不在缓存中！")
+                        print(f"   - 前端传入的 scene_id：{scene_id}")
+                        print(f"   - 缓存中存在的 scene_id：{list(pregeneration_cache.keys())}")
+                        print(f"   - 尝试从initial缓存查找...")
                         if 'initial' in pregeneration_cache:
                             initial_cache = pregeneration_cache['initial']
                             if initial_cache.get('completed', False):
@@ -635,7 +659,13 @@ def generate_option():
             try:
                 # 等待超时（默认180秒，可通过环境变量调节），避免前端卡死太久
                 wait_timeout = int(os.getenv("OPTION_WAIT_TIMEOUT_SECONDS", "180"))
-                wait_event.wait(timeout=wait_timeout)
+                print(f"⏳ [generate-option] 开始等待选项 {option_index} 生成完成（超时：{wait_timeout}秒）...")
+                event_triggered = wait_event.wait(timeout=wait_timeout)
+                
+                if event_triggered:
+                    print(f"✅ [generate-option] 等待事件已触发，选项 {option_index} 生成完成")
+                else:
+                    print(f"⚠️ [generate-option] 等待超时（{wait_timeout}秒），选项 {option_index} 可能仍在生成中")
                 
                 # 再次尝试从缓存读取
                 with cache_lock:
@@ -668,9 +698,18 @@ def generate_option():
                         # 处理后续生成的情况
                         if scene_id in pregeneration_cache:
                             cache_entry = pregeneration_cache[scene_id]
+                            print(f"🔍 [generate-option] 等待后检查缓存：")
+                            print(f"   - scene_id：{scene_id}")
+                            print(f"   - layer1 选项索引：{list(cache_entry.get('layer1', {}).keys())}")
+                            print(f"   - 生成状态：{cache_entry.get('generation_status', {})}")
                             if 'layer1' in cache_entry and option_index in cache_entry['layer1']:
                                 option_data = cache_entry['layer1'][option_index]
                                 print(f"✅ 等待完成，从缓存中读取选项 {option_index} 的剧情")
+                            else:
+                                print(f"⚠️ 等待后缓存中仍然没有选项 {option_index} 的数据")
+                                print(f"   - layer1 存在：{'layer1' in cache_entry}")
+                                print(f"   - layer1 内容：{cache_entry.get('layer1', {})}")
+                                print(f"   - 选项索引 {option_index} 在 layer1 中：{option_index in cache_entry.get('layer1', {})}")
                 
                 # 如果等待后仍然没有，返回错误
                 if not option_data:
@@ -825,9 +864,16 @@ def _pregenerate_next_layers_logic(global_state, current_options, scene_id):
     预生成两层内容的核心逻辑（优先级策略 + 渐进式缓存）
     可以被接口函数或其他函数调用
     """
+    # 🔍 调试日志：显示 scene_id 的处理
+    print(f"🔍 [_pregenerate_next_layers_logic] scene_id 处理：")
+    print(f"   - 传入的 scene_id：{scene_id}")
+    
     # 如果没有提供scene_id，生成一个新的
     if not scene_id:
         scene_id = generate_scene_id(str(global_state), str(current_options))
+        print(f"   - 未提供 scene_id，已生成新的：{scene_id}")
+    else:
+        print(f"   - 使用传入的 scene_id：{scene_id}")
     
     print(f"🔄 开始预生成场景 {scene_id} 的两层内容（优先级策略）...")
     
@@ -942,12 +988,18 @@ def _pregenerate_next_layers_logic(global_state, current_options, scene_id):
                             cache_entry['layer1'][opt_idx] = option_data
                             cache_entry['generation_status'][opt_idx] = 'completed'
                             
+                            # 🔍 调试日志：显示写入缓存后的状态
+                            print(f"✅ 选项 {opt_idx} 生成完成并已写入缓存")
+                            print(f"   - 写入后的 layer1 选项索引：{list(cache_entry.get('layer1', {}).keys())}")
+                            print(f"   - 写入后的生成状态：{cache_entry.get('generation_status', {})}")
+                            
                             # 触发等待事件（如果有线程在等待）
                             events = cache_entry.get('generation_events', {})
                             if opt_idx in events:
                                 events[opt_idx].set()
-                            
-                            print(f"✅ 选项 {opt_idx} 生成完成并已写入缓存")
+                                print(f"   - 已触发选项 {opt_idx} 的等待事件")
+                            else:
+                                print(f"   - 选项 {opt_idx} 没有等待事件（可能没有线程在等待）")
                 except Exception as e:
                     print(f"❌ 生成选项 {opt_idx} 失败：{str(e)}")
                     import traceback
@@ -1173,8 +1225,17 @@ def pregenerate_next_layers():
         if not current_options:
             return jsonify({"status": "error", "message": "当前选项列表不能为空！"})
         
+        # 🔍 调试日志：显示预生成使用的 scene_id
+        print(f"🔍 [pregenerate-next-layers] 预生成参数：")
+        print(f"   - 前端传入的 sceneId：{scene_id}")
+        print(f"   - 当前选项数量：{len(current_options)}")
+        
         # 调用预生成核心逻辑
         scene_id = _pregenerate_next_layers_logic(global_state, current_options, scene_id)
+        
+        # 🔍 调试日志：显示预生成返回的 scene_id
+        print(f"🔍 [pregenerate-next-layers] 预生成返回的 sceneId：{scene_id}")
+        print(f"   - 返回给前端的 sceneId：{scene_id}")
         
         # 立即返回，告知前端预生成已启动
         return jsonify({
