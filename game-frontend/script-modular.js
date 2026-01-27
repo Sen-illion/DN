@@ -2267,7 +2267,8 @@ const Game = (() => {
                         sceneTextElement.textContent += segmentText.charAt(index);
                         index++;
                         // 关键信息高亮
-                        const highlightedText = sceneTextElement.textContent
+                        // 注意：先做HTML转义，避免原文中的 <、& 等字符导致渲染吞字/吞数字
+                        const highlightedText = escapeHtml(sceneTextElement.textContent)
                             .replace(/迷雾森林/g, '<span class="text-[#3498DB] font-bold">迷雾森林</span>')
                             .replace(/上古神器/g, '<span class="text-[#3498DB] font-bold">上古神器</span>')
                             .replace(/古老神庙/g, '<span class="text-[#3498DB] font-bold">古老神庙</span>')
@@ -2371,7 +2372,8 @@ const Game = (() => {
                     sceneTextElement.textContent += nextSegment.charAt(index);
                     index++;
                     // 关键信息高亮
-                    const highlightedText = sceneTextElement.textContent
+                    // 注意：先做HTML转义，避免原文中的 <、& 等字符导致渲染吞字/吞数字
+                    const highlightedText = escapeHtml(sceneTextElement.textContent)
                         .replace(/迷雾森林/g, '<span class="text-[#3498DB] font-bold">迷雾森林</span>')
                         .replace(/上古神器/g, '<span class="text-[#3498DB] font-bold">上古神器</span>')
                         .replace(/古老神庙/g, '<span class="text-[#3498DB] font-bold">古老神庙</span>')
@@ -2738,12 +2740,23 @@ const Game = (() => {
                                 /生化或者失败联盟/g,
                                 /出让角1/g,
                                 /遣代表试/g,
-                                /[^\u4e00-\u9fa5a-zA-Z\s，。！？、：；“”‘’（）《》【】]+/g  // 移除所有非中文字符、非英文字符和非常见标点的内容
+                                /[^\u4e00-\u9fa5a-zA-Z0-9０-９\s，。！？、：；“”‘’（）《》【】…]+/g  // 移除所有非中文字符、非英文字符、非数字和非常见标点的内容（保留数字与常用中文标点）
                             ];
                             
                             errorPatterns.forEach(pattern => {
                                 cleanedNextScene = cleanedNextScene.replace(pattern, '');
                             });
+
+                            // 🔍 调试：统计“数字”是否在清洗阶段被误删（仅输出到控制台）
+                            try {
+                                const numsBefore = (nextScene || '').match(/\p{N}/gu) || [];
+                                const numsAfter = (cleanedNextScene || '').match(/\p{N}/gu) || [];
+                                console.log(`🔢 数字统计（任意数字字符）：清洗前 ${numsBefore.length} -> 清洗后 ${numsAfter.length}`);
+                            } catch {
+                                const numsBefore = (nextScene || '').match(/[0-9０-９]/g) || [];
+                                const numsAfter = (cleanedNextScene || '').match(/[0-9０-９]/g) || [];
+                                console.log(`🔢 数字统计（0-9/全角）：清洗前 ${numsBefore.length} -> 清洗后 ${numsAfter.length}`);
+                            }
                             
                             // 确保场景描述有意义
                             if (!cleanedNextScene.trim() || cleanedNextScene.length < 10) {

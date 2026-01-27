@@ -4421,7 +4421,8 @@ def _generate_single_option(i: int, option: str, global_state: Dict) -> Dict:
                 # 修复：清理场景描述中的错误信息，使用更精确的正则表达式
                 error_patterns = [
                     r'请求.*?失败|申请.*?失败|请.*?重试|侧向请求|生化或者失败联盟|出让角1|遣代表试',
-                    r'[^一-龥a-zA-Z\s，。！？、：；“”‘’（）《》【】]*',  # 移除所有非中文字符、非英文字符和非常见标点的内容
+                    # 保留：中文/英文/数字（含全角）+ 常用中文标点（含省略号）+ 引号
+                    r"[^一-龥a-zA-Z0-9０-９\s，。！？、：；“”‘’（）《》【】…\"']+",  # 移除其余“非法字符”，避免误删数字
                 ]
                 
                 for pattern in error_patterns:
@@ -4909,7 +4910,8 @@ def _generate_single_option_text_only(i: int, option: str, global_state: Dict) -
             if scene:
                 error_patterns = [
                     r'请求.*?失败|申请.*?失败|请.*?重试|侧向请求|生化或者失败联盟|出让角1|遣代表试',
-                    r'[^一-龥a-zA-Z\s，。！？、：；“"''（）《》【】]*',
+                    # 保留：中文/英文/数字（含全角）+ 常用中文标点（含省略号）+ 引号
+                    r"[^一-龥a-zA-Z0-9０-９\s，。！？、：；“”‘’（）《》【】…\"']+",
                 ]
                 for pattern in error_patterns:
                     scene = re.sub(pattern, '', scene, flags=re.IGNORECASE)
