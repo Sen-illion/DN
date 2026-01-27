@@ -1567,16 +1567,39 @@ def generate_scene_image(
                             else:
                                 # 复制到新的hash名称
                                 import shutil
-                                shutil.copy2(existing_path, cache_path)
-                                print(f"✅ 从现有缓存复制图片到新hash：{cache_path}")
-                                return {
-                                    "url": f"/image_cache/{prompt_hash}.png",
-                                    "prompt": prompt,
-                                    "style": style,
-                                    "width": image_width,
-                                    "height": image_height,
-                                    "cached": True
-                                }
+                                try:
+                                    print(f"🔄 开始复制图片：{existing_path} -> {cache_path}")
+                                    shutil.copy2(existing_path, cache_path)
+                                    print(f"✅ 从现有缓存复制图片到新hash：{cache_path}")
+                                    
+                                    # 验证文件是否成功复制
+                                    if not cache_path.exists():
+                                        raise FileNotFoundError(f"复制后的文件不存在：{cache_path}")
+                                    
+                                    print(f"✅ 图片复制完成，文件大小：{cache_path.stat().st_size} 字节")
+                                    
+                                    return {
+                                        "url": f"/image_cache/{prompt_hash}.png",
+                                        "prompt": prompt,
+                                        "style": style,
+                                        "width": image_width,
+                                        "height": image_height,
+                                        "cached": True
+                                    }
+                                except Exception as copy_err:
+                                    print(f"❌ 复制图片时发生错误：{copy_err}")
+                                    import traceback
+                                    traceback.print_exc()
+                                    # 如果复制失败，尝试使用原始路径
+                                    print(f"⚠️ 复制失败，尝试使用原始缓存路径")
+                                    return {
+                                        "url": f"/image_cache/{existing_hash}.png",
+                                        "prompt": prompt,
+                                        "style": style,
+                                        "width": image_width,
+                                        "height": image_height,
+                                        "cached": True
+                                    }
                     # 如果相对路径对应的文件不存在，抛出错误
                     raise ValueError(f"本地缓存路径对应的文件不存在：{image_url}")
                 
@@ -1977,7 +2000,8 @@ def call_yunwu_image_api(prompt: str, style: str) -> str:
     # 但 gemini-2.5-flash-image 不支持，会导致400错误
     
     # 可配置：超时/最小间隔/重试次数（避免长时间卡住 + 降低 429 概率）
-    request_timeout = int(os.getenv("YUNWU_IMAGE_TIMEOUT_SECONDS", "90"))
+    # 🔧 修复：增加默认超时时间到180秒，因为图片生成通常需要较长时间
+    request_timeout = int(os.getenv("YUNWU_IMAGE_TIMEOUT_SECONDS", "180"))  # 从90秒增加到180秒
     min_interval = float(os.getenv("YUNWU_MIN_INTERVAL_SECONDS", "12"))
     max_retries = int(os.getenv("YUNWU_IMAGE_MAX_RETRIES", "3"))
     for attempt in range(max_retries):
@@ -2012,12 +2036,17 @@ def call_yunwu_image_api(prompt: str, style: str) -> str:
             print(f"🔍 ==========================================")
             
             # 图片生成可能耗时，但不应无限期阻塞
+            # 🔧 修复：添加超时日志，方便调试
+            print(f"⏱️ 发送图片生成请求（超时时间：{request_timeout}秒）...")
+            start_request_time = time.time()
             response = requests.post(
                 f"{base_url}/chat/completions",
                 headers=headers,
                 json=request_body,
                 timeout=request_timeout
             )
+            elapsed_time = time.time() - start_request_time
+            print(f"✅ API请求完成，耗时：{elapsed_time:.2f}秒")
             
             # 先检查HTTP状态码，区分不同类型的错误
             if response.status_code == 400:
@@ -2698,8 +2727,9 @@ def call_yunwu_image_api(prompt: str, style: str) -> str:
                 
         except requests.exceptions.Timeout as e:
             # 超时错误：图片生成可能需要更长时间，重试
-            print(f"⚠️ yunwu.ai图片生成API请求超时（尝试 {attempt + 1}/{max_retries}）")
+            print(f"⚠️ yunwu.ai图片生成API请求超时（尝试 {attempt + 1}/{max_retries}，超时时间：{request_timeout}秒）")
             print(f"   图片生成通常需要较长时间，可能是API响应慢或网络问题")
+            print(f"   💡 提示：如果经常超时，可以增加 YUNWU_IMAGE_TIMEOUT_SECONDS 环境变量（当前：{request_timeout}秒）")
             if attempt < max_retries - 1:
                 # 超时后等待更长时间再重试
                 wait_time = 10 * (attempt + 1)  # 10s, 20s, 30s
@@ -2709,6 +2739,7 @@ def call_yunwu_image_api(prompt: str, style: str) -> str:
             else:
                 # 最后一次尝试也超时，抛出异常
                 print(f"❌ 达到最大重试次数（{max_retries}），图片生成超时")
+                print(f"   💡 建议：增加 YUNWU_IMAGE_TIMEOUT_SECONDS 环境变量到更大的值（例如：300秒）")
                 raise
         except requests.exceptions.HTTPError as e:
             # 429错误已经在上面处理，这里处理其他HTTP错误
@@ -4241,8 +4272,6 @@ def _generate_single_option(i: int, option: str, global_state: Dict) -> Dict:
     【选项】：
     1. 选项1（要求：简洁明确，10-20字）
     2. 选项2（要求：简洁明确，10-20字）
-    3. 选项3（要求：简洁明确，10-20字）
-    4. 选项4（要求：简洁明确，10-20字）
     【世界线更新】：
     角色变化：简要描述角色状态变化（要求：至少50字）
     环境变化：简要描述环境变化（要求：至少50字）
@@ -4488,10 +4517,15 @@ def _generate_single_option(i: int, option: str, global_state: Dict) -> Dict:
                 # 使用原始选项，但确保至少有2个
                 next_options = original_options[:2] if len(original_options) >= 2 else original_options
             
-            # 限制选项数量为2个
+            # 限制选项数量为2个（确保只保留2个选项）
             if len(next_options) > 2:
                 print(f"📊 选项 {i+1} 数量超过2个，限制为前2个")
                 next_options = next_options[:2]
+            elif len(next_options) < 2:
+                # 如果选项少于2个，尝试从原始选项补充
+                if original_options_count >= 2:
+                    print(f"⚠️ 选项 {i+1} 剪枝后选项过少（{len(next_options)}个），使用原始选项的前2个")
+                    next_options = original_options[:2]
             
             print(f"📊 选项 {i+1} 剪枝统计：原始{original_options_count}个 -> 剪枝后{len(next_options)}个")
             
@@ -4747,8 +4781,6 @@ def _generate_single_option_text_only(i: int, option: str, global_state: Dict) -
     【选项】：
     1. 选项1（要求：简洁明确，10-20字）
     2. 选项2（要求：简洁明确，10-20字）
-    3. 选项3（要求：简洁明确，10-20字）
-    4. 选项4（要求：简洁明确，10-20字）
     【世界线更新】：
     角色变化：简要描述角色状态变化（要求：至少50字）
     环境变化：简要描述环境变化（要求：至少50字）
@@ -4951,8 +4983,15 @@ def _generate_single_option_text_only(i: int, option: str, global_state: Dict) -
             next_options = prune_options(next_options)
             pruned_count = len(next_options)
             
-            if pruned_count < 3 and original_options_count >= 3:
-                next_options = original_options[:4] if len(original_options) >= 4 else original_options
+            # 限制选项数量为2个（确保只保留2个选项）
+            if len(next_options) > 2:
+                print(f"📊 选项 {i+1} 数量超过2个，限制为前2个")
+                next_options = next_options[:2]
+            elif len(next_options) < 2:
+                # 如果选项少于2个，尝试从原始选项补充
+                if original_options_count >= 2:
+                    print(f"⚠️ 选项 {i+1} 剪枝后选项过少（{len(next_options)}个），使用原始选项的前2个")
+                    next_options = original_options[:2] if len(original_options) >= 2 else original_options
             
             # 构建选项数据（不包含图片）
             option_data = {
@@ -4962,8 +5001,8 @@ def _generate_single_option_text_only(i: int, option: str, global_state: Dict) -
                 "deep_background_links": deep_background_links
             }
             
-            # 只有当场景描述和选项都有内容时，才返回结果
-            if scene and next_options and len(next_options) >= 3:
+            # 只有当场景描述和选项都有内容时，才返回结果（至少2个选项）
+            if scene and next_options and len(next_options) >= 2:
                 print(f"✅ 选项 {i+1} 剧情生成成功，共{len(next_options)}个选项：{next_options}")
                 break
             else:
@@ -5152,14 +5191,31 @@ def _generate_images_parallel(scenes_dict: Dict[int, str], global_state: Dict) -
                     failed_images += 1
                     print(f"⚠️ 选项 {result_option_index+1} 图片生成失败，无数据返回")
             
+            except TimeoutError as e:
+                # 🔧 修复：单独处理 TimeoutError，避免被通用异常处理掩盖
+                failed_images += 1
+                print(f"⚠️ 选项 {option_index+1} 图片生成超时（{per_task_timeout}s），将跳过该图片")
+                print(f"💡 提示：图片生成任务可能因为API响应慢或网络问题而超时")
+                # 尝试取消该任务，释放资源（但任务可能已经在执行，无法取消）
+                try:
+                    future.cancel()
+                except:
+                    pass
             except Exception as e:
                 error_msg = str(e)
-                if "timeout" in error_msg.lower() or "超时" in error_msg:
-                    failed_images += 1
-                    print(f"⚠️ 选项 {option_index+1} 图片生成超时（{per_task_timeout}s）")
+                failed_images += 1
+                # 检查是否是超时相关的异常（包括 concurrent.futures.TimeoutError）
+                if isinstance(e, (TimeoutError, type(None))) or "timeout" in error_msg.lower() or "超时" in error_msg or "TimeoutError" in str(type(e)):
+                    print(f"⚠️ 选项 {option_index+1} 图片生成超时（{per_task_timeout}s），将跳过该图片")
+                    print(f"💡 提示：图片生成任务可能因为API响应慢或网络问题而超时")
+                    # 尝试取消任务
+                    try:
+                        future.cancel()
+                    except:
+                        pass
                 else:
-                    failed_images += 1
                     print(f"⚠️ 选项 {option_index+1} 图片生成异常：{error_msg}")
+                    print(f"   异常类型：{type(e).__name__}")
                 import traceback
                 traceback.print_exc()
     
@@ -5363,8 +5419,6 @@ def llm_generate_local(global_state: Dict, user_interaction: str, last_options: 
     【选项】：
     1. 选项1（要求：简洁明确，10-20字）
     2. 选项2（要求：简洁明确，10-20字）
-    3. 选项3（要求：简洁明确，10-20字）
-    4. 选项4（要求：简洁明确，10-20字）
     【世界线更新】：
     角色变化：简要描述角色状态变化（要求：至少50字）
     环境变化：简要描述环境变化（要求：至少50字）
@@ -5570,7 +5624,7 @@ class TextAdventureGame:
         self.save_dir: str = "saves"  # 存档目录
         
         # 新增：缓存相关属性
-        self.scene_cache: Dict = {}  # 场景缓存，key为场景ID，value为3个选项的完整剧情数据
+        self.scene_cache: Dict = {}  # 场景缓存，key为场景ID，value为2个选项的完整剧情数据
         self.current_scene_id: str = "initial"  # 当前场景ID
         self.generating_task = None  # 异步生成任务
         self.generation_cancelled = False  # 生成取消标志

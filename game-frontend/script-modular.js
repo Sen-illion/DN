@@ -2294,32 +2294,18 @@ const Game = (() => {
                                 nextSegmentBtn.classList.remove('hidden');
                             }
                         } else {
-                            // 所有段落都显示完了，切换到选项显示
-                            console.log('✅ 所有段落显示完成，准备显示选项');
+                            // 所有段落都显示完了，显示"->"按钮等待用户点击后再显示选项
+                            console.log('✅ 所有段落显示完成，显示"->"按钮等待用户点击显示选项');
                             
-                            // 隐藏文本显示区域，显示选项区域
-                            if (textDisplayArea) {
-                                textDisplayArea.classList.add('hidden');
+                            // 保存待显示的选项
+                            gameState.pendingOptions = options;
+                            
+                            // 显示"->"按钮（点击后显示选项）
+                            if (nextSegmentBtn) {
+                                nextSegmentBtn.classList.remove('hidden');
+                                // 标记这是最后一段，点击后应该显示选项
+                                nextSegmentBtn.dataset.showOptions = 'true';
                             }
-                            if (optionsListArea) {
-                                optionsListArea.classList.remove('hidden');
-                            }
-                            
-                            generateOptions(options);
-                            
-                            // 注意：预生成已经在文本开始显示时触发，这里不再重复触发
-                            // 如果预生成没有在文本开始显示时触发，这里作为备用触发
-                            if (!gameState._pregenerationTriggered && options && options.length > 0) {
-                                const newSceneId = generateNewSceneId();
-                                gameState.currentSceneId = newSceneId;
-                                console.log('🚀 备用触发预生成（场景ID:', newSceneId, '）');
-                                if (gameState.gameData) {
-                                    pregenerateNextLayers(gameState.gameData, options, newSceneId);
-                                }
-                                gameState._pregenerationTriggered = true;
-                            }
-                            
-                            console.log('✅ 场景和选项显示完成');
                         }
                     }
                 }, 30);
@@ -2344,10 +2330,11 @@ const Game = (() => {
             return;
         }
         
-        // 隐藏"->"按钮
+        // 隐藏"->"按钮并清除显示选项标记
         const nextSegmentBtn = document.getElementById('next-segment-btn');
         if (nextSegmentBtn) {
             nextSegmentBtn.classList.add('hidden');
+            nextSegmentBtn.dataset.showOptions = 'false'; // 清除显示选项标记
         }
         
         // 移动到下一段
@@ -2411,40 +2398,16 @@ const Game = (() => {
                             nextSegmentBtn.classList.remove('hidden');
                         }
                     } else {
-                        // 所有段落都显示完了，切换到选项显示
-                        console.log('✅ 所有段落显示完成，准备显示选项');
+                        // 所有段落都显示完了，显示"->"按钮等待用户点击后再显示选项
+                        console.log('✅ 所有段落显示完成，显示"->"按钮等待用户点击显示选项');
                         
-                        // 隐藏文本显示区域，显示选项区域
-                        const textDisplayArea = document.getElementById('text-display-area');
-                        const optionsListArea = document.getElementById('options-list-area');
-                        if (textDisplayArea) {
-                            textDisplayArea.classList.add('hidden');
+                        // 显示"->"按钮（点击后显示选项）
+                        const nextSegmentBtn = document.getElementById('next-segment-btn');
+                        if (nextSegmentBtn) {
+                            nextSegmentBtn.classList.remove('hidden');
+                            // 标记这是最后一段，点击后应该显示选项
+                            nextSegmentBtn.dataset.showOptions = 'true';
                         }
-                        if (optionsListArea) {
-                            optionsListArea.classList.remove('hidden');
-                        }
-                        
-                        generateOptions(gameState.pendingOptions);
-                        
-                        // 注意：预生成已经在文本开始显示时触发，这里不再重复触发
-                        // 如果预生成没有在文本开始显示时触发（例如单段文本的情况），这里作为备用触发
-                        if (!gameState._pregenerationTriggered && gameState.pendingOptions && gameState.pendingOptions.length > 0) {
-                            const newSceneId = generateNewSceneId();
-                            gameState.currentSceneId = newSceneId;
-                            console.log('🚀 备用触发预生成（场景ID:', newSceneId, '）');
-                            if (gameState.gameData) {
-                                pregenerateNextLayers(gameState.gameData, gameState.pendingOptions, newSceneId);
-                            }
-                            gameState._pregenerationTriggered = true;
-                        }
-                        
-                        // 重置分段显示状态
-                        gameState.isShowingSegments = false;
-                        gameState.currentTextSegmentIndex = 0;
-                        gameState.textSegments = [];
-                        gameState.pendingOptions = null;
-                        
-                        console.log('✅ 场景和选项显示完成');
                     }
                 }
             }, 30);
@@ -4553,7 +4516,51 @@ const Game = (() => {
         if (nextSegmentBtn) {
             nextSegmentBtn.addEventListener('click', () => {
                 playSound('click');
-                showNextTextSegment();
+                
+                // 🔧 修复：检查是否是最后一段，如果是则显示选项，否则显示下一段文本
+                if (nextSegmentBtn.dataset.showOptions === 'true') {
+                    // 最后一段，点击后显示选项
+                    console.log('✅ 用户点击"->"按钮，显示选项');
+                    
+                    // 隐藏"->"按钮
+                    nextSegmentBtn.classList.add('hidden');
+                    nextSegmentBtn.dataset.showOptions = 'false';
+                    
+                    // 隐藏文本显示区域，显示选项区域
+                    const textDisplayArea = document.getElementById('text-display-area');
+                    const optionsListArea = document.getElementById('options-list-area');
+                    if (textDisplayArea) {
+                        textDisplayArea.classList.add('hidden');
+                    }
+                    if (optionsListArea) {
+                        optionsListArea.classList.remove('hidden');
+                    }
+                    
+                    // 显示选项
+                    const optionsToShow = gameState.pendingOptions || gameState.currentOptions || [];
+                    generateOptions(optionsToShow);
+                    
+                    // 注意：预生成已经在文本开始显示时触发，这里不再重复触发
+                    // 如果预生成没有在文本开始显示时触发（例如单段文本的情况），这里作为备用触发
+                    if (!gameState._pregenerationTriggered && optionsToShow && optionsToShow.length > 0) {
+                        const newSceneId = generateNewSceneId();
+                        gameState.currentSceneId = newSceneId;
+                        console.log('🚀 备用触发预生成（场景ID:', newSceneId, '）');
+                        if (gameState.gameData) {
+                            pregenerateNextLayers(gameState.gameData, optionsToShow, newSceneId);
+                        }
+                        gameState._pregenerationTriggered = true;
+                    }
+                    
+                    // 重置分段显示状态
+                    gameState.isShowingSegments = false;
+                    gameState.currentTextSegmentIndex = 0;
+                    gameState.textSegments = [];
+                    gameState.pendingOptions = null;
+                } else {
+                    // 不是最后一段，显示下一段文本
+                    showNextTextSegment();
+                }
             });
         }
     }
