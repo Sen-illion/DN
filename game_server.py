@@ -382,12 +382,11 @@ def generate_worldview():
                 # 限制选项数量为2个
                 if len(initial_options) > 2:
                     initial_options = initial_options[:2]
-                
-                # 为这2个初始选项生成对应的剧情（方案A：文本+图片一一对应预生成，限速3秒）
-                print(f"📝 为 {len(initial_options)} 个初始选项生成剧情+图片...")
-                all_initial_options_data = generate_all_options(global_state, initial_options, skip_images=False)
-                
-                # 存储到特殊缓存位置（不使用预生成机制）
+
+                # ✅ 性能优化：第一次只生成“当前轮（初始场景）的文本+画面+下一步选项”，不再在这里预生成每个选项的剧情/图片。
+                # 后续预生成仍由前端触发 /pregenerate-next-layers（用户阅读时间后台生成），逻辑保持一致。
+
+                # 存储到特殊缓存位置（仅初始场景，不预生成选项剧情）
                 with cache_lock:
                     if 'initial' not in pregeneration_cache:
                         pregeneration_cache['initial'] = {
@@ -395,7 +394,8 @@ def generate_worldview():
                         }
                     
                     initial_cache = pregeneration_cache['initial']
-                    initial_cache['layer1'] = all_initial_options_data
+                    # 不再填充 layer1（每个选项的剧情），交给后续预生成或按需生成
+                    initial_cache['layer1'] = {}
                     # 确保initial_scene不为空，如果为空则使用默认场景
                     initial_scene = initial_option_data.get('scene', '')
                     if not initial_scene or initial_scene.strip() == '':
@@ -410,15 +410,16 @@ def generate_worldview():
                     initial_cache['initial_scene'] = initial_scene
                     initial_cache['initial_scene_image'] = initial_scene_image  # 保存图片数据
                     initial_cache['initial_options'] = initial_options
-                    initial_cache['generation_status'] = {i: 'completed' for i in range(len(initial_options))}
+                    # 选项剧情未预生成，状态保持 pending（如后续需要可由预生成写入 scene_id 对应缓存）
+                    initial_cache['generation_status'] = {i: 'pending' for i in range(len(initial_options))}
                     initial_cache['completed'] = True
                     
                     # 触发等待事件（如果有线程在等待）
                     events = initial_cache.get('generation_events', {})
                     if 'main' in events:
                         events['main'].set()
-                
-                print(f"✅ 第一次选项生成完成，共生成 {len(all_initial_options_data)} 个选项的剧情+图片")
+
+                print(f"✅ 第一次选项生成完成（仅初始场景+选项，未预生成选项剧情/图片），选项数：{len(initial_options)}")
                 
             except Exception as e:
                 print(f"❌ 生成第一次选项失败：{str(e)}")
@@ -558,27 +559,6 @@ def generate_option():
                                 print(f"✅ 从initial缓存中读取初始场景和选项，场景长度: {len(initial_scene)}，包含图片数据")
                             else:
                                 print(f"✅ 从initial缓存中读取初始场景和选项，场景长度: {len(initial_scene)}，无图片数据")
-                            
-                            # 第一次生成完成后，触发预生成（为第一次的 2 个选项预生成下一层）
-                            # 检查是否已经触发过预生成（避免重复触发）
-                            if not initial_cache.get('pregeneration_triggered', False):
-                                initial_cache['pregeneration_triggered'] = True
-                                
-                                # 使用后台线程异步调用预生成逻辑，不阻塞响应
-                                def trigger_initial_pregeneration():
-                                    try:
-                                        # 直接调用预生成核心逻辑函数
-                                        print(f"🔄 开始为第一次选项预生成下一层内容...")
-                                        _pregenerate_next_layers_logic(global_state, initial_options, 'initial_first_layer')
-                                        print(f"✅ 第一次选项预生成任务已启动")
-                                    except Exception as e:
-                                        print(f"⚠️ 触发第一次选项预生成时发生错误：{str(e)}")
-                                        import traceback
-                                        traceback.print_exc()
-                                
-                                # 启动后台线程触发预生成
-                                pregen_thread = threading.Thread(target=trigger_initial_pregeneration, daemon=True)
-                                pregen_thread.start()
                         else:
                             # 从layer1中读取对应选项的数据
                             layer1_data = initial_cache.get('layer1', {})
@@ -758,6 +738,62 @@ def generate_option():
                                     print(f"⚠️ initial缓存中也没有选项 {option_index} 的数据")
                             else:
                                 print(f"⚠️ initial缓存还未完成生成")
+
+                    # 🔧 容错增强：如果 scene_id 未命中且 initial 也没有该选项数据，则按需启动该选项生成并等待。
+                    # 目的：避免因“首次不预生成 layer1”或“前端预生成请求尚未到达”导致返回默认/空数据。
+                    if not option_data:
+                        print(f"🚀 [generate-option] 缓存未命中，按需生成选项 {option_index}（scene_id={scene_id}）...")
+                        # 初始化该 scene_id 的缓存条目（与预生成结构一致）
+                        pregeneration_cache[scene_id] = {
+                            'layer1': {},
+                            'layer2': {},
+                            'generation_status': {},
+                            'generation_events': {},
+                            'should_cancel': False,
+                            'current_generating_index': None,
+                            'layer2_generating': False,
+                            'layer2_cancel': False,
+                            'layer2_selected_option': None,
+                            'layer2_thread': None,
+                            'current_layer2_option': None
+                        }
+                        cache_entry = pregeneration_cache[scene_id]
+                        generation_status = cache_entry['generation_status']
+                        generation_status[option_index] = 'generating'
+                        events = cache_entry['generation_events']
+                        if option_index not in events:
+                            events[option_index] = threading.Event()
+                        wait_event = events[option_index]
+
+                        def generate_selected_option_for_missing_scene():
+                            try:
+                                result = _generate_single_option(option_index, option, global_state)
+                                if isinstance(result, dict):
+                                    opt_data = result.get('data', result)
+                                else:
+                                    opt_data = result
+                                with cache_lock:
+                                    if scene_id in pregeneration_cache:
+                                        entry = pregeneration_cache[scene_id]
+                                        entry.setdefault('layer1', {})[option_index] = opt_data
+                                        entry.setdefault('generation_status', {})[option_index] = 'completed'
+                                        evs = entry.get('generation_events', {})
+                                        if option_index in evs:
+                                            evs[option_index].set()
+                                print(f"✅ [generate-option] 按需生成完成：scene_id={scene_id}, option_index={option_index}")
+                            except Exception as e:
+                                print(f"❌ [generate-option] 按需生成失败：scene_id={scene_id}, option_index={option_index}, err={str(e)}")
+                                with cache_lock:
+                                    if scene_id in pregeneration_cache:
+                                        entry = pregeneration_cache[scene_id]
+                                        entry.setdefault('generation_status', {})[option_index] = 'failed'
+                                        evs = entry.get('generation_events', {})
+                                        if option_index in evs:
+                                            evs[option_index].set()
+
+                        thread = threading.Thread(target=generate_selected_option_for_missing_scene, daemon=True)
+                        thread.start()
+                        need_wait = True
         
         # 在释放锁后等待第二层线程退出（避免死锁）
         if layer2_thread_to_wait and layer2_thread_to_wait.is_alive():
