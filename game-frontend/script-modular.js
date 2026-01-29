@@ -4706,7 +4706,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 parent: sceneImage.parentElement?.className
             });
         } else {
-            console.log('  ❌ #scene-image 不存在');
+            console.log('  ℹ️ #scene-image 已移除，场景图通过 #global-bg 全屏显示');
         }
     }, 1500);
 });

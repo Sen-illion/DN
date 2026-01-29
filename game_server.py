@@ -268,63 +268,16 @@ def generate_worldview():
         game_id = generate_game_id()
         print(f"🎮 生成游戏ID: {game_id}")
         
-        # 在世界观生成开始的同时，立即启动主角形象生成（后台线程，与世界观生成并行）
-        def generate_main_character_async():
-            """生成主角形象（后台线程，与世界观生成并行）"""
-            try:
-                # 等待世界观生成完成（通过轮询检查global_state是否已生成）
-                import time
-                max_wait_time = 300  # 最多等待5分钟
-                wait_interval = 1  # 每秒检查一次
-                start_time = time.time()
-                
-                # 临时创建一个global_state用于主角形象生成（包含基本信息）
-                temp_global_state = {
-                    'game_id': game_id,
-                    'core_worldview': {
-                        'game_style': game_theme,
-                        'world_basic_setting': '',  # 将在世界观生成后更新
-                        'protagonist_ability': f"颜值{protagonist_attr.get('颜值', '普通')}，智商{protagonist_attr.get('智商', '普通')}，体力{protagonist_attr.get('体力', '普通')}，魅力{protagonist_attr.get('魅力', '普通')}"
-                    },
-                    'tone': tone_key
-                }
-                
-                if image_style:
-                    temp_global_state['image_style'] = image_style
-                
-                print(f"🎨 开始生成主角形象（游戏ID: {game_id}，与世界观生成并行）...")
-                
-                # 使用临时global_state生成主角形象（不等待完整世界观）
-                result = generate_main_character_image(
-                    protagonist_attr=protagonist_attr,
-                    global_state=temp_global_state,
-                    image_style=image_style,
-                    game_id=game_id
-                )
-                
-                if result:
-                    print(f"✅ 主角形象生成完成（游戏ID: {game_id}）")
-                    # 注意：这里不更新global_state，因为世界观可能还在生成中
-                    # 主角形象信息会在后续通过文件系统访问
-                else:
-                    print(f"⚠️ 主角形象生成失败，但游戏可以继续")
-            except Exception as e:
-                print(f"❌ 主角形象生成出错：{str(e)}")
-                import traceback
-                traceback.print_exc()
-                # 错误不影响游戏继续
-        
-        # 启动主角形象生成线程（与世界观生成并行）
-        main_character_thread = threading.Thread(target=generate_main_character_async, daemon=True)
-        main_character_thread.start()
-        print(f"✅ 主角形象生成任务已启动（与世界观生成并行）")
-        
         # 调用后端生成世界观的函数
         try:
             global_state = llm_generate_global(game_theme, protagonist_attr, difficulty, tone_key)
             
             # 保存游戏ID到global_state
             global_state['game_id'] = game_id
+
+            # 🔑 保存用户输入的主题（用于现实题材/IP检索命中率）
+            # 注意：core_worldview.game_style 往往是较长的“风格描述”，不一定等同于用户输入主题名。
+            global_state['user_theme'] = game_theme
             
             # 保存图片风格到global_state
             if image_style:
@@ -339,6 +292,40 @@ def generate_worldview():
                     "message": f"AI生成功能未配置：{error_msg}\n\n请检查.env文件，确保配置了以下环境变量：\n- Camera_Analyst_API_KEY\n- Camera_Analyst_BASE_URL\n- Camera_Analyst_MODEL"
                 })
             raise  # 其他ValueError继续抛出
+
+        # ✅ 世界观生成完成后：立刻启动主角形象生成（后台线程，不阻塞响应）
+        # 目的：用户正在查看世界观时并行生图；并将完整世界观文本/结构传入提示词LLM。
+        try:
+            import copy
+
+            def generate_main_character_after_worldview_async(gs_snapshot):
+                """世界观生成完成后触发：主角形象生成（后台线程）"""
+                try:
+                    print(f"🎨 开始生成主角形象（游戏ID: {game_id}，世界观已就绪，后台并行）...")
+                    result = generate_main_character_image(
+                        protagonist_attr=protagonist_attr,
+                        global_state=gs_snapshot,
+                        image_style=image_style,
+                        game_id=game_id
+                    )
+                    if result:
+                        print(f"✅ 主角形象生成完成（游戏ID: {game_id}）")
+                    else:
+                        print(f"⚠️ 主角形象生成失败（游戏ID: {game_id}），但游戏可以继续")
+                except Exception as e:
+                    print(f"❌ 主角形象生成出错（游戏ID: {game_id}）：{str(e)}")
+                    import traceback
+                    traceback.print_exc()
+
+            gs_snapshot = copy.deepcopy(global_state) if isinstance(global_state, dict) else global_state
+            threading.Thread(
+                target=generate_main_character_after_worldview_async,
+                args=(gs_snapshot,),
+                daemon=True
+            ).start()
+            print("✅ 主角形象生成任务已启动（世界观生成完成后触发，后台并行）")
+        except Exception as e:
+            print(f"⚠️ 启动主角形象生成任务失败：{str(e)}")
         
         # 世界观生成完成后，更新主角形象信息到global_state（如果已生成）
         try:
@@ -803,8 +790,11 @@ def generate_option():
         # 如果需要等待，则等待生成完成
         if need_wait and wait_event:
             try:
-                # 等待超时（默认180秒，可通过环境变量调节），避免前端卡死太久
-                wait_timeout = int(os.getenv("OPTION_WAIT_TIMEOUT_SECONDS", "180"))
+                # 等待超时（默认300秒，可通过环境变量调节），避免前端卡死太久
+                # 说明：前端对 /generate-option 的默认超时为 5 分钟，因此这里默认 300s 与其对齐。
+                import time
+                wait_timeout = int(os.getenv("OPTION_WAIT_TIMEOUT_SECONDS", "300"))
+                start_wait_ts = time.time()
                 print(f"⏳ [generate-option] 开始等待选项 {option_index} 生成完成（超时：{wait_timeout}秒）...")
                 event_triggered = wait_event.wait(timeout=wait_timeout)
                 
@@ -852,7 +842,6 @@ def generate_option():
                             option_data = option_data_temp
                         elif status == 'text_completed':
                             # 图片还在生成中，继续等待（在锁外 sleep，在锁内短读）
-                            import time
                             max_image_wait = 60
                             start_time = time.time()
                             while time.time() - start_time < max_image_wait:
@@ -872,13 +861,42 @@ def generate_option():
                                 option_data = option_data_temp
                         else:
                             option_data = option_data_temp
+
+                # 🆕 关键修复：如果事件触发后仍未拿到 option_data，不要立即“同步再生成”，而是继续等待正在进行的预生成写回缓存
+                # - 常见场景：后台线程仍在进行 LLM/图片生成，事件触发/超时后短时间内数据尚未写入
+                # - 这里做一个“剩余时间内轮询”，确保优先等待预生成完成再返回
+                if not option_data and scene_id and scene_id != 'initial':
+                    poll_interval = float(os.getenv("OPTION_WAIT_POLL_SECONDS", "0.5"))
+                    while time.time() - start_wait_ts < wait_timeout:
+                        with cache_lock:
+                            cache_entry = pregeneration_cache.get(scene_id)
+                            if not cache_entry:
+                                break
+                            status = cache_entry.get('generation_status', {}).get(option_index, 'pending')
+                            option_data_temp = cache_entry.get('layer1', {}).get(option_index)
+                            if isinstance(option_data_temp, dict):
+                                option_data = option_data_temp
+                                break
+                            if status in ['failed', 'cancelled']:
+                                break
+                        time.sleep(poll_interval)
                 
-                # 如果等待后仍然没有，返回错误
+                # 如果等待后仍然没有：
+                # 不要返回 error + message（前端会把 message 当作剧情展示，并触发 /generate-scene-image，导致“生成超时”被画进图里）
+                # 这里返回一个“安全兜底”的 optionData，让游戏可以继续，同时避免把错误文案喂给生图。
                 if not option_data:
-                    return jsonify({
-                        "status": "error",
-                        "message": "生成超时，请稍后重试"
-                    })
+                    print(f"⚠️ [generate-option] 等待预生成到期仍未拿到 option_data，返回安全兜底数据（scene_id={scene_id}, option_index={option_index}）")
+                    option_data = {
+                        "scene": "当前内容生成耗时较长，但你仍可以继续推进剧情。你决定先观察局势并寻找下一步行动方向。",
+                        "next_options": ["继续前进", "查看周围环境"],
+                        "flow_update": {
+                            "characters": {},
+                            "environment": {},
+                            "quest_progress": "继续推进",
+                            "chapter_conflict_solved": False
+                        },
+                        "deep_background_links": {}
+                    }
             except Exception as e:
                 print(f"❌ 等待生成时发生错误：{str(e)}")
                 return jsonify({
@@ -949,11 +967,34 @@ def generate_option():
         if scene_id and scene_id != 'initial' and scene_id in pregeneration_cache:
             with cache_lock:
                 cache_entry = pregeneration_cache[scene_id]
+                # 🆕 先把“未选中的选项”标记为 cancelled，并触发其事件，避免后台线程继续回填导致状态卡死/刷警告
+                generation_status = cache_entry.get('generation_status', {})
+                events = cache_entry.get('generation_events', {})
+                try:
+                    for idx, st in list(generation_status.items()):
+                        if idx == option_index:
+                            continue
+                        if st in ['pending', 'generating', 'text_completed', 'text_only']:
+                            generation_status[idx] = 'cancelled'
+                            ev = events.get(idx)
+                            if ev:
+                                ev.set()
+                except Exception:
+                    pass
+
                 # 清理第一层中未使用的选项（保留当前使用的）
+                # ✅ 优化：不要清理正在生成中的选项的数据，避免预生成完成后无法回填
                 if 'layer1' in cache_entry:
                     layer1 = cache_entry['layer1']
+                    generation_status = cache_entry.get('generation_status', {})
                     unused_indices = [idx for idx in layer1.keys() if idx != option_index]
                     for idx in unused_indices:
+                        # 检查该选项是否正在生成中
+                        status = generation_status.get(idx, 'pending')
+                        if status in ['generating', 'text_completed']:
+                            # 正在生成中，保留数据，等待预生成完成
+                            print(f"⏸️ 选项 {idx} 正在生成中，保留数据等待预生成完成")
+                            continue
                         del layer1[idx]
                         print(f"🗑️ 已清理未使用的选项 {idx} 的第一层数据")
                 
@@ -1112,6 +1153,10 @@ def _pregenerate_next_layers_logic(global_state, current_options, scene_id):
                     generation_status = cache_entry.get('generation_status', {})
                     current_status = generation_status.get(opt_idx, 'pending')
                     
+                    # 🆕 若该选项已被标记为取消（例如用户已做出选择并清理其他选项），直接退出
+                    if current_status == 'cancelled':
+                        return
+                    
                     # 如果已经完成，不需要再生成
                     if current_status == 'completed':
                         return
@@ -1225,6 +1270,13 @@ def _pregenerate_next_layers_logic(global_state, current_options, scene_id):
                             # 🔍 再次检查 scene_id 是否在缓存中（在锁内）
                             if scene_id in pregeneration_cache:
                                 cache_entry = pregeneration_cache[scene_id]
+                                # 🆕 若该选项已被取消，则不再写入缓存（避免被清理后又“复活”）
+                                if cache_entry.get('generation_status', {}).get(opt_idx) == 'cancelled':
+                                    events = cache_entry.get('generation_events', {})
+                                    if opt_idx in events:
+                                        events[opt_idx].set()
+                                    print(f"⏭️ [第一层预生成] 选项 {opt_idx} 已取消，跳过写入缓存")
+                                    return
                                 if 'layer1' not in cache_entry:
                                     cache_entry['layer1'] = {}
                                 
@@ -1294,7 +1346,35 @@ def _pregenerate_next_layers_logic(global_state, current_options, scene_id):
                                                         cache_entry['generation_status'][opt_idx] = 'completed'  # 标记为完全完成
                                                         print(f"🎨 [第一层预生成] 缓存更新完成，状态已设置为 completed")
                                                     else:
-                                                        print(f"⚠️ [第一层预生成] 缓存中找不到选项 {opt_idx} 的 layer1 数据")
+                                                        # ✅ 优化：即使 layer1 被清理，如果图片已生成，也应该写入缓存
+                                                        # 原因：图片生成成本高，即使选项被取消，也应该保存以备后用
+                                                        generation_status = cache_entry.get('generation_status', {})
+                                                        current_status = generation_status.get(opt_idx, 'pending')
+                                                        
+                                                        # 如果状态是 generating、text_completed 或 cancelled，但图片已生成，都应该写入缓存
+                                                        # cancelled 状态可能是因为用户选择了其他选项，但图片可能仍然有用
+                                                        if current_status in ['generating', 'text_completed'] or (current_status == 'cancelled' and option_data.get('scene_image')):
+                                                            # 重新创建 layer1 数据并写入图片
+                                                            if 'layer1' not in cache_entry:
+                                                                cache_entry['layer1'] = {}
+                                                            cache_entry['layer1'][opt_idx] = option_data
+                                                            # 如果之前是 cancelled，现在图片生成了，可以标记为 completed（图片已就绪）
+                                                            if current_status == 'cancelled':
+                                                                cache_entry['generation_status'][opt_idx] = 'completed'
+                                                                print(f"✅ [第一层预生成] 选项 {opt_idx} 的 layer1 被清理且状态为 cancelled，但图片已生成，已重新写入缓存并标记为 completed")
+                                                            else:
+                                                                cache_entry['generation_status'][opt_idx] = 'completed'
+                                                                print(f"✅ [第一层预生成] 选项 {opt_idx} 的 layer1 被清理但正在生成中，已重新写入缓存并完成")
+                                                            events = cache_entry.get('generation_events', {})
+                                                            if opt_idx in events:
+                                                                events[opt_idx].set()
+                                                        else:
+                                                            # 确实是被取消的选项且没有图片，标记为 cancelled
+                                                            cache_entry['generation_status'][opt_idx] = 'cancelled'
+                                                            events = cache_entry.get('generation_events', {})
+                                                            if opt_idx in events:
+                                                                events[opt_idx].set()
+                                                            print(f"⏭️ [第一层预生成] 选项 {opt_idx} 的 layer1 已被清理，标记为 cancelled（跳过图片回填）")
                                                 else:
                                                     print(f"⚠️ [第一层预生成] 缓存中找不到 scene_id: {scene_id}")
                                             finally:
@@ -1432,8 +1512,12 @@ def _pregenerate_next_layers_logic(global_state, current_options, scene_id):
                     print(f"   - layer1 选项索引：{list(cache_entry.get('layer1', {}).keys())}")
                     print(f"   - 生成状态：{generation_status}")
                     if layer1_count == 0:
-                        print(f"⚠️ [警告] 第一层预生成完成，但 layer1 为空！")
-                        print(f"   - 可能的原因：所有选项生成失败，或 scene_id 不匹配")
+                        cancelled_count = sum(1 for s in generation_status.values() if s == 'cancelled')
+                        if cancelled_count > 0:
+                            print(f"ℹ️ 第一层预生成完成但 layer1 为空：可能因为用户已选择选项，未使用的 layer1 被清理（cancelled={cancelled_count}）")
+                        else:
+                            print(f"⚠️ [警告] 第一层预生成完成，但 layer1 为空！")
+                            print(f"   - 可能的原因：所有选项生成失败，或 scene_id 不匹配")
                 else:
                     print(f"⚠️ [警告] scene_id {scene_id} 不在缓存中！")
             print("---------------------------------------------- 第一层预生成完成 ----------------------------------------------")

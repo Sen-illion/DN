@@ -6,6 +6,8 @@ import re
 import hashlib
 import requests
 import threading
+from functools import lru_cache
+from urllib.parse import quote
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime
 from typing import Dict, List
@@ -69,7 +71,435 @@ IMAGE_GENERATION_CONFIG = {
     "stable_diffusion_base_url": os.getenv("STABLE_DIFFUSION_BASE_URL", ""),
     "stable_diffusion_api_key": os.getenv("STABLE_DIFFUSION_API_KEY", ""),
     "comfyui_host": os.getenv("COMFYUI_HOST", ""),
+    # 图生图（img2img）：云雾 API，与其他服务一致使用 BASE_URL（https://yunwu.ai/v1）+ PATH
+    "img2img_api_key": os.getenv("Img2img_API_KEY", ""),
+    "img2img_base_url": os.getenv("Img2img_BASE_URL", "https://yunwu.ai/v1"),
+    "img2img_path": os.getenv("Img2img_PATH", "/images/edit"),  # 云雾图生图端点路径，根据文档调整
+    "img2img_model": os.getenv("Img2img_MODEL", "stability-ai/stable-diffusion-img2img"),  # 云雾的图生图模型名
 }
+
+# ------------------------------
+# 现实题材/IP 资料检索（Wikipedia 中/英 + 二次关键词）
+# ------------------------------
+WIKI_LOOKUP_ENABLED = os.getenv("WIKI_LOOKUP_ENABLED", "true").lower() == "true"
+WIKI_LANGS = [x.strip() for x in os.getenv("WIKI_LANGS", "zh,en").split(",") if x.strip()]
+WIKI_TIMEOUT_SECONDS = float(os.getenv("WIKI_TIMEOUT_SECONDS", "8"))
+WIKI_MAX_SNIPPET_CHARS = int(os.getenv("WIKI_MAX_SNIPPET_CHARS", "1200"))
+
+
+def _safe_str(v) -> str:
+    try:
+        return "" if v is None else str(v)
+    except Exception:
+        return ""
+
+
+def _clip_text(s: str, max_chars: int) -> str:
+    s = _safe_str(s).strip()
+    if max_chars <= 0:
+        return s
+    return s if len(s) <= max_chars else (s[:max_chars] + "…")
+
+
+def _wiki_api_get(lang: str, params: Dict) -> Dict:
+    """Wikipedia action API GET。失败返回 {}"""
+    try:
+        url = f"https://{lang}.wikipedia.org/w/api.php"
+        resp = requests.get(
+            url,
+            params={"format": "json", "formatversion": 2, **(params or {})},
+            timeout=WIKI_TIMEOUT_SECONDS,
+            headers={"User-Agent": "DN-main/1.0 (character-lookup; https://example.invalid)"}
+        )
+        resp.raise_for_status()
+        data = resp.json()
+        return data if isinstance(data, dict) else {}
+    except Exception:
+        return {}
+
+
+def _wiki_search(lang: str, query: str, limit: int = 5) -> List[Dict]:
+    query = _safe_str(query).strip()
+    if not query:
+        return []
+    data = _wiki_api_get(lang, {"action": "query", "list": "search", "srsearch": query, "srlimit": max(1, int(limit))})
+    items = (data.get("query", {}) or {}).get("search", []) if isinstance(data, dict) else []
+    return items if isinstance(items, list) else []
+
+
+def _wiki_langlink_title(source_lang: str, source_title: str, target_lang: str) -> str:
+    """
+    尝试通过 Wikipedia langlinks 获取跨语言标题（例如 zh -> en）。
+    失败返回空串。
+    """
+    source_title = _safe_str(source_title).strip()
+    if not source_title:
+        return ""
+    data = _wiki_api_get(
+        source_lang,
+        {
+            "action": "query",
+            "prop": "langlinks",
+            "titles": source_title,
+            "lllang": target_lang,
+            "lllimit": 1,
+        },
+    )
+    try:
+        pages = (data.get("query", {}) or {}).get("pages", [])
+        if not isinstance(pages, list) or not pages:
+            return ""
+        page0 = pages[0] if isinstance(pages[0], dict) else {}
+        lls = page0.get("langlinks", [])
+        if not isinstance(lls, list) or not lls:
+            return ""
+        ll0 = lls[0] if isinstance(lls[0], dict) else {}
+        return _safe_str(ll0.get("title")).strip()
+    except Exception:
+        return ""
+
+
+def _wiki_summary(lang: str, title: str) -> Dict:
+    """Wikipedia REST summary。失败返回 {}"""
+    title = _safe_str(title).strip()
+    if not title:
+        return {}
+    try:
+        # https://en.wikipedia.org/api/rest_v1/page/summary/Albert_Einstein
+        url = f"https://{lang}.wikipedia.org/api/rest_v1/page/summary/{quote(title)}"
+        resp = requests.get(
+            url,
+            timeout=WIKI_TIMEOUT_SECONDS,
+            headers={"User-Agent": "DN-main/1.0 (character-lookup; https://example.invalid)"}
+        )
+        resp.raise_for_status()
+        data = resp.json()
+        return data if isinstance(data, dict) else {}
+    except Exception:
+        return {}
+
+
+def _summary_is_disambiguation(summary: Dict) -> bool:
+    try:
+        t = (summary or {}).get("type", "")
+        return _safe_str(t).lower() == "disambiguation"
+    except Exception:
+        return False
+
+
+def _summary_to_compact_evidence(summary: Dict) -> str:
+    """把 summary 压缩成可喂给 LLM 的证据文本。"""
+    if not isinstance(summary, dict) or not summary:
+        return ""
+    title = _safe_str(summary.get("title"))
+    desc = _safe_str(summary.get("description"))
+    extract = _safe_str(summary.get("extract"))
+    url = ""
+    try:
+        url = _safe_str(((summary.get("content_urls") or {}).get("desktop") or {}).get("page"))
+    except Exception:
+        url = ""
+    parts = []
+    if title:
+        parts.append(f"标题：{title}")
+    if desc:
+        parts.append(f"简介：{desc}")
+    if extract:
+        parts.append(f"摘要：{_clip_text(extract, WIKI_MAX_SNIPPET_CHARS)}")
+    if url:
+        parts.append(f"来源：{url}")
+    return "\n".join(parts).strip()
+
+
+def _extract_image_url_from_summary(summary: Dict) -> str:
+    """从 Wikipedia summary 中提取可用的图片URL（优先 originalimage，其次 thumbnail）。"""
+    if not isinstance(summary, dict) or not summary:
+        return ""
+    try:
+        oi = summary.get("originalimage") or {}
+        if isinstance(oi, dict):
+            src = _safe_str(oi.get("source")).strip()
+            if src.startswith(("http://", "https://")):
+                return src
+    except Exception:
+        pass
+    try:
+        th = summary.get("thumbnail") or {}
+        if isinstance(th, dict):
+            src = _safe_str(th.get("source")).strip()
+            if src.startswith(("http://", "https://")):
+                return src
+    except Exception:
+        pass
+    return ""
+
+
+def _infer_gender_from_text(text: str) -> str:
+    """从摘要/描述里粗略推断性别。返回 '男性'/'女性'/''"""
+    t = _safe_str(text)
+    if not t:
+        return ""
+    # 中文线索
+    if re.search(r"\b她\b|女性|女演员|女歌手|女作家|女政治家|女运动员|公主|王后|皇后", t):
+        return "女性"
+    if re.search(r"\b他\b|男性|男演员|男歌手|男作家|男政治家|男运动员|王子|国王|皇帝", t):
+        return "男性"
+    # 英文线索（只做很粗的 pronoun）
+    if re.search(r"\bshe\b|\bher\b", t, flags=re.I):
+        return "女性"
+    if re.search(r"\bhe\b|\bhis\b", t, flags=re.I):
+        return "男性"
+    return ""
+
+
+def _looks_like_real_ip_or_person(text: str) -> bool:
+    """
+    粗判断：Wikipedia 摘要是否像“现实存在的作品/IP/人物/故事”，用于决定是否启用“还原已有形象”强约束。
+    避免把普通概念词（例如“勇气”“城市”）也强行当成需要还原的IP。
+    """
+    t = _safe_str(text).strip()
+    if not t:
+        return False
+    # 人物
+    if re.search(r"演员|歌手|作家|导演|编剧|政治家|运动员|企业家|科学家|哲学家|画家|数学家", t):
+        return True
+    if re.search(r"\b(actor|singer|writer|director|screenwriter|politician|athlete|entrepreneur|scientist|philosopher|painter|mathematician)\b", t, flags=re.I):
+        return True
+    # 作品/IP
+    if re.search(r"动画|动漫|漫画|轻小说|小说|电影|电视剧|剧集|游戏|系列|作品|角色|人物|主角|主人公", t):
+        return True
+    if re.search(r"\b(anime|manga|novel|film|movie|television series|tv series|video game|franchise|character|protagonist)\b", t, flags=re.I):
+        return True
+    # 真实故事/传说（也算需要“参考”）
+    if re.search(r"故事|传说|神话|史诗|历史事件|真实事件", t):
+        return True
+    if re.search(r"\b(story|legend|myth|historical event|true story)\b", t, flags=re.I):
+        return True
+    return False
+
+
+@lru_cache(maxsize=256)
+def wiki_lookup_theme_and_character(theme: str) -> Dict:
+    """
+    尝试判断主题是否为现实存在的IP/人物，并检索其资料。
+    返回：
+      {
+        "is_real_world": bool,
+        "theme": {...},          # 主题条目（摘要证据）
+        "character": {...},      # 二次检索推到的主角/人物条目（摘要证据，可为空）
+        "evidence_text": str,    # 合并后的证据文本（喂给提示词LLM）
+      }
+    """
+    theme = _safe_str(theme).strip()
+    if not theme or not WIKI_LOOKUP_ENABLED:
+        return {"is_real_world": False, "theme": {}, "character": {}, "evidence_text": ""}
+
+    # 先用主题本身做检索（中/英都试），收集尽量多的语言标题（用于“中英文名+作品名”）
+    theme_hits_by_lang: Dict[str, Dict] = {}
+    for lang in WIKI_LANGS or ["zh", "en"]:
+        results = _wiki_search(lang, theme, limit=5)
+        if not results:
+            continue
+        top = results[0] if isinstance(results[0], dict) else {}
+        title = _safe_str(top.get("title")).strip()
+        if not title:
+            continue
+        summary = _wiki_summary(lang, title)
+        if not summary or _summary_is_disambiguation(summary):
+            continue
+        theme_hits_by_lang[lang] = {
+            "lang": lang,
+            "title": title,
+            "summary": summary,
+            "image_url": _extract_image_url_from_summary(summary),
+        }
+
+    # 用 langlinks 尝试补齐另一种语言标题（提高“中英文名+作品名”命中率）
+    try:
+        langs = (WIKI_LANGS or ["zh", "en"])
+        if "zh" in langs and "en" in langs:
+            if "zh" in theme_hits_by_lang and "en" not in theme_hits_by_lang:
+                en_title = _wiki_langlink_title("zh", theme_hits_by_lang["zh"]["title"], "en")
+                if en_title:
+                    en_sum = _wiki_summary("en", en_title)
+                    if en_sum and not _summary_is_disambiguation(en_sum):
+                        theme_hits_by_lang["en"] = {
+                            "lang": "en",
+                            "title": en_title,
+                            "summary": en_sum,
+                            "image_url": _extract_image_url_from_summary(en_sum),
+                        }
+            if "en" in theme_hits_by_lang and "zh" not in theme_hits_by_lang:
+                zh_title = _wiki_langlink_title("en", theme_hits_by_lang["en"]["title"], "zh")
+                if zh_title:
+                    zh_sum = _wiki_summary("zh", zh_title)
+                    if zh_sum and not _summary_is_disambiguation(zh_sum):
+                        theme_hits_by_lang["zh"] = {
+                            "lang": "zh",
+                            "title": zh_title,
+                            "summary": zh_sum,
+                            "image_url": _extract_image_url_from_summary(zh_sum),
+                        }
+    except Exception:
+        pass
+
+    if not theme_hits_by_lang:
+        return {"is_real_world": False, "theme": {}, "character": {}, "evidence_text": ""}
+
+    # primary theme：取第一个命中的语言
+    primary_lang = None
+    for lang in (WIKI_LANGS or ["zh", "en"]):
+        if lang in theme_hits_by_lang:
+            primary_lang = lang
+            break
+    if not primary_lang:
+        primary_lang = next(iter(theme_hits_by_lang.keys()))
+    primary_theme_hit = theme_hits_by_lang.get(primary_lang, next(iter(theme_hits_by_lang.values())))
+
+    # 认为“现实存在”的最低门槛：有可用条目摘要（不是消歧义）
+    # 进一步通过二次查询尝试找到“主角/人物”条目（尤其是作品IP）
+    combined_theme_text_parts = []
+    for hit in theme_hits_by_lang.values():
+        s = hit.get("summary") or {}
+        combined_theme_text_parts.append(_safe_str(s.get("description")))
+        combined_theme_text_parts.append(_safe_str(s.get("extract")))
+    combined_theme_text = "\n".join([x for x in combined_theme_text_parts if _safe_str(x).strip()]).strip()
+    is_real_world = _looks_like_real_ip_or_person(combined_theme_text)
+
+    # 二次查询关键词（中/英）
+    second_queries = [
+        f"{theme} 主人公",
+        f"{theme} 主角",
+        f"{theme} 人物",
+        f"{theme} protagonist",
+        f"{theme} main character",
+    ]
+
+    # 尽量为每种语言找一个“人物/主角”条目
+    character_hits_by_lang: Dict[str, Dict] = {}
+    for lang in (WIKI_LANGS or ["zh", "en"]):
+        theme_title_same_lang = _safe_str((theme_hits_by_lang.get(lang, {}) or {}).get("title")).strip()
+        for q in second_queries:
+            results = _wiki_search(lang, q, limit=5)
+            if not results:
+                continue
+            candidates = []
+            for it in results:
+                if not isinstance(it, dict):
+                    continue
+                title = _safe_str(it.get("title")).strip()
+                if not title:
+                    continue
+                if theme_title_same_lang and title == theme_title_same_lang:
+                    continue
+                candidates.append(title)
+            if not candidates:
+                continue
+            cand_title = candidates[0]
+            summary = _wiki_summary(lang, cand_title)
+            if not summary or _summary_is_disambiguation(summary):
+                continue
+            character_hits_by_lang[lang] = {
+                "lang": lang,
+                "title": cand_title,
+                "summary": summary,
+                "query": q,
+                "image_url": _extract_image_url_from_summary(summary),
+            }
+            break
+
+    # 同样尝试用 langlinks 补齐人物条目的另一种语言标题
+    try:
+        langs = (WIKI_LANGS or ["zh", "en"])
+        if "zh" in langs and "en" in langs:
+            if "zh" in character_hits_by_lang and "en" not in character_hits_by_lang:
+                en_title = _wiki_langlink_title("zh", character_hits_by_lang["zh"]["title"], "en")
+                if en_title:
+                    en_sum = _wiki_summary("en", en_title)
+                    if en_sum and not _summary_is_disambiguation(en_sum):
+                        character_hits_by_lang["en"] = {
+                            "lang": "en",
+                            "title": en_title,
+                            "summary": en_sum,
+                            "query": _safe_str(character_hits_by_lang["zh"].get("query")),
+                            "image_url": _extract_image_url_from_summary(en_sum),
+                        }
+            if "en" in character_hits_by_lang and "zh" not in character_hits_by_lang:
+                zh_title = _wiki_langlink_title("en", character_hits_by_lang["en"]["title"], "zh")
+                if zh_title:
+                    zh_sum = _wiki_summary("zh", zh_title)
+                    if zh_sum and not _summary_is_disambiguation(zh_sum):
+                        character_hits_by_lang["zh"] = {
+                            "lang": "zh",
+                            "title": zh_title,
+                            "summary": zh_sum,
+                            "query": _safe_str(character_hits_by_lang["en"].get("query")),
+                            "image_url": _extract_image_url_from_summary(zh_sum),
+                        }
+    except Exception:
+        pass
+
+    # is_real_world：仅当摘要像“作品/IP/人物/故事”时为 True，用于触发“还原已有形象”的强约束
+    evidence_parts = []
+    evidence_parts.append("【Wikipedia 主题条目】")
+    for lang in (WIKI_LANGS or ["zh", "en"]):
+        hit = theme_hits_by_lang.get(lang)
+        if not hit:
+            continue
+        evidence_parts.append(f"[{lang}]")
+        evidence_parts.append(_summary_to_compact_evidence(hit.get("summary")) or "")
+
+    if character_hits_by_lang:
+        evidence_parts.append("\n【Wikipedia 二次检索（可能的主角/人物）】")
+        for lang in (WIKI_LANGS or ["zh", "en"]):
+            hit = character_hits_by_lang.get(lang)
+            if not hit:
+                continue
+            evidence_parts.append(f"[{lang}] 检索词：{_safe_str(hit.get('query'))}")
+            evidence_parts.append(_summary_to_compact_evidence(hit.get("summary")) or "")
+
+    evidence_text = _clip_text("\n".join([p for p in evidence_parts if _safe_str(p).strip()]).strip(), 2600)
+
+    # 参考图：优先用人物条目图片，其次主题条目图片
+    reference_candidates = []
+    for lang in (WIKI_LANGS or ["zh", "en"]):
+        c = character_hits_by_lang.get(lang, {})
+        img = _safe_str(c.get("image_url")).strip()
+        if img:
+            reference_candidates.append(("character", lang, img))
+    for lang in (WIKI_LANGS or ["zh", "en"]):
+        t = theme_hits_by_lang.get(lang, {})
+        img = _safe_str(t.get("image_url")).strip()
+        if img:
+            reference_candidates.append(("theme", lang, img))
+    reference_image_url = reference_candidates[0][2] if reference_candidates else ""
+    reference_from = reference_candidates[0][0] if reference_candidates else ""
+
+    return {
+        "is_real_world": bool(is_real_world),
+        "theme": {
+            "lang": primary_theme_hit.get("lang"),
+            "title": primary_theme_hit.get("title"),
+            "description": _safe_str(((primary_theme_hit.get("summary") or {}) or {}).get("description")),
+            "extract": _safe_str(((primary_theme_hit.get("summary") or {}) or {}).get("extract")),
+            "image_url": _safe_str(primary_theme_hit.get("image_url")).strip(),
+        },
+        "character": (lambda: (
+            {
+                "lang": next(iter(character_hits_by_lang.values())).get("lang"),
+                "title": next(iter(character_hits_by_lang.values())).get("title"),
+                "description": _safe_str(((next(iter(character_hits_by_lang.values())).get("summary") or {}) or {}).get("description")),
+                "extract": _safe_str(((next(iter(character_hits_by_lang.values())).get("summary") or {}) or {}).get("extract")),
+                "image_url": _safe_str(next(iter(character_hits_by_lang.values())).get("image_url")).strip(),
+            } if character_hits_by_lang else {}
+        ))(),
+        "theme_names": {lang: _safe_str(hit.get("title")).strip() for lang, hit in theme_hits_by_lang.items() if _safe_str(hit.get("title")).strip()},
+        "character_names": {lang: _safe_str(hit.get("title")).strip() for lang, hit in character_hits_by_lang.items() if _safe_str(hit.get("title")).strip()},
+        "evidence_text": evidence_text,
+        "reference_image_url": reference_image_url,
+        "reference_image_from": reference_from,
+        "reference_image_candidates": reference_candidates[:4],
+    }
 
 # ------------------------------
 # 图片生成：全局限速（避免 429 / 请求过于频繁）
@@ -667,6 +1097,8 @@ def optimize_image_prompt_with_llm(
 
         # 提取游戏背景信息
         core_worldview = global_state.get('core_worldview', {})
+        # game_style 往往是“风格描述”，不一定是用户输入主题；检索/还原时优先用 user_theme
+        user_theme = _safe_str(global_state.get("user_theme")).strip()
         game_theme = core_worldview.get('game_style', '')
         world_setting = core_worldview.get('world_basic_setting', '')
         protagonist_ability = core_worldview.get('protagonist_ability', '')
@@ -821,6 +1253,26 @@ import time
 import random
 from pathlib import Path
 
+# ------------------------------
+# 主角三视图（白底全身）prompt 模板
+# ------------------------------
+prompt_template_front = """
+Generate a full-body, front-view portrait of character {identifier} based on the following description, with a pure white background. The character should be centered in the image, occupying most of the frame. Gazing straight ahead. Standing with arms relaxed at sides. Natural expression.
+Features: {features}
+Style: {style}
+No text, no symbols, no watermark, no garbled characters, no words.
+""".strip()
+
+prompt_template_side = """
+Generate a full-body, side-view portrait of character {identifier} based on the provided front-view portrait, with a pure white background. The character should be centered in the image, occupying most of the frame. Facing left. Standing with arms relaxed at sides.
+No text, no symbols, no watermark, no garbled characters, no words.
+""".strip()
+
+prompt_template_back = """
+Generate a full-body, back-view portrait of character {identifier} based on the provided front-view portrait, with a pure white background. The character should be centered in the image, occupying most of the frame. No facial features should be visible.
+No text, no symbols, no watermark, no garbled characters, no words.
+""".strip()
+
 def generate_game_id() -> str:
     """
     生成游戏ID（时间戳+随机数）
@@ -855,6 +1307,8 @@ def optimize_main_character_prompt_with_llm(
     try:
         # 提取游戏背景信息
         core_worldview = global_state.get('core_worldview', {})
+        # game_style 往往是“风格描述”，不一定等同于用户输入主题名；现实题材检索优先用 user_theme
+        user_theme = _safe_str(global_state.get("user_theme")).strip()
         game_theme = core_worldview.get('game_style', '')
         world_setting = core_worldview.get('world_basic_setting', '')
         protagonist_ability = core_worldview.get('protagonist_ability', '')
@@ -909,22 +1363,132 @@ def optimize_main_character_prompt_with_llm(
         
         # 构建主角属性描述
         attr_description = f"颜值{protagonist_attr.get('颜值', '普通')}，智商{protagonist_attr.get('智商', '普通')}，体力{protagonist_attr.get('体力', '普通')}，魅力{protagonist_attr.get('魅力', '普通')}"
-        
-        # 随机选择主角性别
-        import random
-        protagonist_gender = random.choice(['男性', '女性'])
-        print(f"🎲 随机选择主角性别：{protagonist_gender}")
+
+        # 组织“世界观全文/结构化信息”（让提示词LLM更贴合世界观，而不仅是 basic_setting 一句）
+        def _build_worldview_context_text() -> str:
+            try:
+                parts = []
+                if core_worldview.get("game_style"):
+                    parts.append(f"游戏主题/风格：{_safe_str(core_worldview.get('game_style'))}")
+                if core_worldview.get("world_basic_setting"):
+                    parts.append(f"世界观基础设定：{_safe_str(core_worldview.get('world_basic_setting'))}")
+                if core_worldview.get("main_quest"):
+                    parts.append(f"主线任务：{_safe_str(core_worldview.get('main_quest'))}")
+                # 章节矛盾（浓缩）
+                chapters = core_worldview.get("chapters", {})
+                if isinstance(chapters, dict) and chapters:
+                    chap_lines = []
+                    for k in ["chapter1", "chapter2", "chapter3"]:
+                        c = chapters.get(k, {}) if isinstance(chapters.get(k, {}), dict) else {}
+                        mc = _safe_str(c.get("main_conflict")).strip()
+                        if mc:
+                            chap_lines.append(f"{k} 核心矛盾：{mc}")
+                    if chap_lines:
+                        parts.append("章节矛盾：\n" + "\n".join(chap_lines))
+                # 角色（如果存在）
+                chars = core_worldview.get("characters", {})
+                if isinstance(chars, dict) and chars.get("主角"):
+                    p = chars.get("主角", {})
+                    if isinstance(p, dict):
+                        cp = _safe_str(p.get("core_personality")).strip()
+                        sb = _safe_str(p.get("shallow_background")).strip()
+                        db = _safe_str(p.get("deep_background")).strip()
+                        if cp:
+                            parts.append(f"主角核心性格：{cp}")
+                        if sb:
+                            parts.append(f"主角浅层背景：{sb}")
+                        if db:
+                            parts.append(f"主角深层背景：{_clip_text(db, 600)}")
+                return _clip_text("\n".join([x for x in parts if _safe_str(x).strip()]).strip(), 1800)
+            except Exception:
+                return _clip_text(_safe_str(world_setting), 800)
+
+        worldview_context_text = _build_worldview_context_text()
+
+        # 现实IP/人物检索：让“提示词LLM”能基于资料生成对应人物形象（而不是随机脸）
+        wiki_ctx = {}
+        wiki_evidence_text = ""
+        required_name_tokens: List[str] = []
+        reference_image_url = ""
+        identity_hint = ""
+        try:
+            wiki_query = user_theme or game_theme
+            wiki_ctx = wiki_lookup_theme_and_character(wiki_query)
+            if isinstance(wiki_ctx, dict) and wiki_ctx.get("is_real_world"):
+                wiki_evidence_text = _safe_str((wiki_ctx or {}).get("evidence_text")).strip()
+                reference_image_url = _safe_str((wiki_ctx or {}).get("reference_image_url")).strip()
+
+                # 名称：尽量保留中英文“角色名 + 作品名”
+                theme_names = (wiki_ctx.get("theme_names") or {}) if isinstance(wiki_ctx.get("theme_names"), dict) else {}
+                char_names = (wiki_ctx.get("character_names") or {}) if isinstance(wiki_ctx.get("character_names"), dict) else {}
+
+                # 作品名（中/英）
+                work_zh = _safe_str(theme_names.get("zh")).strip()
+                work_en = _safe_str(theme_names.get("en")).strip()
+
+                # 角色名（中/英）——若未找到角色页，就退回把“主题页”当做人物/作品名
+                char_zh = _safe_str(char_names.get("zh")).strip()
+                char_en = _safe_str(char_names.get("en")).strip()
+                if not (char_zh or char_en):
+                    char_zh = work_zh
+                    char_en = work_en
+
+                # 给LLM一个“固定格式”的身份提示，提升名字保留与可控性
+                if (char_zh or char_en) and (work_zh or work_en):
+                    identity_hint = f"{char_zh}/{char_en} from {work_zh}/{work_en}".strip().strip("/")
+                else:
+                    identity_hint = "/".join([x for x in [char_zh, char_en, work_zh, work_en] if _safe_str(x).strip()])
+
+                # 必须保留的字面 token（用于让生图模型“认得”是谁）
+                for t in [char_zh, char_en, work_zh, work_en]:
+                    t = _safe_str(t).strip()
+                    if t and t not in required_name_tokens:
+                        required_name_tokens.append(t)
+            else:
+                wiki_evidence_text = ""
+                reference_image_url = ""
+        except Exception:
+            wiki_ctx = {}
+            wiki_evidence_text = ""
+            reference_image_url = ""
+            identity_hint = ""
+
+        # 将参考图写入 global_state，供主角生图阶段使用（尤其是 SD img2img）
+        if isinstance(global_state, dict) and reference_image_url:
+            global_state["_main_character_ref_image_url"] = reference_image_url
+            global_state["_main_character_required_name_tokens"] = required_name_tokens
+
+        # 主角性别：优先从资料中推断，否则随机
+        protagonist_gender = ""
+        try:
+            if wiki_evidence_text:
+                protagonist_gender = _infer_gender_from_text(wiki_evidence_text)
+        except Exception:
+            protagonist_gender = ""
+        if not protagonist_gender:
+            import random
+            protagonist_gender = random.choice(['男性', '女性'])
+        print(f"🎲 主角性别：{protagonist_gender}（资料优先，其次随机）")
         
         # 构建发送给LLM的提示词
         llm_prompt = f"""你现在是一个专业的角色设计师，要将具体角色描述给生图ai，让生图ai能够生成准确的主角形象。
 
 【游戏背景信息】
-- 游戏主题：{game_theme}
-- 世界观设定：{world_setting}
+- 游戏主题：{user_theme or game_theme}
+- 世界观设定（结构化/节选）：{worldview_context_text}
 - 游戏基调：{tone_description}
 
+【现实题材/IP/人物检索资料（如存在）】
+{wiki_evidence_text if wiki_evidence_text else "（无）"}
+
+【必须保留的名称标识（如存在，必须在最终提示词中原样保留）】
+{(" / ".join(required_name_tokens)) if required_name_tokens else "（无）"}
+
+【身份提示（如存在，请在最终提示词中显式出现，且保持原样）】
+{identity_hint if identity_hint else "（无）"}
+
 【主角信息】
-- 主角性别：{protagonist_gender}（随机选择）
+- 主角性别：{protagonist_gender}（资料优先，其次随机）
 - 主角属性：{attr_description}
 - 主角能力：{protagonist_ability}
 - 主角性格：{protagonist_info.get('personality', '')}
@@ -936,16 +1500,18 @@ def optimize_main_character_prompt_with_llm(
 请根据以上信息，生成一个详细的主角形象描述提示词，要求：
 1. 主角性别为{protagonist_gender}，请根据性别特征进行描述
 2. 详细描述主角的外貌特征（面部特征、五官、肤色、表情等，重点突出脸部容貌）
-3. 尽量生成长得好看一点的主角（符合高颜值的要求，五官精致，面容姣好）
-4. 详细描述主角的穿着（服装风格、颜色、材质等）
-5. 详细描述主角的发型（长度、颜色、样式等）
-6. 体现主角的属性特点（如高颜值、高智商等应在形象中有所体现）
-7. 符合游戏主题和世界观设定
-8. 匹配游戏基调（如悲剧基调应体现沉重氛围）
-9. 符合指定的图片风格
-10. 强调这是半身照，重点突出脸部容貌
-11. 不要包含任何文字、符号、乱码（重要：必须在提示词中明确告诉生图AI不要生成任何文字、符号、乱码）
-12. 描述要具体、生动，包含细节
+3. 如果【现实题材/IP/人物检索资料】存在，必须优先“还原资料所指向的具体人物/主角形象”，不要随意原创一张无关的路人脸；只有在资料缺失/歧义无法消除时，才允许在不违背世界观的前提下进行合理补全
+4. 如果资料指向的是现实人物，请按该人物的真实外貌特征与典型形象描述；如果指向的是动漫/影视/游戏角色，请按该角色在作品中的典型外观设定描述（发色、发型、服装、气质、标志物等）
+5. 若【必须保留的名称标识】不为“（无）”，最终提示词中必须包含这些名称标识（区分大小写，原样保留；不要用同义词替换，不要翻译成别的写法）
+6. 请先从【现实题材/IP/人物检索资料】中提炼出6-12条“标志性外观特征清单”（仅外观/服装/配饰/标志物/气质），并把它们融合进最终提示词（建议用逗号分隔的短语列表）
+7. 在不违反第3/4/5条的前提下，尽量让主角更好看（符合高颜值的要求，五官精致，面容姣好）
+6. 详细描述主角的穿着（服装风格、颜色、材质等）
+7. 详细描述主角的发型（长度、颜色、样式等）
+8. 体现主角的属性特点（如高颜值、高智商等应在形象中有所体现）
+9. 符合游戏主题和世界观设定
+10. 匹配游戏基调（如悲剧基调应体现沉重氛围）
+11. 符合指定的图片风格
+12. 强调这是全身角色设计（full-body），背景为纯白（pure white background），人物居中站立；并明确禁止生成任何文字/符号/乱码（no text / no symbols / no garbled characters / no words）
 
 只输出视觉描述，不要输出其他内容。"""
 
@@ -955,7 +1521,7 @@ def optimize_main_character_prompt_with_llm(
         
         if not api_key or not base_url:
             print("⚠️ LLM API未配置，使用默认提示词")
-            return f"半身照，主角形象，{game_theme}风格，{attr_description}，{style_description if style_description else '写实风格'}，突出脸部容貌，detailed, high quality, 4k, no text, no symbols"
+            return f"全身，主角形象，纯白背景，人物居中站立，{game_theme}风格，{attr_description}，{style_description if style_description else '写实风格'}，detailed, high quality, 4k, no text, no symbols"
         
         headers = {
             "Authorization": f"Bearer {api_key}",
@@ -988,14 +1554,24 @@ def optimize_main_character_prompt_with_llm(
         if choices and len(choices) > 0:
             optimized_prompt = choices[0].get("message", {}).get("content", "").strip()
             if optimized_prompt:
-                # 在优化后的提示词末尾添加禁止文字乱码的明确指令和半身照要求
-                optimized_prompt = f"{optimized_prompt}, half body portrait, focus on face, detailed facial features, no text, no symbols, no garbled characters, no words"
+                # 若检测到现实IP/人物：强制把名称标识塞进最终提示词（防止LLM遗漏导致“不像”）
+                try:
+                    if required_name_tokens:
+                        missing = [t for t in required_name_tokens if t and t not in optimized_prompt]
+                        if missing:
+                            optimized_prompt = f"{' / '.join(required_name_tokens)}, {optimized_prompt}"
+                    if identity_hint and identity_hint not in optimized_prompt:
+                        optimized_prompt = f"{identity_hint}, {optimized_prompt}"
+                except Exception:
+                    pass
+                # 在优化后的提示词末尾添加“白底全身”的明确指令（避免 LLM 输出半身照指令）
+                optimized_prompt = f"{optimized_prompt}, full body, standing pose, arms relaxed at sides, pure white background, character centered, no text, no symbols, no garbled characters, no words"
                 print(f"✅ LLM主角形象提示词生成完成，长度：{len(optimized_prompt)}字符")
                 return optimized_prompt
         
         # 如果LLM调用失败，使用默认提示词
         print("⚠️ LLM生成失败，使用默认提示词")
-        return f"半身照，主角形象，{game_theme}风格，{attr_description}，{style_description if style_description else '写实风格'}，突出脸部容貌，detailed, high quality, 4k, no text, no symbols"
+        return f"全身，主角形象，纯白背景，人物居中站立，{game_theme}风格，{attr_description}，{style_description if style_description else '写实风格'}，detailed, high quality, 4k, no text, no symbols"
         
     except Exception as e:
         print(f"⚠️ LLM主角形象提示词生成出错：{str(e)}，使用默认提示词")
@@ -1003,7 +1579,7 @@ def optimize_main_character_prompt_with_llm(
         core_worldview = global_state.get('core_worldview', {})
         game_style = core_worldview.get('game_style', '')
         attr_description = f"颜值{protagonist_attr.get('颜值', '普通')}，智商{protagonist_attr.get('智商', '普通')}，体力{protagonist_attr.get('体力', '普通')}，魅力{protagonist_attr.get('魅力', '普通')}"
-        return f"半身照，主角形象，{game_style}风格，{attr_description}，突出脸部容貌，detailed, high quality, 4k, no text, no symbols"
+        return f"全身，主角形象，纯白背景，人物居中站立，{game_style}风格，{attr_description}，detailed, high quality, 4k, no text, no symbols"
 
 def calculate_image_size_for_viewport(viewport_width: int, viewport_height: int, provider: str = "yunwu") -> tuple:
     """
@@ -1075,15 +1651,51 @@ def calculate_image_size_for_viewport(viewport_width: int, viewport_height: int,
                 width = 512
             return (width, height)
 
-def call_image_api_with_custom_size(prompt: str, width: int = 1024, height: int = 1536) -> str:
+def call_image_api_with_custom_size(
+    prompt: str,
+    width: int = 1024,
+    height: int = 1536,
+    reference_image_url: str = "",
+    sd_denoising_strength: float = None
+) -> str:
     """
     调用生图API生成指定尺寸的图片
     :param prompt: 图片生成提示词
     :param width: 图片宽度
     :param height: 图片高度
+    :param reference_image_url: 参考图URL/路径（可选；仅部分provider支持，优先走Stable Diffusion img2img）
+    :param sd_denoising_strength: 当走 Stable Diffusion img2img 时使用的 denoising_strength（可选）
     :return: 图片URL或base64数据
     """
     provider = IMAGE_GENERATION_CONFIG.get("provider", "yunwu")
+
+    # 若提供了参考图：走图生图。优先用云雾 API 中的 stability-ai/stable-diffusion-img2img（传图片+prompt）
+    if reference_image_url:
+        img2img_base = (IMAGE_GENERATION_CONFIG.get("img2img_base_url") or "").strip()
+        img2img_key = (IMAGE_GENERATION_CONFIG.get("img2img_api_key") or "").strip()
+        sd_base = IMAGE_GENERATION_CONFIG.get("stable_diffusion_base_url", "")
+        # 1) 若配置了云雾图生图（Img2img_BASE_URL + Img2img_API_KEY），用云雾 API 的图生图模型
+        if img2img_base and img2img_key:
+            print(f"🧷 主角生图使用参考图（云雾 API stability-ai/stable-diffusion-img2img）：{reference_image_url[:120]}...")
+            return call_img2img_via_yunwu(
+                prompt,
+                width,
+                height,
+                reference_image_url=reference_image_url,
+                denoising_strength=sd_denoising_strength
+            )
+        # 2) 否则若配置了本地 SD，走 SD img2img
+        if sd_base or provider == "stable_diffusion":
+            print(f"🧷 主角生图使用参考图（本地 SD img2img）：{reference_image_url[:120]}...")
+            return call_stable_diffusion_api_with_size(
+                prompt,
+                width,
+                height,
+                style="default",
+                reference_image_url=reference_image_url,
+                denoising_strength=sd_denoising_strength
+            )
+        print("⚠️ 检测到参考图，但未配置图生图（Img2img_* 或 Stable Diffusion），将忽略参考图。")
     
     if provider == "yunwu":
         # yunwu.ai可能不支持自定义尺寸，先尝试标准调用
@@ -1102,7 +1714,14 @@ def call_image_api_with_custom_size(prompt: str, width: int = 1024, height: int 
             size = "1024x1024"
         return call_dalle_api_with_size(prompt, size)
     elif provider == "stable_diffusion":
-        return call_stable_diffusion_api_with_size(prompt, width, height)
+        return call_stable_diffusion_api_with_size(
+            prompt,
+            width,
+            height,
+            style="default",
+            reference_image_url=reference_image_url or "",
+            denoising_strength=sd_denoising_strength
+        )
     elif provider == "comfyui":
         return call_comfyui_api(prompt, "default")
     else:
@@ -1128,7 +1747,379 @@ def call_dalle_api_with_size(prompt: str, size: str) -> str:
         print(f"❌ DALL-E API调用失败：{str(e)}")
         raise
 
-def call_stable_diffusion_api_with_size(prompt: str, width: int, height: int, style: str = "default", reference_image_url: str = "") -> str:
+
+def _ref_image_to_input(ref: str, max_data_uri_bytes: int = 600000) -> str:
+    """
+    将参考图（本地路径 / HTTP URL / data URI）转为 Replicate 可接受的 input：
+    data URI 或 HTTP URL。本地路径转为 data URI；若超过约 1MB 会压缩以符合 Replicate 建议。
+    """
+    import base64
+    if not ref or not isinstance(ref, str):
+        return ""
+    ref = ref.strip()
+    if not ref:
+        return ""
+    if ref.startswith("data:image"):
+        return ref
+    if ref.startswith(("http://", "https://")):
+        return ref
+    if os.path.exists(ref):
+        try:
+            with open(ref, "rb") as f:
+                raw = f.read()
+            # Replicate 建议 data URI 仅用于 <1MB；过大易导致 400
+            if len(raw) * 4 // 3 <= max_data_uri_bytes:
+                b64 = base64.b64encode(raw).decode("utf-8")
+                return f"data:image/png;base64,{b64}"
+            try:
+                from PIL import Image
+                import io
+                im = Image.open(io.BytesIO(raw)).convert("RGB")
+                w, h = im.size
+                # 缩小长边至 640，使压缩后约 <500KB，避免代理/API 拒大 body
+                max_side = 640
+                if max(w, h) > max_side:
+                    if w >= h:
+                        im = im.resize((max_side, int(h * max_side / w)), Image.Resampling.LANCZOS)
+                    else:
+                        im = im.resize((int(w * max_side / h), max_side), Image.Resampling.LANCZOS)
+                buf = io.BytesIO()
+                im.save(buf, "JPEG", quality=88, optimize=True)
+                buf.seek(0)
+                raw = buf.read()
+                b64 = base64.b64encode(raw).decode("utf-8")
+                return f"data:image/jpeg;base64,{b64}"
+            except Exception:
+                b64 = base64.b64encode(raw).decode("utf-8")
+                return f"data:image/png;base64,{b64}"
+        except Exception:
+            return ""
+    return ""
+
+
+# Replicate 官方 stability-ai/stable-diffusion-img2img 最新版 version hash（无 width/height 输入）
+REPLICATE_IMG2IMG_VERSION = "15a3689ee13b0d2616e98820eca31d4c3abcd36672df6afce5cb6feb1d66087d"
+
+
+def call_img2img_via_replicate_direct(
+    prompt: str,
+    width: int,
+    height: int,
+    reference_image_url: str = "",
+    denoising_strength: float = None
+) -> str:
+    """
+    直接调用 Replicate 官方 API，使用 stability-ai/stable-diffusion-img2img 做图生图。
+    需在 .env 中设置 REPLICATE_API_TOKEN。绕过云雾代理，避免 400 等问题。
+    """
+    import time
+    token = (IMAGE_GENERATION_CONFIG.get("replicate_api_token") or "").strip()
+    if not token:
+        raise ValueError("直接 Replicate 图生图未配置：请在 .env 中设置 REPLICATE_API_TOKEN")
+    image_input = _ref_image_to_input(reference_image_url)
+    if not image_input:
+        raise ValueError("无法加载参考图，请检查 reference_image_url 是否为有效路径或 URL")
+    ds = 0.5
+    if denoising_strength is not None:
+        try:
+            ds = max(0.0, min(1.0, float(denoising_strength)))
+        except Exception:
+            pass
+    create_url = "https://api.replicate.com/v1/predictions"
+    headers = {
+        "Authorization": f"Bearer {token}",
+        "Content-Type": "application/json",
+    }
+    payload = {
+        "version": REPLICATE_IMG2IMG_VERSION,
+        "input": {
+            "image": image_input,
+            "prompt": prompt,
+            "prompt_strength": ds,
+        },
+    }
+    try:
+        resp = requests.post(create_url, headers=headers, json=payload, timeout=60)
+        if resp.status_code >= 400:
+            try:
+                err_body = resp.json()
+            except Exception:
+                err_body = resp.text
+            print(f"❌ Replicate 图生图 API 错误 {resp.status_code}，响应: {err_body}")
+        resp.raise_for_status()
+        data = resp.json()
+        pred_id = (data.get("id") or "").strip()
+        if not pred_id:
+            raise RuntimeError("Replicate 未返回 prediction id")
+        get_url = f"https://api.replicate.com/v1/predictions/{pred_id}"
+        max_wait = int(os.getenv("IMG2IMG_POLL_MAX_SECONDS", "120"))
+        interval = float(os.getenv("IMG2IMG_POLL_INTERVAL_SECONDS", "2"))
+        deadline = time.time() + max_wait
+        while time.time() < deadline:
+            r2 = requests.get(get_url, headers=headers, timeout=30)
+            r2.raise_for_status()
+            p = r2.json()
+            status = (p.get("status") or "").lower()
+            if status == "succeeded":
+                out = p.get("output")
+                if isinstance(out, list) and len(out) > 0:
+                    url_or_b64 = out[0]
+                elif isinstance(out, str):
+                    url_or_b64 = out
+                else:
+                    raise RuntimeError("图生图返回的 output 格式异常")
+                if isinstance(url_or_b64, str) and url_or_b64.startswith(("http://", "https://")):
+                    return url_or_b64
+                if isinstance(url_or_b64, str) and len(url_or_b64) > 100:
+                    if not url_or_b64.startswith("data:"):
+                        return f"data:image/png;base64,{url_or_b64}"
+                    return url_or_b64
+                raise RuntimeError("图生图 output 无法解析为 URL 或 base64")
+            if status in ("failed", "canceled"):
+                err = p.get("error") or status
+                raise RuntimeError(f"图生图任务结束：{err}")
+            time.sleep(interval)
+        raise RuntimeError(f"图生图轮询超时（{max_wait}s）")
+    except requests.exceptions.HTTPError as e:
+        print(f"❌ Replicate 图生图 API HTTP 错误：{e.response.status_code if e.response else ''} {str(e)}")
+        raise
+    except Exception as e:
+        print(f"❌ Replicate 图生图 API 调用失败：{str(e)}")
+        raise
+
+
+def call_img2img_via_yunwu(
+    prompt: str,
+    width: int,
+    height: int,
+    reference_image_url: str = "",
+    denoising_strength: float = None
+) -> str:
+    """
+    通过云雾 API 调用图生图模型（stability-ai/stable-diffusion-img2img）。
+    配置与其他服务一致：BASE_URL（https://yunwu.ai/v1）+ PATH + MODEL。
+    支持两种格式：
+    1. Replicate格式：当PATH包含/replicate/时，使用Replicate API格式（version + input）
+    2. 云雾API格式：其他情况使用云雾API格式（model + image + prompt）
+    """
+    import time
+    # 重新加载环境变量以确保获取最新值
+    from dotenv import load_dotenv
+    load_dotenv(override=True)
+    
+    base_url_raw = (os.getenv("Img2img_BASE_URL") or IMAGE_GENERATION_CONFIG.get("img2img_base_url") or "https://yunwu.ai/v1").strip()
+    # 优先从环境变量直接读取
+    path_env = os.getenv("Img2img_PATH", "").strip()
+    path_config = IMAGE_GENERATION_CONFIG.get("img2img_path", "").strip()
+    path = (path_env or path_config or "/images/edit").strip()
+    if not path.startswith("/"):
+        path = "/" + path
+    
+    # 如果使用的是默认路径，发出警告
+    if path == "/images/edit" and not path_env and not path_config:
+        print(f"⚠️ 警告：使用默认路径 /images/edit，请检查 .env 文件中的 Img2img_PATH 配置")
+    
+    api_key = (os.getenv("Img2img_API_KEY") or IMAGE_GENERATION_CONFIG.get("img2img_api_key") or "").strip()
+    model = (os.getenv("Img2img_MODEL") or IMAGE_GENERATION_CONFIG.get("img2img_model") or "stability-ai/stable-diffusion-img2img").strip()
+    if not api_key:
+        raise ValueError("图生图未配置：请在 .env 中设置 Img2img_API_KEY")
+    
+    # 构建URL：正确处理base_url和path的拼接
+    # 根据.env配置：
+    # - Img2img_BASE_URL=https://yunwu.ai（没有/v1）
+    # - Img2img_PATH=/replicate/v1/predictions
+    # 正确URL应该是：https://yunwu.ai/replicate/v1/predictions
+    # 
+    # 如果path以/replicate/开头，说明是通过云雾代理调用Replicate
+    # 此时path已经包含完整路径，直接拼接base_url和path，不要添加/v1
+    base_url_clean = base_url_raw.rstrip("/")
+    
+    if path.startswith("/replicate/"):
+        # Replicate路径：直接拼接，不添加/v1（因为path已经包含完整路径）
+        create_url = base_url_clean + path
+    else:
+        # 其他路径（如/images/edit）：如果base_url没有/v1，添加/v1
+        if not base_url_clean.endswith("/v1"):
+            base_url_clean = base_url_clean + "/v1"
+        create_url = base_url_clean + path
+    
+    print(f"🔧 图生图配置：base_url_raw='{base_url_raw}', path_env='{path_env}', path_config='{path_config}', 最终path='{path}', create_url='{create_url}'")
+    
+    # 对于Replicate格式，确保图片格式正确（优先使用JPEG，因为PNG可能不被支持）
+    image_input = _ref_image_to_input(reference_image_url)
+    if not image_input:
+        raise ValueError("无法加载参考图，请检查 reference_image_url 是否为有效路径或 URL")
+    
+    # 如果是Replicate格式且图片是PNG，尝试转换为JPEG
+    if "/replicate/" in path.lower() and image_input.startswith("data:image/png"):
+        try:
+            import base64
+            from PIL import Image
+            import io
+            # 提取base64数据
+            b64_data = image_input.split("base64,", 1)[1]
+            img_bytes = base64.b64decode(b64_data)
+            # 转换为JPEG
+            im = Image.open(io.BytesIO(img_bytes)).convert("RGB")
+            buf = io.BytesIO()
+            im.save(buf, "JPEG", quality=90, optimize=True)
+            buf.seek(0)
+            jpeg_bytes = buf.read()
+            jpeg_b64 = base64.b64encode(jpeg_bytes).decode("utf-8")
+            image_input = f"data:image/jpeg;base64,{jpeg_b64}"
+            print(f"🔧 已将PNG图片转换为JPEG格式（Replicate兼容性）")
+        except Exception as e:
+            print(f"⚠️ PNG转JPEG失败，继续使用原格式: {str(e)}")
+    ds = 0.5
+    if denoising_strength is not None:
+        try:
+            ds = max(0.0, min(1.0, float(denoising_strength)))
+        except Exception:
+            pass
+    headers = {
+        "Authorization": f"Bearer {api_key}",
+        "Content-Type": "application/json",
+    }
+    
+    # 判断API格式：如果路径包含/replicate/，使用Replicate格式
+    is_replicate_format = "/replicate/" in path.lower()
+    
+    if is_replicate_format:
+        # 通过云雾代理调用Replicate时，使用标准的Replicate API格式
+        # 云雾代理只是转发请求，不会改变请求格式，所以应该使用和直接调用Replicate相同的格式
+        payload = {
+            "version": REPLICATE_IMG2IMG_VERSION,  # 使用version而不是model（标准Replicate格式）
+            "input": {
+                "image": image_input,
+                "prompt": prompt,
+                "prompt_strength": ds,  # 使用prompt_strength（标准Replicate格式）而不是strength
+                # 注意：stability-ai/stable-diffusion-img2img不支持width/height参数
+            }
+        }
+        print(f"🔧 使用Replicate API格式调用图生图（通过云雾代理），version={REPLICATE_IMG2IMG_VERSION[:20]}..., prompt_strength={ds}")
+    else:
+        # 云雾 API 格式：model + image + prompt
+        payload = {
+            "model": model,
+            "image": image_input,
+            "prompt": prompt,
+            "strength": ds,  # 云雾可能用 strength 而不是 prompt_strength
+        }
+        print(f"🔧 使用云雾API格式调用图生图")
+    try:
+        # 打印请求详情用于调试
+        import json
+        print(f"🔍 请求详情：URL={create_url}, payload_keys={list(payload.keys())}")
+        if "input" in payload:
+            print(f"🔍 input keys: {list(payload['input'].keys())}")
+        
+        resp = requests.post(create_url, headers=headers, json=payload, timeout=60)
+        if resp.status_code >= 400:
+            try:
+                err_body = resp.json()
+            except Exception:
+                err_body = resp.text
+            print(f"❌ 云雾图生图 API 错误 {resp.status_code}，响应: {err_body}")
+            print(f"🔍 请求URL: {create_url}")
+            # 打印payload但不包含图片数据（可能很大）
+            payload_debug = {k: (v[:100] + "..." if isinstance(v, str) and len(v) > 100 else v) for k, v in payload.items()}
+            if "input" in payload_debug and isinstance(payload_debug["input"], dict):
+                input_debug = {}
+                for k, v in payload_debug["input"].items():
+                    if k == "image" and isinstance(v, str):
+                        # 显示图片格式和大小信息
+                        if v.startswith("data:image"):
+                            img_type = v.split(";")[0].split("/")[-1] if "/" in v.split(";")[0] else "unknown"
+                            img_size = len(v) if len(v) < 200 else "..." + str(len(v))
+                            input_debug[k] = f"data:image/{img_type};base64,... (size: {img_size} chars)"
+                        else:
+                            input_debug[k] = v[:100] + "..." if len(str(v)) > 100 else v
+                    else:
+                        input_debug[k] = v[:100] + "..." if isinstance(v, str) and len(v) > 100 else v
+                payload_debug["input"] = input_debug
+            print(f"🔍 请求payload: {json.dumps(payload_debug, indent=2, ensure_ascii=False)}")
+            
+            # 如果是400错误，尝试打印更详细的错误信息
+            if resp.status_code == 400:
+                print(f"🔍 完整错误响应: {resp.text[:1000]}")
+                # 尝试从响应中提取更详细的错误信息
+                try:
+                    error_detail = resp.json()
+                    if isinstance(error_detail, dict):
+                        error_msg = error_detail.get('message', '')
+                        error_data = error_detail.get('data', '')
+                        if error_msg:
+                            print(f"🔍 错误消息: {error_msg}")
+                        if error_data:
+                            print(f"🔍 错误数据: {error_data}")
+                except:
+                    pass
+        resp.raise_for_status()
+        data = resp.json()
+        # 云雾 API 可能直接返回图片 URL，也可能返回异步任务（类似 Replicate）
+        # 先尝试直接返回格式
+        if "url" in data:
+            return data["url"]
+        if "image" in data:
+            img = data["image"]
+            if isinstance(img, str) and img.startswith(("http://", "https://", "data:image")):
+                return img
+        if "data" in data and isinstance(data["data"], list) and len(data["data"]) > 0:
+            img = data["data"][0]
+            if isinstance(img, dict) and "url" in img:
+                return img["url"]
+            if isinstance(img, str) and img.startswith(("http://", "https://", "data:image")):
+                return img
+        # 如果是异步任务格式（Replicate 兼容），进行轮询
+        pred_id = (data.get("id") or "").strip()
+        if pred_id:
+            get_url = create_url.rstrip("/") + "/" + pred_id
+            max_wait = int(os.getenv("IMG2IMG_POLL_MAX_SECONDS", "120"))
+            interval = float(os.getenv("IMG2IMG_POLL_INTERVAL_SECONDS", "2"))
+            deadline = time.time() + max_wait
+            while time.time() < deadline:
+                r2 = requests.get(get_url, headers=headers, timeout=30)
+                r2.raise_for_status()
+                p = r2.json()
+                status = (p.get("status") or "").lower()
+                if status == "succeeded":
+                    out = p.get("output")
+                    if isinstance(out, list) and len(out) > 0:
+                        url_or_b64 = out[0]
+                    elif isinstance(out, str):
+                        url_or_b64 = out
+                    else:
+                        raise RuntimeError("图生图返回的 output 格式异常")
+                    if isinstance(url_or_b64, str) and url_or_b64.startswith(("http://", "https://")):
+                        return url_or_b64
+                    if isinstance(url_or_b64, str) and len(url_or_b64) > 100:
+                        if not url_or_b64.startswith("data:"):
+                            return f"data:image/png;base64,{url_or_b64}"
+                        return url_or_b64
+                    raise RuntimeError("图生图 output 无法解析为 URL 或 base64")
+                if status in ("failed", "canceled"):
+                    err = p.get("error") or status
+                    raise RuntimeError(f"图生图任务结束：{err}")
+                time.sleep(interval)
+            raise RuntimeError(f"图生图轮询超时（{max_wait}s）")
+        # 无法解析响应格式
+        raise RuntimeError(f"云雾图生图返回格式无法解析：{data}")
+    except requests.exceptions.HTTPError as e:
+        print(f"❌ 云雾图生图 API HTTP 错误：{e.response.status_code if e.response else ''} {str(e)}")
+        raise
+    except Exception as e:
+        print(f"❌ 云雾图生图 API 调用失败：{str(e)}")
+        raise
+
+
+def call_stable_diffusion_api_with_size(
+    prompt: str,
+    width: int,
+    height: int,
+    style: str = "default",
+    reference_image_url: str = "",
+    denoising_strength: float = None
+) -> str:
     """调用本地Stable Diffusion API生成指定尺寸的图片（支持img2img参考图）"""
     try:
         import base64
@@ -1181,9 +2172,29 @@ def call_stable_diffusion_api_with_size(prompt: str, width: int, height: int, st
             return ""
 
         ref_b64 = _load_ref_image_b64(reference_image_url) if reference_image_url else ""
+        # 关键诊断：确认参考图是否真的被读入（否则会退回 txt2img，侧/背会“看起来毫无关系”）
+        try:
+            if reference_image_url:
+                exists_flag = os.path.exists(reference_image_url) if isinstance(reference_image_url, str) else False
+                print(
+                    f"🔎 [SD] reference_image_url provided, exists={exists_flag}, "
+                    f"ref_b64_len={len(ref_b64) if ref_b64 else 0}"
+                )
+        except Exception:
+            pass
 
         # 如果有参考图，使用img2img，否则使用txt2img
         if ref_b64:
+            # 允许外部传入 denoising_strength；默认保持历史行为 0.7
+            try:
+                ds = float(denoising_strength) if denoising_strength is not None else 0.7
+            except Exception:
+                ds = 0.7
+            # 合法范围兜底
+            if ds < 0.0:
+                ds = 0.0
+            if ds > 1.0:
+                ds = 1.0
             # img2img模式
             request_payload = {
                 "prompt": prompt,
@@ -1192,7 +2203,7 @@ def call_stable_diffusion_api_with_size(prompt: str, width: int, height: int, st
                 "steps": 20,
                 "cfg_scale": 7,
                 "init_images": [ref_b64],
-                "denoising_strength": 0.7  # 控制参考图的影响程度
+                "denoising_strength": ds  # 控制参考图的影响程度
             }
             api_endpoint = f"{base_url}/sdapi/v1/img2img"
         else:
@@ -1238,6 +2249,191 @@ def generate_main_character_image(
     :return: 包含图片路径和元数据的字典，如果失败返回None
     """
     try:
+        import threading
+
+        # 侧/背生成已改用 gemini-2.5-flash-image 图生图，不再使用 denoising_strength
+
+        # metadata 并发写保护（侧/背线程会更新 metadata.json）
+        _metadata_lock = threading.Lock()
+
+        def _style_label(style_obj: Dict) -> str:
+            if not isinstance(style_obj, dict):
+                return "default"
+            t = _safe_str(style_obj.get("type")).strip()
+            if t:
+                if t == "custom":
+                    v = _safe_str(style_obj.get("value")).strip()
+                    return v or "custom"
+                return t
+            return "default"
+
+        def _pick_identifier(req_tokens: list) -> str:
+            try:
+                if isinstance(req_tokens, list) and req_tokens:
+                    cand = _safe_str(req_tokens[0]).strip()
+                    if cand:
+                        return cand
+            except Exception:
+                pass
+            return "protagonist"
+
+        def _save_image_any(image_url_or_data_obj, out_path: Path) -> bool:
+            """复用现有保存逻辑，但可写到任意文件名。"""
+            try:
+                image_url_str_local = str(image_url_or_data_obj or "")
+                if not image_url_str_local:
+                    return False
+
+                out_path.parent.mkdir(parents=True, exist_ok=True)
+
+                if image_url_str_local.startswith("data:image"):
+                    import base64
+                    base64_data = image_url_str_local.split(",", 1)[1] if "," in image_url_str_local else image_url_str_local
+                    image_data = base64.b64decode(base64_data)
+                    with open(out_path, "wb") as f:
+                        f.write(image_data)
+                    return out_path.exists()
+
+                if image_url_str_local.startswith(("http://", "https://")):
+                    resp = requests.get(image_url_str_local, timeout=60, stream=True)
+                    resp.raise_for_status()
+                    with open(out_path, "wb") as f:
+                        for chunk in resp.iter_content(chunk_size=8192):
+                            f.write(chunk)
+                    return out_path.exists()
+
+                if image_url_str_local.startswith("/image_cache/") or image_url_str_local.startswith("image_cache/"):
+                    import shutil
+                    if image_url_str_local.startswith("image_cache/"):
+                        source_path = Path("image_cache") / image_url_str_local.replace("image_cache/", "")
+                    else:
+                        source_path = Path("image_cache") / image_url_str_local.replace("/image_cache/", "")
+                    if source_path.exists():
+                        shutil.copy2(source_path, out_path)
+                        return out_path.exists()
+                    return False
+
+                # 可能是纯 base64（无 data:image 前缀）
+                if isinstance(image_url_or_data_obj, str) and len(image_url_str_local) > 100:
+                    try:
+                        import base64
+                        image_data = base64.b64decode(image_url_str_local)
+                        with open(out_path, "wb") as f:
+                            f.write(image_data)
+                        return out_path.exists()
+                    except Exception:
+                        return False
+
+                # 最后兜底：若是本地文件路径，尝试复制
+                try:
+                    if os.path.exists(image_url_str_local):
+                        import shutil
+                        shutil.copy2(image_url_str_local, out_path)
+                        return out_path.exists()
+                except Exception:
+                    pass
+
+                return False
+            except Exception:
+                return False
+
+        def _update_metadata_file(metadata_path: Path, updater_fn):
+            """线程安全更新 metadata.json。"""
+            with _metadata_lock:
+                current = {}
+                if metadata_path.exists():
+                    try:
+                        with open(metadata_path, "r", encoding="utf-8") as f:
+                            current = json.load(f) or {}
+                    except Exception:
+                        current = {}
+                try:
+                    updated = updater_fn(current if isinstance(current, dict) else {})
+                except Exception:
+                    updated = current if isinstance(current, dict) else {}
+                try:
+                    with open(metadata_path, "w", encoding="utf-8") as f:
+                        json.dump(updated, f, ensure_ascii=False, indent=2)
+                except Exception:
+                    pass
+
+        def _async_generate_view(
+            view_name: str,
+            out_filename: str,
+            prompt_text: str,
+            reference_front_path: str
+        ):
+            try:
+                out_path = main_character_dir / out_filename
+                if out_path.exists():
+                    print(f"✅ 主角{view_name}图已存在，跳过：{out_path}")
+                    return
+
+                try:
+                    print(
+                        f"🔎 主角{view_name}图参考正面路径: {reference_front_path} "
+                        f"(exists={os.path.exists(reference_front_path) if isinstance(reference_front_path, str) else False})"
+                    )
+                except Exception:
+                    pass
+
+                print(f"🎨 开始生成主角{view_name}图（game_id={game_id}）...")
+                
+                # 优先使用 gemini-2.5-flash-image 图生图
+                img = None
+                use_img2img = False
+                model = IMAGE_GENERATION_CONFIG.get("yunwu_model", "gemini-2.5-flash-image")
+                if "gemini" in model.lower() and "image" in model.lower():
+                    print(f"🔄 尝试使用 gemini-2.5-flash-image 图生图生成{view_name}视图...")
+                    img = call_gemini_img2img(prompt_text, reference_front_path)
+                    use_img2img = True
+                    if img:
+                        print(f"✅ gemini-2.5-flash-image 图生图成功")
+                    else:
+                        print(f"⚠️ gemini-2.5-flash-image 图生图失败，回退到文生图")
+                
+                # 如果图生图失败，回退到文生图
+                if not img:
+                    print(f"🔄 使用文生图生成{view_name}视图...")
+                    img = call_image_api_with_custom_size(
+                        prompt_text,
+                        width=1024,
+                        height=1536,
+                        reference_image_url=None  # 文生图不使用参考图
+                    )
+                
+                if not img:
+                    print(f"⚠️ 主角{view_name}图生成失败：生图返回空")
+                    return
+                    
+                ok = _save_image_any(img, out_path)
+                if ok:
+                    print(f"✅ 主角{view_name}图已保存：{out_path}")
+                    metadata_path_local = main_character_dir / "metadata.json"
+                    _update_metadata_file(
+                        metadata_path_local,
+                        lambda m: {
+                            **m,
+                            "views": {
+                                **(m.get("views") if isinstance(m.get("views"), dict) else {}),
+                                view_name: {
+                                    "filename": out_filename,
+                                    "image_url": f"/initial/main_character/{game_id}/{out_filename}",
+                                    "prompt": prompt_text,
+                                    "reference_front_path": reference_front_path,
+                                    "generation_method": "img2img" if use_img2img else "text2img",
+                                    "generated_at": datetime.now().isoformat()
+                                }
+                            }
+                        }
+                    )
+                else:
+                    print(f"⚠️ 主角{view_name}图保存失败：{out_path}")
+            except Exception as e:
+                print(f"❌ 主角{view_name}图生成异常：{str(e)}")
+                import traceback
+                traceback.print_exc()
+
         # 生成游戏ID（如果未提供）
         if not game_id:
             game_id = generate_game_id()
@@ -1245,10 +2441,44 @@ def generate_main_character_image(
         # 确保目录存在
         main_character_dir = ensure_main_character_dir(game_id)
         
-        # 检查是否已存在主角形象
-        existing_image_path = main_character_dir / "main_character.png"
-        if existing_image_path.exists():
-            print(f"✅ 主角形象已存在，使用现有图片：{existing_image_path}")
+        # 检查是否已存在主角正面图（正面仍命名 main_character.png 以兼容前端）
+        front_path = main_character_dir / "main_character.png"
+        side_path = main_character_dir / "main_character_side.png"
+        back_path = main_character_dir / "main_character_back.png"
+
+        # 1.5 若为现实IP/人物且拿到了参考图：传给生图以提高“还原度”
+        reference_image_url = ""
+        required_tokens = []
+        if isinstance(global_state, dict):
+            reference_image_url = _safe_str(global_state.get("_main_character_ref_image_url")).strip()
+            required_tokens = global_state.get("_main_character_required_name_tokens") or []
+
+        identifier = _pick_identifier(required_tokens)
+        style_label = _style_label(image_style)
+
+        if front_path.exists():
+            print(f"✅ 主角正面图已存在，使用现有图片：{front_path}")
+
+            # 若侧/背缺失，后台补齐（不阻塞）
+            try:
+                front_ref = str(front_path.resolve())
+                if not side_path.exists():
+                    side_prompt = prompt_template_side.format(identifier=identifier)
+                    threading.Thread(
+                        target=_async_generate_view,
+                        args=("side", "main_character_side.png", side_prompt, front_ref),
+                        daemon=True
+                    ).start()
+                if not back_path.exists():
+                    back_prompt = prompt_template_back.format(identifier=identifier)
+                    threading.Thread(
+                        target=_async_generate_view,
+                        args=("back", "main_character_back.png", back_prompt, front_ref),
+                        daemon=True
+                    ).start()
+            except Exception:
+                pass
+
             # 读取元数据
             metadata_path = main_character_dir / "metadata.json"
             metadata = {}
@@ -1256,27 +2486,39 @@ def generate_main_character_image(
                 try:
                     with open(metadata_path, 'r', encoding='utf-8') as f:
                         metadata = json.load(f)
-                except:
-                    pass
-            
+                except Exception:
+                    metadata = {}
+
             return {
                 "game_id": game_id,
-                "image_path": str(existing_image_path),
+                "image_path": str(front_path),
                 "image_url": f"/initial/main_character/{game_id}/main_character.png",
                 "width": 1024,
                 "height": 1536,
                 "metadata": metadata
             }
         
-        # 1. 使用LLM生成提示词
-        prompt = optimize_main_character_prompt_with_llm(protagonist_attr, global_state, image_style)
+        # 1. 使用LLM生成“人物特征描述”（后续套入三视图模板）
+        features = optimize_main_character_prompt_with_llm(protagonist_attr, global_state, image_style)
+        front_prompt = prompt_template_front.format(
+            identifier=identifier,
+            features=features,
+            style=style_label
+        )
         
         # 2. 调用生图API生成图片（1024x1536）
         # 获取使用的模型信息（用于日志）
         provider = IMAGE_GENERATION_CONFIG.get("provider", "yunwu")
         model = IMAGE_GENERATION_CONFIG.get("yunwu_model", "sora_image") if provider == "yunwu" else "N/A"
         print(f"🎨 正在生成主角形象图片（1024x1536），使用模型：{model}...")
-        image_url_or_data = call_image_api_with_custom_size(prompt, width=1024, height=1536)
+        if reference_image_url:
+            print(f"🧷 主角参考图已就绪，将用于生图：{reference_image_url[:120]}...")
+        image_url_or_data = call_image_api_with_custom_size(
+            front_prompt,
+            width=1024,
+            height=1536,
+            reference_image_url=reference_image_url
+        )
         
         print(f"🔍 call_image_api_with_custom_size 返回结果:")
         print(f"   - 类型: {type(image_url_or_data)}")
@@ -1293,93 +2535,62 @@ def generate_main_character_image(
             print("❌ 主角形象图片生成失败：生图API返回空结果")
             return None
         
-        # 3. 下载并保存图片
-        image_path = main_character_dir / "main_character.png"
-        print(f"📁 准备保存图片到: {image_path}")
+        # 3. 下载并保存正面图
+        image_path = front_path
+        print(f"📁 准备保存主角正面图到: {image_path}")
         print(f"📁 目录是否存在: {main_character_dir.exists()}")
-        
-        # 处理base64数据、URL或本地路径
-        image_url_str = str(image_url_or_data)
-        if image_url_str.startswith('data:image'):
-            # base64数据
-            import base64
-            # 提取base64数据部分
-            base64_data = image_url_or_data.split(',')[1] if ',' in image_url_or_data else image_url_or_data
-            image_data = base64.b64decode(base64_data)
-            with open(image_path, 'wb') as f:
-                f.write(image_data)
-            print(f"✅ 主角形象图片已保存（base64）：{image_path}")
-            print(f"📁 文件是否存在: {image_path.exists()}")
-        elif image_url_str.startswith('http://') or image_url_str.startswith('https://'):
-            # URL，需要下载
-            print(f"📥 正在下载主角形象图片：{image_url_or_data[:80]}...")
-            response = requests.get(image_url_or_data, timeout=60, stream=True)
-            response.raise_for_status()
-            
-            with open(image_path, 'wb') as f:
-                for chunk in response.iter_content(chunk_size=8192):
-                    f.write(chunk)
-            print(f"✅ 主角形象图片已保存（URL下载）：{image_path}")
-            print(f"📁 文件是否存在: {image_path.exists()}")
-        elif image_url_str.startswith('/image_cache/') or image_url_str.startswith('image_cache/'):
-            # 本地路径，需要复制文件
-            import shutil
-            # 统一路径格式
-            if image_url_or_data.startswith('image_cache/'):
-                source_path = Path("image_cache") / image_url_or_data.replace('image_cache/', '')
-            else:
-                source_path = Path("image_cache") / image_url_or_data.replace('/image_cache/', '')
-            
-            if source_path.exists():
-                # 复制文件到主角形象目录
-                shutil.copy2(source_path, image_path)
-                print(f"✅ 主角形象图片已保存（从本地缓存复制）：{image_path}")
-                print(f"📁 文件是否存在: {image_path.exists()}")
-            else:
-                print(f"❌ 本地缓存文件不存在：{source_path}")
-                return None
-        else:
-            # 可能是其他格式，尝试直接写入（但这种情况应该很少）
-            print(f"⚠️ 未知的图片数据格式，尝试直接保存...")
-            print(f"   返回数据类型: {type(image_url_or_data)}")
-            print(f"   返回数据前100字符：{str(image_url_or_data)[:100]}")
-            print(f"   返回数据长度: {len(str(image_url_or_data))} 字符")
-            # 如果是字符串但不是上述格式，可能是base64数据（没有data:image前缀）
-            if isinstance(image_url_or_data, str) and len(image_url_or_data) > 100:
-                # 尝试作为base64解码
-                try:
-                    import base64
-                    image_data = base64.b64decode(image_url_or_data)
-                    with open(image_path, 'wb') as f:
-                        f.write(image_data)
-                    print(f"✅ 主角形象图片已保存（作为base64解码）：{image_path}")
-                except Exception as e:
-                    print(f"❌ base64解码失败：{str(e)}")
-                    return None
-            else:
-                # 最后尝试直接写入（不推荐）
-                with open(image_path, 'wb') as f:
-                    if isinstance(image_url_or_data, str):
-                        f.write(image_url_or_data.encode())
-                    else:
-                        f.write(image_url_or_data)
-                print(f"✅ 主角形象图片已保存（直接写入）：{image_path}")
+        saved_ok = _save_image_any(image_url_or_data, image_path)
+        if not saved_ok:
+            print("❌ 主角正面图保存失败")
+            return None
+        print(f"✅ 主角正面图已保存：{image_path}")
         
         # 4. 保存元数据
         metadata = {
             "game_id": game_id,
             "generated_at": datetime.now().isoformat(),
-            "prompt": prompt,
+            "prompt": front_prompt,
+            "features": features,
+            "reference_image_url": reference_image_url,
+            "required_name_tokens": required_tokens,
             "protagonist_attr": protagonist_attr,
             "image_style": image_style,
             "width": 1024,
             "height": 1536
+        }
+        metadata["views"] = {
+            "front": {
+                "filename": "main_character.png",
+                "image_url": f"/initial/main_character/{game_id}/main_character.png",
+                "prompt": front_prompt,
+                "generated_at": metadata["generated_at"]
+            }
         }
         metadata_path = main_character_dir / "metadata.json"
         with open(metadata_path, 'w', encoding='utf-8') as f:
             json.dump(metadata, f, ensure_ascii=False, indent=2)
         
         print(f"✅ 主角形象生成完成：{image_path}")
+
+        # 5. 正面生成完成后：后台并行生成侧面/背面（基于正面参考图，不阻塞返回）
+        try:
+            front_ref_path = str(front_path.resolve())
+            side_prompt = prompt_template_side.format(identifier=identifier)
+            back_prompt = prompt_template_back.format(identifier=identifier)
+
+            threading.Thread(
+                target=_async_generate_view,
+                args=("side", "main_character_side.png", side_prompt, front_ref_path),
+                daemon=True
+            ).start()
+            threading.Thread(
+                target=_async_generate_view,
+                args=("back", "main_character_back.png", back_prompt, front_ref_path),
+                daemon=True
+            ).start()
+            print("✅ 已启动主角侧面/背面生成任务（后台并行）")
+        except Exception as e:
+            print(f"⚠️ 启动主角侧面/背面生成任务失败：{str(e)}")
         
         return {
             "game_id": game_id,
@@ -1920,6 +3131,161 @@ def save_base64_image(data_uri: str, prompt: str) -> str:
         import traceback
         traceback.print_exc()
         return None
+
+def call_gemini_img2img(prompt: str, reference_image_path: str) -> str:
+    """
+    使用 gemini-2.5-flash-image 进行图生图
+    :param prompt: 文本提示词
+    :param reference_image_path: 参考图片路径（本地路径或 data URI）
+    :return: 生成的图片 URL 或 base64 数据，失败返回 None
+    """
+    import time
+    import base64
+    
+    api_key = IMAGE_GENERATION_CONFIG.get("yunwu_api_key")
+    base_url = IMAGE_GENERATION_CONFIG.get("yunwu_base_url", "https://yunwu.ai/v1")
+    model = IMAGE_GENERATION_CONFIG.get("yunwu_model", "gemini-2.5-flash-image")
+    
+    if not api_key:
+        print("⚠️ gemini-2.5-flash-image 图生图：API Key未配置")
+        return None
+    
+    # 检查模型是否为 gemini-2.5-flash-image
+    if "gemini" not in model.lower() or "image" not in model.lower():
+        print(f"⚠️ 当前模型 {model} 不是 gemini-2.5-flash-image，跳过图生图")
+        return None
+    
+    # 将参考图片转换为 base64 data URI
+    image_data_uri = _ref_image_to_input(reference_image_path)
+    if not image_data_uri:
+        print(f"⚠️ 无法加载参考图片：{reference_image_path}")
+        return None
+    
+    headers = {
+        "Authorization": f"Bearer {api_key}",
+        "Content-Type": "application/json"
+    }
+    
+    # Gemini API 格式：multimodal content with image
+    # 根据 Gemini API 文档，图生图需要使用 content 数组，包含图片和文本
+    request_body = {
+        "model": model,
+        "messages": [
+            {
+                "role": "user",
+                "content": [
+                    {
+                        "type": "image_url",
+                        "image_url": {
+                            "url": image_data_uri
+                        }
+                    },
+                    {
+                        "type": "text",
+                        "text": f"Edit this image: {prompt}\n\nReturn only the edited image as base64 data (data:image/png;base64,...) or image URL (https://...). Do not include any text, code blocks, or explanations."
+                    }
+                ]
+            }
+        ],
+        "temperature": 0.1,
+        "max_tokens": 4000
+    }
+    
+    request_timeout = int(os.getenv("YUNWU_IMAGE_TIMEOUT_SECONDS", "180"))
+    min_interval = float(os.getenv("YUNWU_MIN_INTERVAL_SECONDS", "12"))
+    
+    try:
+        # 跨线程限速
+        global _YUNWU_LAST_CALL_TS
+        with _YUNWU_RATE_LOCK:
+            now = time.time()
+            delta = now - _YUNWU_LAST_CALL_TS
+            if delta < min_interval:
+                sleep_s = (min_interval - delta) + random.random() * 0.5
+                print(f"⏳ gemini 图生图限速：等待 {sleep_s:.1f}s")
+                time.sleep(sleep_s)
+            _YUNWU_LAST_CALL_TS = time.time()
+        
+        print(f"🔄 调用 gemini-2.5-flash-image 图生图 API...")
+        print(f"   提示词: {prompt[:100]}...")
+        print(f"   参考图: {reference_image_path[:100] if len(reference_image_path) > 100 else reference_image_path}")
+        
+        response = requests.post(
+            f"{base_url}/chat/completions",
+            headers=headers,
+            json=request_body,
+            timeout=request_timeout
+        )
+        
+        if response.status_code != 200:
+            error_msg = ""
+            try:
+                error_body = response.json()
+                if isinstance(error_body, dict):
+                    error_obj = error_body.get("error", {})
+                    if isinstance(error_obj, dict):
+                        error_msg = error_obj.get("message", "")
+                    else:
+                        error_msg = str(error_obj)
+                else:
+                    error_msg = str(error_body)
+            except:
+                error_msg = response.text[:200]
+            
+            print(f"❌ gemini-2.5-flash-image 图生图 API 错误 {response.status_code}: {error_msg}")
+            return None
+        
+        # 解析响应（复用 call_yunwu_image_api 的解析逻辑）
+        result = response.json()
+        
+        # 尝试从响应中提取图片
+        # 使用与 call_yunwu_image_api 相同的解析策略
+        def _extract_image_from_response(obj) -> str:
+            try:
+                if not isinstance(obj, dict):
+                    return ""
+                # 顶层直接给 url
+                for k in ("image_url", "url"):
+                    v = obj.get(k)
+                    if isinstance(v, str) and v.strip():
+                        return v.strip()
+                # choices[0].message.content
+                choices = obj.get("choices", [])
+                if choices and len(choices) > 0:
+                    message = choices[0].get("message", {})
+                    content = message.get("content", "")
+                    if isinstance(content, str) and content.strip():
+                        # 检查是否是 base64 或 URL
+                        if content.startswith("data:image") or content.startswith("http"):
+                            return content.strip()
+                        # 尝试从文本中提取 base64
+                        import re
+                        base64_match = re.search(r'data:image/[^;]+;base64,([A-Za-z0-9+/=\s]+)', content)
+                        if base64_match:
+                            return f"data:image/png;base64,{base64_match.group(1).strip()}"
+                return ""
+            except Exception as e:
+                print(f"⚠️ 解析响应时出错: {str(e)}")
+                return ""
+        
+        image_result = _extract_image_from_response(result)
+        if image_result:
+            # 如果是 base64，保存到本地缓存
+            if image_result.startswith("data:image"):
+                saved_path = save_base64_image(image_result, prompt)
+                if saved_path:
+                    return saved_path
+            return image_result
+        
+        print(f"⚠️ gemini-2.5-flash-image 图生图响应中未找到图片数据")
+        return None
+        
+    except Exception as e:
+        print(f"❌ gemini-2.5-flash-image 图生图调用异常: {str(e)}")
+        import traceback
+        traceback.print_exc()
+        return None
+
 
 def call_yunwu_image_api(prompt: str, style: str) -> str:
     """调用yunwu.ai图片生成API（带重试机制处理速率限制）"""
