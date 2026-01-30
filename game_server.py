@@ -298,29 +298,29 @@ def generate_worldview():
         try:
             import copy
 
-            def generate_main_character_after_worldview_async(gs_snapshot):
-                """世界观生成完成后触发：主角形象生成（后台线程）"""
+            def generate_main_character_after_worldview_async(gs_snapshot, game_id_arg):
+                """世界观生成完成后触发：主角形象生成（后台线程）。game_id_arg 必须传入，避免闭包读到后续请求覆盖的值。"""
                 try:
-                    print(f"🎨 开始生成主角形象（游戏ID: {game_id}，世界观已就绪，后台并行）...")
+                    print(f"🎨 开始生成主角形象（游戏ID: {game_id_arg}，世界观已就绪，后台并行）...")
                     result = generate_main_character_image(
                         protagonist_attr=protagonist_attr,
                         global_state=gs_snapshot,
                         image_style=image_style,
-                        game_id=game_id
+                        game_id=game_id_arg
                     )
                     if result:
-                        print(f"✅ 主角形象生成完成（游戏ID: {game_id}）")
+                        print(f"✅ 主角形象生成完成（游戏ID: {game_id_arg}）")
                     else:
-                        print(f"⚠️ 主角形象生成失败（游戏ID: {game_id}），但游戏可以继续")
+                        print(f"⚠️ 主角形象生成失败（游戏ID: {game_id_arg}），但游戏可以继续")
                 except Exception as e:
-                    print(f"❌ 主角形象生成出错（游戏ID: {game_id}）：{str(e)}")
+                    print(f"❌ 主角形象生成出错（游戏ID: {game_id_arg}）：{str(e)}")
                     import traceback
                     traceback.print_exc()
 
             gs_snapshot = copy.deepcopy(global_state) if isinstance(global_state, dict) else global_state
             threading.Thread(
                 target=generate_main_character_after_worldview_async,
-                args=(gs_snapshot,),
+                args=(gs_snapshot, game_id),
                 daemon=True
             ).start()
             print("✅ 主角形象生成任务已启动（世界观生成完成后触发，后台并行）")

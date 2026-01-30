@@ -1033,13 +1033,15 @@ def extract_and_validate_json(raw_text: str) -> str:
 def optimize_image_prompt_with_llm(
     scene_description: str,
     global_state: Dict,
-    image_style: Dict = None
+    image_style: Dict = None,
+    protagonist_reference_images: List[str] = None
 ) -> str:
     """
     使用LLM（deepseek-v3.2）优化图片生成提示词
     :param scene_description: 当前剧情文本
     :param global_state: 全局状态（包含主角属性、游戏主题、游戏基调等）
     :param image_style: 图片风格选择
+    :param protagonist_reference_images: 主角三视图路径列表 [正面, 侧面, 背面]，可选
     :return: 优化后的视觉描述提示词
     """
     try:
@@ -1151,6 +1153,29 @@ def optimize_image_prompt_with_llm(
             elif style_type == 'custom':
                 style_description = f"自定义风格：{image_style.get('value', '')}"
         
+        # 构建主角参考图说明（1张=正面，2张=正+侧，3张=正+侧+背；第一次场景图可能只有正面）
+        protagonist_reference_section = ""
+        if protagonist_reference_images and len(protagonist_reference_images) >= 1:
+            n = len(protagonist_reference_images)
+            lines = ["【主角参考图说明（重要）】", f"生图API将接收{n}张主角参考图，编号从 Image 0 起："]
+            lines.append("- Image 0：主角正面视图（Front view portrait of the protagonist）")
+            if n >= 2:
+                lines.append("- Image 1：主角侧面视图（Side view portrait of the protagonist）")
+            if n >= 3:
+                lines.append("- Image 2：主角背面视图（Back view portrait of the protagonist）")
+            lines.append("")
+            lines.append("在生成场景图片时，根据剧情中主角的视角明确说明主角使用哪张参考图（仅使用已提供的编号）：")
+            lines.append("- 正面朝向镜头 → 主角使用 Image 0")
+            if n >= 2:
+                lines.append("- 侧面朝向镜头 → 主角使用 Image 1")
+            if n >= 3:
+                lines.append("- 背面朝向镜头 → 主角使用 Image 2")
+            if n >= 2:
+                lines.append("- 其他角度可写「主角主要参考 Image 0 和 Image 1」等")
+            lines.append("")
+            lines.append("请在最终视觉描述中明确说明主角使用哪张参考图，确保主角形象与参考图一致。")
+            protagonist_reference_section = "\n".join(lines) + "\n"
+        
         # 构建发送给LLM的提示词
         llm_prompt = f"""假设你是一个专业的剧情分析师和视觉设计师，现在需要你将剧情转化为具体的视觉描述，告诉生图AI如何生成图片。
 
@@ -1170,6 +1195,8 @@ def optimize_image_prompt_with_llm(
 【图片风格要求】
 {style_description if style_description else '默认风格'}
 
+{protagonist_reference_section if protagonist_reference_section else ''}
+
 {continuity_requirements if continuity_requirements else ''}
 
 请根据以上信息，生成一个详细的视觉描述提示词，要求：
@@ -1180,6 +1207,7 @@ def optimize_image_prompt_with_llm(
 5. 符合指定的图片风格
 6. 不要包含任何文字、符号、乱码（重要：必须在提示词中明确告诉生图AI不要生成任何文字、符号、乱码）
 7. 描述要具体、生动，包含场景、人物、光线、氛围等细节
+{('8. 如果提供了主角参考图说明，必须在提示词中明确说明主角使用 Image 0/1/2 中的哪张（根据主角在场景中的视角）' if protagonist_reference_section else '')}
 
 只输出视觉描述，不要输出其他内容。"""
 
@@ -2365,19 +2393,17 @@ def generate_main_character_image(
         ):
             try:
                 out_path = main_character_dir / out_filename
-                if out_path.exists():
-                    print(f"✅ 主角{view_name}图已存在，跳过：{out_path}")
-                    return
-
-                try:
-                    print(
-                        f"🔎 主角{view_name}图参考正面路径: {reference_front_path} "
-                        f"(exists={os.path.exists(reference_front_path) if isinstance(reference_front_path, str) else False})"
-                    )
-                except Exception:
-                    pass
-
-                print(f"🎨 开始生成主角{view_name}图（game_id={game_id}）...")
+                print(f"🎨 [侧/背图] 开始任务 view={view_name} game_id={game_id} 输出路径={out_path}")
+                # 记录本任务开始时正面图的 mtime，写入前校验：若正面已被重新生成则不再写入，避免旧线程覆盖新图
+                front_mtime_at_start = 0.0
+                if reference_front_path and os.path.isfile(reference_front_path):
+                    try:
+                        front_mtime_at_start = os.path.getmtime(reference_front_path)
+                    except Exception:
+                        pass
+                print(
+                    f"🔎 主角{view_name}图参考正面: {reference_front_path} exists={os.path.exists(reference_front_path) if isinstance(reference_front_path, str) else False} front_mtime_at_start={front_mtime_at_start}"
+                )
                 
                 # 优先使用 gemini-2.5-flash-image 图生图
                 img = None
@@ -2385,7 +2411,7 @@ def generate_main_character_image(
                 model = IMAGE_GENERATION_CONFIG.get("yunwu_model", "gemini-2.5-flash-image")
                 if "gemini" in model.lower() and "image" in model.lower():
                     print(f"🔄 尝试使用 gemini-2.5-flash-image 图生图生成{view_name}视图...")
-                    img = call_gemini_img2img(prompt_text, reference_front_path)
+                    img = call_gemini_img2img(prompt_text, reference_front_path, cache_key_suffix=reference_front_path)
                     use_img2img = True
                     if img:
                         print(f"✅ gemini-2.5-flash-image 图生图成功")
@@ -2403,12 +2429,23 @@ def generate_main_character_image(
                     )
                 
                 if not img:
-                    print(f"⚠️ 主角{view_name}图生成失败：生图返回空")
+                    print(f"⚠️ 主角{view_name}图生成失败：生图返回空 game_id={game_id} out_path={out_path}")
                     return
+                
+                # 🔧 防竞态：若正面图在本任务期间被重新生成（新一次游戏），则不要用“基于旧正面”的侧/背覆盖
+                if front_mtime_at_start > 0 and reference_front_path and os.path.isfile(reference_front_path):
+                    try:
+                        current_front_mtime = os.path.getmtime(reference_front_path)
+                        if current_front_mtime > front_mtime_at_start:
+                            print(f"⚠️ 主角{view_name}图跳过写入：正面图已在本任务期间被重新生成（current_mtime={current_front_mtime} > start={front_mtime_at_start}），避免用旧参考生成的图覆盖 game_id={game_id}")
+                            return
+                    except Exception as e:
+                        print(f"⚠️ 主角{view_name}图 mtime 校验异常：{e}，继续写入")
                     
+                print(f"📁 [侧/背图] 即将写入 game_id={game_id} path={out_path}")
                 ok = _save_image_any(img, out_path)
                 if ok:
-                    print(f"✅ 主角{view_name}图已保存：{out_path}")
+                    print(f"✅ 主角{view_name}图已保存 game_id={game_id} path={out_path}")
                     metadata_path_local = main_character_dir / "metadata.json"
                     _update_metadata_file(
                         metadata_path_local,
@@ -2428,9 +2465,9 @@ def generate_main_character_image(
                         }
                     )
                 else:
-                    print(f"⚠️ 主角{view_name}图保存失败：{out_path}")
+                    print(f"⚠️ 主角{view_name}图保存失败 game_id={game_id} path={out_path}")
             except Exception as e:
-                print(f"❌ 主角{view_name}图生成异常：{str(e)}")
+                print(f"❌ 主角{view_name}图生成异常 game_id={game_id} out_path={out_path} error={e}")
                 import traceback
                 traceback.print_exc()
 
@@ -2456,47 +2493,28 @@ def generate_main_character_image(
         identifier = _pick_identifier(required_tokens)
         style_label = _style_label(image_style)
 
-        if front_path.exists():
-            print(f"✅ 主角正面图已存在，使用现有图片：{front_path}")
-
-            # 若侧/背缺失，后台补齐（不阻塞）
-            try:
-                front_ref = str(front_path.resolve())
-                if not side_path.exists():
-                    side_prompt = prompt_template_side.format(identifier=identifier)
-                    threading.Thread(
-                        target=_async_generate_view,
-                        args=("side", "main_character_side.png", side_prompt, front_ref),
-                        daemon=True
-                    ).start()
-                if not back_path.exists():
-                    back_prompt = prompt_template_back.format(identifier=identifier)
-                    threading.Thread(
-                        target=_async_generate_view,
-                        args=("back", "main_character_back.png", back_prompt, front_ref),
-                        daemon=True
-                    ).start()
-            except Exception:
-                pass
-
-            # 读取元数据
-            metadata_path = main_character_dir / "metadata.json"
-            metadata = {}
-            if metadata_path.exists():
+        # 🔧 修复：每次新游戏都强制重新生成主角形象，不复用旧文件
+        # 原因：即使主角属性相同，但世界观、游戏主题、图片风格等都可能不同，主角形象应该不同
+        metadata_path = main_character_dir / "metadata.json"
+        any_existed = front_path.exists() or side_path.exists() or back_path.exists() or metadata_path.exists()
+        if any_existed:
+            print(f"🔄 检测到已存在的主角形象文件（game_id={game_id}），将删除并重新生成")
+        for label, p in [("正面图", front_path), ("侧面图", side_path), ("背面图", back_path), ("元数据", metadata_path)]:
+            if p.exists():
                 try:
-                    with open(metadata_path, 'r', encoding='utf-8') as f:
-                        metadata = json.load(f)
-                except Exception:
-                    metadata = {}
-
-            return {
-                "game_id": game_id,
-                "image_path": str(front_path),
-                "image_url": f"/initial/main_character/{game_id}/main_character.png",
-                "width": 1024,
-                "height": 1536,
-                "metadata": metadata
-            }
+                    p.unlink()
+                    print(f"   ✅ 已删除旧{label}：{p}")
+                except Exception as e:
+                    print(f"   ⚠️ 删除旧{label}失败 path={p} error={e}")
+        if front_path.exists() or side_path.exists() or back_path.exists():
+            print(f"🔄 仍有残留文件（game_id={game_id}），再次尝试删除")
+            for label, p in [("正面图", front_path), ("侧面图", side_path), ("背面图", back_path), ("元数据", metadata_path)]:
+                if p.exists():
+                    try:
+                        p.unlink()
+                        print(f"   ✅ 再次删除成功：{p}")
+                    except Exception as e:
+                        print(f"   ❌ 再次删除失败 path={p} error={e}，侧/背图可能仍为旧图")
         
         # 1. 使用LLM生成“人物特征描述”（后续套入三视图模板）
         features = optimize_main_character_prompt_with_llm(protagonist_attr, global_state, image_style)
@@ -2574,6 +2592,14 @@ def generate_main_character_image(
 
         # 5. 正面生成完成后：后台并行生成侧面/背面（基于正面参考图，不阻塞返回）
         try:
+            # 启动前再次删除侧/背图，避免旧会话残留导致“正面新、侧背旧”
+            for label, p in [("侧面图", side_path), ("背面图", back_path)]:
+                if p.exists():
+                    try:
+                        p.unlink()
+                        print(f"   ✅ 启动侧/背图前再次删除旧{label}：{p}")
+                    except Exception as e:
+                        print(f"   ⚠️ 启动前删除旧{label}失败 path={p} error={e}")
             front_ref_path = str(front_path.resolve())
             side_prompt = prompt_template_side.format(identifier=identifier)
             back_prompt = prompt_template_back.format(identifier=identifier)
@@ -2679,10 +2705,40 @@ def generate_scene_image(
         or ""
     )
     
-    # 2. 使用LLM优化图片生成提示词
-    prompt = optimize_image_prompt_with_llm(scene_description, global_state, image_style)
+    # 1.6 获取主角参考图路径（用于保持主角形象一致性）
+    # 放宽条件：只要有正面图就使用（第一次场景图与主角生成并行，侧/背可能尚未就绪）
+    protagonist_reference_images = []
+    game_id = global_state.get('game_id') if isinstance(global_state, dict) else None
+    if game_id:
+        from pathlib import Path
+        main_character_dir = Path("initial") / "main_character" / game_id
+        front_path = main_character_dir / "main_character.png"
+        side_path = main_character_dir / "main_character_side.png"
+        back_path = main_character_dir / "main_character_back.png"
+        
+        # 至少正面存在即加入参考；三张齐全时用三张，否则用已有视图（保证第一次场景图也能用上主角）
+        if front_path.exists():
+            protagonist_reference_images.append(str(front_path.resolve()))  # Image 0: 正面
+            if side_path.exists():
+                protagonist_reference_images.append(str(side_path.resolve()))  # Image 1: 侧面
+            if back_path.exists():
+                protagonist_reference_images.append(str(back_path.resolve()))  # Image 2: 背面
+            if len(protagonist_reference_images) >= 3:
+                print(f"✅ 找到主角三视图，将作为参考图传递：{game_id}")
+            else:
+                print(f"✅ 找到主角参考图（{len(protagonist_reference_images)}张），将作为参考图传递：{game_id}")
+        else:
+            print(f"⚠️ 主角正面图尚未就绪，将不使用主角参考图")
     
-    # 3. 调用AI图片生成API（传递尺寸参数）
+    # 2. 使用LLM优化图片生成提示词（传递主角三视图路径）
+    prompt = optimize_image_prompt_with_llm(
+        scene_description, 
+        global_state, 
+        image_style,
+        protagonist_reference_images=protagonist_reference_images if protagonist_reference_images else None
+    )
+    
+    # 3. 调用AI图片生成API（传递尺寸参数和主角参考图）
     try:
         if provider == "yunwu":
             # yunwu.ai 易受 429 / 返回格式波动影响：失败时可选用本地 SD 兜底
@@ -2690,7 +2746,27 @@ def generate_scene_image(
             try:
                 # yunwu.ai可能不支持自定义尺寸，在提示词中添加尺寸要求
                 size_prompt = f"{prompt}, aspect ratio {image_width}:{image_height}"
-                image_url = call_yunwu_image_api(size_prompt, style)
+                
+                # 只要有主角参考图（1张正面 / 2张 / 3张），就用 gemini 图生图（第一次场景图时可能只有正面）
+                model = IMAGE_GENERATION_CONFIG.get("yunwu_model", "gemini-2.5-flash-image")
+                if protagonist_reference_images and len(protagonist_reference_images) >= 1:
+                    if "gemini" in model.lower() and "image" in model.lower():
+                        print(f"🎨 使用 gemini-2.5-flash-image 图生图，传递{len(protagonist_reference_images)}张主角参考图")
+                        # 按实际张数构建参考图说明（1张=正面，2张=正+侧，3张=正+侧+背）
+                        prefix_lines = ["Image 0: Front view portrait of the protagonist"]
+                        if len(protagonist_reference_images) >= 2:
+                            prefix_lines.append("Image 1: Side view portrait of the protagonist")
+                        if len(protagonist_reference_images) >= 3:
+                            prefix_lines.append("Image 2: Back view portrait of the protagonist")
+                        prefix_prompt = "\n".join(prefix_lines) + "\n\n"
+                        full_prompt = prefix_prompt + prompt + f", aspect ratio {image_width}:{image_height}"
+                        image_url = call_gemini_img2img(full_prompt, protagonist_reference_images)
+                    else:
+                        print(f"⚠️ 当前模型 {model} 不支持多张参考图，使用文生图")
+                        image_url = call_yunwu_image_api(size_prompt, style)
+                else:
+                    # 没有主角参考图，使用普通文生图
+                    image_url = call_yunwu_image_api(size_prompt, style)
             except Exception as e:
                 print(f"⚠️ yunwu.ai 生图失败，将尝试兜底（如已配置）：{str(e)}")
                 image_url = None
@@ -2700,7 +2776,9 @@ def generate_scene_image(
                 if sd_base:
                     try:
                         print("🛟 使用 Stable Diffusion 作为兜底生图（yunwu 失败/无返回）")
-                        image_url = call_stable_diffusion_api_with_size(prompt, image_width, image_height, style, reference_image_url=reference_image_url)
+                        # SD 兜底时，如果有主角参考图，使用第一张（正面）作为参考
+                        sd_ref = protagonist_reference_images[0] if protagonist_reference_images else reference_image_url
+                        image_url = call_stable_diffusion_api_with_size(prompt, image_width, image_height, style, reference_image_url=sd_ref)
                     except Exception as e:
                         print(f"⚠️ Stable Diffusion 兜底失败：{str(e)}")
         elif provider == "replicate":
@@ -3042,11 +3120,12 @@ def fix_incomplete_url(url: str) -> str:
     
     return url
 
-def save_base64_image(data_uri: str, prompt: str) -> str:
+def save_base64_image(data_uri: str, prompt: str, cache_key_suffix: str = None) -> str:
     """
     将base64 data URI保存为图片文件
     :param data_uri: base64 data URI，格式如 data:image/png;base64,iVBORw0KGgo...
     :param prompt: 提示词，用于生成文件名
+    :param cache_key_suffix: 可选，参与缓存 key（如 reference 路径），避免不同游戏复用同一缓存
     :return: 保存的文件路径（相对路径），失败返回None
     """
     try:
@@ -3110,8 +3189,11 @@ def save_base64_image(data_uri: str, prompt: str) -> str:
         IMAGE_CACHE_DIR = "image_cache"
         os.makedirs(IMAGE_CACHE_DIR, exist_ok=True)
         
-        # 生成文件名（基于提示词的hash）
-        prompt_hash = hashlib.md5(f"{prompt}_{data_uri[:100]}".encode()).hexdigest()
+        # 生成文件名（基于提示词+可选后缀的 hash，suffix 用于主角侧/背图按游戏区分缓存）
+        key_str = f"{prompt}_{data_uri[:100]}"
+        if cache_key_suffix:
+            key_str += f"_{cache_key_suffix}"
+        prompt_hash = hashlib.md5(key_str.encode()).hexdigest()
         cache_path = Path(IMAGE_CACHE_DIR) / f"{prompt_hash}.{image_format}"
         
         # 检查是否已存在
@@ -3132,11 +3214,13 @@ def save_base64_image(data_uri: str, prompt: str) -> str:
         traceback.print_exc()
         return None
 
-def call_gemini_img2img(prompt: str, reference_image_path: str) -> str:
+def call_gemini_img2img(prompt: str, reference_image_path, additional_reference_images: List[str] = None, cache_key_suffix: str = None) -> str:
     """
-    使用 gemini-2.5-flash-image 进行图生图
+    使用 gemini-2.5-flash-image 进行图生图，支持多张参考图
     :param prompt: 文本提示词
-    :param reference_image_path: 参考图片路径（本地路径或 data URI）
+    :param reference_image_path: 参考图片路径（本地路径或 data URI），可以是字符串或字符串列表
+    :param additional_reference_images: 额外的参考图片路径列表（可选）
+    :param cache_key_suffix: 可选，参与 base64 缓存 key（如参考图路径），避免不同游戏复用同一缓存
     :return: 生成的图片 URL 或 base64 数据，失败返回 None
     """
     import time
@@ -3155,10 +3239,35 @@ def call_gemini_img2img(prompt: str, reference_image_path: str) -> str:
         print(f"⚠️ 当前模型 {model} 不是 gemini-2.5-flash-image，跳过图生图")
         return None
     
-    # 将参考图片转换为 base64 data URI
-    image_data_uri = _ref_image_to_input(reference_image_path)
-    if not image_data_uri:
-        print(f"⚠️ 无法加载参考图片：{reference_image_path}")
+    # 处理参考图片：支持单个路径或路径列表
+    reference_paths = []
+    if isinstance(reference_image_path, (list, tuple)):
+        reference_paths.extend(reference_image_path)
+    elif reference_image_path:
+        reference_paths.append(reference_image_path)
+    
+    # 添加额外的参考图片
+    if additional_reference_images:
+        if isinstance(additional_reference_images, (list, tuple)):
+            reference_paths.extend(additional_reference_images)
+        else:
+            reference_paths.append(additional_reference_images)
+    
+    if not reference_paths:
+        print("⚠️ 未提供参考图片")
+        return None
+    
+    # 将所有参考图片转换为 base64 data URI
+    image_data_uris = []
+    for ref_path in reference_paths:
+        image_data_uri = _ref_image_to_input(ref_path)
+        if image_data_uri:
+            image_data_uris.append(image_data_uri)
+        else:
+            print(f"⚠️ 无法加载参考图片：{ref_path}")
+    
+    if not image_data_uris:
+        print("⚠️ 所有参考图片加载失败")
         return None
     
     headers = {
@@ -3166,25 +3275,35 @@ def call_gemini_img2img(prompt: str, reference_image_path: str) -> str:
         "Content-Type": "application/json"
     }
     
-    # Gemini API 格式：multimodal content with image
-    # 根据 Gemini API 文档，图生图需要使用 content 数组，包含图片和文本
+    # Gemini API 格式：multimodal content with multiple images
+    # 根据 Gemini API 文档，支持多张参考图进行图生图
+    # 构建 content 数组：先添加所有图片，最后添加文本提示
+    content_items = []
+    for image_data_uri in image_data_uris:
+        content_items.append({
+            "type": "image_url",
+            "image_url": {
+                "url": image_data_uri
+            }
+        })
+    
+    # 根据参考图数量调整提示词
+    if len(image_data_uris) == 1:
+        prompt_text = f"Edit this image: {prompt}\n\nReturn only the edited image as base64 data (data:image/png;base64,...) or image URL (https://...). Do not include any text, code blocks, or explanations."
+    else:
+        prompt_text = f"Based on these {len(image_data_uris)} reference images, generate a new image: {prompt}\n\nReturn only the generated image as base64 data (data:image/png;base64,...) or image URL (https://...). Do not include any text, code blocks, or explanations."
+    
+    content_items.append({
+        "type": "text",
+        "text": prompt_text
+    })
+    
     request_body = {
         "model": model,
         "messages": [
             {
                 "role": "user",
-                "content": [
-                    {
-                        "type": "image_url",
-                        "image_url": {
-                            "url": image_data_uri
-                        }
-                    },
-                    {
-                        "type": "text",
-                        "text": f"Edit this image: {prompt}\n\nReturn only the edited image as base64 data (data:image/png;base64,...) or image URL (https://...). Do not include any text, code blocks, or explanations."
-                    }
-                ]
+                "content": content_items
             }
         ],
         "temperature": 0.1,
@@ -3206,9 +3325,10 @@ def call_gemini_img2img(prompt: str, reference_image_path: str) -> str:
                 time.sleep(sleep_s)
             _YUNWU_LAST_CALL_TS = time.time()
         
-        print(f"🔄 调用 gemini-2.5-flash-image 图生图 API...")
+        print(f"🔄 调用 gemini-2.5-flash-image 图生图 API（{len(image_data_uris)}张参考图）...")
         print(f"   提示词: {prompt[:100]}...")
-        print(f"   参考图: {reference_image_path[:100] if len(reference_image_path) > 100 else reference_image_path}")
+        ref_paths_str = ", ".join([ref[:50] + "..." if len(ref) > 50 else ref for ref in reference_paths])
+        print(f"   参考图: {ref_paths_str}")
         
         response = requests.post(
             f"{base_url}/chat/completions",
@@ -3270,9 +3390,9 @@ def call_gemini_img2img(prompt: str, reference_image_path: str) -> str:
         
         image_result = _extract_image_from_response(result)
         if image_result:
-            # 如果是 base64，保存到本地缓存
+            # 如果是 base64，保存到本地缓存（cache_key_suffix 用于主角侧/背图按游戏区分）
             if image_result.startswith("data:image"):
-                saved_path = save_base64_image(image_result, prompt)
+                saved_path = save_base64_image(image_result, prompt, cache_key_suffix=cache_key_suffix)
                 if saved_path:
                     return saved_path
             return image_result
