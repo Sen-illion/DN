@@ -342,8 +342,8 @@ const Game = (() => {
             console.log('🔧 [背景图片] 使用全屏背景图片（#global-bg）显示');
         }
         
-        // 显示场景图片
-        function displaySceneImage(imageData) {
+        // 显示场景图片；optionDataForArchive 可选，展示完成后通知后端做配角首次出场建档
+        function displaySceneImage(imageData, optionDataForArchive) {
             // ========== 代码版本标识 ==========
             // 版本：文本直接定位在图片上，无覆盖层（2024-12-XX）
             // 改动说明：已移除.narration-overlay覆盖层，文本元素直接定位在图片层上
@@ -452,6 +452,11 @@ const Game = (() => {
             
             console.log('🔍 处理后的图片URL:', imageUrl);
             
+            // 将「当前展示请求」与本次要加载的图绑定，避免因加载顺序导致 notify 发错段（只对「仍是当前请求」的加载进行绘制和 notify）
+            if (gameState) {
+                gameState._pendingDisplay = { imageUrl: imageUrl, optionData: optionDataForArchive };
+            }
+            
             // 预加载图片（添加超时机制，避免长时间等待）
             const imageLoadTimeout = setTimeout(() => {
                 console.warn('⚠️ 图片加载超时（10秒），继续显示场景（不等待图片）');
@@ -464,6 +469,13 @@ const Game = (() => {
                 .then(() => {
                     clearTimeout(imageLoadTimeout);
                     console.log('✅ 图片预加载成功:', imageUrl);
+                    
+                    // 只对「仍是当前展示请求」的这张图进行绘制和 notify，避免后加载的图覆盖画面且错误建档
+                    const isCurrentDisplay = gameState && gameState._pendingDisplay && gameState._pendingDisplay.imageUrl === imageUrl;
+                    if (!isCurrentDisplay) {
+                        console.log('⏭️ 本次加载已过时（当前展示请求已切换），跳过绘制与 notify');
+                        return;
+                    }
                     
                     // ========== 方案：使用同一定位上下文 ==========
                     // 背景图片通过全屏背景（#global-bg）显示
@@ -492,6 +504,28 @@ const Game = (() => {
                             loadingDiv.style.display = 'none';
                             console.log('✅ 全屏背景图片已设置，文本直接显示在背景上');
                         }, 100);
+                    }
+                    // 方案1：与当前画面绑定——仅当本次加载仍是当前展示请求时才 notify，保证建档用的是画面上这张图
+                    const dataToNotify = gameState._pendingDisplay && gameState._pendingDisplay.optionData;
+                    if (dataToNotify && typeof dataToNotify === 'object' && gameState.gameData && gameState.gameData.game_id) {
+                        const gameId = gameState.gameData.game_id;
+                        // 提取主角姓名/别名，供后端排除主角误建档为配角
+                        const protagonistNames = [];
+                        const gd = gameState.gameData;
+                        const canonical = gd?.protagonist_canonical || {};
+                        if (canonical.name_zh) protagonistNames.push(String(canonical.name_zh).trim());
+                        if (canonical.name_en) protagonistNames.push(String(canonical.name_en).trim());
+                        const protoChar = gd?.core_worldview?.characters?.主角;
+                        if (protoChar?.name) protagonistNames.push(String(protoChar.name).trim());
+                        fetch('http://127.0.0.1:5001/notify-scene-displayed', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                game_id: gameId,
+                                option_data: dataToNotify,
+                                protagonist_names: protagonistNames.filter(Boolean)
+                            })
+                        }).then(() => {}).catch(() => {});
                     }
                     
                     /* 已移除的代码块：
@@ -747,7 +781,7 @@ const Game = (() => {
             isLoadedGame: false, // 是否是从加载开始的游戏
             loadedSaveName: null, // 如果是从加载开始的，记录加载的存档名称
             currentTypeInterval: null, // 当前打字机动画的interval，用于清理防止重复
-            textSegments: [], // 文本分段数组，每段1-2句话
+            textSegments: [], // 文本分段数组，按句切分，每句一段分次展示
             currentTextSegmentIndex: 0, // 当前显示的段落索引
             isShowingSegments: false, // 是否处于分段显示状态
             pendingOptions: null, // 待显示的选项（在所有段落显示完成后显示）
@@ -1691,6 +1725,12 @@ const Game = (() => {
                     '查看周围环境'
                 ];
                 
+                // 首屏：若服务端返回了 sceneId（预生成用），则使用该 ID 与预生成缓存一致
+                if (optionData.sceneId) {
+                    gameState.currentSceneId = optionData.sceneId;
+                    console.log('✅ 首屏使用服务端预生成 sceneId:', optionData.sceneId);
+                }
+                
                 // 限制选项数量为2个
                 if (initialOptions.length > 2) {
                     initialOptions = initialOptions.slice(0, 2);
@@ -1794,7 +1834,7 @@ const Game = (() => {
                     console.warn('⚠️ 初始场景没有图片数据');
                 }
                 
-                displayScene(initialScene, initialOptions, validatedSceneImage, null);  // 视频参数设为null
+                displayScene(initialScene, initialOptions, validatedSceneImage, null, optionData);  // 视频null；optionData 用于展示后通知建档
             } else {
                 console.error('❌ API调用失败:', result.message);
                 loadingIndicator.remove(); // 移除加载指示器
@@ -1892,54 +1932,57 @@ const Game = (() => {
         return `scene_${timestamp}_${random}`;
     }
     
-    // 文本切分函数：将完整文本切分成1-2句话的段落
+    // 仅右引号：句号后紧跟此类引号时，在引号后面截断（该引号归上一句）。左引号（「 『 "）不延后截断，在句号处拆开，左引号归下一句。
+    const SENTENCE_END_QUOTES = /^\s*[\u201D\u0022\u300D\u300F]/;  // " 半角" 」 』（不含左引号 " 「 『）
+    
+    // 文本切分函数：按句切分，每句单独一段，分多次展示
+    // 句号后紧跟右引号（如 。" 、。」）则在引号后截断；句号后是左引号（如。「）则在句号处截断，左引号归下一句
     function splitTextIntoSegments(text) {
         if (!text || typeof text !== 'string') {
             return [];
         }
         
-        // 按句号、问号、感叹号切分，保留分隔符
-        const parts = text.split(/([。！？])/);
+        const trimText = text.trim();
+        if (!trimText) return [];
         
-        // 合并成完整的句子（包含标点）
-        const completeSentences = [];
-        for (let i = 0; i < parts.length; i += 2) {
-            const content = parts[i] ? parts[i].trim() : '';
-            const punctuation = (i + 1 < parts.length) ? parts[i + 1] : '';
-            
-            if (content) {
-                completeSentences.push(content + punctuation);
-            } else if (punctuation && completeSentences.length > 0) {
-                // 如果只有标点符号，追加到上一句
-                completeSentences[completeSentences.length - 1] += punctuation;
+        // 找出所有「句末」位置：要么是 [。！？]，要么是 [。！？] + 可选空格 + 一个闭引号
+        const endIndices = [];
+        const re = /[。！？]/g;
+        let match;
+        while ((match = re.exec(trimText)) !== null) {
+            let cutAfter = match.index + 1; // 默认在标点后截断
+            const afterPunct = trimText.slice(cutAfter);
+            const quoteMatch = afterPunct.match(SENTENCE_END_QUOTES);
+            if (quoteMatch) {
+                cutAfter += quoteMatch[0].length; // 在引号后面才截断
             }
+            endIndices.push(cutAfter);
         }
         
-        // 过滤空句子
-        const validSentences = completeSentences.filter(s => s.trim().length > 0);
-        
-        // 如果没有找到句子分隔符，返回整个文本作为一段
-        if (validSentences.length === 0) {
-            return [text.trim()];
+        if (endIndices.length === 0) {
+            return [trimText];
         }
         
-        // 将句子合并成段落，每段1-2句话
         const segments = [];
-        for (let i = 0; i < validSentences.length; i += 2) {
-            if (i + 1 < validSentences.length) {
-                // 合并两句话
-                segments.push(validSentences[i] + validSentences[i + 1]);
-            } else {
-                // 只有一句话
-                segments.push(validSentences[i]);
+        let last = 0;
+        for (const end of endIndices) {
+            const segment = trimText.slice(last, end).trim();
+            if (segment.length > 0) {
+                segments.push(segment);
             }
+            last = end;
+        }
+        if (last < trimText.length) {
+            const tail = trimText.slice(last).trim();
+            if (tail.length > 0) segments.push(tail);
         }
         
-        return segments;
+        return segments.length > 0 ? segments : [trimText];
     }
     
     // 显示场景文本（支持图片和视频）
-    function displayScene(text, options, imageData = null, videoData = null) {
+    // optionDataForArchive: 可选，当前选项完整数据；剧情图展示后用于通知后端做配角首次出场建档
+    function displayScene(text, options, imageData = null, videoData = null, optionDataForArchive = null) {
         console.log('🔍 displayScene调用:', {
             textLength: text ? text.length : 0,
             optionsCount: options ? options.length : 0,
@@ -1947,8 +1990,7 @@ const Game = (() => {
             imageUrl: imageData ? imageData.url : null
         });
         
-        // 重置预生成触发标志，确保每次新场景显示时都可以触发预生成
-        gameState._pregenerationTriggered = false;
+        // 预生成已改为与首屏一致：由后端在 /generate-option 返回时触发，前端不再调用 /pregenerate-next-layers
         
         // 文本切分：将完整文本切分成段落
         const segments = splitTextIntoSegments(text);
@@ -2015,7 +2057,7 @@ const Game = (() => {
             
             // 立即调用，不使用setTimeout，确保图片能及时显示
             try {
-                VisualContentManager.displaySceneImage(imageData);
+                VisualContentManager.displaySceneImage(imageData, optionDataForArchive);
             } catch (error) {
                 console.error('❌ displaySceneImage调用失败:', error);
                 console.error('❌ 错误堆栈:', error.stack);
@@ -2082,7 +2124,8 @@ const Game = (() => {
                                 const img = result.image;
                                 console.log('✅ 异步补图成功:', img.url);
                                 try {
-                                    VisualContentManager.displaySceneImage(img);
+                                    // 传递 optionDataForArchive，确保配角首次出场建档能正确触发
+                                    VisualContentManager.displaySceneImage(img, optionDataForArchive);
                                 } catch (e) {
                                     console.warn('⚠️ 异步补图展示失败:', e);
                                 }
@@ -2237,22 +2280,7 @@ const Game = (() => {
             
             // 等待一帧确保DOM完全更新后再开始新动画
             requestAnimationFrame(() => {
-                // 在开始显示第一段文本时，立即触发预生成（利用用户阅读时间）
-                // 检查是否已经触发过预生成（避免重复触发）
-                if (!gameState._pregenerationTriggered && options && options.length > 0) {
-                    gameState._pregenerationTriggered = true;
-                    
-                    // 生成新的场景ID用于预生成缓存
-                    const newSceneId = generateNewSceneId();
-                    gameState.currentSceneId = newSceneId;
-                    
-                    console.log('🚀 文本开始显示，立即触发预生成（场景ID:', newSceneId, '）');
-                    
-                    // 异步调用预生成接口（不阻塞文本显示）
-                    if (gameState.gameData && options && options.length > 0) {
-                        pregenerateNextLayers(gameState.gameData, options, newSceneId);
-                    }
-                }
+                // 预生成已由后端在 /generate-option 返回时统一触发，与首屏一致，此处不再调用
                 
                 // 再次强制设置样式，确保动画不会覆盖我们的设置
                 sceneTextElement.style.setProperty('transform', 'none', 'important');
@@ -2289,10 +2317,11 @@ const Game = (() => {
                         
                         // 判断是否还有更多段落需要显示
                         if (gameState.isShowingSegments && gameState.currentTextSegmentIndex < segments.length - 1) {
-                            // 还有更多段落，显示"->"按钮
+                            // 还有更多段落，显示"->"按钮（点击后显示下一段，非选项）
                             console.log('✅ 当前段落显示完成，显示"->"按钮等待用户点击');
                             if (nextSegmentBtn) {
                                 nextSegmentBtn.classList.remove('hidden');
+                                nextSegmentBtn.dataset.showOptions = 'false';
                             }
                         } else {
                             // 所有段落都显示完了，显示"->"按钮等待用户点击后再显示选项
@@ -2394,21 +2423,24 @@ const Game = (() => {
                     
                     // 判断是否还有更多段落
                     if (gameState.currentTextSegmentIndex < gameState.textSegments.length - 1) {
-                        // 还有更多段落，显示"->"按钮
+                        // 还有更多段落，显示"->"按钮（点击后显示下一段，非选项）
                         console.log('✅ 当前段落显示完成，显示"->"按钮等待用户点击');
                         if (nextSegmentBtn) {
                             nextSegmentBtn.classList.remove('hidden');
+                            nextSegmentBtn.dataset.showOptions = 'false';
                         }
                     } else {
                         // 所有段落都显示完了，显示"->"按钮等待用户点击后再显示选项
                         console.log('✅ 所有段落显示完成，显示"->"按钮等待用户点击显示选项');
                         
+                        // 确保选项可用（与 displayScene 行为一致）
+                        gameState.pendingOptions = gameState.pendingOptions || gameState.currentOptions;
+                        
                         // 显示"->"按钮（点击后显示选项）
-                        const nextSegmentBtn = document.getElementById('next-segment-btn');
-                        if (nextSegmentBtn) {
-                            nextSegmentBtn.classList.remove('hidden');
-                            // 标记这是最后一段，点击后应该显示选项
-                            nextSegmentBtn.dataset.showOptions = 'true';
+                        const btn = document.getElementById('next-segment-btn');
+                        if (btn) {
+                            btn.classList.remove('hidden');
+                            btn.dataset.showOptions = 'true';
                         }
                     }
                 }
@@ -2589,6 +2621,11 @@ const Game = (() => {
                             
                             // 解析生成的剧情和选项
                             const optionData = result.optionData;
+                            // 与首屏一致：后端已在返回时触发下一轮预生成并带上 sceneId，此处统一更新供下次点选项使用
+                            if (optionData && optionData.sceneId) {
+                                gameState.currentSceneId = optionData.sceneId;
+                                console.log('✅ 使用服务端返回的下一轮 sceneId:', optionData.sceneId);
+                            }
                             
                             // 重要：验证场景文本是否有效（不是空字符串或默认值）
                             let nextScene = optionData.scene;
@@ -2763,9 +2800,7 @@ const Game = (() => {
                                 cleanedNextScene = "你仔细观察周围的环境，准备采取行动。";
                             }
                             
-                            // 更新当前场景ID（用于下次清理缓存）
-                            const newSceneId = generateNewSceneId();
-                            gameState.currentSceneId = newSceneId;
+                            // 场景ID 已在上方从 optionData.sceneId 更新，不再用 generateNewSceneId 覆盖，否则会导致下次请求 sceneId 与后端预生成缓存不匹配
                             
                             // 确保加载状态已移除
                             if (loadingIndicator && loadingIndicator.parentNode) {
@@ -2813,7 +2848,7 @@ const Game = (() => {
                             });
                             
                             try {
-                                displayScene(cleanedNextScene, nextOptions, validatedSceneImage, null);  // 视频参数设为null
+                                displayScene(cleanedNextScene, nextOptions, validatedSceneImage, null, optionData);  // 视频null；optionData 用于展示后通知建档
                                 console.log('✅ displayScene调用成功');
                             } catch (error) {
                                 console.error('❌ displayScene调用失败:', error);
@@ -4553,17 +4588,7 @@ const Game = (() => {
                     const optionsToShow = gameState.pendingOptions || gameState.currentOptions || [];
                     generateOptions(optionsToShow);
                     
-                    // 注意：预生成已经在文本开始显示时触发，这里不再重复触发
-                    // 如果预生成没有在文本开始显示时触发（例如单段文本的情况），这里作为备用触发
-                    if (!gameState._pregenerationTriggered && optionsToShow && optionsToShow.length > 0) {
-                        const newSceneId = generateNewSceneId();
-                        gameState.currentSceneId = newSceneId;
-                        console.log('🚀 备用触发预生成（场景ID:', newSceneId, '）');
-                        if (gameState.gameData) {
-                            pregenerateNextLayers(gameState.gameData, optionsToShow, newSceneId);
-                        }
-                        gameState._pregenerationTriggered = true;
-                    }
+                    // 预生成由后端在 /generate-option 返回时触发，此处不再备用触发
                     
                     // 重置分段显示状态
                     gameState.isShowingSegments = false;
