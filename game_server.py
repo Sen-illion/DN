@@ -112,6 +112,41 @@ def after_request(response):
     response.headers['Access-Control-Allow-Headers'] = 'Content-Type'
     return response
 
+
+def _normalize_checkpoint_memory(raw_value):
+    if not isinstance(raw_value, list):
+        return []
+    normalized = []
+    for item in raw_value[-30:]:
+        if not isinstance(item, dict):
+            continue
+        normalized.append({
+            "id": item.get("id") or f"cp_{int(datetime.now().timestamp() * 1000)}",
+            "source": item.get("source", "unknown"),
+            "chapter": item.get("chapter", ""),
+            "recap": item.get("recap", ""),
+            "keywords": item.get("keywords") if isinstance(item.get("keywords"), list) else [],
+            "selectedOption": item.get("selectedOption", ""),
+            "timestamp": item.get("timestamp") or datetime.now().isoformat(),
+        })
+    return normalized
+
+
+def _build_checkpoint_packet(option_data, global_state, selected_option):
+    flow = (global_state or {}).get("flow_worldline", {}) if isinstance(global_state, dict) else {}
+    flow_update = (option_data or {}).get("flow_update", {}) if isinstance(option_data, dict) else {}
+    chapter = flow.get("current_chapter", "chapter1")
+    quest_progress = flow_update.get("quest_progress") or flow.get("quest_progress") or "主线正在推进。"
+    scene = ((option_data or {}).get("scene") or "").strip()
+    recap_scene = scene if scene else "剧情继续推进中。"
+    recap_text = f"你选择了“{selected_option}”。当前章节：{chapter}。主线进展：{quest_progress}。最近剧情：{recap_scene}"
+    return {
+        "chapter": chapter,
+        "quest_delta": flow_update.get("quest_progress", ""),
+        "chapter_conflict_solved": bool(flow_update.get("chapter_conflict_solved", False)),
+        "recap_text": recap_text
+    }
+
 # 核心接口：生成游戏世界观
 @app.route('/generate-worldview', methods=['POST'])
 def generate_worldview():
@@ -255,6 +290,9 @@ def generate_worldview():
                     # 修复：提取并保存初始场景的图片数据（含 scene_text_hash，避免 /generate-option 误判文本变化而重复生成）
                     initial_scene_image = initial_option_data.get('scene_image', None)
                     if initial_scene_image:
+                        if not initial_scene_image.get("image_type"):
+                            initial_scene_image = dict(initial_scene_image)
+                            initial_scene_image["image_type"] = "story_scene"
                         if not initial_scene_image.get('scene_text_hash') and initial_scene and initial_scene.strip():
                             initial_scene_image = dict(initial_scene_image)
                             initial_scene_image['scene_text_hash'] = hashlib.md5(initial_scene.encode('utf-8')).hexdigest()
@@ -267,6 +305,7 @@ def generate_worldview():
                                 img = generate_scene_image(initial_scene, global_state, "default", use_cache=True)
                                 if img and img.get("url"):
                                     initial_scene_image = dict(img)
+                                    initial_scene_image["image_type"] = "story_scene"
                                     initial_scene_image["scene_text_hash"] = hashlib.md5(initial_scene.encode("utf-8")).hexdigest()
                                     print(f"✅ 已为默认剧情补生成初始场景图: {initial_scene_image.get('url', '')[:80]}...")
                             except Exception as img_e:
@@ -945,7 +984,9 @@ def generate_option():
                     # 补图时不查缓存复用旧图，但仍保存到本地（skip_cache_lookup=True）
                     img = generate_scene_image(
                         scene_text, global_state, "default",
-                        use_cache=True, skip_cache_lookup=True
+                        use_cache=True,
+                        skip_cache_lookup=True,
+                        cache_key_suffix=f"{scene_id or 'initial'}_opt{option_index}"
                     )
                     if img and isinstance(img, dict) and img.get("url"):
                         # 计算并存储场景文本哈希，用于后续匹配检查
@@ -957,6 +998,7 @@ def generate_option():
                             "width": img.get("width", 1024),
                             "height": img.get("height", 1024),
                             "cached": img.get("cached", True),
+                            "image_type": "story_scene",
                             "scene_text_hash": scene_text_hash  # 存储场景文本哈希，用于匹配检查
                         }
                         print("✅ 已生成场景图片（确保图片和文本匹配）")
@@ -974,6 +1016,8 @@ def generate_option():
             "message": "选项剧情生成成功！",
             "optionData": option_data
         }
+        if isinstance(option_data, dict):
+            option_data["checkpoint_packet"] = _build_checkpoint_packet(option_data, global_state, option)
         if isinstance(option_data, dict):
             if not scene_id or scene_id == 'initial':
                 # 首屏：从 initial 缓存取已写入的 pregeneration_scene_id（预生成已在 generate_initial_options 中触发）
@@ -1079,14 +1123,51 @@ def save_game():
         save_name = (data.get('saveName') or '').strip()
         if not save_name:
             return jsonify({"status": "error", "message": "存档名称不能为空！"})
-        game_data = data.get('gameData', {})
-        global_state = data.get('globalState', {})
+        game_data = data.get('gameData') or data.get('globalState') or {}
+        global_state = data.get('globalState') or data.get('gameData') or {}
+        checkpoint_memory = _normalize_checkpoint_memory(
+            data.get("checkpointMemory")
+            or (game_data.get("flow_worldline", {}) if isinstance(game_data, dict) else {}).get("checkpoint_memory")
+            or (global_state.get("flow_worldline", {}) if isinstance(global_state, dict) else {}).get("checkpoint_memory")
+        )
+
+        if isinstance(game_data, dict):
+            game_data.setdefault("flow_worldline", {})
+            game_data["flow_worldline"]["checkpoint_memory"] = checkpoint_memory
+            game_data["checkpoint_memory"] = checkpoint_memory
+        if isinstance(global_state, dict):
+            global_state.setdefault("flow_worldline", {})
+            global_state["flow_worldline"]["checkpoint_memory"] = checkpoint_memory
+            global_state["checkpoint_memory"] = checkpoint_memory
+
+        save_payload = {
+            "schemaVersion": 2,
+            "gameData": game_data,
+            "globalState": global_state,
+            "meta": {
+                "protagonistAttr": data.get("protagonistAttr", {}),
+                "difficulty": data.get("difficulty", ""),
+                "lastOptions": data.get("lastOptions", []),
+                "checkpointMemory": checkpoint_memory,
+                "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M")
+            }
+        }
+
+        # 兼容旧前端读取字段
+        save_payload["saveData"] = {
+            "global_state": global_state,
+            "protagonist_attr": data.get("protagonistAttr", {}),
+            "difficulty": data.get("difficulty", ""),
+            "last_options": data.get("lastOptions", []),
+            "checkpoint_memory": checkpoint_memory,
+            "timestamp": save_payload["meta"]["timestamp"]
+        }
         from server.config import SAVE_DIR
         import json as _json
         path = Path(SAVE_DIR) / f"{save_name}.json"
         path.parent.mkdir(parents=True, exist_ok=True)
         with open(path, 'w', encoding='utf-8') as f:
-            _json.dump({"gameData": game_data, "globalState": global_state}, f, ensure_ascii=False, indent=2)
+            _json.dump(save_payload, f, ensure_ascii=False, indent=2)
         return jsonify({"status": "success", "message": "保存成功"})
     except Exception as e:
         return jsonify({"status": "error", "message": f"保存失败，请重试：{clean_error_message(str(e))}"})
@@ -1117,7 +1198,38 @@ def load_game():
             return jsonify({"status": "error", "message": "存档文件不存在"})
         with open(path, 'r', encoding='utf-8') as f:
             loaded = _json.load(f)
-        return jsonify({"status": "success", "gameData": loaded.get("gameData", {}), "globalState": loaded.get("globalState", {})})
+        game_data = loaded.get("gameData") or loaded.get("globalState") or {}
+        global_state = loaded.get("globalState") or loaded.get("gameData") or {}
+        meta = loaded.get("meta") or {}
+        save_data = loaded.get("saveData") or {}
+
+        # 兼容老存档（没有 meta/saveData）
+        if not save_data:
+            checkpoint_memory = _normalize_checkpoint_memory(
+                (global_state.get("flow_worldline", {}) if isinstance(global_state, dict) else {}).get("checkpoint_memory")
+                or (game_data.get("flow_worldline", {}) if isinstance(game_data, dict) else {}).get("checkpoint_memory")
+            )
+            save_data = {
+                "global_state": global_state,
+                "protagonist_attr": meta.get("protagonistAttr", {}),
+                "difficulty": meta.get("difficulty", ""),
+                "last_options": meta.get("lastOptions", []),
+                "checkpoint_memory": checkpoint_memory,
+                "timestamp": meta.get("timestamp", "")
+            }
+        return jsonify({
+            "status": "success",
+            "gameData": game_data,
+            "globalState": global_state,
+            "meta": {
+                "protagonistAttr": meta.get("protagonistAttr", {}),
+                "difficulty": meta.get("difficulty", ""),
+                "lastOptions": meta.get("lastOptions", []),
+                "checkpointMemory": save_data.get("checkpoint_memory", meta.get("checkpointMemory", [])),
+                "timestamp": save_data.get("timestamp", meta.get("timestamp", ""))
+            },
+            "saveData": save_data
+        })
     except Exception as e:
         return jsonify({"status": "error", "message": f"加载失败，请重试：{clean_error_message(str(e))}"})
 

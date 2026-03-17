@@ -61,6 +61,41 @@ def prune_options(options: List[str]) -> List[str]:
     
     return pruned[:2]  # 最多保留2个选项
 
+
+def _build_checkpoint_keyword_prompt(global_state: Dict) -> str:
+    """将最近的关键词记忆作为软提示注入剧情生成（可开关）。"""
+    enabled = os.getenv("ENABLE_CHECKPOINT_KEYWORDS", "0").strip() == "1"
+    if not enabled or not isinstance(global_state, dict):
+        return ""
+    flow = global_state.get("flow_worldline", {}) or {}
+    raw_memory = flow.get("checkpoint_memory") or global_state.get("checkpoint_memory") or []
+    if not isinstance(raw_memory, list) or not raw_memory:
+        return ""
+    limit = max(1, int(os.getenv("CHECKPOINT_KEYWORDS_LIMIT", "3")))
+    selected = raw_memory[-limit:]
+    lines = []
+    for item in selected:
+        if not isinstance(item, dict):
+            continue
+        recap = str(item.get("recap", "")).strip()
+        keywords = item.get("keywords", [])
+        if not isinstance(keywords, list):
+            keywords = []
+        normalized_keywords = [str(k).strip() for k in keywords if str(k).strip()][:3]
+        if not recap and not normalized_keywords:
+            continue
+        line = f"- 关键词：{'、'.join(normalized_keywords) if normalized_keywords else '无'}"
+        if recap:
+            line += f"；回顾：{recap[:80]}"
+        lines.append(line)
+    if not lines:
+        return ""
+    return (
+        "\n## 【玩家临界点关键词记忆（软约束，可参考不可强绑）】：\n"
+        + "\n".join(lines)
+        + "\n### 要求：在不破坏主线与逻辑的前提下，适度呼应这些关键词；若冲突，以当前用户选择和主线推进为最高优先级。"
+    )
+
 # 重构：生成单个选项剧情的独立函数
 def _generate_single_option(i: int, option: str, global_state: Dict) -> Dict:
     """
@@ -95,6 +130,7 @@ def _generate_single_option(i: int, option: str, global_state: Dict) -> Dict:
                 unlocked_deep_bgs.append(f"{char_name}的深层背景：{deep_bg}")
         if unlocked_deep_bgs:
             deep_bg_prompt = f"\n## 【已解锁深层背景】：\n{chr(10).join(unlocked_deep_bgs)}\n### 【重要要求】：后续剧情必须围绕已解锁的深层背景展开，将深层背景信息自然融入主线剧情中，不要直接向玩家显示深层背景内容！"
+    checkpoint_keyword_prompt = _build_checkpoint_keyword_prompt(global_state)
     
     # 添加调试信息：打印输入数据
     print(f"🔍 调试信息：输入参数")
@@ -155,6 +191,7 @@ def _generate_single_option(i: int, option: str, global_state: Dict) -> Dict:
        - 必须**明确推进主线任务**，每个选项都应该让主角离主线目标更近一步
        - **部分选项必须关联角色深层背景**：生成2个选项，其中0-1个选项应直接关联到某个角色的深层背景，选择这类选项会触发该角色深层背景的解锁
     {deep_bg_prompt}
+    {checkpoint_keyword_prompt}
     
     ## 【主线推进要求】：
     1. 必须**明确推进主线任务**，每个选择都应该带来主线进度的实质性变化
@@ -635,6 +672,7 @@ def _generate_single_option(i: int, option: str, global_state: Dict) -> Dict:
                                 "height": scene_image.get("height", 1024),
                                 # 本地路径表示已缓存；远程URL默认视为未缓存（除非上游明确标记）
                                 "cached": True if is_local_path else scene_image.get("cached", False),
+                                "image_type": "story_scene",
                                 "scene_text_hash": scene_text_hash,
                             }
                             if isinstance(global_state, dict) and "_last_scene_prompt_json" in global_state:
@@ -659,6 +697,7 @@ def _generate_single_option(i: int, option: str, global_state: Dict) -> Dict:
                                         "width": scene_image.get("width", 1024),
                                         "height": scene_image.get("height", 1024),
                                         "cached": scene_image.get("cached", False),
+                                        "image_type": "story_scene",
                                         "scene_text_hash": scene_text_hash,
                                     }
                                     if isinstance(global_state, dict) and "_last_scene_prompt_json" in global_state:
@@ -789,6 +828,7 @@ def _generate_single_option_text_only(
                 unlocked_deep_bgs.append(f"{char_name}的深层背景：{deep_bg}")
         if unlocked_deep_bgs:
             deep_bg_prompt = f"\n## 【已解锁深层背景】：\n{chr(10).join(unlocked_deep_bgs)}\n### 【重要要求】：后续剧情必须围绕已解锁的深层背景展开，将深层背景信息自然融入主线剧情中，不要直接向玩家显示深层背景内容！"
+    checkpoint_keyword_prompt = _build_checkpoint_keyword_prompt(global_state)
     
     # 确保core_worldview和flow_worldline存在
     core_worldview = global_state.get('core_worldview', {})
@@ -841,6 +881,7 @@ def _generate_single_option_text_only(
        - 必须**明确推进主线任务**，每个选项都应该让主角离主线目标更近一步
        - **部分选项必须关联角色深层背景**：生成2个选项，其中0-1个选项应直接关联到某个角色的深层背景，选择这类选项会触发该角色深层背景的解锁
     {deep_bg_prompt}
+    {checkpoint_keyword_prompt}
     
     ## 【主线推进要求】：
     1. 必须**明确推进主线任务**，每个选择都应该带来主线进度的实质性变化
@@ -1579,6 +1620,61 @@ def generate_all_options(
                 print(f"❌ 选项 {option_index+1} 流水线异常：{str(e)}")
                 import traceback
                 traceback.print_exc()
+    
+    print(f"✅ 阶段1完成：所有选项文本内容生成完成，共 {len(all_options_data)} 个选项")
+    
+    # 收集需要生成图片的场景（仅对尚未有有效 scene_image.url 的选项生成）
+    scenes_for_images: Dict[int, str] = {}
+    for option_index, option_data in all_options_data.items():
+        if not option_data:
+            continue
+        existing_url = (option_data.get("scene_image") or {}).get("url")
+        if existing_url:
+            continue
+        scene_text = option_data.get("scene", "") or ""
+        if scene_text.strip():
+            scenes_for_images[option_index] = scene_text
 
-    print(f"✅ 所有选项流水线结束，有效结果 {len(all_options_data)} 个选项")
+    # ========== 阶段2：并行生成所有场景的图片 ==========
+    if skip_images:
+        print("⏩ 已选择跳过本轮图片生成以加速。")
+    elif scenes_for_images:
+        print(f"🎨 阶段2：并行生成 {len(scenes_for_images)} 个场景的图片...")
+        try:
+            # 并行生成所有图片（包含缓存检查和错误处理）
+            image_results = _generate_images_parallel(scenes_for_images, global_state)
+            
+            # 将图片结果合并回选项数据（含 scene_text_hash，确保图片与文本一一对应）
+            for option_index, image_data in image_results.items():
+                if option_index in all_options_data and image_data:
+                    # 验证图片数据格式
+                    if image_data.get('url'):
+                        scene_text = all_options_data[option_index].get("scene", "") or ""
+                        scene_text_hash = hashlib.md5(scene_text.encode("utf-8")).hexdigest() if scene_text.strip() else None
+                        all_options_data[option_index]["scene_image"] = {
+                            "url": image_data.get("url"),
+                            "prompt": image_data.get("prompt", ""),
+                            "style": image_data.get("style", "default"),
+                            "width": image_data.get("width", 1024),
+                            "height": image_data.get("height", 1024),
+                            "cached": image_data.get("cached", True),
+                            "image_type": "story_scene",
+                            "scene_text_hash": scene_text_hash,
+                        }
+                        print(f"✅ 选项 {option_index+1} 图片已合并到选项数据")
+                    else:
+                        print(f"⚠️ 选项 {option_index+1} 图片数据无效，跳过")
+                else:
+                    print(f"⚠️ 选项 {option_index+1} 图片数据为空，跳过")
+            
+            print(f"✅ 阶段2完成：图片生成完成，成功合并 {len(image_results)} 张图片")
+        except Exception as e:
+            print(f"⚠️ 图片生成阶段出现异常：{str(e)}")
+            import traceback
+            traceback.print_exc()
+            # 即使图片生成失败，也返回文本内容
+    else:
+        print(f"💡 阶段2跳过：没有需要生成图片的场景")
+    
+    print(f"✅ 所有选项生成完成，共生成 {len(all_options_data)} 个选项的剧情（包含文本和图片）")
     return all_options_data
