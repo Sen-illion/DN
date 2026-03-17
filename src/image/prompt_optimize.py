@@ -1187,11 +1187,12 @@ JSON 结构（所有数组均为字符串数组；嵌套对象见说明）：
                         optimized_prompt = _build_prompt_from_structured_json(
                             structured, include_scene_atmosphere=include_scene_atmosphere
                         )
-                    # 将解析出的 JSON 写入 global_state 并打印到后端，便于调试/展示
+                    # 将解析出的 JSON 写入 global_state，仅打印摘要到后端（完整 JSON 不输出以免占满日志）
                     if isinstance(global_state, dict):
                         global_state["_last_scene_prompt_json"] = structured
-                    print("📋 [剧情图] 提示词 JSON：")
-                    print(json.dumps(structured, ensure_ascii=False, indent=2))
+                    _label = structured.get("label", "") if isinstance(structured, dict) else ""
+                    _keys = list(structured.keys()) if isinstance(structured, dict) else []
+                    print(f"📋 [剧情图] 提示词 JSON 已生成（label={_label[:50] if _label else '-'}，共{len(_keys)}个键，已省略全文）")
                 else:
                     optimized_prompt = raw_content
                     if isinstance(global_state, dict) and "_last_scene_prompt_json" in global_state:

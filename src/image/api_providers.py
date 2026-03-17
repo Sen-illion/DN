@@ -984,22 +984,24 @@ def generate_scene_image(
     :param skip_cache_lookup: 为True时不查本地缓存复用旧图，但仍会下载并保存到本地（用于补图等需要每次新图的场景）
     :return: 包含图片URL和元数据的字典
     """
+    _step = 0
     # 检查是否配置了图片生成API
     provider = IMAGE_GENERATION_CONFIG.get("provider", "yunwu")
     
     if provider == "yunwu" and not IMAGE_GENERATION_CONFIG.get("yunwu_api_key"):
-        print("⚠️ yunwu.ai API Key未配置，跳过图片生成")
+        print("⚠️ [步骤?] yunwu.ai API Key未配置，跳过图片生成")
         return None
     elif provider == "replicate" and not IMAGE_GENERATION_CONFIG.get("replicate_api_token"):
-        print("⚠️ Replicate API Token未配置，跳过图片生成")
+        print("⚠️ [步骤?] Replicate API Token未配置，跳过图片生成")
         return None
     elif provider == "openai" and not IMAGE_GENERATION_CONFIG.get("openai_api_key"):
-        print("⚠️ OpenAI API Key未配置，跳过图片生成")
+        print("⚠️ [步骤?] OpenAI API Key未配置，跳过图片生成")
         return None
-    
+
+    _step += 1
     # 剧情图固定 16:9，在 16 寸屏幕上显示清晰
     image_width, image_height = get_story_image_size(provider)
-    print(f"📐 剧情图 16:9 尺寸：{image_width}x{image_height}（适配 16 寸屏）")
+    print(f"  [{_step}] 📐 剧情图 16:9 尺寸：{image_width}x{image_height}（适配 16 寸屏）")
     
     # 1. 提取图片风格信息
     image_style = global_state.get('image_style', None)
@@ -1042,12 +1044,14 @@ def generate_scene_image(
                 protagonist_reference_images.append(str(side_path.resolve()))  # Image 1: 侧面
             if back_path.exists():
                 protagonist_reference_images.append(str(back_path.resolve()))  # Image 2: 背面
+            _step += 1
             if len(protagonist_reference_images) >= 3:
-                print(f"✅ 找到主角三视图，将作为参考图传递：{game_id}")
+                print(f"  [{_step}] ✅ 找到主角三视图，将作为参考图传递：{game_id}")
             else:
-                print(f"✅ 找到主角参考图（{len(protagonist_reference_images)}张），将作为参考图传递：{game_id}")
+                print(f"  [{_step}] ✅ 找到主角参考图（{len(protagonist_reference_images)}张），将作为参考图传递：{game_id}")
         else:
-            print(f"⚠️ 主角正面图尚未就绪，将不使用主角参考图")
+            _step += 1
+            print(f"  [{_step}] ⚠️ 主角正面图尚未就绪，将不使用主角参考图")
     
     # 1.6b 每次剧情更新时检查身份揭示，更新配角 aliases（排除主角称呼）
     if game_id and scene_description:
@@ -1089,12 +1093,12 @@ def generate_scene_image(
         supporting_role_references=None,
         available_supporting_roles_for_tagging=available_supporting_roles_for_tagging
     )
-    # 打印剧情图提示词 LLM 生成完整内容到后端
+    # 仅打印提示词摘要到后端（不输出全文，避免占满日志）
     if prompt and isinstance(prompt, str):
-        print(f"📝 [剧情图提示词] LLM 生成完整内容（共{len(prompt.strip())}字）：")
-        print("---------- 以下为提示词全文 ----------")
-        print(prompt.strip())
-        print("---------- 以上为提示词全文 ----------")
+        _step += 1
+        _preview_len = int(os.getenv("PROMPT_LOG_PREVIEW_CHARS", "120"))
+        _preview = (prompt.strip()[: _preview_len] + "…") if len(prompt.strip()) > _preview_len else prompt.strip()
+        print(f"  [{_step}] 📝 [剧情图提示词] LLM 已生成（共{len(prompt.strip())}字，摘要: {_preview}）")
     
     # 3. 从优化后的提示词中识别出场配角（名称-配角N），区分已有档案（有参考图）与首次出场（待建档）
     # 以剧情模型为准：若存在本段出场配角（含空列表），则不再从提示词推断；仅当未传入该字段时才 fallback 推断
@@ -1106,10 +1110,11 @@ def generate_scene_image(
         plot_char_tuples = (global_state or {}).get("_plot_supporting_characters")
         if has_plot_key and isinstance(plot_char_tuples, list):
             char_tuples = [(str(n).strip(), str(s).strip()) for n, s in plot_char_tuples if n and s]
+            _step += 1
             if char_tuples:
-                print(f"📋 使用剧情模型输出的本段出场配角（共{len(char_tuples)}个）")
+                print(f"  [{_step}] 📋 使用剧情模型输出的本段出场配角（共{len(char_tuples)}个）")
             else:
-                print(f"📋 剧情模型未列出本段出场配角，本段不建档配角图")
+                print(f"  [{_step}] 📋 剧情模型未列出本段出场配角，本段不建档配角图")
         else:
             char_tuples = extract_supporting_characters_with_names(prompt)
         if isinstance(global_state, dict) and "_plot_supporting_characters" in global_state:
@@ -1167,12 +1172,12 @@ def generate_scene_image(
             append_parts.append(f"{dn}-{slot} 参考 Image {img_idx}，以图中对应人物的形象为准，保持核心特征不变（重要：Image {img_idx} 中该配角的五官与体型不可改动）")
         if append_parts:
             prompt = (prompt.rstrip() + "。" + "。".join(append_parts))
-    # 打印最终完整提示词（发送给生图 API 的全文）到后端
+    # 仅打印最终提示词摘要（不输出全文）
     if prompt and isinstance(prompt, str):
-        print(f"📝 [剧情图提示词] 最终完整提示词（发送给生图API，共{len(prompt.strip())}字）：")
-        print("---------- 以下为最终提示词全文 ----------")
-        print(prompt.strip())
-        print("---------- 以上为最终提示词全文 ----------")
+        _step += 1
+        _preview_len = int(os.getenv("PROMPT_LOG_PREVIEW_CHARS", "120"))
+        _preview = (prompt.strip()[: _preview_len] + "…") if len(prompt.strip()) > _preview_len else prompt.strip()
+        print(f"  [{_step}] 📝 [剧情图提示词] 最终提示词已就绪（共{len(prompt.strip())}字，发送给生图API，摘要: {_preview}）")
     
     # 5. 调用AI图片生成API（传递尺寸参数和参考图）
     # 若有上一张剧情图，解析为可加载路径并作为最后一张参考图（用于视觉延续）
@@ -1186,6 +1191,8 @@ def generate_scene_image(
         elif ref_url.startswith("http://") or ref_url.startswith("https://") or os.path.exists(ref_url):
             previous_scene_image_path = ref_url
 
+    _step += 1
+    print(f"  [{_step}] 🎨 调用生图 API（provider={provider}）")
     try:
         if provider == "yunwu":
             # yunwu.ai 易受 429 / 返回格式波动影响：失败时可选用本地 SD 兜底
