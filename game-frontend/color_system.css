@@ -358,10 +358,15 @@
 /* ---- 暗黑主题优化 ---- */
 
 /* 确保深色背景的一致性 */
+/* 注意：#gameplay-screen 必须透明，否则盖住 z-index 更低的 #global-bg 全屏剧情图 */
 body,
-#gameplay-screen,
-.screen {
+.screen:not(#gameplay-screen) {
     background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+}
+
+#gameplay-screen {
+    background-color: transparent;
     color: var(--color-text-primary);
 }
 

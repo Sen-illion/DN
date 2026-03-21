@@ -374,6 +374,7 @@ const Game = (() => {
         const isSceneCachePath = lowerUrl.startsWith('/image_cache/')
             || lowerUrl.startsWith('image_cache/')
             || lowerUrl.includes('/image_cache/');
+        const isAbsoluteHttp = lowerUrl.startsWith('http://') || lowerUrl.startsWith('https://');
 
         if (isMainCharacterPath) {
             return null;
@@ -381,7 +382,8 @@ const Game = (() => {
         if (imageType && imageType !== 'story_scene') {
             return null;
         }
-        if (!imageType && !isSceneCachePath) {
+        // 无 image_type 时：本地缓存路径 或 公网图 URL（云端 OSS 等）均视为剧情图；其余拒绝以免串图
+        if (!imageType && !isSceneCachePath && !(isAbsoluteHttp && !isMainCharacterPath)) {
             return null;
         }
 
@@ -408,7 +410,13 @@ const Game = (() => {
                 }
                 
                 const img = new Image();
-                img.crossOrigin = 'anonymous'; // 允许跨域
+                // 仅同源设 crossOrigin；外链 OSS 无 CORS 时 anonymous 会导致 onerror，背景图仍应能显示
+                try {
+                    const parsed = new URL(url, window.location.href);
+                    if (parsed.origin === window.location.origin) {
+                        img.crossOrigin = 'anonymous';
+                    }
+                } catch (_) { /* 相对路径等 */ }
                 img.onload = () => {
                     imageCache.set(url, img);
                     resolve(img);
@@ -937,8 +945,8 @@ const Game = (() => {
             },
             content: {
                 wordCount: document.querySelector('.word-count'),
-                settingTabs: document.querySelectorAll('.nav-item'),
-                settingTabContents: document.querySelectorAll('.content-tab'),
+                settingTabs: document.querySelectorAll('#setting-screen .setting-nav .nav-item'),
+                settingTabContents: document.querySelectorAll('#setting-screen .setting-content .content-tab'),
                 gameStyle: document.getElementById('game-style-content'),
                 worldview: document.getElementById('worldview-content'),
                 protagonistAbility: document.getElementById('protagonist-ability-content'),
@@ -978,9 +986,11 @@ const Game = (() => {
         }
         
         // 隐藏所有屏幕（淡出）
+        // 须同步移除 active：transitions.css 中 .screen 使用 visibility:hidden，仅 .active 时可见
         Object.values(elements.screens).forEach(screen => {
             if (screen && screen.classList) {
                 screen.classList.add('hidden');
+                screen.classList.remove('active');
                 screen.style.opacity = '0';
                 screen.style.transition = 'opacity 300ms ease';
             }
@@ -990,6 +1000,7 @@ const Game = (() => {
         const targetScreen = elements.screens[screenName];
         if (targetScreen && targetScreen.classList) {
             targetScreen.classList.remove('hidden');
+            targetScreen.classList.add('active');
             setTimeout(() => {
                 targetScreen.style.opacity = '1';
             }, 50);
@@ -1045,6 +1056,7 @@ const Game = (() => {
             const characterPanel = document.getElementById('character-panel');
             if (screenName === 'gameplay' && characterPanel) {
                 characterPanel.style.display = 'block';
+                characterPanel.setAttribute('aria-hidden', 'false');
             }
         } else {
             console.error(`switchScreen错误：找不到屏幕 ${screenName}`);
@@ -1930,7 +1942,8 @@ const Game = (() => {
                             validatedSceneImage = sceneImage;
                             console.log('✅ 初始场景图片URL:', sceneImage.url);
                         } else if (sceneImage.image_url) {
-                            validatedSceneImage = { url: sceneImage.image_url };
+                            // 保留 image_type 等字段，避免 normalizeStorySceneImageData 误判为非剧情图
+                            validatedSceneImage = { ...sceneImage, url: sceneImage.image_url };
                             console.log('✅ 使用image_url字段:', sceneImage.image_url);
                         } else {
                             console.error('❌ sceneImage对象缺少URL字段:', sceneImage);
@@ -3060,7 +3073,7 @@ const Game = (() => {
                                         validatedSceneImage = sceneImage;
                                         console.log('✅ 图片数据格式正确，URL:', sceneImage.url);
                                     } else if (sceneImage.image_url) {
-                                        validatedSceneImage = { url: sceneImage.image_url };
+                                        validatedSceneImage = { ...sceneImage, url: sceneImage.image_url };
                                         console.log('✅ 使用image_url字段');
                                     } else {
                                         console.error('❌ sceneImage对象缺少URL字段:', sceneImage);
@@ -4752,7 +4765,11 @@ const Game = (() => {
                     c.classList.remove('animate-fadeIn');
                 });
                 tab.classList.add('bg-[#1ABC9C]', 'border-l-3', 'border-white');
-                const activeTab = document.getElementById(`${tabId}-tab`);
+                const activeTab = tabId ? document.getElementById(`${tabId}-tab`) : null;
+                if (!activeTab) {
+                    console.warn('[设定页] 找不到标签对应面板:', tabId);
+                    return;
+                }
                 activeTab.classList.remove('hidden');
                 activeTab.classList.add('animate-fadeIn');
                 playSound('click');
@@ -4983,10 +5000,18 @@ const Game = (() => {
             characterPanel.style.cursor = 'move';
         });
         
-        // 关闭角色面板
-        document.querySelector('.close-panel').addEventListener('click', () => {
-            characterPanel.style.display = 'none';
-        });
+        // 关闭角色面板（先失焦再隐藏，避免祖先 aria-hidden 与焦点冲突触发浏览器无障碍警告）
+        const closePanelBtn = document.querySelector('.close-panel');
+        if (closePanelBtn && characterPanel) {
+            closePanelBtn.addEventListener('click', () => {
+                const ae = document.activeElement;
+                if (ae && characterPanel.contains(ae)) {
+                    ae.blur();
+                }
+                characterPanel.style.display = 'none';
+                characterPanel.setAttribute('aria-hidden', 'true');
+            });
+        }
         
         // 游戏结束按钮事件
         const endGameBtn = document.getElementById('end-game-btn');

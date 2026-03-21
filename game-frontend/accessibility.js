@@ -205,7 +205,8 @@
         if (panel) {
             panel.setAttribute('role', 'complementary');
             panel.setAttribute('aria-label', '角色状态面板');
-            panel.setAttribute('aria-hidden', 'true'); // 默认隐藏，可通过按钮切换
+            // 不要写死 aria-hidden：面板可见时内部按钮可获焦，与 aria-hidden 冲突会触发控制台警告
+            // 由 script-modular 在显示/关闭面板时同步 aria-hidden
         }
         
         console.log('♿ [无障碍] 角色面板已增强');
@@ -276,7 +277,8 @@
     
     function enhanceSettingTabs() {
         const navItems = document.querySelectorAll('.setting-nav .nav-item');
-        const contentTabs = document.querySelectorAll('.content-tab');
+        // 仅设定页内的面板，且不得改写其 id（与 script-modular.js 的 `${data-tab}-tab` 约定一致）
+        const contentTabs = document.querySelectorAll('#setting-screen .setting-content .content-tab');
         
         if (navItems.length > 0) {
             // 添加 tablist 角色
@@ -287,14 +289,16 @@
             navItems.forEach((item, index) => {
                 item.setAttribute('role', 'tab');
                 item.setAttribute('tabindex', '0');
-                item.setAttribute('aria-selected', item.classList.contains('active') ? 'true' : 'false');
-                item.setAttribute('aria-controls', `tab-${index}`);
-                
-                // 内容面板关联
-                const contentId = `tab-${index}`;
+                const tabKey = item.dataset && item.dataset.tab;
+                const panelId = tabKey ? `${tabKey}-tab` : (contentTabs[index] && contentTabs[index].id);
                 const content = contentTabs[index];
+                const panelVisible = content && !content.classList.contains('hidden');
+                item.setAttribute('aria-selected', panelVisible ? 'true' : 'false');
+                if (panelId) {
+                    item.setAttribute('aria-controls', panelId);
+                }
+                
                 if (content) {
-                    content.id = contentId;
                     content.setAttribute('role', 'tabpanel');
                 }
                 

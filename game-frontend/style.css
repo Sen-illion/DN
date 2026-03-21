@@ -1835,23 +1835,17 @@ p#scene-text:focus {
     background: transparent;
 }
 
-/* 选项容器 - 玻璃态背景 */
+/* 选项容器：不再铺黑底/毛玻璃，避免挡住 #global-bg 全屏剧情图 */
 .options-container {
-    background: rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-top: none;
 }
 
-/* 文本显示区域 */
+/* 文本显示区域：无暗角渐变，仅依赖 #scene-text 的 text-shadow 保证可读性 */
 .text-display-area {
-    background: linear-gradient(
-        180deg,
-        rgba(0, 0, 0, 0.4) 0%,
-        transparent 30%,
-        transparent 70%,
-        rgba(0, 0, 0, 0.4) 100%
-    );
+    background: transparent;
 }
 
 /* 角色面板 - 玻璃态 */
