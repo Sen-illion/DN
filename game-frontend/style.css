@@ -1,4 +1,8 @@
-/* 全局动画定义 */
+/* ========================================
+   全局动画定义 (Enhanced)
+   ======================================== */
+
+/* 原有基础动画 */
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
@@ -17,6 +21,383 @@
 @keyframes zoomIn {
     from { transform: scale(0.9); opacity: 0; }
     to { transform: scale(1); opacity: 1; }
+}
+
+/* ========================================
+   新增高级动画 (动效升级)
+   ======================================== */
+
+/* 1. 上滑入场动画 - 元素从下方滑入并淡入 */
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 2. 下滑入场动画 - 元素从上方滑入并淡入 */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 3. 左滑入场动画 */
+@keyframes slideLeft {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* 4. 右滑入场动画 */
+@keyframes slideRight {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* 5. 缩放入场动画 - 带轻微弹跳 */
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* 6. 弹性缩放入场 - 带回弹效果 */
+@keyframes elasticScale {
+    0% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    70% {
+        transform: scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* 7. 呼吸发光动画 - 周期性发光效果 */
+@keyframes glowPulse {
+    0%, 100% {
+        box-shadow: 0 0 5px rgba(26, 188, 156, 0.3),
+                    0 0 10px rgba(26, 188, 156, 0.2),
+                    0 0 15px rgba(26, 188, 156, 0.1);
+    }
+    50% {
+        box-shadow: 0 0 10px rgba(26, 188, 156, 0.6),
+                    0 0 20px rgba(26, 188, 156, 0.4),
+                    0 0 30px rgba(26, 188, 156, 0.2);
+    }
+}
+
+/* 8. 悬浮漂浮动画 - 装饰元素轻微上下浮动 */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+/* 9. 模糊渐清晰动画 - 图片/内容加载完成时 */
+@keyframes blurIn {
+    from {
+        opacity: 0;
+        filter: blur(10px);
+    }
+    to {
+        opacity: 1;
+        filter: blur(0);
+    }
+}
+
+/* 10. 渐变色流动动画 - 背景渐变动态效果 */
+@keyframes gradientFlow {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* 11. 边框流光动画 - 按钮边框光效 */
+@keyframes borderGlow {
+    0%, 100% {
+        border-color: rgba(26, 188, 156, 0.3);
+        box-shadow: 0 0 5px rgba(26, 188, 156, 0.1);
+    }
+    50% {
+        border-color: rgba(26, 188, 156, 0.8);
+        box-shadow: 0 0 15px rgba(26, 188, 156, 0.4);
+    }
+}
+
+/* 12. 旋转缩放组合动画 - 加载状态 */
+@keyframes spinAndPulse {
+    0% {
+        transform: rotate(0deg) scale(1);
+    }
+    50% {
+        transform: rotate(180deg) scale(1.1);
+    }
+    100% {
+        transform: rotate(360deg) scale(1);
+    }
+}
+
+/* 13. 文字渐显动画 - 适合段落文字 */
+@keyframes textReveal {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+        filter: blur(2px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
+}
+
+/* 14. 闪烁动画 - 强调/提示效果 */
+@keyframes shimmer {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* 15. 滑入并带回弹 - 卡片入场推荐 */
+@keyframes slideUpBounce {
+    0% {
+        opacity: 0;
+        transform: translateY(50px) scale(0.95);
+    }
+    60% {
+        transform: translateY(-5px) scale(1.02);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* 16. 背景模糊渐入 */
+@keyframes blurFadeIn {
+    from {
+        opacity: 0;
+        backdrop-filter: blur(0);
+    }
+    to {
+        opacity: 1;
+        backdrop-filter: blur(8px);
+    }
+}
+
+/* 17. 渐变边框动画 */
+@keyframes gradientBorder {
+    0% {
+        background-position: 0% 0%;
+    }
+    100% {
+        background-position: 200% 0%;
+    }
+}
+
+/* 18. 脉冲波纹扩散动画 */
+@keyframes ripple {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+/* ========================================
+   动画辅助类
+   ======================================== */
+
+/* 入场动画类 - 配合JS使用 */
+.animate-slideUp {
+    animation: slideUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-slideDown {
+    animation: slideDown 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-slideLeft {
+    animation: slideLeft 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-slideRight {
+    animation: slideRight 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-scaleIn {
+    animation: scaleIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-elasticScale {
+    animation: elasticScale 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+.animate-glowPulse {
+    animation: glowPulse 2s ease-in-out infinite;
+}
+
+.animate-float {
+    animation: float 3s ease-in-out infinite;
+}
+
+.animate-blurIn {
+    animation: blurIn 0.6s ease-out forwards;
+}
+
+.animate-textReveal {
+    animation: textReveal 0.5s ease-out forwards;
+}
+
+.animate-shimmer {
+    animation: shimmer 1.5s ease-in-out infinite;
+}
+
+.animate-slideUpBounce {
+    animation: slideUpBounce 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.animate-blurFadeIn {
+    animation: blurFadeIn 0.4s ease-out forwards;
+}
+
+/* 交错延迟 - 用于列表/卡片依次入场 */
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+.delay-600 { animation-delay: 600ms; }
+.delay-700 { animation-delay: 700ms; }
+.delay-800 { animation-delay: 800ms; }
+
+/* 渐变背景类 */
+.bg-animated-gradient {
+    background: linear-gradient(
+        -45deg,
+        #ee7752, #e73c7e, #23a6d5, #23d5ab, #1ABC9C
+    );
+    background-size: 400% 400%;
+    animation: gradientFlow 15s ease infinite;
+}
+
+/* 流光边框按钮 */
+.btn-glow-border {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(26, 188, 156, 0.3);
+    transition: all 0.3s ease;
+}
+
+.btn-glow-border::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(26, 188, 156, 0.3),
+        transparent
+    );
+    background-size: 200% 100%;
+    animation: gradientBorder 2s linear infinite;
+    border-radius: inherit;
+    z-index: -1;
+}
+
+.btn-glow-border:hover {
+    border-color: rgba(26, 188, 156, 0.8);
+    box-shadow: 0 0 20px rgba(26, 188, 156, 0.3);
+}
+
+/* 脉冲波纹效果 */
+.ripple-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.ripple-effect::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+        circle,
+        rgba(26, 188, 156, 0.3) 0%,
+        transparent 70%
+    );
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    animation: ripple 0.6s ease-out;
+    pointer-events: none;
+}
+
+/* 统一的过渡效果 - 所有可交互元素 */
+.transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 性能优化：启用GPU加速 */
+.gpu-accelerated {
+    transform: translateZ(0);
+    will-change: transform;
+    backface-visibility: hidden;
 }
 
 /* 响应式设计 */
@@ -226,18 +607,160 @@
     background: #1ABC9C;
 }
 
-/* 基础样式覆盖 */
+/* ========================================
+   基础样式覆盖 + 动效增强
+   ======================================== */
 .screen {
     animation: fadeIn 0.3s ease-in-out;
 }
 
+/* 屏幕切换动效增强 */
+.screen {
+    opacity: 0;
+    animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* 主菜单按钮入场动画 */
+#menu-screen .btn-main {
+    opacity: 0;
+    animation: slideUpBounce 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+#menu-screen .btn-main:nth-child(1) { animation-delay: 100ms; }
+#menu-screen .btn-main:nth-child(2) { animation-delay: 200ms; }
+#menu-screen .btn-main:nth-child(3) { animation-delay: 300ms; }
+#menu-screen .btn-main:nth-child(4) { animation-delay: 400ms; }
+
+/* 难度卡片入场动画 */
+.difficulty-card {
+    opacity: 0;
+    animation: slideUpBounce 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.difficulty-card:nth-child(1) { animation-delay: 100ms; }
+.difficulty-card:nth-child(2) { animation-delay: 200ms; }
+.difficulty-card:nth-child(3) { animation-delay: 300ms; }
+
+/* 基调卡片入场动画 */
+.tone-card {
+    opacity: 0;
+    animation: slideUpBounce 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* 选项卡片入场动画 - 交错出现 */
+.option-card {
+    opacity: 0;
+    transform: translateX(30px);
+    animation: slideLeft 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.option-card:nth-child(1) { animation-delay: 50ms; }
+.option-card:nth-child(2) { animation-delay: 150ms; }
+
+/* 选项卡片悬浮效果增强 */
+.option-card:hover {
+    transform: translateX(5px) scale(1.02);
+    box-shadow: 0 0 20px rgba(26, 188, 156, 0.4),
+                0 0 40px rgba(26, 188, 156, 0.2);
+}
+
+.option-card.selected {
+    transform: scale(1.02);
+    animation: glowPulse 1.5s ease-in-out infinite;
+}
+
+/* 按钮悬浮动效增强 */
+.btn-main {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-main::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+}
+
+.btn-main:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.btn-main:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 10px 30px rgba(26, 188, 156, 0.3),
+                0 0 15px rgba(255, 255, 255, 0.2);
+}
+
 /* 按钮状态强化 */
 .btn-main:hover {
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 10px 30px rgba(26, 188, 156, 0.3),
+                0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+.btn-main:active {
+    transform: translateY(0) scale(0.98);
+    transition: all 0.1s ease;
 }
 
 .btn-main.active {
     box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+/* 难度卡片动效 */
+.difficulty-card {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.difficulty-card:hover {
+    transform: translateY(-8px) scale(1.03);
+}
+
+.difficulty-card.selected {
+    transform: translateY(-5px) scale(1.02);
+}
+
+/* 基调卡片动效 */
+.tone-card {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tone-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+.tone-card.selected {
+    animation: glowPulse 2s ease-in-out infinite;
+}
+
+/* 角色面板悬浮动效 */
+.character-panel {
+    animation: float 4s ease-in-out infinite;
+}
+
+/* 属性选择按钮动效 */
+.btn-attr {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-attr:hover {
+    background-color: #34495E;
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(26, 188, 156, 0.3);
+}
+
+.btn-attr:active {
+    transform: translateY(0) scale(0.98);
 }
 
 /* 难度卡片选中状态 - 修正 box-shadow-color 错误 */
@@ -380,10 +903,88 @@
     box-shadow: 0 0 0 4px rgba(26, 188, 156, 0.2);
 }
 
-/* 弹窗动画 */
+/* ========================================
+   弹窗与提示动效增强
+   ======================================== */
+
+/* 弹窗动画 - 缩放+模糊 */
 #modal.active #modal-content {
     transform: scale(1);
     opacity: 1;
+}
+
+#modal-content {
+    animation: elasticScale 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* 解锁提示弹窗动效 */
+.unlock-toast {
+    animation: slideRight 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+               glowPulse 2s ease-in-out 0.4s infinite;
+}
+
+/* 爽点提示动效增强 */
+.super-toast {
+    animation: zoomIn 0.3s ease,
+               bounce 1s ease-in-out 0.3s,
+               fadeOut 0.5s ease 2.5s forwards;
+}
+
+/* 基调变化提示动效 */
+.tone-change-modal {
+    animation: scaleIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+               blurFadeIn 0.3s ease;
+}
+
+/* 加载动画增强 */
+.loading-overlay {
+    animation: blurFadeIn 0.3s ease-out;
+}
+
+.loading-overlay .spinner {
+    animation: spinAndPulse 1.5s ease-in-out infinite;
+}
+
+/* 加载进度条动效 */
+.progress-fill {
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    background: linear-gradient(
+        90deg,
+        #1ABC9C,
+        #16A085,
+        #1ABC9C
+    );
+    background-size: 200% 100%;
+    animation: gradientFlow 2s linear infinite;
+}
+
+/* 图片加载动画 */
+#image-loading {
+    animation: blurFadeIn 0.3s ease-out;
+}
+
+#image-loading .loading-spinner {
+    animation: spinAndPulse 1.5s ease-in-out infinite;
+}
+
+/* 场景图片渐显 */
+.scene-image,
+#global-bg {
+    animation: blurIn 0.6s ease-out;
+}
+
+/* 下一段文本按钮动效 */
+.scene-arrow {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scene-arrow:hover {
+    transform: scale(1.15) translateX(3px);
+    box-shadow: 0 6px 20px rgba(26, 188, 156, 0.5);
+}
+
+.scene-arrow:active {
+    transform: scale(0.95);
 }
 
 /* 关键信息高亮样式 */
@@ -948,12 +1549,15 @@ p#scene-text:focus {
     }
 }
 
-/* 下一段文本按钮样式（右下角"->"按钮） */
+/* ========================================
+   下一段文本按钮样式
+   ======================================== */
 .scene-arrow {
     cursor: pointer;
     border: none;
     outline: none;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .scene-arrow:hover {
@@ -968,8 +1572,321 @@ p#scene-text:focus {
     display: none !important;
 }
 
-/* 顶部不展示游戏矛盾/结束条件等文字 */
-/* 顶部进度条整块隐藏（章节名 / 进度 / 矛盾提示统统不显示） */
+/* ========================================
+   第二项：视觉层次增强
+   ======================================== */
+
+/* ---- 毛玻璃效果 (Glassmorphism) ---- */
+
+/* 基础毛玻璃卡片 */
+.glass {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+}
+
+/* 深色毛玻璃 */
+.glass-dark {
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+}
+
+/* 浅色毛玻璃 */
+.glass-light {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+}
+
+/* 青色毛玻璃 */
+.glass-primary {
+    background: rgba(26, 188, 156, 0.15);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(26, 188, 156, 0.3);
+    border-radius: 16px;
+}
+
+/* 强模糊毛玻璃 - 用于模态框背景 */
+.glass-strong {
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(30px) saturate(200%);
+    -webkit-backdrop-filter: blur(30px) saturate(200%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+}
+
+/* ---- 阴影层次系统 ---- */
+
+/* 基础阴影 */
+.shadow-sm {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.shadow-md {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2),
+                0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.shadow-lg {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25),
+                0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.shadow-xl {
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3),
+                0 8px 24px rgba(0, 0, 0, 0.2),
+                0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* 彩色阴影 - 青色 */
+.shadow-primary {
+    box-shadow: 0 8px 32px rgba(26, 188, 156, 0.25),
+                0 4px 16px rgba(26, 188, 156, 0.15);
+}
+
+/* 内阴影 - 凹陷效果 */
+.shadow-inner {
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.3),
+                inset 0 -1px 4px rgba(255, 255, 255, 0.05);
+}
+
+/* 多层阴影 - 浮空感 */
+.shadow-float {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1),
+                0 8px 16px rgba(0, 0, 0, 0.1),
+                0 16px 32px rgba(0, 0, 0, 0.15),
+                0 32px 64px rgba(0, 0, 0, 0.1);
+}
+
+/* ---- 边框系统 ---- */
+
+/* 渐变边框 */
+.border-gradient {
+    position: relative;
+    border: none;
+}
+
+.border-gradient::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 2px;
+    border-radius: inherit;
+    background: linear-gradient(
+        135deg,
+        rgba(26, 188, 156, 0.8),
+        rgba(22, 160, 133, 0.6),
+        rgba(26, 188, 156, 0.4)
+    );
+    background-size: 200% 200%;
+    animation: gradientBorder 3s linear infinite;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+}
+
+/* 微光边框 */
+.border-glow {
+    border: 1px solid rgba(26, 188, 156, 0.3);
+    box-shadow: 0 0 10px rgba(26, 188, 156, 0.15),
+                inset 0 0 10px rgba(26, 188, 156, 0.05);
+    transition: all 0.3s ease;
+}
+
+.border-glow:hover {
+    border-color: rgba(26, 188, 156, 0.6);
+    box-shadow: 0 0 20px rgba(26, 188, 156, 0.3),
+                inset 0 0 15px rgba(26, 188, 156, 0.1);
+}
+
+/* ---- 背景层次 ---- */
+
+/* 渐变背景 - 从上到下 */
+.bg-gradient-top {
+    background: linear-gradient(
+        180deg,
+        rgba(26, 188, 156, 0.1) 0%,
+        transparent 50%
+    );
+}
+
+/* 渐变背景 - 径向光晕 */
+.bg-gradient-radial {
+    background: radial-gradient(
+        ellipse at center,
+        rgba(26, 188, 156, 0.08) 0%,
+        transparent 70%
+    );
+}
+
+/* 网格背景 */
+.bg-grid {
+    background-image: 
+        linear-gradient(rgba(26, 188, 156, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(26, 188, 156, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+}
+
+/* 点阵背景 */
+.bg-dots {
+    background-image: radial-gradient(
+        circle,
+        rgba(255, 255, 255, 0.08) 1px,
+        transparent 1px
+    );
+    background-size: 20px 20px;
+}
+
+/* 噪点纹理叠加 */
+.bg-noise::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    pointer-events: none;
+}
+
+/* ---- 视觉层次深度 ---- */
+
+/* 前景层 */
+.layer-foreground {
+    position: relative;
+    z-index: 100;
+}
+
+/* 中景层 */
+.layer-middle {
+    position: relative;
+    z-index: 50;
+}
+
+/* 背景层 */
+.layer-background {
+    position: relative;
+    z-index: 1;
+}
+
+/* 全屏背景 */
+.layer-fullscreen {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+}
+
+/* ---- 卡片视觉增强 ---- */
+
+/* 悬浮卡片效果 */
+.card-hover {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3),
+                0 0 30px rgba(26, 188, 156, 0.1);
+}
+
+/* 玻璃态卡片 */
+.card-glass {
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    transition: all 0.3s ease;
+}
+
+.card-glass:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(26, 188, 156, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2),
+                0 0 20px rgba(26, 188, 156, 0.1);
+}
+
+/* 选中状态卡片 */
+.card-selected {
+    background: rgba(26, 188, 156, 0.15);
+    border: 2px solid rgba(26, 188, 156, 0.5);
+    box-shadow: 0 0 20px rgba(26, 188, 156, 0.2),
+                inset 0 0 20px rgba(26, 188, 156, 0.05);
+    animation: glowPulse 2s ease-in-out infinite;
+}
+
+/* ---- 顶部进度条样式 ---- */
 .progress-bar-container {
     display: none !important;
+}
+
+/* ========================================
+   应用视觉层次到游戏界面
+   ======================================== */
+
+/* 游戏界面容器 - 玻璃态 */
+#gameplay-screen {
+    background: transparent;
+}
+
+/* 选项容器：不再铺黑底/毛玻璃，避免挡住 #global-bg 全屏剧情图 */
+.options-container {
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-top: none;
+}
+
+/* 文本显示区域：无暗角渐变，仅依赖 #scene-text 的 text-shadow 保证可读性 */
+.text-display-area {
+    background: transparent;
+}
+
+/* 角色面板 - 玻璃态 */
+.character-panel {
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* 设置界面 - 玻璃态 */
+#setting-screen .setting-content {
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+}
+
+/* 加载界面 */
+#loading-screen {
+    background: radial-gradient(
+        ellipse at center,
+        rgba(26, 188, 156, 0.1) 0%,
+        rgba(0, 0, 0, 0.8) 70%
+    );
+}
+
+/* 模态框背景 */
+#modal {
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+#modal-content {
+    background: rgba(20, 20, 25, 0.95);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5),
+                0 0 40px rgba(26, 188, 156, 0.1);
 }

@@ -8,6 +8,13 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- 路径改回：和index.html同目录，直接写style.css -->
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="typography_addition.css">
+    <link rel="stylesheet" href="color_system.css">
+    <link rel="stylesheet" href="loading_enhancement.css">
+    <link rel="stylesheet" href="responsive_enhancement.css">
+    <link rel="stylesheet" href="accessibility.css">
+    <link rel="stylesheet" href="typewriter.css">
+    <link rel="stylesheet" href="transitions.css">
     <!-- 引入图标库（适配属性/难度/基调图标） -->
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <!-- 引入Google Fonts中文字体 -->
@@ -20,7 +27,8 @@
     <div id="global-bg" class="fixed inset-0 bg-contain bg-center opacity-60 z-0"></div>
     
     <!-- 主菜单界面（默认显示） -->
-    <div id="menu-screen" class="screen flex flex-col items-center justify-center h-screen relative z-10" role="main" aria-labelledby="game-logo">
+    <!-- 默认主菜单须带 active：transitions.css 中 .screen 默认 visibility:hidden，仅 .screen.active 可见 -->
+    <div id="menu-screen" class="screen active flex flex-col items-center justify-center h-screen relative z-10" role="main" aria-labelledby="game-logo">
         <div id="game-logo" class="game-logo w-[200px] h-[80px] bg-white/10 rounded-lg flex items-center justify-center mb-16" aria-hidden="true">
             <span class="text-2xl font-bold">文本冒险游戏</span>
         </div>
@@ -590,5 +598,9 @@
 
     <!-- 使用模块化脚本 -->
     <script src="script-modular.js"></script>
+    <!-- 无障碍增强脚本 -->
+    <script src="accessibility.js"></script>
+    <!-- 打字机效果 -->
+    <script src="typewriter.js"></script>
 </body>
 </html>
