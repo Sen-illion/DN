@@ -331,6 +331,7 @@ const Game = (() => {
         const isSceneCachePath = lowerUrl.startsWith('/image_cache/')
             || lowerUrl.startsWith('image_cache/')
             || lowerUrl.includes('/image_cache/');
+        const isCloudUrl = lowerUrl.startsWith('http://') || lowerUrl.startsWith('https://');
 
         if (isMainCharacterPath) {
             return null;
@@ -338,7 +339,7 @@ const Game = (() => {
         if (imageType && imageType !== 'story_scene') {
             return null;
         }
-        if (!imageType && !isSceneCachePath) {
+        if (!imageType && !isSceneCachePath && !isCloudUrl) {
             return null;
         }
 

@@ -2,15 +2,44 @@
 """
 初登场图归档时：用视觉模型在图中标出指定角色位置（bbox），并裁成单人全身参考图。
 让后续生图明确「参考图里哪个人」是该配角，避免多人同框时用错脸。
+支持本地路径与 HTTP(S) URL 输入；URL 时会先拉取到临时文件再处理。
 """
 import base64
 import json
 import re
+import tempfile
 from pathlib import Path
-from typing import Dict, Optional, Tuple
+from typing import Dict, Optional, Tuple, Union
 
 from src.config import VISION_FOR_REF_CROP
 from src.utils.text_utils import _safe_str, _clip_text
+
+
+def resolve_image_path_or_url(path_or_url: Union[str, Path]) -> Optional[Path]:
+    """
+    将本地路径或 HTTP(S) URL 转为可读的 Path。
+    URL 时：fetch 到临时文件，返回 Path（调用方负责清理，或进程退出时自动清理）。
+    :return: 可用的 Path，失败返回 None
+    """
+    if not path_or_url:
+        return None
+    s = str(path_or_url).strip()
+    if s.startswith(("http://", "https://")):
+        try:
+            import requests
+            resp = requests.get(s, timeout=30)
+            resp.raise_for_status()
+            ct = (resp.headers.get("content-type") or "").lower()
+            ext = ".png" if "png" in ct else ".jpg"
+            tmp = tempfile.NamedTemporaryFile(suffix=ext, delete=False)
+            tmp.write(resp.content)
+            tmp.close()
+            return Path(tmp.name)
+        except Exception as e:
+            print(f"⚠️ [vision] 从 URL 拉取图片失败：{e}")
+            return None
+    p = Path(s)
+    return p if p.exists() else None
 
 
 def _load_image_as_data_uri(path: Path, max_side: int = 1024) -> Optional[str]:
@@ -528,7 +557,7 @@ def crop_image_by_bbox(
 
 
 def get_character_bbox_and_crop(
-    scene_image_path: Path,
+    scene_image_path_or_url: Union[str, Path],
     ref_dir: Path,
     character_name: str,
     appearance_hints: str,
@@ -537,24 +566,38 @@ def get_character_bbox_and_crop(
 ) -> Tuple[Optional[Dict[str, float]], Optional[Path]]:
     """
     在场景图中定位指定角色（bbox），并裁成单人全身参考图保存。
+    scene_image_path_or_url 支持本地路径或 http(s):// URL；URL 时会先拉取到临时文件。
     通过 character_name + appearance_hints 让视觉模型知道要找的是哪个人。
     若提供 protagonist_ref_path，会排除与主角相似的人物，只框选配角。
     :return: (bbox, 裁剪图路径)；任一步失败则对应为 None
     """
-    bbox = _call_vision_bbox(
-        Path(scene_image_path),
-        character_name,
-        appearance_hints,
-        protagonist_ref_path=protagonist_ref_path,
-    )
-    if not bbox:
+    resolved = resolve_image_path_or_url(scene_image_path_or_url)
+    if not resolved or not resolved.exists():
         return None, None
 
-    out_path = crop_image_by_bbox(
-        Path(scene_image_path),
-        bbox,
-        ref_dir,
-        body_ref_filename,
-        padding=1.15,
-    )
-    return bbox, out_path
+    try:
+        bbox = _call_vision_bbox(
+            resolved,
+            character_name,
+            appearance_hints,
+            protagonist_ref_path=protagonist_ref_path,
+        )
+        if not bbox:
+            return None, None
+
+        out_path = crop_image_by_bbox(
+            resolved,
+            bbox,
+            ref_dir,
+            body_ref_filename,
+            padding=1.15,
+        )
+        return bbox, out_path
+    finally:
+        # 若来自 URL 的临时文件，清理
+        s = str(scene_image_path_or_url).strip()
+        if s.startswith(("http://", "https://")) and resolved and resolved.exists():
+            try:
+                resolved.unlink()
+            except Exception:
+                pass

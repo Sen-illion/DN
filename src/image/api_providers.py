@@ -629,12 +629,22 @@ def generate_main_character_image(
                     return out_path.exists()
 
                 if image_url_str_local.startswith(("http://", "https://")):
-                    resp = requests.get(image_url_str_local, timeout=60, stream=True)
-                    resp.raise_for_status()
-                    with open(out_path, "wb") as f:
-                        for chunk in resp.iter_content(chunk_size=8192):
-                            f.write(chunk)
-                    return out_path.exists()
+                    try:
+                        resp = requests.get(image_url_str_local, timeout=60, stream=True)
+                        resp.raise_for_status()
+                        with open(out_path, "wb") as f:
+                            for chunk in resp.iter_content(chunk_size=8192):
+                                f.write(chunk)
+                        return out_path.exists()
+                    except Exception:
+                        # 公网下载失败（如 OSS 未开放公共读）时，尝试用 oss2 带凭证下载
+                        try:
+                            from src.image.cloud_storage import download_oss_to_file
+                            if download_oss_to_file(image_url_str_local, out_path):
+                                return out_path.exists()
+                        except Exception:
+                            pass
+                        return False
 
                 if image_url_str_local.startswith("/image_cache/") or image_url_str_local.startswith("image_cache/"):
                     import shutil
@@ -1387,7 +1397,29 @@ def generate_scene_image(
                         "height": image_height,
                         "cached": False  # 私有URL无法缓存
                     }
-                
+
+                # 若已是本项目的云端 URL（OSS/R2），直接返回，不再下载到本地（避免重复落盘）
+                try:
+                    from src.image.cloud_storage import _get_config
+                    cfg = _get_config()
+                    if cfg:
+                        bucket = (cfg.get("bucket") or "").strip()
+                        endpoint = (cfg.get("endpoint") or "").strip()
+                        cdn_url = (cfg.get("cdn_url") or "").strip().rstrip("/")
+                        is_our_cloud = (bucket and bucket in image_url) or (endpoint and endpoint in image_url) or (cdn_url and image_url.startswith(cdn_url))
+                        if is_our_cloud:
+                            print(f"☁️ 图片已在云端，直接使用 URL（跳过本地缓存）")
+                            return {
+                                "url": image_url,
+                                "prompt": prompt,
+                                "style": style,
+                                "width": image_width,
+                                "height": image_height,
+                                "cached": False
+                            }
+                except Exception:
+                    pass
+
                 # 下载图片到本地（带重试 + 流式写入，降低 image.pollinations.ai 等站点超时概率）
                 print(f"📥 正在下载图片到本地缓存：{image_url[:80]}...")
                 import time
@@ -1421,6 +1453,23 @@ def generate_scene_image(
                                 "height": image_height,
                                 "cached": False
                             }
+                        if e.response and e.response.status_code == 403:
+                            # 403：OSS 未开放公共读，尝试用 oss2 带凭证下载
+                            try:
+                                from src.image.cloud_storage import download_oss_to_file
+                                cache_path.parent.mkdir(parents=True, exist_ok=True)
+                                if download_oss_to_file(image_url, cache_path):
+                                    print(f"✅ 图片已通过 OSS 凭证缓存到本地：{cache_path}")
+                                    return {
+                                        "url": f"/image_cache/{prompt_hash}.png",
+                                        "prompt": prompt,
+                                        "style": style,
+                                        "width": image_width,
+                                        "height": image_height,
+                                        "cached": True
+                                    }
+                            except Exception:
+                                pass
                         raise
                     except (requests.exceptions.Timeout, requests.exceptions.ConnectionError) as e:
                         last_err = e
@@ -1456,6 +1505,21 @@ def generate_scene_image(
                     "cached": True
                 }
             except Exception as cache_error:
+                # 如果缓存过程中写入失败，尝试用 oss2 带凭证下载（OSS 403 等）
+                try:
+                    from src.image.cloud_storage import download_oss_to_file
+                    if 'cache_path' in locals() and download_oss_to_file(image_url, cache_path):
+                        print(f"✅ 图片已通过 OSS 凭证缓存到本地：{cache_path}")
+                        return {
+                            "url": f"/image_cache/{prompt_hash}.png",
+                            "prompt": prompt,
+                            "style": style,
+                            "width": image_width,
+                            "height": image_height,
+                            "cached": True
+                        }
+                except Exception:
+                    pass
                 # 如果缓存过程中写入失败，确保不留空文件
                 try:
                     if 'cache_path' in locals() and cache_path.exists():

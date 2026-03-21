@@ -66,15 +66,16 @@ def _archive_supporting_roles_on_option_shown(game_id, option_data, global_state
     prompt = (scene_image.get("prompt") or "").strip()
     if not scene_url or not prompt:
         return
-    # 仅支持本地缓存路径（/image_cache/xxx.png 或 image_cache/xxx.png）
-    if scene_url.startswith("/image_cache/"):
+    # 支持本地缓存路径与云端 URL
+    if scene_url.startswith("/image_cache/") or scene_url.startswith("image_cache/"):
         name = Path(scene_url).name
-    elif scene_url.startswith("image_cache/"):
-        name = Path(scene_url).name
+        local_path = Path(IMAGE_CACHE_DIR) / name
+        if not local_path.exists():
+            return
+        scene_path_for_archive = str(local_path)
+    elif scene_url.startswith("http://") or scene_url.startswith("https://"):
+        scene_path_for_archive = scene_url
     else:
-        return
-    local_path = Path(IMAGE_CACHE_DIR) / name
-    if not local_path.exists():
         return
     # 主角称呼集合：用于排除主角（如「拍短片的」可能是主角别称）
     if protagonist_names is None and global_state:
@@ -99,7 +100,7 @@ def _archive_supporting_roles_on_option_shown(game_id, option_data, global_state
         )
         if arch.get("_pending_first_appearance"):
             try:
-                archive_supporting_role_first_appearance(game_id, arch, str(local_path), prompt)
+                archive_supporting_role_first_appearance(game_id, arch, scene_path_for_archive, prompt)
             except Exception as e:
                 print(f"⚠️ 配角初登场建档失败：{e}")
 
