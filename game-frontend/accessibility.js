@@ -181,7 +181,10 @@
                 const value = btn.dataset.value;
                 btn.setAttribute('role', 'radio');
                 btn.setAttribute('aria-label', `${attrName}: ${value}`);
-                btn.setAttribute('aria-checked', btn.classList.contains('selected') ? 'true' : 'false');
+                btn.setAttribute(
+                    'aria-checked',
+                    btn.classList.contains('attr-option-btn--selected') ? 'true' : 'false'
+                );
                 
                 // 监听选择状态变化
                 btn.addEventListener('click', () => {
@@ -191,7 +194,11 @@
                 });
             });
         });
-        
+
+        if (typeof Game !== 'undefined' && typeof Game.syncAttrOptionSelectionUi === 'function') {
+            Game.syncAttrOptionSelectionUi();
+        }
+
         console.log('♿ [无障碍] 属性按钮已增强');
     }
     

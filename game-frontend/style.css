@@ -1577,23 +1577,28 @@ p#scene-text:focus {
    ======================================== */
 
 /* ---- 毛玻璃效果 (Glassmorphism) ---- */
+/* 与文档一致：浅色 rgba(255,255,255,0.1)+blur(20px)+半透边框；深色 rgba(0,0,0,0.3)+saturate */
 
-/* 基础毛玻璃卡片 */
+/* 基础毛玻璃卡片（translateZ(0) 促 Safari/WebKit 正确合成 backdrop） */
 .glass {
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: var(--color-glass-light, rgba(255, 255, 255, 0.1));
+    -webkit-backdrop-filter: blur(24px) saturate(160%);
+    backdrop-filter: blur(24px) saturate(160%);
+    border: 1px solid rgba(255, 255, 255, 0.22);
     border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.14);
+    transform: translateZ(0);
 }
 
 /* 深色毛玻璃 */
 .glass-dark {
-    background: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: var(--color-glass-dark, rgba(0, 0, 0, 0.3));
+    -webkit-backdrop-filter: blur(24px) saturate(185%);
+    backdrop-filter: blur(24px) saturate(185%);
+    border: 1px solid rgba(255, 255, 255, 0.14);
     border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    transform: translateZ(0);
 }
 
 /* 浅色毛玻璃 */
@@ -1614,13 +1619,66 @@ p#scene-text:focus {
     border-radius: 16px;
 }
 
-/* 强模糊毛玻璃 - 用于模态框背景 */
+/* 强模糊毛玻璃 - 用于模态框内容区等 */
 .glass-strong {
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(30px) saturate(200%);
-    -webkit-backdrop-filter: blur(30px) saturate(200%);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--color-glass-strong, rgba(0, 0, 0, 0.45));
+    -webkit-backdrop-filter: blur(36px) saturate(200%);
+    backdrop-filter: blur(36px) saturate(200%);
+    border: 1px solid rgba(255, 255, 255, 0.14);
     border-radius: 20px;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.35);
+    transform: translateZ(0);
+}
+
+/* 全屏遮罩：背后内容可见模糊（配合半透明底） */
+.glass-modal-overlay {
+    background: rgba(0, 0, 0, 0.42) !important;
+    -webkit-backdrop-filter: blur(18px) saturate(160%);
+    backdrop-filter: blur(18px) saturate(160%);
+    transform: translateZ(0);
+}
+
+#modal-content.glass-strong {
+    border-radius: 10px;
+}
+
+.character-panel.glass-strong {
+    border-radius: 12px;
+}
+
+/* 文档：动态模糊动画（默认不挂到全屏，按需加类） */
+@keyframes blur-pulse {
+    0%,
+    100% {
+        filter: blur(0);
+    }
+    50% {
+        filter: blur(10px);
+    }
+}
+
+.blur-animate {
+    animation: blur-pulse 2s ease-in-out infinite;
+}
+
+/* 与卡片设计稿一致的圆角（覆盖 .glass 默认 16px） */
+.difficulty-card.glass {
+    border-radius: 0.5rem;
+}
+
+.tone-glass-card {
+    border-radius: 12px;
+}
+
+.save-card.glass {
+    border-radius: 12px;
+}
+
+/* 顶栏条：贴边无圆角 */
+.glass-bar-strip {
+    border-radius: 0 !important;
+    border-left: none !important;
+    border-right: none !important;
 }
 
 /* ---- 阴影层次系统 ---- */
@@ -1848,22 +1906,11 @@ p#scene-text:focus {
     background: transparent;
 }
 
-/* 角色面板 - 玻璃态 */
-.character-panel {
-    background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-}
+/* 角色面板：毛玻璃由 HTML 上的 .glass-strong 提供 */
 
-/* 设置界面 - 玻璃态 */
-#setting-screen .setting-content {
-    background: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 20px;
+/* 设定页右侧内容：由 .glass-dark 提供 */
+#setting-screen .setting-content.glass-dark {
+    border-radius: 0;
 }
 
 /* 加载界面 */
@@ -1875,18 +1922,4 @@ p#scene-text:focus {
     );
 }
 
-/* 模态框背景 */
-#modal {
-    background: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-}
-
-#modal-content {
-    background: rgba(20, 20, 25, 0.95);
-    backdrop-filter: blur(30px);
-    -webkit-backdrop-filter: blur(30px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5),
-                0 0 40px rgba(26, 188, 156, 0.1);
-}
+/* 模态框：遮罩与内容由 .glass-modal-overlay / .glass-strong 提供（见上文） */

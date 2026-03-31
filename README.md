@@ -12,38 +12,47 @@
 #环境要求
 Python 版本：Python 3.12 及以上（详见 pyproject.toml 依赖声明）。
 
-虚拟环境：推荐使用虚拟环境隔离依赖，避免影响全局 Python 环境。
 
 #安装指南
 方式一：使用 uv 管理依赖（推荐）
-项目已配置 pyproject.toml，通过 uv 可快速完成环境搭建：
-bash
-运行
-创建虚拟环境（可选，若已有环境可跳过）
-uv venv .venv
+使用前需自行安装 uv（不包含在 Python 里）：参见 https://docs.astral.sh/uv/getting-started/installation/
 
-激活虚拟环境后，同步安装依赖
+`pyproject.toml` 是本项目的 Python 工程清单文件，里面写了 Python 版本要求、`pip`/`uv` 要装哪些依赖包等内容；根目录下的这份文件已被 uv 和 pip 识别。
+
+在项目根目录（与 `pyproject.toml` 同级）执行：
+
+创建虚拟环境（可选，若已有环境可跳过）
+
+```bash
+uv venv .venv
+```
+
+Windows PowerShell 激活虚拟环境后，同步安装依赖：
+
+```powershell
+.\.venv\Scripts\activate
 uv sync
+```
 
 方式二：使用 pip 安装依赖
-若不使用 uv，可通过 pip 完成安装：
-bash
-运行
-创建虚拟环境（可选）
+若不使用 uv，可在项目根目录执行：
+
+```powershell
 python -m venv .venv
-
-激活虚拟环境（Windows 示例）
 .\.venv\Scripts\activate
+```
 
-# 方法一：基于 pyproject.toml 安装项目（推荐）
+在项目根目录安装依赖：
+
+```powershell
 pip install .
+```
 
-# 方法二：通过 requirements.txt 安装
+若更习惯 `requirements.txt`，可改用：
+
+```powershell
 pip install -r requirements.txt
-国内用户可通过镜像源加速安装，例如：
-bash
-运行
-pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+```
 
 #配置说明
 项目通过 python-dotenv 加载环境变量，需在根目录创建 .env 文件并配置以下内容（可根据实际需求删减）。
@@ -121,12 +130,12 @@ WIKI_MAX_SNIPPET_CHARS=1200
 
 快速开始
 
-确保虚拟环境已激活：
+在终端中进入本仓库根目录（与 `pyproject.toml` 同级），激活虚拟环境：
 
-.\.venv\Scripts\activate  # Windows 示例
+```powershell
+.\.venv\Scripts\activate
 
-启动服务（以 Flask 为例，入口文件请根据实际项目调整）：
+python game_server.py
+```
 
-set FLASK_APP=app.py  # 替换为实际入口文件
-
-flask run
+在浏览器打开：`http://127.0.0.1:5001`（须带 `http://`）。

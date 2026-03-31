@@ -194,19 +194,19 @@
 /* ---- 减少动画偏好 ---- */
 
 @media (prefers-reduced-motion: reduce) {
-    .typewriter,
-    .typewriter-smooth,
-    .typewriter-char,
-    .typewriter-gradient,
-    .typewriter-breath::after {
+    html:not(.dn-motion-preview) .typewriter,
+    html:not(.dn-motion-preview) .typewriter-smooth,
+    html:not(.dn-motion-preview) .typewriter-char,
+    html:not(.dn-motion-preview) .typewriter-gradient,
+    html:not(.dn-motion-preview) .typewriter-breath::after {
         animation: none !important;
         opacity: 1 !important;
         transform: none !important;
         border-right: none !important;
     }
     
-    .typewriter::after,
-    .typewriter-smooth::after {
+    html:not(.dn-motion-preview) .typewriter::after,
+    html:not(.dn-motion-preview) .typewriter-smooth::after {
         content: none !important;
     }
 }
