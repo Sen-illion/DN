@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fragment — House of Broken Light</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,400;1,500;1,600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --void: #050308;
+            --purple-deep: #1a0d24;
+            --purple-mid: #2d1540;
+            --purple-glow: #4a2866;
+            --gold: #c9a24a;
+            --gold-bright: #e8c86a;
+            --gold-dim: #6b5a2a;
+            --seam-w: 28px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: Georgia, 'Times New Roman', serif;
+            background: var(--void);
+            color: #c4b8a8;
+        }
+
+        /* Full-screen ambient: gradients + tear layers + noise */
+        .ambient {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            background:
+                radial-gradient(ellipse 120% 80% at 10% 20%, rgba(74, 40, 102, 0.45) 0%, transparent 55%),
+                radial-gradient(ellipse 90% 70% at 95% 85%, rgba(26, 13, 36, 0.9) 0%, transparent 50%),
+                radial-gradient(ellipse 60% 50% at 50% 0%, rgba(201, 162, 74, 0.12) 0%, transparent 45%),
+                linear-gradient(165deg, var(--void) 0%, var(--purple-deep) 35%, #0d0612 70%, var(--void) 100%);
+        }
+
+        .ambient-tear {
+            position: absolute;
+            inset: 0;
+            opacity: 0.35;
+            mix-blend-mode: soft-light;
+            background: linear-gradient(105deg, transparent 40%, rgba(201, 162, 74, 0.08) 50%, transparent 60%);
+            clip-path: polygon(
+                0% 0%, 18% 0%, 22% 8%, 35% 3%, 48% 12%, 62% 0%, 78% 6%, 100% 0%,
+                100% 38%, 92% 42%, 88% 55%, 95% 68%, 100% 82%,
+                100% 100%, 70% 100%, 65% 92%, 50% 100%, 32% 96%, 15% 100%, 0% 88%,
+                0% 62%, 8% 48%, 0% 32%
+            );
+        }
+
+        .ambient-tear--2 {
+            opacity: 0.22;
+            mix-blend-mode: overlay;
+            transform: translate(3%, 2%);
+            background: linear-gradient(-25deg, rgba(45, 21, 64, 0.5) 0%, transparent 50%, rgba(201, 162, 74, 0.06) 100%);
+            clip-path: polygon(
+                5% 15%, 40% 8%, 55% 18%, 72% 10%, 100% 22%,
+                98% 45%, 85% 52%, 90% 72%, 100% 88%,
+                88% 100%, 45% 95%, 20% 100%, 0% 90%,
+                0% 55%, 12% 40%, 0% 25%
+            );
+        }
+
+        .noise-overlay {
+            position: absolute;
+            inset: 0;
+            opacity: 0.07;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            mix-blend-mode: overlay;
+        }
+
+        .grain-svg-layer {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.07;
+            mix-blend-mode: soft-light;
+            pointer-events: none;
+        }
+
+        /* Above photos, below glass seams; blend modes keep subjects readable */
+        .effects-foreground {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        /* Shallow black-gold ripples (on top of imagery) */
+        .gold-ripple-field {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+            mix-blend-mode: soft-light;
+            opacity: 0.92;
+        }
+
+        .gold-ripple-field::before,
+        .gold-ripple-field::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            background: repeating-radial-gradient(
+                circle at center,
+                transparent 0px,
+                transparent 14px,
+                rgba(40, 32, 18, 0.5) 15px,
+                transparent 18px,
+                transparent 32px,
+                rgba(107, 90, 42, 0.28) 33px,
+                transparent 38px,
+                transparent 52px,
+                rgba(201, 162, 74, 0.16) 53px,
+                transparent 58px
+            );
+        }
+
+        .gold-ripple-field::before {
+            width: 160vmax;
+            height: 160vmax;
+            left: 20%;
+            top: 30%;
+            margin-left: -80vmax;
+            margin-top: -80vmax;
+            animation: goldRippleA 14s ease-in-out infinite;
+        }
+
+        .gold-ripple-field::after {
+            width: 130vmax;
+            height: 130vmax;
+            right: 5%;
+            bottom: 15%;
+            margin-right: -65vmax;
+            margin-bottom: -65vmax;
+            animation: goldRippleB 23s ease-in-out infinite;
+            opacity: 0.8;
+        }
+
+        @keyframes goldRippleA {
+            0%, 100% { transform: scale(0.92) translate(-2%, 1%); opacity: 0.55; }
+            50% { transform: scale(1.08) translate(3%, -2%); opacity: 0.9; }
+        }
+
+        @keyframes goldRippleB {
+            0%, 100% { transform: scale(1.05) translate(2%, -3%); opacity: 0.45; }
+            40% { transform: scale(0.94) translate(-4%, 2%); opacity: 0.8; }
+            70% { transform: scale(1.02) translate(1%, 1%); opacity: 0.6; }
+        }
+
+        /* Drifting violet / gold blobs */
+        .fx-blob {
+            position: absolute;
+            border-radius: 50%;
+            mix-blend-mode: soft-light;
+            filter: blur(38px);
+            pointer-events: none;
+        }
+
+        .fx-blob--1 {
+            width: 55vmin;
+            height: 55vmin;
+            background: radial-gradient(circle, rgba(150, 80, 210, 0.58) 0%, transparent 68%);
+            left: -8%;
+            top: 15%;
+            opacity: 0.52;
+            animation: fxBlobDrift1 23s ease-in-out infinite;
+        }
+
+        .fx-blob--2 {
+            width: 48vmin;
+            height: 48vmin;
+            background: radial-gradient(circle, rgba(201, 162, 74, 0.32) 0%, rgba(90, 50, 140, 0.22) 45%, transparent 70%);
+            right: -5%;
+            bottom: 10%;
+            opacity: 0.58;
+            animation: fxBlobDrift2 19s ease-in-out infinite;
+            animation-delay: -4s;
+        }
+
+        .fx-blob--3 {
+            width: 42vmin;
+            height: 42vmin;
+            background: radial-gradient(circle, rgba(100, 45, 160, 0.5) 0%, transparent 65%);
+            left: 35%;
+            bottom: -12%;
+            opacity: 0.46;
+            animation: fxBlobDrift3 29s ease-in-out infinite;
+            animation-delay: -9s;
+        }
+
+        @keyframes fxBlobDrift1 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(35%, 18%) scale(1.12); }
+        }
+
+        @keyframes fxBlobDrift2 {
+            0%, 100% { transform: translate(0, 0) scale(1.05); }
+            45% { transform: translate(-40%, -25%) scale(0.92); }
+        }
+
+        @keyframes fxBlobDrift3 {
+            0%, 100% { transform: translate(0, 0); }
+            33% { transform: translate(-20%, -35%) scale(1.15); }
+            66% { transform: translate(15%, -8%) scale(0.95); }
+        }
+
+        /* Slow rotating conic aurora */
+        .fx-conic {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 240vmax;
+            height: 240vmax;
+            margin-left: -120vmax;
+            margin-top: -120vmax;
+            mix-blend-mode: screen;
+            opacity: 0.42;
+            animation: fxConicRotate 97s linear infinite;
+        }
+
+        .fx-conic__disk {
+            width: 100%;
+            height: 100%;
+            background: conic-gradient(
+                from 0deg,
+                transparent 0deg,
+                rgba(75, 35, 120, 0.55) 42deg,
+                transparent 88deg,
+                rgba(201, 162, 74, 0.24) 128deg,
+                transparent 178deg,
+                rgba(130, 60, 190, 0.52) 238deg,
+                transparent 292deg,
+                rgba(45, 25, 80, 0.38) 334deg,
+                transparent 360deg
+            );
+            filter: blur(48px);
+        }
+
+        @keyframes fxConicRotate {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Dark purple flowing light */
+        .flow-purple {
+            position: absolute;
+            pointer-events: none;
+            mix-blend-mode: screen;
+            filter: blur(42px);
+            opacity: 0.62;
+        }
+
+        .flow-purple--a {
+            width: 140%;
+            height: 55%;
+            left: -20%;
+            top: 12%;
+            background: linear-gradient(
+                118deg,
+                transparent 0%,
+                rgba(60, 25, 95, 0) 25%,
+                rgba(110, 50, 160, 0.62) 48%,
+                rgba(140, 70, 200, 0.72) 52%,
+                rgba(90, 40, 130, 0.55) 72%,
+                transparent 100%
+            );
+            animation: purpleDriftA 13s ease-in-out infinite;
+        }
+
+        .flow-purple--b {
+            width: 120%;
+            height: 70%;
+            right: -25%;
+            bottom: -5%;
+            background: linear-gradient(
+                42deg,
+                transparent 0%,
+                rgba(45, 20, 75, 0.48) 35%,
+                rgba(95, 45, 145, 0.78) 50%,
+                rgba(55, 25, 100, 0.52) 65%,
+                transparent 100%
+            );
+            animation: purpleDriftB 17s ease-in-out infinite;
+            opacity: 0.52;
+        }
+
+        .flow-purple--c {
+            width: 90%;
+            height: 100%;
+            left: 5%;
+            top: -10%;
+            background: linear-gradient(
+                180deg,
+                transparent 10%,
+                rgba(75, 35, 120, 0.42) 45%,
+                rgba(100, 50, 155, 0.58) 50%,
+                rgba(70, 30, 110, 0.36) 55%,
+                transparent 90%
+            );
+            animation: purpleSheen 11s ease-in-out infinite;
+            filter: blur(28px);
+            mix-blend-mode: color-dodge;
+            opacity: 0.42;
+        }
+
+        @keyframes purpleDriftA {
+            0%, 100% { transform: translate(-8%, 0) rotate(-6deg) scaleY(1); }
+            50% { transform: translate(12%, 4%) rotate(4deg) scaleY(1.08); }
+        }
+
+        @keyframes purpleDriftB {
+            0%, 100% { transform: translate(0, 6%) rotate(3deg) scale(1.02); }
+            33% { transform: translate(-10%, -4%) rotate(-2deg) scale(1.06); }
+            66% { transform: translate(6%, 2%) rotate(5deg) scale(0.98); }
+        }
+
+        @keyframes purpleSheen {
+            0%, 100% { transform: translateY(-2%) scale(1.05, 1); opacity: 0.32; }
+            50% { transform: translateY(3%) scale(1.12, 1.02); opacity: 0.58; }
+        }
+
+        /* Sparse sparkle field */
+        .fx-sparkle {
+            position: absolute;
+            inset: 0;
+            mix-blend-mode: screen;
+            background-image:
+                radial-gradient(circle at 11% 19%, rgba(255, 255, 255, 0.95) 0, rgba(255, 255, 255, 0.95) 0.45px, transparent 1.2px),
+                radial-gradient(circle at 28% 72%, rgba(232, 200, 106, 0.9) 0, rgba(232, 200, 106, 0.9) 0.45px, transparent 1.2px),
+                radial-gradient(circle at 44% 38%, rgba(255, 255, 255, 0.75) 0, rgba(255, 255, 255, 0.75) 0.4px, transparent 1px),
+                radial-gradient(circle at 63% 14%, rgba(200, 160, 255, 0.85) 0, rgba(200, 160, 255, 0.85) 0.45px, transparent 1.2px),
+                radial-gradient(circle at 78% 55%, rgba(255, 250, 220, 0.8) 0, rgba(255, 250, 220, 0.8) 0.4px, transparent 1px),
+                radial-gradient(circle at 19% 48%, rgba(232, 200, 106, 0.7) 0, rgba(232, 200, 106, 0.7) 0.4px, transparent 1px),
+                radial-gradient(circle at 52% 81%, rgba(255, 255, 255, 0.65) 0, rgba(255, 255, 255, 0.65) 0.35px, transparent 1px),
+                radial-gradient(circle at 88% 28%, rgba(180, 140, 220, 0.75) 0, rgba(180, 140, 220, 0.75) 0.4px, transparent 1px),
+                radial-gradient(circle at 7% 88%, rgba(232, 200, 106, 0.65) 0, rgba(232, 200, 106, 0.65) 0.35px, transparent 1px),
+                radial-gradient(circle at 71% 92%, rgba(255, 255, 255, 0.55) 0, rgba(255, 255, 255, 0.55) 0.35px, transparent 1px),
+                radial-gradient(circle at 36% 6%, rgba(220, 190, 255, 0.7) 0, rgba(220, 190, 255, 0.7) 0.4px, transparent 1px),
+                radial-gradient(circle at 91% 71%, rgba(255, 255, 255, 0.6) 0, rgba(255, 255, 255, 0.6) 0.35px, transparent 1px);
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            animation: fxSparkleTwinkle 6.7s ease-in-out infinite;
+            opacity: 0.4;
+        }
+
+        @keyframes fxSparkleTwinkle {
+            0%, 100% { opacity: 0.2; filter: brightness(0.95); }
+            27% { opacity: 0.5; }
+            48% { opacity: 0.16; filter: brightness(1.15); }
+            71% { opacity: 0.44; }
+        }
+
+        /* Occasional diagonal sweep */
+        .fx-sweep {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            mix-blend-mode: overlay;
+            pointer-events: none;
+        }
+
+        .fx-sweep::before {
+            content: '';
+            position: absolute;
+            top: -25%;
+            left: -45%;
+            width: 26%;
+            height: 150%;
+            background: linear-gradient(
+                100deg,
+                transparent 38%,
+                rgba(255, 248, 230, 0.16) 50%,
+                transparent 62%
+            );
+            transform: skewX(-14deg) translateX(-130%);
+            animation: fxSweepPass 18s ease-in-out infinite;
+        }
+
+        @keyframes fxSweepPass {
+            0%, 64% { transform: skewX(-14deg) translateX(-130%); opacity: 0; }
+            67% { opacity: 0.9; }
+            77% { transform: skewX(-14deg) translateX(240%); opacity: 0.38; }
+            81%, 100% { opacity: 0; transform: skewX(-14deg) translateX(240%); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .flow-purple--a,
+            .flow-purple--b,
+            .flow-purple--c,
+            .gold-ripple-field::before,
+            .gold-ripple-field::after,
+            .fx-conic,
+            .fx-blob--1,
+            .fx-blob--2,
+            .fx-blob--3,
+            .fx-sweep::before,
+            .fx-sparkle {
+                animation: none !important;
+            }
+            .glass-seam::after {
+                animation: none !important;
+            }
+            .flow-purple,
+            .gold-ripple-field {
+                opacity: 0.22;
+            }
+            .fx-conic {
+                opacity: 0.12;
+            }
+            .fx-blob--1,
+            .fx-blob--2,
+            .fx-blob--3 {
+                opacity: 0.15;
+            }
+            .fx-sparkle {
+                opacity: 0.12;
+            }
+        }
+
+        .triptych {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            min-height: 100vh;
+            width: 100%;
+            isolation: isolate;
+        }
+
+        .panel {
+            flex: 1 1 0;
+            min-width: 0;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            margin: 0;
+            border: none;
+        }
+
+        .panel img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            min-height: 100vh;
+            object-fit: cover;
+            object-position: center center;
+        }
+
+        /* Jagged vertical edges between columns (desktop) */
+        .panel--1 img {
+            clip-path: polygon(
+                0 0, 100% 0, 100% 3%, 98% 6%, 100% 10%, 99% 14%, 100% 18%, 98% 22%,
+                100% 28%, 99% 34%, 100% 40%, 98% 46%, 100% 52%, 99% 58%, 100% 64%,
+                98% 70%, 100% 76%, 99% 82%, 100% 88%, 98% 94%, 100% 100%,
+                0 100%
+            );
+        }
+
+        .panel--2 img {
+            clip-path: polygon(
+                0 0, 1% 6%, 0 12%, 1% 18%, 0 24%, 1% 30%, 0 36%, 1% 42%, 0 48%, 1% 54%,
+                0 60%, 1% 66%, 0 72%, 1% 78%, 0 84%, 1% 90%, 0 96%, 0 100%,
+                100% 100%, 99% 94%, 100% 88%, 99% 82%, 100% 76%, 99% 70%, 100% 64%, 99% 58%,
+                100% 52%, 99% 46%, 100% 40%, 99% 34%, 100% 28%, 99% 22%, 100% 16%, 99% 10%, 100% 4%, 100% 0%
+            );
+        }
+
+        .panel--3 img {
+            clip-path: polygon(
+                0 0, 100% 0, 100% 4%, 98% 8%, 100% 14%, 99% 20%, 100% 26%, 98% 32%, 100% 38%, 99% 44%,
+                100% 50%, 98% 56%, 100% 62%, 99% 68%, 100% 74%, 98% 80%, 100% 86%, 99% 92%, 100% 100%,
+                0 100%
+            );
+        }
+
+        .glass-seam {
+            flex: 0 0 var(--seam-w);
+            width: var(--seam-w);
+            min-height: 100vh;
+            position: relative;
+            z-index: 4;
+            align-self: stretch;
+            background: linear-gradient(
+                90deg,
+                rgba(5, 3, 8, 0.85) 0%,
+                rgba(45, 21, 64, 0.35) 15%,
+                rgba(255, 255, 255, 0.12) 45%,
+                rgba(201, 162, 74, 0.18) 50%,
+                rgba(255, 255, 255, 0.1) 55%,
+                rgba(45, 21, 64, 0.35) 85%,
+                rgba(5, 3, 8, 0.85) 100%
+            );
+            backdrop-filter: blur(10px) saturate(1.15);
+            -webkit-backdrop-filter: blur(10px) saturate(1.15);
+            box-shadow:
+                inset 0 0 24px rgba(74, 40, 102, 0.55),
+                inset 0 0 8px rgba(201, 162, 74, 0.25),
+                0 0 20px rgba(201, 162, 74, 0.15),
+                0 0 40px rgba(45, 21, 64, 0.5);
+        }
+
+        .glass-seam::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(
+                125deg,
+                transparent 0px,
+                transparent 6px,
+                rgba(255, 255, 255, 0.04) 6px,
+                rgba(255, 255, 255, 0.04) 7px
+            );
+            pointer-events: none;
+        }
+
+        .glass-seam::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 10%;
+            bottom: 10%;
+            width: 1px;
+            transform: translateX(-50%);
+            background: linear-gradient(
+                180deg,
+                transparent,
+                rgba(232, 200, 106, 0.5) 30%,
+                rgba(201, 162, 74, 0.7) 50%,
+                rgba(232, 200, 106, 0.45) 70%,
+                transparent
+            );
+            box-shadow: 0 0 12px rgba(232, 200, 106, 0.35);
+            pointer-events: none;
+            animation: seamGlowPulse 4.5s ease-in-out infinite;
+        }
+
+        @keyframes seamGlowPulse {
+            0%, 100% {
+                opacity: 0.75;
+                box-shadow: 0 0 10px rgba(232, 200, 106, 0.25), 0 0 22px rgba(120, 70, 180, 0.2);
+            }
+            50% {
+                opacity: 1;
+                box-shadow: 0 0 18px rgba(232, 200, 106, 0.55), 0 0 36px rgba(140, 80, 200, 0.35);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .triptych {
+                flex-direction: column;
+                min-height: auto;
+            }
+
+            .panel img {
+                min-height: 32vh;
+                height: 32vh;
+            }
+
+            .panel--1 img,
+            .panel--2 img,
+            .panel--3 img {
+                clip-path: none;
+            }
+
+            .glass-seam {
+                flex: 0 0 18px;
+                width: 100%;
+                min-height: 18px;
+                height: 18px;
+                background: linear-gradient(
+                    180deg,
+                    rgba(5, 3, 8, 0.9) 0%,
+                    rgba(45, 21, 64, 0.4) 20%,
+                    rgba(255, 255, 255, 0.1) 45%,
+                    rgba(201, 162, 74, 0.2) 50%,
+                    rgba(255, 255, 255, 0.08) 55%,
+                    rgba(45, 21, 64, 0.4) 80%,
+                    rgba(5, 3, 8, 0.9) 100%
+                );
+                box-shadow:
+                    inset 0 0 16px rgba(74, 40, 102, 0.5),
+                    inset 0 0 6px rgba(201, 162, 74, 0.2),
+                    0 0 16px rgba(201, 162, 74, 0.12);
+            }
+
+            .glass-seam::before {
+                background: repeating-linear-gradient(
+                    35deg,
+                    transparent 0px,
+                    transparent 8px,
+                    rgba(255, 255, 255, 0.05) 8px,
+                    rgba(255, 255, 255, 0.05) 9px
+                );
+            }
+
+            .glass-seam::after {
+                left: 10%;
+                right: 10%;
+                top: 50%;
+                bottom: auto;
+                width: auto;
+                height: 1px;
+                transform: translateY(-50%);
+                background: linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(232, 200, 106, 0.45) 25%,
+                    rgba(201, 162, 74, 0.65) 50%,
+                    rgba(232, 200, 106, 0.45) 75%,
+                    transparent
+                );
+            }
+
+            .ambient-tear {
+                clip-path: polygon(
+                    0% 0%, 100% 0%, 100% 12%, 88% 18%, 100% 28%, 92% 40%, 100% 55%,
+                    96% 70%, 100% 85%, 100% 100%, 0% 100%, 0% 78%, 10% 65%, 0% 48%, 8% 32%, 0% 15%
+                );
+            }
+
+            .ambient-tear--2 {
+                clip-path: polygon(
+                    0% 8%, 100% 0%, 100% 100%, 0% 92%, 15% 85%, 0% 70%, 12% 50%, 0% 30%
+                );
+            }
+
+            .literary-epigraph,
+            .literary-coda {
+                max-width: 88%;
+                left: 50%;
+                right: auto;
+                transform: translateX(-50%);
+                text-align: center;
+            }
+
+            .literary-epigraph {
+                top: 4%;
+            }
+
+            .literary-center {
+                max-width: 88%;
+                padding: 0 1rem;
+            }
+
+            .literary-coda {
+                bottom: 4%;
+            }
+        }
+
+        /* Literary overlay: top of triptych stack (above seams and effects) */
+        .literary-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 10;
+            pointer-events: none;
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-style: italic;
+            font-weight: 400;
+            color: rgba(232, 218, 196, 0.88);
+            text-shadow:
+                0 0 1px rgba(5, 3, 8, 1),
+                0 2px 16px rgba(5, 3, 8, 0.95),
+                0 0 32px rgba(26, 13, 36, 0.85);
+        }
+
+        .literary-epigraph {
+            position: absolute;
+            top: 6%;
+            left: 4%;
+            max-width: min(26rem, 30vw);
+            font-size: clamp(0.95rem, 1.55vw, 1.3rem);
+            line-height: 1.6;
+            letter-spacing: 0.06em;
+            opacity: 0.92;
+        }
+
+        .literary-center {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            margin: 0;
+            border: none;
+            padding: 0;
+            max-width: min(36rem, 46vw);
+            font-size: clamp(1.05rem, 2.1vw, 1.75rem);
+            line-height: 1.45;
+            letter-spacing: 0.04em;
+            opacity: 0.9;
+        }
+
+        .literary-center cite {
+            display: block;
+            margin-top: 1.1em;
+            font-size: 0.78em;
+            letter-spacing: 0.12em;
+            opacity: 0.72;
+            font-style: italic;
+        }
+
+        .literary-coda {
+            position: absolute;
+            bottom: 7%;
+            right: 4%;
+            max-width: min(22rem, 28vw);
+            font-size: clamp(0.88rem, 1.35vw, 1.12rem);
+            line-height: 1.55;
+            letter-spacing: 0.05em;
+            text-align: right;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <svg class="svg-defs" aria-hidden="true" width="0" height="0" style="position:absolute">
+        <defs>
+            <filter id="grain" x="0" y="0">
+                <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" result="t" />
+                <feColorMatrix type="saturate" values="0" in="t" result="g" />
+                <feComponentTransfer in="g" result="o">
+                    <feFuncA type="linear" slope="0.4" />
+                </feComponentTransfer>
+            </filter>
+        </defs>
+    </svg>
+
+    <div class="ambient" aria-hidden="true">
+        <div class="ambient-tear"></div>
+        <div class="ambient-tear ambient-tear--2"></div>
+        <div class="noise-overlay"></div>
+        <svg class="grain-svg-layer" aria-hidden="true" preserveAspectRatio="none" viewBox="0 0 100 100">
+            <rect width="100%" height="100%" fill="white" filter="url(#grain)" />
+        </svg>
+    </div>
+
+    <main class="triptych">
+        <div class="effects-foreground" aria-hidden="true">
+            <div class="gold-ripple-field"></div>
+            <div class="fx-blob fx-blob--1"></div>
+            <div class="fx-blob fx-blob--2"></div>
+            <div class="fx-blob fx-blob--3"></div>
+            <div class="fx-conic"><div class="fx-conic__disk"></div></div>
+            <div class="flow-purple flow-purple--a"></div>
+            <div class="flow-purple flow-purple--b"></div>
+            <div class="flow-purple flow-purple--c"></div>
+            <div class="fx-sparkle"></div>
+            <div class="fx-sweep"></div>
+        </div>
+        <section class="literary-overlay" aria-label="Literary fragments">
+            <p class="literary-epigraph">In the house of broken light, every shard still remembers the sun—yet none will name it aloud.</p>
+            <blockquote class="literary-center">
+                <span>What the night renames, the dawn does not forgive; we walk the ruins wearing faces we never chose.</span>
+                <cite>— from the dust, unnumbered</cite>
+            </blockquote>
+            <p class="literary-coda">To be whole again would be another kind of loss. The crack is where the truth gets in.</p>
+        </section>
+        <figure class="panel panel--1">
+            <img src="./微信图片_20260328105239_294_2.jpg" alt="Panel one" width="800" height="1200" decoding="async">
+        </figure>
+        <div class="glass-seam" aria-hidden="true"></div>
+        <figure class="panel panel--2">
+            <img src="./微信图片_20260328105241_296_2.jpg" alt="Panel two" width="800" height="1200" decoding="async">
+        </figure>
+        <div class="glass-seam" aria-hidden="true"></div>
+        <figure class="panel panel--3">
+            <img src="./微信图片_20260328105240_295_2.jpg" alt="Panel three" width="800" height="1200" decoding="async">
+        </figure>
+    </main>
+</body>
+</html>
