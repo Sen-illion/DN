@@ -1,4 +1,4 @@
-#使用说明
+# 使用说明
 
 本项目是一个为叙事类/文字冒险类游戏服务的「内容生产引擎」，用多种大模型（LLM + 视觉模型）自动生成世界观、剧情分章、主角设定以及对应的剧情插图。
 目录
@@ -6,14 +6,12 @@
 ·安装指南
 ·配置说明
 ·快速开始
-·贡献指南
-·许可证
 
-#环境要求
+# 环境要求
 Python 版本：Python 3.12 及以上（详见 pyproject.toml 依赖声明）。
 
 
-#安装指南
+# 安装指南
 方式一：使用 uv 管理依赖（推荐）
 使用前需自行安装 uv（不包含在 Python 里）：参见 https://docs.astral.sh/uv/getting-started/installation/
 
@@ -54,37 +52,30 @@ pip install .
 pip install -r requirements.txt
 ```
 
-#配置说明
+# 配置说明
 项目通过 python-dotenv 加载环境变量，需在根目录创建 .env 文件并配置以下内容（可根据实际需求删减）。
 1. 大语言模型配置
 env
-# 通用大模型调用（用于文本分析、剧情生成等）
+#通用大模型调用（用于文本分析、剧情生成等）
 Camera_Analyst_API_KEY=your_api_key
 Camera_Analyst_BASE_URL=https://api.yunwu.ai/v1
 Camera_Analyst_MODEL=gpt-4o
 Camera_Analyst_READ_TIMEOUT=180
+
 2. 群体智能（Council）配置
 env
-# 多模型列表（逗号分隔），默认使用 Camera_Analyst_MODEL
+#多模型列表（逗号分隔），默认使用 Camera_Analyst_MODEL
 COUNCIL_MODELS=gpt-4o,gpt-4.1,gpt-4o-mini
-# 主持人模型，默认使用 Camera_Analyst_MODEL
+#主持人模型，默认使用 Camera_Analyst_MODEL
 CHAIRMAN_MODEL=gpt-4o
+
 3. 图像生成配置
 env
-# 图像生成服务提供商（默认：yunwu）
+#图像生成服务提供商（默认：yunwu）
 IMAGE_GENERATION_PROVIDER=yunwu
 Image_Generation_API_KEY=your_image_api_key
 Image_Generation_BASE_URL=https://yunwu.ai/v1
 Image_Generation_MODEL=sora_image
-
-# 可选：其他图像服务配置
-REPLICATE_API_TOKEN=
-
-OPENAI_API_KEY=
-
-STABLE_DIFFUSION_BASE_URL=
-
-STABLE_DIFFUSION_API_KEY=
 
 4. 图像编辑（img2img）配置
    
@@ -128,7 +119,7 @@ WIKI_TIMEOUT_SECONDS=8
 
 WIKI_MAX_SNIPPET_CHARS=1200
 
-快速开始
+# 快速开始
 
 在终端中进入本仓库根目录（与 `pyproject.toml` 同级），激活虚拟环境：
 
