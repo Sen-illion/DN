@@ -8,938 +8,25 @@
 // ====================================
 console.log('🚀 [代码版本] 使用同一定位上下文方案已加载');
 
-// 完整动效预览：在系统「减少动画」开启时仍可看 GSAP/CSS 动效（本地调试用）
-function initDnMotionPreviewFromUrlOrStorage() {
-    try {
-        const p = new URLSearchParams(window.location.search);
-        if (p.get('fullMotion') === '1' || p.get('motion') === 'full') {
-            localStorage.setItem('dn-full-motion-preview', '1');
-        }
-        if (p.get('fullMotion') === '0') {
-            localStorage.removeItem('dn-full-motion-preview');
-        }
-        if (localStorage.getItem('dn-full-motion-preview') === '1') {
-            document.documentElement.classList.add('dn-motion-preview');
-            console.log(
-                '🎬 [动效] 已开启完整动效预览（本页忽略系统「减少动画」）。关闭：地址栏加 ?fullMotion=0 后回车'
-            );
-        }
-    } catch (err) {
-        /* ignore */
-    }
-}
-initDnMotionPreviewFromUrlOrStorage();
-
 // ========== 无障碍功能初始化 ==========
 // 检测用户是否偏好减少动画
 const prefersReducedMotion = window.matchMedia(
     '(prefers-reduced-motion: reduce)'
 ).matches;
-const dnMotionPreviewOn = document.documentElement.classList.contains('dn-motion-preview');
 
-if (prefersReducedMotion && !dnMotionPreviewOn) {
+if (prefersReducedMotion) {
     document.body.classList.add('reduce-motion');
-    document.querySelectorAll('.scroll-reveal, .scroll-reveal-fade').forEach((el) => {
-        el.classList.add('scroll-reveal--visible');
-    });
-    console.log(
-        '♿ [无障碍] 用户偏好减少动画，已应用降级样式（难度/基调等交错动效已跳过，属正常）。若需在本机预览完整动效：打开 ?fullMotion=1'
-    );
-}
-
-// ========== 方案 A：滚动 reveal（IntersectionObserver）+ GSAP 入口 ==========
-let scrollRevealObserver = null;
-
-function prefersReducedMotionActive() {
-    if (document.documentElement.classList.contains('dn-motion-preview')) {
-        return false;
-    }
-    return (
-        document.body.classList.contains('reduce-motion') ||
-        (typeof window.matchMedia === 'function' &&
-            window.matchMedia('(prefers-reduced-motion: reduce)').matches)
-    );
-}
-
-function initScrollRevealObserver() {
-    if (prefersReducedMotionActive()) {
-        return;
-    }
-    if (scrollRevealObserver) {
-        return;
-    }
-    scrollRevealObserver = new IntersectionObserver(
-        (entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('scroll-reveal--visible');
-                    if (entry.target.classList.contains('scroll-reveal-stagger')) {
-                        const kids = entry.target.querySelectorAll(':scope > .attr-item, :scope > .scroll-reveal-item');
-                        kids.forEach((kid, i) => {
-                            window.setTimeout(() => kid.classList.add('scroll-reveal-item--visible'), 68 * i);
-                        });
-                    }
-                    scrollRevealObserver.unobserve(entry.target);
-                }
-            });
-        },
-        { threshold: [0, 0.08, 0.16], rootMargin: '0px 0px -8% 0px' }
-    );
-}
-
-function refreshScrollReveal() {
-    if (prefersReducedMotionActive()) {
-        document.querySelectorAll('.scroll-reveal, .scroll-reveal-fade').forEach((el) => {
-            el.classList.add('scroll-reveal--visible');
-        });
-        document.querySelectorAll('.scroll-reveal-stagger .attr-item, .scroll-reveal-stagger .scroll-reveal-item').forEach((el) => {
-            el.classList.add('scroll-reveal-item--visible');
-        });
-        return;
-    }
-    if (typeof IntersectionObserver === 'undefined') {
-        document.querySelectorAll('.scroll-reveal, .scroll-reveal-fade').forEach((el) => {
-            el.classList.add('scroll-reveal--visible');
-        });
-        document.querySelectorAll('.scroll-reveal-stagger .attr-item, .scroll-reveal-stagger .scroll-reveal-item').forEach((el) => {
-            el.classList.add('scroll-reveal-item--visible');
-        });
-        return;
-    }
-    initScrollRevealObserver();
-    document
-        .querySelectorAll(
-            '.scroll-reveal:not(.scroll-reveal--visible), .scroll-reveal-fade:not(.scroll-reveal--visible)'
-        )
-        .forEach((el) => {
-            try {
-                scrollRevealObserver.observe(el);
-            } catch (err) {
-                el.classList.add('scroll-reveal--visible');
-            }
-        });
-}
-
-function splitMenuTitleForMotion() {
-    if (prefersReducedMotionActive()) {
-        return;
-    }
-    const logo = document.getElementById('game-logo');
-    if (!logo) {
-        return;
-    }
-    const inner = logo.querySelector('span.text-2xl');
-    if (!inner || inner.dataset.motionChars === '1') {
-        return;
-    }
-    const text = inner.textContent.trim();
-    if (!text) {
-        return;
-    }
-    inner.dataset.motionChars = '1';
-    inner.textContent = '';
-    [...text].forEach((ch) => {
-        const s = document.createElement('span');
-        s.className = 'motion-title-char';
-        s.style.display = 'inline-block';
-        s.textContent = ch;
-        inner.appendChild(s);
-    });
-}
-
-function playMenuLogoGsap() {
-    if (prefersReducedMotionActive() || typeof gsap === 'undefined') {
-        return;
-    }
-    if (typeof ScrollTrigger !== 'undefined') {
-        gsap.registerPlugin(ScrollTrigger);
-    }
-    const logo = document.querySelector('#menu-screen #game-logo');
-    if (!logo) {
-        return;
-    }
-    const chars = logo.querySelectorAll('.motion-title-char');
-    const tl = gsap.timeline();
-    if (chars.length) {
-        tl.from(logo, { opacity: 0, y: -22, duration: 0.52, ease: 'power3.out' });
-        tl.from(
-            chars,
-            {
-                opacity: 0,
-                y: 14,
-                stagger: 0.045,
-                duration: 0.36,
-                ease: 'power2.out'
-            },
-            '-=0.28'
-        );
-    } else {
-        tl.from(logo, {
-            opacity: 0,
-            y: -24,
-            duration: 0.65,
-            ease: 'power3.out',
-            delay: 0.05
-        });
-    }
-}
-
-function initMenuTitleCssFallback() {
-    if (prefersReducedMotionActive() || typeof gsap !== 'undefined') {
-        return;
-    }
-    const logo = document.querySelector('#menu-screen #game-logo');
-    if (!logo) {
-        return;
-    }
-    const chars = logo.querySelectorAll('.motion-title-char');
-    logo.classList.add('motion-logo-css-enter');
-    if (chars.length) {
-        chars.forEach((c, i) => {
-            c.style.animationDelay = `${0.12 + i * 0.05}s`;
-            c.classList.add('motion-title-char-css');
-        });
-    }
-}
-
-function initMotionPhaseA() {
-    splitMenuTitleForMotion();
-    playMenuLogoGsap();
-    initMenuTitleCssFallback();
-    refreshScrollReveal();
-}
-
-// ========== 数字滚动（Count-up）：指南 §2 — RAF + easeOutQuart，可选 GSAP ==========
-const countUpActiveByElement = new WeakMap();
-let menuStatGsapTweens = [];
-
-function easeOutQuart(t) {
-    return 1 - Math.pow(1 - t, 4);
-}
-
-function easeOutCubic(t) {
-    return 1 - Math.pow(1 - t, 3);
-}
-
-function easeOutExpo(t) {
-    return t >= 1 ? 1 : 1 - Math.pow(2, -10 * t);
-}
-
-function pickCountEase(name) {
-    if (name === 'cubic') {
-        return easeOutCubic;
-    }
-    if (name === 'expo') {
-        return easeOutExpo;
-    }
-    return easeOutQuart;
-}
-
-function formatCountUpNumber(n, decimals) {
-    const d = Math.max(0, Math.min(4, decimals || 0));
-    if (d === 0) {
-        return Math.floor(n).toLocaleString('zh-CN');
-    }
-    return n.toLocaleString('zh-CN', {
-        minimumFractionDigits: d,
-        maximumFractionDigits: d
-    });
-}
-
-function cancelCountUp(el) {
-    const stop = countUpActiveByElement.get(el);
-    if (typeof stop === 'function') {
-        stop();
-    }
-    countUpActiveByElement.delete(el);
-}
-
-function killMenuStatGsapTweens() {
-    menuStatGsapTweens.forEach((tw) => {
-        if (tw && typeof tw.kill === 'function') {
-            tw.kill();
-        }
-    });
-    menuStatGsapTweens = [];
-}
-
-/** 指南示例：从 start 到 end，requestAnimationFrame + 缓动 */
-function animateCountValue(el, start, end, durationMs, options = {}) {
-    const decimals = options.decimals != null ? options.decimals : 0;
-    const prefix = options.prefix || '';
-    const suffix = options.suffix || '';
-    const easeKey = options.easing || 'quart';
-    const easeFn = typeof options.easeFn === 'function' ? options.easeFn : pickCountEase(easeKey);
-    const onComplete = options.onComplete;
-
-    cancelCountUp(el);
-
-    const apply = (val) => {
-        el.textContent = prefix + formatCountUpNumber(val, decimals) + suffix;
-    };
-
-    if (prefersReducedMotionActive() || durationMs <= 0) {
-        apply(end);
-        if (onComplete) {
-            onComplete();
-        }
-        return;
-    }
-
-    const range = end - start;
-    const startTime = performance.now();
-    let raf = 0;
-
-    const step = (now) => {
-        if (prefersReducedMotionActive()) {
-            apply(end);
-            countUpActiveByElement.delete(el);
-            if (onComplete) {
-                onComplete();
-            }
-            return;
-        }
-        const elapsed = now - startTime;
-        const p = Math.min(elapsed / durationMs, 1);
-        const eased = easeFn(p);
-        const current = start + range * eased;
-        apply(current);
-        if (p < 1) {
-            raf = requestAnimationFrame(step);
-        } else {
-            apply(end);
-            countUpActiveByElement.delete(el);
-            if (onComplete) {
-                onComplete();
-            }
-        }
-    };
-
-    const stop = () => {
-        if (raf) {
-            cancelAnimationFrame(raf);
-        }
-        raf = 0;
-        countUpActiveByElement.delete(el);
-    };
-    countUpActiveByElement.set(el, stop);
-    apply(start);
-    raf = requestAnimationFrame(step);
-}
-
-function freezeMenuStatsForReduce() {
-    killMenuStatGsapTweens();
-    const root = document.getElementById('menu-stats');
-    if (!root) {
-        return;
-    }
-    root.querySelectorAll('[data-count-target]').forEach((el) => {
-        cancelCountUp(el);
-        const target = parseFloat(el.getAttribute('data-count-target'), 10);
-        if (Number.isNaN(target)) {
-            return;
-        }
-        const decimals = parseInt(el.getAttribute('data-count-decimals') || '0', 10) || 0;
-        const prefix = el.getAttribute('data-count-prefix') || '';
-        const suffix = el.getAttribute('data-count-suffix') || '';
-        el.textContent = prefix + formatCountUpNumber(target, decimals) + suffix;
-    });
-}
-
-function runCountUpOnElement(el, durationMsOverride) {
-    const target = parseFloat(el.getAttribute('data-count-target'), 10);
-    if (Number.isNaN(target)) {
-        return;
-    }
-    const startVal = parseFloat(el.getAttribute('data-count-start') || '0', 10);
-    const start = Number.isNaN(startVal) ? 0 : startVal;
-    const decimals = parseInt(el.getAttribute('data-count-decimals') || '0', 10) || 0;
-    const prefix = el.getAttribute('data-count-prefix') || '';
-    const suffix = el.getAttribute('data-count-suffix') || '';
-    const durAttr = parseInt(el.getAttribute('data-count-duration') || '2200', 10);
-    const durationMs = durationMsOverride != null ? durationMsOverride : durAttr;
-    const easing = (el.getAttribute('data-count-ease') || 'quart').toLowerCase();
-
-    animateCountValue(el, start, target, durationMs, {
-        decimals,
-        prefix,
-        suffix,
-        easing
-    });
-}
-
-function runMenuStatsCountUp() {
-    const root = document.getElementById('menu-stats');
-    if (!root) {
-        return;
-    }
-    const nodes = [...root.querySelectorAll('[data-count-target]')];
-    if (prefersReducedMotionActive()) {
-        nodes.forEach((el) => runCountUpOnElement(el, -1));
-        return;
-    }
-
-    killMenuStatGsapTweens();
-    nodes.forEach((el) => cancelCountUp(el));
-
-    if (typeof gsap !== 'undefined') {
-        nodes.forEach((el, i) => {
-            const target = parseFloat(el.getAttribute('data-count-target'), 10);
-            if (Number.isNaN(target)) {
-                return;
-            }
-            const start = parseFloat(el.getAttribute('data-count-start') || '0', 10) || 0;
-            const decimals = parseInt(el.getAttribute('data-count-decimals') || '0', 10) || 0;
-            const prefix = el.getAttribute('data-count-prefix') || '';
-            const suffix = el.getAttribute('data-count-suffix') || '';
-            const dur = parseInt(el.getAttribute('data-count-duration') || '2400', 10) / 1000;
-            const proxy = { v: start };
-            const tw = gsap.to(proxy, {
-                v: target,
-                duration: dur,
-                delay: i * 0.15,
-                ease: 'power3.out',
-                onUpdate: () => {
-                    el.textContent = prefix + formatCountUpNumber(proxy.v, decimals) + suffix;
-                }
-            });
-            menuStatGsapTweens.push(tw);
-        });
-        return;
-    }
-
-    nodes.forEach((el, i) => {
-        window.setTimeout(() => runCountUpOnElement(el), i * 150);
-    });
-}
-
-// ========== GSAP ScrollTrigger：指南 §1 强化（横向滚动、交错入场）==========
-let gsapScrollTriggerInstances = [];
-
-function clearGsapScrollReveals() {
-    gsapScrollTriggerInstances.forEach((st) => {
-        if (st && typeof st.kill === 'function') {
-            st.kill();
-        }
-    });
-    gsapScrollTriggerInstances = [];
-    document.documentElement.classList.remove('motion-gsap-st');
-    if (typeof gsap !== 'undefined') {
-        gsap.killTweensOf(
-            '#difficulty-selection-screen .difficulty-card, #tone-selection-screen .tone-card, #setting-screen .nav-item'
-        );
-    }
-    document
-        .querySelectorAll('#difficulty-selection-screen .difficulty-card, #tone-selection-screen .tone-card')
-        .forEach((el) => {
-            el.style.removeProperty('opacity');
-            el.style.removeProperty('transform');
-        });
-    document.querySelectorAll('#setting-screen .nav-item').forEach((el) => {
-        el.style.removeProperty('opacity');
-        el.style.removeProperty('transform');
-    });
-}
-
-/** 底部「确认」键不参与 GSAP，避免 opacity/层叠导致点不到；进入页时强制可点可见 */
-function resetWizardScreenConfirmButton(screenRoot) {
-    if (!screenRoot || !screenRoot.querySelector) {
-        return;
-    }
-    screenRoot.querySelectorAll('.btn-confirm-difficulty, .btn-confirm-tone').forEach((btn) => {
-        btn.style.setProperty('opacity', '1');
-        btn.style.setProperty('pointer-events', 'auto');
-        btn.style.setProperty('visibility', 'visible');
-    });
-}
-
-/**
- * 主角属性页为整屏、无纵向滚动，IO 常不触发或滞后，交错子项会一直保持 opacity:0。
- * 进入该屏时强制与 IO 相同的显露顺序（与指南 §1 stagger 一致）。
- */
-/**
- * 设定页为整屏、window 不滚动，ScrollTrigger 的 top 70% 常永远不触发，nav-item 会卡在 gsap.set 的 opacity:0，全页像「点不动」。
- * 与属性页相同：强制 scroll-reveal 可见；侧栏动画改为立即 stagger，不依赖滚动。
- */
-function forceRevealSettingScreen() {
-    const screen = document.getElementById('setting-screen');
-    if (!screen || !screen.classList.contains('active')) {
-        return;
-    }
-    screen.querySelectorAll('.scroll-reveal, .scroll-reveal-fade').forEach((el) => {
-        el.classList.add('scroll-reveal--visible');
-    });
-}
-
-function forceRevealAttrSelectionScreen() {
-    const screen = document.getElementById('attr-selection-screen');
-    if (!screen || !screen.classList.contains('active')) {
-        return;
-    }
-
-    if (prefersReducedMotionActive()) {
-        screen.querySelectorAll('.scroll-reveal, .scroll-reveal-fade').forEach((el) => {
-            el.classList.add('scroll-reveal--visible');
-        });
-        screen.querySelectorAll('.scroll-reveal-stagger .attr-item, .scroll-reveal-stagger .scroll-reveal-item').forEach((el) => {
-            el.classList.add('scroll-reveal-item--visible');
-        });
-        return;
-    }
-
-    const reveals = screen.querySelectorAll('.scroll-reveal, .scroll-reveal-fade');
-    const staggerRoot = screen.querySelector('.scroll-reveal-stagger');
-
-    reveals.forEach((el) => el.classList.remove('scroll-reveal--visible'));
-    if (staggerRoot) {
-        staggerRoot.querySelectorAll(':scope > .attr-item, :scope > .scroll-reveal-item').forEach((el) => {
-            el.classList.remove('scroll-reveal-item--visible');
-        });
-    }
-
-    window.requestAnimationFrame(() => {
-        if (!screen.classList.contains('active')) {
-            return;
-        }
-        reveals.forEach((el) => el.classList.add('scroll-reveal--visible'));
-        if (staggerRoot) {
-            staggerRoot.querySelectorAll(':scope > .attr-item, :scope > .scroll-reveal-item').forEach((kid, i) => {
-                window.setTimeout(() => kid.classList.add('scroll-reveal-item--visible'), 68 * i);
-            });
-        }
-    });
-}
-
-/**
- * 难度 / 基调为全屏单页、无纵向滚动，ScrollTrigger 易不触发 onEnter。
- * 进入屏幕时用 GSAP 直接 stagger（指南 §1 观感）；无 GSAP 则强制重播 CSS keyframes。
- */
-function playDifficultySelectionMotion() {
-    const screen = document.getElementById('difficulty-selection-screen');
-    if (!screen || !screen.classList.contains('active')) {
-        return;
-    }
-    const cards = screen.querySelectorAll('.difficulty-card');
-    if (!cards.length) {
-        return;
-    }
-
-    if (prefersReducedMotionActive()) {
-        document.documentElement.classList.remove('motion-gsap-st');
-        cards.forEach((c) => {
-            c.style.removeProperty('opacity');
-            c.style.removeProperty('transform');
-        });
-        resetWizardScreenConfirmButton(screen);
-        return;
-    }
-
-    if (typeof gsap !== 'undefined') {
-        document.documentElement.classList.add('motion-gsap-st');
-        gsap.killTweensOf(cards);
-        gsap.set(cards, { opacity: 0, y: 42 });
-        gsap.to(cards, {
-            opacity: 1,
-            y: 0,
-            duration: 0.58,
-            stagger: 0.12,
-            ease: 'power2.out',
-            clearProps: 'transform'
-        });
-        resetWizardScreenConfirmButton(screen);
-        return;
-    }
-
-    document.documentElement.classList.remove('motion-gsap-st');
-    cards.forEach((card) => {
-        card.style.animation = 'none';
-        void card.offsetWidth;
-        card.style.animation = '';
-        card.style.removeProperty('opacity');
-    });
-    resetWizardScreenConfirmButton(screen);
-}
-
-function playToneSelectionMotion() {
-    const screen = document.getElementById('tone-selection-screen');
-    if (!screen || !screen.classList.contains('active')) {
-        return;
-    }
-    const cards = screen.querySelectorAll('.tone-card');
-    if (!cards.length) {
-        return;
-    }
-
-    if (prefersReducedMotionActive()) {
-        document.documentElement.classList.remove('motion-gsap-st');
-        cards.forEach((c) => {
-            c.style.removeProperty('opacity');
-            c.style.removeProperty('transform');
-        });
-        resetWizardScreenConfirmButton(screen);
-        return;
-    }
-
-    if (typeof gsap !== 'undefined') {
-        document.documentElement.classList.add('motion-gsap-st');
-        gsap.killTweensOf(cards);
-        gsap.set(cards, { opacity: 0, x: 40 });
-        gsap.to(cards, {
-            opacity: 1,
-            x: 0,
-            duration: 0.52,
-            stagger: 0.07,
-            ease: 'power2.out',
-            clearProps: 'transform'
-        });
-        resetWizardScreenConfirmButton(screen);
-        return;
-    }
-
-    document.documentElement.classList.remove('motion-gsap-st');
-    cards.forEach((card) => {
-        card.style.animation = 'none';
-        void card.offsetWidth;
-        card.style.animation = '';
-        card.style.removeProperty('opacity');
-    });
-    resetWizardScreenConfirmButton(screen);
-}
-
-function bindGsapScrollReveals() {
-    clearGsapScrollReveals();
-    if (prefersReducedMotionActive() || typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
-        return;
-    }
-    gsap.registerPlugin(ScrollTrigger);
-    const active = document.querySelector('.screen.active');
-    if (!active) {
-        return;
-    }
-
-    if (active.id === 'difficulty-selection-screen' || active.id === 'tone-selection-screen') {
-        ScrollTrigger.refresh();
-        return;
-    }
-
-    document.documentElement.classList.add('motion-gsap-st');
-
-    if (active.id === 'save-management-screen') {
-        const scroller = document.querySelector('#save-management-screen .save-cards-container');
-        const saveCards = document.querySelectorAll('#save-management-screen .save-card');
-        if (scroller && saveCards.length && typeof ScrollTrigger.batch === 'function') {
-            try {
-                const batchResult = ScrollTrigger.batch('#save-management-screen .save-card', {
-                    scroller,
-                    start: 'top 92%',
-                    onEnter: (batch) => {
-                        gsap.from(batch, {
-                            opacity: 0,
-                            y: 28,
-                            duration: 0.5,
-                            stagger: 0.1,
-                            ease: 'power2.out'
-                        });
-                    }
-                });
-                if (Array.isArray(batchResult)) {
-                    batchResult.forEach((t) => gsapScrollTriggerInstances.push(t));
-                } else if (batchResult) {
-                    gsapScrollTriggerInstances.push(batchResult);
-                }
-            } catch (err) {
-                console.debug('ScrollTrigger.batch 存档卡片:', err);
-            }
-        }
-    }
-
-    ScrollTrigger.refresh();
-}
-
-// ========== 方案 B：环境渐变（CSS）+ 背景视差 + 按钮涟漪 ==========
-let backgroundParallaxCleanup = null;
-
-function stopBackgroundParallax() {
-    if (typeof backgroundParallaxCleanup === 'function') {
-        backgroundParallaxCleanup();
-        backgroundParallaxCleanup = null;
-    }
-}
-
-function initBackgroundParallax() {
-    stopBackgroundParallax();
-    if (prefersReducedMotionActive()) {
-        return;
-    }
-    const el = document.getElementById('global-bg');
-    if (!el) {
-        return;
-    }
-    el.classList.add('motion-parallax-active');
-    let rafId = null;
-    const bias = { x: 0, y: 0 };
-    const maxPx = 22;
-    const onMove = (e) => {
-        if (e.isPrimary === false) {
-            return;
-        }
-        if (typeof e.clientX !== 'number') {
-            return;
-        }
-        bias.x = (e.clientX / window.innerWidth - 0.5) * 2;
-        bias.y = (e.clientY / window.innerHeight - 0.5) * 2;
-        if (rafId !== null) {
-            return;
-        }
-        rafId = requestAnimationFrame(() => {
-            rafId = null;
-            if (prefersReducedMotionActive()) {
-                return;
-            }
-            const g = document.getElementById('global-bg');
-            if (!g) {
-                return;
-            }
-            const mx = bias.x * maxPx;
-            const my = bias.y * maxPx;
-            g.style.transform = `translate3d(${mx}px, ${my}px, 0) scale(1.045)`;
-        });
-    };
-    window.addEventListener('pointermove', onMove, { passive: true });
-    backgroundParallaxCleanup = () => {
-        window.removeEventListener('pointermove', onMove);
-        const g = document.getElementById('global-bg');
-        if (g) {
-            g.classList.remove('motion-parallax-active');
-            g.style.transform = '';
-        }
-    };
-}
-
-function markRippleButtons(root) {
-    const scope = root && root.nodeType === 1 ? root : document;
-    scope.querySelectorAll('button').forEach((btn) => {
-        const cl = btn.className && btn.className.toString();
-        if (/\bbtn-/.test(cl) || /\battr-option-btn\b/.test(cl)) {
-            btn.classList.add('motion-ripple-ready');
-        }
-    });
-}
-
-function onMotionRipplePointerDown(e) {
-    if (prefersReducedMotionActive()) {
-        return;
-    }
-    if (e.pointerType === 'mouse' && e.button !== 0) {
-        return;
-    }
-    const btn = e.target.closest('button.motion-ripple-ready');
-    if (!btn || btn.disabled) {
-        return;
-    }
-    const r = btn.getBoundingClientRect();
-    btn.style.setProperty('--ripple-x', `${e.clientX - r.left}px`);
-    btn.style.setProperty('--ripple-y', `${e.clientY - r.top}px`);
-    btn.classList.remove('motion-ripple-run');
-    btn.getBoundingClientRect();
-    btn.classList.add('motion-ripple-run');
-    const tid = window.setTimeout(() => {
-        btn.classList.remove('motion-ripple-run');
-    }, 650);
-    const onEnd = (ev) => {
-        if (ev.animationName !== 'motionBtnRipple') {
-            return;
-        }
-        window.clearTimeout(tid);
-        btn.classList.remove('motion-ripple-run');
-        btn.removeEventListener('animationend', onEnd);
-    };
-    btn.addEventListener('animationend', onEnd);
-}
-
-let menuParticleRaf = null;
-let menuParticleCanvas = null;
-
-function stopMenuParticles() {
-    if (menuParticleRaf !== null) {
-        cancelAnimationFrame(menuParticleRaf);
-        menuParticleRaf = null;
-    }
-    if (menuParticleCanvas) {
-        if (menuParticleCanvas._resizeListener) {
-            window.removeEventListener('resize', menuParticleCanvas._resizeListener);
-        }
-        if (menuParticleCanvas.parentNode) {
-            menuParticleCanvas.parentNode.removeChild(menuParticleCanvas);
-        }
-        menuParticleCanvas = null;
-    }
-}
-
-function initMenuParticles() {
-    if (prefersReducedMotionActive() || menuParticleCanvas) {
-        return;
-    }
-    const menu = document.getElementById('menu-screen');
-    if (!menu || !menu.classList.contains('active')) {
-        return;
-    }
-    const canvas = document.createElement('canvas');
-    canvas.id = 'menu-particles-canvas';
-    canvas.setAttribute('aria-hidden', 'true');
-    canvas.className = 'menu-particles-layer';
-    const ctx = canvas.getContext('2d');
-    if (!ctx) {
-        return;
-    }
-    const DPR = Math.min(window.devicePixelRatio || 1, 2);
-    const particles = [];
-    const particleCount = 52;
-
-    function resize() {
-        const w = window.innerWidth;
-        const h = window.innerHeight;
-        canvas.width = Math.floor(w * DPR);
-        canvas.height = Math.floor(h * DPR);
-        canvas.style.width = `${w}px`;
-        canvas.style.height = `${h}px`;
-        ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
-    }
-
-    function seedParticles() {
-        particles.length = 0;
-        const w = window.innerWidth;
-        const h = window.innerHeight;
-        for (let i = 0; i < particleCount; i++) {
-            particles.push({
-                x: Math.random() * w,
-                y: Math.random() * h,
-                r: Math.random() * 1.8 + 0.4,
-                vx: (Math.random() - 0.5) * 0.42,
-                vy: (Math.random() - 0.5) * 0.42,
-                a: Math.random() * 0.45 + 0.12
-            });
-        }
-    }
-
-    const onResize = () => {
-        resize();
-        seedParticles();
-    };
-
-    resize();
-    seedParticles();
-    window.addEventListener('resize', onResize, { passive: true });
-    canvas._resizeListener = onResize;
-
-    const w = () => window.innerWidth;
-    const h = () => window.innerHeight;
-
-    function frame() {
-        if (!menuParticleCanvas) {
-            return;
-        }
-        const ww = w();
-        const hh = h();
-        ctx.clearRect(0, 0, ww, hh);
-        particles.forEach((p) => {
-            p.x += p.vx;
-            p.y += p.vy;
-            if (p.x < 0) {
-                p.x = ww;
-            }
-            if (p.x > ww) {
-                p.x = 0;
-            }
-            if (p.y < 0) {
-                p.y = hh;
-            }
-            if (p.y > hh) {
-                p.y = 0;
-            }
-            ctx.fillStyle = 'rgba(26, 188, 156, 0.85)';
-            ctx.globalAlpha = p.a;
-            ctx.beginPath();
-            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-            ctx.fill();
-        });
-        ctx.globalAlpha = 1;
-        menuParticleRaf = requestAnimationFrame(frame);
-    }
-
-    if (menu.parentNode) {
-        menu.parentNode.insertBefore(canvas, menu);
-    } else {
-        document.body.appendChild(canvas);
-    }
-    menuParticleCanvas = canvas;
-    menuParticleRaf = requestAnimationFrame(frame);
-}
-
-function syncMenuParticles() {
-    if (prefersReducedMotionActive()) {
-        stopMenuParticles();
-        return;
-    }
-    const menu = document.getElementById('menu-screen');
-    if (menu && menu.classList.contains('active')) {
-        if (!menuParticleCanvas) {
-            initMenuParticles();
-        }
-    } else {
-        stopMenuParticles();
-    }
-}
-
-function initMotionPhaseB() {
-    markRippleButtons();
-    if (!window._motionRippleBound) {
-        window._motionRippleBound = true;
-        document.addEventListener('pointerdown', onMotionRipplePointerDown, true);
-    }
-    initBackgroundParallax();
-    syncMenuParticles();
+    console.log('♿ [无障碍] 用户偏好减少动画，已应用降级样式');
 }
 
 // 监听系统偏好变化
-window.matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', (e) => {
-    if (document.documentElement.classList.contains('dn-motion-preview')) {
-        return;
-    }
+window.matchMedia('(prefers-reduced-motion: reduce)')
+    .addEventListener('change', (e) => {
         if (e.matches) {
             document.body.classList.add('reduce-motion');
-        freezeMenuStatsForReduce();
-        clearGsapScrollReveals();
-        stopBackgroundParallax();
-        stopMenuParticles();
-        if (scrollRevealObserver) {
-            scrollRevealObserver.disconnect();
-            scrollRevealObserver = null;
-        }
-        document.querySelectorAll('.scroll-reveal, .scroll-reveal-fade').forEach((el) => {
-            el.classList.add('scroll-reveal--visible');
-        });
-        document.querySelectorAll('.scroll-reveal-stagger .attr-item, .scroll-reveal-stagger .scroll-reveal-item').forEach((el) => {
-            el.classList.add('scroll-reveal-item--visible');
-        });
             console.log('♿ [无障碍] 已启用减少动画模式');
         } else {
             document.body.classList.remove('reduce-motion');
-        document.querySelectorAll('.scroll-reveal, .scroll-reveal-fade').forEach((el) => {
-            el.classList.remove('scroll-reveal--visible');
-        });
-        refreshScrollReveal();
-        initBackgroundParallax();
-        splitMenuTitleForMotion();
-        playMenuLogoGsap();
-        initMenuTitleCssFallback();
-        syncMenuParticles();
-        if (typeof bindGsapScrollReveals === 'function') {
-            bindGsapScrollReveals();
-        }
-        if (document.getElementById('menu-screen') && document.getElementById('menu-screen').classList.contains('active')) {
-            runMenuStatsCountUp();
-        }
             console.log('♿ [无障碍] 已恢复正常动画模式');
         }
     });
@@ -974,7 +61,51 @@ const Game = (() => {
     let selectedStyle = null;
     let selectedSubStyle = null;
     let customStyleText = '';
+    let skipNextImageStyleReset = false;
     const PENDING_MODAL_THRESHOLD_MS = 1000;
+    const TONE_SELECTION_STORAGE_KEY = 'dn:selectedTone';
+    const GAME_THEME_STORAGE_KEY = 'dn:gameTheme';
+    const STYLE_SELECTION_STORAGE_KEY = 'dn:selectedStyle';
+    const STYLE_SUBTYPE_STORAGE_KEY = 'dn:selectedStyleSubtype';
+    const VISUAL_MODE_STORAGE_KEY = 'dn:visualMode';
+    const VISUAL_MODE_CHOICES = new Set(['auto', 'luxury', 'performance']);
+    let visualMode = 'performance';
+    let autoResolvedVisualMode = 'luxury';
+    let frameMonitorRafId = null;
+    let consecutiveSlowFrames = 0;
+    let consecutiveStableFrames = 0;
+    let autoFallbackNotified = false;
+    const TONE_PREVIEW_PATHS = {
+        happy_ending: './前端界面/前端图片/基调/圆满/index.html',
+        bad_ending: './前端界面/前端图片/基调/悲剧结局/index.html',
+        normal_ending: './前端界面/前端图片/基调/普通结局/index.html',
+        dark_depressing: './前端界面/前端图片/基调/黑深残/index.html',
+        humorous: './前端界面/前端图片/基调/幽默/index.html',
+        abstract: './前端界面/前端图片/基调/抽象/index.html',
+        aesthetic: './前端界面/前端图片/基调/唯美/index.html',
+        logical: './前端界面/前端图片/基调/逻辑推理严谨/index.html',
+        mysterious: './前端界面/前端图片/基调/神秘/index.html'
+    };
+    const STYLE_PREVIEW_PATHS = {
+        realistic: './前端界面/前端图片/画风/写实/index.html',
+        anime: './前端界面/前端图片/画风/动漫/index.html',
+        ink_painting: './前端界面/前端图片/画风/水墨/index.html',
+        watercolor: './前端界面/前端图片/画风/水彩/index.html',
+        oil_painting: './前端界面/前端图片/画风/油画/index.html',
+        cyberpunk: './前端界面/前端图片/画风/赛博朋克/index.html'
+    };
+    const LUXURY_TARGET_SCREENS = new Set([
+        'menu',
+        'attrSelection',
+        'difficultySelection',
+        'toneSelection',
+        'themeInput',
+        'imageStyleSelection',
+        'setting',
+        'loading',
+        'saveManagement',
+        'ending'
+    ]);
     
     // 初始化函数
     function init() {
@@ -986,11 +117,21 @@ const Game = (() => {
         
         // 初始化DOM元素
         initElements();
+
+        // 初始化视觉性能模式（自动/华丽/性能）
+        initVisualModeSystem();
         
         // 初始化事件监听
         initEventListeners();
 
-        syncAttrOptionSelectionUi();
+        // 处理从基调预览页返回的状态
+        restoreToneStateFromReturn();
+        // 恢复已输入的游戏主题，避免预览页往返导致丢失
+        restorePersistedGameTheme();
+        // 处理从画风预览页返回的状态
+        restoreStyleStateFromReturn();
+        // 初始化 ultra-luxury 视觉作用域
+        updateLuxuryVisualMode(gameState.currentScreen || 'menu');
     }
     
     // 音效管理模块
@@ -1289,7 +430,6 @@ const Game = (() => {
         const isSceneCachePath = lowerUrl.startsWith('/image_cache/')
             || lowerUrl.startsWith('image_cache/')
             || lowerUrl.includes('/image_cache/');
-        const isCloudUrl = lowerUrl.startsWith('http://') || lowerUrl.startsWith('https://');
 
         if (isMainCharacterPath) {
             return null;
@@ -1297,8 +437,7 @@ const Game = (() => {
         if (imageType && imageType !== 'story_scene') {
             return null;
         }
-        // 无 image_type 时：本地缓存路径 或 公网图 URL（云端 OSS 等）均视为剧情图；其余拒绝以免串图
-        if (!imageType && !isSceneCachePath && !isCloudUrl) {
+        if (!imageType && !isSceneCachePath) {
             return null;
         }
 
@@ -1325,13 +464,7 @@ const Game = (() => {
                 }
                 
                 const img = new Image();
-                // 仅同源设 crossOrigin；外链 OSS 无 CORS 时 anonymous 会导致 onerror，背景图仍应能显示
-                try {
-                    const parsed = new URL(url, window.location.href);
-                    if (parsed.origin === window.location.origin) {
-                        img.crossOrigin = 'anonymous';
-                    }
-                } catch (_) { /* 相对路径等 */ }
+                img.crossOrigin = 'anonymous'; // 允许跨域
                 img.onload = () => {
                     imageCache.set(url, img);
                     resolve(img);
@@ -1860,8 +993,10 @@ const Game = (() => {
             },
             content: {
                 wordCount: document.querySelector('.word-count'),
-                settingTabs: document.querySelectorAll('#setting-screen .setting-nav .nav-item'),
-                settingTabContents: document.querySelectorAll('#setting-screen .setting-content .content-tab'),
+                settingTabs: document.querySelectorAll('.nav-item'),
+                settingTabContents: document.querySelectorAll('.content-tab'),
+                visualModeButtons: document.querySelectorAll('.visual-mode-btn'),
+                visualModeStatus: document.getElementById('visual-mode-status'),
                 gameStyle: document.getElementById('game-style-content'),
                 worldview: document.getElementById('worldview-content'),
                 protagonistAbility: document.getElementById('protagonist-ability-content'),
@@ -1891,6 +1026,142 @@ const Game = (() => {
             globalBg: document.getElementById('global-bg')
         };
     }
+
+    function getEffectiveVisualMode() {
+        return visualMode === 'auto' ? autoResolvedVisualMode : visualMode;
+    }
+
+    function chooseAutoVisualMode() {
+        let score = 0;
+        const cpuCores = navigator.hardwareConcurrency || 4;
+        const memory = navigator.deviceMemory || 8;
+
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            score += 4;
+        }
+        if (cpuCores <= 4) {
+            score += 3;
+        } else if (cpuCores <= 6) {
+            score += 1;
+        }
+        if (memory <= 4) {
+            score += 3;
+        } else if (memory <= 8) {
+            score += 1;
+        }
+        return score >= 4 ? 'performance' : 'luxury';
+    }
+
+    function updateVisualModeStatus(reason = '') {
+        const statusEl = elements?.content?.visualModeStatus;
+        if (!statusEl) return;
+
+        const effectiveMode = getEffectiveVisualMode();
+        const labels = {
+            auto: '自动（推荐）',
+            luxury: '华丽',
+            performance: '性能'
+        };
+
+        if (visualMode === 'auto') {
+            let detail = effectiveMode === 'performance' ? '当前自动降级到性能以提升稳定性' : '当前自动使用华丽模式';
+            if (reason === 'runtime-fallback') {
+                detail = '检测到连续掉帧，已自动切换为性能模式';
+            } else if (reason === 'runtime-recover') {
+                detail = '帧率恢复稳定，已自动恢复华丽模式';
+            }
+            statusEl.textContent = `当前：${labels.auto}（实际生效：${labels[effectiveMode]}） · ${detail}`;
+        } else {
+            statusEl.textContent = `当前：${labels[visualMode]}（手动）`;
+        }
+    }
+
+    function updateVisualModeButtons() {
+        const buttons = elements?.content?.visualModeButtons;
+        if (!buttons || !buttons.length) return;
+
+        buttons.forEach((btn) => {
+            const isActive = btn.dataset.visualMode === visualMode;
+            btn.classList.toggle('is-active', isActive);
+        });
+    }
+
+    function applyVisualMode(nextMode, reason = 'manual') {
+        if (!VISUAL_MODE_CHOICES.has(nextMode)) return;
+        visualMode = nextMode;
+        localStorage.setItem(VISUAL_MODE_STORAGE_KEY, nextMode);
+
+        if (visualMode === 'auto') {
+            autoResolvedVisualMode = chooseAutoVisualMode();
+            consecutiveSlowFrames = 0;
+            consecutiveStableFrames = 0;
+        } else {
+            autoResolvedVisualMode = visualMode;
+        }
+
+        updateVisualModeButtons();
+        updateLuxuryVisualMode(gameState?.currentScreen || 'menu');
+        updateVisualModeStatus(reason);
+    }
+
+    function setAutoResolvedVisualMode(nextMode, reason = '') {
+        if (visualMode !== 'auto') return;
+        if (autoResolvedVisualMode === nextMode) return;
+        autoResolvedVisualMode = nextMode;
+        updateLuxuryVisualMode(gameState?.currentScreen || 'menu');
+        updateVisualModeStatus(reason);
+    }
+
+    function startFrameDropMonitor() {
+        if (frameMonitorRafId) {
+            cancelAnimationFrame(frameMonitorRafId);
+            frameMonitorRafId = null;
+        }
+
+        let lastFrameTs = performance.now();
+        const tick = (now) => {
+            const delta = now - lastFrameTs;
+            lastFrameTs = now;
+
+            if (visualMode === 'auto') {
+                if (delta > 34) {
+                    consecutiveSlowFrames += 1;
+                    consecutiveStableFrames = 0;
+                } else {
+                    consecutiveStableFrames += 1;
+                    if (consecutiveSlowFrames > 0) {
+                        consecutiveSlowFrames -= 1;
+                    }
+                }
+
+                if (consecutiveSlowFrames >= 8) {
+                    setAutoResolvedVisualMode('performance', 'runtime-fallback');
+                    consecutiveSlowFrames = 0;
+                    consecutiveStableFrames = 0;
+                    if (!autoFallbackNotified) {
+                        autoFallbackNotified = true;
+                        console.warn('⚠️ [视觉模式] 检测到连续掉帧，已自动切换到性能模式');
+                    }
+                } else if (consecutiveStableFrames >= 240 && chooseAutoVisualMode() === 'luxury') {
+                    setAutoResolvedVisualMode('luxury', 'runtime-recover');
+                    consecutiveStableFrames = 0;
+                }
+            }
+
+            frameMonitorRafId = requestAnimationFrame(tick);
+        };
+
+        frameMonitorRafId = requestAnimationFrame(tick);
+    }
+
+    function initVisualModeSystem() {
+        const persistedMode = localStorage.getItem(VISUAL_MODE_STORAGE_KEY);
+        visualMode = VISUAL_MODE_CHOICES.has(persistedMode) ? persistedMode : 'performance';
+        autoResolvedVisualMode = chooseAutoVisualMode();
+        updateVisualModeButtons();
+        updateVisualModeStatus('init');
+        startFrameDropMonitor();
+    }
     
     // 屏幕切换函数（带淡入淡出动画300ms）
     function switchScreen(screenName) {
@@ -1899,83 +1170,34 @@ const Game = (() => {
             console.error('switchScreen错误：elements.screens 不存在');
             return;
         }
+        
+        // 先切换背景作用域，避免切屏过程出现黑底空帧
+        updateLuxuryVisualMode(screenName);
 
-        // 关掉可能残留的通用弹窗（否则会 fixed 全屏挡死下方所有按钮）
-        if (elements.modal && elements.modal.container) {
-            elements.modal.container.classList.remove('active');
-            elements.modal.container.classList.add('hidden');
-            elements.modal.container.style.display = 'none';
-            elements.modal.container.style.pointerEvents = 'none';
-            if (elements.modal.content) {
-                elements.modal.content.classList.remove('opacity-100');
-            }
-        }
-        
-        // 隐藏所有屏幕（淡出）
-        // 须同步移除 active：transitions.css 中 .screen 使用 visibility:hidden，仅 .active 时可见
-        Object.values(elements.screens).forEach(screen => {
-            if (screen && screen.classList) {
-                screen.classList.add('hidden');
-                screen.classList.remove('active');
-                screen.style.opacity = '0';
-                screen.style.transition = 'opacity 300ms ease';
-            }
-        });
-        
         // 显示目标屏幕（淡入）
         const targetScreen = elements.screens[screenName];
         if (targetScreen && targetScreen.classList) {
+            const transitionMs = getEffectiveVisualMode() === 'performance' ? 110 : 180;
+            targetScreen.style.transition = `opacity ${transitionMs}ms ease`;
             targetScreen.classList.remove('hidden');
-            targetScreen.classList.add('active');
-            setTimeout(() => {
-                targetScreen.style.opacity = '1';
+
+            // 在隐藏其它屏幕之前先挂载目标屏幕，避免闪黑
+            targetScreen.style.opacity = '0.01';
+
+            // 隐藏其它屏幕
+            Object.entries(elements.screens).forEach(([name, screen]) => {
+                if (!screen || !screen.classList || screen === targetScreen) return;
+                screen.classList.add('hidden');
+                screen.style.opacity = '0';
+            });
+
+            // 双 RAF 比 setTimeout 更稳定，减少随机跳闪
+            requestAnimationFrame(() => {
                 requestAnimationFrame(() => {
-                    /* 设定页须先于 refreshScrollReveal：避免 IO 在整屏无滚动时把侧栏留在不可见态 */
-                    if (screenName === 'setting' && typeof forceRevealSettingScreen === 'function') {
-                        forceRevealSettingScreen();
-                    }
-                    if (typeof refreshScrollReveal === 'function') {
-                        refreshScrollReveal();
-                    }
-                    if (typeof markRippleButtons === 'function') {
-                        markRippleButtons(targetScreen);
-                    }
-                    if (typeof syncMenuParticles === 'function') {
-                        syncMenuParticles();
-                    }
-                    if (screenName === 'menu' && typeof runMenuStatsCountUp === 'function') {
-                        window.setTimeout(() => runMenuStatsCountUp(), 430);
-                    }
-                    if (typeof bindGsapScrollReveals === 'function') {
-                        bindGsapScrollReveals();
-                    }
-                    if (screenName === 'difficultySelection' && typeof playDifficultySelectionMotion === 'function') {
-                        playDifficultySelectionMotion();
-                    }
-                    if (screenName === 'toneSelection' && typeof playToneSelectionMotion === 'function') {
-                        playToneSelectionMotion();
-                    }
-                    if (screenName === 'attrSelection') {
-                        window.setTimeout(() => {
-                            if (typeof forceRevealAttrSelectionScreen === 'function') {
-                                forceRevealAttrSelectionScreen();
-                            }
-                            syncAttrOptionSelectionUi();
-                        }, 100);
-                    }
-                    if (
-                        (screenName === 'difficultySelection' || screenName === 'toneSelection') &&
-                        typeof resetWizardScreenConfirmButton === 'function'
-                    ) {
-                        window.setTimeout(() => {
-                            const el = elements.screens[screenName];
-                            if (el && el.classList.contains('active')) {
-                                resetWizardScreenConfirmButton(el);
-                            }
-                        }, 700);
-                    }
+                    targetScreen.style.opacity = '1';
                 });
-            }, 50);
+            });
+
             gameState.currentScreen = screenName;
             
             // 特殊处理：主题输入屏清空输入
@@ -1988,34 +1210,38 @@ const Game = (() => {
             
             // 特殊处理：图片风格选择屏重置状态
             if (screenName === 'imageStyleSelection') {
-                // 重置所有选择状态
-                selectedStyle = null;
-                selectedSubStyle = null;
-                customStyleText = '';
-                
-                // 重置按钮状态
-                document.querySelectorAll('.style-btn').forEach(b => {
-                    b.classList.remove('ring-4', 'ring-white');
-                });
-                document.querySelectorAll('.submenu-btn').forEach(b => {
-                    b.classList.remove('ring-4', 'ring-white');
-                });
-                
-                // 隐藏子菜单
-                document.getElementById('oil-painting-submenu').classList.add('hidden');
-                document.getElementById('custom-style-input').classList.add('hidden');
-                
-                // 重置显示和按钮
-                document.getElementById('selected-style-display').textContent = '请选择一个风格';
-                if (elements.buttons.confirmStyle) {
-                    elements.buttons.confirmStyle.disabled = true;
-                    elements.buttons.confirmStyle.classList.add('cursor-not-allowed');
-                    elements.buttons.confirmStyle.classList.remove('bg-[#1ABC9C]', 'hover:bg-[#16A085]');
-                }
-                
-                // 清空自定义输入框
-                if (elements.inputs && elements.inputs.customStyle) {
-                    elements.inputs.customStyle.value = '';
+                if (skipNextImageStyleReset) {
+                    skipNextImageStyleReset = false;
+                } else {
+                    // 重置所有选择状态
+                    selectedStyle = null;
+                    selectedSubStyle = null;
+                    customStyleText = '';
+                    
+                    // 重置按钮状态
+                    document.querySelectorAll('.style-btn').forEach(b => {
+                        b.classList.remove('ring-4', 'ring-white');
+                    });
+                    document.querySelectorAll('.submenu-btn').forEach(b => {
+                        b.classList.remove('ring-4', 'ring-white');
+                    });
+                    
+                    // 隐藏子菜单
+                    document.getElementById('oil-painting-submenu').classList.add('hidden');
+                    document.getElementById('custom-style-input').classList.add('hidden');
+                    
+                    // 重置显示和按钮
+                    document.getElementById('selected-style-display').textContent = '请选择一个风格';
+                    if (elements.buttons.confirmStyle) {
+                        elements.buttons.confirmStyle.disabled = true;
+                        elements.buttons.confirmStyle.classList.add('cursor-not-allowed');
+                        elements.buttons.confirmStyle.classList.remove('bg-[#1ABC9C]', 'hover:bg-[#16A085]');
+                    }
+                    
+                    // 清空自定义输入框
+                    if (elements.inputs && elements.inputs.customStyle) {
+                        elements.inputs.customStyle.value = '';
+                    }
                 }
             }
             
@@ -2028,16 +1254,6 @@ const Game = (() => {
             const characterPanel = document.getElementById('character-panel');
             if (screenName === 'gameplay' && characterPanel) {
                 characterPanel.style.display = 'block';
-                characterPanel.setAttribute('aria-hidden', 'false');
-            }
-
-            // 剧情全屏背景应稳定贴合视口；方案 B 的全局 pointermove 视差仅用于菜单/向导，进 gameplay 即关闭
-            if (screenName === 'gameplay') {
-                if (typeof stopBackgroundParallax === 'function') {
-                    stopBackgroundParallax();
-                }
-            } else if (typeof initBackgroundParallax === 'function') {
-                initBackgroundParallax();
             }
         } else {
             console.error(`switchScreen错误：找不到屏幕 ${screenName}`);
@@ -2045,6 +1261,20 @@ const Game = (() => {
         
         // 播放音效
         playSound('switch');
+    }
+
+    function updateLuxuryVisualMode(screenName) {
+        const shell = document.getElementById('luxury-bg');
+        if (!shell) return;
+        const effectiveMode = getEffectiveVisualMode();
+        const enableLuxury = LUXURY_TARGET_SCREENS.has(screenName);
+        shell.classList.toggle('hidden', !enableLuxury);
+        document.body.classList.toggle('luxury-mode', enableLuxury);
+        document.body.classList.toggle('visual-auto', visualMode === 'auto');
+        document.body.classList.toggle('visual-luxury', enableLuxury && effectiveMode === 'luxury');
+        document.body.classList.toggle('visual-performance', enableLuxury && effectiveMode === 'performance');
+        shell.dataset.visualMode = effectiveMode;
+        document.body.dataset.activeScreen = screenName || '';
     }
     
     // 字数统计更新
@@ -2064,33 +1294,258 @@ const Game = (() => {
             elements.content.wordCount.className = 'word-count text-[14px] text-white';
         }
     }
-    
-    function syncAttrOptionSelectionUi() {
-        const screen = document.getElementById('attr-selection-screen');
-        if (!screen || !gameState.protagonistAttr) {
-            return;
-        }
-        screen.querySelectorAll('.attr-options').forEach((row) => {
-            const attrName = row.dataset.attr;
-            if (!attrName) {
-                return;
-            }
-            const val = gameState.protagonistAttr[attrName] || '普通';
-            row.querySelectorAll('.attr-option-btn').forEach((btn) => {
-                const selected = btn.dataset.value === val;
-                btn.classList.toggle('attr-option-btn--selected', selected);
-                if (btn.getAttribute('role') === 'radio') {
-                    btn.removeAttribute('aria-pressed');
-                    btn.setAttribute('aria-checked', selected ? 'true' : 'false');
-                    btn.setAttribute('tabindex', selected ? '0' : '-1');
-                } else {
-                    btn.removeAttribute('aria-checked');
-                    btn.setAttribute('aria-pressed', selected ? 'true' : 'false');
-                }
-            });
-        });
+
+    function persistSelectedTone(tone) {
+        if (!tone) return;
+        gameState.selectedTone = tone;
+        gameState.currentTone = tone;
+        localStorage.setItem(TONE_SELECTION_STORAGE_KEY, tone);
     }
 
+    function applyToneVisualByTone(tone) {
+        let gradient = '';
+        switch (tone) {
+            case 'happy_ending': gradient = 'linear-gradient(135deg, rgba(46,204,113,0.3), rgba(26,188,156,0.3))'; break;
+            case 'bad_ending': gradient = 'linear-gradient(135deg, rgba(155,89,182,0.3), rgba(142,68,173,0.3))'; break;
+            case 'normal_ending': gradient = 'linear-gradient(135deg, rgba(52,152,219,0.3), rgba(41,128,185,0.3))'; break;
+            case 'dark_depressing': gradient = 'linear-gradient(135deg, rgba(52,73,94,0.5), rgba(44,62,80,0.5))'; break;
+            case 'humorous': gradient = 'linear-gradient(135deg, rgba(241,196,15,0.3), rgba(243,156,18,0.3))'; break;
+            case 'abstract': gradient = 'linear-gradient(135deg, rgba(155,89,182,0.3), rgba(142,68,173,0.3))'; break;
+            case 'aesthetic': gradient = 'linear-gradient(135deg, rgba(233,30,99,0.3), rgba(211,47,47,0.3))'; break;
+            case 'logical': gradient = 'linear-gradient(135deg, rgba(76,175,80,0.3), rgba(67,160,71,0.3))'; break;
+            case 'mysterious': gradient = 'linear-gradient(135deg, rgba(255,152,0,0.3), rgba(251,140,0,0.3))'; break;
+            case 'stream_of_consciousness': gradient = 'linear-gradient(135deg, rgba(103,58,183,0.3), rgba(93,58,183,0.3))'; break;
+            default: gradient = '';
+        }
+        if (gradient && elements.globalBg) {
+            elements.globalBg.style.background = gradient;
+            elements.globalBg.style.transition = 'background 500ms ease';
+        }
+    }
+
+    function syncToneSelectionUI(tone) {
+        document.querySelectorAll('.tone-card').forEach(card => {
+            card.classList.toggle('selected', card.dataset.tone === tone);
+        });
+        applyToneVisualByTone(tone);
+    }
+
+    function goToTonePreview(tone) {
+        const previewPath = TONE_PREVIEW_PATHS[tone];
+        if (!previewPath) {
+            showModal('提示', '该基调暂未配置预览页，请先选择其他基调', () => {});
+            return;
+        }
+        const targetUrl = `${previewPath}?tone=${encodeURIComponent(tone)}`;
+        window.location.href = targetUrl;
+    }
+
+    function restoreToneStateFromReturn() {
+        const url = new URL(window.location.href);
+        const params = url.searchParams;
+        const previewTone = params.get('previewTone');
+        const toneFromStorage = localStorage.getItem(TONE_SELECTION_STORAGE_KEY);
+        const restoredTone = previewTone || toneFromStorage;
+        const isConfirmed = params.get('previewToneConfirmed') === '1';
+        const fromPreview = Boolean(previewTone) || isConfirmed;
+
+        if (!restoredTone) return;
+
+        persistSelectedTone(restoredTone);
+        syncToneSelectionUI(restoredTone);
+        if (fromPreview) {
+            switchScreen('toneSelection');
+            if (isConfirmed) {
+                switchScreen('themeInput');
+            }
+        }
+
+        // 一次性消费返回参数，避免刷新后重复触发自动跳转
+        params.delete('previewTone');
+        params.delete('previewToneConfirmed');
+        const nextQuery = params.toString();
+        const nextUrl = `${url.pathname}${nextQuery ? `?${nextQuery}` : ''}${url.hash}`;
+        window.history.replaceState({}, document.title, nextUrl);
+    }
+
+    function setConfirmStyleButtonState(enabled) {
+        if (!elements || !elements.buttons || !elements.buttons.confirmStyle) return;
+        elements.buttons.confirmStyle.disabled = !enabled;
+        if (enabled) {
+            elements.buttons.confirmStyle.classList.remove('cursor-not-allowed');
+            elements.buttons.confirmStyle.classList.add('bg-[#1ABC9C]', 'hover:bg-[#16A085]');
+        } else {
+            elements.buttons.confirmStyle.classList.add('cursor-not-allowed');
+            elements.buttons.confirmStyle.classList.remove('bg-[#1ABC9C]', 'hover:bg-[#16A085]');
+        }
+    }
+
+    function persistGameTheme(theme) {
+        const normalized = escapeHtml((theme || '').trim());
+        gameState.gameTheme = normalized;
+        if (normalized) {
+            localStorage.setItem(GAME_THEME_STORAGE_KEY, normalized);
+        } else {
+            localStorage.removeItem(GAME_THEME_STORAGE_KEY);
+        }
+    }
+
+    function restorePersistedGameTheme() {
+        const persistedTheme = localStorage.getItem(GAME_THEME_STORAGE_KEY);
+        if (!persistedTheme) return;
+        gameState.gameTheme = persistedTheme;
+        if (elements && elements.inputs && elements.inputs.theme) {
+            elements.inputs.theme.value = persistedTheme;
+            if (typeof updateWordCount === 'function') {
+                updateWordCount();
+            }
+        }
+    }
+
+    function persistStyleSelection(style, subtype = '') {
+        if (!style) return;
+        selectedStyle = style;
+        selectedSubStyle = subtype || null;
+        localStorage.setItem(STYLE_SELECTION_STORAGE_KEY, style);
+        if (subtype) {
+            localStorage.setItem(STYLE_SUBTYPE_STORAGE_KEY, subtype);
+        } else {
+            localStorage.removeItem(STYLE_SUBTYPE_STORAGE_KEY);
+        }
+    }
+
+    function getStyleDisplayName(style) {
+        const styleBtn = document.querySelector(`.style-btn[data-style="${style}"]`);
+        return styleBtn ? styleBtn.dataset.styleName : style;
+    }
+
+    function getSubStyleDisplayName(substyle) {
+        const subBtn = document.querySelector(`.submenu-btn[data-substyle="${substyle}"]`);
+        return subBtn ? subBtn.dataset.substyleName : substyle;
+    }
+
+    function applyStyleSelectionUI(style, subtype = '') {
+        document.querySelectorAll('.style-btn').forEach(btn => {
+            btn.classList.toggle('ring-4', btn.dataset.style === style);
+            btn.classList.toggle('ring-white', btn.dataset.style === style);
+        });
+        document.querySelectorAll('.submenu-btn').forEach(btn => {
+            const isMatched = Boolean(subtype) && btn.dataset.substyle === subtype;
+            btn.classList.toggle('ring-4', isMatched);
+            btn.classList.toggle('ring-white', isMatched);
+        });
+
+        document.getElementById('oil-painting-submenu').classList.toggle('hidden', style !== 'oil_painting');
+        document.getElementById('custom-style-input').classList.toggle('hidden', style !== 'custom');
+
+        if (style === 'oil_painting') {
+            if (subtype) {
+                document.getElementById('selected-style-display').textContent = `已选择：油画风格 - ${getSubStyleDisplayName(subtype)}`;
+                setConfirmStyleButtonState(true);
+            } else {
+                document.getElementById('selected-style-display').textContent = '已选择：油画风格（请选择具体类型）';
+                setConfirmStyleButtonState(false);
+            }
+            return;
+        }
+
+        if (style === 'custom') {
+            document.getElementById('selected-style-display').textContent = customStyleText ? `已选择：自定义 - ${customStyleText}` : '已选择：自定义（请输入风格）';
+            setConfirmStyleButtonState(Boolean(customStyleText));
+            return;
+        }
+
+        document.getElementById('selected-style-display').textContent = `已选择：${getStyleDisplayName(style)}`;
+        setConfirmStyleButtonState(Boolean(style));
+    }
+
+    function goToStylePreview(style) {
+        const previewPath = STYLE_PREVIEW_PATHS[style];
+        if (!previewPath) return;
+        const targetUrl = `${previewPath}?style=${encodeURIComponent(style)}`;
+        window.location.href = targetUrl;
+    }
+
+    function applySelectedStyleToGameState() {
+        if (selectedStyle === 'oil_painting' && selectedSubStyle) {
+            gameState.imageStyle = {
+                type: 'oil_painting',
+                subtype: selectedSubStyle
+            };
+            return true;
+        }
+        if (selectedStyle === 'custom' && customStyleText) {
+            gameState.imageStyle = {
+                type: 'custom',
+                value: customStyleText
+            };
+            return true;
+        }
+        if (selectedStyle) {
+            gameState.imageStyle = {
+                type: selectedStyle
+            };
+            return true;
+        }
+        return false;
+    }
+
+    async function confirmStyleAndContinueFlow() {
+        if (!gameState.gameTheme || !String(gameState.gameTheme).trim()) {
+            switchScreen('themeInput');
+            if (elements && elements.inputs && elements.inputs.theme) {
+                const persistedTheme = localStorage.getItem(GAME_THEME_STORAGE_KEY) || '';
+                elements.inputs.theme.value = persistedTheme;
+                if (typeof updateWordCount === 'function') {
+                    updateWordCount();
+                }
+            }
+            showModal('提示', '游戏主题不能为空，请先输入游戏主题', () => {});
+            return;
+        }
+        if (!applySelectedStyleToGameState()) {
+            showModal('提示', '请先选择一个图片风格', () => {});
+            return;
+        }
+        console.log('✅ 图片风格已选择:', gameState.imageStyle);
+        FontManager.applyFontToGame(gameState.imageStyle, gameState.tone);
+        switchScreen('loading');
+        simulateLoading();
+        await generateGameWorldview();
+    }
+
+    async function restoreStyleStateFromReturn() {
+        const url = new URL(window.location.href);
+        const params = url.searchParams;
+        const previewStyle = params.get('previewStyle');
+        const previewSubtype = params.get('previewStyleSubtype') || '';
+        const isConfirmed = params.get('previewStyleConfirmed') === '1';
+        const fromPreview = Boolean(previewStyle) || isConfirmed;
+        if (!fromPreview) return;
+
+        const styleFromStorage = localStorage.getItem(STYLE_SELECTION_STORAGE_KEY);
+        const subtypeFromStorage = localStorage.getItem(STYLE_SUBTYPE_STORAGE_KEY) || '';
+        const restoredStyle = previewStyle || styleFromStorage;
+        const restoredSubtype = previewSubtype || subtypeFromStorage;
+        if (!restoredStyle) return;
+
+        persistStyleSelection(restoredStyle, restoredSubtype);
+        skipNextImageStyleReset = true;
+        switchScreen('imageStyleSelection');
+        applyStyleSelectionUI(restoredStyle, restoredSubtype);
+
+        if (isConfirmed) {
+            await confirmStyleAndContinueFlow();
+        }
+
+        params.delete('previewStyle');
+        params.delete('previewStyleSubtype');
+        params.delete('previewStyleConfirmed');
+        const nextQuery = params.toString();
+        const nextUrl = `${url.pathname}${nextQuery ? `?${nextQuery}` : ''}${url.hash}`;
+        window.history.replaceState({}, document.title, nextUrl);
+    }
+    
     // 重置属性
     function resetAttributes() {
         gameState.protagonistAttr = {
@@ -2099,7 +1554,20 @@ const Game = (() => {
             体力: '普通',
             魅力: '普通'
         };
-        syncAttrOptionSelectionUi();
+        
+        // 重置所有属性选项的样式
+        document.querySelectorAll('.attr-option-btn').forEach(btn => {
+            btn.className = 'attr-option-btn px-4 py-2 rounded-lg bg-[#7F8C8D] text-white transition-all hover:bg-[#95A5A6]';
+        });
+        
+        // 设置默认选项为选中状态
+        document.querySelectorAll('.attr-options').forEach(options => {
+            const defaultOption = options.querySelector('[data-value="普通"]');
+            if (defaultOption) {
+                defaultOption.className = 'attr-option-btn px-4 py-2 rounded-lg bg-[#3498DB] text-white transition-all hover:bg-[#2980B9]';
+            }
+        });
+        
         playSound('reset');
     }
     
@@ -2481,120 +1949,88 @@ const Game = (() => {
         }
     }
     
-    // 模拟加载过程（指南 §2：百分比用 RAF + easeOutQuart 平滑增长）
+    // 模拟加载过程
     function simulateLoading() {
-        const loadingSteps = ['生成世界观...', '构建初始场景...', '生成角色关系...', '加载完成'];
-        let stepShown = 0;
-        elements.content.loadingStatus.style.opacity = '1';
-        elements.content.loadingPercent.style.opacity = '1';
-        elements.content.loadingStatus.textContent = loadingSteps[0];
+        let progress = 0;
+        const loadingSteps = [
+            '生成世界观...',
+            '构建初始场景...',
+            '生成角色关系...',
+            '加载完成'
+        ];
+        const stepDuration = 1500;
+        let currentStep = 0;
+        
+        // 重置加载状态
+        elements.content.loadingStatus.textContent = loadingSteps[currentStep];
         elements.content.loadingPercent.textContent = '0%';
-        if (elements.content.progressFill) {
-            elements.content.progressFill.style.width = '0%';
-        }
         elements.globalBg.style.opacity = '0.2';
-        let bgBoosted = false;
-        const durationMs = 3200;
-        const t0 = performance.now();
-        const spinner = document.querySelector('#loading-screen .loading-spinner') || document.querySelector('.loading-spinner');
-
-        const finish = () => {
-            if (spinner) {
-                spinner.style.transform = 'scale(1.5)';
-                spinner.style.opacity = '0';
-                spinner.style.transition = 'all 500ms ease';
-            }
-            elements.content.loadingStatus.style.opacity = '0';
-            elements.content.loadingPercent.style.opacity = '0';
-            setTimeout(() => switchScreen('setting'), 500);
-        };
-
-        if (typeof prefersReducedMotionActive === 'function' && prefersReducedMotionActive()) {
-            elements.content.loadingPercent.textContent = '100%';
-            if (elements.content.progressFill) {
-                elements.content.progressFill.style.width = '100%';
-            }
-            elements.content.loadingStatus.textContent = loadingSteps[loadingSteps.length - 1];
-            elements.globalBg.style.opacity = '0.6';
-            finish();
-            return;
-        }
-
-        function tick(now) {
-            const p = Math.min((now - t0) / durationMs, 1);
-            const eased = easeOutQuart(p);
-            const progress = Math.round(eased * 100);
+        
+        const loadingInterval = setInterval(() => {
+            progress += 1;
             elements.content.loadingPercent.textContent = `${progress}%`;
-            if (elements.content.progressFill) {
-                elements.content.progressFill.style.width = `${progress}%`;
-            }
-            const si = Math.min(Math.floor(progress / 25), loadingSteps.length - 1);
-            if (si !== stepShown) {
-                stepShown = si;
-                elements.content.loadingStatus.textContent = loadingSteps[si];
-                if (si > 0) {
+            
+            // 进度条动画
+            elements.content.progressFill.style.width = `${progress}%`;
+            
+            // 切换加载文本
+            if (progress % 25 === 0 && currentStep < loadingSteps.length - 1) {
+                currentStep++;
+                elements.content.loadingStatus.textContent = loadingSteps[currentStep];
                 playSound('load');
             }
-            }
-            if (progress >= 50 && !bgBoosted) {
-                bgBoosted = true;
+            
+            // 加载至50%时背景开始淡入
+            if (progress === 50) {
                 elements.globalBg.style.opacity = '0.6';
                 elements.globalBg.style.transition = 'opacity 1s ease';
             }
-            if (p < 1) {
-                requestAnimationFrame(tick);
-            } else {
-                finish();
+            
+            // 加载完成
+            if (progress === 100) {
+                clearInterval(loadingInterval);
+                // 环形图标放大消失动画
+                const spinner = document.querySelector('.loading-spinner');
+                spinner.style.transform = 'scale(1.5)';
+                spinner.style.opacity = '0';
+                spinner.style.transition = 'all 500ms ease';
+                
+                // 文本渐隐
+                elements.content.loadingStatus.style.opacity = '0';
+                elements.content.loadingPercent.style.opacity = '0';
+                
+                setTimeout(() => {
+                    switchScreen('setting');
+                }, 500);
             }
-        }
-        requestAnimationFrame(tick);
+        }, 30);
     }
     
-    // 模拟游戏加载（进入剧情）：同上，平滑 count-up 至 100%
+    // 模拟游戏加载（进入剧情）
     function simulateGameLoading() {
+        // 应用字体（根据风格和基调）
         FontManager.applyFontToGame(gameState.imageStyle, gameState.tone);
+        
+        let progress = 0;
         elements.content.loadingStatus.textContent = '加载剧情场景...';
-        elements.content.loadingStatus.style.opacity = '1';
-        elements.content.loadingPercent.style.opacity = '1';
         elements.content.loadingPercent.textContent = '0%';
-        if (elements.content.progressFill) {
-            elements.content.progressFill.style.width = '0%';
-        }
-        const durationMs = 2400;
-        const t0 = performance.now();
-
-        const done = async () => {
+        
+        const loadingInterval = setInterval(() => {
+            progress += 2;
+            elements.content.loadingPercent.textContent = `${progress}%`;
+            elements.content.progressFill.style.width = `${progress}%`;
+            
+            if (progress === 100) {
+                clearInterval(loadingInterval);
                 setTimeout(async () => {
+                    // 先检查并展示主角形象（如果已生成）
                     await showMainCharacterIfReady(() => {
+                        // 主角形象展示完成后，继续原有流程
                         continueToFirstScene();
                     });
                 }, 500);
-        };
-
-        if (typeof prefersReducedMotionActive === 'function' && prefersReducedMotionActive()) {
-            elements.content.loadingPercent.textContent = '100%';
-            if (elements.content.progressFill) {
-                elements.content.progressFill.style.width = '100%';
             }
-            done();
-            return;
-        }
-
-        function tick(now) {
-            const p = Math.min((now - t0) / durationMs, 1);
-            const eased = easeOutQuart(p);
-            const progress = Math.round(eased * 100);
-            elements.content.loadingPercent.textContent = `${progress}%`;
-            if (elements.content.progressFill) {
-                elements.content.progressFill.style.width = `${progress}%`;
-            }
-            if (p < 1) {
-                requestAnimationFrame(tick);
-            } else {
-                done();
-            }
-        }
-        requestAnimationFrame(tick);
+        });
     }
     
     // 继续到第一次场景的流程
@@ -2968,8 +2404,7 @@ const Game = (() => {
                             validatedSceneImage = sceneImage;
                             console.log('✅ 初始场景图片URL:', sceneImage.url);
                         } else if (sceneImage.image_url) {
-                            // 保留 image_type 等字段，避免 normalizeStorySceneImageData 误判为非剧情图
-                            validatedSceneImage = { ...sceneImage, url: sceneImage.image_url };
+                            validatedSceneImage = { url: sceneImage.image_url };
                             console.log('✅ 使用image_url字段:', sceneImage.image_url);
                         } else {
                             console.error('❌ sceneImage对象缺少URL字段:', sceneImage);
@@ -3126,6 +2561,62 @@ const Game = (() => {
         }
         
         return segments.length > 0 ? segments : [trimText];
+    }
+
+    function renderHighlightedNarrative(rawText) {
+        return escapeHtml(rawText || '')
+            .replace(/迷雾森林/g, '<span class="narrative-highlight">迷雾森林</span>')
+            .replace(/上古神器/g, '<span class="narrative-highlight">上古神器</span>')
+            .replace(/古老神庙/g, '<span class="narrative-highlight">古老神庙</span>')
+            .replace(/怪异/g, '<span class="narrative-highlight">怪异</span>');
+    }
+
+    function computeCharDelay(char, index, totalLength) {
+        if (char === ' ' || char === '\n' || char === '\t') return 30;
+        if (/[，、；：]/.test(char)) return 90;
+        if (/[。！？.!?]/.test(char)) return 150;
+
+        // 长句保护：后半段略提速，避免等待过久
+        if (totalLength > 120 && index > Math.floor(totalLength * 0.55)) {
+            return 40;
+        }
+        return 46;
+    }
+
+    function clearActiveTypingTimer() {
+        if (!gameState.currentTypeInterval) return;
+        clearTimeout(gameState.currentTypeInterval);
+        clearInterval(gameState.currentTypeInterval);
+        gameState.currentTypeInterval = null;
+    }
+
+    function playNarrativeTyping(sceneTextElement, fullText, onDone) {
+        const safeText = fullText || '';
+        let index = 0;
+        sceneTextElement.classList.add('typewriter');
+        sceneTextElement.textContent = '';
+        sceneTextElement.innerHTML = '';
+
+        const typeNextChar = () => {
+            if (index < safeText.length) {
+                index += 1;
+                const partialText = safeText.slice(0, index);
+                sceneTextElement.innerHTML = renderHighlightedNarrative(partialText);
+                const delay = computeCharDelay(safeText.charAt(index - 1), index - 1, safeText.length);
+                gameState.currentTypeInterval = setTimeout(typeNextChar, delay);
+                return;
+            }
+
+            clearActiveTypingTimer();
+            sceneTextElement.classList.remove('typewriter');
+            playSound('typeend');
+            if (typeof onDone === 'function') {
+                onDone();
+            }
+        };
+
+        // 首句入场缓冲，先让视线落到玻璃叙事屏
+        gameState.currentTypeInterval = setTimeout(typeNextChar, 120);
     }
     
     // 显示场景文本（支持图片和视频）
@@ -3317,15 +2808,13 @@ const Game = (() => {
                 sceneTextElement.style.setProperty('transform', 'none', 'important');
                 sceneTextElement.style.setProperty('scale', '1', 'important');
                 sceneTextElement.style.setProperty('transition', 'none', 'important');
-                sceneTextElement.style.setProperty('animation', 'none', 'important');
-                sceneTextElement.style.setProperty('pointer-events', 'none', 'important');
                 sceneTextElement.style.setProperty('user-select', 'none', 'important');
                 sceneTextElement.style.setProperty('outline', 'none', 'important');
                 sceneTextElement.style.setProperty('-webkit-transform', 'none', 'important');
                 sceneTextElement.style.setProperty('-moz-transform', 'none', 'important');
                 sceneTextElement.style.setProperty('-ms-transform', 'none', 'important');
                 sceneTextElement.style.setProperty('-o-transform', 'none', 'important');
-                sceneTextElement.style.setProperty('touch-action', 'none', 'important'); // 禁用触摸缩放
+                sceneTextElement.style.setProperty('touch-action', 'pan-y', 'important');
                 sceneTextElement.style.setProperty('-webkit-touch-callout', 'none', 'important');
                 sceneTextElement.style.setProperty('-webkit-tap-highlight-color', 'transparent', 'important');
                 sceneTextElement.style.setProperty('tap-highlight-color', 'transparent', 'important');
@@ -3396,10 +2885,7 @@ const Game = (() => {
             sceneTextElement._noTransformInterval = checkInterval;
             
             // 修复：先清理旧的打字机动画，防止重复和重叠
-            if (gameState.currentTypeInterval) {
-                clearInterval(gameState.currentTypeInterval);
-                gameState.currentTypeInterval = null;
-            }
+            clearActiveTypingTimer();
             
             // 完全清理旧文本内容，防止重叠显示
             sceneTextElement.classList.remove('typewriter');
@@ -3423,68 +2909,22 @@ const Game = (() => {
             
             // 等待一帧确保DOM完全更新后再开始新动画
             requestAnimationFrame(() => {
-                // 预生成已由后端在 /generate-option 返回时统一触发，与首屏一致，此处不再调用
-                
-                // 再次强制设置样式，确保动画不会覆盖我们的设置
-                sceneTextElement.style.setProperty('transform', 'none', 'important');
-                sceneTextElement.style.setProperty('scale', '1', 'important');
-                sceneTextElement.style.setProperty('transition', 'none', 'important');
-                
-                sceneTextElement.classList.add('typewriter');
-                let index = 0;
-                
-                const typeInterval = setInterval(() => {
-                    if (index < segmentText.length) {
-                        sceneTextElement.textContent += segmentText.charAt(index);
-                        index++;
-                        // 关键信息高亮
-                        // 注意：先做HTML转义，避免原文中的 <、& 等字符导致渲染吞字/吞数字
-                        const highlightedText = escapeHtml(sceneTextElement.textContent)
-                            .replace(/迷雾森林/g, '<span class="text-[#3498DB] font-bold">迷雾森林</span>')
-                            .replace(/上古神器/g, '<span class="text-[#3498DB] font-bold">上古神器</span>')
-                            .replace(/古老神庙/g, '<span class="text-[#3498DB] font-bold">古老神庙</span>')
-                            .replace(/怪异/g, '<span class="text-[#3498DB] font-bold">怪异</span>');
-                        sceneTextElement.innerHTML = highlightedText;
+                playNarrativeTyping(sceneTextElement, segmentText, () => {
+                    if (gameState.isShowingSegments && gameState.currentTextSegmentIndex < segments.length - 1) {
+                        console.log('✅ 当前段落显示完成，显示"->"按钮等待用户点击');
+                        if (nextSegmentBtn) {
+                            nextSegmentBtn.classList.remove('hidden');
+                            nextSegmentBtn.dataset.showOptions = 'false';
+                        }
                     } else {
-                        clearInterval(typeInterval);
-                        gameState.currentTypeInterval = null; // 清理引用
-                        sceneTextElement.classList.remove('typewriter');
-                        
-                        // 动画结束后再次强制设置样式，确保没有任何缩放效果
-                        sceneTextElement.style.setProperty('transform', 'none', 'important');
-                        sceneTextElement.style.setProperty('scale', '1', 'important');
-                        sceneTextElement.style.setProperty('transition', 'none', 'important');
-                        sceneTextElement.style.setProperty('animation', 'none', 'important');
-                        
-                        playSound('typeend');
-                        
-                        // 判断是否还有更多段落需要显示
-                        if (gameState.isShowingSegments && gameState.currentTextSegmentIndex < segments.length - 1) {
-                            // 还有更多段落，显示"->"按钮（点击后显示下一段，非选项）
-                            console.log('✅ 当前段落显示完成，显示"->"按钮等待用户点击');
-                            if (nextSegmentBtn) {
-                                nextSegmentBtn.classList.remove('hidden');
-                                nextSegmentBtn.dataset.showOptions = 'false';
-                            }
-                        } else {
-                            // 所有段落都显示完了，显示"->"按钮等待用户点击后再显示选项
-                            console.log('✅ 所有段落显示完成，显示"->"按钮等待用户点击显示选项');
-                            
-                            // 保存待显示的选项
-                            gameState.pendingOptions = options;
-                            
-                            // 显示"->"按钮（点击后显示选项）
-                            if (nextSegmentBtn) {
-                                nextSegmentBtn.classList.remove('hidden');
-                                // 标记这是最后一段，点击后应该显示选项
-                                nextSegmentBtn.dataset.showOptions = 'true';
-                            }
+                        console.log('✅ 所有段落显示完成，显示"->"按钮等待用户点击显示选项');
+                        gameState.pendingOptions = options;
+                        if (nextSegmentBtn) {
+                            nextSegmentBtn.classList.remove('hidden');
+                            nextSegmentBtn.dataset.showOptions = 'true';
                         }
                     }
-                }, 30);
-                
-                // 保存当前interval引用，以便下次清理
-                gameState.currentTypeInterval = typeInterval;
+                });
             });
         } else {
             console.error('❌ 找不到sceneText元素，直接显示选项');
@@ -3532,75 +2972,31 @@ const Game = (() => {
         
         // 显示下一段文本（打字机效果）
         requestAnimationFrame(() => {
-            sceneTextElement.style.setProperty('transform', 'none', 'important');
-            sceneTextElement.style.setProperty('scale', '1', 'important');
-            sceneTextElement.style.setProperty('transition', 'none', 'important');
-            
-            sceneTextElement.classList.add('typewriter');
-            let index = 0;
-            
-            const typeInterval = setInterval(() => {
-                if (index < nextSegment.length) {
-                    sceneTextElement.textContent += nextSegment.charAt(index);
-                    index++;
-                    // 关键信息高亮
-                    // 注意：先做HTML转义，避免原文中的 <、& 等字符导致渲染吞字/吞数字
-                    const highlightedText = escapeHtml(sceneTextElement.textContent)
-                        .replace(/迷雾森林/g, '<span class="text-[#3498DB] font-bold">迷雾森林</span>')
-                        .replace(/上古神器/g, '<span class="text-[#3498DB] font-bold">上古神器</span>')
-                        .replace(/古老神庙/g, '<span class="text-[#3498DB] font-bold">古老神庙</span>')
-                        .replace(/怪异/g, '<span class="text-[#3498DB] font-bold">怪异</span>');
-                    sceneTextElement.innerHTML = highlightedText;
+            playNarrativeTyping(sceneTextElement, nextSegment, () => {
+                if (gameState.currentTextSegmentIndex < gameState.textSegments.length - 1) {
+                    console.log('✅ 当前段落显示完成，显示"->"按钮等待用户点击');
+                    if (nextSegmentBtn) {
+                        nextSegmentBtn.classList.remove('hidden');
+                        nextSegmentBtn.dataset.showOptions = 'false';
+                    }
+                    const prevBtn = document.getElementById('prev-segment-btn');
+                    if (prevBtn && gameState.currentTextSegmentIndex > 0) {
+                        prevBtn.classList.remove('hidden');
+                    }
                 } else {
-                    clearInterval(typeInterval);
-                    gameState.currentTypeInterval = null;
-                    sceneTextElement.classList.remove('typewriter');
-                    
-                    // 动画结束后再次强制设置样式
-                    sceneTextElement.style.setProperty('transform', 'none', 'important');
-                    sceneTextElement.style.setProperty('scale', '1', 'important');
-                    sceneTextElement.style.setProperty('transition', 'none', 'important');
-                    sceneTextElement.style.setProperty('animation', 'none', 'important');
-                    
-                    playSound('typeend');
-                    
-                    // 判断是否还有更多段落
-                    if (gameState.currentTextSegmentIndex < gameState.textSegments.length - 1) {
-                        // 还有更多段落，显示"->"按钮（点击后显示下一段，非选项）
-                        console.log('✅ 当前段落显示完成，显示"->"按钮等待用户点击');
-                        if (nextSegmentBtn) {
-                            nextSegmentBtn.classList.remove('hidden');
-                            nextSegmentBtn.dataset.showOptions = 'false';
-                        }
-                        // 当前不在第一段时，允许回到上一句
-                        const prevBtn = document.getElementById('prev-segment-btn');
-                        if (prevBtn && gameState.currentTextSegmentIndex > 0) {
-                            prevBtn.classList.remove('hidden');
-                        }
-                    } else {
-                        // 所有段落都显示完了，显示"->"按钮等待用户点击后再显示选项
-                        console.log('✅ 所有段落显示完成，显示"->"按钮等待用户点击显示选项');
-                        
-                        // 确保选项可用（与 displayScene 行为一致）
-                        gameState.pendingOptions = gameState.pendingOptions || gameState.currentOptions;
-                        
-                        // 显示"->"按钮（点击后显示选项）
-                        const btn = document.getElementById('next-segment-btn');
-                        if (btn) {
-                            btn.classList.remove('hidden');
-                            btn.dataset.showOptions = 'true';
-                        }
-                        // 最后一段时仍然允许回到上一句
-                        const prevBtn = document.getElementById('prev-segment-btn');
-                        if (prevBtn && gameState.currentTextSegmentIndex > 0) {
-                            prevBtn.classList.remove('hidden');
-                        }
+                    console.log('✅ 所有段落显示完成，显示"->"按钮等待用户点击显示选项');
+                    gameState.pendingOptions = gameState.pendingOptions || gameState.currentOptions;
+                    const btn = document.getElementById('next-segment-btn');
+                    if (btn) {
+                        btn.classList.remove('hidden');
+                        btn.dataset.showOptions = 'true';
+                    }
+                    const prevBtn = document.getElementById('prev-segment-btn');
+                    if (prevBtn && gameState.currentTextSegmentIndex > 0) {
+                        prevBtn.classList.remove('hidden');
                     }
                 }
-            }, 30);
-            
-            // 保存当前interval引用
-            gameState.currentTypeInterval = typeInterval;
+            });
         });
     }
     
@@ -3636,10 +3032,7 @@ const Game = (() => {
         }
         
         // 清理旧打字机动画
-        if (gameState.currentTypeInterval) {
-            clearInterval(gameState.currentTypeInterval);
-            gameState.currentTypeInterval = null;
-        }
+        clearActiveTypingTimer();
         
         // 清理旧文本
         sceneTextElement.classList.remove('typewriter');
@@ -3648,61 +3041,27 @@ const Game = (() => {
         
         // 重新以打字机效果显示上一段
         requestAnimationFrame(() => {
-            sceneTextElement.style.setProperty('transform', 'none', 'important');
-            sceneTextElement.style.setProperty('scale', '1', 'important');
-            sceneTextElement.style.setProperty('transition', 'none', 'important');
-            
-            sceneTextElement.classList.add('typewriter');
-            let index = 0;
-            
-            const typeInterval = setInterval(() => {
-                if (index < prevSegment.length) {
-                    sceneTextElement.textContent += prevSegment.charAt(index);
-                    index++;
-                    const highlightedText = escapeHtml(sceneTextElement.textContent)
-                        .replace(/迷雾森林/g, '<span class="text-[#3498DB] font-bold">迷雾森林</span>')
-                        .replace(/上古神器/g, '<span class="text-[#3498DB] font-bold">上古神器</span>')
-                        .replace(/古老神庙/g, '<span class="text-[#3498DB] font-bold">古老神庙</span>')
-                        .replace(/怪异/g, '<span class="text-[#3498DB] font-bold">怪异</span>');
-                    sceneTextElement.innerHTML = highlightedText;
-                } else {
-                    clearInterval(typeInterval);
-                    gameState.currentTypeInterval = null;
-                    sceneTextElement.classList.remove('typewriter');
-                    
-                    sceneTextElement.style.setProperty('transform', 'none', 'important');
-                    sceneTextElement.style.setProperty('scale', '1', 'important');
-                    sceneTextElement.style.setProperty('transition', 'none', 'important');
-                    sceneTextElement.style.setProperty('animation', 'none', 'important');
-                    
-                    playSound('typeend');
-                    
-                    // 第一段时不再显示回退按钮
-                    if (prevSegmentBtn) {
-                        if (gameState.currentTextSegmentIndex <= 0) {
-                            prevSegmentBtn.classList.add('hidden');
-                        } else {
-                            prevSegmentBtn.classList.remove('hidden');
-                        }
-                    }
-                    
-                    // 如果当前不是最后一段，仅允许继续向后
-                    if (gameState.currentTextSegmentIndex < gameState.textSegments.length - 1) {
-                        if (nextSegmentBtn) {
-                            nextSegmentBtn.classList.remove('hidden');
-                            nextSegmentBtn.dataset.showOptions = 'false';
-                        }
+            playNarrativeTyping(sceneTextElement, prevSegment, () => {
+                if (prevSegmentBtn) {
+                    if (gameState.currentTextSegmentIndex <= 0) {
+                        prevSegmentBtn.classList.add('hidden');
                     } else {
-                        // 当前已经是最后一段，点击"->"后应直接显示选项
-                        if (nextSegmentBtn) {
-                            nextSegmentBtn.classList.remove('hidden');
-                            nextSegmentBtn.dataset.showOptions = 'true';
-                        }
+                        prevSegmentBtn.classList.remove('hidden');
                     }
                 }
-            }, 30);
-            
-            gameState.currentTypeInterval = typeInterval;
+
+                if (gameState.currentTextSegmentIndex < gameState.textSegments.length - 1) {
+                    if (nextSegmentBtn) {
+                        nextSegmentBtn.classList.remove('hidden');
+                        nextSegmentBtn.dataset.showOptions = 'false';
+                    }
+                } else {
+                    if (nextSegmentBtn) {
+                        nextSegmentBtn.classList.remove('hidden');
+                        nextSegmentBtn.dataset.showOptions = 'true';
+                    }
+                }
+            });
         });
     }
     
@@ -3718,8 +3077,6 @@ const Game = (() => {
         }
         if (optionsListArea) {
             optionsListArea.classList.remove('hidden');
-            // 必须立即可见可点：若仅依赖 IO 补 scroll-reveal--visible，偶发不触发会导致整页选项透明且点击无效
-            optionsListArea.classList.add('scroll-reveal--visible');
         }
         // 进入选项阶段后，不再允许回到上一句，同时隐藏"->"按钮
         if (prevSegmentBtn) {
@@ -4101,7 +3458,7 @@ const Game = (() => {
                                         validatedSceneImage = sceneImage;
                                         console.log('✅ 图片数据格式正确，URL:', sceneImage.url);
                                     } else if (sceneImage.image_url) {
-                                        validatedSceneImage = { ...sceneImage, url: sceneImage.image_url };
+                                        validatedSceneImage = { url: sceneImage.image_url };
                                         console.log('✅ 使用image_url字段');
                                     } else {
                                         console.error('❌ sceneImage对象缺少URL字段:', sceneImage);
@@ -4347,11 +3704,6 @@ const Game = (() => {
         // 清空并一次性插入所有选项，减少回流
         elements.content.optionsList.innerHTML = '';
         elements.content.optionsList.appendChild(fragment);
-        requestAnimationFrame(() => {
-            if (typeof refreshScrollReveal === 'function') {
-                refreshScrollReveal();
-            }
-        });
     }
     
     // 解锁深层背景
@@ -5338,7 +4690,7 @@ const Game = (() => {
         
         saves.forEach(save => {
             const saveCard = document.createElement('div');
-            saveCard.className = 'save-card glass w-[280px] h-[180px] p-6 flex flex-col justify-between relative cursor-pointer hover:border-2 hover:border-[#1ABC9C] hover:scale-103 transition-all group';
+            saveCard.className = 'save-card w-[280px] h-[180px] rounded-[12px] bg-white/10 p-6 flex flex-col justify-between relative cursor-pointer hover:border-2 hover:border-[#1ABC9C] hover:scale-103 transition-all group';
             saveCard.innerHTML = `
                 <div class="save-header flex justify-between items-start">
                     <div class="save-name text-[18px] font-bold text-white" contenteditable="true">${save.name}</div>
@@ -5385,7 +4737,7 @@ const Game = (() => {
         // 添加新建存档按钮（只添加一个）
         const tempDiv = document.createElement('div');
         tempDiv.innerHTML = `
-            <div class="save-card glass glass-primary w-[280px] h-[180px] p-6 flex flex-col items-center justify-center cursor-pointer transition-all hover:brightness-110">
+            <div class="save-card w-[280px] h-[180px] rounded-[12px] bg-[#3498DB]/30 p-6 flex flex-col items-center justify-center cursor-pointer hover:bg-[#3498DB]/50 transition-all">
                 <i class="fa fa-plus text-white text-3xl mb-3"></i>
                 <div class="save-name text-[16px] font-bold text-white">新建存档</div>
             </div>
@@ -5409,14 +4761,6 @@ const Game = (() => {
         
         // 重置加载标志
         saveContainer.dataset.loading = 'false';
-        requestAnimationFrame(() => {
-            if (typeof refreshScrollReveal === 'function') {
-                refreshScrollReveal();
-            }
-            if (typeof bindGsapScrollReveals === 'function') {
-                bindGsapScrollReveals();
-            }
-        });
     }
     
     // 删除存档（调用后端API，同时更新localStorage缓存）
@@ -5455,12 +4799,8 @@ const Game = (() => {
         elements.modal.title.textContent = title;
         elements.modal.text.textContent = text;
         elements.modal.container.classList.remove('hidden');
-        // transitions.css：#modal 默认 opacity:0，须加 .active 才可见；否则易出现「看不见的全屏遮罩」吃光点击
-        elements.modal.container.classList.add('active');
-        elements.modal.container.style.display = 'flex';
-        elements.modal.container.style.pointerEvents = 'auto';
         setTimeout(() => {
-            elements.modal.content.classList.add('opacity-100');
+            elements.modal.content.classList.add('scale-100', 'opacity-100');
         }, 50);
         
         // 是否显示取消按钮
@@ -5485,13 +4825,9 @@ const Game = (() => {
     
     // 隐藏弹窗
     function hideModal() {
-        elements.modal.content.classList.remove('opacity-100');
-        elements.modal.container.classList.remove('active');
-        // 立即放行底层交互：opacity 过渡期间遮罩仍在布局内，否则会像「关窗后仍点不动」
-        elements.modal.container.style.pointerEvents = 'none';
+        elements.modal.content.classList.remove('scale-100', 'opacity-100');
         setTimeout(() => {
             elements.modal.container.classList.add('hidden');
-            elements.modal.container.style.display = 'none';
         }, 300);
     }
     
@@ -5510,7 +4846,7 @@ const Game = (() => {
         
         // 创建自定义弹窗，包含退出确认和存档选项
         const modal = document.createElement('div');
-        modal.className = 'fixed inset-0 glass-modal-overlay flex items-center justify-center z-50';
+        modal.className = 'fixed inset-0 bg-black/70 flex items-center justify-center z-50';
         
         // 根据是否是加载的游戏，显示不同的选项
         let saveOptionsHTML = '';
@@ -5559,7 +4895,7 @@ const Game = (() => {
         }
         
         modal.innerHTML = `
-            <div class="modal-content glass-strong p-6 opacity-0 transition-opacity duration-300" style="min-width: 400px;">
+            <div class="modal-content bg-[rgba(0,0,0,0.8)] backdrop-blur-sm rounded-[8px] p-6 transition-all duration-300 transform scale-95 opacity-0" style="min-width: 400px;">
                 <div class="modal-header flex justify-between items-center mb-4">
                     <h3 class="modal-title text-[18px] font-bold text-white">确认退出游戏</h3>
                     <button class="close-exit-modal text-white hover:text-[#E74C3C]">
@@ -5581,6 +4917,7 @@ const Game = (() => {
         // 显示动画
         setTimeout(() => {
             const content = modal.querySelector('.modal-content');
+            content.style.transform = 'scale(1)';
             content.style.opacity = '1';
         }, 50);
         
@@ -5607,6 +4944,7 @@ const Game = (() => {
         
         const closeModal = () => {
             const content = modal.querySelector('.modal-content');
+            content.style.transform = 'scale(0.95)';
             content.style.opacity = '0';
             setTimeout(() => {
                 document.body.removeChild(modal);
@@ -5679,17 +5017,6 @@ const Game = (() => {
     
     // 初始化事件监听
     function initEventListeners() {
-        function clickEventTargetElement(ev) {
-            const t = ev && ev.target;
-            if (!t) {
-                return null;
-            }
-            if (t.nodeType === 1) {
-                return t;
-            }
-            return t.parentElement;
-        }
-
         // 主菜单按钮
         elements.buttons.start.addEventListener('click', () => switchScreen('attrSelection'));
         elements.buttons.load.addEventListener('click', () => {
@@ -5710,16 +5037,21 @@ const Game = (() => {
         
         // 属性选项点击事件
         document.addEventListener('click', (e) => {
-            const el = clickEventTargetElement(e);
-            const optionBtn = el && typeof el.closest === 'function' ? el.closest('.attr-option-btn') : null;
-            if (optionBtn) {
+            if (e.target.classList.contains('attr-option-btn')) {
+                const optionBtn = e.target;
                 const attrOptions = optionBtn.parentElement;
                 const attrName = attrOptions.dataset.attr;
                 const attrValue = optionBtn.dataset.value;
                 
                 // 更新属性状态
                 gameState.protagonistAttr[attrName] = attrValue;
-                syncAttrOptionSelectionUi();
+                
+                // 更新UI样式
+                attrOptions.querySelectorAll('.attr-option-btn').forEach(btn => {
+                    btn.className = 'attr-option-btn px-4 py-2 rounded-lg bg-[#7F8C8D] text-white transition-all hover:bg-[#95A5A6]';
+                });
+                optionBtn.className = 'attr-option-btn px-4 py-2 rounded-lg bg-[#3498DB] text-white transition-all hover:bg-[#2980B9]';
+                
                 playSound('select');
             }
         });
@@ -5749,90 +5081,39 @@ const Game = (() => {
                 playSound('select');
             });
         });
-        function handleWizardConfirmDifficultyClick() {
-            const scr = document.getElementById('difficulty-selection-screen');
-            if (!scr || !scr.classList.contains('active')) {
-                return;
-            }
+        elements.buttons.confirmDifficulty.addEventListener('click', () => {
             if (gameState.selectedDifficulty) {
                 switchScreen('toneSelection');
             } else {
                 showModal('提示', '请选择游戏难度', () => {});
             }
-        }
-
-        function handleWizardConfirmToneClick() {
-            const scr = document.getElementById('tone-selection-screen');
-            if (!scr || !scr.classList.contains('active')) {
-                return;
-            }
-            if (gameState.selectedTone) {
-                switchScreen('themeInput');
-            } else {
-                showModal('提示', '请先点击上方一张基调卡片选中，再按确认', () => {});
-            }
-        }
-
-        document.addEventListener('dn-wizard-confirm-difficulty', handleWizardConfirmDifficultyClick);
-        document.addEventListener('dn-wizard-confirm-tone', handleWizardConfirmToneClick);
-
-        // 难度/基调「确认」：捕获阶段 click + 内联 CustomEvent（内联见 index.html）
-        // 注意：点在按钮文字上时 target 可能是文本节点，无 .closest，曾导致永远匹配不到
-        document.addEventListener(
-            'click',
-            (e) => {
-                const el = clickEventTargetElement(e);
-                const diffBtn = el && typeof el.closest === 'function' ? el.closest('#confirm-difficulty-btn') : null;
-                if (diffBtn) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    handleWizardConfirmDifficultyClick();
-                    return;
-                }
-                const toneBtn = el && typeof el.closest === 'function' ? el.closest('#confirm-tone-btn') : null;
-                if (toneBtn) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    handleWizardConfirmToneClick();
-                }
-            },
-            true
-        );
+        });
         
         // 基调选择卡片
         document.querySelectorAll('.tone-card').forEach(card => {
             card.addEventListener('click', () => {
-                document.querySelectorAll('.tone-card').forEach(c => c.classList.remove('selected'));
-                card.classList.add('selected');
-                gameState.selectedTone = card.dataset.tone;
-                gameState.currentTone = card.dataset.tone;
-                
-                // 背景渐变切换
-                let gradient = '';
-                switch(card.dataset.tone) {
-                    case 'happy_ending': gradient = 'linear-gradient(135deg, rgba(46,204,113,0.3), rgba(26,188,156,0.3))'; break;
-                    case 'bad_ending': gradient = 'linear-gradient(135deg, rgba(155,89,182,0.3), rgba(142,68,173,0.3))'; break;
-                    case 'normal_ending': gradient = 'linear-gradient(135deg, rgba(52,152,219,0.3), rgba(41,128,185,0.3))'; break;
-                    case 'dark_depressing': gradient = 'linear-gradient(135deg, rgba(52,73,94,0.5), rgba(44,62,80,0.5))'; break;
-                    case 'humorous': gradient = 'linear-gradient(135deg, rgba(241,196,15,0.3), rgba(243,156,18,0.3))'; break;
-                    case 'abstract': gradient = 'linear-gradient(135deg, rgba(155,89,182,0.3), rgba(142,68,173,0.3))'; break;
-                    case 'aesthetic': gradient = 'linear-gradient(135deg, rgba(233,30,99,0.3), rgba(211,47,47,0.3))'; break;
-                    case 'logical': gradient = 'linear-gradient(135deg, rgba(76,175,80,0.3), rgba(67,160,71,0.3))'; break;
-                    case 'mysterious': gradient = 'linear-gradient(135deg, rgba(255,152,0,0.3), rgba(251,140,0,0.3))'; break;
-                    case 'stream_of_consciousness': gradient = 'linear-gradient(135deg, rgba(103,58,183,0.3), rgba(93,58,183,0.3))'; break;
-                }
-                elements.globalBg.style.background = gradient;
-                elements.globalBg.style.transition = 'background 500ms ease';
+                const tone = card.dataset.tone;
+                persistSelectedTone(tone);
+                syncToneSelectionUI(tone);
                 playSound('select');
+                goToTonePreview(tone);
             });
         });
+        elements.buttons.confirmTone.addEventListener('click', () => {
+            if (gameState.selectedTone) {
+                showModal('提示', '请选择基调卡片进入预览页，在预览页中点击“确认选择”继续', () => {}, false);
+            } else {
+                showModal('提示', '请选择故事基调', () => {});
+            }
+        });
+        
         // 主题输入
         elements.inputs.theme.addEventListener('input', updateWordCount);
         elements.buttons.submitTheme.addEventListener('click', async () => {
             const theme = elements.inputs.theme.value;
             const validation = inputValidator.validateTheme(theme);
             if (validation.valid) {
-                gameState.gameTheme = escapeHtml(theme.trim());
+                persistGameTheme(theme);
                 // 跳转到图片风格选择界面
                 switchScreen('imageStyleSelection');
             } else {
@@ -5850,59 +5131,37 @@ const Game = (() => {
                     c.classList.remove('animate-fadeIn');
                 });
                 tab.classList.add('bg-[#1ABC9C]', 'border-l-3', 'border-white');
-                const activeTab = tabId ? document.getElementById(`${tabId}-tab`) : null;
-                if (!activeTab) {
-                    console.warn('[设定页] 找不到标签对应面板:', tabId);
-                    return;
-                }
+                const activeTab = document.getElementById(`${tabId}-tab`);
                 activeTab.classList.remove('hidden');
                 activeTab.classList.add('animate-fadeIn');
                 playSound('click');
             });
         });
+
+        if (elements.content.visualModeButtons && elements.content.visualModeButtons.length) {
+            elements.content.visualModeButtons.forEach((btn) => {
+                btn.addEventListener('click', () => {
+                    const selectedMode = btn.dataset.visualMode;
+                    applyVisualMode(selectedMode, 'manual-select');
+                    playSound('click');
+                });
+            });
+        }
         
         // 图片风格选择逻辑
         // 风格按钮点击事件
         document.querySelectorAll('.style-btn').forEach(btn => {
             btn.addEventListener('click', () => {
-                // 重置所有按钮状态
-                document.querySelectorAll('.style-btn').forEach(b => {
-                    b.classList.remove('ring-4', 'ring-white');
-                });
-                
-                // 选中当前按钮
-                btn.classList.add('ring-4', 'ring-white');
-                selectedStyle = btn.dataset.style;
-                selectedSubStyle = null; // 重置子风格
-                customStyleText = ''; // 重置自定义文本
-                
-                // 隐藏所有子菜单
-                document.getElementById('oil-painting-submenu').classList.add('hidden');
-                document.getElementById('custom-style-input').classList.add('hidden');
-                
-                // 根据选择的风格显示相应的子菜单
-                if (selectedStyle === 'oil_painting') {
-                    // 显示油画风格子选项
-                    document.getElementById('oil-painting-submenu').classList.remove('hidden');
-                    document.getElementById('selected-style-display').textContent = '已选择：油画风格（请选择具体类型）';
-                    elements.buttons.confirmStyle.disabled = true;
-                    elements.buttons.confirmStyle.classList.add('cursor-not-allowed');
-                } else if (selectedStyle === 'custom') {
-                    // 显示自定义输入框
-                    document.getElementById('custom-style-input').classList.remove('hidden');
-                    document.getElementById('selected-style-display').textContent = '已选择：自定义（请输入风格）';
-                    elements.buttons.confirmStyle.disabled = true;
-                    elements.buttons.confirmStyle.classList.add('cursor-not-allowed');
-                } else {
-                    // 其他风格直接显示选择
-                    const styleName = btn.dataset.styleName;
-                    document.getElementById('selected-style-display').textContent = `已选择：${styleName}`;
-                    elements.buttons.confirmStyle.disabled = false;
-                    elements.buttons.confirmStyle.classList.remove('cursor-not-allowed');
-                    elements.buttons.confirmStyle.classList.add('bg-[#1ABC9C]', 'hover:bg-[#16A085]');
-                }
-                
+                const style = btn.dataset.style;
+                selectedStyle = style;
+                selectedSubStyle = null;
+                customStyleText = '';
+                persistStyleSelection(style, '');
+                applyStyleSelectionUI(style, '');
                 playSound('click');
+                if (style !== 'custom') {
+                    goToStylePreview(style);
+                }
             });
         });
         
@@ -5917,11 +5176,10 @@ const Game = (() => {
                 // 选中当前子选项
                 btn.classList.add('ring-4', 'ring-white');
                 selectedSubStyle = btn.dataset.substyle;
+                persistStyleSelection('oil_painting', selectedSubStyle);
                 const subStyleName = btn.dataset.substyleName;
                 document.getElementById('selected-style-display').textContent = `已选择：油画风格 - ${subStyleName}`;
-                elements.buttons.confirmStyle.disabled = false;
-                elements.buttons.confirmStyle.classList.remove('cursor-not-allowed');
-                elements.buttons.confirmStyle.classList.add('bg-[#1ABC9C]', 'hover:bg-[#16A085]');
+                setConfirmStyleButtonState(true);
                 
                 playSound('click');
             });
@@ -5933,13 +5191,10 @@ const Game = (() => {
                 customStyleText = elements.inputs.customStyle.value.trim();
                 if (customStyleText.length > 0) {
                     document.getElementById('selected-style-display').textContent = `已选择：自定义 - ${customStyleText}`;
-                    elements.buttons.confirmStyle.disabled = false;
-                    elements.buttons.confirmStyle.classList.remove('cursor-not-allowed');
-                    elements.buttons.confirmStyle.classList.add('bg-[#1ABC9C]', 'hover:bg-[#16A085]');
+                    setConfirmStyleButtonState(true);
                 } else {
                     document.getElementById('selected-style-display').textContent = '已选择：自定义（请输入风格）';
-                    elements.buttons.confirmStyle.disabled = true;
-                    elements.buttons.confirmStyle.classList.add('cursor-not-allowed');
+                    setConfirmStyleButtonState(false);
                 }
             });
         }
@@ -5949,39 +5204,7 @@ const Game = (() => {
             if (elements.buttons.confirmStyle.disabled) {
                 return;
             }
-            
-            // 根据选择的风格保存到gameState
-            if (selectedStyle === 'oil_painting' && selectedSubStyle) {
-                // 油画风格需要保存子风格
-                gameState.imageStyle = {
-                    type: 'oil_painting',
-                    subtype: selectedSubStyle
-                };
-            } else if (selectedStyle === 'custom' && customStyleText) {
-                // 自定义风格
-                gameState.imageStyle = {
-                    type: 'custom',
-                    value: customStyleText
-                };
-            } else if (selectedStyle) {
-                // 其他风格
-                gameState.imageStyle = {
-                    type: selectedStyle
-                };
-            } else {
-                showModal('提示', '请先选择一个图片风格', () => {});
-                return;
-            }
-            
-            console.log('✅ 图片风格已选择:', gameState.imageStyle);
-            
-            // 应用字体（根据风格和基调）
-            FontManager.applyFontToGame(gameState.imageStyle, gameState.tone);
-            
-            // 跳转到加载界面，开始生成世界观
-            switchScreen('loading');
-            simulateLoading();
-            await generateGameWorldview();
+            await confirmStyleAndContinueFlow();
         });
         
         // 开始游戏
@@ -6085,18 +5308,10 @@ const Game = (() => {
             characterPanel.style.cursor = 'move';
         });
         
-        // 关闭角色面板（先失焦再隐藏，避免祖先 aria-hidden 与焦点冲突触发浏览器无障碍警告）
-        const closePanelBtn = document.querySelector('.close-panel');
-        if (closePanelBtn && characterPanel) {
-            closePanelBtn.addEventListener('click', () => {
-                const ae = document.activeElement;
-                if (ae && characterPanel.contains(ae)) {
-                    ae.blur();
-                }
-                characterPanel.style.display = 'none';
-                characterPanel.setAttribute('aria-hidden', 'true');
-            });
-        }
+        // 关闭角色面板
+        document.querySelector('.close-panel').addEventListener('click', () => {
+            characterPanel.style.display = 'none';
+        });
         
         // 游戏结束按钮事件
         const endGameBtn = document.getElementById('end-game-btn');
@@ -6163,8 +5378,7 @@ const Game = (() => {
     // 暴露公共方法
     return {
         init,
-        saveGame,
-        syncAttrOptionSelectionUi
+        saveGame
     };
 })();
 
@@ -6177,8 +5391,6 @@ function forceDisableSceneTextScale() {
                 sceneTextElement.style.setProperty('transform', 'none', 'important');
                 sceneTextElement.style.setProperty('scale', '1', 'important');
                 sceneTextElement.style.setProperty('transition', 'none', 'important');
-                sceneTextElement.style.setProperty('animation', 'none', 'important');
-                sceneTextElement.style.setProperty('pointer-events', 'none', 'important');
                 sceneTextElement.style.setProperty('user-select', 'none', 'important');
                 sceneTextElement.style.setProperty('outline', 'none', 'important');
                 sceneTextElement.style.setProperty('-webkit-transform', 'none', 'important');
@@ -6186,13 +5398,7 @@ function forceDisableSceneTextScale() {
                 sceneTextElement.style.setProperty('-ms-transform', 'none', 'important');
                 sceneTextElement.style.setProperty('-o-transform', 'none', 'important');
                 sceneTextElement.style.setProperty('will-change', 'auto', 'important');
-                // 强制移除所有背景样式，确保完全透明
-                sceneTextElement.style.setProperty('background', 'transparent', 'important');
-                sceneTextElement.style.setProperty('background-color', 'transparent', 'important');
-                sceneTextElement.style.setProperty('background-image', 'none', 'important');
-                sceneTextElement.style.setProperty('box-shadow', 'none', 'important');
-                sceneTextElement.style.setProperty('backdrop-filter', 'none', 'important');
-                sceneTextElement.style.setProperty('-webkit-backdrop-filter', 'none', 'important');
+                sceneTextElement.style.setProperty('touch-action', 'pan-y', 'important');
             };
         
         forceNoTransform();
@@ -6201,8 +5407,6 @@ function forceDisableSceneTextScale() {
         // 注意：移除 touchstart/touchend，允许滚动
         ['click', 'mousedown', 'mouseup', 'focus', 'blur', 'keydown', 'keyup'].forEach(eventType => {
             sceneTextElement.addEventListener(eventType, (e) => {
-                e.preventDefault();
-                e.stopPropagation();
                 forceNoTransform();
             }, true);
         });
@@ -6261,17 +5465,6 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('📦 [初始化] DOMContentLoaded事件触发');
     console.log('📦 [代码版本] 使用同一定位上下文方案');
     Game.init();
-    initMotionPhaseA();
-    initMotionPhaseB();
-    if (prefersReducedMotionActive()) {
-        runMenuStatsCountUp();
-    } else {
-        window.setTimeout(() => {
-            if (typeof runMenuStatsCountUp === 'function') {
-                runMenuStatsCountUp();
-            }
-        }, 880);
-    }
     // 延迟执行，确保DOM完全加载
     setTimeout(forceDisableSceneTextScale, 100);
     setTimeout(forceDisableSceneTextScale, 500);
