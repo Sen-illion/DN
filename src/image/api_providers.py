@@ -1038,9 +1038,13 @@ def generate_scene_image(
     
     # 1.6 获取主角参考图路径（用于保持主角形象一致性）
     # 放宽条件：只要有正面图就使用（第一次场景图与主角生成并行，侧/背可能尚未就绪）
+    # global_state._skip_protagonist_reference 或 EXPERIMENT_SKIP_PROTAGONIST_REF：实验用，不传主角参考图、不打印等待提示
     protagonist_reference_images = []
     game_id = global_state.get('game_id') if isinstance(global_state, dict) else None
-    if game_id:
+    skip_prot_ref = bool(isinstance(global_state, dict) and global_state.get("_skip_protagonist_reference"))
+    if not skip_prot_ref:
+        skip_prot_ref = os.getenv("EXPERIMENT_SKIP_PROTAGONIST_REF", "").strip().lower() in ("1", "true", "yes")
+    if game_id and not skip_prot_ref:
         from pathlib import Path
         main_character_dir = Path("initial") / "main_character" / game_id
         front_path = main_character_dir / "main_character.png"
