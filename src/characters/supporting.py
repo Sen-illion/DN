@@ -17,7 +17,7 @@ from src.characters.archives import (
     _next_img_id,
 )
 from src.characters.pending_roles import get_and_consume_pending
-from src.characters.vision_ref_crop import get_character_bbox_and_crop
+from src.characters.vision_ref_crop import get_character_bbox_and_crop, resolve_image_path_or_url
 from src.utils.text_utils import _safe_str, _clip_text, _extract_core_features_from_prompt
 
 
@@ -224,7 +224,7 @@ def archive_supporting_role_first_appearance(
     """
     剧情图生成成功后：将当前剧情图保存为配角的初登场图，并建立档案。
     :param pending_item: get_or_create 返回的待建档对象
-    :param scene_image_path: 刚生成的剧情图本地路径（如 image_cache/xxx.png）
+    :param scene_image_path: 刚生成的剧情图路径或 URL（支持 /image_cache/xxx.png 或 https://...）
     :param prompt: 本次生成使用的提示词（用于 first_prompt）
     :return: 新建的 archive，或 None
     """
@@ -235,11 +235,13 @@ def archive_supporting_role_first_appearance(
     role_info = pending_item.get("role_info") or {}
     first_appear_scene = _safe_str(pending_item.get("first_appear_scene", "")).strip()
 
-    src = Path(scene_image_path)
-    if not src.exists():
-        print(f"⚠️ 初登场图源文件不存在：{scene_image_path}")
+    # 支持本地路径与云端 URL
+    resolved = resolve_image_path_or_url(scene_image_path)
+    if not resolved or not resolved.exists():
+        print(f"⚠️ 初登场图源不存在（路径或 URL）：{scene_image_path[:80]}...")
         return None
 
+    is_from_url = str(scene_image_path).strip().startswith(("http://", "https://"))
     ref_dir = ensure_character_references_dir(game_id)
     archives = _load_role_archives(game_id)
     role_id = _next_role_id(archives)
@@ -248,10 +250,16 @@ def archive_supporting_role_first_appearance(
     first_img_path = ref_dir / f"{role_prefix}_{first_img_id}.png"
 
     try:
-        shutil.copy2(src, first_img_path)
+        shutil.copy2(resolved, first_img_path)
     except Exception as e:
         print(f"⚠️ 保存配角初登场图失败：{e}")
         return None
+    finally:
+        if is_from_url and resolved.exists():
+            try:
+                resolved.unlink()
+            except Exception:
+                pass
 
     first_prompt = _extract_character_core_from_prompt(prompt, display_name) or _clip_text(prompt, 300)
     core_features = _extract_core_features_from_prompt(first_prompt)

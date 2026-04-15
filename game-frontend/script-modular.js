@@ -6,7 +6,148 @@
 // 2. 文本和选项在选项容器内切换显示
 // 3. 移除了复杂的位置计算逻辑
 // ====================================
-console.log('🚀 [代码版本] 使用同一定位上下文方案已加载');
+console.log('🚀 [代码版本] 使用同一定位上下文方案已加载（asset-fix-3：HTTPS 下静态资源固定跟当前 origin）');
+
+/** 后端 API 根；HTTPS 页面不得默认指向 http://127.0.0.1（会混合内容）。线上请在 index.html 设置 window.GAME_API_BASE；未设置时 HTTPS 下回退为当前页 origin（需同域反代 API）。 */
+const _CONFIGURED_API_BASE =
+    typeof window !== 'undefined' && window.GAME_API_BASE
+        ? String(window.GAME_API_BASE).replace(/\/$/, '')
+        : '';
+
+/** 是否为「本机 HTTP」根地址；HTTPS 页面不能用它拼图片/API，否则混合内容 */
+function _isHttpLoopbackBase(baseStr) {
+    if (!baseStr || typeof baseStr !== 'string') {
+        return false;
+    }
+    const s = baseStr.trim();
+    if (!s) {
+        return false;
+    }
+    try {
+        const u = new URL(/^https?:\/\//i.test(s) ? s : `http://${s}`);
+        if (u.protocol !== 'http:') {
+            return false;
+        }
+        const h = u.hostname.toLowerCase();
+        return h === '127.0.0.1' || h === 'localhost' || h === '[::1]';
+    } catch (e) {
+        return false;
+    }
+}
+
+const API_BASE = (() => {
+    if (_CONFIGURED_API_BASE) {
+        if (
+            typeof window !== 'undefined' &&
+            window.location.protocol === 'https:' &&
+            _isHttpLoopbackBase(_CONFIGURED_API_BASE)
+        ) {
+            const o = window.location.origin;
+            if (o && o !== 'null') {
+                console.warn(
+                    '[game] 当前页为 HTTPS，但 GAME_API_BASE 为本机 HTTP（' +
+                        _CONFIGURED_API_BASE +
+                        '），已改用当前页 origin，避免混合内容。线上请使用公网 HTTPS 或同域反向代理，勿在 HTTPS 页填写 127.0.0.1。'
+                );
+                return o;
+            }
+        }
+        return _CONFIGURED_API_BASE;
+    }
+    if (typeof window !== 'undefined' && window.location.protocol === 'https:') {
+        const o = window.location.origin;
+        if (o && o !== 'null') {
+            console.warn(
+                '[game] 未设置 window.GAME_API_BASE，已使用当前页 origin 作为 API：' +
+                    o +
+                    '。若 API 在其它域名请设置 GAME_API_BASE；静态资源在 CDN 上可另设 GAME_ASSET_BASE；本地请用 http:// 打开本页或显式指定上述变量。'
+            );
+            return o;
+        }
+    }
+    return 'http://127.0.0.1:5001';
+})();
+
+/** 静态资源根（剧情图 /image_cache、主角 /initial 等）；与 API 不同源时设 window.GAME_ASSET_BASE */
+const _CONFIGURED_ASSET_BASE =
+    typeof window !== 'undefined' && window.GAME_ASSET_BASE
+        ? String(window.GAME_ASSET_BASE).replace(/\/$/, '')
+        : '';
+
+function getAssetBase() {
+    const isHttps =
+        typeof window !== 'undefined' && window.location.protocol === 'https:';
+    // 线上 HTTPS：相对路径资源必须跟「当前站点」走，不能跟 API_BASE（易残留 127.0.0.1）拼
+    if (isHttps) {
+        if (_CONFIGURED_ASSET_BASE && !_isHttpLoopbackBase(_CONFIGURED_ASSET_BASE)) {
+            return _CONFIGURED_ASSET_BASE;
+        }
+        const o = window.location.origin;
+        if (o && o !== 'null') {
+            return o;
+        }
+    }
+    const primary = _CONFIGURED_ASSET_BASE || API_BASE;
+    if (isHttps && _isHttpLoopbackBase(primary)) {
+        const o = window.location.origin;
+        if (o && o !== 'null') {
+            return o;
+        }
+    }
+    return primary;
+}
+
+/** 相对路径转为绝对 URL，供背景图/img 使用 */
+function resolveGameAssetUrl(path) {
+    if (path == null) {
+        return path;
+    }
+    const trimmed = String(path).trim().replace(/^['"]|['"]$/g, '');
+    if (!trimmed) {
+        return trimmed;
+    }
+    // HTTPS 页面上，任何 http://127.0.0.1 或 localhost 都必须改掉（不依赖 URL 解析是否成功）
+    if (typeof window !== 'undefined' && window.location.protocol === 'https:') {
+        const loopbackOrigin = /^http:\/\/(?:127\.0\.0\.1|localhost|\[::1\]|::1)(?::\d+)?/i;
+        if (loopbackOrigin.test(trimmed)) {
+            const rest = trimmed.replace(loopbackOrigin, '');
+            const pathOnly = rest.startsWith('/') ? rest : `/${rest}`;
+            return `${getAssetBase()}${pathOnly}`;
+        }
+    }
+    if (/^https?:\/\//i.test(trimmed)) {
+        try {
+            const u = new URL(trimmed);
+            const loopback =
+                u.hostname === '127.0.0.1' ||
+                u.hostname === 'localhost' ||
+                u.hostname === '[::1]' ||
+                u.hostname === '::1';
+            if (
+                u.protocol === 'http:' &&
+                loopback &&
+                typeof window !== 'undefined' &&
+                window.location.protocol === 'https:'
+            ) {
+                return `${getAssetBase()}${u.pathname}${u.search}${u.hash}`;
+            }
+        } catch (e) {
+            /* ignore */
+        }
+        return trimmed;
+    }
+    if (trimmed.startsWith('//')) {
+        return (typeof window !== 'undefined' && window.location.protocol === 'https:') ? 'https:' + trimmed : 'http:' + trimmed;
+    }
+    if (trimmed.startsWith('data:')) {
+        return trimmed;
+    }
+    const base = getAssetBase();
+    if (trimmed.startsWith('/')) {
+        return `${base}${trimmed}`;
+    }
+    return `${base}/${trimmed}`;
+}
 
 // ========== 无障碍功能初始化 ==========
 // 检测用户是否偏好减少动画
@@ -57,6 +198,8 @@ const Game = (() => {
     let gameState;
     let elements;
     let soundManager;
+    let sseSource = null;
+    let sseSubscribedSceneId = null;
     // 图片风格选择相关变量
     let selectedStyle = null;
     let selectedSubStyle = null;
@@ -132,6 +275,58 @@ const Game = (() => {
         restoreStyleStateFromReturn();
         // 初始化 ultra-luxury 视觉作用域
         updateLuxuryVisualMode(gameState.currentScreen || 'menu');
+    }
+
+    function startSceneImageSse(sceneId, gameId) {
+        try {
+            const sid = (sceneId || '').trim();
+            if (!sid) return;
+            if (sseSource && sseSubscribedSceneId === sid) return;
+            if (sseSource) {
+                try { sseSource.close(); } catch (_) {}
+                sseSource = null;
+            }
+            sseSubscribedSceneId = sid;
+            const qs = new URLSearchParams({ sceneId: sid });
+            if (gameId) qs.set('gameId', String(gameId));
+            const url = `${API_BASE}/events?${qs.toString()}`;
+            sseSource = new EventSource(url);
+            sseSource.addEventListener('hello', () => {
+                console.log('✅ SSE 已连接:', sid);
+            });
+            sseSource.addEventListener('ping', () => {
+                // keep-alive
+            });
+            sseSource.onmessage = (ev) => {
+                try {
+                    const payload = JSON.parse(ev.data || '{}');
+                    if (!payload || payload.type !== 'scene_image_ready') return;
+                    const pSceneId = String(payload.sceneId || '');
+                    const optIdx = Number(payload.optionIndex);
+                    if (pSceneId !== String(gameState.currentDisplaySceneId || '')) return;
+                    if (!Number.isFinite(optIdx) || optIdx !== Number(gameState.currentDisplayOptionIndex)) return;
+                    const img = payload.image || payload.scene_image || { url: payload.url };
+                    const normalized = normalizeStorySceneImageData(img);
+                    if (!normalized || !normalized.url) return;
+                    console.log('✅ SSE 收到剧情图就绪，立即更新背景:', normalized.url);
+                    try {
+                        VisualContentManager.displaySceneImage(normalized, null);
+                    } catch (e) {
+                        console.warn('⚠️ SSE 更新背景失败:', e);
+                    }
+                    gameState.pendingImageData = normalized;
+                    gameState.lastSceneImage = normalized;
+                } catch (e) {
+                    // ignore
+                }
+            };
+            sseSource.onerror = (e) => {
+                // SSE 会自动重连；这里只做轻量日志
+                console.warn('⚠️ SSE 连接异常/重连中');
+            };
+        } catch (e) {
+            console.warn('⚠️ SSE 初始化失败:', e);
+        }
     }
     
     // 音效管理模块
@@ -563,12 +758,12 @@ const Game = (() => {
             finalImageUrl = finalImageUrl.trim();
             
             if (finalImageUrl.startsWith('/image_cache/')) {
-                // 本地缓存路径 - 转换为完整URL
-                finalImageUrl = `http://127.0.0.1:5001${finalImageUrl}`;
+                // 本地缓存路径 - 转换为完整URL（与 API 可能用 GAME_ASSET_BASE）
+                finalImageUrl = resolveGameAssetUrl(finalImageUrl);
                 console.log('✅ 检测到本地缓存路径，转换为:', finalImageUrl);
             } else if (finalImageUrl.startsWith('image_cache/')) {
                 // 相对路径（没有前导斜杠）
-                finalImageUrl = `http://127.0.0.1:5001/${finalImageUrl}`;
+                finalImageUrl = resolveGameAssetUrl(finalImageUrl);
                 console.log('✅ 检测到相对缓存路径，转换为:', finalImageUrl);
             } else if (finalImageUrl.startsWith('http://') || finalImageUrl.startsWith('https://')) {
                 // 外部URL，直接使用
@@ -587,7 +782,7 @@ const Game = (() => {
                 // 如果包含image_cache关键字，尝试修复
                 if (finalImageUrl.includes('image_cache')) {
                     const filename = finalImageUrl.split('image_cache')[1].replace(/^[\/\\]+/, '');
-                    finalImageUrl = `http://127.0.0.1:5001/image_cache/${filename}`;
+                    finalImageUrl = `${getAssetBase()}/image_cache/${filename}`;
                     console.log('✅ 从异常URL中提取文件名，修复为:', finalImageUrl);
                 } else {
                     console.error('❌ 无法识别的URL格式:', finalImageUrl);
@@ -625,6 +820,7 @@ const Game = (() => {
                     const isCurrentDisplay = gameState && gameState._pendingDisplay && gameState._pendingDisplay.imageUrl === imageUrl;
                     if (!isCurrentDisplay) {
                         console.log('⏭️ 本次加载已过时（当前展示请求已切换），跳过绘制与 notify');
+                        if (loadingDiv) loadingDiv.style.display = 'none';
                         return;
                     }
                     
@@ -668,7 +864,7 @@ const Game = (() => {
                         if (canonical.name_en) protagonistNames.push(String(canonical.name_en).trim());
                         const protoChar = gd?.core_worldview?.characters?.主角;
                         if (protoChar?.name) protagonistNames.push(String(protoChar.name).trim());
-                        fetch('http://127.0.0.1:5001/notify-scene-displayed', {
+                        fetch(API_BASE + '/notify-scene-displayed', {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
                             body: JSON.stringify({
@@ -1255,6 +1451,11 @@ const Game = (() => {
             if (screenName === 'gameplay' && characterPanel) {
                 characterPanel.style.display = 'block';
             }
+            // 进入剧情屏时务必关掉全屏图片加载层，避免 displaySceneImage 早退后残留在 z-50
+            if (screenName === 'gameplay') {
+                const il = document.getElementById('image-loading');
+                if (il) il.style.display = 'none';
+            }
         } else {
             console.error(`switchScreen错误：找不到屏幕 ${screenName}`);
         }
@@ -1587,7 +1788,7 @@ const Game = (() => {
             // 调用后端API生成游戏世界观
             let response;
             try {
-                response = await fetch('http://127.0.0.1:5001/generate-worldview', {
+                response = await fetch(API_BASE + '/generate-worldview', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -1608,7 +1809,7 @@ const Game = (() => {
                 if (fetchError.name === 'TimeoutError') {
                     errorMessage = '请求超时，后端服务器响应时间过长。请检查后端服务是否正常运行，或稍后重试。';
                 } else if (fetchError.name === 'TypeError' && fetchError.message.includes('fetch')) {
-                    errorMessage = '网络连接失败。请确认：\n1. 后端服务器是否已启动（运行 game_server.py）\n2. 服务器是否运行在 http://127.0.0.1:5001\n3. 防火墙是否阻止了连接';
+                    errorMessage = `网络连接失败。请确认：\n1. 后端服务器是否已启动（运行 game_server.py）\n2. 当前 API：${API_BASE}\n3. 防火墙是否阻止了连接`;
                 } else {
                     errorMessage = `连接错误：${fetchError.message}`;
                 }
@@ -1858,7 +2059,7 @@ const Game = (() => {
                 if (error.name === 'TimeoutError') {
                     errorMessage = '请求超时，后端服务器响应时间过长。请检查后端服务是否正常运行，或稍后重试。';
                 } else if (error.name === 'TypeError' && error.message.includes('fetch')) {
-                    errorMessage = '网络连接失败。请确认：\n1. 后端服务器是否已启动（运行 game_server.py）\n2. 服务器是否运行在 http://127.0.0.1:5001\n3. 防火墙是否阻止了连接';
+                    errorMessage = `网络连接失败。请确认：\n1. 后端服务器是否已启动（运行 game_server.py）\n2. 当前 API：${API_BASE}\n3. 防火墙是否阻止了连接`;
                 } else {
                     errorMessage = `生成失败：${error.message || '未知错误'}`;
                 }
@@ -2082,7 +2283,7 @@ const Game = (() => {
             
             let response;
             try {
-                response = await fetch('http://127.0.0.1:5001/generate-option', {
+                response = await fetch(API_BASE + '/generate-option', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -2161,7 +2362,7 @@ const Game = (() => {
                                 
                                 let retryResponse;
                                 try {
-                                    retryResponse = await fetch('http://127.0.0.1:5001/generate-option', {
+                                    retryResponse = await fetch(API_BASE + '/generate-option', {
                                         method: 'POST',
                                         headers: {
                                             'Content-Type': 'application/json'
@@ -2470,7 +2671,7 @@ const Game = (() => {
     async function pregenerateNextLayers(globalState, currentOptions, sceneId) {
         try {
             // 异步调用预生成接口，不等待结果（后台执行）
-            fetch('http://127.0.0.1:5001/pregenerate-next-layers', {
+            fetch(API_BASE + '/pregenerate-next-layers', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -2728,7 +2929,7 @@ const Game = (() => {
                         const viewportHeight = window.innerHeight;
                         console.log(`📐 视口尺寸: ${viewportWidth}x${viewportHeight}`);
                         
-                        fetch('http://127.0.0.1:5001/generate-scene-image', {
+                        fetch(API_BASE + '/generate-scene-image', {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
                             body: JSON.stringify({
@@ -3175,6 +3376,9 @@ const Game = (() => {
                     try {
                         // 保存上一轮的sceneId用于缓存清理
                         const previousSceneId = gameState.currentSceneId;
+                        // 记录：本次展示的剧情来自哪个 sceneId + 哪个 optionIndex（用于 SSE 精准回填图片）
+                        const displaySceneId = previousSceneId;
+                        const displayOptionIndex = index;
                         
                         // 添加超时检测：如果30秒内没有响应，显示提示
                         const hintTimeoutId = setTimeout(() => {
@@ -3200,7 +3404,7 @@ const Game = (() => {
                             console.log('   - 发送的 sceneId：', gameState.currentSceneId);
                             console.log('   - previousSceneId：', previousSceneId);
                             
-                            response = await fetch('http://127.0.0.1:5001/generate-option', {
+                            response = await fetch(API_BASE + '/generate-option', {
                                 method: 'POST',
                                 headers: {
                                     'Content-Type': 'application/json'
@@ -3265,6 +3469,11 @@ const Game = (() => {
                                 gameState.currentSceneId = optionData.sceneId;
                                 console.log('✅ 使用服务端返回的下一轮 sceneId:', optionData.sceneId);
                             }
+
+                            // SSE：订阅“当前展示这段剧情”的 sceneId，一旦图片生成完就马上推送并更新背景
+                            gameState.currentDisplaySceneId = displaySceneId;
+                            gameState.currentDisplayOptionIndex = displayOptionIndex;
+                            startSceneImageSse(displaySceneId, (gameState.gameData || {}).game_id);
                             
                             // 重要：验证场景文本是否有效（不是空字符串或默认值）
                             let nextScene = optionData.scene;
@@ -4089,7 +4298,7 @@ const Game = (() => {
         
         // 调用后端API保存游戏
         try {
-            const response = await fetch('http://127.0.0.1:5001/save-game', {
+            const response = await fetch(API_BASE + '/save-game', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -4151,7 +4360,8 @@ const Game = (() => {
     
     // 展示主角形象（全屏）
     function showMainCharacterImage(imageUrl, onContinue) {
-        // 创建全屏展示面板
+        // 切勿把未净化的 URL 写进 innerHTML 的 src=：解析 HTML 的瞬间就会请求，混合内容已触发
+        const safeImageUrl = resolveGameAssetUrl(String(imageUrl || '').trim());
         const characterPanel = document.createElement('div');
         characterPanel.id = 'main-character-panel';
         characterPanel.className = 'fixed inset-0 bg-black/95 flex flex-col items-center justify-center z-[100]';
@@ -4163,7 +4373,7 @@ const Game = (() => {
                 <div class="character-image-container mb-8 relative">
                     <img 
                         id="main-character-img" 
-                        src="${imageUrl}" 
+                        src="" 
                         alt="主角形象" 
                         class="max-w-full max-h-[70vh] object-contain rounded-lg shadow-2xl"
                         style="animation: fadeIn 0.5s ease-in;"
@@ -4188,6 +4398,7 @@ const Game = (() => {
         // 图片加载处理
         const img = characterPanel.querySelector('#main-character-img');
         const loadingDiv = characterPanel.querySelector('#character-loading');
+        img.src = safeImageUrl;
         
         img.onload = () => {
             loadingDiv.style.display = 'none';
@@ -4247,27 +4458,26 @@ const Game = (() => {
                 return;
             }
             
-            // 构建主角形象图片URL
-            const imageUrl = mainCharacter && mainCharacter.image_url
-                ? (mainCharacter.image_url.startsWith('http') 
-                    ? mainCharacter.image_url 
-                    : `http://127.0.0.1:5001${mainCharacter.image_url}`)
-                : `http://127.0.0.1:5001/initial/main_character/${gameId}/main_character.png`;
+            const defaultMcPath = `/initial/main_character/${gameId}/main_character.png`;
+            const getRawMainCharacterImageUrl = () => {
+                const mc = gameState.gameData?.main_character;
+                return mc && mc.image_url ? mc.image_url : defaultMcPath;
+            };
             
-            // 检查图片是否存在（通过尝试加载）
+            // 检查图片是否存在（每次轮询用最新 gameState，避免闭包里的旧 URL）
             const checkImageExists = () => {
                 return new Promise((resolve) => {
                     const img = new Image();
                     img.onload = () => resolve(true);
                     img.onerror = () => resolve(false);
-                    img.src = imageUrl;
+                    img.src = resolveGameAssetUrl(getRawMainCharacterImageUrl());
                 });
             };
             
             // 如果已经有主角形象信息，直接展示
             if (mainCharacter && mainCharacter.image_url) {
                 console.log('✅ 主角形象已生成，开始展示');
-                showMainCharacterImage(imageUrl, onContinue);
+                showMainCharacterImage(getRawMainCharacterImageUrl(), onContinue);
                 return;
             }
             
@@ -4290,7 +4500,7 @@ const Game = (() => {
                                 image_url: `/initial/main_character/${gameId}/main_character.png`
                             };
                         }
-                        showMainCharacterImage(imageUrl, onContinue);
+                        showMainCharacterImage(getRawMainCharacterImageUrl(), onContinue);
                         return;
                     }
                     
@@ -4399,7 +4609,7 @@ const Game = (() => {
     async function loadGameState(saveName) {
         try {
             // 调用后端API加载存档
-            const response = await fetch('http://127.0.0.1:5001/load-game', {
+            const response = await fetch(API_BASE + '/load-game', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -4629,7 +4839,7 @@ const Game = (() => {
         // 从后端获取存档列表
         let saves = [];
         try {
-            const response = await fetch('http://127.0.0.1:5001/list-saves', {
+            const response = await fetch(API_BASE + '/list-saves', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
@@ -4766,7 +4976,7 @@ const Game = (() => {
     // 删除存档（调用后端API，同时更新localStorage缓存）
     async function deleteSave(saveName) {
         try {
-            const response = await fetch('http://127.0.0.1:5001/delete-save', {
+            const response = await fetch(API_BASE + '/delete-save', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

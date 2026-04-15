@@ -5,29 +5,105 @@
    ======================================== */
 
 @media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
+    /* html.dn-motion-preview：?fullMotion=1 本地预览完整动效时，不应用全局压制（否则 GSAP 的 transform 无效） */
+    html:not(.dn-motion-preview) *,
+    html:not(.dn-motion-preview) *::before,
+    html:not(.dn-motion-preview) *::after {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
         transform: none !important;
     }
 
-    .animate-slideUp,
-    .animate-float,
-    .animate-glowPulse,
-    .animate-bounce,
-    .skeleton,
-    .loading-pulse::before,
-    .loading-pulse::after {
+    html:not(.dn-motion-preview) .scroll-reveal {
+        opacity: 1 !important;
+        transform: none !important;
+        will-change: auto !important;
+    }
+
+    html:not(.dn-motion-preview) .scroll-reveal-fade {
+        opacity: 1 !important;
+        will-change: auto !important;
+    }
+
+    html:not(.dn-motion-preview) .motion-ambient-bg {
+        animation: none !important;
+        background-position: 50% 50% !important;
+    }
+
+    html:not(.dn-motion-preview) .animate-slideUp,
+    html:not(.dn-motion-preview) .animate-float,
+    html:not(.dn-motion-preview) .animate-glowPulse,
+    html:not(.dn-motion-preview) .animate-bounce,
+    html:not(.dn-motion-preview) .skeleton,
+    html:not(.dn-motion-preview) .loading-pulse::before,
+    html:not(.dn-motion-preview) .loading-pulse::after {
         animation: none !important;
         opacity: 1 !important;
     }
 
-    .skeleton-shimmer {
+    html:not(.dn-motion-preview) .skeleton-shimmer {
         background: rgba(255, 255, 255, 0.05) !important;
     }
+}
+
+/* 脚本根据 matchMedia 切换 body.reduce-motion 时，与媒体查询一致 */
+body.reduce-motion .scroll-reveal,
+body.reduce-motion .scroll-reveal.scroll-reveal--visible {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    will-change: auto !important;
+}
+
+body.reduce-motion .scroll-reveal-fade,
+body.reduce-motion .scroll-reveal-fade.scroll-reveal--visible {
+    opacity: 1 !important;
+    transition: none !important;
+    will-change: auto !important;
+}
+
+body.reduce-motion .motion-ambient-bg {
+    animation: none !important;
+    background-position: 50% 50% !important;
+}
+
+body.reduce-motion button.motion-ripple-ready::after,
+body.reduce-motion button.motion-ripple-ready.motion-ripple-run::after {
+    animation: none !important;
+    opacity: 0 !important;
+}
+
+body.reduce-motion #global-bg.motion-parallax-active {
+    transform: none !important;
+    will-change: auto !important;
+}
+
+body.reduce-motion .screen:not(#gameplay-screen) {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+body.reduce-motion #menu-screen .btn-main:hover,
+body.reduce-motion #menu-screen .btn-main:active {
+    transform: translateY(-2px) scale(1.01) !important;
+}
+
+body.reduce-motion #attr-selection-screen .attr-option-btn:hover,
+body.reduce-motion #attr-selection-screen .attr-option-btn:active {
+    transform: translateY(-2px) scale(1.01) !important;
+}
+
+body.reduce-motion .scroll-reveal-stagger > .attr-item,
+body.reduce-motion .scroll-reveal-stagger > .scroll-reveal-item {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+}
+
+body.reduce-motion .blur-animate {
+    animation: none !important;
+    filter: none !important;
 }
 
 /* ========================================

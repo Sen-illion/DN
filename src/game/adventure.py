@@ -645,6 +645,15 @@ class TextAdventureGame:
                 
                 if selected_option_idx in scene_data:
                     option_data = scene_data[selected_option_idx]
+                    # 供 API/前端使用：将当前展示的剧情与图片写入 global_state，确保 scene_image 被带到前端
+                    if isinstance(self.global_state, dict):
+                        self.global_state["_current_displayed_scene"] = {
+                            "scene": option_data.get("scene"),
+                            "scene_image": option_data.get("scene_image"),
+                            "next_options": option_data.get("next_options"),
+                            "flow_update": option_data.get("flow_update"),
+                            "deep_background_links": option_data.get("deep_background_links"),
+                        }
                     
                     # 检查当前选项是否关联到深层背景
                     if 'deep_background_links' in option_data and selected_option_idx in option_data['deep_background_links']:
@@ -844,6 +853,15 @@ class TextAdventureGame:
                             
                             print(f"\n--- 第 {i} 段剧情 ---")
                             print(f"📜 场景：{scene.get('scene', '无场景描述')}")
+                            # 供 API/前端使用（缓存未命中时可能无 scene_image）
+                            if isinstance(self.global_state, dict):
+                                self.global_state["_current_displayed_scene"] = {
+                                    "scene": scene.get("scene"),
+                                    "scene_image": scene.get("scene_image"),
+                                    "next_options": scene.get("options"),
+                                    "flow_update": scene.get("flow_update"),
+                                    "deep_background_links": scene.get("deep_background_links"),
+                                }
                             
                             # 安全获取选项
                             options = scene.get("options", [])

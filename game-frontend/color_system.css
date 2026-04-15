@@ -26,6 +26,11 @@
     --color-bg-tertiary: #1a1a25;
     --color-bg-card: rgba(255, 255, 255, 0.06);
     --color-bg-card-hover: rgba(255, 255, 255, 0.1);
+
+    /* 毛玻璃（与《前端技术实现路径》一致，供 .glass / .glass-dark 使用） */
+    --color-glass-light: rgba(255, 255, 255, 0.1);
+    --color-glass-dark: rgba(0, 0, 0, 0.3);
+    --color-glass-strong: rgba(0, 0, 0, 0.45);
     
     /* 文字色 */
     --color-text-primary: #ffffff;
@@ -357,21 +362,41 @@
 
 /* ---- 暗黑主题优化 ---- */
 
-/* 确保深色背景的一致性 */
-body,
-#gameplay-screen,
-.screen {
+/* 确保深色背景的一致性；非剧情屏背景由 transitions.css 半透明罩控制，便于底层渐变透出、毛玻璃可见 */
+/* 注意：#gameplay-screen 必须透明，否则盖住 z-index 更低的 #global-bg 全屏剧情图 */
+body {
     background-color: var(--color-bg-primary);
     color: var(--color-text-primary);
 }
 
+.screen:not(#gameplay-screen) {
+    color: var(--color-text-primary);
+}
+
+#gameplay-screen {
+    background-color: transparent;
+    color: var(--color-text-primary);
+}
+
 /* 确保半透明背景也使用一致的颜色 */
-.glass,
-.glass-dark,
-.glass-primary,
-.glass-light,
+.glass {
+    background-color: var(--color-glass-light);
+}
+
+.glass-dark {
+    background-color: var(--color-glass-dark);
+}
+
+.glass-light {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.glass-primary {
+    background-color: rgba(26, 188, 156, 0.12);
+}
+
 .glass-strong {
-    background-color: var(--color-bg-card);
+    background-color: var(--color-glass-strong);
 }
 
 /* ---- 覆盖原有的硬编码颜色 ---- */

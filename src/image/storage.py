@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""base64 图片保存。"""
+"""base64 图片保存。支持云存储上传，失败时回退到本地 image_cache。"""
 import os
 import re
 import base64
@@ -76,6 +76,19 @@ def save_base64_image(data_uri: str, prompt: str, cache_key_suffix: str = None) 
         if cache_path.exists():
             print(f"✅ 使用已存在的base64图片缓存：{cache_path}")
             return f"/image_cache/{prompt_hash}.{image_format}"
+
+        # 云存储优先：上传成功则返回公网 URL，失败则回退到本地
+        try:
+            from src.image.cloud_storage import is_cloud_enabled, upload_image
+            if is_cloud_enabled():
+                key = f"image_cache/{prompt_hash}.{image_format}"
+                mime = f"image/{image_format}" if image_format != "jpg" else "image/jpeg"
+                url = upload_image(image_data, key, content_type=mime)
+                if url:
+                    print(f"✅ 图片已上传到云端：{url[:80]}...")
+                    return url
+        except Exception as e:
+            print(f"⚠️ 云存储上传失败，回退到本地：{e}")
 
         with open(cache_path, 'wb') as f:
             f.write(image_data)

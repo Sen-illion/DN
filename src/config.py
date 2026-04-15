@@ -73,6 +73,27 @@ VISION_FOR_REF_CROP = {
 }
 
 # ------------------------------
+# 云存储（可选，不配置则仍用本地 image_cache）
+# 支持 S3 / R2，需配置 CLOUD_STORAGE_CDN_URL 才能返回公网可访问 URL
+# ------------------------------
+_provider = (os.getenv("CLOUD_STORAGE_PROVIDER") or "").strip().lower()
+_bucket = (os.getenv("CLOUD_STORAGE_BUCKET") or "").strip()
+CLOUD_STORAGE_CONFIG = {}
+if _provider in ("s3", "r2", "oss") and _bucket:
+    CLOUD_STORAGE_CONFIG = {
+        "provider": _provider,
+        "bucket": _bucket,
+        "region": (os.getenv("CLOUD_STORAGE_REGION") or "auto").strip(),
+        "access_key": (os.getenv("CLOUD_STORAGE_ACCESS_KEY") or "").strip(),
+        "secret_key": (os.getenv("CLOUD_STORAGE_SECRET_KEY") or "").strip(),
+        "endpoint": (os.getenv("CLOUD_STORAGE_ENDPOINT") or "").strip(),
+        "cdn_url": (os.getenv("CLOUD_STORAGE_CDN_URL") or "").strip().rstrip("/"),
+        "prefix": (os.getenv("CLOUD_STORAGE_PREFIX") or "").strip(),
+    }
+    if CLOUD_STORAGE_CONFIG.get("access_key") and CLOUD_STORAGE_CONFIG.get("secret_key"):
+        print(f"[config] 云存储已启用：provider={_provider}, bucket={_bucket}")
+
+# ------------------------------
 # 现实题材/IP 资料检索（Wikipedia）
 # ------------------------------
 WIKI_LOOKUP_ENABLED = os.getenv("WIKI_LOOKUP_ENABLED", "true").lower() == "true"

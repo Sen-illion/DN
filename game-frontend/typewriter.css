@@ -194,19 +194,42 @@
 /* ---- 减少动画偏好 ---- */
 
 @media (prefers-reduced-motion: reduce) {
-    .typewriter,
-    .typewriter-smooth,
-    .typewriter-char,
-    .typewriter-gradient,
-    .typewriter-breath::after {
+    html:not(.dn-motion-preview) .typewriter,
+    html:not(.dn-motion-preview) .typewriter-smooth,
+    html:not(.dn-motion-preview) .typewriter-char,
+    html:not(.dn-motion-preview) .typewriter-gradient,
+    html:not(.dn-motion-preview) .typewriter-breath::after {
         animation: none !important;
         opacity: 1 !important;
         transform: none !important;
         border-right: none !important;
     }
     
-    .typewriter::after,
-    .typewriter-smooth::after {
+    html:not(.dn-motion-preview) .typewriter::after,
+    html:not(.dn-motion-preview) .typewriter-smooth::after {
         content: none !important;
     }
+}
+
+/* ---- 剧情叙事区：最后加载，彻底去掉「玻璃底板」（避免与其它表/Tailwind 顺序导致残留） ---- */
+#gameplay-screen #text-display-area,
+#gameplay-screen #text-display-area::before,
+#gameplay-screen #text-display-area::after,
+#gameplay-screen .narrative-shell,
+#gameplay-screen .narrative-shell::before,
+#gameplay-screen .narrative-shell::after {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    outline: none !important;
+}
+
+/* .typewriter 默认 overflow:hidden，在少数浏览器里会加重和 background-clip:text 的异常绘制 */
+#gameplay-screen #scene-text.typewriter {
+    overflow: visible !important;
 }

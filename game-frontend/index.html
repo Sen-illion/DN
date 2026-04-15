@@ -464,7 +464,7 @@
     <!-- 核心剧情交互界面 -->
     <div id="gameplay-screen" class="screen hidden flex flex-col h-screen relative z-10" role="region" aria-labelledby="current-chapter">
         <!-- 图片/视频加载占位符（全屏显示） -->
-        <div id="image-loading" class="fixed inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm z-50" style="display: none;">
+        <div id="image-loading" class="fixed inset-0 flex items-center justify-center bg-black/20 z-50" style="display: none;">
             <div class="text-center">
                 <div class="loading-spinner w-[80px] h-[80px] rounded-full border-[8px] border-[#1ABC9C] border-t-transparent animate-spin mx-auto mb-4"></div>
                 <p class="text-white text-lg" id="loading-text">正在生成场景内容...</p>
@@ -498,11 +498,12 @@
             您的浏览器不支持视频播放
         </video>
         
-        <!-- 选项列表区（合并文本和选项，占据除进度条外的所有空间） -->
-        <div class="options-container h-[calc(100%-60px)] p-[40px] relative" role="region" aria-label="剧情选项">
+        <!-- DN-FRONTEND-BUILD: gameplay-stage (若线上「查看源代码」里仍是 options-container，说明浏览器或 CDN 仍在用旧缓存，或未传到当前域名对应的 Bucket 根目录) -->
+        <!-- 剧情主区域：文本与选项（相对定位容器，flex 占满进度条以下空间） -->
+        <div id="gameplay-stage" class="flex-1 min-h-0 relative p-[40px]" role="region" aria-label="剧情选项">
             <!-- 文本显示区域 -->
-            <div class="text-display-area absolute inset-0 flex items-end justify-center p-[40px]" id="text-display-area">
-                <div class="narrative-shell w-full max-w-[1100px]">
+            <div class="text-display-area absolute inset-0 flex items-end justify-center p-[40px]" id="text-display-area" style="background:transparent!important;background-color:transparent!important;border:none!important;border-radius:0!important;box-shadow:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;">
+                <div class="narrative-shell w-full max-w-[1100px]" style="background:transparent!important;background-color:transparent!important;border:none!important;border-radius:0!important;box-shadow:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;">
                     <p 
                         id="scene-text" 
                         class="scene-text w-full"
@@ -540,7 +541,7 @@
             </button>
         </div>
         <!-- 角色状态面板（悬浮） -->
-        <div class="character-panel fixed right-8 top-1/2 -translate-y-1/2 w-[300px] h-[450px] bg-[rgba(0,0,0,0.7)] backdrop-blur-sm rounded-[12px] border border-[#34495E] p-[25px] cursor-move" id="character-panel">
+        <div class="character-panel fixed right-8 top-1/2 -translate-y-1/2 w-[300px] h-[450px] rounded-[12px] border border-[#34495E]/40 p-[25px] cursor-move" id="character-panel">
             <div class="panel-header flex justify-between items-center mb-6">
                 <h3 class="text-[20px] font-bold text-white">角色状态</h3>
                 <button class="close-panel text-white hover:text-[#E74C3C]">
@@ -636,8 +637,15 @@
         </div>
     </div>
 
+    <!-- HTTPS 站点：切勿把 GAME_API_BASE 设为 http://127.0.0.1:5001（会混合内容）。应用已自动在 HTTPS 下忽略本机 HTTP，但请优先用公网 HTTPS 或同域反代。 -->
+    <!--
+    <script>
+    window.GAME_API_BASE = 'https://你的域名';
+    // window.GAME_ASSET_BASE = 'https://你的静态或图床域名';
+    </script>
+    -->
     <!-- 使用模块化脚本 -->
-    <script src="script-modular.js"></script>
+    <script src="script-modular.js?v=mixed-content-fix-3"></script>
     <!-- 无障碍增强脚本 -->
     <script src="accessibility.js"></script>
     <!-- 打字机效果 -->

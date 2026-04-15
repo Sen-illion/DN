@@ -350,9 +350,9 @@
 
 /* 移动端减少动画 */
 @media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
+    html:not(.dn-motion-preview) *,
+    html:not(.dn-motion-preview) *::before,
+    html:not(.dn-motion-preview) *::after {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;

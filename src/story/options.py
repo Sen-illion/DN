@@ -7,7 +7,7 @@ import re
 import time
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from typing import Dict, List, Tuple, Optional
+from typing import Dict, List, Tuple, Optional, Any
 
 from src.config import AI_API_CONFIG, IMAGE_GENERATION_CONFIG
 from src.constants import TONE_CONFIGS, PERFORMANCE_OPTIMIZATION, get_tone_prompt_block
@@ -167,7 +167,7 @@ def _generate_single_option(i: int, option: str, global_state: Dict) -> Dict:
 
 补充要求：全文流畅连贯，画面感极强，情绪渲染到位，节奏遵循"高压开场→细节铺陈→情绪升温→强钩子收尾"，符合网文高节奏、强代入的特点；语言生动有张力，避免平淡直白；所有元素（钩子、环境、内心、对话、悬念、世界观、主线暗示）深度融合，无明显割裂感；主角的行为逻辑合理，情绪转变自然，让玩家全程代入，看完第一个场景就迫切想进行下一步操作、探索后续剧情。"""
     else:
-        scene_requirement = """【场景】：场景描述（必须是用户操作的直接结果，贴合难度和主角属性，要求：至少150字，包含环境描写、角色反应、对话等，对话必须使用引号）"""
+        scene_requirement = """【场景】：场景描述（必须是用户操作的直接结果，贴合难度和主角属性，要求：至少200字，包含环境描写、角色反应、对话等，对话必须使用引号）"""
     
     prompt = f"""
     请基于以下设定生成后续1层剧情，**严格遵守以下要求，违反任何一条都将导致任务失败**（优先级：执行用户选择 > 主线推进 > 剧情连贯 > 格式完整）：
@@ -788,15 +788,21 @@ def _generate_single_option(i: int, option: str, global_state: Dict) -> Dict:
     return {"index": i, "data": option_data}
 
 # 优化：只生成文本内容的版本（用于并行优化）
-def _generate_single_option_text_only(i: int, option: str, global_state: Dict) -> Dict:
+def _generate_single_option_text_only(
+    i: int,
+    option: str,
+    global_state: Dict,
+    user_choice_ref: Optional[Dict[str, Any]] = None,
+) -> Dict:
     """
     生成单个选项对应的剧情+下一层选项（仅文本，不含图片）
-    这是优化版本，用于并行生成文本后再批量生成图片
-    :param i: 选项索引
-    :param option: 选项内容
-    :param global_state: 全局状态
-    :return: 包含选项索引、剧情数据和场景描述的字典
+    这是优化版本，用于并行生成文本后再批量生成图片。
+    若传入 user_choice_ref 且用户已选择其他选项，则本支路立即取消并返回 data=None。
+    :return: 包含选项索引、剧情数据和场景描述的字典；若已取消则 data 与 scene_for_image 为 None
     """
+    if _is_option_cancelled(i, user_choice_ref):
+        print(f"⏹️ 选项 {i+1} 文案生成已取消（用户已选择其他选项），不再请求 LLM")
+        return {"index": i, "data": None, "scene_for_image": None}
     print(f"📝 正在生成选项 {i+1} 的剧情（文本模式）...")
     perf = PERFORMANCE_OPTIMIZATION
     perf_enabled = perf.get("enabled", True)
@@ -851,7 +857,7 @@ def _generate_single_option_text_only(i: int, option: str, global_state: Dict) -
 
 补充要求：全文流畅连贯，画面感极强，情绪渲染到位，节奏遵循"高压开场→细节铺陈→情绪升温→强钩子收尾"，符合网文高节奏、强代入的特点；语言生动有张力，避免平淡直白；所有元素（钩子、环境、内心、对话、悬念、世界观、主线暗示）深度融合，无明显割裂感；主角的行为逻辑合理，情绪转变自然，让玩家全程代入，看完第一个场景就迫切想进行下一步操作、探索后续剧情。"""
     else:
-        scene_requirement = """【场景】：场景描述（必须是用户操作的直接结果，贴合难度和主角属性，要求：至少150字，包含环境描写、角色反应、对话等，对话必须使用引号）"""
+        scene_requirement = """【场景】：场景描述（必须是用户操作的直接结果，贴合难度和主角属性，要求：至少200字，包含环境描写、角色反应、对话等，对话必须使用引号）"""
     
     prompt = f"""
     请基于以下设定生成后续1层剧情，**严格遵守以下要求，违反任何一条都将导致任务失败**（优先级：执行用户选择 > 主线推进 > 剧情连贯 > 格式完整）：
@@ -990,6 +996,9 @@ def _generate_single_option_text_only(i: int, option: str, global_state: Dict) -
     if perf_enabled and perf.get("optimize_retry", True):
         max_retries = perf.get("plot_max_retries", 2)
     for attempt in range(max_retries):
+        if _is_option_cancelled(i, user_choice_ref):
+            print(f"⏹️ 选项 {i+1} 在重试/请求前已取消（用户已选择其他选项）")
+            return {"index": i, "data": None, "scene_for_image": None}
         try:
             # 调用带重试的API函数
             try:
@@ -1276,6 +1285,10 @@ def _generate_single_option_text_only(i: int, option: str, global_state: Dict) -
                     print(f"🔄 将重试生成选项 {i+1} 的剧情...")
                     continue
     
+    # 若用户已选择其他选项，则本支路结果作废，不占用合并/图片时间
+    if option_data and _is_option_cancelled(i, user_choice_ref):
+        print(f"⏹️ 选项 {i+1} 文案已生成但在合并前已取消（用户已选择其他选项）")
+        return {"index": i, "data": None, "scene_for_image": None}
     # 如果所有尝试都失败，返回默认剧情
     if not option_data or not option_data.get("scene") or not option_data.get("next_options"):
         print(f"💡 提示：选项 {i+1} 的所有生成尝试均失败，将使用默认剧情")
@@ -1300,6 +1313,80 @@ def _generate_single_option_text_only(i: int, option: str, global_state: Dict) -
         "data": option_data,
         "scene_for_image": scene  # 保存场景描述，用于后续并行生成图片
     }
+
+
+def _is_option_cancelled(option_index: int, user_choice_ref: Optional[Dict[str, Any]]) -> bool:
+    """若外部已传入用户选择，且当前选项不是被选中的那条，则视为已取消。"""
+    if not user_choice_ref:
+        return False
+    selected = user_choice_ref.get("selected_index")
+    if selected is None:
+        return False
+    return selected != option_index
+
+
+def _run_single_option_pipeline(
+    option_index: int,
+    option: str,
+    global_state: Dict,
+    skip_images: bool,
+    user_choice_ref: Optional[Dict[str, Any]] = None,
+) -> Tuple[int, Optional[Dict]]:
+    """
+    单选项完整流水线：文案 → 提示词优化 → 生图，串行执行。
+    若 user_choice_ref 中已记录用户选择了其他选项，则本支路取消（不生成图片），返回 (option_index, None)。
+    :return: (option_index, option_data 或 None)，None 表示本支路被取消或失败。
+    """
+    # 开始时检查是否已被取消（用户已选另一条）
+    if _is_option_cancelled(option_index, user_choice_ref):
+        print(f"⏹️ 选项 {option_index+1} 支路已取消（用户已选择其他选项）")
+        return (option_index, None)
+
+    # 1. 生成文案（传入 user_choice_ref，以便在每次重试前检查是否已取消，避免未选支路继续占 LLM 时间）
+    text_result = _generate_single_option_text_only(option_index, option, global_state, user_choice_ref)
+    option_data = text_result.get("data")
+    scene_for_image = text_result.get("scene_for_image")
+
+    if not option_data:
+        return (option_index, None)
+
+    # 文案完成后再次检查：用户是否已选另一条，若是则不再生成图片
+    if _is_option_cancelled(option_index, user_choice_ref):
+        print(f"⏹️ 选项 {option_index+1} 文案已完成，但支路已取消，跳过图片生成")
+        return (option_index, option_data)
+
+    # 2. 生成图片（文案完成后立即执行，不等待其他选项）
+    if not skip_images and scene_for_image:
+        try:
+            image_data = generate_scene_image(scene_for_image, global_state, "default", use_cache=True)
+            if image_data and image_data.get("url"):
+                scene_text = option_data.get("scene", "") or ""
+                scene_text_hash = (
+                    hashlib.md5(scene_text.encode("utf-8")).hexdigest() if scene_text.strip() else None
+                )
+                image_url = image_data.get("url")
+                if isinstance(image_url, str) and image_url.startswith("image_cache/"):
+                    image_url = "/" + image_url
+                    image_data = {**image_data, "url": image_url}
+                option_data["scene_image"] = {
+                    "url": image_data.get("url"),
+                    "prompt": image_data.get("prompt", ""),
+                    "style": image_data.get("style", "default"),
+                    "width": image_data.get("width", 1024),
+                    "height": image_data.get("height", 1024),
+                    "cached": image_data.get("cached", True),
+                    "scene_text_hash": scene_text_hash,
+                }
+                print(f"✅ 选项 {option_index+1} 图片已合并到选项数据")
+            else:
+                print(f"⚠️ 选项 {option_index+1} 图片数据无效，跳过")
+        except Exception as e:
+            print(f"⚠️ 选项 {option_index+1} 图片生成异常：{str(e)}")
+            import traceback
+            traceback.print_exc()
+
+    return (option_index, option_data)
+
 
 # 优化：并行生成多个场景的图片
 def _generate_images_parallel(scenes_dict: Dict[int, str], global_state: Dict) -> Dict[int, Dict]:
@@ -1479,68 +1566,75 @@ def _generate_images_parallel(scenes_dict: Dict[int, str], global_state: Dict) -
     print(f"✅ 图片生成完成，成功生成 {len(image_results)} 张图片（包含缓存）")
     return image_results
 
-# 重构：实现并行批量预生成（优化版）
-def generate_all_options(global_state: Dict, current_options: List[str], skip_images: bool = False) -> Dict:
+# 重构：按选项并行流水线（每选项独立：文案→提示词→生图），支持用户提前选择时取消未选支路
+def generate_all_options(
+    global_state: Dict,
+    current_options: List[str],
+    skip_images: bool = False,
+    user_choice_ref: Optional[Dict[str, Any]] = None,
+) -> Dict:
     """
-    生成当前场景下所有可选选项对应的剧情+下一层选项，并返回完整的剧情数据
-    优化版：使用两阶段并行处理，提高生成效率
-    阶段1：并行生成所有选项的文本内容（场景描述、选项等）
-    阶段2：并行生成所有场景的图片并缓存
+    生成当前场景下所有可选选项对应的剧情+下一层选项，并返回完整的剧情数据。
+    每个选项单独跑一条流水线（文案 → 提示词优化 → 生图），两条支路并行；文案一完成即开始该选项的图片生成。
+    若传入 user_choice_ref（可变容器，如 {"selected_index": None}），当外部在生成过程中
+    将 selected_index 设为某选项索引时，未选中的那条支路会在下一检查点取消（不再生成图片），
+    仅被选中的支路继续跑完；请求不会打断已在进行中的生成，生成完成后将结果返回。
     """
     if not global_state or not current_options:
         return {}
     if not AI_API_CONFIG["api_key"]:
         print("❌ 错误：未配置Camera_Analyst_API_KEY，请在.env文件中设置")
         return {}
-    
-    perf = PERFORMANCE_OPTIMIZATION
-    perf_enabled = perf.get("enabled", True)
-    stream_first = perf_enabled and perf.get("stream_first_option", True)
-    print(f"📝 开始并行生成 {len(current_options)} 个选项的剧情（优化版：两阶段并行）...")
-    
-    # ========== 阶段1：并行生成所有选项的文本内容 ==========
-    print(f"📝 阶段1：并行生成 {len(current_options)} 个选项的文本内容...")
-    all_options_data = {}
-    scenes_for_images = {}  # 用于收集需要生成图片的场景描述 {option_index: scene_description}
-    
-    # 使用线程池并行生成文本内容
-    text_workers = min(len(current_options), 4)
-    with ThreadPoolExecutor(max_workers=text_workers) as executor:
-        # 提交所有选项的文本生成任务
-        futures = []
-        for i, option in enumerate(current_options):
-            future = executor.submit(_generate_single_option_text_only, i, option, global_state)
-            futures.append(future)
-        
-        first_ready = None
+
+    # 不传时用空 dict，避免分支里判 None；API 层可传入同一 ref 并在收到「用户选择了 X」时写 selected_index
+    choice_ref = user_choice_ref if user_choice_ref is not None else {}
+
+    print(f"📝 开始按选项并行流水线生成（每选项：文案→提示词→生图），共 {len(current_options)} 个选项...")
+
+    all_options_data: Dict[int, Dict] = {}
+    n = len(current_options)
+    max_workers = min(n, 4)
+
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        futures = {
+            executor.submit(
+                _run_single_option_pipeline,
+                i,
+                current_options[i],
+                global_state,
+                skip_images,
+                choice_ref,
+            ): i
+            for i in range(n)
+        }
         completed = 0
-        total = len(futures)
-        # 收集所有任务结果（支持流式先返回第一个完成的选项）
         for future in as_completed(futures):
             completed += 1
-            print(f"📝 文本生成进度：{completed}/{total}")
             try:
-                result = future.result()
-                option_index = result["index"]
-                option_data = result["data"]
-                all_options_data[option_index] = option_data
-                
-                if stream_first and first_ready is None:
-                    first_ready = {option_index: option_data}
-                    global_state.setdefault("stream_first_option", {}).update(first_ready)
-                    print(f"🚀 第一条选项文本已完成并缓存（流式）：{option_index+1}")
-                
-                # 收集需要生成图片的场景描述
-                scene_for_image = result.get("scene_for_image")
-                if scene_for_image:
-                    scenes_for_images[option_index] = scene_for_image
+                option_index, option_data = future.result()
+                print(f"📝 选项流水线进度：{completed}/{n}")
+                if option_data is not None:
+                    all_options_data[option_index] = option_data
             except Exception as e:
-                print(f"❌ 选项文本生成异常：{str(e)}")
+                option_index = futures[future]
+                print(f"❌ 选项 {option_index+1} 流水线异常：{str(e)}")
                 import traceback
                 traceback.print_exc()
     
     print(f"✅ 阶段1完成：所有选项文本内容生成完成，共 {len(all_options_data)} 个选项")
     
+    # 收集需要生成图片的场景（仅对尚未有有效 scene_image.url 的选项生成）
+    scenes_for_images: Dict[int, str] = {}
+    for option_index, option_data in all_options_data.items():
+        if not option_data:
+            continue
+        existing_url = (option_data.get("scene_image") or {}).get("url")
+        if existing_url:
+            continue
+        scene_text = option_data.get("scene", "") or ""
+        if scene_text.strip():
+            scenes_for_images[option_index] = scene_text
+
     # ========== 阶段2：并行生成所有场景的图片 ==========
     if skip_images:
         print("⏩ 已选择跳过本轮图片生成以加速。")

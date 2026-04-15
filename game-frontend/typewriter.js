@@ -109,7 +109,7 @@
             let delay = this.speed;
             
             // 标点符号停顿
-            if ('。！？；：,!?;:'。includes(char)) {
+            if ('。！？；：,!?;:'.includes(char)) {
                 delay += Config.punctuationDelay;
             }
             

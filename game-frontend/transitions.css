@@ -1,0 +1,1025 @@
+/* ========================================
+   场景切换动画 (Screen Transitions)
+   ======================================== */
+
+/* ---- 方案 A：统一动效变量（GPU 友好：仅 transform / opacity）---- */
+:root {
+    --motion-ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+    --motion-ease-emphasis: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --motion-duration-short: 0.35s;
+    --motion-duration-medium: 0.55s;
+    /* 与指南 §1 示例对齐：约 0.6s、translateY(30px) */
+    --motion-duration-reveal: 0.6s;
+    --motion-duration-screen: 0.4s;
+    --motion-reveal-y: 30px;
+}
+
+/* IntersectionObserver 触发：进入视口后添加 .scroll-reveal--visible（类名同指南中的 animate-in 语义） */
+.scroll-reveal {
+    opacity: 0;
+    transform: translate3d(0, var(--motion-reveal-y), 0);
+    transition:
+        opacity var(--motion-duration-reveal) var(--motion-ease-standard),
+        transform var(--motion-duration-reveal) var(--motion-ease-standard);
+    will-change: opacity, transform;
+}
+
+.scroll-reveal.scroll-reveal--visible {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    will-change: auto;
+}
+
+.scroll-reveal--left {
+    transform: translate3d(-36px, 0, 0);
+}
+
+.scroll-reveal--left.scroll-reveal--visible {
+    transform: translate3d(0, 0, 0);
+}
+
+.scroll-reveal--scale {
+    transform: translate3d(0, var(--motion-reveal-y), 0) scale(0.94);
+}
+
+.scroll-reveal--scale.scroll-reveal--visible {
+    transform: translate3d(0, 0, 0) scale(1);
+}
+
+/* 父级 reveal 完成后，子项依次入场（指南：交错出现） */
+.scroll-reveal-stagger > .scroll-reveal-item,
+.scroll-reveal-stagger > .attr-item {
+    opacity: 0;
+    transform: translate3d(0, 22px, 0);
+    transition:
+        opacity var(--motion-duration-reveal) var(--motion-ease-standard),
+        transform var(--motion-duration-reveal) var(--motion-ease-standard);
+}
+
+.scroll-reveal-stagger.scroll-reveal--visible > .scroll-reveal-item.scroll-reveal-item--visible,
+.scroll-reveal-stagger.scroll-reveal--visible > .attr-item.scroll-reveal-item--visible {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+}
+
+/* GSAP ScrollTrigger 接管时关闭原 CSS 卡片入场，避免双重动画 */
+html.motion-gsap-st #difficulty-selection-screen.active .difficulty-card {
+    animation: none !important;
+}
+
+html.motion-gsap-st #tone-selection-screen.active .tone-card {
+    animation: none !important;
+}
+
+/* 仅淡入：用于已依赖 transform 定位的元素（如 fixed + translateY(-50%)） */
+.scroll-reveal-fade {
+    opacity: 0;
+    transition: opacity var(--motion-duration-reveal) var(--motion-ease-standard);
+}
+
+.scroll-reveal-fade.scroll-reveal--visible {
+    opacity: 1;
+}
+
+/* ---- 基础屏幕切换 ---- */
+
+.screen {
+    opacity: 0;
+    visibility: hidden;
+    /* 防止子元素 position:fixed 在 visibility:hidden 边界情况下仍抢点击（基调页按钮点不动常见根因） */
+    pointer-events: none;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+    /* 禁用 style.css 的 slideUp（带 transform），否则整屏祖先带 transform 会导致子元素 backdrop-filter 全线失效 */
+    animation: none !important;
+}
+
+.screen.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+/*
+ * Tailwind 同时存在 flex 与 hidden 时，后生成的 utility 可能盖住 hidden，后序屏（如 loading）会叠在设定屏上挡点击。
+ */
+.screen.hidden {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
+/* 不依赖 Tailwind：确保通用弹窗隐藏时不占点击 */
+#modal.hidden {
+    display: none !important;
+    pointer-events: none !important;
+    visibility: hidden !important;
+}
+
+/* ---- 入场动画 ---- */
+
+/* 淡入上滑 */
+.transition-fadeInUp {
+    animation: fadeInUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 淡入下滑 */
+.transition-fadeInDown {
+    animation: fadeInDown 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 淡入缩放 */
+.transition-fadeInScale {
+    animation: fadeInScale 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* 弹性入场 */
+.transition-bounceIn {
+    animation: bounceIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    70% {
+        transform: scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* 滑入 */
+.transition-slideInLeft {
+    animation: slideInLeft 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.transition-slideInRight {
+    animation: slideInRight 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* ---- 出场动画 ---- */
+
+.transition-fadeOut {
+    animation: fadeOut 0.3s ease forwards;
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+    }
+}
+
+.transition-fadeOutDown {
+    animation: fadeOutDown 0.4s ease forwards;
+}
+
+@keyframes fadeOutDown {
+    to {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+}
+
+/* ---- 组合切换动画 ---- */
+
+/* 淡出 + 淡入 */
+.transition-crossFade {
+    animation: crossFade 0.4s ease forwards;
+}
+
+@keyframes crossFade {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* 滑出 + 滑入 */
+.transition-slideOver {
+    animation: slideOver 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes slideOver {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* ---- 剧情文本入场 ---- */
+
+.transition-textReveal {
+    animation: textReveal 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes textReveal {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+        filter: blur(4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
+}
+
+/* ---- 选项卡片入场 ---- */
+
+.option-card {
+    opacity: 0;
+    animation: optionSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.option-card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.option-card:nth-child(2) {
+    animation-delay: 0.25s;
+}
+
+@keyframes optionSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* ---- 按钮组入场 ---- */
+
+.button-group .btn-main {
+    opacity: 0;
+    animation: buttonSlideUp 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.button-group .btn-main:nth-child(1) { animation-delay: 0.1s; }
+.button-group .btn-main:nth-child(2) { animation-delay: 0.2s; }
+.button-group .btn-main:nth-child(3) { animation-delay: 0.3s; }
+.button-group .btn-main:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes buttonSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ---- 加载界面动画 ---- */
+
+#loading-screen {
+    position: relative;
+    overflow: hidden;
+}
+
+#loading-screen::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        ellipse at center,
+        rgba(26, 188, 156, 0.1) 0%,
+        transparent 70%
+    );
+    animation: pulseGlow 2s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+    0%, 100% {
+        opacity: 0.5;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+}
+
+/* 加载文字动画 */
+.loading-text {
+    animation: fadeInUp 0.5s ease forwards;
+    animation-delay: 0.2s;
+    opacity: 0;
+}
+
+/* ---- 进度条动画 ---- */
+
+.progress-fill {
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(100%);
+    }
+}
+
+/* ---- 模态框动画 ---- */
+
+#modal {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+#modal.active {
+    opacity: 1;
+}
+
+/* 勿对 #modal-content 使用 transform 缩放：会与 .glass-strong 的 backdrop-filter 冲突 */
+#modal-content {
+    transform: none !important;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+#modal.active #modal-content {
+    transform: none !important;
+    opacity: 1;
+}
+
+/* ---- 方案 B：环境流动渐变 + 顶部光晕 ---- */
+.motion-ambient-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+    background: linear-gradient(
+        -42deg,
+        #0a0e14,
+        #122b2e,
+        #1a3a44,
+        #0f1f2e,
+        #16213e,
+        #0d1b1e
+    );
+    background-size: 420% 420%;
+    animation: motionAmbientShift 22s ease-in-out infinite;
+    opacity: 0.78;
+}
+
+/*
+ * 非剧情屏：仅半透明罩色，勿对整屏使用 backdrop-filter。
+ * 父级一旦 backdrop-filter，会形成 backdrop 根，子元素 .glass / .glass-dark 只能模糊“压平后的纯色”，肉眼几乎看不出毛玻璃。
+ * 底层 #ambient-bg-layer 流动渐变透出后，再由各面板自己的 blur 才能看出 frosted glass。
+ */
+.screen:not(#gameplay-screen) {
+    background-color: color-mix(in srgb, var(--color-bg-primary) 28%, transparent) !important;
+}
+
+@supports not (background-color: color-mix(in srgb, white 50%, black)) {
+    .screen:not(#gameplay-screen) {
+        background-color: rgba(10, 10, 20, 0.34) !important;
+    }
+}
+
+/*
+ * 主菜单毛玻璃
+ * 1) .btn-main 全局有 overflow:hidden（style.css），Chromium 下常导致同元素 backdrop-filter 完全不模糊背景
+ * 2) 提高 blur + 降低实色占比，星点/渐变才会明显被「磨」掉
+ */
+#menu-screen .game-logo.glass,
+#menu-screen .menu-stats-row.glass {
+    overflow: visible !important;
+    background-color: rgba(255, 255, 255, 0.06) !important;
+    background-image: linear-gradient(
+        155deg,
+        rgba(255, 255, 255, 0.22) 0%,
+        rgba(255, 255, 255, 0.04) 42%,
+        rgba(0, 0, 0, 0.12) 100%
+    ) !important;
+    -webkit-backdrop-filter: blur(56px) saturate(200%) !important;
+    backdrop-filter: blur(56px) saturate(200%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.32) !important;
+    box-shadow:
+        0 12px 40px rgba(0, 0, 0, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.35) !important;
+}
+
+#menu-screen .btn-main {
+    opacity: 1 !important;
+    animation: none !important;
+    overflow: visible !important;
+    background-color: rgba(30, 41, 59, 0.28) !important;
+    background-image: linear-gradient(
+        165deg,
+        rgba(255, 255, 255, 0.18) 0%,
+        rgba(255, 255, 255, 0.05) 38%,
+        rgba(15, 23, 42, 0.45) 100%
+    ) !important;
+    -webkit-backdrop-filter: blur(52px) saturate(195%) !important;
+    backdrop-filter: blur(52px) saturate(195%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.32) !important;
+    box-shadow:
+        0 10px 36px rgba(0, 0, 0, 0.38),
+        inset 0 1px 0 rgba(255, 255, 255, 0.28) !important;
+}
+
+#menu-screen #exit-btn.btn-main {
+    background-color: rgba(127, 29, 29, 0.32) !important;
+    background-image: linear-gradient(
+        165deg,
+        rgba(255, 255, 255, 0.16) 0%,
+        rgba(239, 68, 68, 0.22) 45%,
+        rgba(69, 10, 10, 0.5) 100%
+    ) !important;
+}
+
+#menu-screen .btn-main:hover {
+    background-color: rgba(51, 65, 85, 0.34) !important;
+    transform: translateY(-3px) scale(1.02) !important;
+    box-shadow:
+        0 18px 44px rgba(26, 188, 156, 0.22),
+        0 0 22px rgba(255, 255, 255, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.32) !important;
+}
+
+#menu-screen #exit-btn.btn-main:hover {
+    background-color: rgba(153, 27, 27, 0.38) !important;
+}
+
+#menu-screen .btn-main:active {
+    transform: translateY(0) scale(0.98) !important;
+}
+
+/* 属性页选项：毛玻璃（无父级 perspective） */
+#attr-selection-screen .attr-option-btn {
+    position: relative;
+    overflow: hidden;
+    min-width: 4.25rem;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.25;
+    color: #fff;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background-color: rgba(93, 109, 126, 0.42) !important;
+    -webkit-backdrop-filter: blur(14px) saturate(160%) !important;
+    backdrop-filter: blur(14px) saturate(160%) !important;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#attr-selection-screen .attr-option-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.55s ease, height 0.55s ease;
+    pointer-events: none;
+}
+
+#attr-selection-screen .attr-option-btn:hover::before {
+    width: 240px;
+    height: 240px;
+}
+
+#attr-selection-screen .attr-option-btn:not(.attr-option-btn--selected):hover {
+    background-color: rgba(127, 140, 141, 0.55) !important;
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.28);
+}
+
+#attr-selection-screen .attr-option-btn:not(.attr-option-btn--selected):active {
+    transform: translateY(0) scale(0.98);
+    transition: all 0.1s ease;
+}
+
+#attr-selection-screen .attr-option-btn.attr-option-btn--selected {
+    background-color: rgba(26, 188, 156, 0.42) !important;
+    -webkit-backdrop-filter: blur(18px) saturate(180%) !important;
+    backdrop-filter: blur(18px) saturate(180%) !important;
+    font-weight: 700;
+    border-color: rgba(255, 255, 255, 0.45);
+    box-shadow:
+        0 10px 30px rgba(26, 188, 156, 0.28),
+        0 0 14px rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px) scale(1.02);
+}
+
+#attr-selection-screen .attr-option-btn.attr-option-btn--selected:hover {
+    background-color: rgba(46, 216, 182, 0.5) !important;
+    transform: translateY(-4px) scale(1.02) !important;
+    box-shadow:
+        0 18px 38px rgba(26, 188, 156, 0.32),
+        0 0 20px rgba(255, 255, 255, 0.12) !important;
+}
+
+#attr-selection-screen .attr-option-btn.attr-option-btn--selected:active {
+    transform: translateY(0) scale(0.98) !important;
+    transition: all 0.1s ease;
+}
+
+/* 属性页交错子项勿用 translate：祖先带 transform 会导致选项按钮 backdrop-filter 失效 */
+#attr-selection-screen .scroll-reveal-stagger > .attr-item,
+#attr-selection-screen .scroll-reveal-stagger > .scroll-reveal-item {
+    transform: none !important;
+}
+
+#attr-selection-screen .scroll-reveal-stagger.scroll-reveal--visible > .attr-item.scroll-reveal-item--visible,
+#attr-selection-screen .scroll-reveal-stagger.scroll-reveal--visible > .scroll-reveal-item.scroll-reveal-item--visible {
+    transform: none !important;
+}
+
+/* 无 GSAP 时标题逐字入场（CSS 兜底） */
+#game-logo.motion-logo-css-enter {
+    opacity: 0;
+    transform: translateY(-16px);
+    animation: motionLogoDropIn 0.55s var(--motion-ease-standard) forwards;
+}
+
+@keyframes motionLogoDropIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.motion-title-char.motion-title-char-css {
+    opacity: 0;
+    transform: translateY(12px);
+    animation: motionCharPopIn 0.42s var(--motion-ease-standard) forwards;
+}
+
+@keyframes motionCharPopIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.menu-particles-layer {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 8;
+}
+
+/* 主菜单数字滚动统计位 */
+.menu-stats-row {
+    font-variant-numeric: tabular-nums;
+}
+
+.menu-stat-value {
+    font-variant-numeric: tabular-nums;
+    text-shadow: 0 0 24px rgba(26, 188, 156, 0.15);
+}
+
+.motion-ambient-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        ellipse 90% 55% at 50% -5%,
+        rgba(26, 188, 156, 0.22),
+        transparent 58%
+    );
+    pointer-events: none;
+}
+
+@keyframes motionAmbientShift {
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+/* ---- 方案 B：主按钮点击涟漪（配合 script 设置 --ripple-x / --ripple-y）---- */
+button.motion-ripple-ready {
+    position: relative;
+    overflow: hidden;
+}
+
+button.motion-ripple-ready::after {
+    content: '';
+    position: absolute;
+    left: var(--ripple-x, 50%);
+    top: var(--ripple-y, 50%);
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.32);
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0;
+}
+
+button.motion-ripple-ready.motion-ripple-run::after {
+    animation: motionBtnRipple 0.55s ease-out forwards;
+}
+
+@keyframes motionBtnRipple {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 0.45;
+    }
+    100% {
+        width: 320px;
+        height: 320px;
+        opacity: 0;
+    }
+}
+
+/* ---- 背景切换动画 ---- */
+
+/* 视差由 JS 每帧写 transform，transition 勿包含 transform，否则跟手延迟 */
+#global-bg {
+    transition: opacity 0.8s ease, background-color 0.5s ease;
+}
+
+#global-bg.motion-parallax-active {
+    will-change: transform;
+}
+
+.bg-change {
+    animation: bgFade 0.8s ease forwards;
+}
+
+@keyframes bgFade {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0.6;
+    }
+}
+
+/* ---- 界面特定入场动画 ---- */
+
+/* 主菜单 */
+#menu-screen {
+    animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* 属性选择 */
+#attr-selection-screen {
+    animation: slideInRight 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* 难度选择 */
+#difficulty-selection-screen {
+    animation: fadeInScale 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* 基调选择 */
+#tone-selection-screen {
+    animation: fadeInUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* flex 子项默认 min-width:auto 会按内容撑开，父级又有 overflow:hidden 时横向条划不动；锁定宽度后由本容器承担滚动 */
+#tone-selection-screen .tone-scroll-container {
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-x pan-y;
+    overscroll-behavior-x: contain;
+}
+
+/* 向导底部确认键：必须压过横向滚动区，且永不被 GSAP 误伤为不可点 */
+#difficulty-selection-screen .btn-confirm-difficulty,
+#tone-selection-screen .btn-confirm-tone {
+    position: relative;
+    z-index: 40;
+    pointer-events: auto;
+}
+
+/* 主题输入 */
+#theme-input-screen {
+    animation: slideInLeft 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* 图片风格选择 */
+#image-style-selection-screen {
+    animation: fadeInUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* 设置界面 */
+#setting-screen {
+    animation: fadeInScale 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* 加载界面 */
+#loading-screen {
+    animation: fadeIn 0.4s ease forwards;
+}
+
+/* 游戏界面 */
+#gameplay-screen {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+/* 存档管理 */
+#save-management-screen {
+    animation: fadeInUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* 结局界面 */
+#ending-screen {
+    animation: bounceIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* ---- 卡片入场动画 ---- */
+
+/* 难度卡片 */
+.difficulty-card {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: cardSlideUp 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.difficulty-card:nth-child(1) { animation-delay: 0.1s; }
+.difficulty-card:nth-child(2) { animation-delay: 0.2s; }
+.difficulty-card:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes cardSlideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 基调卡片 */
+.tone-card {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: toneCardSlide 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.tone-card:nth-child(1) { animation-delay: 0.05s; }
+.tone-card:nth-child(2) { animation-delay: 0.1s; }
+.tone-card:nth-child(3) { animation-delay: 0.15s; }
+.tone-card:nth-child(4) { animation-delay: 0.2s; }
+.tone-card:nth-child(5) { animation-delay: 0.25s; }
+.tone-card:nth-child(6) { animation-delay: 0.3s; }
+.tone-card:nth-child(7) { animation-delay: 0.35s; }
+.tone-card:nth-child(8) { animation-delay: 0.4s; }
+.tone-card:nth-child(9) { animation-delay: 0.45s; }
+.tone-card:nth-child(10) { animation-delay: 0.5s; }
+
+@keyframes toneCardSlide {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ---- 响应式优化 ---- */
+
+@media (max-width: 768px) {
+    .option-card:nth-child(1) { animation-delay: 0.05s; }
+    .option-card:nth-child(2) { animation-delay: 0.1s; }
+    
+    .button-group .btn-main:nth-child(1) { animation-delay: 0.05s; }
+    .button-group .btn-main:nth-child(2) { animation-delay: 0.1s; }
+    .button-group .btn-main:nth-child(3) { animation-delay: 0.15s; }
+    .button-group .btn-main:nth-child(4) { animation-delay: 0.2s; }
+    
+    .difficulty-card:nth-child(1) { animation-delay: 0.05s; }
+    .difficulty-card:nth-child(2) { animation-delay: 0.1s; }
+    .difficulty-card:nth-child(3) { animation-delay: 0.15s; }
+}
+
+/* ---- 减少动画偏好 ---- */
+
+@media (prefers-reduced-motion: reduce) {
+    html:not(.dn-motion-preview) .scroll-reveal,
+    html:not(.dn-motion-preview) .scroll-reveal.scroll-reveal--visible {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+        transition: opacity 0.2s ease !important;
+        will-change: auto !important;
+    }
+
+    /* 仅淡入类：勿清除 transform，避免破坏 fixed 垂直居中（如角色面板） */
+    html:not(.dn-motion-preview) .scroll-reveal-fade,
+    html:not(.dn-motion-preview) .scroll-reveal-fade.scroll-reveal--visible {
+        animation: none !important;
+        opacity: 1 !important;
+        transition: opacity 0.2s ease !important;
+        will-change: auto !important;
+    }
+
+    html:not(.dn-motion-preview) .scroll-reveal-stagger > .attr-item,
+    html:not(.dn-motion-preview) .scroll-reveal-stagger > .scroll-reveal-item {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+
+    html:not(.dn-motion-preview) .motion-ambient-bg {
+        animation: none !important;
+        background-position: 50% 50% !important;
+    }
+
+    html:not(.dn-motion-preview) button.motion-ripple-ready::after,
+    html:not(.dn-motion-preview) button.motion-ripple-ready.motion-ripple-run::after {
+        animation: none !important;
+        opacity: 0 !important;
+    }
+
+    html:not(.dn-motion-preview) #global-bg.motion-parallax-active {
+        transform: none !important;
+        will-change: auto !important;
+    }
+
+    html:not(.dn-motion-preview) .screen:not(#gameplay-screen) {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+    }
+
+    html:not(.dn-motion-preview) #menu-screen .btn-main:hover,
+    html:not(.dn-motion-preview) #menu-screen .btn-main:active {
+        transform: translateY(-2px) scale(1.01) !important;
+    }
+
+    html:not(.dn-motion-preview) #attr-selection-screen .attr-option-btn:hover,
+    html:not(.dn-motion-preview) #attr-selection-screen .attr-option-btn:active {
+        transform: translateY(-2px) scale(1.01) !important;
+    }
+
+    html:not(.dn-motion-preview) .screen,
+    html:not(.dn-motion-preview) .transition-fadeInUp,
+    html:not(.dn-motion-preview) .transition-fadeInDown,
+    html:not(.dn-motion-preview) .transition-fadeInScale,
+    html:not(.dn-motion-preview) .transition-bounceIn,
+    html:not(.dn-motion-preview) .transition-slideInLeft,
+    html:not(.dn-motion-preview) .transition-slideInRight,
+    html:not(.dn-motion-preview) .transition-fadeOut,
+    html:not(.dn-motion-preview) .transition-fadeOutDown,
+    html:not(.dn-motion-preview) .transition-crossFade,
+    html:not(.dn-motion-preview) .transition-slideOver,
+    html:not(.dn-motion-preview) .transition-textReveal,
+    html:not(.dn-motion-preview) .option-card,
+    html:not(.dn-motion-preview) .button-group .btn-main,
+    html:not(.dn-motion-preview) #loading-screen::before,
+    html:not(.dn-motion-preview) .progress-fill::after,
+    html:not(.dn-motion-preview) #modal,
+    html:not(.dn-motion-preview) #modal-content,
+    html:not(.dn-motion-preview) .bg-change,
+    html:not(.dn-motion-preview) #menu-screen,
+    html:not(.dn-motion-preview) #attr-selection-screen,
+    html:not(.dn-motion-preview) #difficulty-selection-screen,
+    html:not(.dn-motion-preview) #tone-selection-screen,
+    html:not(.dn-motion-preview) #theme-input-screen,
+    html:not(.dn-motion-preview) #image-style-selection-screen,
+    html:not(.dn-motion-preview) #setting-screen,
+    html:not(.dn-motion-preview) #loading-screen,
+    html:not(.dn-motion-preview) #gameplay-screen,
+    html:not(.dn-motion-preview) #save-management-screen,
+    html:not(.dn-motion-preview) #ending-screen,
+    html:not(.dn-motion-preview) .difficulty-card,
+    html:not(.dn-motion-preview) .tone-card {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+        transition: opacity 0.2s ease !important;
+    }
+}
+
+/* ---- 毛玻璃：!important 兜底；blur 量要够大肉眼才明显（勿对全局 .glass 设 overflow:visible，会盖掉 overflow-y-auto） ---- */
+.glass {
+    -webkit-backdrop-filter: blur(48px) saturate(190%) !important;
+    backdrop-filter: blur(48px) saturate(190%) !important;
+}
+
+.glass-dark {
+    -webkit-backdrop-filter: blur(52px) saturate(200%) !important;
+    backdrop-filter: blur(52px) saturate(200%) !important;
+}
+
+.glass-strong {
+    -webkit-backdrop-filter: blur(64px) saturate(210%) !important;
+    backdrop-filter: blur(64px) saturate(210%) !important;
+}
+
+.glass-modal-overlay {
+    -webkit-backdrop-filter: blur(36px) saturate(180%) !important;
+    backdrop-filter: blur(36px) saturate(180%) !important;
+}
+
+/* style.css 的 slideUpBounce 会在元素上保留 transform，导致同一元素上的毛玻璃失效；改为仅淡入 */
+@keyframes glassPanelFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.difficulty-card.glass {
+    animation: glassPanelFadeIn 0.5s var(--motion-ease-standard) forwards !important;
+}
+
+.tone-card.glass-dark {
+    animation: glassPanelFadeIn 0.5s var(--motion-ease-standard) forwards !important;
+}
