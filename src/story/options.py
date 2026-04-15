@@ -17,6 +17,14 @@ from src.image.api_providers import generate_scene_image
 from src.image.validation import validate_image_url, fix_incomplete_url
 from src.characters.pending_roles import add_mentioned_roles
 
+
+def _skip_protagonist_reference(global_state: Optional[Dict]) -> bool:
+    """实验/批处理可设 _skip_protagonist_reference 或环境变量 EXPERIMENT_SKIP_PROTAGONIST_REF，跳过等待主角立绘且不依赖主角参考图生剧情图。"""
+    if isinstance(global_state, dict) and global_state.get("_skip_protagonist_reference"):
+        return True
+    return os.getenv("EXPERIMENT_SKIP_PROTAGONIST_REF", "").strip().lower() in ("1", "true", "yes")
+
+
 # 选项剪枝函数：过滤不合理、重复或过于相似的选项
 def prune_options(options: List[str]) -> List[str]:
     """过滤和优化选项列表，移除不合理、重复或过于相似的选项"""
@@ -625,7 +633,8 @@ def _generate_single_option(i: int, option: str, global_state: Dict) -> Dict:
             if scene:
                 try:
                     # 若是初始场景且主角正面图尚未就绪：等待主角正面图生成后再生成场景图（保证场景中主角形象一致）
-                    if is_initial_scene:
+                    # 实验流程可 _skip_protagonist_reference：不等待、不把主角立绘当参考图
+                    if is_initial_scene and not _skip_protagonist_reference(global_state):
                         game_id = global_state.get("game_id") if isinstance(global_state, dict) else None
                         if game_id:
                             main_character_dir = Path("initial") / "main_character" / game_id
