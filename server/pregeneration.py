@@ -11,6 +11,7 @@ from server.cache import (
     get_cache_lock_holder,
     get_cache_lock_acquire_time,
 )
+from server.events import publish as sse_publish
 from server.utils import generate_scene_id
 from main2 import (
     _generate_single_option_text_only,
@@ -159,6 +160,16 @@ def _pregenerate_next_layers_logic(global_state, current_options, scene_id):
                                             if ev:
                                                 ev.set()
                                 print(f"✅ 下一层场景 {next_scene_id} 选项 {next_opt_idx} 图片已预生成")
+                                try:
+                                    sse_publish({
+                                        "type": "scene_image_ready",
+                                        "sceneId": next_scene_id,
+                                        "optionIndex": int(next_opt_idx),
+                                        "gameId": (global_state or {}).get("game_id") if isinstance(global_state, dict) else "",
+                                        "image": img_data,
+                                    })
+                                except Exception:
+                                    pass
                         except Exception as e:
                             print(f"⚠️ 下一层场景 {next_scene_id} 选项 {next_opt_idx} 图片生成异常: {e}")
                 except Exception as e:
@@ -387,6 +398,16 @@ def _pregenerate_next_layers_logic(global_state, current_options, scene_id):
                                                         cache_entry['layer1'][opt_idx]['scene_image'] = option_data['scene_image']
                                                         cache_entry['generation_status'][opt_idx] = 'completed'  # 标记为完全完成
                                                         print(f"🎨 [第一层预生成] 缓存更新完成，状态已设置为 completed")
+                                                        try:
+                                                            sse_publish({
+                                                                "type": "scene_image_ready",
+                                                                "sceneId": scene_id,
+                                                                "optionIndex": int(opt_idx),
+                                                                "gameId": (global_state or {}).get("game_id") if isinstance(global_state, dict) else "",
+                                                                "image": option_data.get("scene_image") or {},
+                                                            })
+                                                        except Exception:
+                                                            pass
                                                     else:
                                                         # ✅ 优化：即使 layer1 被清理，如果图片已生成，也应该写入缓存
                                                         # 原因：图片生成成本高，即使选项被取消，也应该保存以备后用

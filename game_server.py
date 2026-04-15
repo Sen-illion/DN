@@ -4,15 +4,23 @@ import sys
 import json
 import hashlib
 import threading
+import logging
+import traceback
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from datetime import datetime
 from dotenv import load_dotenv
-from flask import Flask, request, jsonify, send_file, send_from_directory
+from flask import Flask, request, jsonify, send_file, send_from_directory, Response, stream_with_context
 
-# 设置环境变量以使用 UTF-8 编码（解决 Windows GBK 编码问题）
+# Windows 下强制 UTF-8 输出，避免控制台乱码导致“看不到日志”
 if sys.platform == 'win32':
     os.environ['PYTHONIOENCODING'] = 'utf-8'
+    os.environ.setdefault('PYTHONUTF8', '1')
+    try:
+        sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+        sys.stderr.reconfigure(encoding='utf-8', errors='replace')
+    except Exception:
+        pass
 
 from main2 import (
     llm_generate_global,
@@ -37,6 +45,7 @@ from server.cache import (
 from server.utils import clean_error_message, generate_scene_id
 from server.pregeneration import _pregenerate_next_layers_logic
 from server.config import IMAGE_CACHE_DIR
+from server.events import subscribe as sse_subscribe, unsubscribe as sse_unsubscribe, publish as sse_publish
 from src.characters.supporting import (
     get_or_create_supporting_role_archive,
     archive_supporting_role_first_appearance,
@@ -49,6 +58,101 @@ from src.utils.text_utils import _clip_text, get_protagonist_names
 app = Flask(__name__)
 load_dotenv()
 ensure_dirs()
+
+# 固定请求日志级别（debug=False 时也能看到访问日志）
+# 同时把日志写入文件，避免控制台丢输出
+_LOG_DIR = Path(__file__).resolve().parent / "logs"
+_LOG_DIR.mkdir(parents=True, exist_ok=True)
+_LOG_FILE = _LOG_DIR / "backend.log"
+
+_root_logger = logging.getLogger()
+_root_logger.setLevel(logging.INFO)
+if not _root_logger.handlers:
+    _root_logger.addHandler(logging.StreamHandler(sys.stdout))
+
+try:
+    from logging.handlers import RotatingFileHandler
+
+    _fh = RotatingFileHandler(str(_LOG_FILE), maxBytes=2_000_000, backupCount=3, encoding="utf-8")
+    _fh.setLevel(logging.INFO)
+    _root_logger.addHandler(_fh)
+except Exception:
+    pass
+
+logging.getLogger("werkzeug").setLevel(logging.INFO)
+
+
+@app.before_request
+def _log_request_in():
+    # 不依赖 werkzeug 的 access log，强制打印到 stdout，并 flush
+    try:
+        qs = request.query_string.decode("utf-8", "replace") if request.query_string else ""
+    except Exception:
+        qs = ""
+    path = request.path + (("?" + qs) if qs else "")
+    print(f"➡️  {request.method} {path}", flush=True)
+
+
+@app.after_request
+def _log_request_out(resp):
+    try:
+        print(f"⬅️  {request.method} {request.path} -> {resp.status_code}", flush=True)
+    except Exception:
+        pass
+    return resp
+
+
+@app.errorhandler(Exception)
+def _log_unhandled_exception(err):
+    # 任何未捕获异常都打印 traceback，避免“后端没日志”
+    try:
+        print("💥 Unhandled exception:", flush=True)
+        traceback.print_exc()
+    except Exception:
+        pass
+    return jsonify({"status": "error", "message": clean_error_message(str(err))}), 500
+
+
+@app.route('/events', methods=['GET'])
+def sse_events():
+    """
+    SSE: 前端订阅后端推送事件（如“剧情图生成完成”）。
+    Query:
+      - sceneId: 当前展示所对应的 sceneId（建议必传）
+      - gameId: 可选，用于更精确路由（多局并行时）
+    """
+    scene_id = request.args.get("sceneId", "") or ""
+    game_id = request.args.get("gameId", "") or ""
+    q = sse_subscribe(scene_id, game_id=game_id)
+
+    def gen():
+        # 初始 hello，避免某些代理缓冲
+        yield "event: hello\ndata: {}\n\n"
+        last_heartbeat = 0.0
+        try:
+            while True:
+                try:
+                    msg = q.get(timeout=1.0)
+                    yield msg
+                except Exception:
+                    # heartbeat 防止连接被中间层断开
+                    import time
+                    now = time.time()
+                    if now - last_heartbeat >= 15.0:
+                        last_heartbeat = now
+                        yield "event: ping\ndata: {}\n\n"
+        finally:
+            sse_unsubscribe(scene_id, q, game_id=game_id)
+
+    return Response(
+        stream_with_context(gen()),
+        mimetype="text/event-stream",
+        headers={
+            "Cache-Control": "no-cache",
+            "X-Accel-Buffering": "no",
+            "Connection": "keep-alive",
+        },
+    )
 
 
 def _archive_supporting_roles_on_option_shown(game_id, option_data, global_state, protagonist_names=None):
@@ -885,9 +989,12 @@ def generate_option():
                 "deep_background_links": {}
             }
         
-        # 返回结果前，清理上一轮的缓存（如果提供了上一轮的scene_id）
+        # 返回结果前，是否清理上一轮的缓存（如果提供了上一轮的 scene_id）
+        # ⚠️ 默认不主动删除 previousSceneId，以避免“预生成结果还没被前端用到就被清掉→缓存未命中→重生成”。
+        # 如需恢复旧行为，可设置环境变量：DELETE_PREVIOUS_SCENE_CACHE=1
         previous_scene_id = data.get('previousSceneId', None)
-        if previous_scene_id and previous_scene_id != scene_id and previous_scene_id != 'initial':
+        delete_previous = os.getenv("DELETE_PREVIOUS_SCENE_CACHE", "0").strip() in ("1", "true", "True", "yes", "YES")
+        if delete_previous and previous_scene_id and previous_scene_id != scene_id and previous_scene_id != 'initial':
             with cache_lock:
                 if previous_scene_id in pregeneration_cache:
                     # 停止该场景的第二层生成（如果正在生成）
@@ -898,10 +1005,10 @@ def generate_option():
                         if layer2_thread and layer2_thread.is_alive():
                             # 等待线程退出（最多等待1秒）
                             layer2_thread.join(timeout=1.0)
-                    
+
                     # 删除上一轮的缓存
                     del pregeneration_cache[previous_scene_id]
-                    print(f"🗑️ 已清理上一轮场景 {previous_scene_id} 的缓存")
+                    print(f"🗑️ 已清理上一轮场景 {previous_scene_id} 的缓存（DELETE_PREVIOUS_SCENE_CACHE=1）")
         
         # 清理当前场景中未使用的选项数据（内存优化）
         if scene_id and scene_id != 'initial' and scene_id in pregeneration_cache:
@@ -1016,6 +1123,17 @@ def generate_option():
                             "scene_text_hash": scene_text_hash  # 存储场景文本哈希，用于匹配检查
                         }
                         print("✅ 已生成场景图片（确保图片和文本匹配）")
+                        # SSE 推送：让前端立即展示，无需等下一次请求
+                        try:
+                            sse_publish({
+                                "type": "scene_image_ready",
+                                "sceneId": scene_id or "initial",
+                                "optionIndex": int(option_index) if option_index is not None else 0,
+                                "gameId": (global_state or {}).get("game_id") if isinstance(global_state, dict) else "",
+                                "image": option_data.get("scene_image") or {},
+                            })
+                        except Exception:
+                            pass
                     else:
                         print("⚠️ 场景图片生成失败，但继续返回文本")
         except Exception as e:
@@ -1056,6 +1174,19 @@ def generate_option():
                     response["optionData"] = dict(option_data)
                     response["optionData"]["sceneId"] = new_scene_id
                     print(f"✅ [generate-option] 已触发下一轮预生成，sceneId={new_scene_id}，选项数={len(next_options)}")
+        try:
+            from server.experiment_log import save_dn_experiment_bundle
+
+            save_dn_experiment_bundle(
+                option_data=response.get("optionData") or {},
+                global_state=global_state,
+                option_index=option_index,
+                option_text=option,
+                parent_scene_id=scene_id,
+            )
+        except Exception as ex:
+            print(f"⚠️ DN-experiment 记录失败：{ex}")
+
         return jsonify(response)
     except Exception as e:
         print(f"🔴 服务器错误：{str(e)}")
@@ -1434,4 +1565,4 @@ if __name__ == "__main__":
     # print("  GET /video-status/<task_id> - 查询视频生成状态")  # 已禁用
     print("  GET /image_cache/<filename> - 获取缓存的图片")
     print("===============================")
-    app.run(host='0.0.0.0', port=5001, debug=True)
+    app.run(host='0.0.0.0', port=5001, debug=False, use_reloader=False)

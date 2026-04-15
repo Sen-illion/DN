@@ -68,7 +68,7 @@ p#scene-text {
     max-height: none !important;
     overflow-y: visible !important;
     overflow-x: hidden !important;
-    font-size: 20px !important;
+    font-size: 22px !important;
     line-height: 1.8 !important;
     letter-spacing: 0.02em !important;
     word-wrap: break-word !important;
@@ -77,15 +77,14 @@ p#scene-text {
     box-sizing: border-box !important;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8), 0 2px 4px rgba(0, 0, 0, 0.6), 0 0 8px rgba(0, 0, 0, 0.4) !important;
     transition: font-family 0.3s ease, font-weight 0.3s ease !important;
+    /* 用户要求：纯白字 + 更清晰；禁用渐变透明字 */
+    color: #fff !important;
+    -webkit-text-fill-color: #fff !important;
     background: none !important;
-    background-color: transparent !important;
     background-image: none !important;
+    -webkit-background-clip: border-box !important;
     background-clip: border-box !important;
-    background-origin: padding-box !important;
-    background-size: auto !important;
-    background-position: 0% 0% !important;
-    background-repeat: repeat !important;
-    background-attachment: scroll !important;
+    background-color: transparent !important;
     padding: 0 !important;
     border-radius: 0 !important;
     border: none !important;
@@ -126,7 +125,7 @@ p#scene-text {
 .option-text {
     color: white;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8), 0 2px 4px rgba(0, 0, 0, 0.6) !important;
-    font-size: 17px !important;
+    font-size: 18px !important;
     line-height: 1.6 !important;
     letter-spacing: 0.01em !important;
     font-weight: 400;
@@ -152,11 +151,11 @@ p#scene-text {
 
 @media (min-width: 1200px) {
     .scene-text, #scene-text {
-        font-size: 22px !important;
+        font-size: 24px !important;
         line-height: 1.85 !important;
     }
     .option-text {
-        font-size: 18px !important;
+        font-size: 19px !important;
     }
     h2 {
         font-size: var(--font-size-4xl);
@@ -165,23 +164,23 @@ p#scene-text {
 
 @media (max-width: 992px) and (min-width: 769px) {
     .scene-text, #scene-text {
-        font-size: 19px !important;
+        font-size: 20px !important;
         line-height: 1.75 !important;
     }
     .option-text {
-        font-size: 16px !important;
+        font-size: 17px !important;
     }
 }
 
 @media (max-width: 768px) {
     .scene-text, #scene-text {
-        font-size: 17px !important;
+        font-size: 18px !important;
         line-height: 1.8 !important;
         padding: 15px 20px !important;
         text-align: left !important;
     }
     .option-text {
-        font-size: 16px !important;
+        font-size: 17px !important;
     }
     h2 {
         font-size: 28px !important;
@@ -194,12 +193,12 @@ p#scene-text {
 
 @media (max-width: 480px) {
     .scene-text, #scene-text {
-        font-size: 16px !important;
+        font-size: 17px !important;
         line-height: 1.75 !important;
         padding: 12px 16px !important;
     }
     .option-text {
-        font-size: 15px !important;
+        font-size: 16px !important;
     }
     h2 {
         font-size: 24px !important;

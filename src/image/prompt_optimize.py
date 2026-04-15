@@ -1078,6 +1078,15 @@ def optimize_image_prompt_with_llm(
             json_example_for_llm = PROMPT_JSON_EXAMPLE_SCENE
         json_example_str = json.dumps(json_example_for_llm, ensure_ascii=False, indent=2)
 
+        # Python f-string 的 {表达式} 内不允许出现反斜杠（例如 "\n"），
+        # 因此把带换行的前缀提前构造，避免 SyntaxError。
+        if _use_watercolor_template:
+            template_prefix = "【水彩/水墨淡彩风格】以下示例为水彩风格模板，请严格按此风格、结构与画风描述生成，仅将角色与场景替换为当前剧情。\n\n"
+        elif _use_anime_template:
+            template_prefix = "【动漫/漫画风格】以下示例为 anime-digital-portrait 结构，请严格按此风格、结构与画风描述生成，仅将角色与场景替换为当前剧情。\n\n"
+        else:
+            template_prefix = ""
+
         llm_prompt = f"""假设你是一个专业的剧情分析师和视觉设计师，现在需要你将剧情转化为具体的视觉描述，告诉生图AI如何生成图片。
 
 【游戏背景信息】
@@ -1142,7 +1151,7 @@ JSON 结构（所有数组均为字符串数组；嵌套对象见说明）：
 - output_style：成片风格数组，如 "dreamlike magical realism", "no text or symbols in image"。
 
 以上字段均需根据【当前剧情】与【图片风格要求】填写；配角请用「角色名-配角N」格式。参考示例（按此结构输出，仅替换为当前剧情内容）：
-{("【水彩/水墨淡彩风格】以下示例为水彩风格模板，请严格按此风格、结构与画风描述生成，仅将角色与场景替换为当前剧情。\n\n" if _use_watercolor_template else ("【动漫/漫画风格】以下示例为 anime-digital-portrait 结构，请严格按此风格、结构与画风描述生成，仅将角色与场景替换为当前剧情。\n\n" if _use_anime_template else ""))}{json_example_str}
+{template_prefix}{json_example_str}
 
 只输出一个合法的 JSON 对象，不要用 markdown 代码块包裹以外的内容。"""
 
@@ -1432,6 +1441,14 @@ def optimize_main_character_prompt_with_llm(
         else:
             _json_example_mc = PROMPT_JSON_EXAMPLE_MAIN_CHAR
         json_example_main_char = json.dumps(_json_example_mc, ensure_ascii=False, indent=2)
+
+        # 避免在 f-string 的 {表达式} 中出现 "\n" 触发 SyntaxError
+        if _use_watercolor_main_char:
+            template_prefix_main_char = "【水彩/水墨淡彩风格】以下示例为水彩风格主角模板，请严格按此风格、结构与画风描述生成，仅将角色替换为当前主角（性别、外貌等须与【主角规范信息】一致）。\n\n"
+        elif _use_anime_main_char:
+            template_prefix_main_char = "【动漫/漫画风格】以下示例为 anime-digital-portrait 结构，请严格按此风格、结构与画风描述生成，仅将角色替换为当前主角（性别、外貌等须与【主角规范信息】一致）。\n\n"
+        else:
+            template_prefix_main_char = ""
         llm_prompt = f"""假设你是一个专业的角色设计师，需要为「主角形象立绘」生成视觉描述提示词。输出与剧情图相同的「精简 JSON 模板」结构，但仅描述人物本身，背景固定为纯白，无任何场景、道具或其它角色。
 
 【游戏背景信息】
@@ -1461,7 +1478,7 @@ def optimize_main_character_prompt_with_llm(
 【输出格式】请严格按照以下「精简 JSON 模板」输出，且仅输出该 JSON，不要其他解释或 markdown。键名必须为英文。数组字段请逐条列出。
 
 JSON 结构：**gender**（必填，"male"或"female"），label, tags, style, subject（body_traits, outfit, pose）, face_system, hair_system, clothing_system, environment（background 仅纯白、characters 空数组、effects 空数组）, color_restriction, lighting, camera, composition, mood, output_style。参考示例（按此结构输出，替换为当前主角内容；gender 须与【主角规范信息】一致）：
-{("【水彩/水墨淡彩风格】以下示例为水彩风格主角模板，请严格按此风格、结构与画风描述生成，仅将角色替换为当前主角（性别、外貌等须与【主角规范信息】一致）。\n\n" if _use_watercolor_main_char else ("【动漫/漫画风格】以下示例为 anime-digital-portrait 结构，请严格按此风格、结构与画风描述生成，仅将角色替换为当前主角（性别、外貌等须与【主角规范信息】一致）。\n\n" if _use_anime_main_char else ""))}{json_example_main_char}
+{template_prefix_main_char}{json_example_main_char}
 
 只输出一个合法的 JSON 对象，不要用 markdown 代码块包裹以外的内容。"""
 

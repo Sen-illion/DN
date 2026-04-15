@@ -1095,14 +1095,56 @@ def generate_scene_image(
     ])
 
     # 2. 第一次调用 LLM：只负责「名称-配角N」和场景描述，不传配角参考图
-    prompt = optimize_image_prompt_with_llm(
-        scene_description,
-        global_state,
-        image_style,
-        protagonist_reference_images=protagonist_reference_images if protagonist_reference_images else None,
-        supporting_role_references=None,
-        available_supporting_roles_for_tagging=available_supporting_roles_for_tagging
-    )
+    # ✅ 优化：对“LLM 已优化的 prompt”做一次轻量 memo，避免生图失败重试/并发触发时重复跑提示词优化
+    prompt = None
+    _prompt_cache_key = None
+    try:
+        if isinstance(global_state, dict):
+            _cache = global_state.setdefault("_scene_prompt_cache", {})
+            if isinstance(_cache, dict):
+                _key_src = json.dumps(
+                    {
+                        "scene": scene_description,
+                        "style": image_style or {},
+                        "suffix": cache_key_suffix or "",
+                        "prot_refs": [os.path.basename(p) for p in (protagonist_reference_images or [])],
+                        "tag_candidates": [
+                            (x.get("role_key"), x.get("role_name"), x.get("names_or_aliases"))
+                            for x in (available_supporting_roles_for_tagging or [])
+                            if isinstance(x, dict)
+                        ],
+                    },
+                    ensure_ascii=False,
+                    sort_keys=True,
+                )
+                _prompt_cache_key = hashlib.md5(_key_src.encode("utf-8")).hexdigest()
+                cached_prompt = _cache.get(_prompt_cache_key)
+                if isinstance(cached_prompt, str) and cached_prompt.strip():
+                    prompt = cached_prompt
+    except Exception:
+        prompt = None
+        _prompt_cache_key = None
+
+    if not prompt:
+        prompt = optimize_image_prompt_with_llm(
+            scene_description,
+            global_state,
+            image_style,
+            protagonist_reference_images=protagonist_reference_images if protagonist_reference_images else None,
+            supporting_role_references=None,
+            available_supporting_roles_for_tagging=available_supporting_roles_for_tagging
+        )
+        try:
+            if _prompt_cache_key and isinstance(global_state, dict):
+                _cache = global_state.setdefault("_scene_prompt_cache", {})
+                if isinstance(_cache, dict) and isinstance(prompt, str) and prompt.strip():
+                    _cache[_prompt_cache_key] = prompt
+                    # 简单限长，避免无限增长
+                    if len(_cache) > 20:
+                        for k in list(_cache.keys())[: max(0, len(_cache) - 20)]:
+                            _cache.pop(k, None)
+        except Exception:
+            pass
     # 仅打印提示词摘要到后端（不输出全文，避免占满日志）
     if prompt and isinstance(prompt, str):
         _step += 1
@@ -1676,169 +1718,199 @@ def call_gemini_img2img(prompt: str, reference_image_path, additional_reference_
 
     request_timeout = int(os.getenv("YUNWU_IMAGE_TIMEOUT_SECONDS", "180"))
     min_interval = float(os.getenv("YUNWU_MIN_INTERVAL_SECONDS", "12"))
-    
-    try:
-        # 跨线程限速
-        global _YUNWU_LAST_CALL_TS
-        with _YUNWU_RATE_LOCK:
-            now = time.time()
-            delta = now - _YUNWU_LAST_CALL_TS
-            if delta < min_interval:
-                sleep_s = (min_interval - delta) + random.random() * 0.5
-                print(f"⏳ gemini 图生图限速：等待 {sleep_s:.1f}s")
-                time.sleep(sleep_s)
-            _YUNWU_LAST_CALL_TS = time.time()
-        
-        print(f"🔄 调用 Gemini 图生图 API（{model}，{len(image_data_uris)}张参考图）...")
-        print(f"   提示词: {prompt[:100]}...")
-        ref_paths_str = ", ".join([ref[:50] + "..." if len(ref) > 50 else ref for ref in reference_paths])
-        print(f"   参考图: {ref_paths_str}")
-        
-        response = requests.post(
-            f"{base_url}/chat/completions",
-            headers=headers,
-            json=request_body,
-            timeout=request_timeout
-        )
-        
-        if response.status_code != 200:
-            error_msg = ""
-            try:
-                error_body = response.json()
-                if isinstance(error_body, dict):
-                    error_obj = error_body.get("error", {})
-                    if isinstance(error_obj, dict):
-                        error_msg = error_obj.get("message", "")
-                    else:
-                        error_msg = str(error_obj)
-                else:
-                    error_msg = str(error_body)
-            except:
-                error_msg = response.text[:200]
-            
-            print(f"❌ Gemini 图生图 API 错误 {response.status_code}: {error_msg}")
-            return None
-        
-        # 解析响应（复用 call_yunwu_image_api 的解析逻辑）
-        result = response.json()
+    max_retries = int(os.getenv("YUNWU_GEMINI_MAX_RETRIES", "3"))
+    backoff_base = float(os.getenv("YUNWU_GEMINI_RETRY_BACKOFF_SECONDS", "2"))
 
-        # 可能导致 contents/content 解析不出来的情况：
-        # 1. 代理返回体包在 data 里：result = { "data": { "choices": ... } }，需先取 result["data"]
-        # 2. 代理返回顶层 contents（复数）而非 candidates：需兼容 result["contents"][0].parts
-        # 3. Gemini 用 inlineData（驼峰），部分实现用 inline_data（下划线），需兼容两种
-        # 4. candidates[0] 有 content 但 content 不是 dict（如 null/字符串），或 parts 为空/缺失
-        # 5. 响应为非 JSON、或为 list/字符串而非 dict，导致 .get() 报错或取不到
-        def _parts_to_image(parts) -> str:
-            """从 parts 列表中提取第一张图片的 data URI 或 URL。"""
-            for p in parts:
-                if not isinstance(p, dict):
-                    continue
-                # 兼容 inlineData（驼峰）与 inline_data（下划线）
-                inline = p.get("inlineData") or p.get("inline_data")
-                if isinstance(inline, dict) and inline.get("data"):
-                    mime = inline.get("mimeType") or inline.get("mime_type", "image/png")
-                    return f"data:{mime};base64,{inline['data']}"
-                text = p.get("text", "")
-                if isinstance(text, str) and text.strip():
-                    if text.strip().startswith("data:image") or text.strip().startswith("http"):
-                        return text.strip()
-                    base64_match = re.search(r"data:image/[^;]+;base64,[A-Za-z0-9+/=\s]+", text)
+    # 可能导致 contents/content 解析不出来的情况：
+    # 1. 代理返回体包在 data 里：result = { "data": { "choices": ... } }，需先取 result["data"]
+    # 2. 代理返回顶层 contents（复数）而非 candidates：需兼容 result["contents"][0].parts
+    # 3. Gemini 用 inlineData（驼峰），部分实现用 inline_data（下划线），需兼容两种
+    # 4. candidates[0] 有 content 但 content 不是 dict（如 null/字符串），或 parts 为空/缺失
+    # 5. 响应为非 JSON、或为 list/字符串而非 dict，导致 .get() 报错或取不到
+    def _parts_to_image(parts) -> str:
+        """从 parts 列表中提取第一张图片的 data URI 或 URL。"""
+        for p in parts:
+            if not isinstance(p, dict):
+                continue
+            # 兼容 inlineData（驼峰）与 inline_data（下划线）
+            inline = p.get("inlineData") or p.get("inline_data")
+            if isinstance(inline, dict) and inline.get("data"):
+                mime = inline.get("mimeType") or inline.get("mime_type", "image/png")
+                return f"data:{mime};base64,{inline['data']}"
+            text = p.get("text", "")
+            if isinstance(text, str) and text.strip():
+                if text.strip().startswith("data:image") or text.strip().startswith("http"):
+                    return text.strip()
+                base64_match = re.search(r"data:image/[^;]+;base64,[A-Za-z0-9+/=\s]+", text)
+                if base64_match:
+                    return base64_match.group(0).strip()
+        return ""
+
+    def _extract_image_from_response(obj) -> str:
+        try:
+            if not isinstance(obj, dict):
+                return ""
+            # 顶层直接给 url
+            for k in ("image_url", "url"):
+                v = obj.get(k)
+                if isinstance(v, str) and v.strip():
+                    return v.strip()
+            # Gemini 原生格式：candidates[0].content.parts
+            candidates = obj.get("candidates") or []
+            if candidates and len(candidates) > 0:
+                first = candidates[0] if isinstance(candidates[0], dict) else {}
+                content = first.get("content")
+                parts = []
+                if isinstance(content, dict):
+                    parts = content.get("parts") or []
+                # 部分代理把 parts 放在 candidate 下而非 content 下
+                if not parts and isinstance(first.get("parts"), list):
+                    parts = first.get("parts") or []
+                if parts:
+                    out = _parts_to_image(parts)
+                    if out:
+                        return out
+            # 兼容顶层 contents（复数）：如 result.contents[0].parts
+            contents_list = obj.get("contents") or []
+            if isinstance(contents_list, list) and contents_list:
+                first_content = contents_list[0] if isinstance(contents_list[0], dict) else {}
+                parts = first_content.get("parts") or []
+                if parts:
+                    out = _parts_to_image(parts)
+                    if out:
+                        return out
+            # OpenAI 风格：choices[0].message.content
+            choices = obj.get("choices", [])
+            if choices and len(choices) > 0:
+                message = choices[0].get("message", {}) or {}
+                content = message.get("content", "")
+                if isinstance(content, list):
+                    for part in content:
+                        if not isinstance(part, dict):
+                            continue
+                        if part.get("type") == "image_url":
+                            url = (part.get("image_url") or {}).get("url")
+                            if url:
+                                return url
+                        text = part.get("text", "")
+                        if isinstance(text, str) and text.strip():
+                            if text.strip().startswith("data:image") or text.strip().startswith("http"):
+                                return text.strip()
+                            base64_match = re.search(r"data:image/[^;]+;base64,[A-Za-z0-9+/=\s]+", text)
+                            if base64_match:
+                                return base64_match.group(0).strip()
+                elif isinstance(content, str) and content.strip():
+                    if content.startswith("data:image") or content.startswith("http"):
+                        return content.strip()
+                    base64_match = re.search(r'data:image/[^;]+;base64,([A-Za-z0-9+/=\s]+)', content)
                     if base64_match:
-                        return base64_match.group(0).strip()
+                        return f"data:image/png;base64,{base64_match.group(1).strip()}"
+            return ""
+        except Exception as e:
+            print(f"⚠️ 解析响应时出错: {str(e)}")
             return ""
 
-        def _extract_image_from_response(obj) -> str:
-            try:
-                if not isinstance(obj, dict):
-                    return ""
-                # 顶层直接给 url
-                for k in ("image_url", "url"):
-                    v = obj.get(k)
-                    if isinstance(v, str) and v.strip():
-                        return v.strip()
-                # Gemini 原生格式：candidates[0].content.parts
-                candidates = obj.get("candidates") or []
-                if candidates and len(candidates) > 0:
-                    first = candidates[0] if isinstance(candidates[0], dict) else {}
-                    content = first.get("content")
-                    parts = []
-                    if isinstance(content, dict):
-                        parts = content.get("parts") or []
-                    # 部分代理把 parts 放在 candidate 下而非 content 下
-                    if not parts and isinstance(first.get("parts"), list):
-                        parts = first.get("parts") or []
-                    if parts:
-                        out = _parts_to_image(parts)
-                        if out:
-                            return out
-                # 兼容顶层 contents（复数）：如 result.contents[0].parts
-                contents_list = obj.get("contents") or []
-                if isinstance(contents_list, list) and contents_list:
-                    first_content = contents_list[0] if isinstance(contents_list[0], dict) else {}
-                    parts = first_content.get("parts") or []
-                    if parts:
-                        out = _parts_to_image(parts)
-                        if out:
-                            return out
-                # OpenAI 风格：choices[0].message.content
-                choices = obj.get("choices", [])
-                if choices and len(choices) > 0:
-                    message = choices[0].get("message", {}) or {}
-                    content = message.get("content", "")
-                    if isinstance(content, list):
-                        for part in content:
-                            if not isinstance(part, dict):
-                                continue
-                            if part.get("type") == "image_url":
-                                url = (part.get("image_url") or {}).get("url")
-                                if url:
-                                    return url
-                            text = part.get("text", "")
-                            if isinstance(text, str) and text.strip():
-                                if text.strip().startswith("data:image") or text.strip().startswith("http"):
-                                    return text.strip()
-                                base64_match = re.search(r"data:image/[^;]+;base64,[A-Za-z0-9+/=\s]+", text)
-                                if base64_match:
-                                    return base64_match.group(0).strip()
-                    elif isinstance(content, str) and content.strip():
-                        if content.startswith("data:image") or content.startswith("http"):
-                            return content.strip()
-                        base64_match = re.search(r'data:image/[^;]+;base64,([A-Za-z0-9+/=\s]+)', content)
-                        if base64_match:
-                            return f"data:image/png;base64,{base64_match.group(1).strip()}"
-                return ""
-            except Exception as e:
-                print(f"⚠️ 解析响应时出错: {str(e)}")
-                return ""
+    for attempt in range(max_retries):
+        try:
+            # 跨线程限速
+            global _YUNWU_LAST_CALL_TS
+            with _YUNWU_RATE_LOCK:
+                now = time.time()
+                delta = now - _YUNWU_LAST_CALL_TS
+                if delta < min_interval:
+                    sleep_s = (min_interval - delta) + random.random() * 0.5
+                    print(f"⏳ gemini 图生图限速：等待 {sleep_s:.1f}s")
+                    time.sleep(sleep_s)
+                _YUNWU_LAST_CALL_TS = time.time()
 
-        # 先尝试直接解析；若代理把真实响应放在 result["data"] 下，再试一次
-        image_result = _extract_image_from_response(result)
-        if not image_result and isinstance(result.get("data"), dict):
-            image_result = _extract_image_from_response(result["data"])
-        if image_result:
-            # 如果是 base64，保存到本地缓存（cache_key_suffix 用于主角侧/背图按游戏区分）
-            if image_result.startswith("data:image"):
-                saved_path = save_base64_image(image_result, prompt, cache_key_suffix=cache_key_suffix)
-                if saved_path:
-                    return saved_path
-            return image_result
-        
-        print(f"⚠️ Gemini 图生图响应中未找到图片数据")
-        return None
-        
-    except requests.exceptions.ConnectTimeout as e:
-        print(f"❌ Gemini 图生图连接超时：无法在 {request_timeout} 秒内连上 yunwu.ai")
-        print(f"   可能原因：1) 本机网络无法访问 yunwu.ai  2) 需代理时请设置环境变量 HTTPS_PROXY  3) 防火墙/地区限制")
-        return None
-    except requests.exceptions.ConnectionError as e:
-        print(f"❌ Gemini 图生图连接失败：无法连接 yunwu.ai（{e})")
-        print(f"   请检查网络或设置 HTTPS_PROXY 后再试")
-        return None
-    except Exception as e:
-        print(f"❌ Gemini 图生图调用异常: {str(e)}")
-        import traceback
-        traceback.print_exc()
-        return None
+            attempt_label = f"{attempt + 1}/{max_retries}"
+            print(f"🔄 调用 Gemini 图生图 API（{model}，{len(image_data_uris)}张参考图，尝试 {attempt_label}）...")
+            print(f"   提示词: {prompt[:100]}...")
+            ref_paths_str = ", ".join([ref[:50] + "..." if len(ref) > 50 else ref for ref in reference_paths])
+            print(f"   参考图: {ref_paths_str}")
+
+            response = requests.post(
+                f"{base_url}/chat/completions",
+                headers=headers,
+                json=request_body,
+                timeout=request_timeout
+            )
+
+            if response.status_code != 200:
+                error_msg = ""
+                try:
+                    error_body = response.json()
+                    if isinstance(error_body, dict):
+                        error_obj = error_body.get("error", {})
+                        if isinstance(error_obj, dict):
+                            error_msg = error_obj.get("message", "")
+                        else:
+                            error_msg = str(error_obj)
+                    else:
+                        error_msg = str(error_body)
+                except Exception:
+                    error_msg = (response.text or "")[:200]
+
+                print(f"❌ Gemini 图生图 API 错误 {response.status_code}: {error_msg}")
+                # 4xx 多为请求/权限错误，重试意义不大；5xx 可能瞬时，允许重试
+                if 400 <= response.status_code < 500:
+                    return None
+                if attempt < max_retries - 1:
+                    sleep_s = min(30.0, backoff_base * (2 ** attempt) + random.random())
+                    print(f"⚠️ Gemini 图生图将重试（HTTP {response.status_code}，等待 {sleep_s:.1f}s）")
+                    time.sleep(sleep_s)
+                    continue
+                return None
+
+            result = response.json()
+            image_result = _extract_image_from_response(result)
+            if not image_result and isinstance(result.get("data"), dict):
+                image_result = _extract_image_from_response(result["data"])
+            if image_result:
+                if image_result.startswith("data:image"):
+                    saved_path = save_base64_image(image_result, prompt, cache_key_suffix=cache_key_suffix)
+                    if saved_path:
+                        return saved_path
+                return image_result
+
+            print(f"⚠️ Gemini 图生图响应中未找到图片数据")
+            if attempt < max_retries - 1:
+                sleep_s = min(20.0, backoff_base * (2 ** attempt) + random.random())
+                print(f"⚠️ Gemini 图生图将重试（未解析到图片，等待 {sleep_s:.1f}s）")
+                time.sleep(sleep_s)
+                continue
+            return None
+
+        except (requests.exceptions.ConnectTimeout, requests.exceptions.Timeout):
+            print(f"⚠️ Gemini 图生图超时（{request_timeout}s，尝试 {attempt + 1}/{max_retries}）")
+            if attempt < max_retries - 1:
+                sleep_s = min(30.0, backoff_base * (2 ** attempt) + random.random())
+                time.sleep(sleep_s)
+                continue
+            print(f"❌ Gemini 图生图连接超时：无法在 {request_timeout} 秒内连上 yunwu.ai")
+            print(f"   可能原因：1) 本机网络无法访问 yunwu.ai  2) 需代理时请设置环境变量 HTTPS_PROXY  3) 防火墙/地区限制")
+            return None
+        except requests.exceptions.ConnectionError as e:
+            msg = str(e)[:200]
+            print(f"⚠️ Gemini 图生图连接失败（尝试 {attempt + 1}/{max_retries}）：{msg}")
+            if attempt < max_retries - 1:
+                sleep_s = min(30.0, backoff_base * (2 ** attempt) + random.random())
+                time.sleep(sleep_s)
+                continue
+            print(f"❌ Gemini 图生图连接失败：无法连接 yunwu.ai（{msg})")
+            print(f"   请检查网络或设置 HTTPS_PROXY 后再试")
+            return None
+        except Exception as e:
+            msg = str(e)[:200]
+            print(f"⚠️ Gemini 图生图调用异常（尝试 {attempt + 1}/{max_retries}）：{msg}")
+            if attempt < max_retries - 1:
+                sleep_s = min(30.0, backoff_base * (2 ** attempt) + random.random())
+                time.sleep(sleep_s)
+                continue
+            print(f"❌ Gemini 图生图调用异常: {msg}")
+            import traceback
+            traceback.print_exc()
+            return None
 
 
 def call_yunwu_image_api(prompt: str, style: str) -> str:

@@ -10,7 +10,11 @@ IMAGE_CACHE_DIR = "image_cache"
 VIDEO_CACHE_DIR = "video_cache"
 
 # 最大缓存场景数量，超过此数量将清理最旧的缓存（降低内存占用）
-MAX_CACHE_SIZE = 3
+# 可通过环境变量覆盖：PREGEN_MAX_CACHE_SIZE
+try:
+    MAX_CACHE_SIZE = int(os.getenv("PREGEN_MAX_CACHE_SIZE", "20"))
+except Exception:
+    MAX_CACHE_SIZE = 20
 
 
 def ensure_dirs():
