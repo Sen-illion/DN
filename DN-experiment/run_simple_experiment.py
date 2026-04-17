@@ -33,6 +33,9 @@ if sys.platform == "win32":
     except Exception:
         pass
 
+# 实验链路不启用 Council（群体智能）；世界观生成与后台补全都走单模型（见 EXPERIMENT_NO_COUNCIL）
+os.environ["EXPERIMENT_NO_COUNCIL"] = "1"
+
 try:
     from dotenv import load_dotenv  # type: ignore
 except Exception:  # pragma: no cover

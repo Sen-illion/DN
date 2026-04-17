@@ -6,6 +6,8 @@
 示例：
   python -u DN-experiment/run_batch_themes.py --offset 0
   python -u DN-experiment/run_batch_themes.py --offset 3 --count 3
+
+全部跑完后可汇总为 CLIP 用 jsonl：python DN-experiment/export_clip_jsonl.py
 """
 from __future__ import annotations
 
@@ -28,6 +30,8 @@ if sys.platform == "win32":
         sys.stderr.reconfigure(encoding="utf-8", errors="replace")
     except Exception:
         pass
+
+os.environ["EXPERIMENT_NO_COUNCIL"] = "1"
 
 try:
     from dotenv import load_dotenv  # type: ignore

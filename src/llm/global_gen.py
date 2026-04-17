@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """LLM 全局世界观生成：llm_generate_global、_get_default_worldview。"""
 import json
+import os
 import re
 import threading
 from typing import Dict
@@ -14,10 +15,35 @@ from src.worldview.parser import _regex_fill_worldview
 from src.worldview.template import _background_fill_worldview_details
 
 
-def llm_generate_global(user_idea: str, protagonist_attr: Dict, difficulty: str, tone_key: str = "normal_ending", force_full: bool = False) -> Dict:
+def _disable_council_resolved(explicit: bool) -> bool:
+    """True 时用单模型 call_ai_api，不跑 Council（实验脚本可设 EXPERIMENT_NO_COUNCIL=1）。"""
+    if explicit:
+        return True
+    return os.getenv("EXPERIMENT_NO_COUNCIL", "").strip().lower() in ("1", "true", "yes")
+
+
+def _raw_content_from_chat_response(response_data: dict) -> str:
+    choices = response_data.get("choices", [])
+    if not choices:
+        return ""
+    message = choices[0].get("message", {})
+    if not message:
+        return ""
+    return (message.get("content") or "").strip()
+
+
+def llm_generate_global(
+    user_idea: str,
+    protagonist_attr: Dict,
+    difficulty: str,
+    tone_key: str = "normal_ending",
+    force_full: bool = False,
+    disable_council: bool = False,
+) -> Dict:
     """调用yunwu.ai生成包含章节矛盾、适配主角属性/难度的Global世界观
 
     force_full: True 时跳过分阶段/模板/缓存，加速生成完整版本（用于后台补全）
+    disable_council: True 或环境变量 EXPERIMENT_NO_COUNCIL 时，完整版世界观也只用 Camera_Analyst 单模型，不启用 Council。
     """
     if not user_idea.strip():
         raise ValueError("游戏主题idea不能为空")
@@ -25,7 +51,7 @@ def llm_generate_global(user_idea: str, protagonist_attr: Dict, difficulty: str,
     perf = PERFORMANCE_OPTIMIZATION
     perf_enabled = perf.get("enabled", True)
     staged_mode = perf_enabled and perf.get("staged_worldview", True) and not force_full
-
+    no_council = _disable_council_resolved(disable_council)
 
     # 环境变量验证：检查必填字段是否齐全
     required_configs = ["api_key", "base_url", "model"]
@@ -175,18 +201,19 @@ def llm_generate_global(user_idea: str, protagonist_attr: Dict, difficulty: str,
     for attempt in range(max_retries):
         try:
             print(f"📝 尝试生成世界观（第{attempt+1}/{max_retries}次）...")
-            # 完整版用 council 群体智能；核心速写仍用单模型
+            # 完整版默认用 council 群体智能；核心速写仍用单模型。disable_council / EXPERIMENT_NO_COUNCIL 时完整版也走单模型。
             if staged_mode:
                 response_data = call_ai_api(request_body)
-                choices = response_data.get("choices", [])
-                if not choices or len(choices) == 0:
-                    print("❌ 错误：AI返回内容格式异常，缺少choices字段，将重试...")
+                raw_content = _raw_content_from_chat_response(response_data)
+                if not raw_content:
+                    print("❌ 错误：AI返回内容格式异常或为空，将重试...")
                     continue
-                message = choices[0].get("message", {})
-                if not message:
-                    print("❌ 错误：AI返回内容格式异常，缺少message字段，将重试...")
+            elif no_council:
+                response_data = call_ai_api(request_body)
+                raw_content = _raw_content_from_chat_response(response_data)
+                if not raw_content:
+                    print("❌ 错误：AI返回内容格式异常或为空，将重试...")
                     continue
-                raw_content = message.get("content", "").strip()
             else:
                 raw_content = run_full_council_sync(prompt)
             if not raw_content:

@@ -25,6 +25,13 @@ def _skip_protagonist_reference(global_state: Optional[Dict]) -> bool:
     return os.getenv("EXPERIMENT_SKIP_PROTAGONIST_REF", "").strip().lower() in ("1", "true", "yes")
 
 
+def _skip_scene_image(global_state: Optional[Dict]) -> bool:
+    """纯文本实验可设 global_state['_skip_scene_image'] 或 EXPERIMENT_SKIP_SCENE_IMAGE=1，跳过场景图生成。"""
+    if isinstance(global_state, dict) and global_state.get("_skip_scene_image"):
+        return True
+    return os.getenv("EXPERIMENT_SKIP_SCENE_IMAGE", "").strip().lower() in ("1", "true", "yes")
+
+
 # 选项剪枝函数：过滤不合理、重复或过于相似的选项
 def prune_options(options: List[str]) -> List[str]:
     """过滤和优化选项列表，移除不合理、重复或过于相似的选项"""
@@ -104,6 +111,54 @@ def _build_checkpoint_keyword_prompt(global_state: Dict) -> str:
         + "\n### 要求：在不破坏主线与逻辑的前提下，适度呼应这些关键词；若冲突，以当前用户选择和主线推进为最高优先级。"
     )
 
+
+def _get_previous_scene_narrative_text(global_state: Optional[Dict]) -> str:
+    """从 global_state['_visual_context'] 取上一段场景正文（或预生成时的当前段正文）。"""
+    if not isinstance(global_state, dict):
+        return ""
+    vc = global_state.get("_visual_context")
+    if not isinstance(vc, dict):
+        return ""
+    t = (vc.get("previousSceneText") or vc.get("currentSceneText") or "").strip()
+    return t
+
+
+def _build_previous_scene_prompt_block(global_state: Dict, is_initial_scene: bool) -> str:
+    """
+    注入「上一段完整剧情」块，要求模型严格衔接。
+    长度可由环境变量 PREVIOUS_SCENE_TEXT_MAX_CHARS 限制（默认 20000），避免超长 prompt。
+    """
+    if is_initial_scene:
+        return ""
+    prev = _get_previous_scene_narrative_text(global_state)
+    if not prev:
+        return ""
+    try:
+        max_chars = int(os.getenv("PREVIOUS_SCENE_TEXT_MAX_CHARS", "20000"))
+    except ValueError:
+        max_chars = 20000
+    max_chars = max(4000, max_chars)
+    truncated = False
+    if len(prev) > max_chars:
+        prev = prev[:max_chars]
+        truncated = True
+    trunc_note = ""
+    if truncated:
+        trunc_note = (
+            "\n（说明：上文因长度已达上限被截断至前若干字；请仅依据已展示的上文衔接，"
+            "勿将截断处之后自行脑补的情节当作既定事实。）\n"
+        )
+    header = (
+        "\n## 【上一段完整剧情（必须衔接，最高优先级之一）】\n"
+        "以下为**上一段场景正文**（即玩家刚读完、或分支所从属的父场景）。本段【场景】必须视为其**直接续写**：\n"
+        "- 时间、地点、人物关系与已发生事实必须与上文一致，禁止矛盾或「重置场景」。\n"
+        "- 禁止重复、复述或改写上文已写过的情节；应从上一段**结束瞬间**接着写，自然承接未完的对话、动作与情绪。\n"
+        "- **叙事人称必须与上文一致**（若上文为主角「我」的第一人称，本段也必须全程保持同一视角，不得无故改为第三人称全名叙事）。\n"
+        "- 用户选项中的行动须体现为在此状态之上的**直接后果**，符合因果逻辑。\n"
+    )
+    return header + trunc_note + "---\n" + prev + "\n---\n"
+
+
 # 重构：生成单个选项剧情的独立函数
 def _generate_single_option(i: int, option: str, global_state: Dict) -> Dict:
     """
@@ -154,7 +209,8 @@ def _generate_single_option(i: int, option: str, global_state: Dict) -> Dict:
     protagonist_canonical_block = _format_protagonist_canonical_for_prompt(global_state.get("protagonist_canonical") or {})
     
     # 判断是否是第一次生成（"开始游戏"选项）
-    is_initial_scene = (option == "开始游戏" or option == "开始游戏")
+    is_initial_scene = option == "开始游戏"
+    previous_scene_block = _build_previous_scene_prompt_block(global_state, is_initial_scene)
     
     # 根据是否是第一次生成，调整场景描述要求
     if is_initial_scene:
@@ -176,9 +232,14 @@ def _generate_single_option(i: int, option: str, global_state: Dict) -> Dict:
 补充要求：全文流畅连贯，画面感极强，情绪渲染到位，节奏遵循"高压开场→细节铺陈→情绪升温→强钩子收尾"，符合网文高节奏、强代入的特点；语言生动有张力，避免平淡直白；所有元素（钩子、环境、内心、对话、悬念、世界观、主线暗示）深度融合，无明显割裂感；主角的行为逻辑合理，情绪转变自然，让玩家全程代入，看完第一个场景就迫切想进行下一步操作、探索后续剧情。"""
     else:
         scene_requirement = """【场景】：场景描述（必须是用户操作的直接结果，贴合难度和主角属性，要求：至少200字，包含环境描写、角色反应、对话等，对话必须使用引号）"""
+        if _get_previous_scene_narrative_text(global_state):
+            scene_requirement += (
+                "\n\n衔接要求：本段为【上一段完整剧情】的续篇，须从上一段收束处自然接笔，不得复述已发生内容；"
+                "叙事人称与上一段保持一致。"
+            )
     
     prompt = f"""
-    请基于以下设定生成后续1层剧情，**严格遵守以下要求，违反任何一条都将导致任务失败**（优先级：执行用户选择 > 主线推进 > 剧情连贯 > 格式完整）：
+    请基于以下设定生成后续1层剧情，**严格遵守以下要求，违反任何一条都将导致任务失败**（优先级：执行用户选择 > 与上一段剧情衔接一致{'' if not previous_scene_block else '（已提供上文时必须严格衔接）'} > 主线推进 > 剧情连贯 > 格式完整）：
     
     ## 【故事基调要求】：
     1. **必须严格遵循以下故事基调要求**：
@@ -200,6 +261,7 @@ def _generate_single_option(i: int, option: str, global_state: Dict) -> Dict:
        - **部分选项必须关联角色深层背景**：生成2个选项，其中0-1个选项应直接关联到某个角色的深层背景，选择这类选项会触发该角色深层背景的解锁
     {deep_bg_prompt}
     {checkpoint_keyword_prompt}
+    {previous_scene_block}
     
     ## 【主线推进要求】：
     1. 必须**明确推进主线任务**，每个选择都应该带来主线进度的实质性变化
@@ -264,6 +326,7 @@ def _generate_single_option(i: int, option: str, global_state: Dict) -> Dict:
     6. 描写主角时必须与【主角规范信息】一致（性别、年龄、外貌、人称）。
     7. **【本段出场配角】必须与【场景】内容一致**：你在【场景】里写了谁有对话、谁做了自我介绍（如「我是葛城美里」），就必须在【本段出场配角】里按「角色名-配角1」列出，不能漏填或写「无」。
     8. **【本段出场配角】绝不能包含主角**：主角是【主角规范信息】中描述的人（玩家视角角色）。主角的姓名、英文名或任何别称都绝不能写入【本段出场配角】。只列出剧情中实际出场的非主角人物。
+    9. 若上方提供了【上一段完整剧情】，本段【场景】必须与其无缝衔接，不得与之矛盾。
     
     ## 【硬性输出格式】必须严格遵守，否则无法解析
     你的回复必须且仅包含以下六块，**不要有任何前缀、解释或代码块**（如「好的，以下是…」或 ```），**第一行就必须是【场景】：**：
@@ -630,7 +693,7 @@ def _generate_single_option(i: int, option: str, global_state: Dict) -> Dict:
             # 新增：生成场景图片（使用本地缓存，避免OSS URL失效问题）
             # 修复：移除“线程 join 6分钟后丢结果”的逻辑，改为同步调用 + 可控的网络超时/重试。
             scene_image = None
-            if scene:
+            if scene and not _skip_scene_image(global_state):
                 try:
                     # 若是初始场景且主角正面图尚未就绪：等待主角正面图生成后再生成场景图（保证场景中主角形象一致）
                     # 实验流程可 _skip_protagonist_reference：不等待、不把主角立绘当参考图
@@ -725,6 +788,8 @@ def _generate_single_option(i: int, option: str, global_state: Dict) -> Dict:
                     print(f"⚠️ 选项 {i+1} 图片生成异常，继续使用文本模式：{str(e)}")
                     import traceback
                     traceback.print_exc()
+            elif scene and _skip_scene_image(global_state):
+                print(f"⏩ 选项 {i+1} 已跳过场景图生图（_skip_scene_image / EXPERIMENT_SKIP_SCENE_IMAGE）")
             
             # ==================== 视频生成功能已禁用（性能优化） ====================
             # 新增：生成场景视频（5-10秒）
@@ -845,7 +910,8 @@ def _generate_single_option_text_only(
     protagonist_canonical_block = _format_protagonist_canonical_for_prompt(global_state.get("protagonist_canonical") or {})
     
     # 判断是否是第一次生成（"开始游戏"选项）
-    is_initial_scene = (option == "开始游戏" or option == "开始游戏")
+    is_initial_scene = option == "开始游戏"
+    previous_scene_block = _build_previous_scene_prompt_block(global_state, is_initial_scene)
     
     # 根据是否是第一次生成，调整场景描述要求
     if is_initial_scene:
@@ -867,9 +933,14 @@ def _generate_single_option_text_only(
 补充要求：全文流畅连贯，画面感极强，情绪渲染到位，节奏遵循"高压开场→细节铺陈→情绪升温→强钩子收尾"，符合网文高节奏、强代入的特点；语言生动有张力，避免平淡直白；所有元素（钩子、环境、内心、对话、悬念、世界观、主线暗示）深度融合，无明显割裂感；主角的行为逻辑合理，情绪转变自然，让玩家全程代入，看完第一个场景就迫切想进行下一步操作、探索后续剧情。"""
     else:
         scene_requirement = """【场景】：场景描述（必须是用户操作的直接结果，贴合难度和主角属性，要求：至少200字，包含环境描写、角色反应、对话等，对话必须使用引号）"""
+        if _get_previous_scene_narrative_text(global_state):
+            scene_requirement += (
+                "\n\n衔接要求：本段为【上一段完整剧情】的续篇，须从上一段收束处自然接笔，不得复述已发生内容；"
+                "叙事人称与上一段保持一致。"
+            )
     
     prompt = f"""
-    请基于以下设定生成后续1层剧情，**严格遵守以下要求，违反任何一条都将导致任务失败**（优先级：执行用户选择 > 主线推进 > 剧情连贯 > 格式完整）：
+    请基于以下设定生成后续1层剧情，**严格遵守以下要求，违反任何一条都将导致任务失败**（优先级：执行用户选择 > 与上一段剧情衔接一致{'' if not previous_scene_block else '（已提供上文时必须严格衔接）'} > 主线推进 > 剧情连贯 > 格式完整）：
     
     ## 【故事基调要求】：
     1. **必须严格遵循以下故事基调要求**：
@@ -891,6 +962,7 @@ def _generate_single_option_text_only(
        - **部分选项必须关联角色深层背景**：生成2个选项，其中0-1个选项应直接关联到某个角色的深层背景，选择这类选项会触发该角色深层背景的解锁
     {deep_bg_prompt}
     {checkpoint_keyword_prompt}
+    {previous_scene_block}
     
     ## 【主线推进要求】：
     1. 必须**明确推进主线任务**，每个选择都应该带来主线进度的实质性变化
@@ -955,6 +1027,7 @@ def _generate_single_option_text_only(
     6. 描写主角时必须与【主角规范信息】一致（性别、年龄、外貌、人称）。
     7. **【本段出场配角】必须与【场景】内容一致**：你在【场景】里写了谁有对话、谁做了自我介绍（如「我是葛城美里」），就必须在【本段出场配角】里按「角色名-配角1」列出，不能漏填或写「无」。
     8. **【本段出场配角】绝不能包含主角**：主角是【主角规范信息】中描述的人（玩家视角角色）。主角的姓名、英文名或任何别称都绝不能写入【本段出场配角】。只列出剧情中实际出场的非主角人物。
+    9. 若上方提供了【上一段完整剧情】，本段【场景】必须与其无缝衔接，不得与之矛盾。
     
     ## 【硬性输出格式】必须严格遵守，否则无法解析
     你的回复必须且仅包含以下六块，**不要有任何前缀、解释或代码块**，**第一行就必须是【场景】：**：
