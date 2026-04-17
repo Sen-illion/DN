@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 import os
 import sys
 import json
@@ -1088,21 +1088,54 @@ def generate_option():
                     need_generate_image = True
                     print(f"🔄 缓存数据图片URL无效，立即生成新图片")
                 elif isinstance(scene_text, str) and scene_text.strip():
-                    # 计算当前场景文本的哈希值
                     current_scene_hash = hashlib.md5(scene_text.encode('utf-8')).hexdigest()
-                    # 获取缓存图片关联的场景文本哈希（如果存在）
                     cached_scene_hash = scene_image.get("scene_text_hash", None)
-                    # 如果场景文本已变化，需要重新生成图片以确保匹配
                     if cached_scene_hash != current_scene_hash:
-                        need_generate_image = True
-                        print(f"🔄 场景文本已变化（缓存哈希: {cached_scene_hash[:8] if cached_scene_hash else 'N/A'} vs 当前哈希: {current_scene_hash[:8]}），重新生成图片以确保匹配")
+                        # 图片存在但文本哈希不匹配：返回现有图片，后台异步重新生成
+                        print(f"🔄 场景文本已变化（缓存哈希: {cached_scene_hash[:8] if cached_scene_hash else 'N/A'} vs 当前哈希: {current_scene_hash[:8]}），将在后台重新生成图片")
+                        _bg_scene_text = scene_text
+                        _bg_global_state = global_state
+                        _bg_option_data = option_data
+                        _bg_scene_id = scene_id
+                        _bg_option_index = option_index
+                        def _bg_regen_image():
+                            try:
+                                if isinstance(_bg_global_state, dict) and _bg_option_data is not None:
+                                    _bg_global_state["_plot_supporting_characters"] = _bg_option_data.get("plot_supporting_characters", [])
+                                img = generate_scene_image(
+                                    _bg_scene_text, _bg_global_state, "default",
+                                    use_cache=True, skip_cache_lookup=True,
+                                    cache_key_suffix=f"{_bg_scene_id or 'initial'}_opt{_bg_option_index}"
+                                )
+                                if img and isinstance(img, dict) and img.get("url"):
+                                    new_hash = hashlib.md5(_bg_scene_text.encode('utf-8')).hexdigest()
+                                    new_image = {
+                                        "url": img.get("url"), "prompt": img.get("prompt", ""),
+                                        "style": img.get("style", "default"),
+                                        "width": img.get("width", 1024), "height": img.get("height", 1024),
+                                        "cached": img.get("cached", True), "image_type": "story_scene",
+                                        "scene_text_hash": new_hash,
+                                    }
+                                    try:
+                                        sse_publish({
+                                            "type": "scene_image_ready",
+                                            "sceneId": _bg_scene_id or "initial",
+                                            "optionIndex": int(_bg_option_index) if _bg_option_index is not None else 0,
+                                            "gameId": (_bg_global_state or {}).get("game_id") if isinstance(_bg_global_state, dict) else "",
+                                            "image": new_image,
+                                        })
+                                    except Exception:
+                                        pass
+                                    print(f"✅ 后台图片重新生成完成")
+                            except Exception as e:
+                                print(f"⚠️ 后台图片重新生成失败: {e}")
+                        import threading as _th
+                        _th.Thread(target=_bg_regen_image, daemon=True).start()
                 
                 if need_generate_image and isinstance(scene_text, str) and scene_text.strip():
-                    print(f"🎨 正在为场景生成图片（确保图片和文本匹配）...")
-                    # 补图时传入剧情模型输出的本段出场配角（有则名单，无则[]），图片流程以剧情为准不推断
+                    print(f"🎨 正在为场景生成图片（缺少图片，同步生成）...")
                     if isinstance(global_state, dict) and option_data is not None:
                         global_state["_plot_supporting_characters"] = option_data.get("plot_supporting_characters", [])
-                    # 补图时不查缓存复用旧图，但仍保存到本地（skip_cache_lookup=True）
                     img = generate_scene_image(
                         scene_text, global_state, "default",
                         use_cache=True,
@@ -1110,7 +1143,6 @@ def generate_option():
                         cache_key_suffix=f"{scene_id or 'initial'}_opt{option_index}"
                     )
                     if img and isinstance(img, dict) and img.get("url"):
-                        # 计算并存储场景文本哈希，用于后续匹配检查
                         scene_text_hash = hashlib.md5(scene_text.encode('utf-8')).hexdigest()
                         option_data["scene_image"] = {
                             "url": img.get("url"),
@@ -1120,10 +1152,9 @@ def generate_option():
                             "height": img.get("height", 1024),
                             "cached": img.get("cached", True),
                             "image_type": "story_scene",
-                            "scene_text_hash": scene_text_hash  # 存储场景文本哈希，用于匹配检查
+                            "scene_text_hash": scene_text_hash
                         }
-                        print("✅ 已生成场景图片（确保图片和文本匹配）")
-                        # SSE 推送：让前端立即展示，无需等下一次请求
+                        print("✅ 已生成场景图片")
                         try:
                             sse_publish({
                                 "type": "scene_image_ready",

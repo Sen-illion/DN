@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 """将单段剧情 JSON 与配图保存到 DN-experiment/ 下子目录，文件名为 {game_id}_{NNN}。
 
 若有主题编号（如来自 game_themes_100.json 的 id），目录名为 theme_{编号:03d}_{game_id}；
@@ -123,6 +123,8 @@ def save_segment_to_folder(
     exp_dir.mkdir(parents=True, exist_ok=True)
     json_path = exp_dir / f"{stem}.json"
 
+    protagonist_canonical = global_state.get("protagonist_canonical") if isinstance(global_state, dict) else None
+
     payload: Dict[str, Any] = {
         "game_id": game_id,
         "experiment_folder": dir_name,
@@ -138,6 +140,8 @@ def save_segment_to_folder(
         "image_url": image_url,
         "saved_at_utc": datetime.now(timezone.utc).isoformat(),
     }
+    if protagonist_canonical and isinstance(protagonist_canonical, dict):
+        payload["protagonist_canonical"] = protagonist_canonical
 
     img_dest: Optional[Path] = None
     src = _resolve_local_image(repo_root, image_url)

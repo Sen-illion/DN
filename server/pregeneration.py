@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 """预生成两层内容的核心逻辑。"""
 import os
 import threading
@@ -334,7 +334,8 @@ def _pregenerate_next_layers_logic(global_state, current_options, scene_id):
                             else:
                                 print(f"⚠️ [第一层预生成] scene_id {scene_id} 不在缓存中，无法写入选项 {opt_idx} 的数据")
                     
-                    # 流水线：本层该选项文本一写完，立即启动该分支的 layer2（先文本后图）
+                    # 流水线优化：文本写完后，layer-2 和 layer-1 图片并行启动
+                    # （之前是 layer-2 先启动、图片后生成；现在同时启动，减少端到端延迟）
                     if option_data and option_data.get('next_options'):
                         threading.Thread(
                             target=run_layer2_for_branch,
@@ -342,12 +343,9 @@ def _pregenerate_next_layers_logic(global_state, current_options, scene_id):
                             daemon=True
                         ).start()
                     
-                    # 为当前场景生成图片（限速由 yunwu 全局限速锁 + IMAGE_SUBMIT_DELAY 控制）
-                    # 图片生成完成后更新缓存
                     if scene_for_image and option_data:
                         try:
                             print(f"🎨 [第一层预生成] 开始为选项 {opt_idx + 1} 生成图片...")
-                            # 传入剧情模型输出的本段出场配角（有则名单，无则[]），图片流程以剧情为准不推断
                             if isinstance(global_state, dict):
                                 global_state["_plot_supporting_characters"] = option_data.get("plot_supporting_characters", [])
                             img = generate_scene_image(
@@ -531,7 +529,7 @@ def _pregenerate_next_layers_logic(global_state, current_options, scene_id):
             
             # 使用线程池并行生成所有选项（按优先级顺序提交任务）
             # 限制并发，避免同时触发过多 LLM/下游调用导致排队或限流
-            max_workers = min(len(current_options), int(os.getenv("PREGEN_MAX_WORKERS", "2")))
+            max_workers = min(len(current_options), int(os.getenv("PREGEN_MAX_WORKERS", "4")))
             with ThreadPoolExecutor(max_workers=max_workers) as executor:
                 # 按优先级顺序（0→1→2→3）提交所有任务
                 futures = []

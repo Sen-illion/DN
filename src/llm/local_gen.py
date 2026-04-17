@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 """LLM 本地剧情生成：llm_generate_local、llm_generate_local_council（每2轮群体智能整合）、_get_default_scene。"""
 import json
 import re
@@ -111,6 +111,24 @@ def llm_generate_local(global_state: Dict, user_interaction: str, last_options: 
     tone = TONE_CONFIGS.get(tone_key, TONE_CONFIGS['normal_ending'])
     protagonist_canonical_block = _format_protagonist_canonical_for_prompt(global_state.get("protagonist_canonical") or {})
 
+    # 构建前情锚点（防止跨段落矛盾）
+    scene_anchor_block = ""
+    anchor = global_state.get("_previous_scene_anchor") if isinstance(global_state, dict) else None
+    if anchor and isinstance(anchor, dict):
+        parts = []
+        tail = anchor.get("scene_tail", "")
+        if tail:
+            parts.append(f"【上一段结尾】：\n{tail}")
+        chars = anchor.get("supporting_characters", [])
+        if chars:
+            names = "、".join(f"{n}({s})" for n, s in chars)
+            parts.append(f"【已出场角色】：{names}（后续必须使用完全相同的名字，禁止更改）")
+        choice = anchor.get("player_choice", "")
+        if choice:
+            parts.append(f"【玩家上一步选择】：{choice}")
+        if parts:
+            scene_anchor_block = "\n    ## 【前情提要（硬约束，禁止矛盾）】\n    " + "\n    ".join(parts)
+
     prompt = f"""
     请基于以下设定生成后续1层剧情，**严格遵守以下要求，违反任何一条都将导致任务失败**（优先级：执行用户选择 > 主线推进 > 剧情连贯 > 格式完整）：
 
@@ -155,7 +173,7 @@ def llm_generate_local(global_state: Dict, user_interaction: str, last_options: 
        - **对话要有意义**：对话必须推动剧情发展或展现角色性格，避免无意义的废话
        - **特别注意**：生成内容中绝对不能出现病句、语法错误或表达不清的情况，这是严重错误！
 
-    【场景】：场景描述（必须是用户操作的直接结果，贴合难度和主角属性，要求：至少200字，包含环境描写、角色反应、对话等，对话必须使用引号）
+    【场景】：场景描述（必须使用第一人称"我"叙事，必须是用户操作的直接结果，贴合难度和主角属性，要求：至少200字，包含环境描写、角色反应、对话等，对话必须使用引号）
     【选项】：
     1. 选项1（要求：简洁明确，10-20字）
     2. 选项2（要求：简洁明确，10-20字）
@@ -173,11 +191,11 @@ def llm_generate_local(global_state: Dict, user_interaction: str, last_options: 
     3. 必须**考虑**主角属性和游戏难度
     4. 必须**体现**用户选择对剧情的影响
     5. 必须**严格遵循选定的故事基调**，所有生成内容都必须符合基调要求
-    6. **描写主角时**必须严格遵循【主角规范信息】中的性别、年龄感与外观，使用一致的人称（他/她）与外貌描述
+    6. **叙事人称**：全程使用第一人称"我"叙事，绝对禁止使用"你""他""她""主角"等代词指代主角。描写主角外貌时通过镜子、水面倒影、他人评价等间接方式呈现，严格遵循【主角规范信息】中的性别、年龄感与外观
 
     ## 【主角规范信息】（描写主角性别/年龄/外貌时必须严格遵循，与主角立绘一致）
     {protagonist_canonical_block}
-
+    {scene_anchor_block}
     ## 【输入数据】：
     - 【核心世界观】：{json.dumps(global_state['core_worldview'], ensure_ascii=False)}
     - 【当前状态】：{json.dumps(global_state['flow_worldline'], ensure_ascii=False)}
@@ -190,7 +208,7 @@ def llm_generate_local(global_state: Dict, user_interaction: str, last_options: 
     2. 必须生成部分关联角色深层背景的选项，并在【深层背景关联】中明确标记
     3. 深层背景关联的选项应自然融入剧情，不要显得突兀
     4. 所有生成内容必须严格贴合选定的故事基调！
-    5. 描写主角时必须与【主角规范信息】一致（性别、年龄、外貌、人称）。
+    5. 全程使用第一人称"我"叙事，描写主角外貌时必须与【主角规范信息】一致。
     """
 
     request_body = {
@@ -230,6 +248,15 @@ def llm_generate_local(global_state: Dict, user_interaction: str, last_options: 
                     continue
                 break
             if scene_data.get("scene") and scene_data.get("options"):
+                # 保存前情锚点，供下一段生成时使用
+                if isinstance(global_state, dict) and scene_data["scene"]:
+                    _scene = scene_data["scene"]
+                    last_paragraphs = "\n".join(_scene.strip().split("\n")[-3:])
+                    global_state["_previous_scene_anchor"] = {
+                        "scene_tail": last_paragraphs[-600:],
+                        "supporting_characters": [],
+                        "player_choice": user_interaction,
+                    }
                 return [scene_data]
             else:
                 print("❌ 错误：无法从AI返回内容中提取有效剧情信息，将重试...")

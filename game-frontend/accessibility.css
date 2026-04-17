@@ -1,11 +1,10 @@
-
-
 /* ========================================
-   无障碍：尊重用户减少动画偏好
+   墨韵幽境 — 无障碍增强
    ======================================== */
 
+/* ── 减少动画偏好 ── */
+
 @media (prefers-reduced-motion: reduce) {
-    /* html.dn-motion-preview：?fullMotion=1 本地预览完整动效时，不应用全局压制（否则 GSAP 的 transform 无效） */
     html:not(.dn-motion-preview) *,
     html:not(.dn-motion-preview) *::before,
     html:not(.dn-motion-preview) *::after {
@@ -21,33 +20,11 @@
         will-change: auto !important;
     }
 
-    html:not(.dn-motion-preview) .scroll-reveal-fade {
-        opacity: 1 !important;
-        will-change: auto !important;
-    }
-
-    html:not(.dn-motion-preview) .motion-ambient-bg {
+    html:not(.dn-motion-preview) .ink-bg-wash {
         animation: none !important;
-        background-position: 50% 50% !important;
-    }
-
-    html:not(.dn-motion-preview) .animate-slideUp,
-    html:not(.dn-motion-preview) .animate-float,
-    html:not(.dn-motion-preview) .animate-glowPulse,
-    html:not(.dn-motion-preview) .animate-bounce,
-    html:not(.dn-motion-preview) .skeleton,
-    html:not(.dn-motion-preview) .loading-pulse::before,
-    html:not(.dn-motion-preview) .loading-pulse::after {
-        animation: none !important;
-        opacity: 1 !important;
-    }
-
-    html:not(.dn-motion-preview) .skeleton-shimmer {
-        background: rgba(255, 255, 255, 0.05) !important;
     }
 }
 
-/* 脚本根据 matchMedia 切换 body.reduce-motion 时，与媒体查询一致 */
 body.reduce-motion .scroll-reveal,
 body.reduce-motion .scroll-reveal.scroll-reveal--visible {
     opacity: 1 !important;
@@ -56,25 +33,11 @@ body.reduce-motion .scroll-reveal.scroll-reveal--visible {
     will-change: auto !important;
 }
 
-body.reduce-motion .scroll-reveal-fade,
-body.reduce-motion .scroll-reveal-fade.scroll-reveal--visible {
-    opacity: 1 !important;
-    transition: none !important;
-    will-change: auto !important;
-}
-
-body.reduce-motion .motion-ambient-bg {
+body.reduce-motion .ink-bg-wash {
     animation: none !important;
-    background-position: 50% 50% !important;
 }
 
-body.reduce-motion button.motion-ripple-ready::after,
-body.reduce-motion button.motion-ripple-ready.motion-ripple-run::after {
-    animation: none !important;
-    opacity: 0 !important;
-}
-
-body.reduce-motion #global-bg.motion-parallax-active {
+body.reduce-motion #global-bg {
     transform: none !important;
     will-change: auto !important;
 }
@@ -84,16 +47,6 @@ body.reduce-motion .screen:not(#gameplay-screen) {
     -webkit-backdrop-filter: none !important;
 }
 
-body.reduce-motion #menu-screen .btn-main:hover,
-body.reduce-motion #menu-screen .btn-main:active {
-    transform: translateY(-2px) scale(1.01) !important;
-}
-
-body.reduce-motion #attr-selection-screen .attr-option-btn:hover,
-body.reduce-motion #attr-selection-screen .attr-option-btn:active {
-    transform: translateY(-2px) scale(1.01) !important;
-}
-
 body.reduce-motion .scroll-reveal-stagger > .attr-item,
 body.reduce-motion .scroll-reveal-stagger > .scroll-reveal-item {
     opacity: 1 !important;
@@ -101,21 +54,13 @@ body.reduce-motion .scroll-reveal-stagger > .scroll-reveal-item {
     transition: none !important;
 }
 
-body.reduce-motion .blur-animate {
-    animation: none !important;
-    filter: none !important;
-}
-
-/* ========================================
-   无障碍：键盘导航焦点样式
-   ======================================== */
+/* ── 键盘焦点 ── */
 
 *:focus-visible {
-    outline: 2px solid #1ABC9C;
+    outline: 2px solid var(--amber);
     outline-offset: 2px;
 }
 
-/* 键盘导航替代悬停效果 */
 @media (hover: none) and (pointer: coarse) {
     .option-card:hover {
         transform: none !important;
@@ -123,9 +68,7 @@ body.reduce-motion .blur-animate {
     }
 }
 
-/* ========================================
-   GPU 加速优化
-   ======================================== */
+/* ── GPU 加速 ── */
 
 .gpu-accelerated {
     transform: translateZ(0);
@@ -133,9 +76,8 @@ body.reduce-motion .blur-animate {
     backface-visibility: hidden;
 }
 
-/* 动画元素 GPU 加速 */
 .option-card,
-.btn-main,
+.ink-btn,
 .character-panel,
 .difficulty-card,
 .tone-card {

@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 """选项剪枝、单选项剧情生成、批量图生成。"""
 import hashlib
 import json
@@ -23,6 +23,28 @@ def _skip_protagonist_reference(global_state: Optional[Dict]) -> bool:
     if isinstance(global_state, dict) and global_state.get("_skip_protagonist_reference"):
         return True
     return os.getenv("EXPERIMENT_SKIP_PROTAGONIST_REF", "").strip().lower() in ("1", "true", "yes")
+
+
+_TERMINAL_PUNCTUATION = frozenset(
+    "\u3002\uff01\uff1f\u2026"
+    "\u201d\u2019\u300d\uff09"
+)
+
+
+def _fix_truncated_scene(scene: str) -> str:
+    """If the scene ends mid-sentence (no terminal punctuation),
+    trim back to the last complete sentence to avoid broken text."""
+    if not scene:
+        return scene
+    stripped = scene.rstrip()
+    if not stripped:
+        return scene
+    if stripped[-1] in _TERMINAL_PUNCTUATION:
+        return scene
+    for i in range(len(stripped) - 1, -1, -1):
+        if stripped[i] in _TERMINAL_PUNCTUATION:
+            return stripped[: i + 1]
+    return scene
 
 
 # 选项剪枝函数：过滤不合理、重复或过于相似的选项
@@ -175,8 +197,27 @@ def _generate_single_option(i: int, option: str, global_state: Dict) -> Dict:
 
 补充要求：全文流畅连贯，画面感极强，情绪渲染到位，节奏遵循"高压开场→细节铺陈→情绪升温→强钩子收尾"，符合网文高节奏、强代入的特点；语言生动有张力，避免平淡直白；所有元素（钩子、环境、内心、对话、悬念、世界观、主线暗示）深度融合，无明显割裂感；主角的行为逻辑合理，情绪转变自然，让玩家全程代入，看完第一个场景就迫切想进行下一步操作、探索后续剧情。"""
     else:
-        scene_requirement = """【场景】：场景描述（必须是用户操作的直接结果，贴合难度和主角属性，要求：至少200字，包含环境描写、角色反应、对话等，对话必须使用引号）"""
-    
+        scene_requirement = """【场景】：场景描述（必须使用第一人称"我"叙事，必须是用户操作的直接结果，贴合难度和主角属性，要求：至少200字，包含环境描写、角色反应、对话等，对话必须使用引号）"""
+
+    # 构建前情锚点（非初始场景时注入上一段的结尾、已出场角色名单等，防止跨段落矛盾）
+    scene_anchor_block = ""
+    if not is_initial_scene and isinstance(global_state, dict):
+        anchor = global_state.get("_previous_scene_anchor")
+        if anchor and isinstance(anchor, dict):
+            parts = []
+            tail = anchor.get("scene_tail", "")
+            if tail:
+                parts.append(f"【上一段结尾】：\n{tail}")
+            chars = anchor.get("supporting_characters", [])
+            if chars:
+                names = "、".join(f"{n}({s})" for n, s in chars)
+                parts.append(f"【已出场角色】：{names}（后续必须使用完全相同的名字，禁止更改）")
+            choice = anchor.get("player_choice", "")
+            if choice:
+                parts.append(f"【玩家上一步选择】：{choice}")
+            if parts:
+                scene_anchor_block = "\n    ## 【前情提要（硬约束，禁止矛盾）】\n    " + "\n    ".join(parts)
+
     prompt = f"""
     请基于以下设定生成后续1层剧情，**严格遵守以下要求，违反任何一条都将导致任务失败**（优先级：执行用户选择 > 主线推进 > 剧情连贯 > 格式完整）：
     
@@ -244,11 +285,11 @@ def _generate_single_option(i: int, option: str, global_state: Dict) -> Dict:
     4. 必须**体现**用户选择对剧情的影响
     5. 必须**确保主线任务不断推进**，不能让剧情停滞不前
     6. 必须**严格遵循选定的故事基调**，所有生成内容都必须符合基调要求
-    7. **描写主角时**必须严格遵循【主角规范信息】中的性别、年龄感与外观，使用一致的人称（他/她）与外貌描述
+    7. **叙事人称**：全程使用第一人称"我"叙事，绝对禁止使用"你""他""她""主角"等代词指代主角。描写主角外貌时通过镜子、水面倒影、他人评价等间接方式呈现，严格遵循【主角规范信息】中的性别、年龄感与外观
     
     ## 【主角规范信息】（描写主角性别/年龄/外貌时必须严格遵循，与主角立绘一致）
     {protagonist_canonical_block}
-    
+    {scene_anchor_block}
     ## 【输入数据】：
     - 【核心世界观】：{json.dumps(core_worldview, ensure_ascii=False)}
     - 【当前状态】：{json.dumps(flow_worldline, ensure_ascii=False)}
@@ -261,7 +302,7 @@ def _generate_single_option(i: int, option: str, global_state: Dict) -> Dict:
     3. 深层背景关联的选项应自然融入剧情，不要显得突兀
     4. 所有生成内容必须严格贴合选定的故事基调！
     5. 如果有已解锁的深层背景，后续剧情必须围绕这些深层背景展开，将深层背景信息自然融入主线剧情中，不要直接向玩家显示深层背景内容！
-    6. 描写主角时必须与【主角规范信息】一致（性别、年龄、外貌、人称）。
+    6. 全程使用第一人称"我"叙事，描写主角外貌时必须与【主角规范信息】一致。
     7. **【本段出场配角】必须与【场景】内容一致**：你在【场景】里写了谁有对话、谁做了自我介绍（如「我是葛城美里」），就必须在【本段出场配角】里按「角色名-配角1」列出，不能漏填或写「无」。
     8. **【本段出场配角】绝不能包含主角**：主角是【主角规范信息】中描述的人（玩家视角角色）。主角的姓名、英文名或任何别称都绝不能写入【本段出场配角】。只列出剧情中实际出场的非主角人物。
     
@@ -296,10 +337,12 @@ def _generate_single_option(i: int, option: str, global_state: Dict) -> Dict:
     max_tokens = initial_tokens if is_initial_scene else normal_tokens
     
     system_msg = (
-        "你是剧情生成器。你必须只输出指定格式的剧情内容：以【场景】：开头，接着【选项】：、【世界线更新】：、【深层背景关联】：、【本段出场配角】：、【本段提及但未出场】：。"
-        "不要输出任何解释、问候语、代码块或前缀文字，第一行就是【场景】：。"
-        "必须包含且仅包含上述六个区块，不要输出任何解释或代码块。"
-        "【选项】：至少2个选项，每行一个或明确编号，例如：1. 选项A  2. 选项B。"
+        '你是剧情生成器。所有场景描述必须使用第一人称\u201c我\u201d叙事（玩家=主角），'
+        '绝对不能使用\u201c你\u201d\u201c他\u201d\u201c她\u201d\u201c主角\u201d等非第一人称代词指代主角。'
+        '你必须只输出指定格式的剧情内容：以【场景】：开头，接着【选项】：、【世界线更新】：、【深层背景关联】：、【本段出场配角】：、【本段提及但未出场】：。'
+        '不要输出任何解释、问候语、代码块或前缀文字，第一行就是【场景】：。'
+        '必须包含且仅包含上述六个区块，不要输出任何解释或代码块。'
+        '【选项】：至少2个选项，每行一个或明确编号，例如：1. 选项A  2. 选项B。'
     )
     request_body = {
         "model": AI_API_CONFIG.get("model", ""),
@@ -453,6 +496,9 @@ def _generate_single_option(i: int, option: str, global_state: Dict) -> Dict:
                     if first_valid_char:
                         scene = scene[first_valid_char.start():]
                 
+                # 修复因 max_tokens 截断导致的句子中断
+                scene = _fix_truncated_scene(scene)
+
                 # 验证场景描述长度
                 if len(scene) < 10:
                     print(f"⚠️ 选项 {i+1} 场景描述过短，可能提取不完整：{scene}")
@@ -626,6 +672,15 @@ def _generate_single_option(i: int, option: str, global_state: Dict) -> Dict:
             # 始终传入本段出场配角（有则名单，无则[]）；图片流程以剧情为准，不再从提示词推断
             if isinstance(global_state, dict):
                 global_state["_plot_supporting_characters"] = plot_supporting_characters
+
+            # 保存前情锚点，供下一段生成时使用（解决跨段落 NPC 名字突变、事实矛盾等问题）
+            if isinstance(global_state, dict) and scene:
+                last_paragraphs = "\n".join(scene.strip().split("\n")[-3:])
+                global_state["_previous_scene_anchor"] = {
+                    "scene_tail": last_paragraphs[-600:],
+                    "supporting_characters": plot_supporting_characters,
+                    "player_choice": option,
+                }
             
             # 新增：生成场景图片（使用本地缓存，避免OSS URL失效问题）
             # 修复：移除“线程 join 6分钟后丢结果”的逻辑，改为同步调用 + 可控的网络超时/重试。
@@ -639,7 +694,7 @@ def _generate_single_option(i: int, option: str, global_state: Dict) -> Dict:
                         if game_id:
                             main_character_dir = Path("initial") / "main_character" / game_id
                             front_path = main_character_dir / "main_character.png"
-                            wait_timeout = 120  # 最多等待 120 秒
+                            wait_timeout = 30  # 最多等待 30 秒（缩短以减少首场景延迟，后续场景仍可使用主角参考图）
                             poll_interval = 2
                             waited = 0
                             while not front_path.exists() and waited < wait_timeout:
@@ -866,8 +921,27 @@ def _generate_single_option_text_only(
 
 补充要求：全文流畅连贯，画面感极强，情绪渲染到位，节奏遵循"高压开场→细节铺陈→情绪升温→强钩子收尾"，符合网文高节奏、强代入的特点；语言生动有张力，避免平淡直白；所有元素（钩子、环境、内心、对话、悬念、世界观、主线暗示）深度融合，无明显割裂感；主角的行为逻辑合理，情绪转变自然，让玩家全程代入，看完第一个场景就迫切想进行下一步操作、探索后续剧情。"""
     else:
-        scene_requirement = """【场景】：场景描述（必须是用户操作的直接结果，贴合难度和主角属性，要求：至少200字，包含环境描写、角色反应、对话等，对话必须使用引号）"""
-    
+        scene_requirement = """【场景】：场景描述（必须使用第一人称"我"叙事，必须是用户操作的直接结果，贴合难度和主角属性，要求：至少200字，包含环境描写、角色反应、对话等，对话必须使用引号）"""
+
+    # 构建前情锚点（非初始场景时注入上一段的结尾、已出场角色名单等，防止跨段落矛盾）
+    scene_anchor_block = ""
+    if not is_initial_scene and isinstance(global_state, dict):
+        anchor = global_state.get("_previous_scene_anchor")
+        if anchor and isinstance(anchor, dict):
+            parts = []
+            tail = anchor.get("scene_tail", "")
+            if tail:
+                parts.append(f"【上一段结尾】：\n{tail}")
+            chars = anchor.get("supporting_characters", [])
+            if chars:
+                names = "、".join(f"{n}({s})" for n, s in chars)
+                parts.append(f"【已出场角色】：{names}（后续必须使用完全相同的名字，禁止更改）")
+            choice = anchor.get("player_choice", "")
+            if choice:
+                parts.append(f"【玩家上一步选择】：{choice}")
+            if parts:
+                scene_anchor_block = "\n    ## 【前情提要（硬约束，禁止矛盾）】\n    " + "\n    ".join(parts)
+
     prompt = f"""
     请基于以下设定生成后续1层剧情，**严格遵守以下要求，违反任何一条都将导致任务失败**（优先级：执行用户选择 > 主线推进 > 剧情连贯 > 格式完整）：
     
@@ -935,11 +1009,11 @@ def _generate_single_option_text_only(
     4. 必须**体现**用户选择对剧情的影响
     5. 必须**确保主线任务不断推进**，不能让剧情停滞不前
     6. 必须**严格遵循选定的故事基调**，所有生成内容都必须符合基调要求
-    7. **描写主角时**必须严格遵循【主角规范信息】中的性别、年龄感与外观，使用一致的人称（他/她）与外貌描述
+    7. **叙事人称**：全程使用第一人称"我"叙事，绝对禁止使用"你""他""她""主角"等代词指代主角。描写主角外貌时通过镜子、水面倒影、他人评价等间接方式呈现，严格遵循【主角规范信息】中的性别、年龄感与外观
     
     ## 【主角规范信息】（描写主角性别/年龄/外貌时必须严格遵循，与主角立绘一致）
     {protagonist_canonical_block}
-    
+    {scene_anchor_block}
     ## 【输入数据】：
     - 【核心世界观】：{json.dumps(core_worldview, ensure_ascii=False)}
     - 【当前状态】：{json.dumps(flow_worldline, ensure_ascii=False)}
@@ -952,7 +1026,7 @@ def _generate_single_option_text_only(
     3. 深层背景关联的选项应自然融入剧情，不要显得突兀
     4. 所有生成内容必须严格贴合选定的故事基调！
     5. 如果有已解锁的深层背景，后续剧情必须围绕这些深层背景展开，将深层背景信息自然融入主线剧情中，不要直接向玩家显示深层背景内容！
-    6. 描写主角时必须与【主角规范信息】一致（性别、年龄、外貌、人称）。
+    6. 全程使用第一人称"我"叙事，描写主角外貌时必须与【主角规范信息】一致。
     7. **【本段出场配角】必须与【场景】内容一致**：你在【场景】里写了谁有对话、谁做了自我介绍（如「我是葛城美里」），就必须在【本段出场配角】里按「角色名-配角1」列出，不能漏填或写「无」。
     8. **【本段出场配角】绝不能包含主角**：主角是【主角规范信息】中描述的人（玩家视角角色）。主角的姓名、英文名或任何别称都绝不能写入【本段出场配角】。只列出剧情中实际出场的非主角人物。
     
@@ -978,10 +1052,12 @@ def _generate_single_option_text_only(
     max_tokens = initial_tokens if is_initial_scene else normal_tokens
     
     system_msg = (
-        "你是剧情生成器。你必须只输出指定格式的剧情内容：以【场景】：开头，接着【选项】：、【世界线更新】：、【深层背景关联】：、【本段出场配角】：、【本段提及但未出场】：。"
-        "不要输出任何解释、问候语、代码块或前缀文字，第一行就是【场景】：。"
-        "必须包含且仅包含上述六个区块，不要输出任何解释或代码块。"
-        "【选项】：至少2个选项，每行一个或明确编号，例如：1. 选项A  2. 选项B。"
+        '你是剧情生成器。所有场景描述必须使用第一人称\u201c我\u201d叙事（玩家=主角），'
+        '绝对不能使用\u201c你\u201d\u201c他\u201d\u201c她\u201d\u201c主角\u201d等非第一人称代词指代主角。'
+        '你必须只输出指定格式的剧情内容：以【场景】：开头，接着【选项】：、【世界线更新】：、【深层背景关联】：、【本段出场配角】：、【本段提及但未出场】：。'
+        '不要输出任何解释、问候语、代码块或前缀文字，第一行就是【场景】：。'
+        '必须包含且仅包含上述六个区块，不要输出任何解释或代码块。'
+        '【选项】：至少2个选项，每行一个或明确编号，例如：1. 选项A  2. 选项B。'
     )
     request_body = {
         "model": AI_API_CONFIG.get("model", ""),
@@ -1113,7 +1189,10 @@ def _generate_single_option_text_only(
                 first_valid_char = re.search(r'[\u4e00-\u9fa5a-zA-Z"""''「【(]', scene)
                 if first_valid_char:
                     scene = scene[first_valid_char.start():]
-                
+
+                # 修复因 max_tokens 截断导致的句子中断
+                scene = _fix_truncated_scene(scene)
+
                 if len(scene) < 10:
                     scene = "你仔细观察周围的环境，准备采取行动。"
             
@@ -1266,6 +1345,15 @@ def _generate_single_option_text_only(
                 "plot_mentioned_only": plot_mentioned_only,
             }
             
+            # 保存前情锚点，供下一段生成时使用
+            if isinstance(global_state, dict) and scene:
+                last_paragraphs = "\n".join(scene.strip().split("\n")[-3:])
+                global_state["_previous_scene_anchor"] = {
+                    "scene_tail": last_paragraphs[-600:],
+                    "supporting_characters": plot_supporting_characters,
+                    "player_choice": option,
+                }
+
             # 只有当场景描述和选项都有内容时，才返回结果（至少2个选项）
             if scene and next_options and len(next_options) >= 2:
                 print(f"✅ 选项 {i+1} 剧情生成成功，共{len(next_options)}个选项：{next_options}")
@@ -1506,7 +1594,7 @@ def _generate_images_parallel(scenes_dict: Dict[int, str], global_state: Dict) -
     
     # 使用线程池并行生成（添加延迟避免速率限制）
     per_task_timeout = int(os.getenv("IMAGE_TASK_TIMEOUT_SECONDS", "120"))
-    submit_delay = float(os.getenv("IMAGE_SUBMIT_DELAY_SECONDS", "2.0"))
+    submit_delay = float(os.getenv("IMAGE_SUBMIT_DELAY_SECONDS", "0.5"))
     total_images = len(scenes_to_generate)
     completed_images = 0
     failed_images = 0

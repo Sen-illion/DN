@@ -1,8 +1,8 @@
 /* ========================================
-   增强打字机效果 (Enhanced Typewriter Effect)
+   墨韵幽境 — 打字机效果
    ======================================== */
 
-/* ---- 基础打字机样式 ---- */
+/* ── 基础打字机 ── */
 
 .typewriter {
     overflow: hidden;
@@ -10,28 +10,26 @@
     margin: 0 auto;
 }
 
-/* 打字光标 */
 .typewriter::after {
     content: '|';
-    animation: blink 0.7s step-end infinite;
+    animation: inkBlink 0.8s step-end infinite;
+    color: var(--amber);
 }
 
-/* 光标动画 */
-@keyframes blink {
+@keyframes inkBlink {
     0%, 50% { opacity: 1; }
     51%, 100% { opacity: 0; }
 }
 
-/* ---- 流畅打字机效果 ---- */
+/* ── 流畅打字机 ── */
 
-/* 使用 CSS 实现的流畅打字效果 */
 .typewriter-smooth {
     overflow: hidden;
     white-space: pre-wrap;
-    border-right: 3px solid var(--color-primary, #1ABC9C);
-    animation: 
+    border-right: 2px solid var(--amber);
+    animation:
         typing 2s steps(40, end),
-        blink-caret 0.75s step-end infinite;
+        inkCaretBlink 0.8s step-end infinite;
     animation-fill-mode: forwards;
 }
 
@@ -39,26 +37,23 @@
     content: none;
 }
 
-/* 从0到完整 */
 @keyframes typing {
     from { width: 0; }
     to { width: 100%; }
 }
 
-/* 光标闪烁 */
-@keyframes blink-caret {
+@keyframes inkCaretBlink {
     from, to { border-color: transparent; }
-    50% { border-color: var(--color-primary, #1ABC9C); }
+    50% { border-color: var(--amber); }
 }
 
-/* ---- 逐字显示动画 ---- */
+/* ── 逐字显示 ── */
 
-/* 字符逐个出现 */
 .typewriter-char {
     display: inline-block;
     opacity: 0;
-    transform: translateY(10px);
-    animation: charReveal 0.1s ease forwards;
+    transform: translateY(6px);
+    animation: charReveal 0.08s ease forwards;
 }
 
 @keyframes charReveal {
@@ -68,55 +63,8 @@
     }
 }
 
-/* ---- 渐变打字效果 ---- */
+/* ── 打字完成 ── */
 
-/* 文字颜色渐变出现 */
-.typewriter-gradient {
-    background: linear-gradient(
-        to right,
-        var(--color-primary, #1ABC9C) 0%,
-        #fff 100%
-    );
-    background-size: 200% auto;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: gradientReveal 3s linear forwards;
-}
-
-@keyframes gradientReveal {
-    0% {
-        background-position: 100% 0;
-    }
-    100% {
-        background-position: 0 0;
-    }
-}
-
-/* ---- 呼吸光标效果 ---- */
-
-/* 柔和的呼吸光标 */
-.typewriter-breath::after {
-    content: '|';
-    animation: breath 1.5s ease-in-out infinite;
-    color: var(--color-primary, #1ABC9C);
-    font-weight: bold;
-}
-
-@keyframes breath {
-    0%, 100% { 
-        opacity: 1; 
-        transform: scale(1);
-    }
-    50% { 
-        opacity: 0.5; 
-        transform: scale(1.2);
-    }
-}
-
-/* ---- 打字完成状态 ---- */
-
-/* 打字完成移除光标 */
 .typewriter-done::after {
     content: none;
 }
@@ -126,36 +74,29 @@
     animation: none !important;
 }
 
-/* ---- 打字过程状态 ---- */
+/* ── 打字进行中 ── */
 
 .typewriter-active {
-    border-right: 3px solid var(--color-primary, #1ABC9C);
-    animation: blink-caret 0.75s step-end infinite !important;
+    border-right: 2px solid var(--amber);
+    animation: inkCaretBlink 0.8s step-end infinite !important;
 }
 
 .typewriter-active::after {
     content: none !important;
 }
 
-/* ---- 快速打字效果 ---- */
+/* ── 速度变体 ── */
 
-/* 更快的打字速度 */
 .typewriter-fast.typewriter-smooth {
-    animation: 
-        typing 1s steps(40, end),
-        blink-caret 0.75s step-end infinite;
+    animation: typing 1s steps(40, end), inkCaretBlink 0.8s step-end infinite;
 }
 
-/* 慢速打字效果 */
 .typewriter-slow.typewriter-smooth {
-    animation: 
-        typing 4s steps(40, end),
-        blink-caret 0.75s step-end infinite;
+    animation: typing 4s steps(40, end), inkCaretBlink 0.8s step-end infinite;
 }
 
-/* ---- 段落打字效果 ---- */
+/* ── 段落打字 ── */
 
-/* 段落间有停顿 */
 .typewriter-paragraph {
     overflow: hidden;
 }
@@ -163,73 +104,52 @@
 .typewriter-paragraph span {
     display: inline-block;
     opacity: 0;
-    transform: translateY(5px);
+    transform: translateY(4px);
 }
 
 .typewriter-paragraph span.visible {
     opacity: 1;
     transform: translateY(0);
-    transition: opacity 0.05s ease, transform 0.05s ease;
+    transition: opacity 0.06s ease, transform 0.06s ease;
 }
 
-/* 段落间隔 */
-.typewriter-paragraph .paragraph-end {
-    margin-bottom: 0.5em;
-}
-
-/* ---- 响应式 ---- */
+/* ── 响应式 ── */
 
 @media (max-width: 768px) {
     .typewriter-smooth {
-        animation: 
-            typing 3s steps(30, end),
-            blink-caret 0.75s step-end infinite;
-    }
-    
-    .typewriter::after {
-        font-size: 1.2em;
+        animation: typing 3s steps(30, end), inkCaretBlink 0.8s step-end infinite;
     }
 }
 
-/* ---- 减少动画偏好 ---- */
+/* ── 减少动画 ── */
 
 @media (prefers-reduced-motion: reduce) {
     html:not(.dn-motion-preview) .typewriter,
     html:not(.dn-motion-preview) .typewriter-smooth,
-    html:not(.dn-motion-preview) .typewriter-char,
-    html:not(.dn-motion-preview) .typewriter-gradient,
-    html:not(.dn-motion-preview) .typewriter-breath::after {
+    html:not(.dn-motion-preview) .typewriter-char {
         animation: none !important;
         opacity: 1 !important;
         transform: none !important;
         border-right: none !important;
     }
-    
+
     html:not(.dn-motion-preview) .typewriter::after,
     html:not(.dn-motion-preview) .typewriter-smooth::after {
         content: none !important;
     }
 }
 
-/* ---- 剧情叙事区：最后加载，彻底去掉「玻璃底板」（避免与其它表/Tailwind 顺序导致残留） ---- */
+/* ── 剧情叙事区：确保透明 ── */
+
 #gameplay-screen #text-display-area,
-#gameplay-screen #text-display-area::before,
-#gameplay-screen #text-display-area::after,
-#gameplay-screen .narrative-shell,
-#gameplay-screen .narrative-shell::before,
-#gameplay-screen .narrative-shell::after {
+#gameplay-screen .narrative-shell {
     background: transparent !important;
-    background-color: transparent !important;
-    background-image: none !important;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
     box-shadow: none !important;
     border: none !important;
-    border-radius: 0 !important;
-    outline: none !important;
 }
 
-/* .typewriter 默认 overflow:hidden，在少数浏览器里会加重和 background-clip:text 的异常绘制 */
 #gameplay-screen #scene-text.typewriter {
     overflow: visible !important;
 }
