@@ -390,6 +390,15 @@
       z-index: 9999;
       display: flex;
       gap: 12px;
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 380ms ease, transform 380ms ease;
+    }
+
+    .style-nav-actions.delayed-hidden {
+      opacity: 0;
+      transform: translateY(10px);
+      pointer-events: none;
     }
 
     .style-nav-btn {
@@ -410,9 +419,70 @@
       transform: translateY(-1px);
       opacity: 0.92;
     }
+
+    .reading-progress-wrap {
+      position: fixed;
+      top: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(360px, 72vw);
+      z-index: 10000;
+      display: grid;
+      gap: 5px;
+      pointer-events: none;
+    }
+
+    .reading-progress-track {
+      height: 4px;
+      border-radius: 999px;
+      overflow: hidden;
+      background: rgba(255, 240, 205, 0.28);
+      box-shadow: 0 0 0 1px rgba(255, 230, 170, 0.24) inset;
+    }
+
+    .reading-progress-fill {
+      width: 0%;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #f7d699 0%, #f0b25d 45%, #9bd6ff 100%);
+      transition: width 260ms ease;
+    }
+
+    .reading-progress-label {
+      text-align: center;
+      font-size: 0.78rem;
+      color: rgba(255, 246, 225, 0.95);
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+      letter-spacing: 0.04em;
+    }
+
+    .verse p.reveal-line {
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 520ms ease, transform 520ms ease, text-shadow 300ms ease;
+      will-change: opacity, transform;
+    }
+
+    .verse p.reveal-line.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .verse p.reveal-line.line-highlight {
+      text-shadow:
+        0 1px 1px var(--ink-cool-shadow),
+        0 0 12px rgba(182, 229, 255, 0.64),
+        0 0 22px rgba(10, 22, 42, 0.32);
+    }
   </style>
 </head>
 <body>
+  <div class="reading-progress-wrap" aria-live="polite">
+    <div class="reading-progress-track" aria-hidden="true">
+      <div id="reading-progress-fill" class="reading-progress-fill"></div>
+    </div>
+    <div id="reading-progress-label" class="reading-progress-label">阅读中 0%</div>
+  </div>
   <main class="mood-grid" aria-label="Watercolor mood collage">
     <figure class="cell cell-d">
       <div class="wash" aria-hidden="true"></div>
@@ -458,15 +528,94 @@
 
     <div class="cross-seam" aria-hidden="true"></div>
   </main>
-  <div class="style-nav-actions">
+  <div id="style-nav-actions" class="style-nav-actions delayed-hidden">
     <button id="confirm-style-choice" class="style-nav-btn">确认选择</button>
     <button id="back-style-selection" class="style-nav-btn">返回原界面</button>
   </div>
   <script>
     (function () {
       const style = new URLSearchParams(window.location.search).get('style') || 'watercolor';
+      const variant = new URLSearchParams(window.location.search).get('readingUxVariant') || 'B';
       const basePath = '../../../../index.html';
+      const minReadableSeconds = 10;
+      const paragraphRevealIntervalMs = 2500;
+      const choicePanelDelayMs = 8000;
+      const softBlockHintMaxTimes = 2;
+      const progressFill = document.getElementById('reading-progress-fill');
+      const progressLabel = document.getElementById('reading-progress-label');
+      const actionsWrap = document.getElementById('style-nav-actions');
+      const confirmBtn = document.getElementById('confirm-style-choice');
+      const backBtn = document.getElementById('back-style-selection');
+      const lines = Array.from(document.querySelectorAll('.verse p'));
+      let gateRemaining = minReadableSeconds;
+      let hintCount = 0;
+      let panelShown = false;
+      const pageStart = performance.now();
+      const metrics = {
+        experiment_variant: variant,
+        scene_rendered_at: Date.now(),
+        first_interaction_at: null,
+        choice_panel_shown_at: null,
+        confirm_clicked_at: null,
+        scene_dwell_ms: null,
+        countdown_remaining_when_click: null,
+      };
+
+      window.__readingMetrics = metrics;
+
+      function emitMetric(eventName, payload) {
+        const data = Object.assign({ event: eventName, ts: Date.now() }, payload || {});
+        try {
+          console.log('[reading-metric]', data);
+        } catch (_) {}
+      }
+
+      function setProgress(pct, labelText) {
+        const p = Math.max(0, Math.min(100, pct));
+        progressFill.style.width = `${p}%`;
+        progressLabel.textContent = labelText || `阅读中 ${Math.round(p)}%`;
+      }
+
+      function updateGateButton() {
+        if (gateRemaining > 0) {
+          confirmBtn.textContent = `阅读中 ${gateRemaining}s...`;
+          confirmBtn.setAttribute('aria-disabled', 'true');
+        } else {
+          confirmBtn.textContent = '确认选择';
+          confirmBtn.removeAttribute('aria-disabled');
+        }
+      }
+
+      function markFirstInteraction() {
+        if (!metrics.first_interaction_at) {
+          metrics.first_interaction_at = Date.now();
+          emitMetric('first_interaction', { first_interaction_at: metrics.first_interaction_at });
+        }
+      }
+
+      function ensureChoicePanelShown() {
+        if (panelShown) return;
+        panelShown = true;
+        actionsWrap.classList.remove('delayed-hidden');
+        metrics.choice_panel_shown_at = Date.now();
+        emitMetric('choice_panel_shown', { choice_panel_shown_at: metrics.choice_panel_shown_at });
+      }
+
       function goBack(confirmed) {
+        const now = performance.now();
+        metrics.scene_dwell_ms = Math.round(now - pageStart);
+        if (confirmed) {
+          metrics.confirm_clicked_at = Date.now();
+          metrics.countdown_remaining_when_click = Math.max(0, gateRemaining);
+          emitMetric('confirm_clicked', {
+            confirm_clicked_at: metrics.confirm_clicked_at,
+            scene_dwell_ms: metrics.scene_dwell_ms,
+            countdown_remaining_when_click: metrics.countdown_remaining_when_click,
+          });
+        } else {
+          emitMetric('back_clicked', { scene_dwell_ms: metrics.scene_dwell_ms });
+        }
+
         const backUrl = new URL(basePath, window.location.href);
         backUrl.searchParams.set('previewStyle', style);
         if (confirmed) {
@@ -474,8 +623,66 @@
         }
         window.location.href = backUrl.toString();
       }
-      document.getElementById('confirm-style-choice').addEventListener('click', () => goBack(true));
-      document.getElementById('back-style-selection').addEventListener('click', () => goBack(false));
+
+      emitMetric('scene_rendered', { experiment_variant: variant, scene_rendered_at: metrics.scene_rendered_at });
+
+      if (variant === 'A') {
+        // 对照组：立刻展示按钮，文本不渐显，不加软门槛
+        ensureChoicePanelShown();
+        gateRemaining = 0;
+        updateGateButton();
+        setProgress(100, '已就绪');
+      } else {
+        // 实验组（B）：分段渐显 + 延迟操作区 + 软门槛
+        lines.forEach((line) => line.classList.add('reveal-line'));
+        setTimeout(() => {
+          lines.forEach((line, idx) => {
+            setTimeout(() => {
+              line.classList.add('revealed');
+              line.classList.add('line-highlight');
+              setTimeout(() => line.classList.remove('line-highlight'), 300);
+              const revealProgress = ((idx + 1) / Math.max(1, lines.length)) * 70;
+              setProgress(revealProgress, `阅读中 ${Math.round(revealProgress)}%`);
+            }, idx * paragraphRevealIntervalMs);
+          });
+        }, 120);
+
+        setTimeout(() => {
+          ensureChoicePanelShown();
+        }, choicePanelDelayMs);
+
+        updateGateButton();
+        const timer = setInterval(() => {
+          gateRemaining -= 1;
+          const timeProgress = ((minReadableSeconds - Math.max(0, gateRemaining)) / minReadableSeconds) * 30 + 70;
+          setProgress(timeProgress, gateRemaining > 0 ? `阅读中 ${Math.min(99, Math.round(timeProgress))}%` : '阅读完成，可继续');
+          updateGateButton();
+          if (gateRemaining <= 0) {
+            clearInterval(timer);
+          }
+        }, 1000);
+      }
+
+      confirmBtn.addEventListener('click', () => {
+        markFirstInteraction();
+        if (gateRemaining > 0) {
+          if (hintCount < softBlockHintMaxTimes) {
+            hintCount += 1;
+            emitMetric('soft_gate_hint', { remaining_seconds: gateRemaining, hint_count: hintCount });
+            alert(`建议先读完本段，再继续更沉浸（约 ${gateRemaining} 秒）`);
+            return;
+          }
+        }
+        goBack(true);
+      });
+
+      backBtn.addEventListener('click', () => {
+        markFirstInteraction();
+        goBack(false);
+      });
+
+      document.addEventListener('pointerdown', markFirstInteraction, { once: true });
+      document.addEventListener('keydown', markFirstInteraction, { once: true });
     })();
   </script>
 </body>

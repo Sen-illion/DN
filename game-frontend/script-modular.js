@@ -1,4 +1,4 @@
-// ========== 代码版本标识 ==========
+﻿// ========== 代码版本标识 ==========
 // 版本：使用同一定位上下文方案
 // 更新时间：2024-12-XX
 // 改动说明：
@@ -2190,11 +2190,13 @@ const Game = (() => {
             // 加载完成
             if (progress === 100) {
                 clearInterval(loadingInterval);
-                // 环形图标放大消失动画
+                // 环形图标放大消失动画（兼容无 spinner 的页面，避免抛错卡住后续切屏）
                 const spinner = document.querySelector('.loading-spinner');
-                spinner.style.transform = 'scale(1.5)';
-                spinner.style.opacity = '0';
-                spinner.style.transition = 'all 500ms ease';
+                if (spinner && spinner.style) {
+                    spinner.style.transform = 'scale(1.5)';
+                    spinner.style.opacity = '0';
+                    spinner.style.transition = 'all 500ms ease';
+                }
                 
                 // 文本渐隐
                 elements.content.loadingStatus.style.opacity = '0';

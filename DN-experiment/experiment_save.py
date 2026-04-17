@@ -90,12 +90,11 @@ def save_segment_to_folder(
     option_text: str = "",
     parent_scene_id: Any = "initial",
     option_index: int = 0,
-    experiment_subdir: str = "DN-experiment",
 ) -> Tuple[Path, Optional[Path]]:
     """
-    写入 <experiment_subdir>/<dir>/{game_id}_{segment_index:03d}.json 与同名图片（若可取得）。
+    写入 DN-experiment/<dir>/{game_id}_{segment_index:03d}.json 与同名图片（若可取得）。
     <dir> 见 experiment_dir_name（有 theme_item_id 时含主题编号前缀）。
-    segment_index: 段序号，对应 _001、_002…（如 10 段为 _001…_010）。
+    segment_index: 1 或 2（对应 _001 / _002）。
     """
     if not game_id or not isinstance(option_data, dict):
         raise ValueError("game_id / option_data 无效")
@@ -120,7 +119,7 @@ def save_segment_to_folder(
 
     stem = f"{game_id}_{segment_index:03d}"
     dir_name = experiment_dir_name(game_id, theme_item_id)
-    exp_dir = repo_root / experiment_subdir / dir_name
+    exp_dir = repo_root / "DN-experiment" / dir_name
     exp_dir.mkdir(parents=True, exist_ok=True)
     json_path = exp_dir / f"{stem}.json"
 
