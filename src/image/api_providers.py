@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 """图片 API 各供应商实现及主角/场景图生成。"""
 import os
 import re
@@ -1721,7 +1721,7 @@ def call_gemini_img2img(prompt: str, reference_image_path, additional_reference_
     }
 
     request_timeout = int(os.getenv("YUNWU_IMAGE_TIMEOUT_SECONDS", "180"))
-    min_interval = float(os.getenv("YUNWU_MIN_INTERVAL_SECONDS", "12"))
+    min_interval = float(os.getenv("YUNWU_MIN_INTERVAL_SECONDS", "6"))
     max_retries = int(os.getenv("YUNWU_GEMINI_MAX_RETRIES", "3"))
     backoff_base = float(os.getenv("YUNWU_GEMINI_RETRY_BACKOFF_SECONDS", "2"))
 
@@ -1823,7 +1823,7 @@ def call_gemini_img2img(prompt: str, reference_image_path, additional_reference_
                 delta = now - _YUNWU_LAST_CALL_TS
                 if delta < min_interval:
                     sleep_s = (min_interval - delta) + random.random() * 0.5
-                    print(f"⏳ gemini 图生图限速：等待 {sleep_s:.1f}s")
+                    print(f"⏳ gemini 图生图限速：等待 {sleep_s:.1f}s（最小间隔 {min_interval}s）")
                     time.sleep(sleep_s)
                 _YUNWU_LAST_CALL_TS = time.time()
 
@@ -1998,8 +1998,8 @@ def call_yunwu_image_api(prompt: str, style: str) -> str:
     
     # 可配置：超时/最小间隔/重试次数（避免长时间卡住 + 降低 429 概率）
     # 🔧 修复：增加默认超时时间到180秒，因为图片生成通常需要较长时间
-    request_timeout = int(os.getenv("YUNWU_IMAGE_TIMEOUT_SECONDS", "180"))  # 从90秒增加到180秒
-    min_interval = float(os.getenv("YUNWU_MIN_INTERVAL_SECONDS", "12"))
+    request_timeout = int(os.getenv("YUNWU_IMAGE_TIMEOUT_SECONDS", "180"))
+    min_interval = float(os.getenv("YUNWU_MIN_INTERVAL_SECONDS", "6"))
     max_retries = int(os.getenv("YUNWU_IMAGE_MAX_RETRIES", "3"))
     for attempt in range(max_retries):
         try:
