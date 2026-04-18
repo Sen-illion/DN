@@ -12,12 +12,29 @@ from server.cache import (
     get_cache_lock_acquire_time,
 )
 from server.events import publish as sse_publish
+from server.provider_control import get_provider_snapshot, set_provider_priority
 from server.utils import generate_scene_id
 from main2 import (
     _generate_single_option_text_only,
     generate_all_options,
     generate_scene_image,
 )
+
+ENABLE_LAYER2_IMAGE_PREGEN = os.getenv("PREGEN_LAYER2_IMAGE_ENABLED", "false").lower() == "true"
+
+
+def _skip_low_priority_pregen(kind: str) -> bool:
+    if os.getenv("PREGEN_SKIP_WHEN_PROVIDER_BUSY", "true").lower() not in ("1", "true", "yes"):
+        return False
+    snapshot = get_provider_snapshot(kind)
+    waiting = snapshot.get("waiting", {})
+    if waiting.get("high", 0) > 0 or waiting.get("normal", 0) > 0:
+        return True
+    limit = int(snapshot.get("limit", 1) or 1)
+    reserve = int(snapshot.get("low_priority_reserve", 0) or 0)
+    inflight = int(snapshot.get("inflight", 0) or 0)
+    low_capacity = max(1, limit - reserve)
+    return inflight >= low_capacity
 
 
 def _pregenerate_next_layers_logic(global_state, current_options, scene_id):
@@ -40,7 +57,11 @@ def _pregenerate_next_layers_logic(global_state, current_options, scene_id):
     
     # 在后台线程中异步执行预生成，不阻塞响应
     def async_pregenerate():
+        set_provider_priority("low")
         try:
+            if _skip_low_priority_pregen("llm"):
+                print(f"⏭️ 场景 {scene_id} 跳过本轮文本预生成：前台请求正在占用 LLM 配额")
+                return
             # 初始化缓存条目（需要先加锁检查，避免重复初始化）
             with cache_lock:
                 if scene_id not in pregeneration_cache:
@@ -77,6 +98,7 @@ def _pregenerate_next_layers_logic(global_state, current_options, scene_id):
             # 流水线：某分支 layer2 文本写完后立即跑该分支 layer2 图片（先文本后图）
             def run_layer2_for_branch(opt_idx, layer1_option_data):
                 import time
+                set_provider_priority("low")
                 next_options = layer1_option_data.get('next_options', [])
                 if not next_options:
                     return
@@ -127,6 +149,12 @@ def _pregenerate_next_layers_logic(global_state, current_options, scene_id):
                             cache_entry['layer2'] = {}
                         cache_entry['layer2'][opt_idx] = layer2_data
                         print(f"✅ 选项 {opt_idx} 的 layer2 文本已写入下一层场景 {next_scene_id}，共 {len(layer2_data)} 条")
+                    if not ENABLE_LAYER2_IMAGE_PREGEN:
+                        print(f"⏭️ 跳过选项 {opt_idx} 的 layer2 预生成图片，保留文本预生成以减少后台抢占配额")
+                        return
+                    if _skip_low_priority_pregen("image"):
+                        print(f"⏭️ 跳过选项 {opt_idx} 的 layer2 预生成图片：前台请求正在占用图片配额")
+                        return
                     # 该分支 layer2 文本完成后，立即生成该分支 layer2 图片（图片对应剧情文本）
                     for next_opt_idx, next_option_data in layer2_data.items():
                         scene_for_image = (next_option_data.get('scene') or '').strip() or None
@@ -532,7 +560,11 @@ def _pregenerate_next_layers_logic(global_state, current_options, scene_id):
             # 使用线程池并行生成所有选项（按优先级顺序提交任务）
             # 限制并发，避免同时触发过多 LLM/下游调用导致排队或限流
             max_workers = min(len(current_options), int(os.getenv("PREGEN_MAX_WORKERS", "2")))
-            with ThreadPoolExecutor(max_workers=max_workers) as executor:
+            with ThreadPoolExecutor(
+                max_workers=max_workers,
+                initializer=set_provider_priority,
+                initargs=("low",),
+            ) as executor:
                 # 按优先级顺序（0→1→2→3）提交所有任务
                 futures = []
                 for opt_idx in range(len(current_options)):
@@ -855,4 +887,3 @@ def _pregenerate_next_layers_logic(global_state, current_options, scene_id):
     thread.start()
     
     return scene_id
-

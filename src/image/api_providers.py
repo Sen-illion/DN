@@ -12,6 +12,7 @@ from pathlib import Path
 from datetime import datetime
 from typing import Dict, List, Optional
 
+from server.provider_control import log_provider_event, provider_request_slot, set_provider_backoff
 from src.config import IMAGE_GENERATION_CONFIG
 from src.constants import _YUNWU_RATE_LOCK, _YUNWU_LAST_CALL_TS
 from src.utils.text_utils import _safe_str, _clip_text, get_protagonist_names
@@ -2035,14 +2036,31 @@ def call_yunwu_image_api(prompt: str, style: str) -> str:
             # 图片生成可能耗时，但不应无限期阻塞
             # 🔧 修复：添加超时日志，方便调试
             print(f"⏱️ 发送图片生成请求（超时时间：{request_timeout}秒）...")
-            start_request_time = time.time()
-            response = requests.post(
-                f"{base_url}/chat/completions",
-                headers=headers,
-                json=request_body,
-                timeout=request_timeout
-            )
-            elapsed_time = time.time() - start_request_time
+            with provider_request_slot(
+                "image",
+                "yunwu",
+                "scene_image",
+                attempt=attempt + 1,
+                model=model,
+            ) as slot:
+                start_request_time = time.time()
+                response = requests.post(
+                    f"{base_url}/chat/completions",
+                    headers=headers,
+                    json=request_body,
+                    timeout=request_timeout
+                )
+                elapsed_time = time.time() - start_request_time
+                log_provider_event(
+                    "image",
+                    "yunwu",
+                    "scene_image",
+                    "response",
+                    attempt=attempt + 1,
+                    status_code=response.status_code,
+                    latency_ms=int(elapsed_time * 1000),
+                    queue_wait_ms=slot["queue_wait_ms"],
+                )
             print(f"✅ API请求完成，耗时：{elapsed_time:.2f}秒")
             
             # 先检查HTTP状态码，区分不同类型的错误
@@ -2113,9 +2131,16 @@ def call_yunwu_image_api(prompt: str, style: str) -> str:
                     base_wait_404 = max(10, min(300, base_wait_404))
                     wait_404 = base_wait_404 * (2 ** attempt)
                     wait_404 = min(wait_404, 300)
+                    set_provider_backoff(
+                        "image",
+                        "yunwu",
+                        wait_404,
+                        reason="http_404_upstream_saturated",
+                        request_type="scene_image",
+                        attempt=attempt + 1,
+                    )
                     print(f"⚠️ 等待 {wait_404} 秒后重试（尝试 {attempt + 1}/{max_retries}）")
                     if attempt < max_retries - 1:
-                        time.sleep(wait_404)
                         continue
                     response.raise_for_status()
                 else:
@@ -2208,10 +2233,17 @@ def call_yunwu_image_api(prompt: str, style: str) -> str:
                 print(f"   - .env 增加 YUNWU_429_BASE_WAIT_SECONDS=60 或 90（上游饱和时每次等待更久）")
                 print(f"   - .env 增加 YUNWU_IMAGE_MAX_RETRIES=5 或 6（多试几次）")
                 print(f"   - 换时段再试，或考虑 ComfyUI/Replicate 等其它生图服务")
+                set_provider_backoff(
+                    "image",
+                    "yunwu",
+                    wait_time,
+                    reason="http_429_upstream_saturated" if is_upstream_saturated else "http_429",
+                    request_type="scene_image",
+                    attempt=attempt + 1,
+                )
                 
                 # 如果还有重试机会，等待后继续
                 if attempt < max_retries - 1:
-                    time.sleep(wait_time)
                     continue
                 else:
                     # 最后一次尝试也失败，抛出异常
@@ -2224,8 +2256,15 @@ def call_yunwu_image_api(prompt: str, style: str) -> str:
                     print(f"⚠️ yunwu.ai 服务端内部错误（500），{wait_time} 秒后重试（尝试 {attempt + 1}/{max_retries}）")
                 else:
                     print(f"⚠️ yunwu.ai 服务暂时不可用（{response.status_code}），{wait_time} 秒后重试（尝试 {attempt + 1}/{max_retries}）")
+                set_provider_backoff(
+                    "image",
+                    "yunwu",
+                    wait_time,
+                    reason=f"http_{response.status_code}",
+                    request_type="scene_image",
+                    attempt=attempt + 1,
+                )
                 if attempt < max_retries - 1:
-                    time.sleep(wait_time)
                     continue
                 response.raise_for_status()
             
@@ -2813,8 +2852,15 @@ def call_yunwu_image_api(prompt: str, style: str) -> str:
             if attempt < max_retries - 1:
                 # 超时后等待更长时间再重试
                 wait_time = 10 * (attempt + 1)  # 10s, 20s, 30s
+                set_provider_backoff(
+                    "image",
+                    "yunwu",
+                    wait_time,
+                    reason="timeout",
+                    request_type="scene_image",
+                    attempt=attempt + 1,
+                )
                 print(f"   等待 {wait_time} 秒后重试...")
-                time.sleep(wait_time)
                 continue
             else:
                 # 最后一次尝试也超时，抛出异常
@@ -2838,8 +2884,15 @@ def call_yunwu_image_api(prompt: str, style: str) -> str:
                 print(f"⚠️ yunwu.ai图片生成API请求超时（尝试 {attempt + 1}/{max_retries}）")
                 if attempt < max_retries - 1:
                     wait_time = 10 * (attempt + 1)
+                    set_provider_backoff(
+                        "image",
+                        "yunwu",
+                        wait_time,
+                        reason="timeout_exception",
+                        request_type="scene_image",
+                        attempt=attempt + 1,
+                    )
                     print(f"   等待 {wait_time} 秒后重试...")
-                    time.sleep(wait_time)
                     continue
             # 其他错误直接抛出
             print(f"❌ yunwu.ai图片生成API调用失败：{error_msg}")

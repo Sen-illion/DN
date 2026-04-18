@@ -4,6 +4,7 @@ import sys
 import json
 import hashlib
 import threading
+import time
 import logging
 import traceback
 from concurrent.futures import ThreadPoolExecutor
@@ -42,6 +43,7 @@ from server.cache import (
     cleanup_old_cache,
     cleanup_used_options,
 )
+from server.provider_control import set_provider_priority
 from server.utils import clean_error_message, generate_scene_id
 from server.pregeneration import _pregenerate_next_layers_logic
 from server.config import IMAGE_CACHE_DIR
@@ -80,6 +82,11 @@ except Exception:
     pass
 
 logging.getLogger("werkzeug").setLevel(logging.INFO)
+
+_SCENE_IMAGE_REQUESTS = {}
+_SCENE_IMAGE_RECENT = {}
+_SCENE_IMAGE_REQUESTS_LOCK = threading.Lock()
+_SCENE_IMAGE_RECENT_TTL_SECONDS = float(os.getenv("SCENE_IMAGE_RECENT_TTL_SECONDS", "15"))
 
 
 @app.before_request
@@ -265,6 +272,35 @@ def _build_checkpoint_packet(option_data, global_state, selected_option):
         "recap_text": recap_text
     }
 
+
+def _cleanup_scene_image_recent(now_ts=None):
+    now_ts = now_ts or time.time()
+    expired = []
+    for key, item in _SCENE_IMAGE_RECENT.items():
+        if now_ts - item.get("ts", now_ts) > _SCENE_IMAGE_RECENT_TTL_SECONDS:
+            expired.append(key)
+    for key in expired:
+        _SCENE_IMAGE_RECENT.pop(key, None)
+
+
+def _build_scene_image_request_key(scene_description, style, viewport_width, viewport_height, global_state):
+    visual_context = (global_state or {}).get("_visual_context", {}) if isinstance(global_state, dict) else {}
+    scene_id = visual_context.get("sceneId") or (global_state or {}).get("sceneId") or ""
+    game_id = (global_state or {}).get("game_id", "") if isinstance(global_state, dict) else ""
+    prompt_basis = json.dumps(
+        {
+            "scene_description": (scene_description or "").strip(),
+            "style": style or "default",
+            "viewport_width": viewport_width,
+            "viewport_height": viewport_height,
+            "scene_id": scene_id,
+            "game_id": game_id,
+        },
+        ensure_ascii=False,
+        sort_keys=True,
+    )
+    return hashlib.md5(prompt_basis.encode("utf-8")).hexdigest()
+
 # 核心接口：生成游戏世界观
 @app.route('/generate-worldview', methods=['POST'])
 def generate_worldview():
@@ -317,6 +353,7 @@ def generate_worldview():
 
             def generate_main_character_after_worldview_async(gs_snapshot, game_id_arg):
                 """世界观生成完成后触发：主角形象生成（后台线程）。game_id_arg 必须传入，避免闭包读到后续请求覆盖的值。"""
+                set_provider_priority("low")
                 try:
                     print(f"🎨 开始生成主角形象（游戏ID: {game_id_arg}，世界观已就绪，后台并行）...")
                     result = generate_main_character_image(
@@ -637,13 +674,9 @@ def generate_option():
                             # 检查是否有图片
                             scene_image = option_data_temp.get('scene_image')
                             if not scene_image or not scene_image.get('url'):
-                                # 图片还在生成中，需要等待
-                                print(f"⏳ 选项 {option_index} 文本已就绪，但图片还在生成中，等待图片生成完成...")
-                                need_wait = True
-                                events = cache_entry.setdefault('generation_events', {})
-                                if option_index not in events:
-                                    events[option_index] = threading.Event()
-                                wait_event = events[option_index]
+                                # 文本优先返回，图片改由现有异步链路（SSE / generate-scene-image）补齐
+                                option_data = option_data_temp
+                                print(f"⚡ 选项 {option_index} 文本已就绪，图片继续异步生成并通过现有补图链路返回")
                             else:
                                 # 图片已生成，可以直接返回
                                 option_data = option_data_temp
@@ -885,24 +918,7 @@ def generate_option():
                         if status == 'completed' and scene_image and scene_image.get('url'):
                             option_data = option_data_temp
                         elif status == 'text_completed':
-                            # 图片还在生成中，继续等待（在锁外 sleep，在锁内短读）
-                            max_image_wait = 60
-                            start_time = time.time()
-                            while time.time() - start_time < max_image_wait:
-                                time.sleep(0.5)
-                                with cache_lock:
-                                    if scene_id in pregeneration_cache:
-                                        cache_entry = pregeneration_cache[scene_id]
-                                        option_data_temp2 = cache_entry.get('layer1', {}).get(option_index)
-                                        status2 = cache_entry.get('generation_status', {}).get(option_index, 'pending')
-                                        if isinstance(option_data_temp2, dict):
-                                            scene_image2 = option_data_temp2.get('scene_image')
-                                            if status2 == 'completed' and scene_image2 and scene_image2.get('url'):
-                                                option_data = option_data_temp2
-                                                break
-                            if not option_data:
-                                # 等待超时：保持原逻辑，返回文本
-                                option_data = option_data_temp
+                            option_data = option_data_temp
                         else:
                             option_data = option_data_temp
 
@@ -948,15 +964,13 @@ def generate_option():
                     "message": f"等待生成失败：{str(e)}"
                 })
         
-        # 🔧 修复：确保图片和文本一起返回
-        # 如果数据存在但图片还没生成，等待图片生成完成
-        if option_data and scene_id and scene_id != 'initial':
+        block_for_image = os.getenv("GENERATE_OPTION_BLOCK_FOR_IMAGE", "0").strip() in ("1", "true", "True")
+        if block_for_image and option_data and scene_id and scene_id != 'initial':
             scene_image = option_data.get('scene_image')
             if not scene_image or not scene_image.get('url'):
-                # 图片还没生成，等待图片生成完成
                 print(f"⏳ 文本数据已就绪，但图片还在生成中，等待图片生成完成...")
                 import time
-                max_image_wait = 60  # 最多等待60秒
+                max_image_wait = 60
                 start_time = time.time()
                 while time.time() - start_time < max_image_wait:
                     time.sleep(0.5)
@@ -1067,6 +1081,7 @@ def generate_option():
         # 问题：预生成时只生成文本，不生成图片，导致从缓存读取时可能没有图片或图片不匹配
         # 解决方案：在返回数据前，检查并生成图片，确保图片和当前场景文本匹配
         try:
+            sync_backfill_image = os.getenv("GENERATE_OPTION_SYNC_BACKFILL_IMAGE", "0").strip() in ("1", "true", "True")
             if isinstance(option_data, dict) and option_data.get("scene"):
                 scene_text = option_data.get("scene", "")
                 scene_image = option_data.get("scene_image", None)
@@ -1097,7 +1112,7 @@ def generate_option():
                         need_generate_image = True
                         print(f"🔄 场景文本已变化（缓存哈希: {cached_scene_hash[:8] if cached_scene_hash else 'N/A'} vs 当前哈希: {current_scene_hash[:8]}），重新生成图片以确保匹配")
                 
-                if need_generate_image and isinstance(scene_text, str) and scene_text.strip():
+                if need_generate_image and isinstance(scene_text, str) and scene_text.strip() and sync_backfill_image:
                     print(f"🎨 正在为场景生成图片（确保图片和文本匹配）...")
                     # 补图时传入剧情模型输出的本段出场配角（有则名单，无则[]），图片流程以剧情为准不推断
                     if isinstance(global_state, dict) and option_data is not None:
@@ -1136,6 +1151,8 @@ def generate_option():
                             pass
                     else:
                         print("⚠️ 场景图片生成失败，但继续返回文本")
+                elif need_generate_image and isinstance(scene_text, str) and scene_text.strip():
+                    print("⚡ 跳过 /generate-option 内同步补图，交由现有异步补图链路处理")
         except Exception as e:
             print(f"⚠️ 生成场景图片失败，继续返回文本：{str(e)}")
             import traceback
@@ -1441,26 +1458,74 @@ def generate_scene_image_api():
                 viewport_height = int(viewport_height)
             except (ValueError, TypeError):
                 viewport_height = None
-        
-        image_data = generate_scene_image(
-            scene_description, 
-            global_state, 
+
+        request_key = _build_scene_image_request_key(
+            scene_description,
             style,
-            viewport_width=viewport_width,
-            viewport_height=viewport_height
+            viewport_width,
+            viewport_height,
+            global_state,
         )
-        
-        if image_data:
-            resp = {"status": "success", "image": image_data}
-            # 将本次剧情图提示词 JSON 一并返回，便于后端/前端查看
-            if isinstance(global_state, dict) and "_last_scene_prompt_json" in global_state:
-                resp["prompt_json"] = global_state["_last_scene_prompt_json"]
-            return jsonify(resp)
-        else:
+
+        with _SCENE_IMAGE_REQUESTS_LOCK:
+            _cleanup_scene_image_recent()
+            recent = _SCENE_IMAGE_RECENT.get(request_key)
+            if recent:
+                return jsonify(recent["payload"])
+
+            inflight = _SCENE_IMAGE_REQUESTS.get(request_key)
+            if inflight:
+                wait_event = inflight["event"]
+                is_leader = False
+            else:
+                wait_event = threading.Event()
+                _SCENE_IMAGE_REQUESTS[request_key] = {"event": wait_event}
+                is_leader = True
+
+        if not is_leader:
+            waited = wait_event.wait(timeout=float(os.getenv("SCENE_IMAGE_WAIT_TIMEOUT_SECONDS", "90")))
+            with _SCENE_IMAGE_REQUESTS_LOCK:
+                recent = _SCENE_IMAGE_RECENT.get(request_key)
+            if waited and recent:
+                return jsonify(recent["payload"])
             return jsonify({
-                "status": "error",
-                "message": "图片生成失败"
+                "status": "pending",
+                "message": "图片仍在生成中，请稍后重试",
+                "requestKey": request_key,
             })
+
+        payload = None
+        try:
+            image_data = generate_scene_image(
+                scene_description,
+                global_state,
+                style,
+                viewport_width=viewport_width,
+                viewport_height=viewport_height
+            )
+
+            if image_data:
+                payload = {"status": "success", "image": image_data}
+                if isinstance(global_state, dict) and "_last_scene_prompt_json" in global_state:
+                    payload["prompt_json"] = global_state["_last_scene_prompt_json"]
+            else:
+                payload = {
+                    "status": "error",
+                    "message": "图片生成失败"
+                }
+            return jsonify(payload)
+        finally:
+            with _SCENE_IMAGE_REQUESTS_LOCK:
+                _SCENE_IMAGE_RECENT[request_key] = {
+                    "ts": time.time(),
+                    "payload": payload or {
+                        "status": "error",
+                        "message": "图片生成流程异常结束",
+                    },
+                }
+                inflight = _SCENE_IMAGE_REQUESTS.pop(request_key, None)
+                if inflight:
+                    inflight["event"].set()
     except Exception as e:
         print(f"🔴 生成场景图片错误：{str(e)}")
         import traceback

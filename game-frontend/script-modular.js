@@ -1133,6 +1133,8 @@ const Game = (() => {
             isShowingSegments: false, // 是否处于分段显示状态
             pendingOptions: null, // 待显示的选项（在所有段落显示完成后显示）
             pendingImageData: null, // 待显示的图片数据（在分段显示过程中保持不变）
+            _sceneImageRetryTimer: null,
+            _sceneImageRetryCount: 0,
             checkpointMemory: [],
             pendingRequest: {
                 requestId: null,
@@ -2902,12 +2904,19 @@ const Game = (() => {
             // 补救：如果后端没返回图片（或下载/解析失败），前端异步补图，不阻塞文本/选项显示
             // - 通过独立接口生成图片，避免 /generate-option 因图片耗时而卡住
             // - 做去重与“只在仍处于该剧情时才应用结果”的保护
+            // - 若后端返回 pending，说明已有同 key 补图在执行，前端轻量轮询即可
             try {
                 const sceneTextForRequest = (text || '').trim();
                 if (sceneTextForRequest) {
                     const requestKey = `${gameState.currentSceneId || 'no_scene_id'}|${sceneTextForRequest.slice(0, 200)}`;
                     if (gameState._sceneImageRequestKey !== requestKey) {
                         gameState._sceneImageRequestKey = requestKey;
+                        gameState._sceneImageRetryCount = 0;
+
+                        if (gameState._sceneImageRetryTimer) {
+                            clearTimeout(gameState._sceneImageRetryTimer);
+                            gameState._sceneImageRetryTimer = null;
+                        }
 
                         // 取消上一条补图请求（如果还在进行）
                         if (gameState._sceneImageAbortController) {
@@ -2930,48 +2939,74 @@ const Game = (() => {
                         const viewportWidth = window.innerWidth;
                         const viewportHeight = window.innerHeight;
                         console.log(`📐 视口尺寸: ${viewportWidth}x${viewportHeight}`);
-                        
-                        fetch(API_BASE + '/generate-scene-image', {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({
-                                sceneDescription: sceneTextForRequest,
-                                globalState: globalStatePayload,
-                                style: style,
-                                viewportWidth: viewportWidth,
-                                viewportHeight: viewportHeight
-                            }),
-                            signal: controller.signal
-                        })
-                        .then(r => r.json())
-                        .then(result => {
-                            // 只在“仍是当前剧情”且 key 未变化时应用
-                            if (gameState._sceneImageRequestKey !== requestKey) return;
-                            if (sceneTextForRequest !== (gameState.currentScene || '').trim()) return;
-                            if (result && result.status === 'success' && result.image && result.image.url) {
-                                const img = normalizeStorySceneImageData(result.image);
-                                if (!img) {
-                                    console.warn('⚠️ 异步补图返回了非剧情图数据，已忽略:', result.image);
+
+                        const requestPayload = {
+                            sceneDescription: sceneTextForRequest,
+                            globalState: globalStatePayload,
+                            style: style,
+                            viewportWidth: viewportWidth,
+                            viewportHeight: viewportHeight
+                        };
+                        const maxPendingRetries = 8;
+                        const issueSceneImageRequest = () => {
+                            fetch(API_BASE + '/generate-scene-image', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify(requestPayload),
+                                signal: controller.signal
+                            })
+                            .then(r => r.json())
+                            .then(result => {
+                                // 只在“仍是当前剧情”且 key 未变化时应用
+                                if (gameState._sceneImageRequestKey !== requestKey) return;
+                                if (sceneTextForRequest !== (gameState.currentScene || '').trim()) return;
+
+                                if (result && result.status === 'pending') {
+                                    gameState._sceneImageRetryCount = (gameState._sceneImageRetryCount || 0) + 1;
+                                    if (gameState._sceneImageRetryCount > maxPendingRetries) {
+                                        console.warn('⚠️ 异步补图 pending 重试次数已达上限:', result);
+                                        return;
+                                    }
+                                    const delayMs = Math.min(2500, 400 + gameState._sceneImageRetryCount * 250);
+                                    console.log(`⏳ 异步补图仍在进行中，${delayMs}ms 后重试（${gameState._sceneImageRetryCount}/${maxPendingRetries}）`);
+                                    gameState._sceneImageRetryTimer = setTimeout(() => {
+                                        if (gameState._sceneImageRequestKey !== requestKey) return;
+                                        issueSceneImageRequest();
+                                    }, delayMs);
                                     return;
                                 }
-                                console.log('✅ 异步补图成功:', img.url);
-                                try {
-                                    // 传递 optionDataForArchive，确保配角首次出场建档能正确触发
-                                    VisualContentManager.displaySceneImage(img, optionDataForArchive);
-                                } catch (e) {
-                                    console.warn('⚠️ 异步补图展示失败:', e);
+
+                                gameState._sceneImageRetryCount = 0;
+                                gameState._sceneImageRetryTimer = null;
+
+                                if (result && result.status === 'success' && result.image && result.image.url) {
+                                    const img = normalizeStorySceneImageData(result.image);
+                                    if (!img) {
+                                        console.warn('⚠️ 异步补图返回了非剧情图数据，已忽略:', result.image);
+                                        return;
+                                    }
+                                    console.log('✅ 异步补图成功:', img.url);
+                                    try {
+                                        // 传递 optionDataForArchive，确保配角首次出场建档能正确触发
+                                        VisualContentManager.displaySceneImage(img, optionDataForArchive);
+                                    } catch (e) {
+                                        console.warn('⚠️ 异步补图展示失败:', e);
+                                    }
+                                    // 更新状态，供“下一剧情参考上一剧情图片”使用
+                                    gameState.pendingImageData = img;
+                                    gameState.lastSceneImage = img;
+                                } else {
+                                    console.warn('⚠️ 异步补图失败:', result && result.message ? result.message : result);
                                 }
-                                // 更新状态，供“下一剧情参考上一剧情图片”使用
-                                gameState.pendingImageData = img;
-                                gameState.lastSceneImage = img;
-                            } else {
-                                console.warn('⚠️ 异步补图失败:', result && result.message ? result.message : result);
-                            }
-                        })
-                        .catch(err => {
-                            if (err && err.name === 'AbortError') return;
-                            console.warn('⚠️ 异步补图请求异常:', err);
-                        });
+                            })
+                            .catch(err => {
+                                if (err && err.name === 'AbortError') return;
+                                gameState._sceneImageRetryTimer = null;
+                                console.warn('⚠️ 异步补图请求异常:', err);
+                            });
+                        };
+
+                        issueSceneImageRequest();
                     }
                 }
             } catch (e) {
