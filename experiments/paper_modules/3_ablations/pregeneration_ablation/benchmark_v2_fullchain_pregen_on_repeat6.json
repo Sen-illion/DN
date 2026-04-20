@@ -1,0 +1,2833 @@
+{
+  "summary": {
+    "experiment_name": "benchmark_v2_fullchain_pregen_on_repeat6",
+    "sample_size": 6,
+    "suite_start_ts": 1776600627.4023898,
+    "suite_end_ts": 1776601117.750723,
+    "worldview_elapsed_s": {
+      "count": 6,
+      "min": 8.476,
+      "max": 70.69,
+      "mean": 26.133,
+      "median": 16.381,
+      "p95": 62.011
+    },
+    "generate_option_elapsed_s": {
+      "count": 6,
+      "min": 0.011,
+      "max": 28.629,
+      "mean": 4.791,
+      "median": 0.027,
+      "p95": 21.479
+    },
+    "main_character_completion_s": {
+      "count": 6,
+      "min": 32.38,
+      "max": 72.702,
+      "mean": 50.787,
+      "median": 51.388,
+      "p95": 69.171
+    },
+    "full_success_count": 6
+  },
+  "runs": [
+    {
+      "benchmark_id": "DNQBV1_001",
+      "theme_id": 1,
+      "theme": "边陲驿站夜谈录",
+      "worldview": {
+        "benchmark_id": "DNQBV1_001",
+        "theme_id": 1,
+        "theme": "边陲驿站夜谈录",
+        "image_style": {
+          "type": "realistic"
+        },
+        "http_status": 200,
+        "elapsed_s": 8.476,
+        "status": "success",
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过一次深夜为滞留司机提供热食的契机，赢得了部分老住户的初步信任，成功筹集到第一笔修缮资金，但同时也因过度劳累导致父亲病情加重，不得不面对医疗费缺口的现实。",
+                  "main_conflict": "主角刚接手破败的驿站，面临着资金短缺与父亲病情恶化的双重压力。同时，镇上的老住户对主角的“外来者”身份持有戒备，拒绝提供必要的经营支持，主角在试图融入社区与维持生计之间感到极度疲惫，生活陷入了最初的混乱。 - 矛盾结束条件：主角通过一次深夜为滞留司机提供热食的契机，赢得了部分老住户的初步信任，成功筹集到第一笔修缮资金，但同时也因过度劳累导致父亲病情加重，不得不面对医疗费缺口的现实。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角最终选择了折中方案，保留了部分老建筑但牺牲了部分商业空间，虽然保住了小镇的一丝尊严，但也错失了最佳的盈利窗口，导致其经济目标再次受挫，与邻居的关系也变得微妙而疏离。",
+                  "main_conflict": "国道改线计划正式公示，小镇面临被彻底边缘化的危机。主角在此时获得了一个能让驿站成为物流分拨中心的机会，但代价是必须配合拆除镇上的老地标建筑。主角陷入了“发展”与“记忆”的道德困境，与坚守老建筑的邻居产生了激烈冲突。 - 矛盾结束条件：主角最终选择了折中方案，保留了部分老建筑但牺牲了部分商业空间，虽然保住了小镇的一丝尊严，但也错失了最佳的盈利窗口，导致其经济目标再次受挫，与邻居的关系也变得微妙而疏离。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角最终决定关闭驿站，带着父亲前往城市治疗。他未能实现让小镇重现繁荣的宏愿，也未能完全治愈父亲的顽疾，但两人在离别前达成了一种深层的和解，带着未竟的遗憾与对未来的踏实预期，平静地离开了长风驿。 ### 【主角规范信息】 主角姓名(中)：陈默 主角姓名(英)：Chen Mo 性别：男性 年龄感：青年 所属作品(中)：边陲驿站夜谈录 所属作品(英)：Night Talks at the Frontier Station 标志性外观关键词：黑色短发、略显疲惫的眼神、深色工装外套、常年带着的一块旧手表、清瘦、指尖有薄茧、沉默寡言、不修边幅但干净、眼神坚定、习惯性揣兜、略带胡茬、沉稳气质 ## 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决",
+                  "main_conflict": "国道改线工程动工，驿站客流量锐减，主角面临最终的去留抉择。此时，主角发现父亲其实一直希望他离开这里去大城市发展，而非为了照顾自己而困守边陲。主角必须在“自我牺牲的虚假圆满”与“带着遗憾的真实前行”之间做出最终选择。 - 矛盾结束条件：主角最终决定关闭驿站，带着父亲前往城市治疗。他未能实现让小镇重现繁荣的宏愿，也未能完全治愈父亲的顽疾，但两人在离别前达成了一种深层的和解，带着未竟的遗憾与对未来的踏实预期，平静地离开了长风驿。 ### 【主角规范信息】 主角姓名(中)：陈默 主角姓名(英)：Chen Mo 性别：男性 年龄感：青年 所属作品(中)：边陲驿站夜谈录 所属作品(英)：Night Talks at the Frontier Station 标志性外观关键词：黑色短发、略显疲惫的眼神、深色工装外套、常年带着的一块旧手表、清瘦、指尖有薄茧、沉默寡言、不修边幅但干净、眼神坚定、习惯性揣兜、略带胡茬、沉稳气质 ## 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为现实主义叙事游戏，采用低饱和度的写实美术风格，强调光影在时间流逝中的质感。叙事节奏舒缓，通过环境细节与碎片化对话构建沉浸式体验，旨在捕捉平凡生活中的细微情绪，呈现一种带有泥土气息与烟火气的真实感。",
+              "main_quest": "主角因家庭债务危机回到长风驿，计划在国道改线前，通过经营一家名为“归途”的深夜食堂，攒够一笔启动资金并带走病重的父亲。任务步骤包括：收集不同过路人的故事以获取关键情报、在有限的资源下平衡经营与人际关系、在多次抉择中决定是否为了利益牺牲小镇的利益。挑战在于，随着国道改线日期的临近，主角必须在“为了父亲的医疗费而背叛邻里”与“守护小镇尊严但失去经济来源”之间做出抉择，最终目标并非拯救小镇，而是为自己的人生寻找一个体面的出口。",
+              "protagonist_ability": "主角拥有一种名为“共情倾听”的特质，源于其长期从事调解员工作的职业习惯。通过在驿站夜谈中捕捉他人的微表情、言语停顿与肢体语言，主角能构建出对方内心深处的“情绪图谱”。该能力限制在于，它无法改变现实困境，仅能让主角理解他人的苦衷，且过度使用会加重主角自身的精神内耗，导致其在处理他人问题时，往往会忽略自己生活中亟待解决的实际危机。",
+              "world_basic_setting": "故事发生于西北边陲的“长风驿”，这里曾是古丝绸之路的繁荣节点，如今则是被现代交通网络遗忘的物流中转站。社会背景设定在经济转型期的当代中国，小镇居民多为留守老人、失意返乡者与过路货车司机。这里没有宏大的叙事，只有永不停歇的风沙、老旧的霓虹招牌与昼夜更替的货运节奏。文化上，这里交织着传统宗族观念与现代生存焦虑，人们在追求物质改善与精神归属之间反复拉扯。关键事件是“国道改线计划”，这一即将到来的基础设施变动，将彻底切断小镇最后的经济命脉，迫使所有角色在“坚守故土”与“融入城市”之间做出不可逆的抉择。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1776600627_zk6wo5",
+            "image_style": {
+              "type": "realistic"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "gender": "男性"
+            },
+            "tone": "normal_ending",
+            "user_theme": "边陲驿站夜谈录"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "game_id": "game_1776600627_zk6wo5",
+        "start_ts": 1776600627.4023912,
+        "end_ts": 1776600635.878329
+      },
+      "generate_option": {
+        "http_status": 200,
+        "elapsed_s": 0.028,
+        "status": "success",
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "",
+              "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：青衿书院的藏书阁内，空气中弥漫着陈旧纸张与潮湿霉味混合的气息。我正俯身在案前，指尖沾满墨迹，小心翼翼地修复着一本残卷。窗外，连绵的细雨敲打着青瓦，发出细碎而急促的声响。突然，一阵沉重的脚步声打破了午后的宁静，伴随着木门被粗暴推开的声响，几名身着皂衣的官差鱼贯而入，为首的搜查官冷冷地扫视着四周，目光在书架间游移。我下意识地将手边那本尚未装订好的《民生志》往袖中拢了拢，指尖触碰到书页时，一股冰凉的触感顺着指尖蔓延，那是“溯源笔记”在预警。搜查官走到我面前，目光如鹰隼般盯着我略显苍白的脸庞，沉声问道：“林砚，这书院近来可有私藏禁书的动向？若有隐瞒，后果你担待得起吗？”我垂下眼帘，掩去眼底的疲惫与警惕，声音平静地回应：“大人说笑了，书院皆是圣贤之言，哪来的什么禁书。”他冷哼一声，挥手示意手下开始翻动书架，我感到心脏剧烈跳动，必须在他们搜到这本《民生志》之前，将其伪装成普通的课本。"
+            },
+            "deep_background_links": {},
+            "flow_update": {},
+            "next_options": [
+              "将《民生志》混入捐赠书目中，试图瞒天过海。",
+              "借口整理古籍，引导搜查官去往存放无用废纸的后厢房。"
+            ],
+            "plot_supporting_characters": [],
+            "scene": "青衿书院的藏书阁内，空气中弥漫着陈旧纸张与潮湿霉味混合的气息。我正俯身在案前，指尖沾满墨迹，小心翼翼地修复着一本残卷。窗外，连绵的细雨敲打着青瓦，发出细碎而急促的声响。突然，一阵沉重的脚步声打破了午后的宁静，伴随着木门被粗暴推开的声响，几名身着皂衣的官差鱼贯而入，为首的搜查官冷冷地扫视着四周，目光在书架间游移。我下意识地将手边那本尚未装订好的《民生志》往袖中拢了拢，指尖触碰到书页时，一股冰凉的触感顺着指尖蔓延，那是“溯源笔记”在预警。搜查官走到我面前，目光如鹰隼般盯着我略显苍白的脸庞，沉声问道：“林砚，这书院近来可有私藏禁书的动向？若有隐瞒，后果你担待得起吗？”我垂下眼帘，掩去眼底的疲惫与警惕，声音平静地回应：“大人说笑了，书院皆是圣贤之言，哪来的什么禁书。”他冷哼一声，挥手示意手下开始翻动书架，我感到心脏剧烈跳动，必须在他们搜到这本《民生志》之前，将其伪装成普通的课本。",
+            "sceneId": "-3306214283470525153_-2247358747156076800",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-library-confrontation-lin-yan, chinese-ink-wash, realism, historical-drama, oppressive-atmosphere, literary-melancholy, traditional chinese ink wash painting style, monochromatic black white and gray tones, fine brushwork for architectural details, ink splash technique for rain and atmosphere, high contrast between light and shadow, young male protagonist Lin Yan, slender build with scholarly posture, pale complexion showing fatigue, clear but weary eyes revealing deep anxiety, ink-stained fingers holding an ancient scroll, focused and inner-directed expression, simple worn-out traditional long scholar robe, classic cloth accessories with faded texture, wooden hairpin securing hair tightly, standing behind a wooden desk in the library, slightly hunched posture clutching a forbidden book inside robe, body facing forward toward 搜查官-配角1, using Image 0 as reference for Lin Yan, 8K detailed facial features with refined ink-wash texture, clear eyes with visible exhaustion and hidden vigilance, lip color naturally muted and pale, soft shadows under eyes indicating long nights of study, composed and calm expression despite inner turmoil, neat scholarly hair bun tied with a wooden hairpin, root fixation coefficient 0.95, tip swing amplitude 5cm, color layering: main color #000000, secondary color #333333, shadow #1A1A1A, wind speed 0.2m/s, turbulence intensity 1%, no loose strands to maintain inner discipline, traditional scholar robe with subtle fabric texture, slight fabric folds around the waist where the book is hidden, matte fabric finish consistent with ink-wash aesthetic, dimly lit ancient library with towering wooden bookshelves, stacks of dusty scrolls and yellowed papers, rain-drenched window with traditional lattice patterns, faint mist entering from the damp outside, 搜查官-配角1 standing in the foreground on the right side of the frame, 搜查官-配角1 wearing sharp-edged government officer robes, other unidentified officer-配角2 in the background slightly blurred, fine rain streaks visible outside the window, dust particles dancing in the dim light, damp ink smell atmosphere depicted through visual texture, monochromatic ink palette, shades of charcoal black and slate gray, off-white parchment tones, no vibrant colors, dim ambient light filtering through the rain-streaked window, harsh side light emphasizing the tension between protagonist and officer, soft shadows casting depth on the bookshelves, type medium shot, lens 35mm, aperture f/4, depth_of_field focus on Lin Yan with shallow background blur, flash none, grain fine paper texture, texture bamboo paper style, Lin Yan positioned slightly left of center, 搜查官-配角1 occupying the right foreground creating a confrontational diagonal, focal point on Lin Yan's hands and the hidden book, action constraints: tense standoff, no movement, traditional chinese ink wash art, no text or symbols in image, no numbers or watermarks, oppressive and silent tension, intellectual struggle, melancholy realism, fragile dignity under threat, no text, no symbols, no garbled characters, no words",
+              "prompt_json": {
+                "camera": {
+                  "aperture": "f/4",
+                  "depth_of_field": "focus on Lin Yan with shallow background blur",
+                  "flash": "none",
+                  "grain": "fine paper texture",
+                  "lens": "35mm",
+                  "texture": "bamboo paper style",
+                  "type": "medium shot"
+                },
+                "clothing_system": [
+                  "traditional scholar robe with subtle fabric texture",
+                  "slight fabric folds around the waist where the book is hidden",
+                  "matte fabric finish consistent with ink-wash aesthetic"
+                ],
+                "color_restriction": [
+                  "monochromatic ink palette",
+                  "shades of charcoal black and slate gray",
+                  "off-white parchment tones",
+                  "no vibrant colors"
+                ],
+                "composition": [
+                  "Lin Yan positioned slightly left of center",
+                  "搜查官-配角1 occupying the right foreground creating a confrontational diagonal",
+                  "focal point on Lin Yan's hands and the hidden book",
+                  "action constraints: tense standoff, no movement"
+                ],
+                "environment": {
+                  "background": [
+                    "dimly lit ancient library with towering wooden bookshelves",
+                    "stacks of dusty scrolls and yellowed papers",
+                    "rain-drenched window with traditional lattice patterns",
+                    "faint mist entering from the damp outside"
+                  ],
+                  "characters": [
+                    "搜查官-配角1 standing in the foreground on the right side of the frame",
+                    "搜查官-配角1 wearing sharp-edged government officer robes",
+                    "other unidentified officer-配角2 in the background slightly blurred"
+                  ],
+                  "effects": [
+                    "fine rain streaks visible outside the window",
+                    "dust particles dancing in the dim light",
+                    "damp ink smell atmosphere depicted through visual texture"
+                  ]
+                },
+                "face_system": [
+                  "8K detailed facial features with refined ink-wash texture",
+                  "clear eyes with visible exhaustion and hidden vigilance",
+                  "lip color naturally muted and pale",
+                  "soft shadows under eyes indicating long nights of study",
+                  "composed and calm expression despite inner turmoil"
+                ],
+                "hair_system": [
+                  "neat scholarly hair bun tied with a wooden hairpin",
+                  "root fixation coefficient 0.95",
+                  "tip swing amplitude 5cm",
+                  "color layering: main color #000000, secondary color #333333, shadow #1A1A1A",
+                  "wind speed 0.2m/s",
+                  "turbulence intensity 1%",
+                  "no loose strands to maintain inner discipline"
+                ],
+                "label": "scene-library-confrontation-lin-yan",
+                "lighting": [
+                  "dim ambient light filtering through the rain-streaked window",
+                  "harsh side light emphasizing the tension between protagonist and officer",
+                  "soft shadows casting depth on the bookshelves"
+                ],
+                "mood": [
+                  "oppressive and silent tension",
+                  "intellectual struggle",
+                  "melancholy realism",
+                  "fragile dignity under threat"
+                ],
+                "output_style": [
+                  "traditional chinese ink wash art",
+                  "no text or symbols in image",
+                  "no numbers or watermarks"
+                ],
+                "style": [
+                  "traditional chinese ink wash painting style",
+                  "monochromatic black white and gray tones",
+                  "fine brushwork for architectural details",
+                  "ink splash technique for rain and atmosphere",
+                  "high contrast between light and shadow"
+                ],
+                "subject": {
+                  "body_traits": [
+                    "young male protagonist Lin Yan",
+                    "slender build with scholarly posture",
+                    "pale complexion showing fatigue",
+                    "clear but weary eyes revealing deep anxiety",
+                    "ink-stained fingers holding an ancient scroll",
+                    "focused and inner-directed expression"
+                  ],
+                  "outfit": [
+                    "simple worn-out traditional long scholar robe",
+                    "classic cloth accessories with faded texture",
+                    "wooden hairpin securing hair tightly"
+                  ],
+                  "pose": [
+                    "standing behind a wooden desk in the library",
+                    "slightly hunched posture clutching a forbidden book inside robe",
+                    "body facing forward toward 搜查官-配角1",
+                    "using Image 0 as reference for Lin Yan"
+                  ]
+                },
+                "tags": [
+                  "chinese-ink-wash",
+                  "realism",
+                  "historical-drama",
+                  "oppressive-atmosphere",
+                  "literary-melancholy"
+                ]
+              },
+              "scene_text_hash": "73c206444c2b0ef7ee8b991e05dce22b",
+              "style": "default",
+              "url": "/image_cache/72302e6308b259d0fce96aec48cf39f5.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "has_scene": true,
+        "has_image": true,
+        "start_ts": 1776600635.8784542,
+        "end_ts": 1776600635.9064796
+      },
+      "main_character": {
+        "completed": true,
+        "elapsed_s": 38.287,
+        "history": [
+          {
+            "elapsed_s": 0.004,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600627_zk6wo5",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:10:35.876893"
+          },
+          {
+            "elapsed_s": 2.035,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600627_zk6wo5",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:10:35.876893"
+          },
+          {
+            "elapsed_s": 4.041,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600627_zk6wo5",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:10:35.876893"
+          },
+          {
+            "elapsed_s": 6.081,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600627_zk6wo5",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:10:35.876893"
+          },
+          {
+            "elapsed_s": 8.091,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600627_zk6wo5",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:10:35.876893"
+          },
+          {
+            "elapsed_s": 10.099,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600627_zk6wo5",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:10:35.876893"
+          },
+          {
+            "elapsed_s": 12.104,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600627_zk6wo5",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:10:35.876893"
+          },
+          {
+            "elapsed_s": 14.109,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600627_zk6wo5",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:10:35.876893"
+          },
+          {
+            "elapsed_s": 16.114,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600627_zk6wo5",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:10:35.876893"
+          },
+          {
+            "elapsed_s": 18.122,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600627_zk6wo5",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:10:35.876893"
+          },
+          {
+            "elapsed_s": 20.127,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600627_zk6wo5",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:10:35.876893"
+          },
+          {
+            "elapsed_s": 22.146,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600627_zk6wo5",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:10:35.876893"
+          },
+          {
+            "elapsed_s": 24.164,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600627_zk6wo5",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:10:35.876893"
+          },
+          {
+            "elapsed_s": 26.169,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600627_zk6wo5",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:10:35.876893"
+          },
+          {
+            "elapsed_s": 28.195,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600627_zk6wo5",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:10:35.876893"
+          },
+          {
+            "elapsed_s": 30.221,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600627_zk6wo5",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:10:35.876893"
+          },
+          {
+            "elapsed_s": 32.243,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600627_zk6wo5",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:10:35.876893"
+          },
+          {
+            "elapsed_s": 34.248,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600627_zk6wo5",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:10:35.876893"
+          },
+          {
+            "elapsed_s": 36.272,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600627_zk6wo5",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:10:35.876893"
+          },
+          {
+            "elapsed_s": 38.287,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600627_zk6wo5",
+            "image_url": "/initial/main_character/game_1776600627_zk6wo5/main_character.png",
+            "ready": true,
+            "status": "completed",
+            "updated_at": "1776600673"
+          }
+        ]
+      },
+      "provider_events": {
+        "event_count": 11,
+        "queue_wait_ms": {
+          "count": 11,
+          "min": 0.0,
+          "max": 0.0,
+          "mean": 0.0,
+          "median": 0.0,
+          "p95": 0.0
+        },
+        "latency_ms": {
+          "count": 5,
+          "min": 4122.0,
+          "max": 33155.0,
+          "mean": 12820.4,
+          "median": 8461.0,
+          "p95": 28950.6
+        }
+      }
+    },
+    {
+      "benchmark_id": "DNQBV1_002",
+      "theme_id": 9,
+      "theme": "末日温室园丁",
+      "worldview": {
+        "benchmark_id": "DNQBV1_002",
+        "theme_id": 9,
+        "theme": "末日温室园丁",
+        "image_style": {
+          "type": "realistic"
+        },
+        "http_status": 200,
+        "elapsed_s": 70.69,
+        "status": "success",
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过变卖个人积攒的旧时代书籍换取了零件，成功修复了供水系统，但代价是失去了唯一能与外界联系的通讯设备，彻底切断了与地表探索队的联络。",
+                  "main_conflict": "温室的供水系统因老化面临彻底瘫痪，主角必须在有限的配给额度内，决定是修复系统以维持现有植株的生命，还是将资源用于维持自身的基本生存。这种生存与理想的博弈，让主角陷入了极度的焦虑，他不仅要面对上级的冷漠盘剥，还要在寒冷与饥饿中寻找平衡。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角通过长时间的熬夜手动补光，成功让植株度过了危险期，但因长期缺乏睡眠与光照，主角的视力出现永久性损伤，且植株的生长速度因能源不足而变得极其缓慢。",
+                  "main_conflict": "主角培育的“先驱种子”样本在关键的杂交阶段出现了基因退化，表现为叶片枯萎与光合作用效率骤降。此时，地下城管理层决定削减温室的能源供应，将电力转投至更具军事价值的武器研发，主角必须在有限的电力下，通过手动调节温室光照来强行维持植株的生长。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角将样本送往地表，植株在酸性尘埃中存活了数日后最终枯萎，但其留下的种子在土壤中扎了根。主角回到地下城，接受了自己无法亲眼看到森林重现的事实，在平静的日常工作中，与这份不完美的结局达成了和解。",
+                  "main_conflict": "最终的试种时机到来，主角必须决定是否将这株唯一的样本送往地表。地表环境依然恶劣，样本存活率极低，主角面临着“将其留在温室作为最后的纪念”还是“冒着样本彻底死亡的风险去尝试”的终极抉择，这不仅是关于植物的抉择，更是关于如何面对人生遗憾的抉择。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为写实风格的末日生存模拟游戏，画面呈现出一种带有颗粒感的灰暗色调，但温室内部植被的色彩饱和度极高。游戏节奏缓慢且沉稳，强调日常劳作的机械感与植物生长的生命力，通过细腻的环境音与平淡的叙事，构建出一种在废墟之上维持秩序的孤独与宁静。",
+              "main_quest": "主角作为一名普通的地下城温室园丁，目标是在有限的任期内，成功培育出一株能够适应地表酸性土壤的“先驱种子”。任务分为三个阶段：首先是搜集并修复温室老旧的循环过滤系统，以保证植物存活；其次是利用有限的配给资源进行多次杂交实验，筛选出具备抗性的植株样本；最后是尝试将样本送往地表进行实地试种。挑战在于，主角不仅要应对地下城管理层对资源的严苛管控，还要在个人对“重现绿色”的执念与现实中生存物资匮乏的矛盾中挣扎，最终目标并非拯救世界，而是为人类留下一抹真实的绿色希望。",
+              "protagonist_ability": "主角拥有一种名为“共感培育”的直觉能力，源于其家族世代从事植物培育的经验积累与对土壤成分的敏锐嗅觉。主角能通过触摸植株的叶片与根系，感知其水分、养分需求及病变前兆。这种能力并非超自然力量，而是极度专注带来的生理反馈。限制在于，主角无法改变环境的恶劣，只能在有限的资源配给下进行微调，且过度使用会导致严重的神经衰弱与手部震颤，无法从根本上逆转植物的衰亡。",
+              "world_basic_setting": "故事发生于一场被称为“灰烬降临”的全球性生态崩溃百年后。地表已被厚重的火山灰与酸性尘埃覆盖，人类退守至几座封闭的地下城。社会资源极度匮乏，配给制成为常态，阶级由对生存资源的掌控力决定。在地下城边缘，存在着被称为“温室”的旧时代遗迹，这里曾是植物基因库，如今由极少数被称为“园丁”的专业人员负责维护。这里的文化崇尚“实用主义”，艺术与情感被视为奢侈品，人们在狭窄的金属管道与昏暗的灯光下生存，对地表世界的记忆已逐渐演变为一种带有宗教色彩的虚构神话。关键事件“绿洲计划”曾试图重启地表植被，但因技术瓶颈与能源枯竭而搁置，只留下温室中几株勉强存活的古老植株，成为人类文明最后的尊严。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1776600674_smkbcl",
+            "image_style": {
+              "type": "realistic"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "中年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "粗糙的双手、深陷的眼窝、常年穿着的深灰色工装、略显佝偻的背影、冷静而疲惫的眼神、指甲缝里的泥土、沉默寡言、习惯性摩挲植物叶片",
+              "work_en": "Greenery Under the Ashes",
+              "work_zh": "灰烬之下的绿意"
+            },
+            "tone": "normal_ending",
+            "user_theme": "末日温室园丁"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "game_id": "game_1776600674_smkbcl",
+        "start_ts": 1776600674.2048788,
+        "end_ts": 1776600744.894721
+      },
+      "generate_option": {
+        "http_status": 200,
+        "elapsed_s": 0.022,
+        "status": "success",
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "",
+              "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：风沙敲打着“归途”驿站那块锈迹斑斑的铁皮招牌，发出沉闷的嘶鸣。我站在柜台后，指尖摩挲着那块旧手表，表盘的玻璃上有一道细微的裂痕，那是父亲当年留下的印记。屋内昏黄的灯光摇曳，空气中弥漫着廉价烟草与陈旧木料的味道。父亲在里屋的咳嗽声断断续续地传来，像是一把钝刀，一下下割着我本就紧绷的神经。账本上那串触目惊心的负债数字，在昏暗中显得格外刺眼。门外传来一阵沉重的刹车声，一辆满载货物的重卡停在路边，车灯刺破了夜色。一个满脸胡茬的男人推门而入，他抖落身上的沙尘，眼神里透着长途跋涉后的疲惫与戒备，他盯着我，声音沙哑地问：“老板，这儿还有热乎的吗？哪怕是一碗挂面也行。”我看着他，那双因常年熬夜而布满红丝的眼睛里，藏着和我相似的、被生活压弯的无奈。我深吸一口气，将那股焦虑压回心底，尽量让语气显得平和：“有的，稍等，马上就好。”"
+            },
+            "deep_background_links": {},
+            "flow_update": {},
+            "next_options": [
+              "询问男人的去向，试探能否从他口中得知国道改线的最新动向。",
+              "默默为他煮面，并借机询问他是否认识镇上那位负责拆迁的老王。"
+            ],
+            "plot_supporting_characters": [],
+            "scene": "风沙敲打着“归途”驿站那块锈迹斑斑的铁皮招牌，发出沉闷的嘶鸣。我站在柜台后，指尖摩挲着那块旧手表，表盘的玻璃上有一道细微的裂痕，那是父亲当年留下的印记。屋内昏黄的灯光摇曳，空气中弥漫着廉价烟草与陈旧木料的味道。父亲在里屋的咳嗽声断断续续地传来，像是一把钝刀，一下下割着我本就紧绷的神经。账本上那串触目惊心的负债数字，在昏暗中显得格外刺眼。门外传来一阵沉重的刹车声，一辆满载货物的重卡停在路边，车灯刺破了夜色。一个满脸胡茬的男人推门而入，他抖落身上的沙尘，眼神里透着长途跋涉后的疲惫与戒备，他盯着我，声音沙哑地问：“老板，这儿还有热乎的吗？哪怕是一碗挂面也行。”我看着他，那双因常年熬夜而布满红丝的眼睛里，藏着和我相似的、被生活压弯的无奈。我深吸一口气，将那股焦虑压回心底，尽量让语气显得平和：“有的，稍等，马上就好。”",
+            "sceneId": "-4324658513022806278_2846395837586789369",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-roadside-inn-night-encounter, realistic, cinematic, low-saturation, melancholic, gritty-realism, photorealistic, highly detailed, atmospheric lighting, cinematic texture, documentary photography style, male protagonist using Image 0, tired eyes with subtle empathy, stoic expression concealing deep inner anxiety, slight forward lean as if listening, worn appearance matching the rustic environment, plain cotton work shirt with rolled sleeves, faded apron showing signs of long-term use, standing behind the wooden service counter, hands resting on the counter surface near a ledger, body oriented slightly towards 货车司机-配角1, posture reflecting professional but weary composure, 8K detailed facial features, subtle emotional mapping in micro-expressions, eyes showing fatigue and hidden empathy, lip color naturally muted, soft shadows from dim overhead lamp highlighting facial contours, messy short dark hair with realistic texture, root fixation coefficient 0.95, tip swing amplitude 5cm, color layering: main color #2D2D2D, secondary color #1A1A1A, highlight #404040, shadow #000000, wind speed 0.2m/s from door gap, turbulence intensity 2%, cotton fabric with realistic wrinkles and wear, slight fabric flutter from draft, texture indicating humble living conditions, dimly lit interior of a rustic roadside inn, rusted iron signage visible near the entrance, wooden shelves with dusty vintage items, cracked plaster walls showing age, dim yellow light bulb flickering above, 货车司机-配角1 standing at the entrance, covered in desert dust, wearing a heavy worn-out jacket, eyes bloodshot and weary, dust particles dancing in the dim light, faint haze of tobacco smoke, harsh cold night light streaming from the open door contrasting with warm indoor lamp, desaturated earth tones, muted browns and greys, faded yellow lamp light, cold blue night tint from the doorway, low-key lighting, dim warm incandescent light from above, harsh cold moonlight/headlight reflection from entrance, dramatic shadows emphasizing the protagonist's inner conflict, type medium shot, lens 35mm, aperture f/2.0, depth_of_field shallow focus on the protagonist and the counter area, flash none, grain fine film grain, texture realistic material surfaces, protagonist positioned behind the counter on the left, 货车司机-配角1 standing at the right side of the frame, the ledger and the watch on the counter as visual anchors, action constraints: eye contact between protagonist and 货车司机-配角1, realistic narrative realism, no text or symbols in image, no watermarks, no characters or logos, melancholic, heavy atmosphere of survival, quiet empathy, sense of exhaustion, lingering uncertainty, no text, no symbols, no garbled characters, no words",
+              "prompt_json": {
+                "camera": {
+                  "aperture": "f/2.0",
+                  "depth_of_field": "shallow focus on the protagonist and the counter area",
+                  "flash": "none",
+                  "grain": "fine film grain",
+                  "lens": "35mm",
+                  "texture": "realistic material surfaces",
+                  "type": "medium shot"
+                },
+                "clothing_system": [
+                  "cotton fabric with realistic wrinkles and wear",
+                  "slight fabric flutter from draft",
+                  "texture indicating humble living conditions"
+                ],
+                "color_restriction": [
+                  "desaturated earth tones",
+                  "muted browns and greys",
+                  "faded yellow lamp light",
+                  "cold blue night tint from the doorway"
+                ],
+                "composition": [
+                  "protagonist positioned behind the counter on the left",
+                  "货车司机-配角1 standing at the right side of the frame",
+                  "the ledger and the watch on the counter as visual anchors",
+                  "action constraints: eye contact between protagonist and 货车司机-配角1"
+                ],
+                "environment": {
+                  "background": [
+                    "dimly lit interior of a rustic roadside inn",
+                    "rusted iron signage visible near the entrance",
+                    "wooden shelves with dusty vintage items",
+                    "cracked plaster walls showing age",
+                    "dim yellow light bulb flickering above"
+                  ],
+                  "characters": [
+                    "货车司机-配角1 standing at the entrance, covered in desert dust, wearing a heavy worn-out jacket, eyes bloodshot and weary"
+                  ],
+                  "effects": [
+                    "dust particles dancing in the dim light",
+                    "faint haze of tobacco smoke",
+                    "harsh cold night light streaming from the open door contrasting with warm indoor lamp"
+                  ]
+                },
+                "face_system": [
+                  "8K detailed facial features",
+                  "subtle emotional mapping in micro-expressions",
+                  "eyes showing fatigue and hidden empathy",
+                  "lip color naturally muted",
+                  "soft shadows from dim overhead lamp highlighting facial contours"
+                ],
+                "hair_system": [
+                  "messy short dark hair with realistic texture",
+                  "root fixation coefficient 0.95",
+                  "tip swing amplitude 5cm",
+                  "color layering: main color #2D2D2D, secondary color #1A1A1A, highlight #404040, shadow #000000",
+                  "wind speed 0.2m/s from door gap",
+                  "turbulence intensity 2%"
+                ],
+                "label": "scene-roadside-inn-night-encounter",
+                "lighting": [
+                  "low-key lighting",
+                  "dim warm incandescent light from above",
+                  "harsh cold moonlight/headlight reflection from entrance",
+                  "dramatic shadows emphasizing the protagonist's inner conflict"
+                ],
+                "mood": [
+                  "melancholic",
+                  "heavy atmosphere of survival",
+                  "quiet empathy",
+                  "sense of exhaustion",
+                  "lingering uncertainty"
+                ],
+                "output_style": [
+                  "realistic narrative realism",
+                  "no text or symbols in image",
+                  "no watermarks",
+                  "no characters or logos"
+                ],
+                "style": [
+                  "photorealistic",
+                  "highly detailed",
+                  "atmospheric lighting",
+                  "cinematic texture",
+                  "documentary photography style"
+                ],
+                "subject": {
+                  "body_traits": [
+                    "male protagonist using Image 0",
+                    "tired eyes with subtle empathy",
+                    "stoic expression concealing deep inner anxiety",
+                    "slight forward lean as if listening",
+                    "worn appearance matching the rustic environment"
+                  ],
+                  "outfit": [
+                    "plain cotton work shirt with rolled sleeves",
+                    "faded apron showing signs of long-term use"
+                  ],
+                  "pose": [
+                    "standing behind the wooden service counter",
+                    "hands resting on the counter surface near a ledger",
+                    "body oriented slightly towards 货车司机-配角1",
+                    "posture reflecting professional but weary composure"
+                  ]
+                },
+                "tags": [
+                  "realistic",
+                  "cinematic",
+                  "low-saturation",
+                  "melancholic",
+                  "gritty-realism"
+                ]
+              },
+              "scene_text_hash": "4acd996b8e9154fdfd11bcd23c21be35",
+              "style": "default",
+              "url": "/image_cache/812690d74caa5ec8a7a288cd9fdc314f.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "has_scene": true,
+        "has_image": true,
+        "start_ts": 1776600744.8948307,
+        "end_ts": 1776600744.9172163
+      },
+      "main_character": {
+        "completed": true,
+        "elapsed_s": 46.37,
+        "history": [
+          {
+            "elapsed_s": 0.014,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600674_smkbcl",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:12:24.893328"
+          },
+          {
+            "elapsed_s": 2.039,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600674_smkbcl",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:12:24.893328"
+          },
+          {
+            "elapsed_s": 4.058,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600674_smkbcl",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:12:24.893328"
+          },
+          {
+            "elapsed_s": 6.066,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600674_smkbcl",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:12:24.893328"
+          },
+          {
+            "elapsed_s": 8.09,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600674_smkbcl",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:12:24.893328"
+          },
+          {
+            "elapsed_s": 10.114,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600674_smkbcl",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:12:24.893328"
+          },
+          {
+            "elapsed_s": 12.121,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600674_smkbcl",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:12:24.893328"
+          },
+          {
+            "elapsed_s": 14.129,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600674_smkbcl",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:12:24.893328"
+          },
+          {
+            "elapsed_s": 16.138,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600674_smkbcl",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:12:24.893328"
+          },
+          {
+            "elapsed_s": 18.148,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600674_smkbcl",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:12:24.893328"
+          },
+          {
+            "elapsed_s": 20.154,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600674_smkbcl",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:12:24.893328"
+          },
+          {
+            "elapsed_s": 22.187,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600674_smkbcl",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:12:24.893328"
+          },
+          {
+            "elapsed_s": 24.192,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600674_smkbcl",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:12:24.893328"
+          },
+          {
+            "elapsed_s": 26.199,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600674_smkbcl",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:12:24.893328"
+          },
+          {
+            "elapsed_s": 28.221,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600674_smkbcl",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:12:24.893328"
+          },
+          {
+            "elapsed_s": 30.247,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600674_smkbcl",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:12:24.893328"
+          },
+          {
+            "elapsed_s": 32.254,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600674_smkbcl",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:12:24.893328"
+          },
+          {
+            "elapsed_s": 34.274,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600674_smkbcl",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:12:24.893328"
+          },
+          {
+            "elapsed_s": 36.299,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600674_smkbcl",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:12:24.893328"
+          },
+          {
+            "elapsed_s": 38.307,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600674_smkbcl",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:12:24.893328"
+          },
+          {
+            "elapsed_s": 40.316,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600674_smkbcl",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:12:24.893328"
+          },
+          {
+            "elapsed_s": 42.341,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600674_smkbcl",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:12:24.893328"
+          },
+          {
+            "elapsed_s": 44.361,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600674_smkbcl",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:12:24.893328"
+          },
+          {
+            "elapsed_s": 46.37,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600674_smkbcl",
+            "image_url": "/initial/main_character/game_1776600674_smkbcl/main_character.png",
+            "ready": true,
+            "status": "completed",
+            "updated_at": "1776600791"
+          }
+        ]
+      },
+      "provider_events": {
+        "event_count": 13,
+        "queue_wait_ms": {
+          "count": 13,
+          "min": 0.0,
+          "max": 0.0,
+          "mean": 0.0,
+          "median": 0.0,
+          "p95": 0.0
+        },
+        "latency_ms": {
+          "count": 7,
+          "min": 3625.0,
+          "max": 84151.0,
+          "mean": 30544.857,
+          "median": 12932.0,
+          "p95": 80107.0
+        }
+      }
+    },
+    {
+      "benchmark_id": "DNQBV1_003",
+      "theme_id": 19,
+      "theme": "都市天台养鸽人",
+      "worldview": {
+        "benchmark_id": "DNQBV1_003",
+        "theme_id": 19,
+        "theme": "都市天台养鸽人",
+        "image_style": {
+          "type": "realistic"
+        },
+        "http_status": 200,
+        "elapsed_s": 14.877,
+        "status": "success",
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过多次上门诚恳沟通，并自费为邻居安装防鸟网，成功化解了邻里敌意，同时在物业检查前完成了鸽舍的深度清洁与加固，暂时保住了鸽舍，但主角也因此欠下了一笔不小的债务。",
+                  "main_conflict": "主角面临鸽舍被物业以“卫生不达标”为由强行拆除的危机，同时还要应对因鸽子粪便问题引发的邻里纠纷。主角在维持生计的繁重工作与修缮鸽舍的琐碎事务间疲于奔命，内心深处是对父亲留下的这份遗产被彻底抹除的极度恐惧，这种焦虑感与城市冷漠的规则产生了剧烈碰撞。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角在一次暴雨中冒死救回了被困在脚手架上的鸽群，这一举动赢得了部分邻居的尊重，但规划局最终驳回了保留申请，主角意识到无法改变大局，转而开始为鸽群寻找新的安置点。",
+                  "main_conflict": "城市规划局下达了拆迁通知，天台所在的筒子楼被列入改造范围。主角试图通过收集住户签名、向相关部门请愿来保留天台空间，却发现大部分邻居更渴望拆迁补偿款，主角的坚持被视为阻碍大家改善生活的“绊脚石”，理想与现实利益的冲突让主角陷入了深刻的孤独。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角最终选择在拆迁前夕将鸽群放飞，看着它们盘旋在城市上空，最终融入远方的天际。主角搬离了筒子楼，虽然失去了天台，但保留了鸽群的自由，在搬入新居的那个傍晚，主角释然地看着窗外，接受了生活的不完美。",
+                  "main_conflict": "拆迁进入倒计时，主角必须在搬离老楼与鸽群的生存之间做出最终抉择。主角试图将鸽群迁往郊区，却发现鸽子因恋巢性而不断飞回旧址，主角在“强行带走导致鸽子死亡”与“放归自然却面临流浪”的残酷现实中挣扎，必须面对自己终将失去这片天台的事实。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "沉浸式都市现实主义模拟，采用低饱和度写实美术风格，强调光影的颗粒感与城市噪音的真实还原，通过琐碎的日常交互构建出一种带有烟火气与疏离感的叙事氛围，让玩家在鸽群起落的节奏中体悟平凡生活的重量。",
+              "main_quest": "主角的目标是守护天台鸽舍，并将其打造为城市中一处小型的“空中避难所”，以此作为对逝去父亲的纪念及自我价值的证明。任务分为三个阶段：首先是修缮破旧的鸽舍，通过打工筹集资金并处理邻里投诉；其次是参与城市规划听证会，试图为鸽舍争取合法的保留空间；最后是面对拆迁的必然结局，主角需在“坚持留守”与“体面告别”之间做出选择。挑战在于，主角的每一次努力都会遭遇现实的阻碍——资金短缺、鸽群生病、社区管理处的强制驱逐，玩家必须在有限的资源下，平衡鸽子的生存需求与个人的生活尊严，最终达成一个既保留了珍贵记忆，又不得不接受生活变迁的现实结局。",
+              "protagonist_ability": "主角拥有“共鸣感知”，这并非超能力，而是长期与鸽群相处磨练出的敏锐观察力。通过对鸽子飞行轨迹、鸣叫频率及羽毛状态的细致捕捉，主角能精准预判天气的微小变化、判断周边环境的扰动，甚至通过鸽群的反应感知到邻里间微妙的情绪波动。这种能力受限于体力与专注度，且无法改变客观环境，只能帮助主角在复杂的人际与生存压力中，找到最合适的应对姿态，从而在琐碎的日常中维持内心的秩序。",
+              "world_basic_setting": "故事发生在一座被高楼森林切割的现代工业城市，这里没有超自然力量，只有永不停歇的通勤潮汐与不断更迭的城市规划。主角居住在老城区一栋即将拆迁的筒子楼顶层，这里是城市中最后一块未被玻璃幕墙覆盖的“高地”。鸽子不仅是主角的伙伴，更是这座城市生态的隐喻——它们在钢筋水泥间寻找缝隙筑巢，正如城市中每一个努力扎根的普通人。社会背景设定在经济转型期的阵痛中，老旧社区的拆迁计划与新兴商业区的扩张形成鲜明对比，人们在怀旧与向往中拉扯。关键事件是“天台改造计划”，主角试图通过经营鸽舍保留这片最后的宁静，却不得不面对地价上涨、邻里搬迁、鸽群生存空间被压缩的现实压力。这是一个关于在城市缝隙中寻找归属感，最终学会与时代变迁达成和解的现实故事。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1776600791_6kypzm",
+            "image_style": {
+              "type": "realistic"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "凌乱的短发、常年沾染灰尘的工装外套、眼神清澈且疲惫、指尖常有细微伤痕、习惯性抬头望天、不修边幅、沉默寡言、带着旧式哨子、瘦削但结实、总是随身携带鸽粮袋。",
+              "work_en": "Echoes of the Pigeon Whistle",
+              "work_zh": "鸽哨余音"
+            },
+            "tone": "normal_ending",
+            "user_theme": "都市天台养鸽人"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "game_id": "game_1776600791_6kypzm",
+        "start_ts": 1776600791.2983594,
+        "end_ts": 1776600806.1752658
+      },
+      "generate_option": {
+        "http_status": 200,
+        "elapsed_s": 0.011,
+        "status": "success",
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "",
+              "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：风沙敲打着“归途”驿站那块锈迹斑斑的铁皮招牌，发出沉闷的嘶鸣。我站在柜台后，指尖摩挲着那块旧手表，表盘的玻璃上有一道细微的裂痕，那是父亲当年留下的印记。屋内昏黄的灯光摇曳，空气中弥漫着廉价烟草与陈旧木料的味道。父亲在里屋的咳嗽声断断续续地传来，像是一把钝刀，一下下割着我本就紧绷的神经。账本上那串触目惊心的负债数字，在昏暗中显得格外刺眼。门外传来一阵沉重的刹车声，一辆满载货物的重卡停在路边，车灯刺破了夜色。一个满脸胡茬的男人推门而入，他抖落身上的沙尘，眼神里透着长途跋涉后的疲惫与戒备，他盯着我，声音沙哑地问：“老板，这儿还有热乎的吗？哪怕是一碗挂面也行。”我看着他，那双因常年熬夜而布满红丝的眼睛里，藏着和我相似的、被生活压弯的无奈。我深吸一口气，将那股焦虑压回心底，尽量让语气显得平和：“有的，稍等，马上就好。”"
+            },
+            "deep_background_links": {},
+            "flow_update": {},
+            "next_options": [
+              "询问男人的去向，试探能否从他口中得知国道改线的最新动向。",
+              "默默为他煮面，并借机询问他是否认识镇上那位负责拆迁的老王。"
+            ],
+            "plot_supporting_characters": [],
+            "scene": "风沙敲打着“归途”驿站那块锈迹斑斑的铁皮招牌，发出沉闷的嘶鸣。我站在柜台后，指尖摩挲着那块旧手表，表盘的玻璃上有一道细微的裂痕，那是父亲当年留下的印记。屋内昏黄的灯光摇曳，空气中弥漫着廉价烟草与陈旧木料的味道。父亲在里屋的咳嗽声断断续续地传来，像是一把钝刀，一下下割着我本就紧绷的神经。账本上那串触目惊心的负债数字，在昏暗中显得格外刺眼。门外传来一阵沉重的刹车声，一辆满载货物的重卡停在路边，车灯刺破了夜色。一个满脸胡茬的男人推门而入，他抖落身上的沙尘，眼神里透着长途跋涉后的疲惫与戒备，他盯着我，声音沙哑地问：“老板，这儿还有热乎的吗？哪怕是一碗挂面也行。”我看着他，那双因常年熬夜而布满红丝的眼睛里，藏着和我相似的、被生活压弯的无奈。我深吸一口气，将那股焦虑压回心底，尽量让语气显得平和：“有的，稍等，马上就好。”",
+            "sceneId": "-4324658513022806278_2846395837586789369",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-roadside-inn-night-encounter, realistic, cinematic, low-saturation, melancholic, gritty-realism, photorealistic, highly detailed, atmospheric lighting, cinematic texture, documentary photography style, male protagonist using Image 0, tired eyes with subtle empathy, stoic expression concealing deep inner anxiety, slight forward lean as if listening, worn appearance matching the rustic environment, plain cotton work shirt with rolled sleeves, faded apron showing signs of long-term use, standing behind the wooden service counter, hands resting on the counter surface near a ledger, body oriented slightly towards 货车司机-配角1, posture reflecting professional but weary composure, 8K detailed facial features, subtle emotional mapping in micro-expressions, eyes showing fatigue and hidden empathy, lip color naturally muted, soft shadows from dim overhead lamp highlighting facial contours, messy short dark hair with realistic texture, root fixation coefficient 0.95, tip swing amplitude 5cm, color layering: main color #2D2D2D, secondary color #1A1A1A, highlight #404040, shadow #000000, wind speed 0.2m/s from door gap, turbulence intensity 2%, cotton fabric with realistic wrinkles and wear, slight fabric flutter from draft, texture indicating humble living conditions, dimly lit interior of a rustic roadside inn, rusted iron signage visible near the entrance, wooden shelves with dusty vintage items, cracked plaster walls showing age, dim yellow light bulb flickering above, 货车司机-配角1 standing at the entrance, covered in desert dust, wearing a heavy worn-out jacket, eyes bloodshot and weary, dust particles dancing in the dim light, faint haze of tobacco smoke, harsh cold night light streaming from the open door contrasting with warm indoor lamp, desaturated earth tones, muted browns and greys, faded yellow lamp light, cold blue night tint from the doorway, low-key lighting, dim warm incandescent light from above, harsh cold moonlight/headlight reflection from entrance, dramatic shadows emphasizing the protagonist's inner conflict, type medium shot, lens 35mm, aperture f/2.0, depth_of_field shallow focus on the protagonist and the counter area, flash none, grain fine film grain, texture realistic material surfaces, protagonist positioned behind the counter on the left, 货车司机-配角1 standing at the right side of the frame, the ledger and the watch on the counter as visual anchors, action constraints: eye contact between protagonist and 货车司机-配角1, realistic narrative realism, no text or symbols in image, no watermarks, no characters or logos, melancholic, heavy atmosphere of survival, quiet empathy, sense of exhaustion, lingering uncertainty, no text, no symbols, no garbled characters, no words",
+              "prompt_json": {
+                "camera": {
+                  "aperture": "f/2.0",
+                  "depth_of_field": "shallow focus on the protagonist and the counter area",
+                  "flash": "none",
+                  "grain": "fine film grain",
+                  "lens": "35mm",
+                  "texture": "realistic material surfaces",
+                  "type": "medium shot"
+                },
+                "clothing_system": [
+                  "cotton fabric with realistic wrinkles and wear",
+                  "slight fabric flutter from draft",
+                  "texture indicating humble living conditions"
+                ],
+                "color_restriction": [
+                  "desaturated earth tones",
+                  "muted browns and greys",
+                  "faded yellow lamp light",
+                  "cold blue night tint from the doorway"
+                ],
+                "composition": [
+                  "protagonist positioned behind the counter on the left",
+                  "货车司机-配角1 standing at the right side of the frame",
+                  "the ledger and the watch on the counter as visual anchors",
+                  "action constraints: eye contact between protagonist and 货车司机-配角1"
+                ],
+                "environment": {
+                  "background": [
+                    "dimly lit interior of a rustic roadside inn",
+                    "rusted iron signage visible near the entrance",
+                    "wooden shelves with dusty vintage items",
+                    "cracked plaster walls showing age",
+                    "dim yellow light bulb flickering above"
+                  ],
+                  "characters": [
+                    "货车司机-配角1 standing at the entrance, covered in desert dust, wearing a heavy worn-out jacket, eyes bloodshot and weary"
+                  ],
+                  "effects": [
+                    "dust particles dancing in the dim light",
+                    "faint haze of tobacco smoke",
+                    "harsh cold night light streaming from the open door contrasting with warm indoor lamp"
+                  ]
+                },
+                "face_system": [
+                  "8K detailed facial features",
+                  "subtle emotional mapping in micro-expressions",
+                  "eyes showing fatigue and hidden empathy",
+                  "lip color naturally muted",
+                  "soft shadows from dim overhead lamp highlighting facial contours"
+                ],
+                "hair_system": [
+                  "messy short dark hair with realistic texture",
+                  "root fixation coefficient 0.95",
+                  "tip swing amplitude 5cm",
+                  "color layering: main color #2D2D2D, secondary color #1A1A1A, highlight #404040, shadow #000000",
+                  "wind speed 0.2m/s from door gap",
+                  "turbulence intensity 2%"
+                ],
+                "label": "scene-roadside-inn-night-encounter",
+                "lighting": [
+                  "low-key lighting",
+                  "dim warm incandescent light from above",
+                  "harsh cold moonlight/headlight reflection from entrance",
+                  "dramatic shadows emphasizing the protagonist's inner conflict"
+                ],
+                "mood": [
+                  "melancholic",
+                  "heavy atmosphere of survival",
+                  "quiet empathy",
+                  "sense of exhaustion",
+                  "lingering uncertainty"
+                ],
+                "output_style": [
+                  "realistic narrative realism",
+                  "no text or symbols in image",
+                  "no watermarks",
+                  "no characters or logos"
+                ],
+                "style": [
+                  "photorealistic",
+                  "highly detailed",
+                  "atmospheric lighting",
+                  "cinematic texture",
+                  "documentary photography style"
+                ],
+                "subject": {
+                  "body_traits": [
+                    "male protagonist using Image 0",
+                    "tired eyes with subtle empathy",
+                    "stoic expression concealing deep inner anxiety",
+                    "slight forward lean as if listening",
+                    "worn appearance matching the rustic environment"
+                  ],
+                  "outfit": [
+                    "plain cotton work shirt with rolled sleeves",
+                    "faded apron showing signs of long-term use"
+                  ],
+                  "pose": [
+                    "standing behind the wooden service counter",
+                    "hands resting on the counter surface near a ledger",
+                    "body oriented slightly towards 货车司机-配角1",
+                    "posture reflecting professional but weary composure"
+                  ]
+                },
+                "tags": [
+                  "realistic",
+                  "cinematic",
+                  "low-saturation",
+                  "melancholic",
+                  "gritty-realism"
+                ]
+              },
+              "scene_text_hash": "4acd996b8e9154fdfd11bcd23c21be35",
+              "style": "default",
+              "url": "/image_cache/812690d74caa5ec8a7a288cd9fdc314f.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "has_scene": true,
+        "has_image": true,
+        "start_ts": 1776600806.1753724,
+        "end_ts": 1776600806.1863978
+      },
+      "main_character": {
+        "completed": true,
+        "elapsed_s": 58.579,
+        "history": [
+          {
+            "elapsed_s": 0.021,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600791_6kypzm",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:13:26.175043"
+          },
+          {
+            "elapsed_s": 2.042,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600791_6kypzm",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:13:26.175043"
+          },
+          {
+            "elapsed_s": 4.061,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600791_6kypzm",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:13:26.175043"
+          },
+          {
+            "elapsed_s": 6.089,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600791_6kypzm",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:13:26.175043"
+          },
+          {
+            "elapsed_s": 8.119,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600791_6kypzm",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:13:26.175043"
+          },
+          {
+            "elapsed_s": 10.136,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600791_6kypzm",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:13:26.175043"
+          },
+          {
+            "elapsed_s": 12.159,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600791_6kypzm",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:13:26.175043"
+          },
+          {
+            "elapsed_s": 14.168,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600791_6kypzm",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:13:26.175043"
+          },
+          {
+            "elapsed_s": 16.208,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600791_6kypzm",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:13:26.175043"
+          },
+          {
+            "elapsed_s": 18.213,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600791_6kypzm",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:13:26.175043"
+          },
+          {
+            "elapsed_s": 20.229,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600791_6kypzm",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:13:26.175043"
+          },
+          {
+            "elapsed_s": 22.251,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600791_6kypzm",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:13:26.175043"
+          },
+          {
+            "elapsed_s": 24.273,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600791_6kypzm",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:13:26.175043"
+          },
+          {
+            "elapsed_s": 26.284,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600791_6kypzm",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:13:26.175043"
+          },
+          {
+            "elapsed_s": 28.29,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600791_6kypzm",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:13:26.175043"
+          },
+          {
+            "elapsed_s": 30.301,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600791_6kypzm",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:13:26.175043"
+          },
+          {
+            "elapsed_s": 32.308,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600791_6kypzm",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:13:26.175043"
+          },
+          {
+            "elapsed_s": 34.33,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600791_6kypzm",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:13:26.175043"
+          },
+          {
+            "elapsed_s": 36.351,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600791_6kypzm",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:13:26.175043"
+          },
+          {
+            "elapsed_s": 38.377,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600791_6kypzm",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:13:26.175043"
+          },
+          {
+            "elapsed_s": 40.41,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600791_6kypzm",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:13:26.175043"
+          },
+          {
+            "elapsed_s": 42.433,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600791_6kypzm",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:13:26.175043"
+          },
+          {
+            "elapsed_s": 44.459,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600791_6kypzm",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:13:26.175043"
+          },
+          {
+            "elapsed_s": 46.464,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600791_6kypzm",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:13:26.175043"
+          },
+          {
+            "elapsed_s": 48.47,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600791_6kypzm",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:13:26.175043"
+          },
+          {
+            "elapsed_s": 50.498,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600791_6kypzm",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:13:26.175043"
+          },
+          {
+            "elapsed_s": 52.504,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600791_6kypzm",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:13:26.175043"
+          },
+          {
+            "elapsed_s": 54.513,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600791_6kypzm",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:13:26.175043"
+          },
+          {
+            "elapsed_s": 56.557,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600791_6kypzm",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:13:26.175043"
+          },
+          {
+            "elapsed_s": 58.579,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600791_6kypzm",
+            "image_url": "/initial/main_character/game_1776600791_6kypzm/main_character.png",
+            "ready": true,
+            "status": "completed",
+            "updated_at": "1776600864"
+          }
+        ]
+      },
+      "provider_events": {
+        "event_count": 26,
+        "queue_wait_ms": {
+          "count": 26,
+          "min": 0.0,
+          "max": 12073.0,
+          "mean": 2306.654,
+          "median": 0.0,
+          "p95": 6428.0
+        },
+        "latency_ms": {
+          "count": 12,
+          "min": 3929.0,
+          "max": 18635.0,
+          "mean": 9533.083,
+          "median": 6501.5,
+          "p95": 18094.9
+        }
+      }
+    },
+    {
+      "benchmark_id": "DNQBV1_004",
+      "theme_id": 30,
+      "theme": "克隆体伦理庭",
+      "worldview": {
+        "benchmark_id": "DNQBV1_004",
+        "theme_id": 30,
+        "theme": "克隆体伦理庭",
+        "image_style": {
+          "type": "realistic"
+        },
+        "http_status": 200,
+        "elapsed_s": 8.893,
+        "status": "success",
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角成功掩盖了该克隆体的异常数据，并将其转移至城市边缘的废弃区，虽然保住了克隆体的“生命”，但主角因此被降职，失去了晋升核心审计组的机会，留下了职业生涯的污点。",
+                  "main_conflict": "主角在调查一名失踪的家政型克隆体时，发现其留下的记忆碎片中包含了一段不属于预设程序的“私人情感”。主角必须在伦理庭的销毁指令与对真相的探求之间做出平衡，同时还要应对职场中同事对“审计员”身份的排挤与质疑，这种来自体制内外的双重压力让主角陷入了职业生涯的首次信任危机。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角获取了部分核心证据，但因证据链不完整无法撼动高层，最终只能选择将证据匿名发布，引发了小范围的舆论关注，换取了部分受害克隆体的生存权，但主角也被彻底边缘化，失去了在伦理庭的合法身份。",
+                  "main_conflict": "随着调查深入，主角发现失踪案背后隐藏着伦理庭高层对克隆体进行非法“记忆移植”的实验。主角面临巨大的道德困境：揭露真相意味着摧毁整个社会秩序的基石，导致无数克隆体被强制报废；保持沉默则意味着成为罪恶的帮凶。主角在收集证据的过程中，与一名试图保护克隆体的地下医生建立了脆弱的羁绊。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角最终没有改变克隆体被回收的命运，但通过合法的法律程序，为该克隆体争取到了“安乐死”而非“格式化”的权利。主角在雨中目送克隆体离去，接受了自己无法改变世界的事实，回归了平凡的审计员生活，带着这份遗憾与释然，继续在灰色的城市中生存。",
+                  "main_conflict": "最终章中，主角试图帮助最后一名觉醒的克隆体逃离城市，却发现对方早已因为长期的记忆错乱而失去了生存意志。主角必须面对“拯救”与“解脱”的终极选择，同时还要处理自己因长期使用“共感解析”而导致的认知模糊，在现实的重压下，主角开始怀疑自己是否也只是系统中的一枚棋子。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为现实主义叙事模拟游戏，采用冷峻克制的写实画风，注重环境细节的颗粒感与人物微表情的捕捉。游戏节奏平缓，通过琐碎的日常工作、压抑的职场博弈与克制的对话，构建出一种“身处巨大齿轮中却试图寻找自我价值”的沉浸式体验，旨在引发玩家对生命本质与社会规训的深层共鸣。",
+              "main_quest": "主角受命调查一起涉及“克隆体自我意识觉醒”的连环失踪案。目标是查清失踪克隆体的去向，并判断其是否产生了威胁社会的独立人格。任务分为三个阶段：首先是搜集散落在城市底层的记忆碎片，拼凑出失踪者的生活轨迹；其次是深入伦理庭内部，通过审计权限获取被封锁的档案，揭开克隆体制造背后的利益链条；最后，主角需在“维护社会秩序”与“承认克隆体的人格尊严”之间做出抉择。挑战在于，主角不仅要面对来自上层的压力与阻挠，还要在不断揭露的真相中，审视自己作为人类的平庸与无力，最终在无法改变系统的前提下，为失踪者争取到一个不被彻底销毁的安置方案。",
+              "protagonist_ability": "主角作为伦理庭的“记忆审计员”，拥有一种名为“共感解析”的特殊感知力。这并非超能力，而是基于长期处理克隆体记忆数据而形成的敏锐直觉。主角可以通过接触克隆体的“记忆载体”碎片，读取其残留的感官片段与情绪波动。使用该能力会消耗大量精力，且由于记忆碎片往往带有强烈的逻辑冲突，长期使用会导致主角出现严重的偏头痛与认知偏差，必须通过定期的心理评估与药物干预来维持理智。",
+              "world_basic_setting": "故事发生于近未来的“新纪元都市”，社会高度依赖生物工程技术。为了解决人口老龄化与劳动力短缺，政府授权“伦理庭”监管克隆人产业。克隆体被视为“生物耗材”，拥有与人类无异的外表，但被植入“记忆锚点”以限制其认知。社会阶层分化严重，普通人挣扎于高昂的生存成本，而克隆体则在社会边缘从事高危或重复性劳动。关键事件“零号法案”通过后，克隆体被赋予了有限的法律地位，但社会对“人”与“非人”的界定依然模糊。城市中充斥着霓虹灯下的灰尘与永不停歇的机械轰鸣，人们在追求效率的社会中逐渐丧失了对个体的感知，伦理庭作为最高仲裁机构，其内部不仅是法律的执行者，更是掩盖无数社会裂痕的缝补匠。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1776600864_eydnws",
+            "image_style": {
+              "type": "realistic"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "黑色短发、黑框眼镜、疲惫的眼神、深灰色风衣、总是带着咖啡杯、指尖有细微的电子烧灼痕迹、沉默寡言、身形消瘦、领口总是扣得很紧、习惯性低头、袖口磨损、冷淡但温和的气质",
+              "work_en": "Memory Auditor",
+              "work_zh": "记忆审计员"
+            },
+            "tone": "normal_ending",
+            "user_theme": "克隆体伦理庭"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "game_id": "game_1776600864_eydnws",
+        "start_ts": 1776600864.7758687,
+        "end_ts": 1776600873.6692073
+      },
+      "generate_option": {
+        "http_status": 200,
+        "elapsed_s": 0.025,
+        "status": "success",
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "",
+              "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：我习惯性地用粗糙的指尖摩挲着那片泛黄的叶片，指甲缝里残留的泥土在昏暗的温室灯光下显得格外刺眼。地下城那沉闷的通风管道发出金属摩擦的吱呀声，像是一头垂死巨兽的喘息。我那略显佝偻的背影投射在布满灰尘的玻璃墙上，显得单薄而疲惫。供水系统的指示灯闪烁着危险的红光，水压计的指针已经跌落至红线以下，这意味着那些脆弱的绿芽即将因缺水而枯萎。我深陷的眼窝里，冷静而疲惫的眼神死死盯着那几根干瘪的输水管。这时，温室的沉重铁门被推开，管理处的监工老陈走了进来，他那双浑浊的眼睛扫视着我，声音沙哑且冷漠：“林远，上面的配给又削减了，这批植株的供水额度明天就会被切断，你最好想清楚，是留着这些草，还是留着你自己的那份口粮。”我没有回头，只是沉默地摩挲着叶片，感受着它们体内最后一点水分的流失，空气中弥漫着酸性尘埃渗入后的霉味，我能感觉到，我的生存与这些植物的命运正被推向不可逆的深渊。"
+            },
+            "deep_background_links": {},
+            "flow_update": {},
+            "next_options": [
+              "变卖旧时代书籍换取零件，修复供水系统。",
+              "放弃部分植株，将剩余配给用于维持自身生存。"
+            ],
+            "plot_supporting_characters": [],
+            "scene": "我习惯性地用粗糙的指尖摩挲着那片泛黄的叶片，指甲缝里残留的泥土在昏暗的温室灯光下显得格外刺眼。地下城那沉闷的通风管道发出金属摩擦的吱呀声，像是一头垂死巨兽的喘息。我那略显佝偻的背影投射在布满灰尘的玻璃墙上，显得单薄而疲惫。供水系统的指示灯闪烁着危险的红光，水压计的指针已经跌落至红线以下，这意味着那些脆弱的绿芽即将因缺水而枯萎。我深陷的眼窝里，冷静而疲惫的眼神死死盯着那几根干瘪的输水管。这时，温室的沉重铁门被推开，管理处的监工老陈走了进来，他那双浑浊的眼睛扫视着我，声音沙哑且冷漠：“林远，上面的配给又削减了，这批植株的供水额度明天就会被切断，你最好想清楚，是留着这些草，还是留着你自己的那份口粮。”我没有回头，只是沉默地摩挲着叶片，感受着它们体内最后一点水分的流失，空气中弥漫着酸性尘埃渗入后的霉味，我能感觉到，我的生存与这些植物的命运正被推向不可逆的深渊。",
+            "sceneId": "5401122274380056900_6430303219123225258",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-greenhouse-confrontation-lin-yuan, post-apocalyptic, gritty-realism, cinematic-dystopia, melancholic, industrial-decay, hyper-realistic, cinematic lighting, high-detail-texture, gritty-film-grain, desaturated-color-palette, 中年男性林远，使用Image 0参考图, 深陷的眼窝与充满疲惫的冷静眼神, 粗糙且布满细小划痕的双手，指甲缝里残留着深色的泥土, 背影略显佝偻，身体线条透出长期的劳作感, 冷静而沉默的表情，侧身面对右侧的来者, 常年穿着的深灰色旧工装，布料质感粗糙且带有磨损痕迹, 衣物上有暗淡的油污与尘埃斑点, 袖口卷起，露出布满干茧的手臂, 身体呈现微微佝偻的姿态，处于画面中央, 右手正轻轻摩挲着一株泛黄的植株叶片, 身体重心向左侧倾斜，目光聚焦于手中植物，侧对着右侧的监工老陈-配角1, 8K detailed facial features, 皮肤质感粗糙，带有长期缺乏阳光照射的苍白色泽, 眼窝深陷，眼周布满疲惫的阴影, 眼神冷漠而专注，透出对植物的复杂情感, 嘴唇紧闭，嘴角下垂，体现沉默寡言的性格, 深褐色短发，略显凌乱且带有灰尘, root fixation coefficient 0.85, tip swing amplitude 5cm, color layering: main color #3D3D3D, secondary color #2A2A2A, highlight #505050, shadow #1A1A1A, wind speed 0.2m/s, turbulence intensity 2%, 深灰色粗布工装，衣领处可见磨损的纤维, 布料上有细微的灰尘颗粒感, 袖口处因长期劳作而产生的褶皱, 昏暗的温室内部，布满灰尘的金属管道与破碎的玻璃墙, 背景中残存的几株植株，叶片呈现出极高饱和度的翠绿，与周围灰暗环境形成强烈对比, 供水管道上闪烁着刺眼的危险红光, 空气中弥漫着细微的酸性尘埃颗粒, 监工老陈-配角1站在画面右侧，身穿深蓝色制服，面部表情冷漠而浑浊, 空气中悬浮的灰尘颗粒在微弱灯光下可见, 金属管道表面的锈迹与湿润的霉味质感, 温室冷光源与红色的警示灯光交织, 整体色调为压抑的灰、暗蓝与工业金属灰, 植株部分保持极高的绿色饱和度, 警示灯的红光作为点缀色, 避免亮丽色彩，强调废墟的冷感, 昏暗的工业冷光从温室上方垂下, 供水指示灯发出的刺眼红光投射在林远的手部, 侧逆光勾勒出人物佝偻的轮廓, 阴影浓重，体现地下城的压抑感, type medium shot, lens 35mm, aperture f/4.0, depth_of_field shallow focus on protagonist's hands and the plant, flash none, grain heavy cinematic film grain, texture industrial metallic and organic leaf textures, 林远位于画面左侧中心，背对部分光源, 监工老陈-配角1位于画面右侧，形成对立构图, 焦点落在林远摩挲叶片的指尖与植物上, 强调温室空间的狭窄与压迫感, photorealistic, cinematic storytelling, no text or symbols in image, 绝望与宁静的交织, 沉重压抑的生存危机感, 孤独的坚持与机械的劳作氛围, no text, no symbols, no garbled characters, no words",
+              "prompt_json": {
+                "camera": {
+                  "aperture": "f/4.0",
+                  "depth_of_field": "shallow focus on protagonist's hands and the plant",
+                  "flash": "none",
+                  "grain": "heavy cinematic film grain",
+                  "lens": "35mm",
+                  "texture": "industrial metallic and organic leaf textures",
+                  "type": "medium shot"
+                },
+                "clothing_system": [
+                  "深灰色粗布工装，衣领处可见磨损的纤维",
+                  "布料上有细微的灰尘颗粒感",
+                  "袖口处因长期劳作而产生的褶皱"
+                ],
+                "color_restriction": [
+                  "整体色调为压抑的灰、暗蓝与工业金属灰",
+                  "植株部分保持极高的绿色饱和度",
+                  "警示灯的红光作为点缀色",
+                  "避免亮丽色彩，强调废墟的冷感"
+                ],
+                "composition": [
+                  "林远位于画面左侧中心，背对部分光源",
+                  "监工老陈-配角1位于画面右侧，形成对立构图",
+                  "焦点落在林远摩挲叶片的指尖与植物上",
+                  "强调温室空间的狭窄与压迫感"
+                ],
+                "environment": {
+                  "background": [
+                    "昏暗的温室内部，布满灰尘的金属管道与破碎的玻璃墙",
+                    "背景中残存的几株植株，叶片呈现出极高饱和度的翠绿，与周围灰暗环境形成强烈对比",
+                    "供水管道上闪烁着刺眼的危险红光",
+                    "空气中弥漫着细微的酸性尘埃颗粒"
+                  ],
+                  "characters": [
+                    "监工老陈-配角1站在画面右侧，身穿深蓝色制服，面部表情冷漠而浑浊"
+                  ],
+                  "effects": [
+                    "空气中悬浮的灰尘颗粒在微弱灯光下可见",
+                    "金属管道表面的锈迹与湿润的霉味质感",
+                    "温室冷光源与红色的警示灯光交织"
+                  ]
+                },
+                "face_system": [
+                  "8K detailed facial features",
+                  "皮肤质感粗糙，带有长期缺乏阳光照射的苍白色泽",
+                  "眼窝深陷，眼周布满疲惫的阴影",
+                  "眼神冷漠而专注，透出对植物的复杂情感",
+                  "嘴唇紧闭，嘴角下垂，体现沉默寡言的性格"
+                ],
+                "hair_system": [
+                  "深褐色短发，略显凌乱且带有灰尘",
+                  "root fixation coefficient 0.85",
+                  "tip swing amplitude 5cm",
+                  "color layering: main color #3D3D3D, secondary color #2A2A2A, highlight #505050, shadow #1A1A1A",
+                  "wind speed 0.2m/s",
+                  "turbulence intensity 2%"
+                ],
+                "label": "scene-greenhouse-confrontation-lin-yuan",
+                "lighting": [
+                  "昏暗的工业冷光从温室上方垂下",
+                  "供水指示灯发出的刺眼红光投射在林远的手部",
+                  "侧逆光勾勒出人物佝偻的轮廓",
+                  "阴影浓重，体现地下城的压抑感"
+                ],
+                "mood": [
+                  "绝望与宁静的交织",
+                  "沉重压抑的生存危机感",
+                  "孤独的坚持与机械的劳作氛围"
+                ],
+                "output_style": [
+                  "photorealistic",
+                  "cinematic storytelling",
+                  "no text or symbols in image"
+                ],
+                "style": [
+                  "hyper-realistic",
+                  "cinematic lighting",
+                  "high-detail-texture",
+                  "gritty-film-grain",
+                  "desaturated-color-palette"
+                ],
+                "subject": {
+                  "body_traits": [
+                    "中年男性林远，使用Image 0参考图",
+                    "深陷的眼窝与充满疲惫的冷静眼神",
+                    "粗糙且布满细小划痕的双手，指甲缝里残留着深色的泥土",
+                    "背影略显佝偻，身体线条透出长期的劳作感",
+                    "冷静而沉默的表情，侧身面对右侧的来者"
+                  ],
+                  "outfit": [
+                    "常年穿着的深灰色旧工装，布料质感粗糙且带有磨损痕迹",
+                    "衣物上有暗淡的油污与尘埃斑点",
+                    "袖口卷起，露出布满干茧的手臂"
+                  ],
+                  "pose": [
+                    "身体呈现微微佝偻的姿态，处于画面中央",
+                    "右手正轻轻摩挲着一株泛黄的植株叶片",
+                    "身体重心向左侧倾斜，目光聚焦于手中植物，侧对着右侧的监工老陈-配角1"
+                  ]
+                },
+                "tags": [
+                  "post-apocalyptic",
+                  "gritty-realism",
+                  "cinematic-dystopia",
+                  "melancholic",
+                  "industrial-decay"
+                ]
+              },
+              "scene_text_hash": "f05c1799d384792293f37b68cd52778f",
+              "style": "default",
+              "url": "/image_cache/66be44e95f785464026691e4c3cf7574.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "has_scene": true,
+        "has_image": true,
+        "start_ts": 1776600873.6693547,
+        "end_ts": 1776600873.6939301
+      },
+      "main_character": {
+        "completed": true,
+        "elapsed_s": 72.702,
+        "history": [
+          {
+            "elapsed_s": 0.004,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600864_eydnws",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:14:33.665558"
+          },
+          {
+            "elapsed_s": 2.024,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600864_eydnws",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:14:33.665558"
+          },
+          {
+            "elapsed_s": 4.033,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600864_eydnws",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:14:33.665558"
+          },
+          {
+            "elapsed_s": 6.041,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600864_eydnws",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:14:33.665558"
+          },
+          {
+            "elapsed_s": 8.05,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600864_eydnws",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:14:33.665558"
+          },
+          {
+            "elapsed_s": 10.059,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600864_eydnws",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:14:33.665558"
+          },
+          {
+            "elapsed_s": 12.065,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600864_eydnws",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:14:33.665558"
+          },
+          {
+            "elapsed_s": 14.087,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600864_eydnws",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:14:33.665558"
+          },
+          {
+            "elapsed_s": 16.111,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600864_eydnws",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:14:33.665558"
+          },
+          {
+            "elapsed_s": 18.132,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600864_eydnws",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:14:33.665558"
+          },
+          {
+            "elapsed_s": 20.143,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600864_eydnws",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:14:33.665558"
+          },
+          {
+            "elapsed_s": 22.168,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600864_eydnws",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:14:33.665558"
+          },
+          {
+            "elapsed_s": 24.179,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600864_eydnws",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:14:33.665558"
+          },
+          {
+            "elapsed_s": 26.202,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600864_eydnws",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:14:33.665558"
+          },
+          {
+            "elapsed_s": 28.21,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600864_eydnws",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:14:33.665558"
+          },
+          {
+            "elapsed_s": 30.228,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600864_eydnws",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:14:33.665558"
+          },
+          {
+            "elapsed_s": 32.252,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600864_eydnws",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:14:33.665558"
+          },
+          {
+            "elapsed_s": 34.28,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600864_eydnws",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:14:33.665558"
+          },
+          {
+            "elapsed_s": 36.29,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600864_eydnws",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:14:33.665558"
+          },
+          {
+            "elapsed_s": 38.312,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600864_eydnws",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:14:33.665558"
+          },
+          {
+            "elapsed_s": 40.339,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600864_eydnws",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:14:33.665558"
+          },
+          {
+            "elapsed_s": 42.356,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600864_eydnws",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:14:33.665558"
+          },
+          {
+            "elapsed_s": 44.371,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600864_eydnws",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:14:33.665558"
+          },
+          {
+            "elapsed_s": 46.377,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600864_eydnws",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:14:33.665558"
+          },
+          {
+            "elapsed_s": 48.386,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600864_eydnws",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:14:33.665558"
+          },
+          {
+            "elapsed_s": 50.444,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600864_eydnws",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:14:33.665558"
+          },
+          {
+            "elapsed_s": 52.463,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600864_eydnws",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:14:33.665558"
+          },
+          {
+            "elapsed_s": 54.48,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600864_eydnws",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:14:33.665558"
+          },
+          {
+            "elapsed_s": 56.5,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600864_eydnws",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:14:33.665558"
+          },
+          {
+            "elapsed_s": 58.53,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600864_eydnws",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:14:33.665558"
+          },
+          {
+            "elapsed_s": 60.552,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600864_eydnws",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:14:33.665558"
+          },
+          {
+            "elapsed_s": 62.557,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600864_eydnws",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:14:33.665558"
+          },
+          {
+            "elapsed_s": 64.568,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600864_eydnws",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:14:33.665558"
+          },
+          {
+            "elapsed_s": 66.651,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600864_eydnws",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:14:33.665558"
+          },
+          {
+            "elapsed_s": 68.661,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600864_eydnws",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:14:33.665558"
+          },
+          {
+            "elapsed_s": 70.693,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600864_eydnws",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:14:33.665558"
+          },
+          {
+            "elapsed_s": 72.702,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600864_eydnws",
+            "image_url": "/initial/main_character/game_1776600864_eydnws/main_character.png",
+            "ready": true,
+            "status": "completed",
+            "updated_at": "1776600945"
+          }
+        ]
+      },
+      "provider_events": {
+        "event_count": 15,
+        "queue_wait_ms": {
+          "count": 15,
+          "min": 0.0,
+          "max": 13835.0,
+          "mean": 4022.333,
+          "median": 0.0,
+          "p95": 13835.0
+        },
+        "latency_ms": {
+          "count": 8,
+          "min": 4243.0,
+          "max": 55288.0,
+          "mean": 18352.875,
+          "median": 11696.0,
+          "p95": 46021.05
+        }
+      }
+    },
+    {
+      "benchmark_id": "DNQBV1_005",
+      "theme_id": 2,
+      "theme": "月球矿难七日",
+      "worldview": {
+        "benchmark_id": "DNQBV1_005",
+        "theme_id": 2,
+        "theme": "月球矿难七日",
+        "image_style": {
+          "type": "cyberpunk"
+        },
+        "http_status": 200,
+        "elapsed_s": 35.973,
+        "status": "success",
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角成功修复通风阀门，但因救援时间过长，导致同事因伤势过重无法移动，主角最终只能在留下急救包后独自撤离，目睹舱门关闭，达成初步生存但背负愧疚。",
+                  "main_conflict": "矿区坍塌导致氧气循环系统瘫痪，主角必须在有限的备用氧气耗尽前，修复位于危险区域的通风阀门。此时，主角面临着是否要冒险救助被困在隔壁舱室、但已身受重伤的同事的抉择，救人意味着消耗宝贵的氧气与时间，可能导致自身撤离失败。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角在权衡后选择放弃部分样本以保全小队体力，最终带领幸存者抵达中转站，虽然失去了部分关键证据，但确保了大部分人的生命安全，达成阶段性生存。",
+                  "main_conflict": "幸存者小队在撤离途中遭遇岩层二次崩塌，通讯设备彻底损毁。主角必须在缺乏导航的情况下，通过分析震动频率寻找唯一的出口。此时，小队内部出现分歧，有人主张抛弃沉重的地质样本以减轻负重，而这些样本是主角证明矿难原因、为遇难者争取赔偿的唯一证据。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角最终选择带走幸存者，矿难真相随逃生舱一同坠入月球深渊。主角成功返回地球，虽然失去了职业前途与真相，但收获了幸存者的感激与内心的平静，达成不完美的圆满。",
+                  "main_conflict": "抵达地表逃生舱时，救援队告知因预算限制，逃生舱只能承载部分人员，且必须丢弃所有非必要物资。主角必须面对“带走幸存者”还是“带走矿难真相”的终极拷问，同时还要应对因长期缺氧导致的身体机能衰竭，在现实的冷酷规则下寻找平衡。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "沉浸式现实主义模拟，采用冷峻克制的叙事视角，强调生存压力下的职业操守与人性微光。画面呈现工业废土的质感，配乐以低频环境音为主，营造出一种在真空寂静中被无限放大的孤独感与紧迫感。",
+              "main_quest": "主角需在七日内，从坍塌的深层矿区撤离至地表逃生舱。任务分为三个阶段：首先是修复受损的生命维持系统以争取时间；其次是整合幸存者小队，在资源匮乏的极端环境下分配氧气与食物；最后是面对地表救援队因成本考量而可能放弃深层矿区的现实，主角必须在“牺牲部分设备以换取全员撤离”与“保全核心数据以换取个人未来”之间做出抉择。挑战不仅来自物理环境的恶化，更来自幸存者之间因生存本能而产生的信任危机，主角必须在达成目标的同时，接受某些同伴无法随行或关键资料永久损毁的既定事实。",
+              "protagonist_ability": "主角是一名拥有十年经验的“地质应力分析师”，其能力源于长期的实战经验与对矿区复杂地质结构的深刻理解。他能通过手持式声波探测仪分析岩层震动频率，预判坍塌风险。使用方式为在极度受限的氧气条件下，通过逻辑推演规划最优撤离路径。限制在于，该能力极度依赖体力与专注力，且无法改变地质灾害的客观规律，只能在既定的物理法则下寻找一线生机，无法规避因时机巧合带来的必然损失。",
+              "world_basic_setting": "近未来，人类已实现月球氦-3资源的规模化开采。故事发生在“静海基地”矿区，这里是全球能源供应的命脉，也是无数底层技术员的流放地。社会阶层固化，矿工们通过高强度轮班换取地球家人的优渥生活。七日前，一场突如其来的地壳震动导致主矿道坍塌，基地通讯中断，氧气储备进入倒计时。这里没有英雄主义的史诗，只有在有限资源下，关于“谁能活下去”的残酷博弈。社会文化崇尚“效率至上”，矿工被视为可替换的零件，而当灾难降临，这种冷漠的体制让被困者陷入了必须在“集体生存”与“个人良知”间反复横跳的困境。历史的尘埃在月球表面堆积，每个人都在为曾经的野心买单。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1776600946_433tgj",
+            "image_style": {
+              "type": "cyberpunk"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "中年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "灰白鬓角、疲惫眼神、工装制服、手部老茧、金属探测仪、沉默寡言、坚毅嘴角、微驼背、深色眼袋、实用主义风格",
+              "work_en": "Seven Days in Lunar Mine",
+              "work_zh": "月球矿难七日"
+            },
+            "tone": "normal_ending",
+            "user_theme": "月球矿难七日"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "game_id": "game_1776600946_433tgj",
+        "start_ts": 1776600946.4064207,
+        "end_ts": 1776600982.379784
+      },
+      "generate_option": {
+        "http_status": 200,
+        "elapsed_s": 28.629,
+        "status": "success",
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "",
+              "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：清晨五点，闹钟还没响，我便被一阵急促的拍门声惊醒。我揉了揉凌乱的短发，从那张嘎吱作响的旧木床上坐起，工装外套上还沾着昨晚清理鸽舍时留下的灰尘。推开门，物业经理王大志正黑着脸站在走廊里，手里攥着一纸盖了红章的“限期整改通知”。他指着我那间紧邻天台的简陋鸽舍，语气生硬：“林远，这已经是这个月第三次收到投诉了！鸽粪的味道顺着通风口飘进楼下住户家里，人家孩子都哮喘了。今天之内，要么把这些鸽子全处理掉，要么你自己搬走，这天台以后不许再养任何带毛的东西！”\n\n我下意识地摸了摸口袋里那袋还没开封的鸽粮，指尖的细微伤痕在清晨的冷风中微微发痛。我抬头望向天台，几只鸽子正不安地在栏杆上踱步，似乎预感到了某种威胁。我沉默地看着王大志，喉咙有些发干，父亲留下的这份遗产，难道真的要在我手里终结吗？我深吸一口气，试图在脑海中寻找应对的策略，却只感到一种深深的疲惫。"
+            },
+            "deep_background_links": {},
+            "flow_update": {},
+            "next_options": [
+              "诚恳请求王大志宽限几天，并承诺立刻清理卫生并安装防鸟网。",
+              "询问楼下住户的具体情况，试图通过私人沟通解决矛盾。"
+            ],
+            "plot_supporting_characters": [],
+            "scene": "清晨五点，闹钟还没响，我便被一阵急促的拍门声惊醒。我揉了揉凌乱的短发，从那张嘎吱作响的旧木床上坐起，工装外套上还沾着昨晚清理鸽舍时留下的灰尘。推开门，物业经理王大志正黑着脸站在走廊里，手里攥着一纸盖了红章的“限期整改通知”。他指着我那间紧邻天台的简陋鸽舍，语气生硬：“林远，这已经是这个月第三次收到投诉了！鸽粪的味道顺着通风口飘进楼下住户家里，人家孩子都哮喘了。今天之内，要么把这些鸽子全处理掉，要么你自己搬走，这天台以后不许再养任何带毛的东西！”\n\n我下意识地摸了摸口袋里那袋还没开封的鸽粮，指尖的细微伤痕在清晨的冷风中微微发痛。我抬头望向天台，几只鸽子正不安地在栏杆上踱步，似乎预感到了某种威胁。我沉默地看着王大志，喉咙有些发干，父亲留下的这份遗产，难道真的要在我手里终结吗？我深吸一口气，试图在脑海中寻找应对的策略，却只感到一种深深的疲惫。",
+            "sceneId": "2702859783639355542_-6232319477117140984",
+            "scene_image": null
+          },
+          "status": "success"
+        },
+        "has_scene": true,
+        "has_image": false,
+        "start_ts": 1776600982.3798878,
+        "end_ts": 1776601011.00937
+      },
+      "main_character": {
+        "completed": true,
+        "elapsed_s": 32.38,
+        "history": [
+          {
+            "elapsed_s": 0.005,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600946_433tgj",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:16:22.375582"
+          },
+          {
+            "elapsed_s": 2.027,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600946_433tgj",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:16:22.375582"
+          },
+          {
+            "elapsed_s": 4.053,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600946_433tgj",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:16:22.375582"
+          },
+          {
+            "elapsed_s": 6.078,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600946_433tgj",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:16:22.375582"
+          },
+          {
+            "elapsed_s": 8.098,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600946_433tgj",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:16:22.375582"
+          },
+          {
+            "elapsed_s": 10.107,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600946_433tgj",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:16:22.375582"
+          },
+          {
+            "elapsed_s": 12.131,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600946_433tgj",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:16:22.375582"
+          },
+          {
+            "elapsed_s": 14.16,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600946_433tgj",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:16:22.375582"
+          },
+          {
+            "elapsed_s": 16.22,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600946_433tgj",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:16:22.375582"
+          },
+          {
+            "elapsed_s": 18.243,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600946_433tgj",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:16:22.375582"
+          },
+          {
+            "elapsed_s": 20.263,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600946_433tgj",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:16:22.375582"
+          },
+          {
+            "elapsed_s": 22.277,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600946_433tgj",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:16:22.375582"
+          },
+          {
+            "elapsed_s": 24.3,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600946_433tgj",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:16:22.375582"
+          },
+          {
+            "elapsed_s": 26.329,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600946_433tgj",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:16:22.375582"
+          },
+          {
+            "elapsed_s": 28.346,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600946_433tgj",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:16:22.375582"
+          },
+          {
+            "elapsed_s": 30.375,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600946_433tgj",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:16:22.375582"
+          },
+          {
+            "elapsed_s": 32.38,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776600946_433tgj",
+            "image_url": "/initial/main_character/game_1776600946_433tgj/main_character.png",
+            "ready": true,
+            "status": "completed",
+            "updated_at": "1776601043"
+          }
+        ]
+      },
+      "provider_events": {
+        "event_count": 19,
+        "queue_wait_ms": {
+          "count": 19,
+          "min": 0.0,
+          "max": 28570.0,
+          "mean": 2657.263,
+          "median": 0.0,
+          "p95": 9585.4
+        },
+        "latency_ms": {
+          "count": 9,
+          "min": 4086.0,
+          "max": 35947.0,
+          "mean": 16593.556,
+          "median": 11744.0,
+          "p95": 34250.6
+        }
+      }
+    },
+    {
+      "benchmark_id": "DNQBV1_006",
+      "theme_id": 7,
+      "theme": "星际走私航线",
+      "worldview": {
+        "benchmark_id": "DNQBV1_006",
+        "theme_id": 7,
+        "theme": "星际走私航线",
+        "image_style": {
+          "type": "cyberpunk"
+        },
+        "http_status": 200,
+        "elapsed_s": 17.886,
+        "status": "success",
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过透支身体进行高强度导航，成功完成了一次短途走私，凑齐了引擎维修费，但代价是失去了部分短期记忆，且飞船因超负荷运转留下了不可逆的结构损伤。",
+                  "main_conflict": "主角面临飞船核心引擎报废的危机，必须在三天内筹集巨额维修费。与此同时，黑市中间人给出一份高风险的违禁品运输订单，报酬丰厚但极易被联邦发现。主角在“稳妥但贫穷”与“冒险但可能翻身”之间挣扎，同时还要应对房东的驱逐威胁与母亲日益恶化的病情，生活压力如影随形。 矛盾结束条件：主角通过透支身体进行高强度导航，成功完成了一次短途走私，凑齐了引擎维修费，但代价是失去了部分短期记忆，且飞船因超负荷运转留下了不可逆的结构损伤。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角选择折中方案，将避难者送至中转站而非目的地，虽然错过了最佳航行窗口导致任务报酬缩水，但保住了良知，同时也因违规操作被列入联邦的重点监控名单。",
+                  "main_conflict": "在穿越联邦封锁区时，主角意外发现货物中混入了被联邦通缉的政治避难者。此时飞船燃料告急，若携带额外负重将无法通过引力缝隙，若抛弃对方则意味着其必死无疑。主角在“完成任务换取身份”与“救人导致任务失败”之间陷入道德困境，同时还要应对联邦巡逻舰的实时追踪。 矛盾结束条件：主角选择折中方案，将避难者送至中转站而非目的地，虽然错过了最佳航行窗口导致任务报酬缩水，但保住了良知，同时也因违规操作被列入联邦的重点监控名单。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角放弃了部分货物以减轻载重，飞船勉强冲出风暴，虽然任务目标仅达成了一半，信用点仅够维持母亲短期治疗，但主角最终平安归来，在星港的夕阳下，他接受了这种“努力过但依然不够完美”的结局，与自己平凡且充满遗憾的人生达成了和解。 【主角规范信息】 主角姓名(中)：林恩 主角姓名(英)：Lynn 性别：男性 年龄感：青年 所属作品(中)：星尘航线 所属作品(英)：Stardust Route 标志性外观关键词：凌乱的深棕色短发，眼下有明显的黑眼圈，穿着磨损严重的飞行夹克，左手腕佩戴着陈旧的神经链接接口，眼神疲惫但专注，身形消瘦，常年带着一股机油与冷空气的味道。 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决",
+                  "main_conflict": "最终航线遭遇突发引力风暴，飞船面临解体风险。主角必须在“抛弃货物保全飞船”与“强行突围可能导致飞船坠毁”之间抉择。此时主角的神经植入装置已达极限，每一次感知都伴随着剧痛，他意识到即便完成任务，获得的信用点也已不足以支付母亲后续的长期治疗费用，现实的残酷彻底击碎了最初的幻想。 矛盾结束条件：主角放弃了部分货物以减轻载重，飞船勉强冲出风暴，虽然任务目标仅达成了一半，信用点仅够维持母亲短期治疗，但主角最终平安归来，在星港的夕阳下，他接受了这种“努力过但依然不够完美”的结局，与自己平凡且充满遗憾的人生达成了和解。 【主角规范信息】 主角姓名(中)：林恩 主角姓名(英)：Lynn 性别：男性 年龄感：青年 所属作品(中)：星尘航线 所属作品(英)：Stardust Route 标志性外观关键词：凌乱的深棕色短发，眼下有明显的黑眼圈，穿着磨损严重的飞行夹克，左手腕佩戴着陈旧的神经链接接口，眼神疲惫但专注，身形消瘦，常年带着一股机油与冷空气的味道。 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "沉浸式现实主义科幻，强调工业质感与星际航运的孤独感。画面色调偏向冷峻的金属灰与深空蓝，配乐以低频环境音为主，营造出一种在浩瀚宇宙中为了生计奔波的真实压抑与宁静。",
+              "main_quest": "主角的目标是完成“深渊航线”的最后一次运输任务，赚取足够的信用点以支付母亲在核心星区的医疗费用，并获得合法公民身份。任务分为三个阶段：首先是筹集飞船维修资金，在混乱的黑市中寻找可靠的买家；其次是穿越被联邦巡逻队封锁的禁区，利用“共鸣导航”规避雷达；最后是面对突发的引力风暴，在飞船受损与燃料耗尽的绝境中，做出关于“货物”与“自身安全”的最终抉择。挑战不仅来自外部的巡逻舰与星际海盗，更来自主角自身不断恶化的身体状况，以及在利益与良知之间反复摇摆的道德困境。",
+              "protagonist_ability": "主角拥有一套名为“共鸣导航”的神经植入装置，这是其父亲留下的旧时代遗产。通过与飞船老旧的AI系统进行神经链接，主角能感知到引力波的细微扰动，从而在复杂的航线中寻找最优路径。然而，该能力会持续损耗使用者的神经元，长期使用会导致记忆力衰退与感官迟钝，且装置极易过热，在关键时刻若无法及时切断链接，极易造成永久性的认知损伤。",
+              "world_basic_setting": "故事发生于人类星际扩张后的“后黄金时代”。星际联邦的繁荣早已被官僚主义与垄断企业瓜分，边缘星域的资源枯竭，导致大量底层平民被迫依附于灰色航线生存。这里没有英雄史诗，只有无数像血管一样交错的“走私航线”。由于超空间跃迁技术的成本高昂，民间货运飞船必须在不稳定的引力缝隙中穿行，这种航行极度依赖老旧的导航算法与驾驶员的直觉。社会阶层固化严重，底层人通过走私违禁的医疗物资、旧时代零件或个人记忆芯片来换取微薄的信用点。这里没有绝对的善恶，只有为了生存而不断妥协的规则。关键事件“大停电”后，星际网络碎片化，各星区间的联系变得脆弱，走私成了维持边缘星球运转的唯一生命线，而主角正是在这种环境下，试图通过一次次高风险航行，为自己和家人换取一张通往核心星区的“合法居住证”。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "environment": {}
+            },
+            "game_id": "game_1776601043_vjb3qd",
+            "image_style": {
+              "type": "cyberpunk"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "gender": "男性"
+            },
+            "tone": "normal_ending",
+            "user_theme": "星际走私航线"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "game_id": "game_1776601043_vjb3qd",
+        "start_ts": 1776601043.4069266,
+        "end_ts": 1776601061.292664
+      },
+      "generate_option": {
+        "http_status": 200,
+        "elapsed_s": 0.029,
+        "status": "success",
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "",
+              "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：清晨五点，闹钟还没响，我便被一阵急促的拍门声惊醒。我揉了揉凌乱的短发，从那张嘎吱作响的旧木床上坐起，工装外套上还沾着昨晚清理鸽舍时留下的灰尘。推开门，物业经理王大志正黑着脸站在走廊里，手里攥着一纸盖了红章的“限期整改通知”。他指着我那间紧邻天台的简陋鸽舍，语气生硬：“林远，这已经是这个月第三次收到投诉了！鸽粪的味道顺着通风口飘进楼下住户家里，人家孩子都哮喘了。今天之内，要么把这些鸽子全处理掉，要么你自己搬走，这天台以后不许再养任何带毛的东西！”\n\n我下意识地摸了摸口袋里那袋还没开封的鸽粮，指尖的细微伤痕在清晨的冷风中微微发痛。我抬头望向天台，几只鸽子正不安地在栏杆上踱步，似乎预感到了某种威胁。我沉默地看着王大志，喉咙有些发干，父亲留下的这份遗产，难道真的要在我手里终结吗？我深吸一口气，试图在脑海中寻找应对的策略，却只感到一种深深的疲惫。"
+            },
+            "deep_background_links": {},
+            "flow_update": {},
+            "next_options": [
+              "诚恳请求王大志宽限几天，并承诺立刻清理卫生并安装防鸟网。",
+              "询问楼下住户的具体情况，试图通过私人沟通解决矛盾。"
+            ],
+            "plot_supporting_characters": [],
+            "scene": "清晨五点，闹钟还没响，我便被一阵急促的拍门声惊醒。我揉了揉凌乱的短发，从那张嘎吱作响的旧木床上坐起，工装外套上还沾着昨晚清理鸽舍时留下的灰尘。推开门，物业经理王大志正黑着脸站在走廊里，手里攥着一纸盖了红章的“限期整改通知”。他指着我那间紧邻天台的简陋鸽舍，语气生硬：“林远，这已经是这个月第三次收到投诉了！鸽粪的味道顺着通风口飘进楼下住户家里，人家孩子都哮喘了。今天之内，要么把这些鸽子全处理掉，要么你自己搬走，这天台以后不许再养任何带毛的东西！”\n\n我下意识地摸了摸口袋里那袋还没开封的鸽粮，指尖的细微伤痕在清晨的冷风中微微发痛。我抬头望向天台，几只鸽子正不安地在栏杆上踱步，似乎预感到了某种威胁。我沉默地看着王大志，喉咙有些发干，父亲留下的这份遗产，难道真的要在我手里终结吗？我深吸一口气，试图在脑海中寻找应对的策略，却只感到一种深深的疲惫。",
+            "sceneId": "2702859783639355542_-6232319477117140984",
+            "scene_image": null
+          },
+          "status": "success"
+        },
+        "has_scene": true,
+        "has_image": false,
+        "start_ts": 1776601061.292796,
+        "end_ts": 1776601061.321758
+      },
+      "main_character": {
+        "completed": true,
+        "elapsed_s": 56.406,
+        "history": [
+          {
+            "elapsed_s": 0.014,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776601043_vjb3qd",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:17:41.292212"
+          },
+          {
+            "elapsed_s": 2.021,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776601043_vjb3qd",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:17:41.292212"
+          },
+          {
+            "elapsed_s": 4.027,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776601043_vjb3qd",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:17:41.292212"
+          },
+          {
+            "elapsed_s": 6.032,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776601043_vjb3qd",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:17:41.292212"
+          },
+          {
+            "elapsed_s": 8.049,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776601043_vjb3qd",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:17:41.292212"
+          },
+          {
+            "elapsed_s": 10.071,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776601043_vjb3qd",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:17:41.292212"
+          },
+          {
+            "elapsed_s": 12.093,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776601043_vjb3qd",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:17:41.292212"
+          },
+          {
+            "elapsed_s": 14.114,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776601043_vjb3qd",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:17:41.292212"
+          },
+          {
+            "elapsed_s": 16.12,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776601043_vjb3qd",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:17:41.292212"
+          },
+          {
+            "elapsed_s": 18.142,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776601043_vjb3qd",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:17:41.292212"
+          },
+          {
+            "elapsed_s": 20.16,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776601043_vjb3qd",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:17:41.292212"
+          },
+          {
+            "elapsed_s": 22.174,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776601043_vjb3qd",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:17:41.292212"
+          },
+          {
+            "elapsed_s": 24.182,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776601043_vjb3qd",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:17:41.292212"
+          },
+          {
+            "elapsed_s": 26.191,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776601043_vjb3qd",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:17:41.292212"
+          },
+          {
+            "elapsed_s": 28.208,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776601043_vjb3qd",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:17:41.292212"
+          },
+          {
+            "elapsed_s": 30.217,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776601043_vjb3qd",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:17:41.292212"
+          },
+          {
+            "elapsed_s": 32.233,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776601043_vjb3qd",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:17:41.292212"
+          },
+          {
+            "elapsed_s": 34.243,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776601043_vjb3qd",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:17:41.292212"
+          },
+          {
+            "elapsed_s": 36.247,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776601043_vjb3qd",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:17:41.292212"
+          },
+          {
+            "elapsed_s": 38.265,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776601043_vjb3qd",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:17:41.292212"
+          },
+          {
+            "elapsed_s": 40.291,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776601043_vjb3qd",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:17:41.292212"
+          },
+          {
+            "elapsed_s": 42.316,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776601043_vjb3qd",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:17:41.292212"
+          },
+          {
+            "elapsed_s": 44.337,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776601043_vjb3qd",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:17:41.292212"
+          },
+          {
+            "elapsed_s": 46.343,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776601043_vjb3qd",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:17:41.292212"
+          },
+          {
+            "elapsed_s": 48.366,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776601043_vjb3qd",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:17:41.292212"
+          },
+          {
+            "elapsed_s": 50.372,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776601043_vjb3qd",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:17:41.292212"
+          },
+          {
+            "elapsed_s": 52.391,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776601043_vjb3qd",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:17:41.292212"
+          },
+          {
+            "elapsed_s": 54.4,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776601043_vjb3qd",
+            "image_url": "",
+            "ready": false,
+            "status": "generating",
+            "updated_at": "2026-04-19T20:17:41.292212"
+          },
+          {
+            "elapsed_s": 56.406,
+            "http_status": 200,
+            "error": "",
+            "game_id": "game_1776601043_vjb3qd",
+            "image_url": "/initial/main_character/game_1776601043_vjb3qd/main_character.png",
+            "ready": true,
+            "status": "completed",
+            "updated_at": "1776601117"
+          }
+        ]
+      },
+      "provider_events": {
+        "event_count": 21,
+        "queue_wait_ms": {
+          "count": 21,
+          "min": 0.0,
+          "max": 28570.0,
+          "mean": 7523.524,
+          "median": 4625.0,
+          "p95": 21602.0
+        },
+        "latency_ms": {
+          "count": 11,
+          "min": 4623.0,
+          "max": 25428.0,
+          "mean": 11767.0,
+          "median": 9661.0,
+          "p95": 24824.5
+        }
+      }
+    }
+  ]
+}

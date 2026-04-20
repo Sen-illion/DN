@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "C:\Users\zhang\Desktop\DN\src\image\api_providers.py", line 838, in generate_main_character_image
+    is_anime = image_style and image_style.get("type") == "anime"
+                               ^^^^^^^^^^^^^^^
+AttributeError: 'str' object has no attribute 'get'
+Traceback (most recent call last):
+  File "C:\Users\zhang\Desktop\DN\src\image\api_providers.py", line 838, in generate_main_character_image
+    is_anime = image_style and image_style.get("type") == "anime"
+                               ^^^^^^^^^^^^^^^
+AttributeError: 'str' object has no attribute 'get'

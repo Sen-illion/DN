@@ -1,0 +1,77 @@
+{
+  "benchmark_name": "DN-quality-benchmark-v1",
+  "fullchain_rows": 12,
+  "worldview_rows": 16,
+  "summary_metrics": [
+    {
+      "dataset": "fullchain_default_12",
+      "metric": "worldview_success_rate",
+      "value": 1.0
+    },
+    {
+      "dataset": "fullchain_default_12",
+      "metric": "first_scene_success_rate",
+      "value": 1.0
+    },
+    {
+      "dataset": "fullchain_default_12",
+      "metric": "image_return_rate",
+      "value": 1.0
+    },
+    {
+      "dataset": "fullchain_default_12",
+      "metric": "main_character_completion_rate",
+      "value": 1.0
+    },
+    {
+      "dataset": "fullchain_default_12",
+      "metric": "option_count_ge_2_rate",
+      "value": 1.0
+    },
+    {
+      "dataset": "fullchain_default_12",
+      "metric": "fallback_trigger_rate",
+      "value": 0.0
+    },
+    {
+      "dataset": "fullchain_default_12",
+      "metric": "scene_prompt_pollution_rate",
+      "value": 0.0
+    },
+    {
+      "dataset": "fullchain_default_12",
+      "metric": "protagonist_prompt_pollution_rate",
+      "value": 0.0
+    },
+    {
+      "dataset": "fullchain_default_12",
+      "metric": "protagonist_prompt_garbled_rate",
+      "value": 0.0
+    },
+    {
+      "dataset": "worldview_default_8",
+      "metric": "worldview_success_rate",
+      "value": 1.0
+    },
+    {
+      "dataset": "worldview_no_council_8",
+      "metric": "worldview_success_rate",
+      "value": 1.0
+    },
+    {
+      "dataset": "worldview_default_8",
+      "metric": "garbled_text_rate",
+      "value": 0.0
+    },
+    {
+      "dataset": "worldview_no_council_8",
+      "metric": "garbled_text_rate",
+      "value": 0.0
+    }
+  ],
+  "notes": [
+    "prompt_pollution_rate 目前使用规则匹配，仅能覆盖显式异常文本",
+    "garbled_rate 使用乱码启发式判断，适合作为异常告警而非最终质量结论",
+    "该脚本输出的指标用于为效率实验增加效果护栏，不替代人工评分"
+  ]
+}

@@ -24,6 +24,58 @@ def _skip_protagonist_reference(global_state: Optional[Dict]) -> bool:
         return True
     return os.getenv("EXPERIMENT_SKIP_PROTAGONIST_REF", "").strip().lower() in ("1", "true", "yes")
 
+def _read_main_character_front_status(metadata_path: Path) -> Optional[Dict[str, Any]]:
+    if not metadata_path.exists():
+        return None
+    try:
+        with open(metadata_path, "r", encoding="utf-8") as f:
+            metadata = json.load(f) or {}
+    except Exception:
+        return None
+    if not isinstance(metadata, dict):
+        return None
+    views = metadata.get("views") if isinstance(metadata.get("views"), dict) else {}
+    front = views.get("front") if isinstance(views.get("front"), dict) else {}
+    return {
+        "status": str(front.get("status") or metadata.get("status") or "").strip().lower(),
+        "error": str(front.get("error") or metadata.get("error") or "").strip(),
+        "failed_at": str(front.get("failed_at") or metadata.get("failed_at") or "").strip(),
+    }
+
+
+def _wait_for_main_character_front(game_id: str, global_state: Optional[Dict[str, Any]]) -> Dict[str, Any]:
+    main_character_dir = Path("initial") / "main_character" / game_id
+    front_path = main_character_dir / "main_character.png"
+    metadata_path = main_character_dir / "metadata.json"
+    wait_timeout = int(os.getenv("INITIAL_SCENE_WAIT_MAIN_CHARACTER_SECONDS", "180"))
+    poll_interval = max(1, int(os.getenv("INITIAL_SCENE_WAIT_POLL_SECONDS", "2")))
+    waited = 0
+    last_status = ""
+    while waited < wait_timeout:
+        if front_path.exists():
+            return {"ready": True, "waited": waited, "reason": "front_ready"}
+        status_info = _read_main_character_front_status(metadata_path)
+        status = (status_info or {}).get("status", "")
+        if status:
+            last_status = status
+        if status == "failed":
+            return {
+                "ready": False,
+                "waited": waited,
+                "reason": "front_failed",
+                "error": (status_info or {}).get("error", ""),
+            }
+        time.sleep(poll_interval)
+        waited += poll_interval
+    return {
+        "ready": front_path.exists(),
+        "waited": waited,
+        "reason": "timeout",
+        "last_status": last_status,
+        "timeout": wait_timeout,
+    }
+
+
 
 _TERMINAL_PUNCTUATION = frozenset(
     "\u3002\uff01\uff1f\u2026"
@@ -692,18 +744,19 @@ def _generate_single_option(i: int, option: str, global_state: Dict) -> Dict:
                     if is_initial_scene and not _skip_protagonist_reference(global_state):
                         game_id = global_state.get("game_id") if isinstance(global_state, dict) else None
                         if game_id:
-                            main_character_dir = Path("initial") / "main_character" / game_id
-                            front_path = main_character_dir / "main_character.png"
-                            wait_timeout = 120  # 最多等待 120 秒
-                            poll_interval = 2
-                            waited = 0
-                            while not front_path.exists() and waited < wait_timeout:
-                                time.sleep(poll_interval)
-                                waited += poll_interval
-                            if front_path.exists():
-                                print(f"✅ 主角正面图已就绪，开始生成初始场景图片（等待 {waited} 秒）")
+                            wait_result = _wait_for_main_character_front(game_id, global_state)
+                            if wait_result.get("ready"):
+                                print(f"✅ 主角正面图已就绪，开始生成初始场景图片（等待 {wait_result.get('waited', 0)} 秒）")
+                            elif wait_result.get("reason") == "front_failed":
+                                print(
+                                    f"⚠️ 主角正面图生成已失败（等待 {wait_result.get('waited', 0)} 秒），"
+                                    f"错误：{wait_result.get('error') or 'unknown'}，将先不使用主角参考图生成场景"
+                                )
                             else:
-                                print(f"⚠️ 等待主角正面图超时（{wait_timeout} 秒），将不使用主角参考图生成场景")
+                                print(
+                                    f"⚠️ 等待主角正面图超时（{wait_result.get('timeout', 0)} 秒），"
+                                    f"最近状态：{wait_result.get('last_status') or 'unknown'}，将先不使用主角参考图生成场景"
+                                )
                     print(f"🎨 正在为选项 {i+1} 生成场景图片（启用本地缓存）...")
                     scene_image = generate_scene_image(scene, global_state, "default", use_cache=True)
                     if scene_image and scene_image.get('url'):

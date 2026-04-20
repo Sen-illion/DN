@@ -1,953 +1,639 @@
-# DN 效率实验方案修订版
-
-本文档面向 DN 项目的后续效率性实验设计，先补充“实验前可优化项分析”，再给出正式的效率实验方案。目标不是先把系统整体做成最优，而是先识别：
-
-- 哪些问题属于必须先加的工程护栏，否则后续效率实验会被明显的工程瓶颈污染；
-- 哪些问题应该保留为实验变量，而不应在实验前提前“优化掉”；
-- 在云雾 API 限流约束和玩家界面的图文同步目标下，DN 当前系统最值得优先落地的优化项是什么。
-
----
-
-## 一、实验前可优化项分析
-
-### 1.1 当前系统中的两个关键前提
-
-#### 前提 A：云雾 API 并发限流会直接影响 DN 的效率与稳定性
-
-结合当前代码，DN 中至少有以下并发或异步请求源会打到云雾 API 或其上游链路：
-
-- `src/llm/council_core.py`
-  - `run_full_council_sync()` 在 Stage1/Stage2 会用 `ThreadPoolExecutor` 并发请求多个模型；
-- `src/story/options.py`
-  - `generate_all_options()`、`_generate_images_parallel()` 会并行生成多选项文本或配图；
-- `server/pregeneration.py`
-  - Web 端会做两层预生成，且存在“当前层文本 -> 下一层文本 -> 下一层图片”的异步流水线；
-- `game_server.py`
-  - 用户前台请求与后台预生成会同时存在；
-- `src/image/api_providers.py`
-  - 场景图、主角图、图生图、下载缓存、轮询都可能形成连续请求；
-- `src/llm/api.py`
-  - 当前有 timeout 与 retry，但没有统一 provider 级请求预算和排队层。
-
-在这种结构下，只要实验批量运行、Web 端预生成开启、图文联合模式开启，云雾 API 的限流就不再是“偶发异常”，而会变成系统级干扰项：
-
-- 会抬高平均响应时间；
-- 会拉高 p95/p99 尾延迟；
-- 会放大重试成本；
-- 会让“真实模型推理效率”与“上游限流导致的等待”混在一起；
-- 会导致实验不可复现：同样的实验参数，不同时间段可能得到显著不同结果。
-
-#### 前提 B：玩家界面的目标是图文尽量同时呈现，而不是文本先到、图片很久之后补齐
-
-结合当前代码，DN 的 Web 链路已经具备部分图文异步协同基础，但还不是严格的“图文同步编排”：
-
-- `game_server.py`
-  - 已有 `/events` SSE 推送；
-  - `/generate-option` 负责主链剧情返回；
-  - `/generate-scene-image` 可单独补图；
-- `server/pregeneration.py`
-  - 文本和图片预生成是流水线式的，但并不总是与前端展示节奏严格对齐；
-- `src/story/options.py`
-  - `_generate_single_option()` 在部分路径中会直接同步生图；
-  - `_generate_single_option_text_only()` 则完全不管图像；
-- `src/image/api_providers.py`
-  - 图像生成链路天然比文本慢，且受 provider、缓存命中、参考图下载等影响较大。
-
-因此，当前系统中影响“图文同步呈现”的主要链路问题是：
-
-- 文本生成与图像生成耗时差异大；
-- 前台请求与后台生图缺少统一优先级与配额编排；
-- 接口返回协议以“拿到什么就先回什么”为主，没有统一的双阶段响应模型；
-- 预生成虽能缩短部分等待，但也可能因为限流导致反向拖慢真正的玩家请求。
-
----
-
-### 1.2 优化项优先级排序与排序理由
-
-本文将实验前优化项按 P0 / P1 / P2 分层：
-
-- P0：建议在实验前优先完成，否则会污染效率实验结论；
-- P1：建议做成可开关机制，默认保守开启；
-- P2：不建议在正式效率实验前默认开启，应保留为实验变量或后续优化。
-
-排序理由如下：
-
-1. 先处理会破坏实验有效性的系统性噪声；
-2. 再处理能改善图文同步体验、但不必强行固定为唯一方案的编排优化；
-3. 最后保留那些会改变系统能力边界、缓存复用程度或请求形态的增强手段，避免掩盖真实性能问题。
-
----
-
-### 1.3 P0：建议在实验前优先完成的优化项
-
-#### P0-1 全局并发门控与 provider 级配额控制
-
-- 优化点名称
-  - 全局并发门控与 provider 级配额控制
-- 所针对的问题
-  - DN 当前不同线程、不同接口都可能同时请求云雾 API，造成 429、抖动、排队失控和长尾延迟放大。
-- 适用前提
-  - Web 模式；
-  - 批量实验；
-  - 预生成开启；
-  - 图文联合模式；
-  - 使用云雾 API 作为核心 LLM 或图像 provider。
-- 实施方式
-  - 在 `src/llm/api.py` 与 `src/image/api_providers.py` 入口层增加统一的 provider 级 semaphore / token bucket；
-  - 按请求类型分池，例如：
-    - 世界观生成池；
-    - 单轮剧情池；
-    - 图像生成池；
-  - 为实验模式增加严格上限配置，例如：
-    - `EXPERIMENT_LLM_MAX_INFLIGHT`
-    - `EXPERIMENT_IMAGE_MAX_INFLIGHT`
-  - 将现有 `_YUNWU_RATE_LOCK` 从“局部限速工具”提升为“统一 provider 预算控制”的一部分。
-- 预期收益
-  - 限制瞬时请求洪峰；
-  - 降低 429 与 timeout；
-  - 降低重试放大的尾延迟；
-  - 让实验结果更稳定、更可复现。
-- 可能副作用或风险
-  - 平均时延可能略升；
-  - 若限额过低，会牺牲吞吐；
-  - 若只做静态阈值，不做动态观察，可能导致资源利用不足。
-- 是否建议在实验前优先完成
-  - 是。
-- 分类
-  - 工程护栏
-
-#### P0-2 统一排队与请求调度层
-
-- 优化点名称
-  - 统一排队与请求调度层
-- 所针对的问题
-  - 当前预生成、用户前台请求、图像补图会竞争同一 provider 配额，后台 speculative work 可能挤占前台交互请求。
-- 适用前提
-  - Web 在线交互与后台预生成同时存在；
-  - `/generate-option`、`/pregenerate-next-layers`、`/generate-scene-image` 并行活跃。
-- 实施方式
-  - 引入请求优先级：
-    - P0：玩家当前可见请求；
-    - P1：首屏相关图片；
-    - P2：下一层文本预生成；
-    - P3：下一层图片预生成；
-  - 当前台请求到来时，可暂停、降权或取消低优先级预生成；
-  - 对图像补图请求与剧情主链请求分配不同队列；
-  - 在实验模式中固定调度策略，避免实验组之间调度行为不一致。
-- 预期收益
-  - 避免后台任务拖慢玩家交互；
-  - 降低“实验测到的是调度失控而不是模型本身”的风险；
-  - 让后续预生成实验更有可解释性。
-- 可能副作用或风险
-  - 实现复杂度明显增加；
-  - 若调度过于保守，预生成命中率下降；
-  - 若取消策略不当，可能带来重复计算。
-- 是否建议在实验前优先完成
-  - 是。
-- 分类
-  - 工程护栏
-
-#### P0-3 429/超时感知的限流保护与退避重试规范化
-
-- 优化点名称
-  - 429/超时感知的限流保护与退避重试规范化
-- 所针对的问题
-  - 当前已有 retry，但 provider 限流、短时网络抖动、上游超时没有被统一视为“可观测的系统事件”。
-- 适用前提
-  - 云雾 API 在高并发下出现 429、timeout、上游抖动。
-- 实施方式
-  - 在 `src/llm/api.py` 和 `src/image/api_providers.py` 统一记录：
-    - HTTP 状态码；
-    - `Retry-After`；
-    - 实际等待时长；
-    - 重试次数；
-    - 最终是否成功；
-  - 统一退避策略：
-    - 指数退避；
-    - 加抖动；
-    - 上限重试预算；
-  - 区分：
-    - 可重试失败；
-    - 应快速失败；
-    - 应直接降级为文本优先模式。
-- 预期收益
-  - 提升系统稳定性；
-  - 让效率实验能区分“系统自身慢”与“上游被限流”；
-  - 控制重试放大效应。
-- 可能副作用或风险
-  - 若重试预算过高，会把排队时间放大；
-  - 若重试预算过低，短时波动下成功率下降。
-- 是否建议在实验前优先完成
-  - 是。
-- 分类
-  - 工程护栏
-
-#### P0-4 结构化性能埋点与 provider 事件日志
-
-- 优化点名称
-  - 结构化性能埋点与 provider 事件日志
-- 所针对的问题
-  - 当前大量行为只体现在控制台日志里，无法统一分析“慢在排队、推理、缓存、重试还是下载”。
-- 适用前提
-  - 所有效率实验；
-  - 需要分阶段归因的性能分析。
-- 实施方式
-  - 在以下位置增加统一 JSONL 埋点：
-    - `src/llm/api.py`
-    - `src/llm/global_gen.py`
-    - `src/story/options.py`
-    - `src/image/api_providers.py`
-    - `game_server.py`
-    - `server/pregeneration.py`
-  - 每条日志至少记录：
-    - `run_id`
-    - `stage`
-    - `request_type`
-    - `queue_wait_ms`
-    - `provider_latency_ms`
-    - `retry_count`
-    - `status_code`
-    - `cache_hit`
-    - `pregen_hit`
-    - `scene_id`
-    - `game_id`
-  - 单独记录 provider 事件，如：
-    - 429；
-    - timeout；
-    - cancel；
-    - cache hit；
-    - pregen discarded。
-- 预期收益
-  - 后续实验可以做分阶段拆解；
-  - 能看清限流、队列、缓存、预生成各自的影响；
-  - 便于做 mean / p95 / p99 的归因。
-- 可能副作用或风险
-  - 少量日志开销；
-  - 字段太多会增加分析成本；
-  - 若埋点不统一，后续报表难对齐。
-- 是否建议在实验前优先完成
-  - 是。
-- 分类
-  - 工程护栏
-
-#### P0-5 预生成预算上限与取消机制收紧
-
-- 优化点名称
-  - 预生成预算上限与取消机制收紧
-- 所针对的问题
-  - DN 当前两层预生成会生成未被选择的分支，在限流环境下，这些 speculative work 会直接浪费云雾 API 配额。
-- 适用前提
-  - Web 交互；
-  - 两层预生成开启；
-  - 后台预生成与前台玩家交互同时存在。
-- 实施方式
-  - 限制每局、每 scene 可同时存在的预生成任务数；
-  - 用户一旦做出选择，立即取消其他分支的后续生成；
-  - 把图片预生成阶段延后到“文本命中”或“分支更接近被选中”之后再触发；
-  - 明确区分：
-    - 文本预生成预算；
-    - 图片预生成预算。
-- 预期收益
-  - 直接缓解限流；
-  - 提高前台请求可用性；
-  - 降低浪费率；
-  - 后续实验能更准确衡量预生成的净收益。
-- 可能副作用或风险
-  - 预生成预算过紧时，命中率下降；
-  - 若取消不及时，仍可能重复占用配额；
-  - 某些看似“快”的体验可能因此回退到更保守模式。
-- 是否建议在实验前优先完成
-  - 是。
-- 分类
-  - 工程护栏
-
----
-
-### 1.4 P1：建议做成可开关、默认保守开启的优化项
-
-#### P1-1 文本优先、图像延迟对齐的双阶段响应协议
-
-- 优化点名称
-  - 文本优先、图像延迟对齐的双阶段响应协议
-- 所针对的问题
-  - 文本和图像天然耗时不同，若要求两者强行同返，会显著放大首响应延迟。
-- 适用前提
-  - 玩家界面要求“尽量同步”；
-  - 可接受极短占位过渡；
-  - 前端已有 SSE 或轮询能力。
-- 实施方式
-  - 后端先返回：
-    - 文本；
-    - `scene_id`；
-    - `image_task_state`；
-  - 图像通过 SSE 或状态接口补齐；
-  - 前端文本一到先显示，图片区域先占位，图像到达即替换；
-  - 将“文本先返”与“整包等待图片”做成可切换响应模式。
-- 预期收益
-  - 避免图像拖住主链剧情响应；
-  - 改善玩家可玩性；
-  - 让图文“接近同步”而不是“严格同阻塞”。
-- 可能副作用或风险
-  - 若占位或替换动画设计不好，会让用户感知不同步；
-  - 若日志未区分文本 ready 与图像 ready，实验会误读为“接口更快了”。
-- 是否建议在实验前优先完成
-  - 建议做成稳定机制，但默认保守开启并记录为实验条件。
-- 分类
-  - 工程编排，可作为实验条件记录
-
-#### P1-2 图文生成并行编排
-
-- 优化点名称
-  - 图文生成并行编排
-- 所针对的问题
-  - 若图像在文本后串行触发，图文到达差距会被人为拉大。
-- 适用前提
-  - 场景文本一旦定稿，即可抽取 `scene_for_image`；
-  - 系统已有异步任务基础；
-  - 已上线并发门控。
-- 实施方式
-  - 文本定稿后立即异步提交图像任务；
-  - 不再等待完整前端交互完成后才生图；
-  - 图像失败不阻塞文本；
-  - 在调度器中把这类图像任务置于高于后台预生成、低于当前文本主链的位置。
-- 预期收益
-  - 缩短图像相对文本的到达差；
-  - 提升图文同步感；
-  - 改善首屏连贯性。
-- 可能副作用或风险
-  - 会增加瞬时并发；
-  - 若未受配额控制，会反向加剧限流；
-  - 若 scene 文本后续还会变化，可能产生无效图片任务。
-- 是否建议在实验前优先完成
-  - 建议在实验前完成，但必须与并发门控、调度策略一起上线。
-- 分类
-  - 工程编排
-
-#### P1-3 前端占位与渐进式加载机制
-
-- 优化点名称
-  - 前端占位与渐进式加载机制
-- 所针对的问题
-  - 即使后端优化后，图像仍可能晚于文本，若无占位会出现布局跳动和“断层感”。
-- 适用前提
-  - Web 玩家界面；
-  - 图像存在异步补齐路径。
-- 实施方式
-  - 固定图片展示框位；
-  - 图像未完成时使用 skeleton / blur 占位；
-  - 图像完成后平滑替换；
-  - 在状态上区分：
-    - 等待图像；
-    - 正在生成；
-    - 降级跳过；
-    - 生成失败。
-- 预期收益
-  - 提升主观同步感；
-  - 减少布局抖动；
-  - 更适合做“感知同步率”实验。
-- 可能副作用或风险
-  - 它改善的是前端感知，不直接改变后端真实性能；
-  - 若后续实验目标是纯后端性能，应单独标记此机制是否开启。
-- 是否建议在实验前优先完成
-  - 可以。
-- 分类
-  - 前端体验护栏
-
-#### P1-4 图像任务降级策略
-
-- 优化点名称
-  - 图像任务降级策略
-- 所针对的问题
-  - 在限流或高负载下，图像链路可能拖慢整体交互。
-- 适用前提
-  - provider 拥堵；
-  - 批量实验；
-  - 并发高；
-  - 图文同步目标存在，但文本主链优先级更高。
-- 实施方式
-  - 优先保文本；
-  - 图像在高压下可降级为：
-    - 延后生成；
-    - 跳过主角参考图；
-    - 降低分辨率；
-    - 复用上图风格提示；
-    - 极端时仅返回占位状态；
-  - 将降级触发条件做成可观测阈值，如：
-    - provider 队列过长；
-    - 429 频率过高；
-    - 并发达到上限。
-- 预期收益
-  - 保住主链剧情交互；
-  - 避免图像链路拖垮整体服务；
-  - 提升极端情况下的稳定性。
-- 可能副作用或风险
-  - 会改变视觉质量；
-  - 不适合与“完整图文模式”直接混为同一组实验；
-  - 若默认长期开启，会掩盖完整图像链路的真实成本。
-- 是否建议在实验前优先完成
-  - 建议先实现框架，但默认仅在保护模式触发。
-- 分类
-  - 保护性降级机制，实验中应显式标注
-
----
-
-### 1.5 P2：不建议在正式效率实验前默认开启的优化项
-
-#### P2-1 激进缓存增强
-
-- 优化点名称
-  - 激进缓存增强
-- 所针对的问题
-  - 希望通过更强的缓存复用直接缩短热启动时延。
-- 适用前提
-  - 产品上线优化；
-  - 长期运行的服务；
-  - 非基线测量阶段。
-- 实施方式
-  - 扩大 prompt cache；
-  - 跨 run 复用图像；
-  - 更多层 speculative 预生图；
-  - 更激进地复用上一轮生成结果。
-- 预期收益
-  - 热启动速度可能显著提升；
-  - 部分重复场景成本下降明显。
-- 可能副作用或风险
-  - 掩盖真实生成成本；
-  - 让实验失去可解释性；
-  - 难以区分“模型变快”还是“复用变多”。
-- 是否建议在实验前优先完成
-  - 否。
-- 分类
-  - 实验变量或上线后优化
-
-#### P2-2 批处理 / 请求合并
-
-- 优化点名称
-  - 批处理 / 请求合并
-- 所针对的问题
-  - 希望减少 provider 请求数，提高单位时间吞吐。
-- 适用前提
-  - 离线批量生成；
-  - 数据集构建；
-  - 非真实玩家交互场景。
-- 实施方式
-  - 合并多个主题、多个选项或多张图请求；
-  - 用批任务管线代替在线逐请求路径。
-- 预期收益
-  - 提升离线吞吐；
-  - 减少单位任务调度成本。
-- 可能副作用或风险
-  - 请求形态被改变；
-  - 不再代表真实玩家交互路径；
-  - 会干扰“单次点击响应延迟”的解释。
-- 是否建议在实验前优先完成
-  - 否。
-- 分类
-  - 实验变量或离线工具优化
-
-#### P2-3 大幅压缩 prompt / token 预算
-
-- 优化点名称
-  - 大幅压缩 prompt / token 预算
-- 所针对的问题
-  - 直接降低调用成本与时延。
-- 适用前提
-  - 后续做效率-效果权衡实验；
-  - 明确接受质量变化风险。
-- 实施方式
-  - 降低 `worldview_max_tokens`；
-  - 降低 `plot_max_tokens_initial`；
-  - 降低 `plot_max_tokens_normal`；
-  - 精简 prompt 约束。
-- 预期收益
-  - 成本与时延通常会明显下降。
-- 可能副作用或风险
-  - 剧情结构完整性下降；
-  - 质量可能显著变化；
-  - 本质上改变了系统能力边界。
-- 是否建议在实验前优先完成
-  - 否。
-- 分类
-  - 核心实验变量
-
----
-
-## 二、实验前优化与后续效率实验有效性的关系说明
-
-### 2.1 哪些优化应当先做，否则会影响后续效率实验的有效性
-
-以下优化建议先做，否则实验结果会严重受工程噪声污染：
-
-- 全局并发门控与 provider 级配额控制
-- 统一排队与请求调度层
-- 429/超时感知的限流保护与退避重试规范化
-- 结构化性能埋点与 provider 事件日志
-- 预生成预算上限与取消机制收紧
-
-原因：
-
-- 这些措施不会改变 DN 的核心问题定义；
-- 它们主要作用是让系统在相同能力目标下更稳定、更可测；
-- 如果不先做，后续实验很容易测到：
-  - 上游限流造成的等待；
-  - 后台预生成抢占前台请求；
-  - 重试雪崩；
-  - 非结构化日志导致的归因失败。
-
-换言之，这些优化属于“实验前的工程护栏”，不是“实验对象本身的性能增强”。
-
-### 2.2 哪些优化不应提前做，以免改变实验变量或掩盖真实性能问题
-
-以下优化不建议在正式效率实验前默认开启：
-
-- 激进缓存增强
-- 大幅压缩 prompt / token 预算
-- 离线批处理式请求合并
-- 过于激进的图像降级默认开启
-
-原因：
-
-- 它们会改变系统的成本结构、质量边界或请求形态；
-- 它们本身就应该成为后续实验中的对比变量；
-- 若提前默认开启，会让“当前 DN 项目的真实性能问题”被掩盖。
-
-例如：
-
-- 如果提前做了强缓存复用，后续实验会低估真实生成成本；
-- 如果提前大幅压缩 token，后续实验会把“质量下降换来的速度提升”误当成纯工程优化；
-- 如果默认启用强降级，后续实验会低估完整图文模式的真实负担。
-
-### 2.3 如何区分“工程优化”和“实验变量”，避免实验设计失真
-
-建议使用以下判定标准：
-
-- 如果某措施的主要作用是：
-  - 让系统在相同功能目标下更稳定；
-  - 减少随机噪声；
-  - 提高实验可复现性；
-  - 改善可观测性；
-  
-  则归为“工程优化”。
-
-- 如果某措施的主要作用是：
-  - 改变功能范围；
-  - 改变响应策略；
-  - 改变内容质量；
-  - 改变缓存利用程度；
-  - 改变在线请求的真实形态；
-  
-  则归为“实验变量”。
-
-在 DN 项目中，建议这样划分：
-
-- 工程优化
-  - 并发门控
-  - 排队调度
-  - 限流保护
-  - 埋点
-  - 预生成预算控制
-
-- 实验变量
-  - Council 开关
-  - token 预算
-  - 预生成深度
-  - 图像降级级别
-  - 图文编排模式
-  - 缓存策略强度
-
----
-
-## 三、效率实验总体设计思路
-
-### 3.1 实验目标
-
-DN 的效率实验不应只回答“快不快”，而应回答以下问题：
-
-1. 在当前架构下，DN 的主要时间与成本消耗在哪条链路上；
-2. 在云雾 API 限流约束下，哪些设计最影响稳定性与尾延迟；
-3. 为了实现图文同步体验，系统究竟付出了多少额外代价；
-4. 哪些优化值得落地，哪些只适合作为实验变量。
-
-### 3.2 统一实验原则
-
-- 先加工程护栏，再做性能对比；
-- 每个实验都同时记录：
-  - 平均值；
-  - p95 / p99；
-  - 失败率；
-  - 429 rate；
-  - queue wait；
-  - retry cost；
-- 每个实验都同时区分：
-  - 冷缓存 / 热缓存；
-  - 单用户 / 并发；
-  - 文本-only / 图文联合；
-- 每个实验都要保留质量下限，不允许只追求速度。
-
-### 3.3 统一指标体系
-
-建议所有实验统一记录以下指标：
-
-- 时间类
-  - `T_worldview`
-  - `T_text_ready`
-  - `T_image_ready`
-  - `T_click_to_response`
-  - `T_game_total`
-  - `queue_wait_ms`
-  - p50 / p90 / p95 / p99
-
-- 成本类
-  - LLM 调用次数
-  - 图像调用次数
-  - input / output token
-  - 重试次数
-  - 429 次数
-  - 单局 token 成本
-
-- 资源类
-  - CPU
-  - 内存
-  - GPU / 显存（若使用）
-  - 磁盘写入量
-
-- 缓存与调度类
-  - cache hit rate
-  - prompt cache hit rate
-  - pregen hit rate
-  - pregen waste rate
-  - cancel rate
-  - front-request blocked by background ratio
-
-- 效果类
-  - 章节推进成功率
-  - 剧情结构完整率
-  - 图像有效率
-  - 图文同步感知指标
-
----
-
-## 四、3 组效率实验详细方案
-
-### 实验 1：文本主链推理效率实验
-
-- 实验名称
-  - 文本主链推理效率-稳定性实验
-- 实验目的
-  - 在不受图像任务干扰的前提下，分析世界观生成与多轮剧情推进的真实文本链路成本，并测量云雾 API 限流对文本主链的影响。
-- 核心假设
-  - Council 会显著提高请求数、总时长和 429 风险；
-  - 在统一 provider 配额下，关闭 Council 的单模型路径更稳定、尾延迟更短；
-  - 降 token 预算会降低成本，但应作为实验变量，而不是实验前默认优化。
-- 自变量
-  - 世界观生成模式：
-    - 无 Council
-    - Council
-    - 无 Council + 降 token
-  - provider 并发预算：
-    - 低配额
-    - 中配额
-  - 局长：
-    - 2 段
-    - 5 段
-    - 10 段
-- 因变量
-  - `T_worldview`
-  - 单轮文本生成耗时
-  - `429 rate`
-  - `queue_wait_ms`
-  - `retry_budget_consumed`
-  - 单局总 token
-  - 单局成功率
-- 控制变量
-  - 仅文本，不生图；
-  - 同一主题集；
-  - 同一难度、基调；
-  - 同一 provider 配额；
-  - 已启用统一限流保护与埋点。
-- 对照组 / 比较组设置
-  - 对照组：无 Council、标准 token
-  - 比较组 A：Council
-  - 比较组 B：无 Council + 降 token
-- 实验对象与运行条件
-  - 使用 `DN-experiment-2.0/run_text_segments_test.py` 的思路；
-  - 选 30 个主题；
-  - 每组每主题跑 3 次。
-- 具体执行步骤
-  1. 开启结构化埋点；
-  2. 关闭图像生成；
-  3. 固定 provider 并发预算；
-  4. 按实验组配置运行多段文本剧情；
-  5. 汇总 world view 与 segment 级别日志；
-  6. 统计均值与尾延迟。
-- 需要记录的数据
-  - `run_id`
-  - `theme_id`
-  - `T_worldview`
-  - `T_segment_i`
-  - `queue_wait_ms`
-  - `provider_latency_ms`
-  - `status_code`
-  - `retry_count`
-  - `429_count`
-  - `input_tokens`
-  - `output_tokens`
-- 评测指标
-  - 单局总时长
-  - 单轮平均耗时
-  - p95 单轮延迟
-  - `429 rate`
-  - `retry cost per run`
-  - 单位成功剧情段成本
-- 结果分析方法
-  - 同一主题做 paired comparison；
-  - 对比 mean / median / p95；
-  - 区分 queue wait 与真正 provider latency；
-  - 分析 Council 是否主要增加了请求数量、等待时间还是重试放大。
-- 预期现象
-  - Council 组平均时长、尾延迟和 429 风险更高；
-  - 无 Council 组更稳定；
-  - 降 token 组更快，但质量可能下降。
-- 潜在风险与误差来源
-  - 外部 provider 波动；
-  - 同主题下剧情分支差异；
-  - 若 usage 取不到，token 可能需要估算。
-- 实验前必须已落地的前置优化
-  - 并发门控
-  - 限流保护
-  - 结构化埋点
-
----
-
-### 实验 2：交互响应与预生成收益实验
-
-- 实验名称
-  - Web 交互响应与预生成净收益实验
-- 实验目的
-  - 测量在云雾 API 限流约束下，预生成是否真正改善了玩家点击后的等待体验，以及其浪费率是否会反向拖垮系统。
-- 核心假设
-  - 一层文本预生成在限流环境下通常更划算；
-  - 两层预生成若不收紧预算，会因浪费率提升而放大限流影响；
-  - 图像预生成若与文本预生成竞争配额，前台响应可能变差。
-- 自变量
-  - 预生成策略：
-    - 关闭
-    - 一层文本预生成
-    - 两层文本预生成
-    - 两层文本 + 图片预生成延后
-    - 两层文本 + 图片预生成不延后
-  - 并发等级：
-    - 1 用户
-    - 5 用户
-    - 10 用户
-- 因变量
-  - `T_click_to_response`
-  - `pregen_hit_rate`
-  - `pregen_waste_rate`
-  - `queue_wait_ms`
-  - `429 rate`
-  - `front-request blocked by background ratio`
-  - 吞吐量
-- 控制变量
-  - 同一主题集；
-  - 相同 provider 配额；
-  - 相同前端流程；
-  - 已启用前台优先、后台预生成降权的调度策略；
-  - 已启用预生成取消机制。
-- 对照组 / 比较组设置
-  - 对照组：关闭预生成
-  - 比较组 A：一层文本预生成
-  - 比较组 B：两层文本预生成
-  - 比较组 C：两层文本 + 图片预生成延后
-  - 比较组 D：两层文本 + 图片预生成不延后
-- 实验对象与运行条件
-  - 使用 Web 模式；
-  - 通过自动化脚本模拟玩家连续点击；
-  - 每组 20 个主题，每主题 5 次。
-- 具体执行步骤
-  1. 启动 Web 服务；
-  2. 固定 provider 并发配额；
-  3. 按组别配置预生成策略；
-  4. 模拟玩家从世界观生成到连续多轮选择；
-  5. 记录每次点击响应时间与后台预生成事件；
-  6. 并发组重复运行。
-- 需要记录的数据
-  - `scene_id`
-  - `current_option_index`
-  - `pregen_generated_count`
-  - `pregen_used_count`
-  - `pregen_canceled_count`
-  - `image_pregen_started`
-  - `image_pregen_used`
-  - `queue_wait_ms`
-  - `429_count`
-- 评测指标
-  - 点击后中位延迟
-  - p95 点击延迟
-  - 预生成命中率
-  - 预生成浪费率
-  - 单局额外 provider 请求数
-  - 前台请求被后台拖慢的比例
-- 结果分析方法
-  - 比较“节省的前台等待”与“额外消耗的 provider 预算”；
-  - 分析浪费率与 429 rate 的相关性；
-  - 用净收益指标衡量：`saved_click_latency / extra_provider_calls`。
-- 预期现象
-  - 一层文本预生成最稳；
-  - 两层预生成在低并发下可能更快，但高并发下容易反向拖慢；
-  - 图片不延后预生成最容易在限流下出问题。
-- 潜在风险与误差来源
-  - 自动化脚本与真实玩家阅读停顿不同；
-  - 不同时间段 provider 抖动不同。
-- 实验前必须已落地的前置优化
-  - 并发门控
-  - 优先级调度
-  - 预生成取消与预算限制
-  - 结构化埋点
-
----
-
-### 实验 3：图文同步呈现效率实验
-
-- 实验名称
-  - 图文同步呈现效率与体验实验
-- 实验目的
-  - 分析不同图文编排方式对玩家“同步感”、首屏可玩性、系统时延与 provider 成本的影响。
-- 核心假设
-  - 串行模式会导致图文到达差最大；
-  - 文本先返 + 图片占位 + SSE 替换通常是体验与效率的折中点；
-  - 图文并行能提升同步感，但若没有并发门控，容易放大限流；
-  - 高负载下启用图像保护性降级能保住文本主链体验。
-- 自变量
-  - 图文编排模式：
-    1. 串行：文本完成后再触发图像
-    2. 并行：文本定稿立即异步生图
-    3. 双阶段协议：文本先返 + 图片占位 + SSE 到图替换
-    4. 并行 + 降级保护：高负载下优先保证文本先达
-  - 负载等级：
-    - 单用户
-    - 多用户并发
-- 因变量
-  - `T_text_ready`
-  - `T_image_ready`
-  - `Δsync = |T_image_ready - T_text_rendered|`
-  - `perceived_sync_rate`
-  - 图文共同首屏完成率
-  - 额外 provider 请求成本
-  - `429 rate`
-- 控制变量
-  - 相同主题集；
-  - 相同图像 provider；
-  - 相同场景文本来源；
-  - 相同 provider 配额；
-  - 前端占位样式保持一致。
-- 对照组 / 比较组设置
-  - 对照组：串行
-  - 比较组 A：并行
-  - 比较组 B：双阶段协议
-  - 比较组 C：并行 + 降级保护
-- 实验对象与运行条件
-  - Web 模式；
-  - 以玩家实际界面为主；
-  - 建议选 15 个主题，每个主题多轮推进。
-- 具体执行步骤
-  1. 固定 provider 并发预算；
-  2. 按编排模式配置接口响应逻辑；
-  3. 前端记录文本渲染时间与图像渲染时间；
-  4. 后端记录任务提交、图像 ready、SSE 推送时间；
-  5. 汇总图文同步差与成本。
-- 需要记录的数据
-  - `scene_id`
-  - `T_text_ready`
-  - `T_text_rendered`
-  - `T_image_task_submitted`
-  - `T_image_ready`
-  - `T_image_rendered`
-  - `image_task_state`
-  - `fallback_triggered`
-  - `queue_wait_ms`
-  - `429_count`
-- 评测指标
-  - 图文同步差 `Δsync`
-  - 图像在文本后 1s 内到达的比例
-  - 图文共同首屏完成率
-  - 文本首响应延迟
-  - 图像补齐延迟
-  - 额外 provider 成本
-- 结果分析方法
-  - 重点比较“同步感收益”与“额外资源消耗”；
-  - 在并发条件下观察双阶段协议是否比严格并行更稳；
-  - 分析降级保护触发频率与体验损失。
-- 预期现象
-  - 串行组同步感最差；
-  - 双阶段协议通常是体验与效率最均衡方案；
-  - 并行组在低负载下更好，但高负载下可能更容易被限流反噬；
-  - 降级保护组文本主链最稳，但图像完整性会下降。
-- 潜在风险与误差来源
-  - “同步感”部分带有前端设计因素；
-  - 若前端占位实现不一致，会影响结果解释。
-- 实验前必须已落地的前置优化
-  - 并发门控
-  - 优先级调度
-  - 双阶段状态埋点
-  - 前端渲染时间记录
-
----
-
-## 五、实验实施建议与风险提示
-
-### 5.1 建议的落地顺序
-
-建议按以下顺序推进：
-
-1. 先完成 P0 工程护栏
-   - 并发门控
-   - 调度
-   - 限流保护
-   - 埋点
-   - 预生成预算控制
-2. 再落地 P1 中最关键的图文编排基础
-   - 文本优先 / 图像延迟对齐
-   - 图文并行编排
-   - 前端占位
-3. 然后开始实验 1
-   - 先把文本主链测清楚
-4. 再做实验 2
-   - 测预生成在限流环境下的净收益
-5. 最后做实验 3
-   - 测图文同步体验与代价
-
-### 5.2 实施时的高风险点
-
-- 如果不先做并发门控，后续所有实验都可能被 429 噪声污染；
-- 如果不做结构化埋点，后续无法区分：
-  - queue wait；
-  - provider latency；
-  - retry 放大；
-  - cache hit；
-- 如果提前开启激进缓存，热缓存结果会掩盖真实生成成本；
-- 如果提前默认开启强降级，图文联合模式的真实负担会被低估；
-- 如果前后端不统一记录时间戳，图文同步实验会失真。
-
-### 5.3 最终结论
-
-在 DN 当前系统中，最值得优先落地、且不应推迟到实验之后的优化，不是“让模型更快”的内容，而是“让系统更稳定、更可测”的内容：
-
-- 全局并发门控
-- 请求排队与调度
-- 429/timeout 感知的限流保护
-- 结构化埋点
-- 预生成预算与取消机制
-
-这些优化先做，才能避免后续效率实验被明显的工程瓶颈干扰。
-
-而以下优化应保留为实验变量，而不是提前固化：
-
-- Council 是否开启
-- token 预算大小
-- 预生成深度
-- 图像降级级别
-- 激进缓存策略
-- 批处理 / 请求合并
-
-只有把“工程护栏”与“实验变量”分开，DN 的效率实验才不会失真，后续得到的结论才能真正指导系统演进。
+一、DN 项目运行机制梳理
+
+先说我认为目前做效率实验前“还缺但不阻塞初版方案”的信息：
+
+缺少统一的性能埋点层。当前项目有实验落盘和大量控制台日志，但没有把 LLM 调用耗时 / token / 重试 / 图像生成耗时 / CPU / GPU / 内存 / 缓存命中 统一记录到一份结构化日志里。
+缺少固定的“质量下限”定义。文本侧目前更偏流程可跑通，图像侧已有一些评估脚本，但还没有把“效率不能以明显伤害效果为代价”量化成统一门槛。
+缺少一个不改业务逻辑、专门跑效率基准的 benchmark harness。现有 DN-experiment 和 DN-experiment-2.0 已经很接近，但还不是完整的性能测量器。
+基于合理假设，我下面的方案默认：
+
+使用 C:\Users\zhang\Desktop\DN\game_themes_100.json 作为固定主题集。
+使用 C:\Users\zhang\Desktop\DN\DN-experiment-2.0\run_text_segments_test.py 的“多段连续剧情”思路作为基准主线。
+允许为后续实验补一个很薄的 telemetry wrapper，但不大改核心生成逻辑。
+1. 整体架构
+
+DN 本质上是一个“LLM 驱动的互动叙事游戏 + 图像生成系统”，其结构是：
+
+入口层
+CLI 入口：C:\Users\zhang\Desktop\DN\main.py
+Web 入口：C:\Users\zhang\Desktop\DN\game_server.py
+生产启动脚本：C:\Users\zhang\Desktop\DN\start_server.py:11
+聚合层
+C:\Users\zhang\Desktop\DN\main2.py 主要是旧式聚合入口，负责把 src/ 中拆分后的能力重新暴露出来，供 CLI/Web 共用
+核心逻辑层 src/
+llm/：世界观与剧情生成
+story/：单选项剧情推进、批量选项生成、结局
+image/：场景图/主角图生成、提示词优化、缓存、存储
+characters/：角色档案、配角检测、参考图裁剪
+worldview/：模板、缓存、解析
+game/：CLI 的主循环
+wiki/：外部题材信息查找
+Web 服务辅助层 server/
+预生成缓存、锁、SSE 事件、实验落盘、目录配置
+可以概括成：
+
+前端/CLI -> game_server.py / TextAdventureGame -> main2.py 聚合 -> src.llm / src.story / src.image / src.characters -> 外部 LLM/图像 API + 本地缓存/存档
+
+2. 核心模块及职责
+
+世界观生成
+C:\Users\zhang\Desktop\DN\src\llm\global_gen.py:35
+负责根据主题、难度、基调、主角属性生成 global_state
+内含“分阶段世界观生成”“单模型/群体智能 Council 切换”“token 上限控制”
+Council 群体智能
+C:\Users\zhang\Desktop\DN\src\llm\council_core.py
+典型三阶段：
+多模型并行生成
+多模型匿名互评排序
+主席模型综合
+这是明显的高成本、高时延链路
+单轮剧情/选项推进
+C:\Users\zhang\Desktop\DN\src\story\options.py:130
+_generate_single_option 负责“执行某个选项 -> 生成新场景 -> 生成下一层两个选项 -> 可选生成场景图”
+generate_all_options 在 C:\Users\zhang\Desktop\DN\src\story\options.py:1667，负责批量生成多个选项对应内容
+图像生成链路
+C:\Users\zhang\Desktop\DN\src\image\api_providers.py:975
+generate_scene_image 支持本地缓存、提示词缓存、参考图、多 provider、重试、下载落盘
+Web 预生成与缓存
+C:\Users\zhang\Desktop\DN\game_server.py:507 /generate-option
+C:\Users\zhang\Desktop\DN\game_server.py:1205 /pregenerate-next-layers
+C:\Users\zhang\Desktop\DN\server\pregeneration.py
+核心目的是把用户“读当前剧情”的时间拿来预生成下一层内容，降低交互等待
+实验落盘
+C:\Users\zhang\Desktop\DN\server\experiment_log.py
+C:\Users\zhang\Desktop\DN\DN-experiment\experiment_save.py
+将剧情段、prompt、图像路径等落盘到实验目录
+3. 游戏运行主流程
+
+Web 模式主流程最典型：
+
+启动服务：python game_server.py 或 python start_server.py
+前端提交主题/难度/基调等到 /generate-worldview
+后端调用 llm_generate_global(...) 生成世界观与初始状态
+系统生成初始剧情/初始选项
+用户点击一个选项，前端请求 /generate-option
+后端优先查预生成缓存；命中则直接返回，未命中则现场生成
+返回新场景、下一组选项、可选场景图
+前端继续触发 /pregenerate-next-layers 做后台预生成
+达到章节条件后，可触发 /generate-ending
+CLI 模式则由 TextAdventureGame 驱动，逻辑相似，只是交互界面换成终端。
+
+4. 数据流与调用链
+
+最重要的数据对象是 global_state，其中至少包含：
+
+core_worldview：世界观、角色、章节、主线
+flow_worldline：当前章节、主线进度、角色状态、是否解锁深层背景等
+运行时附加字段：game_id、视觉上下文、缓存提示等
+关键调用链：
+
+世界观链
+用户配置 -> llm_generate_global -> global_state
+单轮剧情链
+global_state + selected_option -> _generate_single_option -> scene + next_options + flow_update + scene_image
+图像链
+scene -> prompt 优化 -> provider API -> 本地缓存/云存储 -> URL 回填 option_data
+Web 预生成链
+当前场景 -> generate_all_options(..., skip_images=...) -> 缓存 layer1/layer2 -> 用户选择时直接取
+5. 启动方式、配置方式、实验入口
+
+启动方式：
+
+Web：
+C:\Users\zhang\Desktop\DN\start_server.py:11
+默认 0.0.0.0:5001
+CLI：
+python main.py
+或 python main2.py
+一键脚本：
+C:\Users\zhang\Desktop\DN\启动游戏.bat
+C:\Users\zhang\Desktop\DN\启动游戏.sh
+配置方式：
+
+主配置来自 .env
+关键配置定义在 C:\Users\zhang\Desktop\DN\src\config.py
+性能相关开关集中在 C:\Users\zhang\Desktop\DN\src\constants.py
+PERF_WORLDVIEW_TOKENS
+PERF_PLOT_TOKENS_INITIAL
+PERF_PLOT_TOKENS_NORMAL
+PERF_STAGED_WORLDVIEW
+PERF_ASYNC_PREGEN
+PERF_STREAM_FIRST
+PERF_OPT_RETRY
+实验入口：
+
+单段最小实验：
+C:\Users\zhang\Desktop\DN\DN-experiment\run_simple_experiment.py
+批量主题、两段剧情实验：
+C:\Users\zhang\Desktop\DN\DN-experiment\run_batch_themes.py
+多段连续剧情实验：
+C:\Users\zhang\Desktop\DN\DN-experiment-2.0\run_text_segments_test.py
+基于实验 JSON 的后补生图：
+C:\Users\zhang\Desktop\DN\DN-experiment-2.0\generate_images_from_experiment_json.py
+这里非常关键的一点是：现有实验脚本已经在主动绕开某些高耗时环节，比如设置 EXPERIMENT_NO_COUNCIL=1、_skip_protagonist_reference=True。这说明项目作者已经隐含地把“Council”和“主角参考图链路”视为主要效率瓶颈。
+
+6. 可能影响效率表现的关键环节
+
+我按影响优先级排序：
+
+Council 三阶段生成
+世界观完整版默认可能走多模型并行 + 互评 + 主席综合
+直接放大 LLM 调用次数、token、总时长、失败重试概率
+见 C:\Users\zhang\Desktop\DN\src\llm\global_gen.py:204 与 C:\Users\zhang\Desktop\DN\src\llm\council_core.py
+单轮剧情 prompt 很重
+_generate_single_option prompt 非常长，且要求大量结构化字段
+会推高输入 token、输出 token、解析失败重试、长尾延迟
+场景图生成链较长
+prompt 优化 -> provider 请求 -> 轮询/下载 -> 本地缓存写入
+若带参考图/上一场景上下文，会继续增重
+预生成两层内容
+优点：降低用户感知延迟
+代价：带来额外 speculative work，可能生成了没被选的分支
+因此必须测“命中率”和“浪费率”，不能只看前台快不快
+锁与缓存竞争
+pregeneration_cache + cache_lock
+高并发时可能出现等待、锁持有时间过长、缓存污染
+图像与实验落盘 I/O
+image_cache/、DN-experiment/ 的文件写入会引入磁盘波动
+请求等待机制
+/generate-option 明确有等待事件与较长超时，长尾很可能来自“等预生成完成”而非纯推理
+重试与 provider 不稳定
+src/llm/api.py 和 src/image/api_providers.py 都有 timeout / retry / 429 处理
+这类失败在平均值里常被掩盖，但对 p95/p99 极其敏感
+7. 当前存在的多种运行模式/配置分支
+
+至少有这几类要区分：
+
+CLI vs Web
+CLI 更直接，Web 多了 HTTP、前端状态、SSE、预生成
+单模型 vs Council
+EXPERIMENT_NO_COUNCIL=1 会显著改变成本结构
+世界观生成模式
+staged worldview / full worldview
+文本-only vs 文图联合
+DN-experiment-2.0 支持先纯文本跑，再补图
+冷缓存 vs 热缓存
+世界观缓存、prompt 缓存、image cache、预生成缓存都可能改变结果
+带主角参考图 vs 跳过主角参考图
+现有实验脚本已默认跳过，说明其对效率影响明显
+二、相关实验方法调研总结
+
+我没有堆文献，而是提炼了最适合 DN 借鉴的几类做法。
+
+1. 可借鉴的共通原则
+
+不只看平均耗时，要同时看分位数
+LLM/交互系统常见问题不是 mean，而是 p95/p99 尾延迟
+不只看端到端，要同时做分阶段剖析
+至少拆成：世界观生成、单轮剧情生成、图片生成、缓存等待、I/O 落盘
+不只看速度，要给质量设下限
+否则“缩 prompt / 关模块 / 降 token”很容易得到假优化
+不只看成功率，要看达到成功的代价
+对交互式/智能体系统，success per cost、success per step、success per second 比单独 success 更有信息量
+必须区分冷启动与热启动
+首次生成和缓存命中后的表现往往是两种系统
+必须区分单用户与并发用户
+单局快不代表系统吞吐高；并发下锁竞争、排队等待、provider 限流都会暴露
+2. 来自 LLM 服务/推理系统的借鉴点
+
+借鉴点一：把指标分成“请求级”和“服务级”。
+
+vLLM 文档明确把指标分成 server-level 与 request-level，两类指标要配套看：vLLM Metrics
+对 DN 很适合映射成：
+请求级：单次 generate-worldview / generate-option / generate-scene-image 的时延、token、重试
+服务级：当前并发数、等待数、缓存使用率、吞吐
+借鉴点二：使用 TTFT / TPOT / E2E 三层时延。
+
+vLLM 直接暴露 time_to_first_token_seconds、inter_token_latency_seconds、e2e_request_latency_seconds：vLLM Metrics
+MLPerf 也把 LLM 服务场景的约束写成 TTFT 和 TPOT：MLPerf Inference Docs
+对 DN 的映射：
+TTFT：从发起请求到后端拿到首个有效剧情片段/首个可展示结果
+TPOT：如果后续做流式输出，可记录每 token 或每 chunk 间隔
+E2E：用户点击选项到前端完整渲染完新剧情/新图片的总时长
+借鉴点三：关注缓存与排队，而不只看模型本身。
+
+OpenAI 官方 latency guide 强调：少请求、并行化、共享 prompt 前缀、利用缓存都很关键：OpenAI Latency Optimization
+DN 中最对应的是：
+共享 prefix / prompt caching
+预生成
+image cache
+减少串行请求数
+3. 来自交互式智能体/多轮决策系统的借鉴点
+
+借鉴点一：把“步数/轮数”当作一等公民指标。
+
+WebArena 的核心是端到端任务成功率，但它的意义在于：长链路、多步任务更接近 DN 这种交互式叙事系统，而不是单次问答：WebArena paper
+对 DN 来说，步数/轮数至少要测：
+单局完成到章节结束需要多少轮
+单轮平均耗时
+成功推进一章所需的累计 token / 成本 / 时间
+借鉴点二：效果评估要看“任务完成”，效率评估要看“完成代价”。
+
+WebArena 说明只看成功率不够，因为复杂长任务里，成功背后的步骤数和资源消耗差异很大
+DN 应当形成类似：
+章节推进成功率
+平均推进轮数
+单位推进成本
+单位成功成本
+4. 来自游戏性能分析的借鉴点
+
+借鉴点一：用 timeline 观察跨线程相关性。
+
+Unity Profiler 强调 Timeline view 的价值在于“所有线程放在同一时间轴上看相关性”，而不是只看总表：Unity CPU Profiler
+对 DN 非常适合：
+主请求线程
+预生成线程
+图像生成线程
+文件写入线程/外部下载
+这样才能区分：
+是 LLM 慢
+还是锁阻塞
+还是 I/O 慢
+还是图像下载回填慢
+借鉴点二：跟踪内存分配与 GC/对象增长。
+
+Unity 文档明确建议关注 GC Alloc，频繁分配会带来后续性能问题：Unity CPU Profiler
+DN 虽然不是 Unity，但同理：
+预生成缓存、场景 JSON、图片对象、prompt cache 都可能推高内存与回收压力
+因此要记录 RSS、峰值内存、缓存大小、磁盘增长速度
+5. 对 DN 最值得直接照搬的方法
+
+我建议直接借鉴以下 6 点：
+
+指标分层：请求级 + 系统级
+时延分层：TTFT + 单轮耗时 + E2E
+结果分层：效率指标 + 效果指标联合汇报
+工况分层：冷缓存/热缓存，单用户/并发
+结构分层：文本链路 / 图像链路 / 预生成链路拆开测
+统计分层：mean + median + p95，且做 paired comparison
+三、效率实验总体设计思路
+
+1. 总体目标
+
+不是简单回答“DN 快不快”，而是回答 3 个更有价值的问题：
+
+DN 的主要时间花在哪个链路？
+哪些优化能明显提升响应效率，同时不明显伤害效果？
+在真实 Web 交互场景下，预生成/缓存到底是净收益还是净浪费？
+2. 统一实验对象
+
+建议固定三类对象：
+
+主题集
+从 C:\Users\zhang\Desktop\DN\game_themes_100.json 中选 30 个主题
+分层抽样：写实/幻想/悬疑/校园等都覆盖
+局内长度
+短链：2 段
+中链：5 段
+长链：10 段
+运行模式
+文本-only
+文图联合
+Web 交互
+3. 统一指标体系
+
+建议所有实验统一记录：
+
+时间
+单局总时长
+世界观生成时长
+单轮剧情生成时长
+单图生成时长
+首响应时延 TTFT
+p50 / p90 / p95 / max
+调用
+LLM 调用次数
+图像调用次数
+重试次数
+失败次数
+资源
+CPU 平均/峰值
+内存平均/峰值 RSS
+GPU 利用率与显存峰值（若本机用到）
+磁盘写入量
+成本
+input tokens / output tokens
+单局 token 消耗
+单轮 token 消耗
+单位章节推进成本
+系统行为
+预生成命中率
+预生成浪费率
+图片缓存命中率
+世界观缓存命中率
+并发等待长度/锁等待时间
+效果
+章节推进成功率
+剧情完整率
+选项可用率
+图像质量/一致性分数
+人工小样本偏好
+4. 建议的统一日志格式
+
+每次请求/步骤输出一条 JSONL：
+
+run_id
+theme_id
+mode
+stage (worldview / option_text / scene_image / ending)
+start_ts
+end_ts
+latency_ms
+llm_model
+image_provider
+input_tokens
+output_tokens
+retry_count
+cache_hit
+pregen_hit
+cpu_avg
+mem_peak_mb
+gpu_util_avg
+success
+quality_flags
+这样后面三组实验能共用一套采样与报表。
+
+四、3 组效率实验详细方案
+
+实验 1：文本主链推理效率实验
+
+实验名称
+文本主链推理效率-效果权衡实验
+实验目的
+找出 DN 在“世界观生成 + 多轮剧情推进”上的主要效率瓶颈，并确定单模型、Council、token 预算之间的性价比最优点
+核心假设
+H1：Council 会显著提高世界观生成时长、token 消耗和单局总成本
+H2：适度压缩 worldview_max_tokens / plot_max_tokens 可明显降耗，但效果下降未必显著
+H3：对 DN 这类长链路系统，减少一次大请求比微调 prompt 长度更有效
+自变量
+生成模式：
+Baseline：默认配置，世界观允许 Council
+单模型：EXPERIMENT_NO_COUNCIL=1
+单模型 + 降 token 预算：下调 PERF_WORLDVIEW_TOKENS、PERF_PLOT_TOKENS_INITIAL、PERF_PLOT_TOKENS_NORMAL
+局长：2 段 / 5 段 / 10 段
+因变量
+单局总时长
+世界观生成时长
+单轮平均耗时
+LLM 调用次数
+input/output tokens
+单局总 token
+单位有效剧情段成本
+章节推进成功率
+剧情结构完整率
+控制变量
+相同主题集
+相同温度、难度、基调
+文本-only，关闭场景图生成
+相同机器、相同网络时段
+对照组/比较组设置
+对照组：默认配置
+比较组 A：关闭 Council
+比较组 B：关闭 Council + 降 token
+实验对象与运行条件
+30 个主题
+每个主题每组跑 3 次
+共 30 x 3 x 3 = 270 局
+建议优先用轻量 benchmark harness 直接调 llm_generate_global 与 _generate_single_option_text_only
+具体执行步骤
+固定主题清单
+为每组配置单独环境变量
+每局生成世界观后，固定总是选第一个选项，连续推进 10 段
+每段记录时延/token/调用次数
+每局结束后写入一条汇总记录
+需要记录的数据
+T_worldview
+T_segment_i
+tokens_worldview_in/out
+tokens_segment_i_in/out
+llm_calls_total
+retries_total
+scene_parse_failures
+chapter_progress_success
+评测指标
+Avg game duration
+p95 segment latency
+Avg tokens per segment
+Cost per completed segment
+Success rate
+Success per 1k tokens
+结果分析方法
+对同一主题做 paired comparison
+汇报 mean/median/p95
+画 Pareto 图：横轴总时长，纵轴效果分
+统计显著性可用 Wilcoxon signed-rank 或 bootstrap CI
+预期现象
+Council 组世界观时长和 token 显著更高
+单模型组单局更稳定，长尾更短
+降 token 组平均耗时明显下降，但在复杂主题上可能出现剧情信息不足
+潜在风险与误差来源
+外部 API 波动
+provider 侧速率限制
+文本-only 与真实 Web 体验有差距
+若没有真实 usage 返回，token 可能需要估算
+实验 2：交互响应-预生成-缓存实验
+
+实验名称
+Web 交互响应与预生成收益实验
+实验目的
+衡量 pregeneration_cache、两层预生成与缓存命中对用户响应延迟和系统资源占用的净收益
+核心假设
+H1：预生成能显著降低“用户点击选项后的等待时间”
+H2：预生成在低命中率主题上会产生高浪费率
+H3：并发提高后，锁竞争和等待会抵消预生成收益
+自变量
+预生成策略：
+关闭预生成
+开启 layer1 预生成
+开启 layer1+layer2 预生成
+缓存状态：冷缓存 / 热缓存
+并发等级：1 / 5 / 10 用户
+因变量
+用户点击后到返回剧情的延迟
+首屏响应延迟
+预生成命中率
+预生成浪费率
+吞吐量（req/min）
+锁等待时间
+内存峰值
+CPU 峰值
+控制变量
+相同主题、相同前端流程
+相同图像策略（建议先 text-only 或固定图像开关）
+相同机器与网络
+对照组/比较组设置
+对照组：关闭 /pregenerate-next-layers
+比较组 A：仅一层预生成
+比较组 B：两层预生成
+实验对象与运行条件
+使用 Web 服务 C:\Users\zhang\Desktop\DN\game_server.py
+通过本地 HTTP harness 或 auto_play.py 的简化版自动交互
+每组 20 个主题，每主题 5 次
+具体执行步骤
+启动 Web 服务
+模拟前端请求序列：
+/generate-worldview
+获取初始剧情
+点击选项请求 /generate-option
+按配置触发或不触发 /pregenerate-next-layers
+连续推进若干轮
+对并发组同时发起多局
+每次记录“用户可感知等待时间”和后台预生成事件
+需要记录的数据
+T_click_to_response
+T_worldview_to_first_playable
+pregen_hit
+pregen_generated_count
+pregen_used_count
+wasted_pregen_count
+cache_entry_size
+lock_wait_ms
+num_requests_running/waiting（可自定义）
+评测指标
+Median click latency
+p95 click latency
+Playable throughput
+Pregeneration hit rate
+Pregeneration waste rate = unused generated branches / all generated branches
+Memory per active session
+结果分析方法
+分冷/热缓存分别画图
+分单用户/并发分别汇报
+比较“用户等待缩短多少”与“额外资源消耗增加多少”
+形成 ROI 指标：saved_user_wait_ms / extra_cpu_sec
+预期现象
+单用户下，一层预生成收益最大
+两层预生成会进一步缩短个别点击等待，但浪费率也会上升
+10 并发下，锁与等待事件会明显拉高尾延迟
+潜在风险与误差来源
+自动化脚本与真实用户阅读停顿不同，会影响预生成窗口
+网络 API 抖动可能掩盖缓存收益
+如果不开结构化埋点，锁等待时间不易准确分离
+实验 3：图像链路效率-效果联合实验
+
+实验名称
+场景图生成链路效率与一致性实验
+实验目的
+分析图像生成链路中“主角参考图、上下文参考、prompt 优化、缓存”各因素对时延、资源与效果的影响
+核心假设
+H1：跳过主角参考图会显著降低图像链路耗时
+H2：热缓存能大幅降低重复场景的图像成本
+H3：去掉参考链路虽更快，但角色一致性和视觉连续性会下降
+自变量
+图像策略：
+全量链路：prompt 优化 + 主角参考 + 连续场景视觉上下文
+跳过主角参考：_skip_protagonist_reference=True
+热缓存复用：同一批 scene 二次生成
+文本来源：
+直接在线文图联动
+使用 DN-experiment-2.0 已落盘 scene 再离线补图
+因变量
+单图生成耗时
+图像 provider 调用次数
+图片缓存命中率
+下载/落盘时间
+图像质量分
+角色一致性分
+单图成本
+控制变量
+相同 scene 文本
+相同 image_style
+相同 provider
+相同分辨率与 timeout
+对照组/比较组设置
+对照组：全量链路
+比较组 A：跳过主角参考
+比较组 B：热缓存复用
+实验对象与运行条件
+先用 C:\Users\zhang\Desktop\DN\DN-experiment-2.0\run_text_segments_test.py --segments 10 --text-only 生成固定文本样本
+再用 C:\Users\zhang\Desktop\DN\DN-experiment-2.0\generate_images_from_experiment_json.py 补图
+建议 15 个主题 x 10 段 = 150 个 scene
+具体执行步骤
+生成固定的 scene JSON 数据集
+对同一批 scene 分别跑 3 个图像策略
+每张图记录开始/结束时间、重试、缓存命中、文件大小
+跑已有图像评估脚本，如 scripts/eval_clip_score.py、DN-experiment/eval_character_consistency.py
+需要记录的数据
+T_image_total
+T_prompt_opt
+T_provider_call
+T_download_cache_write
+image_retry_count
+cache_hit
+file_size_kb
+clip_score
+character_consistency_score
+评测指标
+Avg image latency
+p95 image latency
+Image cache hit rate
+Images/min
+Cost per valid image
+CLIP score
+Character consistency
+Quality per second
+结果分析方法
+用同一 scene 做 paired 对比
+画效率-效果散点图
+设质量底线后，寻找最快可接受配置
+预期现象
+跳过主角参考组最快
+热缓存组时延最低
+全量链路在一致性上最好，但吞吐最低
+潜在风险与误差来源
+图像质量受 provider 波动影响大
+CLIP 分数不完全等于“玩家觉得好”
+scene 文本本身差异也会影响图像难度
+五、实验实施建议与风险提示
+
+1. 我建议的落地顺序
+
+第一步：先做实验 1
+因为它最容易隔离文本主链成本，最快帮你确定“Council 值不值得”
+第二步：再做实验 2
+因为 Web 交互体验是否快，核心取决于预生成到底有没有净收益
+第三步：最后做实验 3
+因为图像链路最不稳定，适合在文本链路已相对稳定后单独分析
+2. 最值得优先埋点的位置
+
+C:\Users\zhang\Desktop\DN\src\llm\api.py
+记录每次 LLM 请求时延、重试、usage
+C:\Users\zhang\Desktop\DN\src\llm\global_gen.py:35
+记录世界观生成分阶段耗时
+C:\Users\zhang\Desktop\DN\src\story\options.py:130
+记录单选项剧情生成耗时、解析失败、是否触发生图
+C:\Users\zhang\Desktop\DN\src\image\api_providers.py:975
+记录 prompt 优化、provider 请求、下载缓存、命中情况
+C:\Users\zhang\Desktop\DN\game_server.py:507
+记录 /generate-option 请求总耗时、等待事件耗时、缓存命中
+C:\Users\zhang\Desktop\DN\server\pregeneration.py
+记录预生成开始/结束、分支命中/浪费
+3. 结果汇报建议
+
+最终报表不要只放平均值，至少要有：
+
+一张总表：3 个实验、各组 mean/median/p95
+一张 Pareto 图：效率 vs 效果
+一张 waterfall/stack 图：总耗时分解
+一张缓存收益图：冷/热缓存差异
+一张并发表：1/5/10 并发下吞吐与尾延迟
+4. 关键风险提示
+
+如果不设质量下限，实验会天然偏向“关模块”
+如果不区分冷/热缓存，结论会失真
+如果只跑 1-2 个主题，结论会高度偶然
+如果只看均值，不看 p95，会低估真实用户痛点
+如果不做 paired comparison，同一主题复杂度差异会污染结果
+5. 这版方案最贴合 DN 项目的原因
+
+它直接围绕 DN 现有的三条真实链路：文本生成、Web 预生成、图像生成
+它复用了你仓库里已经存在的实验入口与目录结构，而不是另起炉灶
+它把 DN 代码里已经暴露出来的性能分支，变成了可比较的自变量
+它不是泛泛谈“模型推理效率”，而是可以直接指导你下一步怎么跑
+借鉴来源（方法论）
+
+OpenAI Latency Optimization: https://developers.openai.com/api/docs/guides/latency-optimization
+vLLM Metrics: https://docs.vllm.ai/en/stable/design/metrics/
+MLPerf Inference Docs: https://docs.mlcommons.org/inference/
+WebArena paper: https://arxiv.org/abs/2307.13854
+Unity CPU Profiler: https://docs.unity.cn/2023.1/Documentation/Manual/ProfilerCPU.html

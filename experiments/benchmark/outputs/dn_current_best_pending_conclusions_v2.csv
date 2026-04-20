@@ -1,0 +1,4 @@
+﻿conclusion_id,scope,statement,why_pending
+pending_004,benchmark_v1 / fullchain mechanism,为什么 no_council 在 worldview 单点上更快，但在 full-chain 上反而不占优，仍需归因分析。,当前还未拆开 cache、pregeneration、主角图阻塞、provider 排队窗口等因素。
+pending_002,benchmark_v1 / quality,no_council 的效率提升是否伴随质量退化，尚未通过人工评分协议验证。,当前只有自动效果代理，没有完成双人或抽样人工评分。
+pending_003,concurrency / no_council,并发场景下 no_council 是否仍优于 default，尚未验证。,当前并发实验只在 default 上完成。

@@ -55,6 +55,7 @@ from src.characters.supporting import (
 )
 from src.characters.archives import _load_role_archives
 from src.utils.text_utils import _clip_text, get_protagonist_names
+from src.image.prompt_optimize import normalize_image_style
 
 # 初始化 Flask 应用
 app = Flask(__name__)
@@ -311,7 +312,7 @@ def generate_worldview():
         protagonist_attr = data.get('protagonistAttr', {})
         difficulty = data.get('difficulty', '中等')
         tone_key = data.get('toneKey', 'normal_ending')
-        image_style = data.get('imageStyle', None)  # 图片风格选择
+        image_style = normalize_image_style(data.get('imageStyle', None))  # 图片风格选择
         
         # 基础校验
         if not game_theme:
@@ -353,7 +354,8 @@ def generate_worldview():
 
             def generate_main_character_after_worldview_async(gs_snapshot, game_id_arg):
                 """世界观生成完成后触发：主角形象生成（后台线程）。game_id_arg 必须传入，避免闭包读到后续请求覆盖的值。"""
-                set_provider_priority("low")
+                # ???????????????????????????????????
+                set_provider_priority("high")
                 try:
                     print(f"🎨 开始生成主角形象（游戏ID: {game_id_arg}，世界观已就绪，后台并行）...")
                     result = generate_main_character_image(
@@ -1561,6 +1563,59 @@ def get_video_status_api(task_id):
         "message": "视频生成功能已禁用（性能优化）"
     }), 404
 
+@app.route('/main-character-status/<game_id>', methods=['GET'])
+def main_character_status(game_id):
+    """返回主角正面图当前状态，供前端轮询避免图片缓存误判。"""
+    try:
+        if '..' in game_id or '/' in game_id or '\\' in game_id:
+            return jsonify({"status": "error", "message": "Invalid path"}), 400
+
+        main_character_dir = Path("initial") / "main_character" / game_id
+        front_path = main_character_dir / "main_character.png"
+        metadata_path = main_character_dir / "metadata.json"
+
+        metadata = {}
+        if metadata_path.exists():
+            try:
+                with open(metadata_path, 'r', encoding='utf-8') as f:
+                    metadata = json.load(f) or {}
+            except Exception:
+                metadata = {}
+
+        views = metadata.get("views") if isinstance(metadata.get("views"), dict) else {}
+        front = views.get("front") if isinstance(views.get("front"), dict) else {}
+        front_exists = front_path.exists()
+        status = str(front.get("status") or metadata.get("status") or "").strip().lower()
+        if front_exists:
+            status = "completed"
+        elif not status:
+            status = "pending"
+
+        updated_at = ""
+        if front_exists:
+            try:
+                updated_at = str(int(front_path.stat().st_mtime))
+            except Exception:
+                updated_at = ""
+        if not updated_at:
+            updated_at = str(front.get("generated_at") or front.get("started_at") or metadata.get("generated_at") or "")
+
+        response = jsonify({
+            "status": status,
+            "ready": front_exists,
+            "game_id": game_id,
+            "image_url": f"/initial/main_character/{game_id}/main_character.png" if front_exists else "",
+            "updated_at": updated_at,
+            "error": str(front.get("error") or metadata.get("error") or ""),
+        })
+        response.headers["Cache-Control"] = "no-store, no-cache, must-revalidate, max-age=0"
+        response.headers["Pragma"] = "no-cache"
+        response.headers["Expires"] = "0"
+        return response
+    except Exception as e:
+        print(f"❌ 获取主角状态失败：{str(e)}")
+        return jsonify({"status": "error", "message": f"Failed to get main character status: {str(e)}"}), 500
+
 @app.route('/initial/main_character/<game_id>/<filename>')
 def serve_main_character_image(game_id, filename):
     """提供主角形象图片"""
@@ -1575,7 +1630,11 @@ def serve_main_character_image(game_id, filename):
         if not os.path.exists(image_path):
             return jsonify({"status": "error", "message": "Image not found"}), 404
         
-        return send_file(image_path)
+        response = send_file(image_path, conditional=False, max_age=0)
+        response.headers["Cache-Control"] = "no-store, no-cache, must-revalidate, max-age=0"
+        response.headers["Pragma"] = "no-cache"
+        response.headers["Expires"] = "0"
+        return response
     except Exception as e:
         print(f"❌ 提供主角形象图片错误：{str(e)}")
         return jsonify({"status": "error", "message": f"Failed to serve image: {str(e)}"}), 500

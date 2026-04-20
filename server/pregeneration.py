@@ -21,6 +21,7 @@ from main2 import (
 )
 
 ENABLE_LAYER2_IMAGE_PREGEN = os.getenv("PREGEN_LAYER2_IMAGE_ENABLED", "false").lower() == "true"
+PREGENERATION_ENABLED = os.getenv("PREGENERATION_ENABLED", "true").lower() in ("1", "true", "yes")
 
 
 def _skip_low_priority_pregen(kind: str) -> bool:
@@ -52,6 +53,10 @@ def _pregenerate_next_layers_logic(global_state, current_options, scene_id):
         print(f"   - 未提供 scene_id，已生成新的：{scene_id}")
     else:
         print(f"   - 使用传入的 scene_id：{scene_id}")
+    if not PREGENERATION_ENABLED:
+        print(f"?? Scene {scene_id} pregeneration disabled by PREGENERATION_ENABLED=false")
+        return scene_id
+
     
     print(f"🔄 开始预生成场景 {scene_id} 的两层内容（优先级策略）...")
     

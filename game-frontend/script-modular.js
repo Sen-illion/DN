@@ -4500,24 +4500,63 @@ const Game = (() => {
                 const mc = gameState.gameData?.main_character;
                 return mc && mc.image_url ? mc.image_url : defaultMcPath;
             };
-            
-            // 检查图片是否存在（每次轮询用最新 gameState，避免闭包里的旧 URL）
-            const checkImageExists = () => {
-                return new Promise((resolve) => {
-                    const img = new Image();
-                    img.onload = () => resolve(true);
-                    img.onerror = () => resolve(false);
-                    img.src = resolveGameAssetUrl(getRawMainCharacterImageUrl());
-                });
+
+            const buildMainCharacterImageUrl = (rawUrl, versionTag) => {
+                const resolved = resolveGameAssetUrl(rawUrl || defaultMcPath);
+                if (!resolved) return resolved;
+                const cacheBuster = versionTag || Date.now();
+                try {
+                    const u = new URL(resolved, window.location.origin);
+                    u.searchParams.set('_mcv', String(cacheBuster));
+                    return u.toString();
+                } catch (error) {
+                    const joiner = resolved.includes('?') ? '&' : '?';
+                    return `${resolved}${joiner}_mcv=${encodeURIComponent(String(cacheBuster))}`;
+                }
             };
-            
-            // 如果已经有主角形象信息，直接展示
-            if (mainCharacter && mainCharacter.image_url) {
-                console.log('✅ 主角形象已生成，开始展示');
-                showMainCharacterImage(getRawMainCharacterImageUrl(), onContinue);
-                return;
+
+            const fetchMainCharacterStatus = async () => {
+                const statusUrl = `${getApiBase()}/main-character-status/${encodeURIComponent(gameId)}?_t=${Date.now()}`;
+                const response = await fetch(statusUrl, { cache: 'no-store' });
+                if (!response.ok) {
+                    throw new Error(`主角状态查询失败: HTTP ${response.status}`);
+                }
+                return response.json();
+            };
+
+            const latestImageUrlFromStatus = (statusData) =>
+                buildMainCharacterImageUrl(
+                    statusData?.image_url || getRawMainCharacterImageUrl(),
+                    statusData?.updated_at || Date.now()
+                );
+
+            try {
+                const statusData = await fetchMainCharacterStatus();
+                if (statusData?.ready && statusData.image_url) {
+                    console.log('✅ 主角形象已生成，开始展示');
+                    gameState.gameData.main_character = {
+                        ...(gameState.gameData.main_character || {}),
+                        game_id: gameId,
+                        image_url: statusData.image_url,
+                        status: statusData.status || 'completed',
+                        updated_at: statusData.updated_at || ''
+                    };
+                    showMainCharacterImage(latestImageUrlFromStatus(statusData), onContinue);
+                    return;
+                }
+                if (statusData?.status === 'failed') {
+                    console.warn('⚠️ 主角形象生成失败，跳过展示:', statusData.error || 'unknown');
+                    if (onContinue) onContinue();
+                    return;
+                }
+            } catch (statusError) {
+                console.warn('⚠️ 主角状态查询失败，退回图片轮询逻辑:', statusError);
+                if (mainCharacter && mainCharacter.image_url) {
+                    showMainCharacterImage(buildMainCharacterImageUrl(getRawMainCharacterImageUrl()), onContinue);
+                    return;
+                }
             }
-            
+             
             // 如果主角形象还未生成，等待生成完成
             console.log('⏳ 主角形象还在生成中，等待完成...');
             const maxWaitTime = 300000; // 5分钟
@@ -4526,18 +4565,24 @@ const Game = (() => {
             
             const checkMainCharacter = async () => {
                 try {
-                    const exists = await checkImageExists();
-                    
-                    if (exists) {
+                    const statusData = await fetchMainCharacterStatus();
+
+                    if (statusData?.ready && statusData.image_url) {
                         console.log('✅ 主角形象生成完成，开始展示');
-                        // 更新 gameState
-                        if (!gameState.gameData.main_character) {
-                            gameState.gameData.main_character = {
-                                game_id: gameId,
-                                image_url: `/initial/main_character/${gameId}/main_character.png`
-                            };
-                        }
-                        showMainCharacterImage(getRawMainCharacterImageUrl(), onContinue);
+                        gameState.gameData.main_character = {
+                            ...(gameState.gameData.main_character || {}),
+                            game_id: gameId,
+                            image_url: statusData.image_url,
+                            status: statusData.status || 'completed',
+                            updated_at: statusData.updated_at || ''
+                        };
+                        showMainCharacterImage(latestImageUrlFromStatus(statusData), onContinue);
+                        return;
+                    }
+
+                    if (statusData?.status === 'failed') {
+                        console.warn('⚠️ 主角形象生成失败，跳过展示:', statusData.error || 'unknown');
+                        if (onContinue) onContinue();
                         return;
                     }
                     

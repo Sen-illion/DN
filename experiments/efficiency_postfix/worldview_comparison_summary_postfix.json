@@ -1,0 +1,28 @@
+{
+  "experiment": "worldview_baseline_vs_no_council_postfix",
+  "baseline_fixed": {
+    "runs": 2,
+    "success_runs": 2,
+    "avg_elapsed_s": 609.29,
+    "min_elapsed_s": 9.341,
+    "max_elapsed_s": 1209.239,
+    "median_elapsed_s": 1209.239,
+    "raw_elapsed_s": [
+      9.341,
+      1209.239
+    ]
+  },
+  "no_council_fixed": {
+    "runs": 2,
+    "success_runs": 2,
+    "avg_elapsed_s": 15.117,
+    "min_elapsed_s": 8.773,
+    "max_elapsed_s": 21.46,
+    "median_elapsed_s": 21.46,
+    "raw_elapsed_s": [
+      8.773,
+      21.46
+    ]
+  },
+  "notes": "baseline_fixed contains a severe long-tail outlier >300s; interpret averages cautiously."
+}

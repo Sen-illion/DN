@@ -1,0 +1,646 @@
+{
+  "summary": {
+    "experiment_name": "benchmark_v6_readwait_off_30s_2",
+    "sample_size": 2,
+    "read_wait_s": 30.0,
+    "suite_start_ts": 1776610283.3916912,
+    "suite_end_ts": 1776610365.503386,
+    "second_click_elapsed_s": {
+      "count": 2,
+      "min": 0.009,
+      "max": 0.031,
+      "mean": 0.02,
+      "median": 0.02,
+      "p95": 0.03
+    },
+    "second_click_success_count": 2,
+    "likely_hit_count": 2,
+    "likely_hit_rate": 1.0
+  },
+  "runs": [
+    {
+      "benchmark_id": "DNQBV1_001",
+      "theme_id": 1,
+      "theme": "边陲驿站夜谈录",
+      "read_wait_s": 30.0,
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 11.99,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过协助老站长修复一份关键的旧站志，理解了老站长对驿站的深厚情感，决定留守至最后一刻，但同时私下向城市的朋友投递了简历，达成了一种“既负责任又为未来留后路”的阶段性平衡。",
+                  "main_conflict": "驿站面临拆迁通知，主角必须在“立刻打包行李前往大城市寻找新工作”与“履行最后三个月的看守职责”之间做出抉择。同时，主角与留守的老站长在处理旧档案的方式上产生分歧，老站长试图保留一切，而主角认为应精简以减轻负担，这种对“过去”的不同态度映射了两人对未来的不同焦虑。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角在一次深夜长谈后，意识到歌手的逃避与自己的困境本质不同，最终拒绝了跟随离开的冲动，而是将自己积攒的微薄路费资助给歌手，换取了对方的一张唱片，双方在清晨的站台平静告别，遗憾于无法同行，但释然于各自的选择。",
+                  "main_conflict": "一名怀揣音乐梦想却在现实中屡屡碰壁的流浪歌手滞留驿站，主角在与其交流中，看到了自己曾经放弃的艺术追求。主角面临“是否要资助歌手”或“是否要跟随歌手离开”的诱惑，这种诱惑与主角目前枯燥、贫瘠的现实生活形成强烈对比，引发了主角对自我价值的深度怀疑。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角在风雪中保住了档案，但驿站的部分建筑结构受损，最终驿站提前关闭。主角带着整理好的档案离开，虽然没能看到驿站作为文化遗产被保留，但通过档案的移交，他完成了对这段历史的交代，带着一身风霜与对未来的平淡期许，踏上了前往下一站的列车。",
+                  "main_conflict": "驿站拆迁日期提前，主角必须在极短时间内完成所有档案的移交，同时面对突如其来的暴风雪，驿站的供暖系统出现故障。主角需要在“保全珍贵档案”与“保障自身及滞留旅客安全”之间做出最终取舍，这不仅是物理上的困境，更是对主角内心“何为重要”的最终拷问。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为现实主义叙事模拟游戏，采用低饱和度的写实美术风格，强调光影在时间流逝中的质感。叙事节奏舒缓，通过环境细节与碎片化对话构建沉浸式体验，旨在捕捉平凡生活中的微小震颤与真实的人文温度。",
+              "main_quest": "主角作为驿站的最后一名值班员，目标是在驿站彻底关闭前的三个月内，完成对驿站档案的整理与归档，并在此过程中，通过与不同访客的夜谈，解开自己对于“离开还是留下”的终极困惑。任务步骤包括：每日维护驿站设施、记录访客信息、在深夜茶叙中挖掘故事、收集足以证明驿站存在过的物证。挑战在于，主角需在有限的资源下维持生计，同时面对外界诱惑（如老友的邀约）与内部羁绊（如驿站老站长的托付）的冲突，最终在驿站拆除前，做出一个既不背弃责任，也不完全牺牲自我的现实选择。",
+              "protagonist_ability": "主角拥有一种名为“共鸣倾听”的非超自然能力，实则为高度敏锐的共情力与观察力。通过在驿站夜间值班时，对过往旅客与当地居民的言语、微表情及生活习惯进行细致捕捉，主角能梳理出他人隐藏的困境与心结。此能力限制在于，主角无法改变他人的命运，只能通过引导性对话提供情绪价值或信息交换，且过度共情会消耗主角自身精力，导致其在处理自身生活琐事时显得迟钝与疲惫。",
+              "world_basic_setting": "故事发生于二十一世纪初的中国西北边陲，一座因铁路改线而逐渐被时代遗忘的旧驿站。这里地理环境荒凉，常年伴随风沙，社会结构由留守的老人、试图逃离的青年与偶尔路过的行者构成。文化上，这里是传统农耕文明与现代工业遗迹的交汇点，充满了锈迹斑斑的铁轨、废弃的信号塔与沉默的戈壁。关键事件在于“最后一班绿皮车的停运”，这不仅是交通的断绝，更是当地人与外界最后纽带的切断。社会氛围压抑而平静，人们在生存的惯性中挣扎，既有对大城市繁华的向往，也有对故土难以割舍的羁绊，展现了时代洪流下，边缘地带个体在现实重压与个人梦想间的拉锯。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1776610283_kfzocq",
+            "image_style": {
+              "type": "realistic"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "黑色短发、深色工装外套、眼神沉稳、略显疲惫、手指常有墨迹、背着旧帆布包、清瘦、沉默寡言、带有书卷气、穿着磨损的皮靴",
+              "work_en": "The Night Talks at the Frontier Station",
+              "work_zh": "边陲驿站夜谈录"
+            },
+            "tone": "normal_ending",
+            "user_theme": "边陲驿站夜谈录"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "start_ts": 1776610283.3916953,
+        "end_ts": 1776610295.3820715,
+        "provider_events": {
+          "event_count": 6,
+          "queue_wait_ms": {
+            "count": 6,
+            "min": 0.0,
+            "max": 1102097.0,
+            "mean": 293637.667,
+            "median": 0.0,
+            "p95": 991505.0
+          },
+          "latency_ms": {
+            "count": 2,
+            "min": 11955.0,
+            "max": 35197.0,
+            "mean": 23576.0,
+            "median": 23576.0,
+            "p95": 34034.9
+          },
+          "llm_success_count": 1,
+          "image_success_count": 0,
+          "request_thread_event_count": 2
+        },
+        "status": "success",
+        "game_id": "game_1776610283_kfzocq"
+      },
+      "first_click": {
+        "http_status": 200,
+        "elapsed_s": 0.021,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "",
+              "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：新安平市的清晨总是笼罩在灰蓝色的雾霾中，我推开伦理庭那扇沉重的防盗门，空气中弥漫着廉价消毒水与陈旧纸张混合的味道。我习惯性地推了推鼻梁上有些下滑的黑框眼镜，指尖因为长期的睡眠不足而微微颤抖。桌面上，那本磨损严重的旧笔记本静静躺着，里面记录着我经手过的每一个克隆体编号。\n\n“林审核员，编号734号克隆体的例行评估报告，请在今天中午前完成。”主管冷冰冰的声音从走廊尽头传来，他甚至没有抬头看我一眼。\n\n我坐回工位，打开终端，屏幕幽蓝的光映照出我眼下浓重的黑影。734号的档案显示，它负责维护城市边缘的供水系统，本该是毫无情感的耗材。然而，当我的指尖触碰到终端的生物识别感应区时，一股突如其来的刺痛感穿透了我的神经那是“共情共振”的预兆。在意识模糊的瞬间，我仿佛看见了一个瘦弱的孤儿躲在锈迹斑斑的管道后，而那个本该冷漠的克隆体，正用身体挡住了一道致命的电流。我猛地睁开眼，呼吸急促，心脏在胸腔里剧烈跳动。这不仅是一个评估任务，这似乎是一个被刻意掩盖的生命迹象。"
+            },
+            "deep_background_links": {},
+            "flow_update": {},
+            "next_options": [
+              "深入读取734号的残留记忆，确认其觉醒真相。",
+              "按照程序提交常规评估报告，试图保全自己的职业生涯。"
+            ],
+            "plot_supporting_characters": [
+              [
+                "主管",
+                "配角1"
+              ]
+            ],
+            "scene": "新安平市的清晨总是笼罩在灰蓝色的雾霾中，我推开伦理庭那扇沉重的防盗门，空气中弥漫着廉价消毒水与陈旧纸张混合的味道。我习惯性地推了推鼻梁上有些下滑的黑框眼镜，指尖因为长期的睡眠不足而微微颤抖。桌面上，那本磨损严重的旧笔记本静静躺着，里面记录着我经手过的每一个克隆体编号。\n\n“林审核员，编号734号克隆体的例行评估报告，请在今天中午前完成。”主管冷冰冰的声音从走廊尽头传来，他甚至没有抬头看我一眼。\n\n我坐回工位，打开终端，屏幕幽蓝的光映照出我眼下浓重的黑影。734号的档案显示，它负责维护城市边缘的供水系统，本该是毫无情感的耗材。然而，当我的指尖触碰到终端的生物识别感应区时，一股突如其来的刺痛感穿透了我的神经那是“共情共振”的预兆。在意识模糊的瞬间，我仿佛看见了一个瘦弱的孤儿躲在锈迹斑斑的管道后，而那个本该冷漠的克隆体，正用身体挡住了一道致命的电流。我猛地睁开眼，呼吸急促，心脏在胸腔里剧烈跳动。这不仅是一个评估任务，这似乎是一个被刻意掩盖的生命迹象。",
+            "sceneId": "7357666706907503019_-9120355032721703743",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-lin-yuan-empathy-resonance-734, cyberpunk-noir, dystopian, internal-struggle, realistic-narrative, cinematic-lighting, photorealistic, highly-detailed, cinematic-film-grain, cold-color-palette, sharp-focus-on-micro-expressions, young male protagonist Lin Yuan with exhausted expression, deep dark circles under eyes indicating long-term sleep deprivation, clear and empathetic eyes reflecting terminal screen light, fingers trembling slightly while hovering over bio-sensor, slight forward hunch indicating chronic fatigue, worn grey trench coat over simple office shirt, black-rimmed glasses slightly slipping down nose bridge, sitting at messy workstation in ethics court office, right hand touching bio-recognition sensor on terminal, body stiffening from sudden psychic shock, 主管-配角1 standing in background shadow at end of corridor, 8K detailed facial features showing signs of stress and fatigue, clear eyes with complex emotional resonance, trembling lips slightly parted in sudden realization, soft blue screen light hitting face from below, visible skin texture and subtle sweat beads, slightly messy short dark brown hair, root fixation coefficient 0.7, tip swing amplitude 5cm, color layering: main #3E2723, secondary #261A1A, highlight #5D4037, shadow #1B1212, no wind effect, turbulence intensity 1%, natural hair texture with individual strands visible, grey trench coat fabric with slight wrinkles, material looks heavy and cheap, collar slightly askew, dim office cubicle with glowing blue terminal screens, cluttered desk with old notebook and scattered files, cold metallic walls of the ethics court, vague, blurred corridor in background leading to darkness, 主管-配角1 standing at the far end of the gloomy corridor, partially obscured by shadows, faint holographic particles near bio-sensor, dust motes floating in stale office air, blue light flare from terminal screen reflecting on skin and glasses, dominant cold grey and sterile blue tones, dull office brown for furniture, sharp cold blue light from terminal, harsh blue light from terminal illuminating protagonist from below, dim ambient ceiling light creating long shadows, high contrast between glowing screen and dark environment, type close-up shot, lens 35mm, aperture f/1.8, depth_of_field shallow focus on protagonist's face and trembling hand, flash none, grain fine cinematic film grain, texture realistic industrial texture, protagonist positioned on left third of frame, terminal screen as primary light source, 主管-配角1 as a distant looming shadow in the background, action constraints: focus on the moment of touch and psychic shock, immersive realistic drama, no text or symbols in image, no watermarks or signatures, oppressive atmosphere, sudden psychological tension, melancholy and moral weight, isolated urban despair, no text, no symbols, no garbled characters, no words",
+              "prompt_json": {
+                "camera": {
+                  "aperture": "f/1.8",
+                  "depth_of_field": "shallow focus on protagonist's face and trembling hand",
+                  "flash": "none",
+                  "grain": "fine cinematic film grain",
+                  "lens": "35mm",
+                  "texture": "realistic industrial texture",
+                  "type": "close-up shot"
+                },
+                "clothing_system": [
+                  "grey trench coat fabric with slight wrinkles",
+                  "material looks heavy and cheap",
+                  "collar slightly askew"
+                ],
+                "color_restriction": [
+                  "dominant cold grey and sterile blue tones",
+                  "dull office brown for furniture",
+                  "sharp cold blue light from terminal"
+                ],
+                "composition": [
+                  "protagonist positioned on left third of frame",
+                  "terminal screen as primary light source",
+                  "主管-配角1 as a distant looming shadow in the background",
+                  "action constraints: focus on the moment of touch and psychic shock"
+                ],
+                "environment": {
+                  "background": [
+                    "dim office cubicle with glowing blue terminal screens",
+                    "cluttered desk with old notebook and scattered files",
+                    "cold metallic walls of the ethics court",
+                    "vague, blurred corridor in background leading to darkness"
+                  ],
+                  "characters": [
+                    "主管-配角1 standing at the far end of the gloomy corridor, partially obscured by shadows"
+                  ],
+                  "effects": [
+                    "faint holographic particles near bio-sensor",
+                    "dust motes floating in stale office air",
+                    "blue light flare from terminal screen reflecting on skin and glasses"
+                  ]
+                },
+                "face_system": [
+                  "8K detailed facial features showing signs of stress and fatigue",
+                  "clear eyes with complex emotional resonance",
+                  "trembling lips slightly parted in sudden realization",
+                  "soft blue screen light hitting face from below",
+                  "visible skin texture and subtle sweat beads"
+                ],
+                "hair_system": [
+                  "slightly messy short dark brown hair",
+                  "root fixation coefficient 0.7",
+                  "tip swing amplitude 5cm",
+                  "color layering: main #3E2723, secondary #261A1A, highlight #5D4037, shadow #1B1212",
+                  "no wind effect",
+                  "turbulence intensity 1%",
+                  "natural hair texture with individual strands visible"
+                ],
+                "label": "scene-lin-yuan-empathy-resonance-734",
+                "lighting": [
+                  "harsh blue light from terminal illuminating protagonist from below",
+                  "dim ambient ceiling light creating long shadows",
+                  "high contrast between glowing screen and dark environment"
+                ],
+                "mood": [
+                  "oppressive atmosphere",
+                  "sudden psychological tension",
+                  "melancholy and moral weight",
+                  "isolated urban despair"
+                ],
+                "output_style": [
+                  "immersive realistic drama",
+                  "no text or symbols in image",
+                  "no watermarks or signatures"
+                ],
+                "style": [
+                  "photorealistic",
+                  "highly-detailed",
+                  "cinematic-film-grain",
+                  "cold-color-palette",
+                  "sharp-focus-on-micro-expressions"
+                ],
+                "subject": {
+                  "body_traits": [
+                    "young male protagonist Lin Yuan with exhausted expression",
+                    "deep dark circles under eyes indicating long-term sleep deprivation",
+                    "clear and empathetic eyes reflecting terminal screen light",
+                    "fingers trembling slightly while hovering over bio-sensor",
+                    "slight forward hunch indicating chronic fatigue"
+                  ],
+                  "outfit": [
+                    "worn grey trench coat over simple office shirt",
+                    "black-rimmed glasses slightly slipping down nose bridge"
+                  ],
+                  "pose": [
+                    "sitting at messy workstation in ethics court office",
+                    "right hand touching bio-recognition sensor on terminal",
+                    "body stiffening from sudden psychic shock",
+                    "主管-配角1 standing in background shadow at end of corridor"
+                  ]
+                },
+                "tags": [
+                  "cyberpunk-noir",
+                  "dystopian",
+                  "internal-struggle",
+                  "realistic-narrative",
+                  "cinematic-lighting"
+                ]
+              },
+              "scene_text_hash": "23785e10aec0f688fa18a5ae8ef27fb7",
+              "style": "default",
+              "url": "/image_cache/d61c9f98e2ea66ed3a7fc7ddb3da7f44.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "start_ts": 1776610295.400098,
+        "end_ts": 1776610295.4214656,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "success",
+        "has_scene": true,
+        "has_image": true
+      },
+      "second_click": {
+        "http_status": 200,
+        "elapsed_s": 0.031,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "我通过深度读取确认了734号确实存在非法觉醒迹象，并掌握了其保护孤儿的关键证据，主线任务从单纯的评估转向了对觉醒真相的初步挖掘。",
+              "recap_text": "你选择了“深入读取734号的残留记忆，确认其觉醒真相。”。当前章节：chapter1。主线进展：我通过深度读取确认了734号确实存在非法觉醒迹象，并掌握了其保护孤儿的关键证据，主线任务从单纯的评估转向了对觉醒真相的初步挖掘。。最近剧情：我深吸一口气，指尖因长期紧绷而微微颤抖，再次按向了终端的生物识别区。这一次，我不再抗拒那股神经刺痛，而是任由意识沉入734号破碎的记忆深处。视线扭曲，我看见了那条阴暗潮湿的地下管道，734号正蜷缩在角落，它那双本该空洞的电子眼，此刻竟映照出那个孤儿脏兮兮的笑脸。电流滋滋作响，它毫不犹豫地用身体挡住裸露的电线，那一刻，它不仅是在保护生命，更是在守护某种名为“情感”的奢侈品。我猛地睁开眼，冷汗浸透了灰色风衣的后背，黑框眼镜下滑，我扶了扶镜框，看着屏幕上跳动的评估进度条，心脏在胸腔里沉重地撞击着。主管的脚步声在走廊回荡，他停在我的工位旁，敲了敲桌面，冷冷地问：“林远，进度如何？这种低级耗材的评估，难道还需要你动用这么久的时间吗？”我看着他那张写满官僚冷漠的脸，又看了看终端上那段被我悄悄加密的记忆片段，喉咙发干，低声回应：“数据有些异常，我需要更多时间核对，确保不会出现误判。”"
+            },
+            "deep_background_links": {
+              "1": "主管"
+            },
+            "flow_update": {
+              "chapter_conflict_solved": false,
+              "characters": {},
+              "environment": {},
+              "quest_progress": "我通过深度读取确认了734号确实存在非法觉醒迹象，并掌握了其保护孤儿的关键证据，主线任务从单纯的评估转向了对觉醒真相的初步挖掘。"
+            },
+            "next_options": [
+              "伪造数据，将734号标记为“待观察”以拖延销毁。",
+              "询问主管关于“伦理庭”早期实验记录的权限，试探其底线。"
+            ],
+            "plot_mentioned_only": [],
+            "plot_supporting_characters": [
+              [
+                "主管",
+                "配角1"
+              ]
+            ],
+            "scene": "我深吸一口气，指尖因长期紧绷而微微颤抖，再次按向了终端的生物识别区。这一次，我不再抗拒那股神经刺痛，而是任由意识沉入734号破碎的记忆深处。视线扭曲，我看见了那条阴暗潮湿的地下管道，734号正蜷缩在角落，它那双本该空洞的电子眼，此刻竟映照出那个孤儿脏兮兮的笑脸。电流滋滋作响，它毫不犹豫地用身体挡住裸露的电线，那一刻，它不仅是在保护生命，更是在守护某种名为“情感”的奢侈品。我猛地睁开眼，冷汗浸透了灰色风衣的后背，黑框眼镜下滑，我扶了扶镜框，看着屏幕上跳动的评估进度条，心脏在胸腔里沉重地撞击着。主管的脚步声在走廊回荡，他停在我的工位旁，敲了敲桌面，冷冷地问：“林远，进度如何？这种低级耗材的评估，难道还需要你动用这么久的时间吗？”我看着他那张写满官僚冷漠的脸，又看了看终端上那段被我悄悄加密的记忆片段，喉咙发干，低声回应：“数据有些异常，我需要更多时间核对，确保不会出现误判。”",
+            "sceneId": "-679924956677127342_1957960225740078840"
+          },
+          "status": "success"
+        },
+        "start_ts": 1776610325.4357805,
+        "end_ts": 1776610325.4667645,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "status": "success",
+        "has_scene": true,
+        "has_image": false,
+        "selected_option_index": 0,
+        "selected_option_text": "深入读取734号的残留记忆，确认其觉醒真相。",
+        "input_scene_id": "7357666706907503019_-9120355032721703743",
+        "inferred_cache_result": "likely_hit",
+        "is_placeholder": false,
+        "used_updated_flow_state": true
+      }
+    },
+    {
+      "benchmark_id": "DNQBV1_002",
+      "theme_id": 9,
+      "theme": "末日温室园丁",
+      "read_wait_s": 30.0,
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 9.96,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过变卖个人积蓄购买零件，并连续数夜手动疏通管道，成功让温室恢复供水。虽然产量勉强达标，但主角因过度劳累导致旧伤复发，且积蓄耗尽，生活陷入了更为拮据的境地，达成阶段性生存。",
+                  "main_conflict": "温室供水系统因陈旧老化而频繁停摆，主角面临着“修复设备”与“维持作物生存”的双重压力。与此同时，由于温室产出不达标，主角被上级警告，若下个月无法提升产量，其岗位将被更廉价的自动化设备取代，这直接威胁到主角为家人筹集医疗费的奋斗目标。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角成功培育出抗性品种并控制了感染，但因私自占用资源被扣除大量积分，导致家人的医疗申请被延后。主角虽然保住了温室的生机，却不得不面对家人病情恶化、自己奋斗目标再次推迟的现实，遗憾与成就感交织。",
+                  "main_conflict": "一种新型真菌孢子侵入温室，导致大面积作物枯萎。主角必须在“销毁受感染植株”以防扩散和“冒险尝试挽救”之间做出选择。此时，主角发现自己培育的某株特殊品种展现出了抗性，但若要将其推广，需要占用本就紧张的公共资源，这引发了与其他园丁的利益冲突。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "温室被保留为小型研究基地，主角获得了留任资格，但失去了进入中心城区照顾家人的机会。最终，主角在温室中看着新芽破土，虽然无法与家人团聚，但温室的存续成为了他余生唯一的慰藉，达成一种充满遗憾的平静圆满。",
+                  "main_conflict": "城市管理部门决定彻底关闭七号温室，将其改建为能源储存站。主角面临最后的抉择：是接受遣散费离开，还是通过最后的努力证明温室作为“生态样本库”的不可替代性，从而争取到将其保留为小型研究基地的机会，但这需要主角放弃原本的调职申请。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "沉浸式叙事模拟，采用低饱和度写实美术风格，强调光影与植物纹理的细节。节奏舒缓，通过环境叙事与碎片化对话构建出一种“在废墟之上维持生计”的静谧与压抑并存的氛围，带给玩家一种如同在黄昏中修剪枯枝般的真实生活质感。",
+              "main_quest": "主角作为一名普通的温室园丁，目标是修复并维持“七号温室”的生态循环系统，以换取足够的积分让患病的家人获得进入中心城区医疗区的资格。任务分为三个阶段：首先是清理被真菌侵蚀的灌溉管道，恢复基础供水；其次是培育出一种能够适应当前高污染环境的变异作物，以稳定氧气产出；最后是应对城市管理部门的裁撤计划，通过证明温室的产出价值来保住这片赖以生存的土地。挑战在于，主角不仅要对抗恶劣的自然环境，还要在有限的资源分配中做出取舍，每一次成功的培育都伴随着对个人身体的透支，而最终的“圆满”并非拯救世界，而是确保温室在自己退休后能继续运转，且家人能获得基本的生存保障。",
+              "protagonist_ability": "主角拥有一种名为“共感培育”的直觉，这并非超能力，而是长期与植物共生积累的经验。通过观察叶脉的细微色差、土壤的湿度反馈以及空气中真菌孢子的浓度，主角能精准判断作物的生长瓶颈。这种能力限制在于它极度依赖个人的体力与专注力，且无法逆转环境污染带来的基因退化，只能通过繁琐的物理干预（如人工授粉、手动过滤水源）来延长植物的生命，无法从根本上改变温室逐渐荒芜的宿命。",
+              "world_basic_setting": "故事发生于“大停滞”后的近未来，全球生态系统因不明原因的真菌污染而崩溃，人类退守至几座高耸的巨型穹顶城市。城市内部资源高度配给，阶级分明，而城市边缘的“温室区”是维持氧气循环的生命线。这里常年弥漫着人工合成的雾气，阳光被厚重的玻璃折射成冷色调。社会文化呈现出一种“末世平民主义”，人们不再谈论宏大的复兴，而是专注于修补破损的管道、培育耐受性作物。历史的宏大叙事早已模糊，留下的只有关于“旧时代蓝天”的模糊传说。在这个世界，植物是稀缺的奢侈品，园丁不仅是技术工种，更是城市中极少数能接触到“活物”的职业，他们守护着人类最后的呼吸，也见证着文明在温室玻璃墙内缓慢的凋零与新生。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1776610325_7k5ptx",
+            "image_style": {
+              "type": "realistic"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "黑色乱发、沾染泥土的工装、消瘦、眼神专注、手部布满细小伤痕、常年佩戴防尘口罩、沉默寡言、疲惫但坚毅、袖口磨损、随身携带旧剪刀",
+              "work_en": "Sprout of Dust",
+              "work_zh": "尘埃之芽"
+            },
+            "tone": "normal_ending",
+            "user_theme": "末日温室园丁"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "start_ts": 1776610325.4806013,
+        "end_ts": 1776610335.4404085,
+        "provider_events": {
+          "event_count": 7,
+          "queue_wait_ms": {
+            "count": 7,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 3,
+            "min": 5373.0,
+            "max": 30815.0,
+            "mean": 15370.667,
+            "median": 9924.0,
+            "p95": 28725.9
+          },
+          "llm_success_count": 3,
+          "image_success_count": 0,
+          "request_thread_event_count": 2
+        },
+        "status": "success",
+        "game_id": "game_1776610325_7k5ptx"
+      },
+      "first_click": {
+        "http_status": 200,
+        "elapsed_s": 0.011,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "",
+              "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：新枢纽市的空气里总是弥漫着一股廉价臭氧与合成机油的味道。我推开伦理庭档案室那扇沉重的防爆门，指尖传来的电子胶带触感有些发涩。头顶的感应灯闪烁了两下，发出滋滋的电流声，将我清瘦的影子在灰白色的墙面上拉得扭曲。我习惯性地低头，推了推鼻梁上略显松动的黑框眼镜，步履匆忙地走向办公桌。桌上堆叠着待处理的电子档案，其中一份名为“编号702”的卷宗正闪烁着刺眼的红色警示灯。我刚坐下，档案室的门再次被推开，主管陈默那张毫无表情的脸探了进来，他冷冷地盯着我，声音像是在砂纸上磨过：“林远，这起案件的审核期限只剩48小时，如果处理不好，你知道后果。”他没等我回应，便转身离去，皮鞋敲击地面的声音在空旷的走廊里回荡。我深吸一口气，指尖颤抖着点开了702的电子神经碎片接口，一股冰冷且陌生的情绪瞬间顺着指尖钻入我的大脑，那是一种极度渴望自由却又深陷泥潭的绝望感。我意识到，这不仅仅是一份档案，这可能是我职业生涯中最危险的一次越界。"
+            },
+            "deep_background_links": {},
+            "flow_update": {},
+            "next_options": [
+              "深入读取编号702的神经碎片，探寻其人格来源。",
+              "调取陈默的过往审核记录，寻找他在非法克隆交易中的把柄。"
+            ],
+            "plot_supporting_characters": [],
+            "scene": "新枢纽市的空气里总是弥漫着一股廉价臭氧与合成机油的味道。我推开伦理庭档案室那扇沉重的防爆门，指尖传来的电子胶带触感有些发涩。头顶的感应灯闪烁了两下，发出滋滋的电流声，将我清瘦的影子在灰白色的墙面上拉得扭曲。我习惯性地低头，推了推鼻梁上略显松动的黑框眼镜，步履匆忙地走向办公桌。桌上堆叠着待处理的电子档案，其中一份名为“编号702”的卷宗正闪烁着刺眼的红色警示灯。我刚坐下，档案室的门再次被推开，主管陈默那张毫无表情的脸探了进来，他冷冷地盯着我，声音像是在砂纸上磨过：“林远，这起案件的审核期限只剩48小时，如果处理不好，你知道后果。”他没等我回应，便转身离去，皮鞋敲击地面的声音在空旷的走廊里回荡。我深吸一口气，指尖颤抖着点开了702的电子神经碎片接口，一股冰冷且陌生的情绪瞬间顺着指尖钻入我的大脑，那是一种极度渴望自由却又深陷泥潭的绝望感。我意识到，这不仅仅是一份档案，这可能是我职业生涯中最危险的一次越界。",
+            "sceneId": "7600254219518205074_5009021248992205714",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-archive-room-702-confrontation, cyberpunk-noir, dystopian, industrial-realism, oppressive-atmosphere, cinematic-narrative, photorealistic, cinematic-lighting, detailed-texture, low-saturation, sharp-focus, Lin Yuan, a young male with a slim and lean build, tired and weary eyes reflecting deep exhaustion, habitually bowed head and slumped shoulders, pale complexion with subtle signs of mental fatigue, fingertips wrapped in worn electronic tape, dark grey industrial work shirt with slightly frayed cuffs, utilitarian fabric texture, black-rimmed spectacles resting on the bridge of his nose, sitting at a cluttered metal desk inside a cramped archive room, body hunched over an glowing electronic interface, right hand touching a flickering neural data shard, facing away from the doorway where 陈默-配角1 stands, 8K highly detailed facial features, subtle micro-expressions showing anxiety and focus, dark circles under eyes, soft shadows emphasizing the weary jawline, lip color naturally muted and pale, neat but slightly messy black short hair, root fixation coefficient 0.8, tip swing amplitude 5cm, color layering: main color #1A1A1A, secondary color #262626, highlight #333333, shadow #0D0D0D, static and still with minimal movement, wind speed 0m/s, turbulence intensity 0%, stiff dark grey industrial work shirt, visible wear and tear on the cuffs, slight fabric creases from sitting posture, dimly lit archive room with heavy blast-proof door, piles of scattered electronic files and data tablets on the desk, flickering fluorescent light overhead casting distorted shadows, grey-white metallic walls with industrial conduits, 陈默-配角1 standing at the doorway, cold and expressionless, dressed in a sharp corporate uniform, red warning light glowing from the 702 file interface, faint buzzing electrical distortion in the air, dust particles dancing in the harsh light beam, distorted long shadows on the grey wall, industrial grey tones, dull metallic silver, harsh warm yellow emergency light, stark red warning light from the interface, flickering cool fluorescent overhead light, harsh red LED glow from the desk interface illuminating Lin Yuan's face from below, deep shadows cast by the doorway silhouette of 陈默-配角1, type medium close-up shot, lens 35mm, aperture f/2.0, depth_of_field shallow focus on Lin Yuan's face and hands, flash none, grain fine film grain, texture realistic industrial surface textures, Lin Yuan centered at the desk in the foreground, 陈默-配角1 positioned in the background doorway, slightly out of focus, diagonal composition leading from the door to the desk, action constraints: Lin Yuan's intense focus on the data interface, 陈默-配角1's cold departure, realistic cinematic style, no text or symbols in image, no watermarks or logos, strictly no text or characters, oppressive and claustrophobic, tense workplace power dynamic, melancholy and desperate, high-stakes professional peril, no text, no symbols, no garbled characters, no words",
+              "prompt_json": {
+                "camera": {
+                  "aperture": "f/2.0",
+                  "depth_of_field": "shallow focus on Lin Yuan's face and hands",
+                  "flash": "none",
+                  "grain": "fine film grain",
+                  "lens": "35mm",
+                  "texture": "realistic industrial surface textures",
+                  "type": "medium close-up shot"
+                },
+                "clothing_system": [
+                  "stiff dark grey industrial work shirt",
+                  "visible wear and tear on the cuffs",
+                  "slight fabric creases from sitting posture"
+                ],
+                "color_restriction": [
+                  "industrial grey tones",
+                  "dull metallic silver",
+                  "harsh warm yellow emergency light",
+                  "stark red warning light from the interface"
+                ],
+                "composition": [
+                  "Lin Yuan centered at the desk in the foreground",
+                  "陈默-配角1 positioned in the background doorway, slightly out of focus",
+                  "diagonal composition leading from the door to the desk",
+                  "action constraints: Lin Yuan's intense focus on the data interface, 陈默-配角1's cold departure"
+                ],
+                "environment": {
+                  "background": [
+                    "dimly lit archive room with heavy blast-proof door",
+                    "piles of scattered electronic files and data tablets on the desk",
+                    "flickering fluorescent light overhead casting distorted shadows",
+                    "grey-white metallic walls with industrial conduits"
+                  ],
+                  "characters": [
+                    "陈默-配角1 standing at the doorway, cold and expressionless, dressed in a sharp corporate uniform"
+                  ],
+                  "effects": [
+                    "red warning light glowing from the 702 file interface",
+                    "faint buzzing electrical distortion in the air",
+                    "dust particles dancing in the harsh light beam",
+                    "distorted long shadows on the grey wall"
+                  ]
+                },
+                "face_system": [
+                  "8K highly detailed facial features",
+                  "subtle micro-expressions showing anxiety and focus",
+                  "dark circles under eyes",
+                  "soft shadows emphasizing the weary jawline",
+                  "lip color naturally muted and pale"
+                ],
+                "hair_system": [
+                  "neat but slightly messy black short hair",
+                  "root fixation coefficient 0.8",
+                  "tip swing amplitude 5cm",
+                  "color layering: main color #1A1A1A, secondary color #262626, highlight #333333, shadow #0D0D0D",
+                  "static and still with minimal movement",
+                  "wind speed 0m/s",
+                  "turbulence intensity 0%"
+                ],
+                "label": "scene-archive-room-702-confrontation",
+                "lighting": [
+                  "flickering cool fluorescent overhead light",
+                  "harsh red LED glow from the desk interface illuminating Lin Yuan's face from below",
+                  "deep shadows cast by the doorway silhouette of 陈默-配角1"
+                ],
+                "mood": [
+                  "oppressive and claustrophobic",
+                  "tense workplace power dynamic",
+                  "melancholy and desperate",
+                  "high-stakes professional peril"
+                ],
+                "output_style": [
+                  "realistic cinematic style",
+                  "no text or symbols in image",
+                  "no watermarks or logos",
+                  "strictly no text or characters"
+                ],
+                "style": [
+                  "photorealistic",
+                  "cinematic-lighting",
+                  "detailed-texture",
+                  "low-saturation",
+                  "sharp-focus"
+                ],
+                "subject": {
+                  "body_traits": [
+                    "Lin Yuan, a young male with a slim and lean build",
+                    "tired and weary eyes reflecting deep exhaustion",
+                    "habitually bowed head and slumped shoulders",
+                    "pale complexion with subtle signs of mental fatigue",
+                    "fingertips wrapped in worn electronic tape"
+                  ],
+                  "outfit": [
+                    "dark grey industrial work shirt with slightly frayed cuffs",
+                    "utilitarian fabric texture",
+                    "black-rimmed spectacles resting on the bridge of his nose"
+                  ],
+                  "pose": [
+                    "sitting at a cluttered metal desk inside a cramped archive room",
+                    "body hunched over an glowing electronic interface",
+                    "right hand touching a flickering neural data shard",
+                    "facing away from the doorway where 陈默-配角1 stands"
+                  ]
+                },
+                "tags": [
+                  "cyberpunk-noir",
+                  "dystopian",
+                  "industrial-realism",
+                  "oppressive-atmosphere",
+                  "cinematic-narrative"
+                ]
+              },
+              "scene_text_hash": "db655f32ceb2a373fc5e5616852479fc",
+              "style": "default",
+              "url": "/image_cache/c521f43885aaae58f377a4d4a1491cef.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "start_ts": 1776610335.4543772,
+        "end_ts": 1776610335.465025,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "success",
+        "has_scene": true,
+        "has_image": true
+      },
+      "second_click": {
+        "http_status": 200,
+        "elapsed_s": 0.009,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "你正在执行任务：深入读取编号702的神经碎片，探寻其人格来源。",
+              "recap_text": "你选择了“深入读取编号702的神经碎片，探寻其人格来源。”。当前章节：chapter1。主线进展：你正在执行任务：深入读取编号702的神经碎片，探寻其人格来源。。最近剧情：你选择了：深入读取编号702的神经碎片，探寻其人格来源。。在你的努力下，你取得了一些进展。"
+            },
+            "deep_background_links": {},
+            "flow_update": {
+              "chapter_conflict_solved": false,
+              "characters": {},
+              "environment": {},
+              "quest_progress": "你正在执行任务：深入读取编号702的神经碎片，探寻其人格来源。"
+            },
+            "next_options": [
+              "继续前进",
+              "查看当前状态",
+              "返回上一步",
+              "探索周围环境"
+            ],
+            "scene": "你选择了：深入读取编号702的神经碎片，探寻其人格来源。。在你的努力下，你取得了一些进展。",
+            "sceneId": "-5447644534909210292_-1313984671503898919"
+          },
+          "status": "success"
+        },
+        "start_ts": 1776610365.479878,
+        "end_ts": 1776610365.489045,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "status": "success",
+        "has_scene": true,
+        "has_image": false,
+        "selected_option_index": 0,
+        "selected_option_text": "深入读取编号702的神经碎片，探寻其人格来源。",
+        "input_scene_id": "7600254219518205074_5009021248992205714",
+        "inferred_cache_result": "likely_hit",
+        "is_placeholder": true,
+        "used_updated_flow_state": true
+      }
+    }
+  ]
+}

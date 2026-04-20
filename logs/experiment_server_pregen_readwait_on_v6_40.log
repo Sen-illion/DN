@@ -1,0 +1,25 @@
+[config] 当前图生模型 Image_Generation_MODEL = gemini-2.5-flash-image
+=== 文本冒险游戏API服务器 ===
+请在浏览器地址栏输入（务必包含 http://）：
+  http://127.0.0.1:5001
+不要只输入 127.0.0.1:5001，否则会被当成搜索，无法打开游戏页面。
+API端点：
+  POST /generate-worldview - 生成游戏世界观
+  POST /generate-option - 生成单个选项对应的剧情（支持缓存）
+  POST /pregenerate-next-layers - 预生成两层内容
+  POST /get-pregenerated-layer2 - 获取预生成的第二层内容
+  POST /generate-ending - 生成游戏结局
+  POST /save-game - 保存游戏
+  GET /list-saves - 列出所有存档
+  POST /load-game - 加载游戏
+  POST /delete-save - 删除存档
+  POST /generate-scene-image - 生成场景图片
+  GET /image_cache/<filename> - 获取缓存的图片
+===============================
+ * Serving Flask app 'game_server'
+ * Debug mode: off
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://198.18.0.1:5001
+[33mPress CTRL+C to quit[0m
