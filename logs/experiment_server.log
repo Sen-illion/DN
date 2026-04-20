@@ -1,0 +1,239 @@
+[config] 当前图生模型 Image_Generation_MODEL = gemini-2.5-flash-image
+=== 文本冒险游戏API服务器 ===
+请在浏览器地址栏输入（务必包含 http://）：
+  http://127.0.0.1:5001
+不要只输入 127.0.0.1:5001，否则会被当成搜索，无法打开游戏页面。
+API端点：
+  POST /generate-worldview - 生成游戏世界观
+  POST /generate-option - 生成单个选项对应的剧情（支持缓存）
+  POST /pregenerate-next-layers - 预生成两层内容
+  POST /get-pregenerated-layer2 - 获取预生成的第二层内容
+  POST /generate-ending - 生成游戏结局
+  POST /save-game - 保存游戏
+  GET /list-saves - 列出所有存档
+  POST /load-game - 加载游戏
+  POST /delete-save - 删除存档
+  POST /generate-scene-image - 生成场景图片
+  GET /image_cache/<filename> - 获取缓存的图片
+===============================
+ * Serving Flask app 'game_server'
+ * Debug mode: off
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://198.18.0.1:5001
+[33mPress CTRL+C to quit[0m
+➡️  GET /
+⬅️  GET / -> 200
+127.0.0.1 - - [19/Apr/2026 10:03:51] "GET / HTTP/1.1" 200 -
+➡️  POST /generate-worldview
+🎮 生成游戏ID: game_1776564279_hccru6
+📝 尝试生成世界观（第1/2次）...
+?? ??API??... (????30??????160??????0ms)
+? API????
+✅ 主角规范信息解析结果： {
+  "name_zh": "林远",
+  "name_en": "Lin Yuan",
+  "gender": "男性",
+  "age_range": "青年",
+  "work_zh": "《旧港余温》",
+  "work_en": "《Warmth of the Old Port》",
+  "signature_look_keywords": "黑色短发、黑框眼镜、穿着磨损的工装外套、眼神疲惫但坚定、手指常有老茧、习惯性揣兜、身形消瘦、不修边幅、常带一个旧帆布包、沉默寡言、气质沉稳、带有书卷气"
+}
+✅ 基调已保存到global_state: romantic_ending (未知)
+🧵 正在后台补全世界观细节...
+📝 尝试生成世界观（第1/2次）...
+============================================================
+🌟 启动 Council 群体智能流程
+============================================================
+⚠️ 警告：COUNCIL_MODELS 只有 1 个模型，无法体现群体智能
+   建议配置至少 2-3 个不同模型，当前：['gemini-3.1-flash-lite-preview']
+🤖 Council Stage1：1 个模型并行生成中...
+   参与模型：gemini-3.1-flash-lite-preview
+✅ 图片风格已保存到global_state: ????
+🎨 开始生成主角形象（游戏ID: game_1776564279_hccru6，世界观已就绪，后台并行）...
+✅ 主角形象生成任务已启动（世界观生成完成后触发，后台并行）
+🔄 开始生成第一次选项（根据世界观动态生成）...
+📝 正在生成选项 1 的剧情...
+🔍 调试信息：输入参数
+   选项索引：1
+   用户选择：开始游戏
+   global_state keys：['core_worldview', 'flow_worldline', 'protagonist_canonical', 'tone', 'meta', 'game_id', 'user_theme', 'image_style']
+   core_worldview是否存在：True
+   flow_worldline是否存在：True
+📝 调试信息：生成的Prompt前500字符
+
+    请基于以下设定生成后续1层剧情，**严格遵守以下要求，违反任何一条都将导致任务失败**（优先级：执行用户选择 > 主线推进 > 剧情连贯 > 格式完整）：
+    
+    ## 【故事基调要求】：
+    1. **必须严格遵循以下故事基调要求**：
+       - 基调名称：高级普通结局｜现实向NE（缺憾圆满式）
+       - 基调描述：遵循「生活本就不完美，得失共存才是常态」的现实内核；故事前期构建主角的真实追求、平凡羁绊与生活困境，主角拥有踏实的奋斗线与阶段性得失，曾努力靠近目标与圆满；最终因现实限制、个人选择、时机巧合或生活常态，主角达成部分核心目标，收获踏实的小圆满，同时留下合理且不可逆的遗憾，不刻意圆满也不刻意悲惨；结局并非平淡无味，而是充满生活质感与释然感，留有真实的人生回味，是「努力有回响，遗憾藏日常，与不完美和解」的极致现实普通结局。
+       - 叙事逻辑：1. 有起有落，得失均衡：前期铺垫平凡日常、真实追求、细碎羁绊，给予主角合理的生活希望；2. 允许阶段性得失：主角攻克小难关、达成部分目标，也经历正常的失败与错过，并非全程顺境或全程压抑；3
+✅ 世界观生成成功，返回数据包含：
+   - core_worldview: True
+   - chapters: True
+   - chapter1: True
+⬅️  POST /generate-worldview -> 200
+?? ??API??... (????30??????200??????0ms)
+127.0.0.1 - - [19/Apr/2026 10:04:49] "POST /generate-worldview HTTP/1.1" 200 -
+?? ??API??... (????30??????200??????0ms)
+⚠️ LLM主角形象提示词生成出错：'str' object has no attribute 'get'，使用默认提示词
+❌ 主角形象生成失败：'str' object has no attribute 'get'
+❌ 异常类型：AttributeError
+❌ 完整错误堆栈：
+⚠️ 主角形象生成失败（游戏ID: game_1776564279_hccru6），但游戏可以继续
+➡️  POST /generate-worldview
+🎮 生成游戏ID: game_1776564291_hz1zfn
+📝 尝试生成世界观（第1/2次）...
+? API????
+✅ 选项 1 场景提取成功（方式1）：潮湿的空气里弥漫着陈旧纸张与霉味混合的气息，我推开那扇沉重的木门，门轴发出令人牙酸的摩擦声。书店里光...
+?? ??API??... (????30??????160??????4285ms)
+📋 选项 1 剧情模型输出本段提及但未出场：['祖父']
+📊 选项 1 剪枝统计：原始2个 -> 剪枝后2个
+📋 预配角碎片已更新（本段提及未出场）：['祖父']
+? API????
+   ✅ gemini-3.1-flash-lite-preview 生成完成（3211 字符）
+📊 Stage1 完成：1/1 个模型成功生成
+🔍 Council Stage2：1 个模型匿名互评排名中...
+   匿名标签映射：A→gemini-3.1-flash-lite-preview
+?? ??API??... (????30??????200??????0ms)
+? API????
+   ✅ gemini-3.1-flash-lite-preview 评价完成，排名：Response A
+📊 Stage2 完成：1/1 个模型完成评价
+👑 Council Stage3：主席模型 gemini-3.1-flash-lite-preview 正在综合 1 份回答和 1 份评价...
+?? ??API??... (????30??????200??????0ms)
+? API????
+✅ 主角规范信息解析结果： {
+  "name_zh": "林远",
+  "name_en": "Lin Yuan",
+  "gender": "男性",
+  "age_range": "青年",
+  "work_zh": "南港纪事",
+  "work_en": "Chronicles of Nanhang",
+  "signature_look_keywords": "黑色短发、黑框眼镜、穿着洗旧的衬衫、眼神疲惫但坚定、消瘦、常背着一个磨损的帆布包、习惯性揉太阳穴、总是随身携带笔记本、沉默寡言、步履匆忙、袖口微卷、带有淡淡的烟草味"
+}
+✅ 基调已保存到global_state: romantic_ending (未知)
+🧵 正在后台补全世界观细节...
+📝 尝试生成世界观（第1/2次）...
+============================================================
+🌟 启动 Council 群体智能流程
+============================================================
+⚠️ 警告：COUNCIL_MODELS 只有 1 个模型，无法体现群体智能
+   建议配置至少 2-3 个不同模型，当前：['gemini-3.1-flash-lite-preview']
+🤖 Council Stage1：1 个模型并行生成中...
+   参与模型：gemini-3.1-flash-lite-preview
+✅ 图片风格已保存到global_state: ????
+🎨 开始生成主角形象（游戏ID: game_1776564291_hz1zfn，世界观已就绪，后台并行）...
+?? ??API??... (????30??????200??????0ms)
+✅ 主角形象生成任务已启动（世界观生成完成后触发，后台并行）
+⚠️ LLM主角形象提示词生成出错：'str' object has no attribute 'get'，使用默认提示词
+❌ 主角形象生成失败：'str' object has no attribute 'get'
+❌ 异常类型：AttributeError
+❌ 完整错误堆栈：
+🔄 开始生成第一次选项（根据世界观动态生成）...
+📝 正在生成选项 1 的剧情...
+🔍 调试信息：输入参数
+   选项索引：1
+   用户选择：开始游戏
+   global_state keys：['core_worldview', 'flow_worldline', 'protagonist_canonical', 'tone', 'meta', 'game_id', 'user_theme', 'image_style']
+   core_worldview是否存在：True
+   flow_worldline是否存在：True
+📝 调试信息：生成的Prompt前500字符
+
+    请基于以下设定生成后续1层剧情，**严格遵守以下要求，违反任何一条都将导致任务失败**（优先级：执行用户选择 > 主线推进 > 剧情连贯 > 格式完整）：
+    
+    ## 【故事基调要求】：
+    1. **必须严格遵循以下故事基调要求**：
+       - 基调名称：高级普通结局｜现实向NE（缺憾圆满式）
+       - 基调描述：遵循「生活本就不完美，得失共存才是常态」的现实内核；故事前期构建主角的真实追求、平凡羁绊与生活困境，主角拥有踏实的奋斗线与阶段性得失，曾努力靠近目标与圆满；最终因现实限制、个人选择、时机巧合或生活常态，主角达成部分核心目标，收获踏实的小圆满，同时留下合理且不可逆的遗憾，不刻意圆满也不刻意悲惨；结局并非平淡无味，而是充满生活质感与释然感，留有真实的人生回味，是「努力有回响，遗憾藏日常，与不完美和解」的极致现实普通结局。
+       - 叙事逻辑：1. 有起有落，得失均衡：前期铺垫平凡日常、真实追求、细碎羁绊，给予主角合理的生活希望；2. 允许阶段性得失：主角攻克小难关、达成部分目标，也经历正常的失败与错过，并非全程顺境或全程压抑；3
+✅ 世界观生成成功，返回数据包含：
+   - core_worldview: True
+   - chapters: True
+   - chapter1: True
+⬅️  POST /generate-worldview -> 200
+127.0.0.1 - - [19/Apr/2026 10:05:14] "POST /generate-worldview HTTP/1.1" 200 -
+⚠️ 主角形象生成失败（游戏ID: game_1776564291_hz1zfn），但游戏可以继续
+? API????
+   ✅ 主席综合完成（3211 字符）
+============================================================
+✅ Council 群体智能流程完成！最终输出 3211 字符
+============================================================
+✅ 主角规范信息解析结果： {
+  "name_zh": "陈默",
+  "name_en": "Chen Mo",
+  "gender": "男性",
+  "age_range": "青年",
+  "work_zh": "临江旧梦",
+  "work_en": "The Old Dream of Linjiang",
+  "signature_look_keywords": "黑框眼镜、略显凌乱的短发、洗得发白的衬衫、疲惫但坚定的眼神、常年背着沉重的绘图筒、清瘦、沉默寡言、袖口磨损、带有旧时代气息的腕表"
+}
+✅ 基调已保存到global_state: romantic_ending (未知)
+✅ 世界观细节补全完成
+?? ??API??... (????30??????200??????5043ms)
+? API????
+✅ 选项 1 场景提取成功（方式1）：清晨的南港老城区，空气里弥漫着一股潮湿的煤灰味与陈旧木料腐朽的气息。我习惯性地揉了揉酸胀的太阳穴，推...
+📋 选项 1 剧情模型输出本段提及但未出场：['王大妈的儿子']
+📊 选项 1 剪枝统计：原始2个 -> 剪枝后2个
+? API????
+   ✅ gemini-3.1-flash-lite-preview 生成完成（3319 字符）
+📊 Stage1 完成：1/1 个模型成功生成
+🔍 Council Stage2：1 个模型匿名互评排名中...
+   匿名标签映射：A→gemini-3.1-flash-lite-preview
+?? ??API??... (????30??????200??????0ms)
+? API????
+   ✅ gemini-3.1-flash-lite-preview 评价完成，排名：Response A
+📊 Stage2 完成：1/1 个模型完成评价
+👑 Council Stage3：主席模型 gemini-3.1-flash-lite-preview 正在综合 1 份回答和 1 份评价...
+?? ??API??... (????30??????200??????0ms)
+? API????
+   ✅ 主席综合完成（2965 字符）
+============================================================
+✅ Council 群体智能流程完成！最终输出 2965 字符
+============================================================
+✅ 主角规范信息解析结果： {
+  "name_zh": "陈默",
+  "name_en": "Chen Mo",
+  "gender": "男性",
+  "age_range": "青年",
+  "work_zh": "锦城旧事",
+  "work_en": "The Old Stories of Jincheng",
+  "signature_look_keywords": "黑色短发、黑框眼镜、略显疲惫的眼神、洗得发白的衬衫、单肩帆布包、清瘦、沉默寡言、习惯性低头、袖口磨损、内敛气质"
+}
+✅ 基调已保存到global_state: romantic_ending (未知)
+✅ 世界观细节补全完成
+⚠️ 等待主角正面图超时（120 秒），将不使用主角参考图生成场景
+🎨 正在为选项 1 生成场景图片（启用本地缓存）...
+  [1] 📐 剧情图 16:9 尺寸：1920x1080（适配 16 寸屏）
+  [2] ⚠️ 主角正面图尚未就绪，将不使用主角参考图
+⚠️ LLM提示词优化出错：'str' object has no attribute 'get'，使用原始提示词
+  [3] 📝 [剧情图提示词] LLM 已生成（共620字，摘要: 沉浸式现实主义叙事，采用冷峻而细腻的笔触描绘都市生活。画面风格偏向低饱和度的写实摄影感，强调光影在日常场景中的细微变化，配乐以低保真（Lo-fi）氛围音乐为主，营造出一种既疏离又亲近的都市孤独感与烟火气。, 潮湿的空气里弥漫着陈旧纸张与霉味…）
+  [4] 📋 剧情模型未列出本段出场配角，本段不建档配角图
+  [5] 📝 [剧情图提示词] 最终提示词已就绪（共620字，发送给生图API，摘要: 沉浸式现实主义叙事，采用冷峻而细腻的笔触描绘都市生活。画面风格偏向低饱和度的写实摄影感，强调光影在日常场景中的细微变化，配乐以低保真（Lo-fi）氛围音乐为主，营造出一种既疏离又亲近的都市孤独感与烟火气。, 潮湿的空气里弥漫着陈旧纸张与霉味…）
+  [6] 🎨 调用生图 API（provider=yunwu）
+🔍 ========== 发送给API的请求内容 ==========
+🔍 API端点: https://yunwu.ai/v1/chat/completions
+🔍 模型: gemini-2.5-flash-image
+📤 请求内容:
+{
+  "model": "gemini-2.5-flash-image",
+  "contents": [
+    {
+      "role": "user",
+      "parts": [
+        {
+          "text": "Generate an image based on this description: 沉浸式现实主义叙事，采用冷峻而细腻的笔触描绘都市生活。画面风格偏向低饱和度的写实摄影感，强调光影在日常场景中的细微变化，配乐以低保真（Lo-fi）氛围音乐为主，营造出一种既疏离又亲近的都市孤独感与烟火气。, 潮湿的空气里弥漫着陈旧纸张与霉味混合的气息，我推开那扇沉重的木门，门轴发出令人牙酸的摩擦声。书店里光线昏暗，祖父留下的那盏老式台灯在柜台上闪烁着微弱的黄光，仿佛随时都会熄灭。我习惯性地推了推鼻梁上的黑框眼镜，指尖触碰到书架边缘，厚重的灰尘在空气中飞舞。书店中央，一张贴着“停业整顿”封条的通知单在穿堂风中微微颤动，那是昨天刚贴上去的。\n\n“林远，你还没死心吗？”一个苍老却尖锐的声音从阴影处传来。房东赵大爷正坐在角落的摇椅上，手里把玩着那串油光发亮的核桃，他那双浑浊的眼睛盯着我，语气里带着毫不掩饰的嘲讽，“开发商的合同明天就过期了，你这破书店，除了能换点拆迁款，还能剩下什么？”\n\n我沉默地将旧帆布包放下，手指摩挲着包里那份还没来得及整理的修缮预算表，粗糙的指腹感受着老茧的摩擦。我没有回答，只是走到书架前，轻轻抚平了一本封面破损的旧书。我知道，只要我签下那份合同，债务就能清偿，我也能从这压得人喘不过气的生活里解脱出来，但祖父那双布满皱纹的手将钥匙交给我时的温度，似乎还残留在我的掌心。, cinematic, detailed, high quality, 4k, dramatic lighting, atmospheric, aspect ratio 1920:1080\n\nReturn only the image as base64 data (data:image/png;base64,...) or image URL (https://...). Do not include any text, code blocks, or explanations."
+        }
+      ]
+    }
+  ],
+  "messages": [
+    {
+      "role": "user",
+      "content": "Generate an image based on this description: 沉浸式现实主义叙事，采用冷峻而细腻的笔触描绘都市生活。画面风格偏向低饱和度的写实摄影感，强调光影在日常场景中的细微变化，配乐以低保真（Lo-fi）氛围音乐为主，营造出一种既疏离又亲近的都市孤独感与烟火气。, 潮湿的空气里弥漫着陈旧纸张与霉味混合的气息，我推开那扇沉重的木门，门轴发出令人牙酸的摩擦声。书店里光线昏暗，祖父留下的那盏老式台灯在柜台上闪烁着微弱的黄光，仿佛随时都会熄灭。我习惯性地推了推鼻梁上的黑框眼镜，指尖触碰到书架边缘，厚重的灰尘在空气中飞舞。书店中央，一张贴着“停业整顿”封条的通知单在穿堂风中微微颤动，那是昨天刚贴上去的。\n\n“林远，你还没死心吗？”一个苍老却尖锐的声音从阴影处传来。房东赵大爷正坐在角落的摇椅上，手里把玩着那串油光发亮的核桃，他那双浑浊的眼睛盯着我，语气里带着毫不掩饰的嘲讽，“开发商的合同明天就过期了，你这破书店，除了能换点拆迁款，还能剩下什么？”\n\n我沉默地将旧帆布包放下，手指摩挲着包里那份还没来得及整理的修缮预算表，粗糙的指腹感受着老茧的摩擦。我没有回答，只是走到书架前，轻轻抚平了一本封面破损的旧书。我知道，只要我签下那份合同，债务就能清偿，我也能从这压得人喘不过气的生活里解脱出来，但祖父那双布满皱纹的手将钥匙交给我时的温度，似乎还残留在我的掌心。, cinematic, detailed, high quality, 4k, dramatic lighting, atmospheric, aspect ratio 1920:1080\n\nReturn only the image as base64 data (data:image/png;base64,...) or image URL (https://...). Do not include any text, code blocks, or explanations."
+    }
+  ],
+  "temperature": 0.1,
+  "max_tokens": 4000
+}

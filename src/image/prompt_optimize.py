@@ -893,6 +893,7 @@ def optimize_image_prompt_with_llm(
     使用 LLM（由 AI_API_CONFIG.model 配置，默认 claude-opus-4-6）优化图片生成提示词
     """
     try:
+        image_style = normalize_image_style(image_style)
         visual_context = global_state.get('_visual_context') if isinstance(global_state, dict) else None
         if not isinstance(visual_context, dict):
             visual_context = {}
@@ -1227,6 +1228,41 @@ JSON 结构（所有数组均为字符串数组；嵌套对象见说明）：
         return f"{game_style}, {scene_summary}, cinematic, detailed, high quality, 4k, dramatic lighting, atmospheric"
 
 
+def normalize_image_style(image_style):
+    """Normalize image style payloads from the frontend/save data into a dict."""
+    if not image_style:
+        return None
+    if isinstance(image_style, dict):
+        normalized = {}
+        style_type = _safe_str(image_style.get("type")).strip()
+        style_value = _safe_str(image_style.get("value")).strip()
+        style_subtype = _safe_str(image_style.get("subtype")).strip()
+        if style_type:
+            normalized["type"] = style_type
+        if style_value:
+            normalized["value"] = style_value
+        if style_subtype:
+            normalized["subtype"] = style_subtype
+        return normalized or None
+    if isinstance(image_style, str):
+        style_str = image_style.strip()
+        if not style_str:
+            return None
+        known_types = {
+            "realistic",
+            "anime",
+            "ink_painting",
+            "watercolor",
+            "oil_painting",
+            "cyberpunk",
+            "custom",
+        }
+        if style_str in known_types:
+            return {"type": style_str}
+        return {"type": "custom", "value": style_str}
+    return None
+
+
 def _get_style_description(image_style: Dict) -> str:
     """从 image_style 提取风格描述"""
     if not image_style or not isinstance(image_style, dict):
@@ -1258,6 +1294,7 @@ def optimize_main_character_prompt_with_llm(
     使用LLM生成主角形象提示词
     """
     try:
+        image_style = normalize_image_style(image_style)
         core_worldview = global_state.get('core_worldview', {})
         user_theme = _safe_str(global_state.get("user_theme")).strip()
         game_theme = core_worldview.get('game_style', '')

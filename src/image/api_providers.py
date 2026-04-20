@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """图片 API 各供应商实现及主角/场景图生成。"""
 import os
 import re
@@ -12,6 +12,7 @@ from pathlib import Path
 from datetime import datetime
 from typing import Dict, List, Optional
 
+from server.provider_control import log_provider_event, provider_request_slot, set_provider_backoff
 from src.config import IMAGE_GENERATION_CONFIG
 from src.constants import _YUNWU_RATE_LOCK, _YUNWU_LAST_CALL_TS
 from src.utils.text_utils import _safe_str, _clip_text, get_protagonist_names
@@ -24,6 +25,7 @@ from src.image.api_common import (
 from src.image.validation import validate_image_url, fix_incomplete_url
 from src.image.storage import save_base64_image
 from src.image.prompt_optimize import (
+    normalize_image_style,
     optimize_image_prompt_with_llm,
     optimize_main_character_prompt_with_llm,
 )
@@ -58,7 +60,8 @@ def call_image_api_with_custom_size(
     width: int = 1024,
     height: int = 1536,
     reference_image_url: str = "",
-    sd_denoising_strength: float = None
+    sd_denoising_strength: float = None,
+    request_type: str = "scene_image"
 ) -> str:
     """
     调用生图API生成指定尺寸的图片
@@ -103,7 +106,7 @@ def call_image_api_with_custom_size(
         # yunwu.ai可能不支持自定义尺寸，先尝试标准调用
         # 在提示词中添加尺寸要求
         size_prompt = f"{prompt}, aspect ratio {width}:{height}, portrait orientation"
-        return call_yunwu_image_api(size_prompt, "default")
+        return call_yunwu_image_api(size_prompt, "default", request_type=request_type)
     elif provider == "replicate":
         return call_replicate_api(prompt, "default")
     elif provider == "openai":
@@ -583,6 +586,8 @@ def generate_main_character_image(
     try:
         import threading
 
+        image_style = normalize_image_style(image_style)
+
         # 侧/背生成已改用 Gemini 图生图（模型由 Image_Generation_MODEL 配置），不再使用 denoising_strength
 
         # metadata 并发写保护（侧/背线程会更新 metadata.json）
@@ -832,6 +837,33 @@ def generate_main_character_image(
                     except Exception as e:
                         print(f"   ❌ 再次删除失败 path={p} error={e}，侧/背图可能仍为旧图")
         
+        generation_started_at = datetime.now().isoformat()
+        _update_metadata_file(
+            metadata_path,
+            lambda m: {
+                **(m if isinstance(m, dict) else {}),
+                "game_id": game_id,
+                "status": "generating",
+                "generated_at": generation_started_at,
+                "views": {
+                    **(m.get("views") if isinstance(m, dict) and isinstance(m.get("views"), dict) else {}),
+                    "front": {
+                        **(
+                            m.get("views", {}).get("front", {})
+                            if isinstance(m, dict)
+                            and isinstance(m.get("views"), dict)
+                            and isinstance(m.get("views", {}).get("front"), dict)
+                            else {}
+                        ),
+                        "filename": "main_character.png",
+                        "image_url": f"/initial/main_character/{game_id}/main_character.png",
+                        "status": "generating",
+                        "started_at": generation_started_at,
+                    },
+                },
+            },
+        )
+
         # 1. 使用LLM生成主角提示词（新：精简 JSON 拼成，不再套 prompt_template_front 壳子）
         features = optimize_main_character_prompt_with_llm(protagonist_attr, global_state, image_style)
         is_anime = image_style and image_style.get("type") == "anime"
@@ -865,7 +897,8 @@ def generate_main_character_image(
                 front_prompt,
                 width=1024,
                 height=1536,
-                reference_image_url=reference_image_url
+                reference_image_url=reference_image_url,
+                request_type="main_character"
             )
         
         print(f"🔍 call_image_api_with_custom_size 返回结果:")
@@ -881,6 +914,32 @@ def generate_main_character_image(
         
         if not image_url_or_data:
             print("❌ 主角形象图片生成失败：生图API返回空结果")
+            _update_metadata_file(
+                metadata_path,
+                lambda m: {
+                    **(m if isinstance(m, dict) else {}),
+                    "game_id": game_id,
+                    "status": "failed",
+                    "failed_at": datetime.now().isoformat(),
+                    "views": {
+                        **(m.get("views") if isinstance(m, dict) and isinstance(m.get("views"), dict) else {}),
+                        "front": {
+                            **(
+                                m.get("views", {}).get("front", {})
+                                if isinstance(m, dict)
+                                and isinstance(m.get("views"), dict)
+                                and isinstance(m.get("views", {}).get("front"), dict)
+                                else {}
+                            ),
+                            "filename": "main_character.png",
+                            "image_url": f"/initial/main_character/{game_id}/main_character.png",
+                            "status": "failed",
+                            "failed_at": datetime.now().isoformat(),
+                            "error": "empty_image_response",
+                        },
+                    },
+                },
+            )
             return None
         
         # 3. 下载并保存正面图
@@ -890,6 +949,32 @@ def generate_main_character_image(
         saved_ok = _save_image_any(image_url_or_data, image_path)
         if not saved_ok:
             print("❌ 主角正面图保存失败")
+            _update_metadata_file(
+                metadata_path,
+                lambda m: {
+                    **(m if isinstance(m, dict) else {}),
+                    "game_id": game_id,
+                    "status": "failed",
+                    "failed_at": datetime.now().isoformat(),
+                    "views": {
+                        **(m.get("views") if isinstance(m, dict) and isinstance(m.get("views"), dict) else {}),
+                        "front": {
+                            **(
+                                m.get("views", {}).get("front", {})
+                                if isinstance(m, dict)
+                                and isinstance(m.get("views"), dict)
+                                and isinstance(m.get("views", {}).get("front"), dict)
+                                else {}
+                            ),
+                            "filename": "main_character.png",
+                            "image_url": f"/initial/main_character/{game_id}/main_character.png",
+                            "status": "failed",
+                            "failed_at": datetime.now().isoformat(),
+                            "error": "front_image_save_failed",
+                        },
+                    },
+                },
+            )
             return None
         print(f"✅ 主角正面图已保存：{image_path}")
         
@@ -904,14 +989,17 @@ def generate_main_character_image(
             "protagonist_attr": protagonist_attr,
             "image_style": image_style,
             "width": 1024,
-            "height": 1536
+            "height": 1536,
+            "status": "front_ready",
         }
         metadata["views"] = {
             "front": {
                 "filename": "main_character.png",
                 "image_url": f"/initial/main_character/{game_id}/main_character.png",
                 "prompt": front_prompt,
-                "generated_at": metadata["generated_at"]
+                "generated_at": metadata["generated_at"],
+                "started_at": generation_started_at,
+                "status": "completed",
             }
         }
         metadata_path = main_character_dir / "metadata.json"
@@ -963,6 +1051,36 @@ def generate_main_character_image(
         import traceback
         print(f"❌ 完整错误堆栈：")
         traceback.print_exc()
+        try:
+            if "metadata_path" in locals() and metadata_path:
+                _update_metadata_file(
+                    metadata_path,
+                    lambda m: {
+                        **(m if isinstance(m, dict) else {}),
+                        "game_id": game_id,
+                        "status": "failed",
+                        "failed_at": datetime.now().isoformat(),
+                        "views": {
+                            **(m.get("views") if isinstance(m, dict) and isinstance(m.get("views"), dict) else {}),
+                            "front": {
+                                **(
+                                    m.get("views", {}).get("front", {})
+                                    if isinstance(m, dict)
+                                    and isinstance(m.get("views"), dict)
+                                    and isinstance(m.get("views", {}).get("front"), dict)
+                                    else {}
+                                ),
+                                "filename": "main_character.png",
+                                "image_url": f"/initial/main_character/{game_id}/main_character.png" if game_id else "",
+                                "status": "failed",
+                                "failed_at": datetime.now().isoformat(),
+                                "error": str(e),
+                            },
+                        },
+                    },
+                )
+        except Exception:
+            pass
         return None
 
 # ------------------------------
@@ -1721,7 +1839,7 @@ def call_gemini_img2img(prompt: str, reference_image_path, additional_reference_
     }
 
     request_timeout = int(os.getenv("YUNWU_IMAGE_TIMEOUT_SECONDS", "180"))
-    min_interval = float(os.getenv("YUNWU_MIN_INTERVAL_SECONDS", "6"))
+    min_interval = float(os.getenv("YUNWU_MIN_INTERVAL_SECONDS", "12"))
     max_retries = int(os.getenv("YUNWU_GEMINI_MAX_RETRIES", "3"))
     backoff_base = float(os.getenv("YUNWU_GEMINI_RETRY_BACKOFF_SECONDS", "2"))
 
@@ -1823,7 +1941,7 @@ def call_gemini_img2img(prompt: str, reference_image_path, additional_reference_
                 delta = now - _YUNWU_LAST_CALL_TS
                 if delta < min_interval:
                     sleep_s = (min_interval - delta) + random.random() * 0.5
-                    print(f"⏳ gemini 图生图限速：等待 {sleep_s:.1f}s（最小间隔 {min_interval}s）")
+                    print(f"⏳ gemini 图生图限速：等待 {sleep_s:.1f}s")
                     time.sleep(sleep_s)
                 _YUNWU_LAST_CALL_TS = time.time()
 
@@ -1917,7 +2035,35 @@ def call_gemini_img2img(prompt: str, reference_image_path, additional_reference_
             return None
 
 
-def call_yunwu_image_api(prompt: str, style: str) -> str:
+def _get_yunwu_request_policy(request_type: str) -> Dict[str, float]:
+    """Return request-type-specific timeout/retry policy for Yunwu image calls."""
+    normalized_type = (request_type or "scene_image").strip() or "scene_image"
+    base_timeout = int(os.getenv("YUNWU_IMAGE_TIMEOUT_SECONDS", "180"))
+    base_retries = int(os.getenv("YUNWU_IMAGE_MAX_RETRIES", "3"))
+    base_min_interval = float(os.getenv("YUNWU_MIN_INTERVAL_SECONDS", "12"))
+    base_wait = int(os.getenv("YUNWU_429_BASE_WAIT_SECONDS", "10"))
+
+    policy = {
+        "request_type": normalized_type,
+        "timeout_seconds": base_timeout,
+        "max_retries": base_retries,
+        "min_interval_seconds": base_min_interval,
+        "base_wait_seconds": base_wait,
+    }
+    if normalized_type == "main_character":
+        policy["timeout_seconds"] = int(
+            os.getenv("MAIN_CHARACTER_IMAGE_TIMEOUT_SECONDS", str(max(base_timeout, 240)))
+        )
+        policy["max_retries"] = int(
+            os.getenv("MAIN_CHARACTER_IMAGE_MAX_RETRIES", str(max(base_retries, 5)))
+        )
+        policy["base_wait_seconds"] = int(
+            os.getenv("MAIN_CHARACTER_429_BASE_WAIT_SECONDS", str(max(base_wait, 20)))
+        )
+    return policy
+
+
+def call_yunwu_image_api(prompt: str, style: str, request_type: str = "scene_image") -> str:
     """调用yunwu.ai图片生成API（带重试机制处理速率限制）"""
     import time
 
@@ -1998,9 +2144,17 @@ def call_yunwu_image_api(prompt: str, style: str) -> str:
     
     # 可配置：超时/最小间隔/重试次数（避免长时间卡住 + 降低 429 概率）
     # 🔧 修复：增加默认超时时间到180秒，因为图片生成通常需要较长时间
-    request_timeout = int(os.getenv("YUNWU_IMAGE_TIMEOUT_SECONDS", "180"))
-    min_interval = float(os.getenv("YUNWU_MIN_INTERVAL_SECONDS", "6"))
-    max_retries = int(os.getenv("YUNWU_IMAGE_MAX_RETRIES", "3"))
+    policy = _get_yunwu_request_policy(request_type)
+    request_type = policy["request_type"]
+    request_timeout = int(policy["timeout_seconds"])
+    min_interval = float(policy["min_interval_seconds"])
+    max_retries = int(policy["max_retries"])
+    base_wait_default = int(policy["base_wait_seconds"])
+    if request_type == "main_character":
+        print(
+            f"[main_character] Yunwu policy: timeout={request_timeout}s, retries={max_retries}, "
+            f"base_wait={base_wait_default}s"
+        )
     for attempt in range(max_retries):
         try:
             # 跨线程限速：保证相邻请求之间至少间隔 min_interval 秒
@@ -2035,14 +2189,31 @@ def call_yunwu_image_api(prompt: str, style: str) -> str:
             # 图片生成可能耗时，但不应无限期阻塞
             # 🔧 修复：添加超时日志，方便调试
             print(f"⏱️ 发送图片生成请求（超时时间：{request_timeout}秒）...")
-            start_request_time = time.time()
-            response = requests.post(
-                f"{base_url}/chat/completions",
-                headers=headers,
-                json=request_body,
-                timeout=request_timeout
-            )
-            elapsed_time = time.time() - start_request_time
+            with provider_request_slot(
+                "image",
+                "yunwu",
+                request_type,
+                attempt=attempt + 1,
+                model=model,
+            ) as slot:
+                start_request_time = time.time()
+                response = requests.post(
+                    f"{base_url}/chat/completions",
+                    headers=headers,
+                    json=request_body,
+                    timeout=request_timeout
+                )
+                elapsed_time = time.time() - start_request_time
+                log_provider_event(
+                    "image",
+                    "yunwu",
+                    request_type,
+                    "response",
+                    attempt=attempt + 1,
+                    status_code=response.status_code,
+                    latency_ms=int(elapsed_time * 1000),
+                    queue_wait_ms=slot["queue_wait_ms"],
+                )
             print(f"✅ API请求完成，耗时：{elapsed_time:.2f}秒")
             
             # 先检查HTTP状态码，区分不同类型的错误
@@ -2109,13 +2280,27 @@ def call_yunwu_image_api(prompt: str, style: str) -> str:
                         is_404_upstream_saturated = True
                 if is_404_upstream_saturated:
                     print(f"💡 404「上游负载已饱和」：与您隔多久发一次无关，是服务端当前分组的共享上游已满，按长等待重试")
-                    base_wait_404 = int(os.getenv("YUNWU_429_BASE_WAIT_SECONDS", "60"))
+                    base_wait_404 = int(
+                        os.getenv(
+                            "MAIN_CHARACTER_429_BASE_WAIT_SECONDS"
+                            if request_type == "main_character"
+                            else "YUNWU_429_BASE_WAIT_SECONDS",
+                            "60" if request_type != "main_character" else str(max(base_wait_default, 60)),
+                        )
+                    )
                     base_wait_404 = max(10, min(300, base_wait_404))
                     wait_404 = base_wait_404 * (2 ** attempt)
                     wait_404 = min(wait_404, 300)
+                    set_provider_backoff(
+                        "image",
+                        "yunwu",
+                        wait_404,
+                        reason="http_404_upstream_saturated",
+                        request_type=request_type,
+                        attempt=attempt + 1,
+                    )
                     print(f"⚠️ 等待 {wait_404} 秒后重试（尝试 {attempt + 1}/{max_retries}）")
                     if attempt < max_retries - 1:
-                        time.sleep(wait_404)
                         continue
                     response.raise_for_status()
                 else:
@@ -2160,7 +2345,17 @@ def call_yunwu_image_api(prompt: str, style: str) -> str:
                     print(f"🔍 速率限制响应头：{json.dumps({k: v for k, v in rate_limit_headers.items() if v}, ensure_ascii=False)}")
                 
                 # 429 基础等待秒数（上游饱和时默认 60，可设 90～120）
-                base_wait = int(os.getenv("YUNWU_429_BASE_WAIT_SECONDS", "60" if is_upstream_saturated else "10"))
+                if is_upstream_saturated:
+                    base_wait = int(
+                        os.getenv(
+                            "MAIN_CHARACTER_429_BASE_WAIT_SECONDS"
+                            if request_type == "main_character"
+                            else "YUNWU_429_BASE_WAIT_SECONDS",
+                            str(max(base_wait_default, 60)),
+                        )
+                    )
+                else:
+                    base_wait = base_wait_default
                 base_wait = max(10, min(300, base_wait))
                 
                 # Retry-After 可能是秒数（整数）或 HTTP-date（如 RFC 7231 指定）
@@ -2208,10 +2403,17 @@ def call_yunwu_image_api(prompt: str, style: str) -> str:
                 print(f"   - .env 增加 YUNWU_429_BASE_WAIT_SECONDS=60 或 90（上游饱和时每次等待更久）")
                 print(f"   - .env 增加 YUNWU_IMAGE_MAX_RETRIES=5 或 6（多试几次）")
                 print(f"   - 换时段再试，或考虑 ComfyUI/Replicate 等其它生图服务")
+                set_provider_backoff(
+                    "image",
+                    "yunwu",
+                    wait_time,
+                    reason="http_429_upstream_saturated" if is_upstream_saturated else "http_429",
+                    request_type=request_type,
+                    attempt=attempt + 1,
+                )
                 
                 # 如果还有重试机会，等待后继续
                 if attempt < max_retries - 1:
-                    time.sleep(wait_time)
                     continue
                 else:
                     # 最后一次尝试也失败，抛出异常
@@ -2224,8 +2426,15 @@ def call_yunwu_image_api(prompt: str, style: str) -> str:
                     print(f"⚠️ yunwu.ai 服务端内部错误（500），{wait_time} 秒后重试（尝试 {attempt + 1}/{max_retries}）")
                 else:
                     print(f"⚠️ yunwu.ai 服务暂时不可用（{response.status_code}），{wait_time} 秒后重试（尝试 {attempt + 1}/{max_retries}）")
+                set_provider_backoff(
+                    "image",
+                    "yunwu",
+                    wait_time,
+                    reason=f"http_{response.status_code}",
+                    request_type=request_type,
+                    attempt=attempt + 1,
+                )
                 if attempt < max_retries - 1:
-                    time.sleep(wait_time)
                     continue
                 response.raise_for_status()
             
@@ -2813,8 +3022,15 @@ def call_yunwu_image_api(prompt: str, style: str) -> str:
             if attempt < max_retries - 1:
                 # 超时后等待更长时间再重试
                 wait_time = 10 * (attempt + 1)  # 10s, 20s, 30s
+                set_provider_backoff(
+                    "image",
+                    "yunwu",
+                    wait_time,
+                    reason="timeout",
+                    request_type=request_type,
+                    attempt=attempt + 1,
+                )
                 print(f"   等待 {wait_time} 秒后重试...")
-                time.sleep(wait_time)
                 continue
             else:
                 # 最后一次尝试也超时，抛出异常
@@ -2838,8 +3054,15 @@ def call_yunwu_image_api(prompt: str, style: str) -> str:
                 print(f"⚠️ yunwu.ai图片生成API请求超时（尝试 {attempt + 1}/{max_retries}）")
                 if attempt < max_retries - 1:
                     wait_time = 10 * (attempt + 1)
+                    set_provider_backoff(
+                        "image",
+                        "yunwu",
+                        wait_time,
+                        reason="timeout_exception",
+                        request_type=request_type,
+                        attempt=attempt + 1,
+                    )
                     print(f"   等待 {wait_time} 秒后重试...")
-                    time.sleep(wait_time)
                     continue
             # 其他错误直接抛出
             print(f"❌ yunwu.ai图片生成API调用失败：{error_msg}")

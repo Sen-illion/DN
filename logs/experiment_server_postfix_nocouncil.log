@@ -1,0 +1,588 @@
+[config] 当前图生模型 Image_Generation_MODEL = gemini-2.5-flash-image
+=== 文本冒险游戏API服务器 ===
+请在浏览器地址栏输入（务必包含 http://）：
+  http://127.0.0.1:5001
+不要只输入 127.0.0.1:5001，否则会被当成搜索，无法打开游戏页面。
+API端点：
+  POST /generate-worldview - 生成游戏世界观
+  POST /generate-option - 生成单个选项对应的剧情（支持缓存）
+  POST /pregenerate-next-layers - 预生成两层内容
+  POST /get-pregenerated-layer2 - 获取预生成的第二层内容
+  POST /generate-ending - 生成游戏结局
+  POST /save-game - 保存游戏
+  GET /list-saves - 列出所有存档
+  POST /load-game - 加载游戏
+  POST /delete-save - 删除存档
+  POST /generate-scene-image - 生成场景图片
+  GET /image_cache/<filename> - 获取缓存的图片
+===============================
+ * Serving Flask app 'game_server'
+ * Debug mode: off
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://198.18.0.1:5001
+[33mPress CTRL+C to quit[0m
+➡️  GET /events?sceneId=-595373775018943467_1030682149314426051&gameId=game_1776574991_liefmh
+⬅️  GET /events -> 200
+127.0.0.1 - - [19/Apr/2026 13:42:16] "GET /events?sceneId=-595373775018943467_1030682149314426051&gameId=game_1776574991_liefmh HTTP/1.1" 200 -
+➡️  GET /
+⬅️  GET / -> 200
+127.0.0.1 - - [19/Apr/2026 13:42:26] "GET / HTTP/1.1" 200 -
+➡️  POST /generate-worldview
+🎮 生成游戏ID: game_1776577361_vzibja
+📝 尝试生成世界观（第1/2次）...
+?? ??API??... (????30??????160??????0ms)
+? API????
+✅ 主角规范信息解析结果： {
+  "name_zh": "林远",
+  "name_en": "Lin Yuan",
+  "gender": "男性",
+  "age_range": "青年",
+  "work_zh": "临海纪事",
+  "work_en": "Chronicles of Linhai",
+  "signature_look_keywords": "黑色短发、黑框眼镜、穿着整洁的衬衫、眼神专注、身形单薄、常背帆布包、袖口微磨损、气质沉稳、略带疲惫、神情温和、走路步幅均匀、指尖常有纸张划痕"
+}
+✅ 基调已保存到global_state: romantic_ending (未知)
+🧵 正在后台补全世界观细节...
+📝 尝试生成世界观（第1/2次）...
+✅ 图片风格已保存到global_state: {'type': 'custom', 'value': '????'}
+🎨 开始生成主角形象（游戏ID: game_1776577361_vzibja，世界观已就绪，后台并行）...
+✅ 主角形象生成任务已启动（世界观生成完成后触发，后台并行）
+🔄 开始生成第一次选项（根据世界观动态生成）...
+📝 正在生成选项 1 的剧情...
+🔍 调试信息：输入参数
+   选项索引：1
+   用户选择：开始游戏
+   global_state keys：['core_worldview', 'flow_worldline', 'protagonist_canonical', 'tone', 'meta', 'game_id', 'user_theme', 'image_style']
+   core_worldview是否存在：True
+   flow_worldline是否存在：True
+📝 调试信息：生成的Prompt前500字符
+
+    请基于以下设定生成后续1层剧情，**严格遵守以下要求，违反任何一条都将导致任务失败**（优先级：执行用户选择 > 主线推进 > 剧情连贯 > 格式完整）：
+    
+    ## 【故事基调要求】：
+    1. **必须严格遵循以下故事基调要求**：
+       - 基调名称：高级普通结局｜现实向NE（缺憾圆满式）
+       - 基调描述：遵循「生活本就不完美，得失共存才是常态」的现实内核；故事前期构建主角的真实追求、平凡羁绊与生活困境，主角拥有踏实的奋斗线与阶段性得失，曾努力靠近目标与圆满；最终因现实限制、个人选择、时机巧合或生活常态，主角达成部分核心目标，收获踏实的小圆满，同时留下合理且不可逆的遗憾，不刻意圆满也不刻意悲惨；结局并非平淡无味，而是充满生活质感与释然感，留有真实的人生回味，是「努力有回响，遗憾藏日常，与不完美和解」的极致现实普通结局。
+       - 叙事逻辑：1. 有起有落，得失均衡：前期铺垫平凡日常、真实追求、细碎羁绊，给予主角合理的生活希望；2. 允许阶段性得失：主角攻克小难关、达成部分目标，也经历正常的失败与错过，并非全程顺境或全程压抑；3
+✅ 世界观生成成功，返回数据包含：
+   - core_worldview: True
+   - chapters: True
+   - chapter1: True
+⬅️  POST /generate-worldview -> 200
+?? ??API??... (????30??????200??????0ms)
+?? ??API??... (????30??????200??????0ms)
+127.0.0.1 - - [19/Apr/2026 13:42:49] "POST /generate-worldview HTTP/1.1" 200 -
+➡️  POST /generate-worldview
+🎮 生成游戏ID: game_1776577372_gfn2t3
+📝 尝试生成世界观（第1/2次）...
+🔄 正在使用LLM生成主角形象提示词...
+📋 [主角形象] 提示词 JSON：
+{
+  "gender": "male",
+  "label": "main-character-full-body-portrait",
+  "tags": [
+    "Lin Yuan",
+    "Chronicles of Linhai",
+    "realistic",
+    "portrait",
+    "full-body",
+    "single character"
+  ],
+  "style": [
+    "modern realistic digital art",
+    "clean narrative style",
+    "soft studio lighting",
+    "meticulous detail",
+    "professional character design"
+  ],
+  "subject": {
+    "body_traits": [
+      "Lin Yuan from Chronicles of Linhai",
+      "young male with an ordinary appearance",
+      "slender and lean build",
+      "stoic and gentle expression",
+      "subtle signs of fatigue under eyes",
+      "posture is calm and steady, standing full body"
+    ],
+    "outfit": [
+      "neat long-sleeved dress shirt in muted grey-blue",
+      "shirt cuffs show slight wear and fraying",
+      "dark trousers",
+      "worn canvas messenger bag slung over one shoulder"
+    ],
+    "pose": [
+      "standing straight, full-body front view",
+      "arms relaxed, one hand slightly adjusting the bag strap",
+      "centered in frame",
+      "pure white background only"
+    ]
+  },
+  "face_system": [
+    "8K high-resolution facial features",
+    "ordinary, relatable face",
+    "wearing black-rimmed spectacles",
+    "focused and gentle eyes",
+    "skin texture showing natural, ordinary complexion",
+    "subtle, weary yet kind expression"
+  ],
+  "hair_system": [
+    "short, neat black hair",
+    "natural, slightly messy texture of a busy commuter",
+    "color: natural black with soft highlights",
+    "no wind, static styling"
+  ],
+  "clothing_system": [
+    "neatly tucked-in business casual shirt",
+    "visible minor wear at the cuffs, realistic fabric texture",
+    "canvas bag with slight creases and signs of daily use",
+    "clean rendering, no environmental interactions"
+  ],
+  "environment": {
+    "background": [
+      "pure white background",
+      "no objects, no scenery",
+      "uniform white, no shadows on background"
+    ],
+    "characters": [],
+    "effects": []
+  },
+  "color_restriction": [
+    "muted city tones for clothing",
+    "natural skin tones",
+    "pure white background only",
+    "no environmental colors"
+  ],
+  "lighting": [
+    "soft, even studio front lighting",
+    "no dramatic or harsh shadows",
+    "gentle illumination highlighting the face and clothing texture"
+  ],
+  "camera": {
+    "type": "full-body portrait",
+    "lens": "50mm",
+    "aperture": "f/4",
+    "depth_of_field": "sharp focus on character",
+    "flash": "none",
+    "grain": "minimal digital noise",
+    "texture": "clean photographic"
+  },
+  "composition": [
+    "single character only",
+    "full-body, centered composition",
+    "pure white background, no other elements",
+    "standing still, natural and grounded"
+  ],
+  "mood": [
+    "contemplative",
+    "calm",
+    "weary but resilient",
+    "urban realism"
+  ],
+  "output_style": [
+    "modern realistic character design",
+    "no text or symbols in image",
+    "full-body character design, pure white background only"
+  ]
+}
+✅ LLM主角形象提示词生成完成，长度：2268字符
+🎨 正在生成主角形象图片（1024x1536），使用模型：gemini-2.5-flash-image...
+[main_character] Yunwu policy: timeout=240s, retries=5, base_wait=20s
+🔍 ========== 发送给API的请求内容 ==========
+🔍 API端点: https://yunwu.ai/v1/chat/completions
+🔍 模型: gemini-2.5-flash-image
+📤 请求内容（前2000字符）:
+{
+  "model": "gemini-2.5-flash-image",
+  "contents": [
+    {
+      "role": "user",
+      "parts": [
+        {
+          "text": "Generate an image based on this description: 林远/Lin Yuan from 临海纪事/Chronicles of Linhai, 林远 / Lin Yuan / 临海纪事 / Chronicles of Linhai, young male protagonist, main-character-full-body-portrait, Lin Yuan, Chronicles of Linhai, realistic, portrait, full-body, single character, modern realistic digital art, clean narrative style, soft studio lighting, meticulous detail, professional character design, Lin Yuan from Chronicles of Linhai, young male with an ordinary appearance, slender and lean build, stoic and gentle expression, subtle signs of fatigue under eyes, posture is calm and steady, standing full body, neat long-sleeved dress shirt in muted grey-blue, shirt cuffs show slight wear and fraying, dark trousers, worn canvas messenger bag slung over one shoulder, standing straight, full-body front view, arms relaxed, one hand slightly adjusting the bag strap, centered in frame, pure white background only, 8K high-resolution facial features, ordinary, relatable face, wearing black-rimmed spectacles, focused and gentle eyes, skin texture showing natural, ordinary complexion, subtle, weary yet kind expression, short, neat black hair, natural, slightly messy texture of a busy commuter, color: natural black with soft highlights, no wind, static styling, neatly tucked-in business casual shirt, visible minor wear at the cuffs, realistic fabric texture, canvas bag with slight creases and signs of daily use, clean rendering, no environmental interactions, pure white background, no objects, no scenery, uniform white, no shadows on background, muted city tones for clothing, natural skin tones, pure white background only, no environmental colors, soft, even studio front lighting, no dramatic or harsh shadows, gentle illumination highlighting the face and clothing texture, type full-body portrait, lens 50mm, aperture f/4, depth_of_field sharp focus on cha
+
+📤 请求内容（后500字符）:
+sign, no text or symbols in image, full-body character design, pure white background only, contemplative, calm, weary but resilient, urban realism, no text, no symbols, no garbled characters, no words, aspect ratio 1024:1536, portrait orientation, aspect ratio 1024:1536, portrait orientation\n\nReturn only the image as base64 data (data:image/png;base64,...) or image URL (https://...). Do not include any text, code blocks, or explanations."
+    }
+  ],
+  "temperature": 0.1,
+  "max_tokens": 4000
+}
+🔍 ==========================================
+⏱️ 发送图片生成请求（超时时间：240秒）...
+? API????
+✅ 主角规范信息解析结果： {
+  "name_zh": "林远",
+  "name_en": "Lin Yuan",
+  "gender": "男性",
+  "age_range": "青年",
+  "work_zh": "临江旧梦",
+  "work_en": "Dream of Linjiang",
+  "signature_look_keywords": "黑框眼镜，深灰色衬衫，略显疲惫的眼神，修长手指，总是带着笔记本，沉默寡言，背影单薄，常穿旧皮鞋，袖口微磨损，清瘦，沉稳，内敛。"
+}
+✅ 基调已保存到global_state: romantic_ending (未知)
+✅ 世界观细节补全完成
+?? ??API??... (????30??????160??????11760ms)
+? API????
+✅ 选项 1 场景提取成功（方式1）：清晨的临海市旧城区，空气里混杂着潮湿的霉味与隔壁早点摊的豆浆香气。我背着那只磨损严重的帆布包，推开摇...
+📋 选项 1 剧情模型输出本段提及但未出场：['奶奶']
+📊 选项 1 剪枝统计：原始2个 -> 剪枝后2个
+📋 预配角碎片已更新（本段提及未出场）：['奶奶']
+✅ API请求完成，耗时：12.53秒
+✅ yunwu.ai API响应成功（状态码: 200）
+🔍 yunwu.ai API完整响应结构：
+   - 响应类型: <class 'dict'>
+   - 响应键: ['id', 'model', 'object', 'created', 'choices', 'usage']
+🔍 检查响应中的其他顶层字段...
+🔍 API使用情况: {'prompt_tokens': 556, 'completion_tokens': 1290, 'total_tokens': 1846, 'prompt_tokens_details': {'cached_tokens': 0, 'text_tokens': 556, 'audio_tokens': 0, 'image_tokens': 0}, 'completion_tokens_details': {'text_tokens': 0, 'audio_tokens': 0, 'reasoning_tokens': 0}, 'input_tokens': 0, 'output_tokens': 0, 'input_tokens_details': None, 'claude_cache_creation_5_m_tokens': 0, 'claude_cache_creation_1_h_tokens': 0}
+   - 总tokens: 1846, 输入tokens: 556, 输出tokens: 1290
+💡 API确实返回了 1290 个输出tokens，说明有内容返回！
+   - choices数量: 1
+   - message类型: <class 'dict'>
+   - message键: ['role', 'content']
+🔍 finish_reason: stop
+   - content类型: <class 'str'>
+   - content长度: 1498044
+   - content前100字符: ![image](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABAAAAAQACAIAAADwf7zUAAAXfWNhQlgAABd9anVtYgAAA
+🔍 检查message中的所有字段...
+   - message['role']: str, 长度=9, 内容='assistant'
+🔍 检查choices[0]中的所有字段...
+🔍 开始清理content，原始长度: 1498044 字符
+🔍 清理完成，最终长度: 1498044 字符
+🔍 yunwu.ai返回的原始内容（前500字符）：![image](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABAAAAAQACAIAAADwf7zUAAAXfWNhQlgAABd9anVtYgAAAB5qdW1kYzJwYQARABCAAACqADibcQNjMnBhAAAAF1dqdW1iAAAAR2p1bWRjMm1hABEAEIAAAKoAOJtxA3VybjpjMnBhOjE2ZjE5YTJjLWQ5MDEtZjIwZS1kMzA4LTRmNjc3MDk0ZDNhMgAAABMAanVtYgAAAChqdW1kYzJjcwARABCAAACqADibcQNjMnBhLnNpZ25hdHVyZQAAABLQY2JvctKEWQYrogEmGCGCWQM/MIIDOzCCAsCgAwIBAgIUAJ6vFWKBqUkCFltI/1ipbSSYHs4wCgYIKoZIzj0EAwMwUTELMAkGA1UEBhMCVVMxEzARBgNVBAoMCkdvb2dsZSBMTEMxLTArBgNVBAMMJEdvb2dsZSBDMlBBIE1lZGlhIFNlcnZpY2VzIDFQI
+🔍 yunwu.ai返回的原始内容（完整长度：1498044字符）
+✅ 从markdown格式中提取到base64图片数据（长度：1498034字符）
+✅ base64图片已保存到：image_cache\73f62c32bb475b2f0588ef223a4cb395.png
+🔍 call_image_api_with_custom_size 返回结果:
+   - 类型: <class 'str'>
+   - 是否为None: False
+   - 长度: 49 字符
+   - 前100字符: /image_cache/73f62c32bb475b2f0588ef223a4cb395.png
+   - 是否以'data:image'开头: False
+   - 是否以'http'开头: False
+   - 是否以'/image_cache'开头: True
+   - 是否以'image_cache'开头: False
+📁 准备保存主角正面图到: initial\main_character\game_1776577361_vzibja\main_character.png
+📁 目录是否存在: True
+✅ 主角正面图已保存：initial\main_character\game_1776577361_vzibja\main_character.png
+✅ 主角形象生成完成：initial\main_character\game_1776577361_vzibja\main_character.png
+🎨 [侧/背图] 开始任务 view=side game_id=game_1776577361_vzibja 输出路径=initial\main_character\game_1776577361_vzibja\main_character_side.png
+🔎 主角side图参考正面: C:\Users\zhang\Desktop\DN\initial\main_character\game_1776577361_vzibja\main_character.png exists=True front_mtime_at_start=1776577389.9741738
+🔄 尝试使用 Gemini 图生图（gemini-2.5-flash-image）生成side视图...
+🎨 [侧/背图] 开始任务 view=back game_id=game_1776577361_vzibja 输出路径=initial\main_character\game_1776577361_vzibja\main_character_back.png
+✅ 已启动主角侧面/背面生成任务（后台并行）
+✅ 主角形象生成完成（游戏ID: game_1776577361_vzibja）
+🔎 主角back图参考正面: C:\Users\zhang\Desktop\DN\initial\main_character\game_1776577361_vzibja\main_character.png exists=True front_mtime_at_start=1776577389.9741738
+🔄 尝试使用 Gemini 图生图（gemini-2.5-flash-image）生成back视图...
+🔄 调用 Gemini 图生图 API（gemini-2.5-flash-image，1张参考图，尝试 1/3）...
+   提示词: Generate a full-body, side-view portrait of character protagonist based on the provided front-view p...
+   参考图: C:\Users\zhang\Desktop\DN\initial\main_character\g...
+⏳ gemini 图生图限速：等待 12.2s
+✅ 主角正面图已就绪，开始生成初始场景图片（等待 6 秒）
+🎨 正在为选项 1 生成场景图片（启用本地缓存）...
+  [1] 📐 剧情图 16:9 尺寸：1920x1080（适配 16 寸屏）
+  [2] ✅ 找到主角参考图（1张），将作为参考图传递：game_1776577361_vzibja
+🔄 正在使用LLM优化图片生成提示词...
+? API????
+✅ 主角规范信息解析结果： {
+  "name_zh": "林远",
+  "name_en": "Lin Yuan",
+  "gender": "男性",
+  "age_range": "青年",
+  "work_zh": "临江旧事",
+  "work_en": "Old Stories of Linjiang",
+  "signature_look_keywords": "黑色短发、黑框眼镜、略显疲惫的眼神、常穿深色夹克、衬衫领口微皱、背着单肩包、清瘦、神情专注、步履匆忙、带有烟火气、沉稳、不修边幅"
+}
+✅ 基调已保存到global_state: romantic_ending (未知)
+🧵 正在后台补全世界观细节...
+📝 尝试生成世界观（第1/2次）...
+✅ 图片风格已保存到global_state: {'type': 'custom', 'value': '????'}
+🎨 开始生成主角形象（游戏ID: game_1776577372_gfn2t3，世界观已就绪，后台并行）...
+✅ 主角形象生成任务已启动（世界观生成完成后触发，后台并行）
+?? ??API??... (????30??????200??????0ms)
+🔄 开始生成第一次选项（根据世界观动态生成）...
+📝 正在生成选项 1 的剧情...
+🔍 调试信息：输入参数
+   选项索引：1
+   用户选择：开始游戏
+   global_state keys：['core_worldview', 'flow_worldline', 'protagonist_canonical', 'tone', 'meta', 'game_id', 'user_theme', 'image_style']
+   core_worldview是否存在：True
+   flow_worldline是否存在：True
+📝 调试信息：生成的Prompt前500字符
+
+    请基于以下设定生成后续1层剧情，**严格遵守以下要求，违反任何一条都将导致任务失败**（优先级：执行用户选择 > 主线推进 > 剧情连贯 > 格式完整）：
+    
+    ## 【故事基调要求】：
+    1. **必须严格遵循以下故事基调要求**：
+       - 基调名称：高级普通结局｜现实向NE（缺憾圆满式）
+       - 基调描述：遵循「生活本就不完美，得失共存才是常态」的现实内核；故事前期构建主角的真实追求、平凡羁绊与生活困境，主角拥有踏实的奋斗线与阶段性得失，曾努力靠近目标与圆满；最终因现实限制、个人选择、时机巧合或生活常态，主角达成部分核心目标，收获踏实的小圆满，同时留下合理且不可逆的遗憾，不刻意圆满也不刻意悲惨；结局并非平淡无味，而是充满生活质感与释然感，留有真实的人生回味，是「努力有回响，遗憾藏日常，与不完美和解」的极致现实普通结局。
+       - 叙事逻辑：1. 有起有落，得失均衡：前期铺垫平凡日常、真实追求、细碎羁绊，给予主角合理的生活希望；2. 允许阶段性得失：主角攻克小难关、达成部分目标，也经历正常的失败与错过，并非全程顺境或全程压抑；3
+✅ 世界观生成成功，返回数据包含：
+   - core_worldview: True
+   - chapters: True
+   - chapter1: True
+⬅️  POST /generate-worldview -> 200
+127.0.0.1 - - [19/Apr/2026 13:43:13] "POST /generate-worldview HTTP/1.1" 200 -
+?? ??API??... (????30??????200??????0ms)
+🔄 正在使用LLM生成主角形象提示词...
+📋 [剧情图] 提示词 JSON 已生成（label=scene-old-district-demolition-negotiation，共14个键，已省略全文）
+✅ LLM提示词优化完成，长度：2594字符
+  [3] 📝 [剧情图提示词] LLM 已生成（共2594字，摘要: scene-old-district-demolition-negotiation, realistic, cinematic, melancholic, urban-decay, post-industrial, cinematic re…）
+  [4] 📋 剧情模型未列出本段出场配角，本段不建档配角图
+  [5] 📝 [剧情图提示词] 最终提示词已就绪（共2594字，发送给生图API，摘要: scene-old-district-demolition-negotiation, realistic, cinematic, melancholic, urban-decay, post-industrial, cinematic re…）
+  [6] 🎨 调用生图 API（provider=yunwu）
+✅ 主角参考图按需传递 1 张（视角索引 [0]）
+🎨 使用 Gemini 图生图，传递1张参考图（主角1张+配角0张+上一张剧情图0张）
+📋 [主角形象] 提示词 JSON：
+{
+  "gender": "male",
+  "label": "main-character-full-body-portrait",
+  "tags": [
+    "realistic",
+    "narrative-simulation",
+    "portrait",
+    "full-body",
+    "single character",
+    "Lin Yuan",
+    "Old Stories of Linjiang"
+  ],
+  "style": [
+    "cinematic realism",
+    "low-saturation color palette",
+    "documentary photography style",
+    "sharp focus",
+    "naturalistic texture"
+  ],
+  "subject": {
+    "body_traits": [
+      "Lin Yuan, a young male protagonist with a slender and lean build",
+      "ordinary facial features, tired eyes reflecting deep empathy and professional fatigue",
+      "focused and slightly anxious expression",
+      "standing in a hurried, slightly stooped posture suggesting the weight of his work"
+    ],
+    "outfit": [
+      "dark-colored casual jacket",
+      "wrinkled shirt collar underneath",
+      "simple trousers",
+      "worn-out single-shoulder messenger bag across his chest"
+    ],
+    "pose": [
+      "standing full-body, slightly leaning forward as if walking",
+      "one hand adjusting the strap of his bag",
+      "centered in frame",
+      "pure white background only, no environment"
+    ]
+  },
+  "face_system": [
+    "ordinary, relatable facial structure",
+    "black-rimmed glasses resting on the bridge of his nose",
+    "tired, observant eyes with subtle dark circles",
+    "faintly furrowed brow showing concentration and social exhaustion",
+    "naturally muted skin tone with realistic pores and minor imperfections"
+  ],
+  "hair_system": [
+    "short, slightly messy black hair",
+    "natural, unstyled texture",
+    "root fixation coefficient 0.5",
+    "no wind, realistic density"
+  ],
+  "clothing_system": [
+    "dark navy or charcoal jacket, functional and unremarkable",
+    "cotton shirt with visible creases and wrinkles at the collar",
+    "utilitarian messenger bag with signs of daily use",
+    "clean fabric texture, no background elements"
+  ],
+  "environment": {
+    "background": [
+      "pure white background",
+      "no objects, no scenery",
+      "even white only, no shadows on background"
+    ],
+    "characters": [],
+    "effects": []
+  },
+  "color_restriction": [
+    "pure white background only",
+    "low-saturation tones for character",
+    "muted earth tones and dark neutrals",
+    "no environmental colors"
+  ],
+  "lighting": [
+    "soft, neutral studio lighting",
+    "even illumination to highlight realistic details",
+    "no dramatic shadows on background"
+  ],
+  "camera": {
+    "type": "full-body portrait",
+    "lens": "50mm",
+    "aperture": "f/4.0",
+    "depth_of_field": "sharp focus on character",
+    "flash": "none",
+    "grain": "subtle photographic film grain",
+    "texture": "realistic fabric and skin texture"
+  },
+  "composition": [
+    "single character only",
+    "full-body front view, centered",
+    "pure white background, no other elements",
+    "action constraints: standing in a hurried pose, no gestures"
+  ],
+  "mood": [
+    "resilient",
+    "melancholic",
+    "professionally exhausted",
+    "grounded in reality"
+  ],
+  "output_style": [
+    "realistic narrative simulation art",
+    "no text or symbols in image",
+    "full-body character design, pure white background only"
+  ]
+}
+✅ LLM主角形象提示词生成完成，长度：2492字符
+🎨 正在生成主角形象图片（1024x1536），使用模型：gemini-2.5-flash-image...
+[main_character] Yunwu policy: timeout=240s, retries=5, base_wait=20s
+? API????
+✅ 选项 1 场景提取成功（方式1）：清晨的临江市老城区，空气中弥漫着一股潮湿的煤灰味。我站在“幸福里”社区的公告栏前，手里那份盖着鲜红印...
+📊 选项 1 剪枝统计：原始2个 -> 剪枝后2个
+🔄 调用 Gemini 图生图 API（gemini-2.5-flash-image，1张参考图，尝试 1/3）...
+   提示词: Generate a full-body, back-view portrait of character protagonist based on the provided front-view p...
+   参考图: C:\Users\zhang\Desktop\DN\initial\main_character\g...
+⏳ gemini 图生图限速：等待 12.3s
+✅ base64图片已保存到：image_cache\5e8a7f00d871ba157d7dcb715d6e15e9.png
+✅ Gemini 图生图成功
+📁 [侧/背图] 即将写入 game_id=game_1776577361_vzibja path=initial\main_character\game_1776577361_vzibja\main_character_side.png
+✅ 主角side图已保存 game_id=game_1776577361_vzibja path=initial\main_character\game_1776577361_vzibja\main_character_side.png
+? API????
+✅ 主角规范信息解析结果： {
+  "name_zh": "林远",
+  "name_en": "Lin Yuan",
+  "gender": "男性",
+  "age_range": "青年",
+  "work_zh": "青川纪事",
+  "work_en": "Chronicles of Qingchuan",
+  "signature_look_keywords": "黑色短发、黑框眼镜、略显疲惫的眼神、深灰色衬衫、常年背着的公文包、清瘦、沉默寡言、指尖常有铅笔灰、走路步履匆匆、不修边幅但整洁。"
+}
+✅ 基调已保存到global_state: romantic_ending (未知)
+✅ 世界观细节补全完成
+🔄 调用 Gemini 图生图 API（gemini-2.5-flash-image，1张参考图，尝试 1/3）...
+   提示词: Image 0: Front view portrait of the protagonist
+
+scene-old-district-demolition-negotiation, realisti...
+   参考图: C:\Users\zhang\Desktop\DN\initial\main_character\g...
+⏳ yunwu.ai 限速：等待 12.0s（最小间隔 12.0s）
+✅ base64图片已保存到：image_cache\7323fadc502725f7684b05ac084508df.png
+✅ Gemini 图生图成功
+📁 [侧/背图] 即将写入 game_id=game_1776577361_vzibja path=initial\main_character\game_1776577361_vzibja\main_character_back.png
+✅ 主角back图已保存 game_id=game_1776577361_vzibja path=initial\main_character\game_1776577361_vzibja\main_character_back.png
+🔍 ========== 发送给API的请求内容 ==========
+🔍 API端点: https://yunwu.ai/v1/chat/completions
+🔍 模型: gemini-2.5-flash-image
+📤 请求内容（前2000字符）:
+{
+  "model": "gemini-2.5-flash-image",
+  "contents": [
+    {
+      "role": "user",
+      "parts": [
+        {
+          "text": "Generate an image based on this description: 林远/Lin Yuan from 临江旧事/Old Stories of Linjiang, 林远 / Lin Yuan / 临江旧事 / Old Stories of Linjiang, young male protagonist, main-character-full-body-portrait, realistic, narrative-simulation, portrait, full-body, single character, Lin Yuan, Old Stories of Linjiang, cinematic realism, low-saturation color palette, documentary photography style, sharp focus, naturalistic texture, Lin Yuan, a young male protagonist with a slender and lean build, ordinary facial features, tired eyes reflecting deep empathy and professional fatigue, focused and slightly anxious expression, standing in a hurried, slightly stooped posture suggesting the weight of his work, dark-colored casual jacket, wrinkled shirt collar underneath, simple trousers, worn-out single-shoulder messenger bag across his chest, standing full-body, slightly leaning forward as if walking, one hand adjusting the strap of his bag, centered in frame, pure white background only, no environment, ordinary, relatable facial structure, black-rimmed glasses resting on the bridge of his nose, tired, observant eyes with subtle dark circles, faintly furrowed brow showing concentration and social exhaustion, naturally muted skin tone with realistic pores and minor imperfections, short, slightly messy black hair, natural, unstyled texture, root fixation coefficient 0.5, no wind, realistic density, dark navy or charcoal jacket, functional and unremarkable, cotton shirt with visible creases and wrinkles at the collar, utilitarian messenger bag with signs of daily use, clean fabric texture, no background elements, pure white background, no objects, no scenery, even white only, no shadows on background, pure white background only, low-saturation tones for character, muted earth tones and dark neutrals, no environmental colors, soft, neutral studio lighting, even il
+
+📤 请求内容（后500字符）:
+or symbols in image, full-body character design, pure white background only, resilient, melancholic, professionally exhausted, grounded in reality, no text, no symbols, no garbled characters, no words, aspect ratio 1024:1536, portrait orientation, aspect ratio 1024:1536, portrait orientation\n\nReturn only the image as base64 data (data:image/png;base64,...) or image URL (https://...). Do not include any text, code blocks, or explanations."
+    }
+  ],
+  "temperature": 0.1,
+  "max_tokens": 4000
+}
+🔍 ==========================================
+⏱️ 发送图片生成请求（超时时间：240秒）...
+✅ API请求完成，耗时：14.40秒
+✅ yunwu.ai API响应成功（状态码: 200）
+🔍 yunwu.ai API完整响应结构：
+   - 响应类型: <class 'dict'>
+   - 响应键: ['id', 'model', 'object', 'created', 'choices', 'usage']
+🔍 检查响应中的其他顶层字段...
+🔍 API使用情况: {'prompt_tokens': 584, 'completion_tokens': 1290, 'total_tokens': 1874, 'prompt_tokens_details': {'cached_tokens': 0, 'text_tokens': 584, 'audio_tokens': 0, 'image_tokens': 0}, 'completion_tokens_details': {'text_tokens': 0, 'audio_tokens': 0, 'reasoning_tokens': 0}, 'input_tokens': 0, 'output_tokens': 0, 'input_tokens_details': None, 'claude_cache_creation_5_m_tokens': 0, 'claude_cache_creation_1_h_tokens': 0}
+   - 总tokens: 1874, 输入tokens: 584, 输出tokens: 1290
+💡 API确实返回了 1290 个输出tokens，说明有内容返回！
+   - choices数量: 1
+   - message类型: <class 'dict'>
+   - message键: ['role', 'content']
+🔍 finish_reason: stop
+   - content类型: <class 'str'>
+   - content长度: 1835672
+   - content前100字符: ![image](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABAAAAAQACAIAAADwf7zUAAAXfWNhQlgAABd9anVtYgAAA
+🔍 检查message中的所有字段...
+   - message['role']: str, 长度=9, 内容='assistant'
+🔍 检查choices[0]中的所有字段...
+🔍 开始清理content，原始长度: 1835672 字符
+🔍 清理完成，最终长度: 1835672 字符
+🔍 yunwu.ai返回的原始内容（前500字符）：![image](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABAAAAAQACAIAAADwf7zUAAAXfWNhQlgAABd9anVtYgAAAB5qdW1kYzJwYQARABCAAACqADibcQNjMnBhAAAAF1dqdW1iAAAAR2p1bWRjMm1hABEAEIAAAKoAOJtxA3VybjpjMnBhOjJkYmFhZDQ3LTRlMTItNmU3MS00NjE0LTRiYTYzZTNiNzhhMQAAABMAanVtYgAAAChqdW1kYzJjcwARABCAAACqADibcQNjMnBhLnNpZ25hdHVyZQAAABLQY2JvctKEWQYrogEmGCGCWQM/MIIDOzCCAsCgAwIBAgIUAJ6vFWKBqUkCFltI/1ipbSSYHs4wCgYIKoZIzj0EAwMwUTELMAkGA1UEBhMCVVMxEzARBgNVBAoMCkdvb2dsZSBMTEMxLTArBgNVBAMMJEdvb2dsZSBDMlBBIE1lZGlhIFNlcnZpY2VzIDFQI
+🔍 yunwu.ai返回的原始内容（完整长度：1835672字符）
+✅ 从markdown格式中提取到base64图片数据（长度：1835662字符）
+✅ base64图片已保存到：image_cache\72dfe957e31b7a2c159f1431a8b1a364.png
+🔍 call_image_api_with_custom_size 返回结果:
+   - 类型: <class 'str'>
+   - 是否为None: False
+   - 长度: 49 字符
+   - 前100字符: /image_cache/72dfe957e31b7a2c159f1431a8b1a364.png
+   - 是否以'data:image'开头: False
+   - 是否以'http'开头: False
+   - 是否以'/image_cache'开头: True
+   - 是否以'image_cache'开头: False
+📁 准备保存主角正面图到: initial\main_character\game_1776577372_gfn2t3\main_character.png
+📁 目录是否存在: True
+✅ 主角正面图已保存：initial\main_character\game_1776577372_gfn2t3\main_character.png
+✅ 主角形象生成完成：initial\main_character\game_1776577372_gfn2t3\main_character.png
+🎨 [侧/背图] 开始任务 view=side game_id=game_1776577372_gfn2t3 输出路径=initial\main_character\game_1776577372_gfn2t3\main_character_side.png
+🔎 主角side图参考正面: C:\Users\zhang\Desktop\DN\initial\main_character\game_1776577372_gfn2t3\main_character.png exists=True front_mtime_at_start=1776577441.0552845
+🔄 尝试使用 Gemini 图生图（gemini-2.5-flash-image）生成side视图...
+🎨 [侧/背图] 开始任务 view=back game_id=game_1776577372_gfn2t3 输出路径=initial\main_character\game_1776577372_gfn2t3\main_character_back.png
+✅ 已启动主角侧面/背面生成任务（后台并行）
+✅ 主角形象生成完成（游戏ID: game_1776577372_gfn2t3）
+🔎 主角back图参考正面: C:\Users\zhang\Desktop\DN\initial\main_character\game_1776577372_gfn2t3\main_character.png exists=True front_mtime_at_start=1776577441.0552845
+🔄 尝试使用 Gemini 图生图（gemini-2.5-flash-image）生成back视图...
+🔄 调用 Gemini 图生图 API（gemini-2.5-flash-image，1张参考图，尝试 1/3）...
+   提示词: Generate a full-body, side-view portrait of character protagonist based on the provided front-view p...
+   参考图: C:\Users\zhang\Desktop\DN\initial\main_character\g...
+⏳ gemini 图生图限速：等待 12.0s
+✅ 主角正面图已就绪，开始生成初始场景图片（等待 42 秒）
+🎨 正在为选项 1 生成场景图片（启用本地缓存）...
+  [1] 📐 剧情图 16:9 尺寸：1920x1080（适配 16 寸屏）
+  [2] ✅ 找到主角参考图（1张），将作为参考图传递：game_1776577372_gfn2t3
+🔄 正在使用LLM优化图片生成提示词...
+📋 [剧情图] 提示词 JSON 已生成（label=scene-lin-yuan-confrontation-at-happy-community，共14个键，已省略全文）
+✅ LLM提示词优化完成，长度：2797字符
+  [3] 📝 [剧情图提示词] LLM 已生成（共2797字，摘要: scene-lin-yuan-confrontation-at-happy-community, realistic-narrative, low-saturation, urban-decay, cinematic-drama, grit…）
+  [4] 📋 剧情模型未列出本段出场配角，本段不建档配角图
+  [5] 📝 [剧情图提示词] 最终提示词已就绪（共2797字，发送给生图API，摘要: scene-lin-yuan-confrontation-at-happy-community, realistic-narrative, low-saturation, urban-decay, cinematic-drama, grit…）
+  [6] 🎨 调用生图 API（provider=yunwu）
+✅ 主角参考图按需传递 1 张（视角索引 [0]）
+🎨 使用 Gemini 图生图，传递1张参考图（主角1张+配角0张+上一张剧情图0张）
+✅ base64图片已保存到：image_cache\2ba298d6f4506d05567f30fb63a6b9aa.png
+✅ 使用本次生成结果（与缓存键不同，不复制避免覆盖）：image_cache\2ba298d6f4506d05567f30fb63a6b9aa.png
+✅ 选项 1 场景图片生成成功并已保存到本地
+   本地路径: /image_cache/2ba298d6f4506d05567f30fb63a6b9aa.png
+✅ 选项 1 剧情生成成功，共2个选项：['劝说祖父签署意向书，并承诺会争取最好的安置条件。', '询问祖父关于老屋的往事，试图从情感层面寻找沟通切入点。']
+✅ 初始场景图片数据已提取: /image_cache/2ba298d6f4506d05567f30fb63a6b9aa.png...
+🔍 [_pregenerate_next_layers_logic] scene_id 处理：
+   - 传入的 scene_id：8757450272081289639_2077237154856806567
+   - 使用传入的 scene_id：8757450272081289639_2077237154856806567
+🔄 开始预生成场景 8757450272081289639_2077237154856806567 的两层内容（优先级策略）...
+📝 预生成第一层：并行生成 2 个选项的下一轮剧情...
+✅ 第一次选项生成完成（含首屏预生成），选项数：2，预生成 scene_id：8757450272081289639_2077237154856806567
+📝 开始并行生成选项 1/2: 劝说祖父签署意向书，并承诺会争取最好的安置条件。...
+📝 正在生成选项 1 的剧情（文本模式）...
+📝 开始并行生成选项 2/2: 询问祖父关于老屋的往事，试图从情感层面寻找沟通切入点。...
+📝 正在生成选项 2 的剧情（文本模式）...
+🔍 [第一层预生成] 开始等待所有任务完成，共 2 个任务
+?? ??API??... (????30??????200??????0ms)
+🔄 调用 Gemini 图生图 API（gemini-2.5-flash-image，1张参考图，尝试 1/3）...
+   提示词: Generate a full-body, back-view portrait of character protagonist based on the provided front-view p...
+   参考图: C:\Users\zhang\Desktop\DN\initial\main_character\g...
+⏳ gemini 图生图限速：等待 12.1s
+? API????
+📋 选项 1 剧情模型输出本段出场配角（文本模式）：['祖父-配角1']
+📋 选项 1 剧情模型输出本段提及但未出场（文本模式）：['奶奶-提及角色']

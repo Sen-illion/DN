@@ -1,0 +1,163 @@
+{
+  "benchmark_name": "DN-quality-benchmark-v1",
+  "version": "repeat_conclusions_v2",
+  "stable_conclusions": [
+    {
+      "conclusion_id": "stable_001",
+      "scope": "benchmark_v1 / worldview",
+      "statement": "在 DN-quality-benchmark-v1 上，no_council 在两轮 repeat 中都显著快于 default。",
+      "evidence": "run1: mean 20.031s vs 33.657s; run2: mean 20.456s vs 42.008s; 40-run combined: 20.244s vs 37.832s",
+      "confidence": "high"
+    },
+    {
+      "conclusion_id": "stable_002",
+      "scope": "benchmark_v1 / worldview",
+      "statement": "no_council 的中位数与 p95 也优于 default，说明优势不只体现在平均值。",
+      "evidence": "combined median 16.046s vs 30.002s; combined p95 40.133s vs 81.879s",
+      "confidence": "high"
+    },
+    {
+      "conclusion_id": "stable_003",
+      "scope": "benchmark_v1 / fullchain default",
+      "statement": "default full-chain 在 20 个 benchmark 样本上全部成功跑通。",
+      "evidence": "full_success_count 20 / sample_size 20",
+      "confidence": "high"
+    },
+    {
+      "conclusion_id": "stable_004",
+      "scope": "post-fix / fullchain default",
+      "statement": "当前 full-chain 的主要体感瓶颈仍是 worldview 阶段与主角图完成时间，而不是 generate-option 的典型路径。",
+      "evidence": "fullchain default 20: worldview median 9.003s, generate-option median 0.022s, main-character median 56.546s",
+      "confidence": "medium_high"
+    },
+    {
+      "conclusion_id": "stable_005",
+      "scope": "post-fix / quality guardrails",
+      "statement": "在已统计的 post-fix 样本里，基本可玩性护栏指标表现稳定。",
+      "evidence": "effectiveness proxies: worldview/scene/image/main-character success rates are all 1.0 in current tracked sample",
+      "confidence": "medium"
+    },
+    {
+      "conclusion_id": "stable_006",
+      "scope": "benchmark_v1 / fullchain",
+      "statement": "在 full-chain benchmark-v1 上，no_council 并没有把 worldview 阶段的单点加速转化为更好的整局体验，反而在 worldview 中位数与成功率上不如 default。",
+      "evidence": "default fullchain worldview median 9.003s vs no_council 13.799s; success_count 20/20 vs 19/20",
+      "confidence": "medium_high"
+    },
+    {
+      "conclusion_id": "stable_007",
+      "scope": "benchmark_v1 / fullchain",
+      "statement": "default 仍是更稳妥的 full-chain 基线配置。",
+      "evidence": "default fullchain has lower worldview median, lower p95, and no timeout failure in this batch",
+      "confidence": "medium_high"
+    }
+  ],
+  "pending_conclusions": [
+    {
+      "conclusion_id": "pending_004",
+      "scope": "benchmark_v1 / fullchain mechanism",
+      "statement": "为什么 no_council 在 worldview 单点上更快，但在 full-chain 上反而不占优，仍需归因分析。",
+      "why_pending": "当前还未拆开 cache、pregeneration、主角图阻塞、provider 排队窗口等因素。"
+    },
+    {
+      "conclusion_id": "pending_002",
+      "scope": "benchmark_v1 / quality",
+      "statement": "no_council 的效率提升是否伴随质量退化，尚未通过人工评分协议验证。",
+      "why_pending": "当前只有自动效果代理，没有完成双人或抽样人工评分。"
+    },
+    {
+      "conclusion_id": "pending_003",
+      "scope": "concurrency / no_council",
+      "statement": "并发场景下 no_council 是否仍优于 default，尚未验证。",
+      "why_pending": "当前并发实验只在 default 上完成。"
+    }
+  ],
+  "executive_metrics": [
+    {
+      "section": "benchmark_v1_worldview_default_combined_40",
+      "metric": "mean_s",
+      "value": 37.832
+    },
+    {
+      "section": "benchmark_v1_worldview_default_combined_40",
+      "metric": "median_s",
+      "value": 30.002
+    },
+    {
+      "section": "benchmark_v1_worldview_default_combined_40",
+      "metric": "p95_s",
+      "value": 81.879
+    },
+    {
+      "section": "benchmark_v1_worldview_no_council_combined_40",
+      "metric": "mean_s",
+      "value": 20.244
+    },
+    {
+      "section": "benchmark_v1_worldview_no_council_combined_40",
+      "metric": "median_s",
+      "value": 16.046
+    },
+    {
+      "section": "benchmark_v1_worldview_no_council_combined_40",
+      "metric": "p95_s",
+      "value": 40.133
+    },
+    {
+      "section": "benchmark_v1_pairwise_run1",
+      "metric": "faster_no_council",
+      "value": 17
+    },
+    {
+      "section": "benchmark_v1_pairwise_run2",
+      "metric": "faster_no_council",
+      "value": 16
+    },
+    {
+      "section": "benchmark_v1_fullchain_default_20",
+      "metric": "worldview_median_s",
+      "value": 9.003
+    },
+    {
+      "section": "benchmark_v1_fullchain_default_20",
+      "metric": "generate_option_median_s",
+      "value": 0.022
+    },
+    {
+      "section": "benchmark_v1_fullchain_default_20",
+      "metric": "main_character_median_s",
+      "value": 56.546
+    },
+    {
+      "section": "quality_guardrails",
+      "metric": "playable_success_rate",
+      "value": 1.0
+    },
+    {
+      "section": "benchmark_v1_fullchain_default_20",
+      "metric": "success_rate",
+      "value": 1.0
+    },
+    {
+      "section": "benchmark_v1_fullchain_no_council_20",
+      "metric": "success_rate",
+      "value": 0.95
+    },
+    {
+      "section": "benchmark_v1_fullchain_default_20",
+      "metric": "worldview_median_s",
+      "value": 9.003
+    },
+    {
+      "section": "benchmark_v1_fullchain_no_council_20",
+      "metric": "worldview_median_s",
+      "value": 13.799
+    }
+  ],
+  "source_files": {
+    "repeat_summary": "C:\\Users\\zhang\\Desktop\\DN\\experiments\\benchmark\\outputs\\benchmark_v1_ab_repeat_validation_summary.json",
+    "fullchain_summary": "C:\\Users\\zhang\\Desktop\\DN\\experiments\\benchmark\\standard_runs\\benchmark_v1_fullchain_default_20.json",
+    "effectiveness_proxy_summary": "C:\\Users\\zhang\\Desktop\\DN\\experiments\\benchmark\\outputs\\effectiveness_proxies_summary.json",
+    "fullchain_ab_summary": "C:\\Users\\zhang\\Desktop\\DN\\experiments\\benchmark\\outputs\\benchmark_v1_fullchain_ab_summary.json"
+  }
+}

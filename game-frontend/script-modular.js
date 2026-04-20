@@ -1,4 +1,4 @@
-// ========== 代码版本标识 ==========
+﻿// ========== 代码版本标识 ==========
 // 版本：使用同一定位上下文方案
 // 更新时间：2024-12-XX
 // 改动说明：
@@ -1133,6 +1133,8 @@ const Game = (() => {
             isShowingSegments: false, // 是否处于分段显示状态
             pendingOptions: null, // 待显示的选项（在所有段落显示完成后显示）
             pendingImageData: null, // 待显示的图片数据（在分段显示过程中保持不变）
+            _sceneImageRetryTimer: null,
+            _sceneImageRetryCount: 0,
             checkpointMemory: [],
             pendingRequest: {
                 requestId: null,
@@ -2190,11 +2192,13 @@ const Game = (() => {
             // 加载完成
             if (progress === 100) {
                 clearInterval(loadingInterval);
-                // 环形图标放大消失动画
+                // 环形图标放大消失动画（兼容无 spinner 的页面，避免抛错卡住后续切屏）
                 const spinner = document.querySelector('.loading-spinner');
-                spinner.style.transform = 'scale(1.5)';
-                spinner.style.opacity = '0';
-                spinner.style.transition = 'all 500ms ease';
+                if (spinner && spinner.style) {
+                    spinner.style.transform = 'scale(1.5)';
+                    spinner.style.opacity = '0';
+                    spinner.style.transition = 'all 500ms ease';
+                }
                 
                 // 文本渐隐
                 elements.content.loadingStatus.style.opacity = '0';
@@ -2900,12 +2904,19 @@ const Game = (() => {
             // 补救：如果后端没返回图片（或下载/解析失败），前端异步补图，不阻塞文本/选项显示
             // - 通过独立接口生成图片，避免 /generate-option 因图片耗时而卡住
             // - 做去重与“只在仍处于该剧情时才应用结果”的保护
+            // - 若后端返回 pending，说明已有同 key 补图在执行，前端轻量轮询即可
             try {
                 const sceneTextForRequest = (text || '').trim();
                 if (sceneTextForRequest) {
                     const requestKey = `${gameState.currentSceneId || 'no_scene_id'}|${sceneTextForRequest.slice(0, 200)}`;
                     if (gameState._sceneImageRequestKey !== requestKey) {
                         gameState._sceneImageRequestKey = requestKey;
+                        gameState._sceneImageRetryCount = 0;
+
+                        if (gameState._sceneImageRetryTimer) {
+                            clearTimeout(gameState._sceneImageRetryTimer);
+                            gameState._sceneImageRetryTimer = null;
+                        }
 
                         // 取消上一条补图请求（如果还在进行）
                         if (gameState._sceneImageAbortController) {
@@ -2928,48 +2939,74 @@ const Game = (() => {
                         const viewportWidth = window.innerWidth;
                         const viewportHeight = window.innerHeight;
                         console.log(`📐 视口尺寸: ${viewportWidth}x${viewportHeight}`);
-                        
-                        fetch(API_BASE + '/generate-scene-image', {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({
-                                sceneDescription: sceneTextForRequest,
-                                globalState: globalStatePayload,
-                                style: style,
-                                viewportWidth: viewportWidth,
-                                viewportHeight: viewportHeight
-                            }),
-                            signal: controller.signal
-                        })
-                        .then(r => r.json())
-                        .then(result => {
-                            // 只在“仍是当前剧情”且 key 未变化时应用
-                            if (gameState._sceneImageRequestKey !== requestKey) return;
-                            if (sceneTextForRequest !== (gameState.currentScene || '').trim()) return;
-                            if (result && result.status === 'success' && result.image && result.image.url) {
-                                const img = normalizeStorySceneImageData(result.image);
-                                if (!img) {
-                                    console.warn('⚠️ 异步补图返回了非剧情图数据，已忽略:', result.image);
+
+                        const requestPayload = {
+                            sceneDescription: sceneTextForRequest,
+                            globalState: globalStatePayload,
+                            style: style,
+                            viewportWidth: viewportWidth,
+                            viewportHeight: viewportHeight
+                        };
+                        const maxPendingRetries = 8;
+                        const issueSceneImageRequest = () => {
+                            fetch(API_BASE + '/generate-scene-image', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify(requestPayload),
+                                signal: controller.signal
+                            })
+                            .then(r => r.json())
+                            .then(result => {
+                                // 只在“仍是当前剧情”且 key 未变化时应用
+                                if (gameState._sceneImageRequestKey !== requestKey) return;
+                                if (sceneTextForRequest !== (gameState.currentScene || '').trim()) return;
+
+                                if (result && result.status === 'pending') {
+                                    gameState._sceneImageRetryCount = (gameState._sceneImageRetryCount || 0) + 1;
+                                    if (gameState._sceneImageRetryCount > maxPendingRetries) {
+                                        console.warn('⚠️ 异步补图 pending 重试次数已达上限:', result);
+                                        return;
+                                    }
+                                    const delayMs = Math.min(2500, 400 + gameState._sceneImageRetryCount * 250);
+                                    console.log(`⏳ 异步补图仍在进行中，${delayMs}ms 后重试（${gameState._sceneImageRetryCount}/${maxPendingRetries}）`);
+                                    gameState._sceneImageRetryTimer = setTimeout(() => {
+                                        if (gameState._sceneImageRequestKey !== requestKey) return;
+                                        issueSceneImageRequest();
+                                    }, delayMs);
                                     return;
                                 }
-                                console.log('✅ 异步补图成功:', img.url);
-                                try {
-                                    // 传递 optionDataForArchive，确保配角首次出场建档能正确触发
-                                    VisualContentManager.displaySceneImage(img, optionDataForArchive);
-                                } catch (e) {
-                                    console.warn('⚠️ 异步补图展示失败:', e);
+
+                                gameState._sceneImageRetryCount = 0;
+                                gameState._sceneImageRetryTimer = null;
+
+                                if (result && result.status === 'success' && result.image && result.image.url) {
+                                    const img = normalizeStorySceneImageData(result.image);
+                                    if (!img) {
+                                        console.warn('⚠️ 异步补图返回了非剧情图数据，已忽略:', result.image);
+                                        return;
+                                    }
+                                    console.log('✅ 异步补图成功:', img.url);
+                                    try {
+                                        // 传递 optionDataForArchive，确保配角首次出场建档能正确触发
+                                        VisualContentManager.displaySceneImage(img, optionDataForArchive);
+                                    } catch (e) {
+                                        console.warn('⚠️ 异步补图展示失败:', e);
+                                    }
+                                    // 更新状态，供“下一剧情参考上一剧情图片”使用
+                                    gameState.pendingImageData = img;
+                                    gameState.lastSceneImage = img;
+                                } else {
+                                    console.warn('⚠️ 异步补图失败:', result && result.message ? result.message : result);
                                 }
-                                // 更新状态，供“下一剧情参考上一剧情图片”使用
-                                gameState.pendingImageData = img;
-                                gameState.lastSceneImage = img;
-                            } else {
-                                console.warn('⚠️ 异步补图失败:', result && result.message ? result.message : result);
-                            }
-                        })
-                        .catch(err => {
-                            if (err && err.name === 'AbortError') return;
-                            console.warn('⚠️ 异步补图请求异常:', err);
-                        });
+                            })
+                            .catch(err => {
+                                if (err && err.name === 'AbortError') return;
+                                gameState._sceneImageRetryTimer = null;
+                                console.warn('⚠️ 异步补图请求异常:', err);
+                            });
+                        };
+
+                        issueSceneImageRequest();
                     }
                 }
             } catch (e) {
@@ -4463,24 +4500,63 @@ const Game = (() => {
                 const mc = gameState.gameData?.main_character;
                 return mc && mc.image_url ? mc.image_url : defaultMcPath;
             };
-            
-            // 检查图片是否存在（每次轮询用最新 gameState，避免闭包里的旧 URL）
-            const checkImageExists = () => {
-                return new Promise((resolve) => {
-                    const img = new Image();
-                    img.onload = () => resolve(true);
-                    img.onerror = () => resolve(false);
-                    img.src = resolveGameAssetUrl(getRawMainCharacterImageUrl());
-                });
+
+            const buildMainCharacterImageUrl = (rawUrl, versionTag) => {
+                const resolved = resolveGameAssetUrl(rawUrl || defaultMcPath);
+                if (!resolved) return resolved;
+                const cacheBuster = versionTag || Date.now();
+                try {
+                    const u = new URL(resolved, window.location.origin);
+                    u.searchParams.set('_mcv', String(cacheBuster));
+                    return u.toString();
+                } catch (error) {
+                    const joiner = resolved.includes('?') ? '&' : '?';
+                    return `${resolved}${joiner}_mcv=${encodeURIComponent(String(cacheBuster))}`;
+                }
             };
-            
-            // 如果已经有主角形象信息，直接展示
-            if (mainCharacter && mainCharacter.image_url) {
-                console.log('✅ 主角形象已生成，开始展示');
-                showMainCharacterImage(getRawMainCharacterImageUrl(), onContinue);
-                return;
+
+            const fetchMainCharacterStatus = async () => {
+                const statusUrl = `${getApiBase()}/main-character-status/${encodeURIComponent(gameId)}?_t=${Date.now()}`;
+                const response = await fetch(statusUrl, { cache: 'no-store' });
+                if (!response.ok) {
+                    throw new Error(`主角状态查询失败: HTTP ${response.status}`);
+                }
+                return response.json();
+            };
+
+            const latestImageUrlFromStatus = (statusData) =>
+                buildMainCharacterImageUrl(
+                    statusData?.image_url || getRawMainCharacterImageUrl(),
+                    statusData?.updated_at || Date.now()
+                );
+
+            try {
+                const statusData = await fetchMainCharacterStatus();
+                if (statusData?.ready && statusData.image_url) {
+                    console.log('✅ 主角形象已生成，开始展示');
+                    gameState.gameData.main_character = {
+                        ...(gameState.gameData.main_character || {}),
+                        game_id: gameId,
+                        image_url: statusData.image_url,
+                        status: statusData.status || 'completed',
+                        updated_at: statusData.updated_at || ''
+                    };
+                    showMainCharacterImage(latestImageUrlFromStatus(statusData), onContinue);
+                    return;
+                }
+                if (statusData?.status === 'failed') {
+                    console.warn('⚠️ 主角形象生成失败，跳过展示:', statusData.error || 'unknown');
+                    if (onContinue) onContinue();
+                    return;
+                }
+            } catch (statusError) {
+                console.warn('⚠️ 主角状态查询失败，退回图片轮询逻辑:', statusError);
+                if (mainCharacter && mainCharacter.image_url) {
+                    showMainCharacterImage(buildMainCharacterImageUrl(getRawMainCharacterImageUrl()), onContinue);
+                    return;
+                }
             }
-            
+             
             // 如果主角形象还未生成，等待生成完成
             console.log('⏳ 主角形象还在生成中，等待完成...');
             const maxWaitTime = 300000; // 5分钟
@@ -4489,18 +4565,24 @@ const Game = (() => {
             
             const checkMainCharacter = async () => {
                 try {
-                    const exists = await checkImageExists();
-                    
-                    if (exists) {
+                    const statusData = await fetchMainCharacterStatus();
+
+                    if (statusData?.ready && statusData.image_url) {
                         console.log('✅ 主角形象生成完成，开始展示');
-                        // 更新 gameState
-                        if (!gameState.gameData.main_character) {
-                            gameState.gameData.main_character = {
-                                game_id: gameId,
-                                image_url: `/initial/main_character/${gameId}/main_character.png`
-                            };
-                        }
-                        showMainCharacterImage(getRawMainCharacterImageUrl(), onContinue);
+                        gameState.gameData.main_character = {
+                            ...(gameState.gameData.main_character || {}),
+                            game_id: gameId,
+                            image_url: statusData.image_url,
+                            status: statusData.status || 'completed',
+                            updated_at: statusData.updated_at || ''
+                        };
+                        showMainCharacterImage(latestImageUrlFromStatus(statusData), onContinue);
+                        return;
+                    }
+
+                    if (statusData?.status === 'failed') {
+                        console.warn('⚠️ 主角形象生成失败，跳过展示:', statusData.error || 'unknown');
+                        if (onContinue) onContinue();
                         return;
                     }
                     

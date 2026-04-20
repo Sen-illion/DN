@@ -1,0 +1,60 @@
+Traceback (most recent call last):
+  File "C:\Users\zhang\Desktop\DN\.venv\Lib\site-packages\urllib3\response.py", line 903, in _error_catcher
+    yield
+  File "C:\Users\zhang\Desktop\DN\.venv\Lib\site-packages\urllib3\response.py", line 1421, in read_chunked
+    chunk = self._handle_chunk(amt)
+  File "C:\Users\zhang\Desktop\DN\.venv\Lib\site-packages\urllib3\response.py", line 1354, in _handle_chunk
+    value = self._fp._safe_read(amt)  # type: ignore[union-attr]
+  File "C:\Users\zhang\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 644, in _safe_read
+    raise IncompleteRead(data, amt-len(data))
+http.client.IncompleteRead: IncompleteRead(9490 bytes read, 750 more expected)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\zhang\Desktop\DN\.venv\Lib\site-packages\requests\models.py", line 820, in generate
+    yield from self.raw.stream(chunk_size, decode_content=True)
+  File "C:\Users\zhang\Desktop\DN\.venv\Lib\site-packages\urllib3\response.py", line 1250, in stream
+    yield from self.read_chunked(amt, decode_content=decode_content)
+  File "C:\Users\zhang\Desktop\DN\.venv\Lib\site-packages\urllib3\response.py", line 1397, in read_chunked
+    with self._error_catcher():
+         ~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\zhang\AppData\Local\Programs\Python\Python313\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\zhang\Desktop\DN\.venv\Lib\site-packages\urllib3\response.py", line 930, in _error_catcher
+    raise ProtocolError(f"Connection broken: {e!r}", e) from e
+urllib3.exceptions.ProtocolError: ('Connection broken: IncompleteRead(9490 bytes read, 750 more expected)', IncompleteRead(9490 bytes read, 750 more expected))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\zhang\Desktop\DN\src\image\api_providers.py", line 896, in generate_main_character_image
+    image_url_or_data = call_image_api_with_custom_size(
+        front_prompt,
+    ...<3 lines>...
+        request_type="main_character"
+    )
+  File "C:\Users\zhang\Desktop\DN\src\image\api_providers.py", line 109, in call_image_api_with_custom_size
+    return call_yunwu_image_api(size_prompt, "default", request_type=request_type)
+  File "C:\Users\zhang\Desktop\DN\src\image\api_providers.py", line 2200, in call_yunwu_image_api
+    response = requests.post(
+        f"{base_url}/chat/completions",
+    ...<2 lines>...
+        timeout=request_timeout
+    )
+  File "C:\Users\zhang\Desktop\DN\.venv\Lib\site-packages\requests\api.py", line 115, in post
+    return request("post", url, data=data, json=json, **kwargs)
+  File "C:\Users\zhang\Desktop\DN\.venv\Lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\zhang\Desktop\DN\.venv\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\zhang\Desktop\DN\.venv\Lib\site-packages\requests\sessions.py", line 746, in send
+    r.content
+  File "C:\Users\zhang\Desktop\DN\.venv\Lib\site-packages\requests\models.py", line 902, in content
+    self._content = b"".join(self.iter_content(CONTENT_CHUNK_SIZE)) or b""
+                    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\zhang\Desktop\DN\.venv\Lib\site-packages\requests\models.py", line 822, in generate
+    raise ChunkedEncodingError(e)
+requests.exceptions.ChunkedEncodingError: ('Connection broken: IncompleteRead(9490 bytes read, 750 more expected)', IncompleteRead(9490 bytes read, 750 more expected))

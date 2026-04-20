@@ -1,0 +1,8 @@
+﻿conclusion_id,scope,statement,evidence,confidence
+stable_001,benchmark_v1 / worldview,在 DN-quality-benchmark-v1 上，no_council 在两轮 repeat 中都显著快于 default。,run1: mean 20.031s vs 33.657s; run2: mean 20.456s vs 42.008s; 40-run combined: 20.244s vs 37.832s,high
+stable_002,benchmark_v1 / worldview,no_council 的中位数与 p95 也优于 default，说明优势不只体现在平均值。,combined median 16.046s vs 30.002s; combined p95 40.133s vs 81.879s,high
+stable_003,benchmark_v1 / fullchain default,default full-chain 在 20 个 benchmark 样本上全部成功跑通。,full_success_count 20 / sample_size 20,high
+stable_004,post-fix / fullchain default,当前 full-chain 的主要体感瓶颈仍是 worldview 阶段与主角图完成时间，而不是 generate-option 的典型路径。,"fullchain default 20: worldview median 9.003s, generate-option median 0.022s, main-character median 56.546s",medium_high
+stable_005,post-fix / quality guardrails,在已统计的 post-fix 样本里，基本可玩性护栏指标表现稳定。,effectiveness proxies: worldview/scene/image/main-character success rates are all 1.0 in current tracked sample,medium
+stable_006,benchmark_v1 / fullchain,在 full-chain benchmark-v1 上，no_council 并没有把 worldview 阶段的单点加速转化为更好的整局体验，反而在 worldview 中位数与成功率上不如 default。,default fullchain worldview median 9.003s vs no_council 13.799s; success_count 20/20 vs 19/20,medium_high
+stable_007,benchmark_v1 / fullchain,default 仍是更稳妥的 full-chain 基线配置。,"default fullchain has lower worldview median, lower p95, and no timeout failure in this batch",medium_high
