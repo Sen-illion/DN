@@ -1,0 +1,12 @@
+Evaluate the following sample.
+
+sample_id: {sample_id}
+game_id: {game_id}
+theme_item_id: {theme_item_id}
+segment_index: {segment_index}
+image_path_repo_relative: {image_path_repo_relative}
+
+If metadata is available, use it as weak context only.
+Do not invent context not present in the image.
+
+Return a JSON object only.

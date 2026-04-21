@@ -1163,7 +1163,6 @@ def generate_scene_image(
     if not skip_prot_ref:
         skip_prot_ref = os.getenv("EXPERIMENT_SKIP_PROTAGONIST_REF", "").strip().lower() in ("1", "true", "yes")
     if game_id and not skip_prot_ref:
-        from pathlib import Path
         main_character_dir = Path("initial") / "main_character" / game_id
         front_path = main_character_dir / "main_character.png"
         side_path = main_character_dir / "main_character_side.png"
@@ -1475,8 +1474,7 @@ def generate_scene_image(
         if use_cache and image_url:
             try:
                 import hashlib
-                from pathlib import Path
-                
+
                 MAX_DOWNLOAD_BYTES = 10 * 1024 * 1024  # 10MB 防止超大文件拖垮内存/磁盘
                 VALID_IMAGE_PREFIX = "image/"
 
