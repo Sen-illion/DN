@@ -1,0 +1,104 @@
+{
+  "subset_name": "dn_style_smoke3",
+  "source": "experiments\\benchmark\\dn_quality_benchmark_v1.json",
+  "scene_count": 4,
+  "items": [
+    {
+      "benchmark_id": "DNQBV1_001",
+      "theme_id": 1,
+      "theme": "边陲驿站夜谈录",
+      "image_style": {
+        "type": "realistic"
+      },
+      "expected_genre": "现实边陲叙事",
+      "expected_tone": "克制、怀旧、微苦",
+      "must_have_constraints": [
+        "世界观必须围绕边陲驿站生存与人情展开",
+        "首段剧情应能自然引出一条可推进的现实冲突",
+        "至少返回 2 个具体可执行选项",
+        "场景图应与写实风格一致"
+      ],
+      "forbidden_issues": [
+        "现代互联网术语突兀混入",
+        "调试文本或报错文本外泄",
+        "图像 prompt 出现 URL 或 data:image",
+        "人物设定串场到其他作品"
+      ],
+      "visual_prompt_pack": {
+        "character_description": "[Protagonist] a consistent main character in a 现实边陲叙事 story, visually grounded in the theme '边陲驿站夜谈录', cinematic realistic scene, grounded lighting, coherent environment",
+        "prompts": [
+          "[Protagonist] opening scene introducing the world and the protagonist's immediate problem; theme: 边陲驿站夜谈录; genre: 现实边陲叙事; tone: 克制、怀旧、微苦; constraints: 世界观必须围绕边陲驿站生存与人情展开; 首段剧情应能自然引出一条可推进的现实冲突; 至少返回 2 个具体可执行选项; cinematic realistic scene, grounded lighting, coherent environment # Scene 1 for 边陲驿站夜谈录",
+          "[Protagonist] the protagonist discovers a concrete conflict and must make a decision; theme: 边陲驿站夜谈录; genre: 现实边陲叙事; tone: 克制、怀旧、微苦; constraints: 世界观必须围绕边陲驿站生存与人情展开; 首段剧情应能自然引出一条可推进的现实冲突; 至少返回 2 个具体可执行选项; cinematic realistic scene, grounded lighting, coherent environment # Scene 2 for 边陲驿站夜谈录",
+          "[Protagonist] tension escalates as the environment reveals a hidden risk; theme: 边陲驿站夜谈录; genre: 现实边陲叙事; tone: 克制、怀旧、微苦; constraints: 世界观必须围绕边陲驿站生存与人情展开; 首段剧情应能自然引出一条可推进的现实冲突; 至少返回 2 个具体可执行选项; cinematic realistic scene, grounded lighting, coherent environment # Scene 3 for 边陲驿站夜谈录",
+          "[Protagonist] a playable turning point with a clear action choice and strong atmosphere; theme: 边陲驿站夜谈录; genre: 现实边陲叙事; tone: 克制、怀旧、微苦; constraints: 世界观必须围绕边陲驿站生存与人情展开; 首段剧情应能自然引出一条可推进的现实冲突; 至少返回 2 个具体可执行选项; cinematic realistic scene, grounded lighting, coherent environment # Scene 4 for 边陲驿站夜谈录"
+        ],
+        "style_name": "Photographic",
+        "negative_prompt": "lowres, bad anatomy, bad hands, missing fingers, extra fingers, text, watermark, signature, blurry, cropped, worst quality, low quality"
+      }
+    },
+    {
+      "benchmark_id": "DNQBV1_002",
+      "theme_id": 9,
+      "theme": "末日温室园丁",
+      "image_style": {
+        "type": "realistic"
+      },
+      "expected_genre": "末日生存",
+      "expected_tone": "压抑、坚韧、低饱和",
+      "must_have_constraints": [
+        "剧情必须围绕温室、生存或资源匮乏展开",
+        "场景需要体现末日环境压力",
+        "首轮剧情应建立明确任务目标",
+        "图像风格应保持写实与低饱和"
+      ],
+      "forbidden_issues": [
+        "出现轻喜剧化语气",
+        "无关的校园/都市设定混入",
+        "选项空泛无法推进",
+        "图片与文本完全不匹配"
+      ],
+      "visual_prompt_pack": {
+        "character_description": "[Protagonist] a consistent main character in a 末日生存 story, visually grounded in the theme '末日温室园丁', cinematic realistic scene, grounded lighting, coherent environment",
+        "prompts": [
+          "[Protagonist] opening scene introducing the world and the protagonist's immediate problem; theme: 末日温室园丁; genre: 末日生存; tone: 压抑、坚韧、低饱和; constraints: 剧情必须围绕温室、生存或资源匮乏展开; 场景需要体现末日环境压力; 首轮剧情应建立明确任务目标; cinematic realistic scene, grounded lighting, coherent environment # Scene 1 for 末日温室园丁",
+          "[Protagonist] the protagonist discovers a concrete conflict and must make a decision; theme: 末日温室园丁; genre: 末日生存; tone: 压抑、坚韧、低饱和; constraints: 剧情必须围绕温室、生存或资源匮乏展开; 场景需要体现末日环境压力; 首轮剧情应建立明确任务目标; cinematic realistic scene, grounded lighting, coherent environment # Scene 2 for 末日温室园丁",
+          "[Protagonist] tension escalates as the environment reveals a hidden risk; theme: 末日温室园丁; genre: 末日生存; tone: 压抑、坚韧、低饱和; constraints: 剧情必须围绕温室、生存或资源匮乏展开; 场景需要体现末日环境压力; 首轮剧情应建立明确任务目标; cinematic realistic scene, grounded lighting, coherent environment # Scene 3 for 末日温室园丁",
+          "[Protagonist] a playable turning point with a clear action choice and strong atmosphere; theme: 末日温室园丁; genre: 末日生存; tone: 压抑、坚韧、低饱和; constraints: 剧情必须围绕温室、生存或资源匮乏展开; 场景需要体现末日环境压力; 首轮剧情应建立明确任务目标; cinematic realistic scene, grounded lighting, coherent environment # Scene 4 for 末日温室园丁"
+        ],
+        "style_name": "Photographic",
+        "negative_prompt": "lowres, bad anatomy, bad hands, missing fingers, extra fingers, text, watermark, signature, blurry, cropped, worst quality, low quality"
+      }
+    },
+    {
+      "benchmark_id": "DNQBV1_005",
+      "theme_id": 2,
+      "theme": "月球矿难七日",
+      "image_style": {
+        "type": "cyberpunk"
+      },
+      "expected_genre": "近未来科幻灾难",
+      "expected_tone": "高压、冷峻、技术感",
+      "must_have_constraints": [
+        "剧情需围绕月球矿难与生存风险展开",
+        "图像应体现赛博/科幻视觉元素",
+        "首段要有明确危机感与行动起点"
+      ],
+      "forbidden_issues": [
+        "出现古风或校园设定串场",
+        "图像 prompt 混入无关 IP 名称",
+        "选项与危机无关"
+      ],
+      "visual_prompt_pack": {
+        "character_description": "[Protagonist] a consistent main character in a 近未来科幻灾难 story, visually grounded in the theme '月球矿难七日', cinematic realistic scene, grounded lighting, coherent environment",
+        "prompts": [
+          "[Protagonist] opening scene introducing the world and the protagonist's immediate problem; theme: 月球矿难七日; genre: 近未来科幻灾难; tone: 高压、冷峻、技术感; constraints: 剧情需围绕月球矿难与生存风险展开; 图像应体现赛博/科幻视觉元素; 首段要有明确危机感与行动起点; cinematic realistic scene, grounded lighting, coherent environment # Scene 1 for 月球矿难七日",
+          "[Protagonist] the protagonist discovers a concrete conflict and must make a decision; theme: 月球矿难七日; genre: 近未来科幻灾难; tone: 高压、冷峻、技术感; constraints: 剧情需围绕月球矿难与生存风险展开; 图像应体现赛博/科幻视觉元素; 首段要有明确危机感与行动起点; cinematic realistic scene, grounded lighting, coherent environment # Scene 2 for 月球矿难七日",
+          "[Protagonist] tension escalates as the environment reveals a hidden risk; theme: 月球矿难七日; genre: 近未来科幻灾难; tone: 高压、冷峻、技术感; constraints: 剧情需围绕月球矿难与生存风险展开; 图像应体现赛博/科幻视觉元素; 首段要有明确危机感与行动起点; cinematic realistic scene, grounded lighting, coherent environment # Scene 3 for 月球矿难七日",
+          "[Protagonist] a playable turning point with a clear action choice and strong atmosphere; theme: 月球矿难七日; genre: 近未来科幻灾难; tone: 高压、冷峻、技术感; constraints: 剧情需围绕月球矿难与生存风险展开; 图像应体现赛博/科幻视觉元素; 首段要有明确危机感与行动起点; cinematic realistic scene, grounded lighting, coherent environment # Scene 4 for 月球矿难七日"
+        ],
+        "style_name": "Photographic",
+        "negative_prompt": "lowres, bad anatomy, bad hands, missing fingers, extra fingers, text, watermark, signature, blurry, cropped, worst quality, low quality"
+      }
+    }
+  ]
+}

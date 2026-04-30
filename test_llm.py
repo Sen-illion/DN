@@ -7,7 +7,8 @@ os.environ['PYTHONIOENCODING'] = 'utf-8'
 
 # 直接测试 LLM API 调用
 from dotenv import load_dotenv
-load_dotenv("C:/Users/User/Desktop/DN-main/.env")
+from project_paths import path_in_project
+load_dotenv(path_in_project(".env"))
 
 import openai
 

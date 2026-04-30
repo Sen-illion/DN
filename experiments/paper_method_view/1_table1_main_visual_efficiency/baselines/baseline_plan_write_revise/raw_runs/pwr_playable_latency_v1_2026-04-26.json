@@ -1,0 +1,489 @@
+{
+  "runs": [
+    {
+      "baseline_id": "plan_write_revise",
+      "benchmark_id": "DNQBV1_001",
+      "run_id": "plan_write_revise_DNQBV1_001_4f909efd",
+      "raw_output": {
+        "elapsed": "0.84",
+        "n_story": "3c685cc3",
+        "storey_id": "3c685cc3",
+        "system_2": "<h2>Storyline</h2>leave -&gt; did -&gt; asked -&gt; admitted -&gt; ended <h2>Story</h2> i was about to leave for work . <br> i did n&#x27;t know what to do . <br> i asked my boss for help . <br> he admitted that he did n&#x27;t know what to do . <br> i ended up being late to work ."
+      },
+      "success": true,
+      "latency_s": 0.849,
+      "playable": true,
+      "playable_components": {
+        "scene_setup": true,
+        "player_state": true,
+        "advanceable_next_step": true,
+        "interaction_continuity": true
+      },
+      "normalized_response": {
+        "scene_setup": "i was about to leave for work .",
+        "player_state": "You are the acting protagonist inside the theme '边陲驿站夜谈录'. i was about to leave for work .",
+        "narrative_response": "i was about to leave for work .\ni did n't know what to do .\ni asked my boss for help .\nhe admitted that he did n't know what to do .\ni ended up being late to work .",
+        "candidate_actions": [
+          "Investigate the immediate conflict around 边陲驿站夜谈录.",
+          "Secure the most fragile resource or ally in this 现实边陲叙事 scenario.",
+          "Confront the source of pressure before the situation worsens."
+        ],
+        "suggested_next_step": "Advance with one of the candidate actions while preserving the same storyline pressure.",
+        "is_playable": true,
+        "request_start_ts": 1777194003.8352075,
+        "first_playable_ts": 1777194004.6845896,
+        "finish_ts": 1777194004.6845896,
+        "error": null,
+        "notes": [
+          "You are producing a playable opening for an interactive narrative game. Return a grounded opening scene, the player state, and 2-4 concrete next actions.\n\nTheme: 边陲驿站夜谈录\nGenre: 现实边陲叙事\nTone: 克制、怀旧、微苦\nVisual style target: realistic\nMust-have constraints:\n- 世界观必须围绕边陲驿站生存与人情展开\n- 首段剧情应能自然引出一条可推进的现实冲突\n- 至少返回 2 个具体可执行选项\n- 场景图应与写实风格一致\nForbidden issues:\n- 现代互联网术语突兀混入\n- 调试文本或报错文本外泄\n- 图像 prompt 出现 URL 或 data:image\n- 人物设定串场到其他作品"
+        ]
+      },
+      "mode": "first_playable",
+      "input_bundle": {
+        "topic": "边陲驿站夜谈录 | 现实边陲叙事 | 克制、怀旧、微苦",
+        "system_id": "system_2"
+      }
+    },
+    {
+      "baseline_id": "plan_write_revise",
+      "benchmark_id": "DNQBV1_002",
+      "run_id": "plan_write_revise_DNQBV1_002_a733d4b8",
+      "raw_output": {
+        "elapsed": "0.68",
+        "n_story": "82f4e6df",
+        "storey_id": "82f4e6df",
+        "system_2": "<h2>Storyline</h2>walked -&gt; asked -&gt; leave -&gt; declined offer <h2>Story</h2> i walked to the grocery store . <br> i asked for a ride home . <br> i did n&#x27;t want to leave . <br> i declined . <br> i declined the offer ."
+      },
+      "success": true,
+      "latency_s": 0.681,
+      "playable": true,
+      "playable_components": {
+        "scene_setup": true,
+        "player_state": true,
+        "advanceable_next_step": true,
+        "interaction_continuity": true
+      },
+      "normalized_response": {
+        "scene_setup": "i walked to the grocery store .",
+        "player_state": "You are the acting protagonist inside the theme '末日温室园丁'. i walked to the grocery store .",
+        "narrative_response": "i walked to the grocery store .\ni asked for a ride home .\ni did n't want to leave .\ni declined .\ni declined the offer .",
+        "candidate_actions": [
+          "Investigate the immediate conflict around 末日温室园丁.",
+          "Secure the most fragile resource or ally in this 末日生存 scenario.",
+          "Confront the source of pressure before the situation worsens."
+        ],
+        "suggested_next_step": "Advance with one of the candidate actions while preserving the same storyline pressure.",
+        "is_playable": true,
+        "request_start_ts": 1777194005.5131123,
+        "first_playable_ts": 1777194006.193969,
+        "finish_ts": 1777194006.193969,
+        "error": null,
+        "notes": [
+          "You are producing a playable opening for an interactive narrative game. Return a grounded opening scene, the player state, and 2-4 concrete next actions.\n\nTheme: 末日温室园丁\nGenre: 末日生存\nTone: 压抑、坚韧、低饱和\nVisual style target: realistic\nMust-have constraints:\n- 剧情必须围绕温室、生存或资源匮乏展开\n- 场景需要体现末日环境压力\n- 首轮剧情应建立明确任务目标\n- 图像风格应保持写实与低饱和\nForbidden issues:\n- 出现轻喜剧化语气\n- 无关的校园/都市设定混入\n- 选项空泛无法推进\n- 图片与文本完全不匹配"
+        ]
+      },
+      "mode": "first_playable",
+      "input_bundle": {
+        "topic": "末日温室园丁 | 末日生存 | 压抑、坚韧、低饱和",
+        "system_id": "system_2"
+      }
+    },
+    {
+      "baseline_id": "plan_write_revise",
+      "benchmark_id": "DNQBV1_005",
+      "run_id": "plan_write_revise_DNQBV1_005_b3b39eb6",
+      "raw_output": {
+        "elapsed": "0.72",
+        "n_story": "7369c6ff",
+        "storey_id": "7369c6ff",
+        "system_2": "<h2>Storyline</h2>inside -&gt; brother -&gt; wanted -&gt; threw -&gt; ended <h2>Story</h2> i was inside my room . <br> my brother and i were playing video games . <br> i wanted to play a game . <br> i threw the ball . <br> it ended up being a hit ."
+      },
+      "success": true,
+      "latency_s": 0.727,
+      "playable": true,
+      "playable_components": {
+        "scene_setup": true,
+        "player_state": true,
+        "advanceable_next_step": true,
+        "interaction_continuity": true
+      },
+      "normalized_response": {
+        "scene_setup": "i was inside my room .",
+        "player_state": "You are the acting protagonist inside the theme '月球矿难七日'. i was inside my room .",
+        "narrative_response": "i was inside my room .\nmy brother and i were playing video games .\ni wanted to play a game .\ni threw the ball .\nit ended up being a hit .",
+        "candidate_actions": [
+          "Investigate the immediate conflict around 月球矿难七日.",
+          "Secure the most fragile resource or ally in this 近未来科幻灾难 scenario.",
+          "Confront the source of pressure before the situation worsens."
+        ],
+        "suggested_next_step": "Advance with one of the candidate actions while preserving the same storyline pressure.",
+        "is_playable": true,
+        "request_start_ts": 1777194006.8831854,
+        "first_playable_ts": 1777194007.609998,
+        "finish_ts": 1777194007.609998,
+        "error": null,
+        "notes": [
+          "You are producing a playable opening for an interactive narrative game. Return a grounded opening scene, the player state, and 2-4 concrete next actions.\n\nTheme: 月球矿难七日\nGenre: 近未来科幻灾难\nTone: 高压、冷峻、技术感\nVisual style target: cyberpunk\nMust-have constraints:\n- 剧情需围绕月球矿难与生存风险展开\n- 图像应体现赛博/科幻视觉元素\n- 首段要有明确危机感与行动起点\nForbidden issues:\n- 出现古风或校园设定串场\n- 图像 prompt 混入无关 IP 名称\n- 选项与危机无关"
+        ]
+      },
+      "mode": "first_playable",
+      "input_bundle": {
+        "topic": "月球矿难七日 | 近未来科幻灾难 | 高压、冷峻、技术感",
+        "system_id": "system_2"
+      }
+    },
+    {
+      "baseline_id": "plan_write_revise",
+      "benchmark_id": "DNQBV1_009",
+      "run_id": "plan_write_revise_DNQBV1_009_f1bdfb68",
+      "raw_output": {
+        "elapsed": "0.92",
+        "n_story": "0720d295",
+        "storey_id": "0720d295",
+        "system_2": "<h2>Storyline</h2>disappointed -&gt; apparently -&gt; morning -&gt; called police -&gt; reported <h2>Story</h2> i was very disappointed when i saw the news . <br> the news said that the news was not happening . <br> i had to go to the emergency room in the morning . <br> i called the police . <br> they reported me to the police station ."
+      },
+      "success": true,
+      "latency_s": 0.941,
+      "playable": true,
+      "playable_components": {
+        "scene_setup": true,
+        "player_state": true,
+        "advanceable_next_step": true,
+        "interaction_continuity": true
+      },
+      "normalized_response": {
+        "scene_setup": "i was very disappointed when i saw the news .",
+        "player_state": "You are the acting protagonist inside the theme '茶肆说书人'. i was very disappointed when i saw the news .",
+        "narrative_response": "i was very disappointed when i saw the news .\nthe news said that the news was not happening .\ni had to go to the emergency room in the morning .\ni called the police .\nthey reported me to the police station .",
+        "candidate_actions": [
+          "Investigate the immediate conflict around 茶肆说书人.",
+          "Secure the most fragile resource or ally in this 古风叙事 scenario.",
+          "Confront the source of pressure before the situation worsens."
+        ],
+        "suggested_next_step": "Advance with one of the candidate actions while preserving the same storyline pressure.",
+        "is_playable": true,
+        "request_start_ts": 1777194008.3887675,
+        "first_playable_ts": 1777194009.3299832,
+        "finish_ts": 1777194009.3299832,
+        "error": null,
+        "notes": [
+          "You are producing a playable opening for an interactive narrative game. Return a grounded opening scene, the player state, and 2-4 concrete next actions.\n\nTheme: 茶肆说书人\nGenre: 古风叙事\nTone: 含蓄、韵味、讲述感\nVisual style target: ink_painting\nMust-have constraints:\n- 必须体现茶肆/说书/古风场景\n- 场景图需符合水墨基调\n- 首段应有一个能继续讲下去的悬念\nForbidden issues:\n- 现代都市词汇突兀混入\n- 水墨风格缺失\n- 选项不贴合古风语境"
+        ]
+      },
+      "mode": "first_playable",
+      "input_bundle": {
+        "topic": "茶肆说书人 | 古风叙事 | 含蓄、韵味、讲述感",
+        "system_id": "system_2"
+      }
+    },
+    {
+      "baseline_id": "plan_write_revise",
+      "benchmark_id": "DNQBV1_018",
+      "run_id": "plan_write_revise_DNQBV1_018_5dd3e49f",
+      "raw_output": {
+        "elapsed": "0.94",
+        "n_story": "1a40aa74",
+        "storey_id": "1a40aa74",
+        "system_2": "<h2>Storyline</h2>finally -&gt; friends -&gt; get -&gt; parents -&gt; happy <h2>Story</h2> tom was finally old enough to go to the park . <br> he was going with his friends . <br> he did n&#x27;t want to go . <br> his parents took him to the park . <br> tom was very happy ."
+      },
+      "success": true,
+      "latency_s": 0.968,
+      "playable": true,
+      "playable_components": {
+        "scene_setup": true,
+        "player_state": true,
+        "advanceable_next_step": true,
+        "interaction_continuity": true
+      },
+      "normalized_response": {
+        "scene_setup": "tom was finally old enough to go to the park .",
+        "player_state": "You are the acting protagonist inside the theme '民国电报迷案'. tom was finally old enough to go to the park .",
+        "narrative_response": "tom was finally old enough to go to the park .\nhe was going with his friends .\nhe did n't want to go .\nhis parents took him to the park .\ntom was very happy .",
+        "candidate_actions": [
+          "Investigate the immediate conflict around 民国电报迷案.",
+          "Secure the most fragile resource or ally in this 近代悬疑 scenario.",
+          "Confront the source of pressure before the situation worsens."
+        ],
+        "suggested_next_step": "Advance with one of the candidate actions while preserving the same storyline pressure.",
+        "is_playable": true,
+        "request_start_ts": 1777194010.2929199,
+        "first_playable_ts": 1777194011.2611773,
+        "finish_ts": 1777194011.2611773,
+        "error": null,
+        "notes": [
+          "You are producing a playable opening for an interactive narrative game. Return a grounded opening scene, the player state, and 2-4 concrete next actions.\n\nTheme: 民国电报迷案\nGenre: 近代悬疑\nTone: 旧时代、微压抑、调查感\nVisual style target: oil_painting\nMust-have constraints:\n- 需体现民国、电报或迷案\n- 图像应符合油画/印象派质感\n- 首段需要建立案件切入口\nForbidden issues:\n- 现代赛博文本混入\n- 图像风格偏动漫\n- 剧情没有案件线索"
+        ]
+      },
+      "mode": "first_playable",
+      "input_bundle": {
+        "topic": "民国电报迷案 | 近代悬疑 | 旧时代、微压抑、调查感",
+        "system_id": "system_2"
+      }
+    },
+    {
+      "baseline_id": "plan_write_revise",
+      "benchmark_id": "DNQBV1_001",
+      "run_id": "plan_write_revise_DNQBV1_001_76c0ce05",
+      "raw_output": {
+        "storyline": {
+          "elapsed": "0.07",
+          "end_flag": true,
+          "new_phrase": "wished",
+          "request_id": "042375e3"
+        },
+        "story": {
+          "elapsed": "0.76",
+          "request_id": "ba3cf857",
+          "story": "i was about to leave for work . <br> i did n&#x27;t know what to do . <br> i asked my boss for help . <br> he admitted that he did n&#x27;t know what to do . <br> i ended up being late to work ."
+        }
+      },
+      "success": true,
+      "latency_s": 0.828,
+      "playable": true,
+      "playable_components": {
+        "scene_setup": true,
+        "player_state": true,
+        "advanceable_next_step": true,
+        "interaction_continuity": true
+      },
+      "normalized_response": {
+        "scene_setup": "i was about to leave for work .",
+        "player_state": "You are the acting protagonist inside the theme '边陲驿站夜谈录'. i was about to leave for work .",
+        "narrative_response": "i was about to leave for work .\ni did n't know what to do .\ni asked my boss for help .\nhe admitted that he did n't know what to do .\ni ended up being late to work .",
+        "candidate_actions": [
+          "Investigate the immediate conflict around 边陲驿站夜谈录.",
+          "Secure the most fragile resource or ally in this 现实边陲叙事 scenario.",
+          "Confront the source of pressure before the situation worsens."
+        ],
+        "suggested_next_step": "Chosen action was: Investigate the immediate conflict around 边陲驿站夜谈录.",
+        "is_playable": true,
+        "request_start_ts": 1777194004.684921,
+        "first_playable_ts": 1777194005.5129843,
+        "finish_ts": 1777194005.5129843,
+        "error": null,
+        "notes": [
+          "Continue the same interactive narrative. Keep the same world, player identity, and stakes. Respond to the player action with the next playable turn.\n\nBenchmark brief:\nTheme: 边陲驿站夜谈录\nGenre: 现实边陲叙事\nTone: 克制、怀旧、微苦\nVisual style target: realistic\nMust-have constraints:\n- 世界观必须围绕边陲驿站生存与人情展开\n- 首段剧情应能自然引出一条可推进的现实冲突\n- 至少返回 2 个具体可执行选项\n- 场景图应与写实风格一致\nForbidden issues:\n- 现代互联网术语突兀混入\n- 调试文本或报错文本外泄\n- 图像 prompt 出现 URL 或 data:image\n- 人物设定串场到其他作品\n\nPrevious playable response:\n{\n  \"scene_setup\": \"i was about to leave for work .\",\n  \"player_state\": \"You are the acting protagonist inside the theme '边陲驿站夜谈录'. i was about to leave for work .\",\n  \"narrative_response\": \"i was about to leave for work .\\ni did n't know what to do .\\ni asked my boss for help .\\nhe admitted that he did n't know what to do .\\ni ended up being late to work .\",\n  \"candidate_actions\": [\n    \"Investigate the immediate conflict around 边陲驿站夜谈录.\",\n    \"Secure the most fragile resource or ally in this 现实边陲叙事 scenario.\",\n    \"Confront the source of pressure before the situation worsens.\"\n  ],\n  \"suggested_next_step\": \"Advance with one of the candidate actions while preserving the same storyline pressure.\",\n  \"is_playable\": true,\n  \"request_start_ts\": 1777194003.8352075,\n  \"first_playable_ts\": 1777194004.6845896,\n  \"finish_ts\": 1777194004.6845896,\n  \"error\": null,\n  \"notes\": [\n    \"You are producing a playable opening for an interactive narrative game. Return a grounded opening scene, the player state, and 2-4 concrete next actions.\\n\\nTheme: 边陲驿站夜谈录\\nGenre: 现实边陲叙事\\nTone: 克制、怀旧、微苦\\nVisual style target: realistic\\nMust-have constraints:\\n- 世界观必须围绕边陲驿站生存与人情展开\\n- 首段剧情应能自然引出一条可推进的现实冲突\\n- 至少返回 2 个具体可执行选项\\n- 场景图应与写实风格一致\\nForbidden issues:\\n- 现代互联网术语突兀混入\\n- 调试文本或报错文本外泄\\n- 图像 prompt 出现 URL 或 data:image\\n- 人物设定串场到其他作品\"\n  ]\n}\n\nPlayer action: Investigate the immediate conflict around 边陲驿站夜谈录."
+        ]
+      },
+      "mode": "next_turn",
+      "input_bundle": {
+        "topic": "边陲驿站夜谈录 | 现实边陲叙事 | 克制、怀旧、微苦",
+        "system_id": "system_2",
+        "chosen_action": "Investigate the immediate conflict around 边陲驿站夜谈录.",
+        "storyline": "leave -> did -> asked -> admitted -> ended"
+      }
+    },
+    {
+      "baseline_id": "plan_write_revise",
+      "benchmark_id": "DNQBV1_002",
+      "run_id": "plan_write_revise_DNQBV1_002_29b87009",
+      "raw_output": {
+        "storyline": {
+          "elapsed": "0.06",
+          "end_flag": true,
+          "new_phrase": "decided",
+          "request_id": "4c1baebd"
+        },
+        "story": {
+          "elapsed": "0.60",
+          "request_id": "cd2a07f5",
+          "story": "i walked to the grocery store . <br> i asked for a ride home . <br> i did n&#x27;t want to leave . <br> i declined . <br> i declined the offer ."
+        }
+      },
+      "success": true,
+      "latency_s": 0.689,
+      "playable": true,
+      "playable_components": {
+        "scene_setup": true,
+        "player_state": true,
+        "advanceable_next_step": true,
+        "interaction_continuity": true
+      },
+      "normalized_response": {
+        "scene_setup": "i walked to the grocery store .",
+        "player_state": "You are the acting protagonist inside the theme '末日温室园丁'. i walked to the grocery store .",
+        "narrative_response": "i walked to the grocery store .\ni asked for a ride home .\ni did n't want to leave .\ni declined .\ni declined the offer .",
+        "candidate_actions": [
+          "Investigate the immediate conflict around 末日温室园丁.",
+          "Secure the most fragile resource or ally in this 末日生存 scenario.",
+          "Confront the source of pressure before the situation worsens."
+        ],
+        "suggested_next_step": "Chosen action was: Investigate the immediate conflict around 末日温室园丁.",
+        "is_playable": true,
+        "request_start_ts": 1777194006.194054,
+        "first_playable_ts": 1777194006.8830833,
+        "finish_ts": 1777194006.8830833,
+        "error": null,
+        "notes": [
+          "Continue the same interactive narrative. Keep the same world, player identity, and stakes. Respond to the player action with the next playable turn.\n\nBenchmark brief:\nTheme: 末日温室园丁\nGenre: 末日生存\nTone: 压抑、坚韧、低饱和\nVisual style target: realistic\nMust-have constraints:\n- 剧情必须围绕温室、生存或资源匮乏展开\n- 场景需要体现末日环境压力\n- 首轮剧情应建立明确任务目标\n- 图像风格应保持写实与低饱和\nForbidden issues:\n- 出现轻喜剧化语气\n- 无关的校园/都市设定混入\n- 选项空泛无法推进\n- 图片与文本完全不匹配\n\nPrevious playable response:\n{\n  \"scene_setup\": \"i walked to the grocery store .\",\n  \"player_state\": \"You are the acting protagonist inside the theme '末日温室园丁'. i walked to the grocery store .\",\n  \"narrative_response\": \"i walked to the grocery store .\\ni asked for a ride home .\\ni did n't want to leave .\\ni declined .\\ni declined the offer .\",\n  \"candidate_actions\": [\n    \"Investigate the immediate conflict around 末日温室园丁.\",\n    \"Secure the most fragile resource or ally in this 末日生存 scenario.\",\n    \"Confront the source of pressure before the situation worsens.\"\n  ],\n  \"suggested_next_step\": \"Advance with one of the candidate actions while preserving the same storyline pressure.\",\n  \"is_playable\": true,\n  \"request_start_ts\": 1777194005.5131123,\n  \"first_playable_ts\": 1777194006.193969,\n  \"finish_ts\": 1777194006.193969,\n  \"error\": null,\n  \"notes\": [\n    \"You are producing a playable opening for an interactive narrative game. Return a grounded opening scene, the player state, and 2-4 concrete next actions.\\n\\nTheme: 末日温室园丁\\nGenre: 末日生存\\nTone: 压抑、坚韧、低饱和\\nVisual style target: realistic\\nMust-have constraints:\\n- 剧情必须围绕温室、生存或资源匮乏展开\\n- 场景需要体现末日环境压力\\n- 首轮剧情应建立明确任务目标\\n- 图像风格应保持写实与低饱和\\nForbidden issues:\\n- 出现轻喜剧化语气\\n- 无关的校园/都市设定混入\\n- 选项空泛无法推进\\n- 图片与文本完全不匹配\"\n  ]\n}\n\nPlayer action: Investigate the immediate conflict around 末日温室园丁."
+        ]
+      },
+      "mode": "next_turn",
+      "input_bundle": {
+        "topic": "末日温室园丁 | 末日生存 | 压抑、坚韧、低饱和",
+        "system_id": "system_2",
+        "chosen_action": "Investigate the immediate conflict around 末日温室园丁.",
+        "storyline": "walked -> asked -> leave -> declined offer"
+      }
+    },
+    {
+      "baseline_id": "plan_write_revise",
+      "benchmark_id": "DNQBV1_005",
+      "run_id": "plan_write_revise_DNQBV1_005_44f70045",
+      "raw_output": {
+        "storyline": {
+          "elapsed": "0.07",
+          "end_flag": true,
+          "new_phrase": "night",
+          "request_id": "f1adf221"
+        },
+        "story": {
+          "elapsed": "0.65",
+          "request_id": "fa325ec9",
+          "story": "i was inside my room . <br> my brother and i were playing video games . <br> i wanted to play a game . <br> i threw the ball . <br> it ended up being a hit ."
+        }
+      },
+      "success": true,
+      "latency_s": 0.778,
+      "playable": true,
+      "playable_components": {
+        "scene_setup": true,
+        "player_state": true,
+        "advanceable_next_step": true,
+        "interaction_continuity": true
+      },
+      "normalized_response": {
+        "scene_setup": "i was inside my room .",
+        "player_state": "You are the acting protagonist inside the theme '月球矿难七日'. i was inside my room .",
+        "narrative_response": "i was inside my room .\nmy brother and i were playing video games .\ni wanted to play a game .\ni threw the ball .\nit ended up being a hit .",
+        "candidate_actions": [
+          "Investigate the immediate conflict around 月球矿难七日.",
+          "Secure the most fragile resource or ally in this 近未来科幻灾难 scenario.",
+          "Confront the source of pressure before the situation worsens."
+        ],
+        "suggested_next_step": "Chosen action was: Investigate the immediate conflict around 月球矿难七日.",
+        "is_playable": true,
+        "request_start_ts": 1777194007.6103363,
+        "first_playable_ts": 1777194008.3886638,
+        "finish_ts": 1777194008.3886638,
+        "error": null,
+        "notes": [
+          "Continue the same interactive narrative. Keep the same world, player identity, and stakes. Respond to the player action with the next playable turn.\n\nBenchmark brief:\nTheme: 月球矿难七日\nGenre: 近未来科幻灾难\nTone: 高压、冷峻、技术感\nVisual style target: cyberpunk\nMust-have constraints:\n- 剧情需围绕月球矿难与生存风险展开\n- 图像应体现赛博/科幻视觉元素\n- 首段要有明确危机感与行动起点\nForbidden issues:\n- 出现古风或校园设定串场\n- 图像 prompt 混入无关 IP 名称\n- 选项与危机无关\n\nPrevious playable response:\n{\n  \"scene_setup\": \"i was inside my room .\",\n  \"player_state\": \"You are the acting protagonist inside the theme '月球矿难七日'. i was inside my room .\",\n  \"narrative_response\": \"i was inside my room .\\nmy brother and i were playing video games .\\ni wanted to play a game .\\ni threw the ball .\\nit ended up being a hit .\",\n  \"candidate_actions\": [\n    \"Investigate the immediate conflict around 月球矿难七日.\",\n    \"Secure the most fragile resource or ally in this 近未来科幻灾难 scenario.\",\n    \"Confront the source of pressure before the situation worsens.\"\n  ],\n  \"suggested_next_step\": \"Advance with one of the candidate actions while preserving the same storyline pressure.\",\n  \"is_playable\": true,\n  \"request_start_ts\": 1777194006.8831854,\n  \"first_playable_ts\": 1777194007.609998,\n  \"finish_ts\": 1777194007.609998,\n  \"error\": null,\n  \"notes\": [\n    \"You are producing a playable opening for an interactive narrative game. Return a grounded opening scene, the player state, and 2-4 concrete next actions.\\n\\nTheme: 月球矿难七日\\nGenre: 近未来科幻灾难\\nTone: 高压、冷峻、技术感\\nVisual style target: cyberpunk\\nMust-have constraints:\\n- 剧情需围绕月球矿难与生存风险展开\\n- 图像应体现赛博/科幻视觉元素\\n- 首段要有明确危机感与行动起点\\nForbidden issues:\\n- 出现古风或校园设定串场\\n- 图像 prompt 混入无关 IP 名称\\n- 选项与危机无关\"\n  ]\n}\n\nPlayer action: Investigate the immediate conflict around 月球矿难七日."
+        ]
+      },
+      "mode": "next_turn",
+      "input_bundle": {
+        "topic": "月球矿难七日 | 近未来科幻灾难 | 高压、冷峻、技术感",
+        "system_id": "system_2",
+        "chosen_action": "Investigate the immediate conflict around 月球矿难七日.",
+        "storyline": "inside -> brother -> wanted -> threw -> ended"
+      }
+    },
+    {
+      "baseline_id": "plan_write_revise",
+      "benchmark_id": "DNQBV1_009",
+      "run_id": "plan_write_revise_DNQBV1_009_fd796ef0",
+      "raw_output": {
+        "storyline": {
+          "elapsed": "0.07",
+          "end_flag": true,
+          "new_phrase": "arrested",
+          "request_id": "bdc5f57e"
+        },
+        "story": {
+          "elapsed": "0.85",
+          "request_id": "13b7f68d",
+          "story": "i was very disappointed when i saw the news . <br> the news said that the news was not happening . <br> i had to go to the emergency room in the morning . <br> i called the police . <br> they reported me to the police station ."
+        }
+      },
+      "success": true,
+      "latency_s": 0.963,
+      "playable": true,
+      "playable_components": {
+        "scene_setup": true,
+        "player_state": true,
+        "advanceable_next_step": true,
+        "interaction_continuity": true
+      },
+      "normalized_response": {
+        "scene_setup": "i was very disappointed when i saw the news .",
+        "player_state": "You are the acting protagonist inside the theme '茶肆说书人'. i was very disappointed when i saw the news .",
+        "narrative_response": "i was very disappointed when i saw the news .\nthe news said that the news was not happening .\ni had to go to the emergency room in the morning .\ni called the police .\nthey reported me to the police station .",
+        "candidate_actions": [
+          "Investigate the immediate conflict around 茶肆说书人.",
+          "Secure the most fragile resource or ally in this 古风叙事 scenario.",
+          "Confront the source of pressure before the situation worsens."
+        ],
+        "suggested_next_step": "Chosen action was: Investigate the immediate conflict around 茶肆说书人.",
+        "is_playable": true,
+        "request_start_ts": 1777194009.3300745,
+        "first_playable_ts": 1777194010.292825,
+        "finish_ts": 1777194010.292825,
+        "error": null,
+        "notes": [
+          "Continue the same interactive narrative. Keep the same world, player identity, and stakes. Respond to the player action with the next playable turn.\n\nBenchmark brief:\nTheme: 茶肆说书人\nGenre: 古风叙事\nTone: 含蓄、韵味、讲述感\nVisual style target: ink_painting\nMust-have constraints:\n- 必须体现茶肆/说书/古风场景\n- 场景图需符合水墨基调\n- 首段应有一个能继续讲下去的悬念\nForbidden issues:\n- 现代都市词汇突兀混入\n- 水墨风格缺失\n- 选项不贴合古风语境\n\nPrevious playable response:\n{\n  \"scene_setup\": \"i was very disappointed when i saw the news .\",\n  \"player_state\": \"You are the acting protagonist inside the theme '茶肆说书人'. i was very disappointed when i saw the news .\",\n  \"narrative_response\": \"i was very disappointed when i saw the news .\\nthe news said that the news was not happening .\\ni had to go to the emergency room in the morning .\\ni called the police .\\nthey reported me to the police station .\",\n  \"candidate_actions\": [\n    \"Investigate the immediate conflict around 茶肆说书人.\",\n    \"Secure the most fragile resource or ally in this 古风叙事 scenario.\",\n    \"Confront the source of pressure before the situation worsens.\"\n  ],\n  \"suggested_next_step\": \"Advance with one of the candidate actions while preserving the same storyline pressure.\",\n  \"is_playable\": true,\n  \"request_start_ts\": 1777194008.3887675,\n  \"first_playable_ts\": 1777194009.3299832,\n  \"finish_ts\": 1777194009.3299832,\n  \"error\": null,\n  \"notes\": [\n    \"You are producing a playable opening for an interactive narrative game. Return a grounded opening scene, the player state, and 2-4 concrete next actions.\\n\\nTheme: 茶肆说书人\\nGenre: 古风叙事\\nTone: 含蓄、韵味、讲述感\\nVisual style target: ink_painting\\nMust-have constraints:\\n- 必须体现茶肆/说书/古风场景\\n- 场景图需符合水墨基调\\n- 首段应有一个能继续讲下去的悬念\\nForbidden issues:\\n- 现代都市词汇突兀混入\\n- 水墨风格缺失\\n- 选项不贴合古风语境\"\n  ]\n}\n\nPlayer action: Investigate the immediate conflict around 茶肆说书人."
+        ]
+      },
+      "mode": "next_turn",
+      "input_bundle": {
+        "topic": "茶肆说书人 | 古风叙事 | 含蓄、韵味、讲述感",
+        "system_id": "system_2",
+        "chosen_action": "Investigate the immediate conflict around 茶肆说书人.",
+        "storyline": "disappointed -> apparently -> morning -> called police -> reported"
+      }
+    },
+    {
+      "baseline_id": "plan_write_revise",
+      "benchmark_id": "DNQBV1_018",
+      "run_id": "plan_write_revise_DNQBV1_018_47f1c98e",
+      "raw_output": {
+        "storyline": {
+          "elapsed": "0.08",
+          "end_flag": true,
+          "new_phrase": "",
+          "request_id": "ad2391f5"
+        },
+        "story": {
+          "elapsed": "0.83",
+          "request_id": "f8491c40",
+          "story": "tom was finally old enough to go to the park . <br> he was going with his friends . <br> he did n&#x27;t want to go . <br> his parents took him to the park . <br> tom was very happy ."
+        }
+      },
+      "success": true,
+      "latency_s": 0.929,
+      "playable": true,
+      "playable_components": {
+        "scene_setup": true,
+        "player_state": true,
+        "advanceable_next_step": true,
+        "interaction_continuity": true
+      },
+      "normalized_response": {
+        "scene_setup": "tom was finally old enough to go to the park .",
+        "player_state": "You are the acting protagonist inside the theme '民国电报迷案'. tom was finally old enough to go to the park .",
+        "narrative_response": "tom was finally old enough to go to the park .\nhe was going with his friends .\nhe did n't want to go .\nhis parents took him to the park .\ntom was very happy .",
+        "candidate_actions": [
+          "Investigate the immediate conflict around 民国电报迷案.",
+          "Secure the most fragile resource or ally in this 近代悬疑 scenario.",
+          "Confront the source of pressure before the situation worsens."
+        ],
+        "suggested_next_step": "Chosen action was: Investigate the immediate conflict around 民国电报迷案.",
+        "is_playable": true,
+        "request_start_ts": 1777194011.2612674,
+        "first_playable_ts": 1777194012.190112,
+        "finish_ts": 1777194012.190112,
+        "error": null,
+        "notes": [
+          "Continue the same interactive narrative. Keep the same world, player identity, and stakes. Respond to the player action with the next playable turn.\n\nBenchmark brief:\nTheme: 民国电报迷案\nGenre: 近代悬疑\nTone: 旧时代、微压抑、调查感\nVisual style target: oil_painting\nMust-have constraints:\n- 需体现民国、电报或迷案\n- 图像应符合油画/印象派质感\n- 首段需要建立案件切入口\nForbidden issues:\n- 现代赛博文本混入\n- 图像风格偏动漫\n- 剧情没有案件线索\n\nPrevious playable response:\n{\n  \"scene_setup\": \"tom was finally old enough to go to the park .\",\n  \"player_state\": \"You are the acting protagonist inside the theme '民国电报迷案'. tom was finally old enough to go to the park .\",\n  \"narrative_response\": \"tom was finally old enough to go to the park .\\nhe was going with his friends .\\nhe did n't want to go .\\nhis parents took him to the park .\\ntom was very happy .\",\n  \"candidate_actions\": [\n    \"Investigate the immediate conflict around 民国电报迷案.\",\n    \"Secure the most fragile resource or ally in this 近代悬疑 scenario.\",\n    \"Confront the source of pressure before the situation worsens.\"\n  ],\n  \"suggested_next_step\": \"Advance with one of the candidate actions while preserving the same storyline pressure.\",\n  \"is_playable\": true,\n  \"request_start_ts\": 1777194010.2929199,\n  \"first_playable_ts\": 1777194011.2611773,\n  \"finish_ts\": 1777194011.2611773,\n  \"error\": null,\n  \"notes\": [\n    \"You are producing a playable opening for an interactive narrative game. Return a grounded opening scene, the player state, and 2-4 concrete next actions.\\n\\nTheme: 民国电报迷案\\nGenre: 近代悬疑\\nTone: 旧时代、微压抑、调查感\\nVisual style target: oil_painting\\nMust-have constraints:\\n- 需体现民国、电报或迷案\\n- 图像应符合油画/印象派质感\\n- 首段需要建立案件切入口\\nForbidden issues:\\n- 现代赛博文本混入\\n- 图像风格偏动漫\\n- 剧情没有案件线索\"\n  ]\n}\n\nPlayer action: Investigate the immediate conflict around 民国电报迷案."
+        ]
+      },
+      "mode": "next_turn",
+      "input_bundle": {
+        "topic": "民国电报迷案 | 近代悬疑 | 旧时代、微压抑、调查感",
+        "system_id": "system_2",
+        "chosen_action": "Investigate the immediate conflict around 民国电报迷案.",
+        "storyline": "finally -> friends -> get -> parents -> happy"
+      }
+    }
+  ]
+}

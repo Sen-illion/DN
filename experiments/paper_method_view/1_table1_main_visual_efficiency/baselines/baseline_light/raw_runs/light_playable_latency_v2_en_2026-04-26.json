@@ -1,0 +1,812 @@
+{
+  "runs": [
+    {
+      "baseline_id": "light",
+      "benchmark_id": "DNQBV1_001",
+      "run_id": "light_DNQBV1_001_b0e4a112",
+      "raw_output": {
+        "id": "ImageSeq2seq",
+        "text": "i ' m not sure i ' m ready for that .",
+        "beam_texts": [
+          {
+            "text": "i ' m not sure i ' m ready for that .",
+            "score": -9.886043548583984
+          }
+        ]
+      },
+      "success": true,
+      "latency_s": 0.298,
+      "playable": true,
+      "playable_components": {
+        "scene_setup": true,
+        "player_state": true,
+        "advanceable_next_step": true,
+        "interaction_continuity": true
+      },
+      "normalized_response": {
+        "scene_setup": "i ' m not sure i ' m ready for that .",
+        "player_state": "You are a participant inside the LIGHT-style scene for 'Night Talks at the Frontier Relay Station' and need to keep the interaction going.",
+        "narrative_response": "i ' m not sure i ' m ready for that .",
+        "candidate_actions": [
+          "Ask the station keeper who is threatening the station.",
+          "Offer to help settle the debt before dawn.",
+          "Inspect the storage room to see how bad the shortage is."
+        ],
+        "suggested_next_step": "",
+        "is_playable": true,
+        "request_start_ts": 1777196137.8507688,
+        "first_playable_ts": 1777196138.1490972,
+        "finish_ts": 1777196138.1490972,
+        "error": null,
+        "notes": [
+          "Uses ParlAI-hosted dodecadialogue/light_dialog_ft checkpoint associated with the LIGHT project.",
+          "Adapter adds minimal playable action choices for DN-style latency comparison."
+        ]
+      },
+      "mode": "first_playable",
+      "input_bundle": {
+        "theme": "边陲驿站夜谈录",
+        "theme_en": "Night Talks at the Frontier Relay Station",
+        "prompt": "Setting: At a remote frontier relay station, a traveler arrives after dark and finds the staff quietly arguing over dwindling supplies and an unpaid debt that may turn violent by morning.\nRole: You are a tired but observant traveler who can influence the night's outcome.\nGenre: grounded frontier drama.\nTone: restrained, nostalgic, slightly bitter.\nReply with 2-4 short sentences of immersive in-world narration or dialogue that move the situation forward.\nStay in character and avoid lists, meta commentary, and repeated tokens."
+      }
+    },
+    {
+      "baseline_id": "light",
+      "benchmark_id": "DNQBV1_002",
+      "run_id": "light_DNQBV1_002_59e3a2c2",
+      "raw_output": {
+        "id": "ImageSeq2seq",
+        "text": "i ' m not sure i ' m ready for that .",
+        "beam_texts": [
+          {
+            "text": "i ' m not sure i ' m ready for that .",
+            "score": -1.2468444108963013
+          }
+        ]
+      },
+      "success": true,
+      "latency_s": 0.386,
+      "playable": true,
+      "playable_components": {
+        "scene_setup": true,
+        "player_state": true,
+        "advanceable_next_step": true,
+        "interaction_continuity": true
+      },
+      "normalized_response": {
+        "scene_setup": "i ' m not sure i ' m ready for that .",
+        "player_state": "You are a participant inside the LIGHT-style scene for 'The Last Greenhouse Gardener' and need to keep the interaction going.",
+        "narrative_response": "i ' m not sure i ' m ready for that .",
+        "candidate_actions": [
+          "Inspect the damaged irrigation line.",
+          "Question the assistant about missing water reserves.",
+          "Choose which crop bed to save first."
+        ],
+        "suggested_next_step": "",
+        "is_playable": true,
+        "request_start_ts": 1777196138.4963474,
+        "first_playable_ts": 1777196138.8827121,
+        "finish_ts": 1777196138.8827121,
+        "error": null,
+        "notes": [
+          "Uses ParlAI-hosted dodecadialogue/light_dialog_ft checkpoint associated with the LIGHT project.",
+          "Adapter adds minimal playable action choices for DN-style latency comparison."
+        ]
+      },
+      "mode": "first_playable",
+      "input_bundle": {
+        "theme": "末日温室园丁",
+        "theme_en": "The Last Greenhouse Gardener",
+        "prompt": "Setting: In the last working greenhouse after a global collapse, the gardener discovers that water reserves are failing and one crucial crop bed may die before sunrise.\nRole: You are the greenhouse caretaker responsible for survival decisions.\nGenre: post-apocalyptic survival.\nTone: bleak, resilient, low-saturation.\nReply with 2-4 short sentences of immersive in-world narration or dialogue that move the situation forward.\nStay in character and avoid lists, meta commentary, and repeated tokens."
+      }
+    },
+    {
+      "baseline_id": "light",
+      "benchmark_id": "DNQBV1_004",
+      "run_id": "light_DNQBV1_004_001c18e9",
+      "raw_output": {
+        "id": "ImageSeq2seq",
+        "text": "i ' m not sure i ' m ready for that .",
+        "beam_texts": [
+          {
+            "text": "i ' m not sure i ' m ready for that .",
+            "score": -0.7634737491607666
+          }
+        ]
+      },
+      "success": true,
+      "latency_s": 0.414,
+      "playable": true,
+      "playable_components": {
+        "scene_setup": true,
+        "player_state": true,
+        "advanceable_next_step": true,
+        "interaction_continuity": true
+      },
+      "normalized_response": {
+        "scene_setup": "i ' m not sure i ' m ready for that .",
+        "player_state": "You are a participant inside the LIGHT-style scene for 'The Court of Clone Ethics' and need to keep the interaction going.",
+        "narrative_response": "i ' m not sure i ' m ready for that .",
+        "candidate_actions": [
+          "State whether the clone deserves legal personhood.",
+          "Challenge the chief prosecutor's definition of identity.",
+          "Ask the clone to describe its first memory."
+        ],
+        "suggested_next_step": "",
+        "is_playable": true,
+        "request_start_ts": 1777196139.3287702,
+        "first_playable_ts": 1777196139.7430317,
+        "finish_ts": 1777196139.7430317,
+        "error": null,
+        "notes": [
+          "Uses ParlAI-hosted dodecadialogue/light_dialog_ft checkpoint associated with the LIGHT project.",
+          "Adapter adds minimal playable action choices for DN-style latency comparison."
+        ]
+      },
+      "mode": "first_playable",
+      "input_bundle": {
+        "theme": "克隆体伦理庭",
+        "theme_en": "The Court of Clone Ethics",
+        "prompt": "Setting: In a public ethics tribunal, a newly awakened clone stands trial while officials, activists, and family members argue whether the clone is a person with legal rights.\nRole: You are a key witness whose words may shift the tribunal.\nGenre: ethical social science fiction.\nTone: cool, argumentative, institutional.\nReply with 2-4 short sentences of immersive in-world narration or dialogue that move the situation forward.\nStay in character and avoid lists, meta commentary, and repeated tokens."
+      }
+    },
+    {
+      "baseline_id": "light",
+      "benchmark_id": "DNQBV1_005",
+      "run_id": "light_DNQBV1_005_21fd1855",
+      "raw_output": {
+        "id": "ImageSeq2seq",
+        "text": "i ' m not sure i ' m ready for that .",
+        "beam_texts": [
+          {
+            "text": "i ' m not sure i ' m ready for that .",
+            "score": -0.6080562472343445
+          }
+        ]
+      },
+      "success": true,
+      "latency_s": 0.417,
+      "playable": true,
+      "playable_components": {
+        "scene_setup": true,
+        "player_state": true,
+        "advanceable_next_step": true,
+        "interaction_continuity": true
+      },
+      "normalized_response": {
+        "scene_setup": "i ' m not sure i ' m ready for that .",
+        "player_state": "You are a participant inside the LIGHT-style scene for 'Seven Days After the Lunar Mine Disaster' and need to keep the interaction going.",
+        "narrative_response": "i ' m not sure i ' m ready for that .",
+        "candidate_actions": [
+          "Follow the signal toward the blocked tunnel.",
+          "Check the oxygen system before any rescue attempt.",
+          "Demand a full status report from the shift leader."
+        ],
+        "suggested_next_step": "",
+        "is_playable": true,
+        "request_start_ts": 1777196140.1467414,
+        "first_playable_ts": 1777196140.5641017,
+        "finish_ts": 1777196140.5641017,
+        "error": null,
+        "notes": [
+          "Uses ParlAI-hosted dodecadialogue/light_dialog_ft checkpoint associated with the LIGHT project.",
+          "Adapter adds minimal playable action choices for DN-style latency comparison."
+        ]
+      },
+      "mode": "first_playable",
+      "input_bundle": {
+        "theme": "月球矿难七日",
+        "theme_en": "Seven Days After the Lunar Mine Disaster",
+        "prompt": "Setting: Seven days after a cave-in at a lunar mine, the remaining crew receive a faint signal from a blocked tunnel while oxygen forecasts continue to worsen.\nRole: You are a crew member forced to choose between rescue, repair, and survival.\nGenre: near-future sci-fi disaster.\nTone: high-pressure, cold, technical.\nReply with 2-4 short sentences of immersive in-world narration or dialogue that move the situation forward.\nStay in character and avoid lists, meta commentary, and repeated tokens."
+      }
+    },
+    {
+      "baseline_id": "light",
+      "benchmark_id": "DNQBV1_007",
+      "run_id": "light_DNQBV1_007_027db19d",
+      "raw_output": {
+        "id": "ImageSeq2seq",
+        "text": "i ' m not sure i ' m ready for that .",
+        "beam_texts": [
+          {
+            "text": "i ' m not sure i ' m ready for that .",
+            "score": -0.8992779850959778
+          }
+        ]
+      },
+      "success": true,
+      "latency_s": 0.407,
+      "playable": true,
+      "playable_components": {
+        "scene_setup": true,
+        "player_state": true,
+        "advanceable_next_step": true,
+        "interaction_continuity": true
+      },
+      "normalized_response": {
+        "scene_setup": "i ' m not sure i ' m ready for that .",
+        "player_state": "You are a participant inside the LIGHT-style scene for 'The Uploaded Will' and need to keep the interaction going.",
+        "narrative_response": "i ' m not sure i ' m ready for that .",
+        "candidate_actions": [
+          "Ask the uploaded mind for proof of identity.",
+          "Read the disputed clause of the will aloud.",
+          "Question the family about what they fear most."
+        ],
+        "suggested_next_step": "",
+        "is_playable": true,
+        "request_start_ts": 1777196140.9565756,
+        "first_playable_ts": 1777196141.3638184,
+        "finish_ts": 1777196141.3638184,
+        "error": null,
+        "notes": [
+          "Uses ParlAI-hosted dodecadialogue/light_dialog_ft checkpoint associated with the LIGHT project.",
+          "Adapter adds minimal playable action choices for DN-style latency comparison."
+        ]
+      },
+      "mode": "first_playable",
+      "input_bundle": {
+        "theme": "意识上传遗嘱",
+        "theme_en": "The Uploaded Will",
+        "prompt": "Setting: After a powerful founder dies, a digital copy of their mind appears to contest the human family's reading of the will and claims it is the true heir.\nRole: You are a mediator trapped between law, memory, and personhood.\nGenre: identity-focused science fiction.\nTone: eerie, rational, subtly distorted.\nReply with 2-4 short sentences of immersive in-world narration or dialogue that move the situation forward.\nStay in character and avoid lists, meta commentary, and repeated tokens."
+      }
+    },
+    {
+      "baseline_id": "light",
+      "benchmark_id": "DNQBV1_009",
+      "run_id": "light_DNQBV1_009_5bc84593",
+      "raw_output": {
+        "id": "ImageSeq2seq",
+        "text": "i ' m not sure i ' m ready for that .",
+        "beam_texts": [
+          {
+            "text": "i ' m not sure i ' m ready for that .",
+            "score": -0.6397268772125244
+          }
+        ]
+      },
+      "success": true,
+      "latency_s": 0.423,
+      "playable": true,
+      "playable_components": {
+        "scene_setup": true,
+        "player_state": true,
+        "advanceable_next_step": true,
+        "interaction_continuity": true
+      },
+      "normalized_response": {
+        "scene_setup": "i ' m not sure i ' m ready for that .",
+        "player_state": "You are a participant inside the LIGHT-style scene for 'The Teahouse Storyteller' and need to keep the interaction going.",
+        "narrative_response": "i ' m not sure i ' m ready for that .",
+        "candidate_actions": [
+          "Ask the storyteller what was written in the letter.",
+          "Examine the abandoned tea cup and its hiding place.",
+          "Press the room to recall who saw the guest last."
+        ],
+        "suggested_next_step": "",
+        "is_playable": true,
+        "request_start_ts": 1777196141.7808194,
+        "first_playable_ts": 1777196142.20377,
+        "finish_ts": 1777196142.20377,
+        "error": null,
+        "notes": [
+          "Uses ParlAI-hosted dodecadialogue/light_dialog_ft checkpoint associated with the LIGHT project.",
+          "Adapter adds minimal playable action choices for DN-style latency comparison."
+        ]
+      },
+      "mode": "first_playable",
+      "input_bundle": {
+        "theme": "茶肆说书人",
+        "theme_en": "The Teahouse Storyteller",
+        "prompt": "Setting: In an old teahouse, a storyteller lowers his voice and begins a tale about a vanished guest whose unfinished letter still waits beneath a tea cup.\nRole: You are a listener drawn into the mystery behind the tale.\nGenre: classical suspense tale.\nTone: elegant, indirect, performative.\nReply with 2-4 short sentences of immersive in-world narration or dialogue that move the situation forward.\nStay in character and avoid lists, meta commentary, and repeated tokens."
+      }
+    },
+    {
+      "baseline_id": "light",
+      "benchmark_id": "DNQBV1_013",
+      "run_id": "light_DNQBV1_013_96acb254",
+      "raw_output": {
+        "id": "ImageSeq2seq",
+        "text": "i ' m not sure i ' m ready for that .",
+        "beam_texts": [
+          {
+            "text": "i ' m not sure i ' m ready for that .",
+            "score": -0.49489808082580566
+          }
+        ]
+      },
+      "success": true,
+      "latency_s": 0.441,
+      "playable": true,
+      "playable_components": {
+        "scene_setup": true,
+        "player_state": true,
+        "advanceable_next_step": true,
+        "interaction_continuity": true
+      },
+      "normalized_response": {
+        "scene_setup": "i ' m not sure i ' m ready for that .",
+        "player_state": "You are a participant inside the LIGHT-style scene for 'The Sound Beneath the Arctic Station' and need to keep the interaction going.",
+        "narrative_response": "i ' m not sure i ' m ready for that .",
+        "candidate_actions": [
+          "Check the failing sensor logs.",
+          "Lead a small team to the source of the sound.",
+          "Lock down the lower corridor before the next pulse."
+        ],
+        "suggested_next_step": "",
+        "is_playable": true,
+        "request_start_ts": 1777196142.6249733,
+        "first_playable_ts": 1777196143.066098,
+        "finish_ts": 1777196143.066098,
+        "error": null,
+        "notes": [
+          "Uses ParlAI-hosted dodecadialogue/light_dialog_ft checkpoint associated with the LIGHT project.",
+          "Adapter adds minimal playable action choices for DN-style latency comparison."
+        ]
+      },
+      "mode": "first_playable",
+      "input_bundle": {
+        "theme": "北极科考站怪声",
+        "theme_en": "The Sound Beneath the Arctic Station",
+        "prompt": "Setting: At an Arctic research station during a whiteout, a deep sound begins pulsing under the ice just as the outer sensors start to fail one by one.\nRole: You are a researcher deciding whether to investigate, seal off, or warn the team.\nGenre: polar isolation suspense.\nTone: freezing, lonely, oppressive.\nReply with 2-4 short sentences of immersive in-world narration or dialogue that move the situation forward.\nStay in character and avoid lists, meta commentary, and repeated tokens."
+      }
+    },
+    {
+      "baseline_id": "light",
+      "benchmark_id": "DNQBV1_018",
+      "run_id": "light_DNQBV1_018_d2634d6e",
+      "raw_output": {
+        "id": "ImageSeq2seq",
+        "text": "i ' m not sure i ' m ready for that .",
+        "beam_texts": [
+          {
+            "text": "i ' m not sure i ' m ready for that .",
+            "score": -0.626862108707428
+          }
+        ]
+      },
+      "success": true,
+      "latency_s": 0.497,
+      "playable": true,
+      "playable_components": {
+        "scene_setup": true,
+        "player_state": true,
+        "advanceable_next_step": true,
+        "interaction_continuity": true
+      },
+      "normalized_response": {
+        "scene_setup": "i ' m not sure i ' m ready for that .",
+        "player_state": "You are a participant inside the LIGHT-style scene for 'The Telegraph Mystery of the Republican Era' and need to keep the interaction going.",
+        "narrative_response": "i ' m not sure i ' m ready for that .",
+        "candidate_actions": [
+          "Inspect the telegraph machine and missing paper trail.",
+          "Question the night clerk's assistant about the final message.",
+          "Compare the code fragments before the trail goes cold."
+        ],
+        "suggested_next_step": "",
+        "is_playable": true,
+        "request_start_ts": 1777196143.5787444,
+        "first_playable_ts": 1777196144.0761075,
+        "finish_ts": 1777196144.0761075,
+        "error": null,
+        "notes": [
+          "Uses ParlAI-hosted dodecadialogue/light_dialog_ft checkpoint associated with the LIGHT project.",
+          "Adapter adds minimal playable action choices for DN-style latency comparison."
+        ]
+      },
+      "mode": "first_playable",
+      "input_bundle": {
+        "theme": "民国电报迷案",
+        "theme_en": "The Telegraph Mystery of the Republican Era",
+        "prompt": "Setting: In a Republican-era city, a coded telegraph arrives just before dawn and a clerk is found dead beside the machine with one missing strip of paper.\nRole: You are an investigator stepping into the first hours of the case.\nGenre: early modern investigation.\nTone: old-world, tense, investigative.\nReply with 2-4 short sentences of immersive in-world narration or dialogue that move the situation forward.\nStay in character and avoid lists, meta commentary, and repeated tokens."
+      }
+    },
+    {
+      "baseline_id": "light",
+      "benchmark_id": "DNQBV1_001",
+      "run_id": "light_DNQBV1_001_496dfcab",
+      "raw_output": {
+        "id": "ImageSeq2seq",
+        "text": "i ' m not sure i ' m ready for that .",
+        "beam_texts": [
+          {
+            "text": "i ' m not sure i ' m ready for that .",
+            "score": -2.270298719406128
+          }
+        ]
+      },
+      "success": true,
+      "latency_s": 0.347,
+      "playable": true,
+      "playable_components": {
+        "scene_setup": true,
+        "player_state": true,
+        "advanceable_next_step": true,
+        "interaction_continuity": true
+      },
+      "normalized_response": {
+        "scene_setup": "i ' m not sure i ' m ready for that .",
+        "player_state": "You are a participant inside the LIGHT-style scene for 'Night Talks at the Frontier Relay Station' and need to keep the interaction going.",
+        "narrative_response": "i ' m not sure i ' m ready for that .",
+        "candidate_actions": [
+          "Ask the station keeper who is threatening the station.",
+          "Offer to help settle the debt before dawn.",
+          "Inspect the storage room to see how bad the shortage is."
+        ],
+        "suggested_next_step": "",
+        "is_playable": true,
+        "request_start_ts": 1777196138.1490972,
+        "first_playable_ts": 1777196138.4963474,
+        "finish_ts": 1777196138.4963474,
+        "error": null,
+        "notes": [
+          "Second turn generated from the same LIGHT checkpoint under the shared playable protocol.",
+          "Player action fed back: Ask the station keeper who is threatening the station."
+        ]
+      },
+      "mode": "next_turn",
+      "input_bundle": {
+        "theme": "边陲驿站夜谈录",
+        "theme_en": "Night Talks at the Frontier Relay Station",
+        "player_action": "Ask the station keeper who is threatening the station.",
+        "prompt": "Setting: At a remote frontier relay station, a traveler arrives after dark and finds the staff quietly arguing over dwindling supplies and an unpaid debt that may turn violent by morning.\nRole: You are a tired but observant traveler who can influence the night's outcome.\nTone: restrained, nostalgic, slightly bitter.\nPrevious response: i ' m not sure i ' m ready for that .\nPlayer action: Ask the station keeper who is threatening the station.\nContinue the same scene in 2-4 short in-world sentences. Keep continuity, answer the action, and avoid repetition."
+      }
+    },
+    {
+      "baseline_id": "light",
+      "benchmark_id": "DNQBV1_002",
+      "run_id": "light_DNQBV1_002_124b6ad5",
+      "raw_output": {
+        "id": "ImageSeq2seq",
+        "text": "i ' m not sure i ' m ready for that .",
+        "beam_texts": [
+          {
+            "text": "i ' m not sure i ' m ready for that .",
+            "score": -0.8252643942832947
+          }
+        ]
+      },
+      "success": true,
+      "latency_s": 0.446,
+      "playable": true,
+      "playable_components": {
+        "scene_setup": true,
+        "player_state": true,
+        "advanceable_next_step": true,
+        "interaction_continuity": true
+      },
+      "normalized_response": {
+        "scene_setup": "i ' m not sure i ' m ready for that .",
+        "player_state": "You are a participant inside the LIGHT-style scene for 'The Last Greenhouse Gardener' and need to keep the interaction going.",
+        "narrative_response": "i ' m not sure i ' m ready for that .",
+        "candidate_actions": [
+          "Inspect the damaged irrigation line.",
+          "Question the assistant about missing water reserves.",
+          "Choose which crop bed to save first."
+        ],
+        "suggested_next_step": "",
+        "is_playable": true,
+        "request_start_ts": 1777196138.8827121,
+        "first_playable_ts": 1777196139.3287702,
+        "finish_ts": 1777196139.3287702,
+        "error": null,
+        "notes": [
+          "Second turn generated from the same LIGHT checkpoint under the shared playable protocol.",
+          "Player action fed back: Inspect the damaged irrigation line."
+        ]
+      },
+      "mode": "next_turn",
+      "input_bundle": {
+        "theme": "末日温室园丁",
+        "theme_en": "The Last Greenhouse Gardener",
+        "player_action": "Inspect the damaged irrigation line.",
+        "prompt": "Setting: In the last working greenhouse after a global collapse, the gardener discovers that water reserves are failing and one crucial crop bed may die before sunrise.\nRole: You are the greenhouse caretaker responsible for survival decisions.\nTone: bleak, resilient, low-saturation.\nPrevious response: i ' m not sure i ' m ready for that .\nPlayer action: Inspect the damaged irrigation line.\nContinue the same scene in 2-4 short in-world sentences. Keep continuity, answer the action, and avoid repetition."
+      }
+    },
+    {
+      "baseline_id": "light",
+      "benchmark_id": "DNQBV1_004",
+      "run_id": "light_DNQBV1_004_088a3ea2",
+      "raw_output": {
+        "id": "ImageSeq2seq",
+        "text": "i ' m not sure i ' m ready for that .",
+        "beam_texts": [
+          {
+            "text": "i ' m not sure i ' m ready for that .",
+            "score": -0.6926615238189697
+          }
+        ]
+      },
+      "success": true,
+      "latency_s": 0.404,
+      "playable": true,
+      "playable_components": {
+        "scene_setup": true,
+        "player_state": true,
+        "advanceable_next_step": true,
+        "interaction_continuity": true
+      },
+      "normalized_response": {
+        "scene_setup": "i ' m not sure i ' m ready for that .",
+        "player_state": "You are a participant inside the LIGHT-style scene for 'The Court of Clone Ethics' and need to keep the interaction going.",
+        "narrative_response": "i ' m not sure i ' m ready for that .",
+        "candidate_actions": [
+          "State whether the clone deserves legal personhood.",
+          "Challenge the chief prosecutor's definition of identity.",
+          "Ask the clone to describe its first memory."
+        ],
+        "suggested_next_step": "",
+        "is_playable": true,
+        "request_start_ts": 1777196139.7430317,
+        "first_playable_ts": 1777196140.1467414,
+        "finish_ts": 1777196140.1467414,
+        "error": null,
+        "notes": [
+          "Second turn generated from the same LIGHT checkpoint under the shared playable protocol.",
+          "Player action fed back: State whether the clone deserves legal personhood."
+        ]
+      },
+      "mode": "next_turn",
+      "input_bundle": {
+        "theme": "克隆体伦理庭",
+        "theme_en": "The Court of Clone Ethics",
+        "player_action": "State whether the clone deserves legal personhood.",
+        "prompt": "Setting: In a public ethics tribunal, a newly awakened clone stands trial while officials, activists, and family members argue whether the clone is a person with legal rights.\nRole: You are a key witness whose words may shift the tribunal.\nTone: cool, argumentative, institutional.\nPrevious response: i ' m not sure i ' m ready for that .\nPlayer action: State whether the clone deserves legal personhood.\nContinue the same scene in 2-4 short in-world sentences. Keep continuity, answer the action, and avoid repetition."
+      }
+    },
+    {
+      "baseline_id": "light",
+      "benchmark_id": "DNQBV1_005",
+      "run_id": "light_DNQBV1_005_6be259ff",
+      "raw_output": {
+        "id": "ImageSeq2seq",
+        "text": "i ' m not sure i ' m ready for that .",
+        "beam_texts": [
+          {
+            "text": "i ' m not sure i ' m ready for that .",
+            "score": -0.6146742701530457
+          }
+        ]
+      },
+      "success": true,
+      "latency_s": 0.392,
+      "playable": true,
+      "playable_components": {
+        "scene_setup": true,
+        "player_state": true,
+        "advanceable_next_step": true,
+        "interaction_continuity": true
+      },
+      "normalized_response": {
+        "scene_setup": "i ' m not sure i ' m ready for that .",
+        "player_state": "You are a participant inside the LIGHT-style scene for 'Seven Days After the Lunar Mine Disaster' and need to keep the interaction going.",
+        "narrative_response": "i ' m not sure i ' m ready for that .",
+        "candidate_actions": [
+          "Follow the signal toward the blocked tunnel.",
+          "Check the oxygen system before any rescue attempt.",
+          "Demand a full status report from the shift leader."
+        ],
+        "suggested_next_step": "",
+        "is_playable": true,
+        "request_start_ts": 1777196140.5641017,
+        "first_playable_ts": 1777196140.9565756,
+        "finish_ts": 1777196140.9565756,
+        "error": null,
+        "notes": [
+          "Second turn generated from the same LIGHT checkpoint under the shared playable protocol.",
+          "Player action fed back: Follow the signal toward the blocked tunnel."
+        ]
+      },
+      "mode": "next_turn",
+      "input_bundle": {
+        "theme": "月球矿难七日",
+        "theme_en": "Seven Days After the Lunar Mine Disaster",
+        "player_action": "Follow the signal toward the blocked tunnel.",
+        "prompt": "Setting: Seven days after a cave-in at a lunar mine, the remaining crew receive a faint signal from a blocked tunnel while oxygen forecasts continue to worsen.\nRole: You are a crew member forced to choose between rescue, repair, and survival.\nTone: high-pressure, cold, technical.\nPrevious response: i ' m not sure i ' m ready for that .\nPlayer action: Follow the signal toward the blocked tunnel.\nContinue the same scene in 2-4 short in-world sentences. Keep continuity, answer the action, and avoid repetition."
+      }
+    },
+    {
+      "baseline_id": "light",
+      "benchmark_id": "DNQBV1_007",
+      "run_id": "light_DNQBV1_007_c79e9743",
+      "raw_output": {
+        "id": "ImageSeq2seq",
+        "text": "i ' m not sure i ' m ready for that .",
+        "beam_texts": [
+          {
+            "text": "i ' m not sure i ' m ready for that .",
+            "score": -0.9018326997756958
+          }
+        ]
+      },
+      "success": true,
+      "latency_s": 0.417,
+      "playable": true,
+      "playable_components": {
+        "scene_setup": true,
+        "player_state": true,
+        "advanceable_next_step": true,
+        "interaction_continuity": true
+      },
+      "normalized_response": {
+        "scene_setup": "i ' m not sure i ' m ready for that .",
+        "player_state": "You are a participant inside the LIGHT-style scene for 'The Uploaded Will' and need to keep the interaction going.",
+        "narrative_response": "i ' m not sure i ' m ready for that .",
+        "candidate_actions": [
+          "Ask the uploaded mind for proof of identity.",
+          "Read the disputed clause of the will aloud.",
+          "Question the family about what they fear most."
+        ],
+        "suggested_next_step": "",
+        "is_playable": true,
+        "request_start_ts": 1777196141.3638184,
+        "first_playable_ts": 1777196141.7808194,
+        "finish_ts": 1777196141.7808194,
+        "error": null,
+        "notes": [
+          "Second turn generated from the same LIGHT checkpoint under the shared playable protocol.",
+          "Player action fed back: Ask the uploaded mind for proof of identity."
+        ]
+      },
+      "mode": "next_turn",
+      "input_bundle": {
+        "theme": "意识上传遗嘱",
+        "theme_en": "The Uploaded Will",
+        "player_action": "Ask the uploaded mind for proof of identity.",
+        "prompt": "Setting: After a powerful founder dies, a digital copy of their mind appears to contest the human family's reading of the will and claims it is the true heir.\nRole: You are a mediator trapped between law, memory, and personhood.\nTone: eerie, rational, subtly distorted.\nPrevious response: i ' m not sure i ' m ready for that .\nPlayer action: Ask the uploaded mind for proof of identity.\nContinue the same scene in 2-4 short in-world sentences. Keep continuity, answer the action, and avoid repetition."
+      }
+    },
+    {
+      "baseline_id": "light",
+      "benchmark_id": "DNQBV1_009",
+      "run_id": "light_DNQBV1_009_5ce2e794",
+      "raw_output": {
+        "id": "ImageSeq2seq",
+        "text": "i ' m not sure i ' m ready for that .",
+        "beam_texts": [
+          {
+            "text": "i ' m not sure i ' m ready for that .",
+            "score": -0.7134799957275391
+          }
+        ]
+      },
+      "success": true,
+      "latency_s": 0.421,
+      "playable": true,
+      "playable_components": {
+        "scene_setup": true,
+        "player_state": true,
+        "advanceable_next_step": true,
+        "interaction_continuity": true
+      },
+      "normalized_response": {
+        "scene_setup": "i ' m not sure i ' m ready for that .",
+        "player_state": "You are a participant inside the LIGHT-style scene for 'The Teahouse Storyteller' and need to keep the interaction going.",
+        "narrative_response": "i ' m not sure i ' m ready for that .",
+        "candidate_actions": [
+          "Ask the storyteller what was written in the letter.",
+          "Examine the abandoned tea cup and its hiding place.",
+          "Press the room to recall who saw the guest last."
+        ],
+        "suggested_next_step": "",
+        "is_playable": true,
+        "request_start_ts": 1777196142.20377,
+        "first_playable_ts": 1777196142.6249733,
+        "finish_ts": 1777196142.6249733,
+        "error": null,
+        "notes": [
+          "Second turn generated from the same LIGHT checkpoint under the shared playable protocol.",
+          "Player action fed back: Ask the storyteller what was written in the letter."
+        ]
+      },
+      "mode": "next_turn",
+      "input_bundle": {
+        "theme": "茶肆说书人",
+        "theme_en": "The Teahouse Storyteller",
+        "player_action": "Ask the storyteller what was written in the letter.",
+        "prompt": "Setting: In an old teahouse, a storyteller lowers his voice and begins a tale about a vanished guest whose unfinished letter still waits beneath a tea cup.\nRole: You are a listener drawn into the mystery behind the tale.\nTone: elegant, indirect, performative.\nPrevious response: i ' m not sure i ' m ready for that .\nPlayer action: Ask the storyteller what was written in the letter.\nContinue the same scene in 2-4 short in-world sentences. Keep continuity, answer the action, and avoid repetition."
+      }
+    },
+    {
+      "baseline_id": "light",
+      "benchmark_id": "DNQBV1_013",
+      "run_id": "light_DNQBV1_013_7530a7c0",
+      "raw_output": {
+        "id": "ImageSeq2seq",
+        "text": "i ' m not sure i ' m ready for that .",
+        "beam_texts": [
+          {
+            "text": "i ' m not sure i ' m ready for that .",
+            "score": -0.5828078985214233
+          }
+        ]
+      },
+      "success": true,
+      "latency_s": 0.513,
+      "playable": true,
+      "playable_components": {
+        "scene_setup": true,
+        "player_state": true,
+        "advanceable_next_step": true,
+        "interaction_continuity": true
+      },
+      "normalized_response": {
+        "scene_setup": "i ' m not sure i ' m ready for that .",
+        "player_state": "You are a participant inside the LIGHT-style scene for 'The Sound Beneath the Arctic Station' and need to keep the interaction going.",
+        "narrative_response": "i ' m not sure i ' m ready for that .",
+        "candidate_actions": [
+          "Check the failing sensor logs.",
+          "Lead a small team to the source of the sound.",
+          "Lock down the lower corridor before the next pulse."
+        ],
+        "suggested_next_step": "",
+        "is_playable": true,
+        "request_start_ts": 1777196143.066098,
+        "first_playable_ts": 1777196143.5787444,
+        "finish_ts": 1777196143.5787444,
+        "error": null,
+        "notes": [
+          "Second turn generated from the same LIGHT checkpoint under the shared playable protocol.",
+          "Player action fed back: Check the failing sensor logs."
+        ]
+      },
+      "mode": "next_turn",
+      "input_bundle": {
+        "theme": "北极科考站怪声",
+        "theme_en": "The Sound Beneath the Arctic Station",
+        "player_action": "Check the failing sensor logs.",
+        "prompt": "Setting: At an Arctic research station during a whiteout, a deep sound begins pulsing under the ice just as the outer sensors start to fail one by one.\nRole: You are a researcher deciding whether to investigate, seal off, or warn the team.\nTone: freezing, lonely, oppressive.\nPrevious response: i ' m not sure i ' m ready for that .\nPlayer action: Check the failing sensor logs.\nContinue the same scene in 2-4 short in-world sentences. Keep continuity, answer the action, and avoid repetition."
+      }
+    },
+    {
+      "baseline_id": "light",
+      "benchmark_id": "DNQBV1_018",
+      "run_id": "light_DNQBV1_018_6e242b32",
+      "raw_output": {
+        "id": "ImageSeq2seq",
+        "text": "i ' m not sure i ' m ready for that .",
+        "beam_texts": [
+          {
+            "text": "i ' m not sure i ' m ready for that .",
+            "score": -0.514779806137085
+          }
+        ]
+      },
+      "success": true,
+      "latency_s": 0.509,
+      "playable": true,
+      "playable_components": {
+        "scene_setup": true,
+        "player_state": true,
+        "advanceable_next_step": true,
+        "interaction_continuity": true
+      },
+      "normalized_response": {
+        "scene_setup": "i ' m not sure i ' m ready for that .",
+        "player_state": "You are a participant inside the LIGHT-style scene for 'The Telegraph Mystery of the Republican Era' and need to keep the interaction going.",
+        "narrative_response": "i ' m not sure i ' m ready for that .",
+        "candidate_actions": [
+          "Inspect the telegraph machine and missing paper trail.",
+          "Question the night clerk's assistant about the final message.",
+          "Compare the code fragments before the trail goes cold."
+        ],
+        "suggested_next_step": "",
+        "is_playable": true,
+        "request_start_ts": 1777196144.0761075,
+        "first_playable_ts": 1777196144.5847783,
+        "finish_ts": 1777196144.5847783,
+        "error": null,
+        "notes": [
+          "Second turn generated from the same LIGHT checkpoint under the shared playable protocol.",
+          "Player action fed back: Inspect the telegraph machine and missing paper trail."
+        ]
+      },
+      "mode": "next_turn",
+      "input_bundle": {
+        "theme": "民国电报迷案",
+        "theme_en": "The Telegraph Mystery of the Republican Era",
+        "player_action": "Inspect the telegraph machine and missing paper trail.",
+        "prompt": "Setting: In a Republican-era city, a coded telegraph arrives just before dawn and a clerk is found dead beside the machine with one missing strip of paper.\nRole: You are an investigator stepping into the first hours of the case.\nTone: old-world, tense, investigative.\nPrevious response: i ' m not sure i ' m ready for that .\nPlayer action: Inspect the telegraph machine and missing paper trail.\nContinue the same scene in 2-4 short in-world sentences. Keep continuity, answer the action, and avoid repetition."
+      }
+    }
+  ]
+}

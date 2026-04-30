@@ -19,9 +19,10 @@ from selenium.common.exceptions import TimeoutException, NoSuchElementException
 from selenium.webdriver.common.action_chains import ActionChains
 
 # 设置
-WORK_DIR = Path(r"C:\Users\User\Desktop\DN-main")
-DATASET_DIR = WORK_DIR / "dataset"
-DATASET_DIR.mkdir(exist_ok=True)
+from project_paths import PROJECT_ROOT, ensure_project_dir
+
+WORK_DIR = PROJECT_ROOT
+DATASET_DIR = ensure_project_dir("dataset")
 LOG_FILE = DATASET_DIR / "execution_log.txt"
 
 GAME_URL = "http://127.0.0.1:5001"

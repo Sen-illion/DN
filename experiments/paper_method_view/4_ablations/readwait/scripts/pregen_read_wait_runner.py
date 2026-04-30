@@ -14,7 +14,7 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 BENCHMARK_FILE = REPO_ROOT / "experiments" / "benchmark" / "dn_quality_benchmark_v1.json"
 OUTPUT_DIR = REPO_ROOT / "experiments" / "benchmark" / "standard_runs"
 PROVIDER_EVENTS_FILE = REPO_ROOT / "logs" / "provider_events.jsonl"
-BASE_URL = "http://127.0.0.1:5001"
+DEFAULT_BASE_URL = "http://127.0.0.1:5001"
 
 
 def load_benchmark(limit: int | None = None, offset: int = 0) -> list[dict[str, Any]]:
@@ -108,13 +108,14 @@ def summarize_provider_events(events: list[dict[str, Any]]) -> dict[str, Any]:
 
 def timed_post(
     session: requests.Session,
+    base_url: str,
     path: str,
     payload: dict[str, Any],
     timeout_s: int = 1800,
 ) -> dict[str, Any]:
     start_wall = time.time()
     start_perf = time.perf_counter()
-    resp = session.post(f"{BASE_URL}{path}", json=payload, timeout=timeout_s)
+    resp = session.post(f"{base_url}{path}", json=payload, timeout=timeout_s)
     elapsed = time.perf_counter() - start_perf
     end_wall = time.time()
     return {
@@ -127,7 +128,7 @@ def timed_post(
     }
 
 
-def generate_worldview(session: requests.Session, item: dict[str, Any]) -> dict[str, Any]:
+def generate_worldview(session: requests.Session, base_url: str, item: dict[str, Any]) -> dict[str, Any]:
     payload = {
         "gameTheme": item["theme"],
         "protagonistAttr": {},
@@ -135,7 +136,7 @@ def generate_worldview(session: requests.Session, item: dict[str, Any]) -> dict[
         "toneKey": "normal_ending",
         "imageStyle": item["image_style"],
     }
-    run = timed_post(session, "/generate-worldview", payload)
+    run = timed_post(session, base_url, "/generate-worldview", payload)
     data = run["response_json"]
     global_state = data.get("globalState") if isinstance(data.get("globalState"), dict) else {}
     run.update(
@@ -154,6 +155,69 @@ def pick_option(option_data: dict[str, Any], fallback_text: str) -> tuple[int, s
     return 0, fallback_text
 
 
+def apply_flow_update(global_state: dict[str, Any], option_data: dict[str, Any]) -> dict[str, Any]:
+    updated = json.loads(json.dumps(global_state or {}, ensure_ascii=False))
+    flow = updated.setdefault("flow_worldline", {})
+    flow_update = option_data.get("flow_update") or {}
+    if isinstance(flow_update, dict):
+        if flow_update.get("quest_progress"):
+            flow["quest_progress"] = flow_update["quest_progress"]
+        if isinstance(flow_update.get("chapter_conflict_solved"), bool):
+            flow["chapter_conflict_solved"] = flow_update["chapter_conflict_solved"]
+        for key in ("characters", "environment", "current_chapter"):
+            if key in flow_update and flow_update[key] is not None:
+                flow[key] = flow_update[key]
+    # 前端每次点选项后都会把 chapter_progress 往前推一点；这里给一个稳定的小步进以贴近真实状态。
+    current_progress = flow.get("chapter_progress")
+    if isinstance(current_progress, (int, float)):
+        flow["chapter_progress"] = round(min(95.0, float(current_progress) + 2.0), 1)
+    else:
+        flow["chapter_progress"] = 2.0
+    return updated
+
+
+def is_placeholder_option_data(option_data: dict[str, Any]) -> bool:
+    scene = str(option_data.get("scene") or "").strip()
+    next_options = option_data.get("next_options") or []
+    generic_option_sets = [
+        ["继续前进", "查看周围环境"],
+        ["继续前进", "查看当前状态", "返回上一步", "探索周围环境"],
+    ]
+    if not scene:
+        return True
+    if "当前内容生成耗时较长" in scene:
+        return True
+    if scene.startswith("你选择了：继续前进。"):
+        return True
+    if len(scene) < 80:
+        return True
+    if next_options in generic_option_sets:
+        return True
+    return False
+
+
+def fetch_story_option_with_retry(
+    session: requests.Session,
+    base_url: str,
+    payload: dict[str, Any],
+    retries: int = 5,
+    wait_s: float = 5.0,
+) -> dict[str, Any]:
+    last = timed_post(session, base_url, "/generate-option", payload)
+    data = last.get("response_json") or {}
+    option_data = data.get("optionData") or {}
+    attempt = 0
+    while attempt < retries and data.get("status") == "success" and is_placeholder_option_data(option_data):
+        attempt += 1
+        time.sleep(wait_s)
+        last = timed_post(session, base_url, "/generate-option", payload)
+        data = last.get("response_json") or {}
+        option_data = data.get("optionData") or {}
+    last["retry_count"] = attempt
+    last["is_placeholder"] = is_placeholder_option_data(option_data) if data.get("status") == "success" else False
+    return last
+
+
 def classify_second_click(second_click: dict[str, Any]) -> str:
     events = second_click.get("provider_events") or {}
     if events.get("llm_success_count", 0) == 0 and events.get("request_thread_event_count", 0) == 0:
@@ -161,7 +225,7 @@ def classify_second_click(second_click: dict[str, Any]) -> str:
     return "likely_miss_or_partial"
 
 
-def run_read_wait_suite(name: str, items: list[dict[str, Any]], read_wait_s: float) -> dict[str, Any]:
+def run_read_wait_suite(name: str, items: list[dict[str, Any]], read_wait_s: float, base_url: str) -> dict[str, Any]:
     session = requests.Session()
     runs: list[dict[str, Any]] = []
     suite_start = time.time()
@@ -173,7 +237,7 @@ def run_read_wait_suite(name: str, items: list[dict[str, Any]], read_wait_s: flo
             "theme": item["theme"],
             "read_wait_s": read_wait_s,
         }
-        worldview = generate_worldview(session, item)
+        worldview = generate_worldview(session, base_url, item)
         run["worldview"] = worldview
 
         first_click: dict[str, Any] = {}
@@ -184,13 +248,12 @@ def run_read_wait_suite(name: str, items: list[dict[str, Any]], read_wait_s: flo
             global_state = world_json.get("globalState") or {}
 
             first_payload = {
-                "option": "寮€濮嬫父鎴?",
+                "option": "开始游戏",
                 "optionIndex": 0,
-                "sceneId": "initial",
+                "sceneId": None,
                 "globalState": global_state,
-                "currentOptions": world_json.get("initialOptions") or [],
             }
-            first_click = timed_post(session, "/generate-option", first_payload)
+            first_click = fetch_story_option_with_retry(session, base_url, first_payload)
             first_json = first_click.get("response_json") or {}
             first_click.update(
                 {
@@ -204,6 +267,7 @@ def run_read_wait_suite(name: str, items: list[dict[str, Any]], read_wait_s: flo
             chosen_index, chosen_text = pick_option(option_data, "缁х画鍓嶈繘")
             next_scene_id = option_data.get("sceneId")
             next_options = option_data.get("next_options") or []
+            updated_global_state = apply_flow_update(global_state, option_data)
 
             if next_scene_id and next_options:
                 time.sleep(read_wait_s)
@@ -211,11 +275,12 @@ def run_read_wait_suite(name: str, items: list[dict[str, Any]], read_wait_s: flo
                     "option": chosen_text,
                     "optionIndex": chosen_index,
                     "sceneId": next_scene_id,
-                    "globalState": global_state,
-                    "currentOptions": next_options,
+                    "globalState": updated_global_state,
                     "previousSceneId": "initial",
+                    "previousSceneImage": option_data.get("scene_image"),
+                    "previousSceneText": option_data.get("scene") or "",
                 }
-                second_click = timed_post(session, "/generate-option", second_payload)
+                second_click = timed_post(session, base_url, "/generate-option", second_payload)
                 second_json = second_click.get("response_json") or {}
                 second_click.update(
                     {
@@ -226,6 +291,10 @@ def run_read_wait_suite(name: str, items: list[dict[str, Any]], read_wait_s: flo
                         "selected_option_text": chosen_text,
                         "input_scene_id": next_scene_id,
                         "inferred_cache_result": classify_second_click(second_click),
+                        "is_placeholder": is_placeholder_option_data(second_json.get("optionData") or {})
+                        if second_json.get("status") == "success"
+                        else False,
+                        "used_updated_flow_state": True,
                     }
                 )
 
@@ -264,10 +333,11 @@ def main() -> int:
     parser.add_argument("--read-wait", type=float, required=True)
     parser.add_argument("--limit", type=int, default=None)
     parser.add_argument("--offset", type=int, default=0)
+    parser.add_argument("--base-url", default=DEFAULT_BASE_URL)
     args = parser.parse_args()
 
     items = load_benchmark(limit=args.limit, offset=args.offset)
-    payload = run_read_wait_suite(args.name, items, args.read_wait)
+    payload = run_read_wait_suite(args.name, items, args.read_wait, args.base_url.rstrip("/"))
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     out_path = OUTPUT_DIR / args.output

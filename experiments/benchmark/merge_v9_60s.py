@@ -2,7 +2,8 @@
 import statistics
 from pathlib import Path
 
-base = Path(r"C:\Users\zhang\Desktop\DN\experiments\benchmark\standard_runs")
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+base = PROJECT_ROOT / "experiments" / "benchmark" / "standard_runs"
 files = {
     "off": [
         base / "benchmark_v7_readwait_off_60s_4.json",

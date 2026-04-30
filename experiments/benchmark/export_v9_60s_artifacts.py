@@ -7,7 +7,27 @@ from openpyxl.chart import BarChart, Reference
 from openpyxl.styles import Font
 from PIL import Image, ImageDraw, ImageFont
 
-base = Path(r"C:\Users\zhang\Desktop\DN\experiments\benchmark\standard_runs")
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+base = PROJECT_ROOT / "experiments" / "benchmark" / "standard_runs"
+
+OLD_PROJECT_ROOTS = (
+    Path("C:/") / "Users" / "zhang" / "Desktop" / "DN",
+    Path("C:/") / "Users" / "User" / "Desktop" / "DN-main",
+)
+
+def resolve_project_path(value):
+    path = Path(value)
+    if path.exists():
+        return path
+    text = str(path)
+    for old_root in OLD_PROJECT_ROOTS:
+        old_text = str(old_root)
+        if text.lower().startswith(old_text.lower()):
+            candidate = PROJECT_ROOT / path.relative_to(old_root)
+            if candidate.exists():
+                return candidate
+    return path
+
 summary_path = base / "benchmark_v9_readwait_60s_merged_12v12_summary.json"
 payload = json.loads(summary_path.read_text(encoding="utf-8"))
 
@@ -15,14 +35,15 @@ source_files = payload["source_files"]
 combined_runs = []
 for group, paths in source_files.items():
     for path in paths:
-        sub = json.loads(Path(path).read_text(encoding="utf-8"))
+        source_path = resolve_project_path(path)
+        sub = json.loads(source_path.read_text(encoding="utf-8"))
         for run in sub["runs"]:
             second = run.get("second_click", {})
             first = run.get("first_click", {})
             worldview = run.get("worldview", {})
             combined_runs.append({
                 "group": group,
-                "source_file": Path(path).name,
+                "source_file": source_path.name,
                 "benchmark_id": run.get("benchmark_id"),
                 "theme_id": run.get("theme_id"),
                 "read_wait_s": run.get("read_wait_s"),

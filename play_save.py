@@ -6,11 +6,12 @@ sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8', errors='repla
 import requests
 import random
 import json
+from project_paths import path_in_project
 
 BASE = "http://127.0.0.1:5001"
 
 # 直接读取存档文件
-save_path = "C:/Users/User/Desktop/DN-main/saves/main.json"
+save_path = path_in_project("saves", "main.json")
 with open(save_path, "r", encoding="utf-8") as f:
     save_data = json.load(f)
 

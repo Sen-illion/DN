@@ -22,7 +22,9 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 
-WORK_DIR = r"C:\Users\User\Desktop\DN-main"
+from project_paths import PROJECT_ROOT
+
+WORK_DIR = str(PROJECT_ROOT)
 GAME_URL = "http://127.0.0.1:5001"
 
 def init_driver():
@@ -33,8 +35,11 @@ def init_driver():
     options.add_experimental_option("excludeSwitches", ["enable-automation"])
     options.add_experimental_option("useAutomationExtension", False)
     options.add_argument("--window-size=1400,900")
-    options.add_argument("--user-data-dir=C:\\Users\\User\\AppData\\Local\\Google\\Chrome\\User Data")
-    options.add_argument("--profile-directory=Default")
+    chrome_user_data_dir = os.environ.get("DN_CHROME_USER_DATA_DIR")
+    if chrome_user_data_dir:
+        options.add_argument(f"--user-data-dir={chrome_user_data_dir}")
+        chrome_profile = os.environ.get("DN_CHROME_PROFILE_DIRECTORY", "Default")
+        options.add_argument(f"--profile-directory={chrome_profile}")
     try:
         driver = webdriver.Chrome(options=options)
     except Exception as e:

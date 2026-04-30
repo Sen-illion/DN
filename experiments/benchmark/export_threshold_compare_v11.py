@@ -1,6 +1,7 @@
 ﻿import csv, json
 from pathlib import Path
-base = Path(r"C:\Users\zhang\Desktop\DN\experiments\benchmark\standard_runs")
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+base = PROJECT_ROOT / "experiments" / "benchmark" / "standard_runs"
 summary50 = json.loads((base / 'benchmark_v10_readwait_50s_8v8_summary.json').read_text(encoding='utf-8'))
 summary55 = json.loads((base / 'benchmark_v11_readwait_55s_8v8_summary.json').read_text(encoding='utf-8'))
 summary60 = json.loads((base / 'benchmark_v9_readwait_60s_merged_12v12_summary.json').read_text(encoding='utf-8'))

@@ -1,0 +1,88 @@
+{
+  "summary": {
+    "baseline": "sdmv2",
+    "sample_size": 3,
+    "success_count": 3,
+    "failed_count": 0,
+    "blocked_count": 0,
+    "success_rate": 1.0,
+    "mean_latency_s": 0.915,
+    "p95_latency_s": 1.3,
+    "mean_images_per_sample": 1,
+    "oom_count": 0,
+    "failed_ids": [],
+    "output_dir": "/root/autodl-tmp/outputs/sd_public_v14_smoke3/sdmv2_smoke3_compvis_v14_20260430_1135",
+    "notes": "SDM-v2 uses diffusers and generates one image per DN-style item; no character-consistency claim."
+  },
+  "results": [
+    {
+      "baseline": "sdmv2",
+      "benchmark_id": "DNQBV1_001",
+      "theme": "边陲驿站夜谈录",
+      "status": "success",
+      "latency_s": 1.3647366779914591,
+      "prompt_list": [
+        "[Protagonist] opening scene introducing the world and the protagonist's immediate problem; theme: 边陲驿站夜谈录; genre: 现实边陲叙事; tone: 克制、怀旧、微苦; constraints: 世界观必须围绕边陲驿站生存与人情展开; 首段剧情应能自然引出一条可推进的现实冲突; 至少返回 2 个具体可执行选项; cinematic realistic scene, grounded lighting, coherent environment # Scene 1 for 边陲驿站夜谈录"
+      ],
+      "image_paths": [
+        "/root/autodl-tmp/outputs/sd_public_v14_smoke3/sdmv2_smoke3_compvis_v14_20260430_1135/DNQBV1_001/image_001.png"
+      ],
+      "error": null,
+      "gpu": {
+        "available": true,
+        "name": "NVIDIA GeForce RTX 4090",
+        "count": 1,
+        "torch": "2.1.2+cu118",
+        "torch_cuda": "11.8"
+      },
+      "hf_home": "/root/autodl-tmp/hf_cache",
+      "model_id": "CompVis/stable-diffusion-v1-4"
+    },
+    {
+      "baseline": "sdmv2",
+      "benchmark_id": "DNQBV1_002",
+      "theme": "末日温室园丁",
+      "status": "success",
+      "latency_s": 0.7151303730061045,
+      "prompt_list": [
+        "[Protagonist] opening scene introducing the world and the protagonist's immediate problem; theme: 末日温室园丁; genre: 末日生存; tone: 压抑、坚韧、低饱和; constraints: 剧情必须围绕温室、生存或资源匮乏展开; 场景需要体现末日环境压力; 首轮剧情应建立明确任务目标; cinematic realistic scene, grounded lighting, coherent environment # Scene 1 for 末日温室园丁"
+      ],
+      "image_paths": [
+        "/root/autodl-tmp/outputs/sd_public_v14_smoke3/sdmv2_smoke3_compvis_v14_20260430_1135/DNQBV1_002/image_001.png"
+      ],
+      "error": null,
+      "gpu": {
+        "available": true,
+        "name": "NVIDIA GeForce RTX 4090",
+        "count": 1,
+        "torch": "2.1.2+cu118",
+        "torch_cuda": "11.8"
+      },
+      "hf_home": "/root/autodl-tmp/hf_cache",
+      "model_id": "CompVis/stable-diffusion-v1-4"
+    },
+    {
+      "baseline": "sdmv2",
+      "benchmark_id": "DNQBV1_005",
+      "theme": "月球矿难七日",
+      "status": "success",
+      "latency_s": 0.666215214994736,
+      "prompt_list": [
+        "[Protagonist] opening scene introducing the world and the protagonist's immediate problem; theme: 月球矿难七日; genre: 近未来科幻灾难; tone: 高压、冷峻、技术感; constraints: 剧情需围绕月球矿难与生存风险展开; 图像应体现赛博/科幻视觉元素; 首段要有明确危机感与行动起点; cinematic realistic scene, grounded lighting, coherent environment # Scene 1 for 月球矿难七日"
+      ],
+      "image_paths": [
+        "/root/autodl-tmp/outputs/sd_public_v14_smoke3/sdmv2_smoke3_compvis_v14_20260430_1135/DNQBV1_005/image_001.png"
+      ],
+      "error": null,
+      "gpu": {
+        "available": true,
+        "name": "NVIDIA GeForce RTX 4090",
+        "count": 1,
+        "torch": "2.1.2+cu118",
+        "torch_cuda": "11.8"
+      },
+      "hf_home": "/root/autodl-tmp/hf_cache",
+      "model_id": "CompVis/stable-diffusion-v1-4"
+    }
+  ]
+}

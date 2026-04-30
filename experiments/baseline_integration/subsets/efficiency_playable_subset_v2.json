@@ -1,0 +1,46 @@
+{
+  "subset_name": "efficiency_playable_subset_v2",
+  "benchmark_source": "DN-quality-benchmark-v1",
+  "created_on": "2026-04-26",
+  "sample_size": 8,
+  "purpose": "Expanded latency comparison set aligned with DN paper-ready external baseline evaluation.",
+  "selection_principles": [
+    "reuse the text-side comparable items already validated in GenAgents work",
+    "maintain genre spread while keeping strong multi-turn continuation pressure",
+    "prefer items where a playable response can be judged without image generation"
+  ],
+  "items": [
+    {
+      "benchmark_id": "DNQBV1_001",
+      "focus": "grounded realism and actionability"
+    },
+    {
+      "benchmark_id": "DNQBV1_002",
+      "focus": "resource scarcity planning"
+    },
+    {
+      "benchmark_id": "DNQBV1_004",
+      "focus": "institutional conflict and stance continuity"
+    },
+    {
+      "benchmark_id": "DNQBV1_005",
+      "focus": "sci-fi reaction stability"
+    },
+    {
+      "benchmark_id": "DNQBV1_007",
+      "focus": "identity-boundary reasoning"
+    },
+    {
+      "benchmark_id": "DNQBV1_009",
+      "focus": "suspense carryover"
+    },
+    {
+      "benchmark_id": "DNQBV1_013",
+      "focus": "isolated-setting tension"
+    },
+    {
+      "benchmark_id": "DNQBV1_018",
+      "focus": "historical investigation coherence"
+    }
+  ]
+}

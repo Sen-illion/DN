@@ -1,3 +1,8 @@
 @echo off
 chcp 65001 >nul
-C:\Users\User\Desktop\DN-main\.venv\Scripts\python.exe C:\Users\User\Desktop\DN-main\_cdp_final.py
+cd /d "%~dp0"
+if not exist "%~dp0_cdp_final.py" (
+  echo ERROR: _cdp_final.py was not found in %~dp0
+  exit /b 1
+)
+"%~dp0.venv\Scripts\python.exe" "%~dp0_cdp_final.py"

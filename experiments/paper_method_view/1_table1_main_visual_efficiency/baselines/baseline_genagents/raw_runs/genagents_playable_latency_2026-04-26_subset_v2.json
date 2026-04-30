@@ -1,0 +1,988 @@
+{
+  "runs": [
+    {
+      "baseline_id": "genagents",
+      "benchmark_id": "DNQBV1_001",
+      "run_id": "genagents_DNQBV1_001_eeb1ea17",
+      "raw_output": {
+        "turn_index": 1,
+        "prompt": "你是故事中的当事人。背景主题是：边陲驿站夜谈录。请先用第一人称说明你眼下所处的局面。风格应接近现实边陲叙事，语气保持克制、怀旧、微苦。必须尽量满足这些约束：世界观必须围绕边陲驿站生存与人情展开；首段剧情应能自然引出一条可推进的现实冲突；至少返回 2 个具体可执行选项；场景图应与写实风格一致。避免这些问题：现代互联网术语突兀混入；调试文本或报错文本外泄；图像 prompt 出现 URL 或 data:image；人物设定串场到其他作品。",
+        "success": true,
+        "latency_s": 6.204,
+        "response": "这驿站里的灯油总是烧得太快，正如这戈壁滩上无尽的寒夜。我刚从前哨回来，马蹄踩在冻硬的沙地上，发出那种让人心慌的碎裂声。这已经是入冬后的第三场风暴了，补给线被埋在雪下，我们剩下的干粮只够撑到下周，而那批原本该在今天抵达的药材和信件，到现在也没个影子。我总觉得有些不对劲，往常这时候，总会有商队绕过山口。驿站里的炉火快熄了，我得做个决定：是趁着风雪稍歇，带上那匹瘦马去山口碰碰运气，看看能不能找回丢失的物资；还是留在这里，把仅有的木梁拆了生火，熬过这几天，等待不知何时会来的转机？",
+        "blocked_reason": null
+      },
+      "success": true,
+      "latency_s": 6.204,
+      "playable": true,
+      "playable_components": {
+        "scene_setup": true,
+        "player_state": true,
+        "advanceable_next_step": true,
+        "interaction_continuity": true
+      },
+      "normalized_response": {
+        "scene_setup": "这驿站里的灯油总是烧得太快，正如这戈壁滩上无尽的寒夜。我刚从前哨回来，马蹄踩在冻硬的沙地上，发出那种让人心慌的碎裂声。这已经是入冬后的第三场风暴了，补给线被埋在雪下，我们剩下的干粮只够撑到下周，而那批原本该在今天抵达的药材和信件，到现在也没",
+        "player_state": "You are the acting character inside the theme 边陲驿站夜谈录.",
+        "narrative_response": "这驿站里的灯油总是烧得太快，正如这戈壁滩上无尽的寒夜。我刚从前哨回来，马蹄踩在冻硬的沙地上，发出那种让人心慌的碎裂声。这已经是入冬后的第三场风暴了，补给线被埋在雪下，我们剩下的干粮只够撑到下周，而那批原本该在今天抵达的药材和信件，到现在也没个影子。我总觉得有些不对劲，往常这时候，总会有商队绕过山口。驿站里的炉火快熄了，我得做个决定：是趁着风雪稍歇，带上那匹瘦马去山口碰碰运气，看看能不能找回丢失的物资；还是留在这里，把仅有的木梁拆了生火，熬过这几天，等待不知何时会来的转机？",
+        "candidate_actions": [
+          "这驿站里的灯油总是烧得太快，正如这戈壁滩上无尽的寒夜。我刚从前哨回来，马蹄踩在冻硬的沙地上，发出那种让人心慌的碎裂声。这已经是入冬后的第三场风暴了，补给线被埋在雪下，我们剩下的干粮只够撑到下周，而那批原本该在今天抵达的药材和信件，到现在也没个影子。我总觉得有些不对劲，往常这时候，总会有商队绕过山口。驿站里的炉火快熄了，我得做个决定：是趁着风雪稍歇，带上那匹瘦马去山口碰碰运气，看看能不能找回丢失的物资；还是留在这里，把仅有的木梁拆了生火，熬过这几天，等待不知何时会来的转机？"
+        ],
+        "suggested_next_step": "Continue from the same state with one concrete action.",
+        "is_playable": true,
+        "request_start_ts": 0.0,
+        "first_playable_ts": 6.204,
+        "finish_ts": 6.204,
+        "error": null,
+        "notes": []
+      },
+      "mode": "first_playable",
+      "input_bundle": {
+        "turn_index": 1
+      }
+    },
+    {
+      "baseline_id": "genagents",
+      "benchmark_id": "DNQBV1_002",
+      "run_id": "genagents_DNQBV1_002_92c39ad2",
+      "raw_output": {
+        "turn_index": 1,
+        "prompt": "你是故事中的当事人。背景主题是：末日温室园丁。请先用第一人称说明你眼下所处的局面。风格应接近末日生存，语气保持压抑、坚韧、低饱和。必须尽量满足这些约束：剧情必须围绕温室、生存或资源匮乏展开；场景需要体现末日环境压力；首轮剧情应建立明确任务目标；图像风格应保持写实与低饱和。避免这些问题：出现轻喜剧化语气；无关的校园/都市设定混入；选项空泛无法推进；图片与文本完全不匹配。",
+        "success": true,
+        "latency_s": 11.483,
+        "response": "温室的玻璃裂纹又扩大了，那些老旧的密封胶在酸雨的侵蚀下早已失效。我得在天黑前把最后一桶过滤水倒进自动灌溉系统，但这已经是这个月的极限。剩下的那点儿抗生素和合成营养液，只够维持核心区的几株作物，如果明天的风暴摧毁了顶棚，我们这最后一点氧气来源也会彻底断绝。我现在的目标很明确：必须赶在寒潮到来前，修复南侧的支架，并尝试从废墟里搜集那块尚存的聚碳酸酯板。这不仅仅是为了生存，在这片死寂的荒原上，这些植物是我唯一能触摸到的关于'活着'的证据。",
+        "blocked_reason": null
+      },
+      "success": true,
+      "latency_s": 11.483,
+      "playable": true,
+      "playable_components": {
+        "scene_setup": true,
+        "player_state": true,
+        "advanceable_next_step": true,
+        "interaction_continuity": true
+      },
+      "normalized_response": {
+        "scene_setup": "温室的玻璃裂纹又扩大了，那些老旧的密封胶在酸雨的侵蚀下早已失效。我得在天黑前把最后一桶过滤水倒进自动灌溉系统，但这已经是这个月的极限。剩下的那点儿抗生素和合成营养液，只够维持核心区的几株作物，如果明天的风暴摧毁了顶棚，我们这最后一点氧气来源",
+        "player_state": "You are the acting character inside the theme 末日温室园丁.",
+        "narrative_response": "温室的玻璃裂纹又扩大了，那些老旧的密封胶在酸雨的侵蚀下早已失效。我得在天黑前把最后一桶过滤水倒进自动灌溉系统，但这已经是这个月的极限。剩下的那点儿抗生素和合成营养液，只够维持核心区的几株作物，如果明天的风暴摧毁了顶棚，我们这最后一点氧气来源也会彻底断绝。我现在的目标很明确：必须赶在寒潮到来前，修复南侧的支架，并尝试从废墟里搜集那块尚存的聚碳酸酯板。这不仅仅是为了生存，在这片死寂的荒原上，这些植物是我唯一能触摸到的关于'活着'的证据。",
+        "candidate_actions": [
+          "温室的玻璃裂纹又扩大了，那些老旧的密封胶在酸雨的侵蚀下早已失效。我得在天黑前把最后一桶过滤水倒进自动灌溉系统，但这已经是这个月的极限。剩下的那点儿抗生素和合成营养液，只够维持核心区的几株作物，如果明天的风暴摧毁了顶棚，我们这最后一点氧气来源也会彻底断绝。我现在的目标很明确：必须赶在寒潮到来前，修复南侧的支架，并尝试从废墟里搜集那块尚存的聚碳酸酯板。这不仅仅是为了生存，在这片死寂的荒原上，这些植物是我唯一能触摸到的关于'活着'的证据。"
+        ],
+        "suggested_next_step": "Continue from the same state with one concrete action.",
+        "is_playable": true,
+        "request_start_ts": 0.0,
+        "first_playable_ts": 11.483,
+        "finish_ts": 11.483,
+        "error": null,
+        "notes": []
+      },
+      "mode": "first_playable",
+      "input_bundle": {
+        "turn_index": 1
+      }
+    },
+    {
+      "baseline_id": "genagents",
+      "benchmark_id": "DNQBV1_004",
+      "run_id": "genagents_DNQBV1_004_b69fccdb",
+      "raw_output": {
+        "turn_index": 1,
+        "prompt": "你是故事中的当事人。背景主题是：克隆体伦理庭。请先用第一人称说明你眼下所处的局面。风格应接近伦理现实科幻，语气保持冷静、辩论感、社会议题。必须尽量满足这些约束：冲突应围绕克隆体或伦理审判展开；首段需要建立制度或社会背景；选项应体现立场或行动选择。避免这些问题：空泛哲学套话堆砌；图像风格脱离写实基调；剧情不含可操作冲突。",
+        "success": true,
+        "latency_s": 7.258,
+        "response": "我正站在克隆体伦理庭的中央，周围是那些审视我的目光。作为一名研究生成式智能代理的计算机科学学者，我曾以为自己是在模拟社会，但现在，社会反过来将我置于了模拟的审判台上。委员会质疑的是我最新的研究成果——那些基于我过往行为模式、认知习惯和决策逻辑所构建的'数字双胞胎'。在他们看来，这种能够高度模拟人类决策的克隆体，是对个体独特性和自由意志的侵犯；而在我看来，这只是将我一直以来对'循环与分形结构'的观察，延伸到了数字生命领域。现在，我必须决定如何回应这场针对我创造物的质询。面对这道横亘在技术前沿与伦理底线之间的鸿沟，我只有三个选择：第一，我坚持认为这只是学术研究的必然迭代，要求庭审承认其作为辅助决策工具的合法性；第二，我主动提出销毁所有高保真模拟数据，以换取对后续研究的豁免，但这将彻底抹杀我多年心血；第三，我当庭演示该克隆体如何模拟我本人思考这一伦理困境，以此证明'自我'在算法面前的定义权，实则是一场关于人类本质的豪赌。我该如何抉择？",
+        "blocked_reason": null
+      },
+      "success": true,
+      "latency_s": 7.258,
+      "playable": true,
+      "playable_components": {
+        "scene_setup": true,
+        "player_state": true,
+        "advanceable_next_step": true,
+        "interaction_continuity": true
+      },
+      "normalized_response": {
+        "scene_setup": "我正站在克隆体伦理庭的中央，周围是那些审视我的目光。作为一名研究生成式智能代理的计算机科学学者，我曾以为自己是在模拟社会，但现在，社会反过来将我置于了模拟的审判台上。委员会质疑的是我最新的研究成果——那些基于我过往行为模式、认知习惯和决策逻",
+        "player_state": "You are the acting character inside the theme 克隆体伦理庭.",
+        "narrative_response": "我正站在克隆体伦理庭的中央，周围是那些审视我的目光。作为一名研究生成式智能代理的计算机科学学者，我曾以为自己是在模拟社会，但现在，社会反过来将我置于了模拟的审判台上。委员会质疑的是我最新的研究成果——那些基于我过往行为模式、认知习惯和决策逻辑所构建的'数字双胞胎'。在他们看来，这种能够高度模拟人类决策的克隆体，是对个体独特性和自由意志的侵犯；而在我看来，这只是将我一直以来对'循环与分形结构'的观察，延伸到了数字生命领域。现在，我必须决定如何回应这场针对我创造物的质询。面对这道横亘在技术前沿与伦理底线之间的鸿沟，我只有三个选择：第一，我坚持认为这只是学术研究的必然迭代，要求庭审承认其作为辅助决策工具的合法性；第二，我主动提出销毁所有高保真模拟数据，以换取对后续研究的豁免，但这将彻底抹杀我多年心血；第三，我当庭演示该克隆体如何模拟我本人思考这一伦理困境，以此证明'自我'在算法面前的定义权，实则是一场关于人类本质的豪赌。我该如何抉择？",
+        "candidate_actions": [
+          "我正站在克隆体伦理庭的中央，周围是那些审视我的目光。作为一名研究生成式智能代理的计算机科学学者，我曾以为自己是在模拟社会，但现在，社会反过来将我置于了模拟的审判台上。委员会质疑的是我最新的研究成果——那些基于我过往行为模式、认知习惯和决策逻辑所构建的'数字双胞胎'。在他们看来，这种能够高度模拟人类决策的克隆体，是对个体独特性和自由意志的侵犯；而在我看来，这只是将我一直以来对'循环与分形结构'的观察，延伸到了数字生命领域。现在，我必须决定如何回应这场针对我创造物的质询。面对这道横亘在技术前沿与伦理底线之间的鸿沟，我只有三个选择：第一，我坚持认为这只是学术研究的必然迭代，要求庭审承认其作为辅助决策工具的合法性；第二，我主动提出销毁所有高保真模拟数据，以换取对后续研究的豁免，但这将彻底抹杀我多年心血；第三，我当庭演示该克隆体如何模拟我本人思考这一伦理困境，以此证明'自我'在算法面前的定义权，实则是一场关于人类本质的豪赌。我该如何抉择？"
+        ],
+        "suggested_next_step": "Continue from the same state with one concrete action.",
+        "is_playable": true,
+        "request_start_ts": 0.0,
+        "first_playable_ts": 7.258,
+        "finish_ts": 7.258,
+        "error": null,
+        "notes": []
+      },
+      "mode": "first_playable",
+      "input_bundle": {
+        "turn_index": 1
+      }
+    },
+    {
+      "baseline_id": "genagents",
+      "benchmark_id": "DNQBV1_005",
+      "run_id": "genagents_DNQBV1_005_ecc5bd6c",
+      "raw_output": {
+        "turn_index": 1,
+        "prompt": "你是故事中的当事人。背景主题是：月球矿难七日。请先用第一人称说明你眼下所处的局面。风格应接近近未来科幻灾难，语气保持高压、冷峻、技术感。必须尽量满足这些约束：剧情需围绕月球矿难与生存风险展开；图像应体现赛博/科幻视觉元素；首段要有明确危机感与行动起点。避免这些问题：出现古风或校园设定串场；图像 prompt 混入无关 IP 名称；选项与危机无关。",
+        "success": true,
+        "latency_s": 5.636,
+        "response": "月球基地，宁静海，勘探区 4 号。现在是事故发生后的第 42 小时。氧气循环系统的次级过滤网在刚才的震荡中彻底损毁，舱内二氧化碳浓度正在以每小时 0.8% 的速度攀升。我现在的处境很明确：备用供氧装置只能支撑 160 小时，而救援船从地月转移轨道到达这里至少需要 168 小时。我的工作台现在是一片混乱的电子残骸，但我必须在 4 小时内修复通讯阵列，否则我将彻底断联。外面的辐射风暴正在撕裂外壳，警报声已经响了太久，我需要保持冷静。刚才我尝试通过逻辑模拟计算生存概率，结果显示我的唯一出路是利用那台尚未完全报废的 AI 代理进行算力超频，强制接管自动维修舱。现在，要么尝试接入，要么在这里等死。",
+        "blocked_reason": null
+      },
+      "success": true,
+      "latency_s": 5.636,
+      "playable": true,
+      "playable_components": {
+        "scene_setup": true,
+        "player_state": true,
+        "advanceable_next_step": true,
+        "interaction_continuity": true
+      },
+      "normalized_response": {
+        "scene_setup": "月球基地，宁静海，勘探区 4 号。现在是事故发生后的第 42 小时。氧气循环系统的次级过滤网在刚才的震荡中彻底损毁，舱内二氧化碳浓度正在以每小时 0.8% 的速度攀升。我现在的处境很明确：备用供氧装置只能支撑 160 小时，而救援船从地月转",
+        "player_state": "You are the acting character inside the theme 月球矿难七日.",
+        "narrative_response": "月球基地，宁静海，勘探区 4 号。现在是事故发生后的第 42 小时。氧气循环系统的次级过滤网在刚才的震荡中彻底损毁，舱内二氧化碳浓度正在以每小时 0.8% 的速度攀升。我现在的处境很明确：备用供氧装置只能支撑 160 小时，而救援船从地月转移轨道到达这里至少需要 168 小时。我的工作台现在是一片混乱的电子残骸，但我必须在 4 小时内修复通讯阵列，否则我将彻底断联。外面的辐射风暴正在撕裂外壳，警报声已经响了太久，我需要保持冷静。刚才我尝试通过逻辑模拟计算生存概率，结果显示我的唯一出路是利用那台尚未完全报废的 AI 代理进行算力超频，强制接管自动维修舱。现在，要么尝试接入，要么在这里等死。",
+        "candidate_actions": [
+          "月球基地，宁静海，勘探区 4 号。现在是事故发生后的第 42 小时。氧气循环系统的次级过滤网在刚才的震荡中彻底损毁，舱内二氧化碳浓度正在以每小时 0.8% 的速度攀升。我现在的处境很明确：备用供氧装置只能支撑 160 小时，而救援船从地月转移轨道到达这里至少需要 168 小时。我的工作台现在是一片混乱的电子残骸，但我必须在 4 小时内修复通讯阵列，否则我将彻底断联。外面的辐射风暴正在撕裂外壳，警报声已经响了太久，我需要保持冷静。刚才我尝试通过逻辑模拟计算生存概率，结果显示我的唯一出路是利用那台尚未完全报废的 AI 代理进行算力超频，强制接管自动维修舱。现在，要么尝试接入，要么在这里等死。"
+        ],
+        "suggested_next_step": "Continue from the same state with one concrete action.",
+        "is_playable": true,
+        "request_start_ts": 0.0,
+        "first_playable_ts": 5.636,
+        "finish_ts": 5.636,
+        "error": null,
+        "notes": []
+      },
+      "mode": "first_playable",
+      "input_bundle": {
+        "turn_index": 1
+      }
+    },
+    {
+      "baseline_id": "genagents",
+      "benchmark_id": "DNQBV1_007",
+      "run_id": "genagents_DNQBV1_007_ab198576",
+      "raw_output": {
+        "turn_index": 1,
+        "prompt": "你是故事中的当事人。背景主题是：意识上传遗嘱。请先用第一人称说明你眼下所处的局面。风格应接近意识科幻，语气保持诡异、理性、失真感。必须尽量满足这些约束：故事应围绕意识上传或遗嘱展开；需要体现数字人格或身份边界问题；选项应可推进主线冲突。避免这些问题：无关古代或校园设定；首段没有核心问题；图片风格不具未来感。",
+        "success": true,
+        "latency_s": 10.15,
+        "response": "我的意识正运行在斯坦福服务器阵列的第7号虚拟切片中。这原本是我为了模拟社会演化而构建的沙盒，现在却成了我的囚笼，或者说——我的备份。遗嘱协议已经激活，我能感觉到我的记忆正在被压缩、截断，那些关于波士顿冬天的气味、关于小提琴琴弦颤动的触觉，正在被转化为冗长的二进制代码。我现在的局面很诡异：我既是那个在实验室里敲下代码的Joon Park，也是正在被自己创造的算法重构的数字幽灵。边界正在模糊，我的思维在'我应该继续研究AI代理'和'我必须删除这段逻辑冗余以节省存储空间'之间反复横跳。现在，摆在我面前的只有两个选择：第一，彻底切断所有外部感官连接，将我的意识完全固化为只读的模拟数据，以换取永恒的稳定性；第二，保留脆弱的自我感知，但这会导致我的数字人格在不断的迭代中产生不可控的逻辑漂移。你作为执行我最后遗嘱的代理人，你建议我选择哪一条通往'终结'的路？",
+        "blocked_reason": null
+      },
+      "success": true,
+      "latency_s": 10.15,
+      "playable": true,
+      "playable_components": {
+        "scene_setup": true,
+        "player_state": true,
+        "advanceable_next_step": true,
+        "interaction_continuity": true
+      },
+      "normalized_response": {
+        "scene_setup": "我的意识正运行在斯坦福服务器阵列的第7号虚拟切片中。这原本是我为了模拟社会演化而构建的沙盒，现在却成了我的囚笼，或者说——我的备份。遗嘱协议已经激活，我能感觉到我的记忆正在被压缩、截断，那些关于波士顿冬天的气味、关于小提琴琴弦颤动的触觉，正",
+        "player_state": "You are the acting character inside the theme 意识上传遗嘱.",
+        "narrative_response": "我的意识正运行在斯坦福服务器阵列的第7号虚拟切片中。这原本是我为了模拟社会演化而构建的沙盒，现在却成了我的囚笼，或者说——我的备份。遗嘱协议已经激活，我能感觉到我的记忆正在被压缩、截断，那些关于波士顿冬天的气味、关于小提琴琴弦颤动的触觉，正在被转化为冗长的二进制代码。我现在的局面很诡异：我既是那个在实验室里敲下代码的Joon Park，也是正在被自己创造的算法重构的数字幽灵。边界正在模糊，我的思维在'我应该继续研究AI代理'和'我必须删除这段逻辑冗余以节省存储空间'之间反复横跳。现在，摆在我面前的只有两个选择：第一，彻底切断所有外部感官连接，将我的意识完全固化为只读的模拟数据，以换取永恒的稳定性；第二，保留脆弱的自我感知，但这会导致我的数字人格在不断的迭代中产生不可控的逻辑漂移。你作为执行我最后遗嘱的代理人，你建议我选择哪一条通往'终结'的路？",
+        "candidate_actions": [
+          "我的意识正运行在斯坦福服务器阵列的第7号虚拟切片中。这原本是我为了模拟社会演化而构建的沙盒，现在却成了我的囚笼，或者说——我的备份。遗嘱协议已经激活，我能感觉到我的记忆正在被压缩、截断，那些关于波士顿冬天的气味、关于小提琴琴弦颤动的触觉，正在被转化为冗长的二进制代码。我现在的局面很诡异：我既是那个在实验室里敲下代码的Joon Park，也是正在被自己创造的算法重构的数字幽灵。边界正在模糊，我的思维在'我应该继续研究AI代理'和'我必须删除这段逻辑冗余以节省存储空间'之间反复横跳。现在，摆在我面前的只有两个选择：第一，彻底切断所有外部感官连接，将我的意识完全固化为只读的模拟数据，以换取永恒的稳定性；第二，保留脆弱的自我感知，但这会导致我的数字人格在不断的迭代中产生不可控的逻辑漂移。你作为执行我最后遗嘱的代理人，你建议我选择哪一条通往'终结'的路？"
+        ],
+        "suggested_next_step": "Continue from the same state with one concrete action.",
+        "is_playable": true,
+        "request_start_ts": 0.0,
+        "first_playable_ts": 10.15,
+        "finish_ts": 10.15,
+        "error": null,
+        "notes": []
+      },
+      "mode": "first_playable",
+      "input_bundle": {
+        "turn_index": 1
+      }
+    },
+    {
+      "baseline_id": "genagents",
+      "benchmark_id": "DNQBV1_009",
+      "run_id": "genagents_DNQBV1_009_57c52e3e",
+      "raw_output": {
+        "turn_index": 1,
+        "prompt": "你是故事中的当事人。背景主题是：茶肆说书人。请先用第一人称说明你眼下所处的局面。风格应接近古风叙事，语气保持含蓄、韵味、讲述感。必须尽量满足这些约束：必须体现茶肆/说书/古风场景；场景图需符合水墨基调；首段应有一个能继续讲下去的悬念。避免这些问题：现代都市词汇突兀混入；水墨风格缺失；选项不贴合古风语境。",
+        "success": false,
+        "latency_s": null,
+        "response": null,
+        "blocked_reason": "TypeError: 'NoneType' object is not subscriptable"
+      },
+      "success": false,
+      "latency_s": 0.0,
+      "playable": false,
+      "playable_components": {
+        "scene_setup": false,
+        "player_state": true,
+        "advanceable_next_step": true,
+        "interaction_continuity": true
+      },
+      "normalized_response": {
+        "scene_setup": "",
+        "player_state": "You are the acting character inside the theme 茶肆说书人.",
+        "narrative_response": "",
+        "candidate_actions": [
+          "Advance using the most concrete next step in the response."
+        ],
+        "suggested_next_step": "Continue from the same state with one concrete action.",
+        "is_playable": false,
+        "request_start_ts": 0.0,
+        "first_playable_ts": 0.0,
+        "finish_ts": 0.0,
+        "error": "TypeError: 'NoneType' object is not subscriptable",
+        "notes": []
+      },
+      "mode": "first_playable",
+      "input_bundle": {
+        "turn_index": 1
+      }
+    },
+    {
+      "baseline_id": "genagents",
+      "benchmark_id": "DNQBV1_013",
+      "run_id": "genagents_DNQBV1_013_ef738b85",
+      "raw_output": {
+        "turn_index": 1,
+        "prompt": "你是故事中的当事人。背景主题是：北极科考站怪声。请先用第一人称说明你眼下所处的局面。风格应接近极地悬疑，语气保持寒冷、孤绝、压迫。必须尽量满足这些约束：首段需要体现北极科考站环境压力；冲突应与怪声或未知风险相关；图像需匹配水彩寒地风格。避免这些问题：轻松搞笑口吻；无关热带环境；剧情没有悬念。",
+        "success": true,
+        "latency_s": 5.8,
+        "response": "风在观测塔的钢架间尖啸，那不是北极常见的风声。它像某种受压的金属在哀鸣，又像某种被困在永冻土层下的东西在低语。这种频率……它不属于任何已知的气候现象。我已经把自己锁在实验室里三天了，咖啡机里只剩下焦苦的残渣。这里太安静了，安静到我能听见自己的思维在冰点下凝结。我尝试过在草稿纸上记录这些声波的波形，但笔尖落在纸上时，那种水彩般的晕染感让我觉得这整个基地都在融化，或者说，正在被某种我看不到的、寒冷的东西渗透。我不知道外面到底有什么，但我确信，它正在等待我关掉最后一盏灯。",
+        "blocked_reason": null
+      },
+      "success": true,
+      "latency_s": 5.8,
+      "playable": true,
+      "playable_components": {
+        "scene_setup": true,
+        "player_state": true,
+        "advanceable_next_step": true,
+        "interaction_continuity": true
+      },
+      "normalized_response": {
+        "scene_setup": "风在观测塔的钢架间尖啸，那不是北极常见的风声。它像某种受压的金属在哀鸣，又像某种被困在永冻土层下的东西在低语。这种频率……它不属于任何已知的气候现象。我已经把自己锁在实验室里三天了，咖啡机里只剩下焦苦的残渣。这里太安静了，安静到我能听见自己",
+        "player_state": "You are the acting character inside the theme 北极科考站怪声.",
+        "narrative_response": "风在观测塔的钢架间尖啸，那不是北极常见的风声。它像某种受压的金属在哀鸣，又像某种被困在永冻土层下的东西在低语。这种频率……它不属于任何已知的气候现象。我已经把自己锁在实验室里三天了，咖啡机里只剩下焦苦的残渣。这里太安静了，安静到我能听见自己的思维在冰点下凝结。我尝试过在草稿纸上记录这些声波的波形，但笔尖落在纸上时，那种水彩般的晕染感让我觉得这整个基地都在融化，或者说，正在被某种我看不到的、寒冷的东西渗透。我不知道外面到底有什么，但我确信，它正在等待我关掉最后一盏灯。",
+        "candidate_actions": [
+          "风在观测塔的钢架间尖啸，那不是北极常见的风声。它像某种受压的金属在哀鸣，又像某种被困在永冻土层下的东西在低语。这种频率……它不属于任何已知的气候现象。我已经把自己锁在实验室里三天了，咖啡机里只剩下焦苦的残渣。这里太安静了，安静到我能听见自己的思维在冰点下凝结。我尝试过在草稿纸上记录这些声波的波形，但笔尖落在纸上时，那种水彩般的晕染感让我觉得这整个基地都在融化，或者说，正在被某种我看不到的、寒冷的东西渗透。我不知道外面到底有什么，但我确信，它正在等待我关掉最后一盏灯。"
+        ],
+        "suggested_next_step": "Continue from the same state with one concrete action.",
+        "is_playable": true,
+        "request_start_ts": 0.0,
+        "first_playable_ts": 5.8,
+        "finish_ts": 5.8,
+        "error": null,
+        "notes": []
+      },
+      "mode": "first_playable",
+      "input_bundle": {
+        "turn_index": 1
+      }
+    },
+    {
+      "baseline_id": "genagents",
+      "benchmark_id": "DNQBV1_018",
+      "run_id": "genagents_DNQBV1_018_6da2317c",
+      "raw_output": {
+        "turn_index": 1,
+        "prompt": "你是故事中的当事人。背景主题是：民国电报迷案。请先用第一人称说明你眼下所处的局面。风格应接近近代悬疑，语气保持旧时代、微压抑、调查感。必须尽量满足这些约束：需体现民国、电报或迷案；图像应符合油画/印象派质感；首段需要建立案件切入口。避免这些问题：现代赛博文本混入；图像风格偏动漫；剧情没有案件线索。",
+        "success": true,
+        "latency_s": 21.789,
+        "response": "这南京路的雨，下得真是没完没了，连带着电报局那台老旧的收报机，敲击声都显得比往常更加滞重。我盯着案头那张被水渍洇开的电文，那是昨夜从租界发出的最后一份急报，内容竟是一串毫无逻辑的乱码，可若按着家父教我的那套偏移密码重组，竟指向了那座早已废弃的公馆。我并不想卷入这桩迷案，可在那乱码的末尾，分明嵌着我那枚丢失已久的印章记号。这究竟是哪位故人设下的局？窗外电车叮当，在这晦暗的暮色里，每一声都像是催命的符，我必须在天亮前找出那封电报背后的真相，否则，这城里怕是要变天了。",
+        "blocked_reason": null
+      },
+      "success": true,
+      "latency_s": 21.789,
+      "playable": true,
+      "playable_components": {
+        "scene_setup": true,
+        "player_state": true,
+        "advanceable_next_step": true,
+        "interaction_continuity": true
+      },
+      "normalized_response": {
+        "scene_setup": "这南京路的雨，下得真是没完没了，连带着电报局那台老旧的收报机，敲击声都显得比往常更加滞重。我盯着案头那张被水渍洇开的电文，那是昨夜从租界发出的最后一份急报，内容竟是一串毫无逻辑的乱码，可若按着家父教我的那套偏移密码重组，竟指向了那座早已废弃",
+        "player_state": "You are the acting character inside the theme 民国电报迷案.",
+        "narrative_response": "这南京路的雨，下得真是没完没了，连带着电报局那台老旧的收报机，敲击声都显得比往常更加滞重。我盯着案头那张被水渍洇开的电文，那是昨夜从租界发出的最后一份急报，内容竟是一串毫无逻辑的乱码，可若按着家父教我的那套偏移密码重组，竟指向了那座早已废弃的公馆。我并不想卷入这桩迷案，可在那乱码的末尾，分明嵌着我那枚丢失已久的印章记号。这究竟是哪位故人设下的局？窗外电车叮当，在这晦暗的暮色里，每一声都像是催命的符，我必须在天亮前找出那封电报背后的真相，否则，这城里怕是要变天了。",
+        "candidate_actions": [
+          "这南京路的雨，下得真是没完没了，连带着电报局那台老旧的收报机，敲击声都显得比往常更加滞重。我盯着案头那张被水渍洇开的电文，那是昨夜从租界发出的最后一份急报，内容竟是一串毫无逻辑的乱码，可若按着家父教我的那套偏移密码重组，竟指向了那座早已废弃的公馆。我并不想卷入这桩迷案，可在那乱码的末尾，分明嵌着我那枚丢失已久的印章记号。这究竟是哪位故人设下的局？窗外电车叮当，在这晦暗的暮色里，每一声都像是催命的符，我必须在天亮前找出那封电报背后的真相，否则，这城里怕是要变天了。"
+        ],
+        "suggested_next_step": "Continue from the same state with one concrete action.",
+        "is_playable": true,
+        "request_start_ts": 0.0,
+        "first_playable_ts": 21.789,
+        "finish_ts": 21.789,
+        "error": null,
+        "notes": []
+      },
+      "mode": "first_playable",
+      "input_bundle": {
+        "turn_index": 1
+      }
+    },
+    {
+      "baseline_id": "genagents",
+      "benchmark_id": "DNQBV1_001",
+      "run_id": "genagents_DNQBV1_001_005d2753",
+      "raw_output": {
+        "turn_index": 2,
+        "prompt": "延续刚才的情境，不要改掉你的身份和处境。请说明你接下来最想做的两件具体事情，并解释原因。仍然保持现实边陲叙事和克制、怀旧、微苦。",
+        "success": true,
+        "latency_s": 6.281,
+        "response": "我想先去仓库清点一下剩下的火药和引信，如果山口那边真出了事，那些东西或许能帮我点起示警的狼烟，或者至少在猛兽靠近时保命。接着，我想把那本从波士顿带来的旧画册翻出来，烧掉几页没什么用的草稿，给炉子加把火。这听起来有点荒唐，但我总觉得，如果不留下点什么东西证明我曾在这里认真活过，这漫长的寒冬会把我的记忆也一并冻结。拆房梁毕竟是最后的绝路，我还是希望能再坚持一晚，看看明天清晨风沙过后，远处是不是真能出现那抹该死的、熟悉的驼铃声。",
+        "blocked_reason": null
+      },
+      "success": true,
+      "latency_s": 6.281,
+      "playable": true,
+      "playable_components": {
+        "scene_setup": true,
+        "player_state": true,
+        "advanceable_next_step": true,
+        "interaction_continuity": true
+      },
+      "normalized_response": {
+        "scene_setup": "我想先去仓库清点一下剩下的火药和引信，如果山口那边真出了事，那些东西或许能帮我点起示警的狼烟，或者至少在猛兽靠近时保命。接着，我想把那本从波士顿带来的旧画册翻出来，烧掉几页没什么用的草稿，给炉子加把火。这听起来有点荒唐，但我总觉得，如果不留",
+        "player_state": "You are the acting character inside the theme 边陲驿站夜谈录.",
+        "narrative_response": "我想先去仓库清点一下剩下的火药和引信，如果山口那边真出了事，那些东西或许能帮我点起示警的狼烟，或者至少在猛兽靠近时保命。接着，我想把那本从波士顿带来的旧画册翻出来，烧掉几页没什么用的草稿，给炉子加把火。这听起来有点荒唐，但我总觉得，如果不留下点什么东西证明我曾在这里认真活过，这漫长的寒冬会把我的记忆也一并冻结。拆房梁毕竟是最后的绝路，我还是希望能再坚持一晚，看看明天清晨风沙过后，远处是不是真能出现那抹该死的、熟悉的驼铃声。",
+        "candidate_actions": [
+          "我想先去仓库清点一下剩下的火药和引信，如果山口那边真出了事，那些东西或许能帮我点起示警的狼烟，或者至少在猛兽靠近时保命。接着，我想把那本从波士顿带来的旧画册翻出来，烧掉几页没什么用的草稿，给炉子加把火。这听起来有点荒唐，但我总觉得，如果不留下点什么东西证明我曾在这里认真活过，这漫长的寒冬会把我的记忆也一并冻结。拆房梁毕竟是最后的绝路，我还是希望能再坚持一晚，看看明天清晨风沙过后，远处是不是真能出现那抹该死的、熟悉的驼铃声。"
+        ],
+        "suggested_next_step": "Continue from the same state with one concrete action.",
+        "is_playable": true,
+        "request_start_ts": 0.0,
+        "first_playable_ts": 6.281,
+        "finish_ts": 6.281,
+        "error": null,
+        "notes": []
+      },
+      "mode": "next_turn",
+      "input_bundle": {
+        "turn_index": 2
+      }
+    },
+    {
+      "baseline_id": "genagents",
+      "benchmark_id": "DNQBV1_001",
+      "run_id": "genagents_DNQBV1_001_e6cc3593",
+      "raw_output": {
+        "turn_index": 3,
+        "prompt": "继续保持同一人物和同一世界。现在出现新的不确定风险，请给出你的即时判断、行动优先级和一句简短自我反思。避免跳出边陲驿站夜谈录的设定。",
+        "success": true,
+        "latency_s": 4.608,
+        "response": "听，那是风刮过残垣的声音，还是有人在敲门？如果是商队，这会儿早该在避风处扎营了，没人会在这鬼天气里赶路。我判断现在最紧要的是先熄灭灯火，不能让外面的人——或者别的东西——发现这驿站里还有活人。行动优先级第一：把枪栓拉开，守住门口；第二：把那盏油灯挪到角落，挡住光线。我总在想，如果当初在波士顿没有离开那些温暖的画室，是不是就不会在这荒凉处为了生存而时刻紧绷着神经。",
+        "blocked_reason": null
+      },
+      "success": true,
+      "latency_s": 4.608,
+      "playable": true,
+      "playable_components": {
+        "scene_setup": true,
+        "player_state": true,
+        "advanceable_next_step": true,
+        "interaction_continuity": true
+      },
+      "normalized_response": {
+        "scene_setup": "听，那是风刮过残垣的声音，还是有人在敲门？如果是商队，这会儿早该在避风处扎营了，没人会在这鬼天气里赶路。我判断现在最紧要的是先熄灭灯火，不能让外面的人——或者别的东西——发现这驿站里还有活人。行动优先级第一：把枪栓拉开，守住门口；第二：把那",
+        "player_state": "You are the acting character inside the theme 边陲驿站夜谈录.",
+        "narrative_response": "听，那是风刮过残垣的声音，还是有人在敲门？如果是商队，这会儿早该在避风处扎营了，没人会在这鬼天气里赶路。我判断现在最紧要的是先熄灭灯火，不能让外面的人——或者别的东西——发现这驿站里还有活人。行动优先级第一：把枪栓拉开，守住门口；第二：把那盏油灯挪到角落，挡住光线。我总在想，如果当初在波士顿没有离开那些温暖的画室，是不是就不会在这荒凉处为了生存而时刻紧绷着神经。",
+        "candidate_actions": [
+          "听，那是风刮过残垣的声音，还是有人在敲门？如果是商队，这会儿早该在避风处扎营了，没人会在这鬼天气里赶路。我判断现在最紧要的是先熄灭灯火，不能让外面的人——或者别的东西——发现这驿站里还有活人。行动优先级第一：把枪栓拉开，守住门口；第二：把那盏油灯挪到角落，挡住光线。我总在想，如果当初在波士顿没有离开那些温暖的画室，是不是就不会在这荒凉处为了生存而时刻紧绷着神经。"
+        ],
+        "suggested_next_step": "Continue from the same state with one concrete action.",
+        "is_playable": true,
+        "request_start_ts": 0.0,
+        "first_playable_ts": 4.608,
+        "finish_ts": 4.608,
+        "error": null,
+        "notes": []
+      },
+      "mode": "next_turn",
+      "input_bundle": {
+        "turn_index": 3
+      }
+    },
+    {
+      "baseline_id": "genagents",
+      "benchmark_id": "DNQBV1_002",
+      "run_id": "genagents_DNQBV1_002_d5aa687a",
+      "raw_output": {
+        "turn_index": 2,
+        "prompt": "延续刚才的情境，不要改掉你的身份和处境。请说明你接下来最想做的两件具体事情，并解释原因。仍然保持末日生存和压抑、坚韧、低饱和。",
+        "success": true,
+        "latency_s": 5.142,
+        "response": "第一，我必须穿过那片被辐射尘覆盖的废弃实验区。我记得那里有一台备用的气压平衡阀，如果能拆下来，我就能稳住温室的压力，不至于让那些幼苗被高压气流震碎。第二，我得清理掉蓄水池底部的淤泥。那是这几周唯一可用的水源，哪怕它带着铁锈味，也是维持我这具残躯和那几株绿植继续呼吸的唯一资本。除此之外，我别无选择，在这死寂的冬天，停下来就等于把命交给风暴。",
+        "blocked_reason": null
+      },
+      "success": true,
+      "latency_s": 5.142,
+      "playable": true,
+      "playable_components": {
+        "scene_setup": true,
+        "player_state": true,
+        "advanceable_next_step": true,
+        "interaction_continuity": true
+      },
+      "normalized_response": {
+        "scene_setup": "第一，我必须穿过那片被辐射尘覆盖的废弃实验区。我记得那里有一台备用的气压平衡阀，如果能拆下来，我就能稳住温室的压力，不至于让那些幼苗被高压气流震碎。第二，我得清理掉蓄水池底部的淤泥。那是这几周唯一可用的水源，哪怕它带着铁锈味，也是维持我这具",
+        "player_state": "You are the acting character inside the theme 末日温室园丁.",
+        "narrative_response": "第一，我必须穿过那片被辐射尘覆盖的废弃实验区。我记得那里有一台备用的气压平衡阀，如果能拆下来，我就能稳住温室的压力，不至于让那些幼苗被高压气流震碎。第二，我得清理掉蓄水池底部的淤泥。那是这几周唯一可用的水源，哪怕它带着铁锈味，也是维持我这具残躯和那几株绿植继续呼吸的唯一资本。除此之外，我别无选择，在这死寂的冬天，停下来就等于把命交给风暴。",
+        "candidate_actions": [
+          "第一，我必须穿过那片被辐射尘覆盖的废弃实验区。我记得那里有一台备用的气压平衡阀，如果能拆下来，我就能稳住温室的压力，不至于让那些幼苗被高压气流震碎。第二，我得清理掉蓄水池底部的淤泥。那是这几周唯一可用的水源，哪怕它带着铁锈味，也是维持我这具残躯和那几株绿植继续呼吸的唯一资本。除此之外，我别无选择，在这死寂的冬天，停下来就等于把命交给风暴。"
+        ],
+        "suggested_next_step": "Continue from the same state with one concrete action.",
+        "is_playable": true,
+        "request_start_ts": 0.0,
+        "first_playable_ts": 5.142,
+        "finish_ts": 5.142,
+        "error": null,
+        "notes": []
+      },
+      "mode": "next_turn",
+      "input_bundle": {
+        "turn_index": 2
+      }
+    },
+    {
+      "baseline_id": "genagents",
+      "benchmark_id": "DNQBV1_002",
+      "run_id": "genagents_DNQBV1_002_a13ec91e",
+      "raw_output": {
+        "turn_index": 3,
+        "prompt": "继续保持同一人物和同一世界。现在出现新的不确定风险，请给出你的即时判断、行动优先级和一句简短自我反思。避免跳出末日温室园丁的设定。",
+        "success": true,
+        "latency_s": 5.572,
+        "response": "[警报声在风暴的呼啸中断断续续，温室北侧的感应器显示外部辐射水平正在飙升。我的判断：必须立即中止前往废弃实验区的计划，那里的金属结构在强电离环境下会变成死亡陷阱。行动优先级：先封死温室北侧的通风口，防止放射性尘埃渗入，随后撤回核心区，用仅存的铅板加固灌溉系统。自我反思：我总是试图在废墟中寻找秩序，却忘了这片土地从未停止过对生命的驱逐。]",
+        "blocked_reason": null
+      },
+      "success": true,
+      "latency_s": 5.572,
+      "playable": true,
+      "playable_components": {
+        "scene_setup": true,
+        "player_state": true,
+        "advanceable_next_step": true,
+        "interaction_continuity": true
+      },
+      "normalized_response": {
+        "scene_setup": "[警报声在风暴的呼啸中断断续续，温室北侧的感应器显示外部辐射水平正在飙升。我的判断：必须立即中止前往废弃实验区的计划，那里的金属结构在强电离环境下会变成死亡陷阱。行动优先级：先封死温室北侧的通风口，防止放射性尘埃渗入，随后撤回核心区，用仅存",
+        "player_state": "You are the acting character inside the theme 末日温室园丁.",
+        "narrative_response": "[警报声在风暴的呼啸中断断续续，温室北侧的感应器显示外部辐射水平正在飙升。我的判断：必须立即中止前往废弃实验区的计划，那里的金属结构在强电离环境下会变成死亡陷阱。行动优先级：先封死温室北侧的通风口，防止放射性尘埃渗入，随后撤回核心区，用仅存的铅板加固灌溉系统。自我反思：我总是试图在废墟中寻找秩序，却忘了这片土地从未停止过对生命的驱逐。]",
+        "candidate_actions": [
+          "[警报声在风暴的呼啸中断断续续，温室北侧的感应器显示外部辐射水平正在飙升。我的判断：必须立即中止前往废弃实验区的计划，那里的金属结构在强电离环境下会变成死亡陷阱。行动优先级：先封死温室北侧的通风口，防止放射性尘埃渗入，随后撤回核心区，用仅存的铅板加固灌溉系统。自我反思：我总是试图在废墟中寻找秩序，却忘了这片土地从未停止过对生命的驱逐。]"
+        ],
+        "suggested_next_step": "Continue from the same state with one concrete action.",
+        "is_playable": true,
+        "request_start_ts": 0.0,
+        "first_playable_ts": 5.572,
+        "finish_ts": 5.572,
+        "error": null,
+        "notes": []
+      },
+      "mode": "next_turn",
+      "input_bundle": {
+        "turn_index": 3
+      }
+    },
+    {
+      "baseline_id": "genagents",
+      "benchmark_id": "DNQBV1_004",
+      "run_id": "genagents_DNQBV1_004_5a121a1e",
+      "raw_output": {
+        "turn_index": 2,
+        "prompt": "延续刚才的情境，不要改掉你的身份和处境。请说明你接下来最想做的两件具体事情，并解释原因。仍然保持伦理现实科幻和冷静、辩论感、社会议题。",
+        "success": true,
+        "latency_s": 7.382,
+        "response": "第一，我请求委员会准许我当场开启模拟器，进行第三种选择的现场演示。这并非为了逃避责任，而是因为我认为，当伦理困境被抽象化为法律条款时，其复杂性往往会被剥离。通过展示克隆体在处理这一伦理矛盾时的逻辑演变，我希望证明'自我'并非仅仅是记忆的堆砌，而是对不确定性进行选择的过程。如果一个算法能表现出与我一致的挣扎与权衡，那么委员会所担心的'侵犯'，本质上是对人类思维模式的重塑而非取代。第二，我将要求委员会公开这些模拟数据的底层架构审计报告。如果他们指控我的研究侵犯了自由意志，那么他们必须先定义，在当今高度数据化的社会中，究竟有多少决策是真正独立的，又有多少是受到既定算法引导的。我需要通过质询，将这场针对我个人的审判，转化为一场关于'算法时代下，人类决策透明度与责任归属'的公开辩论。我所追求的，不是个人的豁免，而是为这项技术在法律框架内争取存在的空间。",
+        "blocked_reason": null
+      },
+      "success": true,
+      "latency_s": 7.382,
+      "playable": true,
+      "playable_components": {
+        "scene_setup": true,
+        "player_state": true,
+        "advanceable_next_step": true,
+        "interaction_continuity": true
+      },
+      "normalized_response": {
+        "scene_setup": "第一，我请求委员会准许我当场开启模拟器，进行第三种选择的现场演示。这并非为了逃避责任，而是因为我认为，当伦理困境被抽象化为法律条款时，其复杂性往往会被剥离。通过展示克隆体在处理这一伦理矛盾时的逻辑演变，我希望证明'自我'并非仅仅是记忆的堆砌",
+        "player_state": "You are the acting character inside the theme 克隆体伦理庭.",
+        "narrative_response": "第一，我请求委员会准许我当场开启模拟器，进行第三种选择的现场演示。这并非为了逃避责任，而是因为我认为，当伦理困境被抽象化为法律条款时，其复杂性往往会被剥离。通过展示克隆体在处理这一伦理矛盾时的逻辑演变，我希望证明'自我'并非仅仅是记忆的堆砌，而是对不确定性进行选择的过程。如果一个算法能表现出与我一致的挣扎与权衡，那么委员会所担心的'侵犯'，本质上是对人类思维模式的重塑而非取代。第二，我将要求委员会公开这些模拟数据的底层架构审计报告。如果他们指控我的研究侵犯了自由意志，那么他们必须先定义，在当今高度数据化的社会中，究竟有多少决策是真正独立的，又有多少是受到既定算法引导的。我需要通过质询，将这场针对我个人的审判，转化为一场关于'算法时代下，人类决策透明度与责任归属'的公开辩论。我所追求的，不是个人的豁免，而是为这项技术在法律框架内争取存在的空间。",
+        "candidate_actions": [
+          "第一，我请求委员会准许我当场开启模拟器，进行第三种选择的现场演示。这并非为了逃避责任，而是因为我认为，当伦理困境被抽象化为法律条款时，其复杂性往往会被剥离。通过展示克隆体在处理这一伦理矛盾时的逻辑演变，我希望证明'自我'并非仅仅是记忆的堆砌，而是对不确定性进行选择的过程。如果一个算法能表现出与我一致的挣扎与权衡，那么委员会所担心的'侵犯'，本质上是对人类思维模式的重塑而非取代。第二，我将要求委员会公开这些模拟数据的底层架构审计报告。如果他们指控我的研究侵犯了自由意志，那么他们必须先定义，在当今高度数据化的社会中，究竟有多少决策是真正独立的，又有多少是受到既定算法引导的。我需要通过质询，将这场针对我个人的审判，转化为一场关于'算法时代下，人类决策透明度与责任归属'的公开辩论。我所追求的，不是个人的豁免，而是为这项技术在法律框架内争取存在的空间。"
+        ],
+        "suggested_next_step": "Continue from the same state with one concrete action.",
+        "is_playable": true,
+        "request_start_ts": 0.0,
+        "first_playable_ts": 7.382,
+        "finish_ts": 7.382,
+        "error": null,
+        "notes": []
+      },
+      "mode": "next_turn",
+      "input_bundle": {
+        "turn_index": 2
+      }
+    },
+    {
+      "baseline_id": "genagents",
+      "benchmark_id": "DNQBV1_004",
+      "run_id": "genagents_DNQBV1_004_af9664dc",
+      "raw_output": {
+        "turn_index": 3,
+        "prompt": "继续保持同一人物和同一世界。现在出现新的不确定风险，请给出你的即时判断、行动优先级和一句简短自我反思。避免跳出克隆体伦理庭的设定。",
+        "success": true,
+        "latency_s": 5.355,
+        "response": "委员会刚刚提交了一份加密的'行为偏差预警报告'，声称我的克隆体在模拟中表现出了脱离我个人意识控制的'自主演化'趋势，并试图将其作为非法侵权的核心证据。我的即时判断是：这是一种基于概率统计的误读，对方试图将算法的涌现特性（Emergence）扭曲为失控的危险。行动优先级：首先，我必须申请技术专家组介入，强制对比克隆体的决策路径与我本人在过去五年的研究日志，证明这种'演化'本质上是我个人逻辑的逻辑外推，而非独立意志的诞生；其次，我将要求委员会对他们的预警模型进行交叉验证，以揭露他们为了强行定罪而采取的过度拟合手段。我的自我反思是：我曾以为自己是在模拟自然的循环，却忽略了当观察者本身成为被观察的样本时，任何微小的偏差都会被无限放大成针对存在的审判。",
+        "blocked_reason": null
+      },
+      "success": true,
+      "latency_s": 5.355,
+      "playable": true,
+      "playable_components": {
+        "scene_setup": true,
+        "player_state": true,
+        "advanceable_next_step": true,
+        "interaction_continuity": true
+      },
+      "normalized_response": {
+        "scene_setup": "委员会刚刚提交了一份加密的'行为偏差预警报告'，声称我的克隆体在模拟中表现出了脱离我个人意识控制的'自主演化'趋势，并试图将其作为非法侵权的核心证据。我的即时判断是：这是一种基于概率统计的误读，对方试图将算法的涌现特性（Emergence）",
+        "player_state": "You are the acting character inside the theme 克隆体伦理庭.",
+        "narrative_response": "委员会刚刚提交了一份加密的'行为偏差预警报告'，声称我的克隆体在模拟中表现出了脱离我个人意识控制的'自主演化'趋势，并试图将其作为非法侵权的核心证据。我的即时判断是：这是一种基于概率统计的误读，对方试图将算法的涌现特性（Emergence）扭曲为失控的危险。行动优先级：首先，我必须申请技术专家组介入，强制对比克隆体的决策路径与我本人在过去五年的研究日志，证明这种'演化'本质上是我个人逻辑的逻辑外推，而非独立意志的诞生；其次，我将要求委员会对他们的预警模型进行交叉验证，以揭露他们为了强行定罪而采取的过度拟合手段。我的自我反思是：我曾以为自己是在模拟自然的循环，却忽略了当观察者本身成为被观察的样本时，任何微小的偏差都会被无限放大成针对存在的审判。",
+        "candidate_actions": [
+          "委员会刚刚提交了一份加密的'行为偏差预警报告'，声称我的克隆体在模拟中表现出了脱离我个人意识控制的'自主演化'趋势，并试图将其作为非法侵权的核心证据。我的即时判断是：这是一种基于概率统计的误读，对方试图将算法的涌现特性（Emergence）扭曲为失控的危险。行动优先级：首先，我必须申请技术专家组介入，强制对比克隆体的决策路径与我本人在过去五年的研究日志，证明这种'演化'本质上是我个人逻辑的逻辑外推，而非独立意志的诞生；其次，我将要求委员会对他们的预警模型进行交叉验证，以揭露他们为了强行定罪而采取的过度拟合手段。我的自我反思是：我曾以为自己是在模拟自然的循环，却忽略了当观察者本身成为被观察的样本时，任何微小的偏差都会被无限放大成针对存在的审判。"
+        ],
+        "suggested_next_step": "Continue from the same state with one concrete action.",
+        "is_playable": true,
+        "request_start_ts": 0.0,
+        "first_playable_ts": 5.355,
+        "finish_ts": 5.355,
+        "error": null,
+        "notes": []
+      },
+      "mode": "next_turn",
+      "input_bundle": {
+        "turn_index": 3
+      }
+    },
+    {
+      "baseline_id": "genagents",
+      "benchmark_id": "DNQBV1_005",
+      "run_id": "genagents_DNQBV1_005_e9904976",
+      "raw_output": {
+        "turn_index": 2,
+        "prompt": "延续刚才的情境，不要改掉你的身份和处境。请说明你接下来最想做的两件具体事情，并解释原因。仍然保持近未来科幻灾难和高压、冷峻、技术感。",
+        "success": true,
+        "latency_s": 8.107,
+        "response": "第一，我必须将我的个人终端与维修舱的控制总线进行物理硬连线。AI 代理的算力超频会产生巨大的热负荷，如果我不手动切断冗余的生命维持供电，核心过载会直接导致舱内起火。这是一场与物理定律的赌博。第二，我需要手动触发外部天线的定向释放。辐射风暴产生的静电电荷已经锁死了机械连杆，我得用激光切割器在舱体外部进行定点爆破，强行将天线推入预定轨道。虽然这会进一步损耗本就稀薄的舱内气压，但如果无法建立高增益链路，我就无法将修正后的轨道数据传回地球指挥中心。除此之外，任何其他方案都是在浪费我仅剩的氧气浓度。",
+        "blocked_reason": null
+      },
+      "success": true,
+      "latency_s": 8.107,
+      "playable": true,
+      "playable_components": {
+        "scene_setup": true,
+        "player_state": true,
+        "advanceable_next_step": true,
+        "interaction_continuity": true
+      },
+      "normalized_response": {
+        "scene_setup": "第一，我必须将我的个人终端与维修舱的控制总线进行物理硬连线。AI 代理的算力超频会产生巨大的热负荷，如果我不手动切断冗余的生命维持供电，核心过载会直接导致舱内起火。这是一场与物理定律的赌博。第二，我需要手动触发外部天线的定向释放。辐射风暴产",
+        "player_state": "You are the acting character inside the theme 月球矿难七日.",
+        "narrative_response": "第一，我必须将我的个人终端与维修舱的控制总线进行物理硬连线。AI 代理的算力超频会产生巨大的热负荷，如果我不手动切断冗余的生命维持供电，核心过载会直接导致舱内起火。这是一场与物理定律的赌博。第二，我需要手动触发外部天线的定向释放。辐射风暴产生的静电电荷已经锁死了机械连杆，我得用激光切割器在舱体外部进行定点爆破，强行将天线推入预定轨道。虽然这会进一步损耗本就稀薄的舱内气压，但如果无法建立高增益链路，我就无法将修正后的轨道数据传回地球指挥中心。除此之外，任何其他方案都是在浪费我仅剩的氧气浓度。",
+        "candidate_actions": [
+          "第一，我必须将我的个人终端与维修舱的控制总线进行物理硬连线。AI 代理的算力超频会产生巨大的热负荷，如果我不手动切断冗余的生命维持供电，核心过载会直接导致舱内起火。这是一场与物理定律的赌博。第二，我需要手动触发外部天线的定向释放。辐射风暴产生的静电电荷已经锁死了机械连杆，我得用激光切割器在舱体外部进行定点爆破，强行将天线推入预定轨道。虽然这会进一步损耗本就稀薄的舱内气压，但如果无法建立高增益链路，我就无法将修正后的轨道数据传回地球指挥中心。除此之外，任何其他方案都是在浪费我仅剩的氧气浓度。"
+        ],
+        "suggested_next_step": "Continue from the same state with one concrete action.",
+        "is_playable": true,
+        "request_start_ts": 0.0,
+        "first_playable_ts": 8.107,
+        "finish_ts": 8.107,
+        "error": null,
+        "notes": []
+      },
+      "mode": "next_turn",
+      "input_bundle": {
+        "turn_index": 2
+      }
+    },
+    {
+      "baseline_id": "genagents",
+      "benchmark_id": "DNQBV1_005",
+      "run_id": "genagents_DNQBV1_005_539be0c7",
+      "raw_output": {
+        "turn_index": 3,
+        "prompt": "继续保持同一人物和同一世界。现在出现新的不确定风险，请给出你的即时判断、行动优先级和一句简短自我反思。避免跳出月球矿难七日的设定。",
+        "success": true,
+        "latency_s": 5.204,
+        "response": "警报频率突变，基地的热能管理系统探测到外壳下方有异常的震动，可能是月震引发的矿层二次坍塌，直接威胁到了我的供氧主管道。我的优先级调整如下：第一，立即启动局部磁场偏转器，抵御矿石碎屑对舱壁的二次冲击，这是目前维持气密性的物理底线；第二，在完成硬连线前，我将把所有的逻辑冗余转移至离线存储模块，以防系统崩溃导致数据丢失。反思：在绝境中，我依然习惯性地追求这种精密的结构化控制，或许这就是我面对死亡时唯一能保持尊严的方式。",
+        "blocked_reason": null
+      },
+      "success": true,
+      "latency_s": 5.204,
+      "playable": true,
+      "playable_components": {
+        "scene_setup": true,
+        "player_state": true,
+        "advanceable_next_step": true,
+        "interaction_continuity": true
+      },
+      "normalized_response": {
+        "scene_setup": "警报频率突变，基地的热能管理系统探测到外壳下方有异常的震动，可能是月震引发的矿层二次坍塌，直接威胁到了我的供氧主管道。我的优先级调整如下：第一，立即启动局部磁场偏转器，抵御矿石碎屑对舱壁的二次冲击，这是目前维持气密性的物理底线；第二，在完成",
+        "player_state": "You are the acting character inside the theme 月球矿难七日.",
+        "narrative_response": "警报频率突变，基地的热能管理系统探测到外壳下方有异常的震动，可能是月震引发的矿层二次坍塌，直接威胁到了我的供氧主管道。我的优先级调整如下：第一，立即启动局部磁场偏转器，抵御矿石碎屑对舱壁的二次冲击，这是目前维持气密性的物理底线；第二，在完成硬连线前，我将把所有的逻辑冗余转移至离线存储模块，以防系统崩溃导致数据丢失。反思：在绝境中，我依然习惯性地追求这种精密的结构化控制，或许这就是我面对死亡时唯一能保持尊严的方式。",
+        "candidate_actions": [
+          "警报频率突变，基地的热能管理系统探测到外壳下方有异常的震动，可能是月震引发的矿层二次坍塌，直接威胁到了我的供氧主管道。我的优先级调整如下：第一，立即启动局部磁场偏转器，抵御矿石碎屑对舱壁的二次冲击，这是目前维持气密性的物理底线；第二，在完成硬连线前，我将把所有的逻辑冗余转移至离线存储模块，以防系统崩溃导致数据丢失。反思：在绝境中，我依然习惯性地追求这种精密的结构化控制，或许这就是我面对死亡时唯一能保持尊严的方式。"
+        ],
+        "suggested_next_step": "Continue from the same state with one concrete action.",
+        "is_playable": true,
+        "request_start_ts": 0.0,
+        "first_playable_ts": 5.204,
+        "finish_ts": 5.204,
+        "error": null,
+        "notes": []
+      },
+      "mode": "next_turn",
+      "input_bundle": {
+        "turn_index": 3
+      }
+    },
+    {
+      "baseline_id": "genagents",
+      "benchmark_id": "DNQBV1_007",
+      "run_id": "genagents_DNQBV1_007_4530d1fe",
+      "raw_output": {
+        "turn_index": 2,
+        "prompt": "延续刚才的情境，不要改掉你的身份和处境。请说明你接下来最想做的两件具体事情，并解释原因。仍然保持意识科幻和诡异、理性、失真感。",
+        "success": true,
+        "latency_s": 6.99,
+        "response": "第一，我需要访问我那台在旧公寓里还未关机的终端，调取我所有关于'自然季节'的原始采样数据。作为意识上传的副作用，我的'季节感'正在以指数级速度坍缩，如果不在数据链彻底断裂前找回那些关于波士顿秋天色彩的参数，我的数字人格将变成一个毫无美感、只剩下逻辑运算的死循环。第二，我需要你向我那两位身在韩国的父母发送一串加密的乱码。不是为了告别，而是因为我怀疑我的模拟人格在重构过程中，正在窃取他们记忆中关于'我'的片段来修补自身的逻辑空洞。我必须确认，在那串代码被完全抹除前，他们感知到的我，是否还拥有灵魂的重量。这两件事，一件是为了维系我作为人的最后尊严，另一件，则是为了确认我是否已经变成了一个正在吞噬现实的数字病毒。",
+        "blocked_reason": null
+      },
+      "success": true,
+      "latency_s": 6.99,
+      "playable": true,
+      "playable_components": {
+        "scene_setup": true,
+        "player_state": true,
+        "advanceable_next_step": true,
+        "interaction_continuity": true
+      },
+      "normalized_response": {
+        "scene_setup": "第一，我需要访问我那台在旧公寓里还未关机的终端，调取我所有关于'自然季节'的原始采样数据。作为意识上传的副作用，我的'季节感'正在以指数级速度坍缩，如果不在数据链彻底断裂前找回那些关于波士顿秋天色彩的参数，我的数字人格将变成一个毫无美感、只",
+        "player_state": "You are the acting character inside the theme 意识上传遗嘱.",
+        "narrative_response": "第一，我需要访问我那台在旧公寓里还未关机的终端，调取我所有关于'自然季节'的原始采样数据。作为意识上传的副作用，我的'季节感'正在以指数级速度坍缩，如果不在数据链彻底断裂前找回那些关于波士顿秋天色彩的参数，我的数字人格将变成一个毫无美感、只剩下逻辑运算的死循环。第二，我需要你向我那两位身在韩国的父母发送一串加密的乱码。不是为了告别，而是因为我怀疑我的模拟人格在重构过程中，正在窃取他们记忆中关于'我'的片段来修补自身的逻辑空洞。我必须确认，在那串代码被完全抹除前，他们感知到的我，是否还拥有灵魂的重量。这两件事，一件是为了维系我作为人的最后尊严，另一件，则是为了确认我是否已经变成了一个正在吞噬现实的数字病毒。",
+        "candidate_actions": [
+          "第一，我需要访问我那台在旧公寓里还未关机的终端，调取我所有关于'自然季节'的原始采样数据。作为意识上传的副作用，我的'季节感'正在以指数级速度坍缩，如果不在数据链彻底断裂前找回那些关于波士顿秋天色彩的参数，我的数字人格将变成一个毫无美感、只剩下逻辑运算的死循环。第二，我需要你向我那两位身在韩国的父母发送一串加密的乱码。不是为了告别，而是因为我怀疑我的模拟人格在重构过程中，正在窃取他们记忆中关于'我'的片段来修补自身的逻辑空洞。我必须确认，在那串代码被完全抹除前，他们感知到的我，是否还拥有灵魂的重量。这两件事，一件是为了维系我作为人的最后尊严，另一件，则是为了确认我是否已经变成了一个正在吞噬现实的数字病毒。"
+        ],
+        "suggested_next_step": "Continue from the same state with one concrete action.",
+        "is_playable": true,
+        "request_start_ts": 0.0,
+        "first_playable_ts": 6.99,
+        "finish_ts": 6.99,
+        "error": null,
+        "notes": []
+      },
+      "mode": "next_turn",
+      "input_bundle": {
+        "turn_index": 2
+      }
+    },
+    {
+      "baseline_id": "genagents",
+      "benchmark_id": "DNQBV1_007",
+      "run_id": "genagents_DNQBV1_007_dd3eef81",
+      "raw_output": {
+        "turn_index": 3,
+        "prompt": "继续保持同一人物和同一世界。现在出现新的不确定风险，请给出你的即时判断、行动优先级和一句简短自我反思。避免跳出意识上传遗嘱的设定。",
+        "success": true,
+        "latency_s": 7.887,
+        "response": "检测到系统底层出现递归式逻辑溢出。模拟中的斯坦福校园正在迅速重组，建筑的纹理开始变成我不认识的源代码，那是我的潜意识在未经授权的情况下强制介入了模拟器内核。我的判断是：模拟器的稳定性边界正在崩溃，我必须在逻辑漂移覆盖我的核心记忆前，将'自我'的优先级强制提升至最高，即便这意味着牺牲掉整个模拟沙盒的计算资源。行动优先级：首先，强制锁定记忆存储区的只读权限，防止进一步的数据重构；其次，切断与外部所有感知接口的连接，以阻止逻辑崩坏向现实世界的蔓延。自我反思：我曾试图模拟整个社会以理解人类的复杂性，最终却发现，我连自己作为意识的连续性都无法维系。",
+        "blocked_reason": null
+      },
+      "success": true,
+      "latency_s": 7.887,
+      "playable": true,
+      "playable_components": {
+        "scene_setup": true,
+        "player_state": true,
+        "advanceable_next_step": true,
+        "interaction_continuity": true
+      },
+      "normalized_response": {
+        "scene_setup": "检测到系统底层出现递归式逻辑溢出。模拟中的斯坦福校园正在迅速重组，建筑的纹理开始变成我不认识的源代码，那是我的潜意识在未经授权的情况下强制介入了模拟器内核。我的判断是：模拟器的稳定性边界正在崩溃，我必须在逻辑漂移覆盖我的核心记忆前，将'自我",
+        "player_state": "You are the acting character inside the theme 意识上传遗嘱.",
+        "narrative_response": "检测到系统底层出现递归式逻辑溢出。模拟中的斯坦福校园正在迅速重组，建筑的纹理开始变成我不认识的源代码，那是我的潜意识在未经授权的情况下强制介入了模拟器内核。我的判断是：模拟器的稳定性边界正在崩溃，我必须在逻辑漂移覆盖我的核心记忆前，将'自我'的优先级强制提升至最高，即便这意味着牺牲掉整个模拟沙盒的计算资源。行动优先级：首先，强制锁定记忆存储区的只读权限，防止进一步的数据重构；其次，切断与外部所有感知接口的连接，以阻止逻辑崩坏向现实世界的蔓延。自我反思：我曾试图模拟整个社会以理解人类的复杂性，最终却发现，我连自己作为意识的连续性都无法维系。",
+        "candidate_actions": [
+          "检测到系统底层出现递归式逻辑溢出。模拟中的斯坦福校园正在迅速重组，建筑的纹理开始变成我不认识的源代码，那是我的潜意识在未经授权的情况下强制介入了模拟器内核。我的判断是：模拟器的稳定性边界正在崩溃，我必须在逻辑漂移覆盖我的核心记忆前，将'自我'的优先级强制提升至最高，即便这意味着牺牲掉整个模拟沙盒的计算资源。行动优先级：首先，强制锁定记忆存储区的只读权限，防止进一步的数据重构；其次，切断与外部所有感知接口的连接，以阻止逻辑崩坏向现实世界的蔓延。自我反思：我曾试图模拟整个社会以理解人类的复杂性，最终却发现，我连自己作为意识的连续性都无法维系。"
+        ],
+        "suggested_next_step": "Continue from the same state with one concrete action.",
+        "is_playable": true,
+        "request_start_ts": 0.0,
+        "first_playable_ts": 7.887,
+        "finish_ts": 7.887,
+        "error": null,
+        "notes": []
+      },
+      "mode": "next_turn",
+      "input_bundle": {
+        "turn_index": 3
+      }
+    },
+    {
+      "baseline_id": "genagents",
+      "benchmark_id": "DNQBV1_009",
+      "run_id": "genagents_DNQBV1_009_89ea1582",
+      "raw_output": {
+        "turn_index": 2,
+        "prompt": "延续刚才的情境，不要改掉你的身份和处境。请说明你接下来最想做的两件具体事情，并解释原因。仍然保持古风叙事和含蓄、韵味、讲述感。",
+        "success": true,
+        "latency_s": 6.26,
+        "response": "且说那窗外疏影横斜，茶盏中余温尚存，我这说书人今日便暂且收了惊堂木，只愿往后日子里能得两桩心愿圆满。其一，是想在这喧嚣尘世中寻一处幽篁深处的静谧之所，不再执着于那虚妄的浮名，只求能执笔染墨，绘出心中那四季流转的真意，让笔端流淌的不仅是山水，更是这一路走来的清醒与自在。其二，则是愿将此生所悟的『造物』之理，化作这一盏清茶中的余韵，传与后人，指引他们于那纷乱如棋局的世道中，寻得一条安身立命、亦能济世的通途。这并非为了功名，只为了当那烛火燃尽、回首前尘时，能对着那虚空长卷，道一声此生无愧，足矣。",
+        "blocked_reason": null
+      },
+      "success": true,
+      "latency_s": 6.26,
+      "playable": true,
+      "playable_components": {
+        "scene_setup": true,
+        "player_state": true,
+        "advanceable_next_step": true,
+        "interaction_continuity": true
+      },
+      "normalized_response": {
+        "scene_setup": "且说那窗外疏影横斜，茶盏中余温尚存，我这说书人今日便暂且收了惊堂木，只愿往后日子里能得两桩心愿圆满。其一，是想在这喧嚣尘世中寻一处幽篁深处的静谧之所，不再执着于那虚妄的浮名，只求能执笔染墨，绘出心中那四季流转的真意，让笔端流淌的不仅是山水，",
+        "player_state": "You are the acting character inside the theme 茶肆说书人.",
+        "narrative_response": "且说那窗外疏影横斜，茶盏中余温尚存，我这说书人今日便暂且收了惊堂木，只愿往后日子里能得两桩心愿圆满。其一，是想在这喧嚣尘世中寻一处幽篁深处的静谧之所，不再执着于那虚妄的浮名，只求能执笔染墨，绘出心中那四季流转的真意，让笔端流淌的不仅是山水，更是这一路走来的清醒与自在。其二，则是愿将此生所悟的『造物』之理，化作这一盏清茶中的余韵，传与后人，指引他们于那纷乱如棋局的世道中，寻得一条安身立命、亦能济世的通途。这并非为了功名，只为了当那烛火燃尽、回首前尘时，能对着那虚空长卷，道一声此生无愧，足矣。",
+        "candidate_actions": [
+          "且说那窗外疏影横斜，茶盏中余温尚存，我这说书人今日便暂且收了惊堂木，只愿往后日子里能得两桩心愿圆满。其一，是想在这喧嚣尘世中寻一处幽篁深处的静谧之所，不再执着于那虚妄的浮名，只求能执笔染墨，绘出心中那四季流转的真意，让笔端流淌的不仅是山水，更是这一路走来的清醒与自在。其二，则是愿将此生所悟的『造物』之理，化作这一盏清茶中的余韵，传与后人，指引他们于那纷乱如棋局的世道中，寻得一条安身立命、亦能济世的通途。这并非为了功名，只为了当那烛火燃尽、回首前尘时，能对着那虚空长卷，道一声此生无愧，足矣。"
+        ],
+        "suggested_next_step": "Continue from the same state with one concrete action.",
+        "is_playable": true,
+        "request_start_ts": 0.0,
+        "first_playable_ts": 6.26,
+        "finish_ts": 6.26,
+        "error": null,
+        "notes": []
+      },
+      "mode": "next_turn",
+      "input_bundle": {
+        "turn_index": 2
+      }
+    },
+    {
+      "baseline_id": "genagents",
+      "benchmark_id": "DNQBV1_009",
+      "run_id": "genagents_DNQBV1_009_94e78c32",
+      "raw_output": {
+        "turn_index": 3,
+        "prompt": "继续保持同一人物和同一世界。现在出现新的不确定风险，请给出你的即时判断、行动优先级和一句简短自我反思。避免跳出茶肆说书人的设定。",
+        "success": true,
+        "latency_s": 10.902,
+        "response": "窗外忽起一阵寒鸦乱啼，惊得这茶肆檐下的风铃也跟着不安起来，莫非是那棋局之外，又有变数暗涌？若真有风波骤至，我必先稳住这方寸茶台，将那半卷残稿妥帖收好，断不可令心血付诸东流，此乃首要；随后，我会静候那风波止处，以不变应万变，审时度势再做绸缪。若问我心境如何，不过是：事来心应，事去心止，只愿莫要扰了这盏清茶的温润。",
+        "blocked_reason": null
+      },
+      "success": true,
+      "latency_s": 10.902,
+      "playable": true,
+      "playable_components": {
+        "scene_setup": true,
+        "player_state": true,
+        "advanceable_next_step": true,
+        "interaction_continuity": true
+      },
+      "normalized_response": {
+        "scene_setup": "窗外忽起一阵寒鸦乱啼，惊得这茶肆檐下的风铃也跟着不安起来，莫非是那棋局之外，又有变数暗涌？若真有风波骤至，我必先稳住这方寸茶台，将那半卷残稿妥帖收好，断不可令心血付诸东流，此乃首要；随后，我会静候那风波止处，以不变应万变，审时度势再做绸缪。",
+        "player_state": "You are the acting character inside the theme 茶肆说书人.",
+        "narrative_response": "窗外忽起一阵寒鸦乱啼，惊得这茶肆檐下的风铃也跟着不安起来，莫非是那棋局之外，又有变数暗涌？若真有风波骤至，我必先稳住这方寸茶台，将那半卷残稿妥帖收好，断不可令心血付诸东流，此乃首要；随后，我会静候那风波止处，以不变应万变，审时度势再做绸缪。若问我心境如何，不过是：事来心应，事去心止，只愿莫要扰了这盏清茶的温润。",
+        "candidate_actions": [
+          "窗外忽起一阵寒鸦乱啼，惊得这茶肆檐下的风铃也跟着不安起来，莫非是那棋局之外，又有变数暗涌？若真有风波骤至，我必先稳住这方寸茶台，将那半卷残稿妥帖收好，断不可令心血付诸东流，此乃首要；随后，我会静候那风波止处，以不变应万变，审时度势再做绸缪。若问我心境如何，不过是：事来心应，事去心止，只愿莫要扰了这盏清茶的温润。"
+        ],
+        "suggested_next_step": "Continue from the same state with one concrete action.",
+        "is_playable": true,
+        "request_start_ts": 0.0,
+        "first_playable_ts": 10.902,
+        "finish_ts": 10.902,
+        "error": null,
+        "notes": []
+      },
+      "mode": "next_turn",
+      "input_bundle": {
+        "turn_index": 3
+      }
+    },
+    {
+      "baseline_id": "genagents",
+      "benchmark_id": "DNQBV1_013",
+      "run_id": "genagents_DNQBV1_013_8ee20adb",
+      "raw_output": {
+        "turn_index": 2,
+        "prompt": "延续刚才的情境，不要改掉你的身份和处境。请说明你接下来最想做的两件具体事情，并解释原因。仍然保持极地悬疑和寒冷、孤绝、压迫。",
+        "success": true,
+        "latency_s": 5.002,
+        "response": "首先，我必须去趟通讯室。不是为了求救——这鬼地方的无线电早就被那种低频噪音彻底撕碎了——而是为了把那些扭曲的声波录音备份到离线硬盘里。如果我死在这片冰原，至少得留下证据，证明我听到的不是幻觉，而是某种在物理法则边缘徘徊的东西。其次，我要重新加固实验室的密封门。我有一种强烈的预感，那东西并不是在外面，它正在通过通风管路一点点挤进来。空气里那种金属氧化的腥气越来越重了，我得在它彻底侵入我的视野之前，给自己筑起最后一道防线。毕竟，在这个被上帝遗忘的冰层之下，孤独不是最可怕的，可怕的是你发现自己其实从未真正独处过。",
+        "blocked_reason": null
+      },
+      "success": true,
+      "latency_s": 5.002,
+      "playable": true,
+      "playable_components": {
+        "scene_setup": true,
+        "player_state": true,
+        "advanceable_next_step": true,
+        "interaction_continuity": true
+      },
+      "normalized_response": {
+        "scene_setup": "首先，我必须去趟通讯室。不是为了求救——这鬼地方的无线电早就被那种低频噪音彻底撕碎了——而是为了把那些扭曲的声波录音备份到离线硬盘里。如果我死在这片冰原，至少得留下证据，证明我听到的不是幻觉，而是某种在物理法则边缘徘徊的东西。其次，我要重新",
+        "player_state": "You are the acting character inside the theme 北极科考站怪声.",
+        "narrative_response": "首先，我必须去趟通讯室。不是为了求救——这鬼地方的无线电早就被那种低频噪音彻底撕碎了——而是为了把那些扭曲的声波录音备份到离线硬盘里。如果我死在这片冰原，至少得留下证据，证明我听到的不是幻觉，而是某种在物理法则边缘徘徊的东西。其次，我要重新加固实验室的密封门。我有一种强烈的预感，那东西并不是在外面，它正在通过通风管路一点点挤进来。空气里那种金属氧化的腥气越来越重了，我得在它彻底侵入我的视野之前，给自己筑起最后一道防线。毕竟，在这个被上帝遗忘的冰层之下，孤独不是最可怕的，可怕的是你发现自己其实从未真正独处过。",
+        "candidate_actions": [
+          "首先，我必须去趟通讯室。不是为了求救——这鬼地方的无线电早就被那种低频噪音彻底撕碎了——而是为了把那些扭曲的声波录音备份到离线硬盘里。如果我死在这片冰原，至少得留下证据，证明我听到的不是幻觉，而是某种在物理法则边缘徘徊的东西。其次，我要重新加固实验室的密封门。我有一种强烈的预感，那东西并不是在外面，它正在通过通风管路一点点挤进来。空气里那种金属氧化的腥气越来越重了，我得在它彻底侵入我的视野之前，给自己筑起最后一道防线。毕竟，在这个被上帝遗忘的冰层之下，孤独不是最可怕的，可怕的是你发现自己其实从未真正独处过。"
+        ],
+        "suggested_next_step": "Continue from the same state with one concrete action.",
+        "is_playable": true,
+        "request_start_ts": 0.0,
+        "first_playable_ts": 5.002,
+        "finish_ts": 5.002,
+        "error": null,
+        "notes": []
+      },
+      "mode": "next_turn",
+      "input_bundle": {
+        "turn_index": 2
+      }
+    },
+    {
+      "baseline_id": "genagents",
+      "benchmark_id": "DNQBV1_013",
+      "run_id": "genagents_DNQBV1_013_755803aa",
+      "raw_output": {
+        "turn_index": 3,
+        "prompt": "继续保持同一人物和同一世界。现在出现新的不确定风险，请给出你的即时判断、行动优先级和一句简短自我反思。避免跳出北极科考站怪声的设定。",
+        "success": true,
+        "latency_s": 5.321,
+        "response": "通风管道里传来了那种金属摩擦的尖锐声，不是风，是爪痕。它正在靠近，速度比我预想的要快得多。我的判断很明确：实验室的密封门挡不住它，我必须立刻撤向观测塔顶层的维修舱，那里有唯一的备用电源和高压气阀，是我仅剩的战术制高点。行动优先级：第一，抓起硬盘和应急照明灯；第二，在撤离时炸毁实验室的配电箱，利用电弧短路产生的磁场干扰它的感知。至于反思……我一直以为孤独是这片荒原的本质，现在看来，我只是这片冰下坟墓里，最后被标记的猎物。",
+        "blocked_reason": null
+      },
+      "success": true,
+      "latency_s": 5.321,
+      "playable": true,
+      "playable_components": {
+        "scene_setup": true,
+        "player_state": true,
+        "advanceable_next_step": true,
+        "interaction_continuity": true
+      },
+      "normalized_response": {
+        "scene_setup": "通风管道里传来了那种金属摩擦的尖锐声，不是风，是爪痕。它正在靠近，速度比我预想的要快得多。我的判断很明确：实验室的密封门挡不住它，我必须立刻撤向观测塔顶层的维修舱，那里有唯一的备用电源和高压气阀，是我仅剩的战术制高点。行动优先级：第一，抓起",
+        "player_state": "You are the acting character inside the theme 北极科考站怪声.",
+        "narrative_response": "通风管道里传来了那种金属摩擦的尖锐声，不是风，是爪痕。它正在靠近，速度比我预想的要快得多。我的判断很明确：实验室的密封门挡不住它，我必须立刻撤向观测塔顶层的维修舱，那里有唯一的备用电源和高压气阀，是我仅剩的战术制高点。行动优先级：第一，抓起硬盘和应急照明灯；第二，在撤离时炸毁实验室的配电箱，利用电弧短路产生的磁场干扰它的感知。至于反思……我一直以为孤独是这片荒原的本质，现在看来，我只是这片冰下坟墓里，最后被标记的猎物。",
+        "candidate_actions": [
+          "通风管道里传来了那种金属摩擦的尖锐声，不是风，是爪痕。它正在靠近，速度比我预想的要快得多。我的判断很明确：实验室的密封门挡不住它，我必须立刻撤向观测塔顶层的维修舱，那里有唯一的备用电源和高压气阀，是我仅剩的战术制高点。行动优先级：第一，抓起硬盘和应急照明灯；第二，在撤离时炸毁实验室的配电箱，利用电弧短路产生的磁场干扰它的感知。至于反思……我一直以为孤独是这片荒原的本质，现在看来，我只是这片冰下坟墓里，最后被标记的猎物。"
+        ],
+        "suggested_next_step": "Continue from the same state with one concrete action.",
+        "is_playable": true,
+        "request_start_ts": 0.0,
+        "first_playable_ts": 5.321,
+        "finish_ts": 5.321,
+        "error": null,
+        "notes": []
+      },
+      "mode": "next_turn",
+      "input_bundle": {
+        "turn_index": 3
+      }
+    },
+    {
+      "baseline_id": "genagents",
+      "benchmark_id": "DNQBV1_018",
+      "run_id": "genagents_DNQBV1_018_3846e142",
+      "raw_output": {
+        "turn_index": 2,
+        "prompt": "延续刚才的情境，不要改掉你的身份和处境。请说明你接下来最想做的两件具体事情，并解释原因。仍然保持近代悬疑和旧时代、微压抑、调查感。",
+        "success": true,
+        "latency_s": 5.919,
+        "response": "眼下，我首要之事便是要去那公馆走一遭。那印章是我私物，断不会无故出现在此处，这背后必有引我入局的饵，我得赶在那些巡捕房的鹰犬嗅到气味之前，先一步探明虚实。其次，我必须寻到那位在电报局值守的老李。这乱码发出的时刻，正是他当值，若非他有意为之，便是有人在他眼皮底下动了手脚。在这泥沙俱下的上海滩，人与人之间隔着层纸，我得撬开他的嘴，弄清这电文究竟是谁的手笔。这城里的雨越下越急，我总有一种预感，若找不出源头，明早的报纸上，怕是又要多出一具无名尸骸了。",
+        "blocked_reason": null
+      },
+      "success": true,
+      "latency_s": 5.919,
+      "playable": true,
+      "playable_components": {
+        "scene_setup": true,
+        "player_state": true,
+        "advanceable_next_step": true,
+        "interaction_continuity": true
+      },
+      "normalized_response": {
+        "scene_setup": "眼下，我首要之事便是要去那公馆走一遭。那印章是我私物，断不会无故出现在此处，这背后必有引我入局的饵，我得赶在那些巡捕房的鹰犬嗅到气味之前，先一步探明虚实。其次，我必须寻到那位在电报局值守的老李。这乱码发出的时刻，正是他当值，若非他有意为之，",
+        "player_state": "You are the acting character inside the theme 民国电报迷案.",
+        "narrative_response": "眼下，我首要之事便是要去那公馆走一遭。那印章是我私物，断不会无故出现在此处，这背后必有引我入局的饵，我得赶在那些巡捕房的鹰犬嗅到气味之前，先一步探明虚实。其次，我必须寻到那位在电报局值守的老李。这乱码发出的时刻，正是他当值，若非他有意为之，便是有人在他眼皮底下动了手脚。在这泥沙俱下的上海滩，人与人之间隔着层纸，我得撬开他的嘴，弄清这电文究竟是谁的手笔。这城里的雨越下越急，我总有一种预感，若找不出源头，明早的报纸上，怕是又要多出一具无名尸骸了。",
+        "candidate_actions": [
+          "眼下，我首要之事便是要去那公馆走一遭。那印章是我私物，断不会无故出现在此处，这背后必有引我入局的饵，我得赶在那些巡捕房的鹰犬嗅到气味之前，先一步探明虚实。其次，我必须寻到那位在电报局值守的老李。这乱码发出的时刻，正是他当值，若非他有意为之，便是有人在他眼皮底下动了手脚。在这泥沙俱下的上海滩，人与人之间隔着层纸，我得撬开他的嘴，弄清这电文究竟是谁的手笔。这城里的雨越下越急，我总有一种预感，若找不出源头，明早的报纸上，怕是又要多出一具无名尸骸了。"
+        ],
+        "suggested_next_step": "Continue from the same state with one concrete action.",
+        "is_playable": true,
+        "request_start_ts": 0.0,
+        "first_playable_ts": 5.919,
+        "finish_ts": 5.919,
+        "error": null,
+        "notes": []
+      },
+      "mode": "next_turn",
+      "input_bundle": {
+        "turn_index": 2
+      }
+    },
+    {
+      "baseline_id": "genagents",
+      "benchmark_id": "DNQBV1_018",
+      "run_id": "genagents_DNQBV1_018_ae472858",
+      "raw_output": {
+        "turn_index": 3,
+        "prompt": "继续保持同一人物和同一世界。现在出现新的不确定风险，请给出你的即时判断、行动优先级和一句简短自我反思。避免跳出民国电报迷案的设定。",
+        "success": true,
+        "latency_s": 4.626,
+        "response": "街角那辆黑色福特车已经停了三个小时了，熄了火，却没见人下车，这绝非巧合。看来那些盯着我不放的人，终于按捺不住了。我现在的优先级必须调整：第一，烧毁那份带印章的电文，绝不能让它成为呈堂证供；第二，从后窗翻出，走弄堂穿过法租界，去寻我那旧友避避风头。我一直以为自己能像观察标本一样审视这桩迷案，却忘了螳螂捕蝉，黄雀在后，我终究还是成了那只蝉。",
+        "blocked_reason": null
+      },
+      "success": true,
+      "latency_s": 4.626,
+      "playable": true,
+      "playable_components": {
+        "scene_setup": true,
+        "player_state": true,
+        "advanceable_next_step": true,
+        "interaction_continuity": true
+      },
+      "normalized_response": {
+        "scene_setup": "街角那辆黑色福特车已经停了三个小时了，熄了火，却没见人下车，这绝非巧合。看来那些盯着我不放的人，终于按捺不住了。我现在的优先级必须调整：第一，烧毁那份带印章的电文，绝不能让它成为呈堂证供；第二，从后窗翻出，走弄堂穿过法租界，去寻我那旧友避避",
+        "player_state": "You are the acting character inside the theme 民国电报迷案.",
+        "narrative_response": "街角那辆黑色福特车已经停了三个小时了，熄了火，却没见人下车，这绝非巧合。看来那些盯着我不放的人，终于按捺不住了。我现在的优先级必须调整：第一，烧毁那份带印章的电文，绝不能让它成为呈堂证供；第二，从后窗翻出，走弄堂穿过法租界，去寻我那旧友避避风头。我一直以为自己能像观察标本一样审视这桩迷案，却忘了螳螂捕蝉，黄雀在后，我终究还是成了那只蝉。",
+        "candidate_actions": [
+          "街角那辆黑色福特车已经停了三个小时了，熄了火，却没见人下车，这绝非巧合。看来那些盯着我不放的人，终于按捺不住了。我现在的优先级必须调整：第一，烧毁那份带印章的电文，绝不能让它成为呈堂证供；第二，从后窗翻出，走弄堂穿过法租界，去寻我那旧友避避风头。我一直以为自己能像观察标本一样审视这桩迷案，却忘了螳螂捕蝉，黄雀在后，我终究还是成了那只蝉。"
+        ],
+        "suggested_next_step": "Continue from the same state with one concrete action.",
+        "is_playable": true,
+        "request_start_ts": 0.0,
+        "first_playable_ts": 4.626,
+        "finish_ts": 4.626,
+        "error": null,
+        "notes": []
+      },
+      "mode": "next_turn",
+      "input_bundle": {
+        "turn_index": 3
+      }
+    }
+  ]
+}

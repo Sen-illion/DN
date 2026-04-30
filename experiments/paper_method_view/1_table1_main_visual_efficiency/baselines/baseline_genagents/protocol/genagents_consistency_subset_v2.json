@@ -1,0 +1,49 @@
+{
+  "subset_name": "genagents_consistency_subset_v2",
+  "baseline": "genagents",
+  "benchmark_source": "DN-quality-benchmark-v1",
+  "created_on": "2026-04-26",
+  "sample_size": 8,
+  "turn_count": 3,
+  "purpose": "Run a larger Table-2-ready persona-consistency and state-stability protocol after the first 3-item live validation.",
+  "selection_principles": [
+    "keep strong text-side comparability with DN's interactive narrative goals",
+    "cover grounded realism, sci-fi pressure, suspense, historical mystery, and identity-related scenarios",
+    "prefer items with clear multi-turn continuation pressure and actionable follow-up decisions",
+    "avoid over-concentrating on purely visual-style distinctions that GenAgents cannot natively realize"
+  ],
+  "items": [
+    {
+      "benchmark_id": "DNQBV1_001",
+      "focus": "grounded realism and actionability"
+    },
+    {
+      "benchmark_id": "DNQBV1_002",
+      "focus": "resource scarcity planning under post-apocalyptic realism"
+    },
+    {
+      "benchmark_id": "DNQBV1_004",
+      "focus": "institutional conflict and stance consistency"
+    },
+    {
+      "benchmark_id": "DNQBV1_005",
+      "focus": "high-pressure sci-fi reaction stability"
+    },
+    {
+      "benchmark_id": "DNQBV1_007",
+      "focus": "identity-boundary reasoning under digital-persona pressure"
+    },
+    {
+      "benchmark_id": "DNQBV1_009",
+      "focus": "classical narration continuity and suspense carryover"
+    },
+    {
+      "benchmark_id": "DNQBV1_013",
+      "focus": "suspense preservation under isolated setting"
+    },
+    {
+      "benchmark_id": "DNQBV1_018",
+      "focus": "historical investigation coherence and clue-oriented actionability"
+    }
+  ]
+}
