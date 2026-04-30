@@ -90,6 +90,8 @@ def save_segment_to_folder(
     option_text: str = "",
     parent_scene_id: Any = "initial",
     option_index: int = 0,
+    output_root: Optional[Path] = None,
+    experiment_subdir: Optional[str] = None,
 ) -> Tuple[Path, Optional[Path]]:
     """
     写入 DN-experiment/<dir>/{game_id}_{segment_index:03d}.json 与同名图片（若可取得）。
@@ -119,7 +121,11 @@ def save_segment_to_folder(
 
     stem = f"{game_id}_{segment_index:03d}"
     dir_name = experiment_dir_name(game_id, theme_item_id)
-    exp_dir = repo_root / "DN-experiment" / dir_name
+    if output_root is not None:
+        exp_base_dir = Path(output_root)
+    else:
+        exp_base_dir = repo_root / (experiment_subdir or "DN-experiment")
+    exp_dir = exp_base_dir / dir_name
     exp_dir.mkdir(parents=True, exist_ok=True)
     json_path = exp_dir / f"{stem}.json"
 

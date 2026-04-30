@@ -36,7 +36,10 @@ def parse_args() -> argparse.Namespace:
 
 
 def read_json(path: Path) -> Dict:
-    return json.loads(path.read_text(encoding="utf-8"))
+    try:
+        return json.loads(path.read_text(encoding="utf-8-sig"))
+    except json.JSONDecodeError:
+        return json.loads(path.read_text(encoding="utf-8"))
 
 
 def read_jsonl(path: Path) -> List[Dict]:

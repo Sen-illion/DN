@@ -179,6 +179,144 @@ def _build_checkpoint_keyword_prompt(global_state: Dict) -> str:
     )
 
 # 重构：生成单个选项剧情的独立函数
+
+_EXPERIMENT_SWITCH_ON = {"1", "true", "yes", "on"}
+_EXPERIMENT_SWITCH_OFF = {"0", "false", "no", "off"}
+_GENERATION_CONSTRAINTS_BLOCK = """## ???????????????????
+    1. ??????**????**???????
+    2. ??**????**???????
+    3. ??**??**?????????
+    4. ??**??**??????????
+    5. ??**??????????**??????????
+    6. ??**???????????**????????????????
+    7. **????**?????????"?"?????????"?""?""?""??"????????????????????????????????????????????????????????????"""
+
+
+def _resolve_experiment_switch(
+    global_state: Optional[Dict[str, Any]],
+    state_key: str,
+    env_name: str,
+    *,
+    default: str = "on",
+) -> bool:
+    value: Any = None
+    if isinstance(global_state, dict) and state_key in global_state:
+        value = global_state.get(state_key)
+    if value is None:
+        value = os.getenv(env_name, default)
+    if isinstance(value, bool):
+        return value
+    normalized = str(value or default).strip().lower()
+    if normalized in _EXPERIMENT_SWITCH_ON:
+        return True
+    if normalized in _EXPERIMENT_SWITCH_OFF:
+        return False
+    return default in _EXPERIMENT_SWITCH_ON
+
+
+def _worldview_constraint_enabled(global_state: Optional[Dict[str, Any]]) -> bool:
+    return _resolve_experiment_switch(
+        global_state,
+        "_experiment_worldview_constraint",
+        "EXPERIMENT_WORLDVIEW_CONSTRAINT",
+        default="on",
+    )
+
+
+def _prev_scene_feedback_enabled(global_state: Optional[Dict[str, Any]]) -> bool:
+    return _resolve_experiment_switch(
+        global_state,
+        "_experiment_prev_scene_feedback",
+        "EXPERIMENT_PREV_SCENE_FEEDBACK",
+        default="on",
+    )
+
+
+def _current_chapter_and_conflict(
+    core_worldview: Dict[str, Any],
+    flow_worldline: Dict[str, Any],
+) -> Tuple[str, str]:
+    current_chapter = str(flow_worldline.get("current_chapter") or "").strip()
+    main_conflict = ""
+    chapters = core_worldview.get("chapters") if isinstance(core_worldview, dict) else None
+    if current_chapter and isinstance(chapters, dict):
+        chapter_state = chapters.get(current_chapter)
+        if isinstance(chapter_state, dict):
+            main_conflict = str(chapter_state.get("main_conflict") or "").strip()
+    return current_chapter, main_conflict
+
+
+def _build_generation_constraints_block(worldview_constraint: bool) -> str:
+    if worldview_constraint:
+        return _GENERATION_CONSTRAINTS_BLOCK
+    return """## ???????
+    1. ??**??**?????????
+    2. ??**??**??????????
+    3. ??**??????????**??????????
+    4. ??**???????????**????????????????
+    5. **????**?????????"?"?????????"?""?""?""??"????????????????????????????????????????????????????????????"""
+
+
+def _build_input_data_block(
+    *,
+    worldview_constraint: bool,
+    core_worldview: Dict[str, Any],
+    flow_worldline: Dict[str, Any],
+    option: str,
+    tone_name: str,
+) -> str:
+    lines = ["## ???????"]
+    if worldview_constraint:
+        current_chapter, main_conflict = _current_chapter_and_conflict(core_worldview, flow_worldline)
+        lines.extend(
+            [
+                f"- ????????{json.dumps(core_worldview, ensure_ascii=False)}",
+                f"- ???????{json.dumps(flow_worldline, ensure_ascii=False)}",
+                f"- ???????{current_chapter or 'unknown'}",
+                f"- ??????????{main_conflict or '???'}",
+            ]
+        )
+    lines.extend(
+        [
+            f"- ???????{option}  # ??100%?????",
+            f"- ???????{tone_name}",
+        ]
+    )
+    return "\n    ".join(lines)
+
+
+def _apply_prompt_experiment_overrides(
+    prompt: str,
+    *,
+    worldview_constraint: bool,
+    core_worldview: Dict[str, Any],
+    flow_worldline: Dict[str, Any],
+    option: str,
+    tone_name: str,
+) -> str:
+    input_block = _build_input_data_block(
+        worldview_constraint=worldview_constraint,
+        core_worldview=core_worldview,
+        flow_worldline=flow_worldline,
+        option=option,
+        tone_name=tone_name,
+    )
+    prompt = prompt.replace(
+        """## ???????
+    - ????????{json.dumps(core_worldview, ensure_ascii=False)}
+    - ???????{json.dumps(flow_worldline, ensure_ascii=False)}
+    - ???????{option}  # ??100%?????
+    - ???????{tone['name']}""",
+        input_block,
+        1,
+    )
+    prompt = prompt.replace(
+        _GENERATION_CONSTRAINTS_BLOCK,
+        _build_generation_constraints_block(worldview_constraint),
+        1,
+    )
+    return prompt
+
 def _generate_single_option(i: int, option: str, global_state: Dict) -> Dict:
     """
     生成单个选项对应的剧情+下一层选项
@@ -195,6 +333,8 @@ def _generate_single_option(i: int, option: str, global_state: Dict) -> Dict:
     # 获取当前基调（从global_state或默认normal_ending）
     tone_key = global_state.get('tone', 'normal_ending')
     tone = TONE_CONFIGS.get(tone_key, TONE_CONFIGS['normal_ending'])
+    worldview_constraint_enabled = _worldview_constraint_enabled(global_state)
+    prev_scene_feedback_enabled = _prev_scene_feedback_enabled(global_state)
     
     # 检查是否有已解锁的深层背景
     flow = global_state.get('flow_worldline', {})
@@ -213,6 +353,9 @@ def _generate_single_option(i: int, option: str, global_state: Dict) -> Dict:
         if unlocked_deep_bgs:
             deep_bg_prompt = f"\n## 【已解锁深层背景】：\n{chr(10).join(unlocked_deep_bgs)}\n### 【重要要求】：后续剧情必须围绕已解锁的深层背景展开，将深层背景信息自然融入主线剧情中，不要直接向玩家显示深层背景内容！"
     checkpoint_keyword_prompt = _build_checkpoint_keyword_prompt(global_state)
+    if not worldview_constraint_enabled:
+        deep_bg_prompt = ""
+        checkpoint_keyword_prompt = ""
     
     # 添加调试信息：打印输入数据
     print(f"🔍 调试信息：输入参数")
@@ -253,7 +396,7 @@ def _generate_single_option(i: int, option: str, global_state: Dict) -> Dict:
 
     # 构建前情锚点（非初始场景时注入上一段的结尾、已出场角色名单等，防止跨段落矛盾）
     scene_anchor_block = ""
-    if not is_initial_scene and isinstance(global_state, dict):
+    if prev_scene_feedback_enabled and not is_initial_scene and isinstance(global_state, dict):
         anchor = global_state.get("_previous_scene_anchor")
         if anchor and isinstance(anchor, dict):
             parts = []
@@ -377,6 +520,15 @@ def _generate_single_option(i: int, option: str, global_state: Dict) -> Dict:
     
     # 添加调试信息：打印生成的Prompt前500字符
     print(f"📝 调试信息：生成的Prompt前500字符")
+    prompt = _apply_prompt_experiment_overrides(
+        prompt,
+        worldview_constraint=worldview_constraint_enabled,
+        core_worldview=core_worldview,
+        flow_worldline=flow_worldline,
+        option=option,
+        tone_name=tone['name'],
+    )
+    
     print(prompt[:500])
     
     # 构建请求体，如果是第一次生成，增加max_tokens以确保生成足够长的内容
@@ -928,6 +1080,8 @@ def _generate_single_option_text_only(
     # 获取当前基调（从global_state或默认normal_ending）
     tone_key = global_state.get('tone', 'normal_ending')
     tone = TONE_CONFIGS.get(tone_key, TONE_CONFIGS['normal_ending'])
+    worldview_constraint_enabled = _worldview_constraint_enabled(global_state)
+    prev_scene_feedback_enabled = _prev_scene_feedback_enabled(global_state)
     
     # 检查是否有已解锁的深层背景
     flow = global_state.get('flow_worldline', {})
@@ -946,6 +1100,9 @@ def _generate_single_option_text_only(
         if unlocked_deep_bgs:
             deep_bg_prompt = f"\n## 【已解锁深层背景】：\n{chr(10).join(unlocked_deep_bgs)}\n### 【重要要求】：后续剧情必须围绕已解锁的深层背景展开，将深层背景信息自然融入主线剧情中，不要直接向玩家显示深层背景内容！"
     checkpoint_keyword_prompt = _build_checkpoint_keyword_prompt(global_state)
+    if not worldview_constraint_enabled:
+        deep_bg_prompt = ""
+        checkpoint_keyword_prompt = ""
     
     # 确保core_worldview和flow_worldline存在
     core_worldview = global_state.get('core_worldview', {})
@@ -978,7 +1135,7 @@ def _generate_single_option_text_only(
 
     # 构建前情锚点（非初始场景时注入上一段的结尾、已出场角色名单等，防止跨段落矛盾）
     scene_anchor_block = ""
-    if not is_initial_scene and isinstance(global_state, dict):
+    if prev_scene_feedback_enabled and not is_initial_scene and isinstance(global_state, dict):
         anchor = global_state.get("_previous_scene_anchor")
         if anchor and isinstance(anchor, dict):
             parts = []
@@ -1112,6 +1269,15 @@ def _generate_single_option_text_only(
         '必须包含且仅包含上述六个区块，不要输出任何解释或代码块。'
         '【选项】：至少2个选项，每行一个或明确编号，例如：1. 选项A  2. 选项B。'
     )
+    prompt = _apply_prompt_experiment_overrides(
+        prompt,
+        worldview_constraint=worldview_constraint_enabled,
+        core_worldview=core_worldview,
+        flow_worldline=flow_worldline,
+        option=option,
+        tone_name=tone['name'],
+    )
+    
     request_body = {
         "model": AI_API_CONFIG.get("model", ""),
         "messages": [

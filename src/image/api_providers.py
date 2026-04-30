@@ -4,13 +4,14 @@ import os
 import re
 import json
 import time
+import copy
 import random
 import hashlib
 import requests
 import threading
 from pathlib import Path
 from datetime import datetime
-from typing import Dict, List, Optional
+from typing import Any, Dict, List, Optional
 
 from server.provider_control import log_provider_event, provider_request_slot, set_provider_backoff
 from src.config import IMAGE_GENERATION_CONFIG
@@ -37,6 +38,9 @@ from src.characters.supporting import (
     update_supporting_role_aliases_from_plot,
 )
 
+REPO_ROOT = Path(__file__).resolve().parents[2]
+REPO_IMAGE_CACHE_DIR = REPO_ROOT / "image_cache"
+
 # 主角三视图 prompt 模板
 prompt_template_front = """
 Generate a full-body, front-view portrait of character {identifier} based on the following description, with a pure white background. The character should be centered in the image, occupying most of the frame. Gazing straight ahead. Standing with arms relaxed at sides. Natural expression.
@@ -54,6 +58,118 @@ prompt_template_back = """
 Generate a full-body, back-view portrait of character {identifier} based on the provided front-view portrait, with a pure white background. The character should be centered in the image, occupying most of the frame. No facial features should be visible.
 No text, no symbols, no watermark, no garbled characters, no words.
 """.strip()
+
+
+def _load_main_character_metadata(main_character_dir: Path) -> Dict:
+    metadata_path = main_character_dir / "metadata.json"
+    if not metadata_path.exists():
+        return {}
+    try:
+        with open(metadata_path, "r", encoding="utf-8") as handle:
+            payload = json.load(handle) or {}
+        return payload if isinstance(payload, dict) else {}
+    except Exception:
+        return {}
+
+
+def _first_existing_path(paths: List[Path]) -> Optional[Path]:
+    for candidate in paths:
+        try:
+            if candidate and candidate.exists():
+                return candidate.resolve()
+        except Exception:
+            continue
+    return None
+
+
+def resolve_protagonist_reference_views(game_id: str) -> Dict[str, Optional[str]]:
+    """
+    Resolve protagonist reference images with metadata-first lookup and filename fallbacks.
+    This keeps the original naming scheme (`main_character*.png`) while tolerating
+    small naming variations such as `*_front.png`, `*_side_view.png`, and `*_back_view.png`.
+    """
+    # Use repo-anchored paths so resolution doesn't depend on cwd.
+    main_character_dir = REPO_ROOT / "initial" / "main_character" / str(game_id or "").strip()
+    if not str(game_id or "").strip() or not main_character_dir.exists():
+        return {"front": None, "side": None, "back": None}
+
+    metadata = _load_main_character_metadata(main_character_dir)
+    views = metadata.get("views") if isinstance(metadata.get("views"), dict) else {}
+
+    def _metadata_candidate(view_name: str) -> List[Path]:
+        view = views.get(view_name) if isinstance(views.get(view_name), dict) else {}
+        filename = str(view.get("filename") or "").strip()
+        return [main_character_dir / filename] if filename else []
+
+    def _fallback_candidates(view_name: str) -> List[Path]:
+        if view_name == "front":
+            names = [
+                "main_character.png",
+                "main_character_front.png",
+                "front.png",
+            ]
+        elif view_name == "side":
+            names = [
+                "main_character_side.png",
+                "main_character_side_view.png",
+                "side.png",
+            ]
+        else:
+            names = [
+                "main_character_back.png",
+                "main_character_back_view.png",
+                "back.png",
+            ]
+        return [main_character_dir / name for name in names]
+
+    resolved = {}
+    for view_name in ("front", "side", "back"):
+        candidate = _first_existing_path(_metadata_candidate(view_name) + _fallback_candidates(view_name))
+        resolved[view_name] = str(candidate) if candidate else None
+    return resolved
+
+
+def _resolve_protagonist_reference_override(global_state: Optional[Dict]) -> Optional[int]:
+    if not isinstance(global_state, dict):
+        return None
+    for key in (
+        "_experiment_protagonist_ref_count_limit",
+        "_experiment_expected_protagonist_ref_count",
+        "_protagonist_reference_count_limit",
+    ):
+        value = global_state.get(key)
+        if value is None:
+            continue
+        try:
+            limit = int(value)
+            return max(0, limit)
+        except Exception:
+            continue
+    return None
+
+
+def _resolve_protagonist_reference_game_id(global_state: Optional[Dict]) -> Optional[str]:
+    if not isinstance(global_state, dict):
+        return None
+    for key in (
+        "_experiment_protagonist_reference_game_id",
+        "_protagonist_reference_game_id",
+    ):
+        value = str(global_state.get(key) or "").strip()
+        if value:
+            return value
+    return None
+
+
+def _apply_protagonist_reference_limit(
+    reference_images: List[str],
+    *,
+    requested_limit: Optional[int],
+) -> tuple[List[str], str]:
+    if requested_limit is None:
+        return list(reference_images), "default"
+    limited = list(reference_images)[: max(0, requested_limit)]
+    return limited, f"forced_count_{max(0, requested_limit)}"
 
 def call_image_api_with_custom_size(
     prompt: str,
@@ -654,9 +770,9 @@ def generate_main_character_image(
                 if image_url_str_local.startswith("/image_cache/") or image_url_str_local.startswith("image_cache/"):
                     import shutil
                     if image_url_str_local.startswith("image_cache/"):
-                        source_path = Path("image_cache") / image_url_str_local.replace("image_cache/", "")
+                        source_path = REPO_IMAGE_CACHE_DIR / image_url_str_local.replace("image_cache/", "")
                     else:
-                        source_path = Path("image_cache") / image_url_str_local.replace("/image_cache/", "")
+                        source_path = REPO_IMAGE_CACHE_DIR / image_url_str_local.replace("/image_cache/", "")
                     if source_path.exists():
                         shutil.copy2(source_path, out_path)
                         return out_path.exists()
@@ -1090,6 +1206,96 @@ import hashlib
 import uuid
 import random
 
+
+_PROMPT_OPTIMIZER_ON_VALUES = {"1", "true", "yes", "on"}
+_PROMPT_OPTIMIZER_OFF_VALUES = {"0", "false", "no", "off"}
+
+
+def _is_scene_prompt_optimizer_enabled(global_state: Optional[Dict]) -> bool:
+    value = None
+    if isinstance(global_state, dict) and "_experiment_prompt_optimizer" in global_state:
+        value = global_state.get("_experiment_prompt_optimizer")
+    if value is None:
+        value = os.getenv("EXPERIMENT_PROMPT_OPTIMIZER", "on")
+    if isinstance(value, bool):
+        return value
+    normalized = str(value or "on").strip().lower()
+    if normalized in _PROMPT_OPTIMIZER_ON_VALUES:
+        return True
+    if normalized in _PROMPT_OPTIMIZER_OFF_VALUES:
+        return False
+    return True
+
+
+def _scene_prompt_style_hint(image_style: Optional[Dict]) -> str:
+    style_type = ""
+    style_subtype = ""
+    if isinstance(image_style, dict):
+        style_type = str(image_style.get("type") or "").strip().lower()
+        style_subtype = str(image_style.get("subtype") or "").strip().lower()
+    if style_type == "realistic":
+        return "photorealistic, cinematic realism, natural lighting, detailed environment"
+    if style_type == "anime":
+        return "anime illustration, expressive characters, clean linework, cinematic composition"
+    if style_type == "ink_painting":
+        return "Chinese ink painting, monochrome brush texture, poetic atmosphere"
+    if style_type == "watercolor":
+        return "watercolor illustration, translucent pigments, soft edges, luminous wash"
+    if style_type == "oil_painting":
+        if style_subtype == "impressionist":
+            return "impressionist oil painting, visible brushwork, warm light, painterly depth"
+        if style_subtype == "rococo":
+            return "rococo oil painting, ornate details, elegant palette, theatrical lighting"
+        return "oil painting, rich texture, layered brush strokes, painterly scene"
+    if style_type == "cyberpunk":
+        return "cyberpunk scene, neon accents, futuristic atmosphere, high contrast lighting"
+    if isinstance(image_style, dict):
+        return str(image_style.get("value") or "").strip()
+    return ""
+
+
+def _build_base_scene_prompt(
+    scene_description: str,
+    image_style: Optional[Dict],
+    *,
+    previous_scene_text: str = "",
+    has_previous_image_reference: bool = False,
+) -> str:
+    scene_text = re.sub(r"\s+", " ", _safe_str(scene_description)).strip()
+    previous_scene_text = re.sub(r"\s+", " ", _safe_str(previous_scene_text)).strip()
+    parts: List[str] = []
+    if scene_text:
+        parts.append(scene_text)
+    style_hint = _scene_prompt_style_hint(image_style)
+    if style_hint:
+        parts.append(style_hint)
+    parts.append("single cinematic story scene")
+    if previous_scene_text:
+        parts.append(f"maintain continuity with the previous scene: {previous_scene_text[:280]}")
+    elif has_previous_image_reference:
+        parts.append("maintain continuity with the previous scene image")
+    parts.append("consistent character design, outfit, key props, palette, and lighting")
+    parts.append("no text, no symbols, no garbled characters, no words")
+    return ", ".join(part for part in parts if part)
+
+
+def _normalize_scene_generation_overrides(global_state: Optional[Dict]) -> Dict[str, Any]:
+    if not isinstance(global_state, dict):
+        return {}
+    overrides = global_state.get("_scene_generation_overrides")
+    if isinstance(overrides, dict):
+        return dict(overrides)
+    return {}
+
+
+def _build_minimal_scene_generation_prompt() -> str:
+    return (
+        "Generate the next story scene image for the same game world. "
+        "Use the reference image as the main continuity context. "
+        "Keep character appearance, outfit, palette, lighting, and key props as consistent as possible. "
+        "No text, no watermark, no symbols, no garbled characters, no words."
+    )
+
 def generate_scene_image(
     scene_description: str,
     global_state: Dict,
@@ -1133,6 +1339,12 @@ def generate_scene_image(
     
     # 1. 提取图片风格信息
     image_style = global_state.get('image_style', None)
+    generation_overrides = _normalize_scene_generation_overrides(global_state)
+    override_prompt_strategy = str(generation_overrides.get("prompt_strategy") or "").strip().lower()
+    override_prompt_text = _safe_str(generation_overrides.get("prompt_override") or "").strip()
+    override_prompt_json = generation_overrides.get("prompt_json_override")
+    override_minimal_prompt = _safe_str(generation_overrides.get("minimal_prompt") or "").strip()
+    disable_previous_scene_reference = bool(generation_overrides.get("disable_previous_scene_reference"))
 
     # 1.5 视觉连续性上下文（用于同场景统一风格/物件 & 参考上一剧情）
     visual_context = global_state.get('_visual_context') if isinstance(global_state, dict) else None
@@ -1153,36 +1365,82 @@ def generate_scene_image(
         or prev_img_obj.get('optimized_prompt')
         or ""
     )
+    previous_scene_text = (
+        visual_context.get('previousSceneText')
+        or visual_context.get('currentSceneText')
+        or ""
+    )
+    if disable_previous_scene_reference:
+        reference_image_url = ""
+        reference_image_prompt = ""
+        previous_scene_text = ""
     
     # 1.6 获取主角参考图路径（用于保持主角形象一致性）
     # 放宽条件：只要有正面图就使用（第一次场景图与主角生成并行，侧/背可能尚未就绪）
     # global_state._skip_protagonist_reference 或 EXPERIMENT_SKIP_PROTAGONIST_REF：实验用，不传主角参考图、不打印等待提示
     protagonist_reference_images = []
+    protagonist_reference_usage = {
+        "group_id": "",
+        "expected_count": None,
+        "available_count": 0,
+        "actual_count": 0,
+        "selection_mode": "default",
+        "available_paths": [],
+        "actual_paths": [],
+        "view_names": [],
+    }
     game_id = global_state.get('game_id') if isinstance(global_state, dict) else None
+    protagonist_reference_game_id = _resolve_protagonist_reference_game_id(global_state) or game_id
     skip_prot_ref = bool(isinstance(global_state, dict) and global_state.get("_skip_protagonist_reference"))
     if not skip_prot_ref:
         skip_prot_ref = os.getenv("EXPERIMENT_SKIP_PROTAGONIST_REF", "").strip().lower() in ("1", "true", "yes")
-    if game_id and not skip_prot_ref:
-        main_character_dir = Path("initial") / "main_character" / game_id
-        front_path = main_character_dir / "main_character.png"
-        side_path = main_character_dir / "main_character_side.png"
-        back_path = main_character_dir / "main_character_back.png"
-        
-        # 至少正面存在即加入参考；三张齐全时用三张，否则用已有视图（保证第一次场景图也能用上主角）
-        if front_path.exists():
-            protagonist_reference_images.append(str(front_path.resolve()))  # Image 0: 正面
-            if side_path.exists():
-                protagonist_reference_images.append(str(side_path.resolve()))  # Image 1: 侧面
-            if back_path.exists():
-                protagonist_reference_images.append(str(back_path.resolve()))  # Image 2: 背面
+    if protagonist_reference_game_id and not skip_prot_ref:
+        resolved_views = resolve_protagonist_reference_views(protagonist_reference_game_id)
+        ordered_views = [
+            ("front", resolved_views.get("front")),
+            ("side", resolved_views.get("side")),
+            ("back", resolved_views.get("back")),
+        ]
+        protagonist_reference_usage["available_paths"] = [path for _, path in ordered_views if path]
+        protagonist_reference_usage["available_count"] = len(protagonist_reference_usage["available_paths"])
+        protagonist_reference_usage["group_id"] = str(
+            global_state.get("_experiment_protagonist_ref_group")
+            or global_state.get("_protagonist_reference_group")
+            or ""
+        ).strip()
+        protagonist_reference_usage["expected_count"] = _resolve_protagonist_reference_override(global_state)
+
+        if resolved_views.get("front"):
+            protagonist_reference_images = [path for _, path in ordered_views if path]
+            protagonist_reference_images, selection_mode = _apply_protagonist_reference_limit(
+                protagonist_reference_images,
+                requested_limit=protagonist_reference_usage["expected_count"],
+            )
+            protagonist_reference_usage["selection_mode"] = selection_mode
+            protagonist_reference_usage["actual_paths"] = list(protagonist_reference_images)
+            protagonist_reference_usage["actual_count"] = len(protagonist_reference_images)
+            protagonist_reference_usage["view_names"] = [
+                view_name
+                for view_name, path in ordered_views
+                if path and path in protagonist_reference_images
+            ]
             _step += 1
-            if len(protagonist_reference_images) >= 3:
-                print(f"  [{_step}] ✅ 找到主角三视图，将作为参考图传递：{game_id}")
+            if protagonist_reference_usage["actual_count"] >= 3:
+                print(f"  [{_step}] ✅ 找到主角三视图，将作为参考图传递：{protagonist_reference_game_id}")
             else:
-                print(f"  [{_step}] ✅ 找到主角参考图（{len(protagonist_reference_images)}张），将作为参考图传递：{game_id}")
+                print(
+                    f"  [{_step}] ✅ 找到主角参考图（{protagonist_reference_usage['actual_count']}张），"
+                    f"将作为参考图传递：{protagonist_reference_game_id}"
+                )
         else:
+            protagonist_reference_usage["selection_mode"] = (
+                "forced_count_0" if protagonist_reference_usage["expected_count"] == 0 else "missing_front"
+            )
             _step += 1
             print(f"  [{_step}] ⚠️ 主角正面图尚未就绪，将不使用主角参考图")
+    elif skip_prot_ref:
+        protagonist_reference_usage["expected_count"] = 0
+        protagonist_reference_usage["selection_mode"] = "skip_protagonist_reference"
     
     # 1.6b 每次剧情更新时检查身份揭示，更新配角 aliases（排除主角称呼）
     if game_id and scene_description:
@@ -1215,64 +1473,98 @@ def generate_scene_image(
         {"role_key": "配角2", "shallow_background": "（根据剧情描述，名称从文本中得出）"},
     ])
 
-    # 2. 第一次调用 LLM：只负责「名称-配角N」和场景描述，不传配角参考图
-    # ✅ 优化：对“LLM 已优化的 prompt”做一次轻量 memo，避免生图失败重试/并发触发时重复跑提示词优化
+    # 2. ????? LLM???????-??N??????????????
+    # ? ?????LLM ???? prompt?????? memo?????????/?????????????
+    raw_prompt = re.sub(r"\s+", " ", _safe_str(scene_description)).strip()
+    prompt_optimizer_enabled = _is_scene_prompt_optimizer_enabled(global_state)
+    prompt_source = "optimize_image_prompt_with_llm" if prompt_optimizer_enabled else "base_scene_description"
+    if override_prompt_strategy == "provided" and override_prompt_text:
+        prompt_optimizer_enabled = False
+        prompt_source = "scene_generation_override_prompt"
+    elif override_prompt_strategy == "minimal_base":
+        prompt_optimizer_enabled = False
+        prompt_source = "scene_generation_override_minimal_prompt"
     prompt = None
     _prompt_cache_key = None
-    try:
+    if prompt_source == "scene_generation_override_prompt":
+        prompt = override_prompt_text
         if isinstance(global_state, dict):
-            _cache = global_state.setdefault("_scene_prompt_cache", {})
-            if isinstance(_cache, dict):
-                _key_src = json.dumps(
-                    {
-                        "scene": scene_description,
-                        "style": image_style or {},
-                        "suffix": cache_key_suffix or "",
-                        "prot_refs": [os.path.basename(p) for p in (protagonist_reference_images or [])],
-                        "tag_candidates": [
-                            (x.get("role_key"), x.get("role_name"), x.get("names_or_aliases"))
-                            for x in (available_supporting_roles_for_tagging or [])
-                            if isinstance(x, dict)
-                        ],
-                    },
-                    ensure_ascii=False,
-                    sort_keys=True,
-                )
-                _prompt_cache_key = hashlib.md5(_key_src.encode("utf-8")).hexdigest()
-                cached_prompt = _cache.get(_prompt_cache_key)
-                if isinstance(cached_prompt, str) and cached_prompt.strip():
-                    prompt = cached_prompt
-    except Exception:
-        prompt = None
-        _prompt_cache_key = None
-
-    if not prompt:
-        prompt = optimize_image_prompt_with_llm(
-            scene_description,
-            global_state,
-            image_style,
-            protagonist_reference_images=protagonist_reference_images if protagonist_reference_images else None,
-            supporting_role_references=None,
-            available_supporting_roles_for_tagging=available_supporting_roles_for_tagging
-        )
+            if override_prompt_json is not None:
+                global_state["_last_scene_prompt_json"] = override_prompt_json
+            elif "_last_scene_prompt_json" in global_state:
+                del global_state["_last_scene_prompt_json"]
+    elif prompt_source == "scene_generation_override_minimal_prompt":
+        prompt = override_minimal_prompt or _build_minimal_scene_generation_prompt()
+        if isinstance(global_state, dict) and "_last_scene_prompt_json" in global_state:
+            del global_state["_last_scene_prompt_json"]
+    elif prompt_optimizer_enabled:
         try:
-            if _prompt_cache_key and isinstance(global_state, dict):
+            if isinstance(global_state, dict):
                 _cache = global_state.setdefault("_scene_prompt_cache", {})
-                if isinstance(_cache, dict) and isinstance(prompt, str) and prompt.strip():
-                    _cache[_prompt_cache_key] = prompt
-                    # 简单限长，避免无限增长
-                    if len(_cache) > 20:
-                        for k in list(_cache.keys())[: max(0, len(_cache) - 20)]:
-                            _cache.pop(k, None)
+                if isinstance(_cache, dict):
+                    _key_src = json.dumps(
+                        {
+                            "scene": scene_description,
+                            "style": image_style or {},
+                            "suffix": cache_key_suffix or "",
+                            "prot_refs": [os.path.basename(p) for p in (protagonist_reference_images or [])],
+                            "tag_candidates": [
+                                (x.get("role_key"), x.get("role_name"), x.get("names_or_aliases"))
+                                for x in (available_supporting_roles_for_tagging or [])
+                                if isinstance(x, dict)
+                            ],
+                        },
+                        ensure_ascii=False,
+                        sort_keys=True,
+                    )
+                    _prompt_cache_key = hashlib.md5(_key_src.encode("utf-8")).hexdigest()
+                    cached_prompt = _cache.get(_prompt_cache_key)
+                    if isinstance(cached_prompt, str) and cached_prompt.strip():
+                        prompt = cached_prompt
         except Exception:
-            pass
-    # 仅打印提示词摘要到后端（不输出全文，避免占满日志）
-    if prompt and isinstance(prompt, str):
+            prompt = None
+            _prompt_cache_key = None
+
+        if not prompt:
+            prompt = optimize_image_prompt_with_llm(
+                scene_description,
+                global_state,
+                image_style,
+                protagonist_reference_images=protagonist_reference_images if protagonist_reference_images else None,
+                supporting_role_references=None,
+                available_supporting_roles_for_tagging=available_supporting_roles_for_tagging
+            )
+            try:
+                if _prompt_cache_key and isinstance(global_state, dict):
+                    _cache = global_state.setdefault("_scene_prompt_cache", {})
+                    if isinstance(_cache, dict) and isinstance(prompt, str) and prompt.strip():
+                        _cache[_prompt_cache_key] = prompt
+                        # ???????????
+                        if len(_cache) > 20:
+                            for k in list(_cache.keys())[: max(0, len(_cache) - 20)]:
+                                _cache.pop(k, None)
+            except Exception:
+                pass
+        # ?????????????????????????
+        if prompt and isinstance(prompt, str):
+            _step += 1
+            _preview_len = int(os.getenv("PROMPT_LOG_PREVIEW_CHARS", "120"))
+            _preview = (prompt.strip()[: _preview_len] + "?") if len(prompt.strip()) > _preview_len else prompt.strip()
+            print(f"  [{_step}] ?? [??????] LLM ?????{len(prompt.strip())}????: {_preview}?")
+    else:
+        if isinstance(global_state, dict) and "_last_scene_prompt_json" in global_state:
+            del global_state["_last_scene_prompt_json"]
+        prompt = _build_base_scene_prompt(
+            scene_description,
+            image_style,
+            previous_scene_text=previous_scene_text,
+            has_previous_image_reference=bool(reference_image_url),
+        )
         _step += 1
         _preview_len = int(os.getenv("PROMPT_LOG_PREVIEW_CHARS", "120"))
-        _preview = (prompt.strip()[: _preview_len] + "…") if len(prompt.strip()) > _preview_len else prompt.strip()
-        print(f"  [{_step}] 📝 [剧情图提示词] LLM 已生成（共{len(prompt.strip())}字，摘要: {_preview}）")
-    
+        _preview = (prompt.strip()[: _preview_len] + "?") if len(prompt.strip()) > _preview_len else prompt.strip()
+        print(f"  [{_step}] ?? [??????] prompt optimizer ???????? prompt??{len(prompt.strip())}????: {_preview}?")
+
     # 3. 从优化后的提示词中识别出场配角（名称-配角N），区分已有档案（有参考图）与首次出场（待建档）
     # 以剧情模型为准：若存在本段出场配角（含空列表），则不再从提示词推断；仅当未传入该字段时才 fallback 推断
     supporting_role_references = []
@@ -1355,6 +1647,18 @@ def generate_scene_image(
         _preview = (prompt.strip()[: _preview_len] + "…") if len(prompt.strip()) > _preview_len else prompt.strip()
         print(f"  [{_step}] 📝 [剧情图提示词] 最终提示词已就绪（共{len(prompt.strip())}字，发送给生图API，摘要: {_preview}）")
     
+    if isinstance(global_state, dict):
+        global_state["_last_scene_prompt_trace"] = {
+            "scene_description": raw_prompt,
+            "raw_prompt": raw_prompt,
+            "final_prompt": (prompt or "").strip(),
+            "prompt_optimizer_enabled": prompt_optimizer_enabled,
+            "prompt_source": prompt_source,
+            "cache_key_suffix": cache_key_suffix or "",
+            "has_previous_image_reference": bool(reference_image_url),
+            "style_type": str((image_style or {}).get("type") or "").strip() if isinstance(image_style, dict) else "",
+        }
+
     # 5. 调用AI图片生成API（传递尺寸参数和参考图）
     # 若有上一张剧情图，解析为可加载路径并作为最后一张参考图（用于视觉延续）
     previous_scene_image_path = None
@@ -1383,33 +1687,50 @@ def generate_scene_image(
                 protagonist_refs_to_send = []
                 used_sorted = []
                 prompt_renumbered = prompt
+                forced_protagonist_ref_count = _resolve_protagonist_reference_override(global_state)
                 if protagonist_reference_images and len(protagonist_reference_images) >= 1:
-                    used = set()
-                    for i in (0, 1, 2):
-                        if i < len(protagonist_reference_images) and ("Image " + str(i) in prompt or ("Image " + str(i) + "：") in prompt or ("Image " + str(i) + ":") in prompt):
-                            used.add(i)
-                    if not used:
-                        used = {0}
-                    used_sorted = sorted(used)[:2]
-                    protagonist_refs_to_send = [protagonist_reference_images[i] for i in used_sorted]
-                    # 重编号：提示词中的 Image N 与 all_reference_images 顺序一致
-                    old_to_new = {used_sorted[j]: j for j in range(len(used_sorted))}
-                    n_prot_sent = len(protagonist_refs_to_send)
-                    for old_i in (2, 1, 0):
-                        if old_i in old_to_new and old_to_new[old_i] != old_i:
-                            prompt_renumbered = re.sub(r"\bImage\s+" + str(old_i) + r"\b", "Image " + str(old_to_new[old_i]), prompt_renumbered)
-                    n_sr = len(supporting_role_references or [])
-                    for idx in range(n_sr - 1, -1, -1):
-                        old_idx = 3 + idx
-                        new_idx = n_prot_sent + idx
-                        if old_idx != new_idx:
-                            prompt_renumbered = re.sub(r"\bImage\s+" + str(old_idx) + r"\b", "Image " + str(new_idx), prompt_renumbered)
-                    prev_idx_old = 3 + n_sr
-                    prev_idx_new = n_prot_sent + n_sr
-                    if previous_scene_image_path and prev_idx_old != prev_idx_new:
-                        prompt_renumbered = re.sub(r"\bImage\s+" + str(prev_idx_old) + r"\b", "Image " + str(prev_idx_new), prompt_renumbered)
-                    if protagonist_refs_to_send:
-                        print(f"✅ 主角参考图按需传递 {len(protagonist_refs_to_send)} 张（视角索引 {used_sorted}）")
+                    if forced_protagonist_ref_count is not None:
+                        protagonist_refs_to_send = list(protagonist_reference_images)
+                        used_sorted = list(range(len(protagonist_refs_to_send)))
+                        if protagonist_refs_to_send:
+                            print(
+                                f"✅ 实验强制传递主角参考图 {len(protagonist_refs_to_send)} 张"
+                                f"（视角索引 {used_sorted}）"
+                            )
+                    else:
+                        used = set()
+                        for i in (0, 1, 2):
+                            if i < len(protagonist_reference_images) and ("Image " + str(i) in prompt or ("Image " + str(i) + "：") in prompt or ("Image " + str(i) + ":") in prompt):
+                                used.add(i)
+                        if not used:
+                            used = {0}
+                        used_sorted = sorted(used)[:2]
+                        protagonist_refs_to_send = [protagonist_reference_images[i] for i in used_sorted]
+                        # 重编号：提示词中的 Image N 与 all_reference_images 顺序一致
+                        old_to_new = {used_sorted[j]: j for j in range(len(used_sorted))}
+                        n_prot_sent = len(protagonist_refs_to_send)
+                        for old_i in (2, 1, 0):
+                            if old_i in old_to_new and old_to_new[old_i] != old_i:
+                                prompt_renumbered = re.sub(r"\bImage\s+" + str(old_i) + r"\b", "Image " + str(old_to_new[old_i]), prompt_renumbered)
+                        n_sr = len(supporting_role_references or [])
+                        for idx in range(n_sr - 1, -1, -1):
+                            old_idx = 3 + idx
+                            new_idx = n_prot_sent + idx
+                            if old_idx != new_idx:
+                                prompt_renumbered = re.sub(r"\bImage\s+" + str(old_idx) + r"\b", "Image " + str(new_idx), prompt_renumbered)
+                        prev_idx_old = 3 + n_sr
+                        prev_idx_new = n_prot_sent + n_sr
+                        if previous_scene_image_path and prev_idx_old != prev_idx_new:
+                            prompt_renumbered = re.sub(r"\bImage\s+" + str(prev_idx_old) + r"\b", "Image " + str(prev_idx_new), prompt_renumbered)
+                        if protagonist_refs_to_send:
+                            print(f"✅ 主角参考图按需传递 {len(protagonist_refs_to_send)} 张（视角索引 {used_sorted}）")
+                protagonist_reference_usage["actual_paths"] = list(protagonist_refs_to_send)
+                protagonist_reference_usage["actual_count"] = len(protagonist_refs_to_send)
+                protagonist_reference_usage["view_names"] = [
+                    ["front", "side", "back"][i]
+                    for i in used_sorted
+                    if i in (0, 1, 2)
+                ]
                 all_reference_images = list(protagonist_refs_to_send)
                 all_reference_images.extend(supporting_role_images if supporting_role_images else [])
                 if previous_scene_image_path:
@@ -1469,6 +1790,21 @@ def generate_scene_image(
         
         if not image_url:
             return None
+
+        protagonist_reference_usage = copy.deepcopy(protagonist_reference_usage)
+
+        def _scene_image_payload(url_value: str, *, cached_value: Optional[bool] = None) -> Dict:
+            payload = {
+                "url": url_value,
+                "prompt": prompt,
+                "style": style,
+                "width": image_width,
+                "height": image_height,
+                "protagonist_reference_usage": protagonist_reference_usage,
+            }
+            if cached_value is not None:
+                payload["cached"] = cached_value
+            return payload
         
         # 如果启用缓存，下载图片到本地
         if use_cache and image_url:
@@ -1479,7 +1815,7 @@ def generate_scene_image(
                 VALID_IMAGE_PREFIX = "image/"
 
                 # 创建缓存目录
-                IMAGE_CACHE_DIR = "image_cache"
+                IMAGE_CACHE_DIR = REPO_IMAGE_CACHE_DIR
                 os.makedirs(IMAGE_CACHE_DIR, exist_ok=True)
                 
                 # 生成缓存键（包含尺寸信息，避免不同尺寸的图片互相覆盖）
@@ -1500,14 +1836,7 @@ def generate_scene_image(
                 # 配角初登场建档改为「展示到前端后」由 game_server 统一执行，此处不再建档
                 if not skip_cache_lookup and cache_path.exists():
                     print(f"✅ 使用本地缓存的图片：{cache_path}")
-                    return {
-                        "url": f"/image_cache/{prompt_hash}.png",
-                        "prompt": prompt,
-                        "style": style,
-                        "width": image_width,
-                        "height": image_height,
-                        "cached": True
-                    }
+                    return _scene_image_payload(f"/image_cache/{prompt_hash}.png", cached_value=True)
                 
                 # 检查image_url是否是相对路径（本地缓存路径）
                 if image_url.startswith('/image_cache/') or image_url.startswith('image_cache/'):
@@ -1521,26 +1850,12 @@ def generate_scene_image(
                             # 如果文件存在，使用现有的hash，或者复制到新的hash
                             if existing_hash == prompt_hash:
                                 print(f"✅ 使用现有的本地缓存图片：{existing_path}")
-                                return {
-                                    "url": f"/image_cache/{prompt_hash}.png",
-                                    "prompt": prompt,
-                                    "style": style,
-                                    "width": image_width,
-                                    "height": image_height,
-                                    "cached": True
-                                }
+                                return _scene_image_payload(f"/image_cache/{prompt_hash}.png", cached_value=True)
                             else:
                                 # API 返回的本地路径与当前请求的缓存键不一致（例如本请求用了 cache_key_suffix）。
                                 # 不复制到 prompt_hash，避免覆盖其他选项的图片导致“两张图相同”；直接返回本次生成结果的路径。
                                 print(f"✅ 使用本次生成结果（与缓存键不同，不复制避免覆盖）：{existing_path}")
-                                return {
-                                    "url": f"/image_cache/{existing_hash}.png",
-                                    "prompt": prompt,
-                                    "style": style,
-                                    "width": image_width,
-                                    "height": image_height,
-                                    "cached": True
-                                }
+                                return _scene_image_payload(f"/image_cache/{existing_hash}.png", cached_value=True)
                     # 如果相对路径对应的文件不存在，抛出错误
                     raise ValueError(f"本地缓存路径对应的文件不存在：{image_url}")
                 
@@ -1554,14 +1869,7 @@ def generate_scene_image(
                     print(f"⚠️ 检测到私有Azure Blob Storage URL，无法直接下载")
                     print(f"   将直接返回URL，由前端处理：{image_url[:80]}...")
                     # 对于私有URL，直接返回URL，不尝试下载
-                    return {
-                        "url": image_url,
-                        "prompt": prompt,
-                        "style": style,
-                        "width": image_width,
-                        "height": image_height,
-                        "cached": False  # 私有URL无法缓存
-                    }
+                    return _scene_image_payload(image_url, cached_value=False)
 
                 # 若已是本项目的云端 URL（OSS/R2），直接返回，不再下载到本地（避免重复落盘）
                 try:
@@ -1574,14 +1882,7 @@ def generate_scene_image(
                         is_our_cloud = (bucket and bucket in image_url) or (endpoint and endpoint in image_url) or (cdn_url and image_url.startswith(cdn_url))
                         if is_our_cloud:
                             print(f"☁️ 图片已在云端，直接使用 URL（跳过本地缓存）")
-                            return {
-                                "url": image_url,
-                                "prompt": prompt,
-                                "style": style,
-                                "width": image_width,
-                                "height": image_height,
-                                "cached": False
-                            }
+                            return _scene_image_payload(image_url, cached_value=False)
                 except Exception:
                     pass
 
@@ -1610,14 +1911,7 @@ def generate_scene_image(
                             # 409错误表示私有存储，无法公开访问
                             print(f"⚠️ 图片URL是私有存储，无法直接下载（409错误）")
                             print(f"   将直接返回URL，由前端处理：{image_url[:80]}...")
-                            return {
-                                "url": image_url,
-                                "prompt": prompt,
-                                "style": style,
-                                "width": image_width,
-                                "height": image_height,
-                                "cached": False
-                            }
+                            return _scene_image_payload(image_url, cached_value=False)
                         if e.response and e.response.status_code == 403:
                             # 403：OSS 未开放公共读，尝试用 oss2 带凭证下载
                             try:
@@ -1625,14 +1919,7 @@ def generate_scene_image(
                                 cache_path.parent.mkdir(parents=True, exist_ok=True)
                                 if download_oss_to_file(image_url, cache_path):
                                     print(f"✅ 图片已通过 OSS 凭证缓存到本地：{cache_path}")
-                                    return {
-                                        "url": f"/image_cache/{prompt_hash}.png",
-                                        "prompt": prompt,
-                                        "style": style,
-                                        "width": image_width,
-                                        "height": image_height,
-                                        "cached": True
-                                    }
+                                    return _scene_image_payload(f"/image_cache/{prompt_hash}.png", cached_value=True)
                             except Exception:
                                 pass
                         raise
@@ -1661,28 +1948,14 @@ def generate_scene_image(
                         f.write(chunk)
                 
                 print(f"✅ 图片已缓存到本地：{cache_path}")
-                return {
-                    "url": f"/image_cache/{prompt_hash}.png",
-                    "prompt": prompt,
-                    "style": style,
-                    "width": image_width,
-                    "height": image_height,
-                    "cached": True
-                }
+                return _scene_image_payload(f"/image_cache/{prompt_hash}.png", cached_value=True)
             except Exception as cache_error:
                 # 如果缓存过程中写入失败，尝试用 oss2 带凭证下载（OSS 403 等）
                 try:
                     from src.image.cloud_storage import download_oss_to_file
                     if 'cache_path' in locals() and download_oss_to_file(image_url, cache_path):
                         print(f"✅ 图片已通过 OSS 凭证缓存到本地：{cache_path}")
-                        return {
-                            "url": f"/image_cache/{prompt_hash}.png",
-                            "prompt": prompt,
-                            "style": style,
-                            "width": image_width,
-                            "height": image_height,
-                            "cached": True
-                        }
+                        return _scene_image_payload(f"/image_cache/{prompt_hash}.png", cached_value=True)
                 except Exception:
                     pass
                 # 如果缓存过程中写入失败，确保不留空文件
@@ -1693,23 +1966,10 @@ def generate_scene_image(
                     pass
                 print(f"⚠️ 图片缓存失败，使用原始URL：{str(cache_error)}")
                 # 缓存失败时返回原始URL
-                return {
-                    "url": image_url,
-                    "prompt": prompt,
-                    "style": style,
-                    "width": image_width,
-                    "height": image_height,
-                    "cached": False
-                }
+                return _scene_image_payload(image_url, cached_value=False)
         
         # 不使用缓存，直接返回OSS URL
-        return {
-            "url": image_url,
-            "prompt": prompt,
-            "style": style,
-            "width": image_width,
-            "height": image_height
-        }
+        return _scene_image_payload(image_url)
     except Exception as e:
         print(f"❌ 图片生成失败：{str(e)}")
         import traceback
@@ -3166,9 +3426,7 @@ def call_stable_diffusion_api(prompt: str, style: str, reference_image_url: str 
             # 本地缓存路径（前端常传 /image_cache/...）
             if ref.startswith("/image_cache/") or ref.startswith("image_cache/"):
                 rel = ref[1:] if ref.startswith("/") else ref
-                # 以项目目录为基准，避免工作目录变化导致找不到文件
-                base_dir = Path(__file__).resolve().parent
-                local_path = (base_dir / rel).resolve()
+                local_path = (REPO_ROOT / rel).resolve()
                 if local_path.exists():
                     data = local_path.read_bytes()
                     return base64.b64encode(data).decode("utf-8")
