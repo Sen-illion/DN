@@ -14,7 +14,10 @@ from statistics import mean
 from typing import Any, Dict, Iterable, List, Optional, Tuple
 
 from openai import OpenAI
-from openpyxl import Workbook
+try:
+    from openpyxl import Workbook  # type: ignore
+except ModuleNotFoundError:  # pragma: no cover
+    Workbook = None  # type: ignore
 
 try:
     from dotenv import load_dotenv
@@ -34,26 +37,30 @@ DIMENSIONS = [
     "detail_integrity",
 ]
 
+SCORE_MIN = 1.0
+SCORE_MAX = 10.0
+SCORE_DEFAULT = 6.0
+
 SYSTEM_PROMPT = """You are a senior visual consistency evaluator.
 Evaluate the current image for per-game consistency using available context.
 
 Scoring anchors for each dimension (integer only):
-- 5: strongly consistent
-- 4: mostly consistent, minor defects
-- 3: mixed quality
-- 2: major inconsistency
+- 10: strongly consistent
+- 8: mostly consistent, minor defects
+- 6: mixed quality
+- 3: major inconsistency
 - 1: severe failure
 
 Required output:
 Return one JSON object only:
 {
-  "overall_score": number 1-5,
+  "overall_score": integer 1-10,
   "dimension_scores": {
-    "semantic_consistency": 1-5,
-    "subject_attribute_consistency": 1-5,
-    "spatial_consistency": 1-5,
-    "style_lighting_consistency": 1-5,
-    "detail_integrity": 1-5
+    "semantic_consistency": integer 1-10,
+    "subject_attribute_consistency": integer 1-10,
+    "spatial_consistency": integer 1-10,
+    "style_lighting_consistency": integer 1-10,
+    "detail_integrity": integer 1-10
   },
   "confidence": number 0-1,
   "reasons": ["short reason 1", "short reason 2"],
@@ -170,9 +177,9 @@ def _normalize_scores(obj: Dict[str, Any]) -> Dict[str, Any]:
     ds = obj.get("dimension_scores") or {}
     out_ds: Dict[str, float] = {}
     for d in DIMENSIONS:
-        out_ds[d] = max(1.0, min(5.0, _to_float(ds.get(d), 3.0)))
+        out_ds[d] = max(SCORE_MIN, min(SCORE_MAX, round(_to_float(ds.get(d), SCORE_DEFAULT))))
     overall = _to_float(obj.get("overall_score"), mean(out_ds.values()))
-    overall = max(1.0, min(5.0, overall))
+    overall = max(SCORE_MIN, min(SCORE_MAX, round(overall)))
     confidence = _to_float(obj.get("confidence"), 0.5)
     confidence = max(0.0, min(1.0, confidence))
     reasons = obj.get("reasons") or []
@@ -331,6 +338,8 @@ def write_excel(
     summary_rows: List[Dict[str, Any]],
     ensemble_rows: List[Dict[str, Any]],
 ) -> None:
+    if Workbook is None:
+        raise RuntimeError("openpyxl is not installed; cannot write xlsx. Re-run with --dry-run or install openpyxl.")
     wb = Workbook()
     ws_raw = wb.active
     ws_raw.title = "per_image_scores"

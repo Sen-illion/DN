@@ -141,7 +141,8 @@ USER_TEMPLATE = """请评估以下完整故事的剧情连贯性（1-5分）。
 
 
 def _build_client(cfg: Dict[str, str]) -> OpenAI:
-    return OpenAI(api_key=cfg["api_key"], base_url=cfg["base_url"])
+    timeout = float(os.getenv("COHERENCE_REQUEST_TIMEOUT", "60"))
+    return OpenAI(api_key=cfg["api_key"], base_url=cfg["base_url"], timeout=timeout)
 
 
 @retry(
@@ -159,7 +160,7 @@ def _call_llm(cfg: Dict[str, str], user: str, *, temperature: float) -> str:
             {"role": "user", "content": user},
         ],
         temperature=temperature,
-        max_tokens=2048,
+        max_tokens=int(os.getenv("COHERENCE_MAX_TOKENS", "256")),
     )
     return (resp.choices[0].message.content or "").strip()
 
