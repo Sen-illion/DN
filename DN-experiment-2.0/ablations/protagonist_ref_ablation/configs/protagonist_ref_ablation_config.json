@@ -1,0 +1,71 @@
+{
+  "seed": 20260425,
+  "dataset_presets": {
+    "pilot": {
+      "max_themes": 1,
+      "segments_per_game": 3
+    },
+    "standard": {
+      "max_themes": 3,
+      "segments_per_game": 5
+    },
+    "full": {
+      "max_themes": 10,
+      "segments_per_game": 10
+    }
+  },
+  "generation": {
+    "difficulty": "中等",
+    "tone_key": "normal_ending",
+    "start_option": "开始游戏"
+  },
+  "groups": [
+    {
+      "group_id": "protagonist_ref_0",
+      "label": "No protagonist reference",
+      "expected_protagonist_ref_count": 0
+    },
+    {
+      "group_id": "protagonist_ref_1",
+      "label": "Front protagonist reference only",
+      "expected_protagonist_ref_count": 1
+    },
+    {
+      "group_id": "protagonist_ref_3",
+      "label": "Front side back protagonist references",
+      "expected_protagonist_ref_count": 3
+    }
+  ],
+  "scoring": {
+    "judge_models": [
+      "gpt-4o"
+    ],
+    "judge_models_csv": "gpt-4o"
+  },
+  "dimensions": [
+    {
+      "name": "semantic_consistency",
+      "weight": 0.2
+    },
+    {
+      "name": "subject_attribute_consistency",
+      "weight": 0.2
+    },
+    {
+      "name": "spatial_consistency",
+      "weight": 0.2
+    },
+    {
+      "name": "style_lighting_consistency",
+      "weight": 0.2
+    },
+    {
+      "name": "detail_integrity",
+      "weight": 0.2
+    }
+  ],
+  "thresholds": {
+    "min_overall_score_mean": 6.0,
+    "max_judge_disagreement_mean": 1.5
+  }
+}

@@ -1,0 +1,54 @@
+﻿{
+  "experiment_name": "generation_context_ablation",
+  "groups": {
+    "prompt_only": {
+      "label": "Prompt only",
+      "prompt_strategy": "provided",
+      "use_previous_image": false,
+      "description": "Use only the stored LLM-generated image prompt and do not pass the previous scene image."
+    },
+    "prev_image_only": {
+      "label": "Prev image only",
+      "prompt_strategy": "minimal_base",
+      "use_previous_image": true,
+      "description": "Use the previous scene image plus a minimal base instruction, without the full rich LLM prompt."
+    },
+    "prompt_plus_prev_image": {
+      "label": "Prompt plus prev image",
+      "prompt_strategy": "provided",
+      "use_previous_image": true,
+      "description": "Use both the stored LLM-generated image prompt and the previous scene image."
+    }
+  },
+  "scales": {
+    "pilot": {
+      "max_games": 3,
+      "max_eval_segments_per_game": 3
+    },
+    "standard": {
+      "max_games": 6,
+      "max_eval_segments_per_game": 5
+    },
+    "full": {
+      "max_games": 0,
+      "max_eval_segments_per_game": 0
+    }
+  },
+  "selection": {
+    "min_eval_segment_index": 2,
+    "require_source_prompt": true,
+    "require_source_images": true,
+    "require_previous_image": true
+  },
+  "runtime": {
+    "minimal_prompt_instruction": "Generate the next story scene image for the same game world. Use the reference image as the main continuity context. Keep character appearance, outfit, palette, lighting, and key props as consistent as possible. No text, no watermark, no symbols, no garbled characters, no words.",
+    "skip_cache_lookup": true,
+    "use_cache": true,
+    "skip_protagonist_reference": true,
+    "default_style": "default"
+  },
+  "outputs": {
+    "dataset_dir_name": "datasets",
+    "run_dir_name": "runs"
+  }
+}

@@ -103,6 +103,7 @@ def main() -> None:
                 width=args.width,
             )
             image_path = image_paths[idx]
+            image_path.parent.mkdir(parents=True, exist_ok=True)
             result.images[0].save(image_path)
             row_out = {
                 "id": sid,
