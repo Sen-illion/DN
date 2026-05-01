@@ -1,0 +1,39 @@
+﻿{
+  "experiment_name": "generation_context_ablation_scoring",
+  "score_range": {
+    "min": 1,
+    "max": 5
+  },
+  "dimensions": [
+    {
+      "name": "semantic_consistency",
+      "description": "Does the image match the intended semantic intent?",
+      "weight": 0.3
+    },
+    {
+      "name": "subject_attribute_consistency",
+      "description": "Are key subject attributes stable and correct?",
+      "weight": 0.2
+    },
+    {
+      "name": "spatial_consistency",
+      "description": "Are spatial relations and layout coherent?",
+      "weight": 0.2
+    },
+    {
+      "name": "style_lighting_consistency",
+      "description": "Are style and lighting internally coherent?",
+      "weight": 0.15
+    },
+    {
+      "name": "detail_integrity",
+      "description": "Are critical details intact without obvious artifacts?",
+      "weight": 0.15
+    }
+  ],
+  "thresholds": {
+    "min_usable_coverage": 0.8,
+    "min_overall_score_mean": 3.5,
+    "max_judge_disagreement_mean": 0.7
+  }
+}

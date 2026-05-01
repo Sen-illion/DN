@@ -1,0 +1,63 @@
+﻿{
+  "experiment_name": "multiview_image_consistency_evaluator_ablation",
+  "seed": 20260425,
+  "dataset_presets": {
+    "pilot": {
+      "max_themes": 4,
+      "max_games": 4,
+      "segments_per_game": 2,
+      "max_samples": 8
+    },
+    "standard": {
+      "max_themes": 8,
+      "max_games": 8,
+      "segments_per_game": 4,
+      "max_samples": 32
+    },
+    "full": {
+      "max_themes": 0,
+      "max_games": 0,
+      "segments_per_game": 0,
+      "max_samples": 0
+    }
+  },
+  "judge_groups": [
+    {
+      "group_id": "gpt_4o_only",
+      "group_label": "gpt-4o",
+      "judge_models": [
+        "gpt-4o"
+      ]
+    },
+    {
+      "group_id": "claude_sonnet_only",
+      "group_label": "claude-sonnet-4-20250514",
+      "judge_models": [
+        "claude-sonnet-4-20250514"
+      ]
+    },
+    {
+      "group_id": "gpt_4o_plus_claude_sonnet",
+      "group_label": "gpt-4o + claude-sonnet-4-20250514",
+      "judge_models": [
+        "gpt-4o",
+        "claude-sonnet-4-20250514"
+      ]
+    },
+    {
+      "group_id": "gpt_4o_plus_claude_sonnet_plus_gemini_flash",
+      "group_label": "gpt-4o + claude-sonnet-4-20250514 + gemini-2.5-flash",
+      "judge_models": [
+        "gpt-4o",
+        "claude-sonnet-4-20250514",
+        "gemini-2.5-flash"
+      ]
+    }
+  ],
+  "source_paths": {
+    "themes_json": "game_themes_100.json",
+    "experiment_root": "DN-experiment-2.0",
+    "latest_dataset_json": "DN-experiment-2.0/ablations/evaluator_ablation/results/latest_dataset_manifest.json",
+    "legacy_scores_jsonl": "DN-experiment-2.0/图片一致性_experiment/multiview_image_consistency/results/latest_per_game_image_scores.jsonl"
+  }
+}
