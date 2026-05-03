@@ -62,6 +62,169 @@ app = Flask(__name__)
 load_dotenv()
 ensure_dirs()
 
+
+def benchmark_strict_fullready_enabled() -> bool:
+    return os.getenv("DN_BENCHMARK_STRICT_FULLREADY", "0").strip().lower() in ("1", "true", "yes")
+
+
+STRICT_BENCHMARK_PROFILES = {"fullready_strict", "fullready_pregen60"}
+TRANSIENT_CACHE_KEY_STATE_KEYS = {"_visual_context", "_plot_supporting_characters"}
+
+
+def _canonicalize_cache_key_payload(value):
+    if isinstance(value, dict):
+        normalized = {}
+        for key in sorted(value.keys(), key=lambda item: str(item)):
+            if isinstance(key, str) and (key in TRANSIENT_CACHE_KEY_STATE_KEYS or key.startswith("_benchmark_")):
+                continue
+            normalized[str(key)] = _canonicalize_cache_key_payload(value[key])
+        return normalized
+    if isinstance(value, list):
+        return [_canonicalize_cache_key_payload(item) for item in value]
+    if isinstance(value, tuple):
+        return [_canonicalize_cache_key_payload(item) for item in value]
+    return value
+
+
+def _stable_cache_key_hash(value) -> str:
+    try:
+        serialized = json.dumps(
+            _canonicalize_cache_key_payload(value),
+            ensure_ascii=False,
+            sort_keys=True,
+            separators=(",", ":"),
+            default=str,
+        )
+    except Exception:
+        serialized = str(value)
+    return hashlib.md5(serialized.encode("utf-8")).hexdigest()
+
+
+def _request_is_strict_benchmark(global_state) -> bool:
+    if benchmark_strict_fullready_enabled():
+        return True
+    if not isinstance(global_state, dict):
+        return False
+    profile = str(global_state.get("_benchmark_profile") or "").strip()
+    return profile in STRICT_BENCHMARK_PROFILES
+
+
+def _snapshot_benchmark_cache_meta(cache_entry):
+    meta = (cache_entry or {}).get("cache_meta") if isinstance(cache_entry, dict) else {}
+    if not isinstance(meta, dict):
+        return {}
+    return {
+        "scene_id": meta.get("scene_id"),
+        "canonical_scene_id": meta.get("canonical_scene_id"),
+        "global_state_hash": meta.get("global_state_hash"),
+        "current_options_hash": meta.get("current_options_hash"),
+        "flow_worldline_hash": meta.get("flow_worldline_hash"),
+        "option_count": meta.get("option_count"),
+        "current_options_preview": meta.get("current_options_preview") or [],
+        "parent_scene_id": meta.get("parent_scene_id"),
+    }
+
+
+def _find_cache_entry_by_canonical_scene_id(target_scene_id):
+    if not target_scene_id:
+        return None, None
+    for cache_scene_id, cache_entry in pregeneration_cache.items():
+        meta = (cache_entry or {}).get("cache_meta") if isinstance(cache_entry, dict) else {}
+        if isinstance(meta, dict) and meta.get("canonical_scene_id") == target_scene_id:
+            return cache_scene_id, cache_entry
+    return None, None
+
+
+def _build_generate_option_benchmark_diagnostics(raw_global_state, option, option_index, scene_id, current_options, previous_scene_id):
+    if not _request_is_strict_benchmark(raw_global_state):
+        return None
+    normalized_state = _canonicalize_cache_key_payload(raw_global_state or {})
+    normalized_options = _canonicalize_cache_key_payload(current_options or [])
+    request_option_index = option_index if isinstance(option_index, int) else None
+    if request_option_index is None:
+        try:
+            request_option_index = int(option_index)
+        except Exception:
+            request_option_index = None
+    option_at_index = None
+    if isinstance(normalized_options, list) and request_option_index is not None and 0 <= request_option_index < len(normalized_options):
+        option_at_index = str(normalized_options[request_option_index]).strip()
+    selected_option_text = str(option or "").strip()
+    recomputed_scene_id = None
+    if isinstance(normalized_options, list) and normalized_options:
+        recomputed_scene_id = generate_scene_id(str(normalized_state), str(normalized_options))
+    flow_worldline = normalized_state.get("flow_worldline") if isinstance(normalized_state, dict) else {}
+    return {
+        "request_scene_id": scene_id,
+        "previous_scene_id": previous_scene_id,
+        "request_option_index": request_option_index,
+        "request_option_text": selected_option_text,
+        "request_option_at_index": option_at_index,
+        "request_current_options_count": len(normalized_options) if isinstance(normalized_options, list) else 0,
+        "request_global_state_hash": _stable_cache_key_hash(normalized_state),
+        "request_current_options_hash": _stable_cache_key_hash(normalized_options),
+        "request_flow_worldline_hash": _stable_cache_key_hash(flow_worldline),
+        "recomputed_scene_id": recomputed_scene_id,
+        "scene_id_mismatch_detected": False,
+        "selected_option_mismatch_detected": bool(option_at_index is not None and option_at_index != selected_option_text),
+        "global_state_key_drift_detected": False,
+        "current_options_key_drift_detected": False,
+        "request_scene_cache_exists": False,
+        "recomputed_scene_cache_exists": False,
+        "cache_hit_reason": None,
+        "cache_miss_reason": None,
+        "resolution_path": None,
+    }
+
+
+def is_placeholder_option_data(option_data) -> bool:
+    if not isinstance(option_data, dict):
+        return True
+    scene = str(option_data.get("scene") or "").strip()
+    next_options = option_data.get("next_options") or []
+    generic_option_sets = [
+        ["继续前进", "查看周围环境"],
+        ["继续前进", "查看当前状态", "返回上一步", "探索周围环境"],
+    ]
+    if not scene:
+        return True
+    if "当前内容生成耗时较长" in scene:
+        return True
+    if scene.startswith("你选择了：继续前进。"):
+        return True
+    if len(scene) < 80:
+        return True
+    if next_options in generic_option_sets:
+        return True
+    return False
+
+
+def _clear_initial_events(events):
+    if not isinstance(events, dict):
+        return {}
+    for event in events.values():
+        try:
+            event.clear()
+        except Exception:
+            pass
+    return events
+
+
+def _prime_initial_cache_slot(game_id, user_theme=None):
+    with cache_lock:
+        previous = pregeneration_cache.get('initial')
+        events = previous.get('generation_events', {}) if isinstance(previous, dict) else {}
+        pregeneration_cache['initial'] = {
+            'generation_events': _clear_initial_events(events),
+            'completed': False,
+            'error': None,
+            'game_id': game_id,
+            'user_theme': user_theme or "",
+            'layer1': {},
+            'generation_status': {},
+            'plot_supporting_characters': [],
+        }
+
 # 固定请求日志级别（debug=False 时也能看到访问日志）
 # 同时把日志写入文件，避免控制台丢输出
 _LOG_DIR = Path(__file__).resolve().parent / "logs"
@@ -353,11 +516,15 @@ def generate_worldview():
             import copy
 
             def generate_main_character_after_worldview_async(gs_snapshot, game_id_arg):
-                """世界观生成完成后触发：主角形象生成（后台线程）。game_id_arg 必须传入，避免闭包读到后续请求覆盖的值。"""
-                # ???????????????????????????????????
+                """Generate the protagonist front image in the background after worldview generation."""
                 set_provider_priority("high")
                 try:
-                    print(f"🎨 开始生成主角形象（游戏ID: {game_id_arg}，世界观已就绪，后台并行）...")
+                    if benchmark_strict_fullready_enabled():
+                        print(
+                            "strict full-ready benchmark mode: keep async front main-character generation "
+                            "enabled; side/back views remain disabled downstream"
+                        )
+                    print(f"starting async front main-character generation, game_id={game_id_arg}")
                     result = generate_main_character_image(
                         protagonist_attr=protagonist_attr,
                         global_state=gs_snapshot,
@@ -365,11 +532,11 @@ def generate_worldview():
                         game_id=game_id_arg
                     )
                     if result:
-                        print(f"✅ 主角形象生成完成（游戏ID: {game_id_arg}）")
+                        print(f"async front main-character generation finished, game_id={game_id_arg}")
                     else:
-                        print(f"⚠️ 主角形象生成失败（游戏ID: {game_id_arg}），但游戏可以继续")
+                        print(f"async front main-character generation returned no result, game_id={game_id_arg}")
                 except Exception as e:
-                    print(f"❌ 主角形象生成出错（游戏ID: {game_id_arg}）：{str(e)}")
+                    print(f"async front main-character generation failed, game_id={game_id_arg} error={str(e)}")
                     import traceback
                     traceback.print_exc()
 
@@ -379,10 +546,9 @@ def generate_worldview():
                 args=(gs_snapshot, game_id),
                 daemon=True
             ).start()
-            print("✅ 主角形象生成任务已启动（世界观生成完成后触发，后台并行）")
+            print("started async front main-character generation thread")
         except Exception as e:
-            print(f"⚠️ 启动主角形象生成任务失败：{str(e)}")
-        
+            print(f"?? ?????????????{str(e)}")
         # 世界观生成完成后，更新主角形象信息到global_state（如果已生成）
         try:
             # 检查主角形象是否已生成
@@ -400,9 +566,12 @@ def generate_worldview():
             print(f"⚠️ 更新主角形象信息失败：{str(e)}")
         
         # 世界观生成成功后，立即启动第一次选项的生成（后台线程，不使用预生成机制）
+        _prime_initial_cache_slot(game_id, global_state.get('user_theme') if isinstance(global_state, dict) else None)
+
         def generate_initial_options():
             """生成第一次选项（根据世界观动态生成）"""
             try:
+                setup_started_at = time.time()
                 print(f"🔄 开始生成第一次选项（根据世界观动态生成）...")
                 
                 # 根据世界观生成初始场景和选项
@@ -414,6 +583,11 @@ def generate_worldview():
                     initial_option_data = result.get('data', result)
                 else:
                     initial_option_data = result
+                option_pipeline_elapsed_s = round(time.time() - setup_started_at, 3)
+                print(
+                    f"initial setup option pipeline finished: game_id={game_id} "
+                    f"elapsed_s={option_pipeline_elapsed_s}"
+                )
                 
                 # 获取生成的初始选项列表
                 initial_options = initial_option_data.get('next_options', [])
@@ -431,12 +605,10 @@ def generate_worldview():
 
                 # 存储到特殊缓存位置（仅初始场景，不预生成选项剧情）
                 with cache_lock:
-                    if 'initial' not in pregeneration_cache:
-                        pregeneration_cache['initial'] = {
-                            'generation_events': {}
-                        }
-                    
-                    initial_cache = pregeneration_cache['initial']
+                    initial_cache = pregeneration_cache.get('initial')
+                    if not isinstance(initial_cache, dict) or initial_cache.get('game_id') != game_id:
+                        print(f"⚠️ 初始场景写回被丢弃：game_id={game_id} 已不是当前 initial 槽位拥有者")
+                        return
                     # 不再填充 layer1（每个选项的剧情），交给后续预生成或按需生成
                     initial_cache['layer1'] = {}
                     # 确保initial_scene不为空，如果为空则使用默认场景
@@ -475,6 +647,14 @@ def generate_worldview():
                     # 选项剧情未预生成，状态保持 pending（如后续需要可由预生成写入 scene_id 对应缓存）
                     initial_cache['generation_status'] = {i: 'pending' for i in range(len(initial_options))}
                     initial_cache['completed'] = True
+                    initial_cache['setup_diag'] = {
+                        'game_id': game_id,
+                        'started_at_ts': round(setup_started_at, 3),
+                        'completed_at_ts': round(time.time(), 3),
+                        'elapsed_s': round(time.time() - setup_started_at, 3),
+                        'has_scene_image': bool(initial_scene_image and initial_scene_image.get('url')),
+                        'initial_options_count': len(initial_options),
+                    }
                     
                     # 首屏预生成：生成 scene_id 并写入缓存，供前端与预生成共用
                     server_scene_id = generate_scene_id(str(global_state), str(initial_options))
@@ -483,6 +663,7 @@ def generate_worldview():
                     # 触发等待事件（如果有线程在等待）
                     events = initial_cache.get('generation_events', {})
                     if 'main' in events:
+                        print(f"initial setup event set: game_id={game_id}")
                         events['main'].set()
 
                 # 首屏预生成：立即在后台启动首屏选项的预生成（与后续轮同一套逻辑）
@@ -496,11 +677,10 @@ def generate_worldview():
                 traceback.print_exc()
                 # 即使失败，也设置一个标记，避免前端无限等待
                 with cache_lock:
-                    if 'initial' not in pregeneration_cache:
-                        pregeneration_cache['initial'] = {
-                            'generation_events': {}
-                        }
-                    initial_cache = pregeneration_cache['initial']
+                    initial_cache = pregeneration_cache.get('initial')
+                    if not isinstance(initial_cache, dict) or initial_cache.get('game_id') != game_id:
+                        print(f"⚠️ 初始场景失败状态写回被丢弃：game_id={game_id} 已不是当前 initial 槽位拥有者")
+                        return
                     initial_cache['completed'] = False
                     initial_cache['error'] = str(e)
                     
@@ -553,6 +733,16 @@ def generate_option():
         option_index = data.get('optionIndex', 0)
         scene_id = data.get('sceneId', None)  # 前端传入的场景ID，用于缓存查找
         current_options = data.get('currentOptions', [])  # 当前选项列表，用于触发优先生成
+        previous_scene_id = data.get('previousSceneId', None)
+        raw_global_state = json.loads(json.dumps(global_state or {}, ensure_ascii=False, default=str)) if isinstance(global_state, dict) else {}
+        benchmark_diag = _build_generate_option_benchmark_diagnostics(
+            raw_global_state,
+            option,
+            option_index,
+            scene_id,
+            current_options,
+            previous_scene_id,
+        )
         
         # 🔍 调试日志：显示前端传入的参数
         print(f"🔍 [generate-option] 收到请求：")
@@ -588,21 +778,31 @@ def generate_option():
         need_wait = False
         wait_event = None  # 初始化wait_event
         layer2_thread_to_wait = None  # 用于在释放锁后等待第二层线程
+        request_game_id = global_state.get('game_id') if isinstance(global_state, dict) else None
         
         # 处理第一次生成的情况（sceneId为null或'initial'）
         if not scene_id or scene_id == 'initial':
             # 第一次生成：从initial缓存读取
             with cache_lock:
-                # 如果initial缓存不存在，创建并等待
-                if 'initial' not in pregeneration_cache:
+                initial_cache = pregeneration_cache.get('initial')
+                initial_owned_by_request = isinstance(initial_cache, dict) and initial_cache.get('game_id') == request_game_id
+
+                # 如果initial缓存不存在，或属于其他 game_id，重置为当前请求专属槽位并等待
+                if not initial_owned_by_request:
+                    previous_events = initial_cache.get('generation_events', {}) if isinstance(initial_cache, dict) else {}
                     pregeneration_cache['initial'] = {
-                        'generation_events': {},
-                        'completed': False
+                        'generation_events': _clear_initial_events(previous_events),
+                        'completed': False,
+                        'error': None,
+                        'game_id': request_game_id,
+                        'user_theme': global_state.get('user_theme', '') if isinstance(global_state, dict) else '',
+                        'layer1': {},
+                        'generation_status': {},
+                        'plot_supporting_characters': [],
                     }
+                    initial_cache = pregeneration_cache['initial']
                     need_wait = True
                 else:
-                    initial_cache = pregeneration_cache['initial']
-                    
                     # 检查是否生成完成
                     if initial_cache.get('completed', False):
                         # 如果用户选择的是"开始游戏"（option_index=0），返回初始场景
@@ -657,9 +857,33 @@ def generate_option():
                 print(f"   - 查找的 scene_id：{scene_id}")
                 print(f"   - 缓存中的 scene_id 列表：{list(pregeneration_cache.keys())}")
                 print(f"   - scene_id 是否在缓存中：{scene_id in pregeneration_cache}")
+                if benchmark_diag is not None:
+                    recomputed_scene_id = benchmark_diag.get("recomputed_scene_id")
+                    matched_scene_id, matched_cache_entry = _find_cache_entry_by_canonical_scene_id(recomputed_scene_id)
+                    if matched_cache_entry is not None:
+                        benchmark_diag["recomputed_scene_cache_exists"] = True
+                        benchmark_diag["recomputed_scene_cache_scene_id"] = matched_scene_id
+                        benchmark_diag["recomputed_scene_cache_meta"] = _snapshot_benchmark_cache_meta(matched_cache_entry)
+                    if scene_id and matched_scene_id and scene_id != matched_scene_id:
+                        benchmark_diag["scene_id_mismatch_detected"] = True
                 
                 if scene_id in pregeneration_cache:
                     cache_entry = pregeneration_cache[scene_id]
+                    if benchmark_diag is not None:
+                        benchmark_diag["request_scene_cache_exists"] = True
+                        benchmark_diag["request_scene_cache_meta"] = _snapshot_benchmark_cache_meta(cache_entry)
+                        cache_meta = (cache_entry or {}).get("cache_meta") or {}
+                        benchmark_diag["global_state_key_drift_detected"] = bool(
+                            cache_meta.get("global_state_hash")
+                            and cache_meta.get("global_state_hash") != benchmark_diag.get("request_global_state_hash")
+                        )
+                        benchmark_diag["current_options_key_drift_detected"] = bool(
+                            cache_meta.get("current_options_hash")
+                            and cache_meta.get("current_options_hash") != benchmark_diag.get("request_current_options_hash")
+                        )
+                        canonical_scene_id = cache_meta.get("canonical_scene_id")
+                        if canonical_scene_id and canonical_scene_id != benchmark_diag.get("recomputed_scene_id"):
+                            benchmark_diag["scene_id_mismatch_detected"] = True
                     print(f"✅ [generate-option] scene_id 匹配成功，找到缓存条目")
                     print(f"   - 缓存条目中的 layer1 选项索引：{list(cache_entry.get('layer1', {}).keys())}")
                     print(f"   - 缓存条目中的生成状态：{cache_entry.get('generation_status', {})}")
@@ -669,6 +893,8 @@ def generate_option():
                         option_data_temp = cache_entry['layer1'][option_index]
                         generation_status = cache_entry.get('generation_status', {})
                         status = generation_status.get(option_index, 'pending')
+                        if benchmark_diag is not None:
+                            benchmark_diag["request_scene_generation_status"] = status
                         
                         # 🔧 修复：确保图片和文本一起返回
                         # 如果状态是 'text_completed'，说明图片还在生成，需要等待
@@ -678,18 +904,31 @@ def generate_option():
                             if not scene_image or not scene_image.get('url'):
                                 # 文本优先返回，图片改由现有异步链路（SSE / generate-scene-image）补齐
                                 option_data = option_data_temp
+                                if benchmark_diag is not None:
+                                    benchmark_diag["cache_hit_reason"] = "request_scene_text_completed_no_image"
+                                    benchmark_diag["cache_miss_reason"] = "image_not_ready_in_cache"
+                                    benchmark_diag["resolution_path"] = "request_scene_cache_text_only"
                                 print(f"⚡ 选项 {option_index} 文本已就绪，图片继续异步生成并通过现有补图链路返回")
                             else:
                                 # 图片已生成，可以直接返回
                                 option_data = option_data_temp
+                                if benchmark_diag is not None:
+                                    benchmark_diag["cache_hit_reason"] = "request_scene_completed_with_image"
+                                    benchmark_diag["resolution_path"] = "request_scene_cache_direct"
                                 print(f"✅ 从缓存中读取场景 {scene_id} 的选项 {option_index} 的剧情（包含图片）")
                         elif status == 'completed':
                             # 完全完成，可以直接返回
                             option_data = option_data_temp
+                            if benchmark_diag is not None:
+                                benchmark_diag["cache_hit_reason"] = "request_scene_completed_with_image"
+                                benchmark_diag["resolution_path"] = "request_scene_cache_direct"
                             print(f"✅ 从缓存中读取场景 {scene_id} 的选项 {option_index} 的剧情（包含图片）")
                         else:
                             # 其他状态，也尝试返回（可能有数据）
                             option_data = option_data_temp
+                            if benchmark_diag is not None:
+                                benchmark_diag["cache_hit_reason"] = f"request_scene_layer1_status_{status}"
+                                benchmark_diag["resolution_path"] = "request_scene_cache_partial"
                             print(f"✅ 从缓存中读取场景 {scene_id} 的选项 {option_index} 的剧情")
                         
                         # 如果数据已就绪（有图片），处理第二层生成逻辑
@@ -726,6 +965,8 @@ def generate_option():
                         
                         if status == 'generating':
                             # 情况2a：正在生成中，等待生成完成
+                            if benchmark_diag is not None:
+                                benchmark_diag["cache_miss_reason"] = "request_scene_generation_in_progress"
                             print(f"⏳ 选项 {option_index} 正在生成中，等待完成...")
                             print(f"   - 当前缓存中的 layer1 选项索引：{list(cache_entry.get('layer1', {}).keys())}")
                             print(f"   - 当前生成状态：{generation_status}")
@@ -741,6 +982,8 @@ def generate_option():
                         
                         elif status == 'pending':
                             # 情况2b：还未开始生成，优先生成该选项
+                            if benchmark_diag is not None:
+                                benchmark_diag["cache_miss_reason"] = "request_scene_option_pending"
                             print(f"🚀 选项 {option_index} 还未生成，优先生成...")
                             # 标记需要取消其他未开始的生成
                             cache_entry['should_cancel'] = True
@@ -789,6 +1032,15 @@ def generate_option():
                     else:
                         # 情况3：scene_id不在缓存中，可能是第一次选择（前端传入了新生成的sceneId）
                         # 尝试从initial缓存中查找（第一次的选项数据在initial缓存中）
+                        if benchmark_diag is not None and not benchmark_diag.get("cache_miss_reason"):
+                            if benchmark_diag.get("scene_id_mismatch_detected") and benchmark_diag.get("recomputed_scene_cache_exists"):
+                                benchmark_diag["cache_miss_reason"] = "request_scene_id_mismatch_recomputed_cache_available"
+                            elif benchmark_diag.get("selected_option_mismatch_detected"):
+                                benchmark_diag["cache_miss_reason"] = "selected_option_text_mismatch"
+                            elif benchmark_diag.get("request_current_options_count", 0) == 0:
+                                benchmark_diag["cache_miss_reason"] = "no_current_options_in_request"
+                            else:
+                                benchmark_diag["cache_miss_reason"] = "request_scene_cache_missing"
                         print(f"⚠️ [generate-option] 场景 {scene_id} 不在缓存中！")
                         print(f"   - 前端传入的 scene_id：{scene_id}")
                         print(f"   - 缓存中存在的 scene_id：{list(pregeneration_cache.keys())}")
@@ -799,6 +1051,9 @@ def generate_option():
                                 layer1_data = initial_cache.get('layer1', {})
                                 if option_index in layer1_data:
                                     option_data = layer1_data[option_index]
+                                    if benchmark_diag is not None:
+                                        benchmark_diag["cache_hit_reason"] = "initial_cache_fallback"
+                                        benchmark_diag["resolution_path"] = "initial_cache_fallback"
                                     print(f"✅ 从initial缓存中读取选项 {option_index} 的剧情（第一次选择）")
                                 else:
                                     print(f"⚠️ initial缓存中也没有选项 {option_index} 的数据")
@@ -807,7 +1062,11 @@ def generate_option():
 
                     # 🔧 容错增强：如果 scene_id 未命中且 initial 也没有该选项数据，则按需启动该选项生成并等待。
                     # 目的：避免因“首次不预生成 layer1”或“前端预生成请求尚未到达”导致返回默认/空数据。
-                    if not option_data:
+                    if not option_data and not need_wait:
+                        if benchmark_diag is not None:
+                            benchmark_diag["resolution_path"] = "on_demand_generation_after_cache_miss"
+                            if not benchmark_diag.get("cache_miss_reason"):
+                                benchmark_diag["cache_miss_reason"] = "scene_cache_miss_on_demand_generation"
                         print(f"🚀 [generate-option] 缓存未命中，按需生成选项 {option_index}（scene_id={scene_id}）...")
                         # 初始化该 scene_id 的缓存条目（与预生成结构一致）
                         pregeneration_cache[scene_id] = {
@@ -860,6 +1119,83 @@ def generate_option():
                         thread = threading.Thread(target=generate_selected_option_for_missing_scene, daemon=True)
                         thread.start()
                         need_wait = True
+                    elif not option_data and need_wait:
+                        print(
+                            f"[generate-option] skip duplicate on-demand generation for scene_id={scene_id}, "
+                            f"option_index={option_index}; existing generation is already in progress"
+                        )
+                else:
+                    if benchmark_diag is not None and not benchmark_diag.get("cache_miss_reason"):
+                        if benchmark_diag.get("scene_id_mismatch_detected") and benchmark_diag.get("recomputed_scene_cache_exists"):
+                            benchmark_diag["cache_miss_reason"] = "request_scene_id_mismatch_recomputed_cache_available"
+                        elif benchmark_diag.get("selected_option_mismatch_detected"):
+                            benchmark_diag["cache_miss_reason"] = "selected_option_text_mismatch"
+                        elif benchmark_diag.get("request_current_options_count", 0) == 0:
+                            benchmark_diag["cache_miss_reason"] = "no_current_options_in_request"
+                        else:
+                            benchmark_diag["cache_miss_reason"] = "request_scene_cache_missing"
+                    print(f"⚠️ [generate-option] 外层缓存未命中：scene_id={scene_id}")
+                    print(f"   - 前端传入的 scene_id：{scene_id}")
+                    print(f"   - 缓存中存在的 scene_id：{list(pregeneration_cache.keys())}")
+
+                    if not option_data and not need_wait:
+                        if benchmark_diag is not None:
+                            benchmark_diag["resolution_path"] = "on_demand_generation_after_outer_cache_miss"
+                        pregeneration_cache[scene_id] = {
+                            'layer1': {},
+                            'layer2': {},
+                            'generation_status': {},
+                            'generation_events': {},
+                            'should_cancel': False,
+                            'current_generating_index': None,
+                            'layer2_generating': False,
+                            'layer2_cancel': False,
+                            'layer2_selected_option': None,
+                            'layer2_thread': None,
+                            'current_layer2_option': None
+                        }
+                        cache_entry = pregeneration_cache[scene_id]
+                        generation_status = cache_entry['generation_status']
+                        generation_status[option_index] = 'generating'
+                        events = cache_entry['generation_events']
+                        if option_index not in events:
+                            events[option_index] = threading.Event()
+                        wait_event = events[option_index]
+
+                        def generate_selected_option_for_outer_missing_scene():
+                            try:
+                                result = _generate_single_option(option_index, option, global_state)
+                                if isinstance(result, dict):
+                                    opt_data = result.get('data', result)
+                                else:
+                                    opt_data = result
+                                with cache_lock:
+                                    if scene_id in pregeneration_cache:
+                                        entry = pregeneration_cache[scene_id]
+                                        entry.setdefault('layer1', {})[option_index] = opt_data
+                                        entry.setdefault('generation_status', {})[option_index] = 'completed'
+                                        evs = entry.get('generation_events', {})
+                                        if option_index in evs:
+                                            evs[option_index].set()
+                                print(f"✅ [generate-option] 外层按需生成完成：scene_id={scene_id}, option_index={option_index}")
+                            except Exception as e:
+                                print(f"❌ [generate-option] 外层按需生成失败：scene_id={scene_id}, option_index={option_index}, err={str(e)}")
+                                with cache_lock:
+                                    if scene_id in pregeneration_cache:
+                                        entry = pregeneration_cache[scene_id]
+                                        entry.setdefault('generation_status', {})[option_index] = 'failed'
+                                        evs = entry.get('generation_events', {})
+                                        if option_index in evs:
+                                            evs[option_index].set()
+
+                        thread = threading.Thread(target=generate_selected_option_for_outer_missing_scene, daemon=True)
+                        thread.start()
+                        need_wait = True
+                    elif not option_data and need_wait:
+                        print(
+                            f"[generate-option] skip duplicate outer on-demand generation for scene_id={scene_id}, "
+                            f"option_index={option_index}; existing generation is already in progress"
+                        )
         
         # 在释放锁后等待第二层线程退出（避免死锁）
         if layer2_thread_to_wait and layer2_thread_to_wait.is_alive():
@@ -887,7 +1223,7 @@ def generate_option():
                     with cache_lock:
                         if 'initial' in pregeneration_cache:
                             initial_cache = pregeneration_cache['initial']
-                            if initial_cache.get('completed', False):
+                            if initial_cache.get('game_id') == request_game_id and initial_cache.get('completed', False):
                                 if option_index == 0 and option == "开始游戏":
                                     initial_scene = initial_cache.get('initial_scene', '')
                                     initial_scene_image = initial_cache.get('initial_scene_image', None)
@@ -919,10 +1255,20 @@ def generate_option():
                     if isinstance(option_data_temp, dict):
                         if status == 'completed' and scene_image and scene_image.get('url'):
                             option_data = option_data_temp
+                            if benchmark_diag is not None and not benchmark_diag.get("cache_hit_reason"):
+                                benchmark_diag["cache_hit_reason"] = "waited_request_scene_completed_with_image"
+                                benchmark_diag["resolution_path"] = "wait_for_request_scene_cache"
                         elif status == 'text_completed':
                             option_data = option_data_temp
+                            if benchmark_diag is not None and not benchmark_diag.get("cache_hit_reason"):
+                                benchmark_diag["cache_hit_reason"] = "waited_request_scene_text_completed_no_image"
+                                benchmark_diag["cache_miss_reason"] = benchmark_diag.get("cache_miss_reason") or "image_not_ready_after_wait"
+                                benchmark_diag["resolution_path"] = "wait_for_request_scene_cache_text_only"
                         else:
                             option_data = option_data_temp
+                            if benchmark_diag is not None and not benchmark_diag.get("cache_hit_reason"):
+                                benchmark_diag["cache_hit_reason"] = f"waited_request_scene_status_{status}"
+                                benchmark_diag["resolution_path"] = "wait_for_request_scene_cache_partial"
 
                 # 🆕 关键修复：如果事件触发后仍未拿到 option_data，不要立即“同步再生成”，而是继续等待正在进行的预生成写回缓存
                 # - 常见场景：后台线程仍在进行 LLM/图片生成，事件触发/超时后短时间内数据尚未写入
@@ -947,6 +1293,10 @@ def generate_option():
                 # 不要返回 error + message（前端会把 message 当作剧情展示，并触发 /generate-scene-image，导致“生成超时”被画进图里）
                 # 这里返回一个“安全兜底”的 optionData，让游戏可以继续，同时避免把错误文案喂给生图。
                 if not option_data:
+                    if benchmark_diag is not None:
+                        benchmark_diag["resolution_path"] = "placeholder_fallback_after_wait"
+                        if not benchmark_diag.get("cache_miss_reason"):
+                            benchmark_diag["cache_miss_reason"] = "wait_expired_placeholder_fallback"
                     print(f"⚠️ [generate-option] 等待预生成到期仍未拿到 option_data，返回安全兜底数据（scene_id={scene_id}, option_index={option_index}）")
                     option_data = {
                         "scene": "当前内容生成耗时较长，但你仍可以继续推进剧情。你决定先观察局势并寻找下一步行动方向。",
@@ -966,13 +1316,14 @@ def generate_option():
                     "message": f"等待生成失败：{str(e)}"
                 })
         
+        block_for_image_timed_out_without_image = False
         block_for_image = os.getenv("GENERATE_OPTION_BLOCK_FOR_IMAGE", "0").strip() in ("1", "true", "True")
         if block_for_image and option_data and scene_id and scene_id != 'initial':
             scene_image = option_data.get('scene_image')
             if not scene_image or not scene_image.get('url'):
                 print(f"⏳ 文本数据已就绪，但图片还在生成中，等待图片生成完成...")
                 import time
-                max_image_wait = 60
+                max_image_wait = int(os.getenv("GENERATE_OPTION_BLOCK_FOR_IMAGE_MAX_WAIT_SECONDS", "60"))
                 start_time = time.time()
                 while time.time() - start_time < max_image_wait:
                     time.sleep(0.5)
@@ -1084,6 +1435,7 @@ def generate_option():
         # 解决方案：在返回数据前，检查并生成图片，确保图片和当前场景文本匹配
         try:
             sync_backfill_image = os.getenv("GENERATE_OPTION_SYNC_BACKFILL_IMAGE", "0").strip() in ("1", "true", "True")
+            skip_sync_backfill_after_block_timeout = os.getenv("GENERATE_OPTION_SKIP_SYNC_BACKFILL_AFTER_BLOCK_TIMEOUT", "0").strip() in ("1", "true", "True")
             if isinstance(option_data, dict) and option_data.get("scene"):
                 scene_text = option_data.get("scene", "")
                 scene_image = option_data.get("scene_image", None)
@@ -1114,6 +1466,24 @@ def generate_option():
                         need_generate_image = True
                         print(f"🔄 场景文本已变化（缓存哈希: {cached_scene_hash[:8] if cached_scene_hash else 'N/A'} vs 当前哈希: {current_scene_hash[:8]}），重新生成图片以确保匹配")
                 
+                if (
+                    need_generate_image
+                    and block_for_image_timed_out_without_image
+                    and skip_sync_backfill_after_block_timeout
+                ):
+                    need_generate_image = False
+                    if benchmark_diag is not None:
+                        benchmark_diag["sync_backfill_skipped_after_block_timeout"] = True
+                    print("[generate-option] skip sync backfill after block-for-image timeout; defer to downstream full-ready image probe")
+                if (
+                    need_generate_image
+                    and benchmark_diag is not None
+                    and (not scene_id or scene_id == 'initial')
+                ):
+                    need_generate_image = False
+                    if benchmark_diag is not None:
+                        benchmark_diag["initial_sync_backfill_skipped_for_strict_benchmark"] = True
+                    print("[generate-option] strict benchmark: skip initial-scene sync backfill; first click is setup-only")
                 if need_generate_image and isinstance(scene_text, str) and scene_text.strip() and sync_backfill_image:
                     print(f"🎨 正在为场景生成图片（确保图片和文本匹配）...")
                     # 补图时传入剧情模型输出的本段出场配角（有则名单，无则[]），图片流程以剧情为准不推断
@@ -1189,10 +1559,24 @@ def generate_option():
                     if flow_update:
                         updated_global_state['flow_worldline'].update(flow_update)
                     new_scene_id = generate_scene_id(str(updated_global_state), str(next_options))
-                    _pregenerate_next_layers_logic(updated_global_state, next_options, new_scene_id)
                     response["optionData"] = dict(option_data)
                     response["optionData"]["sceneId"] = new_scene_id
-                    print(f"✅ [generate-option] 已触发下一轮预生成，sceneId={new_scene_id}，选项数={len(next_options)}")
+                    if benchmark_diag is not None:
+                        print(
+                            f"⏭️ [generate-option] strict benchmark: skip post-response next-round pregeneration "
+                            f"for sceneId={new_scene_id}; keep this batch isolated"
+                        )
+                    else:
+                        _pregenerate_next_layers_logic(updated_global_state, next_options, new_scene_id)
+                        print(f"✅ [generate-option] 已触发下一轮预生成，sceneId={new_scene_id}，选项数={len(next_options)}")
+        if benchmark_diag is not None:
+            final_option_data = response.get("optionData") or {}
+            benchmark_diag["placeholder"] = is_placeholder_option_data(final_option_data) if isinstance(final_option_data, dict) else False
+            benchmark_diag["response_has_scene"] = bool((final_option_data or {}).get("scene")) if isinstance(final_option_data, dict) else False
+            benchmark_diag["response_has_image"] = bool(((final_option_data or {}).get("scene_image") or {}).get("url")) if isinstance(final_option_data, dict) else False
+            benchmark_diag["response_scene_id"] = (final_option_data or {}).get("sceneId") if isinstance(final_option_data, dict) else None
+            benchmark_diag["response_status"] = response.get("status")
+            response["benchmark_diagnostics"] = benchmark_diag
         try:
             from server.experiment_log import save_dn_experiment_bundle
 

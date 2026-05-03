@@ -1,3 +1,3 @@
 @echo off
-cd /d C:\Users\User\Desktop\DN-main
-.venv\Scripts\python.exe -c "import requests; print('requests ok:', requests.__version__)"
+cd /d "%~dp0"
+"%~dp0.venv\Scripts\python.exe" -c "import requests; print('requests ok:', requests.__version__)"

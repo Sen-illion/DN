@@ -1,4 +1,4 @@
 @echo off
-cd /d C:\Users\User\Desktop\DN-main
-.venv\Scripts\python.exe -m pip install selenium --quiet
+cd /d "%~dp0"
+"%~dp0.venv\Scripts\python.exe" -m pip install selenium --quiet
 echo Done

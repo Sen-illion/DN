@@ -1,5 +1,6 @@
-﻿Set-Location "C:\Users\zhang\Desktop\DN"
-$log = "C:\Users\zhang\Desktop\DN\experiments\benchmark\standard_runs\server_off_5002.console.log"
+﻿$projectRoot = Resolve-Path (Join-Path $PSScriptRoot "..\..")
+Set-Location $projectRoot
+$log = Join-Path $projectRoot "experiments\benchmark\standard_runs\server_off_5002.console.log"
 "[$(Get-Date -Format o)] launch off 5002" | Out-File -FilePath $log -Encoding utf8
 $env:PYTHONPATH = (Resolve-Path '.venv\Lib\site-packages').Path
 $env:PREGENERATION_ENABLED = 'false'

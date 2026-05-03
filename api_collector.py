@@ -14,9 +14,10 @@ from pathlib import Path
 import urllib.request
 import urllib.error
 
-WORK_DIR = Path(r"C:\Users\User\Desktop\DN-main")
-DATASET_DIR = WORK_DIR / "dataset"
-DATASET_DIR.mkdir(exist_ok=True)
+from project_paths import PROJECT_ROOT, ensure_project_dir
+
+WORK_DIR = PROJECT_ROOT
+DATASET_DIR = ensure_project_dir("dataset")
 LOG_FILE = DATASET_DIR / "execution_log.txt"
 
 API_BASE = "http://127.0.0.1:5001"

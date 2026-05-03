@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """预生成两层内容的核心逻辑。"""
 import os
+import json
 import threading
 import hashlib
 from concurrent.futures import ThreadPoolExecutor
@@ -22,6 +23,68 @@ from main2 import (
 
 ENABLE_LAYER2_IMAGE_PREGEN = os.getenv("PREGEN_LAYER2_IMAGE_ENABLED", "false").lower() == "true"
 PREGENERATION_ENABLED = os.getenv("PREGENERATION_ENABLED", "true").lower() in ("1", "true", "yes")
+TRANSIENT_CACHE_KEY_STATE_KEYS = {"_visual_context", "_plot_supporting_characters"}
+
+
+def _is_strict_fullready_benchmark(global_state) -> bool:
+    if os.getenv("DN_BENCHMARK_STRICT_FULLREADY", "0").strip().lower() in ("1", "true", "yes"):
+        return True
+    if not isinstance(global_state, dict):
+        return False
+    return bool(global_state.get("_benchmark_profile", "") in {"fullready_strict", "fullready_pregen60"})
+
+
+def _canonicalize_for_cache_key(value):
+    if isinstance(value, dict):
+        normalized = {}
+        for key in sorted(value.keys(), key=lambda item: str(item)):
+            if isinstance(key, str) and (key in TRANSIENT_CACHE_KEY_STATE_KEYS or key.startswith("_benchmark_")):
+                continue
+            normalized[str(key)] = _canonicalize_for_cache_key(value[key])
+        return normalized
+    if isinstance(value, list):
+        return [_canonicalize_for_cache_key(item) for item in value]
+    if isinstance(value, tuple):
+        return [_canonicalize_for_cache_key(item) for item in value]
+    return value
+
+
+def _stable_hash_payload(value) -> str:
+    try:
+        serialized = json.dumps(
+            _canonicalize_for_cache_key(value),
+            ensure_ascii=False,
+            sort_keys=True,
+            separators=(",", ":"),
+            default=str,
+        )
+    except Exception:
+        serialized = str(value)
+    return hashlib.md5(serialized.encode("utf-8")).hexdigest()
+
+
+def _attach_cache_metadata(cache_entry, global_state, current_options, scene_id):
+    if not isinstance(cache_entry, dict):
+        return
+    state_payload = _canonicalize_for_cache_key(global_state or {})
+    options_payload = _canonicalize_for_cache_key(current_options or [])
+    flow_worldline = {}
+    if isinstance(state_payload, dict):
+        flow_worldline = state_payload.get("flow_worldline") or {}
+    visual_context = (global_state or {}).get("_visual_context") if isinstance(global_state, dict) else {}
+    cache_entry["cache_meta"] = {
+        "scene_id": scene_id,
+        "canonical_scene_id": generate_scene_id(str(state_payload), str(options_payload)),
+        "global_state_hash": _stable_hash_payload(state_payload),
+        "current_options_hash": _stable_hash_payload(options_payload),
+        "flow_worldline_hash": _stable_hash_payload(flow_worldline),
+        "option_count": len(options_payload) if isinstance(options_payload, list) else 0,
+        "current_options_preview": list(options_payload[:4]) if isinstance(options_payload, list) else [],
+        "benchmark_profile": (global_state or {}).get("_benchmark_profile") if isinstance(global_state, dict) else None,
+        "benchmark_measurement": (global_state or {}).get("_benchmark_measurement") if isinstance(global_state, dict) else None,
+        "benchmark_read_wait_s": (global_state or {}).get("_benchmark_read_wait_s") if isinstance(global_state, dict) else None,
+        "parent_scene_id": (visual_context or {}).get("sceneId") if isinstance(visual_context, dict) else None,
+    }
 
 
 def _skip_low_priority_pregen(kind: str) -> bool:
@@ -85,6 +148,7 @@ def _pregenerate_next_layers_logic(global_state, current_options, scene_id):
                     }
                 
                 cache_entry = pregeneration_cache[scene_id]
+                _attach_cache_metadata(cache_entry, global_state, current_options, scene_id)
                 
                 # 初始化所有选项的状态为 'pending'
                 generation_status = cache_entry['generation_status']
@@ -141,6 +205,7 @@ def _pregenerate_next_layers_logic(global_state, current_options, scene_id):
                                 'current_layer2_option': None, 'text_only_mode': True
                             }
                         next_cache_entry = pregeneration_cache[next_scene_id]
+                        _attach_cache_metadata(next_cache_entry, updated_global_state, next_options, next_scene_id)
                         for next_opt_idx, next_option_data in layer2_data.items():
                             if 'layer1' not in next_cache_entry:
                                 next_cache_entry['layer1'] = {}
@@ -369,11 +434,17 @@ def _pregenerate_next_layers_logic(global_state, current_options, scene_id):
                     
                     # 流水线：本层该选项文本一写完，立即启动该分支的 layer2（先文本后图）
                     if option_data and option_data.get('next_options'):
-                        threading.Thread(
-                            target=run_layer2_for_branch,
-                            args=(opt_idx, option_data.copy()),
-                            daemon=True
-                        ).start()
+                        if _is_strict_fullready_benchmark(global_state):
+                            print(
+                                f"⏭️ strict benchmark: skip eager branch layer2 pregen for option {opt_idx}; "
+                                "focus current budget on first-layer candidate texts/images"
+                            )
+                        else:
+                            threading.Thread(
+                                target=run_layer2_for_branch,
+                                args=(opt_idx, option_data.copy()),
+                                daemon=True
+                            ).start()
                     
                     # 为当前场景生成图片（限速由 yunwu 全局限速锁 + IMAGE_SUBMIT_DELAY 控制）
                     # 图片生成完成后更新缓存
@@ -412,7 +483,9 @@ def _pregenerate_next_layers_logic(global_state, current_options, scene_id):
                                 import threading as th
                                 lock_acquired = False
                                 lock_start_time = time.time()
-                                max_lock_wait = 10  # 最多等待10秒获取锁
+                                max_lock_wait = int(
+                                    os.getenv("PREGEN_IMAGE_CACHE_WRITE_MAX_WAIT_SECONDS", "10")
+                                )
                                 current_thread_name = th.current_thread().name
                                 
                                 print(f"🔍 [第一层预生成] 当前线程：{current_thread_name}，尝试获取缓存锁...")
@@ -752,6 +825,7 @@ def _pregenerate_next_layers_logic(global_state, current_options, scene_id):
                                         }
                                     
                                     next_cache_entry = pregeneration_cache[next_scene_id]
+                                    _attach_cache_metadata(next_cache_entry, updated_global_state, next_options, next_scene_id)
                                     
                                     # 将第二层预生成的数据存储到下一层场景的 layer1（只有文本）
                                     # layer2_data 格式：{option_index: option_data}
@@ -840,6 +914,7 @@ def _pregenerate_next_layers_logic(global_state, current_options, scene_id):
                                             }
                                         
                                         next_cache_entry = pregeneration_cache[next_scene_id]
+                                        _attach_cache_metadata(next_cache_entry, updated_global_state, next_options, next_scene_id)
                                         
                                         # 将第二层预生成的数据存储到下一层场景的 layer1（只有文本）
                                         # layer2_data 格式：{option_index: option_data}

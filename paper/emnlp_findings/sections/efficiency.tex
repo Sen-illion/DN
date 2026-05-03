@@ -1,0 +1,64 @@
+﻿\section{Efficiency Evaluation}
+\label{sec:efficiency}
+
+\paragraph{Evaluation goal.}
+The efficiency evaluation asks how long a player must wait after issuing a next-turn action before the system can deliver content that is ready to continue. This question is central to playable narrative generation: even high-quality narrative content can break interaction if the user must wait for a long or unpredictable generation process. We therefore evaluate \dn under a \emph{full-ready} latency definition, where a response is considered ready only when both the textual continuation and the corresponding scene image are available.
+
+\paragraph{Protocol.}
+We evaluate \dn under two settings. The first setting, \textit{normal20}, is a zero-dwell stress setting: the second click is issued immediately, so the system receives little opportunity to benefit from player reading time. The second setting, \textit{pregen60}, simulates a player spending 60 seconds reading the current turn before clicking the next action. This setting tests the intended use case of pre-generation, where the system uses the player's reading interval to prepare likely next-turn content in the background.
+
+For external references, we compare against StoryDiffusion~\citep{zhou2024storydiffusion}, SDM-v2, which is based on latent diffusion modeling~\citep{rombach2022latentdiffusion}, and IC-LoRA~\citep{huang2024iclora}. These baselines are image-continuation references rather than complete interactive narrative systems: they generate a next-turn image or image workflow output from DN-style prompts, but they do not generate the full textual continuation, update the game state, or return a complete playable state. Consequently, the comparison is deliberately conservative in the sense that \dn is measured on a heavier output scope. We keep this distinction explicit throughout the analysis.
+
+\paragraph{Metrics.}
+We report success rate, mean latency, median latency, and 95th-percentile latency (P95). For \dn, latency is measured as \texttt{full\_ready\_elapsed\_s}. For the image baselines, latency is measured as next-turn image or workflow latency. We also report mechanism-specific signals for \dn, including direct image rate, likely hit rate, and placeholder rate. These signals help determine whether pre-generation improves latency by making the next-turn scene image available before the user clicks.
+
+\begin{table*}[t]
+\centering
+\small
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{llrrrrr}
+\toprule
+System & Output Scope & $N$ & Mean (s) & Median (s) & P95 (s) & Success \\
+\midrule
+DN normal20 & Text + image full-ready & 20 & 27.095 & 24.571 & 46.196 & 1.000 \\
+DN pregen60 & Text + image full-ready & 20 & 5.299 & 0.027 & 27.150 & 1.000 \\
+StoryDiffusion & Continuation image & 20 & 8.495 & -- & 8.900 & 1.000 \\
+SDM-v2 & Continuation image & 20 & 2.827 & -- & 2.831 & 1.000 \\
+IC-LoRA & Continuation workflow & 20 & 30.057 & -- & 30.059 & 1.000 \\
+\bottomrule
+\end{tabular}
+}
+\caption{Efficiency comparison on the formal20 benchmark. \dn reports full-ready latency, where both the textual continuation and the corresponding scene image are available. Image baselines report next-turn image or workflow latency only.}
+\label{tab:efficiency-main}
+\end{table*}
+
+\begin{table}[t]
+\centering
+\small
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lrrrr}
+\toprule
+DN Setting & Mean & Median & P95 & Direct Image Rate \\
+\midrule
+normal20 & 27.095 & 24.571 & 46.196 & 1.000 \\
+pregen60 & 5.299 & 0.027 & 27.150 & 1.000 \\
+\bottomrule
+\end{tabular}
+}
+\caption{Effect of simulated reading time on \dn full-ready latency. The pregen60 setting simulates a 60-second dwell interval before the next click.}
+\label{tab:dn-pregen}
+\end{table}
+
+\paragraph{Main results.}
+Table~\ref{tab:efficiency-main} shows that \dn's zero-dwell full-ready latency is 27.095 seconds on average, with a P95 latency of 46.196 seconds. This setting is intentionally strict: it measures the cost of producing a full next-turn response when the system is given essentially no reading interval in which to complete pre-generation. Under the simulated reading setting, \dn pregen60 reduces the mean full-ready latency to 5.299 seconds and the median latency to 0.027 seconds. This substantial reduction indicates that pre-generation changes the distribution of user-perceived latency rather than merely improving a small number of cases.
+
+Compared with the image-continuation references, \dn pregen60 is faster on mean latency than StoryDiffusion (8.495 seconds) and IC-LoRA (30.057 seconds), while SDM-v2 remains faster at 2.827 seconds. This result should be interpreted with the output-scope distinction in mind: \dn returns a full playable response that includes both text and the corresponding scene image, whereas the image baselines report only image or workflow continuation latency. Thus, the result supports the claim that \dn's pre-generation mechanism can make full-ready interactive delivery competitive with specialized image-generation references under realistic player dwell time.
+
+\paragraph{Effect of pre-generation.}
+Table~\ref{tab:dn-pregen} isolates the mechanism-level effect of the simulated reading interval. Moving from normal20 to pregen60 reduces the mean full-ready latency from 27.095 seconds to 5.299 seconds and the median from 24.571 seconds to 0.027 seconds. The direct image rate remains 1.000 in both settings, and the placeholder rate is 0.0 in the source summary, indicating that the measured outputs are strict full-ready results rather than placeholder fallbacks. The likely-hit rate rises from 0.0 in normal20 to 0.8 in pregen60, which is consistent with the intended behavior of using reading time to prepare likely next-turn content.
+
+\paragraph{Interpretation and limitations.}
+The efficiency results provide a stable first piece of evidence for \dn's practical interaction profile. They show that the system is not merely generating richer multimodal content at arbitrary latency: when pre-generation has a realistic opportunity to operate, full-ready delivery becomes competitive with several image-only references. At the same time, the comparison is not a fully isomorphic system-to-system comparison. StoryDiffusion, SDM-v2, and IC-LoRA do not perform \dn's state update and textual continuation steps. We therefore use them as image-continuation efficiency references, while reserving separate sections for visual quality and narrative quality evaluation.
+
+\paragraph{Stage-level conclusion.}
+The current efficiency results are ready to support the first experimental subsection of the paper. They establish that \dn's pre-generation mechanism substantially improves next-turn delivery latency, reducing average full-ready latency by 80.4\% relative to the zero-dwell setting. The remaining quality question is orthogonal: the next sections will evaluate whether the content delivered quickly is also visually faithful, narratively coherent, and consistent across turns.
