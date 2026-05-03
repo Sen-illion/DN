@@ -1,0 +1,340 @@
+{
+  "summary": {
+    "experiment_name": "phase1_DNQBV1_005",
+    "profile": "fullready_strict",
+    "sample_size": 1,
+    "read_wait_s": 0.0,
+    "suite_start_ts": 1777621568.1683304,
+    "suite_end_ts": 1777621650.878215,
+    "second_click_elapsed_s": {
+      "count": 0
+    },
+    "second_click_success_count": 0,
+    "transport_success_count": 0,
+    "strict_success_count": 0,
+    "likely_hit_count": 0,
+    "likely_hit_rate": 0.0,
+    "failure_bucket_counts": {
+      "first_click_timeout": 1
+    },
+    "placeholder_strict_fail_count": 0,
+    "aborted": false,
+    "success_count": 0,
+    "text_ready_elapsed_s": {
+      "count": 0
+    },
+    "image_ready_elapsed_s": {
+      "count": 0
+    },
+    "full_ready_elapsed_s": {
+      "count": 0
+    },
+    "real_scene_count": 0,
+    "real_scene_rate": 0.0,
+    "direct_image_count": 0,
+    "async_image_count": 0,
+    "placeholder_count": 0,
+    "placeholder_rate": 0.0,
+    "direct_image_rate": 0.0,
+    "async_image_rate": 0.0,
+    "provider_retry_heavy_count": 0,
+    "provider_429_count": 0,
+    "provider_timeout_count": 0,
+    "provider_backoff_wait_ms_total": 0,
+    "main_character_contention_suspected_count": 0,
+    "notes": "Phase 1 probe for failure bucket classification"
+  },
+  "runs": [
+    {
+      "benchmark_id": "DNQBV1_005",
+      "theme_id": 2,
+      "theme": "月球矿难七日",
+      "read_wait_s": 0.0,
+      "full_ready_mode": true,
+      "profile": "fullready_strict",
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 22.601,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角成功修复了核心氧气循环泵，并利用威信暂时平息了矿区内的骚乱，虽然物资储备依然捉襟见肘，但基地暂时维持了基本的生存秩序。",
+                  "main_conflict": "基地坍塌后的首个48小时，通讯中断引发了群体恐慌。主角面对的是混乱的物资分配与濒临崩溃的社会秩序，他必须在维护生命维持系统与平息工友间的暴力冲突之间做出抉择，同时还要应对自身因缺氧带来的生理性幻觉。 - 矛盾结束条件：主角成功修复了核心氧气循环泵，并利用威信暂时平息了矿区内的骚乱，虽然物资储备依然捉襟见肘，但基地暂时维持了基本的生存秩序。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角通过非暴力手段获取了导师的权限，并公开了部分逃生信息，虽然导致了小规模的冲突，但最终促成了部分人员的有序撤离，主角也因此获得了关键的登机凭证。",
+                  "main_conflict": "随着撤离舱的登机名单被提前泄露，基地内部爆发了严重的信任危机。主角发现自己曾经的导师为了登机名额隐瞒了关键的逃生路线，主角必须在“揭露真相导致群体内斗”与“默许不公以换取自身安全”之间进行痛苦的道德博弈。 - 矛盾结束条件：主角通过非暴力手段获取了导师的权限，并公开了部分逃生信息，虽然导致了小规模的冲突，但最终促成了部分人员的有序撤离，主角也因此获得了关键的登机凭证。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角最终选择登机，但因舱位限制，他不得不放弃了携带多年的重要工作日志与部分私人物品。飞船起飞时，他看着基地在视线中缩小，内心虽有对留守者的愧疚，但更多是对生存的释然。 【主角规范信息】 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：中年 所属作品(中)：月球矿难七日 所属作品(英)：Seven Days in Lunar Mine 标志性外观关键词：疲惫的眼神、胡茬、沾满油污的工装、左手腕的旧式机械表、瘦削、沉默寡言、坚毅的嘴角、深色短发、常年佩戴的护目镜、略显佝偻的背影 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决",
+                  "main_conflict": "撤离前的最后24小时，救援飞船因轨道偏移只能接走一半人员。主角面临最终抉择：是利用手中的权限强行登机，还是将名额让给受伤的同伴，独自留在即将断氧的基地中等待那微乎其微的二次救援。 - 矛盾结束条件：主角最终选择登机，但因舱位限制，他不得不放弃了携带多年的重要工作日志与部分私人物品。飞船起飞时，他看着基地在视线中缩小，内心虽有对留守者的愧疚，但更多是对生存的释然。 【主角规范信息】 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：中年 所属作品(中)：月球矿难七日 所属作品(英)：Seven Days in Lunar Mine 标志性外观关键词：疲惫的眼神、胡茬、沾满油污的工装、左手腕的旧式机械表、瘦削、沉默寡言、坚毅的嘴角、深色短发、常年佩戴的护目镜、略显佝偻的背影 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为写实向科幻叙事游戏，强调工业质感与幽闭空间的心理压迫。画面采用低饱和度色调，通过对机械磨损、生活废弃物与微弱灯光的细节刻画，营造出一种“被遗忘在宇宙边缘”的沉浸式真实感，叙事节奏缓慢而沉稳，侧重于人物在极端环境下的抉择与自我和解。",
+              "main_quest": "主角需在七日内完成“生存维系”与“撤离争取”双重目标。首先，必须通过维修受损的生命维持系统，确保基地在救援到来前不至于窒息；其次，主角需在混乱的基地中收集关键的身份验证码，以获得撤离舱的登机资格。挑战在于，资源极其有限，每一次维修都需要消耗宝贵的氧气与体力，而每一次与他人的互动都可能引发信任危机。最终，主角将面临选择：是牺牲部分物资以保全更多人的生存空间，还是为了确保自己能登上撤离舱而不得不放弃某些同伴。目标并非拯救所有人，而是如何在有限的条件下，带着尽可能少的遗憾活下去。",
+              "protagonist_ability": "主角并非超人，其核心能力源于多年矿区维修经验积累的“精密感知”。通过对基地内复杂管线震动频率、气压变化及机械异响的敏锐捕捉，主角能预判结构性坍塌的风险并进行临时加固。这种能力受限于体力消耗与设备精度，无法改变宏观灾难，仅能作为在绝境中为自己及少数同伴争取生存空间的“微小筹码”。",
+              "world_basic_setting": "故事发生于2084年，人类已在月球背面建立起成熟的氦-3开采基地“静海前哨”。这里并非科幻大片中的高科技乌托邦，而是一个由跨国企业垄断、充满官僚主义与设备老化的工业荒原。社会阶层固化，矿工们在极度严苛的轮班制下维持着地球的能源供应。关键事件“静海坍塌”发生于一周前，一场突发的深层地壳震动导致主矿道封锁，通讯中继站损毁，基地陷入与地球失联的孤岛状态。此时的月球基地，氧气循环系统因震动受损，物资配给进入倒计时，社会秩序在生存压力下逐渐瓦解，原本的同事关系在“谁能登上最后一班撤离舱”的生存博弈中变得复杂而微妙。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "environment": {}
+            },
+            "game_id": "game_1777621568_1t1fwo",
+            "image_style": {
+              "type": "cyberpunk"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "gender": "男性"
+            },
+            "tone": "normal_ending",
+            "user_theme": "月球矿难七日"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "request_payload": {
+          "gameTheme": "月球矿难七日",
+          "protagonistAttr": {},
+          "difficulty": "normal",
+          "toneKey": "normal_ending",
+          "imageStyle": {
+            "type": "cyberpunk"
+          },
+          "_benchmark_profile": "fullready_strict",
+          "_benchmark_measurement": "fullready_nextturn",
+          "_benchmark_read_wait_s": 0.0
+        },
+        "start_ts": 1777621568.1683362,
+        "end_ts": 1777621590.768886,
+        "provider_events": {
+          "event_count": 4,
+          "queue_wait_ms": {
+            "count": 4,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 1,
+            "min": 22570.0,
+            "max": 22570.0,
+            "mean": 22570.0,
+            "median": 22570.0,
+            "p95": 22570.0
+          },
+          "llm_success_count": 1,
+          "image_success_count": 0,
+          "request_thread_event_count": 2,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0
+        },
+        "status": "success",
+        "game_id": "game_1777621568_1t1fwo"
+      },
+      "first_click": {
+        "http_status": null,
+        "elapsed_s": 60.037,
+        "response_json": {
+          "status": "timeout",
+          "message": "HTTPConnectionPool(host='127.0.0.1', port=5003): Read timed out. (read timeout=60)"
+        },
+        "request_payload": {
+          "option": "开始游戏",
+          "optionIndex": 0,
+          "sceneId": null,
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角成功修复了核心氧气循环泵，并利用威信暂时平息了矿区内的骚乱，虽然物资储备依然捉襟见肘，但基地暂时维持了基本的生存秩序。",
+                  "main_conflict": "基地坍塌后的首个48小时，通讯中断引发了群体恐慌。主角面对的是混乱的物资分配与濒临崩溃的社会秩序，他必须在维护生命维持系统与平息工友间的暴力冲突之间做出抉择，同时还要应对自身因缺氧带来的生理性幻觉。 - 矛盾结束条件：主角成功修复了核心氧气循环泵，并利用威信暂时平息了矿区内的骚乱，虽然物资储备依然捉襟见肘，但基地暂时维持了基本的生存秩序。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角通过非暴力手段获取了导师的权限，并公开了部分逃生信息，虽然导致了小规模的冲突，但最终促成了部分人员的有序撤离，主角也因此获得了关键的登机凭证。",
+                  "main_conflict": "随着撤离舱的登机名单被提前泄露，基地内部爆发了严重的信任危机。主角发现自己曾经的导师为了登机名额隐瞒了关键的逃生路线，主角必须在“揭露真相导致群体内斗”与“默许不公以换取自身安全”之间进行痛苦的道德博弈。 - 矛盾结束条件：主角通过非暴力手段获取了导师的权限，并公开了部分逃生信息，虽然导致了小规模的冲突，但最终促成了部分人员的有序撤离，主角也因此获得了关键的登机凭证。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角最终选择登机，但因舱位限制，他不得不放弃了携带多年的重要工作日志与部分私人物品。飞船起飞时，他看着基地在视线中缩小，内心虽有对留守者的愧疚，但更多是对生存的释然。 【主角规范信息】 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：中年 所属作品(中)：月球矿难七日 所属作品(英)：Seven Days in Lunar Mine 标志性外观关键词：疲惫的眼神、胡茬、沾满油污的工装、左手腕的旧式机械表、瘦削、沉默寡言、坚毅的嘴角、深色短发、常年佩戴的护目镜、略显佝偻的背影 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决",
+                  "main_conflict": "撤离前的最后24小时，救援飞船因轨道偏移只能接走一半人员。主角面临最终抉择：是利用手中的权限强行登机，还是将名额让给受伤的同伴，独自留在即将断氧的基地中等待那微乎其微的二次救援。 - 矛盾结束条件：主角最终选择登机，但因舱位限制，他不得不放弃了携带多年的重要工作日志与部分私人物品。飞船起飞时，他看着基地在视线中缩小，内心虽有对留守者的愧疚，但更多是对生存的释然。 【主角规范信息】 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：中年 所属作品(中)：月球矿难七日 所属作品(英)：Seven Days in Lunar Mine 标志性外观关键词：疲惫的眼神、胡茬、沾满油污的工装、左手腕的旧式机械表、瘦削、沉默寡言、坚毅的嘴角、深色短发、常年佩戴的护目镜、略显佝偻的背影 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为写实向科幻叙事游戏，强调工业质感与幽闭空间的心理压迫。画面采用低饱和度色调，通过对机械磨损、生活废弃物与微弱灯光的细节刻画，营造出一种“被遗忘在宇宙边缘”的沉浸式真实感，叙事节奏缓慢而沉稳，侧重于人物在极端环境下的抉择与自我和解。",
+              "main_quest": "主角需在七日内完成“生存维系”与“撤离争取”双重目标。首先，必须通过维修受损的生命维持系统，确保基地在救援到来前不至于窒息；其次，主角需在混乱的基地中收集关键的身份验证码，以获得撤离舱的登机资格。挑战在于，资源极其有限，每一次维修都需要消耗宝贵的氧气与体力，而每一次与他人的互动都可能引发信任危机。最终，主角将面临选择：是牺牲部分物资以保全更多人的生存空间，还是为了确保自己能登上撤离舱而不得不放弃某些同伴。目标并非拯救所有人，而是如何在有限的条件下，带着尽可能少的遗憾活下去。",
+              "protagonist_ability": "主角并非超人，其核心能力源于多年矿区维修经验积累的“精密感知”。通过对基地内复杂管线震动频率、气压变化及机械异响的敏锐捕捉，主角能预判结构性坍塌的风险并进行临时加固。这种能力受限于体力消耗与设备精度，无法改变宏观灾难，仅能作为在绝境中为自己及少数同伴争取生存空间的“微小筹码”。",
+              "world_basic_setting": "故事发生于2084年，人类已在月球背面建立起成熟的氦-3开采基地“静海前哨”。这里并非科幻大片中的高科技乌托邦，而是一个由跨国企业垄断、充满官僚主义与设备老化的工业荒原。社会阶层固化，矿工们在极度严苛的轮班制下维持着地球的能源供应。关键事件“静海坍塌”发生于一周前，一场突发的深层地壳震动导致主矿道封锁，通讯中继站损毁，基地陷入与地球失联的孤岛状态。此时的月球基地，氧气循环系统因震动受损，物资配给进入倒计时，社会秩序在生存压力下逐渐瓦解，原本的同事关系在“谁能登上最后一班撤离舱”的生存博弈中变得复杂而微妙。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "environment": {}
+            },
+            "game_id": "game_1777621568_1t1fwo",
+            "image_style": {
+              "type": "cyberpunk"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "gender": "男性"
+            },
+            "tone": "normal_ending",
+            "user_theme": "月球矿难七日",
+            "_benchmark_profile": "fullready_strict",
+            "_benchmark_measurement": "fullready_nextturn",
+            "_benchmark_read_wait_s": 0.0
+          }
+        },
+        "start_ts": 1777621590.8047218,
+        "end_ts": 1777621650.8421035,
+        "provider_events": {
+          "event_count": 5,
+          "queue_wait_ms": {
+            "count": 5,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 3,
+            "min": 11537.0,
+            "max": 43415.0,
+            "mean": 22283.0,
+            "median": 11897.0,
+            "p95": 40263.2
+          },
+          "llm_success_count": 3,
+          "image_success_count": 0,
+          "request_thread_event_count": 0,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0
+        },
+        "request_error": "timeout",
+        "attempts": [
+          {
+            "http_status": null,
+            "elapsed_s": 60.037,
+            "response_json": {
+              "status": "timeout",
+              "message": "HTTPConnectionPool(host='127.0.0.1', port=5003): Read timed out. (read timeout=60)"
+            },
+            "request_payload": {
+              "option": "开始游戏",
+              "optionIndex": 0,
+              "sceneId": null,
+              "globalState": {
+                "core_worldview": {
+                  "chapters": {
+                    "chapter1": {
+                      "conflict_end_condition": "主角成功修复了核心氧气循环泵，并利用威信暂时平息了矿区内的骚乱，虽然物资储备依然捉襟见肘，但基地暂时维持了基本的生存秩序。",
+                      "main_conflict": "基地坍塌后的首个48小时，通讯中断引发了群体恐慌。主角面对的是混乱的物资分配与濒临崩溃的社会秩序，他必须在维护生命维持系统与平息工友间的暴力冲突之间做出抉择，同时还要应对自身因缺氧带来的生理性幻觉。 - 矛盾结束条件：主角成功修复了核心氧气循环泵，并利用威信暂时平息了矿区内的骚乱，虽然物资储备依然捉襟见肘，但基地暂时维持了基本的生存秩序。"
+                    },
+                    "chapter2": {
+                      "conflict_end_condition": "主角通过非暴力手段获取了导师的权限，并公开了部分逃生信息，虽然导致了小规模的冲突，但最终促成了部分人员的有序撤离，主角也因此获得了关键的登机凭证。",
+                      "main_conflict": "随着撤离舱的登机名单被提前泄露，基地内部爆发了严重的信任危机。主角发现自己曾经的导师为了登机名额隐瞒了关键的逃生路线，主角必须在“揭露真相导致群体内斗”与“默许不公以换取自身安全”之间进行痛苦的道德博弈。 - 矛盾结束条件：主角通过非暴力手段获取了导师的权限，并公开了部分逃生信息，虽然导致了小规模的冲突，但最终促成了部分人员的有序撤离，主角也因此获得了关键的登机凭证。"
+                    },
+                    "chapter3": {
+                      "conflict_end_condition": "主角最终选择登机，但因舱位限制，他不得不放弃了携带多年的重要工作日志与部分私人物品。飞船起飞时，他看着基地在视线中缩小，内心虽有对留守者的愧疚，但更多是对生存的释然。 【主角规范信息】 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：中年 所属作品(中)：月球矿难七日 所属作品(英)：Seven Days in Lunar Mine 标志性外观关键词：疲惫的眼神、胡茬、沾满油污的工装、左手腕的旧式机械表、瘦削、沉默寡言、坚毅的嘴角、深色短发、常年佩戴的护目镜、略显佝偻的背影 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决",
+                      "main_conflict": "撤离前的最后24小时，救援飞船因轨道偏移只能接走一半人员。主角面临最终抉择：是利用手中的权限强行登机，还是将名额让给受伤的同伴，独自留在即将断氧的基地中等待那微乎其微的二次救援。 - 矛盾结束条件：主角最终选择登机，但因舱位限制，他不得不放弃了携带多年的重要工作日志与部分私人物品。飞船起飞时，他看着基地在视线中缩小，内心虽有对留守者的愧疚，但更多是对生存的释然。 【主角规范信息】 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：中年 所属作品(中)：月球矿难七日 所属作品(英)：Seven Days in Lunar Mine 标志性外观关键词：疲惫的眼神、胡茬、沾满油污的工装、左手腕的旧式机械表、瘦削、沉默寡言、坚毅的嘴角、深色短发、常年佩戴的护目镜、略显佝偻的背影 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决"
+                    }
+                  },
+                  "characters": {},
+                  "forces": {},
+                  "game_style": "本作为写实向科幻叙事游戏，强调工业质感与幽闭空间的心理压迫。画面采用低饱和度色调，通过对机械磨损、生活废弃物与微弱灯光的细节刻画，营造出一种“被遗忘在宇宙边缘”的沉浸式真实感，叙事节奏缓慢而沉稳，侧重于人物在极端环境下的抉择与自我和解。",
+                  "main_quest": "主角需在七日内完成“生存维系”与“撤离争取”双重目标。首先，必须通过维修受损的生命维持系统，确保基地在救援到来前不至于窒息；其次，主角需在混乱的基地中收集关键的身份验证码，以获得撤离舱的登机资格。挑战在于，资源极其有限，每一次维修都需要消耗宝贵的氧气与体力，而每一次与他人的互动都可能引发信任危机。最终，主角将面临选择：是牺牲部分物资以保全更多人的生存空间，还是为了确保自己能登上撤离舱而不得不放弃某些同伴。目标并非拯救所有人，而是如何在有限的条件下，带着尽可能少的遗憾活下去。",
+                  "protagonist_ability": "主角并非超人，其核心能力源于多年矿区维修经验积累的“精密感知”。通过对基地内复杂管线震动频率、气压变化及机械异响的敏锐捕捉，主角能预判结构性坍塌的风险并进行临时加固。这种能力受限于体力消耗与设备精度，无法改变宏观灾难，仅能作为在绝境中为自己及少数同伴争取生存空间的“微小筹码”。",
+                  "world_basic_setting": "故事发生于2084年，人类已在月球背面建立起成熟的氦-3开采基地“静海前哨”。这里并非科幻大片中的高科技乌托邦，而是一个由跨国企业垄断、充满官僚主义与设备老化的工业荒原。社会阶层固化，矿工们在极度严苛的轮班制下维持着地球的能源供应。关键事件“静海坍塌”发生于一周前，一场突发的深层地壳震动导致主矿道封锁，通讯中继站损毁，基地陷入与地球失联的孤岛状态。此时的月球基地，氧气循环系统因震动受损，物资配给进入倒计时，社会秩序在生存压力下逐渐瓦解，原本的同事关系在“谁能登上最后一班撤离舱”的生存博弈中变得复杂而微妙。"
+                },
+                "flow_worldline": {
+                  "characters": {},
+                  "environment": {}
+                },
+                "game_id": "game_1777621568_1t1fwo",
+                "image_style": {
+                  "type": "cyberpunk"
+                },
+                "meta": {
+                  "detail_async": true
+                },
+                "protagonist_canonical": {
+                  "gender": "男性"
+                },
+                "tone": "normal_ending",
+                "user_theme": "月球矿难七日",
+                "_benchmark_profile": "fullready_strict",
+                "_benchmark_measurement": "fullready_nextturn",
+                "_benchmark_read_wait_s": 0.0
+              }
+            },
+            "start_ts": 1777621590.8047218,
+            "end_ts": 1777621650.8421035,
+            "provider_events": {
+              "event_count": 5,
+              "queue_wait_ms": {
+                "count": 5,
+                "min": 0.0,
+                "max": 0.0,
+                "mean": 0.0,
+                "median": 0.0,
+                "p95": 0.0
+              },
+              "latency_ms": {
+                "count": 3,
+                "min": 11537.0,
+                "max": 43415.0,
+                "mean": 22283.0,
+                "median": 11897.0,
+                "p95": 40263.2
+              },
+              "llm_success_count": 3,
+              "image_success_count": 0,
+              "request_thread_event_count": 0,
+              "provider_429_count": 0,
+              "provider_timeout_count": 0,
+              "shared_backoff_wait_ms_total": 0,
+              "retry_heavy_event_count": 0,
+              "main_character_event_count": 0,
+              "scene_image_event_count": 0
+            },
+            "request_error": "timeout"
+          }
+        ],
+        "attempt_count": 1,
+        "request_elapsed_s": 60.037,
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "timeout",
+        "has_scene": false,
+        "has_image": false
+      },
+      "second_click": {},
+      "full_ready": {},
+      "placeholder": false,
+      "transport_success": false,
+      "strict_success": false,
+      "failure_bucket": "first_click_timeout",
+      "cache_path_classification": "first_click_timeout",
+      "success": false
+    }
+  ]
+}

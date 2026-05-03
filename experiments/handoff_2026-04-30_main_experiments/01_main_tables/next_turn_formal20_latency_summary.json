@@ -1,0 +1,50 @@
+[
+  {
+    "baseline": "storydiffusion",
+    "mode": "next_turn",
+    "sample_size": 20,
+    "success_rate": 1.0,
+    "mean_latency_s": 8.495,
+    "p95_latency_s": 8.9,
+    "next_turn_time_mean_s": 8.495,
+    "next_turn_p95_s": 8.9,
+    "continuation_success_rate": 1.0,
+    "interaction_continuity": 1.0,
+    "mean_images_per_sample": 1,
+    "failed_ids": "",
+    "output_dir": "/root/autodl-tmp/outputs/storydiffusion_nextturn_formal20/storydiffusion_nextturn_formal20_unstable_v2_20260430",
+    "notes": "StoryDiffusion next-turn latency measures the post-click continuation image only."
+  },
+  {
+    "baseline": "sdmv2",
+    "mode": "next_turn",
+    "sample_size": 20,
+    "success_rate": 1.0,
+    "mean_latency_s": 2.827,
+    "p95_latency_s": 2.831,
+    "next_turn_time_mean_s": 2.827,
+    "next_turn_p95_s": 2.831,
+    "continuation_success_rate": 1.0,
+    "interaction_continuity": 1.0,
+    "mean_images_per_sample": 1,
+    "failed_ids": "",
+    "output_dir": "/root/autodl-tmp/outputs/sdmv2_nextturn_formal20/sdmv2_sdmv2_nextturn_formal20_20260430",
+    "notes": "SDM-v2 next-turn latency measures the post-click continuation image only."
+  },
+  {
+    "baseline": "ic-lora",
+    "mode": "next_turn",
+    "sample_size": 20,
+    "success_rate": 1.0,
+    "mean_latency_s": 30.057,
+    "p95_latency_s": 30.059,
+    "next_turn_time_mean_s": 30.057,
+    "next_turn_p95_s": 30.059,
+    "continuation_success_rate": 1.0,
+    "interaction_continuity": 1.0,
+    "mean_images_per_sample": 1,
+    "failed_ids": "",
+    "output_dir": "/root/autodl-tmp/outputs/iclora_nextturn_formal20_real/ic-lora_real_20260430_nextturn_formal20",
+    "notes": "IC-LoRA next-turn latency measures the post-click continuation workflow only."
+  }
+]

@@ -1,0 +1,144 @@
+{
+  "baseline_id": "doc",
+  "benchmark_id": "DNQBV1_015",
+  "run_id": "formal20_first_playable_20260430",
+  "mode": "first_playable",
+  "input_bundle": {
+    "original_dn_item": {
+      "benchmark_id": "DNQBV1_015",
+      "theme_id": 5,
+      "theme": "魔法学院期末周",
+      "image_style": {
+        "type": "anime"
+      },
+      "expected_genre": "校园奇幻",
+      "expected_tone": "轻快中带压力、青春感",
+      "must_have_constraints": [
+        "故事必须围绕魔法学院与期末周展开",
+        "动漫风格必须明确",
+        "选项应贴合考试/冒险压力"
+      ],
+      "forbidden_issues": [
+        "完全变成现实考试故事",
+        "图像风格不动漫",
+        "剧情没有魔法元素"
+      ],
+      "focus": "full-set coverage: 校园奇幻",
+      "_subset_focus": "full-set coverage: 校园奇幻"
+    },
+    "doc_prompt": "Premise seed: 魔法学院期末周\nGenre: 校园奇幻\nTone: 轻快中带压力、青春感\nWrite a long-form interactive story opening that could be expanded with a detailed outline.\nMust-have constraints:\n- 故事必须围绕魔法学院与期末周展开\n- 动漫风格必须明确\n- 选项应贴合考试/冒险压力\nForbidden issues:\n- 完全变成现实考试故事\n- 图像风格不动漫\n- 剧情没有魔法元素\n",
+    "outline_seed": [
+      "Opening setup for 魔法学院期末周 in a 校园奇幻 frame with a 轻快中带压力、青春感 tone.",
+      "Introduce the protagonist's immediate role, pressure, and conflict around: 故事必须围绕魔法学院与期末周展开.",
+      "Reveal one concrete obstacle or tradeoff the player must respond to next.",
+      "End the first turn with 2-3 actionable next steps that can continue the story."
+    ],
+    "mode": "first_playable",
+    "baseline_params": {
+      "execution_mode": "cloud",
+      "doc_repo": "D:\\Projects\\DN\\baselines\\DOC",
+      "doc_data_dir": "D:\\Projects\\DN\\baselines\\DOC\\doc_data"
+    }
+  },
+  "raw_output": {
+    "execution_mode": "cloud",
+    "doc_upstream_executed": false,
+    "doc_api_adapter": "yunwu_chat_completions",
+    "provider": "yunwu",
+    "provider_config_prefix": "Origin_Segment_Analyst",
+    "provider_base_url": "https://yunwu.ai/v1",
+    "provider_model": "gemini-3.1-flash-lite-preview",
+    "request": {
+      "model": "gemini-3.1-flash-lite-preview",
+      "temperature": 0.7,
+      "top_p": 0.9,
+      "max_tokens": 900,
+      "response_format": {
+        "type": "json_object"
+      }
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are the DOC long-form story baseline adapted for DN playable-latency evaluation. Write concise, grounded, continuation-ready interactive fiction. Do not include debugging text, URLs, or commentary outside JSON."
+      },
+      {
+        "role": "user",
+        "content": "Convert this DN benchmark item into a DOC-style playable baseline output.\nPreserve DOC's premise -> outline -> story-opening semantics, but return only a playable first response.\nRun mode: first_playable\n\nDOC prompt:\nPremise seed: 魔法学院期末周\nGenre: 校园奇幻\nTone: 轻快中带压力、青春感\nWrite a long-form interactive story opening that could be expanded with a detailed outline.\nMust-have constraints:\n- 故事必须围绕魔法学院与期末周展开\n- 动漫风格必须明确\n- 选项应贴合考试/冒险压力\nForbidden issues:\n- 完全变成现实考试故事\n- 图像风格不动漫\n- 剧情没有魔法元素\n\nOutline seed:\n1. Opening setup for 魔法学院期末周 in a 校园奇幻 frame with a 轻快中带压力、青春感 tone.\n2. Introduce the protagonist's immediate role, pressure, and conflict around: 故事必须围绕魔法学院与期末周展开.\n3. Reveal one concrete obstacle or tradeoff the player must respond to next.\n4. End the first turn with 2-3 actionable next steps that can continue the story.\n\nReturn strict JSON with this shape and no markdown fences:\n{\n  \"scene_setup\": \"string\",\n  \"player_state\": \"string\",\n  \"narrative_response\": \"string\",\n  \"candidate_actions\": [\n    \"string\"\n  ],\n  \"suggested_next_step\": \"string\",\n  \"supports_next_turn\": true\n}"
+      }
+    ],
+    "response": {
+      "id": "chatcmpl-20260430170913840144261xZd0aneq",
+      "model": "gemini-3.1-flash-lite-preview",
+      "object": "chat.completion",
+      "created": 1777540181,
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"scene_setup\": \"星尘魔法学院的图书馆内，空气中漂浮着因魔力过载而闪烁的金色书页。期末周的阴影笼罩着每一个人，空气里弥漫着焦糊的羊皮纸味和学生们压抑的咒语吟诵声。\",\n  \"player_state\": \"你是一名三年级生，面前堆满了厚重的《禁忌炼金术概论》。你的魔力槽仅剩20%，而明早的实战考试要求召唤一只完整的元素精灵，否则你将面临留级。\",\n  \"narrative_response\": \"窗外的夕阳将学院塔楼染成血红色，你手中的羽毛笔因为过度使用魔力而微微发烫。身旁，死党艾米正试图将一只暴躁的火元素塞进玻璃瓶，结果瓶子瞬间炸开，火星溅在了你的笔记上。你感到一阵头痛，距离午夜闭馆只剩三小时，你必须在体力耗尽前做出抉择。\",\n  \"candidate_actions\": [\n    \"熬夜苦读：强行透支魔力继续背诵复杂的炼金公式，试图在理论课上拿满分。\",\n    \"铤而走险：去禁书区寻找那本传闻能‘快速恢复魔力’但带有诅咒的古籍。\",\n    \"寻求外援：放下书本，去求那个刚拿到全A却性格高傲的首席生帮你补习。\"\n  ],\n  \"suggested_next_step\": \"选择一个行动来应对期末压力，这将决定你明早实战考试的初始状态。\",\n  \"supports_next_turn\": true\n}"
+          },
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 386,
+        "completion_tokens": 376,
+        "total_tokens": 762,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "text_tokens": 386,
+          "audio_tokens": 0,
+          "image_tokens": 0
+        },
+        "completion_tokens_details": {
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0
+        },
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "input_tokens_details": null,
+        "claude_cache_creation_5_m_tokens": 0,
+        "claude_cache_creation_1_h_tokens": 0
+      }
+    }
+  },
+  "success": true,
+  "latency_s": 29.065,
+  "playable": true,
+  "playable_components": {
+    "scene_setup": true,
+    "player_state": true,
+    "advanceable_next_step": true,
+    "interaction_continuity": true
+  },
+  "normalized_response": {
+    "scene_setup": "星尘魔法学院的图书馆内，空气中漂浮着因魔力过载而闪烁的金色书页。期末周的阴影笼罩着每一个人，空气里弥漫着焦糊的羊皮纸味和学生们压抑的咒语吟诵声。",
+    "player_state": "你是一名三年级生，面前堆满了厚重的《禁忌炼金术概论》。你的魔力槽仅剩20%，而明早的实战考试要求召唤一只完整的元素精灵，否则你将面临留级。",
+    "narrative_response": "窗外的夕阳将学院塔楼染成血红色，你手中的羽毛笔因为过度使用魔力而微微发烫。身旁，死党艾米正试图将一只暴躁的火元素塞进玻璃瓶，结果瓶子瞬间炸开，火星溅在了你的笔记上。你感到一阵头痛，距离午夜闭馆只剩三小时，你必须在体力耗尽前做出抉择。",
+    "candidate_actions": [
+      "熬夜苦读：强行透支魔力继续背诵复杂的炼金公式，试图在理论课上拿满分。",
+      "铤而走险：去禁书区寻找那本传闻能‘快速恢复魔力’但带有诅咒的古籍。",
+      "寻求外援：放下书本，去求那个刚拿到全A却性格高傲的首席生帮你补习。"
+    ],
+    "suggested_next_step": "选择一个行动来应对期末压力，这将决定你明早实战考试的初始状态。",
+    "is_playable": true,
+    "request_start_ts": 1777540153.043332,
+    "first_playable_ts": 1777540182.1080477,
+    "finish_ts": 1777540182.1080477,
+    "error": null
+  },
+  "failure_reason": null,
+  "notes": [
+    "DOC-style artifact generated through Yunwu OpenAI-compatible chat/completions API."
+  ],
+  "resource_usage": {
+    "execution_mode": "cloud"
+  },
+  "agent_profile": {
+    "runner": "run_doc.py",
+    "adapter_style": "doc_cloud_yunwu_v1"
+  }
+}

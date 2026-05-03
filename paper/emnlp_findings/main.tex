@@ -1,0 +1,79 @@
+﻿\documentclass[11pt]{article}
+
+\usepackage[review]{acl}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{xcolor}
+
+\newcommand{\dn}{\textsc{DN}}
+
+\title{\dn: A Pre-Generation Based Interactive Narrative System with Full-Ready Multimodal Delivery}
+
+\author{Anonymous EMNLP Submission}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Interactive narrative systems increasingly combine language generation, state tracking, and visual scene synthesis, but this richer output scope can make player-facing latency a central bottleneck. This draft reports the efficiency component of \dn, a pre-generation based interactive narrative system that targets full-ready multimodal delivery. On a 20-item formal benchmark, simulated 60-second player reading time reduces \dn's mean next-turn full-ready latency from 27.095 seconds to 5.299 seconds and its median latency from 24.571 seconds to 0.027 seconds, while preserving a strict success rate of 1.000. Visual quality, narrative quality, and ablation results will be integrated in subsequent revisions.
+\end{abstract}
+
+\section{Introduction}
+Interactive narrative systems must balance rich multimodal generation with low user-perceived latency. Unlike single-turn text or image generators, a playable narrative system must maintain story state, expose actionable options, advance the plot after a user decision, and deliver the next piece of content in a form that the player can immediately continue from. When the next turn contains both text and a scene image, the relevant efficiency question is therefore not merely how quickly a model can produce an isolated image, but how quickly the system can make the complete next turn usable.
+
+\dn addresses this problem through a pre-generation based delivery mechanism. Instead of waiting until the user clicks the next action to begin all downstream work, \dn uses the player's reading interval to prepare likely next-turn content in the background. This design turns reading time into computation time and aims to reduce the latency that remains visible to the player. The present draft first stabilizes the efficiency evidence for this mechanism. Later revisions will extend the evaluation to visual quality, narrative/text quality, and component-level ablations, so that the final paper can jointly answer whether \dn is fast enough for interaction and whether its delivered content is good enough for narrative play.
+
+The current efficiency results support three stage-level findings. First, strict full-ready delivery without dwell time remains expensive because the system must wait for both textual and visual readiness. Second, a realistic reading interval substantially changes the latency distribution: in the pregen60 setting, most samples are delivered nearly immediately after the next click. Third, comparisons against image-continuation references should be interpreted as scope-aware references rather than fully isomorphic system comparisons, because \dn returns text plus image plus playable state while the baselines report image or workflow latency.
+
+\section{System Overview}
+\dn is an interactive narrative generation system that combines structured story-state management, option generation, and scene-image delivery. At each turn, the system presents narrative text and choices to the player, receives the selected action, updates the story state, and prepares the next multimodal scene. The paper's central efficiency hypothesis is that pre-generation can reduce user-visible delay by using the idle interval between content delivery and the player's next action.
+
+The pre-generation mechanism maintains candidate next-turn work in the background. During the player's reading interval, \dn prepares likely continuations and their associated scene images. When the player later selects an action, the system attempts to serve a strict full-ready result from the prepared content; if the requested content is not yet fully available, the measured path waits until both text and image are ready. This distinction is important for the evaluation: a response is not counted as successful merely because a placeholder or partial output exists.
+
+\section{Experimental Setup}
+We evaluate efficiency on a 20-item formal benchmark subset derived from the DN-quality benchmark. Each item defines a narrative theme and constraints that can be mapped either to \dn's full interactive pipeline or to image-generation baseline adapters. The evaluation uses the latest v15 composite20 artifacts as the source of truth and excludes earlier v14, fixed-v2, and trimmed-sample exploratory results from the main paper tables.
+
+The primary comparison is not intended to claim that all systems are architecturally identical. Instead, it measures the latency of \dn's full-ready delivery and reports image-baseline latencies as reference points for the image-continuation subtask. This scope-aware framing is necessary because \dn performs story-state update and textual continuation in addition to scene-image delivery, whereas StoryDiffusion, SDM-v2, and IC-LoRA are evaluated as next-turn image or image-workflow references.
+
+\input{sections/efficiency}
+\input{sections/visual_quality}
+\input{sections/narrative_quality}
+\input{sections/ablation}
+
+\section{Conclusion}
+The final conclusion will be completed after the quality-evaluation sections are integrated. The current efficiency results already show that pre-generation substantially reduces \dn's full-ready latency under a realistic reading-time simulation.
+
+\bibliography{custom}
+
+\appendix
+\section{Experiment Artifact Provenance}
+\label{app:provenance}
+The efficiency tables in Section~\ref{sec:efficiency} use the latest v15 composite20 artifacts. Earlier exploratory runs, including v14, fixed-v2, and trimmed 16-sample variants, are retained only for internal analysis and are not used in the main paper numbers.
+
+\begin{table*}[t]
+\centering
+\small
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lll}
+\toprule
+Artifact & Role in Paper & Path \\
+\midrule
+strict full-ready comparison & Main cross-system efficiency table & \texttt{experiments/handoff\_2026-04-30\_main\_experiments/01\_main\_tables/strict\_fullready\_main\_comparison\_2026-05-01\_v6\_composite20.csv} \\
+DN normal vs. pregen60 & DN mechanism table & \texttt{experiments/handoff\_2026-04-30\_main\_experiments/01\_main\_tables/dn\_fullready\_normal\_vs\_pregen60\_2026-05-01\_v4\_composite20.csv} \\
+v15 full-ready summary & Summary validation and mechanism signals & \texttt{experiments/handoff\_2026-04-30\_main\_experiments/01\_main\_tables/benchmark\_v15\_fullready\_nextturn\_20\_summary\_composite20\_v1.json} \\
+per-sample v15 table & Per-item appendix candidate & \texttt{experiments/benchmark/standard\_runs/benchmark\_v15\_fullready\_nextturn\_20\_table\_composite20\_v1.csv} \\
+\bottomrule
+\end{tabular}
+}
+\caption{Source-of-truth artifacts for the efficiency evaluation. Paths are repository-relative.}
+\label{tab:artifact-provenance}
+\end{table*}
+
+\section{Per-Sample Efficiency Details}
+A future appendix revision will include per-sample latency rows from the v15 composite20 table to support sensitivity analysis and long-tail inspection.
+
+\end{document}

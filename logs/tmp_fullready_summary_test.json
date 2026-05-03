@@ -1,0 +1,82 @@
+{
+  "generated_at": "2026-04-30T17:57:28.544200+00:00",
+  "profiles": {
+    "normal20": {
+      "evidence_path": "D:\\Projects\\DN\\experiments\\benchmark\\standard_runs\\benchmark_v14_fullready_zero_wait_smoke1.json",
+      "sample_size": 1,
+      "success_count": 1,
+      "success_rate": 1.0,
+      "text_ready_elapsed_s": {
+        "count": 1,
+        "min": 4.756,
+        "max": 4.756,
+        "mean": 4.756,
+        "median": 4.756,
+        "p95": 4.756
+      },
+      "image_ready_elapsed_s": {
+        "count": 1,
+        "min": 37.187,
+        "max": 37.187,
+        "mean": 37.187,
+        "median": 37.187,
+        "p95": 37.187
+      },
+      "full_ready_elapsed_s": {
+        "count": 1,
+        "min": 37.187,
+        "max": 37.187,
+        "mean": 37.187,
+        "median": 37.187,
+        "p95": 37.187
+      },
+      "real_scene_rate": 1.0,
+      "likely_hit_rate": 0.0,
+      "direct_image_count": 0,
+      "async_image_count": 1,
+      "read_wait_s": 0.0,
+      "notes": "zero-wait smoke on pregeneration-enabled production path"
+    },
+    "pregen60s20": {
+      "evidence_path": "D:\\Projects\\DN\\experiments\\benchmark\\standard_runs\\benchmark_v14_fullready_zero_wait_smoke1.json",
+      "sample_size": 1,
+      "success_count": 1,
+      "success_rate": 1.0,
+      "text_ready_elapsed_s": {
+        "count": 1,
+        "min": 4.756,
+        "max": 4.756,
+        "mean": 4.756,
+        "median": 4.756,
+        "p95": 4.756
+      },
+      "image_ready_elapsed_s": {
+        "count": 1,
+        "min": 37.187,
+        "max": 37.187,
+        "mean": 37.187,
+        "median": 37.187,
+        "p95": 37.187
+      },
+      "full_ready_elapsed_s": {
+        "count": 1,
+        "min": 37.187,
+        "max": 37.187,
+        "mean": 37.187,
+        "median": 37.187,
+        "p95": 37.187
+      },
+      "real_scene_rate": 1.0,
+      "likely_hit_rate": 0.0,
+      "direct_image_count": 0,
+      "async_image_count": 1,
+      "read_wait_s": 0.0,
+      "notes": "zero-wait smoke on pregeneration-enabled production path"
+    }
+  },
+  "notes": [
+    "normal20 is intended for strict comparison against the formal20 image-baseline next-turn rows.",
+    "pregen60s20 keeps the same 20 benchmark items but simulates a 60-second player read interval to expose pregeneration benefit.",
+    "StoryDiffusion / SDM-v2 / IC-LoRA rows in the strict table continue to use their existing formal20 next-turn image-continuation results."
+  ]
+}

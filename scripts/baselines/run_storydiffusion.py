@@ -1,9 +1,4 @@
-"""Run StoryDiffusion low-VRAM generation on DN-style prompts.
-
-This runner loads StoryDiffusion's low-VRAM script without launching the Gradio
-UI, then calls its process_generation generator. It keeps all new experiment
-artifacts outside the upstream repository.
-"""
+﻿"""Run StoryDiffusion low-VRAM generation on DN-style prompts."""
 
 from __future__ import annotations
 
@@ -13,6 +8,10 @@ import time
 from pathlib import Path
 
 from baseline_io import (
+    DEFAULT_NEXT_TURN_ACTION,
+    build_input_bundle,
+    build_next_turn_prompt,
+    build_playable_image_result,
     build_visual_prompts,
     common_parser,
     environment_payload,
@@ -31,17 +30,12 @@ BASELINE = "storydiffusion"
 
 
 def load_storydiffusion_namespace(repo_dir: Path) -> dict:
-    """Execute StoryDiffusion script up to the UI block and return globals."""
-
     script_path = repo_dir / "gradio_app_sdxl_specific_id_low_vram.py"
     source = script_path.read_text(encoding="utf-8", errors="replace")
     marker = "with gr.Blocks(css=css) as demo:"
     if marker not in source:
         raise RuntimeError(f"Cannot find Gradio UI marker in {script_path}")
     head = source.split(marker, 1)[0]
-    # The upstream low-VRAM script downloads PhotoMaker at import time even for
-    # textual-description mode. The batch runner does not use PhotoMaker, so skip
-    # that eager download and let the real SDXL model download happen later.
     photomaker_block = '''if not os.path.exists(photomaker_local_path):
     photomaker_path = hf_hub_download(
         repo_id="TencentARC/PhotoMaker",
@@ -103,6 +97,12 @@ for _dn_key, _dn_repo in {
     return namespace
 
 
+def pack_with_prompts(prompt_pack: dict, prompts: list[str]) -> dict:
+    cloned = dict(prompt_pack)
+    cloned["prompts"] = prompts
+    return cloned
+
+
 def run_one(namespace: dict, prompt_pack: dict, args) -> list:
     process_generation = namespace["process_generation"]
     generator = process_generation(
@@ -135,6 +135,68 @@ def run_one(namespace: dict, prompt_pack: dict, args) -> list:
     return last_images
 
 
+def build_next_turn_result(item: dict, base_prompt_pack: dict, sample_dir: Path, namespace: dict, args) -> dict:
+    min_prompt_count = max(int(args.id_length), 2)
+    current_prompts = base_prompt_pack["prompts"][:min_prompt_count]
+    first_pack = pack_with_prompts(base_prompt_pack, current_prompts)
+    current_images = run_one(namespace, first_pack, args)
+    previous_image_paths = save_pil_images(current_images[: len(current_prompts)], sample_dir, prefix="current_image")
+
+    next_turn = build_next_turn_prompt(item, base_prompt_pack, args.player_action)
+    next_prompts = current_prompts[:-1] + [next_turn["continuation_prompt"]]
+    next_pack = pack_with_prompts(base_prompt_pack, next_prompts)
+    request_start_ts = time.time()
+    start = time.perf_counter()
+    images = run_one(namespace, next_pack, args)
+    latency = time.perf_counter() - start
+    first_playable_ts = request_start_ts + latency
+    finish_ts = first_playable_ts
+    continuation_image = images[len(next_prompts) - 1]
+    image_paths = save_pil_images([continuation_image], sample_dir)
+    input_bundle = build_input_bundle(
+        item,
+        base_prompt_pack,
+        mode="next_turn",
+        player_action=args.player_action,
+        previous_image_paths=previous_image_paths,
+    )
+    raw_output = {
+        "current_prompt": first_pack["prompts"][0],
+        "continuation_prompt": next_pack["prompts"][0],
+        "previous_image_paths": previous_image_paths,
+        "image_paths": image_paths,
+        "narrative_response": "StoryDiffusion generated a continuation image after the simulated player click.",
+    }
+    playable = build_playable_image_result(
+        item=item,
+        baseline=BASELINE,
+        run_id=f"{BASELINE}_{args.run_id or 'run'}_{item['benchmark_id']}",
+        input_bundle=input_bundle,
+        raw_output=raw_output,
+        image_paths=image_paths,
+        request_start_ts=request_start_ts,
+        first_playable_ts=first_playable_ts,
+        finish_ts=finish_ts,
+        success=True,
+        notes=["StoryDiffusion next-turn latency measures only the post-click continuation image."],
+        extra={"sd_type": args.sd_type},
+    )
+    playable.update(
+        result_payload(
+            item,
+            BASELINE,
+            "success",
+            next_pack["prompts"],
+            latency_s=latency,
+            image_paths=image_paths,
+            extra={"mode": "next_turn", "sd_type": args.sd_type},
+        )
+    )
+    write_json(sample_dir / "prompt.json", {"first_turn": first_pack, "next_turn": next_pack, "input_bundle": input_bundle})
+    write_json(sample_dir / "result.json", playable)
+    return playable
+
+
 def main() -> None:
     parser = common_parser("Run StoryDiffusion low-VRAM batch generation.")
     parser.add_argument("--repo-dir", default="baselines/StoryDiffusion")
@@ -149,6 +211,8 @@ def main() -> None:
     parser.add_argument("--id-length", type=int, default=2)
     parser.add_argument("--style", default="Photographic")
     parser.add_argument("--font", default="Inkfree.ttf")
+    parser.add_argument("--mode", choices=["first_turn", "next_turn"], default="first_turn")
+    parser.add_argument("--player-action", default=DEFAULT_NEXT_TURN_ACTION)
     args = parser.parse_args()
 
     items = load_subset(args.subset)
@@ -166,11 +230,10 @@ def main() -> None:
     with tee_run_log(run_dir / "run.log"):
         try:
             namespace = load_storydiffusion_namespace(Path(args.repo_dir).resolve())
-        except Exception as exc:  # pragma: no cover - remote model/runtime dependent
+        except Exception as exc:  # pragma: no cover
             for item, prompt_pack in prompt_packs:
                 sample_dir = run_dir / str(item["benchmark_id"])
                 sample_dir.mkdir(parents=True, exist_ok=True)
-                (sample_dir / "prompt.txt").write_text("\n".join(prompt_pack["prompts"]), encoding="utf-8")
                 write_json(sample_dir / "prompt.json", prompt_pack)
                 payload = result_payload(
                     item,
@@ -179,7 +242,7 @@ def main() -> None:
                     prompt_pack["prompts"],
                     latency_s=0.0,
                     error=f"StoryDiffusion model load blocked: {type(exc).__name__}: {exc}",
-                    extra={"sd_type": args.sd_type},
+                    extra={"sd_type": args.sd_type, "mode": args.mode},
                 )
                 write_json(sample_dir / "result.json", payload)
                 results.append(payload)
@@ -187,24 +250,40 @@ def main() -> None:
             for item, prompt_pack in prompt_packs:
                 sample_dir = run_dir / str(item["benchmark_id"])
                 sample_dir.mkdir(parents=True, exist_ok=True)
-                (sample_dir / "prompt.txt").write_text("\n".join(prompt_pack["prompts"]), encoding="utf-8")
-                write_json(sample_dir / "prompt.json", prompt_pack)
                 try:
+                    if args.mode == "next_turn":
+                        results.append(build_next_turn_result(item, prompt_pack, sample_dir, namespace, args))
+                        continue
+                    (sample_dir / "prompt.txt").write_text("\n".join(prompt_pack["prompts"]), encoding="utf-8")
+                    write_json(sample_dir / "prompt.json", prompt_pack)
                     start = time.perf_counter()
                     images = run_one(namespace, prompt_pack, args)
                     latency = time.perf_counter() - start
                     image_paths = save_pil_images(images[: args.scene_count], sample_dir)
-                    payload = result_payload(item, BASELINE, "success", prompt_pack["prompts"], latency, image_paths)
+                    payload = result_payload(
+                        item,
+                        BASELINE,
+                        "success",
+                        prompt_pack["prompts"],
+                        latency,
+                        image_paths,
+                        extra={"mode": "first_turn"},
+                    )
                     write_json(sample_dir / "result.json", payload)
                     results.append(payload)
-                except Exception as exc:  # pragma: no cover - remote model/runtime dependent
+                except Exception as exc:  # pragma: no cover
                     results.append(write_failure(sample_dir, item, BASELINE, prompt_pack["prompts"], exc))
 
     summarize_results(
         run_dir,
         BASELINE,
         results,
-        notes="StoryDiffusion low-VRAM textual-description mode; 4 DN-style scene prompts per item by default.",
+        notes=(
+            "StoryDiffusion low-VRAM textual-description mode; 4 DN-style scene prompts per item by default."
+            if args.mode == "first_turn"
+            else "StoryDiffusion next-turn latency measures the post-click continuation image only."
+        ),
+        mode=args.mode,
     )
     print(run_dir)
 

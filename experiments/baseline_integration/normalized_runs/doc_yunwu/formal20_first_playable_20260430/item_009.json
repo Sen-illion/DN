@@ -1,0 +1,144 @@
+{
+  "baseline_id": "doc",
+  "benchmark_id": "DNQBV1_010",
+  "run_id": "formal20_first_playable_20260430",
+  "mode": "first_playable",
+  "input_bundle": {
+    "original_dn_item": {
+      "benchmark_id": "DNQBV1_010",
+      "theme_id": 8,
+      "theme": "古刹钟楼秘藏",
+      "image_style": {
+        "type": "ink_painting"
+      },
+      "expected_genre": "古刹悬秘",
+      "expected_tone": "清冷、神秘、静谧",
+      "must_have_constraints": [
+        "必须围绕古刹、钟楼或秘藏",
+        "首段应营造探索氛围",
+        "图像需与水墨古刹场景一致"
+      ],
+      "forbidden_issues": [
+        "科幻赛博元素混入",
+        "图像过于鲜艳",
+        "剧情没有探索驱动"
+      ],
+      "focus": "full-set coverage: 古刹悬秘",
+      "_subset_focus": "full-set coverage: 古刹悬秘"
+    },
+    "doc_prompt": "Premise seed: 古刹钟楼秘藏\nGenre: 古刹悬秘\nTone: 清冷、神秘、静谧\nWrite a long-form interactive story opening that could be expanded with a detailed outline.\nMust-have constraints:\n- 必须围绕古刹、钟楼或秘藏\n- 首段应营造探索氛围\n- 图像需与水墨古刹场景一致\nForbidden issues:\n- 科幻赛博元素混入\n- 图像过于鲜艳\n- 剧情没有探索驱动\n",
+    "outline_seed": [
+      "Opening setup for 古刹钟楼秘藏 in a 古刹悬秘 frame with a 清冷、神秘、静谧 tone.",
+      "Introduce the protagonist's immediate role, pressure, and conflict around: 必须围绕古刹、钟楼或秘藏.",
+      "Reveal one concrete obstacle or tradeoff the player must respond to next.",
+      "End the first turn with 2-3 actionable next steps that can continue the story."
+    ],
+    "mode": "first_playable",
+    "baseline_params": {
+      "execution_mode": "cloud",
+      "doc_repo": "D:\\Projects\\DN\\baselines\\DOC",
+      "doc_data_dir": "D:\\Projects\\DN\\baselines\\DOC\\doc_data"
+    }
+  },
+  "raw_output": {
+    "execution_mode": "cloud",
+    "doc_upstream_executed": false,
+    "doc_api_adapter": "yunwu_chat_completions",
+    "provider": "yunwu",
+    "provider_config_prefix": "Origin_Segment_Analyst",
+    "provider_base_url": "https://yunwu.ai/v1",
+    "provider_model": "gemini-3.1-flash-lite-preview",
+    "request": {
+      "model": "gemini-3.1-flash-lite-preview",
+      "temperature": 0.7,
+      "top_p": 0.9,
+      "max_tokens": 900,
+      "response_format": {
+        "type": "json_object"
+      }
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are the DOC long-form story baseline adapted for DN playable-latency evaluation. Write concise, grounded, continuation-ready interactive fiction. Do not include debugging text, URLs, or commentary outside JSON."
+      },
+      {
+        "role": "user",
+        "content": "Convert this DN benchmark item into a DOC-style playable baseline output.\nPreserve DOC's premise -> outline -> story-opening semantics, but return only a playable first response.\nRun mode: first_playable\n\nDOC prompt:\nPremise seed: 古刹钟楼秘藏\nGenre: 古刹悬秘\nTone: 清冷、神秘、静谧\nWrite a long-form interactive story opening that could be expanded with a detailed outline.\nMust-have constraints:\n- 必须围绕古刹、钟楼或秘藏\n- 首段应营造探索氛围\n- 图像需与水墨古刹场景一致\nForbidden issues:\n- 科幻赛博元素混入\n- 图像过于鲜艳\n- 剧情没有探索驱动\n\nOutline seed:\n1. Opening setup for 古刹钟楼秘藏 in a 古刹悬秘 frame with a 清冷、神秘、静谧 tone.\n2. Introduce the protagonist's immediate role, pressure, and conflict around: 必须围绕古刹、钟楼或秘藏.\n3. Reveal one concrete obstacle or tradeoff the player must respond to next.\n4. End the first turn with 2-3 actionable next steps that can continue the story.\n\nReturn strict JSON with this shape and no markdown fences:\n{\n  \"scene_setup\": \"string\",\n  \"player_state\": \"string\",\n  \"narrative_response\": \"string\",\n  \"candidate_actions\": [\n    \"string\"\n  ],\n  \"suggested_next_step\": \"string\",\n  \"supports_next_turn\": true\n}"
+      }
+    ],
+    "response": {
+      "id": "chatcmpl-202604301708057488153860AkPk1uP",
+      "model": "gemini-3.1-flash-lite-preview",
+      "object": "chat.completion",
+      "created": 1777540112,
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"scene_setup\": \"深山古刹，暮霭沉沉。石阶被青苔覆盖，两侧古柏如虬龙般交错。钟楼孤耸于后山崖畔，塔尖没入浓重的云雾中，偶尔传来一声沉闷而空灵的钟鸣，仿佛来自异界。\",\n  \"player_state\": \"你是一名受托于神秘故人的寻访者，随身仅有一盏防风灯和一张残损的拓片。你必须在今夜子时前进入钟楼，寻找传说中藏于阁顶的‘无字心经’，否则委托人将收回你的家族秘传信物。\",\n  \"narrative_response\": \"冷风灌进衣领，吹得手中的灯火摇曳不定。钟楼的木门虚掩，门缝间渗出丝丝冷冽的寒气，伴随着一种令人窒息的静谧。你推开沉重的朱漆木门，积灰扑面而来。大厅中央是一座巨大的青铜钟，钟身上刻满了扭曲的经文，此刻，你注意到钟摆后方似乎有一道被掩盖的暗门，但若要强行开启，必须先取下悬挂在钟梁上的一枚铜铃，一旦铃响，整座古刹的僧人便会被惊动。\",\n  \"candidate_actions\": [\n    \"尝试屏息静气，小心翼翼地绕过青铜钟去触碰暗门。\",\n    \"仔细观察铜铃的系绳，寻找不触发声响的拆卸方法。\",\n    \"退回钟楼外，试图在古刹庭院中寻找其他进入阁楼的隐秘路径。\"\n  ],\n  \"suggested_next_step\": \"分析环境风险并选择一种潜入方式，这将决定你是否会被古刹的守卫发现。\",\n  \"supports_next_turn\": true\n}"
+          },
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 388,
+        "completion_tokens": 424,
+        "total_tokens": 812,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "text_tokens": 388,
+          "audio_tokens": 0,
+          "image_tokens": 0
+        },
+        "completion_tokens_details": {
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0
+        },
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "input_tokens_details": null,
+        "claude_cache_creation_5_m_tokens": 0,
+        "claude_cache_creation_1_h_tokens": 0
+      }
+    }
+  },
+  "success": true,
+  "latency_s": 27.984,
+  "playable": true,
+  "playable_components": {
+    "scene_setup": true,
+    "player_state": true,
+    "advanceable_next_step": true,
+    "interaction_continuity": true
+  },
+  "normalized_response": {
+    "scene_setup": "深山古刹，暮霭沉沉。石阶被青苔覆盖，两侧古柏如虬龙般交错。钟楼孤耸于后山崖畔，塔尖没入浓重的云雾中，偶尔传来一声沉闷而空灵的钟鸣，仿佛来自异界。",
+    "player_state": "你是一名受托于神秘故人的寻访者，随身仅有一盏防风灯和一张残损的拓片。你必须在今夜子时前进入钟楼，寻找传说中藏于阁顶的‘无字心经’，否则委托人将收回你的家族秘传信物。",
+    "narrative_response": "冷风灌进衣领，吹得手中的灯火摇曳不定。钟楼的木门虚掩，门缝间渗出丝丝冷冽的寒气，伴随着一种令人窒息的静谧。你推开沉重的朱漆木门，积灰扑面而来。大厅中央是一座巨大的青铜钟，钟身上刻满了扭曲的经文，此刻，你注意到钟摆后方似乎有一道被掩盖的暗门，但若要强行开启，必须先取下悬挂在钟梁上的一枚铜铃，一旦铃响，整座古刹的僧人便会被惊动。",
+    "candidate_actions": [
+      "尝试屏息静气，小心翼翼地绕过青铜钟去触碰暗门。",
+      "仔细观察铜铃的系绳，寻找不触发声响的拆卸方法。",
+      "退回钟楼外，试图在古刹庭院中寻找其他进入阁楼的隐秘路径。"
+    ],
+    "suggested_next_step": "分析环境风险并选择一种潜入方式，这将决定你是否会被古刹的守卫发现。",
+    "is_playable": true,
+    "request_start_ts": 1777540085.0937877,
+    "first_playable_ts": 1777540113.0777864,
+    "finish_ts": 1777540113.0777864,
+    "error": null
+  },
+  "failure_reason": null,
+  "notes": [
+    "DOC-style artifact generated through Yunwu OpenAI-compatible chat/completions API."
+  ],
+  "resource_usage": {
+    "execution_mode": "cloud"
+  },
+  "agent_profile": {
+    "runner": "run_doc.py",
+    "adapter_style": "doc_cloud_yunwu_v1"
+  }
+}

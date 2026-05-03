@@ -1,0 +1,354 @@
+{
+  "summary": {
+    "experiment_name": "phase25_DNQBV1_018",
+    "profile": "fullready_strict",
+    "sample_size": 1,
+    "read_wait_s": 0.0,
+    "suite_start_ts": 1777625671.7065408,
+    "suite_end_ts": 1777625749.111616,
+    "second_click_elapsed_s": {
+      "count": 0
+    },
+    "second_click_success_count": 0,
+    "transport_success_count": 0,
+    "strict_success_count": 0,
+    "likely_hit_count": 0,
+    "likely_hit_rate": 0.0,
+    "failure_bucket_counts": {
+      "first_click_timeout": 1
+    },
+    "placeholder_strict_fail_count": 0,
+    "cache_hit_reason_counts": {},
+    "cache_miss_reason_counts": {},
+    "global_state_key_drift_detected_count": 0,
+    "scene_id_mismatch_detected_count": 0,
+    "selected_option_mismatch_detected_count": 0,
+    "aborted": false,
+    "success_count": 0,
+    "text_ready_elapsed_s": {
+      "count": 0
+    },
+    "image_ready_elapsed_s": {
+      "count": 0
+    },
+    "full_ready_elapsed_s": {
+      "count": 0
+    },
+    "real_scene_count": 0,
+    "real_scene_rate": 0.0,
+    "direct_image_count": 0,
+    "async_image_count": 0,
+    "placeholder_count": 0,
+    "placeholder_rate": 0.0,
+    "direct_image_rate": 0.0,
+    "async_image_rate": 0.0,
+    "provider_retry_heavy_count": 0,
+    "provider_429_count": 0,
+    "provider_timeout_count": 0,
+    "provider_backoff_wait_ms_total": 0,
+    "main_character_contention_suspected_count": 0,
+    "notes": "phase25 initial cache isolation probe"
+  },
+  "runs": [
+    {
+      "benchmark_id": "DNQBV1_018",
+      "theme_id": 6,
+      "theme": "民国电报迷案",
+      "read_wait_s": 0.0,
+      "full_ready_mode": true,
+      "profile": "fullready_strict",
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 17.303,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过巧妙的社交手段与主管达成某种利益交换，成功获取了电报底稿的复印件，但代价是必须承担一份沉重的违规处分，导致其在局内的晋升之路彻底断绝。",
+                  "main_conflict": "主角在电报局工作时，意外发现了一封署名异常的电报，内容暗示了兄长失踪的线索。然而，电报局主管为了掩盖内部贪腐，严令禁止员工私自查阅旧档。主角必须在保住饭碗的现实压力与追寻亲人的执念之间寻找平衡，同时还要应对同事的猜忌与监视。 - 矛盾结束条件：主角通过巧妙的社交手段与主管达成某种利益交换，成功获取了电报底稿的复印件，但代价是必须承担一份沉重的违规处分，导致其在局内的晋升之路彻底断绝。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角成功找到了关键证人，却发现证人已因病无力作证。主角最终放弃了通过法律途径解决问题的幻想，选择接受现实，通过私下交易换取了部分真相，但兄长的下落依然成谜。",
+                  "main_conflict": "根据电报线索，主角深入上海滩底层，试图接触兄长生前的联络人。此时，城市局势恶化，主角不仅要面对黑帮的勒索，还要在贫困与饥饿中挣扎。他发现兄长并非单纯的失踪，而是卷入了一场涉及多方利益的商业欺诈，主角必须在保护自己与揭露真相之间做出痛苦的取舍。 - 矛盾结束条件：主角成功找到了关键证人，却发现证人已因病无力作证。主角最终放弃了通过法律途径解决问题的幻想，选择接受现实，通过私下交易换取了部分真相，但兄长的下落依然成谜。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角选择销毁了部分核心证据，以一种不完美的方式平息了事态。他虽然没能带回兄长，却保住了家庭的安宁，在一种释然的遗憾中，回归了平凡的电报员生活。 【主角规范信息】 主角姓名(中)：林远生 主角姓名(英)：Lin Yuansheng 性别：男性 年龄感：青年 所属作品(中)：电波余音 所属作品(英)：Echoes of the Telegraph 标志性外观关键词：消瘦、深褐色旧西装、黑框圆眼镜、指尖磨损、神情疲惫、眼神专注、略显凌乱的黑发、怀表、沉默寡言、书卷气、袖口磨损、坚毅的下颌线 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决",
+                  "main_conflict": "真相即将大白，主角发现兄长为了保护家人，主动选择了自我牺牲。此时，主角面临最后的抉择：是公开真相让兄长蒙羞并引发更大的动荡，还是将秘密永远埋葬，换取家人余生的平静。这不仅是对真相的拷问，更是对主角个人道德与现实生存的终极考验。 - 矛盾结束条件：主角选择销毁了部分核心证据，以一种不完美的方式平息了事态。他虽然没能带回兄长，却保住了家庭的安宁，在一种释然的遗憾中，回归了平凡的电报员生活。 【主角规范信息】 主角姓名(中)：林远生 主角姓名(英)：Lin Yuansheng 性别：男性 年龄感：青年 所属作品(中)：电波余音 所属作品(英)：Echoes of the Telegraph 标志性外观关键词：消瘦、深褐色旧西装、黑框圆眼镜、指尖磨损、神情疲惫、眼神专注、略显凌乱的黑发、怀表、沉默寡言、书卷气、袖口磨损、坚毅的下颌线 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为写实主义历史悬疑风格，采用冷峻克制的叙事笔触，通过对民国时期旧上海弄堂、电报局与码头等场景的细腻还原，营造出一种时代洪流下个人命运微如尘埃的质感，强调历史的厚重感与生活细节的颗粒度。",
+              "main_quest": "主角的目标是寻回失踪兄长留下的最后一份电报底稿，并查明其背后的真相。任务分为三个阶段：首先，在复杂的电报局档案中通过人际周旋与技术比对，锁定目标电报的流向；其次，深入上海滩的码头与茶馆，与各方势力周旋，在生存压力下收集关键证据；最后，在真相与现实利益之间做出抉择。挑战在于，主角不仅要面对技术上的破译难题，更要处理因调查而引发的社会关系崩塌，以及在动荡时局下，个人追求与家庭安稳之间的残酷博弈。最终，主角将获得真相，但这份真相往往伴随着无法挽回的代价，如兄长的彻底失踪或个人职业生涯的终结。",
+              "protagonist_ability": "主角拥有“译码直觉”，源于其早年作为电报局学徒时对摩尔斯电码形成的肌肉记忆与逻辑敏感度。在游戏中，主角能通过观察电报纸上的击键力度、停顿节奏及拼写习惯，还原出发送者的情绪状态与真实意图。然而，此能力受限于主角的体力与精神状态，过度使用会导致偏头痛，且无法解读加密程度极高的军用密码，只能在有限的民用与商业电报中捕捉蛛丝马迹。",
+              "world_basic_setting": "故事背景设定在1930年代的上海，这是一个东西方文化激烈碰撞、机遇与动荡并存的魔都。城市表面繁华如梦，实则暗流涌动，各方势力在租界与华界之间博弈。电报作为当时最先进的通讯手段，成为情报交换的核心，但也因其易被截获的特性，成为无数秘密的葬身之地。社会阶层固化严重，底层民众在物价飞涨与战乱阴影下艰难求生。关键事件“静默电波案”引发了多方势力对一份失踪电报底稿的争夺，这份底稿不仅关乎某项商业机密的归属，更牵扯到多年前一桩被掩盖的家族往事。在那个通讯依赖人工译码的年代，每一个字符的错位都可能改变一个人的生死，而主角正是在这复杂的社会网络中，试图通过电报线索寻找失踪亲人的真相，却逐渐发现自己被卷入了一场无法全身而退的时代漩涡。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "environment": {}
+            },
+            "game_id": "game_1777625671_moqphs",
+            "image_style": {
+              "subtype": "impressionist",
+              "type": "oil_painting"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "gender": "男性"
+            },
+            "tone": "normal_ending",
+            "user_theme": "民国电报迷案"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "request_payload": {
+          "gameTheme": "民国电报迷案",
+          "protagonistAttr": {},
+          "difficulty": "normal",
+          "toneKey": "normal_ending",
+          "imageStyle": {
+            "type": "oil_painting",
+            "subtype": "impressionist"
+          },
+          "_benchmark_profile": "fullready_strict",
+          "_benchmark_measurement": "fullready_nextturn",
+          "_benchmark_read_wait_s": 0.0
+        },
+        "start_ts": 1777625671.7065473,
+        "end_ts": 1777625689.0096867,
+        "provider_events": {
+          "event_count": 4,
+          "queue_wait_ms": {
+            "count": 4,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 1,
+            "min": 17291.0,
+            "max": 17291.0,
+            "mean": 17291.0,
+            "median": 17291.0,
+            "p95": 17291.0
+          },
+          "llm_success_count": 1,
+          "image_success_count": 0,
+          "request_thread_event_count": 2,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0
+        },
+        "status": "success",
+        "game_id": "game_1777625671_moqphs"
+      },
+      "first_click": {
+        "http_status": null,
+        "elapsed_s": 60.019,
+        "response_json": {
+          "status": "timeout",
+          "message": "HTTPConnectionPool(host='127.0.0.1', port=5007): Read timed out. (read timeout=60)"
+        },
+        "request_payload": {
+          "option": "开始游戏",
+          "optionIndex": 0,
+          "sceneId": null,
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过巧妙的社交手段与主管达成某种利益交换，成功获取了电报底稿的复印件，但代价是必须承担一份沉重的违规处分，导致其在局内的晋升之路彻底断绝。",
+                  "main_conflict": "主角在电报局工作时，意外发现了一封署名异常的电报，内容暗示了兄长失踪的线索。然而，电报局主管为了掩盖内部贪腐，严令禁止员工私自查阅旧档。主角必须在保住饭碗的现实压力与追寻亲人的执念之间寻找平衡，同时还要应对同事的猜忌与监视。 - 矛盾结束条件：主角通过巧妙的社交手段与主管达成某种利益交换，成功获取了电报底稿的复印件，但代价是必须承担一份沉重的违规处分，导致其在局内的晋升之路彻底断绝。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角成功找到了关键证人，却发现证人已因病无力作证。主角最终放弃了通过法律途径解决问题的幻想，选择接受现实，通过私下交易换取了部分真相，但兄长的下落依然成谜。",
+                  "main_conflict": "根据电报线索，主角深入上海滩底层，试图接触兄长生前的联络人。此时，城市局势恶化，主角不仅要面对黑帮的勒索，还要在贫困与饥饿中挣扎。他发现兄长并非单纯的失踪，而是卷入了一场涉及多方利益的商业欺诈，主角必须在保护自己与揭露真相之间做出痛苦的取舍。 - 矛盾结束条件：主角成功找到了关键证人，却发现证人已因病无力作证。主角最终放弃了通过法律途径解决问题的幻想，选择接受现实，通过私下交易换取了部分真相，但兄长的下落依然成谜。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角选择销毁了部分核心证据，以一种不完美的方式平息了事态。他虽然没能带回兄长，却保住了家庭的安宁，在一种释然的遗憾中，回归了平凡的电报员生活。 【主角规范信息】 主角姓名(中)：林远生 主角姓名(英)：Lin Yuansheng 性别：男性 年龄感：青年 所属作品(中)：电波余音 所属作品(英)：Echoes of the Telegraph 标志性外观关键词：消瘦、深褐色旧西装、黑框圆眼镜、指尖磨损、神情疲惫、眼神专注、略显凌乱的黑发、怀表、沉默寡言、书卷气、袖口磨损、坚毅的下颌线 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决",
+                  "main_conflict": "真相即将大白，主角发现兄长为了保护家人，主动选择了自我牺牲。此时，主角面临最后的抉择：是公开真相让兄长蒙羞并引发更大的动荡，还是将秘密永远埋葬，换取家人余生的平静。这不仅是对真相的拷问，更是对主角个人道德与现实生存的终极考验。 - 矛盾结束条件：主角选择销毁了部分核心证据，以一种不完美的方式平息了事态。他虽然没能带回兄长，却保住了家庭的安宁，在一种释然的遗憾中，回归了平凡的电报员生活。 【主角规范信息】 主角姓名(中)：林远生 主角姓名(英)：Lin Yuansheng 性别：男性 年龄感：青年 所属作品(中)：电波余音 所属作品(英)：Echoes of the Telegraph 标志性外观关键词：消瘦、深褐色旧西装、黑框圆眼镜、指尖磨损、神情疲惫、眼神专注、略显凌乱的黑发、怀表、沉默寡言、书卷气、袖口磨损、坚毅的下颌线 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为写实主义历史悬疑风格，采用冷峻克制的叙事笔触，通过对民国时期旧上海弄堂、电报局与码头等场景的细腻还原，营造出一种时代洪流下个人命运微如尘埃的质感，强调历史的厚重感与生活细节的颗粒度。",
+              "main_quest": "主角的目标是寻回失踪兄长留下的最后一份电报底稿，并查明其背后的真相。任务分为三个阶段：首先，在复杂的电报局档案中通过人际周旋与技术比对，锁定目标电报的流向；其次，深入上海滩的码头与茶馆，与各方势力周旋，在生存压力下收集关键证据；最后，在真相与现实利益之间做出抉择。挑战在于，主角不仅要面对技术上的破译难题，更要处理因调查而引发的社会关系崩塌，以及在动荡时局下，个人追求与家庭安稳之间的残酷博弈。最终，主角将获得真相，但这份真相往往伴随着无法挽回的代价，如兄长的彻底失踪或个人职业生涯的终结。",
+              "protagonist_ability": "主角拥有“译码直觉”，源于其早年作为电报局学徒时对摩尔斯电码形成的肌肉记忆与逻辑敏感度。在游戏中，主角能通过观察电报纸上的击键力度、停顿节奏及拼写习惯，还原出发送者的情绪状态与真实意图。然而，此能力受限于主角的体力与精神状态，过度使用会导致偏头痛，且无法解读加密程度极高的军用密码，只能在有限的民用与商业电报中捕捉蛛丝马迹。",
+              "world_basic_setting": "故事背景设定在1930年代的上海，这是一个东西方文化激烈碰撞、机遇与动荡并存的魔都。城市表面繁华如梦，实则暗流涌动，各方势力在租界与华界之间博弈。电报作为当时最先进的通讯手段，成为情报交换的核心，但也因其易被截获的特性，成为无数秘密的葬身之地。社会阶层固化严重，底层民众在物价飞涨与战乱阴影下艰难求生。关键事件“静默电波案”引发了多方势力对一份失踪电报底稿的争夺，这份底稿不仅关乎某项商业机密的归属，更牵扯到多年前一桩被掩盖的家族往事。在那个通讯依赖人工译码的年代，每一个字符的错位都可能改变一个人的生死，而主角正是在这复杂的社会网络中，试图通过电报线索寻找失踪亲人的真相，却逐渐发现自己被卷入了一场无法全身而退的时代漩涡。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "environment": {}
+            },
+            "game_id": "game_1777625671_moqphs",
+            "image_style": {
+              "subtype": "impressionist",
+              "type": "oil_painting"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "gender": "男性"
+            },
+            "tone": "normal_ending",
+            "user_theme": "民国电报迷案",
+            "_benchmark_profile": "fullready_strict",
+            "_benchmark_measurement": "fullready_nextturn",
+            "_benchmark_read_wait_s": 0.0
+          }
+        },
+        "start_ts": 1777625689.0528069,
+        "end_ts": 1777625749.0722117,
+        "provider_events": {
+          "event_count": 1,
+          "queue_wait_ms": {
+            "count": 1,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 1,
+            "min": 18926.0,
+            "max": 18926.0,
+            "mean": 18926.0,
+            "median": 18926.0,
+            "p95": 18926.0
+          },
+          "llm_success_count": 1,
+          "image_success_count": 0,
+          "request_thread_event_count": 0,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0
+        },
+        "request_error": "timeout",
+        "attempts": [
+          {
+            "http_status": null,
+            "elapsed_s": 60.019,
+            "response_json": {
+              "status": "timeout",
+              "message": "HTTPConnectionPool(host='127.0.0.1', port=5007): Read timed out. (read timeout=60)"
+            },
+            "request_payload": {
+              "option": "开始游戏",
+              "optionIndex": 0,
+              "sceneId": null,
+              "globalState": {
+                "core_worldview": {
+                  "chapters": {
+                    "chapter1": {
+                      "conflict_end_condition": "主角通过巧妙的社交手段与主管达成某种利益交换，成功获取了电报底稿的复印件，但代价是必须承担一份沉重的违规处分，导致其在局内的晋升之路彻底断绝。",
+                      "main_conflict": "主角在电报局工作时，意外发现了一封署名异常的电报，内容暗示了兄长失踪的线索。然而，电报局主管为了掩盖内部贪腐，严令禁止员工私自查阅旧档。主角必须在保住饭碗的现实压力与追寻亲人的执念之间寻找平衡，同时还要应对同事的猜忌与监视。 - 矛盾结束条件：主角通过巧妙的社交手段与主管达成某种利益交换，成功获取了电报底稿的复印件，但代价是必须承担一份沉重的违规处分，导致其在局内的晋升之路彻底断绝。"
+                    },
+                    "chapter2": {
+                      "conflict_end_condition": "主角成功找到了关键证人，却发现证人已因病无力作证。主角最终放弃了通过法律途径解决问题的幻想，选择接受现实，通过私下交易换取了部分真相，但兄长的下落依然成谜。",
+                      "main_conflict": "根据电报线索，主角深入上海滩底层，试图接触兄长生前的联络人。此时，城市局势恶化，主角不仅要面对黑帮的勒索，还要在贫困与饥饿中挣扎。他发现兄长并非单纯的失踪，而是卷入了一场涉及多方利益的商业欺诈，主角必须在保护自己与揭露真相之间做出痛苦的取舍。 - 矛盾结束条件：主角成功找到了关键证人，却发现证人已因病无力作证。主角最终放弃了通过法律途径解决问题的幻想，选择接受现实，通过私下交易换取了部分真相，但兄长的下落依然成谜。"
+                    },
+                    "chapter3": {
+                      "conflict_end_condition": "主角选择销毁了部分核心证据，以一种不完美的方式平息了事态。他虽然没能带回兄长，却保住了家庭的安宁，在一种释然的遗憾中，回归了平凡的电报员生活。 【主角规范信息】 主角姓名(中)：林远生 主角姓名(英)：Lin Yuansheng 性别：男性 年龄感：青年 所属作品(中)：电波余音 所属作品(英)：Echoes of the Telegraph 标志性外观关键词：消瘦、深褐色旧西装、黑框圆眼镜、指尖磨损、神情疲惫、眼神专注、略显凌乱的黑发、怀表、沉默寡言、书卷气、袖口磨损、坚毅的下颌线 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决",
+                      "main_conflict": "真相即将大白，主角发现兄长为了保护家人，主动选择了自我牺牲。此时，主角面临最后的抉择：是公开真相让兄长蒙羞并引发更大的动荡，还是将秘密永远埋葬，换取家人余生的平静。这不仅是对真相的拷问，更是对主角个人道德与现实生存的终极考验。 - 矛盾结束条件：主角选择销毁了部分核心证据，以一种不完美的方式平息了事态。他虽然没能带回兄长，却保住了家庭的安宁，在一种释然的遗憾中，回归了平凡的电报员生活。 【主角规范信息】 主角姓名(中)：林远生 主角姓名(英)：Lin Yuansheng 性别：男性 年龄感：青年 所属作品(中)：电波余音 所属作品(英)：Echoes of the Telegraph 标志性外观关键词：消瘦、深褐色旧西装、黑框圆眼镜、指尖磨损、神情疲惫、眼神专注、略显凌乱的黑发、怀表、沉默寡言、书卷气、袖口磨损、坚毅的下颌线 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决"
+                    }
+                  },
+                  "characters": {},
+                  "forces": {},
+                  "game_style": "本作为写实主义历史悬疑风格，采用冷峻克制的叙事笔触，通过对民国时期旧上海弄堂、电报局与码头等场景的细腻还原，营造出一种时代洪流下个人命运微如尘埃的质感，强调历史的厚重感与生活细节的颗粒度。",
+                  "main_quest": "主角的目标是寻回失踪兄长留下的最后一份电报底稿，并查明其背后的真相。任务分为三个阶段：首先，在复杂的电报局档案中通过人际周旋与技术比对，锁定目标电报的流向；其次，深入上海滩的码头与茶馆，与各方势力周旋，在生存压力下收集关键证据；最后，在真相与现实利益之间做出抉择。挑战在于，主角不仅要面对技术上的破译难题，更要处理因调查而引发的社会关系崩塌，以及在动荡时局下，个人追求与家庭安稳之间的残酷博弈。最终，主角将获得真相，但这份真相往往伴随着无法挽回的代价，如兄长的彻底失踪或个人职业生涯的终结。",
+                  "protagonist_ability": "主角拥有“译码直觉”，源于其早年作为电报局学徒时对摩尔斯电码形成的肌肉记忆与逻辑敏感度。在游戏中，主角能通过观察电报纸上的击键力度、停顿节奏及拼写习惯，还原出发送者的情绪状态与真实意图。然而，此能力受限于主角的体力与精神状态，过度使用会导致偏头痛，且无法解读加密程度极高的军用密码，只能在有限的民用与商业电报中捕捉蛛丝马迹。",
+                  "world_basic_setting": "故事背景设定在1930年代的上海，这是一个东西方文化激烈碰撞、机遇与动荡并存的魔都。城市表面繁华如梦，实则暗流涌动，各方势力在租界与华界之间博弈。电报作为当时最先进的通讯手段，成为情报交换的核心，但也因其易被截获的特性，成为无数秘密的葬身之地。社会阶层固化严重，底层民众在物价飞涨与战乱阴影下艰难求生。关键事件“静默电波案”引发了多方势力对一份失踪电报底稿的争夺，这份底稿不仅关乎某项商业机密的归属，更牵扯到多年前一桩被掩盖的家族往事。在那个通讯依赖人工译码的年代，每一个字符的错位都可能改变一个人的生死，而主角正是在这复杂的社会网络中，试图通过电报线索寻找失踪亲人的真相，却逐渐发现自己被卷入了一场无法全身而退的时代漩涡。"
+                },
+                "flow_worldline": {
+                  "characters": {},
+                  "environment": {}
+                },
+                "game_id": "game_1777625671_moqphs",
+                "image_style": {
+                  "subtype": "impressionist",
+                  "type": "oil_painting"
+                },
+                "meta": {
+                  "detail_async": true
+                },
+                "protagonist_canonical": {
+                  "gender": "男性"
+                },
+                "tone": "normal_ending",
+                "user_theme": "民国电报迷案",
+                "_benchmark_profile": "fullready_strict",
+                "_benchmark_measurement": "fullready_nextturn",
+                "_benchmark_read_wait_s": 0.0
+              }
+            },
+            "start_ts": 1777625689.0528069,
+            "end_ts": 1777625749.0722117,
+            "provider_events": {
+              "event_count": 1,
+              "queue_wait_ms": {
+                "count": 1,
+                "min": 0.0,
+                "max": 0.0,
+                "mean": 0.0,
+                "median": 0.0,
+                "p95": 0.0
+              },
+              "latency_ms": {
+                "count": 1,
+                "min": 18926.0,
+                "max": 18926.0,
+                "mean": 18926.0,
+                "median": 18926.0,
+                "p95": 18926.0
+              },
+              "llm_success_count": 1,
+              "image_success_count": 0,
+              "request_thread_event_count": 0,
+              "provider_429_count": 0,
+              "provider_timeout_count": 0,
+              "shared_backoff_wait_ms_total": 0,
+              "retry_heavy_event_count": 0,
+              "main_character_event_count": 0,
+              "scene_image_event_count": 0
+            },
+            "request_error": "timeout"
+          }
+        ],
+        "attempt_count": 1,
+        "request_elapsed_s": 60.019,
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "timeout",
+        "has_scene": false,
+        "has_image": false
+      },
+      "second_click": {},
+      "full_ready": {},
+      "placeholder": false,
+      "transport_success": false,
+      "strict_success": false,
+      "failure_bucket": "first_click_timeout",
+      "cache_path_classification": "first_click_timeout",
+      "cache_hit_reason": null,
+      "cache_miss_reason": null,
+      "global_state_key_drift_detected": false,
+      "scene_id_mismatch_detected": false,
+      "selected_option_mismatch_detected": false,
+      "success": false
+    }
+  ]
+}

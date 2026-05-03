@@ -1,0 +1,357 @@
+{
+  "summary": {
+    "experiment_name": "phase25_DNQBV1_020",
+    "profile": "fullready_strict",
+    "sample_size": 1,
+    "read_wait_s": 0.0,
+    "suite_start_ts": 1777625817.8739388,
+    "suite_end_ts": 1777625886.9797473,
+    "second_click_elapsed_s": {
+      "count": 0
+    },
+    "second_click_success_count": 0,
+    "transport_success_count": 0,
+    "strict_success_count": 0,
+    "likely_hit_count": 0,
+    "likely_hit_rate": 0.0,
+    "failure_bucket_counts": {
+      "first_click_timeout": 1
+    },
+    "placeholder_strict_fail_count": 0,
+    "cache_hit_reason_counts": {},
+    "cache_miss_reason_counts": {},
+    "global_state_key_drift_detected_count": 0,
+    "scene_id_mismatch_detected_count": 0,
+    "selected_option_mismatch_detected_count": 0,
+    "aborted": false,
+    "success_count": 0,
+    "text_ready_elapsed_s": {
+      "count": 0
+    },
+    "image_ready_elapsed_s": {
+      "count": 0
+    },
+    "full_ready_elapsed_s": {
+      "count": 0
+    },
+    "real_scene_count": 0,
+    "real_scene_rate": 0.0,
+    "direct_image_count": 0,
+    "async_image_count": 0,
+    "placeholder_count": 0,
+    "placeholder_rate": 0.0,
+    "direct_image_rate": 0.0,
+    "async_image_rate": 0.0,
+    "provider_retry_heavy_count": 0,
+    "provider_429_count": 0,
+    "provider_timeout_count": 0,
+    "provider_backoff_wait_ms_total": 0,
+    "main_character_contention_suspected_count": 0,
+    "notes": "phase25 initial cache isolation probe"
+  },
+  "runs": [
+    {
+      "benchmark_id": "DNQBV1_020",
+      "theme_id": 18,
+      "theme": "沙漠商队星图",
+      "read_wait_s": 0.0,
+      "full_ready_mode": true,
+      "profile": "fullready_strict",
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 9.004,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过变卖个人珍藏的旧物筹集了启动资金，并成功说服了一名经验丰富的向导加入，商队勉强凑齐了基础物资，正式踏上旅程，但此时商队已负债累累，且成员间的信任基础尚不稳定。",
+                  "main_conflict": "商队在出发前夕遭遇了严重的物资短缺，主角必须在有限的预算内决定是购买更耐用的载具零件，还是储备更多的净水。同时，商队成员对此次长途跋涉的安全性产生了分歧，部分老成员因恐惧而选择退出，导致人手不足，主角需要在维持商队运作与安抚人心之间寻找平衡，这种初期的困境直接考验着主角的领导力与决策逻辑。 - 矛盾结束条件：主角通过变卖个人珍藏的旧物筹集了启动资金，并成功说服了一名经验丰富的向导加入，商队勉强凑齐了基础物资，正式踏上旅程，但此时商队已负债累累，且成员间的信任基础尚不稳定。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角决定舍弃部分非必要的个人行李以换取载具的修复，虽然保住了核心物资，但商队的一名同伴因在维修过程中受伤而不得不留在中转站，商队被迫减员，主角背负着愧疚感继续前行。",
+                  "main_conflict": "商队在穿越“风蚀峡谷”时遭遇了突如其来的沙尘暴，导致导航星图受损，载具严重受损。在极度匮乏的生存压力下，商队内部爆发了关于“是否抛弃受损物资以减轻负重”的激烈争吵。主角必须在保护任务目标与保障同伴生存之间做出选择，这种道德困境让主角意识到，所谓的“圆满”在残酷的现实面前是多么脆弱。 - 矛盾结束条件：主角决定舍弃部分非必要的个人行李以换取载具的修复，虽然保住了核心物资，但商队的一名同伴因在维修过程中受伤而不得不留在中转站，商队被迫减员，主角背负着愧疚感继续前行。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角最终选择交付了核心医疗物资，换取了避难所对幸存同伴的安置承诺，但商队载具彻底报废，主角自己也因伤无法进入城市，只能在城市外围的定居点过上平凡的余生，看着同伴进入城市，留下了无法重逢的遗憾。 ### 【主角规范信息】 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：青年 所属作品(中)：碎星行者 所属作品(英)：Star-Dust Walker 标志性外观关键词：粗布风衣，防风护目镜，满是沙尘的短发，坚毅的眼神，干裂的嘴唇，背负旧式导航仪，瘦削但结实，常年佩戴的旧怀表，磨损的皮靴，沧桑感，沉默寡言。 ## 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决",
+                  "main_conflict": "商队终于抵达了避难所城市的边缘，却发现城市因资源配额限制，拒绝接收所有物资，只允许商队进入一人。此时，主角面临最终抉择：是强行闯入导致物资损毁，还是接受城市的苛刻条件，牺牲大部分同伴的利益以换取部分物资的交付。这种现实的冷酷让主角深刻体会到，努力并不一定能换来理想的结局，生活往往要求人做出妥协。 - 矛盾结束条件：主角最终选择交付了核心医疗物资，换取了避难所对幸存同伴的安置承诺，但商队载具彻底报废，主角自己也因伤无法进入城市，只能在城市外围的定居点过上平凡的余生，看着同伴进入城市，留下了无法重逢的遗憾。 ### 【主角规范信息】 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：青年 所属作品(中)：碎星行者 所属作品(英)：Star-Dust Walker 标志性外观关键词：粗布风衣，防风护目镜，满是沙尘的短发，坚毅的眼神，干裂的嘴唇，背负旧式导航仪，瘦削但结实，常年佩戴的旧怀表，磨损的皮靴，沧桑感，沉默寡言。 ## 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为写实风格的公路生存模拟游戏，采用低饱和度的视觉色调与沉浸式环境音效。游戏强调资源的精细化管理与人际关系的动态博弈，通过琐碎的日常劳作与长途跋涉，构建出一种苍凉、缓慢且充满生活质感的叙事节奏，旨在让玩家在风沙与星辰间感受平凡人生的负重前行。",
+              "main_quest": "主角的目标是带领一支小型商队，穿越碎星荒原，将一批珍贵的旧时代医疗物资送往远方的“避难所城市”。任务分为三个阶段：首先是筹集足够的补给与修缮载具，在恶劣的自然环境中存活；其次是解读残缺的星图，在迷宫般的沙海中寻找正确的路线，同时应对商队内部因资源分配产生的矛盾与信任危机；最后是面对荒原强盗的威胁与恶劣气候的考验，在确保物资送达的同时，尽可能保全同伴。挑战在于，主角必须在“完成任务的执念”与“同伴的生命安全”之间不断权衡，最终达成一个既非全员生还也非全军覆没的、充满遗憾的现实结局。",
+              "protagonist_ability": "主角拥有一种被称为“沙感”的直觉，源于其家族世代在荒原行商的经验积累与对风向、沙纹的敏锐感知。使用时，主角能通过观察沙丘的细微起伏与气流变化，在没有电子设备辅助的情况下，推断出隐藏的地下水源或避风港。然而，这种能力并非超自然力量，而是极度依赖体力与专注力，过度使用会导致严重的脱水与疲劳，且在极端天气下，这种直觉也会因环境干扰而出现误判，并非万能的生存保障。",
+              "world_basic_setting": "故事发生在一片名为“碎星荒原”的广袤沙漠，这里曾是繁荣的贸易枢纽，如今因地壳变动与气候恶化，沦为被现代文明遗忘的边缘地带。社会结构退化为以商队为核心的部落制，人们依靠古老的星图导航，在流动的沙丘间寻找残存的绿洲与补给站。文化上，这里崇尚“星辰契约”，即商队成员间必须通过共同劳作与分享资源来维系生存。关键事件“大沙暴”摧毁了大部分旧时代遗迹，导致导航技术断层，现在的商队只能依赖手绘的残缺星图，在变幻莫测的地理环境中寻找生路。这里没有英雄，只有为了生存而不断迁徙的普通人，每个人都在为了一口净水或一袋粮食而精打细算，生活在极度的匮乏与无常之中。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1777625817_oze0du",
+            "image_style": {
+              "subtype": "classic_oil",
+              "type": "oil_painting"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "gender": "男性"
+            },
+            "tone": "normal_ending",
+            "user_theme": "沙漠商队星图"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "request_payload": {
+          "gameTheme": "沙漠商队星图",
+          "protagonistAttr": {},
+          "difficulty": "normal",
+          "toneKey": "normal_ending",
+          "imageStyle": {
+            "type": "oil_painting",
+            "subtype": "classic_oil"
+          },
+          "_benchmark_profile": "fullready_strict",
+          "_benchmark_measurement": "fullready_nextturn",
+          "_benchmark_read_wait_s": 0.0
+        },
+        "start_ts": 1777625817.8739426,
+        "end_ts": 1777625826.8777785,
+        "provider_events": {
+          "event_count": 4,
+          "queue_wait_ms": {
+            "count": 4,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 1,
+            "min": 8969.0,
+            "max": 8969.0,
+            "mean": 8969.0,
+            "median": 8969.0,
+            "p95": 8969.0
+          },
+          "llm_success_count": 1,
+          "image_success_count": 0,
+          "request_thread_event_count": 2,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0
+        },
+        "status": "success",
+        "game_id": "game_1777625817_oze0du"
+      },
+      "first_click": {
+        "http_status": null,
+        "elapsed_s": 60.024,
+        "response_json": {
+          "status": "timeout",
+          "message": "HTTPConnectionPool(host='127.0.0.1', port=5007): Read timed out. (read timeout=60)"
+        },
+        "request_payload": {
+          "option": "开始游戏",
+          "optionIndex": 0,
+          "sceneId": null,
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过变卖个人珍藏的旧物筹集了启动资金，并成功说服了一名经验丰富的向导加入，商队勉强凑齐了基础物资，正式踏上旅程，但此时商队已负债累累，且成员间的信任基础尚不稳定。",
+                  "main_conflict": "商队在出发前夕遭遇了严重的物资短缺，主角必须在有限的预算内决定是购买更耐用的载具零件，还是储备更多的净水。同时，商队成员对此次长途跋涉的安全性产生了分歧，部分老成员因恐惧而选择退出，导致人手不足，主角需要在维持商队运作与安抚人心之间寻找平衡，这种初期的困境直接考验着主角的领导力与决策逻辑。 - 矛盾结束条件：主角通过变卖个人珍藏的旧物筹集了启动资金，并成功说服了一名经验丰富的向导加入，商队勉强凑齐了基础物资，正式踏上旅程，但此时商队已负债累累，且成员间的信任基础尚不稳定。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角决定舍弃部分非必要的个人行李以换取载具的修复，虽然保住了核心物资，但商队的一名同伴因在维修过程中受伤而不得不留在中转站，商队被迫减员，主角背负着愧疚感继续前行。",
+                  "main_conflict": "商队在穿越“风蚀峡谷”时遭遇了突如其来的沙尘暴，导致导航星图受损，载具严重受损。在极度匮乏的生存压力下，商队内部爆发了关于“是否抛弃受损物资以减轻负重”的激烈争吵。主角必须在保护任务目标与保障同伴生存之间做出选择，这种道德困境让主角意识到，所谓的“圆满”在残酷的现实面前是多么脆弱。 - 矛盾结束条件：主角决定舍弃部分非必要的个人行李以换取载具的修复，虽然保住了核心物资，但商队的一名同伴因在维修过程中受伤而不得不留在中转站，商队被迫减员，主角背负着愧疚感继续前行。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角最终选择交付了核心医疗物资，换取了避难所对幸存同伴的安置承诺，但商队载具彻底报废，主角自己也因伤无法进入城市，只能在城市外围的定居点过上平凡的余生，看着同伴进入城市，留下了无法重逢的遗憾。 ### 【主角规范信息】 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：青年 所属作品(中)：碎星行者 所属作品(英)：Star-Dust Walker 标志性外观关键词：粗布风衣，防风护目镜，满是沙尘的短发，坚毅的眼神，干裂的嘴唇，背负旧式导航仪，瘦削但结实，常年佩戴的旧怀表，磨损的皮靴，沧桑感，沉默寡言。 ## 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决",
+                  "main_conflict": "商队终于抵达了避难所城市的边缘，却发现城市因资源配额限制，拒绝接收所有物资，只允许商队进入一人。此时，主角面临最终抉择：是强行闯入导致物资损毁，还是接受城市的苛刻条件，牺牲大部分同伴的利益以换取部分物资的交付。这种现实的冷酷让主角深刻体会到，努力并不一定能换来理想的结局，生活往往要求人做出妥协。 - 矛盾结束条件：主角最终选择交付了核心医疗物资，换取了避难所对幸存同伴的安置承诺，但商队载具彻底报废，主角自己也因伤无法进入城市，只能在城市外围的定居点过上平凡的余生，看着同伴进入城市，留下了无法重逢的遗憾。 ### 【主角规范信息】 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：青年 所属作品(中)：碎星行者 所属作品(英)：Star-Dust Walker 标志性外观关键词：粗布风衣，防风护目镜，满是沙尘的短发，坚毅的眼神，干裂的嘴唇，背负旧式导航仪，瘦削但结实，常年佩戴的旧怀表，磨损的皮靴，沧桑感，沉默寡言。 ## 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为写实风格的公路生存模拟游戏，采用低饱和度的视觉色调与沉浸式环境音效。游戏强调资源的精细化管理与人际关系的动态博弈，通过琐碎的日常劳作与长途跋涉，构建出一种苍凉、缓慢且充满生活质感的叙事节奏，旨在让玩家在风沙与星辰间感受平凡人生的负重前行。",
+              "main_quest": "主角的目标是带领一支小型商队，穿越碎星荒原，将一批珍贵的旧时代医疗物资送往远方的“避难所城市”。任务分为三个阶段：首先是筹集足够的补给与修缮载具，在恶劣的自然环境中存活；其次是解读残缺的星图，在迷宫般的沙海中寻找正确的路线，同时应对商队内部因资源分配产生的矛盾与信任危机；最后是面对荒原强盗的威胁与恶劣气候的考验，在确保物资送达的同时，尽可能保全同伴。挑战在于，主角必须在“完成任务的执念”与“同伴的生命安全”之间不断权衡，最终达成一个既非全员生还也非全军覆没的、充满遗憾的现实结局。",
+              "protagonist_ability": "主角拥有一种被称为“沙感”的直觉，源于其家族世代在荒原行商的经验积累与对风向、沙纹的敏锐感知。使用时，主角能通过观察沙丘的细微起伏与气流变化，在没有电子设备辅助的情况下，推断出隐藏的地下水源或避风港。然而，这种能力并非超自然力量，而是极度依赖体力与专注力，过度使用会导致严重的脱水与疲劳，且在极端天气下，这种直觉也会因环境干扰而出现误判，并非万能的生存保障。",
+              "world_basic_setting": "故事发生在一片名为“碎星荒原”的广袤沙漠，这里曾是繁荣的贸易枢纽，如今因地壳变动与气候恶化，沦为被现代文明遗忘的边缘地带。社会结构退化为以商队为核心的部落制，人们依靠古老的星图导航，在流动的沙丘间寻找残存的绿洲与补给站。文化上，这里崇尚“星辰契约”，即商队成员间必须通过共同劳作与分享资源来维系生存。关键事件“大沙暴”摧毁了大部分旧时代遗迹，导致导航技术断层，现在的商队只能依赖手绘的残缺星图，在变幻莫测的地理环境中寻找生路。这里没有英雄，只有为了生存而不断迁徙的普通人，每个人都在为了一口净水或一袋粮食而精打细算，生活在极度的匮乏与无常之中。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1777625817_oze0du",
+            "image_style": {
+              "subtype": "classic_oil",
+              "type": "oil_painting"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "gender": "男性"
+            },
+            "tone": "normal_ending",
+            "user_theme": "沙漠商队星图",
+            "_benchmark_profile": "fullready_strict",
+            "_benchmark_measurement": "fullready_nextturn",
+            "_benchmark_read_wait_s": 0.0
+          }
+        },
+        "start_ts": 1777625826.9162421,
+        "end_ts": 1777625886.9400923,
+        "provider_events": {
+          "event_count": 7,
+          "queue_wait_ms": {
+            "count": 7,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 5,
+            "min": 3146.0,
+            "max": 29851.0,
+            "mean": 11363.8,
+            "median": 6806.0,
+            "p95": 26258.8
+          },
+          "llm_success_count": 4,
+          "image_success_count": 0,
+          "request_thread_event_count": 0,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 1
+        },
+        "request_error": "timeout",
+        "attempts": [
+          {
+            "http_status": null,
+            "elapsed_s": 60.024,
+            "response_json": {
+              "status": "timeout",
+              "message": "HTTPConnectionPool(host='127.0.0.1', port=5007): Read timed out. (read timeout=60)"
+            },
+            "request_payload": {
+              "option": "开始游戏",
+              "optionIndex": 0,
+              "sceneId": null,
+              "globalState": {
+                "core_worldview": {
+                  "chapters": {
+                    "chapter1": {
+                      "conflict_end_condition": "主角通过变卖个人珍藏的旧物筹集了启动资金，并成功说服了一名经验丰富的向导加入，商队勉强凑齐了基础物资，正式踏上旅程，但此时商队已负债累累，且成员间的信任基础尚不稳定。",
+                      "main_conflict": "商队在出发前夕遭遇了严重的物资短缺，主角必须在有限的预算内决定是购买更耐用的载具零件，还是储备更多的净水。同时，商队成员对此次长途跋涉的安全性产生了分歧，部分老成员因恐惧而选择退出，导致人手不足，主角需要在维持商队运作与安抚人心之间寻找平衡，这种初期的困境直接考验着主角的领导力与决策逻辑。 - 矛盾结束条件：主角通过变卖个人珍藏的旧物筹集了启动资金，并成功说服了一名经验丰富的向导加入，商队勉强凑齐了基础物资，正式踏上旅程，但此时商队已负债累累，且成员间的信任基础尚不稳定。"
+                    },
+                    "chapter2": {
+                      "conflict_end_condition": "主角决定舍弃部分非必要的个人行李以换取载具的修复，虽然保住了核心物资，但商队的一名同伴因在维修过程中受伤而不得不留在中转站，商队被迫减员，主角背负着愧疚感继续前行。",
+                      "main_conflict": "商队在穿越“风蚀峡谷”时遭遇了突如其来的沙尘暴，导致导航星图受损，载具严重受损。在极度匮乏的生存压力下，商队内部爆发了关于“是否抛弃受损物资以减轻负重”的激烈争吵。主角必须在保护任务目标与保障同伴生存之间做出选择，这种道德困境让主角意识到，所谓的“圆满”在残酷的现实面前是多么脆弱。 - 矛盾结束条件：主角决定舍弃部分非必要的个人行李以换取载具的修复，虽然保住了核心物资，但商队的一名同伴因在维修过程中受伤而不得不留在中转站，商队被迫减员，主角背负着愧疚感继续前行。"
+                    },
+                    "chapter3": {
+                      "conflict_end_condition": "主角最终选择交付了核心医疗物资，换取了避难所对幸存同伴的安置承诺，但商队载具彻底报废，主角自己也因伤无法进入城市，只能在城市外围的定居点过上平凡的余生，看着同伴进入城市，留下了无法重逢的遗憾。 ### 【主角规范信息】 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：青年 所属作品(中)：碎星行者 所属作品(英)：Star-Dust Walker 标志性外观关键词：粗布风衣，防风护目镜，满是沙尘的短发，坚毅的眼神，干裂的嘴唇，背负旧式导航仪，瘦削但结实，常年佩戴的旧怀表，磨损的皮靴，沧桑感，沉默寡言。 ## 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决",
+                      "main_conflict": "商队终于抵达了避难所城市的边缘，却发现城市因资源配额限制，拒绝接收所有物资，只允许商队进入一人。此时，主角面临最终抉择：是强行闯入导致物资损毁，还是接受城市的苛刻条件，牺牲大部分同伴的利益以换取部分物资的交付。这种现实的冷酷让主角深刻体会到，努力并不一定能换来理想的结局，生活往往要求人做出妥协。 - 矛盾结束条件：主角最终选择交付了核心医疗物资，换取了避难所对幸存同伴的安置承诺，但商队载具彻底报废，主角自己也因伤无法进入城市，只能在城市外围的定居点过上平凡的余生，看着同伴进入城市，留下了无法重逢的遗憾。 ### 【主角规范信息】 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：青年 所属作品(中)：碎星行者 所属作品(英)：Star-Dust Walker 标志性外观关键词：粗布风衣，防风护目镜，满是沙尘的短发，坚毅的眼神，干裂的嘴唇，背负旧式导航仪，瘦削但结实，常年佩戴的旧怀表，磨损的皮靴，沧桑感，沉默寡言。 ## 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决"
+                    }
+                  },
+                  "characters": {},
+                  "forces": {},
+                  "game_style": "本作为写实风格的公路生存模拟游戏，采用低饱和度的视觉色调与沉浸式环境音效。游戏强调资源的精细化管理与人际关系的动态博弈，通过琐碎的日常劳作与长途跋涉，构建出一种苍凉、缓慢且充满生活质感的叙事节奏，旨在让玩家在风沙与星辰间感受平凡人生的负重前行。",
+                  "main_quest": "主角的目标是带领一支小型商队，穿越碎星荒原，将一批珍贵的旧时代医疗物资送往远方的“避难所城市”。任务分为三个阶段：首先是筹集足够的补给与修缮载具，在恶劣的自然环境中存活；其次是解读残缺的星图，在迷宫般的沙海中寻找正确的路线，同时应对商队内部因资源分配产生的矛盾与信任危机；最后是面对荒原强盗的威胁与恶劣气候的考验，在确保物资送达的同时，尽可能保全同伴。挑战在于，主角必须在“完成任务的执念”与“同伴的生命安全”之间不断权衡，最终达成一个既非全员生还也非全军覆没的、充满遗憾的现实结局。",
+                  "protagonist_ability": "主角拥有一种被称为“沙感”的直觉，源于其家族世代在荒原行商的经验积累与对风向、沙纹的敏锐感知。使用时，主角能通过观察沙丘的细微起伏与气流变化，在没有电子设备辅助的情况下，推断出隐藏的地下水源或避风港。然而，这种能力并非超自然力量，而是极度依赖体力与专注力，过度使用会导致严重的脱水与疲劳，且在极端天气下，这种直觉也会因环境干扰而出现误判，并非万能的生存保障。",
+                  "world_basic_setting": "故事发生在一片名为“碎星荒原”的广袤沙漠，这里曾是繁荣的贸易枢纽，如今因地壳变动与气候恶化，沦为被现代文明遗忘的边缘地带。社会结构退化为以商队为核心的部落制，人们依靠古老的星图导航，在流动的沙丘间寻找残存的绿洲与补给站。文化上，这里崇尚“星辰契约”，即商队成员间必须通过共同劳作与分享资源来维系生存。关键事件“大沙暴”摧毁了大部分旧时代遗迹，导致导航技术断层，现在的商队只能依赖手绘的残缺星图，在变幻莫测的地理环境中寻找生路。这里没有英雄，只有为了生存而不断迁徙的普通人，每个人都在为了一口净水或一袋粮食而精打细算，生活在极度的匮乏与无常之中。"
+                },
+                "flow_worldline": {
+                  "characters": {},
+                  "current_chapter": "chapter1",
+                  "environment": {}
+                },
+                "game_id": "game_1777625817_oze0du",
+                "image_style": {
+                  "subtype": "classic_oil",
+                  "type": "oil_painting"
+                },
+                "meta": {
+                  "detail_async": true
+                },
+                "protagonist_canonical": {
+                  "gender": "男性"
+                },
+                "tone": "normal_ending",
+                "user_theme": "沙漠商队星图",
+                "_benchmark_profile": "fullready_strict",
+                "_benchmark_measurement": "fullready_nextturn",
+                "_benchmark_read_wait_s": 0.0
+              }
+            },
+            "start_ts": 1777625826.9162421,
+            "end_ts": 1777625886.9400923,
+            "provider_events": {
+              "event_count": 7,
+              "queue_wait_ms": {
+                "count": 7,
+                "min": 0.0,
+                "max": 0.0,
+                "mean": 0.0,
+                "median": 0.0,
+                "p95": 0.0
+              },
+              "latency_ms": {
+                "count": 5,
+                "min": 3146.0,
+                "max": 29851.0,
+                "mean": 11363.8,
+                "median": 6806.0,
+                "p95": 26258.8
+              },
+              "llm_success_count": 4,
+              "image_success_count": 0,
+              "request_thread_event_count": 0,
+              "provider_429_count": 0,
+              "provider_timeout_count": 0,
+              "shared_backoff_wait_ms_total": 0,
+              "retry_heavy_event_count": 0,
+              "main_character_event_count": 0,
+              "scene_image_event_count": 1
+            },
+            "request_error": "timeout"
+          }
+        ],
+        "attempt_count": 1,
+        "request_elapsed_s": 60.024,
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "timeout",
+        "has_scene": false,
+        "has_image": false
+      },
+      "second_click": {},
+      "full_ready": {},
+      "placeholder": false,
+      "transport_success": false,
+      "strict_success": false,
+      "failure_bucket": "first_click_timeout",
+      "cache_path_classification": "first_click_timeout",
+      "cache_hit_reason": null,
+      "cache_miss_reason": null,
+      "global_state_key_drift_detected": false,
+      "scene_id_mismatch_detected": false,
+      "selected_option_mismatch_detected": false,
+      "success": false
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+system,group,sample_size,first_turn_or_first_ready_mean_s,next_turn_full_ready_mean_s,p95_s,success_rate,output_dir_or_evidence_path,notes
+DN,strict_fullready,1,,37.187,37.187,1.0,D:\Projects\DN\experiments\benchmark\standard_runs\benchmark_v14_fullready_zero_wait_smoke1.json,DN row measures click-to-text+image full-ready latency on 20 items without pregeneration benefit.
+storydiffusion,image_baseline_reference,20,7.69,8.495,8.9,1.0,/root/autodl-tmp/outputs/storydiffusion_nextturn_formal20/storydiffusion_nextturn_formal20_unstable_v2_20260430,StoryDiffusion next-turn latency measures the post-click continuation image only.
+sdmv2,image_baseline_reference,20,2.847,2.827,2.831,1.0,/root/autodl-tmp/outputs/sdmv2_nextturn_formal20/sdmv2_sdmv2_nextturn_formal20_20260430,SDM-v2 next-turn latency measures the post-click continuation image only.
+ic-lora,image_baseline_reference,20,30.06,30.057,30.059,1.0,/root/autodl-tmp/outputs/iclora_nextturn_formal20_real/ic-lora_real_20260430_nextturn_formal20,IC-LoRA next-turn latency measures the post-click continuation workflow only.

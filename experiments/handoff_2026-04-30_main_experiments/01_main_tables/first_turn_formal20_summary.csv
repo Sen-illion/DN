@@ -1,0 +1,4 @@
+baseline,mode,sample_size,success_rate,mean_latency_s,p95_latency_s,next_turn_time_mean_s,next_turn_p95_s,continuation_success_rate,interaction_continuity,mean_images_per_sample,failed_ids,output_dir,notes
+storydiffusion,first_turn,20,1.0,7.69,8.415,,,,,4,,/root/autodl-tmp/outputs/storydiffusion_formal20/storydiffusion_formal20_unstable_20260430_1200,StoryDiffusion low-VRAM textual-description mode; 4 DN-style scene prompts per item by default.
+sdmv2,first_turn,20,1.0,2.847,2.854,,,,,1,,/root/autodl-tmp/outputs/sdmv2_local_formal20/sdmv2_sdmv2_local_formal20_20260430,SDM-v2 uses diffusers and generates one image per DN-style item; no character-consistency claim.
+ic-lora,first_turn,20,1.0,30.06,30.063,,,,,1,,/root/autodl-tmp/outputs/iclora_formal20_real/ic-lora_real_20260430_formal20,IC-LoRA attempts official ComfyUI workflow execution when assets and ComfyUI API are ready.

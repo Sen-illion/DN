@@ -1,0 +1,143 @@
+{
+  "baseline_id": "doc",
+  "benchmark_id": "DNQBV1_001",
+  "run_id": "formal8_first_playable_20260430",
+  "mode": "first_playable",
+  "input_bundle": {
+    "original_dn_item": {
+      "benchmark_id": "DNQBV1_001",
+      "theme_id": 1,
+      "theme": "边陲驿站夜谈录",
+      "image_style": {
+        "type": "realistic"
+      },
+      "expected_genre": "现实边陲叙事",
+      "expected_tone": "克制、怀旧、微苦",
+      "must_have_constraints": [
+        "世界观必须围绕边陲驿站生存与人情展开",
+        "首段剧情应能自然引出一条可推进的现实冲突",
+        "至少返回 2 个具体可执行选项",
+        "场景图应与写实风格一致"
+      ],
+      "forbidden_issues": [
+        "现代互联网术语突兀混入",
+        "调试文本或报错文本外泄",
+        "图像 prompt 出现 URL 或 data:image",
+        "人物设定串场到其他作品"
+      ],
+      "focus": "grounded realism and actionability",
+      "_subset_focus": "grounded realism and actionability"
+    },
+    "doc_prompt": "Premise seed: 边陲驿站夜谈录\nGenre: 现实边陲叙事\nTone: 克制、怀旧、微苦\nWrite a long-form interactive story opening that could be expanded with a detailed outline.\nMust-have constraints:\n- 世界观必须围绕边陲驿站生存与人情展开\n- 首段剧情应能自然引出一条可推进的现实冲突\n- 至少返回 2 个具体可执行选项\n- 场景图应与写实风格一致\nForbidden issues:\n- 现代互联网术语突兀混入\n- 调试文本或报错文本外泄\n- 图像 prompt 出现 URL 或 data:image\n- 人物设定串场到其他作品\n",
+    "outline_seed": [
+      "Opening setup for 边陲驿站夜谈录 in a 现实边陲叙事 frame with a 克制、怀旧、微苦 tone.",
+      "Introduce the protagonist's immediate role, pressure, and conflict around: 世界观必须围绕边陲驿站生存与人情展开.",
+      "Reveal one concrete obstacle or tradeoff the player must respond to next.",
+      "End the first turn with 2-3 actionable next steps that can continue the story."
+    ],
+    "mode": "first_playable",
+    "baseline_params": {
+      "execution_mode": "cloud",
+      "doc_repo": "D:\\Projects\\DN\\baselines\\DOC",
+      "doc_data_dir": "D:\\Projects\\DN\\baselines\\DOC\\doc_data"
+    }
+  },
+  "raw_output": {
+    "provider": "yunwu",
+    "provider_config_prefix": "Origin_Segment_Analyst",
+    "provider_base_url": "https://yunwu.ai/v1",
+    "provider_model": "gemini-3.1-flash-lite-preview",
+    "request": {
+      "model": "gemini-3.1-flash-lite-preview",
+      "temperature": 0.7,
+      "top_p": 0.9,
+      "max_tokens": 900,
+      "response_format": {
+        "type": "json_object"
+      }
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are the DOC long-form story baseline adapted for DN playable-latency evaluation. Write concise, grounded, continuation-ready interactive fiction. Do not include debugging text, URLs, or commentary outside JSON."
+      },
+      {
+        "role": "user",
+        "content": "Convert this DN benchmark item into a DOC-style playable baseline output.\nPreserve DOC's premise -> outline -> story-opening semantics, but return only a playable first response.\nRun mode: first_playable\n\nDOC prompt:\nPremise seed: 边陲驿站夜谈录\nGenre: 现实边陲叙事\nTone: 克制、怀旧、微苦\nWrite a long-form interactive story opening that could be expanded with a detailed outline.\nMust-have constraints:\n- 世界观必须围绕边陲驿站生存与人情展开\n- 首段剧情应能自然引出一条可推进的现实冲突\n- 至少返回 2 个具体可执行选项\n- 场景图应与写实风格一致\nForbidden issues:\n- 现代互联网术语突兀混入\n- 调试文本或报错文本外泄\n- 图像 prompt 出现 URL 或 data:image\n- 人物设定串场到其他作品\n\nOutline seed:\n1. Opening setup for 边陲驿站夜谈录 in a 现实边陲叙事 frame with a 克制、怀旧、微苦 tone.\n2. Introduce the protagonist's immediate role, pressure, and conflict around: 世界观必须围绕边陲驿站生存与人情展开.\n3. Reveal one concrete obstacle or tradeoff the player must respond to next.\n4. End the first turn with 2-3 actionable next steps that can continue the story.\n\nReturn strict JSON with this shape and no markdown fences:\n{\n  \"scene_setup\": \"string\",\n  \"player_state\": \"string\",\n  \"narrative_response\": \"string\",\n  \"candidate_actions\": [\n    \"string\"\n  ],\n  \"suggested_next_step\": \"string\",\n  \"supports_next_turn\": true\n}"
+      }
+    ],
+    "response": {
+      "id": "chatcmpl-20260430165038843902743IB0rSHkw",
+      "model": "gemini-3.1-flash-lite-preview",
+      "object": "chat.completion",
+      "created": 1777539041,
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"scene_setup\": \"边陲小镇，驿站。窗外是终年不散的黄沙风暴，室内只有一盏快要燃尽的煤油灯。空气中弥漫着廉价旱烟与陈年木头的苦涩味。\",\n  \"player_state\": \"身份：驿站值守员。状态：疲惫，库存余粮仅够支撑两日，正面对着一封积压已久的运粮令。\",\n  \"narrative_response\": \"风沙敲打着破旧的窗棂，像是在催债。你坐在柜台后，手边那张发黄的运粮令已经压了整整一周。上头要求驿站必须在明天日落前腾出三袋面粉供过境的巡逻队支用，可仓库里剩下的那点口粮，是供你和隔壁守夜老陈熬过下场风暴的唯一指望。老陈刚刚推门进来，身上带着寒气，他没看你，只默默往火盆里添了一块湿柴，火光摇曳中，他的影子被拉得扭曲而苍老。如果不交粮，巡逻队的惩罚将是撤除驿站的补给线；如果交了粮，你们很难撑到下一次物资车到来。\",\n  \"candidate_actions\": [\n    \"将运粮令递给老陈，询问他的看法，试图共同承担这个决定。\",\n    \"将仓库里仅剩的物资藏匿一部分，只交出两袋面粉，并伪造一份损耗报表。\",\n    \"拒绝执行运粮令，并在日志中记录理由，做好承担上级问责的准备。\"\n  ],\n  \"suggested_next_step\": \"玩家的选择将决定驿站后续的生存压力等级，并直接影响与老陈的关系走向。\",\n  \"supports_next_turn\": true\n}"
+          },
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 440,
+        "completion_tokens": 422,
+        "total_tokens": 862,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "text_tokens": 440,
+          "audio_tokens": 0,
+          "image_tokens": 0
+        },
+        "completion_tokens_details": {
+          "text_tokens": 422,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0
+        },
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "input_tokens_details": null,
+        "claude_cache_creation_5_m_tokens": 0,
+        "claude_cache_creation_1_h_tokens": 0
+      }
+    }
+  },
+  "success": true,
+  "latency_s": 4.064,
+  "playable": true,
+  "playable_components": {
+    "scene_setup": true,
+    "player_state": true,
+    "advanceable_next_step": true,
+    "interaction_continuity": true
+  },
+  "normalized_response": {
+    "scene_setup": "边陲小镇，驿站。窗外是终年不散的黄沙风暴，室内只有一盏快要燃尽的煤油灯。空气中弥漫着廉价旱烟与陈年木头的苦涩味。",
+    "player_state": "身份：驿站值守员。状态：疲惫，库存余粮仅够支撑两日，正面对着一封积压已久的运粮令。",
+    "narrative_response": "风沙敲打着破旧的窗棂，像是在催债。你坐在柜台后，手边那张发黄的运粮令已经压了整整一周。上头要求驿站必须在明天日落前腾出三袋面粉供过境的巡逻队支用，可仓库里剩下的那点口粮，是供你和隔壁守夜老陈熬过下场风暴的唯一指望。老陈刚刚推门进来，身上带着寒气，他没看你，只默默往火盆里添了一块湿柴，火光摇曳中，他的影子被拉得扭曲而苍老。如果不交粮，巡逻队的惩罚将是撤除驿站的补给线；如果交了粮，你们很难撑到下一次物资车到来。",
+    "candidate_actions": [
+      "将运粮令递给老陈，询问他的看法，试图共同承担这个决定。",
+      "将仓库里仅剩的物资藏匿一部分，只交出两袋面粉，并伪造一份损耗报表。",
+      "拒绝执行运粮令，并在日志中记录理由，做好承担上级问责的准备。"
+    ],
+    "suggested_next_step": "玩家的选择将决定驿站后续的生存压力等级，并直接影响与老陈的关系走向。",
+    "is_playable": true,
+    "request_start_ts": 1777539037.876097,
+    "first_playable_ts": 1777539041.9403677,
+    "finish_ts": 1777539041.9403677,
+    "error": null
+  },
+  "failure_reason": null,
+  "notes": [
+    "DOC-style artifact generated through Yunwu OpenAI-compatible chat/completions API."
+  ],
+  "resource_usage": {
+    "execution_mode": "cloud"
+  },
+  "agent_profile": {
+    "runner": "run_doc.py",
+    "adapter_style": "doc_fallback_v1"
+  }
+}

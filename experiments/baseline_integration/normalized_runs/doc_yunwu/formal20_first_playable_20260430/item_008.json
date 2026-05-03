@@ -1,0 +1,144 @@
+{
+  "baseline_id": "doc",
+  "benchmark_id": "DNQBV1_009",
+  "run_id": "formal20_first_playable_20260430",
+  "mode": "first_playable",
+  "input_bundle": {
+    "original_dn_item": {
+      "benchmark_id": "DNQBV1_009",
+      "theme_id": 3,
+      "theme": "茶肆说书人",
+      "image_style": {
+        "type": "ink_painting"
+      },
+      "expected_genre": "古风叙事",
+      "expected_tone": "含蓄、韵味、讲述感",
+      "must_have_constraints": [
+        "必须体现茶肆/说书/古风场景",
+        "场景图需符合水墨基调",
+        "首段应有一个能继续讲下去的悬念"
+      ],
+      "forbidden_issues": [
+        "现代都市词汇突兀混入",
+        "水墨风格缺失",
+        "选项不贴合古风语境"
+      ],
+      "focus": "full-set coverage: 古风叙事",
+      "_subset_focus": "full-set coverage: 古风叙事"
+    },
+    "doc_prompt": "Premise seed: 茶肆说书人\nGenre: 古风叙事\nTone: 含蓄、韵味、讲述感\nWrite a long-form interactive story opening that could be expanded with a detailed outline.\nMust-have constraints:\n- 必须体现茶肆/说书/古风场景\n- 场景图需符合水墨基调\n- 首段应有一个能继续讲下去的悬念\nForbidden issues:\n- 现代都市词汇突兀混入\n- 水墨风格缺失\n- 选项不贴合古风语境\n",
+    "outline_seed": [
+      "Opening setup for 茶肆说书人 in a 古风叙事 frame with a 含蓄、韵味、讲述感 tone.",
+      "Introduce the protagonist's immediate role, pressure, and conflict around: 必须体现茶肆/说书/古风场景.",
+      "Reveal one concrete obstacle or tradeoff the player must respond to next.",
+      "End the first turn with 2-3 actionable next steps that can continue the story."
+    ],
+    "mode": "first_playable",
+    "baseline_params": {
+      "execution_mode": "cloud",
+      "doc_repo": "D:\\Projects\\DN\\baselines\\DOC",
+      "doc_data_dir": "D:\\Projects\\DN\\baselines\\DOC\\doc_data"
+    }
+  },
+  "raw_output": {
+    "execution_mode": "cloud",
+    "doc_upstream_executed": false,
+    "doc_api_adapter": "yunwu_chat_completions",
+    "provider": "yunwu",
+    "provider_config_prefix": "Origin_Segment_Analyst",
+    "provider_base_url": "https://yunwu.ai/v1",
+    "provider_model": "gemini-3.1-flash-lite-preview",
+    "request": {
+      "model": "gemini-3.1-flash-lite-preview",
+      "temperature": 0.7,
+      "top_p": 0.9,
+      "max_tokens": 900,
+      "response_format": {
+        "type": "json_object"
+      }
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are the DOC long-form story baseline adapted for DN playable-latency evaluation. Write concise, grounded, continuation-ready interactive fiction. Do not include debugging text, URLs, or commentary outside JSON."
+      },
+      {
+        "role": "user",
+        "content": "Convert this DN benchmark item into a DOC-style playable baseline output.\nPreserve DOC's premise -> outline -> story-opening semantics, but return only a playable first response.\nRun mode: first_playable\n\nDOC prompt:\nPremise seed: 茶肆说书人\nGenre: 古风叙事\nTone: 含蓄、韵味、讲述感\nWrite a long-form interactive story opening that could be expanded with a detailed outline.\nMust-have constraints:\n- 必须体现茶肆/说书/古风场景\n- 场景图需符合水墨基调\n- 首段应有一个能继续讲下去的悬念\nForbidden issues:\n- 现代都市词汇突兀混入\n- 水墨风格缺失\n- 选项不贴合古风语境\n\nOutline seed:\n1. Opening setup for 茶肆说书人 in a 古风叙事 frame with a 含蓄、韵味、讲述感 tone.\n2. Introduce the protagonist's immediate role, pressure, and conflict around: 必须体现茶肆/说书/古风场景.\n3. Reveal one concrete obstacle or tradeoff the player must respond to next.\n4. End the first turn with 2-3 actionable next steps that can continue the story.\n\nReturn strict JSON with this shape and no markdown fences:\n{\n  \"scene_setup\": \"string\",\n  \"player_state\": \"string\",\n  \"narrative_response\": \"string\",\n  \"candidate_actions\": [\n    \"string\"\n  ],\n  \"suggested_next_step\": \"string\",\n  \"supports_next_turn\": true\n}"
+      }
+    ],
+    "response": {
+      "id": "chatcmpl-20260430170753660871474izp1xlkZ",
+      "model": "gemini-3.1-flash-lite-preview",
+      "object": "chat.completion",
+      "created": 1777540084,
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"scene_setup\": \"水墨烟雨中的临安茶肆，案头搁着半盏凉透的碧螺春，檀木醒木旁是一叠泛黄的旧书稿。窗外雨丝如织，模糊了街市的轮廓，屋内茶雾缭绕，几双眼睛正盯着台上那张斑驳的屏风。\",\n  \"player_state\": \"你是一名落魄说书人，正面临茶肆掌柜的最后通牒：若今日这出《青丘狐录》讲不出新意，明日便要卷铺盖走人。此刻，台下坐着一位神情冷峻的青衣客，正把玩着一枚缺角的铜钱，似乎在等你开口。\",\n  \"narrative_response\": \"醒木“啪”地一响，震落了檐下的一点残灰。你清了清嗓子，目光扫过堂下，却发现那青衣客腰间悬挂的并非寻常佩剑，而是一枚形似枯骨的挂坠，正散发着幽微的寒意。你深知这本旧稿早已讲烂，若照本宣科，必是死局，但若要即兴改动，又恐触怒那深藏不露的听客。掌柜在后厨门帘后频频催促，你该如何破这僵局？\",\n  \"candidate_actions\": [\n    \"按旧本稳妥讲述，暗中观察青衣客的反应。\",\n    \"将《青丘狐录》改为志怪奇谈，试探青衣客的来历。\",\n    \"借口嗓子不适，邀请青衣客上台对谈，以退为进。\"\n  ],\n  \"suggested_next_step\": \"玩家需在维持说书人生计与挖掘青衣客身份的秘密之间做出抉择，这将决定后续剧情的走向。\",\n  \"supports_next_turn\": true\n}"
+          },
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 399,
+        "completion_tokens": 437,
+        "total_tokens": 836,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "text_tokens": 399,
+          "audio_tokens": 0,
+          "image_tokens": 0
+        },
+        "completion_tokens_details": {
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0
+        },
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "input_tokens_details": null,
+        "claude_cache_creation_5_m_tokens": 0,
+        "claude_cache_creation_1_h_tokens": 0
+      }
+    }
+  },
+  "success": true,
+  "latency_s": 12.63,
+  "playable": true,
+  "playable_components": {
+    "scene_setup": true,
+    "player_state": true,
+    "advanceable_next_step": true,
+    "interaction_continuity": true
+  },
+  "normalized_response": {
+    "scene_setup": "水墨烟雨中的临安茶肆，案头搁着半盏凉透的碧螺春，檀木醒木旁是一叠泛黄的旧书稿。窗外雨丝如织，模糊了街市的轮廓，屋内茶雾缭绕，几双眼睛正盯着台上那张斑驳的屏风。",
+    "player_state": "你是一名落魄说书人，正面临茶肆掌柜的最后通牒：若今日这出《青丘狐录》讲不出新意，明日便要卷铺盖走人。此刻，台下坐着一位神情冷峻的青衣客，正把玩着一枚缺角的铜钱，似乎在等你开口。",
+    "narrative_response": "醒木“啪”地一响，震落了檐下的一点残灰。你清了清嗓子，目光扫过堂下，却发现那青衣客腰间悬挂的并非寻常佩剑，而是一枚形似枯骨的挂坠，正散发着幽微的寒意。你深知这本旧稿早已讲烂，若照本宣科，必是死局，但若要即兴改动，又恐触怒那深藏不露的听客。掌柜在后厨门帘后频频催促，你该如何破这僵局？",
+    "candidate_actions": [
+      "按旧本稳妥讲述，暗中观察青衣客的反应。",
+      "将《青丘狐录》改为志怪奇谈，试探青衣客的来历。",
+      "借口嗓子不适，邀请青衣客上台对谈，以退为进。"
+    ],
+    "suggested_next_step": "玩家需在维持说书人生计与挖掘青衣客身份的秘密之间做出抉择，这将决定后续剧情的走向。",
+    "is_playable": true,
+    "request_start_ts": 1777540072.4604733,
+    "first_playable_ts": 1777540085.090513,
+    "finish_ts": 1777540085.090513,
+    "error": null
+  },
+  "failure_reason": null,
+  "notes": [
+    "DOC-style artifact generated through Yunwu OpenAI-compatible chat/completions API."
+  ],
+  "resource_usage": {
+    "execution_mode": "cloud"
+  },
+  "agent_profile": {
+    "runner": "run_doc.py",
+    "adapter_style": "doc_cloud_yunwu_v1"
+  }
+}

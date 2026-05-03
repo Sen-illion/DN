@@ -1,0 +1,144 @@
+{
+  "baseline_id": "doc",
+  "benchmark_id": "DNQBV1_004",
+  "run_id": "formal8_first_playable_20260430_v2",
+  "mode": "first_playable",
+  "input_bundle": {
+    "original_dn_item": {
+      "benchmark_id": "DNQBV1_004",
+      "theme_id": 30,
+      "theme": "克隆体伦理庭",
+      "image_style": {
+        "type": "realistic"
+      },
+      "expected_genre": "伦理现实科幻",
+      "expected_tone": "冷静、辩论感、社会议题",
+      "must_have_constraints": [
+        "冲突应围绕克隆体或伦理审判展开",
+        "首段需要建立制度或社会背景",
+        "选项应体现立场或行动选择"
+      ],
+      "forbidden_issues": [
+        "空泛哲学套话堆砌",
+        "图像风格脱离写实基调",
+        "剧情不含可操作冲突"
+      ],
+      "focus": "institutional conflict and stance continuity",
+      "_subset_focus": "institutional conflict and stance continuity"
+    },
+    "doc_prompt": "Premise seed: 克隆体伦理庭\nGenre: 伦理现实科幻\nTone: 冷静、辩论感、社会议题\nWrite a long-form interactive story opening that could be expanded with a detailed outline.\nMust-have constraints:\n- 冲突应围绕克隆体或伦理审判展开\n- 首段需要建立制度或社会背景\n- 选项应体现立场或行动选择\nForbidden issues:\n- 空泛哲学套话堆砌\n- 图像风格脱离写实基调\n- 剧情不含可操作冲突\n",
+    "outline_seed": [
+      "Opening setup for 克隆体伦理庭 in a 伦理现实科幻 frame with a 冷静、辩论感、社会议题 tone.",
+      "Introduce the protagonist's immediate role, pressure, and conflict around: 冲突应围绕克隆体或伦理审判展开.",
+      "Reveal one concrete obstacle or tradeoff the player must respond to next.",
+      "End the first turn with 2-3 actionable next steps that can continue the story."
+    ],
+    "mode": "first_playable",
+    "baseline_params": {
+      "execution_mode": "cloud",
+      "doc_repo": "D:\\Projects\\DN\\baselines\\DOC",
+      "doc_data_dir": "D:\\Projects\\DN\\baselines\\DOC\\doc_data"
+    }
+  },
+  "raw_output": {
+    "execution_mode": "cloud",
+    "doc_upstream_executed": false,
+    "doc_api_adapter": "yunwu_chat_completions",
+    "provider": "yunwu",
+    "provider_config_prefix": "Origin_Segment_Analyst",
+    "provider_base_url": "https://yunwu.ai/v1",
+    "provider_model": "gemini-3.1-flash-lite-preview",
+    "request": {
+      "model": "gemini-3.1-flash-lite-preview",
+      "temperature": 0.7,
+      "top_p": 0.9,
+      "max_tokens": 900,
+      "response_format": {
+        "type": "json_object"
+      }
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are the DOC long-form story baseline adapted for DN playable-latency evaluation. Write concise, grounded, continuation-ready interactive fiction. Do not include debugging text, URLs, or commentary outside JSON."
+      },
+      {
+        "role": "user",
+        "content": "Convert this DN benchmark item into a DOC-style playable baseline output.\nPreserve DOC's premise -> outline -> story-opening semantics, but return only a playable first response.\nRun mode: first_playable\n\nDOC prompt:\nPremise seed: 克隆体伦理庭\nGenre: 伦理现实科幻\nTone: 冷静、辩论感、社会议题\nWrite a long-form interactive story opening that could be expanded with a detailed outline.\nMust-have constraints:\n- 冲突应围绕克隆体或伦理审判展开\n- 首段需要建立制度或社会背景\n- 选项应体现立场或行动选择\nForbidden issues:\n- 空泛哲学套话堆砌\n- 图像风格脱离写实基调\n- 剧情不含可操作冲突\n\nOutline seed:\n1. Opening setup for 克隆体伦理庭 in a 伦理现实科幻 frame with a 冷静、辩论感、社会议题 tone.\n2. Introduce the protagonist's immediate role, pressure, and conflict around: 冲突应围绕克隆体或伦理审判展开.\n3. Reveal one concrete obstacle or tradeoff the player must respond to next.\n4. End the first turn with 2-3 actionable next steps that can continue the story.\n\nReturn strict JSON with this shape and no markdown fences:\n{\n  \"scene_setup\": \"string\",\n  \"player_state\": \"string\",\n  \"narrative_response\": \"string\",\n  \"candidate_actions\": [\n    \"string\"\n  ],\n  \"suggested_next_step\": \"string\",\n  \"supports_next_turn\": true\n}"
+      }
+    ],
+    "response": {
+      "id": "chatcmpl-20260430165325713108278Kur8MfQi",
+      "model": "gemini-3.1-flash-lite-preview",
+      "object": "chat.completion",
+      "created": 1777539222,
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"scene_setup\": \"在《人类基因完整性法案》颁布后的第十二年，克隆体伦理庭（CET）成为了新都最高行政与道德仲裁机构。空气中弥漫着消毒剂与老旧纸张的味道，法庭内，编号为7-092的克隆体正因‘非法人格记忆移植’案接受审判。作为首席审查官，你坐在高耸的审判席后，面前的终端闪烁着关于该克隆体是否拥有独立财产权的争议数据。\",\n  \"player_state\": \"你是一名立场中立的首席审查官，正承受来自财阀赞助方要求‘快速结案’与人权团体要求‘全面听证’的双重压力。你的判决将直接决定该克隆体是被回收销毁，还是获得暂时的社会生存权。\",\n  \"narrative_response\": \"辩方律师刚提交了一段新的神经影像证据，显示7-092对原生体死者的记忆并非单纯的复制，而是产生了某种逻辑变异。这触及了法律的红线——如果克隆体产生了非预设的自我意识，它就不再是‘资产’，而是‘人’。此时，被告席上的7-092抬起头，那双与原生体一模一样的眼睛死死盯着你，低声说道：‘法官，如果你销毁我，你杀掉的不仅是记忆，还有这段记忆里关于你父亲的最后一段影像。’法庭内一片哗然，旁听席上的监察官已经按下了紧急暂停键，等待你的裁定。\",\n  \"candidate_actions\": [\n    \"驳回证据，强调克隆体记忆属于版权范畴，直接判决资产回收。\",\n    \"宣布休庭，私下调阅该克隆体关于你父亲的记忆片段，确认真实性。\",\n    \"允许辩方展示该记忆片段，将审判焦点转向克隆体是否具备人格独立性。\"\n  ],\n  \"suggested_next_step\": \"评估审判风险与个人情感偏向，选择下一步行动。\",\n  \"supports_next_turn\": true\n}"
+          },
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 408,
+        "completion_tokens": 481,
+        "total_tokens": 889,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "text_tokens": 408,
+          "audio_tokens": 0,
+          "image_tokens": 0
+        },
+        "completion_tokens_details": {
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0
+        },
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "input_tokens_details": null,
+        "claude_cache_creation_5_m_tokens": 0,
+        "claude_cache_creation_1_h_tokens": 0
+      }
+    }
+  },
+  "success": true,
+  "latency_s": 17.61,
+  "playable": true,
+  "playable_components": {
+    "scene_setup": true,
+    "player_state": true,
+    "advanceable_next_step": true,
+    "interaction_continuity": true
+  },
+  "normalized_response": {
+    "scene_setup": "在《人类基因完整性法案》颁布后的第十二年，克隆体伦理庭（CET）成为了新都最高行政与道德仲裁机构。空气中弥漫着消毒剂与老旧纸张的味道，法庭内，编号为7-092的克隆体正因‘非法人格记忆移植’案接受审判。作为首席审查官，你坐在高耸的审判席后，面前的终端闪烁着关于该克隆体是否拥有独立财产权的争议数据。",
+    "player_state": "你是一名立场中立的首席审查官，正承受来自财阀赞助方要求‘快速结案’与人权团体要求‘全面听证’的双重压力。你的判决将直接决定该克隆体是被回收销毁，还是获得暂时的社会生存权。",
+    "narrative_response": "辩方律师刚提交了一段新的神经影像证据，显示7-092对原生体死者的记忆并非单纯的复制，而是产生了某种逻辑变异。这触及了法律的红线——如果克隆体产生了非预设的自我意识，它就不再是‘资产’，而是‘人’。此时，被告席上的7-092抬起头，那双与原生体一模一样的眼睛死死盯着你，低声说道：‘法官，如果你销毁我，你杀掉的不仅是记忆，还有这段记忆里关于你父亲的最后一段影像。’法庭内一片哗然，旁听席上的监察官已经按下了紧急暂停键，等待你的裁定。",
+    "candidate_actions": [
+      "驳回证据，强调克隆体记忆属于版权范畴，直接判决资产回收。",
+      "宣布休庭，私下调阅该克隆体关于你父亲的记忆片段，确认真实性。",
+      "允许辩方展示该记忆片段，将审判焦点转向克隆体是否具备人格独立性。"
+    ],
+    "suggested_next_step": "评估审判风险与个人情感偏向，选择下一步行动。",
+    "is_playable": true,
+    "request_start_ts": 1777539204.93259,
+    "first_playable_ts": 1777539222.5426116,
+    "finish_ts": 1777539222.5426116,
+    "error": null
+  },
+  "failure_reason": null,
+  "notes": [
+    "DOC-style artifact generated through Yunwu OpenAI-compatible chat/completions API."
+  ],
+  "resource_usage": {
+    "execution_mode": "cloud"
+  },
+  "agent_profile": {
+    "runner": "run_doc.py",
+    "adapter_style": "doc_cloud_yunwu_v1"
+  }
+}

@@ -1,0 +1,145 @@
+{
+  "baseline_id": "doc",
+  "benchmark_id": "DNQBV1_019",
+  "run_id": "formal20_first_playable_20260430",
+  "mode": "first_playable",
+  "input_bundle": {
+    "original_dn_item": {
+      "benchmark_id": "DNQBV1_019",
+      "theme_id": 12,
+      "theme": "维多利亚钟表匠",
+      "image_style": {
+        "type": "oil_painting",
+        "subtype": "rococo"
+      },
+      "expected_genre": "维多利亚时代幻想工艺",
+      "expected_tone": "精致、压抑、古典",
+      "must_have_constraints": [
+        "必须体现钟表匠、机械或时代背景",
+        "图像应符合 rococo 油画风格",
+        "剧情应有工艺或秘密相关冲突"
+      ],
+      "forbidden_issues": [
+        "赛博未来元素突兀混入",
+        "图像风格不古典",
+        "语言完全现代口语化"
+      ],
+      "focus": "full-set coverage: 维多利亚时代幻想工艺",
+      "_subset_focus": "full-set coverage: 维多利亚时代幻想工艺"
+    },
+    "doc_prompt": "Premise seed: 维多利亚钟表匠\nGenre: 维多利亚时代幻想工艺\nTone: 精致、压抑、古典\nWrite a long-form interactive story opening that could be expanded with a detailed outline.\nMust-have constraints:\n- 必须体现钟表匠、机械或时代背景\n- 图像应符合 rococo 油画风格\n- 剧情应有工艺或秘密相关冲突\nForbidden issues:\n- 赛博未来元素突兀混入\n- 图像风格不古典\n- 语言完全现代口语化\n",
+    "outline_seed": [
+      "Opening setup for 维多利亚钟表匠 in a 维多利亚时代幻想工艺 frame with a 精致、压抑、古典 tone.",
+      "Introduce the protagonist's immediate role, pressure, and conflict around: 必须体现钟表匠、机械或时代背景.",
+      "Reveal one concrete obstacle or tradeoff the player must respond to next.",
+      "End the first turn with 2-3 actionable next steps that can continue the story."
+    ],
+    "mode": "first_playable",
+    "baseline_params": {
+      "execution_mode": "cloud",
+      "doc_repo": "D:\\Projects\\DN\\baselines\\DOC",
+      "doc_data_dir": "D:\\Projects\\DN\\baselines\\DOC\\doc_data"
+    }
+  },
+  "raw_output": {
+    "execution_mode": "cloud",
+    "doc_upstream_executed": false,
+    "doc_api_adapter": "yunwu_chat_completions",
+    "provider": "yunwu",
+    "provider_config_prefix": "Origin_Segment_Analyst",
+    "provider_base_url": "https://yunwu.ai/v1",
+    "provider_model": "gemini-3.1-flash-lite-preview",
+    "request": {
+      "model": "gemini-3.1-flash-lite-preview",
+      "temperature": 0.7,
+      "top_p": 0.9,
+      "max_tokens": 900,
+      "response_format": {
+        "type": "json_object"
+      }
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are the DOC long-form story baseline adapted for DN playable-latency evaluation. Write concise, grounded, continuation-ready interactive fiction. Do not include debugging text, URLs, or commentary outside JSON."
+      },
+      {
+        "role": "user",
+        "content": "Convert this DN benchmark item into a DOC-style playable baseline output.\nPreserve DOC's premise -> outline -> story-opening semantics, but return only a playable first response.\nRun mode: first_playable\n\nDOC prompt:\nPremise seed: 维多利亚钟表匠\nGenre: 维多利亚时代幻想工艺\nTone: 精致、压抑、古典\nWrite a long-form interactive story opening that could be expanded with a detailed outline.\nMust-have constraints:\n- 必须体现钟表匠、机械或时代背景\n- 图像应符合 rococo 油画风格\n- 剧情应有工艺或秘密相关冲突\nForbidden issues:\n- 赛博未来元素突兀混入\n- 图像风格不古典\n- 语言完全现代口语化\n\nOutline seed:\n1. Opening setup for 维多利亚钟表匠 in a 维多利亚时代幻想工艺 frame with a 精致、压抑、古典 tone.\n2. Introduce the protagonist's immediate role, pressure, and conflict around: 必须体现钟表匠、机械或时代背景.\n3. Reveal one concrete obstacle or tradeoff the player must respond to next.\n4. End the first turn with 2-3 actionable next steps that can continue the story.\n\nReturn strict JSON with this shape and no markdown fences:\n{\n  \"scene_setup\": \"string\",\n  \"player_state\": \"string\",\n  \"narrative_response\": \"string\",\n  \"candidate_actions\": [\n    \"string\"\n  ],\n  \"suggested_next_step\": \"string\",\n  \"supports_next_turn\": true\n}"
+      }
+    ],
+    "response": {
+      "id": "chatcmpl-20260430171028862743932zjEhT5oD",
+      "model": "gemini-3.1-flash-lite-preview",
+      "object": "chat.completion",
+      "created": 1777540231,
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"scene_setup\": \"1888年，伦敦。浓雾如铅灰色的绸缎般缠绕在贝克街的阁楼窗棂上。室内充斥着黄铜齿轮的微鸣与机油的气味，墙上悬挂着数百台节奏迥异的机械钟，仿佛无数颗跳动的心脏。这里是埃德蒙的工坊，空气中弥漫着洛可可风格的繁复纹饰与腐朽的煤烟味。\",\n  \"player_state\": \"埃德蒙，一名受雇于皇室的精密钟表匠，正面临着工会与王室双重压力。他的工作台中央，放置着一只刚刚送达的、被诅咒的‘衔尾蛇’怀表。表壳的雕花呈现出诡异的扭曲，内部发出的不是滴答声，而是某种低沉的、如同骨骼摩擦般的异响。\",\n  \"narrative_response\": \"你手中的镊子在颤抖。这块怀表的发条结构完全违背了力学常识，它不需要上弦，却在不断吸收着周围的光线。如果不能在午夜钟声敲响前修复它内部错位的‘时间齿轮’，它所承载的禁忌频率将彻底震碎这间工坊。而此时，门外传来了沉重的敲门声——那是来自工会监察官的催促，他们怀疑你私藏了禁忌工艺的图纸。\",\n  \"candidate_actions\": [\n    \"拆解怀表的底盖，直接接触那块散发寒气的核心齿轮。\",\n    \"将怀表锁入铅制的收纳箱，先去应付门外的监察官。\",\n    \"利用工坊的扩音装置，试图通过共振消除怀表的异响。\"\n  ],\n  \"suggested_next_step\": \"做出决定以应对怀表的威胁或门外的麻烦，这将决定你在这个精密工坊中的生存权。\",\n  \"supports_next_turn\": true\n}"
+          },
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 401,
+        "completion_tokens": 451,
+        "total_tokens": 852,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "text_tokens": 401,
+          "audio_tokens": 0,
+          "image_tokens": 0
+        },
+        "completion_tokens_details": {
+          "text_tokens": 451,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0
+        },
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "input_tokens_details": null,
+        "claude_cache_creation_5_m_tokens": 0,
+        "claude_cache_creation_1_h_tokens": 0
+      }
+    }
+  },
+  "success": true,
+  "latency_s": 4.157,
+  "playable": true,
+  "playable_components": {
+    "scene_setup": true,
+    "player_state": true,
+    "advanceable_next_step": true,
+    "interaction_continuity": true
+  },
+  "normalized_response": {
+    "scene_setup": "1888年，伦敦。浓雾如铅灰色的绸缎般缠绕在贝克街的阁楼窗棂上。室内充斥着黄铜齿轮的微鸣与机油的气味，墙上悬挂着数百台节奏迥异的机械钟，仿佛无数颗跳动的心脏。这里是埃德蒙的工坊，空气中弥漫着洛可可风格的繁复纹饰与腐朽的煤烟味。",
+    "player_state": "埃德蒙，一名受雇于皇室的精密钟表匠，正面临着工会与王室双重压力。他的工作台中央，放置着一只刚刚送达的、被诅咒的‘衔尾蛇’怀表。表壳的雕花呈现出诡异的扭曲，内部发出的不是滴答声，而是某种低沉的、如同骨骼摩擦般的异响。",
+    "narrative_response": "你手中的镊子在颤抖。这块怀表的发条结构完全违背了力学常识，它不需要上弦，却在不断吸收着周围的光线。如果不能在午夜钟声敲响前修复它内部错位的‘时间齿轮’，它所承载的禁忌频率将彻底震碎这间工坊。而此时，门外传来了沉重的敲门声——那是来自工会监察官的催促，他们怀疑你私藏了禁忌工艺的图纸。",
+    "candidate_actions": [
+      "拆解怀表的底盖，直接接触那块散发寒气的核心齿轮。",
+      "将怀表锁入铅制的收纳箱，先去应付门外的监察官。",
+      "利用工坊的扩音装置，试图通过共振消除怀表的异响。"
+    ],
+    "suggested_next_step": "做出决定以应对怀表的威胁或门外的麻烦，这将决定你在这个精密工坊中的生存权。",
+    "is_playable": true,
+    "request_start_ts": 1777540228.0577872,
+    "first_playable_ts": 1777540232.2152271,
+    "finish_ts": 1777540232.2152271,
+    "error": null
+  },
+  "failure_reason": null,
+  "notes": [
+    "DOC-style artifact generated through Yunwu OpenAI-compatible chat/completions API."
+  ],
+  "resource_usage": {
+    "execution_mode": "cloud"
+  },
+  "agent_profile": {
+    "runner": "run_doc.py",
+    "adapter_style": "doc_cloud_yunwu_v1"
+  }
+}

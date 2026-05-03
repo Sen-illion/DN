@@ -1,0 +1,354 @@
+{
+  "summary": {
+    "experiment_name": "phase25_DNQBV1_019",
+    "profile": "fullready_strict",
+    "sample_size": 1,
+    "read_wait_s": 0.0,
+    "suite_start_ts": 1777625749.3511708,
+    "suite_end_ts": 1777625817.652852,
+    "second_click_elapsed_s": {
+      "count": 0
+    },
+    "second_click_success_count": 0,
+    "transport_success_count": 0,
+    "strict_success_count": 0,
+    "likely_hit_count": 0,
+    "likely_hit_rate": 0.0,
+    "failure_bucket_counts": {
+      "first_click_timeout": 1
+    },
+    "placeholder_strict_fail_count": 0,
+    "cache_hit_reason_counts": {},
+    "cache_miss_reason_counts": {},
+    "global_state_key_drift_detected_count": 0,
+    "scene_id_mismatch_detected_count": 0,
+    "selected_option_mismatch_detected_count": 0,
+    "aborted": false,
+    "success_count": 0,
+    "text_ready_elapsed_s": {
+      "count": 0
+    },
+    "image_ready_elapsed_s": {
+      "count": 0
+    },
+    "full_ready_elapsed_s": {
+      "count": 0
+    },
+    "real_scene_count": 0,
+    "real_scene_rate": 0.0,
+    "direct_image_count": 0,
+    "async_image_count": 0,
+    "placeholder_count": 0,
+    "placeholder_rate": 0.0,
+    "direct_image_rate": 0.0,
+    "async_image_rate": 0.0,
+    "provider_retry_heavy_count": 0,
+    "provider_429_count": 0,
+    "provider_timeout_count": 0,
+    "provider_backoff_wait_ms_total": 0,
+    "main_character_contention_suspected_count": 0,
+    "notes": "phase25 initial cache isolation probe"
+  },
+  "runs": [
+    {
+      "benchmark_id": "DNQBV1_019",
+      "theme_id": 12,
+      "theme": "维多利亚钟表匠",
+      "read_wait_s": 0.0,
+      "full_ready_mode": true,
+      "profile": "fullready_strict",
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 8.189,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过精湛技艺完成了委托，保住了工坊并换取了药物，但因改装行为被工会记过，失去了部分稳定的订单来源，生活压力并未彻底消除。",
+                  "main_conflict": "主角的工坊面临被拆迁的危机，同时家中长辈的病情加重，急需昂贵的药物。主角必须在有限的时间内完成一笔高难度的私人委托，以筹集资金，但委托人提出的要求涉及违规改装，这让主角陷入了职业操守与生存压力的激烈冲突。 - 矛盾结束条件：主角通过精湛技艺完成了委托，保住了工坊并换取了药物，但因改装行为被工会记过，失去了部分稳定的订单来源，生活压力并未彻底消除。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角选择了折中的方案，修复了钟表但隐瞒了部分真相，成功拿到报酬，但内心背负了沉重的道德负担，与曾经信任的导师产生裂痕。",
+                  "main_conflict": "主角获得了修复“古老天文钟”的机会，却发现其内部结构被恶意破坏，且涉及城市权贵间的权力斗争。主角在修复过程中掌握了关键证据，面临着是揭露真相导致修复失败，还是为了报酬选择沉默并完成工作的艰难抉择。 - 矛盾结束条件：主角选择了折中的方案，修复了钟表但隐瞒了部分真相，成功拿到报酬，但内心背负了沉重的道德负担，与曾经信任的导师产生裂痕。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "钟表最终恢复运行，主角获得了应得的报酬，但并未改变社会结构。主角带着遗憾与释然，回到工坊继续修理普通人的怀表，接受了自己只是时代齿轮中一颗微小零件的事实。 【主角规范信息】 主角姓名(中)：埃利亚斯·索恩 主角姓名(英)：Elias Thorne 性别：男性 年龄感：青年 所属作品(中)：奥瑞克的齿轮 所属作品(英)：Gears of Auric 标志性外观关键词：深棕色乱发，常年佩戴单片眼镜，指尖布满老茧，穿着磨损的皮围裙，眼神专注且疲惫，袖口卷起，身上总带着淡淡的机油味，沉默寡言，清瘦，背部微驼。 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决",
+                  "main_conflict": "天文钟在庆典前夕出现意外故障，主角必须在极短时间内进行高风险的带电维修。同时，主角意识到无论钟表是否完美运行，底层民众的生活现状都不会因这一座钟的走动而改变，主角陷入了对自身奋斗意义的深刻怀疑。 - 矛盾结束条件：钟表最终恢复运行，主角获得了应得的报酬，但并未改变社会结构。主角带着遗憾与释然，回到工坊继续修理普通人的怀表，接受了自己只是时代齿轮中一颗微小零件的事实。 【主角规范信息】 主角姓名(中)：埃利亚斯·索恩 主角姓名(英)：Elias Thorne 性别：男性 年龄感：青年 所属作品(中)：奥瑞克的齿轮 所属作品(英)：Gears of Auric 标志性外观关键词：深棕色乱发，常年佩戴单片眼镜，指尖布满老茧，穿着磨损的皮围裙，眼神专注且疲惫，袖口卷起，身上总带着淡淡的机油味，沉默寡言，清瘦，背部微驼。 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "采用冷峻而细腻的写实主义美术风格，光影处理偏向十九世纪末的煤气灯色调。叙事节奏平稳克制，强调环境叙事与生活细节的颗粒感，通过钟表齿轮的机械运作隐喻社会秩序的冰冷与精密，营造出一种在工业文明洪流中，个体试图通过手艺锚定时间的沉静氛围。",
+              "main_quest": "主角的目标是修复一座象征着城市历史的“古老天文钟”，以此换取一笔足以改善生活并治愈家人顽疾的报酬。任务分为三个阶段：首先，主角需在贫民窟搜集稀缺的零件与图纸，应对恶劣的生存环境与竞争对手的排挤；其次，主角需潜入中央钟楼，在严密的监控下完成核心机芯的校准，期间将面临技术瓶颈与道德抉择；最后，主角需在城市庆典前夕完成最终组装。挑战在于，主角不仅要对抗机械的磨损，更要对抗权贵阶层的阻挠与自身能力的极限，最终目标并非改变世界，而是为了在动荡中为自己与家人争取一份微薄的安稳。",
+              "protagonist_ability": "主角拥有一种名为“共鸣修复”的感知力，源于家族世代相传的精密机械直觉。通过指尖触碰，主角能感知钟表内部齿轮的磨损轨迹与“时间记忆”，从而精准定位故障。然而，这种能力极其消耗精力，且无法修复被彻底摧毁的精密结构。使用时，主角必须保持绝对的专注与冷静，一旦情绪波动，感知便会失准，甚至导致自身生理机能的短暂透支。",
+              "world_basic_setting": "故事背景设定在工业革命巅峰期的虚构城市“奥瑞克”，这是一座被蒸汽、烟雾与精密齿轮统治的城市。社会阶层固化，时间被视为最昂贵的商品，由权贵垄断的“中央钟楼”统一调控。底层民众生活在永不停歇的机械轰鸣中，为了生计出卖劳动力。文化上，这里崇尚效率与精准，情感被视为低效的杂质。关键事件“大停摆”曾导致城市供能系统瘫痪，引发了长达数月的社会动荡，此后城市对时间的管控愈发严苛。地理上，城市被分为高耸的工业区与阴暗的贫民窟，主角作为一名手艺精湛但地位低下的钟表匠，在狭窄的工坊中通过修复旧物维持生计，见证着这座城市在繁华表象下的锈蚀与崩塌。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "environment": {}
+            },
+            "game_id": "game_1777625749_9k2bsl",
+            "image_style": {
+              "subtype": "rococo",
+              "type": "oil_painting"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "gender": "男性"
+            },
+            "tone": "normal_ending",
+            "user_theme": "维多利亚钟表匠"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "request_payload": {
+          "gameTheme": "维多利亚钟表匠",
+          "protagonistAttr": {},
+          "difficulty": "normal",
+          "toneKey": "normal_ending",
+          "imageStyle": {
+            "type": "oil_painting",
+            "subtype": "rococo"
+          },
+          "_benchmark_profile": "fullready_strict",
+          "_benchmark_measurement": "fullready_nextturn",
+          "_benchmark_read_wait_s": 0.0
+        },
+        "start_ts": 1777625749.3511748,
+        "end_ts": 1777625757.5405335,
+        "provider_events": {
+          "event_count": 3,
+          "queue_wait_ms": {
+            "count": 3,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 1,
+            "min": 8179.0,
+            "max": 8179.0,
+            "mean": 8179.0,
+            "median": 8179.0,
+            "p95": 8179.0
+          },
+          "llm_success_count": 1,
+          "image_success_count": 0,
+          "request_thread_event_count": 2,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0
+        },
+        "status": "success",
+        "game_id": "game_1777625749_9k2bsl"
+      },
+      "first_click": {
+        "http_status": null,
+        "elapsed_s": 60.036,
+        "response_json": {
+          "status": "timeout",
+          "message": "HTTPConnectionPool(host='127.0.0.1', port=5007): Read timed out. (read timeout=60)"
+        },
+        "request_payload": {
+          "option": "开始游戏",
+          "optionIndex": 0,
+          "sceneId": null,
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过精湛技艺完成了委托，保住了工坊并换取了药物，但因改装行为被工会记过，失去了部分稳定的订单来源，生活压力并未彻底消除。",
+                  "main_conflict": "主角的工坊面临被拆迁的危机，同时家中长辈的病情加重，急需昂贵的药物。主角必须在有限的时间内完成一笔高难度的私人委托，以筹集资金，但委托人提出的要求涉及违规改装，这让主角陷入了职业操守与生存压力的激烈冲突。 - 矛盾结束条件：主角通过精湛技艺完成了委托，保住了工坊并换取了药物，但因改装行为被工会记过，失去了部分稳定的订单来源，生活压力并未彻底消除。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角选择了折中的方案，修复了钟表但隐瞒了部分真相，成功拿到报酬，但内心背负了沉重的道德负担，与曾经信任的导师产生裂痕。",
+                  "main_conflict": "主角获得了修复“古老天文钟”的机会，却发现其内部结构被恶意破坏，且涉及城市权贵间的权力斗争。主角在修复过程中掌握了关键证据，面临着是揭露真相导致修复失败，还是为了报酬选择沉默并完成工作的艰难抉择。 - 矛盾结束条件：主角选择了折中的方案，修复了钟表但隐瞒了部分真相，成功拿到报酬，但内心背负了沉重的道德负担，与曾经信任的导师产生裂痕。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "钟表最终恢复运行，主角获得了应得的报酬，但并未改变社会结构。主角带着遗憾与释然，回到工坊继续修理普通人的怀表，接受了自己只是时代齿轮中一颗微小零件的事实。 【主角规范信息】 主角姓名(中)：埃利亚斯·索恩 主角姓名(英)：Elias Thorne 性别：男性 年龄感：青年 所属作品(中)：奥瑞克的齿轮 所属作品(英)：Gears of Auric 标志性外观关键词：深棕色乱发，常年佩戴单片眼镜，指尖布满老茧，穿着磨损的皮围裙，眼神专注且疲惫，袖口卷起，身上总带着淡淡的机油味，沉默寡言，清瘦，背部微驼。 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决",
+                  "main_conflict": "天文钟在庆典前夕出现意外故障，主角必须在极短时间内进行高风险的带电维修。同时，主角意识到无论钟表是否完美运行，底层民众的生活现状都不会因这一座钟的走动而改变，主角陷入了对自身奋斗意义的深刻怀疑。 - 矛盾结束条件：钟表最终恢复运行，主角获得了应得的报酬，但并未改变社会结构。主角带着遗憾与释然，回到工坊继续修理普通人的怀表，接受了自己只是时代齿轮中一颗微小零件的事实。 【主角规范信息】 主角姓名(中)：埃利亚斯·索恩 主角姓名(英)：Elias Thorne 性别：男性 年龄感：青年 所属作品(中)：奥瑞克的齿轮 所属作品(英)：Gears of Auric 标志性外观关键词：深棕色乱发，常年佩戴单片眼镜，指尖布满老茧，穿着磨损的皮围裙，眼神专注且疲惫，袖口卷起，身上总带着淡淡的机油味，沉默寡言，清瘦，背部微驼。 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "采用冷峻而细腻的写实主义美术风格，光影处理偏向十九世纪末的煤气灯色调。叙事节奏平稳克制，强调环境叙事与生活细节的颗粒感，通过钟表齿轮的机械运作隐喻社会秩序的冰冷与精密，营造出一种在工业文明洪流中，个体试图通过手艺锚定时间的沉静氛围。",
+              "main_quest": "主角的目标是修复一座象征着城市历史的“古老天文钟”，以此换取一笔足以改善生活并治愈家人顽疾的报酬。任务分为三个阶段：首先，主角需在贫民窟搜集稀缺的零件与图纸，应对恶劣的生存环境与竞争对手的排挤；其次，主角需潜入中央钟楼，在严密的监控下完成核心机芯的校准，期间将面临技术瓶颈与道德抉择；最后，主角需在城市庆典前夕完成最终组装。挑战在于，主角不仅要对抗机械的磨损，更要对抗权贵阶层的阻挠与自身能力的极限，最终目标并非改变世界，而是为了在动荡中为自己与家人争取一份微薄的安稳。",
+              "protagonist_ability": "主角拥有一种名为“共鸣修复”的感知力，源于家族世代相传的精密机械直觉。通过指尖触碰，主角能感知钟表内部齿轮的磨损轨迹与“时间记忆”，从而精准定位故障。然而，这种能力极其消耗精力，且无法修复被彻底摧毁的精密结构。使用时，主角必须保持绝对的专注与冷静，一旦情绪波动，感知便会失准，甚至导致自身生理机能的短暂透支。",
+              "world_basic_setting": "故事背景设定在工业革命巅峰期的虚构城市“奥瑞克”，这是一座被蒸汽、烟雾与精密齿轮统治的城市。社会阶层固化，时间被视为最昂贵的商品，由权贵垄断的“中央钟楼”统一调控。底层民众生活在永不停歇的机械轰鸣中，为了生计出卖劳动力。文化上，这里崇尚效率与精准，情感被视为低效的杂质。关键事件“大停摆”曾导致城市供能系统瘫痪，引发了长达数月的社会动荡，此后城市对时间的管控愈发严苛。地理上，城市被分为高耸的工业区与阴暗的贫民窟，主角作为一名手艺精湛但地位低下的钟表匠，在狭窄的工坊中通过修复旧物维持生计，见证着这座城市在繁华表象下的锈蚀与崩塌。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "environment": {}
+            },
+            "game_id": "game_1777625749_9k2bsl",
+            "image_style": {
+              "subtype": "rococo",
+              "type": "oil_painting"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "gender": "男性"
+            },
+            "tone": "normal_ending",
+            "user_theme": "维多利亚钟表匠",
+            "_benchmark_profile": "fullready_strict",
+            "_benchmark_measurement": "fullready_nextturn",
+            "_benchmark_read_wait_s": 0.0
+          }
+        },
+        "start_ts": 1777625757.5797393,
+        "end_ts": 1777625817.6153784,
+        "provider_events": {
+          "event_count": 13,
+          "queue_wait_ms": {
+            "count": 13,
+            "min": 0.0,
+            "max": 14330.0,
+            "mean": 3146.462,
+            "median": 0.0,
+            "p95": 14330.0
+          },
+          "latency_ms": {
+            "count": 7,
+            "min": 2818.0,
+            "max": 91995.0,
+            "mean": 19213.0,
+            "median": 7591.0,
+            "p95": 68694.9
+          },
+          "llm_success_count": 7,
+          "image_success_count": 0,
+          "request_thread_event_count": 0,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 1
+        },
+        "request_error": "timeout",
+        "attempts": [
+          {
+            "http_status": null,
+            "elapsed_s": 60.036,
+            "response_json": {
+              "status": "timeout",
+              "message": "HTTPConnectionPool(host='127.0.0.1', port=5007): Read timed out. (read timeout=60)"
+            },
+            "request_payload": {
+              "option": "开始游戏",
+              "optionIndex": 0,
+              "sceneId": null,
+              "globalState": {
+                "core_worldview": {
+                  "chapters": {
+                    "chapter1": {
+                      "conflict_end_condition": "主角通过精湛技艺完成了委托，保住了工坊并换取了药物，但因改装行为被工会记过，失去了部分稳定的订单来源，生活压力并未彻底消除。",
+                      "main_conflict": "主角的工坊面临被拆迁的危机，同时家中长辈的病情加重，急需昂贵的药物。主角必须在有限的时间内完成一笔高难度的私人委托，以筹集资金，但委托人提出的要求涉及违规改装，这让主角陷入了职业操守与生存压力的激烈冲突。 - 矛盾结束条件：主角通过精湛技艺完成了委托，保住了工坊并换取了药物，但因改装行为被工会记过，失去了部分稳定的订单来源，生活压力并未彻底消除。"
+                    },
+                    "chapter2": {
+                      "conflict_end_condition": "主角选择了折中的方案，修复了钟表但隐瞒了部分真相，成功拿到报酬，但内心背负了沉重的道德负担，与曾经信任的导师产生裂痕。",
+                      "main_conflict": "主角获得了修复“古老天文钟”的机会，却发现其内部结构被恶意破坏，且涉及城市权贵间的权力斗争。主角在修复过程中掌握了关键证据，面临着是揭露真相导致修复失败，还是为了报酬选择沉默并完成工作的艰难抉择。 - 矛盾结束条件：主角选择了折中的方案，修复了钟表但隐瞒了部分真相，成功拿到报酬，但内心背负了沉重的道德负担，与曾经信任的导师产生裂痕。"
+                    },
+                    "chapter3": {
+                      "conflict_end_condition": "钟表最终恢复运行，主角获得了应得的报酬，但并未改变社会结构。主角带着遗憾与释然，回到工坊继续修理普通人的怀表，接受了自己只是时代齿轮中一颗微小零件的事实。 【主角规范信息】 主角姓名(中)：埃利亚斯·索恩 主角姓名(英)：Elias Thorne 性别：男性 年龄感：青年 所属作品(中)：奥瑞克的齿轮 所属作品(英)：Gears of Auric 标志性外观关键词：深棕色乱发，常年佩戴单片眼镜，指尖布满老茧，穿着磨损的皮围裙，眼神专注且疲惫，袖口卷起，身上总带着淡淡的机油味，沉默寡言，清瘦，背部微驼。 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决",
+                      "main_conflict": "天文钟在庆典前夕出现意外故障，主角必须在极短时间内进行高风险的带电维修。同时，主角意识到无论钟表是否完美运行，底层民众的生活现状都不会因这一座钟的走动而改变，主角陷入了对自身奋斗意义的深刻怀疑。 - 矛盾结束条件：钟表最终恢复运行，主角获得了应得的报酬，但并未改变社会结构。主角带着遗憾与释然，回到工坊继续修理普通人的怀表，接受了自己只是时代齿轮中一颗微小零件的事实。 【主角规范信息】 主角姓名(中)：埃利亚斯·索恩 主角姓名(英)：Elias Thorne 性别：男性 年龄感：青年 所属作品(中)：奥瑞克的齿轮 所属作品(英)：Gears of Auric 标志性外观关键词：深棕色乱发，常年佩戴单片眼镜，指尖布满老茧，穿着磨损的皮围裙，眼神专注且疲惫，袖口卷起，身上总带着淡淡的机油味，沉默寡言，清瘦，背部微驼。 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决"
+                    }
+                  },
+                  "characters": {},
+                  "forces": {},
+                  "game_style": "采用冷峻而细腻的写实主义美术风格，光影处理偏向十九世纪末的煤气灯色调。叙事节奏平稳克制，强调环境叙事与生活细节的颗粒感，通过钟表齿轮的机械运作隐喻社会秩序的冰冷与精密，营造出一种在工业文明洪流中，个体试图通过手艺锚定时间的沉静氛围。",
+                  "main_quest": "主角的目标是修复一座象征着城市历史的“古老天文钟”，以此换取一笔足以改善生活并治愈家人顽疾的报酬。任务分为三个阶段：首先，主角需在贫民窟搜集稀缺的零件与图纸，应对恶劣的生存环境与竞争对手的排挤；其次，主角需潜入中央钟楼，在严密的监控下完成核心机芯的校准，期间将面临技术瓶颈与道德抉择；最后，主角需在城市庆典前夕完成最终组装。挑战在于，主角不仅要对抗机械的磨损，更要对抗权贵阶层的阻挠与自身能力的极限，最终目标并非改变世界，而是为了在动荡中为自己与家人争取一份微薄的安稳。",
+                  "protagonist_ability": "主角拥有一种名为“共鸣修复”的感知力，源于家族世代相传的精密机械直觉。通过指尖触碰，主角能感知钟表内部齿轮的磨损轨迹与“时间记忆”，从而精准定位故障。然而，这种能力极其消耗精力，且无法修复被彻底摧毁的精密结构。使用时，主角必须保持绝对的专注与冷静，一旦情绪波动，感知便会失准，甚至导致自身生理机能的短暂透支。",
+                  "world_basic_setting": "故事背景设定在工业革命巅峰期的虚构城市“奥瑞克”，这是一座被蒸汽、烟雾与精密齿轮统治的城市。社会阶层固化，时间被视为最昂贵的商品，由权贵垄断的“中央钟楼”统一调控。底层民众生活在永不停歇的机械轰鸣中，为了生计出卖劳动力。文化上，这里崇尚效率与精准，情感被视为低效的杂质。关键事件“大停摆”曾导致城市供能系统瘫痪，引发了长达数月的社会动荡，此后城市对时间的管控愈发严苛。地理上，城市被分为高耸的工业区与阴暗的贫民窟，主角作为一名手艺精湛但地位低下的钟表匠，在狭窄的工坊中通过修复旧物维持生计，见证着这座城市在繁华表象下的锈蚀与崩塌。"
+                },
+                "flow_worldline": {
+                  "characters": {},
+                  "environment": {}
+                },
+                "game_id": "game_1777625749_9k2bsl",
+                "image_style": {
+                  "subtype": "rococo",
+                  "type": "oil_painting"
+                },
+                "meta": {
+                  "detail_async": true
+                },
+                "protagonist_canonical": {
+                  "gender": "男性"
+                },
+                "tone": "normal_ending",
+                "user_theme": "维多利亚钟表匠",
+                "_benchmark_profile": "fullready_strict",
+                "_benchmark_measurement": "fullready_nextturn",
+                "_benchmark_read_wait_s": 0.0
+              }
+            },
+            "start_ts": 1777625757.5797393,
+            "end_ts": 1777625817.6153784,
+            "provider_events": {
+              "event_count": 13,
+              "queue_wait_ms": {
+                "count": 13,
+                "min": 0.0,
+                "max": 14330.0,
+                "mean": 3146.462,
+                "median": 0.0,
+                "p95": 14330.0
+              },
+              "latency_ms": {
+                "count": 7,
+                "min": 2818.0,
+                "max": 91995.0,
+                "mean": 19213.0,
+                "median": 7591.0,
+                "p95": 68694.9
+              },
+              "llm_success_count": 7,
+              "image_success_count": 0,
+              "request_thread_event_count": 0,
+              "provider_429_count": 0,
+              "provider_timeout_count": 0,
+              "shared_backoff_wait_ms_total": 0,
+              "retry_heavy_event_count": 0,
+              "main_character_event_count": 0,
+              "scene_image_event_count": 1
+            },
+            "request_error": "timeout"
+          }
+        ],
+        "attempt_count": 1,
+        "request_elapsed_s": 60.036,
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "timeout",
+        "has_scene": false,
+        "has_image": false
+      },
+      "second_click": {},
+      "full_ready": {},
+      "placeholder": false,
+      "transport_success": false,
+      "strict_success": false,
+      "failure_bucket": "first_click_timeout",
+      "cache_path_classification": "first_click_timeout",
+      "cache_hit_reason": null,
+      "cache_miss_reason": null,
+      "global_state_key_drift_detected": false,
+      "scene_id_mismatch_detected": false,
+      "selected_option_mismatch_detected": false,
+      "success": false
+    }
+  ]
+}

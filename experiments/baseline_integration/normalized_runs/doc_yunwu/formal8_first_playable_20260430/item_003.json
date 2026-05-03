@@ -1,0 +1,141 @@
+{
+  "baseline_id": "doc",
+  "benchmark_id": "DNQBV1_005",
+  "run_id": "formal8_first_playable_20260430",
+  "mode": "first_playable",
+  "input_bundle": {
+    "original_dn_item": {
+      "benchmark_id": "DNQBV1_005",
+      "theme_id": 2,
+      "theme": "月球矿难七日",
+      "image_style": {
+        "type": "cyberpunk"
+      },
+      "expected_genre": "近未来科幻灾难",
+      "expected_tone": "高压、冷峻、技术感",
+      "must_have_constraints": [
+        "剧情需围绕月球矿难与生存风险展开",
+        "图像应体现赛博/科幻视觉元素",
+        "首段要有明确危机感与行动起点"
+      ],
+      "forbidden_issues": [
+        "出现古风或校园设定串场",
+        "图像 prompt 混入无关 IP 名称",
+        "选项与危机无关"
+      ],
+      "focus": "sci-fi reaction stability",
+      "_subset_focus": "sci-fi reaction stability"
+    },
+    "doc_prompt": "Premise seed: 月球矿难七日\nGenre: 近未来科幻灾难\nTone: 高压、冷峻、技术感\nWrite a long-form interactive story opening that could be expanded with a detailed outline.\nMust-have constraints:\n- 剧情需围绕月球矿难与生存风险展开\n- 图像应体现赛博/科幻视觉元素\n- 首段要有明确危机感与行动起点\nForbidden issues:\n- 出现古风或校园设定串场\n- 图像 prompt 混入无关 IP 名称\n- 选项与危机无关\n",
+    "outline_seed": [
+      "Opening setup for 月球矿难七日 in a 近未来科幻灾难 frame with a 高压、冷峻、技术感 tone.",
+      "Introduce the protagonist's immediate role, pressure, and conflict around: 剧情需围绕月球矿难与生存风险展开.",
+      "Reveal one concrete obstacle or tradeoff the player must respond to next.",
+      "End the first turn with 2-3 actionable next steps that can continue the story."
+    ],
+    "mode": "first_playable",
+    "baseline_params": {
+      "execution_mode": "cloud",
+      "doc_repo": "D:\\Projects\\DN\\baselines\\DOC",
+      "doc_data_dir": "D:\\Projects\\DN\\baselines\\DOC\\doc_data"
+    }
+  },
+  "raw_output": {
+    "provider": "yunwu",
+    "provider_config_prefix": "Origin_Segment_Analyst",
+    "provider_base_url": "https://yunwu.ai/v1",
+    "provider_model": "gemini-3.1-flash-lite-preview",
+    "request": {
+      "model": "gemini-3.1-flash-lite-preview",
+      "temperature": 0.7,
+      "top_p": 0.9,
+      "max_tokens": 900,
+      "response_format": {
+        "type": "json_object"
+      }
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are the DOC long-form story baseline adapted for DN playable-latency evaluation. Write concise, grounded, continuation-ready interactive fiction. Do not include debugging text, URLs, or commentary outside JSON."
+      },
+      {
+        "role": "user",
+        "content": "Convert this DN benchmark item into a DOC-style playable baseline output.\nPreserve DOC's premise -> outline -> story-opening semantics, but return only a playable first response.\nRun mode: first_playable\n\nDOC prompt:\nPremise seed: 月球矿难七日\nGenre: 近未来科幻灾难\nTone: 高压、冷峻、技术感\nWrite a long-form interactive story opening that could be expanded with a detailed outline.\nMust-have constraints:\n- 剧情需围绕月球矿难与生存风险展开\n- 图像应体现赛博/科幻视觉元素\n- 首段要有明确危机感与行动起点\nForbidden issues:\n- 出现古风或校园设定串场\n- 图像 prompt 混入无关 IP 名称\n- 选项与危机无关\n\nOutline seed:\n1. Opening setup for 月球矿难七日 in a 近未来科幻灾难 frame with a 高压、冷峻、技术感 tone.\n2. Introduce the protagonist's immediate role, pressure, and conflict around: 剧情需围绕月球矿难与生存风险展开.\n3. Reveal one concrete obstacle or tradeoff the player must respond to next.\n4. End the first turn with 2-3 actionable next steps that can continue the story.\n\nReturn strict JSON with this shape and no markdown fences:\n{\n  \"scene_setup\": \"string\",\n  \"player_state\": \"string\",\n  \"narrative_response\": \"string\",\n  \"candidate_actions\": [\n    \"string\"\n  ],\n  \"suggested_next_step\": \"string\",\n  \"supports_next_turn\": true\n}"
+      }
+    ],
+    "response": {
+      "id": "chatcmpl-20260430165103217503860x6lZnMdh",
+      "model": "gemini-3.1-flash-lite-preview",
+      "object": "chat.completion",
+      "created": 1777539075,
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"scene_setup\": \"月球背面，静海矿区第4号深钻井。地壳震动引发了大规模塌方，空气循环系统警报声在真空绝缘的舱室内尖锐回荡。外部通信彻底中断，维生系统氧气余量显示仅剩12小时。\",\n  \"player_state\": \"身份：矿区值班工程师。当前状态：轻度脑震荡，左臂骨折，处于封闭的应急逃生舱内。资源：一个损坏的维修终端，一套备用氧气罐，以及一个未完成的求救信号发射器。\",\n  \"narrative_response\": \"金属扭曲的刺耳声从头顶传来，那是支撑结构在月震中崩塌的余音。你从冰冷的地板上爬起，终端屏幕上跳动着红色的故障码：舱内压力正在缓慢下降，而发射器因为电力不足，只能在‘强制呼救’与‘维持生命支持’之间二选一。你必须在氧气耗尽前做出抉择，否则你将成为这片荒凉月尘下的永恒标本。\",\n  \"candidate_actions\": [\n    \"尝试手动修复电力分配器，将氧气循环系统满载运行，放弃求救信号。\",\n    \"将所有备用电力注入求救信号发射器，尝试向轨道空间站发送一次加密脉冲。\",\n    \"利用维修终端检索矿区地图，寻找通往备用避难所的非塌陷通道。\"\n  ],\n  \"suggested_next_step\": \"评估当前资源分配的紧迫性，决定优先保障生命还是优先获取救援。\",\n  \"supports_next_turn\": true\n}"
+          },
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 406,
+        "completion_tokens": 378,
+        "total_tokens": 784,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "text_tokens": 406,
+          "audio_tokens": 0,
+          "image_tokens": 0
+        },
+        "completion_tokens_details": {
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0
+        },
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "input_tokens_details": null,
+        "claude_cache_creation_5_m_tokens": 0,
+        "claude_cache_creation_1_h_tokens": 0
+      }
+    }
+  },
+  "success": true,
+  "latency_s": 13.646,
+  "playable": true,
+  "playable_components": {
+    "scene_setup": true,
+    "player_state": true,
+    "advanceable_next_step": true,
+    "interaction_continuity": true
+  },
+  "normalized_response": {
+    "scene_setup": "月球背面，静海矿区第4号深钻井。地壳震动引发了大规模塌方，空气循环系统警报声在真空绝缘的舱室内尖锐回荡。外部通信彻底中断，维生系统氧气余量显示仅剩12小时。",
+    "player_state": "身份：矿区值班工程师。当前状态：轻度脑震荡，左臂骨折，处于封闭的应急逃生舱内。资源：一个损坏的维修终端，一套备用氧气罐，以及一个未完成的求救信号发射器。",
+    "narrative_response": "金属扭曲的刺耳声从头顶传来，那是支撑结构在月震中崩塌的余音。你从冰冷的地板上爬起，终端屏幕上跳动着红色的故障码：舱内压力正在缓慢下降，而发射器因为电力不足，只能在‘强制呼救’与‘维持生命支持’之间二选一。你必须在氧气耗尽前做出抉择，否则你将成为这片荒凉月尘下的永恒标本。",
+    "candidate_actions": [
+      "尝试手动修复电力分配器，将氧气循环系统满载运行，放弃求救信号。",
+      "将所有备用电力注入求救信号发射器，尝试向轨道空间站发送一次加密脉冲。",
+      "利用维修终端检索矿区地图，寻找通往备用避难所的非塌陷通道。"
+    ],
+    "suggested_next_step": "评估当前资源分配的紧迫性，决定优先保障生命还是优先获取救援。",
+    "is_playable": true,
+    "request_start_ts": 1777539062.5875673,
+    "first_playable_ts": 1777539076.2334335,
+    "finish_ts": 1777539076.2334335,
+    "error": null
+  },
+  "failure_reason": null,
+  "notes": [
+    "DOC-style artifact generated through Yunwu OpenAI-compatible chat/completions API."
+  ],
+  "resource_usage": {
+    "execution_mode": "cloud"
+  },
+  "agent_profile": {
+    "runner": "run_doc.py",
+    "adapter_style": "doc_fallback_v1"
+  }
+}

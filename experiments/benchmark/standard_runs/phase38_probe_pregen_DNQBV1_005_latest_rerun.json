@@ -1,0 +1,1419 @@
+{
+  "summary": {
+    "experiment_name": "benchmark_v15_fullready_nextturn_pregen60s20",
+    "profile": "fullready_pregen60",
+    "sample_size": 1,
+    "read_wait_s": 60.0,
+    "suite_start_ts": 1777644673.0621383,
+    "suite_end_ts": 1777644817.1752765,
+    "first_click_elapsed_s": {
+      "count": 1,
+      "min": 75.621,
+      "max": 75.621,
+      "mean": 75.621,
+      "median": 75.621,
+      "p95": 75.621
+    },
+    "first_click_setup_success_count": 1,
+    "second_click_elapsed_s": {
+      "count": 1,
+      "min": 0.012,
+      "max": 0.012,
+      "mean": 0.012,
+      "median": 0.012,
+      "p95": 0.012
+    },
+    "second_click_success_count": 1,
+    "transport_success_count": 1,
+    "strict_success_count": 1,
+    "likely_hit_count": 1,
+    "likely_hit_rate": 1.0,
+    "failure_bucket_counts": {},
+    "placeholder_strict_fail_count": 0,
+    "cache_hit_reason_counts": {
+      "request_scene_completed_with_image": 1
+    },
+    "cache_miss_reason_counts": {},
+    "global_state_key_drift_detected_count": 1,
+    "scene_id_mismatch_detected_count": 1,
+    "selected_option_mismatch_detected_count": 0,
+    "aborted": false,
+    "success_count": 1,
+    "text_ready_elapsed_s": {
+      "count": 1,
+      "min": 0.012,
+      "max": 0.012,
+      "mean": 0.012,
+      "median": 0.012,
+      "p95": 0.012
+    },
+    "image_ready_elapsed_s": {
+      "count": 1,
+      "min": 0.012,
+      "max": 0.012,
+      "mean": 0.012,
+      "median": 0.012,
+      "p95": 0.012
+    },
+    "full_ready_elapsed_s": {
+      "count": 1,
+      "min": 0.012,
+      "max": 0.012,
+      "mean": 0.012,
+      "median": 0.012,
+      "p95": 0.012
+    },
+    "real_scene_count": 1,
+    "real_scene_rate": 1.0,
+    "direct_image_count": 1,
+    "async_image_count": 0,
+    "placeholder_count": 0,
+    "placeholder_rate": 0.0,
+    "direct_image_rate": 1.0,
+    "async_image_rate": 0.0,
+    "provider_retry_heavy_count": 0,
+    "provider_429_count": 0,
+    "provider_timeout_count": 0,
+    "provider_backoff_wait_ms_total": 0,
+    "main_character_contention_suspected_count": 0,
+    "notes": "v15 strict pregen60s20 keeps the same 60-second dwell interval but now uses the same strict-v2 split timeouts and block-for-image cutoff as normal20, so placeholder and async backfill long tails do not silently leak into the measured path."
+  },
+  "runs": [
+    {
+      "benchmark_id": "DNQBV1_005",
+      "theme_id": 2,
+      "theme": "月球矿难七日",
+      "read_wait_s": 60.0,
+      "full_ready_mode": true,
+      "profile": "fullready_pregen60",
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 8.332,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角成功修复了生活区的应急氧气循环系统，确保了幸存者在未来48小时内的生存需求，但代价是错过了最佳的逃生舱发射窗口，彻底失去了第一时间撤离的机会。",
+                  "main_conflict": "矿难突发，基地陷入混乱。主角发现公司总部下达的指令并非撤离，而是要求优先抢救氦-3提炼装置。面对氧气余量不足的现实，主角必须在“修复生命维持系统”与“执行公司强制任务”之间进行博弈，同时还要安抚因恐惧而陷入崩溃的同事，平衡个人生存与职业责任的冲突。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角成功获取了关键的事故数据备份，但被迫与管理层达成妥协，隐瞒了部分高层的直接责任，换取了救援队提前抵达的承诺，内心深处留下了对牺牲工友的愧疚。",
+                  "main_conflict": "基地结构进一步恶化，主角发现矿难的真实原因是公司为了赶工期而强行超负荷运转设备。主角在搜集证据的过程中，遭到了基地管理层的监视与阻挠。此时，主角必须在“揭露真相”与“获取救援资源”之间做出选择，因为一旦真相曝光，公司可能会为了掩盖丑闻而彻底切断基地的补给。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角成功将证据与幸存者送上撤离船，自己则因留守维护反应堆而错失撤离，最终在救援队的后续协助下获救，但因伤残失去了职业生涯，且真相在复杂的公关手段下被淡化处理，主角收获了平静的余生，却永远失去了曾经引以为傲的职业尊严。",
+                  "main_conflict": "救援队抵达，但由于企业利益博弈，救援规模被大幅缩减，无法带走所有幸存者。主角面临最终的抉择：是利用仅有的撤离名额带走关键证据与部分幸存者，还是留在基地继续维护即将崩溃的反应堆以防止更大的生态灾难。这是对主角职业操守与人性底线的最终考验。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为硬核工业现实主义风格，采用冷峻的低饱和度视觉表现。叙事节奏克制，强调环境叙事与职场细节，通过对月球基地狭窄空间、机械故障与通讯延迟的细腻刻画，营造出一种压抑但真实的生存质感，旨在探讨极端环境下个体与庞大体制的博弈。",
+              "main_quest": "主角需在基地通讯中断的七天内，完成“核心数据备份”与“生命维持系统修复”的双重目标。玩家需在有限的氧气配额下，穿梭于受损的舱段，通过收集废旧零件、破解企业加密协议及协调幸存同事的协作来推进任务。挑战在于，主角不仅要面对物理环境的恶化，还要在“保全公司资产”与“保全同伴生命”之间做出艰难的道德抉择。最终目标并非拯救所有人，而是确保在救援队抵达前，基地核心舱段不发生彻底坍塌，并带回足以证明真相的黑匣子数据。",
+              "protagonist_ability": "主角作为一名资深机械维护员，核心能力是“精密感知与故障预判”。这并非超能力，而是源于长年累月在极端环境下与机械打交道的经验积累。主角能通过设备震动频率、电流声响与金属疲劳纹理，精准判断故障点。使用时需消耗大量体力与专注力，且受限于基地陈旧的检测工具，无法解决所有结构性损坏，只能在“维持运转”与“彻底报废”之间寻找脆弱的平衡。",
+              "world_basic_setting": "故事背景设定在2070年代，人类已实现月球氦-3资源的商业化开采。月球基地“静海-4号”是地球能源供应的核心枢纽，社会结构高度科层化，工人被严格划分为“地表作业组”与“深层维护组”。由于企业对成本的极致压缩，基地设施老化严重，安全隐患被长期忽视。关键事件“七日矿难”起因于一次违规的深层钻探引发的连锁地壳震动，导致基地核心舱段气密性受损，通讯中继站瘫痪。此时，地球总部出于股价与舆论考量，决定封锁消息并延迟救援，要求留守人员在有限的氧气与物资条件下，自行完成核心数据的备份与关键设备的抢修，以保住企业的核心资产。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1777644673_g1ab13",
+            "image_style": {
+              "type": "cyberpunk"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "中年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "疲惫的眼神，粗糙的双手，深蓝色工装，左侧鬓角微白，沉默寡言，常年佩戴的旧式多功能扳手，略显佝偻的背影，坚毅的下颌线，皮肤因辐射略显苍白。",
+              "work_en": "Seven Days of Lunar Disaster",
+              "work_zh": "月球矿难七日"
+            },
+            "tone": "normal_ending",
+            "user_theme": "月球矿难七日"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "request_payload": {
+          "gameTheme": "月球矿难七日",
+          "protagonistAttr": {},
+          "difficulty": "normal",
+          "toneKey": "normal_ending",
+          "imageStyle": {
+            "type": "cyberpunk"
+          },
+          "_benchmark_profile": "fullready_pregen60",
+          "_benchmark_measurement": "fullready_nextturn",
+          "_benchmark_read_wait_s": 60.0
+        },
+        "start_ts": 1777644673.0621443,
+        "end_ts": 1777644681.3943648,
+        "provider_events": {
+          "event_count": 4,
+          "queue_wait_ms": {
+            "count": 4,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 1,
+            "min": 8319.0,
+            "max": 8319.0,
+            "mean": 8319.0,
+            "median": 8319.0,
+            "p95": 8319.0
+          },
+          "llm_success_count": 1,
+          "image_success_count": 0,
+          "request_thread_event_count": 2,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0
+        },
+        "status": "success",
+        "game_id": "game_1777644673_g1ab13"
+      },
+      "long_tail_attribution": {
+        "provider_429_count": 0,
+        "provider_timeout_count": 0,
+        "provider_retry_heavy_count": 0,
+        "provider_backoff_wait_ms_total": 0,
+        "main_character_event_count": 0,
+        "scene_image_event_count": 0,
+        "image_probe_attempt_count": 0,
+        "main_character_contention_suspected": false
+      },
+      "first_click": {
+        "http_status": 200,
+        "elapsed_s": 75.621,
+        "response_json": {
+          "benchmark_diagnostics": {
+            "cache_hit_reason": null,
+            "cache_miss_reason": null,
+            "current_options_key_drift_detected": false,
+            "global_state_key_drift_detected": false,
+            "placeholder": false,
+            "previous_scene_id": null,
+            "recomputed_scene_cache_exists": false,
+            "recomputed_scene_id": null,
+            "request_current_options_count": 0,
+            "request_current_options_hash": "d751713988987e9331980363e24189ce",
+            "request_flow_worldline_hash": "940e38d5f8372eaa58cfdaf4d70a0d30",
+            "request_global_state_hash": "97635b0f47ffb43483e775a5111e1a31",
+            "request_option_at_index": null,
+            "request_option_index": 0,
+            "request_option_text": "开始游戏",
+            "request_scene_cache_exists": false,
+            "request_scene_id": null,
+            "resolution_path": null,
+            "response_has_image": true,
+            "response_has_scene": true,
+            "response_scene_id": "-5745781551192970677_-2758337910812634132",
+            "response_status": "success",
+            "scene_id_mismatch_detected": false,
+            "selected_option_mismatch_detected": false
+          },
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "",
+              "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：刺耳的金属扭曲声在狭窄的舱道内回荡，那是静海4号基地正在痛苦呻吟。我下意识地用那双粗糙、布满油污的手扶住舱壁，指尖传来的震动感告诉我，外部的氦3提炼装置已经彻底失控。空气中弥漫着一股刺鼻的焦糊味，那是线路短路后的臭氧与冷却液混合的味道。我那件深蓝色的工装早已被冷汗浸透，左侧鬓角微白的头发在应急灯昏暗的红光下显得格外刺眼。我低头看了一眼手腕上的多功能扳手，那是陪伴我十年的老伙计，此刻它正微微发烫。\n\n“林远，氧气循环系统压力降至30了，我们得做点什么！”年轻的维修工小赵瘫坐在舱门边，他那张年轻的脸庞因恐惧而扭曲，声音颤抖得厉害。我没有回头，只是紧紧抿着那条坚毅的下颌线，目光死死盯着控制面板上不断跳动的红色警告代码。我知道，如果现在不修复主循环泵，我们所有人都会在两小时内窒息。但我更清楚，总部发来的加密指令正强行占用着系统的算力，要求优先保障提炼装置的能源输出。我深吸一口气，那略显佝偻的背影在阴影中显得有些沉重，我必须在保住这群同事的命和执行那该死的公司任务之间做出抉择。"
+            },
+            "deep_background_links": {},
+            "flow_update": {},
+            "next_options": [
+              "强行切断总部指令，优先修复生命维持系统。",
+              "尝试接入总部加密协议，寻找平衡能源分配的漏洞。"
+            ],
+            "scene": "刺耳的金属扭曲声在狭窄的舱道内回荡，那是静海4号基地正在痛苦呻吟。我下意识地用那双粗糙、布满油污的手扶住舱壁，指尖传来的震动感告诉我，外部的氦3提炼装置已经彻底失控。空气中弥漫着一股刺鼻的焦糊味，那是线路短路后的臭氧与冷却液混合的味道。我那件深蓝色的工装早已被冷汗浸透，左侧鬓角微白的头发在应急灯昏暗的红光下显得格外刺眼。我低头看了一眼手腕上的多功能扳手，那是陪伴我十年的老伙计，此刻它正微微发烫。\n\n“林远，氧气循环系统压力降至30了，我们得做点什么！”年轻的维修工小赵瘫坐在舱门边，他那张年轻的脸庞因恐惧而扭曲，声音颤抖得厉害。我没有回头，只是紧紧抿着那条坚毅的下颌线，目光死死盯着控制面板上不断跳动的红色警告代码。我知道，如果现在不修复主循环泵，我们所有人都会在两小时内窒息。但我更清楚，总部发来的加密指令正强行占用着系统的算力，要求优先保障提炼装置的能源输出。我深吸一口气，那略显佝偻的背影在阴影中显得有些沉重，我必须在保住这群同事的命和执行那该死的公司任务之间做出抉择。",
+            "sceneId": "-5745781551192970677_-2758337910812634132",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-moon-base-crisis-lin-yuan-repair, hardcore-industrial-realism, cyberpunk, dystopian, claustrophobic, high-contrast, photorealistic, cinematic lighting, gritty industrial texture, low-saturation, sharp focus, Lin Yuan (Image 0), a middle-aged male with a weary and exhausted expression, pale skin due to long-term radiation exposure, sharp and firm jawline showing resilience, tired eyes focusing intensely on a control panel, slightly hunched back conveying heavy burden, rough, grease-stained hands gripping a metallic bulkhead, worn-out dark blue industrial jumpsuit, jumpsuit fabric soaked with cold sweat and marked by oil stains, a vintage multi-functional wrench tucked in his belt or held in hand, Lin Yuan (Image 0) standing in a narrow corridor, body partially turned away from the camera, left hand firmly pressed against the vibrating bulkhead, right hand holding a heated multi-functional wrench, posture leaning slightly toward the control panel, ignoring 小赵-配角1, 8K detailed facial features, tired, bloodshot eyes with a focused, analytical gaze, left temple showing greying hair, highlighted by emergency red light, stern and firm expression, lips tightly pressed, soft shadows emphasizing the ruggedness of his face, subtle skin texture showing pores and fatigue, short, messy hair with greying temples, root fixation coefficient 0.5, tip swing amplitude 2cm, color layering: main color #2C3E50, secondary color #1A252F, highlight #4A5568, shadow #000000, wind speed 0.2m/s, turbulence intensity 10%, heavy-duty dark blue jumpsuit with metallic buckles, slight fabric flutter due to air pressure instability, grease and grime stains on sleeves and chest, dull metallic reflection from the fabric texture, cramped, claustrophobic moon base corridor with exposed pipes and wires, flickering red emergency lighting casting deep shadows, control panel with blinking, glitching red warning codes, metal walls showing signs of structural deformation and rust, 小赵-配角1 sitting on the floor near the cabin door, face contorted with fear, visible ozone and coolant haze in the air, flickering neon-like red warning light intensity, floating dust particles near the damaged control panel, harsh high-contrast lighting from the emergency alarm, cold desaturated blues and greys for the environment, harsh, alarming neon red for warning lights and shadows, muted skin tones, metallic silver and rusted iron accents, harsh flickering red strobe light, dim cool-toned ambient light from overhead emergency strips, high-contrast shadows highlighting the wear on the character's face, glow from the control panel screen illuminating Lin Yuan's profile, type medium close-up, lens 35mm, aperture f/2.0, depth_of_field shallow focus on Lin Yuan's intense gaze, flash none, grain fine film grain, texture industrial metallic texture, Lin Yuan (Image 0) positioned in the left foreground, 小赵-配角1 visible in the blurred background to the right, control panel as the secondary focal point, narrow corridor architecture framing the action, hardcore industrial realism, cyberpunk aesthetic, no text, no symbols, no watermarks, no乱码, oppressive, tense, desperate, grim reality, professional stoicism, no text, no symbols, no garbled characters, no words",
+              "prompt_json": {
+                "camera": {
+                  "aperture": "f/2.0",
+                  "depth_of_field": "shallow focus on Lin Yuan's intense gaze",
+                  "flash": "none",
+                  "grain": "fine film grain",
+                  "lens": "35mm",
+                  "texture": "industrial metallic texture",
+                  "type": "medium close-up"
+                },
+                "clothing_system": [
+                  "heavy-duty dark blue jumpsuit with metallic buckles",
+                  "slight fabric flutter due to air pressure instability",
+                  "grease and grime stains on sleeves and chest",
+                  "dull metallic reflection from the fabric texture"
+                ],
+                "color_restriction": [
+                  "cold desaturated blues and greys for the environment",
+                  "harsh, alarming neon red for warning lights and shadows",
+                  "muted skin tones",
+                  "metallic silver and rusted iron accents"
+                ],
+                "composition": [
+                  "Lin Yuan (Image 0) positioned in the left foreground",
+                  "小赵-配角1 visible in the blurred background to the right",
+                  "control panel as the secondary focal point",
+                  "narrow corridor architecture framing the action"
+                ],
+                "environment": {
+                  "background": [
+                    "cramped, claustrophobic moon base corridor with exposed pipes and wires",
+                    "flickering red emergency lighting casting deep shadows",
+                    "control panel with blinking, glitching red warning codes",
+                    "metal walls showing signs of structural deformation and rust"
+                  ],
+                  "characters": [
+                    "小赵-配角1 sitting on the floor near the cabin door, face contorted with fear"
+                  ],
+                  "effects": [
+                    "visible ozone and coolant haze in the air",
+                    "flickering neon-like red warning light intensity",
+                    "floating dust particles near the damaged control panel",
+                    "harsh high-contrast lighting from the emergency alarm"
+                  ]
+                },
+                "face_system": [
+                  "8K detailed facial features",
+                  "tired, bloodshot eyes with a focused, analytical gaze",
+                  "left temple showing greying hair, highlighted by emergency red light",
+                  "stern and firm expression, lips tightly pressed",
+                  "soft shadows emphasizing the ruggedness of his face",
+                  "subtle skin texture showing pores and fatigue"
+                ],
+                "hair_system": [
+                  "short, messy hair with greying temples",
+                  "root fixation coefficient 0.5",
+                  "tip swing amplitude 2cm",
+                  "color layering: main color #2C3E50, secondary color #1A252F, highlight #4A5568, shadow #000000",
+                  "wind speed 0.2m/s",
+                  "turbulence intensity 10%"
+                ],
+                "label": "scene-moon-base-crisis-lin-yuan-repair",
+                "lighting": [
+                  "harsh flickering red strobe light",
+                  "dim cool-toned ambient light from overhead emergency strips",
+                  "high-contrast shadows highlighting the wear on the character's face",
+                  "glow from the control panel screen illuminating Lin Yuan's profile"
+                ],
+                "mood": [
+                  "oppressive",
+                  "tense",
+                  "desperate",
+                  "grim reality",
+                  "professional stoicism"
+                ],
+                "output_style": [
+                  "hardcore industrial realism",
+                  "cyberpunk aesthetic",
+                  "no text, no symbols, no watermarks, no乱码"
+                ],
+                "style": [
+                  "photorealistic",
+                  "cinematic lighting",
+                  "gritty industrial texture",
+                  "low-saturation",
+                  "sharp focus"
+                ],
+                "subject": {
+                  "body_traits": [
+                    "Lin Yuan (Image 0), a middle-aged male with a weary and exhausted expression",
+                    "pale skin due to long-term radiation exposure",
+                    "sharp and firm jawline showing resilience",
+                    "tired eyes focusing intensely on a control panel",
+                    "slightly hunched back conveying heavy burden",
+                    "rough, grease-stained hands gripping a metallic bulkhead"
+                  ],
+                  "outfit": [
+                    "worn-out dark blue industrial jumpsuit",
+                    "jumpsuit fabric soaked with cold sweat and marked by oil stains",
+                    "a vintage multi-functional wrench tucked in his belt or held in hand"
+                  ],
+                  "pose": [
+                    "Lin Yuan (Image 0) standing in a narrow corridor, body partially turned away from the camera",
+                    "left hand firmly pressed against the vibrating bulkhead",
+                    "right hand holding a heated multi-functional wrench",
+                    "posture leaning slightly toward the control panel, ignoring 小赵-配角1"
+                  ]
+                },
+                "tags": [
+                  "hardcore-industrial-realism",
+                  "cyberpunk",
+                  "dystopian",
+                  "claustrophobic",
+                  "high-contrast"
+                ]
+              },
+              "scene_text_hash": "275d57930391ab4811c739ffb064957b",
+              "style": "default",
+              "url": "/image_cache/8ead553d98c825bbba5b055b878fbb56.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "request_payload": {
+          "option": "开始游戏",
+          "optionIndex": 0,
+          "sceneId": null,
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角成功修复了生活区的应急氧气循环系统，确保了幸存者在未来48小时内的生存需求，但代价是错过了最佳的逃生舱发射窗口，彻底失去了第一时间撤离的机会。",
+                  "main_conflict": "矿难突发，基地陷入混乱。主角发现公司总部下达的指令并非撤离，而是要求优先抢救氦-3提炼装置。面对氧气余量不足的现实，主角必须在“修复生命维持系统”与“执行公司强制任务”之间进行博弈，同时还要安抚因恐惧而陷入崩溃的同事，平衡个人生存与职业责任的冲突。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角成功获取了关键的事故数据备份，但被迫与管理层达成妥协，隐瞒了部分高层的直接责任，换取了救援队提前抵达的承诺，内心深处留下了对牺牲工友的愧疚。",
+                  "main_conflict": "基地结构进一步恶化，主角发现矿难的真实原因是公司为了赶工期而强行超负荷运转设备。主角在搜集证据的过程中，遭到了基地管理层的监视与阻挠。此时，主角必须在“揭露真相”与“获取救援资源”之间做出选择，因为一旦真相曝光，公司可能会为了掩盖丑闻而彻底切断基地的补给。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角成功将证据与幸存者送上撤离船，自己则因留守维护反应堆而错失撤离，最终在救援队的后续协助下获救，但因伤残失去了职业生涯，且真相在复杂的公关手段下被淡化处理，主角收获了平静的余生，却永远失去了曾经引以为傲的职业尊严。",
+                  "main_conflict": "救援队抵达，但由于企业利益博弈，救援规模被大幅缩减，无法带走所有幸存者。主角面临最终的抉择：是利用仅有的撤离名额带走关键证据与部分幸存者，还是留在基地继续维护即将崩溃的反应堆以防止更大的生态灾难。这是对主角职业操守与人性底线的最终考验。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为硬核工业现实主义风格，采用冷峻的低饱和度视觉表现。叙事节奏克制，强调环境叙事与职场细节，通过对月球基地狭窄空间、机械故障与通讯延迟的细腻刻画，营造出一种压抑但真实的生存质感，旨在探讨极端环境下个体与庞大体制的博弈。",
+              "main_quest": "主角需在基地通讯中断的七天内，完成“核心数据备份”与“生命维持系统修复”的双重目标。玩家需在有限的氧气配额下，穿梭于受损的舱段，通过收集废旧零件、破解企业加密协议及协调幸存同事的协作来推进任务。挑战在于，主角不仅要面对物理环境的恶化，还要在“保全公司资产”与“保全同伴生命”之间做出艰难的道德抉择。最终目标并非拯救所有人，而是确保在救援队抵达前，基地核心舱段不发生彻底坍塌，并带回足以证明真相的黑匣子数据。",
+              "protagonist_ability": "主角作为一名资深机械维护员，核心能力是“精密感知与故障预判”。这并非超能力，而是源于长年累月在极端环境下与机械打交道的经验积累。主角能通过设备震动频率、电流声响与金属疲劳纹理，精准判断故障点。使用时需消耗大量体力与专注力，且受限于基地陈旧的检测工具，无法解决所有结构性损坏，只能在“维持运转”与“彻底报废”之间寻找脆弱的平衡。",
+              "world_basic_setting": "故事背景设定在2070年代，人类已实现月球氦-3资源的商业化开采。月球基地“静海-4号”是地球能源供应的核心枢纽，社会结构高度科层化，工人被严格划分为“地表作业组”与“深层维护组”。由于企业对成本的极致压缩，基地设施老化严重，安全隐患被长期忽视。关键事件“七日矿难”起因于一次违规的深层钻探引发的连锁地壳震动，导致基地核心舱段气密性受损，通讯中继站瘫痪。此时，地球总部出于股价与舆论考量，决定封锁消息并延迟救援，要求留守人员在有限的氧气与物资条件下，自行完成核心数据的备份与关键设备的抢修，以保住企业的核心资产。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1777644673_g1ab13",
+            "image_style": {
+              "type": "cyberpunk"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "中年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "疲惫的眼神，粗糙的双手，深蓝色工装，左侧鬓角微白，沉默寡言，常年佩戴的旧式多功能扳手，略显佝偻的背影，坚毅的下颌线，皮肤因辐射略显苍白。",
+              "work_en": "Seven Days of Lunar Disaster",
+              "work_zh": "月球矿难七日"
+            },
+            "tone": "normal_ending",
+            "user_theme": "月球矿难七日",
+            "_benchmark_profile": "fullready_pregen60",
+            "_benchmark_measurement": "fullready_nextturn",
+            "_benchmark_read_wait_s": 60.0
+          }
+        },
+        "start_ts": 1777644681.4463675,
+        "end_ts": 1777644757.0674615,
+        "provider_events": {
+          "event_count": 9,
+          "queue_wait_ms": {
+            "count": 9,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 5,
+            "min": 2641.0,
+            "max": 15085.0,
+            "mean": 7844.2,
+            "median": 7490.0,
+            "p95": 13579.4
+          },
+          "llm_success_count": 4,
+          "image_success_count": 0,
+          "request_thread_event_count": 0,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 2,
+          "scene_image_event_count": 0
+        },
+        "attempts": [
+          {
+            "http_status": 200,
+            "elapsed_s": 75.621,
+            "response_json": {
+              "benchmark_diagnostics": {
+                "cache_hit_reason": null,
+                "cache_miss_reason": null,
+                "current_options_key_drift_detected": false,
+                "global_state_key_drift_detected": false,
+                "placeholder": false,
+                "previous_scene_id": null,
+                "recomputed_scene_cache_exists": false,
+                "recomputed_scene_id": null,
+                "request_current_options_count": 0,
+                "request_current_options_hash": "d751713988987e9331980363e24189ce",
+                "request_flow_worldline_hash": "940e38d5f8372eaa58cfdaf4d70a0d30",
+                "request_global_state_hash": "97635b0f47ffb43483e775a5111e1a31",
+                "request_option_at_index": null,
+                "request_option_index": 0,
+                "request_option_text": "开始游戏",
+                "request_scene_cache_exists": false,
+                "request_scene_id": null,
+                "resolution_path": null,
+                "response_has_image": true,
+                "response_has_scene": true,
+                "response_scene_id": "-5745781551192970677_-2758337910812634132",
+                "response_status": "success",
+                "scene_id_mismatch_detected": false,
+                "selected_option_mismatch_detected": false
+              },
+              "message": "选项剧情生成成功！",
+              "optionData": {
+                "checkpoint_packet": {
+                  "chapter": "chapter1",
+                  "chapter_conflict_solved": false,
+                  "quest_delta": "",
+                  "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：刺耳的金属扭曲声在狭窄的舱道内回荡，那是静海4号基地正在痛苦呻吟。我下意识地用那双粗糙、布满油污的手扶住舱壁，指尖传来的震动感告诉我，外部的氦3提炼装置已经彻底失控。空气中弥漫着一股刺鼻的焦糊味，那是线路短路后的臭氧与冷却液混合的味道。我那件深蓝色的工装早已被冷汗浸透，左侧鬓角微白的头发在应急灯昏暗的红光下显得格外刺眼。我低头看了一眼手腕上的多功能扳手，那是陪伴我十年的老伙计，此刻它正微微发烫。\n\n“林远，氧气循环系统压力降至30了，我们得做点什么！”年轻的维修工小赵瘫坐在舱门边，他那张年轻的脸庞因恐惧而扭曲，声音颤抖得厉害。我没有回头，只是紧紧抿着那条坚毅的下颌线，目光死死盯着控制面板上不断跳动的红色警告代码。我知道，如果现在不修复主循环泵，我们所有人都会在两小时内窒息。但我更清楚，总部发来的加密指令正强行占用着系统的算力，要求优先保障提炼装置的能源输出。我深吸一口气，那略显佝偻的背影在阴影中显得有些沉重，我必须在保住这群同事的命和执行那该死的公司任务之间做出抉择。"
+                },
+                "deep_background_links": {},
+                "flow_update": {},
+                "next_options": [
+                  "强行切断总部指令，优先修复生命维持系统。",
+                  "尝试接入总部加密协议，寻找平衡能源分配的漏洞。"
+                ],
+                "scene": "刺耳的金属扭曲声在狭窄的舱道内回荡，那是静海4号基地正在痛苦呻吟。我下意识地用那双粗糙、布满油污的手扶住舱壁，指尖传来的震动感告诉我，外部的氦3提炼装置已经彻底失控。空气中弥漫着一股刺鼻的焦糊味，那是线路短路后的臭氧与冷却液混合的味道。我那件深蓝色的工装早已被冷汗浸透，左侧鬓角微白的头发在应急灯昏暗的红光下显得格外刺眼。我低头看了一眼手腕上的多功能扳手，那是陪伴我十年的老伙计，此刻它正微微发烫。\n\n“林远，氧气循环系统压力降至30了，我们得做点什么！”年轻的维修工小赵瘫坐在舱门边，他那张年轻的脸庞因恐惧而扭曲，声音颤抖得厉害。我没有回头，只是紧紧抿着那条坚毅的下颌线，目光死死盯着控制面板上不断跳动的红色警告代码。我知道，如果现在不修复主循环泵，我们所有人都会在两小时内窒息。但我更清楚，总部发来的加密指令正强行占用着系统的算力，要求优先保障提炼装置的能源输出。我深吸一口气，那略显佝偻的背影在阴影中显得有些沉重，我必须在保住这群同事的命和执行那该死的公司任务之间做出抉择。",
+                "sceneId": "-5745781551192970677_-2758337910812634132",
+                "scene_image": {
+                  "cached": true,
+                  "height": 1080,
+                  "image_type": "story_scene",
+                  "prompt": "scene-moon-base-crisis-lin-yuan-repair, hardcore-industrial-realism, cyberpunk, dystopian, claustrophobic, high-contrast, photorealistic, cinematic lighting, gritty industrial texture, low-saturation, sharp focus, Lin Yuan (Image 0), a middle-aged male with a weary and exhausted expression, pale skin due to long-term radiation exposure, sharp and firm jawline showing resilience, tired eyes focusing intensely on a control panel, slightly hunched back conveying heavy burden, rough, grease-stained hands gripping a metallic bulkhead, worn-out dark blue industrial jumpsuit, jumpsuit fabric soaked with cold sweat and marked by oil stains, a vintage multi-functional wrench tucked in his belt or held in hand, Lin Yuan (Image 0) standing in a narrow corridor, body partially turned away from the camera, left hand firmly pressed against the vibrating bulkhead, right hand holding a heated multi-functional wrench, posture leaning slightly toward the control panel, ignoring 小赵-配角1, 8K detailed facial features, tired, bloodshot eyes with a focused, analytical gaze, left temple showing greying hair, highlighted by emergency red light, stern and firm expression, lips tightly pressed, soft shadows emphasizing the ruggedness of his face, subtle skin texture showing pores and fatigue, short, messy hair with greying temples, root fixation coefficient 0.5, tip swing amplitude 2cm, color layering: main color #2C3E50, secondary color #1A252F, highlight #4A5568, shadow #000000, wind speed 0.2m/s, turbulence intensity 10%, heavy-duty dark blue jumpsuit with metallic buckles, slight fabric flutter due to air pressure instability, grease and grime stains on sleeves and chest, dull metallic reflection from the fabric texture, cramped, claustrophobic moon base corridor with exposed pipes and wires, flickering red emergency lighting casting deep shadows, control panel with blinking, glitching red warning codes, metal walls showing signs of structural deformation and rust, 小赵-配角1 sitting on the floor near the cabin door, face contorted with fear, visible ozone and coolant haze in the air, flickering neon-like red warning light intensity, floating dust particles near the damaged control panel, harsh high-contrast lighting from the emergency alarm, cold desaturated blues and greys for the environment, harsh, alarming neon red for warning lights and shadows, muted skin tones, metallic silver and rusted iron accents, harsh flickering red strobe light, dim cool-toned ambient light from overhead emergency strips, high-contrast shadows highlighting the wear on the character's face, glow from the control panel screen illuminating Lin Yuan's profile, type medium close-up, lens 35mm, aperture f/2.0, depth_of_field shallow focus on Lin Yuan's intense gaze, flash none, grain fine film grain, texture industrial metallic texture, Lin Yuan (Image 0) positioned in the left foreground, 小赵-配角1 visible in the blurred background to the right, control panel as the secondary focal point, narrow corridor architecture framing the action, hardcore industrial realism, cyberpunk aesthetic, no text, no symbols, no watermarks, no乱码, oppressive, tense, desperate, grim reality, professional stoicism, no text, no symbols, no garbled characters, no words",
+                  "prompt_json": {
+                    "camera": {
+                      "aperture": "f/2.0",
+                      "depth_of_field": "shallow focus on Lin Yuan's intense gaze",
+                      "flash": "none",
+                      "grain": "fine film grain",
+                      "lens": "35mm",
+                      "texture": "industrial metallic texture",
+                      "type": "medium close-up"
+                    },
+                    "clothing_system": [
+                      "heavy-duty dark blue jumpsuit with metallic buckles",
+                      "slight fabric flutter due to air pressure instability",
+                      "grease and grime stains on sleeves and chest",
+                      "dull metallic reflection from the fabric texture"
+                    ],
+                    "color_restriction": [
+                      "cold desaturated blues and greys for the environment",
+                      "harsh, alarming neon red for warning lights and shadows",
+                      "muted skin tones",
+                      "metallic silver and rusted iron accents"
+                    ],
+                    "composition": [
+                      "Lin Yuan (Image 0) positioned in the left foreground",
+                      "小赵-配角1 visible in the blurred background to the right",
+                      "control panel as the secondary focal point",
+                      "narrow corridor architecture framing the action"
+                    ],
+                    "environment": {
+                      "background": [
+                        "cramped, claustrophobic moon base corridor with exposed pipes and wires",
+                        "flickering red emergency lighting casting deep shadows",
+                        "control panel with blinking, glitching red warning codes",
+                        "metal walls showing signs of structural deformation and rust"
+                      ],
+                      "characters": [
+                        "小赵-配角1 sitting on the floor near the cabin door, face contorted with fear"
+                      ],
+                      "effects": [
+                        "visible ozone and coolant haze in the air",
+                        "flickering neon-like red warning light intensity",
+                        "floating dust particles near the damaged control panel",
+                        "harsh high-contrast lighting from the emergency alarm"
+                      ]
+                    },
+                    "face_system": [
+                      "8K detailed facial features",
+                      "tired, bloodshot eyes with a focused, analytical gaze",
+                      "left temple showing greying hair, highlighted by emergency red light",
+                      "stern and firm expression, lips tightly pressed",
+                      "soft shadows emphasizing the ruggedness of his face",
+                      "subtle skin texture showing pores and fatigue"
+                    ],
+                    "hair_system": [
+                      "short, messy hair with greying temples",
+                      "root fixation coefficient 0.5",
+                      "tip swing amplitude 2cm",
+                      "color layering: main color #2C3E50, secondary color #1A252F, highlight #4A5568, shadow #000000",
+                      "wind speed 0.2m/s",
+                      "turbulence intensity 10%"
+                    ],
+                    "label": "scene-moon-base-crisis-lin-yuan-repair",
+                    "lighting": [
+                      "harsh flickering red strobe light",
+                      "dim cool-toned ambient light from overhead emergency strips",
+                      "high-contrast shadows highlighting the wear on the character's face",
+                      "glow from the control panel screen illuminating Lin Yuan's profile"
+                    ],
+                    "mood": [
+                      "oppressive",
+                      "tense",
+                      "desperate",
+                      "grim reality",
+                      "professional stoicism"
+                    ],
+                    "output_style": [
+                      "hardcore industrial realism",
+                      "cyberpunk aesthetic",
+                      "no text, no symbols, no watermarks, no乱码"
+                    ],
+                    "style": [
+                      "photorealistic",
+                      "cinematic lighting",
+                      "gritty industrial texture",
+                      "low-saturation",
+                      "sharp focus"
+                    ],
+                    "subject": {
+                      "body_traits": [
+                        "Lin Yuan (Image 0), a middle-aged male with a weary and exhausted expression",
+                        "pale skin due to long-term radiation exposure",
+                        "sharp and firm jawline showing resilience",
+                        "tired eyes focusing intensely on a control panel",
+                        "slightly hunched back conveying heavy burden",
+                        "rough, grease-stained hands gripping a metallic bulkhead"
+                      ],
+                      "outfit": [
+                        "worn-out dark blue industrial jumpsuit",
+                        "jumpsuit fabric soaked with cold sweat and marked by oil stains",
+                        "a vintage multi-functional wrench tucked in his belt or held in hand"
+                      ],
+                      "pose": [
+                        "Lin Yuan (Image 0) standing in a narrow corridor, body partially turned away from the camera",
+                        "left hand firmly pressed against the vibrating bulkhead",
+                        "right hand holding a heated multi-functional wrench",
+                        "posture leaning slightly toward the control panel, ignoring 小赵-配角1"
+                      ]
+                    },
+                    "tags": [
+                      "hardcore-industrial-realism",
+                      "cyberpunk",
+                      "dystopian",
+                      "claustrophobic",
+                      "high-contrast"
+                    ]
+                  },
+                  "scene_text_hash": "275d57930391ab4811c739ffb064957b",
+                  "style": "default",
+                  "url": "/image_cache/8ead553d98c825bbba5b055b878fbb56.png",
+                  "width": 1920
+                }
+              },
+              "status": "success"
+            },
+            "request_payload": {
+              "option": "开始游戏",
+              "optionIndex": 0,
+              "sceneId": null,
+              "globalState": {
+                "core_worldview": {
+                  "chapters": {
+                    "chapter1": {
+                      "conflict_end_condition": "主角成功修复了生活区的应急氧气循环系统，确保了幸存者在未来48小时内的生存需求，但代价是错过了最佳的逃生舱发射窗口，彻底失去了第一时间撤离的机会。",
+                      "main_conflict": "矿难突发，基地陷入混乱。主角发现公司总部下达的指令并非撤离，而是要求优先抢救氦-3提炼装置。面对氧气余量不足的现实，主角必须在“修复生命维持系统”与“执行公司强制任务”之间进行博弈，同时还要安抚因恐惧而陷入崩溃的同事，平衡个人生存与职业责任的冲突。"
+                    },
+                    "chapter2": {
+                      "conflict_end_condition": "主角成功获取了关键的事故数据备份，但被迫与管理层达成妥协，隐瞒了部分高层的直接责任，换取了救援队提前抵达的承诺，内心深处留下了对牺牲工友的愧疚。",
+                      "main_conflict": "基地结构进一步恶化，主角发现矿难的真实原因是公司为了赶工期而强行超负荷运转设备。主角在搜集证据的过程中，遭到了基地管理层的监视与阻挠。此时，主角必须在“揭露真相”与“获取救援资源”之间做出选择，因为一旦真相曝光，公司可能会为了掩盖丑闻而彻底切断基地的补给。"
+                    },
+                    "chapter3": {
+                      "conflict_end_condition": "主角成功将证据与幸存者送上撤离船，自己则因留守维护反应堆而错失撤离，最终在救援队的后续协助下获救，但因伤残失去了职业生涯，且真相在复杂的公关手段下被淡化处理，主角收获了平静的余生，却永远失去了曾经引以为傲的职业尊严。",
+                      "main_conflict": "救援队抵达，但由于企业利益博弈，救援规模被大幅缩减，无法带走所有幸存者。主角面临最终的抉择：是利用仅有的撤离名额带走关键证据与部分幸存者，还是留在基地继续维护即将崩溃的反应堆以防止更大的生态灾难。这是对主角职业操守与人性底线的最终考验。"
+                    }
+                  },
+                  "characters": {},
+                  "forces": {},
+                  "game_style": "本作为硬核工业现实主义风格，采用冷峻的低饱和度视觉表现。叙事节奏克制，强调环境叙事与职场细节，通过对月球基地狭窄空间、机械故障与通讯延迟的细腻刻画，营造出一种压抑但真实的生存质感，旨在探讨极端环境下个体与庞大体制的博弈。",
+                  "main_quest": "主角需在基地通讯中断的七天内，完成“核心数据备份”与“生命维持系统修复”的双重目标。玩家需在有限的氧气配额下，穿梭于受损的舱段，通过收集废旧零件、破解企业加密协议及协调幸存同事的协作来推进任务。挑战在于，主角不仅要面对物理环境的恶化，还要在“保全公司资产”与“保全同伴生命”之间做出艰难的道德抉择。最终目标并非拯救所有人，而是确保在救援队抵达前，基地核心舱段不发生彻底坍塌，并带回足以证明真相的黑匣子数据。",
+                  "protagonist_ability": "主角作为一名资深机械维护员，核心能力是“精密感知与故障预判”。这并非超能力，而是源于长年累月在极端环境下与机械打交道的经验积累。主角能通过设备震动频率、电流声响与金属疲劳纹理，精准判断故障点。使用时需消耗大量体力与专注力，且受限于基地陈旧的检测工具，无法解决所有结构性损坏，只能在“维持运转”与“彻底报废”之间寻找脆弱的平衡。",
+                  "world_basic_setting": "故事背景设定在2070年代，人类已实现月球氦-3资源的商业化开采。月球基地“静海-4号”是地球能源供应的核心枢纽，社会结构高度科层化，工人被严格划分为“地表作业组”与“深层维护组”。由于企业对成本的极致压缩，基地设施老化严重，安全隐患被长期忽视。关键事件“七日矿难”起因于一次违规的深层钻探引发的连锁地壳震动，导致基地核心舱段气密性受损，通讯中继站瘫痪。此时，地球总部出于股价与舆论考量，决定封锁消息并延迟救援，要求留守人员在有限的氧气与物资条件下，自行完成核心数据的备份与关键设备的抢修，以保住企业的核心资产。"
+                },
+                "flow_worldline": {
+                  "characters": {},
+                  "current_chapter": "chapter1",
+                  "environment": {}
+                },
+                "game_id": "game_1777644673_g1ab13",
+                "image_style": {
+                  "type": "cyberpunk"
+                },
+                "meta": {
+                  "detail_async": true
+                },
+                "protagonist_canonical": {
+                  "age_range": "中年",
+                  "gender": "男性",
+                  "name_en": "Lin Yuan",
+                  "name_zh": "林远",
+                  "signature_look_keywords": "疲惫的眼神，粗糙的双手，深蓝色工装，左侧鬓角微白，沉默寡言，常年佩戴的旧式多功能扳手，略显佝偻的背影，坚毅的下颌线，皮肤因辐射略显苍白。",
+                  "work_en": "Seven Days of Lunar Disaster",
+                  "work_zh": "月球矿难七日"
+                },
+                "tone": "normal_ending",
+                "user_theme": "月球矿难七日",
+                "_benchmark_profile": "fullready_pregen60",
+                "_benchmark_measurement": "fullready_nextturn",
+                "_benchmark_read_wait_s": 60.0
+              }
+            },
+            "start_ts": 1777644681.4463675,
+            "end_ts": 1777644757.0674615,
+            "provider_events": {
+              "event_count": 9,
+              "queue_wait_ms": {
+                "count": 9,
+                "min": 0.0,
+                "max": 0.0,
+                "mean": 0.0,
+                "median": 0.0,
+                "p95": 0.0
+              },
+              "latency_ms": {
+                "count": 5,
+                "min": 2641.0,
+                "max": 15085.0,
+                "mean": 7844.2,
+                "median": 7490.0,
+                "p95": 13579.4
+              },
+              "llm_success_count": 4,
+              "image_success_count": 0,
+              "request_thread_event_count": 0,
+              "provider_429_count": 0,
+              "provider_timeout_count": 0,
+              "shared_backoff_wait_ms_total": 0,
+              "retry_heavy_event_count": 0,
+              "main_character_event_count": 2,
+              "scene_image_event_count": 0
+            }
+          }
+        ],
+        "attempt_count": 1,
+        "request_elapsed_s": 75.621,
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "success",
+        "has_scene": true,
+        "has_image": true,
+        "setup_success": true
+      },
+      "second_click": {
+        "http_status": 200,
+        "elapsed_s": 0.012,
+        "response_json": {
+          "benchmark_diagnostics": {
+            "cache_hit_reason": "request_scene_completed_with_image",
+            "cache_miss_reason": null,
+            "current_options_key_drift_detected": false,
+            "global_state_key_drift_detected": true,
+            "placeholder": false,
+            "previous_scene_id": "initial",
+            "recomputed_scene_cache_exists": false,
+            "recomputed_scene_id": "773347527905389496_-2758337910812634132",
+            "request_current_options_count": 2,
+            "request_current_options_hash": "21de3adabc70e0f207ef50db47960038",
+            "request_flow_worldline_hash": "0b7d2802f8e46ae104639ddbac325b51",
+            "request_global_state_hash": "62dcc461908086fa3a4b3ed6ba0a1c8f",
+            "request_option_at_index": "强行切断总部指令，优先修复生命维持系统。",
+            "request_option_index": 0,
+            "request_option_text": "强行切断总部指令，优先修复生命维持系统。",
+            "request_scene_cache_exists": true,
+            "request_scene_cache_meta": {
+              "canonical_scene_id": "-8162620721579901776_-2758337910812634132",
+              "current_options_hash": "21de3adabc70e0f207ef50db47960038",
+              "current_options_preview": [
+                "强行切断总部指令，优先修复生命维持系统。",
+                "尝试接入总部加密协议，寻找平衡能源分配的漏洞。"
+              ],
+              "flow_worldline_hash": "940e38d5f8372eaa58cfdaf4d70a0d30",
+              "global_state_hash": "d9b396563a17ab4ffd91187efada57c1",
+              "option_count": 2,
+              "parent_scene_id": null,
+              "scene_id": "-5745781551192970677_-2758337910812634132"
+            },
+            "request_scene_generation_status": "completed",
+            "request_scene_id": "-5745781551192970677_-2758337910812634132",
+            "resolution_path": "request_scene_cache_direct",
+            "response_has_image": true,
+            "response_has_scene": true,
+            "response_scene_id": "-5012896544090766366_2140491363114764147",
+            "response_status": "success",
+            "scene_id_mismatch_detected": true,
+            "selected_option_mismatch_detected": false
+          },
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "成功完成了“生命维持系统修复”的第一阶段目标，确保了幸存者48小时的生存需求，但由于违抗总部指令，我失去了第一时间撤离的合法性，主线任务向“在封锁中自救与揭露真相”推进。",
+              "recap_text": "你选择了“强行切断总部指令，优先修复生命维持系统。”。当前章节：chapter1。主线进展：成功完成了“生命维持系统修复”的第一阶段目标，确保了幸存者48小时的生存需求，但由于违抗总部指令，我失去了第一时间撤离的合法性，主线任务向“在封锁中自救与揭露真相”推进。。最近剧情：我深吸一口气，肺部充斥着冰冷而浑浊的空气。没有丝毫犹豫，我将那把沾满油污的旧式多功能扳手狠狠砸向控制台侧面的物理锁扣，随着一声刺耳的金属崩裂声，总部强制接入的加密通讯链路被我彻底物理切断。屏幕上那些代表着提炼装置能源输出的红色曲线瞬间归零，取而代之的是生命维持系统急促的警报声。我那双粗糙的双手在控制面板上飞速跳动，凭借着对这套陈旧设备长年累月的熟悉，我精准地绕过了受损的逻辑电路，将备用电源强行并入氧气循环泵。小赵瞪大了眼睛，看着原本停滞的压力表指针缓慢而坚定地向绿色区域回升，他颤抖着声音问我：“林远，你疯了吗？切断总部指令，我们会被追责的！”我没有看他，只是感受着舱壁内震动频率的细微变化，疲惫的眼神中透出一丝冷峻的释然，我低声回应道：“追责的前提是活着。先把循环泵的阀门拧紧，别让氧气从裂缝里跑了。”"
+            },
+            "deep_background_links": {
+              "1": "小赵（解锁其作为深层维护组见习生，对基地违规操作的知情背景）"
+            },
+            "flow_update": {
+              "chapter_conflict_solved": false,
+              "characters": {},
+              "environment": {},
+              "quest_progress": "成功完成了“生命维持系统修复”的第一阶段目标，确保了幸存者48小时的生存需求，但由于违抗总部指令，我失去了第一时间撤离的合法性，主线任务向“在封锁中自救与揭露真相”推进。"
+            },
+            "next_options": [
+              "检查通风管道，寻找导致压力异常的物理裂缝。",
+              "询问小赵关于基地深层维护记录的异常，探寻矿难真相。"
+            ],
+            "plot_mentioned_only": [],
+            "plot_supporting_characters": [],
+            "scene": "我深吸一口气，肺部充斥着冰冷而浑浊的空气。没有丝毫犹豫，我将那把沾满油污的旧式多功能扳手狠狠砸向控制台侧面的物理锁扣，随着一声刺耳的金属崩裂声，总部强制接入的加密通讯链路被我彻底物理切断。屏幕上那些代表着提炼装置能源输出的红色曲线瞬间归零，取而代之的是生命维持系统急促的警报声。我那双粗糙的双手在控制面板上飞速跳动，凭借着对这套陈旧设备长年累月的熟悉，我精准地绕过了受损的逻辑电路，将备用电源强行并入氧气循环泵。小赵瞪大了眼睛，看着原本停滞的压力表指针缓慢而坚定地向绿色区域回升，他颤抖着声音问我：“林远，你疯了吗？切断总部指令，我们会被追责的！”我没有看他，只是感受着舱壁内震动频率的细微变化，疲惫的眼神中透出一丝冷峻的释然，我低声回应道：“追责的前提是活着。先把循环泵的阀门拧紧，别让氧气从裂缝里跑了。”",
+            "sceneId": "-5012896544090766366_2140491363114764147",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-lin-yuan-emergency-repair-shutoff, cyberpunk, hard-industrial-realism, dystopian, low-saturation, high-contrast, photorealistic, cinematic lighting, gritty texture, industrial sci-fi, no text or symbols in image, 中年男性林远，主角使用 Image 0, 疲惫而深邃的眼神，透露出冷峻的决断, 皮肤因长期月球辐射而略显苍白, 下颌线坚毅，嘴角紧抿, 双手粗糙且沾染油污, 深蓝色老旧工装，带有明显的磨损与污渍, 腰间挂着常年使用的多功能扳手, 半蹲在控制台前，身体略显佝偻, 双手正在飞速操作控制面板，动作精准有力, 左侧鬓角微白，侧脸面向画面左侧的控制台, 背影坚毅，专注地面对故障设备, 8K detailed facial features, 疲惫深沉的眼神，带有粗糙的皮肤纹理, 坚毅下颌线, 冷峻释然的表情, 面部阴影深重，强调中年男性的沧桑感, 深色短发，左侧鬓角明显斑白, root fixation coefficient 0.95, tip swing amplitude 2cm, color layering: main black #1A1A1A, secondary dark grey #333333, highlight cold white #E0E0E0, shadow #000000, wind speed 0.1m/s, turbulence intensity 1%, 厚实的深蓝色工装材质，带有金属磨损痕迹, 袖口卷起，露出沾满油垢的粗糙手臂, 衣物纤维细节清晰，呈现出长期在极端环境下作业的粗糙感, 昏暗狭窄的月球基地核心舱段, 陈旧的控制台，屏幕显示着红色的故障警报曲线, 四周布满裸露的电缆与金属管道, 空气中漂浮着细微的尘埃与氧气循环泵喷出的冷凝雾气, 小赵-配角1站在画面右侧后方，神情惊恐，双手悬空，显得无措, 控制台闪烁的红光与冷冽的舱内蓝光形成强烈对比, 金属崩裂出的火花点缀在控制台侧面, 周围环境充满压抑的工业废墟氛围, 冷峻的低饱和度蓝灰色调为主, 控制台刺眼的红色警报光, 金属质感的银灰色, 阴影部分采用深邃的黑色, 冷冽的基地应急灯光, 控制台屏幕投射出的红光映照在林远脸上, 高对比度打光，强调林远坚毅的轮廓, 强烈的工业感侧光, type close-up, lens 35mm, aperture f/2.0, depth_of_field shallow depth, focus on Lin Yuan's hands and face, flash none, grain fine industrial film grain, texture metallic and gritty, 林远位于画面左侧中心，正在操作设备, 小赵-配角1位于右侧背景，处于离焦状态, 焦点集中在林远操作控制台的双手与冷峻的侧脸, 构图强调狭窄空间的压迫感, cyberpunk realism, no text or symbols in image, 压抑而紧张, 冷峻的决绝, 职场博弈的沉重感, 工业现实主义的真实质感, no text, no symbols, no garbled characters, no words",
+              "scene_text_hash": "aa9520f3cfc8685b6713fdc1d5c243ef",
+              "style": "default",
+              "url": "/image_cache/3603eb092dba42cd9949c2564c15af61.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "request_payload": {
+          "option": "强行切断总部指令，优先修复生命维持系统。",
+          "optionIndex": 0,
+          "sceneId": "-5745781551192970677_-2758337910812634132",
+          "currentOptions": [
+            "强行切断总部指令，优先修复生命维持系统。",
+            "尝试接入总部加密协议，寻找平衡能源分配的漏洞。"
+          ],
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角成功修复了生活区的应急氧气循环系统，确保了幸存者在未来48小时内的生存需求，但代价是错过了最佳的逃生舱发射窗口，彻底失去了第一时间撤离的机会。",
+                  "main_conflict": "矿难突发，基地陷入混乱。主角发现公司总部下达的指令并非撤离，而是要求优先抢救氦-3提炼装置。面对氧气余量不足的现实，主角必须在“修复生命维持系统”与“执行公司强制任务”之间进行博弈，同时还要安抚因恐惧而陷入崩溃的同事，平衡个人生存与职业责任的冲突。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角成功获取了关键的事故数据备份，但被迫与管理层达成妥协，隐瞒了部分高层的直接责任，换取了救援队提前抵达的承诺，内心深处留下了对牺牲工友的愧疚。",
+                  "main_conflict": "基地结构进一步恶化，主角发现矿难的真实原因是公司为了赶工期而强行超负荷运转设备。主角在搜集证据的过程中，遭到了基地管理层的监视与阻挠。此时，主角必须在“揭露真相”与“获取救援资源”之间做出选择，因为一旦真相曝光，公司可能会为了掩盖丑闻而彻底切断基地的补给。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角成功将证据与幸存者送上撤离船，自己则因留守维护反应堆而错失撤离，最终在救援队的后续协助下获救，但因伤残失去了职业生涯，且真相在复杂的公关手段下被淡化处理，主角收获了平静的余生，却永远失去了曾经引以为傲的职业尊严。",
+                  "main_conflict": "救援队抵达，但由于企业利益博弈，救援规模被大幅缩减，无法带走所有幸存者。主角面临最终的抉择：是利用仅有的撤离名额带走关键证据与部分幸存者，还是留在基地继续维护即将崩溃的反应堆以防止更大的生态灾难。这是对主角职业操守与人性底线的最终考验。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为硬核工业现实主义风格，采用冷峻的低饱和度视觉表现。叙事节奏克制，强调环境叙事与职场细节，通过对月球基地狭窄空间、机械故障与通讯延迟的细腻刻画，营造出一种压抑但真实的生存质感，旨在探讨极端环境下个体与庞大体制的博弈。",
+              "main_quest": "主角需在基地通讯中断的七天内，完成“核心数据备份”与“生命维持系统修复”的双重目标。玩家需在有限的氧气配额下，穿梭于受损的舱段，通过收集废旧零件、破解企业加密协议及协调幸存同事的协作来推进任务。挑战在于，主角不仅要面对物理环境的恶化，还要在“保全公司资产”与“保全同伴生命”之间做出艰难的道德抉择。最终目标并非拯救所有人，而是确保在救援队抵达前，基地核心舱段不发生彻底坍塌，并带回足以证明真相的黑匣子数据。",
+              "protagonist_ability": "主角作为一名资深机械维护员，核心能力是“精密感知与故障预判”。这并非超能力，而是源于长年累月在极端环境下与机械打交道的经验积累。主角能通过设备震动频率、电流声响与金属疲劳纹理，精准判断故障点。使用时需消耗大量体力与专注力，且受限于基地陈旧的检测工具，无法解决所有结构性损坏，只能在“维持运转”与“彻底报废”之间寻找脆弱的平衡。",
+              "world_basic_setting": "故事背景设定在2070年代，人类已实现月球氦-3资源的商业化开采。月球基地“静海-4号”是地球能源供应的核心枢纽，社会结构高度科层化，工人被严格划分为“地表作业组”与“深层维护组”。由于企业对成本的极致压缩，基地设施老化严重，安全隐患被长期忽视。关键事件“七日矿难”起因于一次违规的深层钻探引发的连锁地壳震动，导致基地核心舱段气密性受损，通讯中继站瘫痪。此时，地球总部出于股价与舆论考量，决定封锁消息并延迟救援，要求留守人员在有限的氧气与物资条件下，自行完成核心数据的备份与关键设备的抢修，以保住企业的核心资产。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {},
+              "chapter_progress": 2.0
+            },
+            "game_id": "game_1777644673_g1ab13",
+            "image_style": {
+              "type": "cyberpunk"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "中年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "疲惫的眼神，粗糙的双手，深蓝色工装，左侧鬓角微白，沉默寡言，常年佩戴的旧式多功能扳手，略显佝偻的背影，坚毅的下颌线，皮肤因辐射略显苍白。",
+              "work_en": "Seven Days of Lunar Disaster",
+              "work_zh": "月球矿难七日"
+            },
+            "tone": "normal_ending",
+            "user_theme": "月球矿难七日",
+            "_benchmark_profile": "fullready_pregen60",
+            "_benchmark_measurement": "fullready_nextturn",
+            "_benchmark_read_wait_s": 60.0
+          },
+          "previousSceneId": "initial",
+          "previousSceneImage": {
+            "cached": true,
+            "height": 1080,
+            "image_type": "story_scene",
+            "prompt": "scene-moon-base-crisis-lin-yuan-repair, hardcore-industrial-realism, cyberpunk, dystopian, claustrophobic, high-contrast, photorealistic, cinematic lighting, gritty industrial texture, low-saturation, sharp focus, Lin Yuan (Image 0), a middle-aged male with a weary and exhausted expression, pale skin due to long-term radiation exposure, sharp and firm jawline showing resilience, tired eyes focusing intensely on a control panel, slightly hunched back conveying heavy burden, rough, grease-stained hands gripping a metallic bulkhead, worn-out dark blue industrial jumpsuit, jumpsuit fabric soaked with cold sweat and marked by oil stains, a vintage multi-functional wrench tucked in his belt or held in hand, Lin Yuan (Image 0) standing in a narrow corridor, body partially turned away from the camera, left hand firmly pressed against the vibrating bulkhead, right hand holding a heated multi-functional wrench, posture leaning slightly toward the control panel, ignoring 小赵-配角1, 8K detailed facial features, tired, bloodshot eyes with a focused, analytical gaze, left temple showing greying hair, highlighted by emergency red light, stern and firm expression, lips tightly pressed, soft shadows emphasizing the ruggedness of his face, subtle skin texture showing pores and fatigue, short, messy hair with greying temples, root fixation coefficient 0.5, tip swing amplitude 2cm, color layering: main color #2C3E50, secondary color #1A252F, highlight #4A5568, shadow #000000, wind speed 0.2m/s, turbulence intensity 10%, heavy-duty dark blue jumpsuit with metallic buckles, slight fabric flutter due to air pressure instability, grease and grime stains on sleeves and chest, dull metallic reflection from the fabric texture, cramped, claustrophobic moon base corridor with exposed pipes and wires, flickering red emergency lighting casting deep shadows, control panel with blinking, glitching red warning codes, metal walls showing signs of structural deformation and rust, 小赵-配角1 sitting on the floor near the cabin door, face contorted with fear, visible ozone and coolant haze in the air, flickering neon-like red warning light intensity, floating dust particles near the damaged control panel, harsh high-contrast lighting from the emergency alarm, cold desaturated blues and greys for the environment, harsh, alarming neon red for warning lights and shadows, muted skin tones, metallic silver and rusted iron accents, harsh flickering red strobe light, dim cool-toned ambient light from overhead emergency strips, high-contrast shadows highlighting the wear on the character's face, glow from the control panel screen illuminating Lin Yuan's profile, type medium close-up, lens 35mm, aperture f/2.0, depth_of_field shallow focus on Lin Yuan's intense gaze, flash none, grain fine film grain, texture industrial metallic texture, Lin Yuan (Image 0) positioned in the left foreground, 小赵-配角1 visible in the blurred background to the right, control panel as the secondary focal point, narrow corridor architecture framing the action, hardcore industrial realism, cyberpunk aesthetic, no text, no symbols, no watermarks, no乱码, oppressive, tense, desperate, grim reality, professional stoicism, no text, no symbols, no garbled characters, no words",
+            "prompt_json": {
+              "camera": {
+                "aperture": "f/2.0",
+                "depth_of_field": "shallow focus on Lin Yuan's intense gaze",
+                "flash": "none",
+                "grain": "fine film grain",
+                "lens": "35mm",
+                "texture": "industrial metallic texture",
+                "type": "medium close-up"
+              },
+              "clothing_system": [
+                "heavy-duty dark blue jumpsuit with metallic buckles",
+                "slight fabric flutter due to air pressure instability",
+                "grease and grime stains on sleeves and chest",
+                "dull metallic reflection from the fabric texture"
+              ],
+              "color_restriction": [
+                "cold desaturated blues and greys for the environment",
+                "harsh, alarming neon red for warning lights and shadows",
+                "muted skin tones",
+                "metallic silver and rusted iron accents"
+              ],
+              "composition": [
+                "Lin Yuan (Image 0) positioned in the left foreground",
+                "小赵-配角1 visible in the blurred background to the right",
+                "control panel as the secondary focal point",
+                "narrow corridor architecture framing the action"
+              ],
+              "environment": {
+                "background": [
+                  "cramped, claustrophobic moon base corridor with exposed pipes and wires",
+                  "flickering red emergency lighting casting deep shadows",
+                  "control panel with blinking, glitching red warning codes",
+                  "metal walls showing signs of structural deformation and rust"
+                ],
+                "characters": [
+                  "小赵-配角1 sitting on the floor near the cabin door, face contorted with fear"
+                ],
+                "effects": [
+                  "visible ozone and coolant haze in the air",
+                  "flickering neon-like red warning light intensity",
+                  "floating dust particles near the damaged control panel",
+                  "harsh high-contrast lighting from the emergency alarm"
+                ]
+              },
+              "face_system": [
+                "8K detailed facial features",
+                "tired, bloodshot eyes with a focused, analytical gaze",
+                "left temple showing greying hair, highlighted by emergency red light",
+                "stern and firm expression, lips tightly pressed",
+                "soft shadows emphasizing the ruggedness of his face",
+                "subtle skin texture showing pores and fatigue"
+              ],
+              "hair_system": [
+                "short, messy hair with greying temples",
+                "root fixation coefficient 0.5",
+                "tip swing amplitude 2cm",
+                "color layering: main color #2C3E50, secondary color #1A252F, highlight #4A5568, shadow #000000",
+                "wind speed 0.2m/s",
+                "turbulence intensity 10%"
+              ],
+              "label": "scene-moon-base-crisis-lin-yuan-repair",
+              "lighting": [
+                "harsh flickering red strobe light",
+                "dim cool-toned ambient light from overhead emergency strips",
+                "high-contrast shadows highlighting the wear on the character's face",
+                "glow from the control panel screen illuminating Lin Yuan's profile"
+              ],
+              "mood": [
+                "oppressive",
+                "tense",
+                "desperate",
+                "grim reality",
+                "professional stoicism"
+              ],
+              "output_style": [
+                "hardcore industrial realism",
+                "cyberpunk aesthetic",
+                "no text, no symbols, no watermarks, no乱码"
+              ],
+              "style": [
+                "photorealistic",
+                "cinematic lighting",
+                "gritty industrial texture",
+                "low-saturation",
+                "sharp focus"
+              ],
+              "subject": {
+                "body_traits": [
+                  "Lin Yuan (Image 0), a middle-aged male with a weary and exhausted expression",
+                  "pale skin due to long-term radiation exposure",
+                  "sharp and firm jawline showing resilience",
+                  "tired eyes focusing intensely on a control panel",
+                  "slightly hunched back conveying heavy burden",
+                  "rough, grease-stained hands gripping a metallic bulkhead"
+                ],
+                "outfit": [
+                  "worn-out dark blue industrial jumpsuit",
+                  "jumpsuit fabric soaked with cold sweat and marked by oil stains",
+                  "a vintage multi-functional wrench tucked in his belt or held in hand"
+                ],
+                "pose": [
+                  "Lin Yuan (Image 0) standing in a narrow corridor, body partially turned away from the camera",
+                  "left hand firmly pressed against the vibrating bulkhead",
+                  "right hand holding a heated multi-functional wrench",
+                  "posture leaning slightly toward the control panel, ignoring 小赵-配角1"
+                ]
+              },
+              "tags": [
+                "hardcore-industrial-realism",
+                "cyberpunk",
+                "dystopian",
+                "claustrophobic",
+                "high-contrast"
+              ]
+            },
+            "scene_text_hash": "275d57930391ab4811c739ffb064957b",
+            "style": "default",
+            "url": "/image_cache/8ead553d98c825bbba5b055b878fbb56.png",
+            "width": 1920
+          },
+          "previousSceneText": "刺耳的金属扭曲声在狭窄的舱道内回荡，那是静海4号基地正在痛苦呻吟。我下意识地用那双粗糙、布满油污的手扶住舱壁，指尖传来的震动感告诉我，外部的氦3提炼装置已经彻底失控。空气中弥漫着一股刺鼻的焦糊味，那是线路短路后的臭氧与冷却液混合的味道。我那件深蓝色的工装早已被冷汗浸透，左侧鬓角微白的头发在应急灯昏暗的红光下显得格外刺眼。我低头看了一眼手腕上的多功能扳手，那是陪伴我十年的老伙计，此刻它正微微发烫。\n\n“林远，氧气循环系统压力降至30了，我们得做点什么！”年轻的维修工小赵瘫坐在舱门边，他那张年轻的脸庞因恐惧而扭曲，声音颤抖得厉害。我没有回头，只是紧紧抿着那条坚毅的下颌线，目光死死盯着控制面板上不断跳动的红色警告代码。我知道，如果现在不修复主循环泵，我们所有人都会在两小时内窒息。但我更清楚，总部发来的加密指令正强行占用着系统的算力，要求优先保障提炼装置的能源输出。我深吸一口气，那略显佝偻的背影在阴影中显得有些沉重，我必须在保住这群同事的命和执行那该死的公司任务之间做出抉择。"
+        },
+        "start_ts": 1777644817.1173701,
+        "end_ts": 1777644817.1294582,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0
+        },
+        "attempts": [
+          {
+            "http_status": 200,
+            "elapsed_s": 0.012,
+            "response_json": {
+              "benchmark_diagnostics": {
+                "cache_hit_reason": "request_scene_completed_with_image",
+                "cache_miss_reason": null,
+                "current_options_key_drift_detected": false,
+                "global_state_key_drift_detected": true,
+                "placeholder": false,
+                "previous_scene_id": "initial",
+                "recomputed_scene_cache_exists": false,
+                "recomputed_scene_id": "773347527905389496_-2758337910812634132",
+                "request_current_options_count": 2,
+                "request_current_options_hash": "21de3adabc70e0f207ef50db47960038",
+                "request_flow_worldline_hash": "0b7d2802f8e46ae104639ddbac325b51",
+                "request_global_state_hash": "62dcc461908086fa3a4b3ed6ba0a1c8f",
+                "request_option_at_index": "强行切断总部指令，优先修复生命维持系统。",
+                "request_option_index": 0,
+                "request_option_text": "强行切断总部指令，优先修复生命维持系统。",
+                "request_scene_cache_exists": true,
+                "request_scene_cache_meta": {
+                  "canonical_scene_id": "-8162620721579901776_-2758337910812634132",
+                  "current_options_hash": "21de3adabc70e0f207ef50db47960038",
+                  "current_options_preview": [
+                    "强行切断总部指令，优先修复生命维持系统。",
+                    "尝试接入总部加密协议，寻找平衡能源分配的漏洞。"
+                  ],
+                  "flow_worldline_hash": "940e38d5f8372eaa58cfdaf4d70a0d30",
+                  "global_state_hash": "d9b396563a17ab4ffd91187efada57c1",
+                  "option_count": 2,
+                  "parent_scene_id": null,
+                  "scene_id": "-5745781551192970677_-2758337910812634132"
+                },
+                "request_scene_generation_status": "completed",
+                "request_scene_id": "-5745781551192970677_-2758337910812634132",
+                "resolution_path": "request_scene_cache_direct",
+                "response_has_image": true,
+                "response_has_scene": true,
+                "response_scene_id": "-5012896544090766366_2140491363114764147",
+                "response_status": "success",
+                "scene_id_mismatch_detected": true,
+                "selected_option_mismatch_detected": false
+              },
+              "message": "选项剧情生成成功！",
+              "optionData": {
+                "checkpoint_packet": {
+                  "chapter": "chapter1",
+                  "chapter_conflict_solved": false,
+                  "quest_delta": "成功完成了“生命维持系统修复”的第一阶段目标，确保了幸存者48小时的生存需求，但由于违抗总部指令，我失去了第一时间撤离的合法性，主线任务向“在封锁中自救与揭露真相”推进。",
+                  "recap_text": "你选择了“强行切断总部指令，优先修复生命维持系统。”。当前章节：chapter1。主线进展：成功完成了“生命维持系统修复”的第一阶段目标，确保了幸存者48小时的生存需求，但由于违抗总部指令，我失去了第一时间撤离的合法性，主线任务向“在封锁中自救与揭露真相”推进。。最近剧情：我深吸一口气，肺部充斥着冰冷而浑浊的空气。没有丝毫犹豫，我将那把沾满油污的旧式多功能扳手狠狠砸向控制台侧面的物理锁扣，随着一声刺耳的金属崩裂声，总部强制接入的加密通讯链路被我彻底物理切断。屏幕上那些代表着提炼装置能源输出的红色曲线瞬间归零，取而代之的是生命维持系统急促的警报声。我那双粗糙的双手在控制面板上飞速跳动，凭借着对这套陈旧设备长年累月的熟悉，我精准地绕过了受损的逻辑电路，将备用电源强行并入氧气循环泵。小赵瞪大了眼睛，看着原本停滞的压力表指针缓慢而坚定地向绿色区域回升，他颤抖着声音问我：“林远，你疯了吗？切断总部指令，我们会被追责的！”我没有看他，只是感受着舱壁内震动频率的细微变化，疲惫的眼神中透出一丝冷峻的释然，我低声回应道：“追责的前提是活着。先把循环泵的阀门拧紧，别让氧气从裂缝里跑了。”"
+                },
+                "deep_background_links": {
+                  "1": "小赵（解锁其作为深层维护组见习生，对基地违规操作的知情背景）"
+                },
+                "flow_update": {
+                  "chapter_conflict_solved": false,
+                  "characters": {},
+                  "environment": {},
+                  "quest_progress": "成功完成了“生命维持系统修复”的第一阶段目标，确保了幸存者48小时的生存需求，但由于违抗总部指令，我失去了第一时间撤离的合法性，主线任务向“在封锁中自救与揭露真相”推进。"
+                },
+                "next_options": [
+                  "检查通风管道，寻找导致压力异常的物理裂缝。",
+                  "询问小赵关于基地深层维护记录的异常，探寻矿难真相。"
+                ],
+                "plot_mentioned_only": [],
+                "plot_supporting_characters": [],
+                "scene": "我深吸一口气，肺部充斥着冰冷而浑浊的空气。没有丝毫犹豫，我将那把沾满油污的旧式多功能扳手狠狠砸向控制台侧面的物理锁扣，随着一声刺耳的金属崩裂声，总部强制接入的加密通讯链路被我彻底物理切断。屏幕上那些代表着提炼装置能源输出的红色曲线瞬间归零，取而代之的是生命维持系统急促的警报声。我那双粗糙的双手在控制面板上飞速跳动，凭借着对这套陈旧设备长年累月的熟悉，我精准地绕过了受损的逻辑电路，将备用电源强行并入氧气循环泵。小赵瞪大了眼睛，看着原本停滞的压力表指针缓慢而坚定地向绿色区域回升，他颤抖着声音问我：“林远，你疯了吗？切断总部指令，我们会被追责的！”我没有看他，只是感受着舱壁内震动频率的细微变化，疲惫的眼神中透出一丝冷峻的释然，我低声回应道：“追责的前提是活着。先把循环泵的阀门拧紧，别让氧气从裂缝里跑了。”",
+                "sceneId": "-5012896544090766366_2140491363114764147",
+                "scene_image": {
+                  "cached": true,
+                  "height": 1080,
+                  "image_type": "story_scene",
+                  "prompt": "scene-lin-yuan-emergency-repair-shutoff, cyberpunk, hard-industrial-realism, dystopian, low-saturation, high-contrast, photorealistic, cinematic lighting, gritty texture, industrial sci-fi, no text or symbols in image, 中年男性林远，主角使用 Image 0, 疲惫而深邃的眼神，透露出冷峻的决断, 皮肤因长期月球辐射而略显苍白, 下颌线坚毅，嘴角紧抿, 双手粗糙且沾染油污, 深蓝色老旧工装，带有明显的磨损与污渍, 腰间挂着常年使用的多功能扳手, 半蹲在控制台前，身体略显佝偻, 双手正在飞速操作控制面板，动作精准有力, 左侧鬓角微白，侧脸面向画面左侧的控制台, 背影坚毅，专注地面对故障设备, 8K detailed facial features, 疲惫深沉的眼神，带有粗糙的皮肤纹理, 坚毅下颌线, 冷峻释然的表情, 面部阴影深重，强调中年男性的沧桑感, 深色短发，左侧鬓角明显斑白, root fixation coefficient 0.95, tip swing amplitude 2cm, color layering: main black #1A1A1A, secondary dark grey #333333, highlight cold white #E0E0E0, shadow #000000, wind speed 0.1m/s, turbulence intensity 1%, 厚实的深蓝色工装材质，带有金属磨损痕迹, 袖口卷起，露出沾满油垢的粗糙手臂, 衣物纤维细节清晰，呈现出长期在极端环境下作业的粗糙感, 昏暗狭窄的月球基地核心舱段, 陈旧的控制台，屏幕显示着红色的故障警报曲线, 四周布满裸露的电缆与金属管道, 空气中漂浮着细微的尘埃与氧气循环泵喷出的冷凝雾气, 小赵-配角1站在画面右侧后方，神情惊恐，双手悬空，显得无措, 控制台闪烁的红光与冷冽的舱内蓝光形成强烈对比, 金属崩裂出的火花点缀在控制台侧面, 周围环境充满压抑的工业废墟氛围, 冷峻的低饱和度蓝灰色调为主, 控制台刺眼的红色警报光, 金属质感的银灰色, 阴影部分采用深邃的黑色, 冷冽的基地应急灯光, 控制台屏幕投射出的红光映照在林远脸上, 高对比度打光，强调林远坚毅的轮廓, 强烈的工业感侧光, type close-up, lens 35mm, aperture f/2.0, depth_of_field shallow depth, focus on Lin Yuan's hands and face, flash none, grain fine industrial film grain, texture metallic and gritty, 林远位于画面左侧中心，正在操作设备, 小赵-配角1位于右侧背景，处于离焦状态, 焦点集中在林远操作控制台的双手与冷峻的侧脸, 构图强调狭窄空间的压迫感, cyberpunk realism, no text or symbols in image, 压抑而紧张, 冷峻的决绝, 职场博弈的沉重感, 工业现实主义的真实质感, no text, no symbols, no garbled characters, no words",
+                  "scene_text_hash": "aa9520f3cfc8685b6713fdc1d5c243ef",
+                  "style": "default",
+                  "url": "/image_cache/3603eb092dba42cd9949c2564c15af61.png",
+                  "width": 1920
+                }
+              },
+              "status": "success"
+            },
+            "request_payload": {
+              "option": "强行切断总部指令，优先修复生命维持系统。",
+              "optionIndex": 0,
+              "sceneId": "-5745781551192970677_-2758337910812634132",
+              "currentOptions": [
+                "强行切断总部指令，优先修复生命维持系统。",
+                "尝试接入总部加密协议，寻找平衡能源分配的漏洞。"
+              ],
+              "globalState": {
+                "core_worldview": {
+                  "chapters": {
+                    "chapter1": {
+                      "conflict_end_condition": "主角成功修复了生活区的应急氧气循环系统，确保了幸存者在未来48小时内的生存需求，但代价是错过了最佳的逃生舱发射窗口，彻底失去了第一时间撤离的机会。",
+                      "main_conflict": "矿难突发，基地陷入混乱。主角发现公司总部下达的指令并非撤离，而是要求优先抢救氦-3提炼装置。面对氧气余量不足的现实，主角必须在“修复生命维持系统”与“执行公司强制任务”之间进行博弈，同时还要安抚因恐惧而陷入崩溃的同事，平衡个人生存与职业责任的冲突。"
+                    },
+                    "chapter2": {
+                      "conflict_end_condition": "主角成功获取了关键的事故数据备份，但被迫与管理层达成妥协，隐瞒了部分高层的直接责任，换取了救援队提前抵达的承诺，内心深处留下了对牺牲工友的愧疚。",
+                      "main_conflict": "基地结构进一步恶化，主角发现矿难的真实原因是公司为了赶工期而强行超负荷运转设备。主角在搜集证据的过程中，遭到了基地管理层的监视与阻挠。此时，主角必须在“揭露真相”与“获取救援资源”之间做出选择，因为一旦真相曝光，公司可能会为了掩盖丑闻而彻底切断基地的补给。"
+                    },
+                    "chapter3": {
+                      "conflict_end_condition": "主角成功将证据与幸存者送上撤离船，自己则因留守维护反应堆而错失撤离，最终在救援队的后续协助下获救，但因伤残失去了职业生涯，且真相在复杂的公关手段下被淡化处理，主角收获了平静的余生，却永远失去了曾经引以为傲的职业尊严。",
+                      "main_conflict": "救援队抵达，但由于企业利益博弈，救援规模被大幅缩减，无法带走所有幸存者。主角面临最终的抉择：是利用仅有的撤离名额带走关键证据与部分幸存者，还是留在基地继续维护即将崩溃的反应堆以防止更大的生态灾难。这是对主角职业操守与人性底线的最终考验。"
+                    }
+                  },
+                  "characters": {},
+                  "forces": {},
+                  "game_style": "本作为硬核工业现实主义风格，采用冷峻的低饱和度视觉表现。叙事节奏克制，强调环境叙事与职场细节，通过对月球基地狭窄空间、机械故障与通讯延迟的细腻刻画，营造出一种压抑但真实的生存质感，旨在探讨极端环境下个体与庞大体制的博弈。",
+                  "main_quest": "主角需在基地通讯中断的七天内，完成“核心数据备份”与“生命维持系统修复”的双重目标。玩家需在有限的氧气配额下，穿梭于受损的舱段，通过收集废旧零件、破解企业加密协议及协调幸存同事的协作来推进任务。挑战在于，主角不仅要面对物理环境的恶化，还要在“保全公司资产”与“保全同伴生命”之间做出艰难的道德抉择。最终目标并非拯救所有人，而是确保在救援队抵达前，基地核心舱段不发生彻底坍塌，并带回足以证明真相的黑匣子数据。",
+                  "protagonist_ability": "主角作为一名资深机械维护员，核心能力是“精密感知与故障预判”。这并非超能力，而是源于长年累月在极端环境下与机械打交道的经验积累。主角能通过设备震动频率、电流声响与金属疲劳纹理，精准判断故障点。使用时需消耗大量体力与专注力，且受限于基地陈旧的检测工具，无法解决所有结构性损坏，只能在“维持运转”与“彻底报废”之间寻找脆弱的平衡。",
+                  "world_basic_setting": "故事背景设定在2070年代，人类已实现月球氦-3资源的商业化开采。月球基地“静海-4号”是地球能源供应的核心枢纽，社会结构高度科层化，工人被严格划分为“地表作业组”与“深层维护组”。由于企业对成本的极致压缩，基地设施老化严重，安全隐患被长期忽视。关键事件“七日矿难”起因于一次违规的深层钻探引发的连锁地壳震动，导致基地核心舱段气密性受损，通讯中继站瘫痪。此时，地球总部出于股价与舆论考量，决定封锁消息并延迟救援，要求留守人员在有限的氧气与物资条件下，自行完成核心数据的备份与关键设备的抢修，以保住企业的核心资产。"
+                },
+                "flow_worldline": {
+                  "characters": {},
+                  "current_chapter": "chapter1",
+                  "environment": {},
+                  "chapter_progress": 2.0
+                },
+                "game_id": "game_1777644673_g1ab13",
+                "image_style": {
+                  "type": "cyberpunk"
+                },
+                "meta": {
+                  "detail_async": true
+                },
+                "protagonist_canonical": {
+                  "age_range": "中年",
+                  "gender": "男性",
+                  "name_en": "Lin Yuan",
+                  "name_zh": "林远",
+                  "signature_look_keywords": "疲惫的眼神，粗糙的双手，深蓝色工装，左侧鬓角微白，沉默寡言，常年佩戴的旧式多功能扳手，略显佝偻的背影，坚毅的下颌线，皮肤因辐射略显苍白。",
+                  "work_en": "Seven Days of Lunar Disaster",
+                  "work_zh": "月球矿难七日"
+                },
+                "tone": "normal_ending",
+                "user_theme": "月球矿难七日",
+                "_benchmark_profile": "fullready_pregen60",
+                "_benchmark_measurement": "fullready_nextturn",
+                "_benchmark_read_wait_s": 60.0
+              },
+              "previousSceneId": "initial",
+              "previousSceneImage": {
+                "cached": true,
+                "height": 1080,
+                "image_type": "story_scene",
+                "prompt": "scene-moon-base-crisis-lin-yuan-repair, hardcore-industrial-realism, cyberpunk, dystopian, claustrophobic, high-contrast, photorealistic, cinematic lighting, gritty industrial texture, low-saturation, sharp focus, Lin Yuan (Image 0), a middle-aged male with a weary and exhausted expression, pale skin due to long-term radiation exposure, sharp and firm jawline showing resilience, tired eyes focusing intensely on a control panel, slightly hunched back conveying heavy burden, rough, grease-stained hands gripping a metallic bulkhead, worn-out dark blue industrial jumpsuit, jumpsuit fabric soaked with cold sweat and marked by oil stains, a vintage multi-functional wrench tucked in his belt or held in hand, Lin Yuan (Image 0) standing in a narrow corridor, body partially turned away from the camera, left hand firmly pressed against the vibrating bulkhead, right hand holding a heated multi-functional wrench, posture leaning slightly toward the control panel, ignoring 小赵-配角1, 8K detailed facial features, tired, bloodshot eyes with a focused, analytical gaze, left temple showing greying hair, highlighted by emergency red light, stern and firm expression, lips tightly pressed, soft shadows emphasizing the ruggedness of his face, subtle skin texture showing pores and fatigue, short, messy hair with greying temples, root fixation coefficient 0.5, tip swing amplitude 2cm, color layering: main color #2C3E50, secondary color #1A252F, highlight #4A5568, shadow #000000, wind speed 0.2m/s, turbulence intensity 10%, heavy-duty dark blue jumpsuit with metallic buckles, slight fabric flutter due to air pressure instability, grease and grime stains on sleeves and chest, dull metallic reflection from the fabric texture, cramped, claustrophobic moon base corridor with exposed pipes and wires, flickering red emergency lighting casting deep shadows, control panel with blinking, glitching red warning codes, metal walls showing signs of structural deformation and rust, 小赵-配角1 sitting on the floor near the cabin door, face contorted with fear, visible ozone and coolant haze in the air, flickering neon-like red warning light intensity, floating dust particles near the damaged control panel, harsh high-contrast lighting from the emergency alarm, cold desaturated blues and greys for the environment, harsh, alarming neon red for warning lights and shadows, muted skin tones, metallic silver and rusted iron accents, harsh flickering red strobe light, dim cool-toned ambient light from overhead emergency strips, high-contrast shadows highlighting the wear on the character's face, glow from the control panel screen illuminating Lin Yuan's profile, type medium close-up, lens 35mm, aperture f/2.0, depth_of_field shallow focus on Lin Yuan's intense gaze, flash none, grain fine film grain, texture industrial metallic texture, Lin Yuan (Image 0) positioned in the left foreground, 小赵-配角1 visible in the blurred background to the right, control panel as the secondary focal point, narrow corridor architecture framing the action, hardcore industrial realism, cyberpunk aesthetic, no text, no symbols, no watermarks, no乱码, oppressive, tense, desperate, grim reality, professional stoicism, no text, no symbols, no garbled characters, no words",
+                "prompt_json": {
+                  "camera": {
+                    "aperture": "f/2.0",
+                    "depth_of_field": "shallow focus on Lin Yuan's intense gaze",
+                    "flash": "none",
+                    "grain": "fine film grain",
+                    "lens": "35mm",
+                    "texture": "industrial metallic texture",
+                    "type": "medium close-up"
+                  },
+                  "clothing_system": [
+                    "heavy-duty dark blue jumpsuit with metallic buckles",
+                    "slight fabric flutter due to air pressure instability",
+                    "grease and grime stains on sleeves and chest",
+                    "dull metallic reflection from the fabric texture"
+                  ],
+                  "color_restriction": [
+                    "cold desaturated blues and greys for the environment",
+                    "harsh, alarming neon red for warning lights and shadows",
+                    "muted skin tones",
+                    "metallic silver and rusted iron accents"
+                  ],
+                  "composition": [
+                    "Lin Yuan (Image 0) positioned in the left foreground",
+                    "小赵-配角1 visible in the blurred background to the right",
+                    "control panel as the secondary focal point",
+                    "narrow corridor architecture framing the action"
+                  ],
+                  "environment": {
+                    "background": [
+                      "cramped, claustrophobic moon base corridor with exposed pipes and wires",
+                      "flickering red emergency lighting casting deep shadows",
+                      "control panel with blinking, glitching red warning codes",
+                      "metal walls showing signs of structural deformation and rust"
+                    ],
+                    "characters": [
+                      "小赵-配角1 sitting on the floor near the cabin door, face contorted with fear"
+                    ],
+                    "effects": [
+                      "visible ozone and coolant haze in the air",
+                      "flickering neon-like red warning light intensity",
+                      "floating dust particles near the damaged control panel",
+                      "harsh high-contrast lighting from the emergency alarm"
+                    ]
+                  },
+                  "face_system": [
+                    "8K detailed facial features",
+                    "tired, bloodshot eyes with a focused, analytical gaze",
+                    "left temple showing greying hair, highlighted by emergency red light",
+                    "stern and firm expression, lips tightly pressed",
+                    "soft shadows emphasizing the ruggedness of his face",
+                    "subtle skin texture showing pores and fatigue"
+                  ],
+                  "hair_system": [
+                    "short, messy hair with greying temples",
+                    "root fixation coefficient 0.5",
+                    "tip swing amplitude 2cm",
+                    "color layering: main color #2C3E50, secondary color #1A252F, highlight #4A5568, shadow #000000",
+                    "wind speed 0.2m/s",
+                    "turbulence intensity 10%"
+                  ],
+                  "label": "scene-moon-base-crisis-lin-yuan-repair",
+                  "lighting": [
+                    "harsh flickering red strobe light",
+                    "dim cool-toned ambient light from overhead emergency strips",
+                    "high-contrast shadows highlighting the wear on the character's face",
+                    "glow from the control panel screen illuminating Lin Yuan's profile"
+                  ],
+                  "mood": [
+                    "oppressive",
+                    "tense",
+                    "desperate",
+                    "grim reality",
+                    "professional stoicism"
+                  ],
+                  "output_style": [
+                    "hardcore industrial realism",
+                    "cyberpunk aesthetic",
+                    "no text, no symbols, no watermarks, no乱码"
+                  ],
+                  "style": [
+                    "photorealistic",
+                    "cinematic lighting",
+                    "gritty industrial texture",
+                    "low-saturation",
+                    "sharp focus"
+                  ],
+                  "subject": {
+                    "body_traits": [
+                      "Lin Yuan (Image 0), a middle-aged male with a weary and exhausted expression",
+                      "pale skin due to long-term radiation exposure",
+                      "sharp and firm jawline showing resilience",
+                      "tired eyes focusing intensely on a control panel",
+                      "slightly hunched back conveying heavy burden",
+                      "rough, grease-stained hands gripping a metallic bulkhead"
+                    ],
+                    "outfit": [
+                      "worn-out dark blue industrial jumpsuit",
+                      "jumpsuit fabric soaked with cold sweat and marked by oil stains",
+                      "a vintage multi-functional wrench tucked in his belt or held in hand"
+                    ],
+                    "pose": [
+                      "Lin Yuan (Image 0) standing in a narrow corridor, body partially turned away from the camera",
+                      "left hand firmly pressed against the vibrating bulkhead",
+                      "right hand holding a heated multi-functional wrench",
+                      "posture leaning slightly toward the control panel, ignoring 小赵-配角1"
+                    ]
+                  },
+                  "tags": [
+                    "hardcore-industrial-realism",
+                    "cyberpunk",
+                    "dystopian",
+                    "claustrophobic",
+                    "high-contrast"
+                  ]
+                },
+                "scene_text_hash": "275d57930391ab4811c739ffb064957b",
+                "style": "default",
+                "url": "/image_cache/8ead553d98c825bbba5b055b878fbb56.png",
+                "width": 1920
+              },
+              "previousSceneText": "刺耳的金属扭曲声在狭窄的舱道内回荡，那是静海4号基地正在痛苦呻吟。我下意识地用那双粗糙、布满油污的手扶住舱壁，指尖传来的震动感告诉我，外部的氦3提炼装置已经彻底失控。空气中弥漫着一股刺鼻的焦糊味，那是线路短路后的臭氧与冷却液混合的味道。我那件深蓝色的工装早已被冷汗浸透，左侧鬓角微白的头发在应急灯昏暗的红光下显得格外刺眼。我低头看了一眼手腕上的多功能扳手，那是陪伴我十年的老伙计，此刻它正微微发烫。\n\n“林远，氧气循环系统压力降至30了，我们得做点什么！”年轻的维修工小赵瘫坐在舱门边，他那张年轻的脸庞因恐惧而扭曲，声音颤抖得厉害。我没有回头，只是紧紧抿着那条坚毅的下颌线，目光死死盯着控制面板上不断跳动的红色警告代码。我知道，如果现在不修复主循环泵，我们所有人都会在两小时内窒息。但我更清楚，总部发来的加密指令正强行占用着系统的算力，要求优先保障提炼装置的能源输出。我深吸一口气，那略显佝偻的背影在阴影中显得有些沉重，我必须在保住这群同事的命和执行那该死的公司任务之间做出抉择。"
+            },
+            "start_ts": 1777644817.1173701,
+            "end_ts": 1777644817.1294582,
+            "provider_events": {
+              "event_count": 0,
+              "queue_wait_ms": {
+                "count": 0
+              },
+              "latency_ms": {
+                "count": 0
+              },
+              "llm_success_count": 0,
+              "image_success_count": 0,
+              "request_thread_event_count": 0,
+              "provider_429_count": 0,
+              "provider_timeout_count": 0,
+              "shared_backoff_wait_ms_total": 0,
+              "retry_heavy_event_count": 0,
+              "main_character_event_count": 0,
+              "scene_image_event_count": 0
+            }
+          }
+        ],
+        "attempt_count": 1,
+        "request_elapsed_s": 0.012,
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "success",
+        "has_scene": true,
+        "has_image": true,
+        "selected_option_index": 0,
+        "selected_option_text": "强行切断总部指令，优先修复生命维持系统。",
+        "input_scene_id": "-5745781551192970677_-2758337910812634132",
+        "inferred_cache_result": "likely_hit",
+        "used_updated_flow_state": true,
+        "cache_hit_reason": "request_scene_completed_with_image",
+        "cache_miss_reason": null,
+        "global_state_key_drift_detected": true,
+        "scene_id_mismatch_detected": true,
+        "selected_option_mismatch_detected": false,
+        "current_options_key_drift_detected": false,
+        "benchmark_diagnostics": {
+          "cache_hit_reason": "request_scene_completed_with_image",
+          "cache_miss_reason": null,
+          "current_options_key_drift_detected": false,
+          "global_state_key_drift_detected": true,
+          "placeholder": false,
+          "previous_scene_id": "initial",
+          "recomputed_scene_cache_exists": false,
+          "recomputed_scene_id": "773347527905389496_-2758337910812634132",
+          "request_current_options_count": 2,
+          "request_current_options_hash": "21de3adabc70e0f207ef50db47960038",
+          "request_flow_worldline_hash": "0b7d2802f8e46ae104639ddbac325b51",
+          "request_global_state_hash": "62dcc461908086fa3a4b3ed6ba0a1c8f",
+          "request_option_at_index": "强行切断总部指令，优先修复生命维持系统。",
+          "request_option_index": 0,
+          "request_option_text": "强行切断总部指令，优先修复生命维持系统。",
+          "request_scene_cache_exists": true,
+          "request_scene_cache_meta": {
+            "canonical_scene_id": "-8162620721579901776_-2758337910812634132",
+            "current_options_hash": "21de3adabc70e0f207ef50db47960038",
+            "current_options_preview": [
+              "强行切断总部指令，优先修复生命维持系统。",
+              "尝试接入总部加密协议，寻找平衡能源分配的漏洞。"
+            ],
+            "flow_worldline_hash": "940e38d5f8372eaa58cfdaf4d70a0d30",
+            "global_state_hash": "d9b396563a17ab4ffd91187efada57c1",
+            "option_count": 2,
+            "parent_scene_id": null,
+            "scene_id": "-5745781551192970677_-2758337910812634132"
+          },
+          "request_scene_generation_status": "completed",
+          "request_scene_id": "-5745781551192970677_-2758337910812634132",
+          "resolution_path": "request_scene_cache_direct",
+          "response_has_image": true,
+          "response_has_scene": true,
+          "response_scene_id": "-5012896544090766366_2140491363114764147",
+          "response_status": "success",
+          "scene_id_mismatch_detected": true,
+          "selected_option_mismatch_detected": false
+        }
+      },
+      "full_ready": {
+        "text_ready_ts": 1777644817.1294582,
+        "text_ready_elapsed_s": 0.012,
+        "image_ready_ts": 1777644817.1294582,
+        "image_ready_elapsed_s": 0.012,
+        "full_ready_ts": 1777644817.1294582,
+        "full_ready_elapsed_s": 0.012,
+        "image_probe": {
+          "status": "success",
+          "source": "generate-option",
+          "image": {
+            "cached": true,
+            "height": 1080,
+            "image_type": "story_scene",
+            "prompt": "scene-lin-yuan-emergency-repair-shutoff, cyberpunk, hard-industrial-realism, dystopian, low-saturation, high-contrast, photorealistic, cinematic lighting, gritty texture, industrial sci-fi, no text or symbols in image, 中年男性林远，主角使用 Image 0, 疲惫而深邃的眼神，透露出冷峻的决断, 皮肤因长期月球辐射而略显苍白, 下颌线坚毅，嘴角紧抿, 双手粗糙且沾染油污, 深蓝色老旧工装，带有明显的磨损与污渍, 腰间挂着常年使用的多功能扳手, 半蹲在控制台前，身体略显佝偻, 双手正在飞速操作控制面板，动作精准有力, 左侧鬓角微白，侧脸面向画面左侧的控制台, 背影坚毅，专注地面对故障设备, 8K detailed facial features, 疲惫深沉的眼神，带有粗糙的皮肤纹理, 坚毅下颌线, 冷峻释然的表情, 面部阴影深重，强调中年男性的沧桑感, 深色短发，左侧鬓角明显斑白, root fixation coefficient 0.95, tip swing amplitude 2cm, color layering: main black #1A1A1A, secondary dark grey #333333, highlight cold white #E0E0E0, shadow #000000, wind speed 0.1m/s, turbulence intensity 1%, 厚实的深蓝色工装材质，带有金属磨损痕迹, 袖口卷起，露出沾满油垢的粗糙手臂, 衣物纤维细节清晰，呈现出长期在极端环境下作业的粗糙感, 昏暗狭窄的月球基地核心舱段, 陈旧的控制台，屏幕显示着红色的故障警报曲线, 四周布满裸露的电缆与金属管道, 空气中漂浮着细微的尘埃与氧气循环泵喷出的冷凝雾气, 小赵-配角1站在画面右侧后方，神情惊恐，双手悬空，显得无措, 控制台闪烁的红光与冷冽的舱内蓝光形成强烈对比, 金属崩裂出的火花点缀在控制台侧面, 周围环境充满压抑的工业废墟氛围, 冷峻的低饱和度蓝灰色调为主, 控制台刺眼的红色警报光, 金属质感的银灰色, 阴影部分采用深邃的黑色, 冷冽的基地应急灯光, 控制台屏幕投射出的红光映照在林远脸上, 高对比度打光，强调林远坚毅的轮廓, 强烈的工业感侧光, type close-up, lens 35mm, aperture f/2.0, depth_of_field shallow depth, focus on Lin Yuan's hands and face, flash none, grain fine industrial film grain, texture metallic and gritty, 林远位于画面左侧中心，正在操作设备, 小赵-配角1位于右侧背景，处于离焦状态, 焦点集中在林远操作控制台的双手与冷峻的侧脸, 构图强调狭窄空间的压迫感, cyberpunk realism, no text or symbols in image, 压抑而紧张, 冷峻的决绝, 职场博弈的沉重感, 工业现实主义的真实质感, no text, no symbols, no garbled characters, no words",
+            "scene_text_hash": "aa9520f3cfc8685b6713fdc1d5c243ef",
+            "style": "default",
+            "url": "/image_cache/3603eb092dba42cd9949c2564c15af61.png",
+            "width": 1920
+          },
+          "attempt_count": 0
+        },
+        "ready_mode": "direct_in_generate_option",
+        "attribution": {
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "provider_retry_heavy_count": 0,
+          "provider_backoff_wait_ms_total": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0,
+          "image_probe_attempt_count": 0,
+          "main_character_contention_suspected": false
+        }
+      },
+      "placeholder": false,
+      "transport_success": true,
+      "strict_success": true,
+      "failure_bucket": null,
+      "cache_path_classification": "likely_hit_direct_image",
+      "cache_hit_reason": "request_scene_completed_with_image",
+      "cache_miss_reason": null,
+      "global_state_key_drift_detected": true,
+      "scene_id_mismatch_detected": true,
+      "selected_option_mismatch_detected": false,
+      "success": true
+    }
+  ]
+}

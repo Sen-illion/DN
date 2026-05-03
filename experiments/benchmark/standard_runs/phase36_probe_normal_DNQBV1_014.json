@@ -1,0 +1,1414 @@
+{
+  "summary": {
+    "experiment_name": "benchmark_v15_fullready_nextturn_normal20",
+    "profile": "fullready_strict",
+    "sample_size": 1,
+    "read_wait_s": 0.0,
+    "suite_start_ts": 1777644180.5995452,
+    "suite_end_ts": 1777644261.6774619,
+    "first_click_elapsed_s": {
+      "count": 1,
+      "min": 50.809,
+      "max": 50.809,
+      "mean": 50.809,
+      "median": 50.809,
+      "p95": 50.809
+    },
+    "first_click_setup_success_count": 1,
+    "second_click_elapsed_s": {
+      "count": 1,
+      "min": 21.886,
+      "max": 21.886,
+      "mean": 21.886,
+      "median": 21.886,
+      "p95": 21.886
+    },
+    "second_click_success_count": 1,
+    "transport_success_count": 1,
+    "strict_success_count": 1,
+    "likely_hit_count": 0,
+    "likely_hit_rate": 0.0,
+    "failure_bucket_counts": {},
+    "placeholder_strict_fail_count": 0,
+    "cache_hit_reason_counts": {
+      "waited_request_scene_text_completed_no_image": 1
+    },
+    "cache_miss_reason_counts": {
+      "request_scene_generation_in_progress": 1
+    },
+    "global_state_key_drift_detected_count": 1,
+    "scene_id_mismatch_detected_count": 1,
+    "selected_option_mismatch_detected_count": 0,
+    "aborted": false,
+    "success_count": 1,
+    "text_ready_elapsed_s": {
+      "count": 1,
+      "min": 21.886,
+      "max": 21.886,
+      "mean": 21.886,
+      "median": 21.886,
+      "p95": 21.886
+    },
+    "image_ready_elapsed_s": {
+      "count": 1,
+      "min": 21.886,
+      "max": 21.886,
+      "mean": 21.886,
+      "median": 21.886,
+      "p95": 21.886
+    },
+    "full_ready_elapsed_s": {
+      "count": 1,
+      "min": 21.886,
+      "max": 21.886,
+      "mean": 21.886,
+      "median": 21.886,
+      "p95": 21.886
+    },
+    "real_scene_count": 1,
+    "real_scene_rate": 1.0,
+    "direct_image_count": 1,
+    "async_image_count": 0,
+    "placeholder_count": 0,
+    "placeholder_rate": 0.0,
+    "direct_image_rate": 1.0,
+    "async_image_rate": 0.0,
+    "provider_retry_heavy_count": 0,
+    "provider_429_count": 0,
+    "provider_timeout_count": 0,
+    "provider_backoff_wait_ms_total": 0,
+    "main_character_contention_suspected_count": 0,
+    "notes": "v15 strict normal20 treats first click as setup with a separate timeout budget, while preserving 60s fail-fast guards for second-click request, scene-image wait, and the measured next-turn full-ready path."
+  },
+  "runs": [
+    {
+      "benchmark_id": "DNQBV1_014",
+      "theme_id": 23,
+      "theme": "雨林部落预言",
+      "read_wait_s": 0.0,
+      "full_ready_mode": true,
+      "profile": "fullready_strict",
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 8.241,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过协助族人修复受损的灌溉渠，赢得了长辈的初步信任，同时向开发商提交了一份详尽但折中的调研报告，暂时缓解了双方的对立情绪，但并未从根本上解决土地征收的争议。",
+                  "main_conflict": "主角回到阔别已久的雨林，试图以专业身份说服族人配合调研，却遭到长辈的强烈抵触。族人认为主角背弃了预言，是引狼入室的帮凶，而开发商则质疑主角的工作效率，要求其使用强硬手段获取土地使用权，主角陷入了职业道德与血缘亲情的双重夹击。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角成功说服村民撤离至安全地带，并以匿名方式向媒体披露了地质隐患，迫使开发商进行加固工程，虽然项目得以继续，但主角因此失去了在业内的信誉，被迫辞职。",
+                  "main_conflict": "雨季提前到来，大坝工程引发的泥石流隐患暴露，部分村民的房屋受损。主角在救灾过程中，发现开发商为了赶工期隐瞒了地质风险，而族人为了守护祖坟拒绝撤离。主角必须在揭露真相导致项目停摆（失去补偿金）与隐瞒真相保护项目（危及村民生命）之间做出抉择。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角选择留守，虽然无法恢复往日的雨林，但通过发展生态旅游，让族人获得了一份稳定的收入。主角最终与遗憾和解，接受了家园不再是记忆中模样的事实，在平凡的日常中守护着最后的文化火种。",
+                  "main_conflict": "大坝最终落成，雨林生态彻底改变，预言中的“雨季终结”以一种残酷的方式应验。主角面临最后的抉择：是带着积蓄去城市开启新生活，还是留在这个破碎的故乡，尝试在新的生态环境下重建部落的生计，面对的是不可逆的文化流失与难以回头的过去。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "沉浸式现实主义叙事，强调环境叙事与细腻的情感交互。画面呈现出潮湿、质朴且带有原始生命力的质感，通过低饱和度的色彩与环境音效，营造出一种在现代文明边缘徘徊的真实生活氛围，让玩家在琐碎的日常中感受命运的重量。",
+              "main_quest": "主角受雇于一家环境评估机构，回到故乡雨林协助完成大坝建设的前期调研。目标是平衡开发商的进度要求与部落的生存诉求，试图在不彻底摧毁家园的前提下，为族人争取到合理的补偿与安置方案。任务分为三个阶段：首先是深入部落获取信任，收集真实的生态数据；其次是周旋于开发商与村民之间，处理因土地征收引发的利益纠纷；最后是在大坝动工前，做出关于个人去留与族群未来的最终抉择。挑战在于，主角越深入了解真相，越发现无论如何努力，都无法阻止家园的变迁，只能在“守护过去”与“拥抱未来”之间寻找那个充满遗憾的平衡点。",
+              "protagonist_ability": "主角并非超能力者，其“能力”源于长期在雨林与城市间奔波积累的“地缘感知力”。这是一种基于对地形、气候、人际关系网深刻理解的直觉。主角能通过观察植被变化预判天气，通过解读部落社交潜规则化解冲突。这种能力受限于体力与信息差，无法改变大环境的走向，只能在有限的范围内为自己和身边人争取到最优的生存空间与选择余地。",
+              "world_basic_setting": "故事发生于东南亚某处被现代文明半遗忘的雨林边缘地带。这里并非奇幻秘境，而是由零散的部落村落、破败的橡胶种植园与正在扩张的旅游开发区构成的复杂社会。当地流传着关于“雨季终结”的古老预言，被外界视为迷信，但对部落而言，这是关于土地肥力、水源枯竭与族群迁徙的生存法则。社会结构处于传统信仰与现代资本的夹缝中，年轻人渴望走出雨林去往城市，而长辈则试图守护日益萎缩的传统。关键事件是“大坝工程”的启动，它不仅是现代化的象征，也是导致部落生态与文化断层的直接诱因。这里没有神迹，只有因土地开发导致的泥石流风险、因劳动力流失导致的文化凋零，以及在生存压力下，人们对未来既渴望又恐惧的真实心态。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1777644180_bfjsor",
+            "image_style": {
+              "type": "watercolor"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "黑色短发、户外冲锋衣、晒成小麦色的皮肤、眼神坚定但疲惫、常背着旧帆布包、手腕上有部落编织的护身符、瘦削但结实、不修边幅的胡茬、总是带着地图、沉默寡言、内敛、带有泥土气息",
+              "work_en": "Echoes of the Rainforest",
+              "work_zh": "雨林余音"
+            },
+            "tone": "normal_ending",
+            "user_theme": "雨林部落预言"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "request_payload": {
+          "gameTheme": "雨林部落预言",
+          "protagonistAttr": {},
+          "difficulty": "normal",
+          "toneKey": "normal_ending",
+          "imageStyle": {
+            "type": "watercolor"
+          },
+          "_benchmark_profile": "fullready_strict",
+          "_benchmark_measurement": "fullready_nextturn",
+          "_benchmark_read_wait_s": 0.0
+        },
+        "start_ts": 1777644180.59955,
+        "end_ts": 1777644188.8402195,
+        "provider_events": {
+          "event_count": 4,
+          "queue_wait_ms": {
+            "count": 4,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 1,
+            "min": 8226.0,
+            "max": 8226.0,
+            "mean": 8226.0,
+            "median": 8226.0,
+            "p95": 8226.0
+          },
+          "llm_success_count": 1,
+          "image_success_count": 0,
+          "request_thread_event_count": 2,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0
+        },
+        "status": "success",
+        "game_id": "game_1777644180_bfjsor"
+      },
+      "long_tail_attribution": {
+        "provider_429_count": 0,
+        "provider_timeout_count": 0,
+        "provider_retry_heavy_count": 0,
+        "provider_backoff_wait_ms_total": 0,
+        "main_character_event_count": 0,
+        "scene_image_event_count": 0,
+        "image_probe_attempt_count": 0,
+        "main_character_contention_suspected": false
+      },
+      "first_click": {
+        "http_status": 200,
+        "elapsed_s": 50.809,
+        "response_json": {
+          "benchmark_diagnostics": {
+            "cache_hit_reason": null,
+            "cache_miss_reason": null,
+            "current_options_key_drift_detected": false,
+            "global_state_key_drift_detected": false,
+            "placeholder": false,
+            "previous_scene_id": null,
+            "recomputed_scene_cache_exists": false,
+            "recomputed_scene_id": null,
+            "request_current_options_count": 0,
+            "request_current_options_hash": "d751713988987e9331980363e24189ce",
+            "request_flow_worldline_hash": "940e38d5f8372eaa58cfdaf4d70a0d30",
+            "request_global_state_hash": "01c33485405de4ce50fdc4662baeab71",
+            "request_option_at_index": null,
+            "request_option_index": 0,
+            "request_option_text": "开始游戏",
+            "request_scene_cache_exists": false,
+            "request_scene_id": null,
+            "resolution_path": null,
+            "response_has_image": true,
+            "response_has_scene": true,
+            "response_scene_id": "-6378612320772163005_-8423417078766005398",
+            "response_status": "success",
+            "scene_id_mismatch_detected": false,
+            "selected_option_mismatch_detected": false
+          },
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "",
+              "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：潮湿的泥土腥气钻进鼻腔，混合着橡胶林特有的苦涩味。我背着沉重的旧帆布包，脚下的冲锋衣被雨林边缘的灌木挂出几道细碎的口子。手腕上那串部落编织的护身符在闷热中显得格外沉重，我抬起手，用满是泥土的指尖抹去额头的汗水，胡茬间渗出的盐分刺痛着皮肤。前方，那座破败的村落轮廓在灰蒙蒙的雨雾中若隐若现，几名族人正围在村口的枯树下，眼神冷漠地注视着我这个“外来者”。我深吸一口气，整理了一下地图，尽量让那双疲惫但坚定的眼睛看向他们。\n\n“我回来了。”我开口，声音因长途跋涉而沙哑，在空旷的林间显得有些单薄。\n\n村长阿坤拄着一根磨损严重的木杖，缓缓从阴影中走出，他那张布满沟壑的脸上看不出任何欢迎的意味，只是盯着我手里的测绘仪器，冷冷地说道：“林远，你带着这些冰冷的机器回来，是想把我们的根也一起挖走吗？”\n\n我沉默地看着他，空气中弥漫着一种无形的压抑，仿佛预示着这场调研注定不会顺利。"
+            },
+            "deep_background_links": {},
+            "flow_update": {},
+            "next_options": [
+              "诚恳解释调研初衷，并提出协助修复受损的灌溉渠。",
+              "提及多年前离开时与阿坤的约定，试图唤起他的旧情。"
+            ],
+            "scene": "潮湿的泥土腥气钻进鼻腔，混合着橡胶林特有的苦涩味。我背着沉重的旧帆布包，脚下的冲锋衣被雨林边缘的灌木挂出几道细碎的口子。手腕上那串部落编织的护身符在闷热中显得格外沉重，我抬起手，用满是泥土的指尖抹去额头的汗水，胡茬间渗出的盐分刺痛着皮肤。前方，那座破败的村落轮廓在灰蒙蒙的雨雾中若隐若现，几名族人正围在村口的枯树下，眼神冷漠地注视着我这个“外来者”。我深吸一口气，整理了一下地图，尽量让那双疲惫但坚定的眼睛看向他们。\n\n“我回来了。”我开口，声音因长途跋涉而沙哑，在空旷的林间显得有些单薄。\n\n村长阿坤拄着一根磨损严重的木杖，缓缓从阴影中走出，他那张布满沟壑的脸上看不出任何欢迎的意味，只是盯着我手里的测绘仪器，冷冷地说道：“林远，你带着这些冰冷的机器回来，是想把我们的根也一起挖走吗？”\n\n我沉默地看着他，空气中弥漫着一种无形的压抑，仿佛预示着这场调研注定不会顺利。",
+            "sceneId": "-6378612320772163005_-8423417078766005398",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-lin-yuan-return-to-village, watercolor, narrative-realism, atmospheric, rainy-jungle-edge, melancholy, watercolor and ink wash painting, fresh and translucent color layering, wet-on-wet technique for rain-soaked atmosphere, visible pigment bleeding, soft chiaroscuro with low-saturation earth tones, muted greens and grays, delicate ink strokes for texture, loose and spontaneous brushwork, water marks and damp paper texture, soft diffuse edges, no text, no symbols, no watermarks, no digital artifacts, young man with sun-kissed wheat-colored skin, short messy black hair with damp texture, tired but resolute eyes, stubble on jawline, lean and athletic build, posture slightly hunched from heavy bag, mud-stained fingers and face, visible sweat and salt streaks, rugged outdoor trekking jacket with visible tears and frayed fabric, old canvas shoulder bag with worn-out texture, tribal woven amulet on wrist with intricate knotting, standing in front of a village entrance, facing toward the viewer (referencing Image 0), one hand wiping sweat from forehead, body slightly tilted forward, gaze fixed on the village elders with a weary but firm expression, 8K detailed facial features, realistic expression of fatigue and determination, eyes with fine ink-shaded lines, intense and tired gaze, stubble on chin and upper lip rendered with fine dry-brush ink strokes, skin texture with subtle watercolor wash, visible sweat droplets, no text, no symbols, no strange markings on the face, short black hair, damp and clumped by humidity, root fixation coefficient 0.85, tip swing amplitude 5cm, color layering: deep charcoal base with subtle dark brown highlights, wind speed 0.5m/s, turbulence intensity 10 percent, no text, no symbols in hair details, outdoor jacket with frayed edges and mud splashes, canvas bag showing signs of heavy wear and frayed threads, tribal amulet with realistic woven texture and earthy tones, no logos, no text, no modern printed patterns, dilapidated village entrance under heavy gray rain mist, withered tree at the village edge with gnarled branches, rubber plantation in the distance with soft watercolor blur, muddy terrain with pools of water reflecting the overcast sky, 村长阿坤-配角1 standing in the shadows of the village entrance, leaning on a worn wooden staff, face lined with age and suspicion, rain mist and damp humidity obscuring the background, soft water droplets on the edges of the frame, muddy earth texture created with wet-on-wet ink splatters, low-saturation palette dominated by moss green, earthy brown, and slate gray, muted tones to reflect the humid and somber atmosphere, avoid neon or overly vibrant colors, natural light-and-shadow depth, overcast natural light, soft and diffused, low-contrast shadows suggesting a heavy, humid atmosphere, subtle rim light on the protagonist to separate from the dark background, type medium shot, lens 35mm, aperture f/2.8, depth_of_field shallow focus on the protagonist, village background softly blurred, flash none, grain natural paper grain, subtle water stain texture, texture visible brush hair texture, pigment diffusion, protagonist positioned in the lower-middle foreground, slightly off-center, 村长阿坤-配角1 positioned on the left side of the frame, emerging from shadow, leading lines from the muddy path directed toward the village entrance, no text, no symbols, no UI elements, watercolor and ink wash illustration, high artistic quality, realistic light and shadow with painterly brushwork, no text, no symbols, no words, no signatures, heavy and somber atmosphere, tense confrontation between tradition and change, lingering sense of duty and exhaustion, no text, no symbols, no garbled characters, no words",
+              "prompt_json": {
+                "camera": {
+                  "aperture": "f/2.8",
+                  "depth_of_field": "shallow focus on the protagonist, village background softly blurred",
+                  "flash": "none",
+                  "grain": "natural paper grain, subtle water stain texture",
+                  "lens": "35mm",
+                  "texture": "visible brush hair texture, pigment diffusion",
+                  "type": "medium shot"
+                },
+                "clothing_system": [
+                  "outdoor jacket with frayed edges and mud splashes",
+                  "canvas bag showing signs of heavy wear and frayed threads",
+                  "tribal amulet with realistic woven texture and earthy tones",
+                  "no logos, no text, no modern printed patterns"
+                ],
+                "color_restriction": [
+                  "low-saturation palette dominated by moss green, earthy brown, and slate gray",
+                  "muted tones to reflect the humid and somber atmosphere",
+                  "avoid neon or overly vibrant colors",
+                  "natural light-and-shadow depth"
+                ],
+                "composition": [
+                  "protagonist positioned in the lower-middle foreground, slightly off-center",
+                  "村长阿坤-配角1 positioned on the left side of the frame, emerging from shadow",
+                  "leading lines from the muddy path directed toward the village entrance",
+                  "no text, no symbols, no UI elements"
+                ],
+                "environment": {
+                  "background": [
+                    "dilapidated village entrance under heavy gray rain mist",
+                    "withered tree at the village edge with gnarled branches",
+                    "rubber plantation in the distance with soft watercolor blur",
+                    "muddy terrain with pools of water reflecting the overcast sky"
+                  ],
+                  "characters": [
+                    "村长阿坤-配角1 standing in the shadows of the village entrance, leaning on a worn wooden staff, face lined with age and suspicion"
+                  ],
+                  "effects": [
+                    "rain mist and damp humidity obscuring the background",
+                    "soft water droplets on the edges of the frame",
+                    "muddy earth texture created with wet-on-wet ink splatters"
+                  ]
+                },
+                "face_system": [
+                  "8K detailed facial features, realistic expression of fatigue and determination",
+                  "eyes with fine ink-shaded lines, intense and tired gaze",
+                  "stubble on chin and upper lip rendered with fine dry-brush ink strokes",
+                  "skin texture with subtle watercolor wash, visible sweat droplets",
+                  "no text, no symbols, no strange markings on the face"
+                ],
+                "hair_system": [
+                  "short black hair, damp and clumped by humidity",
+                  "root fixation coefficient 0.85, tip swing amplitude 5cm",
+                  "color layering: deep charcoal base with subtle dark brown highlights",
+                  "wind speed 0.5m/s, turbulence intensity 10 percent",
+                  "no text, no symbols in hair details"
+                ],
+                "label": "scene-lin-yuan-return-to-village",
+                "lighting": [
+                  "overcast natural light, soft and diffused",
+                  "low-contrast shadows suggesting a heavy, humid atmosphere",
+                  "subtle rim light on the protagonist to separate from the dark background"
+                ],
+                "mood": [
+                  "heavy and somber atmosphere",
+                  "tense confrontation between tradition and change",
+                  "lingering sense of duty and exhaustion"
+                ],
+                "output_style": [
+                  "watercolor and ink wash illustration, high artistic quality",
+                  "realistic light and shadow with painterly brushwork",
+                  "no text, no symbols, no words, no signatures"
+                ],
+                "style": [
+                  "watercolor and ink wash painting, fresh and translucent color layering",
+                  "wet-on-wet technique for rain-soaked atmosphere, visible pigment bleeding",
+                  "soft chiaroscuro with low-saturation earth tones, muted greens and grays",
+                  "delicate ink strokes for texture, loose and spontaneous brushwork",
+                  "water marks and damp paper texture, soft diffuse edges",
+                  "no text, no symbols, no watermarks, no digital artifacts"
+                ],
+                "subject": {
+                  "body_traits": [
+                    "young man with sun-kissed wheat-colored skin",
+                    "short messy black hair with damp texture",
+                    "tired but resolute eyes, stubble on jawline",
+                    "lean and athletic build, posture slightly hunched from heavy bag",
+                    "mud-stained fingers and face, visible sweat and salt streaks"
+                  ],
+                  "outfit": [
+                    "rugged outdoor trekking jacket with visible tears and frayed fabric",
+                    "old canvas shoulder bag with worn-out texture",
+                    "tribal woven amulet on wrist with intricate knotting"
+                  ],
+                  "pose": [
+                    "standing in front of a village entrance",
+                    "facing toward the viewer (referencing Image 0)",
+                    "one hand wiping sweat from forehead, body slightly tilted forward",
+                    "gaze fixed on the village elders with a weary but firm expression"
+                  ]
+                },
+                "tags": [
+                  "watercolor",
+                  "narrative-realism",
+                  "atmospheric",
+                  "rainy-jungle-edge",
+                  "melancholy"
+                ]
+              },
+              "scene_text_hash": "5e4b042808cfb3cdb0e7b16f8ae8665f",
+              "style": "default",
+              "url": "/image_cache/bb55c62e44bfd748201bf983f8ce8439.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "request_payload": {
+          "option": "开始游戏",
+          "optionIndex": 0,
+          "sceneId": null,
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过协助族人修复受损的灌溉渠，赢得了长辈的初步信任，同时向开发商提交了一份详尽但折中的调研报告，暂时缓解了双方的对立情绪，但并未从根本上解决土地征收的争议。",
+                  "main_conflict": "主角回到阔别已久的雨林，试图以专业身份说服族人配合调研，却遭到长辈的强烈抵触。族人认为主角背弃了预言，是引狼入室的帮凶，而开发商则质疑主角的工作效率，要求其使用强硬手段获取土地使用权，主角陷入了职业道德与血缘亲情的双重夹击。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角成功说服村民撤离至安全地带，并以匿名方式向媒体披露了地质隐患，迫使开发商进行加固工程，虽然项目得以继续，但主角因此失去了在业内的信誉，被迫辞职。",
+                  "main_conflict": "雨季提前到来，大坝工程引发的泥石流隐患暴露，部分村民的房屋受损。主角在救灾过程中，发现开发商为了赶工期隐瞒了地质风险，而族人为了守护祖坟拒绝撤离。主角必须在揭露真相导致项目停摆（失去补偿金）与隐瞒真相保护项目（危及村民生命）之间做出抉择。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角选择留守，虽然无法恢复往日的雨林，但通过发展生态旅游，让族人获得了一份稳定的收入。主角最终与遗憾和解，接受了家园不再是记忆中模样的事实，在平凡的日常中守护着最后的文化火种。",
+                  "main_conflict": "大坝最终落成，雨林生态彻底改变，预言中的“雨季终结”以一种残酷的方式应验。主角面临最后的抉择：是带着积蓄去城市开启新生活，还是留在这个破碎的故乡，尝试在新的生态环境下重建部落的生计，面对的是不可逆的文化流失与难以回头的过去。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "沉浸式现实主义叙事，强调环境叙事与细腻的情感交互。画面呈现出潮湿、质朴且带有原始生命力的质感，通过低饱和度的色彩与环境音效，营造出一种在现代文明边缘徘徊的真实生活氛围，让玩家在琐碎的日常中感受命运的重量。",
+              "main_quest": "主角受雇于一家环境评估机构，回到故乡雨林协助完成大坝建设的前期调研。目标是平衡开发商的进度要求与部落的生存诉求，试图在不彻底摧毁家园的前提下，为族人争取到合理的补偿与安置方案。任务分为三个阶段：首先是深入部落获取信任，收集真实的生态数据；其次是周旋于开发商与村民之间，处理因土地征收引发的利益纠纷；最后是在大坝动工前，做出关于个人去留与族群未来的最终抉择。挑战在于，主角越深入了解真相，越发现无论如何努力，都无法阻止家园的变迁，只能在“守护过去”与“拥抱未来”之间寻找那个充满遗憾的平衡点。",
+              "protagonist_ability": "主角并非超能力者，其“能力”源于长期在雨林与城市间奔波积累的“地缘感知力”。这是一种基于对地形、气候、人际关系网深刻理解的直觉。主角能通过观察植被变化预判天气，通过解读部落社交潜规则化解冲突。这种能力受限于体力与信息差，无法改变大环境的走向，只能在有限的范围内为自己和身边人争取到最优的生存空间与选择余地。",
+              "world_basic_setting": "故事发生于东南亚某处被现代文明半遗忘的雨林边缘地带。这里并非奇幻秘境，而是由零散的部落村落、破败的橡胶种植园与正在扩张的旅游开发区构成的复杂社会。当地流传着关于“雨季终结”的古老预言，被外界视为迷信，但对部落而言，这是关于土地肥力、水源枯竭与族群迁徙的生存法则。社会结构处于传统信仰与现代资本的夹缝中，年轻人渴望走出雨林去往城市，而长辈则试图守护日益萎缩的传统。关键事件是“大坝工程”的启动，它不仅是现代化的象征，也是导致部落生态与文化断层的直接诱因。这里没有神迹，只有因土地开发导致的泥石流风险、因劳动力流失导致的文化凋零，以及在生存压力下，人们对未来既渴望又恐惧的真实心态。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1777644180_bfjsor",
+            "image_style": {
+              "type": "watercolor"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "黑色短发、户外冲锋衣、晒成小麦色的皮肤、眼神坚定但疲惫、常背着旧帆布包、手腕上有部落编织的护身符、瘦削但结实、不修边幅的胡茬、总是带着地图、沉默寡言、内敛、带有泥土气息",
+              "work_en": "Echoes of the Rainforest",
+              "work_zh": "雨林余音"
+            },
+            "tone": "normal_ending",
+            "user_theme": "雨林部落预言",
+            "_benchmark_profile": "fullready_strict",
+            "_benchmark_measurement": "fullready_nextturn",
+            "_benchmark_read_wait_s": 0.0
+          }
+        },
+        "start_ts": 1777644188.888449,
+        "end_ts": 1777644239.6977413,
+        "provider_events": {
+          "event_count": 9,
+          "queue_wait_ms": {
+            "count": 9,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 5,
+            "min": 3481.0,
+            "max": 11653.0,
+            "mean": 7408.8,
+            "median": 8240.0,
+            "p95": 11005.8
+          },
+          "llm_success_count": 4,
+          "image_success_count": 0,
+          "request_thread_event_count": 0,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 2,
+          "scene_image_event_count": 0
+        },
+        "attempts": [
+          {
+            "http_status": 200,
+            "elapsed_s": 50.809,
+            "response_json": {
+              "benchmark_diagnostics": {
+                "cache_hit_reason": null,
+                "cache_miss_reason": null,
+                "current_options_key_drift_detected": false,
+                "global_state_key_drift_detected": false,
+                "placeholder": false,
+                "previous_scene_id": null,
+                "recomputed_scene_cache_exists": false,
+                "recomputed_scene_id": null,
+                "request_current_options_count": 0,
+                "request_current_options_hash": "d751713988987e9331980363e24189ce",
+                "request_flow_worldline_hash": "940e38d5f8372eaa58cfdaf4d70a0d30",
+                "request_global_state_hash": "01c33485405de4ce50fdc4662baeab71",
+                "request_option_at_index": null,
+                "request_option_index": 0,
+                "request_option_text": "开始游戏",
+                "request_scene_cache_exists": false,
+                "request_scene_id": null,
+                "resolution_path": null,
+                "response_has_image": true,
+                "response_has_scene": true,
+                "response_scene_id": "-6378612320772163005_-8423417078766005398",
+                "response_status": "success",
+                "scene_id_mismatch_detected": false,
+                "selected_option_mismatch_detected": false
+              },
+              "message": "选项剧情生成成功！",
+              "optionData": {
+                "checkpoint_packet": {
+                  "chapter": "chapter1",
+                  "chapter_conflict_solved": false,
+                  "quest_delta": "",
+                  "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：潮湿的泥土腥气钻进鼻腔，混合着橡胶林特有的苦涩味。我背着沉重的旧帆布包，脚下的冲锋衣被雨林边缘的灌木挂出几道细碎的口子。手腕上那串部落编织的护身符在闷热中显得格外沉重，我抬起手，用满是泥土的指尖抹去额头的汗水，胡茬间渗出的盐分刺痛着皮肤。前方，那座破败的村落轮廓在灰蒙蒙的雨雾中若隐若现，几名族人正围在村口的枯树下，眼神冷漠地注视着我这个“外来者”。我深吸一口气，整理了一下地图，尽量让那双疲惫但坚定的眼睛看向他们。\n\n“我回来了。”我开口，声音因长途跋涉而沙哑，在空旷的林间显得有些单薄。\n\n村长阿坤拄着一根磨损严重的木杖，缓缓从阴影中走出，他那张布满沟壑的脸上看不出任何欢迎的意味，只是盯着我手里的测绘仪器，冷冷地说道：“林远，你带着这些冰冷的机器回来，是想把我们的根也一起挖走吗？”\n\n我沉默地看着他，空气中弥漫着一种无形的压抑，仿佛预示着这场调研注定不会顺利。"
+                },
+                "deep_background_links": {},
+                "flow_update": {},
+                "next_options": [
+                  "诚恳解释调研初衷，并提出协助修复受损的灌溉渠。",
+                  "提及多年前离开时与阿坤的约定，试图唤起他的旧情。"
+                ],
+                "scene": "潮湿的泥土腥气钻进鼻腔，混合着橡胶林特有的苦涩味。我背着沉重的旧帆布包，脚下的冲锋衣被雨林边缘的灌木挂出几道细碎的口子。手腕上那串部落编织的护身符在闷热中显得格外沉重，我抬起手，用满是泥土的指尖抹去额头的汗水，胡茬间渗出的盐分刺痛着皮肤。前方，那座破败的村落轮廓在灰蒙蒙的雨雾中若隐若现，几名族人正围在村口的枯树下，眼神冷漠地注视着我这个“外来者”。我深吸一口气，整理了一下地图，尽量让那双疲惫但坚定的眼睛看向他们。\n\n“我回来了。”我开口，声音因长途跋涉而沙哑，在空旷的林间显得有些单薄。\n\n村长阿坤拄着一根磨损严重的木杖，缓缓从阴影中走出，他那张布满沟壑的脸上看不出任何欢迎的意味，只是盯着我手里的测绘仪器，冷冷地说道：“林远，你带着这些冰冷的机器回来，是想把我们的根也一起挖走吗？”\n\n我沉默地看着他，空气中弥漫着一种无形的压抑，仿佛预示着这场调研注定不会顺利。",
+                "sceneId": "-6378612320772163005_-8423417078766005398",
+                "scene_image": {
+                  "cached": true,
+                  "height": 1080,
+                  "image_type": "story_scene",
+                  "prompt": "scene-lin-yuan-return-to-village, watercolor, narrative-realism, atmospheric, rainy-jungle-edge, melancholy, watercolor and ink wash painting, fresh and translucent color layering, wet-on-wet technique for rain-soaked atmosphere, visible pigment bleeding, soft chiaroscuro with low-saturation earth tones, muted greens and grays, delicate ink strokes for texture, loose and spontaneous brushwork, water marks and damp paper texture, soft diffuse edges, no text, no symbols, no watermarks, no digital artifacts, young man with sun-kissed wheat-colored skin, short messy black hair with damp texture, tired but resolute eyes, stubble on jawline, lean and athletic build, posture slightly hunched from heavy bag, mud-stained fingers and face, visible sweat and salt streaks, rugged outdoor trekking jacket with visible tears and frayed fabric, old canvas shoulder bag with worn-out texture, tribal woven amulet on wrist with intricate knotting, standing in front of a village entrance, facing toward the viewer (referencing Image 0), one hand wiping sweat from forehead, body slightly tilted forward, gaze fixed on the village elders with a weary but firm expression, 8K detailed facial features, realistic expression of fatigue and determination, eyes with fine ink-shaded lines, intense and tired gaze, stubble on chin and upper lip rendered with fine dry-brush ink strokes, skin texture with subtle watercolor wash, visible sweat droplets, no text, no symbols, no strange markings on the face, short black hair, damp and clumped by humidity, root fixation coefficient 0.85, tip swing amplitude 5cm, color layering: deep charcoal base with subtle dark brown highlights, wind speed 0.5m/s, turbulence intensity 10 percent, no text, no symbols in hair details, outdoor jacket with frayed edges and mud splashes, canvas bag showing signs of heavy wear and frayed threads, tribal amulet with realistic woven texture and earthy tones, no logos, no text, no modern printed patterns, dilapidated village entrance under heavy gray rain mist, withered tree at the village edge with gnarled branches, rubber plantation in the distance with soft watercolor blur, muddy terrain with pools of water reflecting the overcast sky, 村长阿坤-配角1 standing in the shadows of the village entrance, leaning on a worn wooden staff, face lined with age and suspicion, rain mist and damp humidity obscuring the background, soft water droplets on the edges of the frame, muddy earth texture created with wet-on-wet ink splatters, low-saturation palette dominated by moss green, earthy brown, and slate gray, muted tones to reflect the humid and somber atmosphere, avoid neon or overly vibrant colors, natural light-and-shadow depth, overcast natural light, soft and diffused, low-contrast shadows suggesting a heavy, humid atmosphere, subtle rim light on the protagonist to separate from the dark background, type medium shot, lens 35mm, aperture f/2.8, depth_of_field shallow focus on the protagonist, village background softly blurred, flash none, grain natural paper grain, subtle water stain texture, texture visible brush hair texture, pigment diffusion, protagonist positioned in the lower-middle foreground, slightly off-center, 村长阿坤-配角1 positioned on the left side of the frame, emerging from shadow, leading lines from the muddy path directed toward the village entrance, no text, no symbols, no UI elements, watercolor and ink wash illustration, high artistic quality, realistic light and shadow with painterly brushwork, no text, no symbols, no words, no signatures, heavy and somber atmosphere, tense confrontation between tradition and change, lingering sense of duty and exhaustion, no text, no symbols, no garbled characters, no words",
+                  "prompt_json": {
+                    "camera": {
+                      "aperture": "f/2.8",
+                      "depth_of_field": "shallow focus on the protagonist, village background softly blurred",
+                      "flash": "none",
+                      "grain": "natural paper grain, subtle water stain texture",
+                      "lens": "35mm",
+                      "texture": "visible brush hair texture, pigment diffusion",
+                      "type": "medium shot"
+                    },
+                    "clothing_system": [
+                      "outdoor jacket with frayed edges and mud splashes",
+                      "canvas bag showing signs of heavy wear and frayed threads",
+                      "tribal amulet with realistic woven texture and earthy tones",
+                      "no logos, no text, no modern printed patterns"
+                    ],
+                    "color_restriction": [
+                      "low-saturation palette dominated by moss green, earthy brown, and slate gray",
+                      "muted tones to reflect the humid and somber atmosphere",
+                      "avoid neon or overly vibrant colors",
+                      "natural light-and-shadow depth"
+                    ],
+                    "composition": [
+                      "protagonist positioned in the lower-middle foreground, slightly off-center",
+                      "村长阿坤-配角1 positioned on the left side of the frame, emerging from shadow",
+                      "leading lines from the muddy path directed toward the village entrance",
+                      "no text, no symbols, no UI elements"
+                    ],
+                    "environment": {
+                      "background": [
+                        "dilapidated village entrance under heavy gray rain mist",
+                        "withered tree at the village edge with gnarled branches",
+                        "rubber plantation in the distance with soft watercolor blur",
+                        "muddy terrain with pools of water reflecting the overcast sky"
+                      ],
+                      "characters": [
+                        "村长阿坤-配角1 standing in the shadows of the village entrance, leaning on a worn wooden staff, face lined with age and suspicion"
+                      ],
+                      "effects": [
+                        "rain mist and damp humidity obscuring the background",
+                        "soft water droplets on the edges of the frame",
+                        "muddy earth texture created with wet-on-wet ink splatters"
+                      ]
+                    },
+                    "face_system": [
+                      "8K detailed facial features, realistic expression of fatigue and determination",
+                      "eyes with fine ink-shaded lines, intense and tired gaze",
+                      "stubble on chin and upper lip rendered with fine dry-brush ink strokes",
+                      "skin texture with subtle watercolor wash, visible sweat droplets",
+                      "no text, no symbols, no strange markings on the face"
+                    ],
+                    "hair_system": [
+                      "short black hair, damp and clumped by humidity",
+                      "root fixation coefficient 0.85, tip swing amplitude 5cm",
+                      "color layering: deep charcoal base with subtle dark brown highlights",
+                      "wind speed 0.5m/s, turbulence intensity 10 percent",
+                      "no text, no symbols in hair details"
+                    ],
+                    "label": "scene-lin-yuan-return-to-village",
+                    "lighting": [
+                      "overcast natural light, soft and diffused",
+                      "low-contrast shadows suggesting a heavy, humid atmosphere",
+                      "subtle rim light on the protagonist to separate from the dark background"
+                    ],
+                    "mood": [
+                      "heavy and somber atmosphere",
+                      "tense confrontation between tradition and change",
+                      "lingering sense of duty and exhaustion"
+                    ],
+                    "output_style": [
+                      "watercolor and ink wash illustration, high artistic quality",
+                      "realistic light and shadow with painterly brushwork",
+                      "no text, no symbols, no words, no signatures"
+                    ],
+                    "style": [
+                      "watercolor and ink wash painting, fresh and translucent color layering",
+                      "wet-on-wet technique for rain-soaked atmosphere, visible pigment bleeding",
+                      "soft chiaroscuro with low-saturation earth tones, muted greens and grays",
+                      "delicate ink strokes for texture, loose and spontaneous brushwork",
+                      "water marks and damp paper texture, soft diffuse edges",
+                      "no text, no symbols, no watermarks, no digital artifacts"
+                    ],
+                    "subject": {
+                      "body_traits": [
+                        "young man with sun-kissed wheat-colored skin",
+                        "short messy black hair with damp texture",
+                        "tired but resolute eyes, stubble on jawline",
+                        "lean and athletic build, posture slightly hunched from heavy bag",
+                        "mud-stained fingers and face, visible sweat and salt streaks"
+                      ],
+                      "outfit": [
+                        "rugged outdoor trekking jacket with visible tears and frayed fabric",
+                        "old canvas shoulder bag with worn-out texture",
+                        "tribal woven amulet on wrist with intricate knotting"
+                      ],
+                      "pose": [
+                        "standing in front of a village entrance",
+                        "facing toward the viewer (referencing Image 0)",
+                        "one hand wiping sweat from forehead, body slightly tilted forward",
+                        "gaze fixed on the village elders with a weary but firm expression"
+                      ]
+                    },
+                    "tags": [
+                      "watercolor",
+                      "narrative-realism",
+                      "atmospheric",
+                      "rainy-jungle-edge",
+                      "melancholy"
+                    ]
+                  },
+                  "scene_text_hash": "5e4b042808cfb3cdb0e7b16f8ae8665f",
+                  "style": "default",
+                  "url": "/image_cache/bb55c62e44bfd748201bf983f8ce8439.png",
+                  "width": 1920
+                }
+              },
+              "status": "success"
+            },
+            "request_payload": {
+              "option": "开始游戏",
+              "optionIndex": 0,
+              "sceneId": null,
+              "globalState": {
+                "core_worldview": {
+                  "chapters": {
+                    "chapter1": {
+                      "conflict_end_condition": "主角通过协助族人修复受损的灌溉渠，赢得了长辈的初步信任，同时向开发商提交了一份详尽但折中的调研报告，暂时缓解了双方的对立情绪，但并未从根本上解决土地征收的争议。",
+                      "main_conflict": "主角回到阔别已久的雨林，试图以专业身份说服族人配合调研，却遭到长辈的强烈抵触。族人认为主角背弃了预言，是引狼入室的帮凶，而开发商则质疑主角的工作效率，要求其使用强硬手段获取土地使用权，主角陷入了职业道德与血缘亲情的双重夹击。"
+                    },
+                    "chapter2": {
+                      "conflict_end_condition": "主角成功说服村民撤离至安全地带，并以匿名方式向媒体披露了地质隐患，迫使开发商进行加固工程，虽然项目得以继续，但主角因此失去了在业内的信誉，被迫辞职。",
+                      "main_conflict": "雨季提前到来，大坝工程引发的泥石流隐患暴露，部分村民的房屋受损。主角在救灾过程中，发现开发商为了赶工期隐瞒了地质风险，而族人为了守护祖坟拒绝撤离。主角必须在揭露真相导致项目停摆（失去补偿金）与隐瞒真相保护项目（危及村民生命）之间做出抉择。"
+                    },
+                    "chapter3": {
+                      "conflict_end_condition": "主角选择留守，虽然无法恢复往日的雨林，但通过发展生态旅游，让族人获得了一份稳定的收入。主角最终与遗憾和解，接受了家园不再是记忆中模样的事实，在平凡的日常中守护着最后的文化火种。",
+                      "main_conflict": "大坝最终落成，雨林生态彻底改变，预言中的“雨季终结”以一种残酷的方式应验。主角面临最后的抉择：是带着积蓄去城市开启新生活，还是留在这个破碎的故乡，尝试在新的生态环境下重建部落的生计，面对的是不可逆的文化流失与难以回头的过去。"
+                    }
+                  },
+                  "characters": {},
+                  "forces": {},
+                  "game_style": "沉浸式现实主义叙事，强调环境叙事与细腻的情感交互。画面呈现出潮湿、质朴且带有原始生命力的质感，通过低饱和度的色彩与环境音效，营造出一种在现代文明边缘徘徊的真实生活氛围，让玩家在琐碎的日常中感受命运的重量。",
+                  "main_quest": "主角受雇于一家环境评估机构，回到故乡雨林协助完成大坝建设的前期调研。目标是平衡开发商的进度要求与部落的生存诉求，试图在不彻底摧毁家园的前提下，为族人争取到合理的补偿与安置方案。任务分为三个阶段：首先是深入部落获取信任，收集真实的生态数据；其次是周旋于开发商与村民之间，处理因土地征收引发的利益纠纷；最后是在大坝动工前，做出关于个人去留与族群未来的最终抉择。挑战在于，主角越深入了解真相，越发现无论如何努力，都无法阻止家园的变迁，只能在“守护过去”与“拥抱未来”之间寻找那个充满遗憾的平衡点。",
+                  "protagonist_ability": "主角并非超能力者，其“能力”源于长期在雨林与城市间奔波积累的“地缘感知力”。这是一种基于对地形、气候、人际关系网深刻理解的直觉。主角能通过观察植被变化预判天气，通过解读部落社交潜规则化解冲突。这种能力受限于体力与信息差，无法改变大环境的走向，只能在有限的范围内为自己和身边人争取到最优的生存空间与选择余地。",
+                  "world_basic_setting": "故事发生于东南亚某处被现代文明半遗忘的雨林边缘地带。这里并非奇幻秘境，而是由零散的部落村落、破败的橡胶种植园与正在扩张的旅游开发区构成的复杂社会。当地流传着关于“雨季终结”的古老预言，被外界视为迷信，但对部落而言，这是关于土地肥力、水源枯竭与族群迁徙的生存法则。社会结构处于传统信仰与现代资本的夹缝中，年轻人渴望走出雨林去往城市，而长辈则试图守护日益萎缩的传统。关键事件是“大坝工程”的启动，它不仅是现代化的象征，也是导致部落生态与文化断层的直接诱因。这里没有神迹，只有因土地开发导致的泥石流风险、因劳动力流失导致的文化凋零，以及在生存压力下，人们对未来既渴望又恐惧的真实心态。"
+                },
+                "flow_worldline": {
+                  "characters": {},
+                  "current_chapter": "chapter1",
+                  "environment": {}
+                },
+                "game_id": "game_1777644180_bfjsor",
+                "image_style": {
+                  "type": "watercolor"
+                },
+                "meta": {
+                  "detail_async": true
+                },
+                "protagonist_canonical": {
+                  "age_range": "青年",
+                  "gender": "男性",
+                  "name_en": "Lin Yuan",
+                  "name_zh": "林远",
+                  "signature_look_keywords": "黑色短发、户外冲锋衣、晒成小麦色的皮肤、眼神坚定但疲惫、常背着旧帆布包、手腕上有部落编织的护身符、瘦削但结实、不修边幅的胡茬、总是带着地图、沉默寡言、内敛、带有泥土气息",
+                  "work_en": "Echoes of the Rainforest",
+                  "work_zh": "雨林余音"
+                },
+                "tone": "normal_ending",
+                "user_theme": "雨林部落预言",
+                "_benchmark_profile": "fullready_strict",
+                "_benchmark_measurement": "fullready_nextturn",
+                "_benchmark_read_wait_s": 0.0
+              }
+            },
+            "start_ts": 1777644188.888449,
+            "end_ts": 1777644239.6977413,
+            "provider_events": {
+              "event_count": 9,
+              "queue_wait_ms": {
+                "count": 9,
+                "min": 0.0,
+                "max": 0.0,
+                "mean": 0.0,
+                "median": 0.0,
+                "p95": 0.0
+              },
+              "latency_ms": {
+                "count": 5,
+                "min": 3481.0,
+                "max": 11653.0,
+                "mean": 7408.8,
+                "median": 8240.0,
+                "p95": 11005.8
+              },
+              "llm_success_count": 4,
+              "image_success_count": 0,
+              "request_thread_event_count": 0,
+              "provider_429_count": 0,
+              "provider_timeout_count": 0,
+              "shared_backoff_wait_ms_total": 0,
+              "retry_heavy_event_count": 0,
+              "main_character_event_count": 2,
+              "scene_image_event_count": 0
+            }
+          }
+        ],
+        "attempt_count": 1,
+        "request_elapsed_s": 50.809,
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "success",
+        "has_scene": true,
+        "has_image": true,
+        "setup_success": true
+      },
+      "second_click": {
+        "http_status": 200,
+        "elapsed_s": 21.886,
+        "response_json": {
+          "benchmark_diagnostics": {
+            "cache_hit_reason": "waited_request_scene_text_completed_no_image",
+            "cache_miss_reason": "request_scene_generation_in_progress",
+            "current_options_key_drift_detected": false,
+            "global_state_key_drift_detected": true,
+            "placeholder": false,
+            "previous_scene_id": "initial",
+            "recomputed_scene_cache_exists": false,
+            "recomputed_scene_id": "-1759467865574099841_-8423417078766005398",
+            "request_current_options_count": 2,
+            "request_current_options_hash": "a90bef25064f7cb8717f30f0c9dd4987",
+            "request_flow_worldline_hash": "0b7d2802f8e46ae104639ddbac325b51",
+            "request_global_state_hash": "5cc1a304af341f81355c99d886909098",
+            "request_option_at_index": "诚恳解释调研初衷，并提出协助修复受损的灌溉渠。",
+            "request_option_index": 0,
+            "request_option_text": "诚恳解释调研初衷，并提出协助修复受损的灌溉渠。",
+            "request_scene_cache_exists": true,
+            "request_scene_cache_meta": {
+              "canonical_scene_id": "-8648502238416512407_-8423417078766005398",
+              "current_options_hash": "a90bef25064f7cb8717f30f0c9dd4987",
+              "current_options_preview": [
+                "诚恳解释调研初衷，并提出协助修复受损的灌溉渠。",
+                "提及多年前离开时与阿坤的约定，试图唤起他的旧情。"
+              ],
+              "flow_worldline_hash": "940e38d5f8372eaa58cfdaf4d70a0d30",
+              "global_state_hash": "52f28889b6eaded35b56b4f9c39fa56e",
+              "option_count": 2,
+              "parent_scene_id": null,
+              "scene_id": "-6378612320772163005_-8423417078766005398"
+            },
+            "request_scene_id": "-6378612320772163005_-8423417078766005398",
+            "resolution_path": "wait_for_request_scene_cache_text_only",
+            "response_has_image": true,
+            "response_has_scene": true,
+            "response_scene_id": "5543304144706340829_180963950643731728",
+            "response_status": "success",
+            "scene_id_mismatch_detected": true,
+            "selected_option_mismatch_detected": false
+          },
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "我通过诚恳的态度与具体的协作承诺，暂时缓解了与部落长辈的直接冲突，成功迈出了获取信任的第一步，为主线后续的调研工作争取到了宝贵的缓冲期。",
+              "recap_text": "你选择了“诚恳解释调研初衷，并提出协助修复受损的灌溉渠。”。当前章节：chapter1。主线进展：我通过诚恳的态度与具体的协作承诺，暂时缓解了与部落长辈的直接冲突，成功迈出了获取信任的第一步，为主线后续的调研工作争取到了宝贵的缓冲期。。最近剧情：我迎着阿坤村长审视的目光，将那台沉重的测绘仪器轻轻放在湿润的泥地上，发出沉闷的声响。我下意识地摸了摸手腕上那串粗糙的部落编织护身符，那是离开家乡时母亲亲手系上的，如今已有些磨损。我直视着他那双浑浊却锐利的眼睛，语气平稳地说道：“阿坤叔，我回来不是为了挖走这里的根，而是为了看清这片土地还能支撑我们走多远。大坝的建设已成定局，我比任何人都清楚它的破坏力，所以我才要用这些数据去争取补偿，去为村子规划出一条退路。”我顿了顿，指了指远处那条因为连日暴雨而淤塞、导致农田大面积积水的灌溉渠，诚恳地补充道：“我知道您不信我，但请给我一个机会。那条渠堵了，村里的收成保不住，我愿意带上工具，现在就去把它疏通，权当是我对这片土地的一点心意。”阿坤村长沉默了许久，风吹过雨林边缘，带来潮湿的泥土气息，他那布满胡茬的下巴微微颤动，最终只是冷哼一声，转身向村口走去，背影显得格外苍老。"
+            },
+            "deep_background_links": {
+              "0": "阿坤村长"
+            },
+            "flow_update": {
+              "chapter_conflict_solved": false,
+              "characters": {},
+              "environment": {},
+              "quest_progress": "我通过诚恳的态度与具体的协作承诺，暂时缓解了与部落长辈的直接冲突，成功迈出了获取信任的第一步，为主线后续的调研工作争取到了宝贵的缓冲期。"
+            },
+            "next_options": [
+              "询问阿坤关于当年部落迁徙的旧事，尝试探寻他固执背后的深层心结。",
+              "立即扛起铁锹前往灌溉渠，用实际行动证明自己并未忘记劳作的本分。"
+            ],
+            "plot_mentioned_only": [],
+            "plot_supporting_characters": [],
+            "scene": "我迎着阿坤村长审视的目光，将那台沉重的测绘仪器轻轻放在湿润的泥地上，发出沉闷的声响。我下意识地摸了摸手腕上那串粗糙的部落编织护身符，那是离开家乡时母亲亲手系上的，如今已有些磨损。我直视着他那双浑浊却锐利的眼睛，语气平稳地说道：“阿坤叔，我回来不是为了挖走这里的根，而是为了看清这片土地还能支撑我们走多远。大坝的建设已成定局，我比任何人都清楚它的破坏力，所以我才要用这些数据去争取补偿，去为村子规划出一条退路。”我顿了顿，指了指远处那条因为连日暴雨而淤塞、导致农田大面积积水的灌溉渠，诚恳地补充道：“我知道您不信我，但请给我一个机会。那条渠堵了，村里的收成保不住，我愿意带上工具，现在就去把它疏通，权当是我对这片土地的一点心意。”阿坤村长沉默了许久，风吹过雨林边缘，带来潮湿的泥土气息，他那布满胡茬的下巴微微颤动，最终只是冷哼一声，转身向村口走去，背影显得格外苍老。",
+            "sceneId": "5543304144706340829_180963950643731728",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-lin-yuan-confrontation-with-village-chief, watercolor, realism, rainforest-edge, melancholy, environmental-storytelling, watercolor and ink wash combination, soft pigment diffusion with visible water marks, wet-on-wet technique for muddy ground and humid air, loose painterly brushstrokes capturing moisture and texture, low saturation palette with earthy tones, no text, no symbols, no watermarks, young man, Lin Yuan, using Image 0 for reference, wheat-colored skin with a weathered, sun-kissed texture, short black hair, slightly messy from humidity, stubble on chin and cheeks, eyes are firm and determined yet reveal deep fatigue, lean but sturdy build, standing with a grounded, protective posture, durable outdoor windbreaker in muted earth tones, worn canvas bag slung over one shoulder, traditional woven tribal amulet clearly visible on wrist, clothing appears slightly damp and stained with soil, standing firmly on wet, muddy soil, one hand gesturing towards the distant silted irrigation canal, body facing 阿坤村长-配角1, maintaining a respectful but persistent stance, the heavy surveying instrument rests on the ground near his feet, 8K detailed facial features, expression of earnest sincerity mixed with hidden sorrow, firm jawline, eyes reflecting a sense of responsibility, natural muted lip color, soft shadows from the canopy above, no text, no symbols, no亂码, short black hair, root fixation coefficient 0.85, tip swing amplitude 5cm, natural wind interference, color layering: dark charcoal base with subtle brown highlights, wind speed 0.5m/s, turbulence intensity 10 percent, damp texture suggesting high humidity, outdoor windbreaker with realistic fabric folds and damp spots, canvas bag showing signs of wear and tear, mud splatters at the base, woven amulet with frayed edges, soft color bleeding in watercolor style, rainforest edge with overgrown vegetation and muddy irrigation channels, distant view of a decaying rubber plantation under a heavy, overcast sky, wet earth textures, puddles reflecting the dim, diffused light, 阿坤村长-配角1, an elderly man with a weathered face and cloudy, sharp eyes, standing to the right of the frame, turning away with a hunched, weary back, humid atmospheric haze rendered with diluted watercolor washes, soft light bleeding at the edges of foliage, subtle water droplets on leaves and ground, low saturation palette dominated by earth tones, deep greens, and muddy browns, muted gray sky tones to represent the impending rain season, no bright or neon colors, translucent watercolor layers to create depth, diffused overcast light, no harsh direct sunlight, soft rim lighting on Lin Yuan to separate him from the dark forest background, subtle highlights on wet surfaces and the surveying instrument, type medium shot, lens 35mm, aperture f/2.8, depth_of_field shallow focus on Lin Yuan, background slightly blurred to emphasize the mood, flash none, grain fine paper grain texture with ink bleeding, texture visible watercolor wash and pigment diffusion, Lin Yuan positioned in the left third of the frame, 阿坤村长-配角1 positioned in the right, walking away from the camera, the surveying instrument serves as a focal point at the bottom center, eye-level shot to create a sense of direct interaction, no text, no symbols, no UI elements, watercolor and ink wash painting, atmospheric and realistic, no text, no symbols, no digits, no letters, no watermarks, melancholic, heavy with the weight of destiny, tense yet honest, a sense of quiet resignation and enduring hope, no text, no symbols, no garbled characters, no words",
+              "scene_text_hash": "4d15c5dcab2f1f7a349a75e47a2a0bac",
+              "style": "default",
+              "url": "/image_cache/c86c1c95842f8ec6fd548974fa75c4c3.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "request_payload": {
+          "option": "诚恳解释调研初衷，并提出协助修复受损的灌溉渠。",
+          "optionIndex": 0,
+          "sceneId": "-6378612320772163005_-8423417078766005398",
+          "currentOptions": [
+            "诚恳解释调研初衷，并提出协助修复受损的灌溉渠。",
+            "提及多年前离开时与阿坤的约定，试图唤起他的旧情。"
+          ],
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过协助族人修复受损的灌溉渠，赢得了长辈的初步信任，同时向开发商提交了一份详尽但折中的调研报告，暂时缓解了双方的对立情绪，但并未从根本上解决土地征收的争议。",
+                  "main_conflict": "主角回到阔别已久的雨林，试图以专业身份说服族人配合调研，却遭到长辈的强烈抵触。族人认为主角背弃了预言，是引狼入室的帮凶，而开发商则质疑主角的工作效率，要求其使用强硬手段获取土地使用权，主角陷入了职业道德与血缘亲情的双重夹击。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角成功说服村民撤离至安全地带，并以匿名方式向媒体披露了地质隐患，迫使开发商进行加固工程，虽然项目得以继续，但主角因此失去了在业内的信誉，被迫辞职。",
+                  "main_conflict": "雨季提前到来，大坝工程引发的泥石流隐患暴露，部分村民的房屋受损。主角在救灾过程中，发现开发商为了赶工期隐瞒了地质风险，而族人为了守护祖坟拒绝撤离。主角必须在揭露真相导致项目停摆（失去补偿金）与隐瞒真相保护项目（危及村民生命）之间做出抉择。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角选择留守，虽然无法恢复往日的雨林，但通过发展生态旅游，让族人获得了一份稳定的收入。主角最终与遗憾和解，接受了家园不再是记忆中模样的事实，在平凡的日常中守护着最后的文化火种。",
+                  "main_conflict": "大坝最终落成，雨林生态彻底改变，预言中的“雨季终结”以一种残酷的方式应验。主角面临最后的抉择：是带着积蓄去城市开启新生活，还是留在这个破碎的故乡，尝试在新的生态环境下重建部落的生计，面对的是不可逆的文化流失与难以回头的过去。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "沉浸式现实主义叙事，强调环境叙事与细腻的情感交互。画面呈现出潮湿、质朴且带有原始生命力的质感，通过低饱和度的色彩与环境音效，营造出一种在现代文明边缘徘徊的真实生活氛围，让玩家在琐碎的日常中感受命运的重量。",
+              "main_quest": "主角受雇于一家环境评估机构，回到故乡雨林协助完成大坝建设的前期调研。目标是平衡开发商的进度要求与部落的生存诉求，试图在不彻底摧毁家园的前提下，为族人争取到合理的补偿与安置方案。任务分为三个阶段：首先是深入部落获取信任，收集真实的生态数据；其次是周旋于开发商与村民之间，处理因土地征收引发的利益纠纷；最后是在大坝动工前，做出关于个人去留与族群未来的最终抉择。挑战在于，主角越深入了解真相，越发现无论如何努力，都无法阻止家园的变迁，只能在“守护过去”与“拥抱未来”之间寻找那个充满遗憾的平衡点。",
+              "protagonist_ability": "主角并非超能力者，其“能力”源于长期在雨林与城市间奔波积累的“地缘感知力”。这是一种基于对地形、气候、人际关系网深刻理解的直觉。主角能通过观察植被变化预判天气，通过解读部落社交潜规则化解冲突。这种能力受限于体力与信息差，无法改变大环境的走向，只能在有限的范围内为自己和身边人争取到最优的生存空间与选择余地。",
+              "world_basic_setting": "故事发生于东南亚某处被现代文明半遗忘的雨林边缘地带。这里并非奇幻秘境，而是由零散的部落村落、破败的橡胶种植园与正在扩张的旅游开发区构成的复杂社会。当地流传着关于“雨季终结”的古老预言，被外界视为迷信，但对部落而言，这是关于土地肥力、水源枯竭与族群迁徙的生存法则。社会结构处于传统信仰与现代资本的夹缝中，年轻人渴望走出雨林去往城市，而长辈则试图守护日益萎缩的传统。关键事件是“大坝工程”的启动，它不仅是现代化的象征，也是导致部落生态与文化断层的直接诱因。这里没有神迹，只有因土地开发导致的泥石流风险、因劳动力流失导致的文化凋零，以及在生存压力下，人们对未来既渴望又恐惧的真实心态。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {},
+              "chapter_progress": 2.0
+            },
+            "game_id": "game_1777644180_bfjsor",
+            "image_style": {
+              "type": "watercolor"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "黑色短发、户外冲锋衣、晒成小麦色的皮肤、眼神坚定但疲惫、常背着旧帆布包、手腕上有部落编织的护身符、瘦削但结实、不修边幅的胡茬、总是带着地图、沉默寡言、内敛、带有泥土气息",
+              "work_en": "Echoes of the Rainforest",
+              "work_zh": "雨林余音"
+            },
+            "tone": "normal_ending",
+            "user_theme": "雨林部落预言",
+            "_benchmark_profile": "fullready_strict",
+            "_benchmark_measurement": "fullready_nextturn",
+            "_benchmark_read_wait_s": 0.0
+          },
+          "previousSceneId": "initial",
+          "previousSceneImage": {
+            "cached": true,
+            "height": 1080,
+            "image_type": "story_scene",
+            "prompt": "scene-lin-yuan-return-to-village, watercolor, narrative-realism, atmospheric, rainy-jungle-edge, melancholy, watercolor and ink wash painting, fresh and translucent color layering, wet-on-wet technique for rain-soaked atmosphere, visible pigment bleeding, soft chiaroscuro with low-saturation earth tones, muted greens and grays, delicate ink strokes for texture, loose and spontaneous brushwork, water marks and damp paper texture, soft diffuse edges, no text, no symbols, no watermarks, no digital artifacts, young man with sun-kissed wheat-colored skin, short messy black hair with damp texture, tired but resolute eyes, stubble on jawline, lean and athletic build, posture slightly hunched from heavy bag, mud-stained fingers and face, visible sweat and salt streaks, rugged outdoor trekking jacket with visible tears and frayed fabric, old canvas shoulder bag with worn-out texture, tribal woven amulet on wrist with intricate knotting, standing in front of a village entrance, facing toward the viewer (referencing Image 0), one hand wiping sweat from forehead, body slightly tilted forward, gaze fixed on the village elders with a weary but firm expression, 8K detailed facial features, realistic expression of fatigue and determination, eyes with fine ink-shaded lines, intense and tired gaze, stubble on chin and upper lip rendered with fine dry-brush ink strokes, skin texture with subtle watercolor wash, visible sweat droplets, no text, no symbols, no strange markings on the face, short black hair, damp and clumped by humidity, root fixation coefficient 0.85, tip swing amplitude 5cm, color layering: deep charcoal base with subtle dark brown highlights, wind speed 0.5m/s, turbulence intensity 10 percent, no text, no symbols in hair details, outdoor jacket with frayed edges and mud splashes, canvas bag showing signs of heavy wear and frayed threads, tribal amulet with realistic woven texture and earthy tones, no logos, no text, no modern printed patterns, dilapidated village entrance under heavy gray rain mist, withered tree at the village edge with gnarled branches, rubber plantation in the distance with soft watercolor blur, muddy terrain with pools of water reflecting the overcast sky, 村长阿坤-配角1 standing in the shadows of the village entrance, leaning on a worn wooden staff, face lined with age and suspicion, rain mist and damp humidity obscuring the background, soft water droplets on the edges of the frame, muddy earth texture created with wet-on-wet ink splatters, low-saturation palette dominated by moss green, earthy brown, and slate gray, muted tones to reflect the humid and somber atmosphere, avoid neon or overly vibrant colors, natural light-and-shadow depth, overcast natural light, soft and diffused, low-contrast shadows suggesting a heavy, humid atmosphere, subtle rim light on the protagonist to separate from the dark background, type medium shot, lens 35mm, aperture f/2.8, depth_of_field shallow focus on the protagonist, village background softly blurred, flash none, grain natural paper grain, subtle water stain texture, texture visible brush hair texture, pigment diffusion, protagonist positioned in the lower-middle foreground, slightly off-center, 村长阿坤-配角1 positioned on the left side of the frame, emerging from shadow, leading lines from the muddy path directed toward the village entrance, no text, no symbols, no UI elements, watercolor and ink wash illustration, high artistic quality, realistic light and shadow with painterly brushwork, no text, no symbols, no words, no signatures, heavy and somber atmosphere, tense confrontation between tradition and change, lingering sense of duty and exhaustion, no text, no symbols, no garbled characters, no words",
+            "prompt_json": {
+              "camera": {
+                "aperture": "f/2.8",
+                "depth_of_field": "shallow focus on the protagonist, village background softly blurred",
+                "flash": "none",
+                "grain": "natural paper grain, subtle water stain texture",
+                "lens": "35mm",
+                "texture": "visible brush hair texture, pigment diffusion",
+                "type": "medium shot"
+              },
+              "clothing_system": [
+                "outdoor jacket with frayed edges and mud splashes",
+                "canvas bag showing signs of heavy wear and frayed threads",
+                "tribal amulet with realistic woven texture and earthy tones",
+                "no logos, no text, no modern printed patterns"
+              ],
+              "color_restriction": [
+                "low-saturation palette dominated by moss green, earthy brown, and slate gray",
+                "muted tones to reflect the humid and somber atmosphere",
+                "avoid neon or overly vibrant colors",
+                "natural light-and-shadow depth"
+              ],
+              "composition": [
+                "protagonist positioned in the lower-middle foreground, slightly off-center",
+                "村长阿坤-配角1 positioned on the left side of the frame, emerging from shadow",
+                "leading lines from the muddy path directed toward the village entrance",
+                "no text, no symbols, no UI elements"
+              ],
+              "environment": {
+                "background": [
+                  "dilapidated village entrance under heavy gray rain mist",
+                  "withered tree at the village edge with gnarled branches",
+                  "rubber plantation in the distance with soft watercolor blur",
+                  "muddy terrain with pools of water reflecting the overcast sky"
+                ],
+                "characters": [
+                  "村长阿坤-配角1 standing in the shadows of the village entrance, leaning on a worn wooden staff, face lined with age and suspicion"
+                ],
+                "effects": [
+                  "rain mist and damp humidity obscuring the background",
+                  "soft water droplets on the edges of the frame",
+                  "muddy earth texture created with wet-on-wet ink splatters"
+                ]
+              },
+              "face_system": [
+                "8K detailed facial features, realistic expression of fatigue and determination",
+                "eyes with fine ink-shaded lines, intense and tired gaze",
+                "stubble on chin and upper lip rendered with fine dry-brush ink strokes",
+                "skin texture with subtle watercolor wash, visible sweat droplets",
+                "no text, no symbols, no strange markings on the face"
+              ],
+              "hair_system": [
+                "short black hair, damp and clumped by humidity",
+                "root fixation coefficient 0.85, tip swing amplitude 5cm",
+                "color layering: deep charcoal base with subtle dark brown highlights",
+                "wind speed 0.5m/s, turbulence intensity 10 percent",
+                "no text, no symbols in hair details"
+              ],
+              "label": "scene-lin-yuan-return-to-village",
+              "lighting": [
+                "overcast natural light, soft and diffused",
+                "low-contrast shadows suggesting a heavy, humid atmosphere",
+                "subtle rim light on the protagonist to separate from the dark background"
+              ],
+              "mood": [
+                "heavy and somber atmosphere",
+                "tense confrontation between tradition and change",
+                "lingering sense of duty and exhaustion"
+              ],
+              "output_style": [
+                "watercolor and ink wash illustration, high artistic quality",
+                "realistic light and shadow with painterly brushwork",
+                "no text, no symbols, no words, no signatures"
+              ],
+              "style": [
+                "watercolor and ink wash painting, fresh and translucent color layering",
+                "wet-on-wet technique for rain-soaked atmosphere, visible pigment bleeding",
+                "soft chiaroscuro with low-saturation earth tones, muted greens and grays",
+                "delicate ink strokes for texture, loose and spontaneous brushwork",
+                "water marks and damp paper texture, soft diffuse edges",
+                "no text, no symbols, no watermarks, no digital artifacts"
+              ],
+              "subject": {
+                "body_traits": [
+                  "young man with sun-kissed wheat-colored skin",
+                  "short messy black hair with damp texture",
+                  "tired but resolute eyes, stubble on jawline",
+                  "lean and athletic build, posture slightly hunched from heavy bag",
+                  "mud-stained fingers and face, visible sweat and salt streaks"
+                ],
+                "outfit": [
+                  "rugged outdoor trekking jacket with visible tears and frayed fabric",
+                  "old canvas shoulder bag with worn-out texture",
+                  "tribal woven amulet on wrist with intricate knotting"
+                ],
+                "pose": [
+                  "standing in front of a village entrance",
+                  "facing toward the viewer (referencing Image 0)",
+                  "one hand wiping sweat from forehead, body slightly tilted forward",
+                  "gaze fixed on the village elders with a weary but firm expression"
+                ]
+              },
+              "tags": [
+                "watercolor",
+                "narrative-realism",
+                "atmospheric",
+                "rainy-jungle-edge",
+                "melancholy"
+              ]
+            },
+            "scene_text_hash": "5e4b042808cfb3cdb0e7b16f8ae8665f",
+            "style": "default",
+            "url": "/image_cache/bb55c62e44bfd748201bf983f8ce8439.png",
+            "width": 1920
+          },
+          "previousSceneText": "潮湿的泥土腥气钻进鼻腔，混合着橡胶林特有的苦涩味。我背着沉重的旧帆布包，脚下的冲锋衣被雨林边缘的灌木挂出几道细碎的口子。手腕上那串部落编织的护身符在闷热中显得格外沉重，我抬起手，用满是泥土的指尖抹去额头的汗水，胡茬间渗出的盐分刺痛着皮肤。前方，那座破败的村落轮廓在灰蒙蒙的雨雾中若隐若现，几名族人正围在村口的枯树下，眼神冷漠地注视着我这个“外来者”。我深吸一口气，整理了一下地图，尽量让那双疲惫但坚定的眼睛看向他们。\n\n“我回来了。”我开口，声音因长途跋涉而沙哑，在空旷的林间显得有些单薄。\n\n村长阿坤拄着一根磨损严重的木杖，缓缓从阴影中走出，他那张布满沟壑的脸上看不出任何欢迎的意味，只是盯着我手里的测绘仪器，冷冷地说道：“林远，你带着这些冰冷的机器回来，是想把我们的根也一起挖走吗？”\n\n我沉默地看着他，空气中弥漫着一种无形的压抑，仿佛预示着这场调研注定不会顺利。"
+        },
+        "start_ts": 1777644239.7456274,
+        "end_ts": 1777644261.6313124,
+        "provider_events": {
+          "event_count": 3,
+          "queue_wait_ms": {
+            "count": 3,
+            "min": 0.0,
+            "max": 4915.0,
+            "mean": 3276.667,
+            "median": 4915.0,
+            "p95": 4915.0
+          },
+          "latency_ms": {
+            "count": 2,
+            "min": 4782.0,
+            "max": 4914.0,
+            "mean": 4848.0,
+            "median": 4848.0,
+            "p95": 4907.4
+          },
+          "llm_success_count": 2,
+          "image_success_count": 0,
+          "request_thread_event_count": 0,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0
+        },
+        "attempts": [
+          {
+            "http_status": 200,
+            "elapsed_s": 21.886,
+            "response_json": {
+              "benchmark_diagnostics": {
+                "cache_hit_reason": "waited_request_scene_text_completed_no_image",
+                "cache_miss_reason": "request_scene_generation_in_progress",
+                "current_options_key_drift_detected": false,
+                "global_state_key_drift_detected": true,
+                "placeholder": false,
+                "previous_scene_id": "initial",
+                "recomputed_scene_cache_exists": false,
+                "recomputed_scene_id": "-1759467865574099841_-8423417078766005398",
+                "request_current_options_count": 2,
+                "request_current_options_hash": "a90bef25064f7cb8717f30f0c9dd4987",
+                "request_flow_worldline_hash": "0b7d2802f8e46ae104639ddbac325b51",
+                "request_global_state_hash": "5cc1a304af341f81355c99d886909098",
+                "request_option_at_index": "诚恳解释调研初衷，并提出协助修复受损的灌溉渠。",
+                "request_option_index": 0,
+                "request_option_text": "诚恳解释调研初衷，并提出协助修复受损的灌溉渠。",
+                "request_scene_cache_exists": true,
+                "request_scene_cache_meta": {
+                  "canonical_scene_id": "-8648502238416512407_-8423417078766005398",
+                  "current_options_hash": "a90bef25064f7cb8717f30f0c9dd4987",
+                  "current_options_preview": [
+                    "诚恳解释调研初衷，并提出协助修复受损的灌溉渠。",
+                    "提及多年前离开时与阿坤的约定，试图唤起他的旧情。"
+                  ],
+                  "flow_worldline_hash": "940e38d5f8372eaa58cfdaf4d70a0d30",
+                  "global_state_hash": "52f28889b6eaded35b56b4f9c39fa56e",
+                  "option_count": 2,
+                  "parent_scene_id": null,
+                  "scene_id": "-6378612320772163005_-8423417078766005398"
+                },
+                "request_scene_id": "-6378612320772163005_-8423417078766005398",
+                "resolution_path": "wait_for_request_scene_cache_text_only",
+                "response_has_image": true,
+                "response_has_scene": true,
+                "response_scene_id": "5543304144706340829_180963950643731728",
+                "response_status": "success",
+                "scene_id_mismatch_detected": true,
+                "selected_option_mismatch_detected": false
+              },
+              "message": "选项剧情生成成功！",
+              "optionData": {
+                "checkpoint_packet": {
+                  "chapter": "chapter1",
+                  "chapter_conflict_solved": false,
+                  "quest_delta": "我通过诚恳的态度与具体的协作承诺，暂时缓解了与部落长辈的直接冲突，成功迈出了获取信任的第一步，为主线后续的调研工作争取到了宝贵的缓冲期。",
+                  "recap_text": "你选择了“诚恳解释调研初衷，并提出协助修复受损的灌溉渠。”。当前章节：chapter1。主线进展：我通过诚恳的态度与具体的协作承诺，暂时缓解了与部落长辈的直接冲突，成功迈出了获取信任的第一步，为主线后续的调研工作争取到了宝贵的缓冲期。。最近剧情：我迎着阿坤村长审视的目光，将那台沉重的测绘仪器轻轻放在湿润的泥地上，发出沉闷的声响。我下意识地摸了摸手腕上那串粗糙的部落编织护身符，那是离开家乡时母亲亲手系上的，如今已有些磨损。我直视着他那双浑浊却锐利的眼睛，语气平稳地说道：“阿坤叔，我回来不是为了挖走这里的根，而是为了看清这片土地还能支撑我们走多远。大坝的建设已成定局，我比任何人都清楚它的破坏力，所以我才要用这些数据去争取补偿，去为村子规划出一条退路。”我顿了顿，指了指远处那条因为连日暴雨而淤塞、导致农田大面积积水的灌溉渠，诚恳地补充道：“我知道您不信我，但请给我一个机会。那条渠堵了，村里的收成保不住，我愿意带上工具，现在就去把它疏通，权当是我对这片土地的一点心意。”阿坤村长沉默了许久，风吹过雨林边缘，带来潮湿的泥土气息，他那布满胡茬的下巴微微颤动，最终只是冷哼一声，转身向村口走去，背影显得格外苍老。"
+                },
+                "deep_background_links": {
+                  "0": "阿坤村长"
+                },
+                "flow_update": {
+                  "chapter_conflict_solved": false,
+                  "characters": {},
+                  "environment": {},
+                  "quest_progress": "我通过诚恳的态度与具体的协作承诺，暂时缓解了与部落长辈的直接冲突，成功迈出了获取信任的第一步，为主线后续的调研工作争取到了宝贵的缓冲期。"
+                },
+                "next_options": [
+                  "询问阿坤关于当年部落迁徙的旧事，尝试探寻他固执背后的深层心结。",
+                  "立即扛起铁锹前往灌溉渠，用实际行动证明自己并未忘记劳作的本分。"
+                ],
+                "plot_mentioned_only": [],
+                "plot_supporting_characters": [],
+                "scene": "我迎着阿坤村长审视的目光，将那台沉重的测绘仪器轻轻放在湿润的泥地上，发出沉闷的声响。我下意识地摸了摸手腕上那串粗糙的部落编织护身符，那是离开家乡时母亲亲手系上的，如今已有些磨损。我直视着他那双浑浊却锐利的眼睛，语气平稳地说道：“阿坤叔，我回来不是为了挖走这里的根，而是为了看清这片土地还能支撑我们走多远。大坝的建设已成定局，我比任何人都清楚它的破坏力，所以我才要用这些数据去争取补偿，去为村子规划出一条退路。”我顿了顿，指了指远处那条因为连日暴雨而淤塞、导致农田大面积积水的灌溉渠，诚恳地补充道：“我知道您不信我，但请给我一个机会。那条渠堵了，村里的收成保不住，我愿意带上工具，现在就去把它疏通，权当是我对这片土地的一点心意。”阿坤村长沉默了许久，风吹过雨林边缘，带来潮湿的泥土气息，他那布满胡茬的下巴微微颤动，最终只是冷哼一声，转身向村口走去，背影显得格外苍老。",
+                "sceneId": "5543304144706340829_180963950643731728",
+                "scene_image": {
+                  "cached": true,
+                  "height": 1080,
+                  "image_type": "story_scene",
+                  "prompt": "scene-lin-yuan-confrontation-with-village-chief, watercolor, realism, rainforest-edge, melancholy, environmental-storytelling, watercolor and ink wash combination, soft pigment diffusion with visible water marks, wet-on-wet technique for muddy ground and humid air, loose painterly brushstrokes capturing moisture and texture, low saturation palette with earthy tones, no text, no symbols, no watermarks, young man, Lin Yuan, using Image 0 for reference, wheat-colored skin with a weathered, sun-kissed texture, short black hair, slightly messy from humidity, stubble on chin and cheeks, eyes are firm and determined yet reveal deep fatigue, lean but sturdy build, standing with a grounded, protective posture, durable outdoor windbreaker in muted earth tones, worn canvas bag slung over one shoulder, traditional woven tribal amulet clearly visible on wrist, clothing appears slightly damp and stained with soil, standing firmly on wet, muddy soil, one hand gesturing towards the distant silted irrigation canal, body facing 阿坤村长-配角1, maintaining a respectful but persistent stance, the heavy surveying instrument rests on the ground near his feet, 8K detailed facial features, expression of earnest sincerity mixed with hidden sorrow, firm jawline, eyes reflecting a sense of responsibility, natural muted lip color, soft shadows from the canopy above, no text, no symbols, no亂码, short black hair, root fixation coefficient 0.85, tip swing amplitude 5cm, natural wind interference, color layering: dark charcoal base with subtle brown highlights, wind speed 0.5m/s, turbulence intensity 10 percent, damp texture suggesting high humidity, outdoor windbreaker with realistic fabric folds and damp spots, canvas bag showing signs of wear and tear, mud splatters at the base, woven amulet with frayed edges, soft color bleeding in watercolor style, rainforest edge with overgrown vegetation and muddy irrigation channels, distant view of a decaying rubber plantation under a heavy, overcast sky, wet earth textures, puddles reflecting the dim, diffused light, 阿坤村长-配角1, an elderly man with a weathered face and cloudy, sharp eyes, standing to the right of the frame, turning away with a hunched, weary back, humid atmospheric haze rendered with diluted watercolor washes, soft light bleeding at the edges of foliage, subtle water droplets on leaves and ground, low saturation palette dominated by earth tones, deep greens, and muddy browns, muted gray sky tones to represent the impending rain season, no bright or neon colors, translucent watercolor layers to create depth, diffused overcast light, no harsh direct sunlight, soft rim lighting on Lin Yuan to separate him from the dark forest background, subtle highlights on wet surfaces and the surveying instrument, type medium shot, lens 35mm, aperture f/2.8, depth_of_field shallow focus on Lin Yuan, background slightly blurred to emphasize the mood, flash none, grain fine paper grain texture with ink bleeding, texture visible watercolor wash and pigment diffusion, Lin Yuan positioned in the left third of the frame, 阿坤村长-配角1 positioned in the right, walking away from the camera, the surveying instrument serves as a focal point at the bottom center, eye-level shot to create a sense of direct interaction, no text, no symbols, no UI elements, watercolor and ink wash painting, atmospheric and realistic, no text, no symbols, no digits, no letters, no watermarks, melancholic, heavy with the weight of destiny, tense yet honest, a sense of quiet resignation and enduring hope, no text, no symbols, no garbled characters, no words",
+                  "scene_text_hash": "4d15c5dcab2f1f7a349a75e47a2a0bac",
+                  "style": "default",
+                  "url": "/image_cache/c86c1c95842f8ec6fd548974fa75c4c3.png",
+                  "width": 1920
+                }
+              },
+              "status": "success"
+            },
+            "request_payload": {
+              "option": "诚恳解释调研初衷，并提出协助修复受损的灌溉渠。",
+              "optionIndex": 0,
+              "sceneId": "-6378612320772163005_-8423417078766005398",
+              "currentOptions": [
+                "诚恳解释调研初衷，并提出协助修复受损的灌溉渠。",
+                "提及多年前离开时与阿坤的约定，试图唤起他的旧情。"
+              ],
+              "globalState": {
+                "core_worldview": {
+                  "chapters": {
+                    "chapter1": {
+                      "conflict_end_condition": "主角通过协助族人修复受损的灌溉渠，赢得了长辈的初步信任，同时向开发商提交了一份详尽但折中的调研报告，暂时缓解了双方的对立情绪，但并未从根本上解决土地征收的争议。",
+                      "main_conflict": "主角回到阔别已久的雨林，试图以专业身份说服族人配合调研，却遭到长辈的强烈抵触。族人认为主角背弃了预言，是引狼入室的帮凶，而开发商则质疑主角的工作效率，要求其使用强硬手段获取土地使用权，主角陷入了职业道德与血缘亲情的双重夹击。"
+                    },
+                    "chapter2": {
+                      "conflict_end_condition": "主角成功说服村民撤离至安全地带，并以匿名方式向媒体披露了地质隐患，迫使开发商进行加固工程，虽然项目得以继续，但主角因此失去了在业内的信誉，被迫辞职。",
+                      "main_conflict": "雨季提前到来，大坝工程引发的泥石流隐患暴露，部分村民的房屋受损。主角在救灾过程中，发现开发商为了赶工期隐瞒了地质风险，而族人为了守护祖坟拒绝撤离。主角必须在揭露真相导致项目停摆（失去补偿金）与隐瞒真相保护项目（危及村民生命）之间做出抉择。"
+                    },
+                    "chapter3": {
+                      "conflict_end_condition": "主角选择留守，虽然无法恢复往日的雨林，但通过发展生态旅游，让族人获得了一份稳定的收入。主角最终与遗憾和解，接受了家园不再是记忆中模样的事实，在平凡的日常中守护着最后的文化火种。",
+                      "main_conflict": "大坝最终落成，雨林生态彻底改变，预言中的“雨季终结”以一种残酷的方式应验。主角面临最后的抉择：是带着积蓄去城市开启新生活，还是留在这个破碎的故乡，尝试在新的生态环境下重建部落的生计，面对的是不可逆的文化流失与难以回头的过去。"
+                    }
+                  },
+                  "characters": {},
+                  "forces": {},
+                  "game_style": "沉浸式现实主义叙事，强调环境叙事与细腻的情感交互。画面呈现出潮湿、质朴且带有原始生命力的质感，通过低饱和度的色彩与环境音效，营造出一种在现代文明边缘徘徊的真实生活氛围，让玩家在琐碎的日常中感受命运的重量。",
+                  "main_quest": "主角受雇于一家环境评估机构，回到故乡雨林协助完成大坝建设的前期调研。目标是平衡开发商的进度要求与部落的生存诉求，试图在不彻底摧毁家园的前提下，为族人争取到合理的补偿与安置方案。任务分为三个阶段：首先是深入部落获取信任，收集真实的生态数据；其次是周旋于开发商与村民之间，处理因土地征收引发的利益纠纷；最后是在大坝动工前，做出关于个人去留与族群未来的最终抉择。挑战在于，主角越深入了解真相，越发现无论如何努力，都无法阻止家园的变迁，只能在“守护过去”与“拥抱未来”之间寻找那个充满遗憾的平衡点。",
+                  "protagonist_ability": "主角并非超能力者，其“能力”源于长期在雨林与城市间奔波积累的“地缘感知力”。这是一种基于对地形、气候、人际关系网深刻理解的直觉。主角能通过观察植被变化预判天气，通过解读部落社交潜规则化解冲突。这种能力受限于体力与信息差，无法改变大环境的走向，只能在有限的范围内为自己和身边人争取到最优的生存空间与选择余地。",
+                  "world_basic_setting": "故事发生于东南亚某处被现代文明半遗忘的雨林边缘地带。这里并非奇幻秘境，而是由零散的部落村落、破败的橡胶种植园与正在扩张的旅游开发区构成的复杂社会。当地流传着关于“雨季终结”的古老预言，被外界视为迷信，但对部落而言，这是关于土地肥力、水源枯竭与族群迁徙的生存法则。社会结构处于传统信仰与现代资本的夹缝中，年轻人渴望走出雨林去往城市，而长辈则试图守护日益萎缩的传统。关键事件是“大坝工程”的启动，它不仅是现代化的象征，也是导致部落生态与文化断层的直接诱因。这里没有神迹，只有因土地开发导致的泥石流风险、因劳动力流失导致的文化凋零，以及在生存压力下，人们对未来既渴望又恐惧的真实心态。"
+                },
+                "flow_worldline": {
+                  "characters": {},
+                  "current_chapter": "chapter1",
+                  "environment": {},
+                  "chapter_progress": 2.0
+                },
+                "game_id": "game_1777644180_bfjsor",
+                "image_style": {
+                  "type": "watercolor"
+                },
+                "meta": {
+                  "detail_async": true
+                },
+                "protagonist_canonical": {
+                  "age_range": "青年",
+                  "gender": "男性",
+                  "name_en": "Lin Yuan",
+                  "name_zh": "林远",
+                  "signature_look_keywords": "黑色短发、户外冲锋衣、晒成小麦色的皮肤、眼神坚定但疲惫、常背着旧帆布包、手腕上有部落编织的护身符、瘦削但结实、不修边幅的胡茬、总是带着地图、沉默寡言、内敛、带有泥土气息",
+                  "work_en": "Echoes of the Rainforest",
+                  "work_zh": "雨林余音"
+                },
+                "tone": "normal_ending",
+                "user_theme": "雨林部落预言",
+                "_benchmark_profile": "fullready_strict",
+                "_benchmark_measurement": "fullready_nextturn",
+                "_benchmark_read_wait_s": 0.0
+              },
+              "previousSceneId": "initial",
+              "previousSceneImage": {
+                "cached": true,
+                "height": 1080,
+                "image_type": "story_scene",
+                "prompt": "scene-lin-yuan-return-to-village, watercolor, narrative-realism, atmospheric, rainy-jungle-edge, melancholy, watercolor and ink wash painting, fresh and translucent color layering, wet-on-wet technique for rain-soaked atmosphere, visible pigment bleeding, soft chiaroscuro with low-saturation earth tones, muted greens and grays, delicate ink strokes for texture, loose and spontaneous brushwork, water marks and damp paper texture, soft diffuse edges, no text, no symbols, no watermarks, no digital artifacts, young man with sun-kissed wheat-colored skin, short messy black hair with damp texture, tired but resolute eyes, stubble on jawline, lean and athletic build, posture slightly hunched from heavy bag, mud-stained fingers and face, visible sweat and salt streaks, rugged outdoor trekking jacket with visible tears and frayed fabric, old canvas shoulder bag with worn-out texture, tribal woven amulet on wrist with intricate knotting, standing in front of a village entrance, facing toward the viewer (referencing Image 0), one hand wiping sweat from forehead, body slightly tilted forward, gaze fixed on the village elders with a weary but firm expression, 8K detailed facial features, realistic expression of fatigue and determination, eyes with fine ink-shaded lines, intense and tired gaze, stubble on chin and upper lip rendered with fine dry-brush ink strokes, skin texture with subtle watercolor wash, visible sweat droplets, no text, no symbols, no strange markings on the face, short black hair, damp and clumped by humidity, root fixation coefficient 0.85, tip swing amplitude 5cm, color layering: deep charcoal base with subtle dark brown highlights, wind speed 0.5m/s, turbulence intensity 10 percent, no text, no symbols in hair details, outdoor jacket with frayed edges and mud splashes, canvas bag showing signs of heavy wear and frayed threads, tribal amulet with realistic woven texture and earthy tones, no logos, no text, no modern printed patterns, dilapidated village entrance under heavy gray rain mist, withered tree at the village edge with gnarled branches, rubber plantation in the distance with soft watercolor blur, muddy terrain with pools of water reflecting the overcast sky, 村长阿坤-配角1 standing in the shadows of the village entrance, leaning on a worn wooden staff, face lined with age and suspicion, rain mist and damp humidity obscuring the background, soft water droplets on the edges of the frame, muddy earth texture created with wet-on-wet ink splatters, low-saturation palette dominated by moss green, earthy brown, and slate gray, muted tones to reflect the humid and somber atmosphere, avoid neon or overly vibrant colors, natural light-and-shadow depth, overcast natural light, soft and diffused, low-contrast shadows suggesting a heavy, humid atmosphere, subtle rim light on the protagonist to separate from the dark background, type medium shot, lens 35mm, aperture f/2.8, depth_of_field shallow focus on the protagonist, village background softly blurred, flash none, grain natural paper grain, subtle water stain texture, texture visible brush hair texture, pigment diffusion, protagonist positioned in the lower-middle foreground, slightly off-center, 村长阿坤-配角1 positioned on the left side of the frame, emerging from shadow, leading lines from the muddy path directed toward the village entrance, no text, no symbols, no UI elements, watercolor and ink wash illustration, high artistic quality, realistic light and shadow with painterly brushwork, no text, no symbols, no words, no signatures, heavy and somber atmosphere, tense confrontation between tradition and change, lingering sense of duty and exhaustion, no text, no symbols, no garbled characters, no words",
+                "prompt_json": {
+                  "camera": {
+                    "aperture": "f/2.8",
+                    "depth_of_field": "shallow focus on the protagonist, village background softly blurred",
+                    "flash": "none",
+                    "grain": "natural paper grain, subtle water stain texture",
+                    "lens": "35mm",
+                    "texture": "visible brush hair texture, pigment diffusion",
+                    "type": "medium shot"
+                  },
+                  "clothing_system": [
+                    "outdoor jacket with frayed edges and mud splashes",
+                    "canvas bag showing signs of heavy wear and frayed threads",
+                    "tribal amulet with realistic woven texture and earthy tones",
+                    "no logos, no text, no modern printed patterns"
+                  ],
+                  "color_restriction": [
+                    "low-saturation palette dominated by moss green, earthy brown, and slate gray",
+                    "muted tones to reflect the humid and somber atmosphere",
+                    "avoid neon or overly vibrant colors",
+                    "natural light-and-shadow depth"
+                  ],
+                  "composition": [
+                    "protagonist positioned in the lower-middle foreground, slightly off-center",
+                    "村长阿坤-配角1 positioned on the left side of the frame, emerging from shadow",
+                    "leading lines from the muddy path directed toward the village entrance",
+                    "no text, no symbols, no UI elements"
+                  ],
+                  "environment": {
+                    "background": [
+                      "dilapidated village entrance under heavy gray rain mist",
+                      "withered tree at the village edge with gnarled branches",
+                      "rubber plantation in the distance with soft watercolor blur",
+                      "muddy terrain with pools of water reflecting the overcast sky"
+                    ],
+                    "characters": [
+                      "村长阿坤-配角1 standing in the shadows of the village entrance, leaning on a worn wooden staff, face lined with age and suspicion"
+                    ],
+                    "effects": [
+                      "rain mist and damp humidity obscuring the background",
+                      "soft water droplets on the edges of the frame",
+                      "muddy earth texture created with wet-on-wet ink splatters"
+                    ]
+                  },
+                  "face_system": [
+                    "8K detailed facial features, realistic expression of fatigue and determination",
+                    "eyes with fine ink-shaded lines, intense and tired gaze",
+                    "stubble on chin and upper lip rendered with fine dry-brush ink strokes",
+                    "skin texture with subtle watercolor wash, visible sweat droplets",
+                    "no text, no symbols, no strange markings on the face"
+                  ],
+                  "hair_system": [
+                    "short black hair, damp and clumped by humidity",
+                    "root fixation coefficient 0.85, tip swing amplitude 5cm",
+                    "color layering: deep charcoal base with subtle dark brown highlights",
+                    "wind speed 0.5m/s, turbulence intensity 10 percent",
+                    "no text, no symbols in hair details"
+                  ],
+                  "label": "scene-lin-yuan-return-to-village",
+                  "lighting": [
+                    "overcast natural light, soft and diffused",
+                    "low-contrast shadows suggesting a heavy, humid atmosphere",
+                    "subtle rim light on the protagonist to separate from the dark background"
+                  ],
+                  "mood": [
+                    "heavy and somber atmosphere",
+                    "tense confrontation between tradition and change",
+                    "lingering sense of duty and exhaustion"
+                  ],
+                  "output_style": [
+                    "watercolor and ink wash illustration, high artistic quality",
+                    "realistic light and shadow with painterly brushwork",
+                    "no text, no symbols, no words, no signatures"
+                  ],
+                  "style": [
+                    "watercolor and ink wash painting, fresh and translucent color layering",
+                    "wet-on-wet technique for rain-soaked atmosphere, visible pigment bleeding",
+                    "soft chiaroscuro with low-saturation earth tones, muted greens and grays",
+                    "delicate ink strokes for texture, loose and spontaneous brushwork",
+                    "water marks and damp paper texture, soft diffuse edges",
+                    "no text, no symbols, no watermarks, no digital artifacts"
+                  ],
+                  "subject": {
+                    "body_traits": [
+                      "young man with sun-kissed wheat-colored skin",
+                      "short messy black hair with damp texture",
+                      "tired but resolute eyes, stubble on jawline",
+                      "lean and athletic build, posture slightly hunched from heavy bag",
+                      "mud-stained fingers and face, visible sweat and salt streaks"
+                    ],
+                    "outfit": [
+                      "rugged outdoor trekking jacket with visible tears and frayed fabric",
+                      "old canvas shoulder bag with worn-out texture",
+                      "tribal woven amulet on wrist with intricate knotting"
+                    ],
+                    "pose": [
+                      "standing in front of a village entrance",
+                      "facing toward the viewer (referencing Image 0)",
+                      "one hand wiping sweat from forehead, body slightly tilted forward",
+                      "gaze fixed on the village elders with a weary but firm expression"
+                    ]
+                  },
+                  "tags": [
+                    "watercolor",
+                    "narrative-realism",
+                    "atmospheric",
+                    "rainy-jungle-edge",
+                    "melancholy"
+                  ]
+                },
+                "scene_text_hash": "5e4b042808cfb3cdb0e7b16f8ae8665f",
+                "style": "default",
+                "url": "/image_cache/bb55c62e44bfd748201bf983f8ce8439.png",
+                "width": 1920
+              },
+              "previousSceneText": "潮湿的泥土腥气钻进鼻腔，混合着橡胶林特有的苦涩味。我背着沉重的旧帆布包，脚下的冲锋衣被雨林边缘的灌木挂出几道细碎的口子。手腕上那串部落编织的护身符在闷热中显得格外沉重，我抬起手，用满是泥土的指尖抹去额头的汗水，胡茬间渗出的盐分刺痛着皮肤。前方，那座破败的村落轮廓在灰蒙蒙的雨雾中若隐若现，几名族人正围在村口的枯树下，眼神冷漠地注视着我这个“外来者”。我深吸一口气，整理了一下地图，尽量让那双疲惫但坚定的眼睛看向他们。\n\n“我回来了。”我开口，声音因长途跋涉而沙哑，在空旷的林间显得有些单薄。\n\n村长阿坤拄着一根磨损严重的木杖，缓缓从阴影中走出，他那张布满沟壑的脸上看不出任何欢迎的意味，只是盯着我手里的测绘仪器，冷冷地说道：“林远，你带着这些冰冷的机器回来，是想把我们的根也一起挖走吗？”\n\n我沉默地看着他，空气中弥漫着一种无形的压抑，仿佛预示着这场调研注定不会顺利。"
+            },
+            "start_ts": 1777644239.7456274,
+            "end_ts": 1777644261.6313124,
+            "provider_events": {
+              "event_count": 3,
+              "queue_wait_ms": {
+                "count": 3,
+                "min": 0.0,
+                "max": 4915.0,
+                "mean": 3276.667,
+                "median": 4915.0,
+                "p95": 4915.0
+              },
+              "latency_ms": {
+                "count": 2,
+                "min": 4782.0,
+                "max": 4914.0,
+                "mean": 4848.0,
+                "median": 4848.0,
+                "p95": 4907.4
+              },
+              "llm_success_count": 2,
+              "image_success_count": 0,
+              "request_thread_event_count": 0,
+              "provider_429_count": 0,
+              "provider_timeout_count": 0,
+              "shared_backoff_wait_ms_total": 0,
+              "retry_heavy_event_count": 0,
+              "main_character_event_count": 0,
+              "scene_image_event_count": 0
+            }
+          }
+        ],
+        "attempt_count": 1,
+        "request_elapsed_s": 21.886,
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "success",
+        "has_scene": true,
+        "has_image": true,
+        "selected_option_index": 0,
+        "selected_option_text": "诚恳解释调研初衷，并提出协助修复受损的灌溉渠。",
+        "input_scene_id": "-6378612320772163005_-8423417078766005398",
+        "inferred_cache_result": "likely_miss_or_partial",
+        "used_updated_flow_state": true,
+        "cache_hit_reason": "waited_request_scene_text_completed_no_image",
+        "cache_miss_reason": "request_scene_generation_in_progress",
+        "global_state_key_drift_detected": true,
+        "scene_id_mismatch_detected": true,
+        "selected_option_mismatch_detected": false,
+        "current_options_key_drift_detected": false,
+        "benchmark_diagnostics": {
+          "cache_hit_reason": "waited_request_scene_text_completed_no_image",
+          "cache_miss_reason": "request_scene_generation_in_progress",
+          "current_options_key_drift_detected": false,
+          "global_state_key_drift_detected": true,
+          "placeholder": false,
+          "previous_scene_id": "initial",
+          "recomputed_scene_cache_exists": false,
+          "recomputed_scene_id": "-1759467865574099841_-8423417078766005398",
+          "request_current_options_count": 2,
+          "request_current_options_hash": "a90bef25064f7cb8717f30f0c9dd4987",
+          "request_flow_worldline_hash": "0b7d2802f8e46ae104639ddbac325b51",
+          "request_global_state_hash": "5cc1a304af341f81355c99d886909098",
+          "request_option_at_index": "诚恳解释调研初衷，并提出协助修复受损的灌溉渠。",
+          "request_option_index": 0,
+          "request_option_text": "诚恳解释调研初衷，并提出协助修复受损的灌溉渠。",
+          "request_scene_cache_exists": true,
+          "request_scene_cache_meta": {
+            "canonical_scene_id": "-8648502238416512407_-8423417078766005398",
+            "current_options_hash": "a90bef25064f7cb8717f30f0c9dd4987",
+            "current_options_preview": [
+              "诚恳解释调研初衷，并提出协助修复受损的灌溉渠。",
+              "提及多年前离开时与阿坤的约定，试图唤起他的旧情。"
+            ],
+            "flow_worldline_hash": "940e38d5f8372eaa58cfdaf4d70a0d30",
+            "global_state_hash": "52f28889b6eaded35b56b4f9c39fa56e",
+            "option_count": 2,
+            "parent_scene_id": null,
+            "scene_id": "-6378612320772163005_-8423417078766005398"
+          },
+          "request_scene_id": "-6378612320772163005_-8423417078766005398",
+          "resolution_path": "wait_for_request_scene_cache_text_only",
+          "response_has_image": true,
+          "response_has_scene": true,
+          "response_scene_id": "5543304144706340829_180963950643731728",
+          "response_status": "success",
+          "scene_id_mismatch_detected": true,
+          "selected_option_mismatch_detected": false
+        }
+      },
+      "full_ready": {
+        "text_ready_ts": 1777644261.6313124,
+        "text_ready_elapsed_s": 21.886,
+        "image_ready_ts": 1777644261.6313124,
+        "image_ready_elapsed_s": 21.886,
+        "full_ready_ts": 1777644261.6313124,
+        "full_ready_elapsed_s": 21.886,
+        "image_probe": {
+          "status": "success",
+          "source": "generate-option",
+          "image": {
+            "cached": true,
+            "height": 1080,
+            "image_type": "story_scene",
+            "prompt": "scene-lin-yuan-confrontation-with-village-chief, watercolor, realism, rainforest-edge, melancholy, environmental-storytelling, watercolor and ink wash combination, soft pigment diffusion with visible water marks, wet-on-wet technique for muddy ground and humid air, loose painterly brushstrokes capturing moisture and texture, low saturation palette with earthy tones, no text, no symbols, no watermarks, young man, Lin Yuan, using Image 0 for reference, wheat-colored skin with a weathered, sun-kissed texture, short black hair, slightly messy from humidity, stubble on chin and cheeks, eyes are firm and determined yet reveal deep fatigue, lean but sturdy build, standing with a grounded, protective posture, durable outdoor windbreaker in muted earth tones, worn canvas bag slung over one shoulder, traditional woven tribal amulet clearly visible on wrist, clothing appears slightly damp and stained with soil, standing firmly on wet, muddy soil, one hand gesturing towards the distant silted irrigation canal, body facing 阿坤村长-配角1, maintaining a respectful but persistent stance, the heavy surveying instrument rests on the ground near his feet, 8K detailed facial features, expression of earnest sincerity mixed with hidden sorrow, firm jawline, eyes reflecting a sense of responsibility, natural muted lip color, soft shadows from the canopy above, no text, no symbols, no亂码, short black hair, root fixation coefficient 0.85, tip swing amplitude 5cm, natural wind interference, color layering: dark charcoal base with subtle brown highlights, wind speed 0.5m/s, turbulence intensity 10 percent, damp texture suggesting high humidity, outdoor windbreaker with realistic fabric folds and damp spots, canvas bag showing signs of wear and tear, mud splatters at the base, woven amulet with frayed edges, soft color bleeding in watercolor style, rainforest edge with overgrown vegetation and muddy irrigation channels, distant view of a decaying rubber plantation under a heavy, overcast sky, wet earth textures, puddles reflecting the dim, diffused light, 阿坤村长-配角1, an elderly man with a weathered face and cloudy, sharp eyes, standing to the right of the frame, turning away with a hunched, weary back, humid atmospheric haze rendered with diluted watercolor washes, soft light bleeding at the edges of foliage, subtle water droplets on leaves and ground, low saturation palette dominated by earth tones, deep greens, and muddy browns, muted gray sky tones to represent the impending rain season, no bright or neon colors, translucent watercolor layers to create depth, diffused overcast light, no harsh direct sunlight, soft rim lighting on Lin Yuan to separate him from the dark forest background, subtle highlights on wet surfaces and the surveying instrument, type medium shot, lens 35mm, aperture f/2.8, depth_of_field shallow focus on Lin Yuan, background slightly blurred to emphasize the mood, flash none, grain fine paper grain texture with ink bleeding, texture visible watercolor wash and pigment diffusion, Lin Yuan positioned in the left third of the frame, 阿坤村长-配角1 positioned in the right, walking away from the camera, the surveying instrument serves as a focal point at the bottom center, eye-level shot to create a sense of direct interaction, no text, no symbols, no UI elements, watercolor and ink wash painting, atmospheric and realistic, no text, no symbols, no digits, no letters, no watermarks, melancholic, heavy with the weight of destiny, tense yet honest, a sense of quiet resignation and enduring hope, no text, no symbols, no garbled characters, no words",
+            "scene_text_hash": "4d15c5dcab2f1f7a349a75e47a2a0bac",
+            "style": "default",
+            "url": "/image_cache/c86c1c95842f8ec6fd548974fa75c4c3.png",
+            "width": 1920
+          },
+          "attempt_count": 0
+        },
+        "ready_mode": "direct_in_generate_option",
+        "attribution": {
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "provider_retry_heavy_count": 0,
+          "provider_backoff_wait_ms_total": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0,
+          "image_probe_attempt_count": 0,
+          "main_character_contention_suspected": false
+        }
+      },
+      "placeholder": false,
+      "transport_success": true,
+      "strict_success": true,
+      "failure_bucket": null,
+      "cache_path_classification": "direct_real_scene",
+      "cache_hit_reason": "waited_request_scene_text_completed_no_image",
+      "cache_miss_reason": "request_scene_generation_in_progress",
+      "global_state_key_drift_detected": true,
+      "scene_id_mismatch_detected": true,
+      "selected_option_mismatch_detected": false,
+      "success": true
+    }
+  ]
+}

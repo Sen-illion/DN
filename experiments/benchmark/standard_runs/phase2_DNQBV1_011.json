@@ -1,0 +1,371 @@
+{
+  "summary": {
+    "experiment_name": "phase2_DNQBV1_011",
+    "profile": "fullready_strict",
+    "sample_size": 1,
+    "read_wait_s": 0.0,
+    "suite_start_ts": 1777624393.355207,
+    "suite_end_ts": 1777624462.818857,
+    "second_click_elapsed_s": {
+      "count": 0
+    },
+    "second_click_success_count": 0,
+    "transport_success_count": 0,
+    "strict_success_count": 0,
+    "likely_hit_count": 0,
+    "likely_hit_rate": 0.0,
+    "failure_bucket_counts": {
+      "first_click_timeout": 1
+    },
+    "placeholder_strict_fail_count": 0,
+    "cache_hit_reason_counts": {},
+    "cache_miss_reason_counts": {},
+    "global_state_key_drift_detected_count": 0,
+    "scene_id_mismatch_detected_count": 0,
+    "selected_option_mismatch_detected_count": 0,
+    "aborted": false,
+    "success_count": 0,
+    "text_ready_elapsed_s": {
+      "count": 0
+    },
+    "image_ready_elapsed_s": {
+      "count": 0
+    },
+    "full_ready_elapsed_s": {
+      "count": 0
+    },
+    "real_scene_count": 0,
+    "real_scene_rate": 0.0,
+    "direct_image_count": 0,
+    "async_image_count": 0,
+    "placeholder_count": 0,
+    "placeholder_rate": 0.0,
+    "direct_image_rate": 0.0,
+    "async_image_rate": 0.0,
+    "provider_retry_heavy_count": 0,
+    "provider_429_count": 0,
+    "provider_timeout_count": 0,
+    "provider_backoff_wait_ms_total": 0,
+    "main_character_contention_suspected_count": 0,
+    "notes": "phase2 cache diagnosis probe"
+  },
+  "runs": [
+    {
+      "benchmark_id": "DNQBV1_011",
+      "theme_id": 21,
+      "theme": "书院禁书风波",
+      "read_wait_s": 0.0,
+      "full_ready_mode": true,
+      "profile": "fullready_strict",
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 9.329,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过巧妙的伪造手段将残页藏匿于废弃的装订机中，成功通过了纠察队的搜查，但代价是失去了图书馆的信任，被调往最底层的档案室，失去了接触核心资料的便利。",
+                  "main_conflict": "主角在图书馆的日常工作中，意外发现了一张夹在官方教材中的禁书残页。书院的纠察队开始对图书馆进行地毯式排查，主角面临着“交出残页以保全职位”还是“冒险私藏并寻找线索”的抉择，同时还要应对同僚为了晋升而进行的恶意举报与试探。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角识破了同伴的身份，并利用对方的愧疚感达成了一次“信息交换”，成功获取了禁书库的钥匙碎片，但同伴因此被书院开除，主角彻底失去了在书院唯一的盟友。",
+                  "main_conflict": "在档案室，主角结识了一位同样渴望真相的记录者，两人试图合作解密残页上的隐喻。然而，书院推行了新的“思想净化计划”，要求学生互相检举。主角发现这位同伴竟是纠察队安插的眼线，两人在信任与背叛的边缘徘徊，主角必须在揭露真相与保护同伴（即便对方有目的）之间做出选择。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角最终选择了带走诗集，放弃了书院提供的优渥毕业分配，以“主动退学”的方式离开了书院。他没能改变书院，也没能成为英雄，只是带着一本残缺的诗集，回到了平凡的社会，接受了自己终究只是个普通人的现实。",
+                  "main_conflict": "主角终于进入禁书库，找到了那本诗集，却发现父亲留下的并非什么革命檄文，只是一本普通的、记录着平凡生活的诗集。此时，书院的年度审查即将开始，主角必须决定是否要带着这本毫无“政治价值”的诗集离开，还是为了证明自己的努力而将其作为证据，却可能因此被书院永久禁锢。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为现实主义叙事风格，采用沉稳内敛的冷色调视觉表现。通过细腻的日常琐碎与压抑的社会氛围交织，构建出一种“在规则缝隙中挣扎”的真实感。游戏节奏舒缓，强调环境叙事与对话中的潜台词，旨在让玩家在平淡的互动中感受到时代洪流下个体的无力与坚韧。",
+              "main_quest": "主角的目标是寻回一本被书院列为禁书的《旧时代诗集》，这是其已故父亲留下的唯一线索，也是主角确认自身存在价值的锚点。任务分为三个阶段：首先，通过在书院图书馆的日常工作中建立信任，获取进入禁书库的权限；其次，在严密的监控网络下，利用“感知残影”避开纠察，逐步拼凑出诗集的残页；最后，在书院年度审查前，决定是将诗集公之于众以唤醒同伴，还是将其彻底销毁以换取自身安稳的毕业资格。挑战在于，每一步选择都会导致人际关系的崩塌或学业的停滞，主角必须在“理想的火种”与“现实的生存”之间做出极其艰难的取舍。",
+              "protagonist_ability": "主角拥有一种名为“感知残影”的特殊直觉，这源于其家族遗传的对纸张气味与墨迹结构的敏感。在书院中，主角可以通过触摸书脊或残页，在脑海中重构出该书被阅读时的情感片段与部分内容碎片。这种能力并非超自然力量，而是极度专注带来的认知补偿。限制在于，每次使用都会导致剧烈的偏头痛，且由于书院监控严密，主角必须在极短的碎片时间内完成解读，若过度依赖，会导致对现实感知的模糊，甚至被书院的“纠察系统”锁定。",
+              "world_basic_setting": "故事发生在一个名为“青岩书院”的封闭式教育机构，背景设定在资源匮乏、思想高度管控的近未来社会。书院坐落于深山，是社会精英阶层的预备役摇篮，其核心文化是“绝对秩序与知识纯洁化”。历史记载，曾发生过大规模的“思想污染事件”，导致书院建立了一套严苛的禁书库管理制度，任何未被官方认可的旧时代书籍均被列为“禁书”。社会普遍信奉“有用知识论”，即只有能直接转化为生产力的知识才被允许传播。书院内等级森严，学生们被分为“执行者”与“记录者”，这种社会结构不仅体现在学业上，更渗透进日常的社交与资源分配。关键事件“旧书库失火案”是整个世界的转折点，它摧毁了大量历史真相，也埋下了主角探索禁书的动机。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1777624393_t2x89t",
+            "image_style": {
+              "type": "ink_painting"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "清瘦、黑框眼镜、指尖常有墨迹、神情疲惫、眼神专注、穿着洗得发白的制服、沉默寡言、习惯性低头、袖口磨损、书卷气、内敛、坚韧",
+              "work_en": "The Torn Pages of Qingyan Academy",
+              "work_zh": "青岩书院的残页"
+            },
+            "tone": "normal_ending",
+            "user_theme": "书院禁书风波"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "request_payload": {
+          "gameTheme": "书院禁书风波",
+          "protagonistAttr": {},
+          "difficulty": "normal",
+          "toneKey": "normal_ending",
+          "imageStyle": {
+            "type": "ink_painting"
+          },
+          "_benchmark_profile": "fullready_strict",
+          "_benchmark_measurement": "fullready_nextturn",
+          "_benchmark_read_wait_s": 0.0
+        },
+        "start_ts": 1777624393.35521,
+        "end_ts": 1777624402.6837516,
+        "provider_events": {
+          "event_count": 4,
+          "queue_wait_ms": {
+            "count": 4,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 1,
+            "min": 9294.0,
+            "max": 9294.0,
+            "mean": 9294.0,
+            "median": 9294.0,
+            "p95": 9294.0
+          },
+          "llm_success_count": 1,
+          "image_success_count": 0,
+          "request_thread_event_count": 2,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0
+        },
+        "status": "success",
+        "game_id": "game_1777624393_t2x89t"
+      },
+      "first_click": {
+        "http_status": null,
+        "elapsed_s": 60.033,
+        "response_json": {
+          "status": "timeout",
+          "message": "HTTPConnectionPool(host='127.0.0.1', port=5006): Read timed out. (read timeout=60)"
+        },
+        "request_payload": {
+          "option": "开始游戏",
+          "optionIndex": 0,
+          "sceneId": null,
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过巧妙的伪造手段将残页藏匿于废弃的装订机中，成功通过了纠察队的搜查，但代价是失去了图书馆的信任，被调往最底层的档案室，失去了接触核心资料的便利。",
+                  "main_conflict": "主角在图书馆的日常工作中，意外发现了一张夹在官方教材中的禁书残页。书院的纠察队开始对图书馆进行地毯式排查，主角面临着“交出残页以保全职位”还是“冒险私藏并寻找线索”的抉择，同时还要应对同僚为了晋升而进行的恶意举报与试探。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角识破了同伴的身份，并利用对方的愧疚感达成了一次“信息交换”，成功获取了禁书库的钥匙碎片，但同伴因此被书院开除，主角彻底失去了在书院唯一的盟友。",
+                  "main_conflict": "在档案室，主角结识了一位同样渴望真相的记录者，两人试图合作解密残页上的隐喻。然而，书院推行了新的“思想净化计划”，要求学生互相检举。主角发现这位同伴竟是纠察队安插的眼线，两人在信任与背叛的边缘徘徊，主角必须在揭露真相与保护同伴（即便对方有目的）之间做出选择。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角最终选择了带走诗集，放弃了书院提供的优渥毕业分配，以“主动退学”的方式离开了书院。他没能改变书院，也没能成为英雄，只是带着一本残缺的诗集，回到了平凡的社会，接受了自己终究只是个普通人的现实。",
+                  "main_conflict": "主角终于进入禁书库，找到了那本诗集，却发现父亲留下的并非什么革命檄文，只是一本普通的、记录着平凡生活的诗集。此时，书院的年度审查即将开始，主角必须决定是否要带着这本毫无“政治价值”的诗集离开，还是为了证明自己的努力而将其作为证据，却可能因此被书院永久禁锢。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为现实主义叙事风格，采用沉稳内敛的冷色调视觉表现。通过细腻的日常琐碎与压抑的社会氛围交织，构建出一种“在规则缝隙中挣扎”的真实感。游戏节奏舒缓，强调环境叙事与对话中的潜台词，旨在让玩家在平淡的互动中感受到时代洪流下个体的无力与坚韧。",
+              "main_quest": "主角的目标是寻回一本被书院列为禁书的《旧时代诗集》，这是其已故父亲留下的唯一线索，也是主角确认自身存在价值的锚点。任务分为三个阶段：首先，通过在书院图书馆的日常工作中建立信任，获取进入禁书库的权限；其次，在严密的监控网络下，利用“感知残影”避开纠察，逐步拼凑出诗集的残页；最后，在书院年度审查前，决定是将诗集公之于众以唤醒同伴，还是将其彻底销毁以换取自身安稳的毕业资格。挑战在于，每一步选择都会导致人际关系的崩塌或学业的停滞，主角必须在“理想的火种”与“现实的生存”之间做出极其艰难的取舍。",
+              "protagonist_ability": "主角拥有一种名为“感知残影”的特殊直觉，这源于其家族遗传的对纸张气味与墨迹结构的敏感。在书院中，主角可以通过触摸书脊或残页，在脑海中重构出该书被阅读时的情感片段与部分内容碎片。这种能力并非超自然力量，而是极度专注带来的认知补偿。限制在于，每次使用都会导致剧烈的偏头痛，且由于书院监控严密，主角必须在极短的碎片时间内完成解读，若过度依赖，会导致对现实感知的模糊，甚至被书院的“纠察系统”锁定。",
+              "world_basic_setting": "故事发生在一个名为“青岩书院”的封闭式教育机构，背景设定在资源匮乏、思想高度管控的近未来社会。书院坐落于深山，是社会精英阶层的预备役摇篮，其核心文化是“绝对秩序与知识纯洁化”。历史记载，曾发生过大规模的“思想污染事件”，导致书院建立了一套严苛的禁书库管理制度，任何未被官方认可的旧时代书籍均被列为“禁书”。社会普遍信奉“有用知识论”，即只有能直接转化为生产力的知识才被允许传播。书院内等级森严，学生们被分为“执行者”与“记录者”，这种社会结构不仅体现在学业上，更渗透进日常的社交与资源分配。关键事件“旧书库失火案”是整个世界的转折点，它摧毁了大量历史真相，也埋下了主角探索禁书的动机。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1777624393_t2x89t",
+            "image_style": {
+              "type": "ink_painting"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "清瘦、黑框眼镜、指尖常有墨迹、神情疲惫、眼神专注、穿着洗得发白的制服、沉默寡言、习惯性低头、袖口磨损、书卷气、内敛、坚韧",
+              "work_en": "The Torn Pages of Qingyan Academy",
+              "work_zh": "青岩书院的残页"
+            },
+            "tone": "normal_ending",
+            "user_theme": "书院禁书风波",
+            "_benchmark_profile": "fullready_strict",
+            "_benchmark_measurement": "fullready_nextturn",
+            "_benchmark_read_wait_s": 0.0
+          }
+        },
+        "start_ts": 1777624402.7459302,
+        "end_ts": 1777624462.7785983,
+        "provider_events": {
+          "event_count": 6,
+          "queue_wait_ms": {
+            "count": 6,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 4,
+            "min": 2330.0,
+            "max": 14637.0,
+            "mean": 7842.0,
+            "median": 7200.5,
+            "p95": 13953.0
+          },
+          "llm_success_count": 4,
+          "image_success_count": 0,
+          "request_thread_event_count": 0,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0
+        },
+        "request_error": "timeout",
+        "attempts": [
+          {
+            "http_status": null,
+            "elapsed_s": 60.033,
+            "response_json": {
+              "status": "timeout",
+              "message": "HTTPConnectionPool(host='127.0.0.1', port=5006): Read timed out. (read timeout=60)"
+            },
+            "request_payload": {
+              "option": "开始游戏",
+              "optionIndex": 0,
+              "sceneId": null,
+              "globalState": {
+                "core_worldview": {
+                  "chapters": {
+                    "chapter1": {
+                      "conflict_end_condition": "主角通过巧妙的伪造手段将残页藏匿于废弃的装订机中，成功通过了纠察队的搜查，但代价是失去了图书馆的信任，被调往最底层的档案室，失去了接触核心资料的便利。",
+                      "main_conflict": "主角在图书馆的日常工作中，意外发现了一张夹在官方教材中的禁书残页。书院的纠察队开始对图书馆进行地毯式排查，主角面临着“交出残页以保全职位”还是“冒险私藏并寻找线索”的抉择，同时还要应对同僚为了晋升而进行的恶意举报与试探。"
+                    },
+                    "chapter2": {
+                      "conflict_end_condition": "主角识破了同伴的身份，并利用对方的愧疚感达成了一次“信息交换”，成功获取了禁书库的钥匙碎片，但同伴因此被书院开除，主角彻底失去了在书院唯一的盟友。",
+                      "main_conflict": "在档案室，主角结识了一位同样渴望真相的记录者，两人试图合作解密残页上的隐喻。然而，书院推行了新的“思想净化计划”，要求学生互相检举。主角发现这位同伴竟是纠察队安插的眼线，两人在信任与背叛的边缘徘徊，主角必须在揭露真相与保护同伴（即便对方有目的）之间做出选择。"
+                    },
+                    "chapter3": {
+                      "conflict_end_condition": "主角最终选择了带走诗集，放弃了书院提供的优渥毕业分配，以“主动退学”的方式离开了书院。他没能改变书院，也没能成为英雄，只是带着一本残缺的诗集，回到了平凡的社会，接受了自己终究只是个普通人的现实。",
+                      "main_conflict": "主角终于进入禁书库，找到了那本诗集，却发现父亲留下的并非什么革命檄文，只是一本普通的、记录着平凡生活的诗集。此时，书院的年度审查即将开始，主角必须决定是否要带着这本毫无“政治价值”的诗集离开，还是为了证明自己的努力而将其作为证据，却可能因此被书院永久禁锢。"
+                    }
+                  },
+                  "characters": {},
+                  "forces": {},
+                  "game_style": "本作为现实主义叙事风格，采用沉稳内敛的冷色调视觉表现。通过细腻的日常琐碎与压抑的社会氛围交织，构建出一种“在规则缝隙中挣扎”的真实感。游戏节奏舒缓，强调环境叙事与对话中的潜台词，旨在让玩家在平淡的互动中感受到时代洪流下个体的无力与坚韧。",
+                  "main_quest": "主角的目标是寻回一本被书院列为禁书的《旧时代诗集》，这是其已故父亲留下的唯一线索，也是主角确认自身存在价值的锚点。任务分为三个阶段：首先，通过在书院图书馆的日常工作中建立信任，获取进入禁书库的权限；其次，在严密的监控网络下，利用“感知残影”避开纠察，逐步拼凑出诗集的残页；最后，在书院年度审查前，决定是将诗集公之于众以唤醒同伴，还是将其彻底销毁以换取自身安稳的毕业资格。挑战在于，每一步选择都会导致人际关系的崩塌或学业的停滞，主角必须在“理想的火种”与“现实的生存”之间做出极其艰难的取舍。",
+                  "protagonist_ability": "主角拥有一种名为“感知残影”的特殊直觉，这源于其家族遗传的对纸张气味与墨迹结构的敏感。在书院中，主角可以通过触摸书脊或残页，在脑海中重构出该书被阅读时的情感片段与部分内容碎片。这种能力并非超自然力量，而是极度专注带来的认知补偿。限制在于，每次使用都会导致剧烈的偏头痛，且由于书院监控严密，主角必须在极短的碎片时间内完成解读，若过度依赖，会导致对现实感知的模糊，甚至被书院的“纠察系统”锁定。",
+                  "world_basic_setting": "故事发生在一个名为“青岩书院”的封闭式教育机构，背景设定在资源匮乏、思想高度管控的近未来社会。书院坐落于深山，是社会精英阶层的预备役摇篮，其核心文化是“绝对秩序与知识纯洁化”。历史记载，曾发生过大规模的“思想污染事件”，导致书院建立了一套严苛的禁书库管理制度，任何未被官方认可的旧时代书籍均被列为“禁书”。社会普遍信奉“有用知识论”，即只有能直接转化为生产力的知识才被允许传播。书院内等级森严，学生们被分为“执行者”与“记录者”，这种社会结构不仅体现在学业上，更渗透进日常的社交与资源分配。关键事件“旧书库失火案”是整个世界的转折点，它摧毁了大量历史真相，也埋下了主角探索禁书的动机。"
+                },
+                "flow_worldline": {
+                  "characters": {},
+                  "current_chapter": "chapter1",
+                  "environment": {}
+                },
+                "game_id": "game_1777624393_t2x89t",
+                "image_style": {
+                  "type": "ink_painting"
+                },
+                "meta": {
+                  "detail_async": true
+                },
+                "protagonist_canonical": {
+                  "age_range": "青年",
+                  "gender": "男性",
+                  "name_en": "Lin Yuan",
+                  "name_zh": "林远",
+                  "signature_look_keywords": "清瘦、黑框眼镜、指尖常有墨迹、神情疲惫、眼神专注、穿着洗得发白的制服、沉默寡言、习惯性低头、袖口磨损、书卷气、内敛、坚韧",
+                  "work_en": "The Torn Pages of Qingyan Academy",
+                  "work_zh": "青岩书院的残页"
+                },
+                "tone": "normal_ending",
+                "user_theme": "书院禁书风波",
+                "_benchmark_profile": "fullready_strict",
+                "_benchmark_measurement": "fullready_nextturn",
+                "_benchmark_read_wait_s": 0.0
+              }
+            },
+            "start_ts": 1777624402.7459302,
+            "end_ts": 1777624462.7785983,
+            "provider_events": {
+              "event_count": 6,
+              "queue_wait_ms": {
+                "count": 6,
+                "min": 0.0,
+                "max": 0.0,
+                "mean": 0.0,
+                "median": 0.0,
+                "p95": 0.0
+              },
+              "latency_ms": {
+                "count": 4,
+                "min": 2330.0,
+                "max": 14637.0,
+                "mean": 7842.0,
+                "median": 7200.5,
+                "p95": 13953.0
+              },
+              "llm_success_count": 4,
+              "image_success_count": 0,
+              "request_thread_event_count": 0,
+              "provider_429_count": 0,
+              "provider_timeout_count": 0,
+              "shared_backoff_wait_ms_total": 0,
+              "retry_heavy_event_count": 0,
+              "main_character_event_count": 0,
+              "scene_image_event_count": 0
+            },
+            "request_error": "timeout"
+          }
+        ],
+        "attempt_count": 1,
+        "request_elapsed_s": 60.033,
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "timeout",
+        "has_scene": false,
+        "has_image": false
+      },
+      "second_click": {},
+      "full_ready": {},
+      "placeholder": false,
+      "transport_success": false,
+      "strict_success": false,
+      "failure_bucket": "first_click_timeout",
+      "cache_path_classification": "first_click_timeout",
+      "cache_hit_reason": null,
+      "cache_miss_reason": null,
+      "global_state_key_drift_detected": false,
+      "scene_id_mismatch_detected": false,
+      "selected_option_mismatch_detected": false,
+      "success": false
+    }
+  ]
+}

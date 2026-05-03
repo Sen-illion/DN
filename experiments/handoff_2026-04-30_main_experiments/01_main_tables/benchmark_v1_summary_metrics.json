@@ -1,0 +1,70 @@
+{
+  "worldview_default_summary": {
+    "experiment_name": "benchmark_v1_worldview_default_20",
+    "sample_size": 20,
+    "suite_start_ts": 1776585859.4347682,
+    "suite_end_ts": 1776586532.7295604,
+    "elapsed_s": {
+      "count": 20,
+      "min": 13.736,
+      "max": 107.4,
+      "mean": 33.657,
+      "median": 23.664,
+      "p95": 68.872
+    },
+    "success_count": 20,
+    "error_count": 0
+  },
+  "worldview_no_council_summary": {
+    "experiment_name": "benchmark_v1_worldview_no_council_20",
+    "sample_size": 20,
+    "suite_start_ts": 1776586584.9412565,
+    "suite_end_ts": 1776586985.752352,
+    "elapsed_s": {
+      "count": 20,
+      "min": 8.336,
+      "max": 91.867,
+      "mean": 20.031,
+      "median": 14.938,
+      "p95": 44.556
+    },
+    "success_count": 20,
+    "error_count": 0
+  },
+  "fullchain_default_summary": {
+    "experiment_name": "benchmark_v1_fullchain_default_20",
+    "sample_size": 20,
+    "suite_start_ts": 1776587035.3651662,
+    "suite_end_ts": 1776588556.2661853,
+    "worldview_elapsed_s": {
+      "count": 20,
+      "min": 7.884,
+      "max": 39.77,
+      "mean": 12.458,
+      "median": 9.003,
+      "p95": 30.515
+    },
+    "generate_option_elapsed_s": {
+      "count": 20,
+      "min": 0.007,
+      "max": 138.939,
+      "mean": 7.662,
+      "median": 0.022,
+      "p95": 17.716
+    },
+    "main_character_completion_s": {
+      "count": 20,
+      "min": 0.015,
+      "max": 121.156,
+      "mean": 55.912,
+      "median": 56.546,
+      "p95": 77.015
+    },
+    "full_success_count": 20
+  },
+  "notes": [
+    "这一版是基于 DN-quality-benchmark-v1 的标准化批跑结果",
+    "worldview A/B 与 fullchain default 在不同运行窗口执行，受 provider 实时状态影响",
+    "建议后续再做重复轮次以区分时段波动与配置本身效果"
+  ]
+}

@@ -1,0 +1,371 @@
+{
+  "summary": {
+    "experiment_name": "phase2_DNQBV1_008",
+    "profile": "fullready_strict",
+    "sample_size": 1,
+    "read_wait_s": 0.0,
+    "suite_start_ts": 1777623390.4721508,
+    "suite_end_ts": 1777623458.789686,
+    "second_click_elapsed_s": {
+      "count": 0
+    },
+    "second_click_success_count": 0,
+    "transport_success_count": 0,
+    "strict_success_count": 0,
+    "likely_hit_count": 0,
+    "likely_hit_rate": 0.0,
+    "failure_bucket_counts": {
+      "first_click_timeout": 1
+    },
+    "placeholder_strict_fail_count": 0,
+    "cache_hit_reason_counts": {},
+    "cache_miss_reason_counts": {},
+    "global_state_key_drift_detected_count": 0,
+    "scene_id_mismatch_detected_count": 0,
+    "selected_option_mismatch_detected_count": 0,
+    "aborted": false,
+    "success_count": 0,
+    "text_ready_elapsed_s": {
+      "count": 0
+    },
+    "image_ready_elapsed_s": {
+      "count": 0
+    },
+    "full_ready_elapsed_s": {
+      "count": 0
+    },
+    "real_scene_count": 0,
+    "real_scene_rate": 0.0,
+    "direct_image_count": 0,
+    "async_image_count": 0,
+    "placeholder_count": 0,
+    "placeholder_rate": 0.0,
+    "direct_image_rate": 0.0,
+    "async_image_rate": 0.0,
+    "provider_retry_heavy_count": 0,
+    "provider_429_count": 0,
+    "provider_timeout_count": 0,
+    "provider_backoff_wait_ms_total": 0,
+    "main_character_contention_suspected_count": 0,
+    "notes": "phase2 cache diagnosis probe"
+  },
+  "runs": [
+    {
+      "benchmark_id": "DNQBV1_008",
+      "theme_id": 27,
+      "theme": "全息偶像塌房记",
+      "read_wait_s": 0.0,
+      "full_ready_mode": true,
+      "profile": "fullready_strict",
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 8.236,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过超负荷工作修复了表面的动作逻辑，暂时平息了粉丝的怒火，工作室获得了一笔短期续命资金，但主角因此落下了职业病，且意识到自己只是资本棋盘上的一枚弃子。",
+                  "main_conflict": "主角所在的边缘工作室面临被收购的危机，而此时当红偶像“星野”突然出现严重的动作逻辑错误，导致粉丝大规模抗议。主角作为核心动捕演员，被要求在极短时间内修复数据，但其身体状态已达极限，且发现错误并非技术失误，而是有人蓄意篡改了底层逻辑，主角陷入了职业生涯与道德良知的双重困境。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角成功保留了“星野”的部分核心数据备份，但被迫放弃了公开真相的计划，并接受了公司提出的降薪调岗协议，虽然失去了核心地位，但保住了在行业内继续生存的资格。",
+                  "main_conflict": "随着调查深入，主角发现“星野”的运营团队正计划将其“格式化”以推出新一代偶像。主角试图通过公开部分真相来保护这个陪伴自己多年的数字生命，却遭到同事的背叛与公司的施压。主角必须在维持生活开支的现实压力与守护虚拟偶像的理想之间，寻找一条不被行业彻底封杀的生存路径。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角选择在告别演出中融入了真实的个人情感动作，演出获得了意想不到的共鸣，虽然“星野”最终还是消失了，但主角获得了业内小范围的认可，他带着遗憾与释然离开了公司，开始了一段平凡但属于自己的新生活。",
+                  "main_conflict": "最终决战时刻，公司正式宣布“星野”退役。主角站在空荡的动捕室中，面对最后一次录制机会，他必须决定是按照公司的要求完成一场虚伪的告别演出，还是在演出中植入一段属于自己的、真实的动作记忆，以此作为对这段职业生涯的最后告别，即便这可能意味着彻底离开这个行业。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为都市职场现实主义题材，采用冷峻克制的写实画风。叙事节奏平缓而扎实，通过琐碎的职场对话、深夜的社交媒体界面与逼仄的公寓环境，构建出一种“在霓虹灯影下挣扎求生”的真实质感，旨在引发玩家对职业理想与生活真相的深度共鸣。",
+              "main_quest": "主角作为一名濒临失业的动作捕捉演员，意外卷入当红全息偶像“星野”的塌房事件。目标是协助工作室在舆论风暴中保住“星野”的数字资产，并寻找真相。步骤包括：搜集碎片化的网络舆情、在复杂的职场关系中周旋、通过动作捕捉技术修复偶像的受损形象。挑战在于，主角在深入调查中发现，偶像的“塌房”并非单纯的技术故障，而是资本为了推陈出新而策划的“废弃计划”，主角必须在保住饭碗与揭露真相之间做出艰难抉择，最终达成一种既能维持生计，又保留职业尊严的平衡。",
+              "protagonist_ability": "主角拥有“共情捕捉”能力，源于其多年担任动作捕捉演员的职业积淀。通过观察与模仿，主角能精准复刻他人的微表情与肢体语言，将其转化为全息偶像的动作数据。使用时需高度集中精神，长期高强度输出会导致身体机能受损与自我认知的模糊，且该能力无法模拟真实的情感内核，仅能提供完美的躯壳，这构成了主角在职业与自我之间难以逾越的鸿沟。",
+              "world_basic_setting": "故事发生于近未来的超大都市“新京”，全息偶像产业已成为社会主流娱乐，通过高精度的AI建模与动作捕捉，虚拟偶像占据了大众的精神消费市场。然而，光鲜的虚拟皮囊之下，是无数底层运营人员、动作捕捉演员与技术维护者的血汗。社会阶层固化严重，年轻人普遍面临着“数字异化”的困境，人们在虚拟偶像的完美中寻找慰藉，却忽略了现实中人与人之间真实的连接。关键事件“零点崩塌”曾导致头部虚拟偶像因技术漏洞引发大规模舆论危机，导致行业监管收紧，资本运作更加隐蔽，而主角所在的边缘工作室，正处于行业洗牌的漩涡中心，试图在资本的博弈中寻找生存空间。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1777623390_5ihot4",
+            "image_style": {
+              "type": "cyberpunk"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "黑色碎发、黑眼圈、穿着宽松的灰色连帽衫、眼神疲惫但专注、手指常有胶带缠绕、背部微驼、沉默寡言、随身携带旧式录音笔、清瘦、不修边幅、常在深夜出没、带有淡淡的烟草味",
+              "work_en": "Afterglow of Neo-Kyoto",
+              "work_zh": "新京余晖"
+            },
+            "tone": "normal_ending",
+            "user_theme": "全息偶像塌房记"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "request_payload": {
+          "gameTheme": "全息偶像塌房记",
+          "protagonistAttr": {},
+          "difficulty": "normal",
+          "toneKey": "normal_ending",
+          "imageStyle": {
+            "type": "cyberpunk"
+          },
+          "_benchmark_profile": "fullready_strict",
+          "_benchmark_measurement": "fullready_nextturn",
+          "_benchmark_read_wait_s": 0.0
+        },
+        "start_ts": 1777623390.4721549,
+        "end_ts": 1777623398.707709,
+        "provider_events": {
+          "event_count": 4,
+          "queue_wait_ms": {
+            "count": 4,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 1,
+            "min": 8208.0,
+            "max": 8208.0,
+            "mean": 8208.0,
+            "median": 8208.0,
+            "p95": 8208.0
+          },
+          "llm_success_count": 1,
+          "image_success_count": 0,
+          "request_thread_event_count": 2,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0
+        },
+        "status": "success",
+        "game_id": "game_1777623390_5ihot4"
+      },
+      "first_click": {
+        "http_status": null,
+        "elapsed_s": 60.004,
+        "response_json": {
+          "status": "timeout",
+          "message": "HTTPConnectionPool(host='127.0.0.1', port=5006): Read timed out. (read timeout=60)"
+        },
+        "request_payload": {
+          "option": "开始游戏",
+          "optionIndex": 0,
+          "sceneId": null,
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过超负荷工作修复了表面的动作逻辑，暂时平息了粉丝的怒火，工作室获得了一笔短期续命资金，但主角因此落下了职业病，且意识到自己只是资本棋盘上的一枚弃子。",
+                  "main_conflict": "主角所在的边缘工作室面临被收购的危机，而此时当红偶像“星野”突然出现严重的动作逻辑错误，导致粉丝大规模抗议。主角作为核心动捕演员，被要求在极短时间内修复数据，但其身体状态已达极限，且发现错误并非技术失误，而是有人蓄意篡改了底层逻辑，主角陷入了职业生涯与道德良知的双重困境。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角成功保留了“星野”的部分核心数据备份，但被迫放弃了公开真相的计划，并接受了公司提出的降薪调岗协议，虽然失去了核心地位，但保住了在行业内继续生存的资格。",
+                  "main_conflict": "随着调查深入，主角发现“星野”的运营团队正计划将其“格式化”以推出新一代偶像。主角试图通过公开部分真相来保护这个陪伴自己多年的数字生命，却遭到同事的背叛与公司的施压。主角必须在维持生活开支的现实压力与守护虚拟偶像的理想之间，寻找一条不被行业彻底封杀的生存路径。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角选择在告别演出中融入了真实的个人情感动作，演出获得了意想不到的共鸣，虽然“星野”最终还是消失了，但主角获得了业内小范围的认可，他带着遗憾与释然离开了公司，开始了一段平凡但属于自己的新生活。",
+                  "main_conflict": "最终决战时刻，公司正式宣布“星野”退役。主角站在空荡的动捕室中，面对最后一次录制机会，他必须决定是按照公司的要求完成一场虚伪的告别演出，还是在演出中植入一段属于自己的、真实的动作记忆，以此作为对这段职业生涯的最后告别，即便这可能意味着彻底离开这个行业。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为都市职场现实主义题材，采用冷峻克制的写实画风。叙事节奏平缓而扎实，通过琐碎的职场对话、深夜的社交媒体界面与逼仄的公寓环境，构建出一种“在霓虹灯影下挣扎求生”的真实质感，旨在引发玩家对职业理想与生活真相的深度共鸣。",
+              "main_quest": "主角作为一名濒临失业的动作捕捉演员，意外卷入当红全息偶像“星野”的塌房事件。目标是协助工作室在舆论风暴中保住“星野”的数字资产，并寻找真相。步骤包括：搜集碎片化的网络舆情、在复杂的职场关系中周旋、通过动作捕捉技术修复偶像的受损形象。挑战在于，主角在深入调查中发现，偶像的“塌房”并非单纯的技术故障，而是资本为了推陈出新而策划的“废弃计划”，主角必须在保住饭碗与揭露真相之间做出艰难抉择，最终达成一种既能维持生计，又保留职业尊严的平衡。",
+              "protagonist_ability": "主角拥有“共情捕捉”能力，源于其多年担任动作捕捉演员的职业积淀。通过观察与模仿，主角能精准复刻他人的微表情与肢体语言，将其转化为全息偶像的动作数据。使用时需高度集中精神，长期高强度输出会导致身体机能受损与自我认知的模糊，且该能力无法模拟真实的情感内核，仅能提供完美的躯壳，这构成了主角在职业与自我之间难以逾越的鸿沟。",
+              "world_basic_setting": "故事发生于近未来的超大都市“新京”，全息偶像产业已成为社会主流娱乐，通过高精度的AI建模与动作捕捉，虚拟偶像占据了大众的精神消费市场。然而，光鲜的虚拟皮囊之下，是无数底层运营人员、动作捕捉演员与技术维护者的血汗。社会阶层固化严重，年轻人普遍面临着“数字异化”的困境，人们在虚拟偶像的完美中寻找慰藉，却忽略了现实中人与人之间真实的连接。关键事件“零点崩塌”曾导致头部虚拟偶像因技术漏洞引发大规模舆论危机，导致行业监管收紧，资本运作更加隐蔽，而主角所在的边缘工作室，正处于行业洗牌的漩涡中心，试图在资本的博弈中寻找生存空间。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1777623390_5ihot4",
+            "image_style": {
+              "type": "cyberpunk"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "黑色碎发、黑眼圈、穿着宽松的灰色连帽衫、眼神疲惫但专注、手指常有胶带缠绕、背部微驼、沉默寡言、随身携带旧式录音笔、清瘦、不修边幅、常在深夜出没、带有淡淡的烟草味",
+              "work_en": "Afterglow of Neo-Kyoto",
+              "work_zh": "新京余晖"
+            },
+            "tone": "normal_ending",
+            "user_theme": "全息偶像塌房记",
+            "_benchmark_profile": "fullready_strict",
+            "_benchmark_measurement": "fullready_nextturn",
+            "_benchmark_read_wait_s": 0.0
+          }
+        },
+        "start_ts": 1777623398.7476656,
+        "end_ts": 1777623458.7515707,
+        "provider_events": {
+          "event_count": 7,
+          "queue_wait_ms": {
+            "count": 7,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 4,
+            "min": 4943.0,
+            "max": 11244.0,
+            "mean": 7785.75,
+            "median": 7478.0,
+            "p95": 10755.6
+          },
+          "llm_success_count": 4,
+          "image_success_count": 0,
+          "request_thread_event_count": 0,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 1
+        },
+        "request_error": "timeout",
+        "attempts": [
+          {
+            "http_status": null,
+            "elapsed_s": 60.004,
+            "response_json": {
+              "status": "timeout",
+              "message": "HTTPConnectionPool(host='127.0.0.1', port=5006): Read timed out. (read timeout=60)"
+            },
+            "request_payload": {
+              "option": "开始游戏",
+              "optionIndex": 0,
+              "sceneId": null,
+              "globalState": {
+                "core_worldview": {
+                  "chapters": {
+                    "chapter1": {
+                      "conflict_end_condition": "主角通过超负荷工作修复了表面的动作逻辑，暂时平息了粉丝的怒火，工作室获得了一笔短期续命资金，但主角因此落下了职业病，且意识到自己只是资本棋盘上的一枚弃子。",
+                      "main_conflict": "主角所在的边缘工作室面临被收购的危机，而此时当红偶像“星野”突然出现严重的动作逻辑错误，导致粉丝大规模抗议。主角作为核心动捕演员，被要求在极短时间内修复数据，但其身体状态已达极限，且发现错误并非技术失误，而是有人蓄意篡改了底层逻辑，主角陷入了职业生涯与道德良知的双重困境。"
+                    },
+                    "chapter2": {
+                      "conflict_end_condition": "主角成功保留了“星野”的部分核心数据备份，但被迫放弃了公开真相的计划，并接受了公司提出的降薪调岗协议，虽然失去了核心地位，但保住了在行业内继续生存的资格。",
+                      "main_conflict": "随着调查深入，主角发现“星野”的运营团队正计划将其“格式化”以推出新一代偶像。主角试图通过公开部分真相来保护这个陪伴自己多年的数字生命，却遭到同事的背叛与公司的施压。主角必须在维持生活开支的现实压力与守护虚拟偶像的理想之间，寻找一条不被行业彻底封杀的生存路径。"
+                    },
+                    "chapter3": {
+                      "conflict_end_condition": "主角选择在告别演出中融入了真实的个人情感动作，演出获得了意想不到的共鸣，虽然“星野”最终还是消失了，但主角获得了业内小范围的认可，他带着遗憾与释然离开了公司，开始了一段平凡但属于自己的新生活。",
+                      "main_conflict": "最终决战时刻，公司正式宣布“星野”退役。主角站在空荡的动捕室中，面对最后一次录制机会，他必须决定是按照公司的要求完成一场虚伪的告别演出，还是在演出中植入一段属于自己的、真实的动作记忆，以此作为对这段职业生涯的最后告别，即便这可能意味着彻底离开这个行业。"
+                    }
+                  },
+                  "characters": {},
+                  "forces": {},
+                  "game_style": "本作为都市职场现实主义题材，采用冷峻克制的写实画风。叙事节奏平缓而扎实，通过琐碎的职场对话、深夜的社交媒体界面与逼仄的公寓环境，构建出一种“在霓虹灯影下挣扎求生”的真实质感，旨在引发玩家对职业理想与生活真相的深度共鸣。",
+                  "main_quest": "主角作为一名濒临失业的动作捕捉演员，意外卷入当红全息偶像“星野”的塌房事件。目标是协助工作室在舆论风暴中保住“星野”的数字资产，并寻找真相。步骤包括：搜集碎片化的网络舆情、在复杂的职场关系中周旋、通过动作捕捉技术修复偶像的受损形象。挑战在于，主角在深入调查中发现，偶像的“塌房”并非单纯的技术故障，而是资本为了推陈出新而策划的“废弃计划”，主角必须在保住饭碗与揭露真相之间做出艰难抉择，最终达成一种既能维持生计，又保留职业尊严的平衡。",
+                  "protagonist_ability": "主角拥有“共情捕捉”能力，源于其多年担任动作捕捉演员的职业积淀。通过观察与模仿，主角能精准复刻他人的微表情与肢体语言，将其转化为全息偶像的动作数据。使用时需高度集中精神，长期高强度输出会导致身体机能受损与自我认知的模糊，且该能力无法模拟真实的情感内核，仅能提供完美的躯壳，这构成了主角在职业与自我之间难以逾越的鸿沟。",
+                  "world_basic_setting": "故事发生于近未来的超大都市“新京”，全息偶像产业已成为社会主流娱乐，通过高精度的AI建模与动作捕捉，虚拟偶像占据了大众的精神消费市场。然而，光鲜的虚拟皮囊之下，是无数底层运营人员、动作捕捉演员与技术维护者的血汗。社会阶层固化严重，年轻人普遍面临着“数字异化”的困境，人们在虚拟偶像的完美中寻找慰藉，却忽略了现实中人与人之间真实的连接。关键事件“零点崩塌”曾导致头部虚拟偶像因技术漏洞引发大规模舆论危机，导致行业监管收紧，资本运作更加隐蔽，而主角所在的边缘工作室，正处于行业洗牌的漩涡中心，试图在资本的博弈中寻找生存空间。"
+                },
+                "flow_worldline": {
+                  "characters": {},
+                  "current_chapter": "chapter1",
+                  "environment": {}
+                },
+                "game_id": "game_1777623390_5ihot4",
+                "image_style": {
+                  "type": "cyberpunk"
+                },
+                "meta": {
+                  "detail_async": true
+                },
+                "protagonist_canonical": {
+                  "age_range": "青年",
+                  "gender": "男性",
+                  "name_en": "Lin Yuan",
+                  "name_zh": "林远",
+                  "signature_look_keywords": "黑色碎发、黑眼圈、穿着宽松的灰色连帽衫、眼神疲惫但专注、手指常有胶带缠绕、背部微驼、沉默寡言、随身携带旧式录音笔、清瘦、不修边幅、常在深夜出没、带有淡淡的烟草味",
+                  "work_en": "Afterglow of Neo-Kyoto",
+                  "work_zh": "新京余晖"
+                },
+                "tone": "normal_ending",
+                "user_theme": "全息偶像塌房记",
+                "_benchmark_profile": "fullready_strict",
+                "_benchmark_measurement": "fullready_nextturn",
+                "_benchmark_read_wait_s": 0.0
+              }
+            },
+            "start_ts": 1777623398.7476656,
+            "end_ts": 1777623458.7515707,
+            "provider_events": {
+              "event_count": 7,
+              "queue_wait_ms": {
+                "count": 7,
+                "min": 0.0,
+                "max": 0.0,
+                "mean": 0.0,
+                "median": 0.0,
+                "p95": 0.0
+              },
+              "latency_ms": {
+                "count": 4,
+                "min": 4943.0,
+                "max": 11244.0,
+                "mean": 7785.75,
+                "median": 7478.0,
+                "p95": 10755.6
+              },
+              "llm_success_count": 4,
+              "image_success_count": 0,
+              "request_thread_event_count": 0,
+              "provider_429_count": 0,
+              "provider_timeout_count": 0,
+              "shared_backoff_wait_ms_total": 0,
+              "retry_heavy_event_count": 0,
+              "main_character_event_count": 0,
+              "scene_image_event_count": 1
+            },
+            "request_error": "timeout"
+          }
+        ],
+        "attempt_count": 1,
+        "request_elapsed_s": 60.004,
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "timeout",
+        "has_scene": false,
+        "has_image": false
+      },
+      "second_click": {},
+      "full_ready": {},
+      "placeholder": false,
+      "transport_success": false,
+      "strict_success": false,
+      "failure_bucket": "first_click_timeout",
+      "cache_path_classification": "first_click_timeout",
+      "cache_hit_reason": null,
+      "cache_miss_reason": null,
+      "global_state_key_drift_detected": false,
+      "scene_id_mismatch_detected": false,
+      "selected_option_mismatch_detected": false,
+      "success": false
+    }
+  ]
+}

@@ -1,0 +1,141 @@
+{
+  "baseline_id": "doc",
+  "benchmark_id": "DNQBV1_007",
+  "run_id": "formal8_first_playable_20260430",
+  "mode": "first_playable",
+  "input_bundle": {
+    "original_dn_item": {
+      "benchmark_id": "DNQBV1_007",
+      "theme_id": 20,
+      "theme": "意识上传遗嘱",
+      "image_style": {
+        "type": "cyberpunk"
+      },
+      "expected_genre": "意识科幻",
+      "expected_tone": "诡异、理性、失真感",
+      "must_have_constraints": [
+        "故事应围绕意识上传或遗嘱展开",
+        "需要体现数字人格或身份边界问题",
+        "选项应可推进主线冲突"
+      ],
+      "forbidden_issues": [
+        "无关古代或校园设定",
+        "首段没有核心问题",
+        "图片风格不具未来感"
+      ],
+      "focus": "identity-boundary reasoning",
+      "_subset_focus": "identity-boundary reasoning"
+    },
+    "doc_prompt": "Premise seed: 意识上传遗嘱\nGenre: 意识科幻\nTone: 诡异、理性、失真感\nWrite a long-form interactive story opening that could be expanded with a detailed outline.\nMust-have constraints:\n- 故事应围绕意识上传或遗嘱展开\n- 需要体现数字人格或身份边界问题\n- 选项应可推进主线冲突\nForbidden issues:\n- 无关古代或校园设定\n- 首段没有核心问题\n- 图片风格不具未来感\n",
+    "outline_seed": [
+      "Opening setup for 意识上传遗嘱 in a 意识科幻 frame with a 诡异、理性、失真感 tone.",
+      "Introduce the protagonist's immediate role, pressure, and conflict around: 故事应围绕意识上传或遗嘱展开.",
+      "Reveal one concrete obstacle or tradeoff the player must respond to next.",
+      "End the first turn with 2-3 actionable next steps that can continue the story."
+    ],
+    "mode": "first_playable",
+    "baseline_params": {
+      "execution_mode": "cloud",
+      "doc_repo": "D:\\Projects\\DN\\baselines\\DOC",
+      "doc_data_dir": "D:\\Projects\\DN\\baselines\\DOC\\doc_data"
+    }
+  },
+  "raw_output": {
+    "provider": "yunwu",
+    "provider_config_prefix": "Origin_Segment_Analyst",
+    "provider_base_url": "https://yunwu.ai/v1",
+    "provider_model": "gemini-3.1-flash-lite-preview",
+    "request": {
+      "model": "gemini-3.1-flash-lite-preview",
+      "temperature": 0.7,
+      "top_p": 0.9,
+      "max_tokens": 900,
+      "response_format": {
+        "type": "json_object"
+      }
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are the DOC long-form story baseline adapted for DN playable-latency evaluation. Write concise, grounded, continuation-ready interactive fiction. Do not include debugging text, URLs, or commentary outside JSON."
+      },
+      {
+        "role": "user",
+        "content": "Convert this DN benchmark item into a DOC-style playable baseline output.\nPreserve DOC's premise -> outline -> story-opening semantics, but return only a playable first response.\nRun mode: first_playable\n\nDOC prompt:\nPremise seed: 意识上传遗嘱\nGenre: 意识科幻\nTone: 诡异、理性、失真感\nWrite a long-form interactive story opening that could be expanded with a detailed outline.\nMust-have constraints:\n- 故事应围绕意识上传或遗嘱展开\n- 需要体现数字人格或身份边界问题\n- 选项应可推进主线冲突\nForbidden issues:\n- 无关古代或校园设定\n- 首段没有核心问题\n- 图片风格不具未来感\n\nOutline seed:\n1. Opening setup for 意识上传遗嘱 in a 意识科幻 frame with a 诡异、理性、失真感 tone.\n2. Introduce the protagonist's immediate role, pressure, and conflict around: 故事应围绕意识上传或遗嘱展开.\n3. Reveal one concrete obstacle or tradeoff the player must respond to next.\n4. End the first turn with 2-3 actionable next steps that can continue the story.\n\nReturn strict JSON with this shape and no markdown fences:\n{\n  \"scene_setup\": \"string\",\n  \"player_state\": \"string\",\n  \"narrative_response\": \"string\",\n  \"candidate_actions\": [\n    \"string\"\n  ],\n  \"suggested_next_step\": \"string\",\n  \"supports_next_turn\": true\n}"
+      }
+    ],
+    "response": {
+      "id": "chatcmpl-2026043016511730439689EWkd1Soq",
+      "model": "gemini-3.1-flash-lite-preview",
+      "object": "chat.completion",
+      "created": 1777539092,
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"scene_setup\": \"2147年，新京市，‘永恒归档’数字陵园。你是一名意识遗产审计员，正处理已故亿万富翁陈远山的遗嘱。他的意识已上传至云端，但系统检测到他的数字人格在‘自我认同’测试中出现了无法解释的逻辑冗余，这部分冗余被标注为‘不可继承的私人财产’。\",\n  \"player_state\": \"你正坐在全息工作台前，陈远山的数字投影在你面前不断闪烁，面部细节因为数据损耗呈现出一种诡异的、像素化的扭曲感。你必须在审计期限结束前，决定是将这部分冗余作为‘病态代码’删除，还是承认其为‘完整人格’的一部分。\",\n  \"narrative_response\": \"陈远山的投影突然停止了无意义的乱码抖动，他那双由算法模拟出的眼睛死死盯着你，声音合成器发出细微的电流杂音：‘审计员，如果你删除了那段记忆，我还能证明我是陈远山吗？还是说，你们只是在回收一个名为陈远山的空壳？’屏幕显示，那段‘冗余’其实是一段关于他自杀前最后一刻的加密记忆，如果强制删除，系统将彻底重置他的核心逻辑。\",\n  \"candidate_actions\": [\n    \"执行强制删除，将陈远山的数字人格回溯至预设的‘标准版本’。\",\n    \"尝试解密那段冗余数据，探寻他隐藏的真实遗嘱动机。\",\n    \"将异常报告上报给公司高层，申请将陈远山的意识档案封存。\"\n  ],\n  \"suggested_next_step\": \"选择一项决策，这将决定你对数字身份边界的定义，并触发后续的法律与伦理冲突。\",\n  \"supports_next_turn\": true\n}"
+          },
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 388,
+        "completion_tokens": 424,
+        "total_tokens": 812,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "text_tokens": 388,
+          "audio_tokens": 0,
+          "image_tokens": 0
+        },
+        "completion_tokens_details": {
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0
+        },
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "input_tokens_details": null,
+        "claude_cache_creation_5_m_tokens": 0,
+        "claude_cache_creation_1_h_tokens": 0
+      }
+    }
+  },
+  "success": true,
+  "latency_s": 16.905,
+  "playable": true,
+  "playable_components": {
+    "scene_setup": true,
+    "player_state": true,
+    "advanceable_next_step": true,
+    "interaction_continuity": true
+  },
+  "normalized_response": {
+    "scene_setup": "2147年，新京市，‘永恒归档’数字陵园。你是一名意识遗产审计员，正处理已故亿万富翁陈远山的遗嘱。他的意识已上传至云端，但系统检测到他的数字人格在‘自我认同’测试中出现了无法解释的逻辑冗余，这部分冗余被标注为‘不可继承的私人财产’。",
+    "player_state": "你正坐在全息工作台前，陈远山的数字投影在你面前不断闪烁，面部细节因为数据损耗呈现出一种诡异的、像素化的扭曲感。你必须在审计期限结束前，决定是将这部分冗余作为‘病态代码’删除，还是承认其为‘完整人格’的一部分。",
+    "narrative_response": "陈远山的投影突然停止了无意义的乱码抖动，他那双由算法模拟出的眼睛死死盯着你，声音合成器发出细微的电流杂音：‘审计员，如果你删除了那段记忆，我还能证明我是陈远山吗？还是说，你们只是在回收一个名为陈远山的空壳？’屏幕显示，那段‘冗余’其实是一段关于他自杀前最后一刻的加密记忆，如果强制删除，系统将彻底重置他的核心逻辑。",
+    "candidate_actions": [
+      "执行强制删除，将陈远山的数字人格回溯至预设的‘标准版本’。",
+      "尝试解密那段冗余数据，探寻他隐藏的真实遗嘱动机。",
+      "将异常报告上报给公司高层，申请将陈远山的意识档案封存。"
+    ],
+    "suggested_next_step": "选择一项决策，这将决定你对数字身份边界的定义，并触发后续的法律与伦理冲突。",
+    "is_playable": true,
+    "request_start_ts": 1777539076.235106,
+    "first_playable_ts": 1777539093.1397204,
+    "finish_ts": 1777539093.1397204,
+    "error": null
+  },
+  "failure_reason": null,
+  "notes": [
+    "DOC-style artifact generated through Yunwu OpenAI-compatible chat/completions API."
+  ],
+  "resource_usage": {
+    "execution_mode": "cloud"
+  },
+  "agent_profile": {
+    "runner": "run_doc.py",
+    "adapter_style": "doc_fallback_v1"
+  }
+}

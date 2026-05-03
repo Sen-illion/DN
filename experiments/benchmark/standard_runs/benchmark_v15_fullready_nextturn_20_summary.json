@@ -1,0 +1,102 @@
+{
+  "generated_at": "2026-05-01T06:43:39.535074+00:00",
+  "profiles": {
+    "normal20": {
+      "evidence_path": "D:\\Projects\\DN\\experiments\\benchmark\\standard_runs\\benchmark_v15_fullready_nextturn_normal20.json",
+      "profile": "fullready_strict",
+      "sample_size": 20,
+      "success_count": 20,
+      "success_rate": 1.0,
+      "text_ready_elapsed_s": {
+        "count": 20,
+        "min": 0.024,
+        "max": 64.857,
+        "mean": 27.98,
+        "median": 28.91,
+        "p95": 50.573
+      },
+      "image_ready_elapsed_s": {
+        "count": 20,
+        "min": 0.024,
+        "max": 64.857,
+        "mean": 27.98,
+        "median": 28.91,
+        "p95": 50.573
+      },
+      "full_ready_elapsed_s": {
+        "count": 20,
+        "min": 0.024,
+        "max": 64.857,
+        "mean": 27.98,
+        "median": 28.91,
+        "p95": 50.573
+      },
+      "real_scene_rate": 0.3,
+      "likely_hit_rate": 0.35,
+      "direct_image_count": 20,
+      "async_image_count": 0,
+      "placeholder_count": 14,
+      "placeholder_rate": 0.7,
+      "direct_image_rate": 1.0,
+      "async_image_rate": 0.0,
+      "provider_retry_heavy_count": 0,
+      "provider_429_count": 0,
+      "provider_timeout_count": 0,
+      "provider_backoff_wait_ms_total": 0,
+      "main_character_contention_suspected_count": 0,
+      "read_wait_s": 0.0,
+      "notes": "v15 strict normal20 keeps pregeneration on with zero dwell time, but benchmark-only strict full-ready flags block for image, sync backfill image, and suppress background main-character contention."
+    },
+    "pregen60s20": {
+      "evidence_path": "D:\\Projects\\DN\\experiments\\benchmark\\standard_runs\\benchmark_v15_fullready_nextturn_pregen60s20.json",
+      "profile": "fullready_pregen60",
+      "sample_size": 20,
+      "success_count": 19,
+      "success_rate": 0.95,
+      "text_ready_elapsed_s": {
+        "count": 20,
+        "min": 0.013,
+        "max": 373.024,
+        "mean": 122.962,
+        "median": 94.075,
+        "p95": 290.481
+      },
+      "image_ready_elapsed_s": {
+        "count": 19,
+        "min": 0.013,
+        "max": 373.024,
+        "mean": 121.944,
+        "median": 0.028,
+        "p95": 342.58
+      },
+      "full_ready_elapsed_s": {
+        "count": 19,
+        "min": 0.013,
+        "max": 373.024,
+        "mean": 121.944,
+        "median": 0.028,
+        "p95": 342.58
+      },
+      "real_scene_rate": 0.5,
+      "likely_hit_rate": 0.45,
+      "direct_image_count": 16,
+      "async_image_count": 3,
+      "placeholder_count": 10,
+      "placeholder_rate": 0.5,
+      "direct_image_rate": 0.8,
+      "async_image_rate": 0.15,
+      "provider_retry_heavy_count": 0,
+      "provider_429_count": 0,
+      "provider_timeout_count": 0,
+      "provider_backoff_wait_ms_total": 0,
+      "main_character_contention_suspected_count": 0,
+      "read_wait_s": 60.0,
+      "notes": "v15 strict pregen60s20 keeps the same production pregeneration path and 60-second dwell interval, while benchmark-only strict full-ready flags reduce placeholder and async image fallback long tails."
+    }
+  },
+  "notes": [
+    "normal20 is intended for strict comparison against the formal20 image-baseline next-turn rows.",
+    "pregen60s20 keeps the same 20 benchmark items but simulates a 60-second player read interval to expose pregeneration benefit.",
+    "StoryDiffusion / SDM-v2 / IC-LoRA rows in the strict table continue to use their existing formal20 next-turn image-continuation results."
+  ]
+}

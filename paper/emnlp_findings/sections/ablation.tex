@@ -1,0 +1,44 @@
+\section{Ablation and Mechanism Analysis}
+\label{sec:ablation}
+
+The current main-ready mechanism analysis focuses on pre-generation, because this is the only ablation-style result that is available under the latest v15 composite20 protocol used by the main efficiency table. We therefore treat the normal20 and pregen60 settings as a controlled mechanism comparison over the same 20 benchmark items: normal20 measures strict next-turn full-ready latency with zero dwell time, while pregen60 keeps the same benchmark scope but gives the system a simulated 60-second player reading interval in which likely next-turn content can be prepared.
+
+\begin{table}[t]
+\centering
+\small
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lrrrrr}
+\toprule
+Setting & $N$ & Mean & Median & P95 & Likely Hit \\
+\midrule
+normal20 & 20 & 27.095 & 24.571 & 46.196 & 0.000 \\
+pregen60 & 20 & 5.299 & 0.027 & 27.150 & 0.800 \\
+\bottomrule
+\end{tabular}
+}
+\caption{Main-ready mechanism comparison for pre-generation. Both rows use the latest v15 composite20 full-ready protocol. Latencies are measured in seconds.}
+\label{tab:ablation-pregen}
+\end{table}
+
+Table~\ref{tab:ablation-pregen} shows that the simulated reading interval substantially changes both the central tendency and the hit behavior of \dn. The mean full-ready latency decreases from 27.095 seconds to 5.299 seconds, and the median decreases from 24.571 seconds to 0.027 seconds. At the same time, the likely-hit rate increases from 0.000 to 0.800, indicating that the system often has the requested next-turn content ready by the time the user clicks. This result supports the mechanism-level interpretation behind the efficiency results in Section~\ref{sec:efficiency}: the latency gain is not only a change in reporting protocol, but is associated with successful use of the reading interval for background preparation.
+
+\begin{table}[t]
+\centering
+\small
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lll}
+\toprule
+Component & Current Status & Main-Text Use \\
+\midrule
+Pre-generation & v15 composite20, $N=20$ & Main-ready \\
+Read-wait thresholds & v10--v13 exploratory runs & Appendix or rerun \\
+Council planning & benchmark-v1 exploratory runs & Appendix or rerun \\
+Quality-side effects & Not yet human-validated & Reserved \\
+\bottomrule
+\end{tabular}
+}
+\caption{Status of available ablation evidence. Only the pre-generation comparison currently matches the latest main efficiency protocol.}
+\label{tab:ablation-status}
+\end{table}
+
+Other mechanism studies are not yet included as main ablation results. Existing read-wait threshold runs and council/no-council comparisons are useful internal evidence, but they were produced under earlier benchmark versions or different sample sizes. We therefore reserve them for either an appendix clearly marked as exploratory or a rerun under the same formal20/v15 composite20 protocol before they are used as main-paper ablations.

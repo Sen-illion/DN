@@ -741,10 +741,20 @@ def _generate_single_option(i: int, option: str, global_state: Dict) -> Dict:
                 try:
                     # 若是初始场景且主角正面图尚未就绪：等待主角正面图生成后再生成场景图（保证场景中主角形象一致）
                     # 实验流程可 _skip_protagonist_reference：不等待、不把主角立绘当参考图
-                    if is_initial_scene and not _skip_protagonist_reference(global_state):
+                    skip_protagonist_reference = _skip_protagonist_reference(global_state)
+                    if is_initial_scene and skip_protagonist_reference:
+                        game_id = global_state.get("game_id") if isinstance(global_state, dict) else None
+                        print(f"initial scene setup: skip protagonist reference wait, game_id={game_id}")
+                    if is_initial_scene and not skip_protagonist_reference:
                         game_id = global_state.get("game_id") if isinstance(global_state, dict) else None
                         if game_id:
+                            wait_started_at = time.time()
+                            print(f"initial scene setup: waiting for protagonist front image, game_id={game_id}")
                             wait_result = _wait_for_main_character_front(game_id, global_state)
+                            print(
+                                f"initial scene setup: protagonist front wait finished, game_id={game_id} "
+                                f"elapsed_s={round(time.time() - wait_started_at, 3)} reason={wait_result.get('reason')}"
+                            )
                             if wait_result.get("ready"):
                                 print(f"✅ 主角正面图已就绪，开始生成初始场景图片（等待 {wait_result.get('waited', 0)} 秒）")
                             elif wait_result.get("reason") == "front_failed":

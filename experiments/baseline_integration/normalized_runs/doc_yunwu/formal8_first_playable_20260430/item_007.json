@@ -1,0 +1,142 @@
+{
+  "baseline_id": "doc",
+  "benchmark_id": "DNQBV1_018",
+  "run_id": "formal8_first_playable_20260430",
+  "mode": "first_playable",
+  "input_bundle": {
+    "original_dn_item": {
+      "benchmark_id": "DNQBV1_018",
+      "theme_id": 6,
+      "theme": "民国电报迷案",
+      "image_style": {
+        "type": "oil_painting",
+        "subtype": "impressionist"
+      },
+      "expected_genre": "近代悬疑",
+      "expected_tone": "旧时代、微压抑、调查感",
+      "must_have_constraints": [
+        "需体现民国、电报或迷案",
+        "图像应符合油画/印象派质感",
+        "首段需要建立案件切入口"
+      ],
+      "forbidden_issues": [
+        "现代赛博文本混入",
+        "图像风格偏动漫",
+        "剧情没有案件线索"
+      ],
+      "focus": "historical investigation coherence",
+      "_subset_focus": "historical investigation coherence"
+    },
+    "doc_prompt": "Premise seed: 民国电报迷案\nGenre: 近代悬疑\nTone: 旧时代、微压抑、调查感\nWrite a long-form interactive story opening that could be expanded with a detailed outline.\nMust-have constraints:\n- 需体现民国、电报或迷案\n- 图像应符合油画/印象派质感\n- 首段需要建立案件切入口\nForbidden issues:\n- 现代赛博文本混入\n- 图像风格偏动漫\n- 剧情没有案件线索\n",
+    "outline_seed": [
+      "Opening setup for 民国电报迷案 in a 近代悬疑 frame with a 旧时代、微压抑、调查感 tone.",
+      "Introduce the protagonist's immediate role, pressure, and conflict around: 需体现民国、电报或迷案.",
+      "Reveal one concrete obstacle or tradeoff the player must respond to next.",
+      "End the first turn with 2-3 actionable next steps that can continue the story."
+    ],
+    "mode": "first_playable",
+    "baseline_params": {
+      "execution_mode": "cloud",
+      "doc_repo": "D:\\Projects\\DN\\baselines\\DOC",
+      "doc_data_dir": "D:\\Projects\\DN\\baselines\\DOC\\doc_data"
+    }
+  },
+  "raw_output": {
+    "provider": "yunwu",
+    "provider_config_prefix": "Origin_Segment_Analyst",
+    "provider_base_url": "https://yunwu.ai/v1",
+    "provider_model": "gemini-3.1-flash-lite-preview",
+    "request": {
+      "model": "gemini-3.1-flash-lite-preview",
+      "temperature": 0.7,
+      "top_p": 0.9,
+      "max_tokens": 900,
+      "response_format": {
+        "type": "json_object"
+      }
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are the DOC long-form story baseline adapted for DN playable-latency evaluation. Write concise, grounded, continuation-ready interactive fiction. Do not include debugging text, URLs, or commentary outside JSON."
+      },
+      {
+        "role": "user",
+        "content": "Convert this DN benchmark item into a DOC-style playable baseline output.\nPreserve DOC's premise -> outline -> story-opening semantics, but return only a playable first response.\nRun mode: first_playable\n\nDOC prompt:\nPremise seed: 民国电报迷案\nGenre: 近代悬疑\nTone: 旧时代、微压抑、调查感\nWrite a long-form interactive story opening that could be expanded with a detailed outline.\nMust-have constraints:\n- 需体现民国、电报或迷案\n- 图像应符合油画/印象派质感\n- 首段需要建立案件切入口\nForbidden issues:\n- 现代赛博文本混入\n- 图像风格偏动漫\n- 剧情没有案件线索\n\nOutline seed:\n1. Opening setup for 民国电报迷案 in a 近代悬疑 frame with a 旧时代、微压抑、调查感 tone.\n2. Introduce the protagonist's immediate role, pressure, and conflict around: 需体现民国、电报或迷案.\n3. Reveal one concrete obstacle or tradeoff the player must respond to next.\n4. End the first turn with 2-3 actionable next steps that can continue the story.\n\nReturn strict JSON with this shape and no markdown fences:\n{\n  \"scene_setup\": \"string\",\n  \"player_state\": \"string\",\n  \"narrative_response\": \"string\",\n  \"candidate_actions\": [\n    \"string\"\n  ],\n  \"suggested_next_step\": \"string\",\n  \"supports_next_turn\": true\n}"
+      }
+    ],
+    "response": {
+      "id": "chatcmpl-202604301651514803630587ifqTxGK",
+      "model": "gemini-3.1-flash-lite-preview",
+      "object": "chat.completion",
+      "created": 1777539124,
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"scene_setup\": \"1928年，上海租界，深夜。电报局内充斥着黄铜仪器的冷光与焦灼的电火花味。空气中弥漫着廉价纸张和煤油灯的浑浊气息，窗外雨声如注，冲刷着阴影重重的法租界街道。\",\n  \"player_state\": \"你是一名电报局的夜班译电员，刚才收到了一份来自远郊的乱码电报。这份电报在抵达前，其线路曾被强制切断三分钟，且报文末尾夹杂着一个不属于任何标准码表的诡异字符。\",\n  \"narrative_response\": \"指尖下的莫尔斯电键还在余震中微颤。这封电报并非寻常的商贸往来，它是一串被加密的死亡预告，落款处印着早已失踪的探长私章。局长正站在门外与巡捕房的人低语，要求销毁所有非正式记录。你面前的纸带上，那枚诡异字符像一只睁开的眼睛，盯着你的良知。若将它上交，这案子将永远被掩盖；若私自留存，你将立刻成为租界权力斗争的弃子。\",\n  \"candidate_actions\": [\n    \"迅速将纸带投入熔炉，装作什么都没发生。\",\n    \"将纸带藏入内衬，借口如厕从后门溜走。\",\n    \"尝试当场强行破译那个诡异字符的含义。\"\n  ],\n  \"suggested_next_step\": \"选择如何处理关键证物，这将决定你后续调查的切入点及面临的追捕压力。\",\n  \"supports_next_turn\": true\n}"
+          },
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 395,
+        "completion_tokens": 402,
+        "total_tokens": 797,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "text_tokens": 395,
+          "audio_tokens": 0,
+          "image_tokens": 0
+        },
+        "completion_tokens_details": {
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0
+        },
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "input_tokens_details": null,
+        "claude_cache_creation_5_m_tokens": 0,
+        "claude_cache_creation_1_h_tokens": 0
+      }
+    }
+  },
+  "success": true,
+  "latency_s": 13.94,
+  "playable": true,
+  "playable_components": {
+    "scene_setup": true,
+    "player_state": true,
+    "advanceable_next_step": true,
+    "interaction_continuity": true
+  },
+  "normalized_response": {
+    "scene_setup": "1928年，上海租界，深夜。电报局内充斥着黄铜仪器的冷光与焦灼的电火花味。空气中弥漫着廉价纸张和煤油灯的浑浊气息，窗外雨声如注，冲刷着阴影重重的法租界街道。",
+    "player_state": "你是一名电报局的夜班译电员，刚才收到了一份来自远郊的乱码电报。这份电报在抵达前，其线路曾被强制切断三分钟，且报文末尾夹杂着一个不属于任何标准码表的诡异字符。",
+    "narrative_response": "指尖下的莫尔斯电键还在余震中微颤。这封电报并非寻常的商贸往来，它是一串被加密的死亡预告，落款处印着早已失踪的探长私章。局长正站在门外与巡捕房的人低语，要求销毁所有非正式记录。你面前的纸带上，那枚诡异字符像一只睁开的眼睛，盯着你的良知。若将它上交，这案子将永远被掩盖；若私自留存，你将立刻成为租界权力斗争的弃子。",
+    "candidate_actions": [
+      "迅速将纸带投入熔炉，装作什么都没发生。",
+      "将纸带藏入内衬，借口如厕从后门溜走。",
+      "尝试当场强行破译那个诡异字符的含义。"
+    ],
+    "suggested_next_step": "选择如何处理关键证物，这将决定你后续调查的切入点及面临的追捕压力。",
+    "is_playable": true,
+    "request_start_ts": 1777539110.8505473,
+    "first_playable_ts": 1777539124.7901416,
+    "finish_ts": 1777539124.7901416,
+    "error": null
+  },
+  "failure_reason": null,
+  "notes": [
+    "DOC-style artifact generated through Yunwu OpenAI-compatible chat/completions API."
+  ],
+  "resource_usage": {
+    "execution_mode": "cloud"
+  },
+  "agent_profile": {
+    "runner": "run_doc.py",
+    "adapter_style": "doc_fallback_v1"
+  }
+}

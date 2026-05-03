@@ -1,0 +1,376 @@
+{
+  "summary": {
+    "experiment_name": "benchmark_v15_fullready_nextturn_normal20",
+    "profile": "fullready_strict",
+    "sample_size": 1,
+    "read_wait_s": 0.0,
+    "suite_start_ts": 1777634610.1181352,
+    "suite_end_ts": 1777634879.365455,
+    "first_click_elapsed_s": {
+      "count": 0
+    },
+    "first_click_setup_success_count": 0,
+    "second_click_elapsed_s": {
+      "count": 0
+    },
+    "second_click_success_count": 0,
+    "transport_success_count": 0,
+    "strict_success_count": 0,
+    "likely_hit_count": 0,
+    "likely_hit_rate": 0.0,
+    "failure_bucket_counts": {
+      "first_click_timeout": 1
+    },
+    "placeholder_strict_fail_count": 0,
+    "cache_hit_reason_counts": {},
+    "cache_miss_reason_counts": {},
+    "global_state_key_drift_detected_count": 0,
+    "scene_id_mismatch_detected_count": 0,
+    "selected_option_mismatch_detected_count": 0,
+    "aborted": false,
+    "success_count": 0,
+    "text_ready_elapsed_s": {
+      "count": 0
+    },
+    "image_ready_elapsed_s": {
+      "count": 0
+    },
+    "full_ready_elapsed_s": {
+      "count": 0
+    },
+    "real_scene_count": 0,
+    "real_scene_rate": 0.0,
+    "direct_image_count": 0,
+    "async_image_count": 0,
+    "placeholder_count": 0,
+    "placeholder_rate": 0.0,
+    "direct_image_rate": 0.0,
+    "async_image_rate": 0.0,
+    "provider_retry_heavy_count": 0,
+    "provider_429_count": 0,
+    "provider_timeout_count": 0,
+    "provider_backoff_wait_ms_total": 0,
+    "main_character_contention_suspected_count": 0,
+    "notes": "v15 strict normal20 treats first click as setup with a separate timeout budget, while preserving 60s fail-fast guards for second-click request, scene-image wait, and the measured next-turn full-ready path."
+  },
+  "runs": [
+    {
+      "benchmark_id": "DNQBV1_003",
+      "theme_id": 19,
+      "theme": "都市天台养鸽人",
+      "read_wait_s": 0.0,
+      "full_ready_mode": true,
+      "profile": "fullready_strict",
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 29.144,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过在职场上的妥协换取了短期留任，并利用业余时间兼职修缮了鸽舍，成功平息了物业的投诉，暂时保住了鸽群的栖身之所。",
+                  "main_conflict": "主角面临职场裁员的危机，同时鸽舍因年久失修被物业投诉，要求限期拆除。主角在维持生计的奔波与守护鸽群的责任之间陷入两难，既要应对上司的刁难，又要筹集修缮鸽舍的资金，生活陷入了前所未有的混乱与焦虑。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角意识到无法改变大局，转而通过组织邻里聚会，记录下大家对天台的最后记忆，化解了邻里间的对立情绪，达成了某种程度的共识。",
+                  "main_conflict": "城市规划进程加快，拆迁补偿方案引发了邻里间的矛盾。主角试图联合邻居共同争取保留天台文化，却发现每个人都有自己的现实考量，有人急于变现，有人则因情感羁绊不愿离开，主角在集体诉求与个人利益的夹缝中感到无力。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角选择留下来陪伴鸽子康复并完成了放飞仪式，错过了最佳入职时机，但收获了内心的平静，最终带着鸽子搬入了一间狭小但温馨的新居，开启了平淡的新生活。",
+                  "main_conflict": "拆迁进入倒计时，主角最珍视的一只信鸽意外受伤，而此时主角也收到了心仪已久的工作机会，但地点在外地。主角必须在“照顾受伤的鸽子并完成最后的放飞”与“立刻出发去往新生活”之间做出最终抉择。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为写实主义都市模拟叙事游戏，采用低饱和度的冷色调美术风格，强调环境的颗粒感与生活气息。叙事节奏舒缓，通过鸽群的起落与城市背景音的交织，营造出一种在喧嚣都市中寻求个人精神锚点的沉浸式体验。",
+              "main_quest": "主角的目标是在老城区拆迁令下达前，完成一场名为“归巢”的鸽群放飞仪式，以此纪念即将消失的天台生活。任务分为三个阶段：首先是修复破败的鸽舍并寻回失散的信鸽，这需要主角在职场与养鸽之间寻找平衡；其次是与反对养鸽的邻居及物业达成和解，通过解决他们的生活琐事换取鸽舍的留存时间；最后是面对城市规划的不可抗力，主角需在“坚持理想”与“接受补偿金开启新生活”之间做出选择。挑战在于，主角不仅要应对鸽群的健康问题，还要处理日益沉重的房租压力与职场危机，最终目标并非阻止拆迁，而是为这段平凡的岁月画上一个体面的句号。",
+              "protagonist_ability": "主角拥有一种“共鸣感知”能力，源于长期与鸽群共处培养出的敏锐观察力。通过观察鸽子的飞行轨迹、鸣叫频率与羽毛状态，主角能感知到特定区域内人们的情绪波动与潜在的社交契机。这种能力并非超自然力量，而是对环境细节的极致捕捉。限制在于，它无法改变现实困境，只能帮助主角在复杂的人际关系中找到沟通的切入点，且过度使用会加剧主角自身的孤独感与对现实的疏离。",
+              "world_basic_setting": "故事发生在一座名为“南港”的工业转型期老城。这里高楼林立，旧城区的屋顶被密集的鸽舍与晾衣杆占据，形成了一个与地面繁华完全割裂的“空中聚落”。社会背景处于经济高速发展后的平稳期，人们在快节奏的职场与高昂的房价中挣扎，精神压力成为普遍的城市病。鸽子在这里不仅是宠物，更是老一辈居民对旧时光的寄托，以及年轻人逃避现实的避风港。随着城市规划的推进，老旧天台面临拆迁改造，这种独特的“天台文化”正逐渐消失。玩家将置身于这种新旧交替的缝隙中，在钢筋水泥的森林里，通过饲养鸽子与邻里互动，观察这座城市在时代洪流下的细微变迁，体验那种既想融入城市又渴望保持独立空间的矛盾感。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1777634610_pf9up3",
+            "image_style": {
+              "type": "realistic"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "黑色碎发、黑框眼镜、穿着洗旧的灰色卫衣、常年带着鸽哨、眼神清澈但略显疲惫、手指上有细微的伤痕、身形单薄、习惯性抬头望天、背着磨损的帆布包、总是带着一小袋鸽粮",
+              "work_en": "The Warmth of the Rooftop",
+              "work_zh": "天台的余温"
+            },
+            "tone": "normal_ending",
+            "user_theme": "都市天台养鸽人"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "request_payload": {
+          "gameTheme": "都市天台养鸽人",
+          "protagonistAttr": {},
+          "difficulty": "normal",
+          "toneKey": "normal_ending",
+          "imageStyle": {
+            "type": "realistic"
+          },
+          "_benchmark_profile": "fullready_strict",
+          "_benchmark_measurement": "fullready_nextturn",
+          "_benchmark_read_wait_s": 0.0
+        },
+        "start_ts": 1777634610.1181386,
+        "end_ts": 1777634639.262367,
+        "provider_events": {
+          "event_count": 4,
+          "queue_wait_ms": {
+            "count": 4,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 1,
+            "min": 29119.0,
+            "max": 29119.0,
+            "mean": 29119.0,
+            "median": 29119.0,
+            "p95": 29119.0
+          },
+          "llm_success_count": 1,
+          "image_success_count": 0,
+          "request_thread_event_count": 2,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0
+        },
+        "status": "success",
+        "game_id": "game_1777634610_pf9up3"
+      },
+      "first_click": {
+        "http_status": null,
+        "elapsed_s": 240.014,
+        "response_json": {
+          "status": "timeout",
+          "message": "HTTPConnectionPool(host='127.0.0.1', port=5013): Read timed out. (read timeout=240)"
+        },
+        "request_payload": {
+          "option": "开始游戏",
+          "optionIndex": 0,
+          "sceneId": null,
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过在职场上的妥协换取了短期留任，并利用业余时间兼职修缮了鸽舍，成功平息了物业的投诉，暂时保住了鸽群的栖身之所。",
+                  "main_conflict": "主角面临职场裁员的危机，同时鸽舍因年久失修被物业投诉，要求限期拆除。主角在维持生计的奔波与守护鸽群的责任之间陷入两难，既要应对上司的刁难，又要筹集修缮鸽舍的资金，生活陷入了前所未有的混乱与焦虑。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角意识到无法改变大局，转而通过组织邻里聚会，记录下大家对天台的最后记忆，化解了邻里间的对立情绪，达成了某种程度的共识。",
+                  "main_conflict": "城市规划进程加快，拆迁补偿方案引发了邻里间的矛盾。主角试图联合邻居共同争取保留天台文化，却发现每个人都有自己的现实考量，有人急于变现，有人则因情感羁绊不愿离开，主角在集体诉求与个人利益的夹缝中感到无力。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角选择留下来陪伴鸽子康复并完成了放飞仪式，错过了最佳入职时机，但收获了内心的平静，最终带着鸽子搬入了一间狭小但温馨的新居，开启了平淡的新生活。",
+                  "main_conflict": "拆迁进入倒计时，主角最珍视的一只信鸽意外受伤，而此时主角也收到了心仪已久的工作机会，但地点在外地。主角必须在“照顾受伤的鸽子并完成最后的放飞”与“立刻出发去往新生活”之间做出最终抉择。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为写实主义都市模拟叙事游戏，采用低饱和度的冷色调美术风格，强调环境的颗粒感与生活气息。叙事节奏舒缓，通过鸽群的起落与城市背景音的交织，营造出一种在喧嚣都市中寻求个人精神锚点的沉浸式体验。",
+              "main_quest": "主角的目标是在老城区拆迁令下达前，完成一场名为“归巢”的鸽群放飞仪式，以此纪念即将消失的天台生活。任务分为三个阶段：首先是修复破败的鸽舍并寻回失散的信鸽，这需要主角在职场与养鸽之间寻找平衡；其次是与反对养鸽的邻居及物业达成和解，通过解决他们的生活琐事换取鸽舍的留存时间；最后是面对城市规划的不可抗力，主角需在“坚持理想”与“接受补偿金开启新生活”之间做出选择。挑战在于，主角不仅要应对鸽群的健康问题，还要处理日益沉重的房租压力与职场危机，最终目标并非阻止拆迁，而是为这段平凡的岁月画上一个体面的句号。",
+              "protagonist_ability": "主角拥有一种“共鸣感知”能力，源于长期与鸽群共处培养出的敏锐观察力。通过观察鸽子的飞行轨迹、鸣叫频率与羽毛状态，主角能感知到特定区域内人们的情绪波动与潜在的社交契机。这种能力并非超自然力量，而是对环境细节的极致捕捉。限制在于，它无法改变现实困境，只能帮助主角在复杂的人际关系中找到沟通的切入点，且过度使用会加剧主角自身的孤独感与对现实的疏离。",
+              "world_basic_setting": "故事发生在一座名为“南港”的工业转型期老城。这里高楼林立，旧城区的屋顶被密集的鸽舍与晾衣杆占据，形成了一个与地面繁华完全割裂的“空中聚落”。社会背景处于经济高速发展后的平稳期，人们在快节奏的职场与高昂的房价中挣扎，精神压力成为普遍的城市病。鸽子在这里不仅是宠物，更是老一辈居民对旧时光的寄托，以及年轻人逃避现实的避风港。随着城市规划的推进，老旧天台面临拆迁改造，这种独特的“天台文化”正逐渐消失。玩家将置身于这种新旧交替的缝隙中，在钢筋水泥的森林里，通过饲养鸽子与邻里互动，观察这座城市在时代洪流下的细微变迁，体验那种既想融入城市又渴望保持独立空间的矛盾感。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1777634610_pf9up3",
+            "image_style": {
+              "type": "realistic"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "黑色碎发、黑框眼镜、穿着洗旧的灰色卫衣、常年带着鸽哨、眼神清澈但略显疲惫、手指上有细微的伤痕、身形单薄、习惯性抬头望天、背着磨损的帆布包、总是带着一小袋鸽粮",
+              "work_en": "The Warmth of the Rooftop",
+              "work_zh": "天台的余温"
+            },
+            "tone": "normal_ending",
+            "user_theme": "都市天台养鸽人",
+            "_benchmark_profile": "fullready_strict",
+            "_benchmark_measurement": "fullready_nextturn",
+            "_benchmark_read_wait_s": 0.0
+          }
+        },
+        "start_ts": 1777634639.3073473,
+        "end_ts": 1777634879.3217475,
+        "provider_events": {
+          "event_count": 7,
+          "queue_wait_ms": {
+            "count": 7,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 4,
+            "min": 4089.0,
+            "max": 26785.0,
+            "mean": 13336.75,
+            "median": 11236.5,
+            "p95": 24960.55
+          },
+          "llm_success_count": 4,
+          "image_success_count": 0,
+          "request_thread_event_count": 0,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 1,
+          "scene_image_event_count": 0
+        },
+        "request_error": "timeout",
+        "attempts": [
+          {
+            "http_status": null,
+            "elapsed_s": 240.014,
+            "response_json": {
+              "status": "timeout",
+              "message": "HTTPConnectionPool(host='127.0.0.1', port=5013): Read timed out. (read timeout=240)"
+            },
+            "request_payload": {
+              "option": "开始游戏",
+              "optionIndex": 0,
+              "sceneId": null,
+              "globalState": {
+                "core_worldview": {
+                  "chapters": {
+                    "chapter1": {
+                      "conflict_end_condition": "主角通过在职场上的妥协换取了短期留任，并利用业余时间兼职修缮了鸽舍，成功平息了物业的投诉，暂时保住了鸽群的栖身之所。",
+                      "main_conflict": "主角面临职场裁员的危机，同时鸽舍因年久失修被物业投诉，要求限期拆除。主角在维持生计的奔波与守护鸽群的责任之间陷入两难，既要应对上司的刁难，又要筹集修缮鸽舍的资金，生活陷入了前所未有的混乱与焦虑。"
+                    },
+                    "chapter2": {
+                      "conflict_end_condition": "主角意识到无法改变大局，转而通过组织邻里聚会，记录下大家对天台的最后记忆，化解了邻里间的对立情绪，达成了某种程度的共识。",
+                      "main_conflict": "城市规划进程加快，拆迁补偿方案引发了邻里间的矛盾。主角试图联合邻居共同争取保留天台文化，却发现每个人都有自己的现实考量，有人急于变现，有人则因情感羁绊不愿离开，主角在集体诉求与个人利益的夹缝中感到无力。"
+                    },
+                    "chapter3": {
+                      "conflict_end_condition": "主角选择留下来陪伴鸽子康复并完成了放飞仪式，错过了最佳入职时机，但收获了内心的平静，最终带着鸽子搬入了一间狭小但温馨的新居，开启了平淡的新生活。",
+                      "main_conflict": "拆迁进入倒计时，主角最珍视的一只信鸽意外受伤，而此时主角也收到了心仪已久的工作机会，但地点在外地。主角必须在“照顾受伤的鸽子并完成最后的放飞”与“立刻出发去往新生活”之间做出最终抉择。"
+                    }
+                  },
+                  "characters": {},
+                  "forces": {},
+                  "game_style": "本作为写实主义都市模拟叙事游戏，采用低饱和度的冷色调美术风格，强调环境的颗粒感与生活气息。叙事节奏舒缓，通过鸽群的起落与城市背景音的交织，营造出一种在喧嚣都市中寻求个人精神锚点的沉浸式体验。",
+                  "main_quest": "主角的目标是在老城区拆迁令下达前，完成一场名为“归巢”的鸽群放飞仪式，以此纪念即将消失的天台生活。任务分为三个阶段：首先是修复破败的鸽舍并寻回失散的信鸽，这需要主角在职场与养鸽之间寻找平衡；其次是与反对养鸽的邻居及物业达成和解，通过解决他们的生活琐事换取鸽舍的留存时间；最后是面对城市规划的不可抗力，主角需在“坚持理想”与“接受补偿金开启新生活”之间做出选择。挑战在于，主角不仅要应对鸽群的健康问题，还要处理日益沉重的房租压力与职场危机，最终目标并非阻止拆迁，而是为这段平凡的岁月画上一个体面的句号。",
+                  "protagonist_ability": "主角拥有一种“共鸣感知”能力，源于长期与鸽群共处培养出的敏锐观察力。通过观察鸽子的飞行轨迹、鸣叫频率与羽毛状态，主角能感知到特定区域内人们的情绪波动与潜在的社交契机。这种能力并非超自然力量，而是对环境细节的极致捕捉。限制在于，它无法改变现实困境，只能帮助主角在复杂的人际关系中找到沟通的切入点，且过度使用会加剧主角自身的孤独感与对现实的疏离。",
+                  "world_basic_setting": "故事发生在一座名为“南港”的工业转型期老城。这里高楼林立，旧城区的屋顶被密集的鸽舍与晾衣杆占据，形成了一个与地面繁华完全割裂的“空中聚落”。社会背景处于经济高速发展后的平稳期，人们在快节奏的职场与高昂的房价中挣扎，精神压力成为普遍的城市病。鸽子在这里不仅是宠物，更是老一辈居民对旧时光的寄托，以及年轻人逃避现实的避风港。随着城市规划的推进，老旧天台面临拆迁改造，这种独特的“天台文化”正逐渐消失。玩家将置身于这种新旧交替的缝隙中，在钢筋水泥的森林里，通过饲养鸽子与邻里互动，观察这座城市在时代洪流下的细微变迁，体验那种既想融入城市又渴望保持独立空间的矛盾感。"
+                },
+                "flow_worldline": {
+                  "characters": {},
+                  "current_chapter": "chapter1",
+                  "environment": {}
+                },
+                "game_id": "game_1777634610_pf9up3",
+                "image_style": {
+                  "type": "realistic"
+                },
+                "meta": {
+                  "detail_async": true
+                },
+                "protagonist_canonical": {
+                  "age_range": "青年",
+                  "gender": "男性",
+                  "name_en": "Lin Yuan",
+                  "name_zh": "林远",
+                  "signature_look_keywords": "黑色碎发、黑框眼镜、穿着洗旧的灰色卫衣、常年带着鸽哨、眼神清澈但略显疲惫、手指上有细微的伤痕、身形单薄、习惯性抬头望天、背着磨损的帆布包、总是带着一小袋鸽粮",
+                  "work_en": "The Warmth of the Rooftop",
+                  "work_zh": "天台的余温"
+                },
+                "tone": "normal_ending",
+                "user_theme": "都市天台养鸽人",
+                "_benchmark_profile": "fullready_strict",
+                "_benchmark_measurement": "fullready_nextturn",
+                "_benchmark_read_wait_s": 0.0
+              }
+            },
+            "start_ts": 1777634639.3073473,
+            "end_ts": 1777634879.3217475,
+            "provider_events": {
+              "event_count": 7,
+              "queue_wait_ms": {
+                "count": 7,
+                "min": 0.0,
+                "max": 0.0,
+                "mean": 0.0,
+                "median": 0.0,
+                "p95": 0.0
+              },
+              "latency_ms": {
+                "count": 4,
+                "min": 4089.0,
+                "max": 26785.0,
+                "mean": 13336.75,
+                "median": 11236.5,
+                "p95": 24960.55
+              },
+              "llm_success_count": 4,
+              "image_success_count": 0,
+              "request_thread_event_count": 0,
+              "provider_429_count": 0,
+              "provider_timeout_count": 0,
+              "shared_backoff_wait_ms_total": 0,
+              "retry_heavy_event_count": 0,
+              "main_character_event_count": 1,
+              "scene_image_event_count": 0
+            },
+            "request_error": "timeout"
+          }
+        ],
+        "attempt_count": 1,
+        "request_elapsed_s": 240.014,
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "timeout",
+        "has_scene": false,
+        "has_image": false,
+        "setup_success": false
+      },
+      "second_click": {},
+      "full_ready": {},
+      "placeholder": false,
+      "transport_success": false,
+      "strict_success": false,
+      "failure_bucket": "first_click_timeout",
+      "cache_path_classification": "first_click_timeout",
+      "cache_hit_reason": null,
+      "cache_miss_reason": null,
+      "global_state_key_drift_detected": false,
+      "scene_id_mismatch_detected": false,
+      "selected_option_mismatch_detected": false,
+      "success": false
+    }
+  ]
+}

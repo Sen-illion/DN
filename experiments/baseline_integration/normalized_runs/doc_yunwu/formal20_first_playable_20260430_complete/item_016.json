@@ -1,0 +1,144 @@
+{
+  "baseline_id": "doc",
+  "benchmark_id": "DNQBV1_017",
+  "run_id": "formal20_first_playable_20260430",
+  "mode": "first_playable",
+  "input_bundle": {
+    "original_dn_item": {
+      "benchmark_id": "DNQBV1_017",
+      "theme_id": 24,
+      "theme": "近地轨道维修工",
+      "image_style": {
+        "type": "anime"
+      },
+      "expected_genre": "近轨道职业冒险",
+      "expected_tone": "轻技术、职业化、动漫感",
+      "must_have_constraints": [
+        "必须体现近地轨道维修工作",
+        "首段应建立故障或紧急任务",
+        "图像应符合动漫风格"
+      ],
+      "forbidden_issues": [
+        "毫无太空/轨道元素",
+        "画风过于写实或油画化",
+        "剧情没有维修任务"
+      ],
+      "focus": "full-set coverage: 近轨道职业冒险",
+      "_subset_focus": "full-set coverage: 近轨道职业冒险"
+    },
+    "doc_prompt": "Premise seed: 近地轨道维修工\nGenre: 近轨道职业冒险\nTone: 轻技术、职业化、动漫感\nWrite a long-form interactive story opening that could be expanded with a detailed outline.\nMust-have constraints:\n- 必须体现近地轨道维修工作\n- 首段应建立故障或紧急任务\n- 图像应符合动漫风格\nForbidden issues:\n- 毫无太空/轨道元素\n- 画风过于写实或油画化\n- 剧情没有维修任务\n",
+    "outline_seed": [
+      "Opening setup for 近地轨道维修工 in a 近轨道职业冒险 frame with a 轻技术、职业化、动漫感 tone.",
+      "Introduce the protagonist's immediate role, pressure, and conflict around: 必须体现近地轨道维修工作.",
+      "Reveal one concrete obstacle or tradeoff the player must respond to next.",
+      "End the first turn with 2-3 actionable next steps that can continue the story."
+    ],
+    "mode": "first_playable",
+    "baseline_params": {
+      "execution_mode": "cloud",
+      "doc_repo": "D:\\Projects\\DN\\baselines\\DOC",
+      "doc_data_dir": "D:\\Projects\\DN\\baselines\\DOC\\doc_data"
+    }
+  },
+  "raw_output": {
+    "execution_mode": "cloud",
+    "doc_upstream_executed": false,
+    "doc_api_adapter": "yunwu_chat_completions",
+    "provider": "yunwu",
+    "provider_config_prefix": "Origin_Segment_Analyst",
+    "provider_base_url": "https://yunwu.ai/v1",
+    "provider_model": "gemini-3.1-flash-lite-preview",
+    "request": {
+      "model": "gemini-3.1-flash-lite-preview",
+      "temperature": 0.7,
+      "top_p": 0.9,
+      "max_tokens": 900,
+      "response_format": {
+        "type": "json_object"
+      }
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are the DOC long-form story baseline adapted for DN playable-latency evaluation. Write concise, grounded, continuation-ready interactive fiction. Do not include debugging text, URLs, or commentary outside JSON."
+      },
+      {
+        "role": "user",
+        "content": "Convert this DN benchmark item into a DOC-style playable baseline output.\nPreserve DOC's premise -> outline -> story-opening semantics, but return only a playable first response.\nRun mode: first_playable\n\nDOC prompt:\nPremise seed: 近地轨道维修工\nGenre: 近轨道职业冒险\nTone: 轻技术、职业化、动漫感\nWrite a long-form interactive story opening that could be expanded with a detailed outline.\nMust-have constraints:\n- 必须体现近地轨道维修工作\n- 首段应建立故障或紧急任务\n- 图像应符合动漫风格\nForbidden issues:\n- 毫无太空/轨道元素\n- 画风过于写实或油画化\n- 剧情没有维修任务\n\nOutline seed:\n1. Opening setup for 近地轨道维修工 in a 近轨道职业冒险 frame with a 轻技术、职业化、动漫感 tone.\n2. Introduce the protagonist's immediate role, pressure, and conflict around: 必须体现近地轨道维修工作.\n3. Reveal one concrete obstacle or tradeoff the player must respond to next.\n4. End the first turn with 2-3 actionable next steps that can continue the story.\n\nReturn strict JSON with this shape and no markdown fences:\n{\n  \"scene_setup\": \"string\",\n  \"player_state\": \"string\",\n  \"narrative_response\": \"string\",\n  \"candidate_actions\": [\n    \"string\"\n  ],\n  \"suggested_next_step\": \"string\",\n  \"supports_next_turn\": true\n}"
+      }
+    ],
+    "response": {
+      "id": "chatcmpl-20260430170957963367058WHpFNkxN",
+      "model": "gemini-3.1-flash-lite-preview",
+      "object": "chat.completion",
+      "created": 1777540209,
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"scene_setup\": \"近地轨道，高度420公里。太阳能阵列维修站，背景是蓝白相间的地球边缘。赛博朋克风格的维修工装，充满机械细节的舱外活动服。\",\n  \"player_state\": \"身份：轨道维修技师，代号‘扳手’。当前状态：氧气余量85%，推进器左喷口轻微受损，正在执行紧急修复任务。\",\n  \"narrative_response\": \"警报声在头盔内急促回荡，红色的警告灯映在你的护目镜上。轨道站的3号太阳能板支架被一块微型陨石击穿，导致电力分配系统出现剧烈波动，如果不立刻切断受损线路，过载电流将烧毁整个空间站的生命维持系统。你悬浮在深邃的真空背景中，手中紧握着多功能等离子焊枪，面前的金属支架断裂处正喷涌着细小的冷却剂结晶，像是一场诡异的银色暴风雪。\",\n  \"candidate_actions\": [\n    \"尝试手动焊接支架断裂处，但会暴露在高温电弧辐射下。\",\n    \"将受损面板强行脱离母体，但这会导致空间站电力永久性损失15%。\",\n    \"利用推进器绕到背面，通过备用接口进行远程软重启，但需消耗大量燃料。\"\n  ],\n  \"suggested_next_step\": \"选择一种维修策略，应对电力过载危机。\",\n  \"supports_next_turn\": true\n}"
+          },
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 383,
+        "completion_tokens": 356,
+        "total_tokens": 739,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "text_tokens": 383,
+          "audio_tokens": 0,
+          "image_tokens": 0
+        },
+        "completion_tokens_details": {
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0
+        },
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "input_tokens_details": null,
+        "claude_cache_creation_5_m_tokens": 0,
+        "claude_cache_creation_1_h_tokens": 0
+      }
+    }
+  },
+  "success": true,
+  "latency_s": 12.211,
+  "playable": true,
+  "playable_components": {
+    "scene_setup": true,
+    "player_state": true,
+    "advanceable_next_step": true,
+    "interaction_continuity": true
+  },
+  "normalized_response": {
+    "scene_setup": "近地轨道，高度420公里。太阳能阵列维修站，背景是蓝白相间的地球边缘。赛博朋克风格的维修工装，充满机械细节的舱外活动服。",
+    "player_state": "身份：轨道维修技师，代号‘扳手’。当前状态：氧气余量85%，推进器左喷口轻微受损，正在执行紧急修复任务。",
+    "narrative_response": "警报声在头盔内急促回荡，红色的警告灯映在你的护目镜上。轨道站的3号太阳能板支架被一块微型陨石击穿，导致电力分配系统出现剧烈波动，如果不立刻切断受损线路，过载电流将烧毁整个空间站的生命维持系统。你悬浮在深邃的真空背景中，手中紧握着多功能等离子焊枪，面前的金属支架断裂处正喷涌着细小的冷却剂结晶，像是一场诡异的银色暴风雪。",
+    "candidate_actions": [
+      "尝试手动焊接支架断裂处，但会暴露在高温电弧辐射下。",
+      "将受损面板强行脱离母体，但这会导致空间站电力永久性损失15%。",
+      "利用推进器绕到背面，通过备用接口进行远程软重启，但需消耗大量燃料。"
+    ],
+    "suggested_next_step": "选择一种维修策略，应对电力过载危机。",
+    "is_playable": true,
+    "request_start_ts": 1777540197.2944067,
+    "first_playable_ts": 1777540209.5050921,
+    "finish_ts": 1777540209.5050921,
+    "error": null
+  },
+  "failure_reason": null,
+  "notes": [
+    "DOC-style artifact generated through Yunwu OpenAI-compatible chat/completions API."
+  ],
+  "resource_usage": {
+    "execution_mode": "cloud"
+  },
+  "agent_profile": {
+    "runner": "run_doc.py",
+    "adapter_style": "doc_cloud_yunwu_v1"
+  }
+}

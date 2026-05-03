@@ -1,0 +1,1452 @@
+{
+  "summary": {
+    "experiment_name": "benchmark_v15_fullready_nextturn_normal20",
+    "profile": "fullready_strict",
+    "sample_size": 1,
+    "read_wait_s": 0.0,
+    "suite_start_ts": 1777638434.3016517,
+    "suite_end_ts": 1777638513.5842078,
+    "first_click_elapsed_s": {
+      "count": 1,
+      "min": 44.671,
+      "max": 44.671,
+      "mean": 44.671,
+      "median": 44.671,
+      "p95": 44.671
+    },
+    "first_click_setup_success_count": 1,
+    "second_click_elapsed_s": {
+      "count": 1,
+      "min": 26.983,
+      "max": 26.983,
+      "mean": 26.983,
+      "median": 26.983,
+      "p95": 26.983
+    },
+    "second_click_success_count": 1,
+    "transport_success_count": 1,
+    "strict_success_count": 1,
+    "likely_hit_count": 0,
+    "likely_hit_rate": 0.0,
+    "failure_bucket_counts": {},
+    "placeholder_strict_fail_count": 0,
+    "cache_hit_reason_counts": {
+      "waited_request_scene_text_completed_no_image": 1
+    },
+    "cache_miss_reason_counts": {
+      "request_scene_generation_in_progress": 1
+    },
+    "global_state_key_drift_detected_count": 1,
+    "scene_id_mismatch_detected_count": 1,
+    "selected_option_mismatch_detected_count": 0,
+    "aborted": false,
+    "success_count": 1,
+    "text_ready_elapsed_s": {
+      "count": 1,
+      "min": 26.983,
+      "max": 26.983,
+      "mean": 26.983,
+      "median": 26.983,
+      "p95": 26.983
+    },
+    "image_ready_elapsed_s": {
+      "count": 1,
+      "min": 26.983,
+      "max": 26.983,
+      "mean": 26.983,
+      "median": 26.983,
+      "p95": 26.983
+    },
+    "full_ready_elapsed_s": {
+      "count": 1,
+      "min": 26.983,
+      "max": 26.983,
+      "mean": 26.983,
+      "median": 26.983,
+      "p95": 26.983
+    },
+    "real_scene_count": 1,
+    "real_scene_rate": 1.0,
+    "direct_image_count": 1,
+    "async_image_count": 0,
+    "placeholder_count": 0,
+    "placeholder_rate": 0.0,
+    "direct_image_rate": 1.0,
+    "async_image_rate": 0.0,
+    "provider_retry_heavy_count": 0,
+    "provider_429_count": 0,
+    "provider_timeout_count": 0,
+    "provider_backoff_wait_ms_total": 0,
+    "main_character_contention_suspected_count": 0,
+    "notes": "v15 strict normal20 treats first click as setup with a separate timeout budget, while preserving 60s fail-fast guards for second-click request, scene-image wait, and the measured next-turn full-ready path."
+  },
+  "runs": [
+    {
+      "benchmark_id": "DNQBV1_003",
+      "theme_id": 19,
+      "theme": "都市天台养鸽人",
+      "read_wait_s": 0.0,
+      "full_ready_mode": true,
+      "profile": "fullready_strict",
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 7.485,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过协助邻居处理拆迁纠纷，换取了开发商给予的额外一个月缓冲期，并成功将鸽群迁至天台的临时避风区，暂时稳住了局面。",
+                  "main_conflict": "旧城区改造通知正式下达，主角面临鸽舍被强制拆除的危机。他不仅要应对开发商的催促，还要面对邻居们对拆迁补偿方案的不满，以及鸽群因环境嘈杂而产生的应激反应。主角试图通过整理旧物来拖延时间，却发现自己对这片天台的依赖已成为一种无法割舍的心理枷锁。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角放弃了在市中心寻找完美鸽舍的执念，转而接受了远郊一处废弃仓库的安置方案，虽然环境简陋且交通不便，但鸽群有了生存空间。",
+                  "main_conflict": "寻找新落脚点的过程屡屡碰壁，城市边缘的租金上涨与鸽群的饲养限制让主角陷入困境。同时，主角与一名同样面临搬迁的邻居产生情感羁绊，对方的离去让主角意识到，所谓的“圆满”不过是留住一部分记忆，而大部分人与事注定要在城市变迁中失散。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角在天台举行了最后的放飞，大部分鸽子飞向了远方，仅留下几只年幼的个体跟随他前往新住处。他平静地交出钥匙，带着对旧时光的怀念，迈向了平凡且充满不确定性的未来。",
+                  "main_conflict": "拆迁的最后期限到来，主角必须在“带走所有鸽子”与“让部分鸽子回归自然”之间做出选择。他意识到，强行将鸽子圈养在狭窄的仓库是对它们自由的剥夺，而自己也必须面对彻底离开这片天台、融入新生活的现实，这种割舍带来的痛苦与释然交织。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为写实风格的都市生活模拟游戏，采用低饱和度的视觉色调与环境音效，营造出一种在快节奏城市缝隙中，缓慢流动的静谧感。游戏强调微观叙事，通过鸽群的起落、天台的四季更迭与邻里的琐碎对话，构建出一种真实、沉稳且带有淡淡疏离感的现实主义氛围。",
+              "main_quest": "主角的目标是在旧城区彻底拆迁前，为自己精心培育的鸽群找到一个妥善的去处，并完成与这片生活了二十年的天台的最后告别。任务分为三个阶段：首先是修缮天台鸽舍，维持鸽群的健康与繁衍；其次是与开发商及社区沟通，争取延长留守时间，并尝试在城市边缘寻找新的落脚点；最后是进行一场盛大的放飞仪式，将鸽群送往更广阔的自然环境。挑战在于，主角不仅要面对经济拮据带来的生活压力，还要处理与邻里之间因拆迁补偿产生的利益纠葛，以及内心对于“离开”这一行为的深层抗拒。",
+              "protagonist_ability": "主角拥有一种名为“共鸣感知”的特质，这并非超能力，而是长期与鸽群共处培养出的敏锐直觉。通过观察鸽子的羽色、飞行轨迹与鸣叫频率，主角能捕捉到城市中细微的氛围变化，例如邻居的情绪波动或即将到来的天气转折。这种能力的使用受限于主角的体力与精神状态，过度依赖会导致现实社交的退化，且无法改变客观的拆迁进程，只能帮助主角在变动中寻找心理上的平衡点。",
+              "world_basic_setting": "故事发生在一座被高楼大厦挤压的旧城区。这里是城市发展的边缘地带，老旧的筒子楼与远处闪烁的霓虹灯形成鲜明对比。社会文化呈现出一种典型的“留守与迁徙”特征，年轻人向往CBD的繁华，而老一辈则固守着残存的邻里温情。鸽子不仅是主角的伙伴，更是这座城市中被遗忘的“空中原住民”，它们穿梭于钢筋水泥之间，象征着一种无根的自由。关键事件是旧城区改造计划的推进，这不仅意味着物理空间的拆迁，更意味着主角与这片土地、这群鸽子之间脆弱的情感纽带即将面临被切断的风险。在这个世界里，没有宏大的救世叙事，只有关于生存、记忆与如何体面地告别日常的微小博弈。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1777638434_6954pi",
+            "image_style": {
+              "type": "realistic"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "凌乱短发、旧工装外套、眼神清澈、手指常有饲料痕迹、身形单薄、常背帆布包、沉默寡言、带有烟火气、沉稳、略显疲惫、专注、真实",
+              "work_en": "《Warmth on the Rooftop》",
+              "work_zh": "《天台的余温》"
+            },
+            "tone": "normal_ending",
+            "user_theme": "都市天台养鸽人"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "request_payload": {
+          "gameTheme": "都市天台养鸽人",
+          "protagonistAttr": {},
+          "difficulty": "normal",
+          "toneKey": "normal_ending",
+          "imageStyle": {
+            "type": "realistic"
+          },
+          "_benchmark_profile": "fullready_strict",
+          "_benchmark_measurement": "fullready_nextturn",
+          "_benchmark_read_wait_s": 0.0
+        },
+        "start_ts": 1777638434.3016589,
+        "end_ts": 1777638441.7864745,
+        "provider_events": {
+          "event_count": 5,
+          "queue_wait_ms": {
+            "count": 5,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 1,
+            "min": 7449.0,
+            "max": 7449.0,
+            "mean": 7449.0,
+            "median": 7449.0,
+            "p95": 7449.0
+          },
+          "llm_success_count": 1,
+          "image_success_count": 0,
+          "request_thread_event_count": 3,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0
+        },
+        "status": "success",
+        "game_id": "game_1777638434_6954pi"
+      },
+      "long_tail_attribution": {
+        "provider_429_count": 0,
+        "provider_timeout_count": 0,
+        "provider_retry_heavy_count": 0,
+        "provider_backoff_wait_ms_total": 0,
+        "main_character_event_count": 0,
+        "scene_image_event_count": 0,
+        "image_probe_attempt_count": 0,
+        "main_character_contention_suspected": false
+      },
+      "first_click": {
+        "http_status": 200,
+        "elapsed_s": 44.671,
+        "response_json": {
+          "benchmark_diagnostics": {
+            "cache_hit_reason": null,
+            "cache_miss_reason": null,
+            "current_options_key_drift_detected": false,
+            "global_state_key_drift_detected": false,
+            "placeholder": false,
+            "previous_scene_id": null,
+            "recomputed_scene_cache_exists": false,
+            "recomputed_scene_id": null,
+            "request_current_options_count": 0,
+            "request_current_options_hash": "d751713988987e9331980363e24189ce",
+            "request_flow_worldline_hash": "940e38d5f8372eaa58cfdaf4d70a0d30",
+            "request_global_state_hash": "8f68cd1bd78ed878190a0c75626f9516",
+            "request_option_at_index": null,
+            "request_option_index": 0,
+            "request_option_text": "开始游戏",
+            "request_scene_cache_exists": false,
+            "request_scene_id": null,
+            "resolution_path": null,
+            "response_has_image": true,
+            "response_has_scene": true,
+            "response_scene_id": "-2454291928518999967_-1055604536039954696",
+            "response_status": "success",
+            "scene_id_mismatch_detected": false,
+            "selected_option_mismatch_detected": false
+          },
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "",
+              "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：清晨的阳光透过筒子楼斑驳的窗棂，照在我凌乱的短发上，空气中弥漫着陈旧的灰尘与鸽子羽毛特有的腥气。我揉了揉略显疲惫的眼睛，身上那件沾着饲料碎屑的旧工装外套显得有些沉重。天台的鸽舍里，几只信鸽正不安地拍打着翅膀，鸣叫声比往常尖锐了许多。我走到鸽舍前，指尖触碰到冰冷的铁丝网，那种熟悉的、带着温度的生命律动感在指尖跳动。\n\n突然，一阵急促的敲门声打破了清晨的宁静，紧接着是房东老张那标志性的、带着烟草味的粗嗓门：“林远，别睡了！拆迁办的通知贴到楼下了，这片儿下个月就得断水断电，你那堆宝贝鸽子，赶紧想办法吧！”我推开门，老张正站在走廊里，手里晃着一张盖了红章的拆迁公告，眼神里透着一种无奈的疲惫。我看着那张纸，心跳漏了一拍，那种即将失去这片天台的恐慌感瞬间蔓延开来。我下意识地抓紧了帆布包的带子，声音有些沙哑地回应道：“张叔，真的没商量了吗？我这鸽群刚孵化了一窝幼崽。”老张叹了口气，避开了我的目光，低声嘟囔着：“上面定的事，谁也没办法，你还是早做打算吧。”"
+            },
+            "deep_background_links": {},
+            "flow_update": {},
+            "next_options": [
+              "询问老张关于补偿方案的细节，尝试寻找转机。",
+              "检查鸽舍受损情况，并安抚受惊的鸽群，观察它们的飞行轨迹。"
+            ],
+            "scene": "清晨的阳光透过筒子楼斑驳的窗棂，照在我凌乱的短发上，空气中弥漫着陈旧的灰尘与鸽子羽毛特有的腥气。我揉了揉略显疲惫的眼睛，身上那件沾着饲料碎屑的旧工装外套显得有些沉重。天台的鸽舍里，几只信鸽正不安地拍打着翅膀，鸣叫声比往常尖锐了许多。我走到鸽舍前，指尖触碰到冰冷的铁丝网，那种熟悉的、带着温度的生命律动感在指尖跳动。\n\n突然，一阵急促的敲门声打破了清晨的宁静，紧接着是房东老张那标志性的、带着烟草味的粗嗓门：“林远，别睡了！拆迁办的通知贴到楼下了，这片儿下个月就得断水断电，你那堆宝贝鸽子，赶紧想办法吧！”我推开门，老张正站在走廊里，手里晃着一张盖了红章的拆迁公告，眼神里透着一种无奈的疲惫。我看着那张纸，心跳漏了一拍，那种即将失去这片天台的恐慌感瞬间蔓延开来。我下意识地抓紧了帆布包的带子，声音有些沙哑地回应道：“张叔，真的没商量了吗？我这鸽群刚孵化了一窝幼崽。”老张叹了口气，避开了我的目光，低声嘟囔着：“上面定的事，谁也没办法，你还是早做打算吧。”",
+            "sceneId": "-2454291928518999967_-1055604536039954696",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-urban-eviction-confrontation, realistic, urban-decay, melancholic, slice-of-life, cinematic, photorealistic, low-saturation-color-grading, high-detail-textures, cinematic-lighting, documentary-style-photography, young male protagonist Lin Yuan using Image 0, messy short hair with dusty texture, clear and observant eyes showing suppressed anxiety, slight build with a weary but focused posture, hands showing visible traces of bird feed residue, facial expression of shock and helplessness, worn-out industrial work jacket with stains and dust, faded cotton canvas bag slung over one shoulder, standing in the narrow corridor of a dilapidated apartment building, body slightly leaning away from the door, hands tightly gripping the straps of the canvas bag, facing toward 老张-配角1, 8K highly detailed skin texture with visible pores and fatigue, eyes reflecting the dim light of the corridor, lips slightly parted as if speaking, soft shadows under eyes indicating long-term exhaustion, natural complexion with subtle hints of indoor grime, messy short dark hair with fine dust particles caught in strands, root fixation coefficient 0.5, tip swing amplitude 5cm, color layering: main black, secondary deep brown, highlight dusty grey, shadow dark charcoal, wind speed 0.2m/s, turbulence intensity 1%, static and unkempt appearance, coarse fabric texture for the old work jacket, visible fabric wear and tear at the cuffs, canvas bag strap showing signs of heavy usage, subtle wrinkles and dust accumulation on surfaces, narrow and dimly lit apartment building corridor, peeling paint on concrete walls with visible water stains, a crumpled red-stamped demolition notice held by the character, distant view of a hazy, neon-lit city skyline through a small window, pigeon coop wire mesh visible in the peripheral vision, 老张-配角1 standing in front of the door, middle-aged man with weathered face and tired expression, holding the demolition notice, floating dust motes in the morning sunlight, hazy atmosphere with a sense of stagnation, low-key lighting highlighting the textures of the old building, desaturated tones of grey, brown, and concrete-white, faded red color on the demolition notice as a focal point, dull metallic tones for the wire mesh, cool shadows contrasting with weak, pale morning light, harsh morning sunlight filtering through the dusty window, dim indoor ambient light from the corridor, long shadows cast by the building structure, soft volumetric lighting through dust particles, type medium shot, lens 35mm, aperture f/2.0, depth_of_field sharp focus on Lin Yuan and the demolition notice, flash none, grain fine film grain, texture realistic urban surface textures, Lin Yuan positioned slightly to the left, 老张-配角1 positioned to the right facing the protagonist, demolition notice held between the two characters as the central narrative element, narrow framing to emphasize the sense of being trapped, realistic urban photography, no text or symbols in image, no watermarks or logos, high-fidelity image rendering, melancholic realism, anxiety of displacement, quiet desperation, sense of loss, stagnant urban atmosphere, no text, no symbols, no garbled characters, no words",
+              "prompt_json": {
+                "camera": {
+                  "aperture": "f/2.0",
+                  "depth_of_field": "sharp focus on Lin Yuan and the demolition notice",
+                  "flash": "none",
+                  "grain": "fine film grain",
+                  "lens": "35mm",
+                  "texture": "realistic urban surface textures",
+                  "type": "medium shot"
+                },
+                "clothing_system": [
+                  "coarse fabric texture for the old work jacket",
+                  "visible fabric wear and tear at the cuffs",
+                  "canvas bag strap showing signs of heavy usage",
+                  "subtle wrinkles and dust accumulation on surfaces"
+                ],
+                "color_restriction": [
+                  "desaturated tones of grey, brown, and concrete-white",
+                  "faded red color on the demolition notice as a focal point",
+                  "dull metallic tones for the wire mesh",
+                  "cool shadows contrasting with weak, pale morning light"
+                ],
+                "composition": [
+                  "Lin Yuan positioned slightly to the left",
+                  "老张-配角1 positioned to the right facing the protagonist",
+                  "demolition notice held between the two characters as the central narrative element",
+                  "narrow framing to emphasize the sense of being trapped"
+                ],
+                "environment": {
+                  "background": [
+                    "narrow and dimly lit apartment building corridor",
+                    "peeling paint on concrete walls with visible water stains",
+                    "a crumpled red-stamped demolition notice held by the character",
+                    "distant view of a hazy, neon-lit city skyline through a small window",
+                    "pigeon coop wire mesh visible in the peripheral vision"
+                  ],
+                  "characters": [
+                    "老张-配角1 standing in front of the door, middle-aged man with weathered face and tired expression, holding the demolition notice"
+                  ],
+                  "effects": [
+                    "floating dust motes in the morning sunlight",
+                    "hazy atmosphere with a sense of stagnation",
+                    "low-key lighting highlighting the textures of the old building"
+                  ]
+                },
+                "face_system": [
+                  "8K highly detailed skin texture with visible pores and fatigue",
+                  "eyes reflecting the dim light of the corridor",
+                  "lips slightly parted as if speaking",
+                  "soft shadows under eyes indicating long-term exhaustion",
+                  "natural complexion with subtle hints of indoor grime"
+                ],
+                "hair_system": [
+                  "messy short dark hair with fine dust particles caught in strands",
+                  "root fixation coefficient 0.5",
+                  "tip swing amplitude 5cm",
+                  "color layering: main black, secondary deep brown, highlight dusty grey, shadow dark charcoal",
+                  "wind speed 0.2m/s",
+                  "turbulence intensity 1%",
+                  "static and unkempt appearance"
+                ],
+                "label": "scene-urban-eviction-confrontation",
+                "lighting": [
+                  "harsh morning sunlight filtering through the dusty window",
+                  "dim indoor ambient light from the corridor",
+                  "long shadows cast by the building structure",
+                  "soft volumetric lighting through dust particles"
+                ],
+                "mood": [
+                  "melancholic realism",
+                  "anxiety of displacement",
+                  "quiet desperation",
+                  "sense of loss",
+                  "stagnant urban atmosphere"
+                ],
+                "output_style": [
+                  "realistic urban photography",
+                  "no text or symbols in image",
+                  "no watermarks or logos",
+                  "high-fidelity image rendering"
+                ],
+                "style": [
+                  "photorealistic",
+                  "low-saturation-color-grading",
+                  "high-detail-textures",
+                  "cinematic-lighting",
+                  "documentary-style-photography"
+                ],
+                "subject": {
+                  "body_traits": [
+                    "young male protagonist Lin Yuan using Image 0",
+                    "messy short hair with dusty texture",
+                    "clear and observant eyes showing suppressed anxiety",
+                    "slight build with a weary but focused posture",
+                    "hands showing visible traces of bird feed residue",
+                    "facial expression of shock and helplessness"
+                  ],
+                  "outfit": [
+                    "worn-out industrial work jacket with stains and dust",
+                    "faded cotton canvas bag slung over one shoulder"
+                  ],
+                  "pose": [
+                    "standing in the narrow corridor of a dilapidated apartment building",
+                    "body slightly leaning away from the door",
+                    "hands tightly gripping the straps of the canvas bag",
+                    "facing toward 老张-配角1"
+                  ]
+                },
+                "tags": [
+                  "realistic",
+                  "urban-decay",
+                  "melancholic",
+                  "slice-of-life",
+                  "cinematic"
+                ]
+              },
+              "scene_text_hash": "64db5695d36349b4e46b3ef6abcf1f99",
+              "style": "default",
+              "url": "/image_cache/4fb7f442dfe5a567adaf8938e1cbf37a.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "request_payload": {
+          "option": "开始游戏",
+          "optionIndex": 0,
+          "sceneId": null,
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过协助邻居处理拆迁纠纷，换取了开发商给予的额外一个月缓冲期，并成功将鸽群迁至天台的临时避风区，暂时稳住了局面。",
+                  "main_conflict": "旧城区改造通知正式下达，主角面临鸽舍被强制拆除的危机。他不仅要应对开发商的催促，还要面对邻居们对拆迁补偿方案的不满，以及鸽群因环境嘈杂而产生的应激反应。主角试图通过整理旧物来拖延时间，却发现自己对这片天台的依赖已成为一种无法割舍的心理枷锁。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角放弃了在市中心寻找完美鸽舍的执念，转而接受了远郊一处废弃仓库的安置方案，虽然环境简陋且交通不便，但鸽群有了生存空间。",
+                  "main_conflict": "寻找新落脚点的过程屡屡碰壁，城市边缘的租金上涨与鸽群的饲养限制让主角陷入困境。同时，主角与一名同样面临搬迁的邻居产生情感羁绊，对方的离去让主角意识到，所谓的“圆满”不过是留住一部分记忆，而大部分人与事注定要在城市变迁中失散。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角在天台举行了最后的放飞，大部分鸽子飞向了远方，仅留下几只年幼的个体跟随他前往新住处。他平静地交出钥匙，带着对旧时光的怀念，迈向了平凡且充满不确定性的未来。",
+                  "main_conflict": "拆迁的最后期限到来，主角必须在“带走所有鸽子”与“让部分鸽子回归自然”之间做出选择。他意识到，强行将鸽子圈养在狭窄的仓库是对它们自由的剥夺，而自己也必须面对彻底离开这片天台、融入新生活的现实，这种割舍带来的痛苦与释然交织。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为写实风格的都市生活模拟游戏，采用低饱和度的视觉色调与环境音效，营造出一种在快节奏城市缝隙中，缓慢流动的静谧感。游戏强调微观叙事，通过鸽群的起落、天台的四季更迭与邻里的琐碎对话，构建出一种真实、沉稳且带有淡淡疏离感的现实主义氛围。",
+              "main_quest": "主角的目标是在旧城区彻底拆迁前，为自己精心培育的鸽群找到一个妥善的去处，并完成与这片生活了二十年的天台的最后告别。任务分为三个阶段：首先是修缮天台鸽舍，维持鸽群的健康与繁衍；其次是与开发商及社区沟通，争取延长留守时间，并尝试在城市边缘寻找新的落脚点；最后是进行一场盛大的放飞仪式，将鸽群送往更广阔的自然环境。挑战在于，主角不仅要面对经济拮据带来的生活压力，还要处理与邻里之间因拆迁补偿产生的利益纠葛，以及内心对于“离开”这一行为的深层抗拒。",
+              "protagonist_ability": "主角拥有一种名为“共鸣感知”的特质，这并非超能力，而是长期与鸽群共处培养出的敏锐直觉。通过观察鸽子的羽色、飞行轨迹与鸣叫频率，主角能捕捉到城市中细微的氛围变化，例如邻居的情绪波动或即将到来的天气转折。这种能力的使用受限于主角的体力与精神状态，过度依赖会导致现实社交的退化，且无法改变客观的拆迁进程，只能帮助主角在变动中寻找心理上的平衡点。",
+              "world_basic_setting": "故事发生在一座被高楼大厦挤压的旧城区。这里是城市发展的边缘地带，老旧的筒子楼与远处闪烁的霓虹灯形成鲜明对比。社会文化呈现出一种典型的“留守与迁徙”特征，年轻人向往CBD的繁华，而老一辈则固守着残存的邻里温情。鸽子不仅是主角的伙伴，更是这座城市中被遗忘的“空中原住民”，它们穿梭于钢筋水泥之间，象征着一种无根的自由。关键事件是旧城区改造计划的推进，这不仅意味着物理空间的拆迁，更意味着主角与这片土地、这群鸽子之间脆弱的情感纽带即将面临被切断的风险。在这个世界里，没有宏大的救世叙事，只有关于生存、记忆与如何体面地告别日常的微小博弈。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1777638434_6954pi",
+            "image_style": {
+              "type": "realistic"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "凌乱短发、旧工装外套、眼神清澈、手指常有饲料痕迹、身形单薄、常背帆布包、沉默寡言、带有烟火气、沉稳、略显疲惫、专注、真实",
+              "work_en": "《Warmth on the Rooftop》",
+              "work_zh": "《天台的余温》"
+            },
+            "tone": "normal_ending",
+            "user_theme": "都市天台养鸽人",
+            "_benchmark_profile": "fullready_strict",
+            "_benchmark_measurement": "fullready_nextturn",
+            "_benchmark_read_wait_s": 0.0
+          }
+        },
+        "start_ts": 1777638441.8356986,
+        "end_ts": 1777638486.5069864,
+        "provider_events": {
+          "event_count": 20,
+          "queue_wait_ms": {
+            "count": 20,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 11,
+            "min": 2844.0,
+            "max": 13759.0,
+            "mean": 7516.636,
+            "median": 7380.0,
+            "p95": 12881.0
+          },
+          "llm_success_count": 9,
+          "image_success_count": 0,
+          "request_thread_event_count": 1,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 4,
+          "scene_image_event_count": 0
+        },
+        "attempts": [
+          {
+            "http_status": 200,
+            "elapsed_s": 44.671,
+            "response_json": {
+              "benchmark_diagnostics": {
+                "cache_hit_reason": null,
+                "cache_miss_reason": null,
+                "current_options_key_drift_detected": false,
+                "global_state_key_drift_detected": false,
+                "placeholder": false,
+                "previous_scene_id": null,
+                "recomputed_scene_cache_exists": false,
+                "recomputed_scene_id": null,
+                "request_current_options_count": 0,
+                "request_current_options_hash": "d751713988987e9331980363e24189ce",
+                "request_flow_worldline_hash": "940e38d5f8372eaa58cfdaf4d70a0d30",
+                "request_global_state_hash": "8f68cd1bd78ed878190a0c75626f9516",
+                "request_option_at_index": null,
+                "request_option_index": 0,
+                "request_option_text": "开始游戏",
+                "request_scene_cache_exists": false,
+                "request_scene_id": null,
+                "resolution_path": null,
+                "response_has_image": true,
+                "response_has_scene": true,
+                "response_scene_id": "-2454291928518999967_-1055604536039954696",
+                "response_status": "success",
+                "scene_id_mismatch_detected": false,
+                "selected_option_mismatch_detected": false
+              },
+              "message": "选项剧情生成成功！",
+              "optionData": {
+                "checkpoint_packet": {
+                  "chapter": "chapter1",
+                  "chapter_conflict_solved": false,
+                  "quest_delta": "",
+                  "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：清晨的阳光透过筒子楼斑驳的窗棂，照在我凌乱的短发上，空气中弥漫着陈旧的灰尘与鸽子羽毛特有的腥气。我揉了揉略显疲惫的眼睛，身上那件沾着饲料碎屑的旧工装外套显得有些沉重。天台的鸽舍里，几只信鸽正不安地拍打着翅膀，鸣叫声比往常尖锐了许多。我走到鸽舍前，指尖触碰到冰冷的铁丝网，那种熟悉的、带着温度的生命律动感在指尖跳动。\n\n突然，一阵急促的敲门声打破了清晨的宁静，紧接着是房东老张那标志性的、带着烟草味的粗嗓门：“林远，别睡了！拆迁办的通知贴到楼下了，这片儿下个月就得断水断电，你那堆宝贝鸽子，赶紧想办法吧！”我推开门，老张正站在走廊里，手里晃着一张盖了红章的拆迁公告，眼神里透着一种无奈的疲惫。我看着那张纸，心跳漏了一拍，那种即将失去这片天台的恐慌感瞬间蔓延开来。我下意识地抓紧了帆布包的带子，声音有些沙哑地回应道：“张叔，真的没商量了吗？我这鸽群刚孵化了一窝幼崽。”老张叹了口气，避开了我的目光，低声嘟囔着：“上面定的事，谁也没办法，你还是早做打算吧。”"
+                },
+                "deep_background_links": {},
+                "flow_update": {},
+                "next_options": [
+                  "询问老张关于补偿方案的细节，尝试寻找转机。",
+                  "检查鸽舍受损情况，并安抚受惊的鸽群，观察它们的飞行轨迹。"
+                ],
+                "scene": "清晨的阳光透过筒子楼斑驳的窗棂，照在我凌乱的短发上，空气中弥漫着陈旧的灰尘与鸽子羽毛特有的腥气。我揉了揉略显疲惫的眼睛，身上那件沾着饲料碎屑的旧工装外套显得有些沉重。天台的鸽舍里，几只信鸽正不安地拍打着翅膀，鸣叫声比往常尖锐了许多。我走到鸽舍前，指尖触碰到冰冷的铁丝网，那种熟悉的、带着温度的生命律动感在指尖跳动。\n\n突然，一阵急促的敲门声打破了清晨的宁静，紧接着是房东老张那标志性的、带着烟草味的粗嗓门：“林远，别睡了！拆迁办的通知贴到楼下了，这片儿下个月就得断水断电，你那堆宝贝鸽子，赶紧想办法吧！”我推开门，老张正站在走廊里，手里晃着一张盖了红章的拆迁公告，眼神里透着一种无奈的疲惫。我看着那张纸，心跳漏了一拍，那种即将失去这片天台的恐慌感瞬间蔓延开来。我下意识地抓紧了帆布包的带子，声音有些沙哑地回应道：“张叔，真的没商量了吗？我这鸽群刚孵化了一窝幼崽。”老张叹了口气，避开了我的目光，低声嘟囔着：“上面定的事，谁也没办法，你还是早做打算吧。”",
+                "sceneId": "-2454291928518999967_-1055604536039954696",
+                "scene_image": {
+                  "cached": true,
+                  "height": 1080,
+                  "image_type": "story_scene",
+                  "prompt": "scene-urban-eviction-confrontation, realistic, urban-decay, melancholic, slice-of-life, cinematic, photorealistic, low-saturation-color-grading, high-detail-textures, cinematic-lighting, documentary-style-photography, young male protagonist Lin Yuan using Image 0, messy short hair with dusty texture, clear and observant eyes showing suppressed anxiety, slight build with a weary but focused posture, hands showing visible traces of bird feed residue, facial expression of shock and helplessness, worn-out industrial work jacket with stains and dust, faded cotton canvas bag slung over one shoulder, standing in the narrow corridor of a dilapidated apartment building, body slightly leaning away from the door, hands tightly gripping the straps of the canvas bag, facing toward 老张-配角1, 8K highly detailed skin texture with visible pores and fatigue, eyes reflecting the dim light of the corridor, lips slightly parted as if speaking, soft shadows under eyes indicating long-term exhaustion, natural complexion with subtle hints of indoor grime, messy short dark hair with fine dust particles caught in strands, root fixation coefficient 0.5, tip swing amplitude 5cm, color layering: main black, secondary deep brown, highlight dusty grey, shadow dark charcoal, wind speed 0.2m/s, turbulence intensity 1%, static and unkempt appearance, coarse fabric texture for the old work jacket, visible fabric wear and tear at the cuffs, canvas bag strap showing signs of heavy usage, subtle wrinkles and dust accumulation on surfaces, narrow and dimly lit apartment building corridor, peeling paint on concrete walls with visible water stains, a crumpled red-stamped demolition notice held by the character, distant view of a hazy, neon-lit city skyline through a small window, pigeon coop wire mesh visible in the peripheral vision, 老张-配角1 standing in front of the door, middle-aged man with weathered face and tired expression, holding the demolition notice, floating dust motes in the morning sunlight, hazy atmosphere with a sense of stagnation, low-key lighting highlighting the textures of the old building, desaturated tones of grey, brown, and concrete-white, faded red color on the demolition notice as a focal point, dull metallic tones for the wire mesh, cool shadows contrasting with weak, pale morning light, harsh morning sunlight filtering through the dusty window, dim indoor ambient light from the corridor, long shadows cast by the building structure, soft volumetric lighting through dust particles, type medium shot, lens 35mm, aperture f/2.0, depth_of_field sharp focus on Lin Yuan and the demolition notice, flash none, grain fine film grain, texture realistic urban surface textures, Lin Yuan positioned slightly to the left, 老张-配角1 positioned to the right facing the protagonist, demolition notice held between the two characters as the central narrative element, narrow framing to emphasize the sense of being trapped, realistic urban photography, no text or symbols in image, no watermarks or logos, high-fidelity image rendering, melancholic realism, anxiety of displacement, quiet desperation, sense of loss, stagnant urban atmosphere, no text, no symbols, no garbled characters, no words",
+                  "prompt_json": {
+                    "camera": {
+                      "aperture": "f/2.0",
+                      "depth_of_field": "sharp focus on Lin Yuan and the demolition notice",
+                      "flash": "none",
+                      "grain": "fine film grain",
+                      "lens": "35mm",
+                      "texture": "realistic urban surface textures",
+                      "type": "medium shot"
+                    },
+                    "clothing_system": [
+                      "coarse fabric texture for the old work jacket",
+                      "visible fabric wear and tear at the cuffs",
+                      "canvas bag strap showing signs of heavy usage",
+                      "subtle wrinkles and dust accumulation on surfaces"
+                    ],
+                    "color_restriction": [
+                      "desaturated tones of grey, brown, and concrete-white",
+                      "faded red color on the demolition notice as a focal point",
+                      "dull metallic tones for the wire mesh",
+                      "cool shadows contrasting with weak, pale morning light"
+                    ],
+                    "composition": [
+                      "Lin Yuan positioned slightly to the left",
+                      "老张-配角1 positioned to the right facing the protagonist",
+                      "demolition notice held between the two characters as the central narrative element",
+                      "narrow framing to emphasize the sense of being trapped"
+                    ],
+                    "environment": {
+                      "background": [
+                        "narrow and dimly lit apartment building corridor",
+                        "peeling paint on concrete walls with visible water stains",
+                        "a crumpled red-stamped demolition notice held by the character",
+                        "distant view of a hazy, neon-lit city skyline through a small window",
+                        "pigeon coop wire mesh visible in the peripheral vision"
+                      ],
+                      "characters": [
+                        "老张-配角1 standing in front of the door, middle-aged man with weathered face and tired expression, holding the demolition notice"
+                      ],
+                      "effects": [
+                        "floating dust motes in the morning sunlight",
+                        "hazy atmosphere with a sense of stagnation",
+                        "low-key lighting highlighting the textures of the old building"
+                      ]
+                    },
+                    "face_system": [
+                      "8K highly detailed skin texture with visible pores and fatigue",
+                      "eyes reflecting the dim light of the corridor",
+                      "lips slightly parted as if speaking",
+                      "soft shadows under eyes indicating long-term exhaustion",
+                      "natural complexion with subtle hints of indoor grime"
+                    ],
+                    "hair_system": [
+                      "messy short dark hair with fine dust particles caught in strands",
+                      "root fixation coefficient 0.5",
+                      "tip swing amplitude 5cm",
+                      "color layering: main black, secondary deep brown, highlight dusty grey, shadow dark charcoal",
+                      "wind speed 0.2m/s",
+                      "turbulence intensity 1%",
+                      "static and unkempt appearance"
+                    ],
+                    "label": "scene-urban-eviction-confrontation",
+                    "lighting": [
+                      "harsh morning sunlight filtering through the dusty window",
+                      "dim indoor ambient light from the corridor",
+                      "long shadows cast by the building structure",
+                      "soft volumetric lighting through dust particles"
+                    ],
+                    "mood": [
+                      "melancholic realism",
+                      "anxiety of displacement",
+                      "quiet desperation",
+                      "sense of loss",
+                      "stagnant urban atmosphere"
+                    ],
+                    "output_style": [
+                      "realistic urban photography",
+                      "no text or symbols in image",
+                      "no watermarks or logos",
+                      "high-fidelity image rendering"
+                    ],
+                    "style": [
+                      "photorealistic",
+                      "low-saturation-color-grading",
+                      "high-detail-textures",
+                      "cinematic-lighting",
+                      "documentary-style-photography"
+                    ],
+                    "subject": {
+                      "body_traits": [
+                        "young male protagonist Lin Yuan using Image 0",
+                        "messy short hair with dusty texture",
+                        "clear and observant eyes showing suppressed anxiety",
+                        "slight build with a weary but focused posture",
+                        "hands showing visible traces of bird feed residue",
+                        "facial expression of shock and helplessness"
+                      ],
+                      "outfit": [
+                        "worn-out industrial work jacket with stains and dust",
+                        "faded cotton canvas bag slung over one shoulder"
+                      ],
+                      "pose": [
+                        "standing in the narrow corridor of a dilapidated apartment building",
+                        "body slightly leaning away from the door",
+                        "hands tightly gripping the straps of the canvas bag",
+                        "facing toward 老张-配角1"
+                      ]
+                    },
+                    "tags": [
+                      "realistic",
+                      "urban-decay",
+                      "melancholic",
+                      "slice-of-life",
+                      "cinematic"
+                    ]
+                  },
+                  "scene_text_hash": "64db5695d36349b4e46b3ef6abcf1f99",
+                  "style": "default",
+                  "url": "/image_cache/4fb7f442dfe5a567adaf8938e1cbf37a.png",
+                  "width": 1920
+                }
+              },
+              "status": "success"
+            },
+            "request_payload": {
+              "option": "开始游戏",
+              "optionIndex": 0,
+              "sceneId": null,
+              "globalState": {
+                "core_worldview": {
+                  "chapters": {
+                    "chapter1": {
+                      "conflict_end_condition": "主角通过协助邻居处理拆迁纠纷，换取了开发商给予的额外一个月缓冲期，并成功将鸽群迁至天台的临时避风区，暂时稳住了局面。",
+                      "main_conflict": "旧城区改造通知正式下达，主角面临鸽舍被强制拆除的危机。他不仅要应对开发商的催促，还要面对邻居们对拆迁补偿方案的不满，以及鸽群因环境嘈杂而产生的应激反应。主角试图通过整理旧物来拖延时间，却发现自己对这片天台的依赖已成为一种无法割舍的心理枷锁。"
+                    },
+                    "chapter2": {
+                      "conflict_end_condition": "主角放弃了在市中心寻找完美鸽舍的执念，转而接受了远郊一处废弃仓库的安置方案，虽然环境简陋且交通不便，但鸽群有了生存空间。",
+                      "main_conflict": "寻找新落脚点的过程屡屡碰壁，城市边缘的租金上涨与鸽群的饲养限制让主角陷入困境。同时，主角与一名同样面临搬迁的邻居产生情感羁绊，对方的离去让主角意识到，所谓的“圆满”不过是留住一部分记忆，而大部分人与事注定要在城市变迁中失散。"
+                    },
+                    "chapter3": {
+                      "conflict_end_condition": "主角在天台举行了最后的放飞，大部分鸽子飞向了远方，仅留下几只年幼的个体跟随他前往新住处。他平静地交出钥匙，带着对旧时光的怀念，迈向了平凡且充满不确定性的未来。",
+                      "main_conflict": "拆迁的最后期限到来，主角必须在“带走所有鸽子”与“让部分鸽子回归自然”之间做出选择。他意识到，强行将鸽子圈养在狭窄的仓库是对它们自由的剥夺，而自己也必须面对彻底离开这片天台、融入新生活的现实，这种割舍带来的痛苦与释然交织。"
+                    }
+                  },
+                  "characters": {},
+                  "forces": {},
+                  "game_style": "本作为写实风格的都市生活模拟游戏，采用低饱和度的视觉色调与环境音效，营造出一种在快节奏城市缝隙中，缓慢流动的静谧感。游戏强调微观叙事，通过鸽群的起落、天台的四季更迭与邻里的琐碎对话，构建出一种真实、沉稳且带有淡淡疏离感的现实主义氛围。",
+                  "main_quest": "主角的目标是在旧城区彻底拆迁前，为自己精心培育的鸽群找到一个妥善的去处，并完成与这片生活了二十年的天台的最后告别。任务分为三个阶段：首先是修缮天台鸽舍，维持鸽群的健康与繁衍；其次是与开发商及社区沟通，争取延长留守时间，并尝试在城市边缘寻找新的落脚点；最后是进行一场盛大的放飞仪式，将鸽群送往更广阔的自然环境。挑战在于，主角不仅要面对经济拮据带来的生活压力，还要处理与邻里之间因拆迁补偿产生的利益纠葛，以及内心对于“离开”这一行为的深层抗拒。",
+                  "protagonist_ability": "主角拥有一种名为“共鸣感知”的特质，这并非超能力，而是长期与鸽群共处培养出的敏锐直觉。通过观察鸽子的羽色、飞行轨迹与鸣叫频率，主角能捕捉到城市中细微的氛围变化，例如邻居的情绪波动或即将到来的天气转折。这种能力的使用受限于主角的体力与精神状态，过度依赖会导致现实社交的退化，且无法改变客观的拆迁进程，只能帮助主角在变动中寻找心理上的平衡点。",
+                  "world_basic_setting": "故事发生在一座被高楼大厦挤压的旧城区。这里是城市发展的边缘地带，老旧的筒子楼与远处闪烁的霓虹灯形成鲜明对比。社会文化呈现出一种典型的“留守与迁徙”特征，年轻人向往CBD的繁华，而老一辈则固守着残存的邻里温情。鸽子不仅是主角的伙伴，更是这座城市中被遗忘的“空中原住民”，它们穿梭于钢筋水泥之间，象征着一种无根的自由。关键事件是旧城区改造计划的推进，这不仅意味着物理空间的拆迁，更意味着主角与这片土地、这群鸽子之间脆弱的情感纽带即将面临被切断的风险。在这个世界里，没有宏大的救世叙事，只有关于生存、记忆与如何体面地告别日常的微小博弈。"
+                },
+                "flow_worldline": {
+                  "characters": {},
+                  "current_chapter": "chapter1",
+                  "environment": {}
+                },
+                "game_id": "game_1777638434_6954pi",
+                "image_style": {
+                  "type": "realistic"
+                },
+                "meta": {
+                  "detail_async": true
+                },
+                "protagonist_canonical": {
+                  "age_range": "青年",
+                  "gender": "男性",
+                  "name_en": "Lin Yuan",
+                  "name_zh": "林远",
+                  "signature_look_keywords": "凌乱短发、旧工装外套、眼神清澈、手指常有饲料痕迹、身形单薄、常背帆布包、沉默寡言、带有烟火气、沉稳、略显疲惫、专注、真实",
+                  "work_en": "《Warmth on the Rooftop》",
+                  "work_zh": "《天台的余温》"
+                },
+                "tone": "normal_ending",
+                "user_theme": "都市天台养鸽人",
+                "_benchmark_profile": "fullready_strict",
+                "_benchmark_measurement": "fullready_nextturn",
+                "_benchmark_read_wait_s": 0.0
+              }
+            },
+            "start_ts": 1777638441.8356986,
+            "end_ts": 1777638486.5069864,
+            "provider_events": {
+              "event_count": 20,
+              "queue_wait_ms": {
+                "count": 20,
+                "min": 0.0,
+                "max": 0.0,
+                "mean": 0.0,
+                "median": 0.0,
+                "p95": 0.0
+              },
+              "latency_ms": {
+                "count": 11,
+                "min": 2844.0,
+                "max": 13759.0,
+                "mean": 7516.636,
+                "median": 7380.0,
+                "p95": 12881.0
+              },
+              "llm_success_count": 9,
+              "image_success_count": 0,
+              "request_thread_event_count": 1,
+              "provider_429_count": 0,
+              "provider_timeout_count": 0,
+              "shared_backoff_wait_ms_total": 0,
+              "retry_heavy_event_count": 0,
+              "main_character_event_count": 4,
+              "scene_image_event_count": 0
+            }
+          }
+        ],
+        "attempt_count": 1,
+        "request_elapsed_s": 44.671,
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "success",
+        "has_scene": true,
+        "has_image": true,
+        "setup_success": true
+      },
+      "second_click": {
+        "http_status": 200,
+        "elapsed_s": 26.983,
+        "response_json": {
+          "benchmark_diagnostics": {
+            "cache_hit_reason": "waited_request_scene_text_completed_no_image",
+            "cache_miss_reason": "request_scene_generation_in_progress",
+            "current_options_key_drift_detected": false,
+            "global_state_key_drift_detected": true,
+            "placeholder": false,
+            "previous_scene_id": "initial",
+            "recomputed_scene_cache_exists": false,
+            "recomputed_scene_id": "6937080324009245928_-1055604536039954696",
+            "request_current_options_count": 2,
+            "request_current_options_hash": "97b7dbcdda45bc753ee52820cd3ff402",
+            "request_flow_worldline_hash": "0b7d2802f8e46ae104639ddbac325b51",
+            "request_global_state_hash": "04896631448e87c9e8bce6fe52f6a329",
+            "request_option_at_index": "询问老张关于补偿方案的细节，尝试寻找转机。",
+            "request_option_index": 0,
+            "request_option_text": "询问老张关于补偿方案的细节，尝试寻找转机。",
+            "request_scene_cache_exists": true,
+            "request_scene_cache_meta": {
+              "canonical_scene_id": "5485813219107074521_-1055604536039954696",
+              "current_options_hash": "97b7dbcdda45bc753ee52820cd3ff402",
+              "current_options_preview": [
+                "询问老张关于补偿方案的细节，尝试寻找转机。",
+                "检查鸽舍受损情况，并安抚受惊的鸽群，观察它们的飞行轨迹。"
+              ],
+              "flow_worldline_hash": "940e38d5f8372eaa58cfdaf4d70a0d30",
+              "global_state_hash": "834691d7fc5579598fb6ecebd03edd83",
+              "option_count": 2,
+              "parent_scene_id": null,
+              "scene_id": "-2454291928518999967_-1055604536039954696"
+            },
+            "request_scene_id": "-2454291928518999967_-1055604536039954696",
+            "resolution_path": "wait_for_request_scene_cache_text_only",
+            "response_has_image": true,
+            "response_has_scene": true,
+            "response_scene_id": "-28029776660230581_-5702534734731316909",
+            "response_status": "success",
+            "scene_id_mismatch_detected": true,
+            "selected_option_mismatch_detected": false
+          },
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "我成功从房东老张口中获取了关键的博弈策略，即通过“集体安置补偿”或“特殊保育价值”来争取缓冲期，这直接推进了第一阶段任务，使我从单纯的恐慌转向了具体的沟通与谈判准备。",
+              "recap_text": "你选择了“询问老张关于补偿方案的细节，尝试寻找转机。”。当前章节：chapter1。主线进展：我成功从房东老张口中获取了关键的博弈策略，即通过“集体安置补偿”或“特殊保育价值”来争取缓冲期，这直接推进了第一阶段任务，使我从单纯的恐慌转向了具体的沟通与谈判准备。。最近剧情：我深吸了一口气，压下心头那股因拆迁而起的燥热，目光紧紧锁住老张手中那张薄薄的纸。我上前一步，尽量让自己的声音听起来沉稳些：“张叔，这补偿方案里关于‘搬迁补助’和‘安置过渡期’的条款，真的没有商量的余地了吗？我这鸽群不仅是我的心血，更是这片老楼生态的一部分，如果能争取到更合理的安置补偿，我或许能去更远的地方租个合适的场地。”老张闻言，眼神闪烁了一下，他把那张纸递给我，指着上面密密麻麻的条款，压低声音说道：“林远，你这孩子就是太死心眼。这方案是统一的，但如果你能证明这些鸽子有‘特殊保育价值’，或者能联合其他几户养宠物的邻居一起申请‘集体安置补偿’，或许能多争取到3个月的过渡期。不过，这事儿得去社区办找负责拆迁协调的李主任谈，他那人虽然古板，但对这片老街坊还是有感情的。”我接过那张纸，指尖触碰到纸面粗糙的质感，心底那份因生活变动而产生的焦虑，在这一刻竟转化为一种具体的、可以去争取的方向。"
+            },
+            "deep_background_links": {
+              "1": "老张（关联老张作为老街坊的深层背景，可能揭示他与社区办李主任的过往交情）"
+            },
+            "flow_update": {
+              "chapter_conflict_solved": false,
+              "characters": {},
+              "environment": {},
+              "quest_progress": "我成功从房东老张口中获取了关键的博弈策略，即通过“集体安置补偿”或“特殊保育价值”来争取缓冲期，这直接推进了第一阶段任务，使我从单纯的恐慌转向了具体的沟通与谈判准备。"
+            },
+            "next_options": [
+              "拿着补偿方案去社区办找李主任，尝试争取集体安置补偿。",
+              "询问老张关于其他邻居的意向，看看能否联合起来一起去谈。"
+            ],
+            "plot_mentioned_only": [
+              "李主任-提及角色"
+            ],
+            "plot_supporting_characters": [
+              [
+                "老张",
+                "配角1"
+              ]
+            ],
+            "scene": "我深吸了一口气，压下心头那股因拆迁而起的燥热，目光紧紧锁住老张手中那张薄薄的纸。我上前一步，尽量让自己的声音听起来沉稳些：“张叔，这补偿方案里关于‘搬迁补助’和‘安置过渡期’的条款，真的没有商量的余地了吗？我这鸽群不仅是我的心血，更是这片老楼生态的一部分，如果能争取到更合理的安置补偿，我或许能去更远的地方租个合适的场地。”老张闻言，眼神闪烁了一下，他把那张纸递给我，指着上面密密麻麻的条款，压低声音说道：“林远，你这孩子就是太死心眼。这方案是统一的，但如果你能证明这些鸽子有‘特殊保育价值’，或者能联合其他几户养宠物的邻居一起申请‘集体安置补偿’，或许能多争取到3个月的过渡期。不过，这事儿得去社区办找负责拆迁协调的李主任谈，他那人虽然古板，但对这片老街坊还是有感情的。”我接过那张纸，指尖触碰到纸面粗糙的质感，心底那份因生活变动而产生的焦虑，在这一刻竟转化为一种具体的、可以去争取的方向。",
+            "sceneId": "-28029776660230581_-5702534734731316909",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-urban-renewal-negotiation, realism, urban-life, melancholy, social-realism, cinematic, photorealistic, highly detailed, low saturation, cinematic lighting, sharp focus, Lin Yuan (Image 0), a young man with a slender build and a fatigued but focused expression, messy short hair, clear and deep eyes, slightly weathered skin, fingers show faint traces of bird feed residue, stands with a posture of quiet determination and underlying anxiety, worn-out utility jacket in muted tones, canvas messenger bag slung over his shoulder, facing Old Zhang-配角1, slightly leaning forward in a serious discussion, holding a piece of paper with both hands, fingers touching the textured surface, Lin Yuan uses Image 0, 8K detailed facial features, realistic skin texture, expression of intense focus mixed with subtle worry, eyes fixed on the document with a sense of urgency, lip color naturally muted, reflecting a tired but earnest demeanor, messy short dark hair, natural texture, root fixation coefficient 0.5, tip swing amplitude 2cm, color layering: main color #2D2D2D, secondary color #3D3D3D, highlight #505050, shadow #1A1A1A, wind speed 0.3m/s, slight natural movement, turbulence intensity 1%, worn cotton-blend utility jacket with realistic fabric creases, canvas bag with visible weave texture, subtle fabric flutter from a light draft in the room, interior of a cramped, aging apartment building, peeling wallpaper and dim, dusty atmosphere, view through a window showing distant neon lights of the city clashing with the dark old building, scattered household items indicating long-term residence, Old Zhang-配角1, a middle-aged man standing opposite Lin Yuan, holding the document, wearing a worn-out casual shirt, dust particles dancing in a single shaft of afternoon light, faded, low-contrast atmosphere typical of an old urban neighborhood, desaturated tones of grey, brown, and muted ochre, faint, cold blue light from the window, warm dim indoor light from a single overhead bulb, harsh side light from a window highlighting the paper and characters, soft, dim ambient light filling the room, subtle shadows emphasizing the weary atmosphere, type medium shot, lens 35mm, aperture f/4, depth_of_field shallow focus on the characters and the paper, flash none, grain fine film grain, texture highly realistic photographic texture, Lin Yuan (Image 0) on the left, Old Zhang-配角1 on the right, the document acts as the central focus of the interaction, balanced framing of a tense, intimate negotiation, realistic urban drama style, no text, no symbols, no watermarks, no messy characters, solemn contemplation, anxious urgency, bittersweet sentimentality, quiet desperation, no text, no symbols, no garbled characters, no words",
+              "scene_text_hash": "995aee39d0a0d3c32fd097cb5bffe669",
+              "style": "default",
+              "url": "/image_cache/25d1b82d225f028497b1fbb68c977715.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "request_payload": {
+          "option": "询问老张关于补偿方案的细节，尝试寻找转机。",
+          "optionIndex": 0,
+          "sceneId": "-2454291928518999967_-1055604536039954696",
+          "currentOptions": [
+            "询问老张关于补偿方案的细节，尝试寻找转机。",
+            "检查鸽舍受损情况，并安抚受惊的鸽群，观察它们的飞行轨迹。"
+          ],
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过协助邻居处理拆迁纠纷，换取了开发商给予的额外一个月缓冲期，并成功将鸽群迁至天台的临时避风区，暂时稳住了局面。",
+                  "main_conflict": "旧城区改造通知正式下达，主角面临鸽舍被强制拆除的危机。他不仅要应对开发商的催促，还要面对邻居们对拆迁补偿方案的不满，以及鸽群因环境嘈杂而产生的应激反应。主角试图通过整理旧物来拖延时间，却发现自己对这片天台的依赖已成为一种无法割舍的心理枷锁。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角放弃了在市中心寻找完美鸽舍的执念，转而接受了远郊一处废弃仓库的安置方案，虽然环境简陋且交通不便，但鸽群有了生存空间。",
+                  "main_conflict": "寻找新落脚点的过程屡屡碰壁，城市边缘的租金上涨与鸽群的饲养限制让主角陷入困境。同时，主角与一名同样面临搬迁的邻居产生情感羁绊，对方的离去让主角意识到，所谓的“圆满”不过是留住一部分记忆，而大部分人与事注定要在城市变迁中失散。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角在天台举行了最后的放飞，大部分鸽子飞向了远方，仅留下几只年幼的个体跟随他前往新住处。他平静地交出钥匙，带着对旧时光的怀念，迈向了平凡且充满不确定性的未来。",
+                  "main_conflict": "拆迁的最后期限到来，主角必须在“带走所有鸽子”与“让部分鸽子回归自然”之间做出选择。他意识到，强行将鸽子圈养在狭窄的仓库是对它们自由的剥夺，而自己也必须面对彻底离开这片天台、融入新生活的现实，这种割舍带来的痛苦与释然交织。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为写实风格的都市生活模拟游戏，采用低饱和度的视觉色调与环境音效，营造出一种在快节奏城市缝隙中，缓慢流动的静谧感。游戏强调微观叙事，通过鸽群的起落、天台的四季更迭与邻里的琐碎对话，构建出一种真实、沉稳且带有淡淡疏离感的现实主义氛围。",
+              "main_quest": "主角的目标是在旧城区彻底拆迁前，为自己精心培育的鸽群找到一个妥善的去处，并完成与这片生活了二十年的天台的最后告别。任务分为三个阶段：首先是修缮天台鸽舍，维持鸽群的健康与繁衍；其次是与开发商及社区沟通，争取延长留守时间，并尝试在城市边缘寻找新的落脚点；最后是进行一场盛大的放飞仪式，将鸽群送往更广阔的自然环境。挑战在于，主角不仅要面对经济拮据带来的生活压力，还要处理与邻里之间因拆迁补偿产生的利益纠葛，以及内心对于“离开”这一行为的深层抗拒。",
+              "protagonist_ability": "主角拥有一种名为“共鸣感知”的特质，这并非超能力，而是长期与鸽群共处培养出的敏锐直觉。通过观察鸽子的羽色、飞行轨迹与鸣叫频率，主角能捕捉到城市中细微的氛围变化，例如邻居的情绪波动或即将到来的天气转折。这种能力的使用受限于主角的体力与精神状态，过度依赖会导致现实社交的退化，且无法改变客观的拆迁进程，只能帮助主角在变动中寻找心理上的平衡点。",
+              "world_basic_setting": "故事发生在一座被高楼大厦挤压的旧城区。这里是城市发展的边缘地带，老旧的筒子楼与远处闪烁的霓虹灯形成鲜明对比。社会文化呈现出一种典型的“留守与迁徙”特征，年轻人向往CBD的繁华，而老一辈则固守着残存的邻里温情。鸽子不仅是主角的伙伴，更是这座城市中被遗忘的“空中原住民”，它们穿梭于钢筋水泥之间，象征着一种无根的自由。关键事件是旧城区改造计划的推进，这不仅意味着物理空间的拆迁，更意味着主角与这片土地、这群鸽子之间脆弱的情感纽带即将面临被切断的风险。在这个世界里，没有宏大的救世叙事，只有关于生存、记忆与如何体面地告别日常的微小博弈。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {},
+              "chapter_progress": 2.0
+            },
+            "game_id": "game_1777638434_6954pi",
+            "image_style": {
+              "type": "realistic"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "凌乱短发、旧工装外套、眼神清澈、手指常有饲料痕迹、身形单薄、常背帆布包、沉默寡言、带有烟火气、沉稳、略显疲惫、专注、真实",
+              "work_en": "《Warmth on the Rooftop》",
+              "work_zh": "《天台的余温》"
+            },
+            "tone": "normal_ending",
+            "user_theme": "都市天台养鸽人",
+            "_benchmark_profile": "fullready_strict",
+            "_benchmark_measurement": "fullready_nextturn",
+            "_benchmark_read_wait_s": 0.0
+          },
+          "previousSceneId": "initial",
+          "previousSceneImage": {
+            "cached": true,
+            "height": 1080,
+            "image_type": "story_scene",
+            "prompt": "scene-urban-eviction-confrontation, realistic, urban-decay, melancholic, slice-of-life, cinematic, photorealistic, low-saturation-color-grading, high-detail-textures, cinematic-lighting, documentary-style-photography, young male protagonist Lin Yuan using Image 0, messy short hair with dusty texture, clear and observant eyes showing suppressed anxiety, slight build with a weary but focused posture, hands showing visible traces of bird feed residue, facial expression of shock and helplessness, worn-out industrial work jacket with stains and dust, faded cotton canvas bag slung over one shoulder, standing in the narrow corridor of a dilapidated apartment building, body slightly leaning away from the door, hands tightly gripping the straps of the canvas bag, facing toward 老张-配角1, 8K highly detailed skin texture with visible pores and fatigue, eyes reflecting the dim light of the corridor, lips slightly parted as if speaking, soft shadows under eyes indicating long-term exhaustion, natural complexion with subtle hints of indoor grime, messy short dark hair with fine dust particles caught in strands, root fixation coefficient 0.5, tip swing amplitude 5cm, color layering: main black, secondary deep brown, highlight dusty grey, shadow dark charcoal, wind speed 0.2m/s, turbulence intensity 1%, static and unkempt appearance, coarse fabric texture for the old work jacket, visible fabric wear and tear at the cuffs, canvas bag strap showing signs of heavy usage, subtle wrinkles and dust accumulation on surfaces, narrow and dimly lit apartment building corridor, peeling paint on concrete walls with visible water stains, a crumpled red-stamped demolition notice held by the character, distant view of a hazy, neon-lit city skyline through a small window, pigeon coop wire mesh visible in the peripheral vision, 老张-配角1 standing in front of the door, middle-aged man with weathered face and tired expression, holding the demolition notice, floating dust motes in the morning sunlight, hazy atmosphere with a sense of stagnation, low-key lighting highlighting the textures of the old building, desaturated tones of grey, brown, and concrete-white, faded red color on the demolition notice as a focal point, dull metallic tones for the wire mesh, cool shadows contrasting with weak, pale morning light, harsh morning sunlight filtering through the dusty window, dim indoor ambient light from the corridor, long shadows cast by the building structure, soft volumetric lighting through dust particles, type medium shot, lens 35mm, aperture f/2.0, depth_of_field sharp focus on Lin Yuan and the demolition notice, flash none, grain fine film grain, texture realistic urban surface textures, Lin Yuan positioned slightly to the left, 老张-配角1 positioned to the right facing the protagonist, demolition notice held between the two characters as the central narrative element, narrow framing to emphasize the sense of being trapped, realistic urban photography, no text or symbols in image, no watermarks or logos, high-fidelity image rendering, melancholic realism, anxiety of displacement, quiet desperation, sense of loss, stagnant urban atmosphere, no text, no symbols, no garbled characters, no words",
+            "prompt_json": {
+              "camera": {
+                "aperture": "f/2.0",
+                "depth_of_field": "sharp focus on Lin Yuan and the demolition notice",
+                "flash": "none",
+                "grain": "fine film grain",
+                "lens": "35mm",
+                "texture": "realistic urban surface textures",
+                "type": "medium shot"
+              },
+              "clothing_system": [
+                "coarse fabric texture for the old work jacket",
+                "visible fabric wear and tear at the cuffs",
+                "canvas bag strap showing signs of heavy usage",
+                "subtle wrinkles and dust accumulation on surfaces"
+              ],
+              "color_restriction": [
+                "desaturated tones of grey, brown, and concrete-white",
+                "faded red color on the demolition notice as a focal point",
+                "dull metallic tones for the wire mesh",
+                "cool shadows contrasting with weak, pale morning light"
+              ],
+              "composition": [
+                "Lin Yuan positioned slightly to the left",
+                "老张-配角1 positioned to the right facing the protagonist",
+                "demolition notice held between the two characters as the central narrative element",
+                "narrow framing to emphasize the sense of being trapped"
+              ],
+              "environment": {
+                "background": [
+                  "narrow and dimly lit apartment building corridor",
+                  "peeling paint on concrete walls with visible water stains",
+                  "a crumpled red-stamped demolition notice held by the character",
+                  "distant view of a hazy, neon-lit city skyline through a small window",
+                  "pigeon coop wire mesh visible in the peripheral vision"
+                ],
+                "characters": [
+                  "老张-配角1 standing in front of the door, middle-aged man with weathered face and tired expression, holding the demolition notice"
+                ],
+                "effects": [
+                  "floating dust motes in the morning sunlight",
+                  "hazy atmosphere with a sense of stagnation",
+                  "low-key lighting highlighting the textures of the old building"
+                ]
+              },
+              "face_system": [
+                "8K highly detailed skin texture with visible pores and fatigue",
+                "eyes reflecting the dim light of the corridor",
+                "lips slightly parted as if speaking",
+                "soft shadows under eyes indicating long-term exhaustion",
+                "natural complexion with subtle hints of indoor grime"
+              ],
+              "hair_system": [
+                "messy short dark hair with fine dust particles caught in strands",
+                "root fixation coefficient 0.5",
+                "tip swing amplitude 5cm",
+                "color layering: main black, secondary deep brown, highlight dusty grey, shadow dark charcoal",
+                "wind speed 0.2m/s",
+                "turbulence intensity 1%",
+                "static and unkempt appearance"
+              ],
+              "label": "scene-urban-eviction-confrontation",
+              "lighting": [
+                "harsh morning sunlight filtering through the dusty window",
+                "dim indoor ambient light from the corridor",
+                "long shadows cast by the building structure",
+                "soft volumetric lighting through dust particles"
+              ],
+              "mood": [
+                "melancholic realism",
+                "anxiety of displacement",
+                "quiet desperation",
+                "sense of loss",
+                "stagnant urban atmosphere"
+              ],
+              "output_style": [
+                "realistic urban photography",
+                "no text or symbols in image",
+                "no watermarks or logos",
+                "high-fidelity image rendering"
+              ],
+              "style": [
+                "photorealistic",
+                "low-saturation-color-grading",
+                "high-detail-textures",
+                "cinematic-lighting",
+                "documentary-style-photography"
+              ],
+              "subject": {
+                "body_traits": [
+                  "young male protagonist Lin Yuan using Image 0",
+                  "messy short hair with dusty texture",
+                  "clear and observant eyes showing suppressed anxiety",
+                  "slight build with a weary but focused posture",
+                  "hands showing visible traces of bird feed residue",
+                  "facial expression of shock and helplessness"
+                ],
+                "outfit": [
+                  "worn-out industrial work jacket with stains and dust",
+                  "faded cotton canvas bag slung over one shoulder"
+                ],
+                "pose": [
+                  "standing in the narrow corridor of a dilapidated apartment building",
+                  "body slightly leaning away from the door",
+                  "hands tightly gripping the straps of the canvas bag",
+                  "facing toward 老张-配角1"
+                ]
+              },
+              "tags": [
+                "realistic",
+                "urban-decay",
+                "melancholic",
+                "slice-of-life",
+                "cinematic"
+              ]
+            },
+            "scene_text_hash": "64db5695d36349b4e46b3ef6abcf1f99",
+            "style": "default",
+            "url": "/image_cache/4fb7f442dfe5a567adaf8938e1cbf37a.png",
+            "width": 1920
+          },
+          "previousSceneText": "清晨的阳光透过筒子楼斑驳的窗棂，照在我凌乱的短发上，空气中弥漫着陈旧的灰尘与鸽子羽毛特有的腥气。我揉了揉略显疲惫的眼睛，身上那件沾着饲料碎屑的旧工装外套显得有些沉重。天台的鸽舍里，几只信鸽正不安地拍打着翅膀，鸣叫声比往常尖锐了许多。我走到鸽舍前，指尖触碰到冰冷的铁丝网，那种熟悉的、带着温度的生命律动感在指尖跳动。\n\n突然，一阵急促的敲门声打破了清晨的宁静，紧接着是房东老张那标志性的、带着烟草味的粗嗓门：“林远，别睡了！拆迁办的通知贴到楼下了，这片儿下个月就得断水断电，你那堆宝贝鸽子，赶紧想办法吧！”我推开门，老张正站在走廊里，手里晃着一张盖了红章的拆迁公告，眼神里透着一种无奈的疲惫。我看着那张纸，心跳漏了一拍，那种即将失去这片天台的恐慌感瞬间蔓延开来。我下意识地抓紧了帆布包的带子，声音有些沙哑地回应道：“张叔，真的没商量了吗？我这鸽群刚孵化了一窝幼崽。”老张叹了口气，避开了我的目光，低声嘟囔着：“上面定的事，谁也没办法，你还是早做打算吧。”"
+        },
+        "start_ts": 1777638486.556274,
+        "end_ts": 1777638513.539649,
+        "provider_events": {
+          "event_count": 10,
+          "queue_wait_ms": {
+            "count": 10,
+            "min": 0.0,
+            "max": 11765.0,
+            "mean": 4373.0,
+            "median": 5886.5,
+            "p95": 9626.6
+          },
+          "latency_ms": {
+            "count": 4,
+            "min": 5595.0,
+            "max": 11774.0,
+            "mean": 7496.5,
+            "median": 6308.5,
+            "p95": 11059.55
+          },
+          "llm_success_count": 4,
+          "image_success_count": 0,
+          "request_thread_event_count": 0,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0
+        },
+        "attempts": [
+          {
+            "http_status": 200,
+            "elapsed_s": 26.983,
+            "response_json": {
+              "benchmark_diagnostics": {
+                "cache_hit_reason": "waited_request_scene_text_completed_no_image",
+                "cache_miss_reason": "request_scene_generation_in_progress",
+                "current_options_key_drift_detected": false,
+                "global_state_key_drift_detected": true,
+                "placeholder": false,
+                "previous_scene_id": "initial",
+                "recomputed_scene_cache_exists": false,
+                "recomputed_scene_id": "6937080324009245928_-1055604536039954696",
+                "request_current_options_count": 2,
+                "request_current_options_hash": "97b7dbcdda45bc753ee52820cd3ff402",
+                "request_flow_worldline_hash": "0b7d2802f8e46ae104639ddbac325b51",
+                "request_global_state_hash": "04896631448e87c9e8bce6fe52f6a329",
+                "request_option_at_index": "询问老张关于补偿方案的细节，尝试寻找转机。",
+                "request_option_index": 0,
+                "request_option_text": "询问老张关于补偿方案的细节，尝试寻找转机。",
+                "request_scene_cache_exists": true,
+                "request_scene_cache_meta": {
+                  "canonical_scene_id": "5485813219107074521_-1055604536039954696",
+                  "current_options_hash": "97b7dbcdda45bc753ee52820cd3ff402",
+                  "current_options_preview": [
+                    "询问老张关于补偿方案的细节，尝试寻找转机。",
+                    "检查鸽舍受损情况，并安抚受惊的鸽群，观察它们的飞行轨迹。"
+                  ],
+                  "flow_worldline_hash": "940e38d5f8372eaa58cfdaf4d70a0d30",
+                  "global_state_hash": "834691d7fc5579598fb6ecebd03edd83",
+                  "option_count": 2,
+                  "parent_scene_id": null,
+                  "scene_id": "-2454291928518999967_-1055604536039954696"
+                },
+                "request_scene_id": "-2454291928518999967_-1055604536039954696",
+                "resolution_path": "wait_for_request_scene_cache_text_only",
+                "response_has_image": true,
+                "response_has_scene": true,
+                "response_scene_id": "-28029776660230581_-5702534734731316909",
+                "response_status": "success",
+                "scene_id_mismatch_detected": true,
+                "selected_option_mismatch_detected": false
+              },
+              "message": "选项剧情生成成功！",
+              "optionData": {
+                "checkpoint_packet": {
+                  "chapter": "chapter1",
+                  "chapter_conflict_solved": false,
+                  "quest_delta": "我成功从房东老张口中获取了关键的博弈策略，即通过“集体安置补偿”或“特殊保育价值”来争取缓冲期，这直接推进了第一阶段任务，使我从单纯的恐慌转向了具体的沟通与谈判准备。",
+                  "recap_text": "你选择了“询问老张关于补偿方案的细节，尝试寻找转机。”。当前章节：chapter1。主线进展：我成功从房东老张口中获取了关键的博弈策略，即通过“集体安置补偿”或“特殊保育价值”来争取缓冲期，这直接推进了第一阶段任务，使我从单纯的恐慌转向了具体的沟通与谈判准备。。最近剧情：我深吸了一口气，压下心头那股因拆迁而起的燥热，目光紧紧锁住老张手中那张薄薄的纸。我上前一步，尽量让自己的声音听起来沉稳些：“张叔，这补偿方案里关于‘搬迁补助’和‘安置过渡期’的条款，真的没有商量的余地了吗？我这鸽群不仅是我的心血，更是这片老楼生态的一部分，如果能争取到更合理的安置补偿，我或许能去更远的地方租个合适的场地。”老张闻言，眼神闪烁了一下，他把那张纸递给我，指着上面密密麻麻的条款，压低声音说道：“林远，你这孩子就是太死心眼。这方案是统一的，但如果你能证明这些鸽子有‘特殊保育价值’，或者能联合其他几户养宠物的邻居一起申请‘集体安置补偿’，或许能多争取到3个月的过渡期。不过，这事儿得去社区办找负责拆迁协调的李主任谈，他那人虽然古板，但对这片老街坊还是有感情的。”我接过那张纸，指尖触碰到纸面粗糙的质感，心底那份因生活变动而产生的焦虑，在这一刻竟转化为一种具体的、可以去争取的方向。"
+                },
+                "deep_background_links": {
+                  "1": "老张（关联老张作为老街坊的深层背景，可能揭示他与社区办李主任的过往交情）"
+                },
+                "flow_update": {
+                  "chapter_conflict_solved": false,
+                  "characters": {},
+                  "environment": {},
+                  "quest_progress": "我成功从房东老张口中获取了关键的博弈策略，即通过“集体安置补偿”或“特殊保育价值”来争取缓冲期，这直接推进了第一阶段任务，使我从单纯的恐慌转向了具体的沟通与谈判准备。"
+                },
+                "next_options": [
+                  "拿着补偿方案去社区办找李主任，尝试争取集体安置补偿。",
+                  "询问老张关于其他邻居的意向，看看能否联合起来一起去谈。"
+                ],
+                "plot_mentioned_only": [
+                  "李主任-提及角色"
+                ],
+                "plot_supporting_characters": [
+                  [
+                    "老张",
+                    "配角1"
+                  ]
+                ],
+                "scene": "我深吸了一口气，压下心头那股因拆迁而起的燥热，目光紧紧锁住老张手中那张薄薄的纸。我上前一步，尽量让自己的声音听起来沉稳些：“张叔，这补偿方案里关于‘搬迁补助’和‘安置过渡期’的条款，真的没有商量的余地了吗？我这鸽群不仅是我的心血，更是这片老楼生态的一部分，如果能争取到更合理的安置补偿，我或许能去更远的地方租个合适的场地。”老张闻言，眼神闪烁了一下，他把那张纸递给我，指着上面密密麻麻的条款，压低声音说道：“林远，你这孩子就是太死心眼。这方案是统一的，但如果你能证明这些鸽子有‘特殊保育价值’，或者能联合其他几户养宠物的邻居一起申请‘集体安置补偿’，或许能多争取到3个月的过渡期。不过，这事儿得去社区办找负责拆迁协调的李主任谈，他那人虽然古板，但对这片老街坊还是有感情的。”我接过那张纸，指尖触碰到纸面粗糙的质感，心底那份因生活变动而产生的焦虑，在这一刻竟转化为一种具体的、可以去争取的方向。",
+                "sceneId": "-28029776660230581_-5702534734731316909",
+                "scene_image": {
+                  "cached": true,
+                  "height": 1080,
+                  "image_type": "story_scene",
+                  "prompt": "scene-urban-renewal-negotiation, realism, urban-life, melancholy, social-realism, cinematic, photorealistic, highly detailed, low saturation, cinematic lighting, sharp focus, Lin Yuan (Image 0), a young man with a slender build and a fatigued but focused expression, messy short hair, clear and deep eyes, slightly weathered skin, fingers show faint traces of bird feed residue, stands with a posture of quiet determination and underlying anxiety, worn-out utility jacket in muted tones, canvas messenger bag slung over his shoulder, facing Old Zhang-配角1, slightly leaning forward in a serious discussion, holding a piece of paper with both hands, fingers touching the textured surface, Lin Yuan uses Image 0, 8K detailed facial features, realistic skin texture, expression of intense focus mixed with subtle worry, eyes fixed on the document with a sense of urgency, lip color naturally muted, reflecting a tired but earnest demeanor, messy short dark hair, natural texture, root fixation coefficient 0.5, tip swing amplitude 2cm, color layering: main color #2D2D2D, secondary color #3D3D3D, highlight #505050, shadow #1A1A1A, wind speed 0.3m/s, slight natural movement, turbulence intensity 1%, worn cotton-blend utility jacket with realistic fabric creases, canvas bag with visible weave texture, subtle fabric flutter from a light draft in the room, interior of a cramped, aging apartment building, peeling wallpaper and dim, dusty atmosphere, view through a window showing distant neon lights of the city clashing with the dark old building, scattered household items indicating long-term residence, Old Zhang-配角1, a middle-aged man standing opposite Lin Yuan, holding the document, wearing a worn-out casual shirt, dust particles dancing in a single shaft of afternoon light, faded, low-contrast atmosphere typical of an old urban neighborhood, desaturated tones of grey, brown, and muted ochre, faint, cold blue light from the window, warm dim indoor light from a single overhead bulb, harsh side light from a window highlighting the paper and characters, soft, dim ambient light filling the room, subtle shadows emphasizing the weary atmosphere, type medium shot, lens 35mm, aperture f/4, depth_of_field shallow focus on the characters and the paper, flash none, grain fine film grain, texture highly realistic photographic texture, Lin Yuan (Image 0) on the left, Old Zhang-配角1 on the right, the document acts as the central focus of the interaction, balanced framing of a tense, intimate negotiation, realistic urban drama style, no text, no symbols, no watermarks, no messy characters, solemn contemplation, anxious urgency, bittersweet sentimentality, quiet desperation, no text, no symbols, no garbled characters, no words",
+                  "scene_text_hash": "995aee39d0a0d3c32fd097cb5bffe669",
+                  "style": "default",
+                  "url": "/image_cache/25d1b82d225f028497b1fbb68c977715.png",
+                  "width": 1920
+                }
+              },
+              "status": "success"
+            },
+            "request_payload": {
+              "option": "询问老张关于补偿方案的细节，尝试寻找转机。",
+              "optionIndex": 0,
+              "sceneId": "-2454291928518999967_-1055604536039954696",
+              "currentOptions": [
+                "询问老张关于补偿方案的细节，尝试寻找转机。",
+                "检查鸽舍受损情况，并安抚受惊的鸽群，观察它们的飞行轨迹。"
+              ],
+              "globalState": {
+                "core_worldview": {
+                  "chapters": {
+                    "chapter1": {
+                      "conflict_end_condition": "主角通过协助邻居处理拆迁纠纷，换取了开发商给予的额外一个月缓冲期，并成功将鸽群迁至天台的临时避风区，暂时稳住了局面。",
+                      "main_conflict": "旧城区改造通知正式下达，主角面临鸽舍被强制拆除的危机。他不仅要应对开发商的催促，还要面对邻居们对拆迁补偿方案的不满，以及鸽群因环境嘈杂而产生的应激反应。主角试图通过整理旧物来拖延时间，却发现自己对这片天台的依赖已成为一种无法割舍的心理枷锁。"
+                    },
+                    "chapter2": {
+                      "conflict_end_condition": "主角放弃了在市中心寻找完美鸽舍的执念，转而接受了远郊一处废弃仓库的安置方案，虽然环境简陋且交通不便，但鸽群有了生存空间。",
+                      "main_conflict": "寻找新落脚点的过程屡屡碰壁，城市边缘的租金上涨与鸽群的饲养限制让主角陷入困境。同时，主角与一名同样面临搬迁的邻居产生情感羁绊，对方的离去让主角意识到，所谓的“圆满”不过是留住一部分记忆，而大部分人与事注定要在城市变迁中失散。"
+                    },
+                    "chapter3": {
+                      "conflict_end_condition": "主角在天台举行了最后的放飞，大部分鸽子飞向了远方，仅留下几只年幼的个体跟随他前往新住处。他平静地交出钥匙，带着对旧时光的怀念，迈向了平凡且充满不确定性的未来。",
+                      "main_conflict": "拆迁的最后期限到来，主角必须在“带走所有鸽子”与“让部分鸽子回归自然”之间做出选择。他意识到，强行将鸽子圈养在狭窄的仓库是对它们自由的剥夺，而自己也必须面对彻底离开这片天台、融入新生活的现实，这种割舍带来的痛苦与释然交织。"
+                    }
+                  },
+                  "characters": {},
+                  "forces": {},
+                  "game_style": "本作为写实风格的都市生活模拟游戏，采用低饱和度的视觉色调与环境音效，营造出一种在快节奏城市缝隙中，缓慢流动的静谧感。游戏强调微观叙事，通过鸽群的起落、天台的四季更迭与邻里的琐碎对话，构建出一种真实、沉稳且带有淡淡疏离感的现实主义氛围。",
+                  "main_quest": "主角的目标是在旧城区彻底拆迁前，为自己精心培育的鸽群找到一个妥善的去处，并完成与这片生活了二十年的天台的最后告别。任务分为三个阶段：首先是修缮天台鸽舍，维持鸽群的健康与繁衍；其次是与开发商及社区沟通，争取延长留守时间，并尝试在城市边缘寻找新的落脚点；最后是进行一场盛大的放飞仪式，将鸽群送往更广阔的自然环境。挑战在于，主角不仅要面对经济拮据带来的生活压力，还要处理与邻里之间因拆迁补偿产生的利益纠葛，以及内心对于“离开”这一行为的深层抗拒。",
+                  "protagonist_ability": "主角拥有一种名为“共鸣感知”的特质，这并非超能力，而是长期与鸽群共处培养出的敏锐直觉。通过观察鸽子的羽色、飞行轨迹与鸣叫频率，主角能捕捉到城市中细微的氛围变化，例如邻居的情绪波动或即将到来的天气转折。这种能力的使用受限于主角的体力与精神状态，过度依赖会导致现实社交的退化，且无法改变客观的拆迁进程，只能帮助主角在变动中寻找心理上的平衡点。",
+                  "world_basic_setting": "故事发生在一座被高楼大厦挤压的旧城区。这里是城市发展的边缘地带，老旧的筒子楼与远处闪烁的霓虹灯形成鲜明对比。社会文化呈现出一种典型的“留守与迁徙”特征，年轻人向往CBD的繁华，而老一辈则固守着残存的邻里温情。鸽子不仅是主角的伙伴，更是这座城市中被遗忘的“空中原住民”，它们穿梭于钢筋水泥之间，象征着一种无根的自由。关键事件是旧城区改造计划的推进，这不仅意味着物理空间的拆迁，更意味着主角与这片土地、这群鸽子之间脆弱的情感纽带即将面临被切断的风险。在这个世界里，没有宏大的救世叙事，只有关于生存、记忆与如何体面地告别日常的微小博弈。"
+                },
+                "flow_worldline": {
+                  "characters": {},
+                  "current_chapter": "chapter1",
+                  "environment": {},
+                  "chapter_progress": 2.0
+                },
+                "game_id": "game_1777638434_6954pi",
+                "image_style": {
+                  "type": "realistic"
+                },
+                "meta": {
+                  "detail_async": true
+                },
+                "protagonist_canonical": {
+                  "age_range": "青年",
+                  "gender": "男性",
+                  "name_en": "Lin Yuan",
+                  "name_zh": "林远",
+                  "signature_look_keywords": "凌乱短发、旧工装外套、眼神清澈、手指常有饲料痕迹、身形单薄、常背帆布包、沉默寡言、带有烟火气、沉稳、略显疲惫、专注、真实",
+                  "work_en": "《Warmth on the Rooftop》",
+                  "work_zh": "《天台的余温》"
+                },
+                "tone": "normal_ending",
+                "user_theme": "都市天台养鸽人",
+                "_benchmark_profile": "fullready_strict",
+                "_benchmark_measurement": "fullready_nextturn",
+                "_benchmark_read_wait_s": 0.0
+              },
+              "previousSceneId": "initial",
+              "previousSceneImage": {
+                "cached": true,
+                "height": 1080,
+                "image_type": "story_scene",
+                "prompt": "scene-urban-eviction-confrontation, realistic, urban-decay, melancholic, slice-of-life, cinematic, photorealistic, low-saturation-color-grading, high-detail-textures, cinematic-lighting, documentary-style-photography, young male protagonist Lin Yuan using Image 0, messy short hair with dusty texture, clear and observant eyes showing suppressed anxiety, slight build with a weary but focused posture, hands showing visible traces of bird feed residue, facial expression of shock and helplessness, worn-out industrial work jacket with stains and dust, faded cotton canvas bag slung over one shoulder, standing in the narrow corridor of a dilapidated apartment building, body slightly leaning away from the door, hands tightly gripping the straps of the canvas bag, facing toward 老张-配角1, 8K highly detailed skin texture with visible pores and fatigue, eyes reflecting the dim light of the corridor, lips slightly parted as if speaking, soft shadows under eyes indicating long-term exhaustion, natural complexion with subtle hints of indoor grime, messy short dark hair with fine dust particles caught in strands, root fixation coefficient 0.5, tip swing amplitude 5cm, color layering: main black, secondary deep brown, highlight dusty grey, shadow dark charcoal, wind speed 0.2m/s, turbulence intensity 1%, static and unkempt appearance, coarse fabric texture for the old work jacket, visible fabric wear and tear at the cuffs, canvas bag strap showing signs of heavy usage, subtle wrinkles and dust accumulation on surfaces, narrow and dimly lit apartment building corridor, peeling paint on concrete walls with visible water stains, a crumpled red-stamped demolition notice held by the character, distant view of a hazy, neon-lit city skyline through a small window, pigeon coop wire mesh visible in the peripheral vision, 老张-配角1 standing in front of the door, middle-aged man with weathered face and tired expression, holding the demolition notice, floating dust motes in the morning sunlight, hazy atmosphere with a sense of stagnation, low-key lighting highlighting the textures of the old building, desaturated tones of grey, brown, and concrete-white, faded red color on the demolition notice as a focal point, dull metallic tones for the wire mesh, cool shadows contrasting with weak, pale morning light, harsh morning sunlight filtering through the dusty window, dim indoor ambient light from the corridor, long shadows cast by the building structure, soft volumetric lighting through dust particles, type medium shot, lens 35mm, aperture f/2.0, depth_of_field sharp focus on Lin Yuan and the demolition notice, flash none, grain fine film grain, texture realistic urban surface textures, Lin Yuan positioned slightly to the left, 老张-配角1 positioned to the right facing the protagonist, demolition notice held between the two characters as the central narrative element, narrow framing to emphasize the sense of being trapped, realistic urban photography, no text or symbols in image, no watermarks or logos, high-fidelity image rendering, melancholic realism, anxiety of displacement, quiet desperation, sense of loss, stagnant urban atmosphere, no text, no symbols, no garbled characters, no words",
+                "prompt_json": {
+                  "camera": {
+                    "aperture": "f/2.0",
+                    "depth_of_field": "sharp focus on Lin Yuan and the demolition notice",
+                    "flash": "none",
+                    "grain": "fine film grain",
+                    "lens": "35mm",
+                    "texture": "realistic urban surface textures",
+                    "type": "medium shot"
+                  },
+                  "clothing_system": [
+                    "coarse fabric texture for the old work jacket",
+                    "visible fabric wear and tear at the cuffs",
+                    "canvas bag strap showing signs of heavy usage",
+                    "subtle wrinkles and dust accumulation on surfaces"
+                  ],
+                  "color_restriction": [
+                    "desaturated tones of grey, brown, and concrete-white",
+                    "faded red color on the demolition notice as a focal point",
+                    "dull metallic tones for the wire mesh",
+                    "cool shadows contrasting with weak, pale morning light"
+                  ],
+                  "composition": [
+                    "Lin Yuan positioned slightly to the left",
+                    "老张-配角1 positioned to the right facing the protagonist",
+                    "demolition notice held between the two characters as the central narrative element",
+                    "narrow framing to emphasize the sense of being trapped"
+                  ],
+                  "environment": {
+                    "background": [
+                      "narrow and dimly lit apartment building corridor",
+                      "peeling paint on concrete walls with visible water stains",
+                      "a crumpled red-stamped demolition notice held by the character",
+                      "distant view of a hazy, neon-lit city skyline through a small window",
+                      "pigeon coop wire mesh visible in the peripheral vision"
+                    ],
+                    "characters": [
+                      "老张-配角1 standing in front of the door, middle-aged man with weathered face and tired expression, holding the demolition notice"
+                    ],
+                    "effects": [
+                      "floating dust motes in the morning sunlight",
+                      "hazy atmosphere with a sense of stagnation",
+                      "low-key lighting highlighting the textures of the old building"
+                    ]
+                  },
+                  "face_system": [
+                    "8K highly detailed skin texture with visible pores and fatigue",
+                    "eyes reflecting the dim light of the corridor",
+                    "lips slightly parted as if speaking",
+                    "soft shadows under eyes indicating long-term exhaustion",
+                    "natural complexion with subtle hints of indoor grime"
+                  ],
+                  "hair_system": [
+                    "messy short dark hair with fine dust particles caught in strands",
+                    "root fixation coefficient 0.5",
+                    "tip swing amplitude 5cm",
+                    "color layering: main black, secondary deep brown, highlight dusty grey, shadow dark charcoal",
+                    "wind speed 0.2m/s",
+                    "turbulence intensity 1%",
+                    "static and unkempt appearance"
+                  ],
+                  "label": "scene-urban-eviction-confrontation",
+                  "lighting": [
+                    "harsh morning sunlight filtering through the dusty window",
+                    "dim indoor ambient light from the corridor",
+                    "long shadows cast by the building structure",
+                    "soft volumetric lighting through dust particles"
+                  ],
+                  "mood": [
+                    "melancholic realism",
+                    "anxiety of displacement",
+                    "quiet desperation",
+                    "sense of loss",
+                    "stagnant urban atmosphere"
+                  ],
+                  "output_style": [
+                    "realistic urban photography",
+                    "no text or symbols in image",
+                    "no watermarks or logos",
+                    "high-fidelity image rendering"
+                  ],
+                  "style": [
+                    "photorealistic",
+                    "low-saturation-color-grading",
+                    "high-detail-textures",
+                    "cinematic-lighting",
+                    "documentary-style-photography"
+                  ],
+                  "subject": {
+                    "body_traits": [
+                      "young male protagonist Lin Yuan using Image 0",
+                      "messy short hair with dusty texture",
+                      "clear and observant eyes showing suppressed anxiety",
+                      "slight build with a weary but focused posture",
+                      "hands showing visible traces of bird feed residue",
+                      "facial expression of shock and helplessness"
+                    ],
+                    "outfit": [
+                      "worn-out industrial work jacket with stains and dust",
+                      "faded cotton canvas bag slung over one shoulder"
+                    ],
+                    "pose": [
+                      "standing in the narrow corridor of a dilapidated apartment building",
+                      "body slightly leaning away from the door",
+                      "hands tightly gripping the straps of the canvas bag",
+                      "facing toward 老张-配角1"
+                    ]
+                  },
+                  "tags": [
+                    "realistic",
+                    "urban-decay",
+                    "melancholic",
+                    "slice-of-life",
+                    "cinematic"
+                  ]
+                },
+                "scene_text_hash": "64db5695d36349b4e46b3ef6abcf1f99",
+                "style": "default",
+                "url": "/image_cache/4fb7f442dfe5a567adaf8938e1cbf37a.png",
+                "width": 1920
+              },
+              "previousSceneText": "清晨的阳光透过筒子楼斑驳的窗棂，照在我凌乱的短发上，空气中弥漫着陈旧的灰尘与鸽子羽毛特有的腥气。我揉了揉略显疲惫的眼睛，身上那件沾着饲料碎屑的旧工装外套显得有些沉重。天台的鸽舍里，几只信鸽正不安地拍打着翅膀，鸣叫声比往常尖锐了许多。我走到鸽舍前，指尖触碰到冰冷的铁丝网，那种熟悉的、带着温度的生命律动感在指尖跳动。\n\n突然，一阵急促的敲门声打破了清晨的宁静，紧接着是房东老张那标志性的、带着烟草味的粗嗓门：“林远，别睡了！拆迁办的通知贴到楼下了，这片儿下个月就得断水断电，你那堆宝贝鸽子，赶紧想办法吧！”我推开门，老张正站在走廊里，手里晃着一张盖了红章的拆迁公告，眼神里透着一种无奈的疲惫。我看着那张纸，心跳漏了一拍，那种即将失去这片天台的恐慌感瞬间蔓延开来。我下意识地抓紧了帆布包的带子，声音有些沙哑地回应道：“张叔，真的没商量了吗？我这鸽群刚孵化了一窝幼崽。”老张叹了口气，避开了我的目光，低声嘟囔着：“上面定的事，谁也没办法，你还是早做打算吧。”"
+            },
+            "start_ts": 1777638486.556274,
+            "end_ts": 1777638513.539649,
+            "provider_events": {
+              "event_count": 10,
+              "queue_wait_ms": {
+                "count": 10,
+                "min": 0.0,
+                "max": 11765.0,
+                "mean": 4373.0,
+                "median": 5886.5,
+                "p95": 9626.6
+              },
+              "latency_ms": {
+                "count": 4,
+                "min": 5595.0,
+                "max": 11774.0,
+                "mean": 7496.5,
+                "median": 6308.5,
+                "p95": 11059.55
+              },
+              "llm_success_count": 4,
+              "image_success_count": 0,
+              "request_thread_event_count": 0,
+              "provider_429_count": 0,
+              "provider_timeout_count": 0,
+              "shared_backoff_wait_ms_total": 0,
+              "retry_heavy_event_count": 0,
+              "main_character_event_count": 0,
+              "scene_image_event_count": 0
+            }
+          }
+        ],
+        "attempt_count": 1,
+        "request_elapsed_s": 26.983,
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "success",
+        "has_scene": true,
+        "has_image": true,
+        "selected_option_index": 0,
+        "selected_option_text": "询问老张关于补偿方案的细节，尝试寻找转机。",
+        "input_scene_id": "-2454291928518999967_-1055604536039954696",
+        "inferred_cache_result": "likely_miss_or_partial",
+        "used_updated_flow_state": true,
+        "cache_hit_reason": "waited_request_scene_text_completed_no_image",
+        "cache_miss_reason": "request_scene_generation_in_progress",
+        "global_state_key_drift_detected": true,
+        "scene_id_mismatch_detected": true,
+        "selected_option_mismatch_detected": false,
+        "current_options_key_drift_detected": false,
+        "benchmark_diagnostics": {
+          "cache_hit_reason": "waited_request_scene_text_completed_no_image",
+          "cache_miss_reason": "request_scene_generation_in_progress",
+          "current_options_key_drift_detected": false,
+          "global_state_key_drift_detected": true,
+          "placeholder": false,
+          "previous_scene_id": "initial",
+          "recomputed_scene_cache_exists": false,
+          "recomputed_scene_id": "6937080324009245928_-1055604536039954696",
+          "request_current_options_count": 2,
+          "request_current_options_hash": "97b7dbcdda45bc753ee52820cd3ff402",
+          "request_flow_worldline_hash": "0b7d2802f8e46ae104639ddbac325b51",
+          "request_global_state_hash": "04896631448e87c9e8bce6fe52f6a329",
+          "request_option_at_index": "询问老张关于补偿方案的细节，尝试寻找转机。",
+          "request_option_index": 0,
+          "request_option_text": "询问老张关于补偿方案的细节，尝试寻找转机。",
+          "request_scene_cache_exists": true,
+          "request_scene_cache_meta": {
+            "canonical_scene_id": "5485813219107074521_-1055604536039954696",
+            "current_options_hash": "97b7dbcdda45bc753ee52820cd3ff402",
+            "current_options_preview": [
+              "询问老张关于补偿方案的细节，尝试寻找转机。",
+              "检查鸽舍受损情况，并安抚受惊的鸽群，观察它们的飞行轨迹。"
+            ],
+            "flow_worldline_hash": "940e38d5f8372eaa58cfdaf4d70a0d30",
+            "global_state_hash": "834691d7fc5579598fb6ecebd03edd83",
+            "option_count": 2,
+            "parent_scene_id": null,
+            "scene_id": "-2454291928518999967_-1055604536039954696"
+          },
+          "request_scene_id": "-2454291928518999967_-1055604536039954696",
+          "resolution_path": "wait_for_request_scene_cache_text_only",
+          "response_has_image": true,
+          "response_has_scene": true,
+          "response_scene_id": "-28029776660230581_-5702534734731316909",
+          "response_status": "success",
+          "scene_id_mismatch_detected": true,
+          "selected_option_mismatch_detected": false
+        }
+      },
+      "full_ready": {
+        "text_ready_ts": 1777638513.539649,
+        "text_ready_elapsed_s": 26.983,
+        "image_ready_ts": 1777638513.539649,
+        "image_ready_elapsed_s": 26.983,
+        "full_ready_ts": 1777638513.539649,
+        "full_ready_elapsed_s": 26.983,
+        "image_probe": {
+          "status": "success",
+          "source": "generate-option",
+          "image": {
+            "cached": true,
+            "height": 1080,
+            "image_type": "story_scene",
+            "prompt": "scene-urban-renewal-negotiation, realism, urban-life, melancholy, social-realism, cinematic, photorealistic, highly detailed, low saturation, cinematic lighting, sharp focus, Lin Yuan (Image 0), a young man with a slender build and a fatigued but focused expression, messy short hair, clear and deep eyes, slightly weathered skin, fingers show faint traces of bird feed residue, stands with a posture of quiet determination and underlying anxiety, worn-out utility jacket in muted tones, canvas messenger bag slung over his shoulder, facing Old Zhang-配角1, slightly leaning forward in a serious discussion, holding a piece of paper with both hands, fingers touching the textured surface, Lin Yuan uses Image 0, 8K detailed facial features, realistic skin texture, expression of intense focus mixed with subtle worry, eyes fixed on the document with a sense of urgency, lip color naturally muted, reflecting a tired but earnest demeanor, messy short dark hair, natural texture, root fixation coefficient 0.5, tip swing amplitude 2cm, color layering: main color #2D2D2D, secondary color #3D3D3D, highlight #505050, shadow #1A1A1A, wind speed 0.3m/s, slight natural movement, turbulence intensity 1%, worn cotton-blend utility jacket with realistic fabric creases, canvas bag with visible weave texture, subtle fabric flutter from a light draft in the room, interior of a cramped, aging apartment building, peeling wallpaper and dim, dusty atmosphere, view through a window showing distant neon lights of the city clashing with the dark old building, scattered household items indicating long-term residence, Old Zhang-配角1, a middle-aged man standing opposite Lin Yuan, holding the document, wearing a worn-out casual shirt, dust particles dancing in a single shaft of afternoon light, faded, low-contrast atmosphere typical of an old urban neighborhood, desaturated tones of grey, brown, and muted ochre, faint, cold blue light from the window, warm dim indoor light from a single overhead bulb, harsh side light from a window highlighting the paper and characters, soft, dim ambient light filling the room, subtle shadows emphasizing the weary atmosphere, type medium shot, lens 35mm, aperture f/4, depth_of_field shallow focus on the characters and the paper, flash none, grain fine film grain, texture highly realistic photographic texture, Lin Yuan (Image 0) on the left, Old Zhang-配角1 on the right, the document acts as the central focus of the interaction, balanced framing of a tense, intimate negotiation, realistic urban drama style, no text, no symbols, no watermarks, no messy characters, solemn contemplation, anxious urgency, bittersweet sentimentality, quiet desperation, no text, no symbols, no garbled characters, no words",
+            "scene_text_hash": "995aee39d0a0d3c32fd097cb5bffe669",
+            "style": "default",
+            "url": "/image_cache/25d1b82d225f028497b1fbb68c977715.png",
+            "width": 1920
+          },
+          "attempt_count": 0
+        },
+        "ready_mode": "direct_in_generate_option",
+        "attribution": {
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "provider_retry_heavy_count": 0,
+          "provider_backoff_wait_ms_total": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0,
+          "image_probe_attempt_count": 0,
+          "main_character_contention_suspected": false
+        }
+      },
+      "placeholder": false,
+      "transport_success": true,
+      "strict_success": true,
+      "failure_bucket": null,
+      "cache_path_classification": "direct_real_scene",
+      "cache_hit_reason": "waited_request_scene_text_completed_no_image",
+      "cache_miss_reason": "request_scene_generation_in_progress",
+      "global_state_key_drift_detected": true,
+      "scene_id_mismatch_detected": true,
+      "selected_option_mismatch_detected": false,
+      "success": true
+    }
+  ]
+}

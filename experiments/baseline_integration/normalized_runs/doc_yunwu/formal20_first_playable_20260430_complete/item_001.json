@@ -1,0 +1,146 @@
+{
+  "baseline_id": "doc",
+  "benchmark_id": "DNQBV1_002",
+  "run_id": "formal20_first_playable_20260430",
+  "mode": "first_playable",
+  "input_bundle": {
+    "original_dn_item": {
+      "benchmark_id": "DNQBV1_002",
+      "theme_id": 9,
+      "theme": "末日温室园丁",
+      "image_style": {
+        "type": "realistic"
+      },
+      "expected_genre": "末日生存",
+      "expected_tone": "压抑、坚韧、低饱和",
+      "must_have_constraints": [
+        "剧情必须围绕温室、生存或资源匮乏展开",
+        "场景需要体现末日环境压力",
+        "首轮剧情应建立明确任务目标",
+        "图像风格应保持写实与低饱和"
+      ],
+      "forbidden_issues": [
+        "出现轻喜剧化语气",
+        "无关的校园/都市设定混入",
+        "选项空泛无法推进",
+        "图片与文本完全不匹配"
+      ],
+      "focus": "full-set coverage: 末日生存",
+      "_subset_focus": "full-set coverage: 末日生存"
+    },
+    "doc_prompt": "Premise seed: 末日温室园丁\nGenre: 末日生存\nTone: 压抑、坚韧、低饱和\nWrite a long-form interactive story opening that could be expanded with a detailed outline.\nMust-have constraints:\n- 剧情必须围绕温室、生存或资源匮乏展开\n- 场景需要体现末日环境压力\n- 首轮剧情应建立明确任务目标\n- 图像风格应保持写实与低饱和\nForbidden issues:\n- 出现轻喜剧化语气\n- 无关的校园/都市设定混入\n- 选项空泛无法推进\n- 图片与文本完全不匹配\n",
+    "outline_seed": [
+      "Opening setup for 末日温室园丁 in a 末日生存 frame with a 压抑、坚韧、低饱和 tone.",
+      "Introduce the protagonist's immediate role, pressure, and conflict around: 剧情必须围绕温室、生存或资源匮乏展开.",
+      "Reveal one concrete obstacle or tradeoff the player must respond to next.",
+      "End the first turn with 2-3 actionable next steps that can continue the story."
+    ],
+    "mode": "first_playable",
+    "baseline_params": {
+      "execution_mode": "cloud",
+      "doc_repo": "D:\\Projects\\DN\\baselines\\DOC",
+      "doc_data_dir": "D:\\Projects\\DN\\baselines\\DOC\\doc_data"
+    }
+  },
+  "raw_output": {
+    "execution_mode": "cloud",
+    "doc_upstream_executed": false,
+    "doc_api_adapter": "yunwu_chat_completions",
+    "provider": "yunwu",
+    "provider_config_prefix": "Origin_Segment_Analyst",
+    "provider_base_url": "https://yunwu.ai/v1",
+    "provider_model": "gemini-3.1-flash-lite-preview",
+    "request": {
+      "model": "gemini-3.1-flash-lite-preview",
+      "temperature": 0.7,
+      "top_p": 0.9,
+      "max_tokens": 900,
+      "response_format": {
+        "type": "json_object"
+      }
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are the DOC long-form story baseline adapted for DN playable-latency evaluation. Write concise, grounded, continuation-ready interactive fiction. Do not include debugging text, URLs, or commentary outside JSON."
+      },
+      {
+        "role": "user",
+        "content": "Convert this DN benchmark item into a DOC-style playable baseline output.\nPreserve DOC's premise -> outline -> story-opening semantics, but return only a playable first response.\nRun mode: first_playable\n\nDOC prompt:\nPremise seed: 末日温室园丁\nGenre: 末日生存\nTone: 压抑、坚韧、低饱和\nWrite a long-form interactive story opening that could be expanded with a detailed outline.\nMust-have constraints:\n- 剧情必须围绕温室、生存或资源匮乏展开\n- 场景需要体现末日环境压力\n- 首轮剧情应建立明确任务目标\n- 图像风格应保持写实与低饱和\nForbidden issues:\n- 出现轻喜剧化语气\n- 无关的校园/都市设定混入\n- 选项空泛无法推进\n- 图片与文本完全不匹配\n\nOutline seed:\n1. Opening setup for 末日温室园丁 in a 末日生存 frame with a 压抑、坚韧、低饱和 tone.\n2. Introduce the protagonist's immediate role, pressure, and conflict around: 剧情必须围绕温室、生存或资源匮乏展开.\n3. Reveal one concrete obstacle or tradeoff the player must respond to next.\n4. End the first turn with 2-3 actionable next steps that can continue the story.\n\nReturn strict JSON with this shape and no markdown fences:\n{\n  \"scene_setup\": \"string\",\n  \"player_state\": \"string\",\n  \"narrative_response\": \"string\",\n  \"candidate_actions\": [\n    \"string\"\n  ],\n  \"suggested_next_step\": \"string\",\n  \"supports_next_turn\": true\n}"
+      }
+    ],
+    "response": {
+      "id": "chatcmpl-20260430170301907333099edPUrUAd",
+      "model": "gemini-3.1-flash-lite-preview",
+      "object": "chat.completion",
+      "created": 1777539803,
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"scene_setup\": \"末日后的第三个冬天，地表温度已降至零下四十度。温室穹顶布满了灰白色的积雪，半透明的聚乙烯薄膜在寒风中发出令人牙酸的撕裂声。这是避难所仅存的氧气与新鲜食物来源，也是你——作为唯一园丁——必须守护的最后阵地。\",\n  \"player_state\": \"当前温室供暖系统核心零件老化，仅剩的蓄电池电量不足15%，如果不及时处理，作物将在今夜冻死。\",\n  \"narrative_response\": \"你跪在结霜的土壤旁，指尖冻得发紫。最后一株土豆苗的叶片边缘已经出现了枯黄的霜斑。温室外的风暴声如野兽咆哮，而储物柜里只剩下最后一个备用加热管，但安装它需要切断整个温室的循环通风，这会导致氧气浓度在半小时内下降至危险阈值。你握着扳手，空气中弥漫着潮湿的腐殖土味和金属锈蚀的气息。\",\n  \"candidate_actions\": [\n    \"更换加热管，哪怕这意味着冒着窒息的风险。\",\n    \"拆除温室外层的保温棉补丁，以此换取临时热源，但这会加剧结构受损。\",\n    \"向避难所管理层申请紧急备用电源，尽管他们可能会因物资匮乏拒绝你。\"\n  ],\n  \"suggested_next_step\": \"执行选择后，玩家将面临资源消耗与系统损耗的直接反馈，并进入下一个生存周期。\",\n  \"supports_next_turn\": true\n}"
+          },
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 418,
+        "completion_tokens": 376,
+        "total_tokens": 794,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "text_tokens": 418,
+          "audio_tokens": 0,
+          "image_tokens": 0
+        },
+        "completion_tokens_details": {
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0
+        },
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "input_tokens_details": null,
+        "claude_cache_creation_5_m_tokens": 0,
+        "claude_cache_creation_1_h_tokens": 0
+      }
+    }
+  },
+  "success": true,
+  "latency_s": 22.91,
+  "playable": true,
+  "playable_components": {
+    "scene_setup": true,
+    "player_state": true,
+    "advanceable_next_step": true,
+    "interaction_continuity": true
+  },
+  "normalized_response": {
+    "scene_setup": "末日后的第三个冬天，地表温度已降至零下四十度。温室穹顶布满了灰白色的积雪，半透明的聚乙烯薄膜在寒风中发出令人牙酸的撕裂声。这是避难所仅存的氧气与新鲜食物来源，也是你——作为唯一园丁——必须守护的最后阵地。",
+    "player_state": "当前温室供暖系统核心零件老化，仅剩的蓄电池电量不足15%，如果不及时处理，作物将在今夜冻死。",
+    "narrative_response": "你跪在结霜的土壤旁，指尖冻得发紫。最后一株土豆苗的叶片边缘已经出现了枯黄的霜斑。温室外的风暴声如野兽咆哮，而储物柜里只剩下最后一个备用加热管，但安装它需要切断整个温室的循环通风，这会导致氧气浓度在半小时内下降至危险阈值。你握着扳手，空气中弥漫着潮湿的腐殖土味和金属锈蚀的气息。",
+    "candidate_actions": [
+      "更换加热管，哪怕这意味着冒着窒息的风险。",
+      "拆除温室外层的保温棉补丁，以此换取临时热源，但这会加剧结构受损。",
+      "向避难所管理层申请紧急备用电源，尽管他们可能会因物资匮乏拒绝你。"
+    ],
+    "suggested_next_step": "执行选择后，玩家将面临资源消耗与系统损耗的直接反馈，并进入下一个生存周期。",
+    "is_playable": true,
+    "request_start_ts": 1777539781.2240198,
+    "first_playable_ts": 1777539804.1338434,
+    "finish_ts": 1777539804.1338434,
+    "error": null
+  },
+  "failure_reason": null,
+  "notes": [
+    "DOC-style artifact generated through Yunwu OpenAI-compatible chat/completions API."
+  ],
+  "resource_usage": {
+    "execution_mode": "cloud"
+  },
+  "agent_profile": {
+    "runner": "run_doc.py",
+    "adapter_style": "doc_cloud_yunwu_v1"
+  }
+}

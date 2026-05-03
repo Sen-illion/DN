@@ -1,0 +1,376 @@
+{
+  "summary": {
+    "experiment_name": "phase26_DNQBV1_014",
+    "profile": "fullready_strict",
+    "sample_size": 1,
+    "read_wait_s": 0.0,
+    "suite_start_ts": 1777626831.097567,
+    "suite_end_ts": 1777627054.1090713,
+    "first_click_elapsed_s": {
+      "count": 0
+    },
+    "first_click_setup_success_count": 0,
+    "second_click_elapsed_s": {
+      "count": 0
+    },
+    "second_click_success_count": 0,
+    "transport_success_count": 0,
+    "strict_success_count": 0,
+    "likely_hit_count": 0,
+    "likely_hit_rate": 0.0,
+    "failure_bucket_counts": {
+      "first_click_timeout": 1
+    },
+    "placeholder_strict_fail_count": 0,
+    "cache_hit_reason_counts": {},
+    "cache_miss_reason_counts": {},
+    "global_state_key_drift_detected_count": 0,
+    "scene_id_mismatch_detected_count": 0,
+    "selected_option_mismatch_detected_count": 0,
+    "aborted": false,
+    "success_count": 0,
+    "text_ready_elapsed_s": {
+      "count": 0
+    },
+    "image_ready_elapsed_s": {
+      "count": 0
+    },
+    "full_ready_elapsed_s": {
+      "count": 0
+    },
+    "real_scene_count": 0,
+    "real_scene_rate": 0.0,
+    "direct_image_count": 0,
+    "async_image_count": 0,
+    "placeholder_count": 0,
+    "placeholder_rate": 0.0,
+    "direct_image_rate": 0.0,
+    "async_image_rate": 0.0,
+    "provider_retry_heavy_count": 0,
+    "provider_429_count": 0,
+    "provider_timeout_count": 0,
+    "provider_backoff_wait_ms_total": 0,
+    "main_character_contention_suspected_count": 0,
+    "notes": "phase26 setup-vs-measurement separation probe"
+  },
+  "runs": [
+    {
+      "benchmark_id": "DNQBV1_014",
+      "theme_id": 23,
+      "theme": "雨林部落预言",
+      "read_wait_s": 0.0,
+      "full_ready_mode": true,
+      "profile": "fullready_strict",
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 42.896,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过协助部落修复被暴雨冲毁的灌溉渠，赢得了初步的信任，获得了查阅部落古籍的权限，同时也目睹了公司强行圈地的初步行动，意识到矛盾已无法通过简单的调解平息。",
+                  "main_conflict": "主角初抵翡翠谷，面临部落长者对“外来者”的极度不信任，以及木材公司先遣队带来的生存压力。主角试图通过记录预言来建立沟通桥梁，却发现部落内部对于是否接受现代补偿存在严重分歧，这种分歧导致了家庭关系的破裂，主角在试图调解的过程中，深刻感受到了贫困带来的道德困境。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角在一次暴雨引发的泥石流中，凭借对地形的熟悉救下了部分村民，这一行为迫使公司暂时搁置了部分砍伐计划，主角也因此被迫向导师妥协，承认了研究报告的部分删改。",
+                  "main_conflict": "主角收集到了雨林生态即将崩溃的科学证据，试图说服公司高层停止砍伐，却发现导师的研究项目早已被公司注资，自己陷入了职业道德与现实利益的泥潭。同时，部落中年轻一代因渴望金钱而开始私下与公司接触，导致预言的初衷被扭曲，主角在坚持真相与维护部落团结之间陷入了极度的自我怀疑。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角完成了最后的调查报告，看着部落搬离了翡翠谷，虽然雨林核心区得以保留，但那份原始的文化记忆已随之消散。主角带着一份并不完美的协议离开，接受了生活中的这种“得失共存”，在雨中与过去告别。",
+                  "main_conflict": "最终谈判时刻，主角意识到无法阻止雨林被部分开发，只能争取到保护核心区域的协议。部落被迫搬迁，预言最终以一种“部分应验”的方式落幕。主角必须面对自己努力多年却无法改变大局的无力感，以及部落居民在离开故土后的迷茫，这种遗憾感贯穿了结局的每一个细节。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为现实主义叙事风格，采用细腻的写实画风与低饱和度色调。通过环境叙事展现热带雨林边缘的现代文明冲突，强调光影与雨水的质感。音乐以原声吉他与自然环境音为主，营造出一种沉静、克制且带有泥土气息的沉浸式生活氛围，拒绝宏大叙事，聚焦于个体在时代洪流下的微小抉择。",
+              "main_quest": "主角受导师委托，前往翡翠谷调查部落预言的科学依据，并试图在木材公司大规模砍伐前，寻找一种既能保护雨林生态、又能让部落居民获得经济补偿的平衡方案。任务分为三个阶段：首先是建立信任，深入部落内部获取预言的真实含义；其次是收集环境数据，通过实证反驳公司的盲目开发计划；最后是参与多方谈判，试图达成妥协。挑战在于，主角必须在“学术理想”与“现实生存”之间反复横跳，既要面对部落对外界的排斥，也要应对资本运作的冷酷，最终目标并非拯救世界，而是尽可能减少开发带来的不可逆伤害，并为自己的人生寻找一个合理的交代。",
+              "protagonist_ability": "主角拥有一种名为“共情记录”的非超自然能力，源于其作为人类学研究者与部落养子的双重身份。通过长期深入的观察与笔记，主角能敏锐捕捉到雨林生态变化与部落居民情绪波动之间的细微关联。这种能力的使用方式是深度访谈与实地测绘，限制在于它无法改变既定的商业开发进程，也无法强行扭转他人的偏见，只能在有限的范围内记录真相，并为关键决策提供理性的参考依据。",
+              "world_basic_setting": "故事发生在全球化进程中被边缘化的“翡翠谷”雨林区。这里曾是古老部落的聚居地，如今被现代木材工业与生态旅游业撕裂。社会结构呈现出明显的断层：一方面是坚守原始信仰、试图通过预言寻找生存意义的部落原住民，另一方面是背负债务、渴望通过开发土地改变命运的现代迁入者。关键事件“大旱之年的预言”并非超自然神迹，而是部落长者基于多年气象观测总结的生态警示。随着跨国企业的介入，雨林生态平衡被打破，传统生活方式与现代经济利益产生剧烈碰撞。地理上，这里是潮湿、闭塞且充满变数的边陲，每一寸土地都记录着文明交替的痕迹，文化冲突不仅存在于信仰，更体现在每一顿饭、每一份合同的签署中。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1777626831_asgo8i",
+            "image_style": {
+              "type": "watercolor"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "黑色短发、黑框眼镜、冲锋衣、常年背着单肩包、眼神沉稳、略显疲惫、皮肤偏黑、手腕上有部落编织的红绳、总是带着笔记本、身形瘦长、沉默寡言",
+              "work_en": "The Rainy Season of Emerald Valley",
+              "work_zh": "翡翠谷的雨季"
+            },
+            "tone": "normal_ending",
+            "user_theme": "雨林部落预言"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "request_payload": {
+          "gameTheme": "雨林部落预言",
+          "protagonistAttr": {},
+          "difficulty": "normal",
+          "toneKey": "normal_ending",
+          "imageStyle": {
+            "type": "watercolor"
+          },
+          "_benchmark_profile": "fullready_strict",
+          "_benchmark_measurement": "fullready_nextturn",
+          "_benchmark_read_wait_s": 0.0
+        },
+        "start_ts": 1777626831.0975704,
+        "end_ts": 1777626873.9936607,
+        "provider_events": {
+          "event_count": 4,
+          "queue_wait_ms": {
+            "count": 4,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 1,
+            "min": 42886.0,
+            "max": 42886.0,
+            "mean": 42886.0,
+            "median": 42886.0,
+            "p95": 42886.0
+          },
+          "llm_success_count": 1,
+          "image_success_count": 0,
+          "request_thread_event_count": 2,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0
+        },
+        "status": "success",
+        "game_id": "game_1777626831_asgo8i"
+      },
+      "first_click": {
+        "http_status": null,
+        "elapsed_s": 180.032,
+        "response_json": {
+          "status": "timeout",
+          "message": "HTTPConnectionPool(host='127.0.0.1', port=5008): Read timed out. (read timeout=180)"
+        },
+        "request_payload": {
+          "option": "开始游戏",
+          "optionIndex": 0,
+          "sceneId": null,
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过协助部落修复被暴雨冲毁的灌溉渠，赢得了初步的信任，获得了查阅部落古籍的权限，同时也目睹了公司强行圈地的初步行动，意识到矛盾已无法通过简单的调解平息。",
+                  "main_conflict": "主角初抵翡翠谷，面临部落长者对“外来者”的极度不信任，以及木材公司先遣队带来的生存压力。主角试图通过记录预言来建立沟通桥梁，却发现部落内部对于是否接受现代补偿存在严重分歧，这种分歧导致了家庭关系的破裂，主角在试图调解的过程中，深刻感受到了贫困带来的道德困境。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角在一次暴雨引发的泥石流中，凭借对地形的熟悉救下了部分村民，这一行为迫使公司暂时搁置了部分砍伐计划，主角也因此被迫向导师妥协，承认了研究报告的部分删改。",
+                  "main_conflict": "主角收集到了雨林生态即将崩溃的科学证据，试图说服公司高层停止砍伐，却发现导师的研究项目早已被公司注资，自己陷入了职业道德与现实利益的泥潭。同时，部落中年轻一代因渴望金钱而开始私下与公司接触，导致预言的初衷被扭曲，主角在坚持真相与维护部落团结之间陷入了极度的自我怀疑。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角完成了最后的调查报告，看着部落搬离了翡翠谷，虽然雨林核心区得以保留，但那份原始的文化记忆已随之消散。主角带着一份并不完美的协议离开，接受了生活中的这种“得失共存”，在雨中与过去告别。",
+                  "main_conflict": "最终谈判时刻，主角意识到无法阻止雨林被部分开发，只能争取到保护核心区域的协议。部落被迫搬迁，预言最终以一种“部分应验”的方式落幕。主角必须面对自己努力多年却无法改变大局的无力感，以及部落居民在离开故土后的迷茫，这种遗憾感贯穿了结局的每一个细节。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为现实主义叙事风格，采用细腻的写实画风与低饱和度色调。通过环境叙事展现热带雨林边缘的现代文明冲突，强调光影与雨水的质感。音乐以原声吉他与自然环境音为主，营造出一种沉静、克制且带有泥土气息的沉浸式生活氛围，拒绝宏大叙事，聚焦于个体在时代洪流下的微小抉择。",
+              "main_quest": "主角受导师委托，前往翡翠谷调查部落预言的科学依据，并试图在木材公司大规模砍伐前，寻找一种既能保护雨林生态、又能让部落居民获得经济补偿的平衡方案。任务分为三个阶段：首先是建立信任，深入部落内部获取预言的真实含义；其次是收集环境数据，通过实证反驳公司的盲目开发计划；最后是参与多方谈判，试图达成妥协。挑战在于，主角必须在“学术理想”与“现实生存”之间反复横跳，既要面对部落对外界的排斥，也要应对资本运作的冷酷，最终目标并非拯救世界，而是尽可能减少开发带来的不可逆伤害，并为自己的人生寻找一个合理的交代。",
+              "protagonist_ability": "主角拥有一种名为“共情记录”的非超自然能力，源于其作为人类学研究者与部落养子的双重身份。通过长期深入的观察与笔记，主角能敏锐捕捉到雨林生态变化与部落居民情绪波动之间的细微关联。这种能力的使用方式是深度访谈与实地测绘，限制在于它无法改变既定的商业开发进程，也无法强行扭转他人的偏见，只能在有限的范围内记录真相，并为关键决策提供理性的参考依据。",
+              "world_basic_setting": "故事发生在全球化进程中被边缘化的“翡翠谷”雨林区。这里曾是古老部落的聚居地，如今被现代木材工业与生态旅游业撕裂。社会结构呈现出明显的断层：一方面是坚守原始信仰、试图通过预言寻找生存意义的部落原住民，另一方面是背负债务、渴望通过开发土地改变命运的现代迁入者。关键事件“大旱之年的预言”并非超自然神迹，而是部落长者基于多年气象观测总结的生态警示。随着跨国企业的介入，雨林生态平衡被打破，传统生活方式与现代经济利益产生剧烈碰撞。地理上，这里是潮湿、闭塞且充满变数的边陲，每一寸土地都记录着文明交替的痕迹，文化冲突不仅存在于信仰，更体现在每一顿饭、每一份合同的签署中。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1777626831_asgo8i",
+            "image_style": {
+              "type": "watercolor"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "黑色短发、黑框眼镜、冲锋衣、常年背着单肩包、眼神沉稳、略显疲惫、皮肤偏黑、手腕上有部落编织的红绳、总是带着笔记本、身形瘦长、沉默寡言",
+              "work_en": "The Rainy Season of Emerald Valley",
+              "work_zh": "翡翠谷的雨季"
+            },
+            "tone": "normal_ending",
+            "user_theme": "雨林部落预言",
+            "_benchmark_profile": "fullready_strict",
+            "_benchmark_measurement": "fullready_nextturn",
+            "_benchmark_read_wait_s": 0.0
+          }
+        },
+        "start_ts": 1777626874.0334287,
+        "end_ts": 1777627054.0651498,
+        "provider_events": {
+          "event_count": 6,
+          "queue_wait_ms": {
+            "count": 6,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 4,
+            "min": 2605.0,
+            "max": 12936.0,
+            "mean": 7280.0,
+            "median": 6789.5,
+            "p95": 12072.15
+          },
+          "llm_success_count": 4,
+          "image_success_count": 0,
+          "request_thread_event_count": 0,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0
+        },
+        "request_error": "timeout",
+        "attempts": [
+          {
+            "http_status": null,
+            "elapsed_s": 180.032,
+            "response_json": {
+              "status": "timeout",
+              "message": "HTTPConnectionPool(host='127.0.0.1', port=5008): Read timed out. (read timeout=180)"
+            },
+            "request_payload": {
+              "option": "开始游戏",
+              "optionIndex": 0,
+              "sceneId": null,
+              "globalState": {
+                "core_worldview": {
+                  "chapters": {
+                    "chapter1": {
+                      "conflict_end_condition": "主角通过协助部落修复被暴雨冲毁的灌溉渠，赢得了初步的信任，获得了查阅部落古籍的权限，同时也目睹了公司强行圈地的初步行动，意识到矛盾已无法通过简单的调解平息。",
+                      "main_conflict": "主角初抵翡翠谷，面临部落长者对“外来者”的极度不信任，以及木材公司先遣队带来的生存压力。主角试图通过记录预言来建立沟通桥梁，却发现部落内部对于是否接受现代补偿存在严重分歧，这种分歧导致了家庭关系的破裂，主角在试图调解的过程中，深刻感受到了贫困带来的道德困境。"
+                    },
+                    "chapter2": {
+                      "conflict_end_condition": "主角在一次暴雨引发的泥石流中，凭借对地形的熟悉救下了部分村民，这一行为迫使公司暂时搁置了部分砍伐计划，主角也因此被迫向导师妥协，承认了研究报告的部分删改。",
+                      "main_conflict": "主角收集到了雨林生态即将崩溃的科学证据，试图说服公司高层停止砍伐，却发现导师的研究项目早已被公司注资，自己陷入了职业道德与现实利益的泥潭。同时，部落中年轻一代因渴望金钱而开始私下与公司接触，导致预言的初衷被扭曲，主角在坚持真相与维护部落团结之间陷入了极度的自我怀疑。"
+                    },
+                    "chapter3": {
+                      "conflict_end_condition": "主角完成了最后的调查报告，看着部落搬离了翡翠谷，虽然雨林核心区得以保留，但那份原始的文化记忆已随之消散。主角带着一份并不完美的协议离开，接受了生活中的这种“得失共存”，在雨中与过去告别。",
+                      "main_conflict": "最终谈判时刻，主角意识到无法阻止雨林被部分开发，只能争取到保护核心区域的协议。部落被迫搬迁，预言最终以一种“部分应验”的方式落幕。主角必须面对自己努力多年却无法改变大局的无力感，以及部落居民在离开故土后的迷茫，这种遗憾感贯穿了结局的每一个细节。"
+                    }
+                  },
+                  "characters": {},
+                  "forces": {},
+                  "game_style": "本作为现实主义叙事风格，采用细腻的写实画风与低饱和度色调。通过环境叙事展现热带雨林边缘的现代文明冲突，强调光影与雨水的质感。音乐以原声吉他与自然环境音为主，营造出一种沉静、克制且带有泥土气息的沉浸式生活氛围，拒绝宏大叙事，聚焦于个体在时代洪流下的微小抉择。",
+                  "main_quest": "主角受导师委托，前往翡翠谷调查部落预言的科学依据，并试图在木材公司大规模砍伐前，寻找一种既能保护雨林生态、又能让部落居民获得经济补偿的平衡方案。任务分为三个阶段：首先是建立信任，深入部落内部获取预言的真实含义；其次是收集环境数据，通过实证反驳公司的盲目开发计划；最后是参与多方谈判，试图达成妥协。挑战在于，主角必须在“学术理想”与“现实生存”之间反复横跳，既要面对部落对外界的排斥，也要应对资本运作的冷酷，最终目标并非拯救世界，而是尽可能减少开发带来的不可逆伤害，并为自己的人生寻找一个合理的交代。",
+                  "protagonist_ability": "主角拥有一种名为“共情记录”的非超自然能力，源于其作为人类学研究者与部落养子的双重身份。通过长期深入的观察与笔记，主角能敏锐捕捉到雨林生态变化与部落居民情绪波动之间的细微关联。这种能力的使用方式是深度访谈与实地测绘，限制在于它无法改变既定的商业开发进程，也无法强行扭转他人的偏见，只能在有限的范围内记录真相，并为关键决策提供理性的参考依据。",
+                  "world_basic_setting": "故事发生在全球化进程中被边缘化的“翡翠谷”雨林区。这里曾是古老部落的聚居地，如今被现代木材工业与生态旅游业撕裂。社会结构呈现出明显的断层：一方面是坚守原始信仰、试图通过预言寻找生存意义的部落原住民，另一方面是背负债务、渴望通过开发土地改变命运的现代迁入者。关键事件“大旱之年的预言”并非超自然神迹，而是部落长者基于多年气象观测总结的生态警示。随着跨国企业的介入，雨林生态平衡被打破，传统生活方式与现代经济利益产生剧烈碰撞。地理上，这里是潮湿、闭塞且充满变数的边陲，每一寸土地都记录着文明交替的痕迹，文化冲突不仅存在于信仰，更体现在每一顿饭、每一份合同的签署中。"
+                },
+                "flow_worldline": {
+                  "characters": {},
+                  "current_chapter": "chapter1",
+                  "environment": {}
+                },
+                "game_id": "game_1777626831_asgo8i",
+                "image_style": {
+                  "type": "watercolor"
+                },
+                "meta": {
+                  "detail_async": true
+                },
+                "protagonist_canonical": {
+                  "age_range": "青年",
+                  "gender": "男性",
+                  "name_en": "Lin Yuan",
+                  "name_zh": "林远",
+                  "signature_look_keywords": "黑色短发、黑框眼镜、冲锋衣、常年背着单肩包、眼神沉稳、略显疲惫、皮肤偏黑、手腕上有部落编织的红绳、总是带着笔记本、身形瘦长、沉默寡言",
+                  "work_en": "The Rainy Season of Emerald Valley",
+                  "work_zh": "翡翠谷的雨季"
+                },
+                "tone": "normal_ending",
+                "user_theme": "雨林部落预言",
+                "_benchmark_profile": "fullready_strict",
+                "_benchmark_measurement": "fullready_nextturn",
+                "_benchmark_read_wait_s": 0.0
+              }
+            },
+            "start_ts": 1777626874.0334287,
+            "end_ts": 1777627054.0651498,
+            "provider_events": {
+              "event_count": 6,
+              "queue_wait_ms": {
+                "count": 6,
+                "min": 0.0,
+                "max": 0.0,
+                "mean": 0.0,
+                "median": 0.0,
+                "p95": 0.0
+              },
+              "latency_ms": {
+                "count": 4,
+                "min": 2605.0,
+                "max": 12936.0,
+                "mean": 7280.0,
+                "median": 6789.5,
+                "p95": 12072.15
+              },
+              "llm_success_count": 4,
+              "image_success_count": 0,
+              "request_thread_event_count": 0,
+              "provider_429_count": 0,
+              "provider_timeout_count": 0,
+              "shared_backoff_wait_ms_total": 0,
+              "retry_heavy_event_count": 0,
+              "main_character_event_count": 0,
+              "scene_image_event_count": 0
+            },
+            "request_error": "timeout"
+          }
+        ],
+        "attempt_count": 1,
+        "request_elapsed_s": 180.032,
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "timeout",
+        "has_scene": false,
+        "has_image": false,
+        "setup_success": false
+      },
+      "second_click": {},
+      "full_ready": {},
+      "placeholder": false,
+      "transport_success": false,
+      "strict_success": false,
+      "failure_bucket": "first_click_timeout",
+      "cache_path_classification": "first_click_timeout",
+      "cache_hit_reason": null,
+      "cache_miss_reason": null,
+      "global_state_key_drift_detected": false,
+      "scene_id_mismatch_detected": false,
+      "selected_option_mismatch_detected": false,
+      "success": false
+    }
+  ]
+}

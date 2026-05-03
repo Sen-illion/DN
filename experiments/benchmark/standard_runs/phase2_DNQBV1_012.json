@@ -1,0 +1,371 @@
+{
+  "summary": {
+    "experiment_name": "phase2_DNQBV1_012",
+    "profile": "fullready_strict",
+    "sample_size": 1,
+    "read_wait_s": 0.0,
+    "suite_start_ts": 1777624531.284503,
+    "suite_end_ts": 1777624599.1248229,
+    "second_click_elapsed_s": {
+      "count": 0
+    },
+    "second_click_success_count": 0,
+    "transport_success_count": 0,
+    "strict_success_count": 0,
+    "likely_hit_count": 0,
+    "likely_hit_rate": 0.0,
+    "failure_bucket_counts": {
+      "first_click_timeout": 1
+    },
+    "placeholder_strict_fail_count": 0,
+    "cache_hit_reason_counts": {},
+    "cache_miss_reason_counts": {},
+    "global_state_key_drift_detected_count": 0,
+    "scene_id_mismatch_detected_count": 0,
+    "selected_option_mismatch_detected_count": 0,
+    "aborted": false,
+    "success_count": 0,
+    "text_ready_elapsed_s": {
+      "count": 0
+    },
+    "image_ready_elapsed_s": {
+      "count": 0
+    },
+    "full_ready_elapsed_s": {
+      "count": 0
+    },
+    "real_scene_count": 0,
+    "real_scene_rate": 0.0,
+    "direct_image_count": 0,
+    "async_image_count": 0,
+    "placeholder_count": 0,
+    "placeholder_rate": 0.0,
+    "direct_image_rate": 0.0,
+    "async_image_rate": 0.0,
+    "provider_retry_heavy_count": 0,
+    "provider_429_count": 0,
+    "provider_timeout_count": 0,
+    "provider_backoff_wait_ms_total": 0,
+    "main_character_contention_suspected_count": 0,
+    "notes": "phase2 cache diagnosis probe"
+  },
+  "runs": [
+    {
+      "benchmark_id": "DNQBV1_012",
+      "theme_id": 4,
+      "theme": "深海信标失联",
+      "read_wait_s": 0.0,
+      "full_ready_mode": true,
+      "profile": "fullready_strict",
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 7.71,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过初步排查，成功修复了核心供电模块，暂时恢复了基础通讯，但同时也确认了基站结构已无法长期支撑，必须在有限时间内完成核心数据的备份与关键部件的加固。",
+                  "main_conflict": "主角初抵深海站，发现信标失联并非简单的线路故障，而是由于基站老化导致的整体性崩塌。面对指挥中心要求“不计代价修复”的死命令，主角在职业责任感与自身安全之间产生剧烈动摇，同时还要应对深海环境带来的生理不适与孤独感。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角在险境中凭借经验成功取回零件，并完成了信标的二次校准，虽然身体受损，但信标信号强度回升至安全阈值，主角与导师达成了一种基于职业尊严的谅解。",
+                  "main_conflict": "修复工作进入深水区，主角发现关键零件短缺，必须深入危险的废弃舱段寻找替代品。在此过程中，主角与地面唯一的联络人——其疏远已久的导师产生分歧，导师坚持要主角冒险，而主角开始质疑这份工作的意义，思考自己是否为了这份“铁饭碗”牺牲了太多生活。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角选择在信号稳定后撤离，信标维持了基本运行，但因结构受损，信号在未来几年内仍会间歇性波动。主角带着一身伤病回到陆地，虽然没能成为英雄，也没能挽回所有失去的家庭时光，但内心获得了对职业生涯的释然。",
+                  "main_conflict": "信标彻底修复，但基站发生不可逆的结构断裂，主角面临最后抉择：是强行留守以确保信号百分之百稳定，还是在信号趋于平稳后立即撤离。此时，主角意识到无论如何选择，这份工作都将终结，而他必须面对回到陆地后，那个早已因他长期缺席而变得陌生的家庭。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "沉浸式现实主义深海模拟，强调幽闭环境下的心理博弈与职业素养。画面冷峻写实，音效侧重于深海的压抑低鸣与机械运作的金属质感，营造一种在庞大自然面前，人类个体微小而坚韧的叙事氛围。",
+              "main_quest": "主角受命前往深海监测站，修复失联的“深海信标”。目标是恢复能源网络，确保城市供电稳定。步骤包括：下潜至深海基站、排查故障点、在资源匮乏的条件下进行物理修复、并最终决定是否在基站结构彻底崩溃前撤离。挑战在于，主角不仅要面对严苛的物理环境，还要处理与地面指挥中心日益疏离的沟通，以及面对个人职业生涯与家庭承诺之间的抉择。最终目标并非拯救世界，而是完成这份职业使命，并带着对深海的敬畏与对生活的思考，平安回到陆地。",
+              "protagonist_ability": "主角拥有的并非超能力，而是“深海工程经验与直觉”。这源于其长达十年的深海作业积累，能够通过声呐回波的细微频率变化判断设备故障，并利用有限的备用零件进行“战地修复”。限制在于，这种能力极度依赖主角的心理状态，在高压环境下，长期的孤独与生理疲劳会严重干扰其判断力，且修复手段仅限于物理层面的修补，无法改变深海环境本身带来的不可逆损耗。",
+              "world_basic_setting": "故事设定在近未来的“深蓝时代”，人类对深海资源的依赖达到顶峰。全球深海监测网络“海眼”是维持能源供应的命脉，而主角所在的“深海信标维护站”是其中最偏远、最枯燥的节点。社会高度工业化，人们在繁华都市中被算法精准切割，而深海维护员被视为一种高薪但高压的“流放式”职业。背景中，深海并非充满怪物的魔幻之地，而是充满了高压、低温、信号衰减与不可预测的地质变动。关键事件“深海信标失联”并非由于外星文明或超自然力量，而是因为长期缺乏维护的深海基建在极端地质运动下发生了结构性疲劳，导致全球能源网络出现致命缺口，主角作为最后一名在岗的维护员，被推向了职业生涯的十字路口。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1777624531_kh126l",
+            "image_style": {
+              "type": "watercolor"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "中年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "深色工装、胡茬、疲惫的眼神、左手腕伤疤、沉默寡言、粗糙的手掌、黑框眼镜、略显佝偻的背影、冷静的职业气质、常年佩戴的旧手表",
+              "work_en": "Echoes of the Abyss",
+              "work_zh": "深海回响"
+            },
+            "tone": "normal_ending",
+            "user_theme": "深海信标失联"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "request_payload": {
+          "gameTheme": "深海信标失联",
+          "protagonistAttr": {},
+          "difficulty": "normal",
+          "toneKey": "normal_ending",
+          "imageStyle": {
+            "type": "watercolor"
+          },
+          "_benchmark_profile": "fullready_strict",
+          "_benchmark_measurement": "fullready_nextturn",
+          "_benchmark_read_wait_s": 0.0
+        },
+        "start_ts": 1777624531.2845073,
+        "end_ts": 1777624538.994297,
+        "provider_events": {
+          "event_count": 4,
+          "queue_wait_ms": {
+            "count": 4,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 1,
+            "min": 7699.0,
+            "max": 7699.0,
+            "mean": 7699.0,
+            "median": 7699.0,
+            "p95": 7699.0
+          },
+          "llm_success_count": 1,
+          "image_success_count": 0,
+          "request_thread_event_count": 2,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0
+        },
+        "status": "success",
+        "game_id": "game_1777624531_kh126l"
+      },
+      "first_click": {
+        "http_status": null,
+        "elapsed_s": 60.027,
+        "response_json": {
+          "status": "timeout",
+          "message": "HTTPConnectionPool(host='127.0.0.1', port=5006): Read timed out. (read timeout=60)"
+        },
+        "request_payload": {
+          "option": "开始游戏",
+          "optionIndex": 0,
+          "sceneId": null,
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过初步排查，成功修复了核心供电模块，暂时恢复了基础通讯，但同时也确认了基站结构已无法长期支撑，必须在有限时间内完成核心数据的备份与关键部件的加固。",
+                  "main_conflict": "主角初抵深海站，发现信标失联并非简单的线路故障，而是由于基站老化导致的整体性崩塌。面对指挥中心要求“不计代价修复”的死命令，主角在职业责任感与自身安全之间产生剧烈动摇，同时还要应对深海环境带来的生理不适与孤独感。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角在险境中凭借经验成功取回零件，并完成了信标的二次校准，虽然身体受损，但信标信号强度回升至安全阈值，主角与导师达成了一种基于职业尊严的谅解。",
+                  "main_conflict": "修复工作进入深水区，主角发现关键零件短缺，必须深入危险的废弃舱段寻找替代品。在此过程中，主角与地面唯一的联络人——其疏远已久的导师产生分歧，导师坚持要主角冒险，而主角开始质疑这份工作的意义，思考自己是否为了这份“铁饭碗”牺牲了太多生活。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角选择在信号稳定后撤离，信标维持了基本运行，但因结构受损，信号在未来几年内仍会间歇性波动。主角带着一身伤病回到陆地，虽然没能成为英雄，也没能挽回所有失去的家庭时光，但内心获得了对职业生涯的释然。",
+                  "main_conflict": "信标彻底修复，但基站发生不可逆的结构断裂，主角面临最后抉择：是强行留守以确保信号百分之百稳定，还是在信号趋于平稳后立即撤离。此时，主角意识到无论如何选择，这份工作都将终结，而他必须面对回到陆地后，那个早已因他长期缺席而变得陌生的家庭。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "沉浸式现实主义深海模拟，强调幽闭环境下的心理博弈与职业素养。画面冷峻写实，音效侧重于深海的压抑低鸣与机械运作的金属质感，营造一种在庞大自然面前，人类个体微小而坚韧的叙事氛围。",
+              "main_quest": "主角受命前往深海监测站，修复失联的“深海信标”。目标是恢复能源网络，确保城市供电稳定。步骤包括：下潜至深海基站、排查故障点、在资源匮乏的条件下进行物理修复、并最终决定是否在基站结构彻底崩溃前撤离。挑战在于，主角不仅要面对严苛的物理环境，还要处理与地面指挥中心日益疏离的沟通，以及面对个人职业生涯与家庭承诺之间的抉择。最终目标并非拯救世界，而是完成这份职业使命，并带着对深海的敬畏与对生活的思考，平安回到陆地。",
+              "protagonist_ability": "主角拥有的并非超能力，而是“深海工程经验与直觉”。这源于其长达十年的深海作业积累，能够通过声呐回波的细微频率变化判断设备故障，并利用有限的备用零件进行“战地修复”。限制在于，这种能力极度依赖主角的心理状态，在高压环境下，长期的孤独与生理疲劳会严重干扰其判断力，且修复手段仅限于物理层面的修补，无法改变深海环境本身带来的不可逆损耗。",
+              "world_basic_setting": "故事设定在近未来的“深蓝时代”，人类对深海资源的依赖达到顶峰。全球深海监测网络“海眼”是维持能源供应的命脉，而主角所在的“深海信标维护站”是其中最偏远、最枯燥的节点。社会高度工业化，人们在繁华都市中被算法精准切割，而深海维护员被视为一种高薪但高压的“流放式”职业。背景中，深海并非充满怪物的魔幻之地，而是充满了高压、低温、信号衰减与不可预测的地质变动。关键事件“深海信标失联”并非由于外星文明或超自然力量，而是因为长期缺乏维护的深海基建在极端地质运动下发生了结构性疲劳，导致全球能源网络出现致命缺口，主角作为最后一名在岗的维护员，被推向了职业生涯的十字路口。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1777624531_kh126l",
+            "image_style": {
+              "type": "watercolor"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "中年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "深色工装、胡茬、疲惫的眼神、左手腕伤疤、沉默寡言、粗糙的手掌、黑框眼镜、略显佝偻的背影、冷静的职业气质、常年佩戴的旧手表",
+              "work_en": "Echoes of the Abyss",
+              "work_zh": "深海回响"
+            },
+            "tone": "normal_ending",
+            "user_theme": "深海信标失联",
+            "_benchmark_profile": "fullready_strict",
+            "_benchmark_measurement": "fullready_nextturn",
+            "_benchmark_read_wait_s": 0.0
+          }
+        },
+        "start_ts": 1777624539.0579205,
+        "end_ts": 1777624599.0849986,
+        "provider_events": {
+          "event_count": 7,
+          "queue_wait_ms": {
+            "count": 7,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 4,
+            "min": 2580.0,
+            "max": 12412.0,
+            "mean": 6981.0,
+            "median": 6466.0,
+            "p95": 11807.35
+          },
+          "llm_success_count": 4,
+          "image_success_count": 0,
+          "request_thread_event_count": 0,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 1
+        },
+        "request_error": "timeout",
+        "attempts": [
+          {
+            "http_status": null,
+            "elapsed_s": 60.027,
+            "response_json": {
+              "status": "timeout",
+              "message": "HTTPConnectionPool(host='127.0.0.1', port=5006): Read timed out. (read timeout=60)"
+            },
+            "request_payload": {
+              "option": "开始游戏",
+              "optionIndex": 0,
+              "sceneId": null,
+              "globalState": {
+                "core_worldview": {
+                  "chapters": {
+                    "chapter1": {
+                      "conflict_end_condition": "主角通过初步排查，成功修复了核心供电模块，暂时恢复了基础通讯，但同时也确认了基站结构已无法长期支撑，必须在有限时间内完成核心数据的备份与关键部件的加固。",
+                      "main_conflict": "主角初抵深海站，发现信标失联并非简单的线路故障，而是由于基站老化导致的整体性崩塌。面对指挥中心要求“不计代价修复”的死命令，主角在职业责任感与自身安全之间产生剧烈动摇，同时还要应对深海环境带来的生理不适与孤独感。"
+                    },
+                    "chapter2": {
+                      "conflict_end_condition": "主角在险境中凭借经验成功取回零件，并完成了信标的二次校准，虽然身体受损，但信标信号强度回升至安全阈值，主角与导师达成了一种基于职业尊严的谅解。",
+                      "main_conflict": "修复工作进入深水区，主角发现关键零件短缺，必须深入危险的废弃舱段寻找替代品。在此过程中，主角与地面唯一的联络人——其疏远已久的导师产生分歧，导师坚持要主角冒险，而主角开始质疑这份工作的意义，思考自己是否为了这份“铁饭碗”牺牲了太多生活。"
+                    },
+                    "chapter3": {
+                      "conflict_end_condition": "主角选择在信号稳定后撤离，信标维持了基本运行，但因结构受损，信号在未来几年内仍会间歇性波动。主角带着一身伤病回到陆地，虽然没能成为英雄，也没能挽回所有失去的家庭时光，但内心获得了对职业生涯的释然。",
+                      "main_conflict": "信标彻底修复，但基站发生不可逆的结构断裂，主角面临最后抉择：是强行留守以确保信号百分之百稳定，还是在信号趋于平稳后立即撤离。此时，主角意识到无论如何选择，这份工作都将终结，而他必须面对回到陆地后，那个早已因他长期缺席而变得陌生的家庭。"
+                    }
+                  },
+                  "characters": {},
+                  "forces": {},
+                  "game_style": "沉浸式现实主义深海模拟，强调幽闭环境下的心理博弈与职业素养。画面冷峻写实，音效侧重于深海的压抑低鸣与机械运作的金属质感，营造一种在庞大自然面前，人类个体微小而坚韧的叙事氛围。",
+                  "main_quest": "主角受命前往深海监测站，修复失联的“深海信标”。目标是恢复能源网络，确保城市供电稳定。步骤包括：下潜至深海基站、排查故障点、在资源匮乏的条件下进行物理修复、并最终决定是否在基站结构彻底崩溃前撤离。挑战在于，主角不仅要面对严苛的物理环境，还要处理与地面指挥中心日益疏离的沟通，以及面对个人职业生涯与家庭承诺之间的抉择。最终目标并非拯救世界，而是完成这份职业使命，并带着对深海的敬畏与对生活的思考，平安回到陆地。",
+                  "protagonist_ability": "主角拥有的并非超能力，而是“深海工程经验与直觉”。这源于其长达十年的深海作业积累，能够通过声呐回波的细微频率变化判断设备故障，并利用有限的备用零件进行“战地修复”。限制在于，这种能力极度依赖主角的心理状态，在高压环境下，长期的孤独与生理疲劳会严重干扰其判断力，且修复手段仅限于物理层面的修补，无法改变深海环境本身带来的不可逆损耗。",
+                  "world_basic_setting": "故事设定在近未来的“深蓝时代”，人类对深海资源的依赖达到顶峰。全球深海监测网络“海眼”是维持能源供应的命脉，而主角所在的“深海信标维护站”是其中最偏远、最枯燥的节点。社会高度工业化，人们在繁华都市中被算法精准切割，而深海维护员被视为一种高薪但高压的“流放式”职业。背景中，深海并非充满怪物的魔幻之地，而是充满了高压、低温、信号衰减与不可预测的地质变动。关键事件“深海信标失联”并非由于外星文明或超自然力量，而是因为长期缺乏维护的深海基建在极端地质运动下发生了结构性疲劳，导致全球能源网络出现致命缺口，主角作为最后一名在岗的维护员，被推向了职业生涯的十字路口。"
+                },
+                "flow_worldline": {
+                  "characters": {},
+                  "current_chapter": "chapter1",
+                  "environment": {}
+                },
+                "game_id": "game_1777624531_kh126l",
+                "image_style": {
+                  "type": "watercolor"
+                },
+                "meta": {
+                  "detail_async": true
+                },
+                "protagonist_canonical": {
+                  "age_range": "中年",
+                  "gender": "男性",
+                  "name_en": "Lin Yuan",
+                  "name_zh": "林远",
+                  "signature_look_keywords": "深色工装、胡茬、疲惫的眼神、左手腕伤疤、沉默寡言、粗糙的手掌、黑框眼镜、略显佝偻的背影、冷静的职业气质、常年佩戴的旧手表",
+                  "work_en": "Echoes of the Abyss",
+                  "work_zh": "深海回响"
+                },
+                "tone": "normal_ending",
+                "user_theme": "深海信标失联",
+                "_benchmark_profile": "fullready_strict",
+                "_benchmark_measurement": "fullready_nextturn",
+                "_benchmark_read_wait_s": 0.0
+              }
+            },
+            "start_ts": 1777624539.0579205,
+            "end_ts": 1777624599.0849986,
+            "provider_events": {
+              "event_count": 7,
+              "queue_wait_ms": {
+                "count": 7,
+                "min": 0.0,
+                "max": 0.0,
+                "mean": 0.0,
+                "median": 0.0,
+                "p95": 0.0
+              },
+              "latency_ms": {
+                "count": 4,
+                "min": 2580.0,
+                "max": 12412.0,
+                "mean": 6981.0,
+                "median": 6466.0,
+                "p95": 11807.35
+              },
+              "llm_success_count": 4,
+              "image_success_count": 0,
+              "request_thread_event_count": 0,
+              "provider_429_count": 0,
+              "provider_timeout_count": 0,
+              "shared_backoff_wait_ms_total": 0,
+              "retry_heavy_event_count": 0,
+              "main_character_event_count": 0,
+              "scene_image_event_count": 1
+            },
+            "request_error": "timeout"
+          }
+        ],
+        "attempt_count": 1,
+        "request_elapsed_s": 60.027,
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "timeout",
+        "has_scene": false,
+        "has_image": false
+      },
+      "second_click": {},
+      "full_ready": {},
+      "placeholder": false,
+      "transport_success": false,
+      "strict_success": false,
+      "failure_bucket": "first_click_timeout",
+      "cache_path_classification": "first_click_timeout",
+      "cache_hit_reason": null,
+      "cache_miss_reason": null,
+      "global_state_key_drift_detected": false,
+      "scene_id_mismatch_detected": false,
+      "selected_option_mismatch_detected": false,
+      "success": false
+    }
+  ]
+}

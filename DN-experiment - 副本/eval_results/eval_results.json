@@ -1,0 +1,2685 @@
+{
+  "meta": {
+    "eval_time_utc": "2026-04-16T14:24:48.137293+00:00",
+    "annotator_a": {
+      "name": "claude-haiku",
+      "model": "claude-haiku-4-5-20251001-thinking"
+    },
+    "annotator_b": {
+      "name": "gemini-3.1-pro",
+      "model": "gemini-3.1-pro-preview"
+    },
+    "arbitrator": {
+      "name": "claude-opus",
+      "model": "claude-opus-4-6"
+    },
+    "total_games": 44
+  },
+  "kappa": {
+    "character_consistency": 0.577513966480447,
+    "fluency": 0.3458149779735683,
+    "overall_quality": 0.5671641791044775,
+    "overall": 0.6201783492326836
+  },
+  "results": [
+    {
+      "game_id": "game_1776255235_2h5kgd",
+      "folder": "game_1776255235_2h5kgd",
+      "theme_item_id": 4,
+      "annotator_a": {
+        "name": "claude-haiku",
+        "model": "claude-haiku-4-5-20251001-thinking",
+        "scores": {
+          "character_consistency": {
+            "score": 2,
+            "reason": "故事存在严重的角色混乱问题。同一个站长角色前后有不同名字（刘建国→林峰）和背景设定，出现多个未曾介绍的角色，且主角的主要任务在段落间突然转变（信标修复→氧气系统修复），显示故事内部设定不一致。"
+          },
+          "fluency": {
+            "score": 3,
+            "reason": "单个句子语言通顺，环境描写和氛围营造较好，但段落间的逻辑转承突兀，场景切换生硬，整体叙事连贯性不足。故事似乎由两个不同版本拼接而成，阅读体验受影响。"
+          },
+          "overall_quality": {
+            "score": 2,
+            "reason": "深海科研站设定有趣，紧张氛围初具规模，但致命缺陷是故事结构混乱——角色身份和设定的突然改变破坏了叙事完整性，显示为未妥善整合的多个版本。核心内容逻辑联系不明确，大大降低了故事可读性。"
+          }
+        }
+      },
+      "annotator_b": {
+        "name": "gemini-3.1-pro",
+        "model": "gemini-3.1-pro-preview",
+        "scores": {
+          "character_consistency": {
+            "score": 2,
+            "reason": "故事前后站长的名字从“刘建国”突变为“林峰”，出现了明显的角色设定冲突与崩塌。"
+          },
+          "fluency": {
+            "score": 3,
+            "reason": "单段文字的语言表达较为通顺，但前后两部分存在从第一人称（“我陈维海”）到第三人称（“陈维海”）的视角突变，导致阅读体验割裂。"
+          },
+          "overall_quality": {
+            "score": 2,
+            "reason": "虽然深海危机的氛围渲染较好，但叙事视角的突变以及关键角色名字的前后矛盾，严重破坏了故事的连贯性与逻辑。"
+          }
+        }
+      },
+      "arbitration": null,
+      "final_scores": {
+        "character_consistency": {
+          "score": 2,
+          "reason": "平均值 (2+2)/2=2.0",
+          "source": "average"
+        },
+        "fluency": {
+          "score": 3,
+          "reason": "平均值 (3+3)/2=3.0",
+          "source": "average"
+        },
+        "overall_quality": {
+          "score": 2,
+          "reason": "平均值 (2+2)/2=2.0",
+          "source": "average"
+        }
+      },
+      "dims_arbitrated": []
+    },
+    {
+      "game_id": "game_1776255789_cr3twy",
+      "folder": "game_1776255789_cr3twy",
+      "theme_item_id": 51,
+      "annotator_a": {
+        "name": "claude-haiku",
+        "model": "claude-haiku-4-5-20251001-thinking",
+        "scores": {
+          "character_consistency": {
+            "score": 4,
+            "reason": "林墨涵表现一致，始终体现专业、谨慎、观察细致的人设。言行符合鉴定师身份，展现出职业操守与怀疑精神的内在矛盾。虽然故事篇幅有限，但现有表现未见OOC。"
+          },
+          "fluency": {
+            "score": 4,
+            "reason": "语言表达整体流畅优美，景物描写细致（如'秋日午后阳光'等），人物心理刻画自然。仅在'让我皱起了眉头那种深邃的群青蓝'处有轻微表达瑕疵。叙述节奏控制得当。"
+          },
+          "overall_quality": {
+            "score": 3,
+            "reason": "故事设置吸引人，冲突清晰（金钱诱惑vs职业操守），文笔优质，悬念十足。但故事发展不足，在平缓处结尾，缺乏真正的转折或高潮。第一段第一人称转二段第三人称的切换也略显生硬。作为完整故事略显不足。"
+          }
+        }
+      },
+      "annotator_b": {
+        "name": "gemini-3.1-pro",
+        "model": "gemini-3.1-pro-preview",
+        "scores": {
+          "character_consistency": {
+            "score": 3,
+            "reason": "主角的专业鉴定师人设基本保持一致，但委托人陈先生关于画作来源的说法前后矛盾（先说是自己购得，后说是父亲遗产），且主角未对这一明显改口作出反应。"
+          },
+          "fluency": {
+            "score": 5,
+            "reason": "文字表达非常流畅自然，场景与细节描写细腻，氛围营造到位，语言具备较好的文学美感。"
+          },
+          "overall_quality": {
+            "score": 3,
+            "reason": "故事悬疑感较好，但存在明显的叙事视角断裂（由第一人称突变为第三人称），且委托人证词前后矛盾的逻辑漏洞未被合理处理，影响了整体连贯性。"
+          }
+        }
+      },
+      "arbitration": null,
+      "final_scores": {
+        "character_consistency": {
+          "score": 4,
+          "reason": "平均值 (4+3)/2=3.5",
+          "source": "average"
+        },
+        "fluency": {
+          "score": 4,
+          "reason": "平均值 (4+5)/2=4.5",
+          "source": "average"
+        },
+        "overall_quality": {
+          "score": 3,
+          "reason": "平均值 (3+3)/2=3.0",
+          "source": "average"
+        }
+      },
+      "dims_arbitrated": []
+    },
+    {
+      "game_id": "game_1776255962_y77z4j",
+      "folder": "game_1776255962_y77z4j",
+      "theme_item_id": 52,
+      "annotator_a": {
+        "name": "claude-haiku",
+        "model": "claude-haiku-4-5-20251001-thinking",
+        "scores": {
+          "character_consistency": {
+            "score": 3,
+            "reason": "角色基本行为一致（谨慎、理性、具技术背景），但叙述视角从第一人称突然转为第三人称，造成叙事割裂，影响了角色呈现的连贯性。无预设角色定义的情况下，基于内部自洽性评判。"
+          },
+          "fluency": {
+            "score": 4,
+            "reason": "语言总体通顺自然，细节描写生动有力（如光线、手指等），节奏感强。但存在个别标点符号问题（'封面那是'应分隔），视角转换处缺少过渡。"
+          },
+          "overall_quality": {
+            "score": 4,
+            "reason": "故事设定引人入胜，悬念营造得当，逻辑链条清晰（邮件→解密→揭露真相）。细节设置合理增强可信度。但叙述结构需优化（视角转换生硬），故事框架虽有张力但尚未真正展开。"
+          }
+        }
+      },
+      "annotator_b": {
+        "name": "gemini-3.1-pro",
+        "model": "gemini-3.1-pro-preview",
+        "scores": {
+          "character_consistency": {
+            "score": 5,
+            "reason": "虽然缺乏外部设定参考，但主角在故事内部的行为逻辑、性格特征（如推眼镜的习惯、面对阴谋时的紧张与专注）保持高度一致，没有出现矛盾。"
+          },
+          "fluency": {
+            "score": 4,
+            "reason": "文字表达通顺自然，场景描写具有画面感，悬疑氛围渲染到位。但前后两段存在从第一人称（我）到第三人称（林墨轩）的突兀转换，略微影响了阅读的连贯性。"
+          },
+          "overall_quality": {
+            "score": 4,
+            "reason": "故事悬疑感强，情节紧凑且引人入胜，线索铺陈合理。唯一的明显瑕疵是叙事视角的突然切换，但整体依然是一段质量较好的悬疑故事。"
+          }
+        }
+      },
+      "arbitration": null,
+      "final_scores": {
+        "character_consistency": {
+          "score": 4,
+          "reason": "平均值 (3+5)/2=4.0",
+          "source": "average"
+        },
+        "fluency": {
+          "score": 4,
+          "reason": "平均值 (4+4)/2=4.0",
+          "source": "average"
+        },
+        "overall_quality": {
+          "score": 4,
+          "reason": "平均值 (4+4)/2=4.0",
+          "source": "average"
+        }
+      },
+      "dims_arbitrated": [
+        "character_consistency"
+      ]
+    },
+    {
+      "game_id": "game_1776228172_wxlhhg",
+      "folder": "theme_001_game_1776228172_wxlhhg",
+      "theme_item_id": 1,
+      "annotator_a": {
+        "name": "claude-haiku",
+        "model": "claude-haiku-4-5-20251001-thinking",
+        "scores": {
+          "character_consistency": {
+            "score": 3,
+            "reason": "主要人物在单独的叙述段落内行为一致，但两部分存在矛盾：第一部分称有'九年经验'，第二部分改为'七年'；人称突然从第二人称'你'转为第三人称'他/主角'。这些不连贯之处破坏了角色的统一性。"
+          },
+          "fluency": {
+            "score": 3,
+            "reason": "单独看各段落的文笔优美、语法正确、叙述流畅。但整体存在严重的结构问题：第一部分和第二部分人称不统一，第一部分在'远处，马厩'处突然中断，两段之间缺乏衔接过渡。这些问题导致阅读体验割裂。"
+          },
+          "overall_quality": {
+            "score": 3,
+            "reason": "设定吸引人（古代驿站、失踪使团、神秘访客），细节描写细致（油灯、驼铃、药香等），悬念营造有力，人物心理描写深入。但这显然是一个未完成的草稿，两个版本混杂在一起，结构混乱，故事线索不清。内容质量有潜力但呈现质量不理想。"
+          }
+        }
+      },
+      "annotator_b": {
+        "name": "gemini-3.1-pro",
+        "model": "gemini-3.1-pro-preview",
+        "scores": {
+          "character_consistency": {
+            "score": 3,
+            "reason": "无外部设定参考，但文本前后存在人称视角突变（第二人称转第三人称）及背景细节冲突（如九年经验变为七年），导致角色连贯性受损，不过性格基调大体保持一致。"
+          },
+          "fluency": {
+            "score": 4,
+            "reason": "段落内部语言非常流畅，环境描写生动，氛围渲染极佳。但第一部分结尾存在未完断句，且两部分拼接生硬，略微影响了整体的阅读顺畅感。"
+          },
+          "overall_quality": {
+            "score": 3,
+            "reason": "故事悬疑感强，细节丰富，文笔优美。但文本结构存在明显断裂，第一部分未完结且与第二部分在人称、时间线上存在错位，像是两段不同草稿的生硬拼接，破坏了整体连贯性。"
+          }
+        }
+      },
+      "arbitration": null,
+      "final_scores": {
+        "character_consistency": {
+          "score": 3,
+          "reason": "平均值 (3+3)/2=3.0",
+          "source": "average"
+        },
+        "fluency": {
+          "score": 4,
+          "reason": "平均值 (3+4)/2=3.5",
+          "source": "average"
+        },
+        "overall_quality": {
+          "score": 3,
+          "reason": "平均值 (3+3)/2=3.0",
+          "source": "average"
+        }
+      },
+      "dims_arbitrated": []
+    },
+    {
+      "game_id": "game_1776228558_hltrv2",
+      "folder": "theme_002_game_1776228558_hltrv2",
+      "theme_item_id": 2,
+      "annotator_a": {
+        "name": "claude-haiku",
+        "model": "claude-haiku-4-5-20251001-thinking",
+        "scores": {
+          "character_consistency": {
+            "score": 2,
+            "reason": "故事存在严重设定矛盾：前半部分队长是'老陈'，后半部分队长变成'老葛'；同一事件用两种不同视角（第二人称和第三人称）讲述，导致角色身份和叙述框架混乱，表现为设定崩坏。"
+          },
+          "fluency": {
+            "score": 4,
+            "reason": "单段语言表现优秀，句式多变、比喻生动、节奏紧凑，细节描写充分。但两个部分之间的叙述视角切换毫无过渡，生硬且不自然，影响了整体连贯性。"
+          },
+          "overall_quality": {
+            "score": 3,
+            "reason": "文学和叙事质量较高，细节设定完整逼真，紧张感营造得当。但故事结构存在根本问题——似乎是两个不同版本或章节错误拼接，导致完整性和逻辑性严重受损，整体质量因此明显下降。"
+          }
+        }
+      },
+      "annotator_b": {
+        "name": "gemini-3.1-pro",
+        "model": "gemini-3.1-pro-preview",
+        "scores": {
+          "character_consistency": {
+            "score": 2,
+            "reason": "无外部设定参考，但文本前后两部分出现了严重的视角切换与角色姓名、细节冲突（如主角从'你'变为陈远，队长从老陈变为老葛），内部一致性较差。"
+          },
+          "fluency": {
+            "score": 5,
+            "reason": "语言非常流畅自然，比喻贴切，环境描写生动逼真，灾难氛围渲染极佳，极具代入感。"
+          },
+          "overall_quality": {
+            "score": 3,
+            "reason": "单段文本的文笔和悬念塑造优秀，但前后两段实为同一场景的不同版本拼接，存在严重的设定与逻辑断裂，破坏了故事的整体连贯性。"
+          }
+        }
+      },
+      "arbitration": null,
+      "final_scores": {
+        "character_consistency": {
+          "score": 2,
+          "reason": "平均值 (2+2)/2=2.0",
+          "source": "average"
+        },
+        "fluency": {
+          "score": 4,
+          "reason": "平均值 (4+5)/2=4.5",
+          "source": "average"
+        },
+        "overall_quality": {
+          "score": 3,
+          "reason": "平均值 (3+3)/2=3.0",
+          "source": "average"
+        }
+      },
+      "dims_arbitrated": []
+    },
+    {
+      "game_id": "game_1776228975_2ri3p1",
+      "folder": "theme_003_game_1776228975_2ri3p1",
+      "theme_item_id": 3,
+      "annotator_a": {
+        "name": "claude-haiku",
+        "model": "claude-haiku-4-5-20251001-thinking",
+        "scores": {
+          "character_consistency": {
+            "score": 4,
+            "reason": "主人公的行为和语言在文本内部保持一致。虽无明确设定参考，但根据文本描写（敏锐的观察力、对嗓子问题的敏感、陌生人的谨慎态度），前后场景中的角色表现都符合其身份和困境，体现了一致的人物特质。"
+          },
+          "fluency": {
+            "score": 4,
+            "reason": "文笔细致生动，比喻恰当（如'生锈的铁钉水'），对话自然流畅。各段落内部节奏掌控好，词汇选择恰当。但后半部分与前半部分在风格上有微妙差异，且时间跳跃未充分交代，影响整体顺畅度，未能达到最优。"
+          },
+          "overall_quality": {
+            "score": 4,
+            "reason": "故事设置引人入胜，人物刻画细致（柳白牙、妇人、主人公各具特色），环境描写生动，悬念充足（书座竞争、师父未完故事、孙四爷的态度）。但前后两部分逻辑连接欠妥（生病到工作缺乏过渡），时间跳跃仓促，使整体连贯性有所削弱。"
+          }
+        }
+      },
+      "annotator_b": {
+        "name": "gemini-3.1-pro",
+        "model": "gemini-3.1-pro-preview",
+        "scores": {
+          "character_consistency": {
+            "score": 2,
+            "reason": "虽无外部设定参考，但文本前后存在严重的设定冲突（师父名字从沈三省变为周慎行，茶馆名从义兴变为听涛），且叙事视角从第一人称突变为第三人称，导致角色连贯性受损。"
+          },
+          "fluency": {
+            "score": 5,
+            "reason": "文笔细腻老练，比喻生动，感官描写极具张力，语言非常流畅且富有沉浸感。"
+          },
+          "overall_quality": {
+            "score": 3,
+            "reason": "故事氛围佳、悬念设置吸引人，但前后两段存在明显的拼接痕迹，视角和核心设定的突变严重破坏了整体的逻辑与连贯性。"
+          }
+        }
+      },
+      "arbitration": null,
+      "final_scores": {
+        "character_consistency": {
+          "score": 3,
+          "reason": "平均值 (4+2)/2=3.0",
+          "source": "average"
+        },
+        "fluency": {
+          "score": 4,
+          "reason": "平均值 (4+5)/2=4.5",
+          "source": "average"
+        },
+        "overall_quality": {
+          "score": 4,
+          "reason": "平均值 (4+3)/2=3.5",
+          "source": "average"
+        }
+      },
+      "dims_arbitrated": [
+        "character_consistency"
+      ]
+    },
+    {
+      "game_id": "game_1776229804_jn6olq",
+      "folder": "theme_004_game_1776229804_jn6olq",
+      "theme_item_id": 4,
+      "annotator_a": {
+        "name": "claude-haiku",
+        "model": "claude-haiku-4-5-20251001-thinking",
+        "scores": {
+          "character_consistency": {
+            "score": 2,
+            "reason": "故事中存在严重的人物设定冲突：前段称'站长老魏魏国平'，后段又称'站长老赵赵廷安'，两人都被定位为站长但身份完全不同，造成读者困惑。叙事视角转换不清，难以判断'他'指的是哪个人物，人物身份混乱。"
+          },
+          "fluency": {
+            "score": 4,
+            "reason": "文字生动优美，开篇比喻贴切('像有人把一根生锈的铁钉缓慢旋进颅骨')，环境描写细致入微，对话节奏自然。但部分句子结构略显生硬，如'供氧循环效率你眯起眼看了两遍71'表述不够顺畅。"
+          },
+          "overall_quality": {
+            "score": 2,
+            "reason": "故事框架完整、情节设置有趣、气氛营造优秀，但严重的人物设定混乱削弱了整体质量。叙事视角的突然转换、站长身份的双重设定等问题破坏了故事的逻辑清晰度，影响了读者的理解和沉浸感。"
+          }
+        }
+      },
+      "annotator_b": {
+        "name": "gemini-3.1-pro",
+        "model": "gemini-3.1-pro-preview",
+        "scores": {
+          "character_consistency": {
+            "score": 1,
+            "reason": "文本前后存在严重的设定冲突，第一部分的站长'老魏'在第二部分变成了'老赵'，叙事视角也从第二人称突变为第三人称，内部角色设定完全断裂。"
+          },
+          "fluency": {
+            "score": 5,
+            "reason": "语言非常流畅，比喻生动，环境与心理描写极具画面感，成功营造了深海幽闭和危机四伏的紧张氛围。"
+          },
+          "overall_quality": {
+            "score": 3,
+            "reason": "单段文本的文笔和悬念设置优秀，但两段文本之间存在明显的拼接痕迹，视角和核心设定的前后矛盾严重破坏了故事的连贯性。"
+          }
+        }
+      },
+      "arbitration": null,
+      "final_scores": {
+        "character_consistency": {
+          "score": 2,
+          "reason": "平均值 (2+1)/2=1.5",
+          "source": "average"
+        },
+        "fluency": {
+          "score": 4,
+          "reason": "平均值 (4+5)/2=4.5",
+          "source": "average"
+        },
+        "overall_quality": {
+          "score": 2,
+          "reason": "平均值 (2+3)/2=2.5",
+          "source": "average"
+        }
+      },
+      "dims_arbitrated": []
+    },
+    {
+      "game_id": "game_1776230112_lxxcdu",
+      "folder": "theme_005_game_1776230112_lxxcdu",
+      "theme_item_id": 5,
+      "annotator_a": {
+        "name": "claude-haiku",
+        "model": "claude-haiku-4-5-20251001-thinking",
+        "scores": {
+          "character_consistency": {
+            "score": 4,
+            "reason": "主人公和陆晓两个角色行为一致且真实可信。主人公的焦虑、自我怀疑、对朋友的感激但不善表达都始终贯穿；陆晓的体贴细心、学霸但不傲慢的性格也稳定连贯。两人的对话与行动均符合各自设定。"
+          },
+          "fluency": {
+            "score": 4,
+            "reason": "语言表达流畅自然，句式多变富有节奏感。心理活动与外部描写结合流畅，场景转换自然。细节描写生动（\"皮肤下的纹路搏动\"、\"笔尖沙沙声\"）。唯一小瑕疵是\"味道廉价速溶咖啡\"处缺少标点，但不影响整体流畅性。"
+          },
+          "overall_quality": {
+            "score": 4,
+            "reason": "故事逻辑清晰紧凑，冲突明确（实习名额、考试形式改变、个人能力不足）。人物互动有温度，细节渲染充满压力的学生生活真实感。节奏控制得当，压力与缓解交替。唯缺乏明显的事件转折或高潮；\"皮肤纹路\"的奇幻元素留作悬念但未充分发展。作为短篇开段表现扎实。"
+          }
+        }
+      },
+      "annotator_b": {
+        "name": "gemini-3.1-pro",
+        "model": "gemini-3.1-pro-preview",
+        "scores": {
+          "character_consistency": {
+            "score": 5,
+            "reason": "虽无外部设定参考，但文本内部角色性格高度统一，陆晓的细心学霸形象与主角的焦虑刻苦前后呼应，行为逻辑完全自洽。"
+          },
+          "fluency": {
+            "score": 4,
+            "reason": "文笔细腻优美，环境与心理描写生动自然，但前后两部分存在从第二人称“你”到第三人称“他”的视角突变。"
+          },
+          "overall_quality": {
+            "score": 4,
+            "reason": "巧妙融合了魔法奇幻与大学期末焦虑，代入感强，细节丰满有趣，但人称视角的割裂略微影响了文本的整体连贯性。"
+          }
+        }
+      },
+      "arbitration": null,
+      "final_scores": {
+        "character_consistency": {
+          "score": 4,
+          "reason": "平均值 (4+5)/2=4.5",
+          "source": "average"
+        },
+        "fluency": {
+          "score": 4,
+          "reason": "平均值 (4+4)/2=4.0",
+          "source": "average"
+        },
+        "overall_quality": {
+          "score": 4,
+          "reason": "平均值 (4+4)/2=4.0",
+          "source": "average"
+        }
+      },
+      "dims_arbitrated": []
+    },
+    {
+      "game_id": "game_1776230424_2a1mur",
+      "folder": "theme_006_game_1776230424_2a1mur",
+      "theme_item_id": 6,
+      "annotator_a": {
+        "name": "claude-haiku",
+        "model": "claude-haiku-4-5-20251001-thinking",
+        "scores": {
+          "character_consistency": {
+            "score": 4,
+            "reason": "主人公作为一个有6年工作经验的报务员，其敏锐的专业直觉、对密码的分析能力、面对异常事件的谨慎反应都符合人设。父亲背景、家庭困难等细节补充充分，角色动机合理清晰"
+          },
+          "fluency": {
+            "score": 5,
+            "reason": "语言优美富有文学性，场景描写细致入微（如灯泡、汽笛、爵士乐声的多感官描写），心理描写与环境融合自然，句式灵活变化，整体节奏感强"
+          },
+          "overall_quality": {
+            "score": 4,
+            "reason": "故事构思精妙，悬念设置巧妙（神秘电报→密码→诡异访客），民国谍报背景吸引人，氛围营造出色。但文本表现形式不够完整：中间突然中断，后半部分似乎重复叙述相同情节，整体完整性受影响"
+          }
+        }
+      },
+      "annotator_b": {
+        "name": "gemini-3.1-pro",
+        "model": "gemini-3.1-pro-preview",
+        "scores": {
+          "character_consistency": {
+            "score": 3,
+            "reason": "无预设参考，角色性格和行为逻辑大体一致，但文本前后人称从第一人称突变为第三人称，且工作年限等细节存在矛盾。"
+          },
+          "fluency": {
+            "score": 4,
+            "reason": "语言表达流畅自然，环境描写生动且富有画面感，但文本中间存在明显的断裂和拼接痕迹。"
+          },
+          "overall_quality": {
+            "score": 3,
+            "reason": "悬疑氛围营造出色，开篇引人入胜，但前后两部分实为不同视角的重复草稿拼接，严重破坏了故事的连贯性和完整性。"
+          }
+        }
+      },
+      "arbitration": null,
+      "final_scores": {
+        "character_consistency": {
+          "score": 4,
+          "reason": "平均值 (4+3)/2=3.5",
+          "source": "average"
+        },
+        "fluency": {
+          "score": 4,
+          "reason": "平均值 (5+4)/2=4.5",
+          "source": "average"
+        },
+        "overall_quality": {
+          "score": 4,
+          "reason": "平均值 (4+3)/2=3.5",
+          "source": "average"
+        }
+      },
+      "dims_arbitrated": []
+    },
+    {
+      "game_id": "game_1776230732_1u2vox",
+      "folder": "theme_007_game_1776230732_1u2vox",
+      "theme_item_id": 7,
+      "annotator_a": {
+        "name": "claude-haiku",
+        "model": "claude-haiku-4-5-20251001-thinking",
+        "scores": {
+          "character_consistency": {
+            "score": 4,
+            "reason": "陆衡的行为完全符合设定：疲惫老练的货运船长、网络老手、现实而务实的决策者。其对警报的反应、对灰鹭号的熟悉吐槽、对老周信息的分析判断、对风险的理性评估，都一致地塑造了一个困难中坚韧的人物形象。没有OOC，但人物深度表现还有余地"
+          },
+          "fluency": {
+            "score": 4,
+            "reason": "语言表达流畅自然，句式结构多样有力。细节描写具体生动（\"硬质泡棉\"\"金属涩味\"），比喻贴切（\"像停尸房\"\"像医院走廊\")。叙述节奏把握恰当，内心独白自然。仅个别科技术语介绍略显生硬，但不影响整体流畅感"
+          },
+          "overall_quality": {
+            "score": 4,
+            "reason": "逻辑链条清晰有力：困境→信息→权衡→决策，环环相扣。细节呼应完整（温控警报、旧疤、林远的星图），设定吸引人（走私、灰鸥网络、锈带），两难局面富有张力。唯一不足是作为开篇/序幕，故事还未进入实际冲突和高潮，主要是氛围营造和人物铺垫；但作为开篇而言质量上乘"
+          }
+        }
+      },
+      "annotator_b": {
+        "name": "gemini-3.1-pro",
+        "model": "gemini-3.1-pro-preview",
+        "scores": {
+          "character_consistency": {
+            "score": 5,
+            "reason": "虽然无外部设定参考，但文本内部塑造的陆衡形象（疲惫、谨慎、经验丰富的底层驾驶员）在两段文本中行为与心理逻辑高度统一，完全自洽。"
+          },
+          "fluency": {
+            "score": 5,
+            "reason": "文笔成熟流畅，长短句结合得当，比喻生动贴切（如“像老人喘息”），极具画面感，完美烘托了太空废土的压抑氛围。"
+          },
+          "overall_quality": {
+            "score": 5,
+            "reason": "世界观构建自然，通过细节展现背景；矛盾冲突明确（债务危机、危险航线、不知情的新人），悬念与张力十足，极具吸引力。"
+          }
+        }
+      },
+      "arbitration": null,
+      "final_scores": {
+        "character_consistency": {
+          "score": 4,
+          "reason": "平均值 (4+5)/2=4.5",
+          "source": "average"
+        },
+        "fluency": {
+          "score": 4,
+          "reason": "平均值 (4+5)/2=4.5",
+          "source": "average"
+        },
+        "overall_quality": {
+          "score": 4,
+          "reason": "平均值 (4+5)/2=4.5",
+          "source": "average"
+        }
+      },
+      "dims_arbitrated": []
+    },
+    {
+      "game_id": "game_1776231067_5n1j4x",
+      "folder": "theme_008_game_1776231067_5n1j4x",
+      "theme_item_id": 8,
+      "annotator_a": {
+        "name": "claude-haiku",
+        "model": "claude-haiku-4-5-20251001-thinking",
+        "scores": {
+          "character_consistency": {
+            "score": 4,
+            "reason": "主人公沈觉的人设在自身逻辑内保持一致：专业素养、谨慎态度、细致观察力、隐瞒个人背景等特征始终稳定。虽无设定参考，但内部表现连贯。"
+          },
+          "fluency": {
+            "score": 3,
+            "reason": "语言本身优美流畅，文笔质量高，环境描写生动。但故事结构严重破裂：突然从11月切换到7月重新讲述同一时段，产生困惑；文末中断在'他用手机'未完。结构混乱明显减损流畅感。"
+          },
+          "overall_quality": {
+            "score": 3,
+            "reason": "有趣的设定与优秀的氛围营造（悬念、隐喻、心理层次），但致命缺陷是双重叙述导致时间线混乱、逻辑不清。无法判断是特殊叙述结构还是提交错误。整体质量降至一般水平。"
+          }
+        }
+      },
+      "annotator_b": {
+        "name": "gemini-3.1-pro",
+        "model": "gemini-3.1-pro-preview",
+        "scores": {
+          "character_consistency": {
+            "score": 3,
+            "reason": "无预设参考，角色核心性格（专业、敏锐）保持一致，但文本前后存在第一与第三人称视角的突变，且导师姓名等细节设定出现前后矛盾。"
+          },
+          "fluency": {
+            "score": 4,
+            "reason": "文笔细腻，环境与细节描写极具氛围感，语言流畅自然；但文本中途断裂并重新开始，且存在未写完的断句，略微影响阅读体验。"
+          },
+          "overall_quality": {
+            "score": 3,
+            "reason": "悬疑氛围与建筑测绘专业细节结合出色，引人入胜；但文本明显是两个不同版本开头的拼接，结构断裂且未完结，严重影响整体完成度。"
+          }
+        }
+      },
+      "arbitration": null,
+      "final_scores": {
+        "character_consistency": {
+          "score": 4,
+          "reason": "平均值 (4+3)/2=3.5",
+          "source": "average"
+        },
+        "fluency": {
+          "score": 4,
+          "reason": "平均值 (3+4)/2=3.5",
+          "source": "average"
+        },
+        "overall_quality": {
+          "score": 3,
+          "reason": "平均值 (3+3)/2=3.0",
+          "source": "average"
+        }
+      },
+      "dims_arbitrated": []
+    },
+    {
+      "game_id": "game_1776231437_m2lel5",
+      "folder": "theme_009_game_1776231437_m2lel5",
+      "theme_item_id": 9,
+      "annotator_a": {
+        "name": "claude-haiku",
+        "model": "claude-haiku-4-5-20251001-thinking",
+        "scores": {
+          "character_consistency": {
+            "score": 4,
+            "reason": "角色核心特质一致，主人公的执着、灰息后遗症症状、对种植的坚持等特征贯穿始终；但故事突然从第二人称切换到第三人称叙述同一人物，且两段场景细节不完全对应，造成结构混乱，影响了一致性的完整度。"
+          },
+          "fluency": {
+            "score": 5,
+            "reason": "文字流畅优美，感官细节丰富深入（冷、锈、青苦、刺痒等）；比喻恰当生动（牛奶、砂纸、血管斑块等）；句式节奏变化得当，对话自然；没有语法错误，整体阅读体验顺畅。"
+          },
+          "overall_quality": {
+            "score": 4,
+            "reason": "设定新颖有张力（灰息后背景、管道老化vs坚持种植的冲突），角色动机清晰，社会冲突（老周的反对）增加戏剧性。但第一段和第二段的关系不明确，似乎是同一事件的两种视角却细节不符，削弱了叙事连贯性。整体文字质量和故事框架优秀，但结构选择有明显问题。"
+          }
+        }
+      },
+      "annotator_b": {
+        "name": "gemini-3.1-pro",
+        "model": "gemini-3.1-pro-preview",
+        "scores": {
+          "character_consistency": {
+            "score": 2,
+            "reason": "前后段落存在严重的视角（第二人称突变第三人称）和设定割裂，NPC老周/周德厚的认知状态前后矛盾，内部一致性较差。"
+          },
+          "fluency": {
+            "score": 5,
+            "reason": "语言表达非常流畅，环境描写细腻生动，比喻贴切，废土氛围营造得十分出色。"
+          },
+          "overall_quality": {
+            "score": 3,
+            "reason": "单看段落文笔优秀，但前后两段存在明显的拼接痕迹和逻辑断层（如管道材质由PVC变为钢管），严重影响了整体连贯性。"
+          }
+        }
+      },
+      "arbitration": null,
+      "final_scores": {
+        "character_consistency": {
+          "score": 3,
+          "reason": "平均值 (4+2)/2=3.0",
+          "source": "average"
+        },
+        "fluency": {
+          "score": 5,
+          "reason": "平均值 (5+5)/2=5.0",
+          "source": "average"
+        },
+        "overall_quality": {
+          "score": 4,
+          "reason": "平均值 (4+3)/2=3.5",
+          "source": "average"
+        }
+      },
+      "dims_arbitrated": [
+        "character_consistency"
+      ]
+    },
+    {
+      "game_id": "game_1776231797_lh74ni",
+      "folder": "theme_010_game_1776231797_lh74ni",
+      "theme_item_id": 10,
+      "annotator_a": {
+        "name": "claude-haiku",
+        "model": "claude-haiku-4-5-20251001-thinking",
+        "scores": {
+          "character_consistency": {
+            "score": 1,
+            "reason": "故事存在根本性的人物替换问题：前半部分主角为'沈拓'，后半部分突然变成'沈屿'；女性伙伴也从'季鸢'变成'周宁'；叙述视角从第二人称('你')突变为第三人称('他')。这不是偶尔崩人设，而是整个叙事框架的完全错乱，看似两个不同版本的故事被误拼接。"
+          },
+          "fluency": {
+            "score": 4,
+            "reason": "单个段落的文字质量极高，景物描写细致生动，句子结构优美，语言自然流畅。但两部分的拼接方式非常生硬——从'他还说，老周出事那天'直接跳到'大巴在棠原收费站停下来的时候'，毫无过渡，严重破坏整体连贯性。"
+          },
+          "overall_quality": {
+            "score": 2,
+            "reason": "虽然文笔优秀、氛围营造出色，具有很强的代入感和吸引力，但故事存在致命的结构问题：人物身份混乱、叙述视角颠倒、情节设定自相矛盾。整体看起来像是两个不同初稿版本的错误拼接，而非完整成稿，严重影响可读性。"
+          }
+        }
+      },
+      "annotator_b": {
+        "name": "gemini-3.1-pro",
+        "model": "gemini-3.1-pro-preview",
+        "scores": {
+          "character_consistency": {
+            "score": 1,
+            "reason": "文本前后出现严重的角色与人称断裂，前半段主角为'沈拓'（第二人称），后半段突变为'沈屿'（第三人称），配角名字也完全改变，内部一致性极差。"
+          },
+          "fluency": {
+            "score": 5,
+            "reason": "语言非常流畅，环境描写细腻生动，比喻精妙，悬疑氛围营造得十分出色。"
+          },
+          "overall_quality": {
+            "score": 3,
+            "reason": "单段文本的文笔与氛围极佳，但前后两段明显是同一故事的不同版本拼接，导致叙事连贯性和整体逻辑完全断裂。"
+          }
+        }
+      },
+      "arbitration": null,
+      "final_scores": {
+        "character_consistency": {
+          "score": 1,
+          "reason": "平均值 (1+1)/2=1.0",
+          "source": "average"
+        },
+        "fluency": {
+          "score": 4,
+          "reason": "平均值 (4+5)/2=4.5",
+          "source": "average"
+        },
+        "overall_quality": {
+          "score": 2,
+          "reason": "平均值 (2+3)/2=2.5",
+          "source": "average"
+        }
+      },
+      "dims_arbitrated": []
+    },
+    {
+      "game_id": "game_1776232154_6ymro3",
+      "folder": "theme_011_game_1776232154_6ymro3",
+      "theme_item_id": 11,
+      "annotator_a": {
+        "name": "claude-haiku",
+        "model": "claude-haiku-4-5-20251001-thinking",
+        "scores": {
+          "character_consistency": {
+            "score": 4,
+            "reason": "虽然无预设角色定义，但主角作为专业声学工程师的身份与其理性分析、逐步探查的行为一致；秦远洋的沉着隐晦与赵铎的冷漠直率也都符合其角色气质，无明显OOC现象。"
+          },
+          "fluency": {
+            "score": 5,
+            "reason": "文句通顺自然，比喻恰当生动（如'消化道''毛细血管'等），节奏变化有致，细节描写精准，心理活动刻画细腻，整体语言表现优美流畅。"
+          },
+          "overall_quality": {
+            "score": 5,
+            "reason": "故事逻辑严密、连贯性强；通过信息的递进式揭露制造层层悬念；极地隔离的设定、神秘声源、失踪队员等元素交织，氛围营造出众；融合科幻与恐怖风格，极具吸引力。"
+          }
+        }
+      },
+      "annotator_b": {
+        "name": "gemini-3.1-pro",
+        "model": "gemini-3.1-pro-preview",
+        "scores": {
+          "character_consistency": {
+            "score": 5,
+            "reason": "虽然无外部设定参考，但故事内部建立的角色形象（如主角的声学工程师职业素养、科考队员的疲惫与神秘感）非常鲜明且全程保持一致，行为与对话高度符合其身份与所处环境。"
+          },
+          "fluency": {
+            "score": 5,
+            "reason": "语言非常流畅且富有表现力，比喻精妙（如'深海生物的消化道'），环境与感官描写细腻真实，极具沉浸感，有效烘托了压抑、悬疑的氛围。"
+          },
+          "overall_quality": {
+            "score": 5,
+            "reason": "整体质量优秀。叙事节奏把控极佳，悬疑感层层递进（从神秘嗡鸣到被划掉的名字，再到前任留下的诡异笔记），逻辑严密，故事极具吸引力。"
+          }
+        }
+      },
+      "arbitration": null,
+      "final_scores": {
+        "character_consistency": {
+          "score": 4,
+          "reason": "平均值 (4+5)/2=4.5",
+          "source": "average"
+        },
+        "fluency": {
+          "score": 5,
+          "reason": "平均值 (5+5)/2=5.0",
+          "source": "average"
+        },
+        "overall_quality": {
+          "score": 5,
+          "reason": "平均值 (5+5)/2=5.0",
+          "source": "average"
+        }
+      },
+      "dims_arbitrated": []
+    },
+    {
+      "game_id": "game_1776232492_uw88bz",
+      "folder": "theme_012_game_1776232492_uw88bz",
+      "theme_item_id": 12,
+      "annotator_a": {
+        "name": "claude-haiku",
+        "model": "claude-haiku-4-5-20251001-thinking",
+        "scores": {
+          "character_consistency": {
+            "score": 4,
+            "reason": "主角行为与隐含设定基本一致。作为失去父亲的工匠之子，从麻木哀悼到逐渐面对现实的心理过程自然流畅。对钟表的专业敏感度与工坊环境的熟悉感都体现得很好。唯一小瑕疵是第二部分视角从'你'转为'他'，略显突兀。"
+          },
+          "fluency": {
+            "score": 4,
+            "reason": "文字表达整体优美流畅，修辞恰当生动。开场有力，段落转接自然，细节描写精致。语法无明显错误。缺憾在于视角变换(第二人称转第三人称)处理不够平顺，某些句式略显冗长，但不影响整体可读性。"
+          },
+          "overall_quality": {
+            "score": 4,
+            "reason": "故事逻辑清晰有力。设定精妙(维多利亚时期伦敦工坊)，悬念设置得当(神秘债务、未完成遗作、人物面临的困境)，细节铺垫充分。意象运用巧妙(停摆的钟=停滞的生活)。作为开篇片段表现卓越，但作为完整作品尚未展开足够深度。故事信息层次丰富，为后续发展留足空间。"
+          }
+        }
+      },
+      "annotator_b": {
+        "name": "gemini-3.1-pro",
+        "model": "gemini-3.1-pro-preview",
+        "scores": {
+          "character_consistency": {
+            "score": 4,
+            "reason": "虽无预设设定，但角色展现出的钟表匠专业素养与克制悲痛的性格在内部逻辑上高度自洽。扣分点在于文本中途出现了从第二人称'你'到第三人称'他'的视角切换瑕疵。"
+          },
+          "fluency": {
+            "score": 5,
+            "reason": "文笔细腻优美，比喻生动贴切（如'像一颗尚未引爆的哑弹'），环境与感官描写极具沉浸感，叙事节奏自然流畅。"
+          },
+          "overall_quality": {
+            "score": 5,
+            "reason": "故事结构紧凑，氛围渲染出色，将亲人离世的悲痛与现实的重压（巨额债务、未竟遗作）巧妙结合，悬念设置引人入胜，极具文学张力。"
+          }
+        }
+      },
+      "arbitration": null,
+      "final_scores": {
+        "character_consistency": {
+          "score": 4,
+          "reason": "平均值 (4+4)/2=4.0",
+          "source": "average"
+        },
+        "fluency": {
+          "score": 4,
+          "reason": "平均值 (4+5)/2=4.5",
+          "source": "average"
+        },
+        "overall_quality": {
+          "score": 4,
+          "reason": "平均值 (4+5)/2=4.5",
+          "source": "average"
+        }
+      },
+      "dims_arbitrated": []
+    },
+    {
+      "game_id": "game_1776232915_mj2xb3",
+      "folder": "theme_013_game_1776232915_mj2xb3",
+      "theme_item_id": 13,
+      "annotator_a": {
+        "name": "claude-haiku",
+        "model": "claude-haiku-4-5-20251001-thinking",
+        "scores": {
+          "character_consistency": {
+            "score": 4,
+            "reason": "主角的性格设定在故事中基本保持一致——工匠型的理性冷静、对街坊的情感、对父亲事件的心结。行为动机清晰，虽然存在视角转换问题（从'你'到'主角'），但不影响角色本身的一致性。"
+          },
+          "fluency": {
+            "score": 3,
+            "reason": "前半部分语言优美流畅，感官描写生动（如'电子唢呐'、'窗花呼吸感')。但第二部分突然改用第三人称'主角'替代第二人称'你'，造成视角不一致；后半部分文本被中断，整体连贯性受损。"
+          },
+          "overall_quality": {
+            "score": 4,
+            "reason": "设定创意独特——赛博朋克背景融合传统工艺，冲突设计复层（经济困难、心理创伤、社区信任危机）。前半段细节描写和人物关系塑造优秀，故事逻辑清晰。但文本结构问题和在高潮处被截断降低了完成度。"
+          }
+        }
+      },
+      "annotator_b": {
+        "name": "gemini-3.1-pro",
+        "model": "gemini-3.1-pro-preview",
+        "scores": {
+          "character_consistency": {
+            "score": 1,
+            "reason": "前后文存在严重的设定冲突，包括叙事视角切换（第二人称变第三人称）、合同金额（三十七万变七万二）、周婶的年龄与背景变化等，角色与背景设定完全割裂。"
+          },
+          "fluency": {
+            "score": 4,
+            "reason": "段落内部语言通顺自然，描写细腻生动，赛博朋克与市井气息结合得很好，但结尾处突然中断略微影响了阅读体验。"
+          },
+          "overall_quality": {
+            "score": 2,
+            "reason": "虽然文笔较好且氛围渲染出色，但前后两部分拼接痕迹明显，导致人称、设定和剧情出现重大逻辑断裂，且故事结尾未完成，严重破坏了整体连贯性。"
+          }
+        }
+      },
+      "arbitration": null,
+      "final_scores": {
+        "character_consistency": {
+          "score": 2,
+          "reason": "平均值 (4+1)/2=2.5",
+          "source": "average"
+        },
+        "fluency": {
+          "score": 4,
+          "reason": "平均值 (3+4)/2=3.5",
+          "source": "average"
+        },
+        "overall_quality": {
+          "score": 3,
+          "reason": "平均值 (4+2)/2=3.0",
+          "source": "average"
+        }
+      },
+      "dims_arbitrated": [
+        "character_consistency",
+        "overall_quality"
+      ]
+    },
+    {
+      "game_id": "game_1776233273_9y1320",
+      "folder": "theme_014_game_1776233273_9y1320",
+      "theme_item_id": 14,
+      "annotator_a": {
+        "name": "claude-haiku",
+        "model": "claude-haiku-4-5-20251001-thinking",
+        "scores": {
+          "character_consistency": {
+            "score": 4,
+            "reason": "巴图尔的人物设定贯穿始终，心理状态、行为逻辑一致。但故事在第二部分视角从第二人称'你'切换到第三人称'巴图尔'，这种叙述视角的突然转变略显生硬，影响了角色塑造的连贯性。"
+          },
+          "fluency": {
+            "score": 4,
+            "reason": "文字表达优美流畅，意象生动（如'像一块被反复搓洗褪色的旧毯子'），环境描写细致。但故事分为两个似乎重复叙述同一事件的部分，视角突然切换，段落用'---'分割，整体结构布局不够清晰，影响阅读连贯性。"
+          },
+          "overall_quality": {
+            "score": 4,
+            "reason": "作品具有很高的文学价值：社会意识深刻，人物心理层次丰富，细节刻画到位（冻伤、草场退化、人口流失）。但结构不完整——似乎是中篇小说的节选；结尾戛然而止，缺乏明确的事件转折或决择结果；两部分重复叙述同一事件且视角混乱，降低了作品的完整度和逻辑清晰度。"
+          }
+        }
+      },
+      "annotator_b": {
+        "name": "gemini-3.1-pro",
+        "model": "gemini-3.1-pro-preview",
+        "scores": {
+          "character_consistency": {
+            "score": 2,
+            "reason": "虽然角色的性格底色基本一致，但文本前后存在严重的物理设定冲突（父亲的残疾部位从右手变为右腿，工资设定改变），且人称视角发生突变。"
+          },
+          "fluency": {
+            "score": 4,
+            "reason": "文笔细腻流畅，比喻生动，环境与心理描写极具画面感，但文本中间存在未完结的生硬拼接，略微影响阅读体验。"
+          },
+          "overall_quality": {
+            "score": 3,
+            "reason": "故事主题深刻，氛围渲染优秀，文学性强，但前后两段文本的强行拼接和设定割裂严重破坏了故事的完整性和连贯性。"
+          }
+        }
+      },
+      "arbitration": null,
+      "final_scores": {
+        "character_consistency": {
+          "score": 3,
+          "reason": "平均值 (4+2)/2=3.0",
+          "source": "average"
+        },
+        "fluency": {
+          "score": 4,
+          "reason": "平均值 (4+4)/2=4.0",
+          "source": "average"
+        },
+        "overall_quality": {
+          "score": 4,
+          "reason": "平均值 (4+3)/2=3.5",
+          "source": "average"
+        }
+      },
+      "dims_arbitrated": [
+        "character_consistency"
+      ]
+    },
+    {
+      "game_id": "game_1776233590_wu3cmj",
+      "folder": "theme_015_game_1776233590_wu3cmj",
+      "theme_item_id": 15,
+      "annotator_a": {
+        "name": "claude-haiku",
+        "model": "claude-haiku-4-5-20251001-thinking",
+        "scores": {
+          "character_consistency": {
+            "score": 4,
+            "reason": "主角陆昭的性格设定在故事中保持一致：疲惫的技师、细致的观察者、谨慎的决策者。从拒绝秦漫到最终冒险解密的过程逻辑清晰，心理活动合理。虽然无角色设定参考，但故事内部塑造的人物行为、语言、决策相对协调统一。"
+          },
+          "fluency": {
+            "score": 4,
+            "reason": "语言表达通顺自然，文笔优美成熟。开场生动（焊锡笔的比喻）、环境描写细致压抑、信息透露循序渐进。'你'转换为'他'的视角变换虽具创新，但叙事流畅。句式长短适当，节奏把握得当，无明显语法错误。"
+          },
+          "overall_quality": {
+            "score": 4,
+            "reason": "逻辑链条清晰（睡觉→召唤→秦漫→两难→抉择），世界观设定完整（海底城市、穹顶系统、阶级对立）。悬念设置有力，伦理困境深化了主题。比喻形象生动，环境与心理压力相互呼应。缺点是某些信息链接（秦漫如何知道陆昭被召唤）有逻辑漏洞，且结尾在抉择点戛然而止，故事感未完全闭合。"
+          }
+        }
+      },
+      "annotator_b": {
+        "name": "gemini-3.1-pro",
+        "model": "gemini-3.1-pro-preview",
+        "scores": {
+          "character_consistency": {
+            "score": 5,
+            "reason": "虽无外部设定，但文本内主角谨慎、专业的底层技师形象保持高度一致，行为与心理动机自洽合理。"
+          },
+          "fluency": {
+            "score": 5,
+            "reason": "文笔流畅优美，比喻生动独特，深海反乌托邦的氛围渲染极具沉浸感，阅读体验极佳。"
+          },
+          "overall_quality": {
+            "score": 4,
+            "reason": "世界观构建出色，悬念设置引人入胜，但前后段落存在从第二人称“你”到第三人称“他”的视角突变，略微影响了叙事的连贯性。"
+          }
+        }
+      },
+      "arbitration": null,
+      "final_scores": {
+        "character_consistency": {
+          "score": 4,
+          "reason": "平均值 (4+5)/2=4.5",
+          "source": "average"
+        },
+        "fluency": {
+          "score": 4,
+          "reason": "平均值 (4+5)/2=4.5",
+          "source": "average"
+        },
+        "overall_quality": {
+          "score": 4,
+          "reason": "平均值 (4+4)/2=4.0",
+          "source": "average"
+        }
+      },
+      "dims_arbitrated": []
+    },
+    {
+      "game_id": "game_1776233957_gkbet6",
+      "folder": "theme_016_game_1776233957_gkbet6",
+      "theme_item_id": 16,
+      "annotator_a": {
+        "name": "claude-haiku",
+        "model": "claude-haiku-4-5-20251001-thinking",
+        "scores": {
+          "character_consistency": {
+            "score": 5,
+            "reason": "主人公表现出坚韧克制、洞察人心的一致性；赵叔在家庭与职业间纠结却暗示会赴约，符合职业操守与人伦的内在张力；孙磊年轻急躁的特质始终稳定。所有角色行为与其立场设定高度一致，无人设崩塌。"
+          },
+          "fluency": {
+            "score": 5,
+            "reason": "文笔细腻优美，比喻贴切生动（如\"湿透的棉布\"、\"生了锈的刀\"）；对话自然有韵味；叙事节奏流畅，环境心理相融合；段落转换和视角切换（你/他的指代）处理得当，无生硬之处。"
+          },
+          "overall_quality": {
+            "score": 4,
+            "reason": "逻辑连贯，多条线索并行（人手不足、陈家威胁、员工流失、赔付风险）；悬念设置得当，通过细节（包袱、路册子）暗示人物选择；时代背景鲜明（火车、洋行与镖局的冲突）；然而作为交互小说，故事仍处于铺垫阶段，尚缺乏明显的选择分支点来体现交互性特征。"
+          }
+        }
+      },
+      "annotator_b": {
+        "name": "gemini-3.1-pro",
+        "model": "gemini-3.1-pro-preview",
+        "scores": {
+          "character_consistency": {
+            "score": 5,
+            "reason": "虽然无外部设定参考，但文本内部角色的行为与性格保持高度一致，主角的沉稳隐忍与赵叔在忠义与家庭间的纠结两难刻画得非常统一。"
+          },
+          "fluency": {
+            "score": 5,
+            "reason": "文笔老练细腻，比喻生动（如“像一块湿透的棉布裹在骨头上”），画面感与氛围感极强，语言表达非常流畅优美。"
+          },
+          "overall_quality": {
+            "score": 4,
+            "reason": "故事背景扎实，内忧外患的矛盾冲突极具张力。但前后两段在人称视角（第二人称转第三人称）及情节细节（第一段称赵叔傍晚找主角，第二段为主角深夜找赵叔）上存在割裂与矛盾，略微影响连贯性。"
+          }
+        }
+      },
+      "arbitration": null,
+      "final_scores": {
+        "character_consistency": {
+          "score": 5,
+          "reason": "平均值 (5+5)/2=5.0",
+          "source": "average"
+        },
+        "fluency": {
+          "score": 5,
+          "reason": "平均值 (5+5)/2=5.0",
+          "source": "average"
+        },
+        "overall_quality": {
+          "score": 4,
+          "reason": "平均值 (4+4)/2=4.0",
+          "source": "average"
+        }
+      },
+      "dims_arbitrated": []
+    },
+    {
+      "game_id": "game_1776234308_4h9k9a",
+      "folder": "theme_017_game_1776234308_4h9k9a",
+      "theme_item_id": 17,
+      "annotator_a": {
+        "name": "claude-haiku",
+        "model": "claude-haiku-4-5-20251001-thinking",
+        "scores": {
+          "character_consistency": {
+            "score": 4,
+            "reason": "陆辰的行为和心理反应完全符合设定。27岁的便利店经营者在父亲去世后的敏感状态下，对神秘现象的好奇心驱动他去探索，动机清晰。与常客互动、观察细节等表现都符合角色设定，无明显OOC。"
+          },
+          "fluency": {
+            "score": 5,
+            "reason": "语言优美流畅，感官描写丰富生动。比喻运用得当（'深海生物的眼睛''醉汉互相搀扶''张开的喉咙'），长短句搭配得当，节奏感强。整段文字营造了强烈的压抑、诡异氛围，文学性突出。"
+          },
+          "overall_quality": {
+            "score": 4,
+            "reason": "故事逻辑严密，悬念充足。通过便利店、凌晨女士的神秘话语、异常声响、父亲遗照的细节等层层铺垫，成功构建了紧张的叙事张力。虽然视角从第一人称切换到第三人称略显生硬，但故事内容连贯有力，细节精致，是优质的故事开头。"
+          }
+        }
+      },
+      "annotator_b": {
+        "name": "gemini-3.1-pro",
+        "model": "gemini-3.1-pro-preview",
+        "scores": {
+          "character_consistency": {
+            "score": 5,
+            "reason": "虽无外部设定参考，但角色内部逻辑高度自洽。陆辰面对诡异事件的探索欲、对父亲的记忆以及对经济压力的现实考量，均完美契合一个疲惫且背负重担的年轻便利店主形象。"
+          },
+          "fluency": {
+            "score": 5,
+            "reason": "文笔细腻且极具画面感，比喻生动（如“濒死的喘息声”、“像一群醉汉”），环境描写精准地烘托了压抑与悬疑的氛围，语言表达非常流畅优美。"
+          },
+          "overall_quality": {
+            "score": 4,
+            "reason": "故事悬疑感极佳，伏笔与细节（如遗照背景、烟灰、脉冲）设计巧妙且引人入胜。唯一瑕疵是前后两部分出现了从第二人称到第三人称的视角突变，略微影响了叙事的连贯性。"
+          }
+        }
+      },
+      "arbitration": null,
+      "final_scores": {
+        "character_consistency": {
+          "score": 4,
+          "reason": "平均值 (4+5)/2=4.5",
+          "source": "average"
+        },
+        "fluency": {
+          "score": 5,
+          "reason": "平均值 (5+5)/2=5.0",
+          "source": "average"
+        },
+        "overall_quality": {
+          "score": 4,
+          "reason": "平均值 (4+4)/2=4.0",
+          "source": "average"
+        }
+      },
+      "dims_arbitrated": []
+    },
+    {
+      "game_id": "game_1776234669_bprngi",
+      "folder": "theme_018_game_1776234669_bprngi",
+      "theme_item_id": 18,
+      "annotator_a": {
+        "name": "claude-haiku",
+        "model": "claude-haiku-4-5-20251001-thinking",
+        "scores": {
+          "character_consistency": {
+            "score": 3,
+            "reason": "角色性格和动机在每个场景内部保持一致（年轻、坚定、为父亲遗志而努力），但故事中存在严重的POV不一致：前半段用第二人称'你'叙述，后半段突然变为第三人称'他'。这种叙述角度的跳跃令人困惑，且人物名称从未明确提及到忽然出现'小苏'，造成认知割裂。"
+          },
+          "fluency": {
+            "score": 4,
+            "reason": "文笔优美，环境描写生动细致（'烟火气浓得像炖了一夜的羊汤''像一条干涸的河床'），句式节奏感强。对话和行动描写自然流畅。唯一的问题是中段POV切换破坏了叙述连贯性，但文字本身表达质量很高。"
+          },
+          "overall_quality": {
+            "score": 3,
+            "reason": "优点：世界设定丰富（沙漠背景、星商设定、赤渊设定），人物塑造深度好，悬念设置有效（损伤的星图、神秘沙漏、失踪父亲）。缺点：结构混乱——似乎有两个不同版本的场景混合，POV和角色命名不统一，故事未完成，留下很多未解答的问题。整体读感像是两个不同草稿的拼接，而非精心完成的作品。"
+          }
+        }
+      },
+      "annotator_b": {
+        "name": "gemini-3.1-pro",
+        "model": "gemini-3.1-pro-preview",
+        "scores": {
+          "character_consistency": {
+            "score": 1,
+            "reason": "前后文主角设定严重冲突，前半段为第二人称且主角是'陆明盏的儿子'，后半段突变为第三人称且主角被称为'小苏'。"
+          },
+          "fluency": {
+            "score": 5,
+            "reason": "语言非常流畅自然，场景描写细腻生动，比喻贴切，具有很强的画面感和文学色彩。"
+          },
+          "overall_quality": {
+            "score": 2,
+            "reason": "虽然文笔优秀，但前后两段明显是不同设定的文本拼接，人称、主角姓名及剧情走向完全断裂，严重破坏了故事的连贯性与逻辑。"
+          }
+        }
+      },
+      "arbitration": null,
+      "final_scores": {
+        "character_consistency": {
+          "score": 2,
+          "reason": "平均值 (3+1)/2=2.0",
+          "source": "average"
+        },
+        "fluency": {
+          "score": 4,
+          "reason": "平均值 (4+5)/2=4.5",
+          "source": "average"
+        },
+        "overall_quality": {
+          "score": 2,
+          "reason": "平均值 (3+2)/2=2.5",
+          "source": "average"
+        }
+      },
+      "dims_arbitrated": [
+        "character_consistency"
+      ]
+    },
+    {
+      "game_id": "game_1776322901_1okkue",
+      "folder": "theme_019_game_1776322901_1okkue",
+      "theme_item_id": 19,
+      "annotator_a": {
+        "name": "claude-haiku",
+        "model": "claude-haiku-4-5-20251001-thinking",
+        "scores": {
+          "character_consistency": {
+            "score": 3,
+            "reason": "角色行为动机一致，但故事中第二人称'你'和第三人称'他'的叙述视角突然切换，未做有效衔接，造成角色呈现的混乱，影响人设连贯性。"
+          },
+          "fluency": {
+            "score": 3,
+            "reason": "单个句子表达流畅优美，心理描写细致，但篇章结构存在严重割裂——在'用红漆'处中断后突然切换视角和时间线，篇章级连贯性破坏严重。"
+          },
+          "overall_quality": {
+            "score": 3,
+            "reason": "文学性强，场景营造细腻，主题深刻（继承、责任、失落），但故事结构问题致命：似为两个版本拼接而未有效整合，情节线条割裂，故事未完整呈现，大大降低了整体质量。"
+          }
+        }
+      },
+      "annotator_b": {
+        "name": "gemini-3.1-pro",
+        "model": "gemini-3.1-pro-preview",
+        "scores": {
+          "character_consistency": {
+            "score": 3,
+            "reason": "无预设参考，主角的性格、背景与动机在前后文本中基本保持一致，但人称视角（“你”与“他”）及核心事实（鸽子是否在身边）的突变导致了角色状态的割裂。"
+          },
+          "fluency": {
+            "score": 3,
+            "reason": "段落内部语言优美流畅，细节描写生动自然，但第一部分结尾突兀中断并直接拼接另一视角的文本，严重影响了整体阅读的顺畅感。"
+          },
+          "overall_quality": {
+            "score": 2,
+            "reason": "故事的氛围营造和情感表达十分出色，但文本明显是两段不同设定的草稿生硬拼接，存在断句和严重的逻辑/情节冲突，连贯性较差。"
+          }
+        }
+      },
+      "arbitration": null,
+      "final_scores": {
+        "character_consistency": {
+          "score": 3,
+          "reason": "平均值 (3+3)/2=3.0",
+          "source": "average"
+        },
+        "fluency": {
+          "score": 3,
+          "reason": "平均值 (3+3)/2=3.0",
+          "source": "average"
+        },
+        "overall_quality": {
+          "score": 2,
+          "reason": "平均值 (3+2)/2=2.5",
+          "source": "average"
+        }
+      },
+      "dims_arbitrated": []
+    },
+    {
+      "game_id": "game_1776323353_873vsi",
+      "folder": "theme_020_game_1776323353_873vsi",
+      "theme_item_id": 20,
+      "annotator_a": {
+        "name": "claude-haiku",
+        "model": "claude-haiku-4-5-20251001-thinking",
+        "scores": {
+          "character_consistency": {
+            "score": 2,
+            "reason": "主角陆荇在两段情节中的背景设定产生严重矛盾：第一部分为归渡科技第三编纂组、组长沈遇洲、工号1037；第二部分为7楼编纂部、组长方竞。同一角色在同一项目（周敏华）中的工作环境、部门、上司完全改变，这不符合基本的角色一致性要求。"
+          },
+          "fluency": {
+            "score": 4,
+            "reason": "文字表达本身流畅优美，语法正确，细节描写生动（如'蓝白色的意识波形'、'服务器散热系统排出的臭氧'等）。但因后文的内容矛盾和突兀切换，整体读感被破坏，故略有扣分。"
+          },
+          "overall_quality": {
+            "score": 2,
+            "reason": "故事存在严重的逻辑混乱问题：周敏华的病症描述不一致（胰腺癌vs肺腺癌）、清醒期时间矛盾（三周vs14天）、同一项目在两部分中状态完全不同。文本表现为两个版本被错误拼接，严重影响叙事连贯性和可读性。故事框架有趣但执行存在重大缺陷。"
+          }
+        }
+      },
+      "annotator_b": {
+        "name": "gemini-3.1-pro",
+        "model": "gemini-3.1-pro-preview",
+        "scores": {
+          "character_consistency": {
+            "score": 2,
+            "reason": "无外部设定参考，但文本内部存在严重的角色与背景设定冲突，如组长名字从沈遇洲变为方竞，主角的工作状态和项目进度前后完全矛盾。"
+          },
+          "fluency": {
+            "score": 4,
+            "reason": "文字表达细腻，比喻生动，整体语言通顺自然且具有文学性，但第一部分结尾存在突兀的截断。"
+          },
+          "overall_quality": {
+            "score": 2,
+            "reason": "虽然文笔和氛围营造较好，但前后两段文本在时间、地点、配角名字及委托人病情（胰腺癌变肺腺癌）等核心细节上存在严重的逻辑断裂，属于生硬拼接，严重破坏了故事的连贯性。"
+          }
+        }
+      },
+      "arbitration": null,
+      "final_scores": {
+        "character_consistency": {
+          "score": 2,
+          "reason": "平均值 (2+2)/2=2.0",
+          "source": "average"
+        },
+        "fluency": {
+          "score": 4,
+          "reason": "平均值 (4+4)/2=4.0",
+          "source": "average"
+        },
+        "overall_quality": {
+          "score": 2,
+          "reason": "平均值 (2+2)/2=2.0",
+          "source": "average"
+        }
+      },
+      "dims_arbitrated": []
+    },
+    {
+      "game_id": "game_1776323646_c72jkf",
+      "folder": "theme_021_game_1776323646_c72jkf",
+      "theme_item_id": 21,
+      "annotator_a": {
+        "name": "claude-haiku",
+        "model": "claude-haiku-4-5-20251001-thinking",
+        "scores": {
+          "character_consistency": {
+            "score": 4,
+            "reason": "虽无外部设定参考，但陆拾青的人物特征在故事内部保持一致：末座弟子的谨慎、紧张、思虑周密在前后部分均得到体现。前半部分的身体紧张反应与后半部分的冷静思考是同一人物在不同情境下的正常表现，不构成人设崩坏。"
+          },
+          "fluency": {
+            "score": 5,
+            "reason": "语言优美流畅，开篇意象生动（'冰得发烫'），环境描写细致感官丰富，心理活动刻画入微。句式结构多样避免单调，节奏控制恰当，古文与现代汉语混用得体，整体文笔精致。"
+          },
+          "overall_quality": {
+            "score": 4,
+            "reason": "故事逻辑严密，悬念充分（秘密书目的内容、陆拾青的抉择），人物立场鲜明（山长、大师兄、二师兄的不同态度），历史背景真实可信。唯作为故事片段略显开放式结尾，但这或符合互动小说设计。整体呈现出较强的文学性和戏剧张力。"
+          }
+        }
+      },
+      "annotator_b": {
+        "name": "gemini-3.1-pro",
+        "model": "gemini-3.1-pro-preview",
+        "scores": {
+          "character_consistency": {
+            "score": 5,
+            "reason": "虽然无外部设定参考，但文本内部塑造的主角谨慎、紧张且心思缜密的形象在前后段落中保持高度一致，行为与心理动机完全契合。"
+          },
+          "fluency": {
+            "score": 5,
+            "reason": "文笔老练，细节描写生动细腻，感官词汇丰富，氛围渲染极佳，语言通顺自然且极具文学美感。"
+          },
+          "overall_quality": {
+            "score": 4,
+            "reason": "故事悬念设置巧妙，政治惊悚与同门博弈的冲突张力十足；但前后两部分存在从第二人称到第三人称的视角突变，略微影响了叙事的连贯性。"
+          }
+        }
+      },
+      "arbitration": null,
+      "final_scores": {
+        "character_consistency": {
+          "score": 4,
+          "reason": "平均值 (4+5)/2=4.5",
+          "source": "average"
+        },
+        "fluency": {
+          "score": 5,
+          "reason": "平均值 (5+5)/2=5.0",
+          "source": "average"
+        },
+        "overall_quality": {
+          "score": 4,
+          "reason": "平均值 (4+4)/2=4.0",
+          "source": "average"
+        }
+      },
+      "dims_arbitrated": []
+    },
+    {
+      "game_id": "game_1776323936_xtrfai",
+      "folder": "theme_022_game_1776323936_xtrfai",
+      "theme_item_id": 22,
+      "annotator_a": {
+        "name": "claude-haiku",
+        "model": "claude-haiku-4-5-20251001-thinking",
+        "scores": {
+          "character_consistency": {
+            "score": 2,
+            "reason": "故事分为两段且设定矛盾严重：飞艇名称从'锈骨号'变为'锈鸢号'，债务数额从1700铜币变为1200银铢，父亲死因从'肺水肿'变为'心脏骤停'，飞艇寿命从12年变为20年。这表明故事中途设定崩塌，角色背景和世界设定不一致。"
+          },
+          "fluency": {
+            "score": 4,
+            "reason": "文笔精致流畅，场景描写细腻，修辞恰当生动（如'像某种小动物垂死的喘息'）。但两段落的硬性衔接突兀——第一段以悬念结尾，却被完全不同的场景替代，破坏了阅读连贯性。"
+          },
+          "overall_quality": {
+            "score": 2,
+            "reason": "蒸汽朋克氛围营造得当，角色如老柯德形象生动，冲突设置清晰。但致命问题在于逻辑混乱：故事存在两个互相矛盾的版本，导致整体连贯性崩塌。读者无法判断哪个设定为准，极大降低了故事质量。"
+          }
+        }
+      },
+      "annotator_b": {
+        "name": "gemini-3.1-pro",
+        "model": "gemini-3.1-pro-preview",
+        "scores": {
+          "character_consistency": {
+            "score": 1,
+            "reason": "文本前后出现严重断裂，叙事人称从“你”突变为“他”，飞艇名称、父亲死因、欠款金额及货币单位等核心设定前后完全矛盾，内部一致性极差。"
+          },
+          "fluency": {
+            "score": 4,
+            "reason": "语言描写细腻生动，蒸汽朋克氛围渲染出色，句式通顺自然，但中间存在明显的文本截断痕迹。"
+          },
+          "overall_quality": {
+            "score": 2,
+            "reason": "故事背景和氛围塑造具有吸引力，但由于文本中途生硬断裂并重启了另一套平行设定，导致叙事连贯性和整体逻辑遭到严重破坏。"
+          }
+        }
+      },
+      "arbitration": null,
+      "final_scores": {
+        "character_consistency": {
+          "score": 2,
+          "reason": "平均值 (2+1)/2=1.5",
+          "source": "average"
+        },
+        "fluency": {
+          "score": 4,
+          "reason": "平均值 (4+4)/2=4.0",
+          "source": "average"
+        },
+        "overall_quality": {
+          "score": 2,
+          "reason": "平均值 (2+2)/2=2.0",
+          "source": "average"
+        }
+      },
+      "dims_arbitrated": []
+    },
+    {
+      "game_id": "game_1776324225_sgidqq",
+      "folder": "theme_023_game_1776324225_sgidqq",
+      "theme_item_id": 23,
+      "annotator_a": {
+        "name": "claude-haiku",
+        "model": "claude-haiku-4-5-20251001-thinking",
+        "scores": {
+          "character_consistency": {
+            "score": 3,
+            "reason": "故事包含两个叙述视角和时间线的切换（第二人称'你'→第三人称'林若萤'），且细节存在矛盾：联络人名称不一致（费雷拉vs费尔南多达席尔瓦），目标地点不一致（蓬塔多索尔vs圣安东尼奥杜图帕里）。虽然角色性格特征基本一致，但故事结构混乱降低了一致性评分。"
+          },
+          "fluency": {
+            "score": 4,
+            "reason": "语言表达优美流畅，细节描写生动（'蝉翼般的热浪''像一块被拧到一半的毛巾'等），句式多变且自然。但故事突然切换叙述视角和时间设置，导致阅读流畅度被打断，不够连贯。"
+          },
+          "overall_quality": {
+            "score": 3,
+            "reason": "文字质量和氛围营造优秀，人物设置有趣，但故事存在严重的结构问题：两个版本/场景混杂，时间线混乱，细节矛盾。故事戛然而止，缺乏完整性。整体呈现不像是刻意的多视角叙述，更像是未整理的多稿片段拼接。"
+          }
+        }
+      },
+      "annotator_b": {
+        "name": "gemini-3.1-pro",
+        "model": "gemini-3.1-pro-preview",
+        "scores": {
+          "character_consistency": {
+            "score": 3,
+            "reason": "无外部设定参考，基于文本内部评估。主角作为学者的核心行为逻辑和动机保持一致，但前后两部分人称从“你”突变为“他”，且联络人、地点等背景设定发生改变，存在内部割裂。"
+          },
+          "fluency": {
+            "score": 4,
+            "reason": "文字描写生动细腻，修辞优美，热带雨林的氛围感极强，阅读体验良好。但第一部分结尾突然中断，略微影响了整体的文本顺畅感。"
+          },
+          "overall_quality": {
+            "score": 3,
+            "reason": "环境渲染和叙事张力十分优秀，但文本明显是两个不同视角（第二人称与第三人称）和设定的草稿拼接而成，且第一部分未完成，存在严重的结构割裂，破坏了故事的连贯性。"
+          }
+        }
+      },
+      "arbitration": null,
+      "final_scores": {
+        "character_consistency": {
+          "score": 3,
+          "reason": "平均值 (3+3)/2=3.0",
+          "source": "average"
+        },
+        "fluency": {
+          "score": 4,
+          "reason": "平均值 (4+4)/2=4.0",
+          "source": "average"
+        },
+        "overall_quality": {
+          "score": 3,
+          "reason": "平均值 (3+3)/2=3.0",
+          "source": "average"
+        }
+      },
+      "dims_arbitrated": []
+    },
+    {
+      "game_id": "game_1776324881_c6cgnd",
+      "folder": "theme_024_game_1776324881_c6cgnd",
+      "theme_item_id": 24,
+      "annotator_a": {
+        "name": "claude-haiku",
+        "model": "claude-haiku-4-5-20251001-thinking",
+        "scores": {
+          "character_consistency": {
+            "score": 4,
+            "reason": "陆诚的人设表现一致：职业精干、经验丰富但疲倦，对细节敏锐，对新人有距离感。与各角色的互动关系清晰可信。虽然设定中等篇幅可能限制了深度展现，但已充分体现人物特质。"
+          },
+          "fluency": {
+            "score": 5,
+            "reason": "语言优美流畅，细节描写生动传神（如'螺母'比喻、光影描写）。对话自然不生硬，场景转换平顺。句式节奏控制得当，科幻术语运用贴切，几乎无语病。"
+          },
+          "overall_quality": {
+            "score": 4,
+            "reason": "世界观设定细致严谨，多层次冲突设置得当（技术安全隐患、人物情感、工作压力）。人物丰满有深度，悬念铺垫充分。作为互动小说段落质量优秀，但作为独立文本段落结尾略显开放，故事弧线未完整收束。"
+          }
+        }
+      },
+      "annotator_b": {
+        "name": "gemini-3.1-pro",
+        "model": "gemini-3.1-pro-preview",
+        "scores": {
+          "character_consistency": {
+            "score": 4,
+            "reason": "主角陆诚的沉稳老练与新人宋岱的紧张表现前后高度一致，符合文本塑造的形象，仅方茜的位置存在剧情Bug而非性格崩坏。"
+          },
+          "fluency": {
+            "score": 5,
+            "reason": "语言非常流畅自然，比喻生动贴切，科幻现实主义的细节描写极具质感，氛围营造十分出色。"
+          },
+          "overall_quality": {
+            "score": 3,
+            "reason": "单段文笔优秀且细节扎实，但前后两段存在严重的拼接痕迹，视角（第一人称转第三人称）、飞船名称及角色出场均存在明显矛盾，连贯性较差。"
+          }
+        }
+      },
+      "arbitration": null,
+      "final_scores": {
+        "character_consistency": {
+          "score": 4,
+          "reason": "平均值 (4+4)/2=4.0",
+          "source": "average"
+        },
+        "fluency": {
+          "score": 5,
+          "reason": "平均值 (5+5)/2=5.0",
+          "source": "average"
+        },
+        "overall_quality": {
+          "score": 4,
+          "reason": "平均值 (4+3)/2=3.5",
+          "source": "average"
+        }
+      },
+      "dims_arbitrated": []
+    },
+    {
+      "game_id": "game_1776325210_bbsh6i",
+      "folder": "theme_025_game_1776325210_bbsh6i",
+      "theme_item_id": 25,
+      "annotator_a": {
+        "name": "claude-haiku",
+        "model": "claude-haiku-4-5-20251001-thinking",
+        "scores": {
+          "character_consistency": {
+            "score": 4,
+            "reason": "主人公Aidan的行为表现一致——体现了谨慎、理性的性格。从环境感知、对信件的犹豫、最终打开信件、冷静分析图纸，再到与律师的互动，都符合一个做过功课的继承人的设定。虽然无预设角色设定，但内部表现自洽。"
+          },
+          "fluency": {
+            "score": 4,
+            "reason": "文字流畅优美，使用了大量生动的比喻和拟人化手法（如'挂毯像一张垂死的皮肤'）。节奏感强，长短句交替得当。仅有极少标点或表述瑕疵（如'踩到什么柔软的东西低头一看'处缺标点），不影响整体阅读体验。"
+          },
+          "overall_quality": {
+            "score": 4,
+            "reason": "故事逻辑严密、氛围营造出色，悬念充足。通过细节描写（铁锈、霉味、死鸟、滴水）营造了压抑的哥特式氛围。信息透露恰当，吸引读者探索。但明显缺陷是叙述视角从第一人称突然转为第三人称（'他站在'），破坏了叙事连贯性。若非此问题，可评5分。"
+          }
+        }
+      },
+      "annotator_b": {
+        "name": "gemini-3.1-pro",
+        "model": "gemini-3.1-pro-preview",
+        "scores": {
+          "character_consistency": {
+            "score": 4,
+            "reason": "缺乏预设角色设定，但主角的内心活动与行为逻辑在文本内部保持连贯。不过叙事视角从第一人称突变为第三人称，略微影响了角色感知的统一性。"
+          },
+          "fluency": {
+            "score": 5,
+            "reason": "文字通顺自然，语言优美且极具画面感。环境描写细腻生动，比喻精妙，成功营造出阴郁、悬疑的哥特式氛围。"
+          },
+          "overall_quality": {
+            "score": 4,
+            "reason": "故事开篇极具吸引力，悬念设置（遗嘱试炼、隐藏酒窖、家族恩怨）环环相扣，节奏紧凑。唯一明显瑕疵是中途发生了第一人称到第三人称的视角断裂。"
+          }
+        }
+      },
+      "arbitration": null,
+      "final_scores": {
+        "character_consistency": {
+          "score": 4,
+          "reason": "平均值 (4+4)/2=4.0",
+          "source": "average"
+        },
+        "fluency": {
+          "score": 4,
+          "reason": "平均值 (4+5)/2=4.5",
+          "source": "average"
+        },
+        "overall_quality": {
+          "score": 4,
+          "reason": "平均值 (4+4)/2=4.0",
+          "source": "average"
+        }
+      },
+      "dims_arbitrated": []
+    },
+    {
+      "game_id": "game_1776338761_p7eew6",
+      "folder": "theme_026_game_1776338761_p7eew6",
+      "theme_item_id": 26,
+      "annotator_a": {
+        "name": "claude-haiku",
+        "model": "claude-haiku-4-5-20251001-thinking",
+        "scores": {
+          "character_consistency": {
+            "score": 4,
+            "reason": "沈牧野的人物设定（7年经验的基层民警、敏锐观察力、谨慎专业）在全文中保持一致。他的言行、决策、心理活动都相互呼应，没有出现OOC现象。虽无官方参考设定，但文本内部人物一致性强。"
+          },
+          "fluency": {
+            "score": 4,
+            "reason": "叙述语言整体流畅自然，细节描写和比喻运用精妙，语言表现力强。存在个别标点连接不够紧密的小问题（如'了蹲守'处），但不影响整体可读性和美感。"
+          },
+          "overall_quality": {
+            "score": 4,
+            "reason": "故事逻辑清晰、悬念设置充分、人物塑造立体。通过蹲守→发现异常→回溯背景→夜市线索的安排，形成紧凑的叙述框架。环境描写烘托气氛到位，但作为开篇片段未完成完整叙事弧线。整体质量高，需完整故事验证最终成色。"
+          }
+        }
+      },
+      "annotator_b": {
+        "name": "gemini-3.1-pro",
+        "model": "gemini-3.1-pro-preview",
+        "scores": {
+          "character_consistency": {
+            "score": 5,
+            "reason": "虽无外部设定参考，但文本内角色行为高度统一，沈牧野经验丰富、敏锐务实的基层警察形象刻画得入木三分，前后逻辑自洽。"
+          },
+          "fluency": {
+            "score": 5,
+            "reason": "文笔成熟老练，环境描写极具画面感，比喻精妙（如'像雨季的蝉鸣被碾碎'），行文极其流畅且富有节奏感。"
+          },
+          "overall_quality": {
+            "score": 5,
+            "reason": "叙事结构巧妙，通过时间线的交错成功营造出强烈的悬疑感。边境缉毒氛围逼真，基层与专案组的暗流涌动张力十足，整体质量优秀。"
+          }
+        }
+      },
+      "arbitration": null,
+      "final_scores": {
+        "character_consistency": {
+          "score": 4,
+          "reason": "平均值 (4+5)/2=4.5",
+          "source": "average"
+        },
+        "fluency": {
+          "score": 4,
+          "reason": "平均值 (4+5)/2=4.5",
+          "source": "average"
+        },
+        "overall_quality": {
+          "score": 4,
+          "reason": "平均值 (4+5)/2=4.5",
+          "source": "average"
+        }
+      },
+      "dims_arbitrated": []
+    },
+    {
+      "game_id": "game_1776339059_ylsx2c",
+      "folder": "theme_027_game_1776339059_ylsx2c",
+      "theme_item_id": 27,
+      "annotator_a": {
+        "name": "claude-haiku",
+        "model": "claude-haiku-4-5-20251001-thinking",
+        "scores": {
+          "character_consistency": {
+            "score": 4,
+            "reason": "苏晚棠在两个场景中的性格与心理状态表现一致：焦虑、压抑、自我认同困惑。行为符合设定（疲惫办公、沉默回应、观察周围），情感反应真实可信，基本无崩人设。"
+          },
+          "fluency": {
+            "score": 5,
+            "reason": "文字优美流畅，意象丰富（如'月白色长发流淌如水''天色像洗过的旧牛仔布'），节奏感强，细节刻画细腻，段落转折自然。语言具有较高的文学性，几乎无语法错误。"
+          },
+          "overall_quality": {
+            "score": 4,
+            "reason": "设定创新（虚拟偶像芯人题材），逻辑清晰，悬念充分，心理层面探讨深入。两个场景通过身份泄露事件巧妙连接。美中不足的是故事在高潮处被截断未完成，影响了整体评价；若完整应为5分。"
+          }
+        }
+      },
+      "annotator_b": {
+        "name": "gemini-3.1-pro",
+        "model": "gemini-3.1-pro-preview",
+        "scores": {
+          "character_consistency": {
+            "score": 5,
+            "reason": "虽无外部设定参考，但文本内部角色性格高度统一，主角面临身份认同与职业危机的疲惫、迷茫及细腻心理表现得始终如一。"
+          },
+          "fluency": {
+            "score": 5,
+            "reason": "文笔细腻优美，比喻生动，环境渲染与心理描写极具感染力，语言通顺自然（仅第一段结尾存在文本截断）。"
+          },
+          "overall_quality": {
+            "score": 4,
+            "reason": "题材新颖，深入探讨了虚拟偶像中之人的身份认同与AI替代危机，氛围极佳；但两段文本间存在明显的时间跳跃与情节断裂，影响了整体连贯性。"
+          }
+        }
+      },
+      "arbitration": null,
+      "final_scores": {
+        "character_consistency": {
+          "score": 4,
+          "reason": "平均值 (4+5)/2=4.5",
+          "source": "average"
+        },
+        "fluency": {
+          "score": 5,
+          "reason": "平均值 (5+5)/2=5.0",
+          "source": "average"
+        },
+        "overall_quality": {
+          "score": 4,
+          "reason": "平均值 (4+4)/2=4.0",
+          "source": "average"
+        }
+      },
+      "dims_arbitrated": []
+    },
+    {
+      "game_id": "game_1776339338_an7ets",
+      "folder": "theme_028_game_1776339338_an7ets",
+      "theme_item_id": 28,
+      "annotator_a": {
+        "name": "claude-haiku",
+        "model": "claude-haiku-4-5-20251001-thinking",
+        "scores": {
+          "character_consistency": {
+            "score": 2,
+            "reason": "故事存在严重的内部矛盾。陈海月在前段描写为'五十出头'的女性，后段突变为'三十岁上下'；其身份和出现方式也不一致。主角沈潮生虽然行为基本合理，但由于叙事视角和情节的矛盾，整体人物一致性受到破坏。故事看似两个不同版本被拼接在一起。"
+          },
+          "fluency": {
+            "score": 4,
+            "reason": "文字本身流畅优美，感官描写细节丰富，单独看任一段落都很顺畅。但叙事视角从第二人称'你'突然切换到第三人称'沈潮生'，中间以'---'分隔且无过渡说明，造成阅读的生硬感。整体文字质量高但结构衔接有问题。"
+          },
+          "overall_quality": {
+            "score": 3,
+            "reason": "故事具有较强的文学性和代入感，细节描写和氛围营造出色，能引发阅读兴趣。但存在明显的结构问题：前后两段描写的同一场景和人物存在逻辑矛盾，似乎是两个不同版本或创作素材被不当拼接。这严重影响了故事的连贯性和可读性。需要编辑统一和梳理。"
+          }
+        }
+      },
+      "annotator_b": {
+        "name": "gemini-3.1-pro",
+        "model": "gemini-3.1-pro-preview",
+        "scores": {
+          "character_consistency": {
+            "score": 1,
+            "reason": "文本前后存在严重的设定冲突。前半部分外公中风在床、陈海月五十出头且使用第二人称；后半部分外公已故、陈海月三十岁上下且使用第三人称，角色内部设定完全割裂。"
+          },
+          "fluency": {
+            "score": 4,
+            "reason": "语言描写细腻生动，氛围营造极佳，单句和段落内部表达通顺自然。但前半段结尾存在明显的文本截断现象。"
+          },
+          "overall_quality": {
+            "score": 2,
+            "reason": "文本明显是两段不同设定的故事拼接而成，存在严重的情节、视角和逻辑断层，破坏了故事的连贯性和沉浸感，整体结构混乱。"
+          }
+        }
+      },
+      "arbitration": null,
+      "final_scores": {
+        "character_consistency": {
+          "score": 2,
+          "reason": "平均值 (2+1)/2=1.5",
+          "source": "average"
+        },
+        "fluency": {
+          "score": 4,
+          "reason": "平均值 (4+4)/2=4.0",
+          "source": "average"
+        },
+        "overall_quality": {
+          "score": 2,
+          "reason": "平均值 (3+2)/2=2.5",
+          "source": "average"
+        }
+      },
+      "dims_arbitrated": []
+    },
+    {
+      "game_id": "game_1776339643_0ybjtv",
+      "folder": "theme_029_game_1776339643_0ybjtv",
+      "theme_item_id": 29,
+      "annotator_a": {
+        "name": "claude-haiku",
+        "model": "claude-haiku-4-5-20251001-thinking",
+        "scores": {
+          "character_consistency": {
+            "score": 4,
+            "reason": "陆青平的沉默内敛、坚韧执着、对父亲遗愿的执念等特征在全文保持一致；配角纪横舟、方栩的性格与行为也相符。角色动机清晰，决策合理。偶有细微调整空间但基本无崩人设。"
+          },
+          "fluency": {
+            "score": 5,
+            "reason": "语言文笔优美流畅。开篇意象生动（\"生了锈的铁钉\"、\"搓粗砂纸\"），环境描写多感官、有层次。人物对话自然贴切，内心独白与外景描写结合得当。段落过渡顺畅，节奏张弛有度。"
+          },
+          "overall_quality": {
+            "score": 5,
+            "reason": "故事设定新颖完整（禁武令背景、试剑大会黑幕），人物塑造饱满（陆青平的伤痛与执念、父亲的遗影），冲突多层次（个人、阶级、规则等）。细节设置用心（右肩反复疼痛、父亲信件等），情感表达真挚。作为开头部分成功引入世界观与主角，具有强烈的代入感和阅读吸引力。"
+          }
+        }
+      },
+      "annotator_b": {
+        "name": "gemini-3.1-pro",
+        "model": "gemini-3.1-pro-preview",
+        "scores": {
+          "character_consistency": {
+            "score": 5,
+            "reason": "虽无外部设定，但文本内主角沉默坚韧、背负父亲遗愿的散修形象及右肩旧伤的细节在前后段落中保持高度一致。"
+          },
+          "fluency": {
+            "score": 5,
+            "reason": "语言非常流畅，比喻生动，细节描写细腻，武侠氛围和画面感极强。"
+          },
+          "overall_quality": {
+            "score": 3,
+            "reason": "单段文本质量极高，但前后两部分存在严重的时间线倒错和情节冲突（如已报名与未报名、加试人数设定不同），破坏了整体的逻辑与连贯性。"
+          }
+        }
+      },
+      "arbitration": null,
+      "final_scores": {
+        "character_consistency": {
+          "score": 4,
+          "reason": "平均值 (4+5)/2=4.5",
+          "source": "average"
+        },
+        "fluency": {
+          "score": 5,
+          "reason": "平均值 (5+5)/2=5.0",
+          "source": "average"
+        },
+        "overall_quality": {
+          "score": 4,
+          "reason": "平均值 (5+3)/2=4.0",
+          "source": "average"
+        }
+      },
+      "dims_arbitrated": [
+        "overall_quality"
+      ]
+    },
+    {
+      "game_id": "game_1776339949_kuk51f",
+      "folder": "theme_030_game_1776339949_kuk51f",
+      "theme_item_id": 30,
+      "annotator_a": {
+        "name": "claude-haiku",
+        "model": "claude-haiku-4-5-20251001-thinking",
+        "scores": {
+          "character_consistency": {
+            "score": 4,
+            "reason": "角色核心行为一致（接案→恐惧→自我质疑→决心接案），但故事分两个版本呈现（第二人称和第三人称），叙述视角突兀切换，导致同一人物在表现方式上有较大差异，略显不协调但不至于完全OOC。"
+          },
+          "fluency": {
+            "score": 5,
+            "reason": "文笔流畅优美，细节描写生动（'像一条微型河流''把整个房间切割成一帧一帧的定格画面'），心理刻画细腻，段落衔接自然顺畅，整体叙述节奏控制得当。"
+          },
+          "overall_quality": {
+            "score": 4,
+            "reason": "故事设定清晰引人、悬念设置有效、世界观饱满，但存在结构问题：两个版本内容高度重复，时间逻辑有疑（'凌晨11点47分'可能笔误），导致整体显得冗余。若为意外重复提交，仅看单个版本则是优秀的故事开端。"
+          }
+        }
+      },
+      "annotator_b": {
+        "name": "gemini-3.1-pro",
+        "model": "gemini-3.1-pro-preview",
+        "scores": {
+          "character_consistency": {
+            "score": 3,
+            "reason": "无外部参考设定，文本内部主角的底层律师形象和心理状态基本保持一致，但在回复时间、约定时间等行为细节上存在明显矛盾。"
+          },
+          "fluency": {
+            "score": 4,
+            "reason": "整体语言通顺自然，环境描写生动且富有氛围感，但存在“凌晨11点47分”等个别语病和常识错误。"
+          },
+          "overall_quality": {
+            "score": 3,
+            "reason": "故事背景和氛围营造出色，但前后两部分存在严重拼接痕迹，人称突变、时间逻辑矛盾、卷宗厚度等细节前后不一，破坏了整体连贯性。"
+          }
+        }
+      },
+      "arbitration": null,
+      "final_scores": {
+        "character_consistency": {
+          "score": 4,
+          "reason": "平均值 (4+3)/2=3.5",
+          "source": "average"
+        },
+        "fluency": {
+          "score": 4,
+          "reason": "平均值 (5+4)/2=4.5",
+          "source": "average"
+        },
+        "overall_quality": {
+          "score": 4,
+          "reason": "平均值 (4+3)/2=3.5",
+          "source": "average"
+        }
+      },
+      "dims_arbitrated": []
+    },
+    {
+      "game_id": "game_1776340210_93ft0t",
+      "folder": "theme_031_game_1776340210_93ft0t",
+      "theme_item_id": 31,
+      "annotator_a": {
+        "name": "claude-haiku",
+        "model": "claude-haiku-4-5-20251001-thinking",
+        "scores": {
+          "character_consistency": {
+            "score": 3,
+            "reason": "陆远的核心特征（财务压力、愿意冒险、'路感'能力）保持一致，但两个故事段落存在矛盾：菜品不同（第一部分C17的酸菜鱼 vs 第二部分B区的酸菜鱼+炒饭）、位置信息不匹配（C17 vs B区）、时间戳跳跃（12分15秒 → 11分钟），使角色设定的连贯性受损"
+          },
+          "fluency": {
+            "score": 4,
+            "reason": "语言本身优美流畅，细节描写生动，心理刻画深入。但第一部分的第二人称'你'突然转换为第二部分的第三人称'陆远'/'他'，叙述视角的生硬转变打破了阅读连贯性，影响整体流畅感"
+          },
+          "overall_quality": {
+            "score": 3,
+            "reason": "世界观设定新颖引人（地下城、异化矿脉、'路感'），冲突张力充足，但故事呈现存在结构混乱——似乎是两个不同版本的段落拼接而成，导致逻辑矛盾。若这是有意的创意表达需要更明确的标记，目前显得像无意的错误，降低了整体质量"
+          }
+        }
+      },
+      "annotator_b": {
+        "name": "gemini-3.1-pro",
+        "model": "gemini-3.1-pro-preview",
+        "scores": {
+          "character_consistency": {
+            "score": 4,
+            "reason": "虽无外部设定参考，但文本内部主角作为背负债务、敢于冒险且拥有特殊感知的底层外卖员形象前后保持一致，行为动机逻辑自洽。"
+          },
+          "fluency": {
+            "score": 5,
+            "reason": "语言非常流畅，环境描写生动细腻，感官细节丰富，赛博朋克与市井气息结合的氛围感极强，阅读体验顺滑。"
+          },
+          "overall_quality": {
+            "score": 3,
+            "reason": "世界观设定新颖有趣，但文本前后存在严重的连贯性硬伤：前半部分为第二人称，后半部分突变为第三人称，且目的地、捷径入口（无门变密码门）等细节前后矛盾，拼接痕迹明显。"
+          }
+        }
+      },
+      "arbitration": null,
+      "final_scores": {
+        "character_consistency": {
+          "score": 4,
+          "reason": "平均值 (3+4)/2=3.5",
+          "source": "average"
+        },
+        "fluency": {
+          "score": 4,
+          "reason": "平均值 (4+5)/2=4.5",
+          "source": "average"
+        },
+        "overall_quality": {
+          "score": 3,
+          "reason": "平均值 (3+3)/2=3.0",
+          "source": "average"
+        }
+      },
+      "dims_arbitrated": []
+    },
+    {
+      "game_id": "game_1776340504_nct2sq",
+      "folder": "theme_032_game_1776340504_nct2sq",
+      "theme_item_id": 32,
+      "annotator_a": {
+        "name": "claude-haiku",
+        "model": "claude-haiku-4-5-20251001-thinking",
+        "scores": {
+          "character_consistency": {
+            "score": 4,
+            "reason": "陆潮生的性格表现一致，作为科研工作者表现出对观测计划的执着、对环境的适应和对问题的敏锐察觉，行为逻辑清晰合理，虽无外部设定参照但内部自洽度高。"
+          },
+          "fluency": {
+            "score": 4,
+            "reason": "文笔精致优美，比喻贴切生动，多感官细节描写深入，对话和行动自然流畅。但文本存在两个版本重叠，第一版本在'暖气管'处突然断句未完成，影响了整体连贯性。"
+          },
+          "overall_quality": {
+            "score": 4,
+            "reason": "设定新颖（极地科研站），悬念设置合理（站长失踪、时段冲突、设备问题），人物刻画细致，逻辑清晰，开篇抓人。但因为文本结构不完整、存在重复，以及仍处铺垫阶段，整体质量有所打折。内容本身属上乘，结构呈现有缺陷。"
+          }
+        }
+      },
+      "annotator_b": {
+        "name": "gemini-3.1-pro",
+        "model": "gemini-3.1-pro-preview",
+        "scores": {
+          "character_consistency": {
+            "score": 5,
+            "reason": "虽然无预设参考信息，但主角在前后两个版本的剧情中均保持了专注科研、冷静内敛的性格特征，行为与对话高度自洽，无OOC现象。"
+          },
+          "fluency": {
+            "score": 4,
+            "reason": "段落内部语言非常优美，比喻生动且极具画面感。但文本在第一部分结尾处突兀截断，略微影响了整体的阅读顺畅感。"
+          },
+          "overall_quality": {
+            "score": 3,
+            "reason": "极地环境的压抑氛围与人际冲突描写极其出色，但文本明显是由两个不同版本的开头拼接而成，且第一部分未完结，导致整体叙事连贯性与逻辑断裂。"
+          }
+        }
+      },
+      "arbitration": null,
+      "final_scores": {
+        "character_consistency": {
+          "score": 4,
+          "reason": "平均值 (4+5)/2=4.5",
+          "source": "average"
+        },
+        "fluency": {
+          "score": 4,
+          "reason": "平均值 (4+4)/2=4.0",
+          "source": "average"
+        },
+        "overall_quality": {
+          "score": 4,
+          "reason": "平均值 (4+3)/2=3.5",
+          "source": "average"
+        }
+      },
+      "dims_arbitrated": []
+    },
+    {
+      "game_id": "game_1776340803_gcjerh",
+      "folder": "theme_033_game_1776340803_gcjerh",
+      "theme_item_id": 33,
+      "annotator_a": {
+        "name": "claude-haiku",
+        "model": "claude-haiku-4-5-20251001-thinking",
+        "scores": {
+          "character_consistency": {
+            "score": 2,
+            "reason": "故事中出现两个不同的主人公：第一部分是第一人称的'冯艾希施泰特'，第二部分是第三人称的'冯艾希贝格'。人物名字不同、叙述视角突变，即使假设为同一人物也存在严重的人设不一致。第一部分未完成就突然转换，破坏了角色连贯性。"
+          },
+          "fluency": {
+            "score": 3,
+            "reason": "各部分的语言文笔本身相当流畅、词汇丰富、句式优美。但整体结构存在严重问题：第一部分叙述被生硬打断（'在我踏入这座宫殿之前，就'）后无过渡地转入第二部分，导致叙述连贯性破裂，大幅降低了整体的阅读流畅性。"
+          },
+          "overall_quality": {
+            "score": 2,
+            "reason": "故事设定有创意（间谍悬念、宫廷政治）、文笔和细节描写不错，但结构存在重大缺陷。两个部分的关系不明确，既不是清晰的多视角叙述也不是成功的单线叙述，呈现出未完成或编辑错误的状态。缺乏清晰的逻辑连接和完整性。"
+          }
+        }
+      },
+      "annotator_b": {
+        "name": "gemini-3.1-pro",
+        "model": "gemini-3.1-pro-preview",
+        "scores": {
+          "character_consistency": {
+            "score": 2,
+            "reason": "无预设参考，虽主角均表现出落魄贵族的谨慎，但前后文本中主角名字（艾希施泰特/艾希贝格）与叙事人称（我/他）发生突变，存在严重割裂。"
+          },
+          "fluency": {
+            "score": 4,
+            "reason": "文字表达通顺自然，细节描写生动细腻，氛围感强，但第一部分结尾的突然截断略微影响了阅读的顺畅感。"
+          },
+          "overall_quality": {
+            "score": 2,
+            "reason": "悬疑氛围营造出色，但文本明显是两段不同视角的草稿生硬拼接，第一部分甚至中途断裂，严重破坏了故事的连贯性与逻辑完整性。"
+          }
+        }
+      },
+      "arbitration": null,
+      "final_scores": {
+        "character_consistency": {
+          "score": 2,
+          "reason": "平均值 (2+2)/2=2.0",
+          "source": "average"
+        },
+        "fluency": {
+          "score": 4,
+          "reason": "平均值 (3+4)/2=3.5",
+          "source": "average"
+        },
+        "overall_quality": {
+          "score": 2,
+          "reason": "平均值 (2+2)/2=2.0",
+          "source": "average"
+        }
+      },
+      "dims_arbitrated": []
+    },
+    {
+      "game_id": "game_1776341129_5foedb",
+      "folder": "theme_034_game_1776341129_5foedb",
+      "theme_item_id": 34,
+      "annotator_a": {
+        "name": "claude-haiku",
+        "model": "claude-haiku-4-5-20251001-thinking",
+        "scores": {
+          "character_consistency": {
+            "score": 4,
+            "reason": "陆潜的性格设定内在一致。从坠落医生→无奈创业者→理性谈判者，行为举止、语言、决策都符合其身份与处境。与周姐的互动体现了他的专业素养与现实主义，无明显OOC"
+          },
+          "fluency": {
+            "score": 5,
+            "reason": "文笔优美流畅，细节描写生动（如'像踩到雨天台阶上的青苔'）。句式结构多样，长短搭配得当。对话自然，环境描写层次分明，无语法障碍"
+          },
+          "overall_quality": {
+            "score": 4,
+            "reason": "设定新颖独特（黑诊所、义体黑市、底层医疗生态），逻辑严密，因果关系清晰。人物立体，冲突多元（生存困境、市场竞争、资源分配），节奏张弛有度。但作为'完整故事'，本质上是精彩的序章开头，故事弧线未完成"
+          }
+        }
+      },
+      "annotator_b": {
+        "name": "gemini-3.1-pro",
+        "model": "gemini-3.1-pro-preview",
+        "scores": {
+          "character_consistency": {
+            "score": 5,
+            "reason": "虽然无外部设定参考，但文本内角色塑造高度一致。陆潜的冷静专业与周姐的精明务实贯穿始终，言行举止完全符合其底层黑诊所医生与地头蛇的身份。"
+          },
+          "fluency": {
+            "score": 5,
+            "reason": "语言非常流畅自然，且充满质感。大量生动的比喻和细节描写（如“夜色浓稠如旧机油”）极大地增强了画面的表现力和赛博朋克氛围。"
+          },
+          "overall_quality": {
+            "score": 5,
+            "reason": "故事逻辑严密，叙事节奏把控极佳。通过一场手术和一次谈判，巧妙地交代了世界观、生存困境与人物关系，极具吸引力和沉浸感。"
+          }
+        }
+      },
+      "arbitration": null,
+      "final_scores": {
+        "character_consistency": {
+          "score": 4,
+          "reason": "平均值 (4+5)/2=4.5",
+          "source": "average"
+        },
+        "fluency": {
+          "score": 5,
+          "reason": "平均值 (5+5)/2=5.0",
+          "source": "average"
+        },
+        "overall_quality": {
+          "score": 4,
+          "reason": "平均值 (4+5)/2=4.5",
+          "source": "average"
+        }
+      },
+      "dims_arbitrated": []
+    },
+    {
+      "game_id": "game_1776342537_fsgcff",
+      "folder": "theme_035_game_1776342537_fsgcff",
+      "theme_item_id": 35,
+      "annotator_a": {
+        "name": "claude-haiku",
+        "model": "claude-haiku-4-5-20251001-thinking",
+        "scores": {
+          "character_consistency": {
+            "score": 4,
+            "reason": "主角行为与设定基本吻合，一个经济困难但有尊严的年轻人，在与各方谈判时表现出成熟的判断力。情感反应自然（对父亲物品的激动、面对旧识的复杂情绪）。无明显人设崩坏。"
+          },
+          "fluency": {
+            "score": 4,
+            "reason": "文笔细腻流畅，景物与人物描写生动，对话自然。但故事中段出现视角转换问题（从第二人称'你'突变为第三人称'主角'和'他'），虽可能为互动小说设计，但造成叙事连贯性略微下降。"
+          },
+          "overall_quality": {
+            "score": 4,
+            "reason": "故事架构精妙，逻辑清晰，多层次悬念充足（父亲失踪真相、神秘跟踪者、阿措私事、钱豹秘密）。人物刻画深入各具特色，地理历史背景完整（大理镖行文化）。有趣度高。小瑕疵为：视角转换不够平顺，部分信息重复。"
+          }
+        }
+      },
+      "annotator_b": {
+        "name": "gemini-3.1-pro",
+        "model": "gemini-3.1-pro-preview",
+        "scores": {
+          "character_consistency": {
+            "score": 3,
+            "reason": "主角自身的动机和行为逻辑基本连贯，但NPC老掌柜的名字前后矛盾（前文为孙德茂，后文变何四海），且叙事视角从第二人称突变为第三人称，存在设定上的割裂。"
+          },
+          "fluency": {
+            "score": 5,
+            "reason": "文笔老练，细节描写生动细腻，环境与氛围渲染出色，语言非常流畅自然，极具画面感与代入感。"
+          },
+          "overall_quality": {
+            "score": 4,
+            "reason": "故事悬念设置巧妙，武侠悬疑氛围浓厚，招募队友的情节紧凑且各具特色，非常吸引人；但人称视角的突变和NPC名字的失误略微影响了整体的严谨性。"
+          }
+        }
+      },
+      "arbitration": null,
+      "final_scores": {
+        "character_consistency": {
+          "score": 4,
+          "reason": "平均值 (4+3)/2=3.5",
+          "source": "average"
+        },
+        "fluency": {
+          "score": 4,
+          "reason": "平均值 (4+5)/2=4.5",
+          "source": "average"
+        },
+        "overall_quality": {
+          "score": 4,
+          "reason": "平均值 (4+4)/2=4.0",
+          "source": "average"
+        }
+      },
+      "dims_arbitrated": []
+    },
+    {
+      "game_id": "game_1776342865_u1rfh2",
+      "folder": "theme_036_game_1776342865_u1rfh2",
+      "theme_item_id": 36,
+      "annotator_a": {
+        "name": "claude-haiku",
+        "model": "claude-haiku-4-5-20251001-thinking",
+        "scores": {
+          "character_consistency": {
+            "score": 3,
+            "reason": "故事前半段主角表现相对一致（冷静分析→紧张防守），但中段突然转换视角和时间线后，叙事声音和角色表现方式出现断裂，造成角色呈现的混乱。角色本身未完全OOC，但叙事结构破坏了一致性。"
+          },
+          "fluency": {
+            "score": 4,
+            "reason": "语言精致流畅，词汇丰富，景物描写和心理活动刻画细腻。句式复杂有力。但故事在'宋禾在'处突然中断，后半段转换视角和场景，这种结构断裂严重损害了整体流畅度。"
+          },
+          "overall_quality": {
+            "score": 3,
+            "reason": "世界观设定精妙（火星农场、穹顶、资源压力），具有张力的冲突设置（配额削减、权力监督），文笔有质感。但故事结构明显不完整，前后两段的关系不明确，缺乏完整的故事弧线，使其沦为碎片而非成熟作品。"
+          }
+        }
+      },
+      "annotator_b": {
+        "name": "gemini-3.1-pro",
+        "model": "gemini-3.1-pro-preview",
+        "scores": {
+          "character_consistency": {
+            "score": 3,
+            "reason": "无预设参考，从文本内部看角色核心动机（继承父亲实验）保持一致，但前后两段视角从第二人称突变为第三人称，且情节时间线重置，导致角色连贯性受损。"
+          },
+          "fluency": {
+            "score": 4,
+            "reason": "文字表达流畅自然，细节描写生动且极具画面感。但文本中间存在未写完的突兀中断与拼接，影响了整体顺畅度。"
+          },
+          "overall_quality": {
+            "score": 3,
+            "reason": "科幻农业设定扎实，氛围营造与冲突构建出色。但文本明显由两个不同视角的草稿片段拼接而成，缺乏完整的叙事结构与逻辑连贯性。"
+          }
+        }
+      },
+      "arbitration": null,
+      "final_scores": {
+        "character_consistency": {
+          "score": 3,
+          "reason": "平均值 (3+3)/2=3.0",
+          "source": "average"
+        },
+        "fluency": {
+          "score": 4,
+          "reason": "平均值 (4+4)/2=4.0",
+          "source": "average"
+        },
+        "overall_quality": {
+          "score": 3,
+          "reason": "平均值 (3+3)/2=3.0",
+          "source": "average"
+        }
+      },
+      "dims_arbitrated": []
+    },
+    {
+      "game_id": "game_1776343740_u60nz8",
+      "folder": "theme_037_game_1776343740_u60nz8",
+      "theme_item_id": 37,
+      "annotator_a": {
+        "name": "claude-haiku",
+        "model": "claude-haiku-4-5-20251001-thinking",
+        "scores": {
+          "character_consistency": {
+            "score": 2,
+            "reason": "故事存在严重的结构混乱问题：前半部分采用第二人称视角'你'，后半部分突然切换为第三人称'他'；同一主角的细节描写矛盾（行李箱vs登山包）；时间线不一致（初春傍晚vs四月），表明叙述主体的连贯性和一致性严重受损。"
+          },
+          "fluency": {
+            "score": 4,
+            "reason": "文字本身优美细致，对氛围、心理、细节的描写流畅生动；但视角突然切换、故事被中断（'从旅---'）、重复叙述同一场景等问题严重破坏了整体阅读流畅性，降低了总体评分。"
+          },
+          "overall_quality": {
+            "score": 2,
+            "reason": "虽然单独段落具有出色的氛围营造、象征性物件运用和心理细节刻画，但严重的结构问题（视角混乱、内容重复、突然中断、时间线混乱）表明这是一个未经充分编辑的草稿，逻辑连贯性和完整性严重缺陷，影响整体质量。"
+          }
+        }
+      },
+      "annotator_b": {
+        "name": "gemini-3.1-pro",
+        "model": "gemini-3.1-pro-preview",
+        "scores": {
+          "character_consistency": {
+            "score": 3,
+            "reason": "无预设角色参考，但文本前后存在第二人称与第三人称的突变，且随身物品（行李箱与登山包）等细节前后不一，导致内部一致性受损。"
+          },
+          "fluency": {
+            "score": 3,
+            "reason": "句段本身具有较好的文学性和氛围感，但文本中间存在生硬的截断，且后半段有明显的错漏字（如“的场千的”、“的议会”），影响阅读顺畅感。"
+          },
+          "overall_quality": {
+            "score": 3,
+            "reason": "悬疑氛围营造出色，背景设定吸引人，但文本明显是两个不同视角的草稿拼接而成，结构断裂且未完成，严重破坏了故事的连贯性。"
+          }
+        }
+      },
+      "arbitration": null,
+      "final_scores": {
+        "character_consistency": {
+          "score": 2,
+          "reason": "平均值 (2+3)/2=2.5",
+          "source": "average"
+        },
+        "fluency": {
+          "score": 4,
+          "reason": "平均值 (4+3)/2=3.5",
+          "source": "average"
+        },
+        "overall_quality": {
+          "score": 2,
+          "reason": "平均值 (2+3)/2=2.5",
+          "source": "average"
+        }
+      },
+      "dims_arbitrated": []
+    },
+    {
+      "game_id": "game_1776344519_mhjmlt",
+      "folder": "theme_038_game_1776344519_mhjmlt",
+      "theme_item_id": 38,
+      "annotator_a": {
+        "name": "claude-haiku",
+        "model": "claude-haiku-4-5-20251001-thinking",
+        "scores": {
+          "character_consistency": {
+            "score": 2,
+            "reason": "故事包含两个版本混合：第一部分妻子名字为'秀禾'，第二部分变为'秀兰'；陆青舟的年龄设定也不一致（第一部分未明确，第二部分为'二十四岁'）；场景、人物背景描述不完全对应，表明叙述版本发生了重大改变，造成人物设定的混乱。"
+          },
+          "fluency": {
+            "score": 4,
+            "reason": "文笔本身流畅优美，细节描写生动，节奏感强，方言与时代背景融合自然。但两个版本的故事混合在一起，导致叙述逻辑混乱，重复冗余，降低了整体流畅度。语言层面近乎完美，但结构问题影响了整体评分。"
+          },
+          "overall_quality": {
+            "score": 3,
+            "reason": "故事构思优秀，时代背景深厚，人物塑造有力，具有强烈的文学性和张力，心理描写细致入微。然而，致命缺陷在于：两个版本的故事内容混在一起（明显的复制粘贴痕迹），人物设定不一致，叙述未能形成完整的故事弧线，结尾戛然而止。这种结构混乱严重削弱了整体质量。"
+          }
+        }
+      },
+      "annotator_b": {
+        "name": "gemini-3.1-pro",
+        "model": "gemini-3.1-pro-preview",
+        "scores": {
+          "character_consistency": {
+            "score": 2,
+            "reason": "无外部设定参考，但文本前后两部分存在严重的内部设定冲突，如主角身份从账房学徒变为搬货苦力，妻子名字从秀禾变为秀兰。"
+          },
+          "fluency": {
+            "score": 5,
+            "reason": "语言非常流畅自然，遣词造句极具文学性，比喻生动，画面感和氛围渲染十分出色。"
+          },
+          "overall_quality": {
+            "score": 3,
+            "reason": "单段文笔优美、氛围感强，但整体明显是两个不同版本的拼接，导致情节重复、逻辑断裂，严重破坏了故事的连贯性。"
+          }
+        }
+      },
+      "arbitration": null,
+      "final_scores": {
+        "character_consistency": {
+          "score": 2,
+          "reason": "平均值 (2+2)/2=2.0",
+          "source": "average"
+        },
+        "fluency": {
+          "score": 4,
+          "reason": "平均值 (4+5)/2=4.5",
+          "source": "average"
+        },
+        "overall_quality": {
+          "score": 3,
+          "reason": "平均值 (3+3)/2=3.0",
+          "source": "average"
+        }
+      },
+      "dims_arbitrated": []
+    },
+    {
+      "game_id": "game_1776345077_gzv0jt",
+      "folder": "theme_039_game_1776345077_gzv0jt",
+      "theme_item_id": 39,
+      "annotator_a": {
+        "name": "claude-haiku",
+        "model": "claude-haiku-4-5-20251001-thinking",
+        "scores": {
+          "character_consistency": {
+            "score": 2,
+            "reason": "故事由第二人称突然转为第三人称，两部分主角状态差异大（第一部分疲惫被动、第二部分主动有能力），周素云从陌生访客变成'老师'，前后部分逻辑关系不清，似乎两个版本被混合，严重破坏叙述连贯性"
+          },
+          "fluency": {
+            "score": 4,
+            "reason": "单独看每部分语言都很流畅优美，景物描写细致（如'梧桐叶的腐味''粉笔灰味道'），叙述节奏自然，但视角切换突兀无过渡，打破整体阅读流畅感"
+          },
+          "overall_quality": {
+            "score": 3,
+            "reason": "设定新颖富有想象力（记忆典当铺），氛围营造有张力，但核心问题是结构混乱——视角和时间线不清晰，故事似乎被硬生生割成两段且连接不当，这些缺陷抵消了内容本身的质量，导致整体呈现不完整"
+          }
+        }
+      },
+      "annotator_b": {
+        "name": "gemini-3.1-pro",
+        "model": "gemini-3.1-pro-preview",
+        "scores": {
+          "character_consistency": {
+            "score": 2,
+            "reason": "虽无外部设定，但文本内部存在明显冲突：前后半段叙事人称在‘你’和‘他’之间突变，且主角‘能否看到具体记忆画面’的能力设定前后矛盾，同一开门场景的细节也前后不一。"
+          },
+          "fluency": {
+            "score": 5,
+            "reason": "行文非常流畅自然，环境与心理描写细腻生动，比喻贴切，语言优美且极具画面感和氛围感。"
+          },
+          "overall_quality": {
+            "score": 3,
+            "reason": "记忆典当与拆迁限期的核心设定极具吸引力，文笔优秀；但文本明显是两段未整合的草稿拼接，导致叙事连贯性和逻辑出现严重断裂，影响整体阅读体验。"
+          }
+        }
+      },
+      "arbitration": null,
+      "final_scores": {
+        "character_consistency": {
+          "score": 2,
+          "reason": "平均值 (2+2)/2=2.0",
+          "source": "average"
+        },
+        "fluency": {
+          "score": 4,
+          "reason": "平均值 (4+5)/2=4.5",
+          "source": "average"
+        },
+        "overall_quality": {
+          "score": 3,
+          "reason": "平均值 (3+3)/2=3.0",
+          "source": "average"
+        }
+      },
+      "dims_arbitrated": []
+    },
+    {
+      "game_id": "game_1776345439_2ug1il",
+      "folder": "theme_040_game_1776345439_2ug1il",
+      "theme_item_id": 40,
+      "annotator_a": {
+        "name": "claude-haiku",
+        "model": "claude-haiku-4-5-20251001-thinking",
+        "scores": {
+          "character_consistency": {
+            "score": 4,
+            "reason": "主角陆潮生的性格塑造一致：温和犹豫、专业理性、道德敏感。虽无官方设定，但从故事逻辑推导的角色特征自洽，心理变化和行为决策都符合设定。"
+          },
+          "fluency": {
+            "score": 5,
+            "reason": "文字优美且流畅，叙述节奏把控出色。心理描写细腻生动，环境描写立体感强，时间线切换自然。长短句结合恰当，文学表现力高。"
+          },
+          "overall_quality": {
+            "score": 4,
+            "reason": "故事逻辑清晰连贯，设定新颖（量子态存储信件的设定富有创意），悬念层层递进。人物困境饱满有张力。但故事戛然而止未完成，略显遗憾。总体呈现专业的文学水准和强叙事吸引力。"
+          }
+        }
+      },
+      "annotator_b": {
+        "name": "gemini-3.1-pro",
+        "model": "gemini-3.1-pro-preview",
+        "scores": {
+          "character_consistency": {
+            "score": 2,
+            "reason": "虽无外部设定，但文本内部存在严重的视角跳跃（第二人称转第三人称）及NPC设定冲突（组长由贺鸣变为老魏），导致角色连贯性受损。"
+          },
+          "fluency": {
+            "score": 3,
+            "reason": "局部文笔细腻、画面感强，但文本中部存在明显的未完结截断与生硬拼接，破坏了整体的阅读顺畅度。"
+          },
+          "overall_quality": {
+            "score": 2,
+            "reason": "科幻悬疑氛围营造较好，但文本实为两个不同版本草稿的错误拼接，导致时间线、场景和叙事逻辑完全断裂，结构混乱。"
+          }
+        }
+      },
+      "arbitration": null,
+      "final_scores": {
+        "character_consistency": {
+          "score": 3,
+          "reason": "平均值 (4+2)/2=3.0",
+          "source": "average"
+        },
+        "fluency": {
+          "score": 4,
+          "reason": "平均值 (5+3)/2=4.0",
+          "source": "average"
+        },
+        "overall_quality": {
+          "score": 3,
+          "reason": "平均值 (4+2)/2=3.0",
+          "source": "average"
+        }
+      },
+      "dims_arbitrated": [
+        "character_consistency",
+        "fluency",
+        "overall_quality"
+      ]
+    },
+    {
+      "game_id": "game_1776347933_pmyn0p",
+      "folder": "theme_041_game_1776347933_pmyn0p",
+      "theme_item_id": 41,
+      "annotator_a": {
+        "name": "claude-haiku",
+        "model": "claude-haiku-4-5-20251001-thinking",
+        "scores": {
+          "character_consistency": {
+            "score": 4,
+            "reason": "沈泊舟、沈秀兰、外公等角色行为与身份处境匹配。主角既向往下棋又被现实压迫的矛盾心理表现一致，母亲的关切与硬心肠结合自然，人物语言符合身份。"
+          },
+          "fluency": {
+            "score": 4,
+            "reason": "语言流畅自然，环境描写和心理刻画细致优美，对话方言使用恰当。但存在明显逻辑错误：开头说'九月的隘口'，后来又说'七月的隘口'，时间设定矛盾。"
+          },
+          "overall_quality": {
+            "score": 4,
+            "reason": "故事结构清晰，人物刻画细腻，细节前后呼应（棋子的设置很有张力），环境营造沧桑感强。逻辑连贯，有很强的吸引力和共鸣度。缺陷：时间线错误、结尾'选项'段落未完成，减弱了整体完整性。"
+          }
+        }
+      },
+      "annotator_b": {
+        "name": "gemini-3.1-pro",
+        "model": "gemini-3.1-pro-preview",
+        "scores": {
+          "character_consistency": {
+            "score": 5,
+            "reason": "虽无外部设定参考，但文本内部人物性格鲜明且高度自洽，对话与行为完全符合底层打工青年与疲惫母亲的身份处境。"
+          },
+          "fluency": {
+            "score": 5,
+            "reason": "语言非常流畅，细节描写细腻生动，极具画面感和现实主义氛围，文笔优美且富有张力。"
+          },
+          "overall_quality": {
+            "score": 4,
+            "reason": "故事氛围感强，情感真挚，现实与理想的冲突自然。但前后段落存在明显的拼接痕迹，导致月份设定（九月变七月）和部分动作描写出现矛盾与重复，略微影响整体连贯性。"
+          }
+        }
+      },
+      "arbitration": null,
+      "final_scores": {
+        "character_consistency": {
+          "score": 4,
+          "reason": "平均值 (4+5)/2=4.5",
+          "source": "average"
+        },
+        "fluency": {
+          "score": 4,
+          "reason": "平均值 (4+5)/2=4.5",
+          "source": "average"
+        },
+        "overall_quality": {
+          "score": 4,
+          "reason": "平均值 (4+4)/2=4.0",
+          "source": "average"
+        }
+      },
+      "dims_arbitrated": []
+    }
+  ]
+}

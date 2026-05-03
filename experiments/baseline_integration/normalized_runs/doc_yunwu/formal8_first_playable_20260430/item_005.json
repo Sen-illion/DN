@@ -1,0 +1,141 @@
+{
+  "baseline_id": "doc",
+  "benchmark_id": "DNQBV1_009",
+  "run_id": "formal8_first_playable_20260430",
+  "mode": "first_playable",
+  "input_bundle": {
+    "original_dn_item": {
+      "benchmark_id": "DNQBV1_009",
+      "theme_id": 3,
+      "theme": "茶肆说书人",
+      "image_style": {
+        "type": "ink_painting"
+      },
+      "expected_genre": "古风叙事",
+      "expected_tone": "含蓄、韵味、讲述感",
+      "must_have_constraints": [
+        "必须体现茶肆/说书/古风场景",
+        "场景图需符合水墨基调",
+        "首段应有一个能继续讲下去的悬念"
+      ],
+      "forbidden_issues": [
+        "现代都市词汇突兀混入",
+        "水墨风格缺失",
+        "选项不贴合古风语境"
+      ],
+      "focus": "suspense carryover",
+      "_subset_focus": "suspense carryover"
+    },
+    "doc_prompt": "Premise seed: 茶肆说书人\nGenre: 古风叙事\nTone: 含蓄、韵味、讲述感\nWrite a long-form interactive story opening that could be expanded with a detailed outline.\nMust-have constraints:\n- 必须体现茶肆/说书/古风场景\n- 场景图需符合水墨基调\n- 首段应有一个能继续讲下去的悬念\nForbidden issues:\n- 现代都市词汇突兀混入\n- 水墨风格缺失\n- 选项不贴合古风语境\n",
+    "outline_seed": [
+      "Opening setup for 茶肆说书人 in a 古风叙事 frame with a 含蓄、韵味、讲述感 tone.",
+      "Introduce the protagonist's immediate role, pressure, and conflict around: 必须体现茶肆/说书/古风场景.",
+      "Reveal one concrete obstacle or tradeoff the player must respond to next.",
+      "End the first turn with 2-3 actionable next steps that can continue the story."
+    ],
+    "mode": "first_playable",
+    "baseline_params": {
+      "execution_mode": "cloud",
+      "doc_repo": "D:\\Projects\\DN\\baselines\\DOC",
+      "doc_data_dir": "D:\\Projects\\DN\\baselines\\DOC\\doc_data"
+    }
+  },
+  "raw_output": {
+    "provider": "yunwu",
+    "provider_config_prefix": "Origin_Segment_Analyst",
+    "provider_base_url": "https://yunwu.ai/v1",
+    "provider_model": "gemini-3.1-flash-lite-preview",
+    "request": {
+      "model": "gemini-3.1-flash-lite-preview",
+      "temperature": 0.7,
+      "top_p": 0.9,
+      "max_tokens": 900,
+      "response_format": {
+        "type": "json_object"
+      }
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are the DOC long-form story baseline adapted for DN playable-latency evaluation. Write concise, grounded, continuation-ready interactive fiction. Do not include debugging text, URLs, or commentary outside JSON."
+      },
+      {
+        "role": "user",
+        "content": "Convert this DN benchmark item into a DOC-style playable baseline output.\nPreserve DOC's premise -> outline -> story-opening semantics, but return only a playable first response.\nRun mode: first_playable\n\nDOC prompt:\nPremise seed: 茶肆说书人\nGenre: 古风叙事\nTone: 含蓄、韵味、讲述感\nWrite a long-form interactive story opening that could be expanded with a detailed outline.\nMust-have constraints:\n- 必须体现茶肆/说书/古风场景\n- 场景图需符合水墨基调\n- 首段应有一个能继续讲下去的悬念\nForbidden issues:\n- 现代都市词汇突兀混入\n- 水墨风格缺失\n- 选项不贴合古风语境\n\nOutline seed:\n1. Opening setup for 茶肆说书人 in a 古风叙事 frame with a 含蓄、韵味、讲述感 tone.\n2. Introduce the protagonist's immediate role, pressure, and conflict around: 必须体现茶肆/说书/古风场景.\n3. Reveal one concrete obstacle or tradeoff the player must respond to next.\n4. End the first turn with 2-3 actionable next steps that can continue the story.\n\nReturn strict JSON with this shape and no markdown fences:\n{\n  \"scene_setup\": \"string\",\n  \"player_state\": \"string\",\n  \"narrative_response\": \"string\",\n  \"candidate_actions\": [\n    \"string\"\n  ],\n  \"suggested_next_step\": \"string\",\n  \"supports_next_turn\": true\n}"
+      }
+    ],
+    "response": {
+      "id": "chatcmpl-20260430165133840787142ZYGASLwJ",
+      "model": "gemini-3.1-flash-lite-preview",
+      "object": "chat.completion",
+      "created": 1777539099,
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"scene_setup\": \"烟雨笼罩的江南古镇，茶肆内檀香袅袅，水墨晕染的屏风后，醒木与折扇静置桌案。窗外檐下雨丝如织，茶客们屏息凝神，等待着那段未完的残篇。\",\n  \"player_state\": \"身份：茶肆说书人。当前困境：喉疾初愈，且台下坐着一位身份不明、神色冷峻的佩剑客，若是今日讲不出新意，这茶肆的生计恐难维持。\",\n  \"narrative_response\": \"醒木一响，惊碎了满室茶香。我轻咳一声，润了润干涩的嗓子，目光扫过那柄搁在桌边的青锋剑，心中暗忖：这客人的眼神，分明是冲着昨夜那桩陈年旧案来的。我若照本宣科，恐难脱身；若要改词重叙，又怕触了官家忌讳。雨声愈发紧了，台下那人缓缓抬起眼帘，指尖轻扣桌面，发出清脆的节奏，似是在催我开讲，又似是在下最后通牒。\",\n  \"candidate_actions\": [\n    \"避重就轻，以一段市井趣谈引开话题，试探对方来意。\",\n    \"孤注一掷，讲那桩禁忌旧案，赌对方是敌非友。\",\n    \"起身下台，奉上一杯特制的陈年普洱，借机探察对方身份。\"\n  ],\n  \"suggested_next_step\": \"根据选择，推进与神秘客人的互动，并揭开一段关于当年真相的冰山一角。\",\n  \"supports_next_turn\": true\n}"
+          },
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 403,
+        "completion_tokens": 405,
+        "total_tokens": 808,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "text_tokens": 403,
+          "audio_tokens": 0,
+          "image_tokens": 0
+        },
+        "completion_tokens_details": {
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0
+        },
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "input_tokens_details": null,
+        "claude_cache_creation_5_m_tokens": 0,
+        "claude_cache_creation_1_h_tokens": 0
+      }
+    }
+  },
+  "success": true,
+  "latency_s": 7.528,
+  "playable": true,
+  "playable_components": {
+    "scene_setup": true,
+    "player_state": true,
+    "advanceable_next_step": true,
+    "interaction_continuity": true
+  },
+  "normalized_response": {
+    "scene_setup": "烟雨笼罩的江南古镇，茶肆内檀香袅袅，水墨晕染的屏风后，醒木与折扇静置桌案。窗外檐下雨丝如织，茶客们屏息凝神，等待着那段未完的残篇。",
+    "player_state": "身份：茶肆说书人。当前困境：喉疾初愈，且台下坐着一位身份不明、神色冷峻的佩剑客，若是今日讲不出新意，这茶肆的生计恐难维持。",
+    "narrative_response": "醒木一响，惊碎了满室茶香。我轻咳一声，润了润干涩的嗓子，目光扫过那柄搁在桌边的青锋剑，心中暗忖：这客人的眼神，分明是冲着昨夜那桩陈年旧案来的。我若照本宣科，恐难脱身；若要改词重叙，又怕触了官家忌讳。雨声愈发紧了，台下那人缓缓抬起眼帘，指尖轻扣桌面，发出清脆的节奏，似是在催我开讲，又似是在下最后通牒。",
+    "candidate_actions": [
+      "避重就轻，以一段市井趣谈引开话题，试探对方来意。",
+      "孤注一掷，讲那桩禁忌旧案，赌对方是敌非友。",
+      "起身下台，奉上一杯特制的陈年普洱，借机探察对方身份。"
+    ],
+    "suggested_next_step": "根据选择，推进与神秘客人的互动，并揭开一段关于当年真相的冰山一角。",
+    "is_playable": true,
+    "request_start_ts": 1777539093.1428258,
+    "first_playable_ts": 1777539100.6709113,
+    "finish_ts": 1777539100.6709113,
+    "error": null
+  },
+  "failure_reason": null,
+  "notes": [
+    "DOC-style artifact generated through Yunwu OpenAI-compatible chat/completions API."
+  ],
+  "resource_usage": {
+    "execution_mode": "cloud"
+  },
+  "agent_profile": {
+    "runner": "run_doc.py",
+    "adapter_style": "doc_fallback_v1"
+  }
+}

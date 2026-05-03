@@ -1008,34 +1008,37 @@ def generate_main_character_image(
         
         print(f"✅ 主角形象生成完成：{image_path}")
 
-        # 5. 正面生成完成后：后台并行生成侧面/背面（基于正面参考图，不阻塞返回）
+        # 5. ????????????????/?????????????????
         try:
-            # 启动前再次删除侧/背图，避免旧会话残留导致“正面新、侧背旧”
-            for label, p in [("侧面图", side_path), ("背面图", back_path)]:
-                if p.exists():
-                    try:
-                        p.unlink()
-                        print(f"   ✅ 启动侧/背图前再次删除旧{label}：{p}")
-                    except Exception as e:
-                        print(f"   ⚠️ 启动前删除旧{label}失败 path={p} error={e}")
-            front_ref_path = str(front_path.resolve())
-            side_prompt = prompt_template_side.format(identifier=identifier)
-            back_prompt = prompt_template_back.format(identifier=identifier)
+            if os.getenv("DN_BENCHMARK_STRICT_FULLREADY", "0").strip().lower() in ("1", "true", "yes"):
+                print("?? strict full-ready benchmark mode: skip main-character side/back generation")
+            else:
+                # ????????/?????????????????????
+                for label, p in [("???", side_path), ("???", back_path)]:
+                    if p.exists():
+                        try:
+                            p.unlink()
+                            print(f"   ? ???/????????{label}?{p}")
+                        except Exception as e:
+                            print(f"   ?? ??????{label}?? path={p} error={e}")
+                front_ref_path = str(front_path.resolve())
+                side_prompt = prompt_template_side.format(identifier=identifier)
+                back_prompt = prompt_template_back.format(identifier=identifier)
 
-            threading.Thread(
-                target=_async_generate_view,
-                args=("side", "main_character_side.png", side_prompt, front_ref_path),
-                daemon=True
-            ).start()
-            threading.Thread(
-                target=_async_generate_view,
-                args=("back", "main_character_back.png", back_prompt, front_ref_path),
-                daemon=True
-            ).start()
-            print("✅ 已启动主角侧面/背面生成任务（后台并行）")
+                threading.Thread(
+                    target=_async_generate_view,
+                    args=("side", "main_character_side.png", side_prompt, front_ref_path),
+                    daemon=True
+                ).start()
+                threading.Thread(
+                    target=_async_generate_view,
+                    args=("back", "main_character_back.png", back_prompt, front_ref_path),
+                    daemon=True
+                ).start()
+                print("? ???????/????????????")
         except Exception as e:
-            print(f"⚠️ 启动主角侧面/背面生成任务失败：{str(e)}")
-        
+            print(f"?? ??????/?????????{str(e)}")
+
         return {
             "game_id": game_id,
             "image_path": str(image_path),

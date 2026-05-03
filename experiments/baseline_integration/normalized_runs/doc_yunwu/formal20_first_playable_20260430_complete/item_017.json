@@ -1,0 +1,145 @@
+{
+  "baseline_id": "doc",
+  "benchmark_id": "DNQBV1_018",
+  "run_id": "formal20_first_playable_20260430",
+  "mode": "first_playable",
+  "input_bundle": {
+    "original_dn_item": {
+      "benchmark_id": "DNQBV1_018",
+      "theme_id": 6,
+      "theme": "民国电报迷案",
+      "image_style": {
+        "type": "oil_painting",
+        "subtype": "impressionist"
+      },
+      "expected_genre": "近代悬疑",
+      "expected_tone": "旧时代、微压抑、调查感",
+      "must_have_constraints": [
+        "需体现民国、电报或迷案",
+        "图像应符合油画/印象派质感",
+        "首段需要建立案件切入口"
+      ],
+      "forbidden_issues": [
+        "现代赛博文本混入",
+        "图像风格偏动漫",
+        "剧情没有案件线索"
+      ],
+      "focus": "full-set coverage: 近代悬疑",
+      "_subset_focus": "full-set coverage: 近代悬疑"
+    },
+    "doc_prompt": "Premise seed: 民国电报迷案\nGenre: 近代悬疑\nTone: 旧时代、微压抑、调查感\nWrite a long-form interactive story opening that could be expanded with a detailed outline.\nMust-have constraints:\n- 需体现民国、电报或迷案\n- 图像应符合油画/印象派质感\n- 首段需要建立案件切入口\nForbidden issues:\n- 现代赛博文本混入\n- 图像风格偏动漫\n- 剧情没有案件线索\n",
+    "outline_seed": [
+      "Opening setup for 民国电报迷案 in a 近代悬疑 frame with a 旧时代、微压抑、调查感 tone.",
+      "Introduce the protagonist's immediate role, pressure, and conflict around: 需体现民国、电报或迷案.",
+      "Reveal one concrete obstacle or tradeoff the player must respond to next.",
+      "End the first turn with 2-3 actionable next steps that can continue the story."
+    ],
+    "mode": "first_playable",
+    "baseline_params": {
+      "execution_mode": "cloud",
+      "doc_repo": "D:\\Projects\\DN\\baselines\\DOC",
+      "doc_data_dir": "D:\\Projects\\DN\\baselines\\DOC\\doc_data"
+    }
+  },
+  "raw_output": {
+    "execution_mode": "cloud",
+    "doc_upstream_executed": false,
+    "doc_api_adapter": "yunwu_chat_completions",
+    "provider": "yunwu",
+    "provider_config_prefix": "Origin_Segment_Analyst",
+    "provider_base_url": "https://yunwu.ai/v1",
+    "provider_model": "gemini-3.1-flash-lite-preview",
+    "request": {
+      "model": "gemini-3.1-flash-lite-preview",
+      "temperature": 0.7,
+      "top_p": 0.9,
+      "max_tokens": 900,
+      "response_format": {
+        "type": "json_object"
+      }
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are the DOC long-form story baseline adapted for DN playable-latency evaluation. Write concise, grounded, continuation-ready interactive fiction. Do not include debugging text, URLs, or commentary outside JSON."
+      },
+      {
+        "role": "user",
+        "content": "Convert this DN benchmark item into a DOC-style playable baseline output.\nPreserve DOC's premise -> outline -> story-opening semantics, but return only a playable first response.\nRun mode: first_playable\n\nDOC prompt:\nPremise seed: 民国电报迷案\nGenre: 近代悬疑\nTone: 旧时代、微压抑、调查感\nWrite a long-form interactive story opening that could be expanded with a detailed outline.\nMust-have constraints:\n- 需体现民国、电报或迷案\n- 图像应符合油画/印象派质感\n- 首段需要建立案件切入口\nForbidden issues:\n- 现代赛博文本混入\n- 图像风格偏动漫\n- 剧情没有案件线索\n\nOutline seed:\n1. Opening setup for 民国电报迷案 in a 近代悬疑 frame with a 旧时代、微压抑、调查感 tone.\n2. Introduce the protagonist's immediate role, pressure, and conflict around: 需体现民国、电报或迷案.\n3. Reveal one concrete obstacle or tradeoff the player must respond to next.\n4. End the first turn with 2-3 actionable next steps that can continue the story.\n\nReturn strict JSON with this shape and no markdown fences:\n{\n  \"scene_setup\": \"string\",\n  \"player_state\": \"string\",\n  \"narrative_response\": \"string\",\n  \"candidate_actions\": [\n    \"string\"\n  ],\n  \"suggested_next_step\": \"string\",\n  \"supports_next_turn\": true\n}"
+      }
+    ],
+    "response": {
+      "id": "chatcmpl-202604301710114245548049ZcLTU8s",
+      "model": "gemini-3.1-flash-lite-preview",
+      "object": "chat.completion",
+      "created": 1777540227,
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"scene_setup\": \"1932年，上海法租界，阴雨连绵的霞飞路。昏暗的电报局内，空气中弥漫着潮湿的煤油味与陈旧纸张的气息。一盏摇曳的油灯映照在墙上，斑驳的墙面呈现出厚重的油画质感，仿佛时间在此凝滞。\",\n  \"player_state\": \"你是一名在电报局供职的译电员，刚刚截获了一封发往公共租界的乱码电报。这封电报在传输中被刻意加了密，且落款处印着一个从未见过的暗红印章。此时，巡捕房的探长正守在门口，要求你立即上报内容，否则就要查封你的档案。\",\n  \"narrative_response\": \"电码机发出细微的咔哒声，像是一颗不安跳动的心脏。你手中的译码手册显示，这段乱码并非寻常的商业报价，而是一串指向‘白俄公馆’的坐标。探长的皮鞋声在走廊里回响，他显然已经失去了耐心。你意识到，一旦将这段电文交给巡捕房，背后的势力定会灭口；但若是不交，你在这乱世中的饭碗与性命同样难保。\",\n  \"candidate_actions\": [\n    \"尝试手动修改译码本，编造一个无关痛痒的商业情报交给探长。\",\n    \"利用电报机的延时功能，将电文原件偷偷藏在废纸篓的暗格中。\",\n    \"试图通过电报线路向对方发送反向追踪信号，引出幕后之人。\"\n  ],\n  \"suggested_next_step\": \"选择如何应对探长的逼问，这将决定你后续调查的切入点与阵营倾向。\",\n  \"supports_next_turn\": true\n}"
+          },
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 395,
+        "completion_tokens": 427,
+        "total_tokens": 822,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "text_tokens": 395,
+          "audio_tokens": 0,
+          "image_tokens": 0
+        },
+        "completion_tokens_details": {
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0
+        },
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "input_tokens_details": null,
+        "claude_cache_creation_5_m_tokens": 0,
+        "claude_cache_creation_1_h_tokens": 0
+      }
+    }
+  },
+  "success": true,
+  "latency_s": 18.547,
+  "playable": true,
+  "playable_components": {
+    "scene_setup": true,
+    "player_state": true,
+    "advanceable_next_step": true,
+    "interaction_continuity": true
+  },
+  "normalized_response": {
+    "scene_setup": "1932年，上海法租界，阴雨连绵的霞飞路。昏暗的电报局内，空气中弥漫着潮湿的煤油味与陈旧纸张的气息。一盏摇曳的油灯映照在墙上，斑驳的墙面呈现出厚重的油画质感，仿佛时间在此凝滞。",
+    "player_state": "你是一名在电报局供职的译电员，刚刚截获了一封发往公共租界的乱码电报。这封电报在传输中被刻意加了密，且落款处印着一个从未见过的暗红印章。此时，巡捕房的探长正守在门口，要求你立即上报内容，否则就要查封你的档案。",
+    "narrative_response": "电码机发出细微的咔哒声，像是一颗不安跳动的心脏。你手中的译码手册显示，这段乱码并非寻常的商业报价，而是一串指向‘白俄公馆’的坐标。探长的皮鞋声在走廊里回响，他显然已经失去了耐心。你意识到，一旦将这段电文交给巡捕房，背后的势力定会灭口；但若是不交，你在这乱世中的饭碗与性命同样难保。",
+    "candidate_actions": [
+      "尝试手动修改译码本，编造一个无关痛痒的商业情报交给探长。",
+      "利用电报机的延时功能，将电文原件偷偷藏在废纸篓的暗格中。",
+      "试图通过电报线路向对方发送反向追踪信号，引出幕后之人。"
+    ],
+    "suggested_next_step": "选择如何应对探长的逼问，这将决定你后续调查的切入点与阵营倾向。",
+    "is_playable": true,
+    "request_start_ts": 1777540209.507787,
+    "first_playable_ts": 1777540228.0546916,
+    "finish_ts": 1777540228.0546916,
+    "error": null
+  },
+  "failure_reason": null,
+  "notes": [
+    "DOC-style artifact generated through Yunwu OpenAI-compatible chat/completions API."
+  ],
+  "resource_usage": {
+    "execution_mode": "cloud"
+  },
+  "agent_profile": {
+    "runner": "run_doc.py",
+    "adapter_style": "doc_cloud_yunwu_v1"
+  }
+}

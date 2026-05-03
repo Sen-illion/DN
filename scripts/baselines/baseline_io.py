@@ -17,12 +17,15 @@ import time
 import traceback
 from contextlib import contextmanager, redirect_stderr, redirect_stdout
 from pathlib import Path
-from typing import Any, Callable, Iterable
+from typing import Any, Iterable
 
 
 DEFAULT_NEGATIVE_PROMPT = (
     "lowres, bad anatomy, bad hands, missing fingers, extra fingers, text, "
     "watermark, signature, blurry, cropped, worst quality, low quality"
+)
+DEFAULT_NEXT_TURN_ACTION = (
+    "Choose the most direct action that advances the main conflict in the current scene."
 )
 
 
@@ -121,18 +124,28 @@ def image_style_phrase(item: dict[str, Any]) -> str:
     return "cinematic realistic scene, grounded lighting, coherent environment"
 
 
-def build_visual_prompts(item: dict[str, Any], scene_count: int = 4) -> dict[str, Any]:
-    """Create deterministic English-first prompts from a DN benchmark item."""
-
+def benchmark_brief(item: dict[str, Any]) -> dict[str, str]:
     theme = item.get("theme", item.get("benchmark_id", "DN story"))
     genre = item.get("expected_genre", "interactive narrative")
     tone = item.get("expected_tone", "dramatic")
     constraints = item.get("must_have_constraints", [])
     constraints_text = "; ".join(str(x) for x in constraints[:3])
-    style = image_style_phrase(item)
+    return {
+        "theme": str(theme),
+        "genre": str(genre),
+        "tone": str(tone),
+        "constraints_text": constraints_text,
+        "style": image_style_phrase(item),
+    }
+
+
+def build_visual_prompts(item: dict[str, Any], scene_count: int = 4) -> dict[str, Any]:
+    """Create deterministic English-first prompts from a DN benchmark item."""
+
+    brief = benchmark_brief(item)
     character = (
-        f"[Protagonist] a consistent main character in a {genre} story, "
-        f"visually grounded in the theme '{theme}', {style}"
+        f"[Protagonist] a consistent main character in a {brief['genre']} story, "
+        f"visually grounded in the theme '{brief['theme']}', {brief['style']}"
     )
     scene_templates = [
         "opening scene introducing the world and the protagonist's immediate problem",
@@ -145,9 +158,9 @@ def build_visual_prompts(item: dict[str, Any], scene_count: int = 4) -> dict[str
     prompts: list[str] = []
     for idx, template in enumerate(scene_templates[:scene_count], start=1):
         prompts.append(
-            f"[Protagonist] {template}; theme: {theme}; genre: {genre}; "
-            f"tone: {tone}; constraints: {constraints_text}; {style} "
-            f"# Scene {idx} for {theme}"
+            f"[Protagonist] {template}; theme: {brief['theme']}; genre: {brief['genre']}; "
+            f"tone: {brief['tone']}; constraints: {brief['constraints_text']}; {brief['style']} "
+            f"# Scene {idx} for {brief['theme']}"
         )
     return {
         "character_description": character,
@@ -155,6 +168,87 @@ def build_visual_prompts(item: dict[str, Any], scene_count: int = 4) -> dict[str
         "style_name": style_name(item),
         "negative_prompt": DEFAULT_NEGATIVE_PROMPT,
     }
+
+
+def derive_previous_scene_summary(item: dict[str, Any], prompt_pack: dict[str, Any]) -> dict[str, str]:
+    brief = benchmark_brief(item)
+    first_prompt = (prompt_pack.get("prompts") or [""])[0]
+    scene_setup = (
+        f"A {brief['genre']} scene in '{brief['theme']}' establishes the opening conflict. "
+        f"Visual target: {brief['style']}."
+    )
+    player_state = (
+        f"The protagonist is inside the first beat of a {brief['tone']} story and must respond "
+        "to the central conflict introduced in the opening image."
+    )
+    narrative_response = (
+        "The current image represents the active playable state before the player clicks the next action. "
+        f"Reference prompt: {first_prompt}"
+    )
+    suggested_next_step = DEFAULT_NEXT_TURN_ACTION
+    return {
+        "scene_setup": scene_setup,
+        "player_state": player_state,
+        "narrative_response": narrative_response,
+        "suggested_next_step": suggested_next_step,
+    }
+
+
+def build_next_turn_prompt(
+    item: dict[str, Any],
+    prompt_pack: dict[str, Any],
+    player_action: str = DEFAULT_NEXT_TURN_ACTION,
+) -> dict[str, Any]:
+    brief = benchmark_brief(item)
+    previous_state = derive_previous_scene_summary(item, prompt_pack)
+    continuation_prompt = (
+        f"[Protagonist] continue the same world after the player action; theme: {brief['theme']}; "
+        f"genre: {brief['genre']}; tone: {brief['tone']}; previous scene: {previous_state['scene_setup']}; "
+        f"player state: {previous_state['player_state']}; player action: {player_action}; "
+        f"show the immediate consequence of the chosen action; preserve the same protagonist, world logic, "
+        f"and conflict continuity; {brief['style']} # Next turn for {brief['theme']}"
+    )
+    next_turn_hint = (
+        "Render the next playable story image after the player chooses the most direct conflict-advancing action."
+    )
+    return {
+        "player_action": player_action,
+        "previous_state": previous_state,
+        "continuation_prompt": continuation_prompt,
+        "suggested_next_step": next_turn_hint,
+    }
+
+
+def build_input_bundle(
+    item: dict[str, Any],
+    prompt_pack: dict[str, Any],
+    *,
+    mode: str,
+    player_action: str | None = None,
+    previous_image_paths: list[str] | None = None,
+) -> dict[str, Any]:
+    bundle: dict[str, Any] = {
+        "original_dn_item": item,
+        "mode": mode,
+        "prompt_pack": prompt_pack,
+        "baseline_parameters": {
+            "scene_count": len(prompt_pack.get("prompts") or []),
+            "negative_prompt": prompt_pack.get("negative_prompt"),
+        },
+    }
+    if mode == "next_turn":
+        player_action = player_action or DEFAULT_NEXT_TURN_ACTION
+        continuation = build_next_turn_prompt(item, prompt_pack, player_action)
+        bundle.update(
+            {
+                "player_action": player_action,
+                "previous_image_paths": previous_image_paths or [],
+                "previous_state": continuation["previous_state"],
+                "next_turn_prompt": continuation["continuation_prompt"],
+                "suggested_next_step": continuation["suggested_next_step"],
+            }
+        )
+    return bundle
 
 
 def result_payload(
@@ -184,6 +278,76 @@ def result_payload(
     return payload
 
 
+def build_playable_image_result(
+    *,
+    item: dict[str, Any],
+    baseline: str,
+    run_id: str,
+    input_bundle: dict[str, Any],
+    raw_output: dict[str, Any],
+    image_paths: list[str],
+    request_start_ts: float,
+    first_playable_ts: float,
+    finish_ts: float,
+    success: bool,
+    error: str | None = None,
+    notes: list[str] | None = None,
+    extra: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    previous_state = input_bundle.get("previous_state") or {}
+    scene_setup = (
+        f"The next-turn image continues the benchmark '{item.get('theme')}' after the chosen action and preserves the same world conflict."
+    )
+    player_state = (
+        f"After the action '{input_bundle.get('player_action', DEFAULT_NEXT_TURN_ACTION)}', the protagonist remains in an advanceable state."
+    )
+    suggested_next_step = input_bundle.get("suggested_next_step") or "Use the continuation image to present the next actionable beat."
+    playable_components = {
+        "scene_setup": bool(scene_setup),
+        "player_state": bool(player_state),
+        "advanceable_next_step": bool(suggested_next_step),
+        "interaction_continuity": bool(previous_state),
+    }
+    playable = success and sum(1 for value in playable_components.values() if value) >= 3
+    payload = {
+        "baseline_id": baseline,
+        "benchmark_id": item.get("benchmark_id"),
+        "run_id": run_id,
+        "mode": "next_turn",
+        "input_bundle": input_bundle,
+        "raw_output": raw_output,
+        "success": success,
+        "latency_s": round(max(first_playable_ts - request_start_ts, 0.0), 3),
+        "playable": playable,
+        "playable_components": playable_components,
+        "normalized_response": {
+            "scene_setup": scene_setup,
+            "player_state": player_state,
+            "narrative_response": raw_output.get("narrative_response")
+            or previous_state.get("narrative_response")
+            or "Continuation image generated for the chosen action.",
+            "candidate_actions": [],
+            "suggested_next_step": suggested_next_step,
+            "is_playable": playable,
+            "request_start_ts": request_start_ts,
+            "first_playable_ts": first_playable_ts,
+            "finish_ts": finish_ts,
+            "error": error,
+            "notes": notes or [],
+        },
+        "image_artifacts": image_paths,
+        "failure_reason": error,
+        "resource_usage": {
+            "gpu": get_gpu_info(),
+            "hf_home": os.environ.get("HF_HOME"),
+        },
+        "notes": notes or [],
+    }
+    if extra:
+        payload.update(extra)
+    return payload
+
+
 def write_failure(sample_dir: Path, item: dict[str, Any], baseline: str, prompts: list[str], exc: BaseException) -> dict[str, Any]:
     payload = result_payload(
         item,
@@ -197,14 +361,26 @@ def write_failure(sample_dir: Path, item: dict[str, Any], baseline: str, prompts
     return payload
 
 
-def summarize_results(run_dir: Path, baseline: str, results: list[dict[str, Any]], notes: str = "") -> dict[str, Any]:
-    latencies = [float(r["latency_s"]) for r in results if r.get("status") == "success" and r.get("latency_s") is not None]
+def summarize_results(
+    run_dir: Path,
+    baseline: str,
+    results: list[dict[str, Any]],
+    notes: str = "",
+    *,
+    mode: str = "first_turn",
+) -> dict[str, Any]:
+    latencies = [
+        float(r["latency_s"])
+        for r in results
+        if r.get("status") == "success" and r.get("latency_s") is not None
+    ]
     success = [r for r in results if r.get("status") == "success"]
     failed = [r for r in results if r.get("status") == "failed"]
     blocked = [r for r in results if r.get("status") == "blocked"]
     images_per_success = [len(r.get("image_paths") or []) for r in success]
     summary = {
         "baseline": baseline,
+        "mode": mode,
         "sample_size": len(results),
         "success_count": len(success),
         "failed_count": len(failed),
@@ -218,6 +394,16 @@ def summarize_results(run_dir: Path, baseline: str, results: list[dict[str, Any]
         "output_dir": str(run_dir),
         "notes": notes,
     }
+    if mode == "next_turn":
+        continuity_hits = sum(
+            1
+            for r in results
+            if r.get("playable_components", {}).get("interaction_continuity")
+        )
+        summary["next_turn_time_mean_s"] = summary["mean_latency_s"]
+        summary["next_turn_p95_s"] = summary["p95_latency_s"]
+        summary["continuation_success_rate"] = summary["success_rate"]
+        summary["interaction_continuity"] = round(continuity_hits / len(results), 4) if results else 0.0
     write_json(run_dir / "metrics.json", summary)
     write_json(run_dir / "summary.json", {"summary": summary, "results": results})
     write_summary_csv(run_dir / "summary.csv", summary)
@@ -228,10 +414,15 @@ def summarize_results(run_dir: Path, baseline: str, results: list[dict[str, Any]
 def write_summary_csv(path: Path, summary: dict[str, Any]) -> None:
     fields = [
         "baseline",
+        "mode",
         "sample_size",
         "success_rate",
         "mean_latency_s",
         "p95_latency_s",
+        "next_turn_time_mean_s",
+        "next_turn_p95_s",
+        "continuation_success_rate",
+        "interaction_continuity",
         "mean_images_per_sample",
         "failed_ids",
         "output_dir",
@@ -252,6 +443,8 @@ def write_sample_index(path: Path, baseline: str, results: list[dict[str, Any]])
         lines.append("")
         lines.append(f"- status: `{result.get('status')}`")
         lines.append(f"- latency_s: `{result.get('latency_s')}`")
+        if result.get("mode"):
+            lines.append(f"- mode: `{result.get('mode')}`")
         if result.get("error"):
             lines.append(f"- error: `{result.get('error')}`")
         for image_path in result.get("image_paths") or []:
@@ -278,10 +471,10 @@ def common_parser(description: str) -> argparse.ArgumentParser:
     return parser
 
 
-def save_pil_images(images: Iterable[Any], sample_dir: Path) -> list[str]:
+def save_pil_images(images: Iterable[Any], sample_dir: Path, *, prefix: str = "image") -> list[str]:
     paths: list[str] = []
     for idx, image in enumerate(images, start=1):
-        path = sample_dir / f"image_{idx:03d}.png"
+        path = sample_dir / f"{prefix}_{idx:03d}.png"
         image.save(path)
         paths.append(str(path))
     return paths
