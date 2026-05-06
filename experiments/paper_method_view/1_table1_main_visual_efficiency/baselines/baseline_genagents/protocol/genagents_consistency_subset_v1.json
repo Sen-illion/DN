@@ -1,0 +1,23 @@
+{
+  "subset_name": "genagents_consistency_subset_v1",
+  "baseline": "genagents",
+  "benchmark_source": "DN-quality-benchmark-v1",
+  "created_on": "2026-04-25",
+  "sample_size": 3,
+  "turn_count": 3,
+  "purpose": "Run a fixed 3-turn persona-consistency and setting-adherence protocol for the first executable DN baseline.",
+  "items": [
+    {
+      "benchmark_id": "DNQBV1_001",
+      "focus": "grounded realism and actionability"
+    },
+    {
+      "benchmark_id": "DNQBV1_005",
+      "focus": "high-pressure sci-fi reaction stability"
+    },
+    {
+      "benchmark_id": "DNQBV1_013",
+      "focus": "suspense preservation under isolated setting"
+    }
+  ]
+}

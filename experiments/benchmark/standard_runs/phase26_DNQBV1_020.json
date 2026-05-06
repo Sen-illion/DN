@@ -1,0 +1,380 @@
+{
+  "summary": {
+    "experiment_name": "phase26_DNQBV1_020",
+    "profile": "fullready_strict",
+    "sample_size": 1,
+    "read_wait_s": 0.0,
+    "suite_start_ts": 1777627431.5049183,
+    "suite_end_ts": 1777627629.3273623,
+    "first_click_elapsed_s": {
+      "count": 0
+    },
+    "first_click_setup_success_count": 0,
+    "second_click_elapsed_s": {
+      "count": 0
+    },
+    "second_click_success_count": 0,
+    "transport_success_count": 0,
+    "strict_success_count": 0,
+    "likely_hit_count": 0,
+    "likely_hit_rate": 0.0,
+    "failure_bucket_counts": {
+      "first_click_timeout": 1
+    },
+    "placeholder_strict_fail_count": 0,
+    "cache_hit_reason_counts": {},
+    "cache_miss_reason_counts": {},
+    "global_state_key_drift_detected_count": 0,
+    "scene_id_mismatch_detected_count": 0,
+    "selected_option_mismatch_detected_count": 0,
+    "aborted": false,
+    "success_count": 0,
+    "text_ready_elapsed_s": {
+      "count": 0
+    },
+    "image_ready_elapsed_s": {
+      "count": 0
+    },
+    "full_ready_elapsed_s": {
+      "count": 0
+    },
+    "real_scene_count": 0,
+    "real_scene_rate": 0.0,
+    "direct_image_count": 0,
+    "async_image_count": 0,
+    "placeholder_count": 0,
+    "placeholder_rate": 0.0,
+    "direct_image_rate": 0.0,
+    "async_image_rate": 0.0,
+    "provider_retry_heavy_count": 0,
+    "provider_429_count": 0,
+    "provider_timeout_count": 0,
+    "provider_backoff_wait_ms_total": 0,
+    "main_character_contention_suspected_count": 0,
+    "notes": "phase26 setup-vs-measurement separation probe"
+  },
+  "runs": [
+    {
+      "benchmark_id": "DNQBV1_020",
+      "theme_id": 18,
+      "theme": "沙漠商队星图",
+      "read_wait_s": 0.0,
+      "full_ready_mode": true,
+      "profile": "fullready_strict",
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 17.711,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过在集市中完成一系列高风险的短途运输任务，勉强凑齐了基础补给，但导航仪的修复因零件缺失而被迫搁置，商队在遗憾中踏上了未知的征程。",
+                  "main_conflict": "商队在出发前夕遭遇了严重的物资短缺，主角必须在有限的预算内，决定是修复那台关键的导航仪，还是购买足以支撑全员穿越荒原的净水设备。这一选择直接决定了后续旅程的生存难度，且无论如何选择，都意味着必须放弃另一项保障，导致商队在起步阶段就面临不可逆的隐患。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角凭借对地形的直觉带领团队走出磁暴区，但运输车的一台引擎彻底报废，导致商队不得不丢弃部分非必要物资，虽然保住了核心目标，却损失了珍贵的贸易筹码。",
+                  "main_conflict": "商队在穿越寂静谷时遭遇了罕见的强磁暴，主角的导航能力失效，被迫在迷失的沙海中寻找方向。此时，商队内部对于是否继续前进产生了严重分歧，部分成员希望折返，而主角必须在维持团队凝聚力与坚持目标之间寻找平衡，同时还要应对沙暴带来的设备损耗。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角成功交付物资并换取了生存所需的资源，但商队已不再是最初的模样，部分同伴选择留在绿洲寻求安稳，主角带着剩下的成员继续前行，虽然目标达成，但那种曾经并肩作战的完整感已随风消散。",
+                  "main_conflict": "商队终于抵达回声绿洲，却发现这里正处于权力更迭的混乱期，原本承诺的贸易契约面临作废风险。主角必须在复杂的利益纠葛中周旋，试图保住商队的生存空间，同时还要面对同伴因长期艰苦旅程而选择离队的现实，这种离别是基于生存逻辑的理性选择，无法挽回。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "沉浸式现实主义叙事，强调环境叙事与生存博弈。画面采用低饱和度色调，强调风沙的质感与光影的真实感，配乐以风声、金属摩擦声与低沉的弦乐为主，营造一种在荒芜中寻找秩序的孤独感与踏实感。",
+              "main_quest": "主角的目标是带领一支小型商队，穿越被流沙封锁的“寂静谷”，将一批急需的医疗物资送往远方的“回声绿洲”。任务分为三个阶段：首先是筹集足够的补给与修复受损的运输车；其次是穿越充满地磁干扰的无人区，期间需应对沙尘暴与资源短缺的压力；最后是在回声绿洲的政治博弈中，为商队争取长期的贸易契约。挑战在于，主角必须在“保护物资”与“保护同伴”之间做出取舍，且无论如何努力，最终都无法挽救所有受损的设备，也无法改变绿洲资源枯竭的客观现实，只能在有限的条件下达成最优的生存方案。",
+              "protagonist_ability": "主角拥有一块从旧时代遗迹中挖掘出的“星盘罗盘”，其核心能力是“地磁共振导航”。通过将罗盘与自身生物电场连接，主角能感知到沙层下隐藏的旧时代金属管道与遗迹结构。使用时需消耗极高的体力与精神力，若过度使用会导致短暂的感官失灵或记忆模糊。该能力无法改变环境，仅能提供最优路径规划，且在强磁暴天气下完全失效，必须依赖主角的经验与直觉进行辅助判断。",
+              "world_basic_setting": "故事发生在一片被称为“流金荒原”的广袤沙漠，这里曾是繁荣的贸易枢纽，但随着地下水源枯竭与地磁异常，旧文明的城市沦为废墟，被掩埋在永不停歇的沙暴之下。社会结构退化为以绿洲为据点的商队联盟，资源匮乏导致“水”与“星图”成为硬通货。星图不仅是导航工具，更是记录旧时代遗迹坐标的珍贵遗产。文化上，人们崇尚“沙中行者”的生存哲学，即在不可抗力的自然灾害面前，通过精确的计算与协作，换取微小的生存空间。关键事件“大迁徙”导致了旧贸易路线的断裂，现在的商队不仅要面对严酷的自然环境，还要在各绿洲势力间进行复杂的利益博弈，试图在破碎的文明残骸中建立起新的生存秩序。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1777627431_23f39i",
+            "image_style": {
+              "subtype": "classic_oil",
+              "type": "oil_painting"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "防风护目镜、深灰色斗篷、干练短发、皮肤微黑、眼神坚毅、手腕处有金属连接接口、背负旧式罗盘、靴子沾满沙尘、沉默寡言、实用主义者、疲惫但清醒、手部有老茧",
+              "work_en": "The Gilded Wasteland",
+              "work_zh": "流金荒原"
+            },
+            "tone": "normal_ending",
+            "user_theme": "沙漠商队星图"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "request_payload": {
+          "gameTheme": "沙漠商队星图",
+          "protagonistAttr": {},
+          "difficulty": "normal",
+          "toneKey": "normal_ending",
+          "imageStyle": {
+            "type": "oil_painting",
+            "subtype": "classic_oil"
+          },
+          "_benchmark_profile": "fullready_strict",
+          "_benchmark_measurement": "fullready_nextturn",
+          "_benchmark_read_wait_s": 0.0
+        },
+        "start_ts": 1777627431.5049224,
+        "end_ts": 1777627449.2155216,
+        "provider_events": {
+          "event_count": 5,
+          "queue_wait_ms": {
+            "count": 5,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 1,
+            "min": 17695.0,
+            "max": 17695.0,
+            "mean": 17695.0,
+            "median": 17695.0,
+            "p95": 17695.0
+          },
+          "llm_success_count": 1,
+          "image_success_count": 0,
+          "request_thread_event_count": 2,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 1
+        },
+        "status": "success",
+        "game_id": "game_1777627431_23f39i"
+      },
+      "first_click": {
+        "http_status": null,
+        "elapsed_s": 180.014,
+        "response_json": {
+          "status": "timeout",
+          "message": "HTTPConnectionPool(host='127.0.0.1', port=5008): Read timed out. (read timeout=180)"
+        },
+        "request_payload": {
+          "option": "开始游戏",
+          "optionIndex": 0,
+          "sceneId": null,
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过在集市中完成一系列高风险的短途运输任务，勉强凑齐了基础补给，但导航仪的修复因零件缺失而被迫搁置，商队在遗憾中踏上了未知的征程。",
+                  "main_conflict": "商队在出发前夕遭遇了严重的物资短缺，主角必须在有限的预算内，决定是修复那台关键的导航仪，还是购买足以支撑全员穿越荒原的净水设备。这一选择直接决定了后续旅程的生存难度，且无论如何选择，都意味着必须放弃另一项保障，导致商队在起步阶段就面临不可逆的隐患。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角凭借对地形的直觉带领团队走出磁暴区，但运输车的一台引擎彻底报废，导致商队不得不丢弃部分非必要物资，虽然保住了核心目标，却损失了珍贵的贸易筹码。",
+                  "main_conflict": "商队在穿越寂静谷时遭遇了罕见的强磁暴，主角的导航能力失效，被迫在迷失的沙海中寻找方向。此时，商队内部对于是否继续前进产生了严重分歧，部分成员希望折返，而主角必须在维持团队凝聚力与坚持目标之间寻找平衡，同时还要应对沙暴带来的设备损耗。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角成功交付物资并换取了生存所需的资源，但商队已不再是最初的模样，部分同伴选择留在绿洲寻求安稳，主角带着剩下的成员继续前行，虽然目标达成，但那种曾经并肩作战的完整感已随风消散。",
+                  "main_conflict": "商队终于抵达回声绿洲，却发现这里正处于权力更迭的混乱期，原本承诺的贸易契约面临作废风险。主角必须在复杂的利益纠葛中周旋，试图保住商队的生存空间，同时还要面对同伴因长期艰苦旅程而选择离队的现实，这种离别是基于生存逻辑的理性选择，无法挽回。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "沉浸式现实主义叙事，强调环境叙事与生存博弈。画面采用低饱和度色调，强调风沙的质感与光影的真实感，配乐以风声、金属摩擦声与低沉的弦乐为主，营造一种在荒芜中寻找秩序的孤独感与踏实感。",
+              "main_quest": "主角的目标是带领一支小型商队，穿越被流沙封锁的“寂静谷”，将一批急需的医疗物资送往远方的“回声绿洲”。任务分为三个阶段：首先是筹集足够的补给与修复受损的运输车；其次是穿越充满地磁干扰的无人区，期间需应对沙尘暴与资源短缺的压力；最后是在回声绿洲的政治博弈中，为商队争取长期的贸易契约。挑战在于，主角必须在“保护物资”与“保护同伴”之间做出取舍，且无论如何努力，最终都无法挽救所有受损的设备，也无法改变绿洲资源枯竭的客观现实，只能在有限的条件下达成最优的生存方案。",
+              "protagonist_ability": "主角拥有一块从旧时代遗迹中挖掘出的“星盘罗盘”，其核心能力是“地磁共振导航”。通过将罗盘与自身生物电场连接，主角能感知到沙层下隐藏的旧时代金属管道与遗迹结构。使用时需消耗极高的体力与精神力，若过度使用会导致短暂的感官失灵或记忆模糊。该能力无法改变环境，仅能提供最优路径规划，且在强磁暴天气下完全失效，必须依赖主角的经验与直觉进行辅助判断。",
+              "world_basic_setting": "故事发生在一片被称为“流金荒原”的广袤沙漠，这里曾是繁荣的贸易枢纽，但随着地下水源枯竭与地磁异常，旧文明的城市沦为废墟，被掩埋在永不停歇的沙暴之下。社会结构退化为以绿洲为据点的商队联盟，资源匮乏导致“水”与“星图”成为硬通货。星图不仅是导航工具，更是记录旧时代遗迹坐标的珍贵遗产。文化上，人们崇尚“沙中行者”的生存哲学，即在不可抗力的自然灾害面前，通过精确的计算与协作，换取微小的生存空间。关键事件“大迁徙”导致了旧贸易路线的断裂，现在的商队不仅要面对严酷的自然环境，还要在各绿洲势力间进行复杂的利益博弈，试图在破碎的文明残骸中建立起新的生存秩序。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1777627431_23f39i",
+            "image_style": {
+              "subtype": "classic_oil",
+              "type": "oil_painting"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "防风护目镜、深灰色斗篷、干练短发、皮肤微黑、眼神坚毅、手腕处有金属连接接口、背负旧式罗盘、靴子沾满沙尘、沉默寡言、实用主义者、疲惫但清醒、手部有老茧",
+              "work_en": "The Gilded Wasteland",
+              "work_zh": "流金荒原"
+            },
+            "tone": "normal_ending",
+            "user_theme": "沙漠商队星图",
+            "_benchmark_profile": "fullready_strict",
+            "_benchmark_measurement": "fullready_nextturn",
+            "_benchmark_read_wait_s": 0.0
+          }
+        },
+        "start_ts": 1777627449.2658668,
+        "end_ts": 1777627629.2795863,
+        "provider_events": {
+          "event_count": 9,
+          "queue_wait_ms": {
+            "count": 9,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 6,
+            "min": 3564.0,
+            "max": 12931.0,
+            "mean": 8204.833,
+            "median": 7865.0,
+            "p95": 12855.5
+          },
+          "llm_success_count": 4,
+          "image_success_count": 0,
+          "request_thread_event_count": 2,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 3
+        },
+        "request_error": "timeout",
+        "attempts": [
+          {
+            "http_status": null,
+            "elapsed_s": 180.014,
+            "response_json": {
+              "status": "timeout",
+              "message": "HTTPConnectionPool(host='127.0.0.1', port=5008): Read timed out. (read timeout=180)"
+            },
+            "request_payload": {
+              "option": "开始游戏",
+              "optionIndex": 0,
+              "sceneId": null,
+              "globalState": {
+                "core_worldview": {
+                  "chapters": {
+                    "chapter1": {
+                      "conflict_end_condition": "主角通过在集市中完成一系列高风险的短途运输任务，勉强凑齐了基础补给，但导航仪的修复因零件缺失而被迫搁置，商队在遗憾中踏上了未知的征程。",
+                      "main_conflict": "商队在出发前夕遭遇了严重的物资短缺，主角必须在有限的预算内，决定是修复那台关键的导航仪，还是购买足以支撑全员穿越荒原的净水设备。这一选择直接决定了后续旅程的生存难度，且无论如何选择，都意味着必须放弃另一项保障，导致商队在起步阶段就面临不可逆的隐患。"
+                    },
+                    "chapter2": {
+                      "conflict_end_condition": "主角凭借对地形的直觉带领团队走出磁暴区，但运输车的一台引擎彻底报废，导致商队不得不丢弃部分非必要物资，虽然保住了核心目标，却损失了珍贵的贸易筹码。",
+                      "main_conflict": "商队在穿越寂静谷时遭遇了罕见的强磁暴，主角的导航能力失效，被迫在迷失的沙海中寻找方向。此时，商队内部对于是否继续前进产生了严重分歧，部分成员希望折返，而主角必须在维持团队凝聚力与坚持目标之间寻找平衡，同时还要应对沙暴带来的设备损耗。"
+                    },
+                    "chapter3": {
+                      "conflict_end_condition": "主角成功交付物资并换取了生存所需的资源，但商队已不再是最初的模样，部分同伴选择留在绿洲寻求安稳，主角带着剩下的成员继续前行，虽然目标达成，但那种曾经并肩作战的完整感已随风消散。",
+                      "main_conflict": "商队终于抵达回声绿洲，却发现这里正处于权力更迭的混乱期，原本承诺的贸易契约面临作废风险。主角必须在复杂的利益纠葛中周旋，试图保住商队的生存空间，同时还要面对同伴因长期艰苦旅程而选择离队的现实，这种离别是基于生存逻辑的理性选择，无法挽回。"
+                    }
+                  },
+                  "characters": {},
+                  "forces": {},
+                  "game_style": "沉浸式现实主义叙事，强调环境叙事与生存博弈。画面采用低饱和度色调，强调风沙的质感与光影的真实感，配乐以风声、金属摩擦声与低沉的弦乐为主，营造一种在荒芜中寻找秩序的孤独感与踏实感。",
+                  "main_quest": "主角的目标是带领一支小型商队，穿越被流沙封锁的“寂静谷”，将一批急需的医疗物资送往远方的“回声绿洲”。任务分为三个阶段：首先是筹集足够的补给与修复受损的运输车；其次是穿越充满地磁干扰的无人区，期间需应对沙尘暴与资源短缺的压力；最后是在回声绿洲的政治博弈中，为商队争取长期的贸易契约。挑战在于，主角必须在“保护物资”与“保护同伴”之间做出取舍，且无论如何努力，最终都无法挽救所有受损的设备，也无法改变绿洲资源枯竭的客观现实，只能在有限的条件下达成最优的生存方案。",
+                  "protagonist_ability": "主角拥有一块从旧时代遗迹中挖掘出的“星盘罗盘”，其核心能力是“地磁共振导航”。通过将罗盘与自身生物电场连接，主角能感知到沙层下隐藏的旧时代金属管道与遗迹结构。使用时需消耗极高的体力与精神力，若过度使用会导致短暂的感官失灵或记忆模糊。该能力无法改变环境，仅能提供最优路径规划，且在强磁暴天气下完全失效，必须依赖主角的经验与直觉进行辅助判断。",
+                  "world_basic_setting": "故事发生在一片被称为“流金荒原”的广袤沙漠，这里曾是繁荣的贸易枢纽，但随着地下水源枯竭与地磁异常，旧文明的城市沦为废墟，被掩埋在永不停歇的沙暴之下。社会结构退化为以绿洲为据点的商队联盟，资源匮乏导致“水”与“星图”成为硬通货。星图不仅是导航工具，更是记录旧时代遗迹坐标的珍贵遗产。文化上，人们崇尚“沙中行者”的生存哲学，即在不可抗力的自然灾害面前，通过精确的计算与协作，换取微小的生存空间。关键事件“大迁徙”导致了旧贸易路线的断裂，现在的商队不仅要面对严酷的自然环境，还要在各绿洲势力间进行复杂的利益博弈，试图在破碎的文明残骸中建立起新的生存秩序。"
+                },
+                "flow_worldline": {
+                  "characters": {},
+                  "current_chapter": "chapter1",
+                  "environment": {}
+                },
+                "game_id": "game_1777627431_23f39i",
+                "image_style": {
+                  "subtype": "classic_oil",
+                  "type": "oil_painting"
+                },
+                "meta": {
+                  "detail_async": true
+                },
+                "protagonist_canonical": {
+                  "age_range": "青年",
+                  "gender": "男性",
+                  "name_en": "Lin Yuan",
+                  "name_zh": "林远",
+                  "signature_look_keywords": "防风护目镜、深灰色斗篷、干练短发、皮肤微黑、眼神坚毅、手腕处有金属连接接口、背负旧式罗盘、靴子沾满沙尘、沉默寡言、实用主义者、疲惫但清醒、手部有老茧",
+                  "work_en": "The Gilded Wasteland",
+                  "work_zh": "流金荒原"
+                },
+                "tone": "normal_ending",
+                "user_theme": "沙漠商队星图",
+                "_benchmark_profile": "fullready_strict",
+                "_benchmark_measurement": "fullready_nextturn",
+                "_benchmark_read_wait_s": 0.0
+              }
+            },
+            "start_ts": 1777627449.2658668,
+            "end_ts": 1777627629.2795863,
+            "provider_events": {
+              "event_count": 9,
+              "queue_wait_ms": {
+                "count": 9,
+                "min": 0.0,
+                "max": 0.0,
+                "mean": 0.0,
+                "median": 0.0,
+                "p95": 0.0
+              },
+              "latency_ms": {
+                "count": 6,
+                "min": 3564.0,
+                "max": 12931.0,
+                "mean": 8204.833,
+                "median": 7865.0,
+                "p95": 12855.5
+              },
+              "llm_success_count": 4,
+              "image_success_count": 0,
+              "request_thread_event_count": 2,
+              "provider_429_count": 0,
+              "provider_timeout_count": 0,
+              "shared_backoff_wait_ms_total": 0,
+              "retry_heavy_event_count": 0,
+              "main_character_event_count": 0,
+              "scene_image_event_count": 3
+            },
+            "request_error": "timeout"
+          }
+        ],
+        "attempt_count": 1,
+        "request_elapsed_s": 180.014,
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "timeout",
+        "has_scene": false,
+        "has_image": false,
+        "setup_success": false
+      },
+      "second_click": {},
+      "full_ready": {},
+      "placeholder": false,
+      "transport_success": false,
+      "strict_success": false,
+      "failure_bucket": "first_click_timeout",
+      "cache_path_classification": "first_click_timeout",
+      "cache_hit_reason": null,
+      "cache_miss_reason": null,
+      "global_state_key_drift_detected": false,
+      "scene_id_mismatch_detected": false,
+      "selected_option_mismatch_detected": false,
+      "success": false
+    }
+  ]
+}

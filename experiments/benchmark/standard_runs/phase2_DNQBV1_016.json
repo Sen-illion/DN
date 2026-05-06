@@ -1,0 +1,371 @@
+{
+  "summary": {
+    "experiment_name": "phase2_DNQBV1_016",
+    "profile": "fullready_strict",
+    "sample_size": 1,
+    "read_wait_s": 0.0,
+    "suite_start_ts": 1777624463.0635366,
+    "suite_end_ts": 1777624531.014029,
+    "second_click_elapsed_s": {
+      "count": 0
+    },
+    "second_click_success_count": 0,
+    "transport_success_count": 0,
+    "strict_success_count": 0,
+    "likely_hit_count": 0,
+    "likely_hit_rate": 0.0,
+    "failure_bucket_counts": {
+      "first_click_timeout": 1
+    },
+    "placeholder_strict_fail_count": 0,
+    "cache_hit_reason_counts": {},
+    "cache_miss_reason_counts": {},
+    "global_state_key_drift_detected_count": 0,
+    "scene_id_mismatch_detected_count": 0,
+    "selected_option_mismatch_detected_count": 0,
+    "aborted": false,
+    "success_count": 0,
+    "text_ready_elapsed_s": {
+      "count": 0
+    },
+    "image_ready_elapsed_s": {
+      "count": 0
+    },
+    "full_ready_elapsed_s": {
+      "count": 0
+    },
+    "real_scene_count": 0,
+    "real_scene_rate": 0.0,
+    "direct_image_count": 0,
+    "async_image_count": 0,
+    "placeholder_count": 0,
+    "placeholder_rate": 0.0,
+    "direct_image_rate": 0.0,
+    "async_image_rate": 0.0,
+    "provider_retry_heavy_count": 0,
+    "provider_429_count": 0,
+    "provider_timeout_count": 0,
+    "provider_backoff_wait_ms_total": 0,
+    "main_character_contention_suspected_count": 0,
+    "notes": "phase2 cache diagnosis probe"
+  },
+  "runs": [
+    {
+      "benchmark_id": "DNQBV1_016",
+      "theme_id": 10,
+      "theme": "像素神殿考古",
+      "read_wait_s": 0.0,
+      "full_ready_mode": true,
+      "profile": "fullready_strict",
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 7.835,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过修复终端，成功提取出一段模糊但温暖的影像，虽然未能找到亲人的直接下落，但获得了继续深入神殿的必要补给与关键地图碎片，完成了从个人情感向职业考古的初步心态转换。",
+                  "main_conflict": "主角初入灰岩外围，面临生存物资短缺与考古设备老化的双重压力。此时，主角发现了一个被遗弃的家庭终端，其中记录了一段破碎的童年记忆，这与主角寻找亲人线索的目标产生重叠，主角在“继续任务获取报酬”与“沉溺于个人回忆”之间陷入了艰难的抉择。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角在坍塌中选择保护了一份记录了普通人日常琐事的数据库，虽然因此受了轻伤并丢失了部分装备，但成功解析出神殿深层的入口坐标，完成了对自我职业操守的确认。",
+                  "main_conflict": "主角深入神殿中层，遭遇了竞争对手的恶意阻挠与考古遗迹的结构性坍塌。主角必须在有限的时间内，决定是保护珍贵的历史数据，还是优先保障自己的生命安全。同时，主角发现神殿的记录并非完美，其中夹杂着大量关于背叛与痛苦的真实记录，这动摇了主角对“旧时代圆满”的执念。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角将残缺的影像修复并归档，虽然没能找回完整的记忆，但通过这段经历与自我达成了和解。主角带着一份平静的遗憾离开神殿，回归平凡的考古生活，将这段经历化作了内心深处的一抹释然。",
+                  "main_conflict": "主角抵达神殿核心，却发现所谓的“完整影像”早已因氧化而残缺不全。主角一直追求的圆满真相，最终只剩下几帧模糊的画面与一段断续的音频。主角必须面对“努力终究无法换回完整过去”的现实，在彻底放弃与接受残缺之间寻找平衡。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "采用低保真像素美学与冷峻写实叙事结合，通过斑驳的色彩与环境音效营造出一种“旧物余温”的质感。游戏节奏舒缓，强调对遗迹细节的观察与对碎片化叙事的拼凑，呈现出一种在废墟中寻找生活意义的沉静与孤独感。",
+              "main_quest": "主角受雇于一家濒临倒闭的私人博物馆，目标是深入城市最深处的“核心神殿”——一座被传言封存了旧时代完整生活影像的地下数据中心。主角需要通过层层考古挖掘，修复破损的存储设备，拼凑出神殿的原始蓝图。挑战在于，随着挖掘深入，主角不仅要面对恶劣的自然环境与资源匮乏的生存压力，还要在不断揭开的真相中，面对自己内心深处对已故亲人的执念。最终目标并非为了拯救世界，而是为了在神殿中找到那段关于家人的、唯一的数字影像，以此作为自己平庸人生中唯一的精神支柱，并最终在真相与现实之间做出取舍。",
+              "protagonist_ability": "主角拥有一种名为“共感解析”的特质，源于其家族遗传的神经敏感度。通过接触旧时代的存储介质，主角能感知到数据残留的情绪波动与片段记忆。使用时需消耗极高的体力与精神力，若过度使用会导致短暂的记忆模糊或感官失调。此能力无法改变过去，仅能作为一种“见证者”的视角，帮助主角在冰冷的废墟中提取出那些被时间掩埋的、关于爱与遗憾的真实情感。",
+              "world_basic_setting": "故事发生在一座名为“灰岩”的近未来工业遗址城市。大灾变后的世界，科技文明退化至电气时代，人们生活在巨大的废弃建筑群中。社会文化以“回收与重构”为核心，人们通过挖掘旧时代的数字残片来理解过去。地理上，城市被厚重的酸雨云层覆盖，阳光成为奢侈品。关键事件是“大断电”，导致全球数字档案损毁，人类失去了大部分历史记忆。现在的考古并非为了寻找黄金，而是为了寻找那些被遗忘的、关于平凡生活的数字记录。社会阶层由“数据解析能力”决定，底层民众在废墟中寻找旧时代的存储介质，试图通过还原这些碎片，拼凑出曾经文明的样貌，以此获得微薄的生存资源与精神慰藉。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1777624463_f2m7su",
+            "image_style": {
+              "type": "anime"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "凌乱黑发，深色防风工装，护目镜，消瘦，眼神专注，指尖有老茧，随身携带旧式手持终端，沉默寡言，背负沉重的工具包，略显疲惫，坚韧",
+              "work_en": "Records of Grey Rock",
+              "work_zh": "灰岩遗迹录"
+            },
+            "tone": "normal_ending",
+            "user_theme": "像素神殿考古"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "request_payload": {
+          "gameTheme": "像素神殿考古",
+          "protagonistAttr": {},
+          "difficulty": "normal",
+          "toneKey": "normal_ending",
+          "imageStyle": {
+            "type": "anime"
+          },
+          "_benchmark_profile": "fullready_strict",
+          "_benchmark_measurement": "fullready_nextturn",
+          "_benchmark_read_wait_s": 0.0
+        },
+        "start_ts": 1777624463.0635421,
+        "end_ts": 1777624470.8983676,
+        "provider_events": {
+          "event_count": 4,
+          "queue_wait_ms": {
+            "count": 4,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 1,
+            "min": 7823.0,
+            "max": 7823.0,
+            "mean": 7823.0,
+            "median": 7823.0,
+            "p95": 7823.0
+          },
+          "llm_success_count": 1,
+          "image_success_count": 0,
+          "request_thread_event_count": 2,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0
+        },
+        "status": "success",
+        "game_id": "game_1777624463_f2m7su"
+      },
+      "first_click": {
+        "http_status": null,
+        "elapsed_s": 60.028,
+        "response_json": {
+          "status": "timeout",
+          "message": "HTTPConnectionPool(host='127.0.0.1', port=5006): Read timed out. (read timeout=60)"
+        },
+        "request_payload": {
+          "option": "开始游戏",
+          "optionIndex": 0,
+          "sceneId": null,
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过修复终端，成功提取出一段模糊但温暖的影像，虽然未能找到亲人的直接下落，但获得了继续深入神殿的必要补给与关键地图碎片，完成了从个人情感向职业考古的初步心态转换。",
+                  "main_conflict": "主角初入灰岩外围，面临生存物资短缺与考古设备老化的双重压力。此时，主角发现了一个被遗弃的家庭终端，其中记录了一段破碎的童年记忆，这与主角寻找亲人线索的目标产生重叠，主角在“继续任务获取报酬”与“沉溺于个人回忆”之间陷入了艰难的抉择。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角在坍塌中选择保护了一份记录了普通人日常琐事的数据库，虽然因此受了轻伤并丢失了部分装备，但成功解析出神殿深层的入口坐标，完成了对自我职业操守的确认。",
+                  "main_conflict": "主角深入神殿中层，遭遇了竞争对手的恶意阻挠与考古遗迹的结构性坍塌。主角必须在有限的时间内，决定是保护珍贵的历史数据，还是优先保障自己的生命安全。同时，主角发现神殿的记录并非完美，其中夹杂着大量关于背叛与痛苦的真实记录，这动摇了主角对“旧时代圆满”的执念。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角将残缺的影像修复并归档，虽然没能找回完整的记忆，但通过这段经历与自我达成了和解。主角带着一份平静的遗憾离开神殿，回归平凡的考古生活，将这段经历化作了内心深处的一抹释然。",
+                  "main_conflict": "主角抵达神殿核心，却发现所谓的“完整影像”早已因氧化而残缺不全。主角一直追求的圆满真相，最终只剩下几帧模糊的画面与一段断续的音频。主角必须面对“努力终究无法换回完整过去”的现实，在彻底放弃与接受残缺之间寻找平衡。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "采用低保真像素美学与冷峻写实叙事结合，通过斑驳的色彩与环境音效营造出一种“旧物余温”的质感。游戏节奏舒缓，强调对遗迹细节的观察与对碎片化叙事的拼凑，呈现出一种在废墟中寻找生活意义的沉静与孤独感。",
+              "main_quest": "主角受雇于一家濒临倒闭的私人博物馆，目标是深入城市最深处的“核心神殿”——一座被传言封存了旧时代完整生活影像的地下数据中心。主角需要通过层层考古挖掘，修复破损的存储设备，拼凑出神殿的原始蓝图。挑战在于，随着挖掘深入，主角不仅要面对恶劣的自然环境与资源匮乏的生存压力，还要在不断揭开的真相中，面对自己内心深处对已故亲人的执念。最终目标并非为了拯救世界，而是为了在神殿中找到那段关于家人的、唯一的数字影像，以此作为自己平庸人生中唯一的精神支柱，并最终在真相与现实之间做出取舍。",
+              "protagonist_ability": "主角拥有一种名为“共感解析”的特质，源于其家族遗传的神经敏感度。通过接触旧时代的存储介质，主角能感知到数据残留的情绪波动与片段记忆。使用时需消耗极高的体力与精神力，若过度使用会导致短暂的记忆模糊或感官失调。此能力无法改变过去，仅能作为一种“见证者”的视角，帮助主角在冰冷的废墟中提取出那些被时间掩埋的、关于爱与遗憾的真实情感。",
+              "world_basic_setting": "故事发生在一座名为“灰岩”的近未来工业遗址城市。大灾变后的世界，科技文明退化至电气时代，人们生活在巨大的废弃建筑群中。社会文化以“回收与重构”为核心，人们通过挖掘旧时代的数字残片来理解过去。地理上，城市被厚重的酸雨云层覆盖，阳光成为奢侈品。关键事件是“大断电”，导致全球数字档案损毁，人类失去了大部分历史记忆。现在的考古并非为了寻找黄金，而是为了寻找那些被遗忘的、关于平凡生活的数字记录。社会阶层由“数据解析能力”决定，底层民众在废墟中寻找旧时代的存储介质，试图通过还原这些碎片，拼凑出曾经文明的样貌，以此获得微薄的生存资源与精神慰藉。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1777624463_f2m7su",
+            "image_style": {
+              "type": "anime"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "凌乱黑发，深色防风工装，护目镜，消瘦，眼神专注，指尖有老茧，随身携带旧式手持终端，沉默寡言，背负沉重的工具包，略显疲惫，坚韧",
+              "work_en": "Records of Grey Rock",
+              "work_zh": "灰岩遗迹录"
+            },
+            "tone": "normal_ending",
+            "user_theme": "像素神殿考古",
+            "_benchmark_profile": "fullready_strict",
+            "_benchmark_measurement": "fullready_nextturn",
+            "_benchmark_read_wait_s": 0.0
+          }
+        },
+        "start_ts": 1777624470.946341,
+        "end_ts": 1777624530.9740715,
+        "provider_events": {
+          "event_count": 6,
+          "queue_wait_ms": {
+            "count": 6,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 4,
+            "min": 2564.0,
+            "max": 12219.0,
+            "mean": 7046.5,
+            "median": 6701.5,
+            "p95": 11760.45
+          },
+          "llm_success_count": 4,
+          "image_success_count": 0,
+          "request_thread_event_count": 0,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0
+        },
+        "request_error": "timeout",
+        "attempts": [
+          {
+            "http_status": null,
+            "elapsed_s": 60.028,
+            "response_json": {
+              "status": "timeout",
+              "message": "HTTPConnectionPool(host='127.0.0.1', port=5006): Read timed out. (read timeout=60)"
+            },
+            "request_payload": {
+              "option": "开始游戏",
+              "optionIndex": 0,
+              "sceneId": null,
+              "globalState": {
+                "core_worldview": {
+                  "chapters": {
+                    "chapter1": {
+                      "conflict_end_condition": "主角通过修复终端，成功提取出一段模糊但温暖的影像，虽然未能找到亲人的直接下落，但获得了继续深入神殿的必要补给与关键地图碎片，完成了从个人情感向职业考古的初步心态转换。",
+                      "main_conflict": "主角初入灰岩外围，面临生存物资短缺与考古设备老化的双重压力。此时，主角发现了一个被遗弃的家庭终端，其中记录了一段破碎的童年记忆，这与主角寻找亲人线索的目标产生重叠，主角在“继续任务获取报酬”与“沉溺于个人回忆”之间陷入了艰难的抉择。"
+                    },
+                    "chapter2": {
+                      "conflict_end_condition": "主角在坍塌中选择保护了一份记录了普通人日常琐事的数据库，虽然因此受了轻伤并丢失了部分装备，但成功解析出神殿深层的入口坐标，完成了对自我职业操守的确认。",
+                      "main_conflict": "主角深入神殿中层，遭遇了竞争对手的恶意阻挠与考古遗迹的结构性坍塌。主角必须在有限的时间内，决定是保护珍贵的历史数据，还是优先保障自己的生命安全。同时，主角发现神殿的记录并非完美，其中夹杂着大量关于背叛与痛苦的真实记录，这动摇了主角对“旧时代圆满”的执念。"
+                    },
+                    "chapter3": {
+                      "conflict_end_condition": "主角将残缺的影像修复并归档，虽然没能找回完整的记忆，但通过这段经历与自我达成了和解。主角带着一份平静的遗憾离开神殿，回归平凡的考古生活，将这段经历化作了内心深处的一抹释然。",
+                      "main_conflict": "主角抵达神殿核心，却发现所谓的“完整影像”早已因氧化而残缺不全。主角一直追求的圆满真相，最终只剩下几帧模糊的画面与一段断续的音频。主角必须面对“努力终究无法换回完整过去”的现实，在彻底放弃与接受残缺之间寻找平衡。"
+                    }
+                  },
+                  "characters": {},
+                  "forces": {},
+                  "game_style": "采用低保真像素美学与冷峻写实叙事结合，通过斑驳的色彩与环境音效营造出一种“旧物余温”的质感。游戏节奏舒缓，强调对遗迹细节的观察与对碎片化叙事的拼凑，呈现出一种在废墟中寻找生活意义的沉静与孤独感。",
+                  "main_quest": "主角受雇于一家濒临倒闭的私人博物馆，目标是深入城市最深处的“核心神殿”——一座被传言封存了旧时代完整生活影像的地下数据中心。主角需要通过层层考古挖掘，修复破损的存储设备，拼凑出神殿的原始蓝图。挑战在于，随着挖掘深入，主角不仅要面对恶劣的自然环境与资源匮乏的生存压力，还要在不断揭开的真相中，面对自己内心深处对已故亲人的执念。最终目标并非为了拯救世界，而是为了在神殿中找到那段关于家人的、唯一的数字影像，以此作为自己平庸人生中唯一的精神支柱，并最终在真相与现实之间做出取舍。",
+                  "protagonist_ability": "主角拥有一种名为“共感解析”的特质，源于其家族遗传的神经敏感度。通过接触旧时代的存储介质，主角能感知到数据残留的情绪波动与片段记忆。使用时需消耗极高的体力与精神力，若过度使用会导致短暂的记忆模糊或感官失调。此能力无法改变过去，仅能作为一种“见证者”的视角，帮助主角在冰冷的废墟中提取出那些被时间掩埋的、关于爱与遗憾的真实情感。",
+                  "world_basic_setting": "故事发生在一座名为“灰岩”的近未来工业遗址城市。大灾变后的世界，科技文明退化至电气时代，人们生活在巨大的废弃建筑群中。社会文化以“回收与重构”为核心，人们通过挖掘旧时代的数字残片来理解过去。地理上，城市被厚重的酸雨云层覆盖，阳光成为奢侈品。关键事件是“大断电”，导致全球数字档案损毁，人类失去了大部分历史记忆。现在的考古并非为了寻找黄金，而是为了寻找那些被遗忘的、关于平凡生活的数字记录。社会阶层由“数据解析能力”决定，底层民众在废墟中寻找旧时代的存储介质，试图通过还原这些碎片，拼凑出曾经文明的样貌，以此获得微薄的生存资源与精神慰藉。"
+                },
+                "flow_worldline": {
+                  "characters": {},
+                  "current_chapter": "chapter1",
+                  "environment": {}
+                },
+                "game_id": "game_1777624463_f2m7su",
+                "image_style": {
+                  "type": "anime"
+                },
+                "meta": {
+                  "detail_async": true
+                },
+                "protagonist_canonical": {
+                  "age_range": "青年",
+                  "gender": "男性",
+                  "name_en": "Lin Yuan",
+                  "name_zh": "林远",
+                  "signature_look_keywords": "凌乱黑发，深色防风工装，护目镜，消瘦，眼神专注，指尖有老茧，随身携带旧式手持终端，沉默寡言，背负沉重的工具包，略显疲惫，坚韧",
+                  "work_en": "Records of Grey Rock",
+                  "work_zh": "灰岩遗迹录"
+                },
+                "tone": "normal_ending",
+                "user_theme": "像素神殿考古",
+                "_benchmark_profile": "fullready_strict",
+                "_benchmark_measurement": "fullready_nextturn",
+                "_benchmark_read_wait_s": 0.0
+              }
+            },
+            "start_ts": 1777624470.946341,
+            "end_ts": 1777624530.9740715,
+            "provider_events": {
+              "event_count": 6,
+              "queue_wait_ms": {
+                "count": 6,
+                "min": 0.0,
+                "max": 0.0,
+                "mean": 0.0,
+                "median": 0.0,
+                "p95": 0.0
+              },
+              "latency_ms": {
+                "count": 4,
+                "min": 2564.0,
+                "max": 12219.0,
+                "mean": 7046.5,
+                "median": 6701.5,
+                "p95": 11760.45
+              },
+              "llm_success_count": 4,
+              "image_success_count": 0,
+              "request_thread_event_count": 0,
+              "provider_429_count": 0,
+              "provider_timeout_count": 0,
+              "shared_backoff_wait_ms_total": 0,
+              "retry_heavy_event_count": 0,
+              "main_character_event_count": 0,
+              "scene_image_event_count": 0
+            },
+            "request_error": "timeout"
+          }
+        ],
+        "attempt_count": 1,
+        "request_elapsed_s": 60.028,
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "timeout",
+        "has_scene": false,
+        "has_image": false
+      },
+      "second_click": {},
+      "full_ready": {},
+      "placeholder": false,
+      "transport_success": false,
+      "strict_success": false,
+      "failure_bucket": "first_click_timeout",
+      "cache_path_classification": "first_click_timeout",
+      "cache_hit_reason": null,
+      "cache_miss_reason": null,
+      "global_state_key_drift_detected": false,
+      "scene_id_mismatch_detected": false,
+      "selected_option_mismatch_detected": false,
+      "success": false
+    }
+  ]
+}

@@ -1,0 +1,1216 @@
+{
+  "summary": {
+    "experiment_name": "benchmark_v15_fullready_nextturn_pregen60s20",
+    "profile": "fullready_pregen60",
+    "sample_size": 1,
+    "read_wait_s": 60.0,
+    "suite_start_ts": 1777638434.346389,
+    "suite_end_ts": 1777638607.9926739,
+    "first_click_elapsed_s": {
+      "count": 1,
+      "min": 43.672,
+      "max": 43.672,
+      "mean": 43.672,
+      "median": 43.672,
+      "p95": 43.672
+    },
+    "first_click_setup_success_count": 1,
+    "second_click_elapsed_s": {
+      "count": 0
+    },
+    "second_click_success_count": 0,
+    "transport_success_count": 0,
+    "strict_success_count": 0,
+    "likely_hit_count": 0,
+    "likely_hit_rate": 0.0,
+    "failure_bucket_counts": {
+      "second_click_timeout": 1
+    },
+    "placeholder_strict_fail_count": 0,
+    "cache_hit_reason_counts": {},
+    "cache_miss_reason_counts": {},
+    "global_state_key_drift_detected_count": 0,
+    "scene_id_mismatch_detected_count": 0,
+    "selected_option_mismatch_detected_count": 0,
+    "aborted": false,
+    "success_count": 0,
+    "text_ready_elapsed_s": {
+      "count": 1,
+      "min": 60.036,
+      "max": 60.036,
+      "mean": 60.036,
+      "median": 60.036,
+      "p95": 60.036
+    },
+    "image_ready_elapsed_s": {
+      "count": 0
+    },
+    "full_ready_elapsed_s": {
+      "count": 0
+    },
+    "real_scene_count": 0,
+    "real_scene_rate": 0.0,
+    "direct_image_count": 0,
+    "async_image_count": 0,
+    "placeholder_count": 0,
+    "placeholder_rate": 0.0,
+    "direct_image_rate": 0.0,
+    "async_image_rate": 0.0,
+    "provider_retry_heavy_count": 0,
+    "provider_429_count": 0,
+    "provider_timeout_count": 0,
+    "provider_backoff_wait_ms_total": 0,
+    "main_character_contention_suspected_count": 0,
+    "notes": "v15 strict pregen60s20 keeps the same 60-second dwell interval but now uses the same strict-v2 split timeouts and block-for-image cutoff as normal20, so placeholder and async backfill long tails do not silently leak into the measured path."
+  },
+  "runs": [
+    {
+      "benchmark_id": "DNQBV1_005",
+      "theme_id": 2,
+      "theme": "月球矿难七日",
+      "read_wait_s": 60.0,
+      "full_ready_mode": true,
+      "profile": "fullready_pregen60",
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 9.793,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角成功加固了关键支撑点，实习生得以获救，但主角因此耗尽了外骨骼的备用电池，不得不放弃部分个人行李，被迫在后续路程中承受更重的身体负荷。",
+                  "main_conflict": "矿难突发，主角被困于深层矿区，生命维持系统告急。此时，主角面临职业本能与求生本能的冲突：是优先加固支撑结构以保护被困的实习生，还是立刻抛弃一切负担，利用仅存的动力外骨骼独自逃向中转站。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角修复了通讯模块，成功向地表发出了求救信号，但因维修材料耗尽，逃生舱的发射系统受损，导致救援窗口期被迫缩短，部分幸存者因无法及时登舱而不得不留在基地等待后续救援。",
+                  "main_conflict": "基地通讯中断，主角抵达中转站后发现，仅剩的逃生舱容量不足以容纳所有幸存者。主角必须在有限时间内，通过有限的维修材料，在“修复通讯呼叫救援”与“改装逃生舱强行发射”之间做出选择，同时还要应对其他幸存者因恐惧而产生的猜忌与冲突。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角通过手动超载系统成功发射了逃生舱，自己虽随舱返回地表，但因辐射超标与缺氧，落下了不可逆的身体损伤，且未能带回所有同伴，只能带着遗憾与幸存者们在地球重逢。",
+                  "main_conflict": "救援飞船即将抵达，但基地氧气循环系统彻底崩溃。主角必须在最后时刻，在“维持系统运行以保护剩余同伴”与“关闭系统以节省电力供给逃生舱发射”之间做出抉择。这不仅是物理上的生死博弈，更是对主角内心道德底线的终极拷问。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为硬核工业现实主义风格，采用冷峻的写实美术基调。通过对月球基地狭窄舱室、金属质感与真空环境的细致刻画，营造出一种压抑但真实的生存质感。叙事节奏平稳，注重环境叙事与人物心理的微观描写，强调在极端环境下，个体面对职业责任与个人生存本能时的复杂博弈。",
+              "main_quest": "主角需在矿难发生的七日内，从坍塌的深层矿区撤离至逃生舱发射点。目标并非拯救所有人，而是要在有限的氧气与电力条件下，通过修复关键节点维持生命支持系统，并做出艰难的取舍——是牺牲部分物资以换取更多同伴的生存机会，还是保全核心设备以确保自己能成功返航。挑战在于，每一项决策都会导致资源损耗，且救援飞船的窗口期极短，主角必须在职业道德、同伴羁绊与个人求生欲之间寻找平衡，最终达成一个既非全员生还、也非全员覆灭的现实结局。",
+              "protagonist_ability": "主角作为资深地质工程师，拥有的核心能力是“地质结构预测与应急修复”。该能力源于长期的实战经验与对基地构造图纸的深度记忆，使用方式是通过手持终端分析震动波谱，预判矿道坍塌路径并进行加固。限制在于：该能力极度依赖基地的电力储备与传感器数据，且由于主角长期暴露于高辐射环境，其身体机能随时间推移不断衰退，判断力会因疲劳与缺氧而出现偏差，无法保证百分之百的成功率。",
+              "world_basic_setting": "故事背景设定在21世纪中叶，人类已实现月球氦-3资源的商业化开采。月球背面“静海工业区”是全球能源供应的核心，这里不仅是高科技矿场，更是数千名合同工的封闭生活区。社会结构呈现出极端的阶级分化：地面精英享受清洁能源，而月球矿工则在辐射与低压环境中透支生命。文化上，这里推崇“效率至上”与“集体主义”，个人情感被视为生产力的干扰项。关键事件“静海矿难”发生于一次地壳剧烈活动，导致主矿脉坍塌，多处生命维持系统损毁。此时的月球基地不再是人类文明的骄傲，而是一个被遗忘的、资源匮乏的孤岛。社会秩序在灾难面前迅速瓦解，留下的只有对生存权的争夺与对地表归途的渴望。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1777638434_g6ffhe",
+            "image_style": {
+              "type": "cyberpunk"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "中年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "灰白短发、深陷的眼窝、粗糙的皮肤、沾满矿尘的工装、左手腕处的旧伤疤、疲惫但坚定的眼神、沉默寡言、不修边幅、背部微驼、金属质感的义肢辅助器",
+              "work_en": "Seven Days in Lunar Mine",
+              "work_zh": "月球矿难七日"
+            },
+            "tone": "normal_ending",
+            "user_theme": "月球矿难七日"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "request_payload": {
+          "gameTheme": "月球矿难七日",
+          "protagonistAttr": {},
+          "difficulty": "normal",
+          "toneKey": "normal_ending",
+          "imageStyle": {
+            "type": "cyberpunk"
+          },
+          "_benchmark_profile": "fullready_pregen60",
+          "_benchmark_measurement": "fullready_nextturn",
+          "_benchmark_read_wait_s": 60.0
+        },
+        "start_ts": 1777638434.346393,
+        "end_ts": 1777638444.139373,
+        "provider_events": {
+          "event_count": 7,
+          "queue_wait_ms": {
+            "count": 7,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 2,
+            "min": 7449.0,
+            "max": 9785.0,
+            "mean": 8617.0,
+            "median": 8617.0,
+            "p95": 9668.2
+          },
+          "llm_success_count": 2,
+          "image_success_count": 0,
+          "request_thread_event_count": 3,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0
+        },
+        "status": "success",
+        "game_id": "game_1777638434_g6ffhe"
+      },
+      "long_tail_attribution": {
+        "provider_429_count": 0,
+        "provider_timeout_count": 0,
+        "provider_retry_heavy_count": 0,
+        "provider_backoff_wait_ms_total": 0,
+        "main_character_event_count": 0,
+        "scene_image_event_count": 0,
+        "image_probe_attempt_count": 0,
+        "main_character_contention_suspected": false
+      },
+      "first_click": {
+        "http_status": 200,
+        "elapsed_s": 43.672,
+        "response_json": {
+          "benchmark_diagnostics": {
+            "cache_hit_reason": null,
+            "cache_miss_reason": null,
+            "current_options_key_drift_detected": false,
+            "global_state_key_drift_detected": false,
+            "placeholder": false,
+            "previous_scene_id": null,
+            "recomputed_scene_cache_exists": false,
+            "recomputed_scene_id": null,
+            "request_current_options_count": 0,
+            "request_current_options_hash": "d751713988987e9331980363e24189ce",
+            "request_flow_worldline_hash": "940e38d5f8372eaa58cfdaf4d70a0d30",
+            "request_global_state_hash": "ad0065ab6d61087febd2284b4e2165ee",
+            "request_option_at_index": null,
+            "request_option_index": 0,
+            "request_option_text": "开始游戏",
+            "request_scene_cache_exists": false,
+            "request_scene_id": null,
+            "resolution_path": null,
+            "response_has_image": true,
+            "response_has_scene": true,
+            "response_scene_id": "-3342024143041008626_7573831549726984250",
+            "response_status": "success",
+            "scene_id_mismatch_detected": false,
+            "selected_option_mismatch_detected": false
+          },
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "",
+              "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：刺耳的金属扭曲声在狭窄的矿道内回荡，震得我耳膜生疼。我猛地从昏暗中睁开眼，视线所及之处，只有头顶闪烁的应急红灯，将这片深层矿区映照得如同炼狱。空气中弥漫着一股浓烈的焦糊味，那是电路短路后的臭氧与岩层碎屑混合的味道。我下意识地抬起左手，手腕处那道陈旧的伤疤在冰冷的金属义肢辅助器压迫下隐隐作痛。\n\n“林工，你醒了？”一个颤抖的声音从碎石堆后传来。那是实习生小陈，他缩在断裂的支撑梁下，半边身体被压在矿石里，那张年轻的脸上沾满了灰尘，眼神里满是恐惧。\n\n我撑着地面坐起，背部微驼的姿势让我感到一阵窒息的疲惫。我看向手持终端，屏幕上显示着断断续续的波谱图，矿道深处传来沉闷的震动，那是地壳在进一步坍塌。如果我不立刻加固这处节点，整个矿道会在十分钟内彻底封死。我摸了摸外骨骼的电量显示，仅剩的30电量在警示灯下显得格外刺眼。我必须在职业的责任与生存的本能间做出抉择。"
+            },
+            "deep_background_links": {},
+            "flow_update": {},
+            "next_options": [
+              "消耗剩余电量加固支撑梁，救出被困的小陈。",
+              "放弃加固，利用仅存电量驱动外骨骼独自撤离。"
+            ],
+            "scene": "刺耳的金属扭曲声在狭窄的矿道内回荡，震得我耳膜生疼。我猛地从昏暗中睁开眼，视线所及之处，只有头顶闪烁的应急红灯，将这片深层矿区映照得如同炼狱。空气中弥漫着一股浓烈的焦糊味，那是电路短路后的臭氧与岩层碎屑混合的味道。我下意识地抬起左手，手腕处那道陈旧的伤疤在冰冷的金属义肢辅助器压迫下隐隐作痛。\n\n“林工，你醒了？”一个颤抖的声音从碎石堆后传来。那是实习生小陈，他缩在断裂的支撑梁下，半边身体被压在矿石里，那张年轻的脸上沾满了灰尘，眼神里满是恐惧。\n\n我撑着地面坐起，背部微驼的姿势让我感到一阵窒息的疲惫。我看向手持终端，屏幕上显示着断断续续的波谱图，矿道深处传来沉闷的震动，那是地壳在进一步坍塌。如果我不立刻加固这处节点，整个矿道会在十分钟内彻底封死。我摸了摸外骨骼的电量显示，仅剩的30电量在警示灯下显得格外刺眼。我必须在职业的责任与生存的本能间做出抉择。",
+            "sceneId": "-3342024143041008626_7573831549726984250",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-lunar-mine-collapse-crisis, hard-sci-fi, industrial-realism, cyberpunk-aesthetic, claustrophobic, dystopian, hyper-realistic, cinematic lighting, high-contrast neon, gritty industrial texture, detailed mechanical rendering, middle-aged male protagonist Lin Yuan using Image 0, grayish-white short hair with mineral dust, deep-set eyes with exhausted but firm expression, rough skin texture showing signs of radiation exposure, slightly hunched back indicating long-term physical strain, metal prosthetic assist device on left arm with visible old scar on wrist, worn-out industrial jumpsuit stained with coal dust and grime, tattered protective gear with exposed wires and patches, sitting on the jagged ground of a collapsed mine shaft, body slightly hunched forward with fatigue, left hand with prosthetic device resting near a glowing handheld terminal, head turned slightly toward 小陈-配角1, showing a mix of professional concern and survival instinct, 8K detailed facial features showing extreme weariness, sunken eyes reflecting flickering emergency red lights, tightened jawline showing resilience under stress, skin covered in thin layers of moon dust, soft shadows emphasizing deep eye sockets and facial wrinkles, short messy grayish-white hair, root fixation coefficient 0.85, tip swing amplitude 5cm, color layering: main #A0A0A0, secondary #D0D0D0, highlight #E0E0E0, shadow #404040, static and matted with fine rock debris, wind speed 0.2m/s, turbulence intensity 1%, heavy-duty industrial jumpsuit with reinforced seams, scuffed and metallic textures, slight fabric flutter due to low-pressure ventilation, visible wear and tear consistent with extreme mining environment, narrow cramped mine tunnel with exposed metallic support beams, jagged rock walls with shimmering mineral veins, debris and shattered mining equipment scattered everywhere, flickering red emergency strobe lights casting harsh shadows, 小陈-配角1 crouching behind broken support beam on the right side, 小陈-配角1 with youthful face covered in dust and expression of terror, hazy smoke and rock dust particles floating in the air, glowing blue holographic display from handheld terminal, sparks from exposed electrical wires, sharp contrast between red emergency light and cool blue terminal glow, dominant industrial gray and metallic tones, aggressive red emergency lighting, sharp blue neon glow from terminal screen, muted earth tones from lunar dust, harsh flickering red strobe light as primary light source, cool blue light emanating from handheld terminal illuminating protagonist face, deep shadows in the corners of the tunnel, high-contrast lighting to emphasize texture and mood, type close-up shot, lens 35mm, aperture f/2.0, depth_of_field shallow focus on protagonist and terminal screen, flash none, grain fine digital noise consistent with low-light high-ISO sensor, texture gritty industrial surfaces, protagonist positioned in left-center frame, 小陈-配角1 positioned in right background behind wreckage, handheld terminal screen as secondary focal point, action constraints: protagonist analyzing data while looking at the trapped subordinate, hardcore industrial realism, no text or symbols in image, tense survival atmosphere, professional responsibility vs personal survival, claustrophobic pressure, grim reality of lunar mining, no text, no symbols, no garbled characters, no words",
+              "prompt_json": {
+                "camera": {
+                  "aperture": "f/2.0",
+                  "depth_of_field": "shallow focus on protagonist and terminal screen",
+                  "flash": "none",
+                  "grain": "fine digital noise consistent with low-light high-ISO sensor",
+                  "lens": "35mm",
+                  "texture": "gritty industrial surfaces",
+                  "type": "close-up shot"
+                },
+                "clothing_system": [
+                  "heavy-duty industrial jumpsuit with reinforced seams",
+                  "scuffed and metallic textures",
+                  "slight fabric flutter due to low-pressure ventilation",
+                  "visible wear and tear consistent with extreme mining environment"
+                ],
+                "color_restriction": [
+                  "dominant industrial gray and metallic tones",
+                  "aggressive red emergency lighting",
+                  "sharp blue neon glow from terminal screen",
+                  "muted earth tones from lunar dust"
+                ],
+                "composition": [
+                  "protagonist positioned in left-center frame",
+                  "小陈-配角1 positioned in right background behind wreckage",
+                  "handheld terminal screen as secondary focal point",
+                  "action constraints: protagonist analyzing data while looking at the trapped subordinate"
+                ],
+                "environment": {
+                  "background": [
+                    "narrow cramped mine tunnel with exposed metallic support beams",
+                    "jagged rock walls with shimmering mineral veins",
+                    "debris and shattered mining equipment scattered everywhere",
+                    "flickering red emergency strobe lights casting harsh shadows"
+                  ],
+                  "characters": [
+                    "小陈-配角1 crouching behind broken support beam on the right side",
+                    "小陈-配角1 with youthful face covered in dust and expression of terror"
+                  ],
+                  "effects": [
+                    "hazy smoke and rock dust particles floating in the air",
+                    "glowing blue holographic display from handheld terminal",
+                    "sparks from exposed electrical wires",
+                    "sharp contrast between red emergency light and cool blue terminal glow"
+                  ]
+                },
+                "face_system": [
+                  "8K detailed facial features showing extreme weariness",
+                  "sunken eyes reflecting flickering emergency red lights",
+                  "tightened jawline showing resilience under stress",
+                  "skin covered in thin layers of moon dust",
+                  "soft shadows emphasizing deep eye sockets and facial wrinkles"
+                ],
+                "hair_system": [
+                  "short messy grayish-white hair",
+                  "root fixation coefficient 0.85",
+                  "tip swing amplitude 5cm",
+                  "color layering: main #A0A0A0, secondary #D0D0D0, highlight #E0E0E0, shadow #404040",
+                  "static and matted with fine rock debris",
+                  "wind speed 0.2m/s",
+                  "turbulence intensity 1%"
+                ],
+                "label": "scene-lunar-mine-collapse-crisis",
+                "lighting": [
+                  "harsh flickering red strobe light as primary light source",
+                  "cool blue light emanating from handheld terminal illuminating protagonist face",
+                  "deep shadows in the corners of the tunnel",
+                  "high-contrast lighting to emphasize texture and mood"
+                ],
+                "mood": [
+                  "tense survival atmosphere",
+                  "professional responsibility vs personal survival",
+                  "claustrophobic pressure",
+                  "grim reality of lunar mining"
+                ],
+                "output_style": [
+                  "hardcore industrial realism",
+                  "no text or symbols in image"
+                ],
+                "style": [
+                  "hyper-realistic",
+                  "cinematic lighting",
+                  "high-contrast neon",
+                  "gritty industrial texture",
+                  "detailed mechanical rendering"
+                ],
+                "subject": {
+                  "body_traits": [
+                    "middle-aged male protagonist Lin Yuan using Image 0",
+                    "grayish-white short hair with mineral dust",
+                    "deep-set eyes with exhausted but firm expression",
+                    "rough skin texture showing signs of radiation exposure",
+                    "slightly hunched back indicating long-term physical strain",
+                    "metal prosthetic assist device on left arm with visible old scar on wrist"
+                  ],
+                  "outfit": [
+                    "worn-out industrial jumpsuit stained with coal dust and grime",
+                    "tattered protective gear with exposed wires and patches"
+                  ],
+                  "pose": [
+                    "sitting on the jagged ground of a collapsed mine shaft",
+                    "body slightly hunched forward with fatigue",
+                    "left hand with prosthetic device resting near a glowing handheld terminal",
+                    "head turned slightly toward 小陈-配角1, showing a mix of professional concern and survival instinct"
+                  ]
+                },
+                "tags": [
+                  "hard-sci-fi",
+                  "industrial-realism",
+                  "cyberpunk-aesthetic",
+                  "claustrophobic",
+                  "dystopian"
+                ]
+              },
+              "scene_text_hash": "9d4e8b701684d51ffecda6c37fc78742",
+              "style": "default",
+              "url": "/image_cache/90b7a867329f57ff5a5d1c09214a498c.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "request_payload": {
+          "option": "开始游戏",
+          "optionIndex": 0,
+          "sceneId": null,
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角成功加固了关键支撑点，实习生得以获救，但主角因此耗尽了外骨骼的备用电池，不得不放弃部分个人行李，被迫在后续路程中承受更重的身体负荷。",
+                  "main_conflict": "矿难突发，主角被困于深层矿区，生命维持系统告急。此时，主角面临职业本能与求生本能的冲突：是优先加固支撑结构以保护被困的实习生，还是立刻抛弃一切负担，利用仅存的动力外骨骼独自逃向中转站。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角修复了通讯模块，成功向地表发出了求救信号，但因维修材料耗尽，逃生舱的发射系统受损，导致救援窗口期被迫缩短，部分幸存者因无法及时登舱而不得不留在基地等待后续救援。",
+                  "main_conflict": "基地通讯中断，主角抵达中转站后发现，仅剩的逃生舱容量不足以容纳所有幸存者。主角必须在有限时间内，通过有限的维修材料，在“修复通讯呼叫救援”与“改装逃生舱强行发射”之间做出选择，同时还要应对其他幸存者因恐惧而产生的猜忌与冲突。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角通过手动超载系统成功发射了逃生舱，自己虽随舱返回地表，但因辐射超标与缺氧，落下了不可逆的身体损伤，且未能带回所有同伴，只能带着遗憾与幸存者们在地球重逢。",
+                  "main_conflict": "救援飞船即将抵达，但基地氧气循环系统彻底崩溃。主角必须在最后时刻，在“维持系统运行以保护剩余同伴”与“关闭系统以节省电力供给逃生舱发射”之间做出抉择。这不仅是物理上的生死博弈，更是对主角内心道德底线的终极拷问。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为硬核工业现实主义风格，采用冷峻的写实美术基调。通过对月球基地狭窄舱室、金属质感与真空环境的细致刻画，营造出一种压抑但真实的生存质感。叙事节奏平稳，注重环境叙事与人物心理的微观描写，强调在极端环境下，个体面对职业责任与个人生存本能时的复杂博弈。",
+              "main_quest": "主角需在矿难发生的七日内，从坍塌的深层矿区撤离至逃生舱发射点。目标并非拯救所有人，而是要在有限的氧气与电力条件下，通过修复关键节点维持生命支持系统，并做出艰难的取舍——是牺牲部分物资以换取更多同伴的生存机会，还是保全核心设备以确保自己能成功返航。挑战在于，每一项决策都会导致资源损耗，且救援飞船的窗口期极短，主角必须在职业道德、同伴羁绊与个人求生欲之间寻找平衡，最终达成一个既非全员生还、也非全员覆灭的现实结局。",
+              "protagonist_ability": "主角作为资深地质工程师，拥有的核心能力是“地质结构预测与应急修复”。该能力源于长期的实战经验与对基地构造图纸的深度记忆，使用方式是通过手持终端分析震动波谱，预判矿道坍塌路径并进行加固。限制在于：该能力极度依赖基地的电力储备与传感器数据，且由于主角长期暴露于高辐射环境，其身体机能随时间推移不断衰退，判断力会因疲劳与缺氧而出现偏差，无法保证百分之百的成功率。",
+              "world_basic_setting": "故事背景设定在21世纪中叶，人类已实现月球氦-3资源的商业化开采。月球背面“静海工业区”是全球能源供应的核心，这里不仅是高科技矿场，更是数千名合同工的封闭生活区。社会结构呈现出极端的阶级分化：地面精英享受清洁能源，而月球矿工则在辐射与低压环境中透支生命。文化上，这里推崇“效率至上”与“集体主义”，个人情感被视为生产力的干扰项。关键事件“静海矿难”发生于一次地壳剧烈活动，导致主矿脉坍塌，多处生命维持系统损毁。此时的月球基地不再是人类文明的骄傲，而是一个被遗忘的、资源匮乏的孤岛。社会秩序在灾难面前迅速瓦解，留下的只有对生存权的争夺与对地表归途的渴望。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1777638434_g6ffhe",
+            "image_style": {
+              "type": "cyberpunk"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "中年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "灰白短发、深陷的眼窝、粗糙的皮肤、沾满矿尘的工装、左手腕处的旧伤疤、疲惫但坚定的眼神、沉默寡言、不修边幅、背部微驼、金属质感的义肢辅助器",
+              "work_en": "Seven Days in Lunar Mine",
+              "work_zh": "月球矿难七日"
+            },
+            "tone": "normal_ending",
+            "user_theme": "月球矿难七日",
+            "_benchmark_profile": "fullready_pregen60",
+            "_benchmark_measurement": "fullready_nextturn",
+            "_benchmark_read_wait_s": 60.0
+          }
+        },
+        "start_ts": 1777638444.1933746,
+        "end_ts": 1777638487.8650677,
+        "provider_events": {
+          "event_count": 18,
+          "queue_wait_ms": {
+            "count": 18,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 10,
+            "min": 2844.0,
+            "max": 13759.0,
+            "mean": 7289.8,
+            "median": 7358.5,
+            "p95": 12968.8
+          },
+          "llm_success_count": 8,
+          "image_success_count": 0,
+          "request_thread_event_count": 0,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 4,
+          "scene_image_event_count": 0
+        },
+        "attempts": [
+          {
+            "http_status": 200,
+            "elapsed_s": 43.672,
+            "response_json": {
+              "benchmark_diagnostics": {
+                "cache_hit_reason": null,
+                "cache_miss_reason": null,
+                "current_options_key_drift_detected": false,
+                "global_state_key_drift_detected": false,
+                "placeholder": false,
+                "previous_scene_id": null,
+                "recomputed_scene_cache_exists": false,
+                "recomputed_scene_id": null,
+                "request_current_options_count": 0,
+                "request_current_options_hash": "d751713988987e9331980363e24189ce",
+                "request_flow_worldline_hash": "940e38d5f8372eaa58cfdaf4d70a0d30",
+                "request_global_state_hash": "ad0065ab6d61087febd2284b4e2165ee",
+                "request_option_at_index": null,
+                "request_option_index": 0,
+                "request_option_text": "开始游戏",
+                "request_scene_cache_exists": false,
+                "request_scene_id": null,
+                "resolution_path": null,
+                "response_has_image": true,
+                "response_has_scene": true,
+                "response_scene_id": "-3342024143041008626_7573831549726984250",
+                "response_status": "success",
+                "scene_id_mismatch_detected": false,
+                "selected_option_mismatch_detected": false
+              },
+              "message": "选项剧情生成成功！",
+              "optionData": {
+                "checkpoint_packet": {
+                  "chapter": "chapter1",
+                  "chapter_conflict_solved": false,
+                  "quest_delta": "",
+                  "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：刺耳的金属扭曲声在狭窄的矿道内回荡，震得我耳膜生疼。我猛地从昏暗中睁开眼，视线所及之处，只有头顶闪烁的应急红灯，将这片深层矿区映照得如同炼狱。空气中弥漫着一股浓烈的焦糊味，那是电路短路后的臭氧与岩层碎屑混合的味道。我下意识地抬起左手，手腕处那道陈旧的伤疤在冰冷的金属义肢辅助器压迫下隐隐作痛。\n\n“林工，你醒了？”一个颤抖的声音从碎石堆后传来。那是实习生小陈，他缩在断裂的支撑梁下，半边身体被压在矿石里，那张年轻的脸上沾满了灰尘，眼神里满是恐惧。\n\n我撑着地面坐起，背部微驼的姿势让我感到一阵窒息的疲惫。我看向手持终端，屏幕上显示着断断续续的波谱图，矿道深处传来沉闷的震动，那是地壳在进一步坍塌。如果我不立刻加固这处节点，整个矿道会在十分钟内彻底封死。我摸了摸外骨骼的电量显示，仅剩的30电量在警示灯下显得格外刺眼。我必须在职业的责任与生存的本能间做出抉择。"
+                },
+                "deep_background_links": {},
+                "flow_update": {},
+                "next_options": [
+                  "消耗剩余电量加固支撑梁，救出被困的小陈。",
+                  "放弃加固，利用仅存电量驱动外骨骼独自撤离。"
+                ],
+                "scene": "刺耳的金属扭曲声在狭窄的矿道内回荡，震得我耳膜生疼。我猛地从昏暗中睁开眼，视线所及之处，只有头顶闪烁的应急红灯，将这片深层矿区映照得如同炼狱。空气中弥漫着一股浓烈的焦糊味，那是电路短路后的臭氧与岩层碎屑混合的味道。我下意识地抬起左手，手腕处那道陈旧的伤疤在冰冷的金属义肢辅助器压迫下隐隐作痛。\n\n“林工，你醒了？”一个颤抖的声音从碎石堆后传来。那是实习生小陈，他缩在断裂的支撑梁下，半边身体被压在矿石里，那张年轻的脸上沾满了灰尘，眼神里满是恐惧。\n\n我撑着地面坐起，背部微驼的姿势让我感到一阵窒息的疲惫。我看向手持终端，屏幕上显示着断断续续的波谱图，矿道深处传来沉闷的震动，那是地壳在进一步坍塌。如果我不立刻加固这处节点，整个矿道会在十分钟内彻底封死。我摸了摸外骨骼的电量显示，仅剩的30电量在警示灯下显得格外刺眼。我必须在职业的责任与生存的本能间做出抉择。",
+                "sceneId": "-3342024143041008626_7573831549726984250",
+                "scene_image": {
+                  "cached": true,
+                  "height": 1080,
+                  "image_type": "story_scene",
+                  "prompt": "scene-lunar-mine-collapse-crisis, hard-sci-fi, industrial-realism, cyberpunk-aesthetic, claustrophobic, dystopian, hyper-realistic, cinematic lighting, high-contrast neon, gritty industrial texture, detailed mechanical rendering, middle-aged male protagonist Lin Yuan using Image 0, grayish-white short hair with mineral dust, deep-set eyes with exhausted but firm expression, rough skin texture showing signs of radiation exposure, slightly hunched back indicating long-term physical strain, metal prosthetic assist device on left arm with visible old scar on wrist, worn-out industrial jumpsuit stained with coal dust and grime, tattered protective gear with exposed wires and patches, sitting on the jagged ground of a collapsed mine shaft, body slightly hunched forward with fatigue, left hand with prosthetic device resting near a glowing handheld terminal, head turned slightly toward 小陈-配角1, showing a mix of professional concern and survival instinct, 8K detailed facial features showing extreme weariness, sunken eyes reflecting flickering emergency red lights, tightened jawline showing resilience under stress, skin covered in thin layers of moon dust, soft shadows emphasizing deep eye sockets and facial wrinkles, short messy grayish-white hair, root fixation coefficient 0.85, tip swing amplitude 5cm, color layering: main #A0A0A0, secondary #D0D0D0, highlight #E0E0E0, shadow #404040, static and matted with fine rock debris, wind speed 0.2m/s, turbulence intensity 1%, heavy-duty industrial jumpsuit with reinforced seams, scuffed and metallic textures, slight fabric flutter due to low-pressure ventilation, visible wear and tear consistent with extreme mining environment, narrow cramped mine tunnel with exposed metallic support beams, jagged rock walls with shimmering mineral veins, debris and shattered mining equipment scattered everywhere, flickering red emergency strobe lights casting harsh shadows, 小陈-配角1 crouching behind broken support beam on the right side, 小陈-配角1 with youthful face covered in dust and expression of terror, hazy smoke and rock dust particles floating in the air, glowing blue holographic display from handheld terminal, sparks from exposed electrical wires, sharp contrast between red emergency light and cool blue terminal glow, dominant industrial gray and metallic tones, aggressive red emergency lighting, sharp blue neon glow from terminal screen, muted earth tones from lunar dust, harsh flickering red strobe light as primary light source, cool blue light emanating from handheld terminal illuminating protagonist face, deep shadows in the corners of the tunnel, high-contrast lighting to emphasize texture and mood, type close-up shot, lens 35mm, aperture f/2.0, depth_of_field shallow focus on protagonist and terminal screen, flash none, grain fine digital noise consistent with low-light high-ISO sensor, texture gritty industrial surfaces, protagonist positioned in left-center frame, 小陈-配角1 positioned in right background behind wreckage, handheld terminal screen as secondary focal point, action constraints: protagonist analyzing data while looking at the trapped subordinate, hardcore industrial realism, no text or symbols in image, tense survival atmosphere, professional responsibility vs personal survival, claustrophobic pressure, grim reality of lunar mining, no text, no symbols, no garbled characters, no words",
+                  "prompt_json": {
+                    "camera": {
+                      "aperture": "f/2.0",
+                      "depth_of_field": "shallow focus on protagonist and terminal screen",
+                      "flash": "none",
+                      "grain": "fine digital noise consistent with low-light high-ISO sensor",
+                      "lens": "35mm",
+                      "texture": "gritty industrial surfaces",
+                      "type": "close-up shot"
+                    },
+                    "clothing_system": [
+                      "heavy-duty industrial jumpsuit with reinforced seams",
+                      "scuffed and metallic textures",
+                      "slight fabric flutter due to low-pressure ventilation",
+                      "visible wear and tear consistent with extreme mining environment"
+                    ],
+                    "color_restriction": [
+                      "dominant industrial gray and metallic tones",
+                      "aggressive red emergency lighting",
+                      "sharp blue neon glow from terminal screen",
+                      "muted earth tones from lunar dust"
+                    ],
+                    "composition": [
+                      "protagonist positioned in left-center frame",
+                      "小陈-配角1 positioned in right background behind wreckage",
+                      "handheld terminal screen as secondary focal point",
+                      "action constraints: protagonist analyzing data while looking at the trapped subordinate"
+                    ],
+                    "environment": {
+                      "background": [
+                        "narrow cramped mine tunnel with exposed metallic support beams",
+                        "jagged rock walls with shimmering mineral veins",
+                        "debris and shattered mining equipment scattered everywhere",
+                        "flickering red emergency strobe lights casting harsh shadows"
+                      ],
+                      "characters": [
+                        "小陈-配角1 crouching behind broken support beam on the right side",
+                        "小陈-配角1 with youthful face covered in dust and expression of terror"
+                      ],
+                      "effects": [
+                        "hazy smoke and rock dust particles floating in the air",
+                        "glowing blue holographic display from handheld terminal",
+                        "sparks from exposed electrical wires",
+                        "sharp contrast between red emergency light and cool blue terminal glow"
+                      ]
+                    },
+                    "face_system": [
+                      "8K detailed facial features showing extreme weariness",
+                      "sunken eyes reflecting flickering emergency red lights",
+                      "tightened jawline showing resilience under stress",
+                      "skin covered in thin layers of moon dust",
+                      "soft shadows emphasizing deep eye sockets and facial wrinkles"
+                    ],
+                    "hair_system": [
+                      "short messy grayish-white hair",
+                      "root fixation coefficient 0.85",
+                      "tip swing amplitude 5cm",
+                      "color layering: main #A0A0A0, secondary #D0D0D0, highlight #E0E0E0, shadow #404040",
+                      "static and matted with fine rock debris",
+                      "wind speed 0.2m/s",
+                      "turbulence intensity 1%"
+                    ],
+                    "label": "scene-lunar-mine-collapse-crisis",
+                    "lighting": [
+                      "harsh flickering red strobe light as primary light source",
+                      "cool blue light emanating from handheld terminal illuminating protagonist face",
+                      "deep shadows in the corners of the tunnel",
+                      "high-contrast lighting to emphasize texture and mood"
+                    ],
+                    "mood": [
+                      "tense survival atmosphere",
+                      "professional responsibility vs personal survival",
+                      "claustrophobic pressure",
+                      "grim reality of lunar mining"
+                    ],
+                    "output_style": [
+                      "hardcore industrial realism",
+                      "no text or symbols in image"
+                    ],
+                    "style": [
+                      "hyper-realistic",
+                      "cinematic lighting",
+                      "high-contrast neon",
+                      "gritty industrial texture",
+                      "detailed mechanical rendering"
+                    ],
+                    "subject": {
+                      "body_traits": [
+                        "middle-aged male protagonist Lin Yuan using Image 0",
+                        "grayish-white short hair with mineral dust",
+                        "deep-set eyes with exhausted but firm expression",
+                        "rough skin texture showing signs of radiation exposure",
+                        "slightly hunched back indicating long-term physical strain",
+                        "metal prosthetic assist device on left arm with visible old scar on wrist"
+                      ],
+                      "outfit": [
+                        "worn-out industrial jumpsuit stained with coal dust and grime",
+                        "tattered protective gear with exposed wires and patches"
+                      ],
+                      "pose": [
+                        "sitting on the jagged ground of a collapsed mine shaft",
+                        "body slightly hunched forward with fatigue",
+                        "left hand with prosthetic device resting near a glowing handheld terminal",
+                        "head turned slightly toward 小陈-配角1, showing a mix of professional concern and survival instinct"
+                      ]
+                    },
+                    "tags": [
+                      "hard-sci-fi",
+                      "industrial-realism",
+                      "cyberpunk-aesthetic",
+                      "claustrophobic",
+                      "dystopian"
+                    ]
+                  },
+                  "scene_text_hash": "9d4e8b701684d51ffecda6c37fc78742",
+                  "style": "default",
+                  "url": "/image_cache/90b7a867329f57ff5a5d1c09214a498c.png",
+                  "width": 1920
+                }
+              },
+              "status": "success"
+            },
+            "request_payload": {
+              "option": "开始游戏",
+              "optionIndex": 0,
+              "sceneId": null,
+              "globalState": {
+                "core_worldview": {
+                  "chapters": {
+                    "chapter1": {
+                      "conflict_end_condition": "主角成功加固了关键支撑点，实习生得以获救，但主角因此耗尽了外骨骼的备用电池，不得不放弃部分个人行李，被迫在后续路程中承受更重的身体负荷。",
+                      "main_conflict": "矿难突发，主角被困于深层矿区，生命维持系统告急。此时，主角面临职业本能与求生本能的冲突：是优先加固支撑结构以保护被困的实习生，还是立刻抛弃一切负担，利用仅存的动力外骨骼独自逃向中转站。"
+                    },
+                    "chapter2": {
+                      "conflict_end_condition": "主角修复了通讯模块，成功向地表发出了求救信号，但因维修材料耗尽，逃生舱的发射系统受损，导致救援窗口期被迫缩短，部分幸存者因无法及时登舱而不得不留在基地等待后续救援。",
+                      "main_conflict": "基地通讯中断，主角抵达中转站后发现，仅剩的逃生舱容量不足以容纳所有幸存者。主角必须在有限时间内，通过有限的维修材料，在“修复通讯呼叫救援”与“改装逃生舱强行发射”之间做出选择，同时还要应对其他幸存者因恐惧而产生的猜忌与冲突。"
+                    },
+                    "chapter3": {
+                      "conflict_end_condition": "主角通过手动超载系统成功发射了逃生舱，自己虽随舱返回地表，但因辐射超标与缺氧，落下了不可逆的身体损伤，且未能带回所有同伴，只能带着遗憾与幸存者们在地球重逢。",
+                      "main_conflict": "救援飞船即将抵达，但基地氧气循环系统彻底崩溃。主角必须在最后时刻，在“维持系统运行以保护剩余同伴”与“关闭系统以节省电力供给逃生舱发射”之间做出抉择。这不仅是物理上的生死博弈，更是对主角内心道德底线的终极拷问。"
+                    }
+                  },
+                  "characters": {},
+                  "forces": {},
+                  "game_style": "本作为硬核工业现实主义风格，采用冷峻的写实美术基调。通过对月球基地狭窄舱室、金属质感与真空环境的细致刻画，营造出一种压抑但真实的生存质感。叙事节奏平稳，注重环境叙事与人物心理的微观描写，强调在极端环境下，个体面对职业责任与个人生存本能时的复杂博弈。",
+                  "main_quest": "主角需在矿难发生的七日内，从坍塌的深层矿区撤离至逃生舱发射点。目标并非拯救所有人，而是要在有限的氧气与电力条件下，通过修复关键节点维持生命支持系统，并做出艰难的取舍——是牺牲部分物资以换取更多同伴的生存机会，还是保全核心设备以确保自己能成功返航。挑战在于，每一项决策都会导致资源损耗，且救援飞船的窗口期极短，主角必须在职业道德、同伴羁绊与个人求生欲之间寻找平衡，最终达成一个既非全员生还、也非全员覆灭的现实结局。",
+                  "protagonist_ability": "主角作为资深地质工程师，拥有的核心能力是“地质结构预测与应急修复”。该能力源于长期的实战经验与对基地构造图纸的深度记忆，使用方式是通过手持终端分析震动波谱，预判矿道坍塌路径并进行加固。限制在于：该能力极度依赖基地的电力储备与传感器数据，且由于主角长期暴露于高辐射环境，其身体机能随时间推移不断衰退，判断力会因疲劳与缺氧而出现偏差，无法保证百分之百的成功率。",
+                  "world_basic_setting": "故事背景设定在21世纪中叶，人类已实现月球氦-3资源的商业化开采。月球背面“静海工业区”是全球能源供应的核心，这里不仅是高科技矿场，更是数千名合同工的封闭生活区。社会结构呈现出极端的阶级分化：地面精英享受清洁能源，而月球矿工则在辐射与低压环境中透支生命。文化上，这里推崇“效率至上”与“集体主义”，个人情感被视为生产力的干扰项。关键事件“静海矿难”发生于一次地壳剧烈活动，导致主矿脉坍塌，多处生命维持系统损毁。此时的月球基地不再是人类文明的骄傲，而是一个被遗忘的、资源匮乏的孤岛。社会秩序在灾难面前迅速瓦解，留下的只有对生存权的争夺与对地表归途的渴望。"
+                },
+                "flow_worldline": {
+                  "characters": {},
+                  "current_chapter": "chapter1",
+                  "environment": {}
+                },
+                "game_id": "game_1777638434_g6ffhe",
+                "image_style": {
+                  "type": "cyberpunk"
+                },
+                "meta": {
+                  "detail_async": true
+                },
+                "protagonist_canonical": {
+                  "age_range": "中年",
+                  "gender": "男性",
+                  "name_en": "Lin Yuan",
+                  "name_zh": "林远",
+                  "signature_look_keywords": "灰白短发、深陷的眼窝、粗糙的皮肤、沾满矿尘的工装、左手腕处的旧伤疤、疲惫但坚定的眼神、沉默寡言、不修边幅、背部微驼、金属质感的义肢辅助器",
+                  "work_en": "Seven Days in Lunar Mine",
+                  "work_zh": "月球矿难七日"
+                },
+                "tone": "normal_ending",
+                "user_theme": "月球矿难七日",
+                "_benchmark_profile": "fullready_pregen60",
+                "_benchmark_measurement": "fullready_nextturn",
+                "_benchmark_read_wait_s": 60.0
+              }
+            },
+            "start_ts": 1777638444.1933746,
+            "end_ts": 1777638487.8650677,
+            "provider_events": {
+              "event_count": 18,
+              "queue_wait_ms": {
+                "count": 18,
+                "min": 0.0,
+                "max": 0.0,
+                "mean": 0.0,
+                "median": 0.0,
+                "p95": 0.0
+              },
+              "latency_ms": {
+                "count": 10,
+                "min": 2844.0,
+                "max": 13759.0,
+                "mean": 7289.8,
+                "median": 7358.5,
+                "p95": 12968.8
+              },
+              "llm_success_count": 8,
+              "image_success_count": 0,
+              "request_thread_event_count": 0,
+              "provider_429_count": 0,
+              "provider_timeout_count": 0,
+              "shared_backoff_wait_ms_total": 0,
+              "retry_heavy_event_count": 0,
+              "main_character_event_count": 4,
+              "scene_image_event_count": 0
+            }
+          }
+        ],
+        "attempt_count": 1,
+        "request_elapsed_s": 43.672,
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "success",
+        "has_scene": true,
+        "has_image": true,
+        "setup_success": true
+      },
+      "second_click": {
+        "http_status": null,
+        "elapsed_s": 60.036,
+        "response_json": {
+          "status": "timeout",
+          "message": "HTTPConnectionPool(host='127.0.0.1', port=5017): Read timed out. (read timeout=60)"
+        },
+        "request_payload": {
+          "option": "消耗剩余电量加固支撑梁，救出被困的小陈。",
+          "optionIndex": 0,
+          "sceneId": "-3342024143041008626_7573831549726984250",
+          "currentOptions": [
+            "消耗剩余电量加固支撑梁，救出被困的小陈。",
+            "放弃加固，利用仅存电量驱动外骨骼独自撤离。"
+          ],
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角成功加固了关键支撑点，实习生得以获救，但主角因此耗尽了外骨骼的备用电池，不得不放弃部分个人行李，被迫在后续路程中承受更重的身体负荷。",
+                  "main_conflict": "矿难突发，主角被困于深层矿区，生命维持系统告急。此时，主角面临职业本能与求生本能的冲突：是优先加固支撑结构以保护被困的实习生，还是立刻抛弃一切负担，利用仅存的动力外骨骼独自逃向中转站。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角修复了通讯模块，成功向地表发出了求救信号，但因维修材料耗尽，逃生舱的发射系统受损，导致救援窗口期被迫缩短，部分幸存者因无法及时登舱而不得不留在基地等待后续救援。",
+                  "main_conflict": "基地通讯中断，主角抵达中转站后发现，仅剩的逃生舱容量不足以容纳所有幸存者。主角必须在有限时间内，通过有限的维修材料，在“修复通讯呼叫救援”与“改装逃生舱强行发射”之间做出选择，同时还要应对其他幸存者因恐惧而产生的猜忌与冲突。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角通过手动超载系统成功发射了逃生舱，自己虽随舱返回地表，但因辐射超标与缺氧，落下了不可逆的身体损伤，且未能带回所有同伴，只能带着遗憾与幸存者们在地球重逢。",
+                  "main_conflict": "救援飞船即将抵达，但基地氧气循环系统彻底崩溃。主角必须在最后时刻，在“维持系统运行以保护剩余同伴”与“关闭系统以节省电力供给逃生舱发射”之间做出抉择。这不仅是物理上的生死博弈，更是对主角内心道德底线的终极拷问。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为硬核工业现实主义风格，采用冷峻的写实美术基调。通过对月球基地狭窄舱室、金属质感与真空环境的细致刻画，营造出一种压抑但真实的生存质感。叙事节奏平稳，注重环境叙事与人物心理的微观描写，强调在极端环境下，个体面对职业责任与个人生存本能时的复杂博弈。",
+              "main_quest": "主角需在矿难发生的七日内，从坍塌的深层矿区撤离至逃生舱发射点。目标并非拯救所有人，而是要在有限的氧气与电力条件下，通过修复关键节点维持生命支持系统，并做出艰难的取舍——是牺牲部分物资以换取更多同伴的生存机会，还是保全核心设备以确保自己能成功返航。挑战在于，每一项决策都会导致资源损耗，且救援飞船的窗口期极短，主角必须在职业道德、同伴羁绊与个人求生欲之间寻找平衡，最终达成一个既非全员生还、也非全员覆灭的现实结局。",
+              "protagonist_ability": "主角作为资深地质工程师，拥有的核心能力是“地质结构预测与应急修复”。该能力源于长期的实战经验与对基地构造图纸的深度记忆，使用方式是通过手持终端分析震动波谱，预判矿道坍塌路径并进行加固。限制在于：该能力极度依赖基地的电力储备与传感器数据，且由于主角长期暴露于高辐射环境，其身体机能随时间推移不断衰退，判断力会因疲劳与缺氧而出现偏差，无法保证百分之百的成功率。",
+              "world_basic_setting": "故事背景设定在21世纪中叶，人类已实现月球氦-3资源的商业化开采。月球背面“静海工业区”是全球能源供应的核心，这里不仅是高科技矿场，更是数千名合同工的封闭生活区。社会结构呈现出极端的阶级分化：地面精英享受清洁能源，而月球矿工则在辐射与低压环境中透支生命。文化上，这里推崇“效率至上”与“集体主义”，个人情感被视为生产力的干扰项。关键事件“静海矿难”发生于一次地壳剧烈活动，导致主矿脉坍塌，多处生命维持系统损毁。此时的月球基地不再是人类文明的骄傲，而是一个被遗忘的、资源匮乏的孤岛。社会秩序在灾难面前迅速瓦解，留下的只有对生存权的争夺与对地表归途的渴望。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {},
+              "chapter_progress": 2.0
+            },
+            "game_id": "game_1777638434_g6ffhe",
+            "image_style": {
+              "type": "cyberpunk"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "中年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "灰白短发、深陷的眼窝、粗糙的皮肤、沾满矿尘的工装、左手腕处的旧伤疤、疲惫但坚定的眼神、沉默寡言、不修边幅、背部微驼、金属质感的义肢辅助器",
+              "work_en": "Seven Days in Lunar Mine",
+              "work_zh": "月球矿难七日"
+            },
+            "tone": "normal_ending",
+            "user_theme": "月球矿难七日",
+            "_benchmark_profile": "fullready_pregen60",
+            "_benchmark_measurement": "fullready_nextturn",
+            "_benchmark_read_wait_s": 60.0
+          },
+          "previousSceneId": "initial",
+          "previousSceneImage": {
+            "cached": true,
+            "height": 1080,
+            "image_type": "story_scene",
+            "prompt": "scene-lunar-mine-collapse-crisis, hard-sci-fi, industrial-realism, cyberpunk-aesthetic, claustrophobic, dystopian, hyper-realistic, cinematic lighting, high-contrast neon, gritty industrial texture, detailed mechanical rendering, middle-aged male protagonist Lin Yuan using Image 0, grayish-white short hair with mineral dust, deep-set eyes with exhausted but firm expression, rough skin texture showing signs of radiation exposure, slightly hunched back indicating long-term physical strain, metal prosthetic assist device on left arm with visible old scar on wrist, worn-out industrial jumpsuit stained with coal dust and grime, tattered protective gear with exposed wires and patches, sitting on the jagged ground of a collapsed mine shaft, body slightly hunched forward with fatigue, left hand with prosthetic device resting near a glowing handheld terminal, head turned slightly toward 小陈-配角1, showing a mix of professional concern and survival instinct, 8K detailed facial features showing extreme weariness, sunken eyes reflecting flickering emergency red lights, tightened jawline showing resilience under stress, skin covered in thin layers of moon dust, soft shadows emphasizing deep eye sockets and facial wrinkles, short messy grayish-white hair, root fixation coefficient 0.85, tip swing amplitude 5cm, color layering: main #A0A0A0, secondary #D0D0D0, highlight #E0E0E0, shadow #404040, static and matted with fine rock debris, wind speed 0.2m/s, turbulence intensity 1%, heavy-duty industrial jumpsuit with reinforced seams, scuffed and metallic textures, slight fabric flutter due to low-pressure ventilation, visible wear and tear consistent with extreme mining environment, narrow cramped mine tunnel with exposed metallic support beams, jagged rock walls with shimmering mineral veins, debris and shattered mining equipment scattered everywhere, flickering red emergency strobe lights casting harsh shadows, 小陈-配角1 crouching behind broken support beam on the right side, 小陈-配角1 with youthful face covered in dust and expression of terror, hazy smoke and rock dust particles floating in the air, glowing blue holographic display from handheld terminal, sparks from exposed electrical wires, sharp contrast between red emergency light and cool blue terminal glow, dominant industrial gray and metallic tones, aggressive red emergency lighting, sharp blue neon glow from terminal screen, muted earth tones from lunar dust, harsh flickering red strobe light as primary light source, cool blue light emanating from handheld terminal illuminating protagonist face, deep shadows in the corners of the tunnel, high-contrast lighting to emphasize texture and mood, type close-up shot, lens 35mm, aperture f/2.0, depth_of_field shallow focus on protagonist and terminal screen, flash none, grain fine digital noise consistent with low-light high-ISO sensor, texture gritty industrial surfaces, protagonist positioned in left-center frame, 小陈-配角1 positioned in right background behind wreckage, handheld terminal screen as secondary focal point, action constraints: protagonist analyzing data while looking at the trapped subordinate, hardcore industrial realism, no text or symbols in image, tense survival atmosphere, professional responsibility vs personal survival, claustrophobic pressure, grim reality of lunar mining, no text, no symbols, no garbled characters, no words",
+            "prompt_json": {
+              "camera": {
+                "aperture": "f/2.0",
+                "depth_of_field": "shallow focus on protagonist and terminal screen",
+                "flash": "none",
+                "grain": "fine digital noise consistent with low-light high-ISO sensor",
+                "lens": "35mm",
+                "texture": "gritty industrial surfaces",
+                "type": "close-up shot"
+              },
+              "clothing_system": [
+                "heavy-duty industrial jumpsuit with reinforced seams",
+                "scuffed and metallic textures",
+                "slight fabric flutter due to low-pressure ventilation",
+                "visible wear and tear consistent with extreme mining environment"
+              ],
+              "color_restriction": [
+                "dominant industrial gray and metallic tones",
+                "aggressive red emergency lighting",
+                "sharp blue neon glow from terminal screen",
+                "muted earth tones from lunar dust"
+              ],
+              "composition": [
+                "protagonist positioned in left-center frame",
+                "小陈-配角1 positioned in right background behind wreckage",
+                "handheld terminal screen as secondary focal point",
+                "action constraints: protagonist analyzing data while looking at the trapped subordinate"
+              ],
+              "environment": {
+                "background": [
+                  "narrow cramped mine tunnel with exposed metallic support beams",
+                  "jagged rock walls with shimmering mineral veins",
+                  "debris and shattered mining equipment scattered everywhere",
+                  "flickering red emergency strobe lights casting harsh shadows"
+                ],
+                "characters": [
+                  "小陈-配角1 crouching behind broken support beam on the right side",
+                  "小陈-配角1 with youthful face covered in dust and expression of terror"
+                ],
+                "effects": [
+                  "hazy smoke and rock dust particles floating in the air",
+                  "glowing blue holographic display from handheld terminal",
+                  "sparks from exposed electrical wires",
+                  "sharp contrast between red emergency light and cool blue terminal glow"
+                ]
+              },
+              "face_system": [
+                "8K detailed facial features showing extreme weariness",
+                "sunken eyes reflecting flickering emergency red lights",
+                "tightened jawline showing resilience under stress",
+                "skin covered in thin layers of moon dust",
+                "soft shadows emphasizing deep eye sockets and facial wrinkles"
+              ],
+              "hair_system": [
+                "short messy grayish-white hair",
+                "root fixation coefficient 0.85",
+                "tip swing amplitude 5cm",
+                "color layering: main #A0A0A0, secondary #D0D0D0, highlight #E0E0E0, shadow #404040",
+                "static and matted with fine rock debris",
+                "wind speed 0.2m/s",
+                "turbulence intensity 1%"
+              ],
+              "label": "scene-lunar-mine-collapse-crisis",
+              "lighting": [
+                "harsh flickering red strobe light as primary light source",
+                "cool blue light emanating from handheld terminal illuminating protagonist face",
+                "deep shadows in the corners of the tunnel",
+                "high-contrast lighting to emphasize texture and mood"
+              ],
+              "mood": [
+                "tense survival atmosphere",
+                "professional responsibility vs personal survival",
+                "claustrophobic pressure",
+                "grim reality of lunar mining"
+              ],
+              "output_style": [
+                "hardcore industrial realism",
+                "no text or symbols in image"
+              ],
+              "style": [
+                "hyper-realistic",
+                "cinematic lighting",
+                "high-contrast neon",
+                "gritty industrial texture",
+                "detailed mechanical rendering"
+              ],
+              "subject": {
+                "body_traits": [
+                  "middle-aged male protagonist Lin Yuan using Image 0",
+                  "grayish-white short hair with mineral dust",
+                  "deep-set eyes with exhausted but firm expression",
+                  "rough skin texture showing signs of radiation exposure",
+                  "slightly hunched back indicating long-term physical strain",
+                  "metal prosthetic assist device on left arm with visible old scar on wrist"
+                ],
+                "outfit": [
+                  "worn-out industrial jumpsuit stained with coal dust and grime",
+                  "tattered protective gear with exposed wires and patches"
+                ],
+                "pose": [
+                  "sitting on the jagged ground of a collapsed mine shaft",
+                  "body slightly hunched forward with fatigue",
+                  "left hand with prosthetic device resting near a glowing handheld terminal",
+                  "head turned slightly toward 小陈-配角1, showing a mix of professional concern and survival instinct"
+                ]
+              },
+              "tags": [
+                "hard-sci-fi",
+                "industrial-realism",
+                "cyberpunk-aesthetic",
+                "claustrophobic",
+                "dystopian"
+              ]
+            },
+            "scene_text_hash": "9d4e8b701684d51ffecda6c37fc78742",
+            "style": "default",
+            "url": "/image_cache/90b7a867329f57ff5a5d1c09214a498c.png",
+            "width": 1920
+          },
+          "previousSceneText": "刺耳的金属扭曲声在狭窄的矿道内回荡，震得我耳膜生疼。我猛地从昏暗中睁开眼，视线所及之处，只有头顶闪烁的应急红灯，将这片深层矿区映照得如同炼狱。空气中弥漫着一股浓烈的焦糊味，那是电路短路后的臭氧与岩层碎屑混合的味道。我下意识地抬起左手，手腕处那道陈旧的伤疤在冰冷的金属义肢辅助器压迫下隐隐作痛。\n\n“林工，你醒了？”一个颤抖的声音从碎石堆后传来。那是实习生小陈，他缩在断裂的支撑梁下，半边身体被压在矿石里，那张年轻的脸上沾满了灰尘，眼神里满是恐惧。\n\n我撑着地面坐起，背部微驼的姿势让我感到一阵窒息的疲惫。我看向手持终端，屏幕上显示着断断续续的波谱图，矿道深处传来沉闷的震动，那是地壳在进一步坍塌。如果我不立刻加固这处节点，整个矿道会在十分钟内彻底封死。我摸了摸外骨骼的电量显示，仅剩的30电量在警示灯下显得格外刺眼。我必须在职业的责任与生存的本能间做出抉择。"
+        },
+        "start_ts": 1777638547.9109561,
+        "end_ts": 1777638607.9472284,
+        "provider_events": {
+          "event_count": 1,
+          "queue_wait_ms": {
+            "count": 1,
+            "min": 5909.0,
+            "max": 5909.0,
+            "mean": 5909.0,
+            "median": 5909.0,
+            "p95": 5909.0
+          },
+          "latency_ms": {
+            "count": 1,
+            "min": 6033.0,
+            "max": 6033.0,
+            "mean": 6033.0,
+            "median": 6033.0,
+            "p95": 6033.0
+          },
+          "llm_success_count": 1,
+          "image_success_count": 0,
+          "request_thread_event_count": 0,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0
+        },
+        "request_error": "timeout",
+        "attempts": [
+          {
+            "http_status": null,
+            "elapsed_s": 60.036,
+            "response_json": {
+              "status": "timeout",
+              "message": "HTTPConnectionPool(host='127.0.0.1', port=5017): Read timed out. (read timeout=60)"
+            },
+            "request_payload": {
+              "option": "消耗剩余电量加固支撑梁，救出被困的小陈。",
+              "optionIndex": 0,
+              "sceneId": "-3342024143041008626_7573831549726984250",
+              "currentOptions": [
+                "消耗剩余电量加固支撑梁，救出被困的小陈。",
+                "放弃加固，利用仅存电量驱动外骨骼独自撤离。"
+              ],
+              "globalState": {
+                "core_worldview": {
+                  "chapters": {
+                    "chapter1": {
+                      "conflict_end_condition": "主角成功加固了关键支撑点，实习生得以获救，但主角因此耗尽了外骨骼的备用电池，不得不放弃部分个人行李，被迫在后续路程中承受更重的身体负荷。",
+                      "main_conflict": "矿难突发，主角被困于深层矿区，生命维持系统告急。此时，主角面临职业本能与求生本能的冲突：是优先加固支撑结构以保护被困的实习生，还是立刻抛弃一切负担，利用仅存的动力外骨骼独自逃向中转站。"
+                    },
+                    "chapter2": {
+                      "conflict_end_condition": "主角修复了通讯模块，成功向地表发出了求救信号，但因维修材料耗尽，逃生舱的发射系统受损，导致救援窗口期被迫缩短，部分幸存者因无法及时登舱而不得不留在基地等待后续救援。",
+                      "main_conflict": "基地通讯中断，主角抵达中转站后发现，仅剩的逃生舱容量不足以容纳所有幸存者。主角必须在有限时间内，通过有限的维修材料，在“修复通讯呼叫救援”与“改装逃生舱强行发射”之间做出选择，同时还要应对其他幸存者因恐惧而产生的猜忌与冲突。"
+                    },
+                    "chapter3": {
+                      "conflict_end_condition": "主角通过手动超载系统成功发射了逃生舱，自己虽随舱返回地表，但因辐射超标与缺氧，落下了不可逆的身体损伤，且未能带回所有同伴，只能带着遗憾与幸存者们在地球重逢。",
+                      "main_conflict": "救援飞船即将抵达，但基地氧气循环系统彻底崩溃。主角必须在最后时刻，在“维持系统运行以保护剩余同伴”与“关闭系统以节省电力供给逃生舱发射”之间做出抉择。这不仅是物理上的生死博弈，更是对主角内心道德底线的终极拷问。"
+                    }
+                  },
+                  "characters": {},
+                  "forces": {},
+                  "game_style": "本作为硬核工业现实主义风格，采用冷峻的写实美术基调。通过对月球基地狭窄舱室、金属质感与真空环境的细致刻画，营造出一种压抑但真实的生存质感。叙事节奏平稳，注重环境叙事与人物心理的微观描写，强调在极端环境下，个体面对职业责任与个人生存本能时的复杂博弈。",
+                  "main_quest": "主角需在矿难发生的七日内，从坍塌的深层矿区撤离至逃生舱发射点。目标并非拯救所有人，而是要在有限的氧气与电力条件下，通过修复关键节点维持生命支持系统，并做出艰难的取舍——是牺牲部分物资以换取更多同伴的生存机会，还是保全核心设备以确保自己能成功返航。挑战在于，每一项决策都会导致资源损耗，且救援飞船的窗口期极短，主角必须在职业道德、同伴羁绊与个人求生欲之间寻找平衡，最终达成一个既非全员生还、也非全员覆灭的现实结局。",
+                  "protagonist_ability": "主角作为资深地质工程师，拥有的核心能力是“地质结构预测与应急修复”。该能力源于长期的实战经验与对基地构造图纸的深度记忆，使用方式是通过手持终端分析震动波谱，预判矿道坍塌路径并进行加固。限制在于：该能力极度依赖基地的电力储备与传感器数据，且由于主角长期暴露于高辐射环境，其身体机能随时间推移不断衰退，判断力会因疲劳与缺氧而出现偏差，无法保证百分之百的成功率。",
+                  "world_basic_setting": "故事背景设定在21世纪中叶，人类已实现月球氦-3资源的商业化开采。月球背面“静海工业区”是全球能源供应的核心，这里不仅是高科技矿场，更是数千名合同工的封闭生活区。社会结构呈现出极端的阶级分化：地面精英享受清洁能源，而月球矿工则在辐射与低压环境中透支生命。文化上，这里推崇“效率至上”与“集体主义”，个人情感被视为生产力的干扰项。关键事件“静海矿难”发生于一次地壳剧烈活动，导致主矿脉坍塌，多处生命维持系统损毁。此时的月球基地不再是人类文明的骄傲，而是一个被遗忘的、资源匮乏的孤岛。社会秩序在灾难面前迅速瓦解，留下的只有对生存权的争夺与对地表归途的渴望。"
+                },
+                "flow_worldline": {
+                  "characters": {},
+                  "current_chapter": "chapter1",
+                  "environment": {},
+                  "chapter_progress": 2.0
+                },
+                "game_id": "game_1777638434_g6ffhe",
+                "image_style": {
+                  "type": "cyberpunk"
+                },
+                "meta": {
+                  "detail_async": true
+                },
+                "protagonist_canonical": {
+                  "age_range": "中年",
+                  "gender": "男性",
+                  "name_en": "Lin Yuan",
+                  "name_zh": "林远",
+                  "signature_look_keywords": "灰白短发、深陷的眼窝、粗糙的皮肤、沾满矿尘的工装、左手腕处的旧伤疤、疲惫但坚定的眼神、沉默寡言、不修边幅、背部微驼、金属质感的义肢辅助器",
+                  "work_en": "Seven Days in Lunar Mine",
+                  "work_zh": "月球矿难七日"
+                },
+                "tone": "normal_ending",
+                "user_theme": "月球矿难七日",
+                "_benchmark_profile": "fullready_pregen60",
+                "_benchmark_measurement": "fullready_nextturn",
+                "_benchmark_read_wait_s": 60.0
+              },
+              "previousSceneId": "initial",
+              "previousSceneImage": {
+                "cached": true,
+                "height": 1080,
+                "image_type": "story_scene",
+                "prompt": "scene-lunar-mine-collapse-crisis, hard-sci-fi, industrial-realism, cyberpunk-aesthetic, claustrophobic, dystopian, hyper-realistic, cinematic lighting, high-contrast neon, gritty industrial texture, detailed mechanical rendering, middle-aged male protagonist Lin Yuan using Image 0, grayish-white short hair with mineral dust, deep-set eyes with exhausted but firm expression, rough skin texture showing signs of radiation exposure, slightly hunched back indicating long-term physical strain, metal prosthetic assist device on left arm with visible old scar on wrist, worn-out industrial jumpsuit stained with coal dust and grime, tattered protective gear with exposed wires and patches, sitting on the jagged ground of a collapsed mine shaft, body slightly hunched forward with fatigue, left hand with prosthetic device resting near a glowing handheld terminal, head turned slightly toward 小陈-配角1, showing a mix of professional concern and survival instinct, 8K detailed facial features showing extreme weariness, sunken eyes reflecting flickering emergency red lights, tightened jawline showing resilience under stress, skin covered in thin layers of moon dust, soft shadows emphasizing deep eye sockets and facial wrinkles, short messy grayish-white hair, root fixation coefficient 0.85, tip swing amplitude 5cm, color layering: main #A0A0A0, secondary #D0D0D0, highlight #E0E0E0, shadow #404040, static and matted with fine rock debris, wind speed 0.2m/s, turbulence intensity 1%, heavy-duty industrial jumpsuit with reinforced seams, scuffed and metallic textures, slight fabric flutter due to low-pressure ventilation, visible wear and tear consistent with extreme mining environment, narrow cramped mine tunnel with exposed metallic support beams, jagged rock walls with shimmering mineral veins, debris and shattered mining equipment scattered everywhere, flickering red emergency strobe lights casting harsh shadows, 小陈-配角1 crouching behind broken support beam on the right side, 小陈-配角1 with youthful face covered in dust and expression of terror, hazy smoke and rock dust particles floating in the air, glowing blue holographic display from handheld terminal, sparks from exposed electrical wires, sharp contrast between red emergency light and cool blue terminal glow, dominant industrial gray and metallic tones, aggressive red emergency lighting, sharp blue neon glow from terminal screen, muted earth tones from lunar dust, harsh flickering red strobe light as primary light source, cool blue light emanating from handheld terminal illuminating protagonist face, deep shadows in the corners of the tunnel, high-contrast lighting to emphasize texture and mood, type close-up shot, lens 35mm, aperture f/2.0, depth_of_field shallow focus on protagonist and terminal screen, flash none, grain fine digital noise consistent with low-light high-ISO sensor, texture gritty industrial surfaces, protagonist positioned in left-center frame, 小陈-配角1 positioned in right background behind wreckage, handheld terminal screen as secondary focal point, action constraints: protagonist analyzing data while looking at the trapped subordinate, hardcore industrial realism, no text or symbols in image, tense survival atmosphere, professional responsibility vs personal survival, claustrophobic pressure, grim reality of lunar mining, no text, no symbols, no garbled characters, no words",
+                "prompt_json": {
+                  "camera": {
+                    "aperture": "f/2.0",
+                    "depth_of_field": "shallow focus on protagonist and terminal screen",
+                    "flash": "none",
+                    "grain": "fine digital noise consistent with low-light high-ISO sensor",
+                    "lens": "35mm",
+                    "texture": "gritty industrial surfaces",
+                    "type": "close-up shot"
+                  },
+                  "clothing_system": [
+                    "heavy-duty industrial jumpsuit with reinforced seams",
+                    "scuffed and metallic textures",
+                    "slight fabric flutter due to low-pressure ventilation",
+                    "visible wear and tear consistent with extreme mining environment"
+                  ],
+                  "color_restriction": [
+                    "dominant industrial gray and metallic tones",
+                    "aggressive red emergency lighting",
+                    "sharp blue neon glow from terminal screen",
+                    "muted earth tones from lunar dust"
+                  ],
+                  "composition": [
+                    "protagonist positioned in left-center frame",
+                    "小陈-配角1 positioned in right background behind wreckage",
+                    "handheld terminal screen as secondary focal point",
+                    "action constraints: protagonist analyzing data while looking at the trapped subordinate"
+                  ],
+                  "environment": {
+                    "background": [
+                      "narrow cramped mine tunnel with exposed metallic support beams",
+                      "jagged rock walls with shimmering mineral veins",
+                      "debris and shattered mining equipment scattered everywhere",
+                      "flickering red emergency strobe lights casting harsh shadows"
+                    ],
+                    "characters": [
+                      "小陈-配角1 crouching behind broken support beam on the right side",
+                      "小陈-配角1 with youthful face covered in dust and expression of terror"
+                    ],
+                    "effects": [
+                      "hazy smoke and rock dust particles floating in the air",
+                      "glowing blue holographic display from handheld terminal",
+                      "sparks from exposed electrical wires",
+                      "sharp contrast between red emergency light and cool blue terminal glow"
+                    ]
+                  },
+                  "face_system": [
+                    "8K detailed facial features showing extreme weariness",
+                    "sunken eyes reflecting flickering emergency red lights",
+                    "tightened jawline showing resilience under stress",
+                    "skin covered in thin layers of moon dust",
+                    "soft shadows emphasizing deep eye sockets and facial wrinkles"
+                  ],
+                  "hair_system": [
+                    "short messy grayish-white hair",
+                    "root fixation coefficient 0.85",
+                    "tip swing amplitude 5cm",
+                    "color layering: main #A0A0A0, secondary #D0D0D0, highlight #E0E0E0, shadow #404040",
+                    "static and matted with fine rock debris",
+                    "wind speed 0.2m/s",
+                    "turbulence intensity 1%"
+                  ],
+                  "label": "scene-lunar-mine-collapse-crisis",
+                  "lighting": [
+                    "harsh flickering red strobe light as primary light source",
+                    "cool blue light emanating from handheld terminal illuminating protagonist face",
+                    "deep shadows in the corners of the tunnel",
+                    "high-contrast lighting to emphasize texture and mood"
+                  ],
+                  "mood": [
+                    "tense survival atmosphere",
+                    "professional responsibility vs personal survival",
+                    "claustrophobic pressure",
+                    "grim reality of lunar mining"
+                  ],
+                  "output_style": [
+                    "hardcore industrial realism",
+                    "no text or symbols in image"
+                  ],
+                  "style": [
+                    "hyper-realistic",
+                    "cinematic lighting",
+                    "high-contrast neon",
+                    "gritty industrial texture",
+                    "detailed mechanical rendering"
+                  ],
+                  "subject": {
+                    "body_traits": [
+                      "middle-aged male protagonist Lin Yuan using Image 0",
+                      "grayish-white short hair with mineral dust",
+                      "deep-set eyes with exhausted but firm expression",
+                      "rough skin texture showing signs of radiation exposure",
+                      "slightly hunched back indicating long-term physical strain",
+                      "metal prosthetic assist device on left arm with visible old scar on wrist"
+                    ],
+                    "outfit": [
+                      "worn-out industrial jumpsuit stained with coal dust and grime",
+                      "tattered protective gear with exposed wires and patches"
+                    ],
+                    "pose": [
+                      "sitting on the jagged ground of a collapsed mine shaft",
+                      "body slightly hunched forward with fatigue",
+                      "left hand with prosthetic device resting near a glowing handheld terminal",
+                      "head turned slightly toward 小陈-配角1, showing a mix of professional concern and survival instinct"
+                    ]
+                  },
+                  "tags": [
+                    "hard-sci-fi",
+                    "industrial-realism",
+                    "cyberpunk-aesthetic",
+                    "claustrophobic",
+                    "dystopian"
+                  ]
+                },
+                "scene_text_hash": "9d4e8b701684d51ffecda6c37fc78742",
+                "style": "default",
+                "url": "/image_cache/90b7a867329f57ff5a5d1c09214a498c.png",
+                "width": 1920
+              },
+              "previousSceneText": "刺耳的金属扭曲声在狭窄的矿道内回荡，震得我耳膜生疼。我猛地从昏暗中睁开眼，视线所及之处，只有头顶闪烁的应急红灯，将这片深层矿区映照得如同炼狱。空气中弥漫着一股浓烈的焦糊味，那是电路短路后的臭氧与岩层碎屑混合的味道。我下意识地抬起左手，手腕处那道陈旧的伤疤在冰冷的金属义肢辅助器压迫下隐隐作痛。\n\n“林工，你醒了？”一个颤抖的声音从碎石堆后传来。那是实习生小陈，他缩在断裂的支撑梁下，半边身体被压在矿石里，那张年轻的脸上沾满了灰尘，眼神里满是恐惧。\n\n我撑着地面坐起，背部微驼的姿势让我感到一阵窒息的疲惫。我看向手持终端，屏幕上显示着断断续续的波谱图，矿道深处传来沉闷的震动，那是地壳在进一步坍塌。如果我不立刻加固这处节点，整个矿道会在十分钟内彻底封死。我摸了摸外骨骼的电量显示，仅剩的30电量在警示灯下显得格外刺眼。我必须在职业的责任与生存的本能间做出抉择。"
+            },
+            "start_ts": 1777638547.9109561,
+            "end_ts": 1777638607.9472284,
+            "provider_events": {
+              "event_count": 1,
+              "queue_wait_ms": {
+                "count": 1,
+                "min": 5909.0,
+                "max": 5909.0,
+                "mean": 5909.0,
+                "median": 5909.0,
+                "p95": 5909.0
+              },
+              "latency_ms": {
+                "count": 1,
+                "min": 6033.0,
+                "max": 6033.0,
+                "mean": 6033.0,
+                "median": 6033.0,
+                "p95": 6033.0
+              },
+              "llm_success_count": 1,
+              "image_success_count": 0,
+              "request_thread_event_count": 0,
+              "provider_429_count": 0,
+              "provider_timeout_count": 0,
+              "shared_backoff_wait_ms_total": 0,
+              "retry_heavy_event_count": 0,
+              "main_character_event_count": 0,
+              "scene_image_event_count": 0
+            },
+            "request_error": "timeout"
+          }
+        ],
+        "attempt_count": 1,
+        "request_elapsed_s": 60.036,
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "timeout",
+        "has_scene": false,
+        "has_image": false,
+        "selected_option_index": 0,
+        "selected_option_text": "消耗剩余电量加固支撑梁，救出被困的小陈。",
+        "input_scene_id": "-3342024143041008626_7573831549726984250",
+        "inferred_cache_result": "likely_miss_or_partial",
+        "used_updated_flow_state": true,
+        "cache_hit_reason": null,
+        "cache_miss_reason": null,
+        "global_state_key_drift_detected": false,
+        "scene_id_mismatch_detected": false,
+        "selected_option_mismatch_detected": false,
+        "current_options_key_drift_detected": false,
+        "benchmark_diagnostics": {}
+      },
+      "full_ready": {
+        "text_ready_ts": 1777638607.9472284,
+        "text_ready_elapsed_s": 60.036,
+        "image_ready_ts": null,
+        "image_ready_elapsed_s": null,
+        "full_ready_ts": null,
+        "full_ready_elapsed_s": null,
+        "image_probe": null,
+        "ready_mode": "blocked",
+        "error": "second_click_not_success",
+        "attribution": {
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "provider_retry_heavy_count": 0,
+          "provider_backoff_wait_ms_total": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0,
+          "image_probe_attempt_count": 0,
+          "main_character_contention_suspected": false
+        }
+      },
+      "placeholder": false,
+      "transport_success": false,
+      "strict_success": false,
+      "failure_bucket": "second_click_timeout",
+      "cache_path_classification": "second_click_timeout",
+      "cache_hit_reason": null,
+      "cache_miss_reason": null,
+      "global_state_key_drift_detected": false,
+      "scene_id_mismatch_detected": false,
+      "selected_option_mismatch_detected": false,
+      "success": false
+    }
+  ]
+}

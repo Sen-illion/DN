@@ -1,0 +1,380 @@
+{
+  "summary": {
+    "experiment_name": "phase26_DNQBV1_018",
+    "profile": "fullready_strict",
+    "sample_size": 1,
+    "read_wait_s": 0.0,
+    "suite_start_ts": 1777627054.3207238,
+    "suite_end_ts": 1777627242.910802,
+    "first_click_elapsed_s": {
+      "count": 0
+    },
+    "first_click_setup_success_count": 0,
+    "second_click_elapsed_s": {
+      "count": 0
+    },
+    "second_click_success_count": 0,
+    "transport_success_count": 0,
+    "strict_success_count": 0,
+    "likely_hit_count": 0,
+    "likely_hit_rate": 0.0,
+    "failure_bucket_counts": {
+      "first_click_timeout": 1
+    },
+    "placeholder_strict_fail_count": 0,
+    "cache_hit_reason_counts": {},
+    "cache_miss_reason_counts": {},
+    "global_state_key_drift_detected_count": 0,
+    "scene_id_mismatch_detected_count": 0,
+    "selected_option_mismatch_detected_count": 0,
+    "aborted": false,
+    "success_count": 0,
+    "text_ready_elapsed_s": {
+      "count": 0
+    },
+    "image_ready_elapsed_s": {
+      "count": 0
+    },
+    "full_ready_elapsed_s": {
+      "count": 0
+    },
+    "real_scene_count": 0,
+    "real_scene_rate": 0.0,
+    "direct_image_count": 0,
+    "async_image_count": 0,
+    "placeholder_count": 0,
+    "placeholder_rate": 0.0,
+    "direct_image_rate": 0.0,
+    "async_image_rate": 0.0,
+    "provider_retry_heavy_count": 0,
+    "provider_429_count": 0,
+    "provider_timeout_count": 0,
+    "provider_backoff_wait_ms_total": 0,
+    "main_character_contention_suspected_count": 0,
+    "notes": "phase26 setup-vs-measurement separation probe"
+  },
+  "runs": [
+    {
+      "benchmark_id": "DNQBV1_018",
+      "theme_id": 6,
+      "theme": "民国电报迷案",
+      "read_wait_s": 0.0,
+      "full_ready_mode": true,
+      "profile": "fullready_strict",
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 8.476,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过破解导师的私人电报习惯，确认了其参与走私的事实，但为了保住电报局不被军警接管，主角选择销毁了部分关键证据，仅向警署提供了次要线索，暂时平息了外部压力。",
+                  "main_conflict": "主角在电报局发现了一封未被记录的异常电报，其内容暗示了即将发生的码头走私案。主角试图深入调查，却发现这封电报的来源指向了自己一直敬重的导师。在揭露真相与维护职业生涯之间，主角陷入了极度的自我怀疑与道德困境，同时还要应对警署的初步盘查。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角利用对电报线路的熟悉，设局让帮派与警署产生冲突，趁乱找回了密码本。虽然成功脱险，但朋友因卷入此事而被迫离开上海，主角与朋友的羁绊因此断裂，留下了无法弥补的遗憾。",
+                  "main_conflict": "失踪的电报员遗留的密码本成为各方争夺的焦点，主角在调查过程中被卷入了帮派斗争。主角不仅要面对帮派的威胁，还要应对电报局内部为了自保而对他进行的排挤与陷害。主角的个人生活受到严重干扰，甚至连累了身边亲近的朋友。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角选择将证据匿名寄给报社，高层被撤职，电报局勉强维持运营但规模缩减。主角保住了工作，但因得罪权贵，被调往偏远分局，虽未获得预期的晋升，却在平凡的岗位上获得了一份难得的平静，与那段动荡的过去达成了和解。",
+                  "main_conflict": "最终真相大白，电报泄密案的幕后黑手竟是电报局的高层，且涉及更深层的政治交易。主角手中握有足以扳倒高层的证据，但若公开，电报局将彻底倒闭，所有同事将失业，主角也将失去安身立命之所。主角在个人良知与现实生存之间进行最后的挣扎。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为一部沉浸式民国悬疑叙事游戏，采用冷峻写实的视觉风格。通过对旧时代弄堂、电报局、码头等场景的细腻刻画，营造出一种潮湿、压抑且充满时代变迁感的氛围。叙事节奏平缓而扎实，注重通过环境细节与对话暗示，展现大时代背景下小人物的挣扎与无奈，追求一种如老照片般褪色却真实的质感。",
+              "main_quest": "主角受托调查一起涉及失踪电报员的迷案，目标是找回被窃取的关键机密电报，以洗清自身嫌疑并保住电报局的工作。任务分为三个阶段：首先需在错综复杂的弄堂与码头搜集线索，通过走访与观察还原失踪者的行动轨迹；其次，需在电报局内部的权力斗争中周旋，利用“电讯感知”破解同事间的隐秘勾当；最后，主角将面临抉择，是揭露真相导致电报局被查封，还是为了保全生计而选择性隐瞒部分事实。挑战在于，每一步行动都会影响主角与身边人的羁绊，真相往往伴随着牺牲，最终主角将达成一个既保住了工作又不得不放弃部分正义的现实结局。",
+              "protagonist_ability": "主角拥有一种名为“电讯感知”的特质，这并非超自然力量，而是源于其长期在电报局工作积累的敏锐听觉与逻辑推演能力。主角能通过电报机发出的细微电流声频率、节奏差异，捕捉到不同发报员的习惯特征，从而推断出隐藏在乱码下的真实意图。使用此能力需要高度集中的精神，且极度依赖于对当时电报密码本的熟悉程度，若过度使用会导致严重的偏头痛与听力暂时性衰退，且无法解读加密等级极高的军用密码。",
+              "world_basic_setting": "故事背景设定在1930年代的上海，一个处于东西方文明碰撞、新旧思想交替的动荡时期。彼时的上海，繁华与贫瘠并存，电报作为当时最先进的通讯手段，成为各方势力传递情报、操纵局势的命脉。社会结构森严，底层民众在租界与华界之间夹缝求生。关键历史事件围绕着一场涉及多方利益的电报泄密案展开，这不仅是一次简单的侦破，更是一场关于忠诚、背叛与生存的博弈。文化上，海派文化与传统封建残余激烈冲突，人们在追求现代化的同时，仍被家族、帮派与旧习俗所束缚。在这个世界里，没有绝对的英雄，只有在时代洪流中试图守住自己那一亩三分地的普通人，每个人都在为自己的选择付出代价。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1777627054_9ry234",
+            "image_style": {
+              "subtype": "impressionist",
+              "type": "oil_painting"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Shen Wenqing",
+              "name_zh": "沈文清",
+              "signature_look_keywords": "黑色圆框眼镜、深灰色中山装、神情专注、指尖常有墨迹、清瘦、略显疲惫、眼神深邃、习惯性皱眉、整洁但陈旧、沉默寡言、书卷气、内敛",
+              "work_en": "Twilight of the Telegraph Office",
+              "work_zh": "电报局的黄昏"
+            },
+            "tone": "normal_ending",
+            "user_theme": "民国电报迷案"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "request_payload": {
+          "gameTheme": "民国电报迷案",
+          "protagonistAttr": {},
+          "difficulty": "normal",
+          "toneKey": "normal_ending",
+          "imageStyle": {
+            "type": "oil_painting",
+            "subtype": "impressionist"
+          },
+          "_benchmark_profile": "fullready_strict",
+          "_benchmark_measurement": "fullready_nextturn",
+          "_benchmark_read_wait_s": 0.0
+        },
+        "start_ts": 1777627054.3207273,
+        "end_ts": 1777627062.797018,
+        "provider_events": {
+          "event_count": 4,
+          "queue_wait_ms": {
+            "count": 4,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 1,
+            "min": 8461.0,
+            "max": 8461.0,
+            "mean": 8461.0,
+            "median": 8461.0,
+            "p95": 8461.0
+          },
+          "llm_success_count": 1,
+          "image_success_count": 0,
+          "request_thread_event_count": 2,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0
+        },
+        "status": "success",
+        "game_id": "game_1777627054_9ry234"
+      },
+      "first_click": {
+        "http_status": null,
+        "elapsed_s": 180.015,
+        "response_json": {
+          "status": "timeout",
+          "message": "HTTPConnectionPool(host='127.0.0.1', port=5008): Read timed out. (read timeout=180)"
+        },
+        "request_payload": {
+          "option": "开始游戏",
+          "optionIndex": 0,
+          "sceneId": null,
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过破解导师的私人电报习惯，确认了其参与走私的事实，但为了保住电报局不被军警接管，主角选择销毁了部分关键证据，仅向警署提供了次要线索，暂时平息了外部压力。",
+                  "main_conflict": "主角在电报局发现了一封未被记录的异常电报，其内容暗示了即将发生的码头走私案。主角试图深入调查，却发现这封电报的来源指向了自己一直敬重的导师。在揭露真相与维护职业生涯之间，主角陷入了极度的自我怀疑与道德困境，同时还要应对警署的初步盘查。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角利用对电报线路的熟悉，设局让帮派与警署产生冲突，趁乱找回了密码本。虽然成功脱险，但朋友因卷入此事而被迫离开上海，主角与朋友的羁绊因此断裂，留下了无法弥补的遗憾。",
+                  "main_conflict": "失踪的电报员遗留的密码本成为各方争夺的焦点，主角在调查过程中被卷入了帮派斗争。主角不仅要面对帮派的威胁，还要应对电报局内部为了自保而对他进行的排挤与陷害。主角的个人生活受到严重干扰，甚至连累了身边亲近的朋友。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角选择将证据匿名寄给报社，高层被撤职，电报局勉强维持运营但规模缩减。主角保住了工作，但因得罪权贵，被调往偏远分局，虽未获得预期的晋升，却在平凡的岗位上获得了一份难得的平静，与那段动荡的过去达成了和解。",
+                  "main_conflict": "最终真相大白，电报泄密案的幕后黑手竟是电报局的高层，且涉及更深层的政治交易。主角手中握有足以扳倒高层的证据，但若公开，电报局将彻底倒闭，所有同事将失业，主角也将失去安身立命之所。主角在个人良知与现实生存之间进行最后的挣扎。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为一部沉浸式民国悬疑叙事游戏，采用冷峻写实的视觉风格。通过对旧时代弄堂、电报局、码头等场景的细腻刻画，营造出一种潮湿、压抑且充满时代变迁感的氛围。叙事节奏平缓而扎实，注重通过环境细节与对话暗示，展现大时代背景下小人物的挣扎与无奈，追求一种如老照片般褪色却真实的质感。",
+              "main_quest": "主角受托调查一起涉及失踪电报员的迷案，目标是找回被窃取的关键机密电报，以洗清自身嫌疑并保住电报局的工作。任务分为三个阶段：首先需在错综复杂的弄堂与码头搜集线索，通过走访与观察还原失踪者的行动轨迹；其次，需在电报局内部的权力斗争中周旋，利用“电讯感知”破解同事间的隐秘勾当；最后，主角将面临抉择，是揭露真相导致电报局被查封，还是为了保全生计而选择性隐瞒部分事实。挑战在于，每一步行动都会影响主角与身边人的羁绊，真相往往伴随着牺牲，最终主角将达成一个既保住了工作又不得不放弃部分正义的现实结局。",
+              "protagonist_ability": "主角拥有一种名为“电讯感知”的特质，这并非超自然力量，而是源于其长期在电报局工作积累的敏锐听觉与逻辑推演能力。主角能通过电报机发出的细微电流声频率、节奏差异，捕捉到不同发报员的习惯特征，从而推断出隐藏在乱码下的真实意图。使用此能力需要高度集中的精神，且极度依赖于对当时电报密码本的熟悉程度，若过度使用会导致严重的偏头痛与听力暂时性衰退，且无法解读加密等级极高的军用密码。",
+              "world_basic_setting": "故事背景设定在1930年代的上海，一个处于东西方文明碰撞、新旧思想交替的动荡时期。彼时的上海，繁华与贫瘠并存，电报作为当时最先进的通讯手段，成为各方势力传递情报、操纵局势的命脉。社会结构森严，底层民众在租界与华界之间夹缝求生。关键历史事件围绕着一场涉及多方利益的电报泄密案展开，这不仅是一次简单的侦破，更是一场关于忠诚、背叛与生存的博弈。文化上，海派文化与传统封建残余激烈冲突，人们在追求现代化的同时，仍被家族、帮派与旧习俗所束缚。在这个世界里，没有绝对的英雄，只有在时代洪流中试图守住自己那一亩三分地的普通人，每个人都在为自己的选择付出代价。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1777627054_9ry234",
+            "image_style": {
+              "subtype": "impressionist",
+              "type": "oil_painting"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Shen Wenqing",
+              "name_zh": "沈文清",
+              "signature_look_keywords": "黑色圆框眼镜、深灰色中山装、神情专注、指尖常有墨迹、清瘦、略显疲惫、眼神深邃、习惯性皱眉、整洁但陈旧、沉默寡言、书卷气、内敛",
+              "work_en": "Twilight of the Telegraph Office",
+              "work_zh": "电报局的黄昏"
+            },
+            "tone": "normal_ending",
+            "user_theme": "民国电报迷案",
+            "_benchmark_profile": "fullready_strict",
+            "_benchmark_measurement": "fullready_nextturn",
+            "_benchmark_read_wait_s": 0.0
+          }
+        },
+        "start_ts": 1777627062.855503,
+        "end_ts": 1777627242.8706954,
+        "provider_events": {
+          "event_count": 10,
+          "queue_wait_ms": {
+            "count": 10,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 6,
+            "min": 2623.0,
+            "max": 11408.0,
+            "mean": 7486.333,
+            "median": 8505.5,
+            "p95": 10948.75
+          },
+          "llm_success_count": 4,
+          "image_success_count": 0,
+          "request_thread_event_count": 2,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 4
+        },
+        "request_error": "timeout",
+        "attempts": [
+          {
+            "http_status": null,
+            "elapsed_s": 180.015,
+            "response_json": {
+              "status": "timeout",
+              "message": "HTTPConnectionPool(host='127.0.0.1', port=5008): Read timed out. (read timeout=180)"
+            },
+            "request_payload": {
+              "option": "开始游戏",
+              "optionIndex": 0,
+              "sceneId": null,
+              "globalState": {
+                "core_worldview": {
+                  "chapters": {
+                    "chapter1": {
+                      "conflict_end_condition": "主角通过破解导师的私人电报习惯，确认了其参与走私的事实，但为了保住电报局不被军警接管，主角选择销毁了部分关键证据，仅向警署提供了次要线索，暂时平息了外部压力。",
+                      "main_conflict": "主角在电报局发现了一封未被记录的异常电报，其内容暗示了即将发生的码头走私案。主角试图深入调查，却发现这封电报的来源指向了自己一直敬重的导师。在揭露真相与维护职业生涯之间，主角陷入了极度的自我怀疑与道德困境，同时还要应对警署的初步盘查。"
+                    },
+                    "chapter2": {
+                      "conflict_end_condition": "主角利用对电报线路的熟悉，设局让帮派与警署产生冲突，趁乱找回了密码本。虽然成功脱险，但朋友因卷入此事而被迫离开上海，主角与朋友的羁绊因此断裂，留下了无法弥补的遗憾。",
+                      "main_conflict": "失踪的电报员遗留的密码本成为各方争夺的焦点，主角在调查过程中被卷入了帮派斗争。主角不仅要面对帮派的威胁，还要应对电报局内部为了自保而对他进行的排挤与陷害。主角的个人生活受到严重干扰，甚至连累了身边亲近的朋友。"
+                    },
+                    "chapter3": {
+                      "conflict_end_condition": "主角选择将证据匿名寄给报社，高层被撤职，电报局勉强维持运营但规模缩减。主角保住了工作，但因得罪权贵，被调往偏远分局，虽未获得预期的晋升，却在平凡的岗位上获得了一份难得的平静，与那段动荡的过去达成了和解。",
+                      "main_conflict": "最终真相大白，电报泄密案的幕后黑手竟是电报局的高层，且涉及更深层的政治交易。主角手中握有足以扳倒高层的证据，但若公开，电报局将彻底倒闭，所有同事将失业，主角也将失去安身立命之所。主角在个人良知与现实生存之间进行最后的挣扎。"
+                    }
+                  },
+                  "characters": {},
+                  "forces": {},
+                  "game_style": "本作为一部沉浸式民国悬疑叙事游戏，采用冷峻写实的视觉风格。通过对旧时代弄堂、电报局、码头等场景的细腻刻画，营造出一种潮湿、压抑且充满时代变迁感的氛围。叙事节奏平缓而扎实，注重通过环境细节与对话暗示，展现大时代背景下小人物的挣扎与无奈，追求一种如老照片般褪色却真实的质感。",
+                  "main_quest": "主角受托调查一起涉及失踪电报员的迷案，目标是找回被窃取的关键机密电报，以洗清自身嫌疑并保住电报局的工作。任务分为三个阶段：首先需在错综复杂的弄堂与码头搜集线索，通过走访与观察还原失踪者的行动轨迹；其次，需在电报局内部的权力斗争中周旋，利用“电讯感知”破解同事间的隐秘勾当；最后，主角将面临抉择，是揭露真相导致电报局被查封，还是为了保全生计而选择性隐瞒部分事实。挑战在于，每一步行动都会影响主角与身边人的羁绊，真相往往伴随着牺牲，最终主角将达成一个既保住了工作又不得不放弃部分正义的现实结局。",
+                  "protagonist_ability": "主角拥有一种名为“电讯感知”的特质，这并非超自然力量，而是源于其长期在电报局工作积累的敏锐听觉与逻辑推演能力。主角能通过电报机发出的细微电流声频率、节奏差异，捕捉到不同发报员的习惯特征，从而推断出隐藏在乱码下的真实意图。使用此能力需要高度集中的精神，且极度依赖于对当时电报密码本的熟悉程度，若过度使用会导致严重的偏头痛与听力暂时性衰退，且无法解读加密等级极高的军用密码。",
+                  "world_basic_setting": "故事背景设定在1930年代的上海，一个处于东西方文明碰撞、新旧思想交替的动荡时期。彼时的上海，繁华与贫瘠并存，电报作为当时最先进的通讯手段，成为各方势力传递情报、操纵局势的命脉。社会结构森严，底层民众在租界与华界之间夹缝求生。关键历史事件围绕着一场涉及多方利益的电报泄密案展开，这不仅是一次简单的侦破，更是一场关于忠诚、背叛与生存的博弈。文化上，海派文化与传统封建残余激烈冲突，人们在追求现代化的同时，仍被家族、帮派与旧习俗所束缚。在这个世界里，没有绝对的英雄，只有在时代洪流中试图守住自己那一亩三分地的普通人，每个人都在为自己的选择付出代价。"
+                },
+                "flow_worldline": {
+                  "characters": {},
+                  "current_chapter": "chapter1",
+                  "environment": {}
+                },
+                "game_id": "game_1777627054_9ry234",
+                "image_style": {
+                  "subtype": "impressionist",
+                  "type": "oil_painting"
+                },
+                "meta": {
+                  "detail_async": true
+                },
+                "protagonist_canonical": {
+                  "age_range": "青年",
+                  "gender": "男性",
+                  "name_en": "Shen Wenqing",
+                  "name_zh": "沈文清",
+                  "signature_look_keywords": "黑色圆框眼镜、深灰色中山装、神情专注、指尖常有墨迹、清瘦、略显疲惫、眼神深邃、习惯性皱眉、整洁但陈旧、沉默寡言、书卷气、内敛",
+                  "work_en": "Twilight of the Telegraph Office",
+                  "work_zh": "电报局的黄昏"
+                },
+                "tone": "normal_ending",
+                "user_theme": "民国电报迷案",
+                "_benchmark_profile": "fullready_strict",
+                "_benchmark_measurement": "fullready_nextturn",
+                "_benchmark_read_wait_s": 0.0
+              }
+            },
+            "start_ts": 1777627062.855503,
+            "end_ts": 1777627242.8706954,
+            "provider_events": {
+              "event_count": 10,
+              "queue_wait_ms": {
+                "count": 10,
+                "min": 0.0,
+                "max": 0.0,
+                "mean": 0.0,
+                "median": 0.0,
+                "p95": 0.0
+              },
+              "latency_ms": {
+                "count": 6,
+                "min": 2623.0,
+                "max": 11408.0,
+                "mean": 7486.333,
+                "median": 8505.5,
+                "p95": 10948.75
+              },
+              "llm_success_count": 4,
+              "image_success_count": 0,
+              "request_thread_event_count": 2,
+              "provider_429_count": 0,
+              "provider_timeout_count": 0,
+              "shared_backoff_wait_ms_total": 0,
+              "retry_heavy_event_count": 0,
+              "main_character_event_count": 0,
+              "scene_image_event_count": 4
+            },
+            "request_error": "timeout"
+          }
+        ],
+        "attempt_count": 1,
+        "request_elapsed_s": 180.015,
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "timeout",
+        "has_scene": false,
+        "has_image": false,
+        "setup_success": false
+      },
+      "second_click": {},
+      "full_ready": {},
+      "placeholder": false,
+      "transport_success": false,
+      "strict_success": false,
+      "failure_bucket": "first_click_timeout",
+      "cache_path_classification": "first_click_timeout",
+      "cache_hit_reason": null,
+      "cache_miss_reason": null,
+      "global_state_key_drift_detected": false,
+      "scene_id_mismatch_detected": false,
+      "selected_option_mismatch_detected": false,
+      "success": false
+    }
+  ]
+}

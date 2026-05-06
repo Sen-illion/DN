@@ -1,0 +1,144 @@
+{
+  "baseline_id": "doc",
+  "benchmark_id": "DNQBV1_014",
+  "run_id": "formal20_first_playable_20260430",
+  "mode": "first_playable",
+  "input_bundle": {
+    "original_dn_item": {
+      "benchmark_id": "DNQBV1_014",
+      "theme_id": 23,
+      "theme": "雨林部落预言",
+      "image_style": {
+        "type": "watercolor"
+      },
+      "expected_genre": "部落预言冒险",
+      "expected_tone": "神秘、自然、仪式感",
+      "must_have_constraints": [
+        "应体现雨林部落与预言元素",
+        "视觉需强调水彩自然环境",
+        "至少一个选项要涉及信或不信预言"
+      ],
+      "forbidden_issues": [
+        "赛博或工业场景混入",
+        "图像不具雨林特征",
+        "剧情缺乏仪式氛围"
+      ],
+      "focus": "full-set coverage: 部落预言冒险",
+      "_subset_focus": "full-set coverage: 部落预言冒险"
+    },
+    "doc_prompt": "Premise seed: 雨林部落预言\nGenre: 部落预言冒险\nTone: 神秘、自然、仪式感\nWrite a long-form interactive story opening that could be expanded with a detailed outline.\nMust-have constraints:\n- 应体现雨林部落与预言元素\n- 视觉需强调水彩自然环境\n- 至少一个选项要涉及信或不信预言\nForbidden issues:\n- 赛博或工业场景混入\n- 图像不具雨林特征\n- 剧情缺乏仪式氛围\n",
+    "outline_seed": [
+      "Opening setup for 雨林部落预言 in a 部落预言冒险 frame with a 神秘、自然、仪式感 tone.",
+      "Introduce the protagonist's immediate role, pressure, and conflict around: 应体现雨林部落与预言元素.",
+      "Reveal one concrete obstacle or tradeoff the player must respond to next.",
+      "End the first turn with 2-3 actionable next steps that can continue the story."
+    ],
+    "mode": "first_playable",
+    "baseline_params": {
+      "execution_mode": "cloud",
+      "doc_repo": "D:\\Projects\\DN\\baselines\\DOC",
+      "doc_data_dir": "D:\\Projects\\DN\\baselines\\DOC\\doc_data"
+    }
+  },
+  "raw_output": {
+    "execution_mode": "cloud",
+    "doc_upstream_executed": false,
+    "doc_api_adapter": "yunwu_chat_completions",
+    "provider": "yunwu",
+    "provider_config_prefix": "Origin_Segment_Analyst",
+    "provider_base_url": "https://yunwu.ai/v1",
+    "provider_model": "gemini-3.1-flash-lite-preview",
+    "request": {
+      "model": "gemini-3.1-flash-lite-preview",
+      "temperature": 0.7,
+      "top_p": 0.9,
+      "max_tokens": 900,
+      "response_format": {
+        "type": "json_object"
+      }
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are the DOC long-form story baseline adapted for DN playable-latency evaluation. Write concise, grounded, continuation-ready interactive fiction. Do not include debugging text, URLs, or commentary outside JSON."
+      },
+      {
+        "role": "user",
+        "content": "Convert this DN benchmark item into a DOC-style playable baseline output.\nPreserve DOC's premise -> outline -> story-opening semantics, but return only a playable first response.\nRun mode: first_playable\n\nDOC prompt:\nPremise seed: 雨林部落预言\nGenre: 部落预言冒险\nTone: 神秘、自然、仪式感\nWrite a long-form interactive story opening that could be expanded with a detailed outline.\nMust-have constraints:\n- 应体现雨林部落与预言元素\n- 视觉需强调水彩自然环境\n- 至少一个选项要涉及信或不信预言\nForbidden issues:\n- 赛博或工业场景混入\n- 图像不具雨林特征\n- 剧情缺乏仪式氛围\n\nOutline seed:\n1. Opening setup for 雨林部落预言 in a 部落预言冒险 frame with a 神秘、自然、仪式感 tone.\n2. Introduce the protagonist's immediate role, pressure, and conflict around: 应体现雨林部落与预言元素.\n3. Reveal one concrete obstacle or tradeoff the player must respond to next.\n4. End the first turn with 2-3 actionable next steps that can continue the story.\n\nReturn strict JSON with this shape and no markdown fences:\n{\n  \"scene_setup\": \"string\",\n  \"player_state\": \"string\",\n  \"narrative_response\": \"string\",\n  \"candidate_actions\": [\n    \"string\"\n  ],\n  \"suggested_next_step\": \"string\",\n  \"supports_next_turn\": true\n}"
+      }
+    ],
+    "response": {
+      "id": "chatcmpl-202604301709061440900827MWy7XHh",
+      "model": "gemini-3.1-flash-lite-preview",
+      "object": "chat.completion",
+      "created": 1777540152,
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"scene_setup\": \"翡翠雨林深处，巨大的阔叶被雨水洗刷得近乎透明，湿润的空气中弥漫着腐殖质与花香。部落祭坛由缠绕的古藤构成，中央的圣水池映射着斑驳的树影，如同一幅不断晕染的水彩画。\",\n  \"player_state\": \"你是部落的预言者学徒，正站在圣水池前。祭司长交给你的‘雨之语’石刻刚刚发出微弱的蓝光，预示着长达百年的旱季即将终结，但代价是必须献祭部落供奉的守护圣物。\",\n  \"narrative_response\": \"祭司长的目光如鹰隼般锐利，他要求你当众宣布预言，并决定是否将圣物沉入水池以换取降雨。部落成员们在树冠下屏息凝神，等待着你的决定。你手中的石刻冰冷刺骨，你真的相信这来自远古的低语吗？\",\n  \"candidate_actions\": [\n    \"高声宣布预言，并毫不犹豫地将圣物投入池中。\",\n    \"质疑预言的真实性，要求祭司长出示更多证据，以免部落失去传承。\",\n    \"试图解读石刻背后的隐喻，寻找不牺牲圣物也能平息灾难的方法。\"\n  ],\n  \"suggested_next_step\": \"根据玩家的选择，决定部落的即时反应以及祭司长对玩家权威的挑战程度。\",\n  \"supports_next_turn\": true\n}"
+          },
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 391,
+        "completion_tokens": 356,
+        "total_tokens": 747,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "text_tokens": 391,
+          "audio_tokens": 0,
+          "image_tokens": 0
+        },
+        "completion_tokens_details": {
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0
+        },
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "input_tokens_details": null,
+        "claude_cache_creation_5_m_tokens": 0,
+        "claude_cache_creation_1_h_tokens": 0
+      }
+    }
+  },
+  "success": true,
+  "latency_s": 9.105,
+  "playable": true,
+  "playable_components": {
+    "scene_setup": true,
+    "player_state": true,
+    "advanceable_next_step": true,
+    "interaction_continuity": true
+  },
+  "normalized_response": {
+    "scene_setup": "翡翠雨林深处，巨大的阔叶被雨水洗刷得近乎透明，湿润的空气中弥漫着腐殖质与花香。部落祭坛由缠绕的古藤构成，中央的圣水池映射着斑驳的树影，如同一幅不断晕染的水彩画。",
+    "player_state": "你是部落的预言者学徒，正站在圣水池前。祭司长交给你的‘雨之语’石刻刚刚发出微弱的蓝光，预示着长达百年的旱季即将终结，但代价是必须献祭部落供奉的守护圣物。",
+    "narrative_response": "祭司长的目光如鹰隼般锐利，他要求你当众宣布预言，并决定是否将圣物沉入水池以换取降雨。部落成员们在树冠下屏息凝神，等待着你的决定。你手中的石刻冰冷刺骨，你真的相信这来自远古的低语吗？",
+    "candidate_actions": [
+      "高声宣布预言，并毫不犹豫地将圣物投入池中。",
+      "质疑预言的真实性，要求祭司长出示更多证据，以免部落失去传承。",
+      "试图解读石刻背后的隐喻，寻找不牺牲圣物也能平息灾难的方法。"
+    ],
+    "suggested_next_step": "根据玩家的选择，决定部落的即时反应以及祭司长对玩家权威的挑战程度。",
+    "is_playable": true,
+    "request_start_ts": 1777540143.936923,
+    "first_playable_ts": 1777540153.0419762,
+    "finish_ts": 1777540153.0419762,
+    "error": null
+  },
+  "failure_reason": null,
+  "notes": [
+    "DOC-style artifact generated through Yunwu OpenAI-compatible chat/completions API."
+  ],
+  "resource_usage": {
+    "execution_mode": "cloud"
+  },
+  "agent_profile": {
+    "runner": "run_doc.py",
+    "adapter_style": "doc_cloud_yunwu_v1"
+  }
+}

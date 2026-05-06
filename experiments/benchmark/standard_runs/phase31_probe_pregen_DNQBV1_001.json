@@ -1,0 +1,1367 @@
+{
+  "summary": {
+    "experiment_name": "benchmark_v15_fullready_nextturn_pregen60s20",
+    "profile": "fullready_pregen60",
+    "sample_size": 1,
+    "read_wait_s": 60.0,
+    "suite_start_ts": 1777634924.7225184,
+    "suite_end_ts": 1777635041.3959005,
+    "first_click_elapsed_s": {
+      "count": 1,
+      "min": 48.916,
+      "max": 48.916,
+      "mean": 48.916,
+      "median": 48.916,
+      "p95": 48.916
+    },
+    "first_click_setup_success_count": 1,
+    "second_click_elapsed_s": {
+      "count": 1,
+      "min": 0.022,
+      "max": 0.022,
+      "mean": 0.022,
+      "median": 0.022,
+      "p95": 0.022
+    },
+    "second_click_success_count": 1,
+    "transport_success_count": 1,
+    "strict_success_count": 1,
+    "likely_hit_count": 1,
+    "likely_hit_rate": 1.0,
+    "failure_bucket_counts": {},
+    "placeholder_strict_fail_count": 0,
+    "cache_hit_reason_counts": {
+      "request_scene_completed_with_image": 1
+    },
+    "cache_miss_reason_counts": {},
+    "global_state_key_drift_detected_count": 1,
+    "scene_id_mismatch_detected_count": 1,
+    "selected_option_mismatch_detected_count": 0,
+    "aborted": false,
+    "success_count": 1,
+    "text_ready_elapsed_s": {
+      "count": 1,
+      "min": 0.022,
+      "max": 0.022,
+      "mean": 0.022,
+      "median": 0.022,
+      "p95": 0.022
+    },
+    "image_ready_elapsed_s": {
+      "count": 1,
+      "min": 0.022,
+      "max": 0.022,
+      "mean": 0.022,
+      "median": 0.022,
+      "p95": 0.022
+    },
+    "full_ready_elapsed_s": {
+      "count": 1,
+      "min": 0.022,
+      "max": 0.022,
+      "mean": 0.022,
+      "median": 0.022,
+      "p95": 0.022
+    },
+    "real_scene_count": 1,
+    "real_scene_rate": 1.0,
+    "direct_image_count": 1,
+    "async_image_count": 0,
+    "placeholder_count": 0,
+    "placeholder_rate": 0.0,
+    "direct_image_rate": 1.0,
+    "async_image_rate": 0.0,
+    "provider_retry_heavy_count": 0,
+    "provider_429_count": 0,
+    "provider_timeout_count": 0,
+    "provider_backoff_wait_ms_total": 0,
+    "main_character_contention_suspected_count": 0,
+    "notes": "v15 strict pregen60s20 keeps the same 60-second dwell interval but now uses the same strict-v2 split timeouts and block-for-image cutoff as normal20, so placeholder and async backfill long tails do not silently leak into the measured path."
+  },
+  "runs": [
+    {
+      "benchmark_id": "DNQBV1_001",
+      "theme_id": 1,
+      "theme": "边陲驿站夜谈录",
+      "read_wait_s": 60.0,
+      "full_ready_mode": true,
+      "profile": "fullready_pregen60",
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 7.603,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过筹集到第一笔修缮资金暂时延缓了拆迁进度，并与青梅竹马达成共识：双方不再强求对方改变，而是各自尝试踏出改变的第一步，矛盾在妥协中暂时平息。",
+                  "main_conflict": "驿站面临被强制拆除的行政通知，主角作为唯一的留守者，既要应对镇政府的拆迁压力，又要面对父亲留下的这份产业即将消失的心理创伤。同时，主角与青梅竹马对于“离开小镇去大城市”还是“留守经营”产生了严重的分歧，生活在理想与现实的夹缝中摇摆。 - 矛盾结束条件：主角通过筹集到第一笔修缮资金暂时延缓了拆迁进度，并与青梅竹马达成共识：双方不再强求对方改变，而是各自尝试踏出改变的第一步，矛盾在妥协中暂时平息。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角通过公开过客的信息并组织镇民进行集体谈判，争取到了合理的补偿方案，虽然驿站最终难逃拆除命运，但主角保住了镇民的利益，个人债务也通过转让部分经营权得到缓解。",
+                  "main_conflict": "一名神秘的过客带来了关于小镇未来规划的内部消息，暗示拆迁补偿远低于预期，这引发了镇民的恐慌与骚乱。主角在维护驿站秩序与保护过客隐私之间陷入两难，同时，主角自身积攒的债务问题爆发，面临着不得不变卖驿站核心资产的窘境。 - 矛盾结束条件：主角通过公开过客的信息并组织镇民进行集体谈判，争取到了合理的补偿方案，虽然驿站最终难逃拆除命运，但主角保住了镇民的利益，个人债务也通过转让部分经营权得到缓解。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角在最后一夜烧毁了记录本，将驿站钥匙交还给拆迁队。他没有获得大富大贵，也没有彻底改变小镇的命运，但他带着对过往的释然与一份微薄的积蓄，平静地踏上了前往城市的列车，实现了与不完美过去的最终和解。 ### 【主角规范信息】 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：青年 所属作品(中)：边陲驿站夜谈录 所属作品(英)：The Night Talks at the Frontier Station 标志性外观关键词：黑色短发、洗得发白的工装外套、眼神沉静、手腕上的旧表、常年携带笔记本、清瘦、略带疲惫、沉默寡言、指尖有老茧、穿着朴素、气质内敛 ## 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决",
+                  "main_conflict": "拆迁进入倒计时，主角必须在最后期限前完成驿站的清空。此时，主角发现自己一直以来试图记录的故事，其实是自己逃避现实的借口，他必须面对“无论如何努力，都无法阻止小镇消亡”的无力感，以及对未来生活的不确定性。 - 矛盾结束条件：主角在最后一夜烧毁了记录本，将驿站钥匙交还给拆迁队。他没有获得大富大贵，也没有彻底改变小镇的命运，但他带着对过往的释然与一份微薄的积蓄，平静地踏上了前往城市的列车，实现了与不完美过去的最终和解。 ### 【主角规范信息】 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：青年 所属作品(中)：边陲驿站夜谈录 所属作品(英)：The Night Talks at the Frontier Station 标志性外观关键词：黑色短发、洗得发白的工装外套、眼神沉静、手腕上的旧表、常年携带笔记本、清瘦、略带疲惫、沉默寡言、指尖有老茧、穿着朴素、气质内敛 ## 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为写实主义叙事游戏，采用低饱和度的视觉色调与环境音效，强调沉浸式的生活质感。通过琐碎的对话、陈旧的物件与缓慢的节奏，构建一种带有粗粝感与温情的现实主义氛围，旨在让玩家在平淡的日常中体味个体在时代洪流下的微小挣扎与释然。",
+              "main_quest": "主角作为驿站的最后一名守夜人，目标是在驿站彻底拆除前，整理并记录下这最后一年里，每一位过客留下的故事，并试图在拆迁补偿款与个人对故土的眷恋之间找到平衡。玩家需通过日常经营维持驿站运转，同时在夜谈中收集关键线索，拼凑出小镇衰落背后的真相。挑战在于，主角不仅要面对经济拮据的现实压力，还要处理与镇上居民因拆迁问题产生的矛盾，最终在“留守守护”与“奔赴新生活”之间做出抉择，达成属于自己的现实圆满。",
+              "protagonist_ability": "主角拥有一种名为“共情倾听”的特质，这并非超自然力量，而是源于其长期从事驿站服务工作所磨练出的敏锐观察力与耐心。通过引导过客在深夜的驿站进行深度交谈，主角能捕捉到对方言语间的细微情绪波动与未竟之志。使用方式为在特定夜间场景下进行对话博弈，但该能力受限于对方的心理防线与主角自身的精力，无法改变对方的既定命运，仅能作为一种情感的疏导与记录。",
+              "world_basic_setting": "故事发生在一座名为“青岩”的边陲小镇，这里曾是繁华的贸易枢纽，如今随着交通干线的改道，沦为被时代遗忘的边缘地带。社会结构呈现出明显的断层：留守的老人、试图逃离的青年与在此中转的过客。文化上，这里保留着旧时代的宗族传统与现代商业文明碰撞后的荒凉感。关键事件是“旧火车站的彻底废弃”，这标志着小镇彻底失去了与外界联通的经济命脉。地理上，小镇被群山环绕，气候阴冷多雨，这种封闭的地理环境加剧了居民心理上的孤岛感。人们在日复一日的劳作中维持着生计，既有对远方的向往，又被沉重的现实羁绊所困，构成了典型的“生活在别处，却困在当下”的社会生态。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1777634924_yrmxdi",
+            "image_style": {
+              "type": "realistic"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "gender": "男性"
+            },
+            "tone": "normal_ending",
+            "user_theme": "边陲驿站夜谈录"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "request_payload": {
+          "gameTheme": "边陲驿站夜谈录",
+          "protagonistAttr": {},
+          "difficulty": "normal",
+          "toneKey": "normal_ending",
+          "imageStyle": {
+            "type": "realistic"
+          },
+          "_benchmark_profile": "fullready_pregen60",
+          "_benchmark_measurement": "fullready_nextturn",
+          "_benchmark_read_wait_s": 60.0
+        },
+        "start_ts": 1777634924.722522,
+        "end_ts": 1777634932.3251235,
+        "provider_events": {
+          "event_count": 4,
+          "queue_wait_ms": {
+            "count": 4,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 1,
+            "min": 7590.0,
+            "max": 7590.0,
+            "mean": 7590.0,
+            "median": 7590.0,
+            "p95": 7590.0
+          },
+          "llm_success_count": 1,
+          "image_success_count": 0,
+          "request_thread_event_count": 2,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0
+        },
+        "status": "success",
+        "game_id": "game_1777634924_yrmxdi"
+      },
+      "long_tail_attribution": {
+        "provider_429_count": 0,
+        "provider_timeout_count": 0,
+        "provider_retry_heavy_count": 0,
+        "provider_backoff_wait_ms_total": 0,
+        "main_character_event_count": 0,
+        "scene_image_event_count": 0,
+        "image_probe_attempt_count": 0,
+        "main_character_contention_suspected": false
+      },
+      "first_click": {
+        "http_status": 200,
+        "elapsed_s": 48.916,
+        "response_json": {
+          "benchmark_diagnostics": {
+            "cache_hit_reason": null,
+            "cache_miss_reason": null,
+            "current_options_key_drift_detected": false,
+            "global_state_key_drift_detected": false,
+            "placeholder": false,
+            "previous_scene_id": null,
+            "recomputed_scene_cache_exists": false,
+            "recomputed_scene_id": null,
+            "request_current_options_count": 0,
+            "request_current_options_hash": "d751713988987e9331980363e24189ce",
+            "request_flow_worldline_hash": "940e38d5f8372eaa58cfdaf4d70a0d30",
+            "request_global_state_hash": "d9876ffb3c03e4ae34d5750fb0a718fc",
+            "request_option_at_index": null,
+            "request_option_index": 0,
+            "request_option_text": "开始游戏",
+            "request_scene_cache_exists": false,
+            "request_scene_id": null,
+            "resolution_path": null,
+            "response_has_image": true,
+            "response_has_scene": true,
+            "response_scene_id": "6062913769570326991_-6999146839681139939",
+            "response_status": "success",
+            "scene_id_mismatch_detected": false,
+            "selected_option_mismatch_detected": false
+          },
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "",
+              "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：青岩小镇的雨总是下得没完没了，空气里弥漫着一股陈旧木头腐朽后的潮湿气味。我站在驿站那扇摇摇欲坠的木门后，指尖摩挲着手腕上那块表盘磨损的旧表，秒针跳动的声音在死寂的夜里显得格外刺耳。桌上那份盖着红章的行政拆迁通知书被压在茶杯下，边缘已经微微泛黄。我抬头看向窗外，远处废弃火车站的轮廓像是一头沉默的巨兽，蛰伏在阴冷的雨幕中。\n\n门外传来一阵急促且沉重的敲门声，紧接着是木门被推开的吱呀声。一个穿着深色雨衣的男人闯了进来，他摘下兜帽，露出一张写满疲惫的脸，眼神里透着一股不属于这荒凉小镇的精明与焦灼。他将一个沉甸甸的皮包扔在柜台上，发出“砰”的一声闷响。\n\n“林远，这地方真难找。”他喘着粗气，目光扫视着驿站内简陋的陈设，最后定格在我身上，“我是镇上规划办的陈志，有些关于拆迁补偿的内部消息，我想我们需要聊聊。这不仅关乎这间驿站，也关乎你父亲留下的那些烂摊子。”\n\n我看着他，内心涌起一阵本能的警惕，身体微微紧绷。父亲去世后，这间驿站成了我唯一的寄托，也是我逃避现实的避风港。如果拆迁补偿真的如他所言，那意味着我必须在“守护”与“生存”之间做出一个极其残酷的抉择。"
+            },
+            "deep_background_links": {},
+            "flow_update": {},
+            "next_options": [
+              "询问关于拆迁补偿的具体数额与细节。",
+              "追问他关于父亲生前债务的内情。"
+            ],
+            "scene": "青岩小镇的雨总是下得没完没了，空气里弥漫着一股陈旧木头腐朽后的潮湿气味。我站在驿站那扇摇摇欲坠的木门后，指尖摩挲着手腕上那块表盘磨损的旧表，秒针跳动的声音在死寂的夜里显得格外刺耳。桌上那份盖着红章的行政拆迁通知书被压在茶杯下，边缘已经微微泛黄。我抬头看向窗外，远处废弃火车站的轮廓像是一头沉默的巨兽，蛰伏在阴冷的雨幕中。\n\n门外传来一阵急促且沉重的敲门声，紧接着是木门被推开的吱呀声。一个穿着深色雨衣的男人闯了进来，他摘下兜帽，露出一张写满疲惫的脸，眼神里透着一股不属于这荒凉小镇的精明与焦灼。他将一个沉甸甸的皮包扔在柜台上，发出“砰”的一声闷响。\n\n“林远，这地方真难找。”他喘着粗气，目光扫视着驿站内简陋的陈设，最后定格在我身上，“我是镇上规划办的陈志，有些关于拆迁补偿的内部消息，我想我们需要聊聊。这不仅关乎这间驿站，也关乎你父亲留下的那些烂摊子。”\n\n我看着他，内心涌起一阵本能的警惕，身体微微紧绷。父亲去世后，这间驿站成了我唯一的寄托，也是我逃避现实的避风港。如果拆迁补偿真的如他所言，那意味着我必须在“守护”与“生存”之间做出一个极其残酷的抉择。",
+            "sceneId": "6062913769570326991_-6999146839681139939",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-station-confrontation-climax, realistic-narrative, low-saturation, gritty-realism, cinematic-atmosphere, melancholic-tension, photorealistic, cinematic-lighting, highly-detailed-textures, muted-color-palette, dramatic-shadows, male protagonist using Image 0, protagonist with observant and patient expression, protagonist showing subtle tension and internal conflict, protagonist standing behind a worn wooden counter, simple rugged work shirt with slightly worn fabric texture, a vintage mechanical wristwatch with worn dial on the left wrist, protagonist standing behind the counter facing the entrance, protagonist's hands resting on the counter near a yellowed document, body tensed slightly in a defensive posture, gaze fixed on 陈志-配角1, 8K detailed facial features, protagonist with weary but sharp, observant eyes, expression showing deep contemplation and defensive vigilance, lip color naturally muted, soft shadows emphasizing the structure of the face, dark brown hair, slightly messy due to humidity, root fixation coefficient 0.8, tip swing amplitude 5cm, color layering: main #2B2624, secondary #1A1817, highlight #3D3835, shadow #0A0A0A, wind speed 0.3m/s, turbulence intensity 2%, dull-textured cotton fabric with visible weave, slight fabric creases from long hours of labor, dimly lit old station waiting room with peeling paint, rain-streaked windows showing a dark, gloomy night outside, an old wooden counter with a steaming tea cup and a yellowed official document, the silhouette of an abandoned train station visible through the window, 陈志-配角1 standing on the right side of the frame, wearing a dark wet raincoat and hood down, looking exhausted but cunning, damp, humid atmosphere with visible light dust particles, dim, flickering interior light creating long, harsh shadows, low saturation tones, muted grays and deep browns, faded yellow for the document, cold blue tint for the rainy night outside, flickering warm interior desk lamp, harsh contrast between cold window light and warm interior light, deep shadows masking corners of the room, type medium shot, lens 35mm, aperture f/4, depth_of_field focus on protagonist and the document on the counter, flash none, grain fine film grain, texture realistic weathered surfaces, protagonist centered behind the counter, 陈志-配角1 positioned on the right entering the frame, the document on the counter acts as a visual anchor between the two characters, action constraints: tense standoff atmosphere, photorealistic style, no text or symbols in image, no watermarks or logos, no artifacts, anxious confrontation, heavy sense of impending change, melancholic isolation, realistic narrative weight, no text, no symbols, no garbled characters, no words",
+              "prompt_json": {
+                "camera": {
+                  "aperture": "f/4",
+                  "depth_of_field": "focus on protagonist and the document on the counter",
+                  "flash": "none",
+                  "grain": "fine film grain",
+                  "lens": "35mm",
+                  "texture": "realistic weathered surfaces",
+                  "type": "medium shot"
+                },
+                "clothing_system": [
+                  "dull-textured cotton fabric with visible weave",
+                  "slight fabric creases from long hours of labor"
+                ],
+                "color_restriction": [
+                  "low saturation tones",
+                  "muted grays and deep browns",
+                  "faded yellow for the document",
+                  "cold blue tint for the rainy night outside"
+                ],
+                "composition": [
+                  "protagonist centered behind the counter",
+                  "陈志-配角1 positioned on the right entering the frame",
+                  "the document on the counter acts as a visual anchor between the two characters",
+                  "action constraints: tense standoff atmosphere"
+                ],
+                "environment": {
+                  "background": [
+                    "dimly lit old station waiting room with peeling paint",
+                    "rain-streaked windows showing a dark, gloomy night outside",
+                    "an old wooden counter with a steaming tea cup and a yellowed official document",
+                    "the silhouette of an abandoned train station visible through the window"
+                  ],
+                  "characters": [
+                    "陈志-配角1 standing on the right side of the frame, wearing a dark wet raincoat and hood down, looking exhausted but cunning"
+                  ],
+                  "effects": [
+                    "damp, humid atmosphere with visible light dust particles",
+                    "dim, flickering interior light creating long, harsh shadows"
+                  ]
+                },
+                "face_system": [
+                  "8K detailed facial features",
+                  "protagonist with weary but sharp, observant eyes",
+                  "expression showing deep contemplation and defensive vigilance",
+                  "lip color naturally muted",
+                  "soft shadows emphasizing the structure of the face"
+                ],
+                "hair_system": [
+                  "dark brown hair, slightly messy due to humidity",
+                  "root fixation coefficient 0.8",
+                  "tip swing amplitude 5cm",
+                  "color layering: main #2B2624, secondary #1A1817, highlight #3D3835, shadow #0A0A0A",
+                  "wind speed 0.3m/s",
+                  "turbulence intensity 2%"
+                ],
+                "label": "scene-station-confrontation-climax",
+                "lighting": [
+                  "flickering warm interior desk lamp",
+                  "harsh contrast between cold window light and warm interior light",
+                  "deep shadows masking corners of the room"
+                ],
+                "mood": [
+                  "anxious confrontation",
+                  "heavy sense of impending change",
+                  "melancholic isolation",
+                  "realistic narrative weight"
+                ],
+                "output_style": [
+                  "photorealistic style",
+                  "no text or symbols in image",
+                  "no watermarks or logos",
+                  "no artifacts"
+                ],
+                "style": [
+                  "photorealistic",
+                  "cinematic-lighting",
+                  "highly-detailed-textures",
+                  "muted-color-palette",
+                  "dramatic-shadows"
+                ],
+                "subject": {
+                  "body_traits": [
+                    "male protagonist using Image 0",
+                    "protagonist with observant and patient expression",
+                    "protagonist showing subtle tension and internal conflict",
+                    "protagonist standing behind a worn wooden counter"
+                  ],
+                  "outfit": [
+                    "simple rugged work shirt with slightly worn fabric texture",
+                    "a vintage mechanical wristwatch with worn dial on the left wrist"
+                  ],
+                  "pose": [
+                    "protagonist standing behind the counter facing the entrance",
+                    "protagonist's hands resting on the counter near a yellowed document",
+                    "body tensed slightly in a defensive posture",
+                    "gaze fixed on 陈志-配角1"
+                  ]
+                },
+                "tags": [
+                  "realistic-narrative",
+                  "low-saturation",
+                  "gritty-realism",
+                  "cinematic-atmosphere",
+                  "melancholic-tension"
+                ]
+              },
+              "scene_text_hash": "c4ac998574f8b62c93bc77f0d2d1631a",
+              "style": "default",
+              "url": "/image_cache/b9d31ec8081bf40e1fba789b2e5193cb.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "request_payload": {
+          "option": "开始游戏",
+          "optionIndex": 0,
+          "sceneId": null,
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过筹集到第一笔修缮资金暂时延缓了拆迁进度，并与青梅竹马达成共识：双方不再强求对方改变，而是各自尝试踏出改变的第一步，矛盾在妥协中暂时平息。",
+                  "main_conflict": "驿站面临被强制拆除的行政通知，主角作为唯一的留守者，既要应对镇政府的拆迁压力，又要面对父亲留下的这份产业即将消失的心理创伤。同时，主角与青梅竹马对于“离开小镇去大城市”还是“留守经营”产生了严重的分歧，生活在理想与现实的夹缝中摇摆。 - 矛盾结束条件：主角通过筹集到第一笔修缮资金暂时延缓了拆迁进度，并与青梅竹马达成共识：双方不再强求对方改变，而是各自尝试踏出改变的第一步，矛盾在妥协中暂时平息。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角通过公开过客的信息并组织镇民进行集体谈判，争取到了合理的补偿方案，虽然驿站最终难逃拆除命运，但主角保住了镇民的利益，个人债务也通过转让部分经营权得到缓解。",
+                  "main_conflict": "一名神秘的过客带来了关于小镇未来规划的内部消息，暗示拆迁补偿远低于预期，这引发了镇民的恐慌与骚乱。主角在维护驿站秩序与保护过客隐私之间陷入两难，同时，主角自身积攒的债务问题爆发，面临着不得不变卖驿站核心资产的窘境。 - 矛盾结束条件：主角通过公开过客的信息并组织镇民进行集体谈判，争取到了合理的补偿方案，虽然驿站最终难逃拆除命运，但主角保住了镇民的利益，个人债务也通过转让部分经营权得到缓解。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角在最后一夜烧毁了记录本，将驿站钥匙交还给拆迁队。他没有获得大富大贵，也没有彻底改变小镇的命运，但他带着对过往的释然与一份微薄的积蓄，平静地踏上了前往城市的列车，实现了与不完美过去的最终和解。 ### 【主角规范信息】 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：青年 所属作品(中)：边陲驿站夜谈录 所属作品(英)：The Night Talks at the Frontier Station 标志性外观关键词：黑色短发、洗得发白的工装外套、眼神沉静、手腕上的旧表、常年携带笔记本、清瘦、略带疲惫、沉默寡言、指尖有老茧、穿着朴素、气质内敛 ## 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决",
+                  "main_conflict": "拆迁进入倒计时，主角必须在最后期限前完成驿站的清空。此时，主角发现自己一直以来试图记录的故事，其实是自己逃避现实的借口，他必须面对“无论如何努力，都无法阻止小镇消亡”的无力感，以及对未来生活的不确定性。 - 矛盾结束条件：主角在最后一夜烧毁了记录本，将驿站钥匙交还给拆迁队。他没有获得大富大贵，也没有彻底改变小镇的命运，但他带着对过往的释然与一份微薄的积蓄，平静地踏上了前往城市的列车，实现了与不完美过去的最终和解。 ### 【主角规范信息】 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：青年 所属作品(中)：边陲驿站夜谈录 所属作品(英)：The Night Talks at the Frontier Station 标志性外观关键词：黑色短发、洗得发白的工装外套、眼神沉静、手腕上的旧表、常年携带笔记本、清瘦、略带疲惫、沉默寡言、指尖有老茧、穿着朴素、气质内敛 ## 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为写实主义叙事游戏，采用低饱和度的视觉色调与环境音效，强调沉浸式的生活质感。通过琐碎的对话、陈旧的物件与缓慢的节奏，构建一种带有粗粝感与温情的现实主义氛围，旨在让玩家在平淡的日常中体味个体在时代洪流下的微小挣扎与释然。",
+              "main_quest": "主角作为驿站的最后一名守夜人，目标是在驿站彻底拆除前，整理并记录下这最后一年里，每一位过客留下的故事，并试图在拆迁补偿款与个人对故土的眷恋之间找到平衡。玩家需通过日常经营维持驿站运转，同时在夜谈中收集关键线索，拼凑出小镇衰落背后的真相。挑战在于，主角不仅要面对经济拮据的现实压力，还要处理与镇上居民因拆迁问题产生的矛盾，最终在“留守守护”与“奔赴新生活”之间做出抉择，达成属于自己的现实圆满。",
+              "protagonist_ability": "主角拥有一种名为“共情倾听”的特质，这并非超自然力量，而是源于其长期从事驿站服务工作所磨练出的敏锐观察力与耐心。通过引导过客在深夜的驿站进行深度交谈，主角能捕捉到对方言语间的细微情绪波动与未竟之志。使用方式为在特定夜间场景下进行对话博弈，但该能力受限于对方的心理防线与主角自身的精力，无法改变对方的既定命运，仅能作为一种情感的疏导与记录。",
+              "world_basic_setting": "故事发生在一座名为“青岩”的边陲小镇，这里曾是繁华的贸易枢纽，如今随着交通干线的改道，沦为被时代遗忘的边缘地带。社会结构呈现出明显的断层：留守的老人、试图逃离的青年与在此中转的过客。文化上，这里保留着旧时代的宗族传统与现代商业文明碰撞后的荒凉感。关键事件是“旧火车站的彻底废弃”，这标志着小镇彻底失去了与外界联通的经济命脉。地理上，小镇被群山环绕，气候阴冷多雨，这种封闭的地理环境加剧了居民心理上的孤岛感。人们在日复一日的劳作中维持着生计，既有对远方的向往，又被沉重的现实羁绊所困，构成了典型的“生活在别处，却困在当下”的社会生态。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1777634924_yrmxdi",
+            "image_style": {
+              "type": "realistic"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "gender": "男性"
+            },
+            "tone": "normal_ending",
+            "user_theme": "边陲驿站夜谈录",
+            "_benchmark_profile": "fullready_pregen60",
+            "_benchmark_measurement": "fullready_nextturn",
+            "_benchmark_read_wait_s": 60.0
+          }
+        },
+        "start_ts": 1777634932.3709354,
+        "end_ts": 1777634981.2869358,
+        "provider_events": {
+          "event_count": 9,
+          "queue_wait_ms": {
+            "count": 9,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 5,
+            "min": 2620.0,
+            "max": 12098.0,
+            "mean": 7046.4,
+            "median": 7417.0,
+            "p95": 11253.4
+          },
+          "llm_success_count": 4,
+          "image_success_count": 0,
+          "request_thread_event_count": 0,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 2,
+          "scene_image_event_count": 0
+        },
+        "attempts": [
+          {
+            "http_status": 200,
+            "elapsed_s": 48.916,
+            "response_json": {
+              "benchmark_diagnostics": {
+                "cache_hit_reason": null,
+                "cache_miss_reason": null,
+                "current_options_key_drift_detected": false,
+                "global_state_key_drift_detected": false,
+                "placeholder": false,
+                "previous_scene_id": null,
+                "recomputed_scene_cache_exists": false,
+                "recomputed_scene_id": null,
+                "request_current_options_count": 0,
+                "request_current_options_hash": "d751713988987e9331980363e24189ce",
+                "request_flow_worldline_hash": "940e38d5f8372eaa58cfdaf4d70a0d30",
+                "request_global_state_hash": "d9876ffb3c03e4ae34d5750fb0a718fc",
+                "request_option_at_index": null,
+                "request_option_index": 0,
+                "request_option_text": "开始游戏",
+                "request_scene_cache_exists": false,
+                "request_scene_id": null,
+                "resolution_path": null,
+                "response_has_image": true,
+                "response_has_scene": true,
+                "response_scene_id": "6062913769570326991_-6999146839681139939",
+                "response_status": "success",
+                "scene_id_mismatch_detected": false,
+                "selected_option_mismatch_detected": false
+              },
+              "message": "选项剧情生成成功！",
+              "optionData": {
+                "checkpoint_packet": {
+                  "chapter": "chapter1",
+                  "chapter_conflict_solved": false,
+                  "quest_delta": "",
+                  "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：青岩小镇的雨总是下得没完没了，空气里弥漫着一股陈旧木头腐朽后的潮湿气味。我站在驿站那扇摇摇欲坠的木门后，指尖摩挲着手腕上那块表盘磨损的旧表，秒针跳动的声音在死寂的夜里显得格外刺耳。桌上那份盖着红章的行政拆迁通知书被压在茶杯下，边缘已经微微泛黄。我抬头看向窗外，远处废弃火车站的轮廓像是一头沉默的巨兽，蛰伏在阴冷的雨幕中。\n\n门外传来一阵急促且沉重的敲门声，紧接着是木门被推开的吱呀声。一个穿着深色雨衣的男人闯了进来，他摘下兜帽，露出一张写满疲惫的脸，眼神里透着一股不属于这荒凉小镇的精明与焦灼。他将一个沉甸甸的皮包扔在柜台上，发出“砰”的一声闷响。\n\n“林远，这地方真难找。”他喘着粗气，目光扫视着驿站内简陋的陈设，最后定格在我身上，“我是镇上规划办的陈志，有些关于拆迁补偿的内部消息，我想我们需要聊聊。这不仅关乎这间驿站，也关乎你父亲留下的那些烂摊子。”\n\n我看着他，内心涌起一阵本能的警惕，身体微微紧绷。父亲去世后，这间驿站成了我唯一的寄托，也是我逃避现实的避风港。如果拆迁补偿真的如他所言，那意味着我必须在“守护”与“生存”之间做出一个极其残酷的抉择。"
+                },
+                "deep_background_links": {},
+                "flow_update": {},
+                "next_options": [
+                  "询问关于拆迁补偿的具体数额与细节。",
+                  "追问他关于父亲生前债务的内情。"
+                ],
+                "scene": "青岩小镇的雨总是下得没完没了，空气里弥漫着一股陈旧木头腐朽后的潮湿气味。我站在驿站那扇摇摇欲坠的木门后，指尖摩挲着手腕上那块表盘磨损的旧表，秒针跳动的声音在死寂的夜里显得格外刺耳。桌上那份盖着红章的行政拆迁通知书被压在茶杯下，边缘已经微微泛黄。我抬头看向窗外，远处废弃火车站的轮廓像是一头沉默的巨兽，蛰伏在阴冷的雨幕中。\n\n门外传来一阵急促且沉重的敲门声，紧接着是木门被推开的吱呀声。一个穿着深色雨衣的男人闯了进来，他摘下兜帽，露出一张写满疲惫的脸，眼神里透着一股不属于这荒凉小镇的精明与焦灼。他将一个沉甸甸的皮包扔在柜台上，发出“砰”的一声闷响。\n\n“林远，这地方真难找。”他喘着粗气，目光扫视着驿站内简陋的陈设，最后定格在我身上，“我是镇上规划办的陈志，有些关于拆迁补偿的内部消息，我想我们需要聊聊。这不仅关乎这间驿站，也关乎你父亲留下的那些烂摊子。”\n\n我看着他，内心涌起一阵本能的警惕，身体微微紧绷。父亲去世后，这间驿站成了我唯一的寄托，也是我逃避现实的避风港。如果拆迁补偿真的如他所言，那意味着我必须在“守护”与“生存”之间做出一个极其残酷的抉择。",
+                "sceneId": "6062913769570326991_-6999146839681139939",
+                "scene_image": {
+                  "cached": true,
+                  "height": 1080,
+                  "image_type": "story_scene",
+                  "prompt": "scene-station-confrontation-climax, realistic-narrative, low-saturation, gritty-realism, cinematic-atmosphere, melancholic-tension, photorealistic, cinematic-lighting, highly-detailed-textures, muted-color-palette, dramatic-shadows, male protagonist using Image 0, protagonist with observant and patient expression, protagonist showing subtle tension and internal conflict, protagonist standing behind a worn wooden counter, simple rugged work shirt with slightly worn fabric texture, a vintage mechanical wristwatch with worn dial on the left wrist, protagonist standing behind the counter facing the entrance, protagonist's hands resting on the counter near a yellowed document, body tensed slightly in a defensive posture, gaze fixed on 陈志-配角1, 8K detailed facial features, protagonist with weary but sharp, observant eyes, expression showing deep contemplation and defensive vigilance, lip color naturally muted, soft shadows emphasizing the structure of the face, dark brown hair, slightly messy due to humidity, root fixation coefficient 0.8, tip swing amplitude 5cm, color layering: main #2B2624, secondary #1A1817, highlight #3D3835, shadow #0A0A0A, wind speed 0.3m/s, turbulence intensity 2%, dull-textured cotton fabric with visible weave, slight fabric creases from long hours of labor, dimly lit old station waiting room with peeling paint, rain-streaked windows showing a dark, gloomy night outside, an old wooden counter with a steaming tea cup and a yellowed official document, the silhouette of an abandoned train station visible through the window, 陈志-配角1 standing on the right side of the frame, wearing a dark wet raincoat and hood down, looking exhausted but cunning, damp, humid atmosphere with visible light dust particles, dim, flickering interior light creating long, harsh shadows, low saturation tones, muted grays and deep browns, faded yellow for the document, cold blue tint for the rainy night outside, flickering warm interior desk lamp, harsh contrast between cold window light and warm interior light, deep shadows masking corners of the room, type medium shot, lens 35mm, aperture f/4, depth_of_field focus on protagonist and the document on the counter, flash none, grain fine film grain, texture realistic weathered surfaces, protagonist centered behind the counter, 陈志-配角1 positioned on the right entering the frame, the document on the counter acts as a visual anchor between the two characters, action constraints: tense standoff atmosphere, photorealistic style, no text or symbols in image, no watermarks or logos, no artifacts, anxious confrontation, heavy sense of impending change, melancholic isolation, realistic narrative weight, no text, no symbols, no garbled characters, no words",
+                  "prompt_json": {
+                    "camera": {
+                      "aperture": "f/4",
+                      "depth_of_field": "focus on protagonist and the document on the counter",
+                      "flash": "none",
+                      "grain": "fine film grain",
+                      "lens": "35mm",
+                      "texture": "realistic weathered surfaces",
+                      "type": "medium shot"
+                    },
+                    "clothing_system": [
+                      "dull-textured cotton fabric with visible weave",
+                      "slight fabric creases from long hours of labor"
+                    ],
+                    "color_restriction": [
+                      "low saturation tones",
+                      "muted grays and deep browns",
+                      "faded yellow for the document",
+                      "cold blue tint for the rainy night outside"
+                    ],
+                    "composition": [
+                      "protagonist centered behind the counter",
+                      "陈志-配角1 positioned on the right entering the frame",
+                      "the document on the counter acts as a visual anchor between the two characters",
+                      "action constraints: tense standoff atmosphere"
+                    ],
+                    "environment": {
+                      "background": [
+                        "dimly lit old station waiting room with peeling paint",
+                        "rain-streaked windows showing a dark, gloomy night outside",
+                        "an old wooden counter with a steaming tea cup and a yellowed official document",
+                        "the silhouette of an abandoned train station visible through the window"
+                      ],
+                      "characters": [
+                        "陈志-配角1 standing on the right side of the frame, wearing a dark wet raincoat and hood down, looking exhausted but cunning"
+                      ],
+                      "effects": [
+                        "damp, humid atmosphere with visible light dust particles",
+                        "dim, flickering interior light creating long, harsh shadows"
+                      ]
+                    },
+                    "face_system": [
+                      "8K detailed facial features",
+                      "protagonist with weary but sharp, observant eyes",
+                      "expression showing deep contemplation and defensive vigilance",
+                      "lip color naturally muted",
+                      "soft shadows emphasizing the structure of the face"
+                    ],
+                    "hair_system": [
+                      "dark brown hair, slightly messy due to humidity",
+                      "root fixation coefficient 0.8",
+                      "tip swing amplitude 5cm",
+                      "color layering: main #2B2624, secondary #1A1817, highlight #3D3835, shadow #0A0A0A",
+                      "wind speed 0.3m/s",
+                      "turbulence intensity 2%"
+                    ],
+                    "label": "scene-station-confrontation-climax",
+                    "lighting": [
+                      "flickering warm interior desk lamp",
+                      "harsh contrast between cold window light and warm interior light",
+                      "deep shadows masking corners of the room"
+                    ],
+                    "mood": [
+                      "anxious confrontation",
+                      "heavy sense of impending change",
+                      "melancholic isolation",
+                      "realistic narrative weight"
+                    ],
+                    "output_style": [
+                      "photorealistic style",
+                      "no text or symbols in image",
+                      "no watermarks or logos",
+                      "no artifacts"
+                    ],
+                    "style": [
+                      "photorealistic",
+                      "cinematic-lighting",
+                      "highly-detailed-textures",
+                      "muted-color-palette",
+                      "dramatic-shadows"
+                    ],
+                    "subject": {
+                      "body_traits": [
+                        "male protagonist using Image 0",
+                        "protagonist with observant and patient expression",
+                        "protagonist showing subtle tension and internal conflict",
+                        "protagonist standing behind a worn wooden counter"
+                      ],
+                      "outfit": [
+                        "simple rugged work shirt with slightly worn fabric texture",
+                        "a vintage mechanical wristwatch with worn dial on the left wrist"
+                      ],
+                      "pose": [
+                        "protagonist standing behind the counter facing the entrance",
+                        "protagonist's hands resting on the counter near a yellowed document",
+                        "body tensed slightly in a defensive posture",
+                        "gaze fixed on 陈志-配角1"
+                      ]
+                    },
+                    "tags": [
+                      "realistic-narrative",
+                      "low-saturation",
+                      "gritty-realism",
+                      "cinematic-atmosphere",
+                      "melancholic-tension"
+                    ]
+                  },
+                  "scene_text_hash": "c4ac998574f8b62c93bc77f0d2d1631a",
+                  "style": "default",
+                  "url": "/image_cache/b9d31ec8081bf40e1fba789b2e5193cb.png",
+                  "width": 1920
+                }
+              },
+              "status": "success"
+            },
+            "request_payload": {
+              "option": "开始游戏",
+              "optionIndex": 0,
+              "sceneId": null,
+              "globalState": {
+                "core_worldview": {
+                  "chapters": {
+                    "chapter1": {
+                      "conflict_end_condition": "主角通过筹集到第一笔修缮资金暂时延缓了拆迁进度，并与青梅竹马达成共识：双方不再强求对方改变，而是各自尝试踏出改变的第一步，矛盾在妥协中暂时平息。",
+                      "main_conflict": "驿站面临被强制拆除的行政通知，主角作为唯一的留守者，既要应对镇政府的拆迁压力，又要面对父亲留下的这份产业即将消失的心理创伤。同时，主角与青梅竹马对于“离开小镇去大城市”还是“留守经营”产生了严重的分歧，生活在理想与现实的夹缝中摇摆。 - 矛盾结束条件：主角通过筹集到第一笔修缮资金暂时延缓了拆迁进度，并与青梅竹马达成共识：双方不再强求对方改变，而是各自尝试踏出改变的第一步，矛盾在妥协中暂时平息。"
+                    },
+                    "chapter2": {
+                      "conflict_end_condition": "主角通过公开过客的信息并组织镇民进行集体谈判，争取到了合理的补偿方案，虽然驿站最终难逃拆除命运，但主角保住了镇民的利益，个人债务也通过转让部分经营权得到缓解。",
+                      "main_conflict": "一名神秘的过客带来了关于小镇未来规划的内部消息，暗示拆迁补偿远低于预期，这引发了镇民的恐慌与骚乱。主角在维护驿站秩序与保护过客隐私之间陷入两难，同时，主角自身积攒的债务问题爆发，面临着不得不变卖驿站核心资产的窘境。 - 矛盾结束条件：主角通过公开过客的信息并组织镇民进行集体谈判，争取到了合理的补偿方案，虽然驿站最终难逃拆除命运，但主角保住了镇民的利益，个人债务也通过转让部分经营权得到缓解。"
+                    },
+                    "chapter3": {
+                      "conflict_end_condition": "主角在最后一夜烧毁了记录本，将驿站钥匙交还给拆迁队。他没有获得大富大贵，也没有彻底改变小镇的命运，但他带着对过往的释然与一份微薄的积蓄，平静地踏上了前往城市的列车，实现了与不完美过去的最终和解。 ### 【主角规范信息】 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：青年 所属作品(中)：边陲驿站夜谈录 所属作品(英)：The Night Talks at the Frontier Station 标志性外观关键词：黑色短发、洗得发白的工装外套、眼神沉静、手腕上的旧表、常年携带笔记本、清瘦、略带疲惫、沉默寡言、指尖有老茧、穿着朴素、气质内敛 ## 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决",
+                      "main_conflict": "拆迁进入倒计时，主角必须在最后期限前完成驿站的清空。此时，主角发现自己一直以来试图记录的故事，其实是自己逃避现实的借口，他必须面对“无论如何努力，都无法阻止小镇消亡”的无力感，以及对未来生活的不确定性。 - 矛盾结束条件：主角在最后一夜烧毁了记录本，将驿站钥匙交还给拆迁队。他没有获得大富大贵，也没有彻底改变小镇的命运，但他带着对过往的释然与一份微薄的积蓄，平静地踏上了前往城市的列车，实现了与不完美过去的最终和解。 ### 【主角规范信息】 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：青年 所属作品(中)：边陲驿站夜谈录 所属作品(英)：The Night Talks at the Frontier Station 标志性外观关键词：黑色短发、洗得发白的工装外套、眼神沉静、手腕上的旧表、常年携带笔记本、清瘦、略带疲惫、沉默寡言、指尖有老茧、穿着朴素、气质内敛 ## 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决"
+                    }
+                  },
+                  "characters": {},
+                  "forces": {},
+                  "game_style": "本作为写实主义叙事游戏，采用低饱和度的视觉色调与环境音效，强调沉浸式的生活质感。通过琐碎的对话、陈旧的物件与缓慢的节奏，构建一种带有粗粝感与温情的现实主义氛围，旨在让玩家在平淡的日常中体味个体在时代洪流下的微小挣扎与释然。",
+                  "main_quest": "主角作为驿站的最后一名守夜人，目标是在驿站彻底拆除前，整理并记录下这最后一年里，每一位过客留下的故事，并试图在拆迁补偿款与个人对故土的眷恋之间找到平衡。玩家需通过日常经营维持驿站运转，同时在夜谈中收集关键线索，拼凑出小镇衰落背后的真相。挑战在于，主角不仅要面对经济拮据的现实压力，还要处理与镇上居民因拆迁问题产生的矛盾，最终在“留守守护”与“奔赴新生活”之间做出抉择，达成属于自己的现实圆满。",
+                  "protagonist_ability": "主角拥有一种名为“共情倾听”的特质，这并非超自然力量，而是源于其长期从事驿站服务工作所磨练出的敏锐观察力与耐心。通过引导过客在深夜的驿站进行深度交谈，主角能捕捉到对方言语间的细微情绪波动与未竟之志。使用方式为在特定夜间场景下进行对话博弈，但该能力受限于对方的心理防线与主角自身的精力，无法改变对方的既定命运，仅能作为一种情感的疏导与记录。",
+                  "world_basic_setting": "故事发生在一座名为“青岩”的边陲小镇，这里曾是繁华的贸易枢纽，如今随着交通干线的改道，沦为被时代遗忘的边缘地带。社会结构呈现出明显的断层：留守的老人、试图逃离的青年与在此中转的过客。文化上，这里保留着旧时代的宗族传统与现代商业文明碰撞后的荒凉感。关键事件是“旧火车站的彻底废弃”，这标志着小镇彻底失去了与外界联通的经济命脉。地理上，小镇被群山环绕，气候阴冷多雨，这种封闭的地理环境加剧了居民心理上的孤岛感。人们在日复一日的劳作中维持着生计，既有对远方的向往，又被沉重的现实羁绊所困，构成了典型的“生活在别处，却困在当下”的社会生态。"
+                },
+                "flow_worldline": {
+                  "characters": {},
+                  "current_chapter": "chapter1",
+                  "environment": {}
+                },
+                "game_id": "game_1777634924_yrmxdi",
+                "image_style": {
+                  "type": "realistic"
+                },
+                "meta": {
+                  "detail_async": true
+                },
+                "protagonist_canonical": {
+                  "gender": "男性"
+                },
+                "tone": "normal_ending",
+                "user_theme": "边陲驿站夜谈录",
+                "_benchmark_profile": "fullready_pregen60",
+                "_benchmark_measurement": "fullready_nextturn",
+                "_benchmark_read_wait_s": 60.0
+              }
+            },
+            "start_ts": 1777634932.3709354,
+            "end_ts": 1777634981.2869358,
+            "provider_events": {
+              "event_count": 9,
+              "queue_wait_ms": {
+                "count": 9,
+                "min": 0.0,
+                "max": 0.0,
+                "mean": 0.0,
+                "median": 0.0,
+                "p95": 0.0
+              },
+              "latency_ms": {
+                "count": 5,
+                "min": 2620.0,
+                "max": 12098.0,
+                "mean": 7046.4,
+                "median": 7417.0,
+                "p95": 11253.4
+              },
+              "llm_success_count": 4,
+              "image_success_count": 0,
+              "request_thread_event_count": 0,
+              "provider_429_count": 0,
+              "provider_timeout_count": 0,
+              "shared_backoff_wait_ms_total": 0,
+              "retry_heavy_event_count": 0,
+              "main_character_event_count": 2,
+              "scene_image_event_count": 0
+            }
+          }
+        ],
+        "attempt_count": 1,
+        "request_elapsed_s": 48.916,
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "success",
+        "has_scene": true,
+        "has_image": true,
+        "setup_success": true
+      },
+      "second_click": {
+        "http_status": 200,
+        "elapsed_s": 0.022,
+        "response_json": {
+          "benchmark_diagnostics": {
+            "cache_hit_reason": "request_scene_completed_with_image",
+            "cache_miss_reason": null,
+            "current_options_key_drift_detected": false,
+            "global_state_key_drift_detected": true,
+            "placeholder": false,
+            "previous_scene_id": "initial",
+            "recomputed_scene_cache_exists": false,
+            "recomputed_scene_id": "7411819212689915175_-6999146839681139939",
+            "request_current_options_count": 2,
+            "request_current_options_hash": "b7e8716802ab8259ff58ad1aaee0a299",
+            "request_flow_worldline_hash": "0b7d2802f8e46ae104639ddbac325b51",
+            "request_global_state_hash": "eb56d84f1d010d78ca3c122c5aef2b69",
+            "request_option_at_index": "询问关于拆迁补偿的具体数额与细节。",
+            "request_option_index": 0,
+            "request_option_text": "询问关于拆迁补偿的具体数额与细节。",
+            "request_scene_cache_exists": true,
+            "request_scene_cache_meta": {
+              "canonical_scene_id": "-6992496796465373922_-6999146839681139939",
+              "current_options_hash": "b7e8716802ab8259ff58ad1aaee0a299",
+              "current_options_preview": [
+                "询问关于拆迁补偿的具体数额与细节。",
+                "追问他关于父亲生前债务的内情。"
+              ],
+              "flow_worldline_hash": "940e38d5f8372eaa58cfdaf4d70a0d30",
+              "global_state_hash": "af6fc8fc254ca73524b26785275c4dfd",
+              "option_count": 2,
+              "parent_scene_id": null,
+              "scene_id": "6062913769570326991_-6999146839681139939"
+            },
+            "request_scene_generation_status": "completed",
+            "request_scene_id": "6062913769570326991_-6999146839681139939",
+            "resolution_path": "request_scene_cache_direct",
+            "response_has_image": true,
+            "response_has_scene": true,
+            "response_scene_id": "-6096131966756628394_4316508851671387888",
+            "response_status": "success",
+            "scene_id_mismatch_detected": true,
+            "selected_option_mismatch_detected": false
+          },
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "主线任务推进至“拆迁补偿谈判”阶段。我明确了补偿金额为15万且面临债务抵扣的困境，这直接导致我必须在“清偿债务”与“保住驿站”之间做出抉择，为后续章节的债务爆发埋下伏笔。",
+              "recap_text": "你选择了“询问关于拆迁补偿的具体数额与细节。”。当前章节：chapter1。主线进展：主线任务推进至“拆迁补偿谈判”阶段。我明确了补偿金额为15万且面临债务抵扣的困境，这直接导致我必须在“清偿债务”与“保住驿站”之间做出抉择，为后续章节的债务爆发埋下伏笔。。最近剧情：我放下手中擦拭了一半的茶杯，指尖摩挲着杯沿粗糙的纹路，目光沉静地看向陈志。驿站内昏暗的灯光将他的影子拉得很长，空气中弥漫着一股潮湿的霉味。我深吸一口气，尽量让自己的声音听起来平稳，开口问道：“陈志，既然你特意找上门来，那我想听听具体的数额。这间驿站的补偿方案到底是怎么定的，还有，所谓的‘烂摊子’具体指什么？”陈志闻言，从公文包里掏出一份折叠得有些发皱的文件，推到我面前的木桌上。他压低了声音，语气里透着一股公事公办的冷漠：“林远，补偿款是按照房屋面积核算的，你这儿年久失修，评估价只有15万。至于你父亲留下的债务，镇上已经收到几家供货商的联名投诉，这笔钱会直接从补偿款里抵扣。你剩下的，恐怕连去城里租个像样的单间都困难。”我低头看着那串刺眼的数字，手腕上的旧表指针发出细微的滴答声，仿佛在倒数着我与这间驿站最后的羁绊。"
+            },
+            "deep_background_links": {
+              "0": "陈志（关联父亲留下的债务背景）"
+            },
+            "flow_update": {
+              "chapter_conflict_solved": false,
+              "characters": {},
+              "environment": {},
+              "quest_progress": "主线任务推进至“拆迁补偿谈判”阶段。我明确了补偿金额为15万且面临债务抵扣的困境，这直接导致我必须在“清偿债务”与“保住驿站”之间做出抉择，为后续章节的债务爆发埋下伏笔。"
+            },
+            "next_options": [
+              "追问父亲债务的具体明细与来源。",
+              "询问陈志关于驿站旧址规划的更多细节。"
+            ],
+            "plot_mentioned_only": [
+              "父亲-提及未出场"
+            ],
+            "plot_supporting_characters": [
+              [
+                "陈志",
+                "配角1"
+              ]
+            ],
+            "scene": "我放下手中擦拭了一半的茶杯，指尖摩挲着杯沿粗糙的纹路，目光沉静地看向陈志。驿站内昏暗的灯光将他的影子拉得很长，空气中弥漫着一股潮湿的霉味。我深吸一口气，尽量让自己的声音听起来平稳，开口问道：“陈志，既然你特意找上门来，那我想听听具体的数额。这间驿站的补偿方案到底是怎么定的，还有，所谓的‘烂摊子’具体指什么？”陈志闻言，从公文包里掏出一份折叠得有些发皱的文件，推到我面前的木桌上。他压低了声音，语气里透着一股公事公办的冷漠：“林远，补偿款是按照房屋面积核算的，你这儿年久失修，评估价只有15万。至于你父亲留下的债务，镇上已经收到几家供货商的联名投诉，这笔钱会直接从补偿款里抵扣。你剩下的，恐怕连去城里租个像样的单间都困难。”我低头看着那串刺眼的数字，手腕上的旧表指针发出细微的滴答声，仿佛在倒数着我与这间驿站最后的羁绊。",
+            "sceneId": "-6096131966756628394_4316508851671387888",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-station-negotiation-final-despair, realistic, narrative-driven, melancholy, low-saturation, cinematic-still, hyper-realistic, cinematic lighting, gritty texture, highly detailed environment, muted color palette, male protagonist using Image 0, protagonist with weary and contemplative expression, protagonist eyes fixed on the document with subtle sorrow, protagonist sitting at a worn wooden table, protagonist hands resting near a stained teacup, protagonist wearing a simple, worn-out grey linen shirt, protagonist with sleeves slightly rolled up, protagonist leaning slightly forward toward the table, protagonist looking down at the paper document, 陈志-配角1 sitting opposite to the protagonist, 陈志-配角1 holding a leather briefcase on the table, 8K detailed facial features, protagonist with subtle stubble and tired eyes, lip color naturally muted, soft shadows from dim overhead lamp highlighting facial structure, realistic skin texture with pores and minor imperfections, neat but slightly messy dark brown hair, root fixation coefficient 0.8, tip swing amplitude 5cm, color layering: main color #2D2D2D, secondary color #4A4A4A, highlight #333333, shadow #1A1A1A, wind speed 0.1m/s, turbulence intensity 1%, worn linen fabric with visible texture, slight fabric wrinkles from daily use, dull and muted color tones for clothing, dilapidated station interior with peeling wall paint, damp wooden furniture showing signs of rot, dimly lit room with a single hanging light bulb, shadows stretching across the floor, dust particles visible in the air, 陈志-配角1 wearing a formal but wrinkled business suit sitting across from the protagonist, damp and humid atmosphere, flickering dim light creating harsh shadows, visible dust motes floating in the light beams, desaturated earth tones, moody greys and muted browns, pale yellow light from the dim lamp, cold damp blue shadows, single low-hanging warm-yellow light bulb, strong contrast between light and deep shadow, directional lighting emphasizing the document on the table, type medium shot, lens 35mm, aperture f/4.0, depth_of_field shallow focus on the document and protagonist's hands, flash none, grain fine film grain, texture realistic photographic texture, protagonist on the left side of the frame, 陈志-配角1 on the right side of the frame, document as the central focal point of the interaction, action constraints: protagonist looking at the paper,陈志-配角1 gesturing toward the document, photorealistic, no text or symbols in image, no characters names or labels in image, heavy emotional weight, sense of inevitable loss, oppressive realistic atmosphere, quiet desperation, no text, no symbols, no garbled characters, no words",
+              "scene_text_hash": "1cb8b343f75a120802625105be3a01a0",
+              "style": "default",
+              "url": "/image_cache/89c3be5c152b504e6b5967a2b841a58c.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "request_payload": {
+          "option": "询问关于拆迁补偿的具体数额与细节。",
+          "optionIndex": 0,
+          "sceneId": "6062913769570326991_-6999146839681139939",
+          "currentOptions": [
+            "询问关于拆迁补偿的具体数额与细节。",
+            "追问他关于父亲生前债务的内情。"
+          ],
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过筹集到第一笔修缮资金暂时延缓了拆迁进度，并与青梅竹马达成共识：双方不再强求对方改变，而是各自尝试踏出改变的第一步，矛盾在妥协中暂时平息。",
+                  "main_conflict": "驿站面临被强制拆除的行政通知，主角作为唯一的留守者，既要应对镇政府的拆迁压力，又要面对父亲留下的这份产业即将消失的心理创伤。同时，主角与青梅竹马对于“离开小镇去大城市”还是“留守经营”产生了严重的分歧，生活在理想与现实的夹缝中摇摆。 - 矛盾结束条件：主角通过筹集到第一笔修缮资金暂时延缓了拆迁进度，并与青梅竹马达成共识：双方不再强求对方改变，而是各自尝试踏出改变的第一步，矛盾在妥协中暂时平息。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角通过公开过客的信息并组织镇民进行集体谈判，争取到了合理的补偿方案，虽然驿站最终难逃拆除命运，但主角保住了镇民的利益，个人债务也通过转让部分经营权得到缓解。",
+                  "main_conflict": "一名神秘的过客带来了关于小镇未来规划的内部消息，暗示拆迁补偿远低于预期，这引发了镇民的恐慌与骚乱。主角在维护驿站秩序与保护过客隐私之间陷入两难，同时，主角自身积攒的债务问题爆发，面临着不得不变卖驿站核心资产的窘境。 - 矛盾结束条件：主角通过公开过客的信息并组织镇民进行集体谈判，争取到了合理的补偿方案，虽然驿站最终难逃拆除命运，但主角保住了镇民的利益，个人债务也通过转让部分经营权得到缓解。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角在最后一夜烧毁了记录本，将驿站钥匙交还给拆迁队。他没有获得大富大贵，也没有彻底改变小镇的命运，但他带着对过往的释然与一份微薄的积蓄，平静地踏上了前往城市的列车，实现了与不完美过去的最终和解。 ### 【主角规范信息】 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：青年 所属作品(中)：边陲驿站夜谈录 所属作品(英)：The Night Talks at the Frontier Station 标志性外观关键词：黑色短发、洗得发白的工装外套、眼神沉静、手腕上的旧表、常年携带笔记本、清瘦、略带疲惫、沉默寡言、指尖有老茧、穿着朴素、气质内敛 ## 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决",
+                  "main_conflict": "拆迁进入倒计时，主角必须在最后期限前完成驿站的清空。此时，主角发现自己一直以来试图记录的故事，其实是自己逃避现实的借口，他必须面对“无论如何努力，都无法阻止小镇消亡”的无力感，以及对未来生活的不确定性。 - 矛盾结束条件：主角在最后一夜烧毁了记录本，将驿站钥匙交还给拆迁队。他没有获得大富大贵，也没有彻底改变小镇的命运，但他带着对过往的释然与一份微薄的积蓄，平静地踏上了前往城市的列车，实现了与不完美过去的最终和解。 ### 【主角规范信息】 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：青年 所属作品(中)：边陲驿站夜谈录 所属作品(英)：The Night Talks at the Frontier Station 标志性外观关键词：黑色短发、洗得发白的工装外套、眼神沉静、手腕上的旧表、常年携带笔记本、清瘦、略带疲惫、沉默寡言、指尖有老茧、穿着朴素、气质内敛 ## 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为写实主义叙事游戏，采用低饱和度的视觉色调与环境音效，强调沉浸式的生活质感。通过琐碎的对话、陈旧的物件与缓慢的节奏，构建一种带有粗粝感与温情的现实主义氛围，旨在让玩家在平淡的日常中体味个体在时代洪流下的微小挣扎与释然。",
+              "main_quest": "主角作为驿站的最后一名守夜人，目标是在驿站彻底拆除前，整理并记录下这最后一年里，每一位过客留下的故事，并试图在拆迁补偿款与个人对故土的眷恋之间找到平衡。玩家需通过日常经营维持驿站运转，同时在夜谈中收集关键线索，拼凑出小镇衰落背后的真相。挑战在于，主角不仅要面对经济拮据的现实压力，还要处理与镇上居民因拆迁问题产生的矛盾，最终在“留守守护”与“奔赴新生活”之间做出抉择，达成属于自己的现实圆满。",
+              "protagonist_ability": "主角拥有一种名为“共情倾听”的特质，这并非超自然力量，而是源于其长期从事驿站服务工作所磨练出的敏锐观察力与耐心。通过引导过客在深夜的驿站进行深度交谈，主角能捕捉到对方言语间的细微情绪波动与未竟之志。使用方式为在特定夜间场景下进行对话博弈，但该能力受限于对方的心理防线与主角自身的精力，无法改变对方的既定命运，仅能作为一种情感的疏导与记录。",
+              "world_basic_setting": "故事发生在一座名为“青岩”的边陲小镇，这里曾是繁华的贸易枢纽，如今随着交通干线的改道，沦为被时代遗忘的边缘地带。社会结构呈现出明显的断层：留守的老人、试图逃离的青年与在此中转的过客。文化上，这里保留着旧时代的宗族传统与现代商业文明碰撞后的荒凉感。关键事件是“旧火车站的彻底废弃”，这标志着小镇彻底失去了与外界联通的经济命脉。地理上，小镇被群山环绕，气候阴冷多雨，这种封闭的地理环境加剧了居民心理上的孤岛感。人们在日复一日的劳作中维持着生计，既有对远方的向往，又被沉重的现实羁绊所困，构成了典型的“生活在别处，却困在当下”的社会生态。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {},
+              "chapter_progress": 2.0
+            },
+            "game_id": "game_1777634924_yrmxdi",
+            "image_style": {
+              "type": "realistic"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "gender": "男性"
+            },
+            "tone": "normal_ending",
+            "user_theme": "边陲驿站夜谈录",
+            "_benchmark_profile": "fullready_pregen60",
+            "_benchmark_measurement": "fullready_nextturn",
+            "_benchmark_read_wait_s": 60.0
+          },
+          "previousSceneId": "initial",
+          "previousSceneImage": {
+            "cached": true,
+            "height": 1080,
+            "image_type": "story_scene",
+            "prompt": "scene-station-confrontation-climax, realistic-narrative, low-saturation, gritty-realism, cinematic-atmosphere, melancholic-tension, photorealistic, cinematic-lighting, highly-detailed-textures, muted-color-palette, dramatic-shadows, male protagonist using Image 0, protagonist with observant and patient expression, protagonist showing subtle tension and internal conflict, protagonist standing behind a worn wooden counter, simple rugged work shirt with slightly worn fabric texture, a vintage mechanical wristwatch with worn dial on the left wrist, protagonist standing behind the counter facing the entrance, protagonist's hands resting on the counter near a yellowed document, body tensed slightly in a defensive posture, gaze fixed on 陈志-配角1, 8K detailed facial features, protagonist with weary but sharp, observant eyes, expression showing deep contemplation and defensive vigilance, lip color naturally muted, soft shadows emphasizing the structure of the face, dark brown hair, slightly messy due to humidity, root fixation coefficient 0.8, tip swing amplitude 5cm, color layering: main #2B2624, secondary #1A1817, highlight #3D3835, shadow #0A0A0A, wind speed 0.3m/s, turbulence intensity 2%, dull-textured cotton fabric with visible weave, slight fabric creases from long hours of labor, dimly lit old station waiting room with peeling paint, rain-streaked windows showing a dark, gloomy night outside, an old wooden counter with a steaming tea cup and a yellowed official document, the silhouette of an abandoned train station visible through the window, 陈志-配角1 standing on the right side of the frame, wearing a dark wet raincoat and hood down, looking exhausted but cunning, damp, humid atmosphere with visible light dust particles, dim, flickering interior light creating long, harsh shadows, low saturation tones, muted grays and deep browns, faded yellow for the document, cold blue tint for the rainy night outside, flickering warm interior desk lamp, harsh contrast between cold window light and warm interior light, deep shadows masking corners of the room, type medium shot, lens 35mm, aperture f/4, depth_of_field focus on protagonist and the document on the counter, flash none, grain fine film grain, texture realistic weathered surfaces, protagonist centered behind the counter, 陈志-配角1 positioned on the right entering the frame, the document on the counter acts as a visual anchor between the two characters, action constraints: tense standoff atmosphere, photorealistic style, no text or symbols in image, no watermarks or logos, no artifacts, anxious confrontation, heavy sense of impending change, melancholic isolation, realistic narrative weight, no text, no symbols, no garbled characters, no words",
+            "prompt_json": {
+              "camera": {
+                "aperture": "f/4",
+                "depth_of_field": "focus on protagonist and the document on the counter",
+                "flash": "none",
+                "grain": "fine film grain",
+                "lens": "35mm",
+                "texture": "realistic weathered surfaces",
+                "type": "medium shot"
+              },
+              "clothing_system": [
+                "dull-textured cotton fabric with visible weave",
+                "slight fabric creases from long hours of labor"
+              ],
+              "color_restriction": [
+                "low saturation tones",
+                "muted grays and deep browns",
+                "faded yellow for the document",
+                "cold blue tint for the rainy night outside"
+              ],
+              "composition": [
+                "protagonist centered behind the counter",
+                "陈志-配角1 positioned on the right entering the frame",
+                "the document on the counter acts as a visual anchor between the two characters",
+                "action constraints: tense standoff atmosphere"
+              ],
+              "environment": {
+                "background": [
+                  "dimly lit old station waiting room with peeling paint",
+                  "rain-streaked windows showing a dark, gloomy night outside",
+                  "an old wooden counter with a steaming tea cup and a yellowed official document",
+                  "the silhouette of an abandoned train station visible through the window"
+                ],
+                "characters": [
+                  "陈志-配角1 standing on the right side of the frame, wearing a dark wet raincoat and hood down, looking exhausted but cunning"
+                ],
+                "effects": [
+                  "damp, humid atmosphere with visible light dust particles",
+                  "dim, flickering interior light creating long, harsh shadows"
+                ]
+              },
+              "face_system": [
+                "8K detailed facial features",
+                "protagonist with weary but sharp, observant eyes",
+                "expression showing deep contemplation and defensive vigilance",
+                "lip color naturally muted",
+                "soft shadows emphasizing the structure of the face"
+              ],
+              "hair_system": [
+                "dark brown hair, slightly messy due to humidity",
+                "root fixation coefficient 0.8",
+                "tip swing amplitude 5cm",
+                "color layering: main #2B2624, secondary #1A1817, highlight #3D3835, shadow #0A0A0A",
+                "wind speed 0.3m/s",
+                "turbulence intensity 2%"
+              ],
+              "label": "scene-station-confrontation-climax",
+              "lighting": [
+                "flickering warm interior desk lamp",
+                "harsh contrast between cold window light and warm interior light",
+                "deep shadows masking corners of the room"
+              ],
+              "mood": [
+                "anxious confrontation",
+                "heavy sense of impending change",
+                "melancholic isolation",
+                "realistic narrative weight"
+              ],
+              "output_style": [
+                "photorealistic style",
+                "no text or symbols in image",
+                "no watermarks or logos",
+                "no artifacts"
+              ],
+              "style": [
+                "photorealistic",
+                "cinematic-lighting",
+                "highly-detailed-textures",
+                "muted-color-palette",
+                "dramatic-shadows"
+              ],
+              "subject": {
+                "body_traits": [
+                  "male protagonist using Image 0",
+                  "protagonist with observant and patient expression",
+                  "protagonist showing subtle tension and internal conflict",
+                  "protagonist standing behind a worn wooden counter"
+                ],
+                "outfit": [
+                  "simple rugged work shirt with slightly worn fabric texture",
+                  "a vintage mechanical wristwatch with worn dial on the left wrist"
+                ],
+                "pose": [
+                  "protagonist standing behind the counter facing the entrance",
+                  "protagonist's hands resting on the counter near a yellowed document",
+                  "body tensed slightly in a defensive posture",
+                  "gaze fixed on 陈志-配角1"
+                ]
+              },
+              "tags": [
+                "realistic-narrative",
+                "low-saturation",
+                "gritty-realism",
+                "cinematic-atmosphere",
+                "melancholic-tension"
+              ]
+            },
+            "scene_text_hash": "c4ac998574f8b62c93bc77f0d2d1631a",
+            "style": "default",
+            "url": "/image_cache/b9d31ec8081bf40e1fba789b2e5193cb.png",
+            "width": 1920
+          },
+          "previousSceneText": "青岩小镇的雨总是下得没完没了，空气里弥漫着一股陈旧木头腐朽后的潮湿气味。我站在驿站那扇摇摇欲坠的木门后，指尖摩挲着手腕上那块表盘磨损的旧表，秒针跳动的声音在死寂的夜里显得格外刺耳。桌上那份盖着红章的行政拆迁通知书被压在茶杯下，边缘已经微微泛黄。我抬头看向窗外，远处废弃火车站的轮廓像是一头沉默的巨兽，蛰伏在阴冷的雨幕中。\n\n门外传来一阵急促且沉重的敲门声，紧接着是木门被推开的吱呀声。一个穿着深色雨衣的男人闯了进来，他摘下兜帽，露出一张写满疲惫的脸，眼神里透着一股不属于这荒凉小镇的精明与焦灼。他将一个沉甸甸的皮包扔在柜台上，发出“砰”的一声闷响。\n\n“林远，这地方真难找。”他喘着粗气，目光扫视着驿站内简陋的陈设，最后定格在我身上，“我是镇上规划办的陈志，有些关于拆迁补偿的内部消息，我想我们需要聊聊。这不仅关乎这间驿站，也关乎你父亲留下的那些烂摊子。”\n\n我看着他，内心涌起一阵本能的警惕，身体微微紧绷。父亲去世后，这间驿站成了我唯一的寄托，也是我逃避现实的避风港。如果拆迁补偿真的如他所言，那意味着我必须在“守护”与“生存”之间做出一个极其残酷的抉择。"
+        },
+        "start_ts": 1777635041.3312578,
+        "end_ts": 1777635041.3534825,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0
+        },
+        "attempts": [
+          {
+            "http_status": 200,
+            "elapsed_s": 0.022,
+            "response_json": {
+              "benchmark_diagnostics": {
+                "cache_hit_reason": "request_scene_completed_with_image",
+                "cache_miss_reason": null,
+                "current_options_key_drift_detected": false,
+                "global_state_key_drift_detected": true,
+                "placeholder": false,
+                "previous_scene_id": "initial",
+                "recomputed_scene_cache_exists": false,
+                "recomputed_scene_id": "7411819212689915175_-6999146839681139939",
+                "request_current_options_count": 2,
+                "request_current_options_hash": "b7e8716802ab8259ff58ad1aaee0a299",
+                "request_flow_worldline_hash": "0b7d2802f8e46ae104639ddbac325b51",
+                "request_global_state_hash": "eb56d84f1d010d78ca3c122c5aef2b69",
+                "request_option_at_index": "询问关于拆迁补偿的具体数额与细节。",
+                "request_option_index": 0,
+                "request_option_text": "询问关于拆迁补偿的具体数额与细节。",
+                "request_scene_cache_exists": true,
+                "request_scene_cache_meta": {
+                  "canonical_scene_id": "-6992496796465373922_-6999146839681139939",
+                  "current_options_hash": "b7e8716802ab8259ff58ad1aaee0a299",
+                  "current_options_preview": [
+                    "询问关于拆迁补偿的具体数额与细节。",
+                    "追问他关于父亲生前债务的内情。"
+                  ],
+                  "flow_worldline_hash": "940e38d5f8372eaa58cfdaf4d70a0d30",
+                  "global_state_hash": "af6fc8fc254ca73524b26785275c4dfd",
+                  "option_count": 2,
+                  "parent_scene_id": null,
+                  "scene_id": "6062913769570326991_-6999146839681139939"
+                },
+                "request_scene_generation_status": "completed",
+                "request_scene_id": "6062913769570326991_-6999146839681139939",
+                "resolution_path": "request_scene_cache_direct",
+                "response_has_image": true,
+                "response_has_scene": true,
+                "response_scene_id": "-6096131966756628394_4316508851671387888",
+                "response_status": "success",
+                "scene_id_mismatch_detected": true,
+                "selected_option_mismatch_detected": false
+              },
+              "message": "选项剧情生成成功！",
+              "optionData": {
+                "checkpoint_packet": {
+                  "chapter": "chapter1",
+                  "chapter_conflict_solved": false,
+                  "quest_delta": "主线任务推进至“拆迁补偿谈判”阶段。我明确了补偿金额为15万且面临债务抵扣的困境，这直接导致我必须在“清偿债务”与“保住驿站”之间做出抉择，为后续章节的债务爆发埋下伏笔。",
+                  "recap_text": "你选择了“询问关于拆迁补偿的具体数额与细节。”。当前章节：chapter1。主线进展：主线任务推进至“拆迁补偿谈判”阶段。我明确了补偿金额为15万且面临债务抵扣的困境，这直接导致我必须在“清偿债务”与“保住驿站”之间做出抉择，为后续章节的债务爆发埋下伏笔。。最近剧情：我放下手中擦拭了一半的茶杯，指尖摩挲着杯沿粗糙的纹路，目光沉静地看向陈志。驿站内昏暗的灯光将他的影子拉得很长，空气中弥漫着一股潮湿的霉味。我深吸一口气，尽量让自己的声音听起来平稳，开口问道：“陈志，既然你特意找上门来，那我想听听具体的数额。这间驿站的补偿方案到底是怎么定的，还有，所谓的‘烂摊子’具体指什么？”陈志闻言，从公文包里掏出一份折叠得有些发皱的文件，推到我面前的木桌上。他压低了声音，语气里透着一股公事公办的冷漠：“林远，补偿款是按照房屋面积核算的，你这儿年久失修，评估价只有15万。至于你父亲留下的债务，镇上已经收到几家供货商的联名投诉，这笔钱会直接从补偿款里抵扣。你剩下的，恐怕连去城里租个像样的单间都困难。”我低头看着那串刺眼的数字，手腕上的旧表指针发出细微的滴答声，仿佛在倒数着我与这间驿站最后的羁绊。"
+                },
+                "deep_background_links": {
+                  "0": "陈志（关联父亲留下的债务背景）"
+                },
+                "flow_update": {
+                  "chapter_conflict_solved": false,
+                  "characters": {},
+                  "environment": {},
+                  "quest_progress": "主线任务推进至“拆迁补偿谈判”阶段。我明确了补偿金额为15万且面临债务抵扣的困境，这直接导致我必须在“清偿债务”与“保住驿站”之间做出抉择，为后续章节的债务爆发埋下伏笔。"
+                },
+                "next_options": [
+                  "追问父亲债务的具体明细与来源。",
+                  "询问陈志关于驿站旧址规划的更多细节。"
+                ],
+                "plot_mentioned_only": [
+                  "父亲-提及未出场"
+                ],
+                "plot_supporting_characters": [
+                  [
+                    "陈志",
+                    "配角1"
+                  ]
+                ],
+                "scene": "我放下手中擦拭了一半的茶杯，指尖摩挲着杯沿粗糙的纹路，目光沉静地看向陈志。驿站内昏暗的灯光将他的影子拉得很长，空气中弥漫着一股潮湿的霉味。我深吸一口气，尽量让自己的声音听起来平稳，开口问道：“陈志，既然你特意找上门来，那我想听听具体的数额。这间驿站的补偿方案到底是怎么定的，还有，所谓的‘烂摊子’具体指什么？”陈志闻言，从公文包里掏出一份折叠得有些发皱的文件，推到我面前的木桌上。他压低了声音，语气里透着一股公事公办的冷漠：“林远，补偿款是按照房屋面积核算的，你这儿年久失修，评估价只有15万。至于你父亲留下的债务，镇上已经收到几家供货商的联名投诉，这笔钱会直接从补偿款里抵扣。你剩下的，恐怕连去城里租个像样的单间都困难。”我低头看着那串刺眼的数字，手腕上的旧表指针发出细微的滴答声，仿佛在倒数着我与这间驿站最后的羁绊。",
+                "sceneId": "-6096131966756628394_4316508851671387888",
+                "scene_image": {
+                  "cached": true,
+                  "height": 1080,
+                  "image_type": "story_scene",
+                  "prompt": "scene-station-negotiation-final-despair, realistic, narrative-driven, melancholy, low-saturation, cinematic-still, hyper-realistic, cinematic lighting, gritty texture, highly detailed environment, muted color palette, male protagonist using Image 0, protagonist with weary and contemplative expression, protagonist eyes fixed on the document with subtle sorrow, protagonist sitting at a worn wooden table, protagonist hands resting near a stained teacup, protagonist wearing a simple, worn-out grey linen shirt, protagonist with sleeves slightly rolled up, protagonist leaning slightly forward toward the table, protagonist looking down at the paper document, 陈志-配角1 sitting opposite to the protagonist, 陈志-配角1 holding a leather briefcase on the table, 8K detailed facial features, protagonist with subtle stubble and tired eyes, lip color naturally muted, soft shadows from dim overhead lamp highlighting facial structure, realistic skin texture with pores and minor imperfections, neat but slightly messy dark brown hair, root fixation coefficient 0.8, tip swing amplitude 5cm, color layering: main color #2D2D2D, secondary color #4A4A4A, highlight #333333, shadow #1A1A1A, wind speed 0.1m/s, turbulence intensity 1%, worn linen fabric with visible texture, slight fabric wrinkles from daily use, dull and muted color tones for clothing, dilapidated station interior with peeling wall paint, damp wooden furniture showing signs of rot, dimly lit room with a single hanging light bulb, shadows stretching across the floor, dust particles visible in the air, 陈志-配角1 wearing a formal but wrinkled business suit sitting across from the protagonist, damp and humid atmosphere, flickering dim light creating harsh shadows, visible dust motes floating in the light beams, desaturated earth tones, moody greys and muted browns, pale yellow light from the dim lamp, cold damp blue shadows, single low-hanging warm-yellow light bulb, strong contrast between light and deep shadow, directional lighting emphasizing the document on the table, type medium shot, lens 35mm, aperture f/4.0, depth_of_field shallow focus on the document and protagonist's hands, flash none, grain fine film grain, texture realistic photographic texture, protagonist on the left side of the frame, 陈志-配角1 on the right side of the frame, document as the central focal point of the interaction, action constraints: protagonist looking at the paper,陈志-配角1 gesturing toward the document, photorealistic, no text or symbols in image, no characters names or labels in image, heavy emotional weight, sense of inevitable loss, oppressive realistic atmosphere, quiet desperation, no text, no symbols, no garbled characters, no words",
+                  "scene_text_hash": "1cb8b343f75a120802625105be3a01a0",
+                  "style": "default",
+                  "url": "/image_cache/89c3be5c152b504e6b5967a2b841a58c.png",
+                  "width": 1920
+                }
+              },
+              "status": "success"
+            },
+            "request_payload": {
+              "option": "询问关于拆迁补偿的具体数额与细节。",
+              "optionIndex": 0,
+              "sceneId": "6062913769570326991_-6999146839681139939",
+              "currentOptions": [
+                "询问关于拆迁补偿的具体数额与细节。",
+                "追问他关于父亲生前债务的内情。"
+              ],
+              "globalState": {
+                "core_worldview": {
+                  "chapters": {
+                    "chapter1": {
+                      "conflict_end_condition": "主角通过筹集到第一笔修缮资金暂时延缓了拆迁进度，并与青梅竹马达成共识：双方不再强求对方改变，而是各自尝试踏出改变的第一步，矛盾在妥协中暂时平息。",
+                      "main_conflict": "驿站面临被强制拆除的行政通知，主角作为唯一的留守者，既要应对镇政府的拆迁压力，又要面对父亲留下的这份产业即将消失的心理创伤。同时，主角与青梅竹马对于“离开小镇去大城市”还是“留守经营”产生了严重的分歧，生活在理想与现实的夹缝中摇摆。 - 矛盾结束条件：主角通过筹集到第一笔修缮资金暂时延缓了拆迁进度，并与青梅竹马达成共识：双方不再强求对方改变，而是各自尝试踏出改变的第一步，矛盾在妥协中暂时平息。"
+                    },
+                    "chapter2": {
+                      "conflict_end_condition": "主角通过公开过客的信息并组织镇民进行集体谈判，争取到了合理的补偿方案，虽然驿站最终难逃拆除命运，但主角保住了镇民的利益，个人债务也通过转让部分经营权得到缓解。",
+                      "main_conflict": "一名神秘的过客带来了关于小镇未来规划的内部消息，暗示拆迁补偿远低于预期，这引发了镇民的恐慌与骚乱。主角在维护驿站秩序与保护过客隐私之间陷入两难，同时，主角自身积攒的债务问题爆发，面临着不得不变卖驿站核心资产的窘境。 - 矛盾结束条件：主角通过公开过客的信息并组织镇民进行集体谈判，争取到了合理的补偿方案，虽然驿站最终难逃拆除命运，但主角保住了镇民的利益，个人债务也通过转让部分经营权得到缓解。"
+                    },
+                    "chapter3": {
+                      "conflict_end_condition": "主角在最后一夜烧毁了记录本，将驿站钥匙交还给拆迁队。他没有获得大富大贵，也没有彻底改变小镇的命运，但他带着对过往的释然与一份微薄的积蓄，平静地踏上了前往城市的列车，实现了与不完美过去的最终和解。 ### 【主角规范信息】 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：青年 所属作品(中)：边陲驿站夜谈录 所属作品(英)：The Night Talks at the Frontier Station 标志性外观关键词：黑色短发、洗得发白的工装外套、眼神沉静、手腕上的旧表、常年携带笔记本、清瘦、略带疲惫、沉默寡言、指尖有老茧、穿着朴素、气质内敛 ## 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决",
+                      "main_conflict": "拆迁进入倒计时，主角必须在最后期限前完成驿站的清空。此时，主角发现自己一直以来试图记录的故事，其实是自己逃避现实的借口，他必须面对“无论如何努力，都无法阻止小镇消亡”的无力感，以及对未来生活的不确定性。 - 矛盾结束条件：主角在最后一夜烧毁了记录本，将驿站钥匙交还给拆迁队。他没有获得大富大贵，也没有彻底改变小镇的命运，但他带着对过往的释然与一份微薄的积蓄，平静地踏上了前往城市的列车，实现了与不完美过去的最终和解。 ### 【主角规范信息】 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：青年 所属作品(中)：边陲驿站夜谈录 所属作品(英)：The Night Talks at the Frontier Station 标志性外观关键词：黑色短发、洗得发白的工装外套、眼神沉静、手腕上的旧表、常年携带笔记本、清瘦、略带疲惫、沉默寡言、指尖有老茧、穿着朴素、气质内敛 ## 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决"
+                    }
+                  },
+                  "characters": {},
+                  "forces": {},
+                  "game_style": "本作为写实主义叙事游戏，采用低饱和度的视觉色调与环境音效，强调沉浸式的生活质感。通过琐碎的对话、陈旧的物件与缓慢的节奏，构建一种带有粗粝感与温情的现实主义氛围，旨在让玩家在平淡的日常中体味个体在时代洪流下的微小挣扎与释然。",
+                  "main_quest": "主角作为驿站的最后一名守夜人，目标是在驿站彻底拆除前，整理并记录下这最后一年里，每一位过客留下的故事，并试图在拆迁补偿款与个人对故土的眷恋之间找到平衡。玩家需通过日常经营维持驿站运转，同时在夜谈中收集关键线索，拼凑出小镇衰落背后的真相。挑战在于，主角不仅要面对经济拮据的现实压力，还要处理与镇上居民因拆迁问题产生的矛盾，最终在“留守守护”与“奔赴新生活”之间做出抉择，达成属于自己的现实圆满。",
+                  "protagonist_ability": "主角拥有一种名为“共情倾听”的特质，这并非超自然力量，而是源于其长期从事驿站服务工作所磨练出的敏锐观察力与耐心。通过引导过客在深夜的驿站进行深度交谈，主角能捕捉到对方言语间的细微情绪波动与未竟之志。使用方式为在特定夜间场景下进行对话博弈，但该能力受限于对方的心理防线与主角自身的精力，无法改变对方的既定命运，仅能作为一种情感的疏导与记录。",
+                  "world_basic_setting": "故事发生在一座名为“青岩”的边陲小镇，这里曾是繁华的贸易枢纽，如今随着交通干线的改道，沦为被时代遗忘的边缘地带。社会结构呈现出明显的断层：留守的老人、试图逃离的青年与在此中转的过客。文化上，这里保留着旧时代的宗族传统与现代商业文明碰撞后的荒凉感。关键事件是“旧火车站的彻底废弃”，这标志着小镇彻底失去了与外界联通的经济命脉。地理上，小镇被群山环绕，气候阴冷多雨，这种封闭的地理环境加剧了居民心理上的孤岛感。人们在日复一日的劳作中维持着生计，既有对远方的向往，又被沉重的现实羁绊所困，构成了典型的“生活在别处，却困在当下”的社会生态。"
+                },
+                "flow_worldline": {
+                  "characters": {},
+                  "current_chapter": "chapter1",
+                  "environment": {},
+                  "chapter_progress": 2.0
+                },
+                "game_id": "game_1777634924_yrmxdi",
+                "image_style": {
+                  "type": "realistic"
+                },
+                "meta": {
+                  "detail_async": true
+                },
+                "protagonist_canonical": {
+                  "gender": "男性"
+                },
+                "tone": "normal_ending",
+                "user_theme": "边陲驿站夜谈录",
+                "_benchmark_profile": "fullready_pregen60",
+                "_benchmark_measurement": "fullready_nextturn",
+                "_benchmark_read_wait_s": 60.0
+              },
+              "previousSceneId": "initial",
+              "previousSceneImage": {
+                "cached": true,
+                "height": 1080,
+                "image_type": "story_scene",
+                "prompt": "scene-station-confrontation-climax, realistic-narrative, low-saturation, gritty-realism, cinematic-atmosphere, melancholic-tension, photorealistic, cinematic-lighting, highly-detailed-textures, muted-color-palette, dramatic-shadows, male protagonist using Image 0, protagonist with observant and patient expression, protagonist showing subtle tension and internal conflict, protagonist standing behind a worn wooden counter, simple rugged work shirt with slightly worn fabric texture, a vintage mechanical wristwatch with worn dial on the left wrist, protagonist standing behind the counter facing the entrance, protagonist's hands resting on the counter near a yellowed document, body tensed slightly in a defensive posture, gaze fixed on 陈志-配角1, 8K detailed facial features, protagonist with weary but sharp, observant eyes, expression showing deep contemplation and defensive vigilance, lip color naturally muted, soft shadows emphasizing the structure of the face, dark brown hair, slightly messy due to humidity, root fixation coefficient 0.8, tip swing amplitude 5cm, color layering: main #2B2624, secondary #1A1817, highlight #3D3835, shadow #0A0A0A, wind speed 0.3m/s, turbulence intensity 2%, dull-textured cotton fabric with visible weave, slight fabric creases from long hours of labor, dimly lit old station waiting room with peeling paint, rain-streaked windows showing a dark, gloomy night outside, an old wooden counter with a steaming tea cup and a yellowed official document, the silhouette of an abandoned train station visible through the window, 陈志-配角1 standing on the right side of the frame, wearing a dark wet raincoat and hood down, looking exhausted but cunning, damp, humid atmosphere with visible light dust particles, dim, flickering interior light creating long, harsh shadows, low saturation tones, muted grays and deep browns, faded yellow for the document, cold blue tint for the rainy night outside, flickering warm interior desk lamp, harsh contrast between cold window light and warm interior light, deep shadows masking corners of the room, type medium shot, lens 35mm, aperture f/4, depth_of_field focus on protagonist and the document on the counter, flash none, grain fine film grain, texture realistic weathered surfaces, protagonist centered behind the counter, 陈志-配角1 positioned on the right entering the frame, the document on the counter acts as a visual anchor between the two characters, action constraints: tense standoff atmosphere, photorealistic style, no text or symbols in image, no watermarks or logos, no artifacts, anxious confrontation, heavy sense of impending change, melancholic isolation, realistic narrative weight, no text, no symbols, no garbled characters, no words",
+                "prompt_json": {
+                  "camera": {
+                    "aperture": "f/4",
+                    "depth_of_field": "focus on protagonist and the document on the counter",
+                    "flash": "none",
+                    "grain": "fine film grain",
+                    "lens": "35mm",
+                    "texture": "realistic weathered surfaces",
+                    "type": "medium shot"
+                  },
+                  "clothing_system": [
+                    "dull-textured cotton fabric with visible weave",
+                    "slight fabric creases from long hours of labor"
+                  ],
+                  "color_restriction": [
+                    "low saturation tones",
+                    "muted grays and deep browns",
+                    "faded yellow for the document",
+                    "cold blue tint for the rainy night outside"
+                  ],
+                  "composition": [
+                    "protagonist centered behind the counter",
+                    "陈志-配角1 positioned on the right entering the frame",
+                    "the document on the counter acts as a visual anchor between the two characters",
+                    "action constraints: tense standoff atmosphere"
+                  ],
+                  "environment": {
+                    "background": [
+                      "dimly lit old station waiting room with peeling paint",
+                      "rain-streaked windows showing a dark, gloomy night outside",
+                      "an old wooden counter with a steaming tea cup and a yellowed official document",
+                      "the silhouette of an abandoned train station visible through the window"
+                    ],
+                    "characters": [
+                      "陈志-配角1 standing on the right side of the frame, wearing a dark wet raincoat and hood down, looking exhausted but cunning"
+                    ],
+                    "effects": [
+                      "damp, humid atmosphere with visible light dust particles",
+                      "dim, flickering interior light creating long, harsh shadows"
+                    ]
+                  },
+                  "face_system": [
+                    "8K detailed facial features",
+                    "protagonist with weary but sharp, observant eyes",
+                    "expression showing deep contemplation and defensive vigilance",
+                    "lip color naturally muted",
+                    "soft shadows emphasizing the structure of the face"
+                  ],
+                  "hair_system": [
+                    "dark brown hair, slightly messy due to humidity",
+                    "root fixation coefficient 0.8",
+                    "tip swing amplitude 5cm",
+                    "color layering: main #2B2624, secondary #1A1817, highlight #3D3835, shadow #0A0A0A",
+                    "wind speed 0.3m/s",
+                    "turbulence intensity 2%"
+                  ],
+                  "label": "scene-station-confrontation-climax",
+                  "lighting": [
+                    "flickering warm interior desk lamp",
+                    "harsh contrast between cold window light and warm interior light",
+                    "deep shadows masking corners of the room"
+                  ],
+                  "mood": [
+                    "anxious confrontation",
+                    "heavy sense of impending change",
+                    "melancholic isolation",
+                    "realistic narrative weight"
+                  ],
+                  "output_style": [
+                    "photorealistic style",
+                    "no text or symbols in image",
+                    "no watermarks or logos",
+                    "no artifacts"
+                  ],
+                  "style": [
+                    "photorealistic",
+                    "cinematic-lighting",
+                    "highly-detailed-textures",
+                    "muted-color-palette",
+                    "dramatic-shadows"
+                  ],
+                  "subject": {
+                    "body_traits": [
+                      "male protagonist using Image 0",
+                      "protagonist with observant and patient expression",
+                      "protagonist showing subtle tension and internal conflict",
+                      "protagonist standing behind a worn wooden counter"
+                    ],
+                    "outfit": [
+                      "simple rugged work shirt with slightly worn fabric texture",
+                      "a vintage mechanical wristwatch with worn dial on the left wrist"
+                    ],
+                    "pose": [
+                      "protagonist standing behind the counter facing the entrance",
+                      "protagonist's hands resting on the counter near a yellowed document",
+                      "body tensed slightly in a defensive posture",
+                      "gaze fixed on 陈志-配角1"
+                    ]
+                  },
+                  "tags": [
+                    "realistic-narrative",
+                    "low-saturation",
+                    "gritty-realism",
+                    "cinematic-atmosphere",
+                    "melancholic-tension"
+                  ]
+                },
+                "scene_text_hash": "c4ac998574f8b62c93bc77f0d2d1631a",
+                "style": "default",
+                "url": "/image_cache/b9d31ec8081bf40e1fba789b2e5193cb.png",
+                "width": 1920
+              },
+              "previousSceneText": "青岩小镇的雨总是下得没完没了，空气里弥漫着一股陈旧木头腐朽后的潮湿气味。我站在驿站那扇摇摇欲坠的木门后，指尖摩挲着手腕上那块表盘磨损的旧表，秒针跳动的声音在死寂的夜里显得格外刺耳。桌上那份盖着红章的行政拆迁通知书被压在茶杯下，边缘已经微微泛黄。我抬头看向窗外，远处废弃火车站的轮廓像是一头沉默的巨兽，蛰伏在阴冷的雨幕中。\n\n门外传来一阵急促且沉重的敲门声，紧接着是木门被推开的吱呀声。一个穿着深色雨衣的男人闯了进来，他摘下兜帽，露出一张写满疲惫的脸，眼神里透着一股不属于这荒凉小镇的精明与焦灼。他将一个沉甸甸的皮包扔在柜台上，发出“砰”的一声闷响。\n\n“林远，这地方真难找。”他喘着粗气，目光扫视着驿站内简陋的陈设，最后定格在我身上，“我是镇上规划办的陈志，有些关于拆迁补偿的内部消息，我想我们需要聊聊。这不仅关乎这间驿站，也关乎你父亲留下的那些烂摊子。”\n\n我看着他，内心涌起一阵本能的警惕，身体微微紧绷。父亲去世后，这间驿站成了我唯一的寄托，也是我逃避现实的避风港。如果拆迁补偿真的如他所言，那意味着我必须在“守护”与“生存”之间做出一个极其残酷的抉择。"
+            },
+            "start_ts": 1777635041.3312578,
+            "end_ts": 1777635041.3534825,
+            "provider_events": {
+              "event_count": 0,
+              "queue_wait_ms": {
+                "count": 0
+              },
+              "latency_ms": {
+                "count": 0
+              },
+              "llm_success_count": 0,
+              "image_success_count": 0,
+              "request_thread_event_count": 0,
+              "provider_429_count": 0,
+              "provider_timeout_count": 0,
+              "shared_backoff_wait_ms_total": 0,
+              "retry_heavy_event_count": 0,
+              "main_character_event_count": 0,
+              "scene_image_event_count": 0
+            }
+          }
+        ],
+        "attempt_count": 1,
+        "request_elapsed_s": 0.022,
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "success",
+        "has_scene": true,
+        "has_image": true,
+        "selected_option_index": 0,
+        "selected_option_text": "询问关于拆迁补偿的具体数额与细节。",
+        "input_scene_id": "6062913769570326991_-6999146839681139939",
+        "inferred_cache_result": "likely_hit",
+        "used_updated_flow_state": true,
+        "cache_hit_reason": "request_scene_completed_with_image",
+        "cache_miss_reason": null,
+        "global_state_key_drift_detected": true,
+        "scene_id_mismatch_detected": true,
+        "selected_option_mismatch_detected": false,
+        "current_options_key_drift_detected": false,
+        "benchmark_diagnostics": {
+          "cache_hit_reason": "request_scene_completed_with_image",
+          "cache_miss_reason": null,
+          "current_options_key_drift_detected": false,
+          "global_state_key_drift_detected": true,
+          "placeholder": false,
+          "previous_scene_id": "initial",
+          "recomputed_scene_cache_exists": false,
+          "recomputed_scene_id": "7411819212689915175_-6999146839681139939",
+          "request_current_options_count": 2,
+          "request_current_options_hash": "b7e8716802ab8259ff58ad1aaee0a299",
+          "request_flow_worldline_hash": "0b7d2802f8e46ae104639ddbac325b51",
+          "request_global_state_hash": "eb56d84f1d010d78ca3c122c5aef2b69",
+          "request_option_at_index": "询问关于拆迁补偿的具体数额与细节。",
+          "request_option_index": 0,
+          "request_option_text": "询问关于拆迁补偿的具体数额与细节。",
+          "request_scene_cache_exists": true,
+          "request_scene_cache_meta": {
+            "canonical_scene_id": "-6992496796465373922_-6999146839681139939",
+            "current_options_hash": "b7e8716802ab8259ff58ad1aaee0a299",
+            "current_options_preview": [
+              "询问关于拆迁补偿的具体数额与细节。",
+              "追问他关于父亲生前债务的内情。"
+            ],
+            "flow_worldline_hash": "940e38d5f8372eaa58cfdaf4d70a0d30",
+            "global_state_hash": "af6fc8fc254ca73524b26785275c4dfd",
+            "option_count": 2,
+            "parent_scene_id": null,
+            "scene_id": "6062913769570326991_-6999146839681139939"
+          },
+          "request_scene_generation_status": "completed",
+          "request_scene_id": "6062913769570326991_-6999146839681139939",
+          "resolution_path": "request_scene_cache_direct",
+          "response_has_image": true,
+          "response_has_scene": true,
+          "response_scene_id": "-6096131966756628394_4316508851671387888",
+          "response_status": "success",
+          "scene_id_mismatch_detected": true,
+          "selected_option_mismatch_detected": false
+        }
+      },
+      "full_ready": {
+        "text_ready_ts": 1777635041.3534825,
+        "text_ready_elapsed_s": 0.022,
+        "image_ready_ts": 1777635041.3534825,
+        "image_ready_elapsed_s": 0.022,
+        "full_ready_ts": 1777635041.3534825,
+        "full_ready_elapsed_s": 0.022,
+        "image_probe": {
+          "status": "success",
+          "source": "generate-option",
+          "image": {
+            "cached": true,
+            "height": 1080,
+            "image_type": "story_scene",
+            "prompt": "scene-station-negotiation-final-despair, realistic, narrative-driven, melancholy, low-saturation, cinematic-still, hyper-realistic, cinematic lighting, gritty texture, highly detailed environment, muted color palette, male protagonist using Image 0, protagonist with weary and contemplative expression, protagonist eyes fixed on the document with subtle sorrow, protagonist sitting at a worn wooden table, protagonist hands resting near a stained teacup, protagonist wearing a simple, worn-out grey linen shirt, protagonist with sleeves slightly rolled up, protagonist leaning slightly forward toward the table, protagonist looking down at the paper document, 陈志-配角1 sitting opposite to the protagonist, 陈志-配角1 holding a leather briefcase on the table, 8K detailed facial features, protagonist with subtle stubble and tired eyes, lip color naturally muted, soft shadows from dim overhead lamp highlighting facial structure, realistic skin texture with pores and minor imperfections, neat but slightly messy dark brown hair, root fixation coefficient 0.8, tip swing amplitude 5cm, color layering: main color #2D2D2D, secondary color #4A4A4A, highlight #333333, shadow #1A1A1A, wind speed 0.1m/s, turbulence intensity 1%, worn linen fabric with visible texture, slight fabric wrinkles from daily use, dull and muted color tones for clothing, dilapidated station interior with peeling wall paint, damp wooden furniture showing signs of rot, dimly lit room with a single hanging light bulb, shadows stretching across the floor, dust particles visible in the air, 陈志-配角1 wearing a formal but wrinkled business suit sitting across from the protagonist, damp and humid atmosphere, flickering dim light creating harsh shadows, visible dust motes floating in the light beams, desaturated earth tones, moody greys and muted browns, pale yellow light from the dim lamp, cold damp blue shadows, single low-hanging warm-yellow light bulb, strong contrast between light and deep shadow, directional lighting emphasizing the document on the table, type medium shot, lens 35mm, aperture f/4.0, depth_of_field shallow focus on the document and protagonist's hands, flash none, grain fine film grain, texture realistic photographic texture, protagonist on the left side of the frame, 陈志-配角1 on the right side of the frame, document as the central focal point of the interaction, action constraints: protagonist looking at the paper,陈志-配角1 gesturing toward the document, photorealistic, no text or symbols in image, no characters names or labels in image, heavy emotional weight, sense of inevitable loss, oppressive realistic atmosphere, quiet desperation, no text, no symbols, no garbled characters, no words",
+            "scene_text_hash": "1cb8b343f75a120802625105be3a01a0",
+            "style": "default",
+            "url": "/image_cache/89c3be5c152b504e6b5967a2b841a58c.png",
+            "width": 1920
+          },
+          "attempt_count": 0
+        },
+        "ready_mode": "direct_in_generate_option",
+        "attribution": {
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "provider_retry_heavy_count": 0,
+          "provider_backoff_wait_ms_total": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0,
+          "image_probe_attempt_count": 0,
+          "main_character_contention_suspected": false
+        }
+      },
+      "placeholder": false,
+      "transport_success": true,
+      "strict_success": true,
+      "failure_bucket": null,
+      "cache_path_classification": "likely_hit_direct_image",
+      "cache_hit_reason": "request_scene_completed_with_image",
+      "cache_miss_reason": null,
+      "global_state_key_drift_detected": true,
+      "scene_id_mismatch_detected": true,
+      "selected_option_mismatch_detected": false,
+      "success": true
+    }
+  ]
+}

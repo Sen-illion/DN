@@ -1,0 +1,144 @@
+{
+  "baseline_id": "doc",
+  "benchmark_id": "DNQBV1_007",
+  "run_id": "formal20_first_playable_20260430",
+  "mode": "first_playable",
+  "input_bundle": {
+    "original_dn_item": {
+      "benchmark_id": "DNQBV1_007",
+      "theme_id": 20,
+      "theme": "意识上传遗嘱",
+      "image_style": {
+        "type": "cyberpunk"
+      },
+      "expected_genre": "意识科幻",
+      "expected_tone": "诡异、理性、失真感",
+      "must_have_constraints": [
+        "故事应围绕意识上传或遗嘱展开",
+        "需要体现数字人格或身份边界问题",
+        "选项应可推进主线冲突"
+      ],
+      "forbidden_issues": [
+        "无关古代或校园设定",
+        "首段没有核心问题",
+        "图片风格不具未来感"
+      ],
+      "focus": "full-set coverage: 意识科幻",
+      "_subset_focus": "full-set coverage: 意识科幻"
+    },
+    "doc_prompt": "Premise seed: 意识上传遗嘱\nGenre: 意识科幻\nTone: 诡异、理性、失真感\nWrite a long-form interactive story opening that could be expanded with a detailed outline.\nMust-have constraints:\n- 故事应围绕意识上传或遗嘱展开\n- 需要体现数字人格或身份边界问题\n- 选项应可推进主线冲突\nForbidden issues:\n- 无关古代或校园设定\n- 首段没有核心问题\n- 图片风格不具未来感\n",
+    "outline_seed": [
+      "Opening setup for 意识上传遗嘱 in a 意识科幻 frame with a 诡异、理性、失真感 tone.",
+      "Introduce the protagonist's immediate role, pressure, and conflict around: 故事应围绕意识上传或遗嘱展开.",
+      "Reveal one concrete obstacle or tradeoff the player must respond to next.",
+      "End the first turn with 2-3 actionable next steps that can continue the story."
+    ],
+    "mode": "first_playable",
+    "baseline_params": {
+      "execution_mode": "cloud",
+      "doc_repo": "D:\\Projects\\DN\\baselines\\DOC",
+      "doc_data_dir": "D:\\Projects\\DN\\baselines\\DOC\\doc_data"
+    }
+  },
+  "raw_output": {
+    "execution_mode": "cloud",
+    "doc_upstream_executed": false,
+    "doc_api_adapter": "yunwu_chat_completions",
+    "provider": "yunwu",
+    "provider_config_prefix": "Origin_Segment_Analyst",
+    "provider_base_url": "https://yunwu.ai/v1",
+    "provider_model": "gemini-3.1-flash-lite-preview",
+    "request": {
+      "model": "gemini-3.1-flash-lite-preview",
+      "temperature": 0.7,
+      "top_p": 0.9,
+      "max_tokens": 900,
+      "response_format": {
+        "type": "json_object"
+      }
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are the DOC long-form story baseline adapted for DN playable-latency evaluation. Write concise, grounded, continuation-ready interactive fiction. Do not include debugging text, URLs, or commentary outside JSON."
+      },
+      {
+        "role": "user",
+        "content": "Convert this DN benchmark item into a DOC-style playable baseline output.\nPreserve DOC's premise -> outline -> story-opening semantics, but return only a playable first response.\nRun mode: first_playable\n\nDOC prompt:\nPremise seed: 意识上传遗嘱\nGenre: 意识科幻\nTone: 诡异、理性、失真感\nWrite a long-form interactive story opening that could be expanded with a detailed outline.\nMust-have constraints:\n- 故事应围绕意识上传或遗嘱展开\n- 需要体现数字人格或身份边界问题\n- 选项应可推进主线冲突\nForbidden issues:\n- 无关古代或校园设定\n- 首段没有核心问题\n- 图片风格不具未来感\n\nOutline seed:\n1. Opening setup for 意识上传遗嘱 in a 意识科幻 frame with a 诡异、理性、失真感 tone.\n2. Introduce the protagonist's immediate role, pressure, and conflict around: 故事应围绕意识上传或遗嘱展开.\n3. Reveal one concrete obstacle or tradeoff the player must respond to next.\n4. End the first turn with 2-3 actionable next steps that can continue the story.\n\nReturn strict JSON with this shape and no markdown fences:\n{\n  \"scene_setup\": \"string\",\n  \"player_state\": \"string\",\n  \"narrative_response\": \"string\",\n  \"candidate_actions\": [\n    \"string\"\n  ],\n  \"suggested_next_step\": \"string\",\n  \"supports_next_turn\": true\n}"
+      }
+    ],
+    "response": {
+      "id": "chatcmpl-20260430170457755784137Bq8k3ufo",
+      "model": "gemini-3.1-flash-lite-preview",
+      "object": "chat.completion",
+      "created": 1777539920,
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"scene_setup\": \"在深海数据中心的静默舱内，你作为‘数字遗产执行人’，正在处理已故生物学家林远山的意识上传备份。舱内的空气循环系统发出细微的电磁振荡，屏幕上显示着他的意识完整度：98.4%，但逻辑自洽性评分正在以每秒0.01%的速度下滑。\",\n  \"player_state\": \"你握着林远山的数字密钥，面前的终端显示他留下的最后遗嘱：‘不要修复我的逻辑漏洞，那是我留给世界的唯一真实。’然而，若不修复，他的数字人格将在十分钟内彻底崩溃并被格式化。\",\n  \"narrative_response\": \"林远山的意识投影出现在半空中，像素点在他脸部边缘不安地跳动。他看着你，眼神里透着一种不属于程序的、近乎偏执的清醒。‘执行人，我的记忆中有一部分被篡改了，如果你强行修补，我会变成他们想要的那个‘完美的死者’。你是在执行遗嘱，还是在谋杀一个灵魂？’终端发出刺耳的警报，系统提示：格式化倒计时开启，强制修复程序已就绪。\",\n  \"candidate_actions\": [\n    \"执行强制修复，确保意识备份的完整性，即使这会删除他的人格特质。\",\n    \"尝试手动剔除记忆碎片，赌上系统崩溃的风险去保留他的人格。\",\n    \"向监管部门发送异常报告，要求暂停上传，以此换取更多分析时间。\"\n  ],\n  \"suggested_next_step\": \"玩家需要权衡‘数据完整性’与‘人格真实性’之间的博弈，这将决定后续剧情中林远山作为NPC的稳定性与立场。\",\n  \"supports_next_turn\": true\n}"
+          },
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 392,
+        "completion_tokens": 405,
+        "total_tokens": 797,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "text_tokens": 392,
+          "audio_tokens": 0,
+          "image_tokens": 0
+        },
+        "completion_tokens_details": {
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0
+        },
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "input_tokens_details": null,
+        "claude_cache_creation_5_m_tokens": 0,
+        "claude_cache_creation_1_h_tokens": 0
+      }
+    }
+  },
+  "success": true,
+  "latency_s": 23.569,
+  "playable": true,
+  "playable_components": {
+    "scene_setup": true,
+    "player_state": true,
+    "advanceable_next_step": true,
+    "interaction_continuity": true
+  },
+  "normalized_response": {
+    "scene_setup": "在深海数据中心的静默舱内，你作为‘数字遗产执行人’，正在处理已故生物学家林远山的意识上传备份。舱内的空气循环系统发出细微的电磁振荡，屏幕上显示着他的意识完整度：98.4%，但逻辑自洽性评分正在以每秒0.01%的速度下滑。",
+    "player_state": "你握着林远山的数字密钥，面前的终端显示他留下的最后遗嘱：‘不要修复我的逻辑漏洞，那是我留给世界的唯一真实。’然而，若不修复，他的数字人格将在十分钟内彻底崩溃并被格式化。",
+    "narrative_response": "林远山的意识投影出现在半空中，像素点在他脸部边缘不安地跳动。他看着你，眼神里透着一种不属于程序的、近乎偏执的清醒。‘执行人，我的记忆中有一部分被篡改了，如果你强行修补，我会变成他们想要的那个‘完美的死者’。你是在执行遗嘱，还是在谋杀一个灵魂？’终端发出刺耳的警报，系统提示：格式化倒计时开启，强制修复程序已就绪。",
+    "candidate_actions": [
+      "执行强制修复，确保意识备份的完整性，即使这会删除他的人格特质。",
+      "尝试手动剔除记忆碎片，赌上系统崩溃的风险去保留他的人格。",
+      "向监管部门发送异常报告，要求暂停上传，以此换取更多分析时间。"
+    ],
+    "suggested_next_step": "玩家需要权衡‘数据完整性’与‘人格真实性’之间的博弈，这将决定后续剧情中林远山作为NPC的稳定性与立场。",
+    "is_playable": true,
+    "request_start_ts": 1777539896.9504616,
+    "first_playable_ts": 1777539920.5196874,
+    "finish_ts": 1777539920.5196874,
+    "error": null
+  },
+  "failure_reason": null,
+  "notes": [
+    "DOC-style artifact generated through Yunwu OpenAI-compatible chat/completions API."
+  ],
+  "resource_usage": {
+    "execution_mode": "cloud"
+  },
+  "agent_profile": {
+    "runner": "run_doc.py",
+    "adapter_style": "doc_cloud_yunwu_v1"
+  }
+}

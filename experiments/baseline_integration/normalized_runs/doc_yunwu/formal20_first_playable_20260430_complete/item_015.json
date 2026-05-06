@@ -1,0 +1,144 @@
+{
+  "baseline_id": "doc",
+  "benchmark_id": "DNQBV1_016",
+  "run_id": "formal20_first_playable_20260430",
+  "mode": "first_playable",
+  "input_bundle": {
+    "original_dn_item": {
+      "benchmark_id": "DNQBV1_016",
+      "theme_id": 10,
+      "theme": "像素神殿考古",
+      "image_style": {
+        "type": "anime"
+      },
+      "expected_genre": "像素奇幻冒险",
+      "expected_tone": "探索、机关感、异世界",
+      "must_have_constraints": [
+        "必须围绕神殿与考古展开",
+        "动漫/像素趣味应在文本或视觉中有体现",
+        "首段应建立探索目标"
+      ],
+      "forbidden_issues": [
+        "完全没有神殿或遗迹",
+        "图像/文本缺乏冒险感",
+        "选项无实际行动性"
+      ],
+      "focus": "full-set coverage: 像素奇幻冒险",
+      "_subset_focus": "full-set coverage: 像素奇幻冒险"
+    },
+    "doc_prompt": "Premise seed: 像素神殿考古\nGenre: 像素奇幻冒险\nTone: 探索、机关感、异世界\nWrite a long-form interactive story opening that could be expanded with a detailed outline.\nMust-have constraints:\n- 必须围绕神殿与考古展开\n- 动漫/像素趣味应在文本或视觉中有体现\n- 首段应建立探索目标\nForbidden issues:\n- 完全没有神殿或遗迹\n- 图像/文本缺乏冒险感\n- 选项无实际行动性\n",
+    "outline_seed": [
+      "Opening setup for 像素神殿考古 in a 像素奇幻冒险 frame with a 探索、机关感、异世界 tone.",
+      "Introduce the protagonist's immediate role, pressure, and conflict around: 必须围绕神殿与考古展开.",
+      "Reveal one concrete obstacle or tradeoff the player must respond to next.",
+      "End the first turn with 2-3 actionable next steps that can continue the story."
+    ],
+    "mode": "first_playable",
+    "baseline_params": {
+      "execution_mode": "cloud",
+      "doc_repo": "D:\\Projects\\DN\\baselines\\DOC",
+      "doc_data_dir": "D:\\Projects\\DN\\baselines\\DOC\\doc_data"
+    }
+  },
+  "raw_output": {
+    "execution_mode": "cloud",
+    "doc_upstream_executed": false,
+    "doc_api_adapter": "yunwu_chat_completions",
+    "provider": "yunwu",
+    "provider_config_prefix": "Origin_Segment_Analyst",
+    "provider_base_url": "https://yunwu.ai/v1",
+    "provider_model": "gemini-3.1-flash-lite-preview",
+    "request": {
+      "model": "gemini-3.1-flash-lite-preview",
+      "temperature": 0.7,
+      "top_p": 0.9,
+      "max_tokens": 900,
+      "response_format": {
+        "type": "json_object"
+      }
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are the DOC long-form story baseline adapted for DN playable-latency evaluation. Write concise, grounded, continuation-ready interactive fiction. Do not include debugging text, URLs, or commentary outside JSON."
+      },
+      {
+        "role": "user",
+        "content": "Convert this DN benchmark item into a DOC-style playable baseline output.\nPreserve DOC's premise -> outline -> story-opening semantics, but return only a playable first response.\nRun mode: first_playable\n\nDOC prompt:\nPremise seed: 像素神殿考古\nGenre: 像素奇幻冒险\nTone: 探索、机关感、异世界\nWrite a long-form interactive story opening that could be expanded with a detailed outline.\nMust-have constraints:\n- 必须围绕神殿与考古展开\n- 动漫/像素趣味应在文本或视觉中有体现\n- 首段应建立探索目标\nForbidden issues:\n- 完全没有神殿或遗迹\n- 图像/文本缺乏冒险感\n- 选项无实际行动性\n\nOutline seed:\n1. Opening setup for 像素神殿考古 in a 像素奇幻冒险 frame with a 探索、机关感、异世界 tone.\n2. Introduce the protagonist's immediate role, pressure, and conflict around: 必须围绕神殿与考古展开.\n3. Reveal one concrete obstacle or tradeoff the player must respond to next.\n4. End the first turn with 2-3 actionable next steps that can continue the story.\n\nReturn strict JSON with this shape and no markdown fences:\n{\n  \"scene_setup\": \"string\",\n  \"player_state\": \"string\",\n  \"narrative_response\": \"string\",\n  \"candidate_actions\": [\n    \"string\"\n  ],\n  \"suggested_next_step\": \"string\",\n  \"supports_next_turn\": true\n}"
+      }
+    ],
+    "response": {
+      "id": "chatcmpl-20260430170942866588167F3cJ4Lvc",
+      "model": "gemini-3.1-flash-lite-preview",
+      "object": "chat.completion",
+      "created": 1777540197,
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"scene_setup\": \"你站在‘回响像素神殿’的入口。空气中漂浮着蓝色的方块尘埃，墙壁上的浮雕由明暗不一的像素块构成，随着你的心跳规律闪烁。你的任务是提取神殿核心的‘逻辑碎片’，但脚下的地砖正发出危险的咔哒声，预示着陷阱即将触发。\",\n  \"player_state\": \"考古学者，携带一把多功能像素挖掘镐，生命值：100/100，当前处于神殿玄关，面临地刺机关威胁。\",\n  \"narrative_response\": \"你手中的探测仪发出刺耳的电音，屏幕上显示神殿核心就在前方三米处，但连接核心的走廊被一道闪烁着红光的像素屏障封死。更糟的是，你刚才踏错了一块深色地砖，地板下传来了沉重的机械齿轮转动声，墙壁两侧的像素雕像开始缓慢转动，尖锐的方块长矛正从缝隙中探出头来。\",\n  \"candidate_actions\": [\n    \"使用挖掘镐强行破坏地砖下的齿轮机关，但可能会引起塌方。\",\n    \"尝试破解屏障旁边的像素控制台，需要消耗少量体力进行逻辑拼图。\",\n    \"利用钩爪跃向天花板的管道，绕过地刺区域，但会暴露在上方巡逻的像素守卫视野下。\"\n  ],\n  \"suggested_next_step\": \"选择一种行动方式来应对当前的机关威胁，并尝试靠近神殿核心。\",\n  \"supports_next_turn\": true\n}"
+          },
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 389,
+        "completion_tokens": 370,
+        "total_tokens": 759,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "text_tokens": 389,
+          "audio_tokens": 0,
+          "image_tokens": 0
+        },
+        "completion_tokens_details": {
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0
+        },
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "input_tokens_details": null,
+        "claude_cache_creation_5_m_tokens": 0,
+        "claude_cache_creation_1_h_tokens": 0
+      }
+    }
+  },
+  "success": true,
+  "latency_s": 15.181,
+  "playable": true,
+  "playable_components": {
+    "scene_setup": true,
+    "player_state": true,
+    "advanceable_next_step": true,
+    "interaction_continuity": true
+  },
+  "normalized_response": {
+    "scene_setup": "你站在‘回响像素神殿’的入口。空气中漂浮着蓝色的方块尘埃，墙壁上的浮雕由明暗不一的像素块构成，随着你的心跳规律闪烁。你的任务是提取神殿核心的‘逻辑碎片’，但脚下的地砖正发出危险的咔哒声，预示着陷阱即将触发。",
+    "player_state": "考古学者，携带一把多功能像素挖掘镐，生命值：100/100，当前处于神殿玄关，面临地刺机关威胁。",
+    "narrative_response": "你手中的探测仪发出刺耳的电音，屏幕上显示神殿核心就在前方三米处，但连接核心的走廊被一道闪烁着红光的像素屏障封死。更糟的是，你刚才踏错了一块深色地砖，地板下传来了沉重的机械齿轮转动声，墙壁两侧的像素雕像开始缓慢转动，尖锐的方块长矛正从缝隙中探出头来。",
+    "candidate_actions": [
+      "使用挖掘镐强行破坏地砖下的齿轮机关，但可能会引起塌方。",
+      "尝试破解屏障旁边的像素控制台，需要消耗少量体力进行逻辑拼图。",
+      "利用钩爪跃向天花板的管道，绕过地刺区域，但会暴露在上方巡逻的像素守卫视野下。"
+    ],
+    "suggested_next_step": "选择一种行动方式来应对当前的机关威胁，并尝试靠近神殿核心。",
+    "is_playable": true,
+    "request_start_ts": 1777540182.1116898,
+    "first_playable_ts": 1777540197.2928336,
+    "finish_ts": 1777540197.2928336,
+    "error": null
+  },
+  "failure_reason": null,
+  "notes": [
+    "DOC-style artifact generated through Yunwu OpenAI-compatible chat/completions API."
+  ],
+  "resource_usage": {
+    "execution_mode": "cloud"
+  },
+  "agent_profile": {
+    "runner": "run_doc.py",
+    "adapter_style": "doc_cloud_yunwu_v1"
+  }
+}

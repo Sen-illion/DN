@@ -1,0 +1,1389 @@
+{
+  "summary": {
+    "experiment_name": "benchmark_v15_fullready_nextturn_normal20",
+    "profile": "fullready_strict",
+    "sample_size": 1,
+    "read_wait_s": 0.0,
+    "suite_start_ts": 1777632045.891937,
+    "suite_end_ts": 1777632127.1178713,
+    "first_click_elapsed_s": {
+      "count": 1,
+      "min": 52.088,
+      "max": 52.088,
+      "mean": 52.088,
+      "median": 52.088,
+      "p95": 52.088
+    },
+    "first_click_setup_success_count": 1,
+    "second_click_elapsed_s": {
+      "count": 1,
+      "min": 20.679,
+      "max": 20.679,
+      "mean": 20.679,
+      "median": 20.679,
+      "p95": 20.679
+    },
+    "second_click_success_count": 1,
+    "transport_success_count": 1,
+    "strict_success_count": 1,
+    "likely_hit_count": 0,
+    "likely_hit_rate": 0.0,
+    "failure_bucket_counts": {},
+    "placeholder_strict_fail_count": 0,
+    "cache_hit_reason_counts": {
+      "waited_request_scene_text_completed_no_image": 1
+    },
+    "cache_miss_reason_counts": {
+      "request_scene_generation_in_progress": 1
+    },
+    "global_state_key_drift_detected_count": 1,
+    "scene_id_mismatch_detected_count": 1,
+    "selected_option_mismatch_detected_count": 0,
+    "aborted": false,
+    "success_count": 1,
+    "text_ready_elapsed_s": {
+      "count": 1,
+      "min": 20.679,
+      "max": 20.679,
+      "mean": 20.679,
+      "median": 20.679,
+      "p95": 20.679
+    },
+    "image_ready_elapsed_s": {
+      "count": 1,
+      "min": 20.679,
+      "max": 20.679,
+      "mean": 20.679,
+      "median": 20.679,
+      "p95": 20.679
+    },
+    "full_ready_elapsed_s": {
+      "count": 1,
+      "min": 20.679,
+      "max": 20.679,
+      "mean": 20.679,
+      "median": 20.679,
+      "p95": 20.679
+    },
+    "real_scene_count": 1,
+    "real_scene_rate": 1.0,
+    "direct_image_count": 1,
+    "async_image_count": 0,
+    "placeholder_count": 0,
+    "placeholder_rate": 0.0,
+    "direct_image_rate": 1.0,
+    "async_image_rate": 0.0,
+    "provider_retry_heavy_count": 0,
+    "provider_429_count": 0,
+    "provider_timeout_count": 0,
+    "provider_backoff_wait_ms_total": 0,
+    "main_character_contention_suspected_count": 0,
+    "notes": "v15 strict normal20 treats first click as setup with a separate timeout budget, while preserving 60s fail-fast guards for second-click request, scene-image wait, and the measured next-turn full-ready path."
+  },
+  "runs": [
+    {
+      "benchmark_id": "DNQBV1_001",
+      "theme_id": 1,
+      "theme": "边陲驿站夜谈录",
+      "read_wait_s": 0.0,
+      "full_ready_mode": true,
+      "profile": "fullready_strict",
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 8.335,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过帮助守门人修缮漏雨的屋顶，并在深夜与其分享了一段关于离乡的真实感悟，赢得了对方的信任，获得了第一批关键的档案线索。",
+                  "main_conflict": "主角回到小镇，发现旧驿站已被杂物堆满，且镇民对这位“外来者”的归来持有戒备。主角试图启动档案整理工作，却发现许多关键的记录册缺失，而唯一知情的守门人拒绝沟通，主角面临着工作无法开展与被故乡排斥的双重压力。 - 矛盾结束条件：主角通过帮助守门人修缮漏雨的屋顶，并在深夜与其分享了一段关于离乡的真实感悟，赢得了对方的信任，获得了第一批关键的档案线索。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角选择将真相封存在档案的附录中，不对外公开，并与旧友达成了一种“虽然方向不同，但彼此理解”的默契，化解了内心的执念。",
+                  "main_conflict": "主角在整理过程中，意外挖掘出一段关于小镇曾经繁荣的真相，这段真相与主角家族的没落有关。主角陷入了“揭露真相以求公正”还是“维护小镇最后的宁静”的道德困境，同时，主角在小镇重逢了旧友，两人对未来的不同选择引发了激烈的冲突。 - 矛盾结束条件：主角选择将真相封存在档案的附录中，不对外公开，并与旧友达成了一种“虽然方向不同，但彼此理解”的默契，化解了内心的执念。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角完成了档案的最终归档，将其交付给小镇图书馆，虽然没能阻止驿站的拆除，但留下了珍贵的记录，主角最终决定离开小镇，带着遗憾与释然踏上新的旅程。 【主角规范信息】 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：青年 所属作品(中)：断桥夜谈 所属作品(英)：The Night Talks at Broken Bridge 标志性外观关键词：黑色短发、黑框眼镜、深色风衣、神情内敛、指尖常有墨迹、略显疲惫的眼神、背着旧皮包、步履沉稳、习惯性揣兜、清瘦。 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决",
+                  "main_conflict": "拆除工程提前启动，驿站面临被强行清理的风险。主角必须在有限的时间内完成最后一份核心档案的整理，同时要面对自己是否要为了这份工作而放弃去往大城市发展的机会，个人理想与现实羁绊在最后时刻剧烈碰撞。 - 矛盾结束条件：主角完成了档案的最终归档，将其交付给小镇图书馆，虽然没能阻止驿站的拆除，但留下了珍贵的记录，主角最终决定离开小镇，带着遗憾与释然踏上新的旅程。 【主角规范信息】 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：青年 所属作品(中)：断桥夜谈 所属作品(英)：The Night Talks at Broken Bridge 标志性外观关键词：黑色短发、黑框眼镜、深色风衣、神情内敛、指尖常有墨迹、略显疲惫的眼神、背着旧皮包、步履沉稳、习惯性揣兜、清瘦。 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "采用写实主义叙事风格，画面呈现出一种带有颗粒感的胶片质感。游戏节奏舒缓，侧重于环境氛围的营造与细腻的心理描写，通过琐碎的日常对话与环境交互，构建出一种“在流动的时光中寻找锚点”的沉浸式体验。",
+              "main_quest": "主角受托回到故乡“断桥”小镇，负责整理即将拆除的旧驿站档案。目标是在小镇彻底失去功能前，通过记录那些被遗忘的“夜谈”故事，为小镇的过去留下一份体面的注脚。任务步骤包括：搜集散落在各处的旧物、与镇民进行深度的夜谈交流、整理并归档这些碎片化的记忆。挑战在于，随着调查深入，主角不仅要面对小镇衰落的现实，还要处理自己当年离开小镇时留下的未竟心愿，以及在“记录者”与“参与者”身份之间的挣扎，最终在完成档案整理的同时，决定自己是留下还是彻底告别。",
+              "protagonist_ability": "主角拥有一种名为“共鸣倾听”的特质，这并非超自然力量，而是源于其长期从事档案整理工作所磨练出的敏锐感知力。通过观察对方的微表情、语调变化以及对过往细节的精准捕捉，主角能引导他人卸下防备，还原出被隐藏的真实记忆。使用时需消耗大量精力，且无法改变对方的过去，仅能作为一种辅助手段，帮助他人与自我达成和解，同时主角自身也常因过度共情而陷入对自身生活困境的反复审视。",
+              "world_basic_setting": "故事发生在一座名为“断桥”的边陲小镇，这里曾是繁华的贸易枢纽，如今却因交通线路的改道而逐渐被时代遗忘。小镇地理位置偏僻，终年被潮湿的雾气笼罩，社会结构由留守的老人、怀揣梦想却被困住的青年以及偶尔路过的旅人构成。文化上，这里保留着古老的“夜谈”习俗，人们习惯在驿站的炉火旁交换彼此的故事以抵御寒冷。关键事件是“旧铁轨的拆除”，这象征着小镇与外界最后联系的断裂。社会氛围呈现出一种温和的衰败感，人们在对过去的怀念与对未来的无力感中寻找平衡，生活节奏缓慢，充满了琐碎的生存压力与人际间的温情羁绊。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "environment": {}
+            },
+            "game_id": "game_1777632045_5ifn8j",
+            "image_style": {
+              "type": "realistic"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "gender": "男性"
+            },
+            "tone": "normal_ending",
+            "user_theme": "边陲驿站夜谈录"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "request_payload": {
+          "gameTheme": "边陲驿站夜谈录",
+          "protagonistAttr": {},
+          "difficulty": "normal",
+          "toneKey": "normal_ending",
+          "imageStyle": {
+            "type": "realistic"
+          },
+          "_benchmark_profile": "fullready_strict",
+          "_benchmark_measurement": "fullready_nextturn",
+          "_benchmark_read_wait_s": 0.0
+        },
+        "start_ts": 1777632045.8919413,
+        "end_ts": 1777632054.227259,
+        "provider_events": {
+          "event_count": 4,
+          "queue_wait_ms": {
+            "count": 4,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 1,
+            "min": 8321.0,
+            "max": 8321.0,
+            "mean": 8321.0,
+            "median": 8321.0,
+            "p95": 8321.0
+          },
+          "llm_success_count": 1,
+          "image_success_count": 0,
+          "request_thread_event_count": 2,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0
+        },
+        "status": "success",
+        "game_id": "game_1777632045_5ifn8j"
+      },
+      "long_tail_attribution": {
+        "provider_429_count": 0,
+        "provider_timeout_count": 0,
+        "provider_retry_heavy_count": 0,
+        "provider_backoff_wait_ms_total": 0,
+        "main_character_event_count": 0,
+        "scene_image_event_count": 0,
+        "image_probe_attempt_count": 0,
+        "main_character_contention_suspected": false
+      },
+      "first_click": {
+        "http_status": 200,
+        "elapsed_s": 52.088,
+        "response_json": {
+          "benchmark_diagnostics": {
+            "cache_hit_reason": null,
+            "cache_miss_reason": null,
+            "current_options_key_drift_detected": false,
+            "global_state_key_drift_detected": false,
+            "placeholder": false,
+            "previous_scene_id": null,
+            "recomputed_scene_cache_exists": false,
+            "recomputed_scene_id": null,
+            "request_current_options_count": 0,
+            "request_current_options_hash": "d751713988987e9331980363e24189ce",
+            "request_flow_worldline_hash": "cc691995abda7798fd6dd38a43f76c25",
+            "request_global_state_hash": "29995bfa33eefc04a26dce7fe2a8a585",
+            "request_option_at_index": null,
+            "request_option_index": 0,
+            "request_option_text": "开始游戏",
+            "request_scene_cache_exists": false,
+            "request_scene_id": null,
+            "resolution_path": null,
+            "response_has_image": true,
+            "response_has_scene": true,
+            "response_scene_id": "8431879153767155324_-6483247161943031725",
+            "response_status": "success",
+            "scene_id_mismatch_detected": false,
+            "selected_option_mismatch_detected": false
+          },
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "",
+              "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：潮湿的雾气顺着驿站破碎的窗棂渗入，空气中弥漫着陈旧纸张与霉烂木头的气味。我推开那扇沉重的木门，指尖触碰到门框上积攒的厚重灰尘，指腹留下一道灰黑的痕迹。驿站大厅里，原本供旅人休憩的桌椅被堆叠成山，杂乱的纸箱与废弃的铁轨零件占据了大部分空间。我背着那只磨损严重的旧皮包，黑框眼镜后的双眼在昏暗中微微眯起，试图捕捉这片混乱中的秩序。\n\n“谁在那儿？”一声粗粝的咳嗽声从阴影处传来。\n\n守门人老陈正坐在角落的火炉旁，手里攥着一根干瘪的烟斗，他那双浑浊的眼睛警惕地盯着我，仿佛我是一个闯入禁地的窃贼。我停下脚步，习惯性地将手揣进深色风衣的口袋里，指尖触碰到那本记录着小镇往事的笔记。我没有急于解释，而是环顾四周，目光落在窗外那条锈迹斑斑、被杂草掩埋的旧铁轨上。这里的一切都在衰败，却又在某种沉默中固执地保留着最后的尊严。我深吸一口气，整理了一下领口，试图让自己的声音听起来平稳而诚恳：“我是林远，受托回来整理这里的档案。我知道这地方快要拆了，但有些东西，总得有人记下来。”"
+            },
+            "deep_background_links": {},
+            "flow_update": {},
+            "next_options": [
+              "询问老陈关于档案册缺失的细节，并尝试与其沟通。",
+              "观察驿站屋顶的漏雨情况，寻找修缮的切入点以获取信任。"
+            ],
+            "scene": "潮湿的雾气顺着驿站破碎的窗棂渗入，空气中弥漫着陈旧纸张与霉烂木头的气味。我推开那扇沉重的木门，指尖触碰到门框上积攒的厚重灰尘，指腹留下一道灰黑的痕迹。驿站大厅里，原本供旅人休憩的桌椅被堆叠成山，杂乱的纸箱与废弃的铁轨零件占据了大部分空间。我背着那只磨损严重的旧皮包，黑框眼镜后的双眼在昏暗中微微眯起，试图捕捉这片混乱中的秩序。\n\n“谁在那儿？”一声粗粝的咳嗽声从阴影处传来。\n\n守门人老陈正坐在角落的火炉旁，手里攥着一根干瘪的烟斗，他那双浑浊的眼睛警惕地盯着我，仿佛我是一个闯入禁地的窃贼。我停下脚步，习惯性地将手揣进深色风衣的口袋里，指尖触碰到那本记录着小镇往事的笔记。我没有急于解释，而是环顾四周，目光落在窗外那条锈迹斑斑、被杂草掩埋的旧铁轨上。这里的一切都在衰败，却又在某种沉默中固执地保留着最后的尊严。我深吸一口气，整理了一下领口，试图让自己的声音听起来平稳而诚恳：“我是林远，受托回来整理这里的档案。我知道这地方快要拆了，但有些东西，总得有人记下来。”",
+            "sceneId": "8431879153767155324_-6483247161943031725",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-station-arrival-confrontation, realistic, cinematic, melancholic, atmospheric, grainy-film-texture, photorealistic, high-fidelity-texture, muted-color-palette, soft-diffused-lighting, documentary-style, male protagonist林远, mid-20s, sharp observant eyes behind black-rimmed glasses, pensive and sincere expression with a hint of fatigue, posture is upright but cautious, hands tucked into deep pockets of a dark trench coat, uses Image 0 for facial and physical reference, dark textured trench coat, worn-in appearance, simple neutral-toned sweater underneath, old leather messenger bag with visible wear and tear, standing in the center of the dilapidated station hall, body facing forward towards the shadow, observing the environment, one hand slightly inside pocket, ready to take out his notebook, 8K detailed facial features, subtle eye movement focusing on the shadow, lip color naturally muted, soft shadows from the dim environment across the face, skin texture showing natural pores and subtle dust particles, neatly trimmed dark hair with natural texture, root fixation coefficient 0.8, tip swing amplitude 5cm, color layering: main color #2D2D2D, secondary color #1A1A1A, highlight #404040, shadow #000000, wind speed 0.2m/s, slight turbulence, hair slightly messy due to travel, trench coat fabric shows slight fraying at edges, dust particles clinging to the dark fabric surface, natural creases and folds from movement, dilapidated train station interior with broken windows, stacks of old wooden chairs and cardboard boxes piled up, rusted railway parts scattered on the floor, thick humid fog seeping through the window frame, dusty air with floating particles caught in dim light, 老陈-配角1 sitting in the dark corner near a rusty iron stove, holding a pipe, face partially obscured by shadow, heavy fog layer, diffused light filtering through dirty glass, visible dust motes in the air, cold, damp atmosphere, desaturated tones, grey, sepia, and earthy brown, muted cold blue for the fog, faint warm amber glow from the stove fire, low-key lighting, dim ambient light from the window, flickering warm light from the stove casting long shadows, soft rim light highlighting the protagonist's silhouette, type medium long shot, lens 35mm, aperture f/2.0, depth_of_field shallow focus, foreground sharp on protagonist, background slightly soft, flash none, grain heavy film grain texture, texture aged paper and damp wood aesthetic, protagonist centered slightly to the left, 老陈-配角1 positioned in the deep background right corner, the train station debris frames the interaction, action constraints: protagonist holding a steady gaze towards the shadow, photorealistic film aesthetic, no text or symbols in image, quiet melancholy, nostalgic decay, tense but polite confrontation, heavy atmosphere of forgotten times, no text, no symbols, no garbled characters, no words",
+              "prompt_json": {
+                "camera": {
+                  "aperture": "f/2.0",
+                  "depth_of_field": "shallow focus, foreground sharp on protagonist, background slightly soft",
+                  "flash": "none",
+                  "grain": "heavy film grain texture",
+                  "lens": "35mm",
+                  "texture": "aged paper and damp wood aesthetic",
+                  "type": "medium long shot"
+                },
+                "clothing_system": [
+                  "trench coat fabric shows slight fraying at edges",
+                  "dust particles clinging to the dark fabric surface",
+                  "natural creases and folds from movement"
+                ],
+                "color_restriction": [
+                  "desaturated tones",
+                  "grey, sepia, and earthy brown",
+                  "muted cold blue for the fog",
+                  "faint warm amber glow from the stove fire"
+                ],
+                "composition": [
+                  "protagonist centered slightly to the left",
+                  "老陈-配角1 positioned in the deep background right corner",
+                  "the train station debris frames the interaction",
+                  "action constraints: protagonist holding a steady gaze towards the shadow"
+                ],
+                "environment": {
+                  "background": [
+                    "dilapidated train station interior with broken windows",
+                    "stacks of old wooden chairs and cardboard boxes piled up",
+                    "rusted railway parts scattered on the floor",
+                    "thick humid fog seeping through the window frame",
+                    "dusty air with floating particles caught in dim light"
+                  ],
+                  "characters": [
+                    "老陈-配角1 sitting in the dark corner near a rusty iron stove, holding a pipe, face partially obscured by shadow"
+                  ],
+                  "effects": [
+                    "heavy fog layer",
+                    "diffused light filtering through dirty glass",
+                    "visible dust motes in the air",
+                    "cold, damp atmosphere"
+                  ]
+                },
+                "face_system": [
+                  "8K detailed facial features",
+                  "subtle eye movement focusing on the shadow",
+                  "lip color naturally muted",
+                  "soft shadows from the dim environment across the face",
+                  "skin texture showing natural pores and subtle dust particles"
+                ],
+                "hair_system": [
+                  "neatly trimmed dark hair with natural texture",
+                  "root fixation coefficient 0.8",
+                  "tip swing amplitude 5cm",
+                  "color layering: main color #2D2D2D, secondary color #1A1A1A, highlight #404040, shadow #000000",
+                  "wind speed 0.2m/s, slight turbulence",
+                  "hair slightly messy due to travel"
+                ],
+                "label": "scene-station-arrival-confrontation",
+                "lighting": [
+                  "low-key lighting",
+                  "dim ambient light from the window",
+                  "flickering warm light from the stove casting long shadows",
+                  "soft rim light highlighting the protagonist's silhouette"
+                ],
+                "mood": [
+                  "quiet melancholy",
+                  "nostalgic decay",
+                  "tense but polite confrontation",
+                  "heavy atmosphere of forgotten times"
+                ],
+                "output_style": [
+                  "photorealistic film aesthetic",
+                  "no text or symbols in image"
+                ],
+                "style": [
+                  "photorealistic",
+                  "high-fidelity-texture",
+                  "muted-color-palette",
+                  "soft-diffused-lighting",
+                  "documentary-style"
+                ],
+                "subject": {
+                  "body_traits": [
+                    "male protagonist林远, mid-20s, sharp observant eyes behind black-rimmed glasses",
+                    "pensive and sincere expression with a hint of fatigue",
+                    "posture is upright but cautious, hands tucked into deep pockets of a dark trench coat",
+                    "uses Image 0 for facial and physical reference"
+                  ],
+                  "outfit": [
+                    "dark textured trench coat, worn-in appearance",
+                    "simple neutral-toned sweater underneath",
+                    "old leather messenger bag with visible wear and tear"
+                  ],
+                  "pose": [
+                    "standing in the center of the dilapidated station hall",
+                    "body facing forward towards the shadow, observing the environment",
+                    "one hand slightly inside pocket, ready to take out his notebook"
+                  ]
+                },
+                "tags": [
+                  "realistic",
+                  "cinematic",
+                  "melancholic",
+                  "atmospheric",
+                  "grainy-film-texture"
+                ]
+              },
+              "scene_text_hash": "05b9c4fec4561f92001112b2fe4ec484",
+              "style": "default",
+              "url": "/image_cache/ceab4167805a8417a66f12a4e6c0cc4b.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "request_payload": {
+          "option": "开始游戏",
+          "optionIndex": 0,
+          "sceneId": null,
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过帮助守门人修缮漏雨的屋顶，并在深夜与其分享了一段关于离乡的真实感悟，赢得了对方的信任，获得了第一批关键的档案线索。",
+                  "main_conflict": "主角回到小镇，发现旧驿站已被杂物堆满，且镇民对这位“外来者”的归来持有戒备。主角试图启动档案整理工作，却发现许多关键的记录册缺失，而唯一知情的守门人拒绝沟通，主角面临着工作无法开展与被故乡排斥的双重压力。 - 矛盾结束条件：主角通过帮助守门人修缮漏雨的屋顶，并在深夜与其分享了一段关于离乡的真实感悟，赢得了对方的信任，获得了第一批关键的档案线索。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角选择将真相封存在档案的附录中，不对外公开，并与旧友达成了一种“虽然方向不同，但彼此理解”的默契，化解了内心的执念。",
+                  "main_conflict": "主角在整理过程中，意外挖掘出一段关于小镇曾经繁荣的真相，这段真相与主角家族的没落有关。主角陷入了“揭露真相以求公正”还是“维护小镇最后的宁静”的道德困境，同时，主角在小镇重逢了旧友，两人对未来的不同选择引发了激烈的冲突。 - 矛盾结束条件：主角选择将真相封存在档案的附录中，不对外公开，并与旧友达成了一种“虽然方向不同，但彼此理解”的默契，化解了内心的执念。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角完成了档案的最终归档，将其交付给小镇图书馆，虽然没能阻止驿站的拆除，但留下了珍贵的记录，主角最终决定离开小镇，带着遗憾与释然踏上新的旅程。 【主角规范信息】 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：青年 所属作品(中)：断桥夜谈 所属作品(英)：The Night Talks at Broken Bridge 标志性外观关键词：黑色短发、黑框眼镜、深色风衣、神情内敛、指尖常有墨迹、略显疲惫的眼神、背着旧皮包、步履沉稳、习惯性揣兜、清瘦。 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决",
+                  "main_conflict": "拆除工程提前启动，驿站面临被强行清理的风险。主角必须在有限的时间内完成最后一份核心档案的整理，同时要面对自己是否要为了这份工作而放弃去往大城市发展的机会，个人理想与现实羁绊在最后时刻剧烈碰撞。 - 矛盾结束条件：主角完成了档案的最终归档，将其交付给小镇图书馆，虽然没能阻止驿站的拆除，但留下了珍贵的记录，主角最终决定离开小镇，带着遗憾与释然踏上新的旅程。 【主角规范信息】 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：青年 所属作品(中)：断桥夜谈 所属作品(英)：The Night Talks at Broken Bridge 标志性外观关键词：黑色短发、黑框眼镜、深色风衣、神情内敛、指尖常有墨迹、略显疲惫的眼神、背着旧皮包、步履沉稳、习惯性揣兜、清瘦。 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "采用写实主义叙事风格，画面呈现出一种带有颗粒感的胶片质感。游戏节奏舒缓，侧重于环境氛围的营造与细腻的心理描写，通过琐碎的日常对话与环境交互，构建出一种“在流动的时光中寻找锚点”的沉浸式体验。",
+              "main_quest": "主角受托回到故乡“断桥”小镇，负责整理即将拆除的旧驿站档案。目标是在小镇彻底失去功能前，通过记录那些被遗忘的“夜谈”故事，为小镇的过去留下一份体面的注脚。任务步骤包括：搜集散落在各处的旧物、与镇民进行深度的夜谈交流、整理并归档这些碎片化的记忆。挑战在于，随着调查深入，主角不仅要面对小镇衰落的现实，还要处理自己当年离开小镇时留下的未竟心愿，以及在“记录者”与“参与者”身份之间的挣扎，最终在完成档案整理的同时，决定自己是留下还是彻底告别。",
+              "protagonist_ability": "主角拥有一种名为“共鸣倾听”的特质，这并非超自然力量，而是源于其长期从事档案整理工作所磨练出的敏锐感知力。通过观察对方的微表情、语调变化以及对过往细节的精准捕捉，主角能引导他人卸下防备，还原出被隐藏的真实记忆。使用时需消耗大量精力，且无法改变对方的过去，仅能作为一种辅助手段，帮助他人与自我达成和解，同时主角自身也常因过度共情而陷入对自身生活困境的反复审视。",
+              "world_basic_setting": "故事发生在一座名为“断桥”的边陲小镇，这里曾是繁华的贸易枢纽，如今却因交通线路的改道而逐渐被时代遗忘。小镇地理位置偏僻，终年被潮湿的雾气笼罩，社会结构由留守的老人、怀揣梦想却被困住的青年以及偶尔路过的旅人构成。文化上，这里保留着古老的“夜谈”习俗，人们习惯在驿站的炉火旁交换彼此的故事以抵御寒冷。关键事件是“旧铁轨的拆除”，这象征着小镇与外界最后联系的断裂。社会氛围呈现出一种温和的衰败感，人们在对过去的怀念与对未来的无力感中寻找平衡，生活节奏缓慢，充满了琐碎的生存压力与人际间的温情羁绊。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "environment": {}
+            },
+            "game_id": "game_1777632045_5ifn8j",
+            "image_style": {
+              "type": "realistic"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "gender": "男性"
+            },
+            "tone": "normal_ending",
+            "user_theme": "边陲驿站夜谈录",
+            "_benchmark_profile": "fullready_strict",
+            "_benchmark_measurement": "fullready_nextturn",
+            "_benchmark_read_wait_s": 0.0
+          }
+        },
+        "start_ts": 1777632054.2705715,
+        "end_ts": 1777632106.3589358,
+        "provider_events": {
+          "event_count": 9,
+          "queue_wait_ms": {
+            "count": 9,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 5,
+            "min": 5770.0,
+            "max": 16319.0,
+            "mean": 9574.8,
+            "median": 7606.0,
+            "p95": 15206.8
+          },
+          "llm_success_count": 4,
+          "image_success_count": 0,
+          "request_thread_event_count": 0,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 2,
+          "scene_image_event_count": 0
+        },
+        "attempts": [
+          {
+            "http_status": 200,
+            "elapsed_s": 52.088,
+            "response_json": {
+              "benchmark_diagnostics": {
+                "cache_hit_reason": null,
+                "cache_miss_reason": null,
+                "current_options_key_drift_detected": false,
+                "global_state_key_drift_detected": false,
+                "placeholder": false,
+                "previous_scene_id": null,
+                "recomputed_scene_cache_exists": false,
+                "recomputed_scene_id": null,
+                "request_current_options_count": 0,
+                "request_current_options_hash": "d751713988987e9331980363e24189ce",
+                "request_flow_worldline_hash": "cc691995abda7798fd6dd38a43f76c25",
+                "request_global_state_hash": "29995bfa33eefc04a26dce7fe2a8a585",
+                "request_option_at_index": null,
+                "request_option_index": 0,
+                "request_option_text": "开始游戏",
+                "request_scene_cache_exists": false,
+                "request_scene_id": null,
+                "resolution_path": null,
+                "response_has_image": true,
+                "response_has_scene": true,
+                "response_scene_id": "8431879153767155324_-6483247161943031725",
+                "response_status": "success",
+                "scene_id_mismatch_detected": false,
+                "selected_option_mismatch_detected": false
+              },
+              "message": "选项剧情生成成功！",
+              "optionData": {
+                "checkpoint_packet": {
+                  "chapter": "chapter1",
+                  "chapter_conflict_solved": false,
+                  "quest_delta": "",
+                  "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：潮湿的雾气顺着驿站破碎的窗棂渗入，空气中弥漫着陈旧纸张与霉烂木头的气味。我推开那扇沉重的木门，指尖触碰到门框上积攒的厚重灰尘，指腹留下一道灰黑的痕迹。驿站大厅里，原本供旅人休憩的桌椅被堆叠成山，杂乱的纸箱与废弃的铁轨零件占据了大部分空间。我背着那只磨损严重的旧皮包，黑框眼镜后的双眼在昏暗中微微眯起，试图捕捉这片混乱中的秩序。\n\n“谁在那儿？”一声粗粝的咳嗽声从阴影处传来。\n\n守门人老陈正坐在角落的火炉旁，手里攥着一根干瘪的烟斗，他那双浑浊的眼睛警惕地盯着我，仿佛我是一个闯入禁地的窃贼。我停下脚步，习惯性地将手揣进深色风衣的口袋里，指尖触碰到那本记录着小镇往事的笔记。我没有急于解释，而是环顾四周，目光落在窗外那条锈迹斑斑、被杂草掩埋的旧铁轨上。这里的一切都在衰败，却又在某种沉默中固执地保留着最后的尊严。我深吸一口气，整理了一下领口，试图让自己的声音听起来平稳而诚恳：“我是林远，受托回来整理这里的档案。我知道这地方快要拆了，但有些东西，总得有人记下来。”"
+                },
+                "deep_background_links": {},
+                "flow_update": {},
+                "next_options": [
+                  "询问老陈关于档案册缺失的细节，并尝试与其沟通。",
+                  "观察驿站屋顶的漏雨情况，寻找修缮的切入点以获取信任。"
+                ],
+                "scene": "潮湿的雾气顺着驿站破碎的窗棂渗入，空气中弥漫着陈旧纸张与霉烂木头的气味。我推开那扇沉重的木门，指尖触碰到门框上积攒的厚重灰尘，指腹留下一道灰黑的痕迹。驿站大厅里，原本供旅人休憩的桌椅被堆叠成山，杂乱的纸箱与废弃的铁轨零件占据了大部分空间。我背着那只磨损严重的旧皮包，黑框眼镜后的双眼在昏暗中微微眯起，试图捕捉这片混乱中的秩序。\n\n“谁在那儿？”一声粗粝的咳嗽声从阴影处传来。\n\n守门人老陈正坐在角落的火炉旁，手里攥着一根干瘪的烟斗，他那双浑浊的眼睛警惕地盯着我，仿佛我是一个闯入禁地的窃贼。我停下脚步，习惯性地将手揣进深色风衣的口袋里，指尖触碰到那本记录着小镇往事的笔记。我没有急于解释，而是环顾四周，目光落在窗外那条锈迹斑斑、被杂草掩埋的旧铁轨上。这里的一切都在衰败，却又在某种沉默中固执地保留着最后的尊严。我深吸一口气，整理了一下领口，试图让自己的声音听起来平稳而诚恳：“我是林远，受托回来整理这里的档案。我知道这地方快要拆了，但有些东西，总得有人记下来。”",
+                "sceneId": "8431879153767155324_-6483247161943031725",
+                "scene_image": {
+                  "cached": true,
+                  "height": 1080,
+                  "image_type": "story_scene",
+                  "prompt": "scene-station-arrival-confrontation, realistic, cinematic, melancholic, atmospheric, grainy-film-texture, photorealistic, high-fidelity-texture, muted-color-palette, soft-diffused-lighting, documentary-style, male protagonist林远, mid-20s, sharp observant eyes behind black-rimmed glasses, pensive and sincere expression with a hint of fatigue, posture is upright but cautious, hands tucked into deep pockets of a dark trench coat, uses Image 0 for facial and physical reference, dark textured trench coat, worn-in appearance, simple neutral-toned sweater underneath, old leather messenger bag with visible wear and tear, standing in the center of the dilapidated station hall, body facing forward towards the shadow, observing the environment, one hand slightly inside pocket, ready to take out his notebook, 8K detailed facial features, subtle eye movement focusing on the shadow, lip color naturally muted, soft shadows from the dim environment across the face, skin texture showing natural pores and subtle dust particles, neatly trimmed dark hair with natural texture, root fixation coefficient 0.8, tip swing amplitude 5cm, color layering: main color #2D2D2D, secondary color #1A1A1A, highlight #404040, shadow #000000, wind speed 0.2m/s, slight turbulence, hair slightly messy due to travel, trench coat fabric shows slight fraying at edges, dust particles clinging to the dark fabric surface, natural creases and folds from movement, dilapidated train station interior with broken windows, stacks of old wooden chairs and cardboard boxes piled up, rusted railway parts scattered on the floor, thick humid fog seeping through the window frame, dusty air with floating particles caught in dim light, 老陈-配角1 sitting in the dark corner near a rusty iron stove, holding a pipe, face partially obscured by shadow, heavy fog layer, diffused light filtering through dirty glass, visible dust motes in the air, cold, damp atmosphere, desaturated tones, grey, sepia, and earthy brown, muted cold blue for the fog, faint warm amber glow from the stove fire, low-key lighting, dim ambient light from the window, flickering warm light from the stove casting long shadows, soft rim light highlighting the protagonist's silhouette, type medium long shot, lens 35mm, aperture f/2.0, depth_of_field shallow focus, foreground sharp on protagonist, background slightly soft, flash none, grain heavy film grain texture, texture aged paper and damp wood aesthetic, protagonist centered slightly to the left, 老陈-配角1 positioned in the deep background right corner, the train station debris frames the interaction, action constraints: protagonist holding a steady gaze towards the shadow, photorealistic film aesthetic, no text or symbols in image, quiet melancholy, nostalgic decay, tense but polite confrontation, heavy atmosphere of forgotten times, no text, no symbols, no garbled characters, no words",
+                  "prompt_json": {
+                    "camera": {
+                      "aperture": "f/2.0",
+                      "depth_of_field": "shallow focus, foreground sharp on protagonist, background slightly soft",
+                      "flash": "none",
+                      "grain": "heavy film grain texture",
+                      "lens": "35mm",
+                      "texture": "aged paper and damp wood aesthetic",
+                      "type": "medium long shot"
+                    },
+                    "clothing_system": [
+                      "trench coat fabric shows slight fraying at edges",
+                      "dust particles clinging to the dark fabric surface",
+                      "natural creases and folds from movement"
+                    ],
+                    "color_restriction": [
+                      "desaturated tones",
+                      "grey, sepia, and earthy brown",
+                      "muted cold blue for the fog",
+                      "faint warm amber glow from the stove fire"
+                    ],
+                    "composition": [
+                      "protagonist centered slightly to the left",
+                      "老陈-配角1 positioned in the deep background right corner",
+                      "the train station debris frames the interaction",
+                      "action constraints: protagonist holding a steady gaze towards the shadow"
+                    ],
+                    "environment": {
+                      "background": [
+                        "dilapidated train station interior with broken windows",
+                        "stacks of old wooden chairs and cardboard boxes piled up",
+                        "rusted railway parts scattered on the floor",
+                        "thick humid fog seeping through the window frame",
+                        "dusty air with floating particles caught in dim light"
+                      ],
+                      "characters": [
+                        "老陈-配角1 sitting in the dark corner near a rusty iron stove, holding a pipe, face partially obscured by shadow"
+                      ],
+                      "effects": [
+                        "heavy fog layer",
+                        "diffused light filtering through dirty glass",
+                        "visible dust motes in the air",
+                        "cold, damp atmosphere"
+                      ]
+                    },
+                    "face_system": [
+                      "8K detailed facial features",
+                      "subtle eye movement focusing on the shadow",
+                      "lip color naturally muted",
+                      "soft shadows from the dim environment across the face",
+                      "skin texture showing natural pores and subtle dust particles"
+                    ],
+                    "hair_system": [
+                      "neatly trimmed dark hair with natural texture",
+                      "root fixation coefficient 0.8",
+                      "tip swing amplitude 5cm",
+                      "color layering: main color #2D2D2D, secondary color #1A1A1A, highlight #404040, shadow #000000",
+                      "wind speed 0.2m/s, slight turbulence",
+                      "hair slightly messy due to travel"
+                    ],
+                    "label": "scene-station-arrival-confrontation",
+                    "lighting": [
+                      "low-key lighting",
+                      "dim ambient light from the window",
+                      "flickering warm light from the stove casting long shadows",
+                      "soft rim light highlighting the protagonist's silhouette"
+                    ],
+                    "mood": [
+                      "quiet melancholy",
+                      "nostalgic decay",
+                      "tense but polite confrontation",
+                      "heavy atmosphere of forgotten times"
+                    ],
+                    "output_style": [
+                      "photorealistic film aesthetic",
+                      "no text or symbols in image"
+                    ],
+                    "style": [
+                      "photorealistic",
+                      "high-fidelity-texture",
+                      "muted-color-palette",
+                      "soft-diffused-lighting",
+                      "documentary-style"
+                    ],
+                    "subject": {
+                      "body_traits": [
+                        "male protagonist林远, mid-20s, sharp observant eyes behind black-rimmed glasses",
+                        "pensive and sincere expression with a hint of fatigue",
+                        "posture is upright but cautious, hands tucked into deep pockets of a dark trench coat",
+                        "uses Image 0 for facial and physical reference"
+                      ],
+                      "outfit": [
+                        "dark textured trench coat, worn-in appearance",
+                        "simple neutral-toned sweater underneath",
+                        "old leather messenger bag with visible wear and tear"
+                      ],
+                      "pose": [
+                        "standing in the center of the dilapidated station hall",
+                        "body facing forward towards the shadow, observing the environment",
+                        "one hand slightly inside pocket, ready to take out his notebook"
+                      ]
+                    },
+                    "tags": [
+                      "realistic",
+                      "cinematic",
+                      "melancholic",
+                      "atmospheric",
+                      "grainy-film-texture"
+                    ]
+                  },
+                  "scene_text_hash": "05b9c4fec4561f92001112b2fe4ec484",
+                  "style": "default",
+                  "url": "/image_cache/ceab4167805a8417a66f12a4e6c0cc4b.png",
+                  "width": 1920
+                }
+              },
+              "status": "success"
+            },
+            "request_payload": {
+              "option": "开始游戏",
+              "optionIndex": 0,
+              "sceneId": null,
+              "globalState": {
+                "core_worldview": {
+                  "chapters": {
+                    "chapter1": {
+                      "conflict_end_condition": "主角通过帮助守门人修缮漏雨的屋顶，并在深夜与其分享了一段关于离乡的真实感悟，赢得了对方的信任，获得了第一批关键的档案线索。",
+                      "main_conflict": "主角回到小镇，发现旧驿站已被杂物堆满，且镇民对这位“外来者”的归来持有戒备。主角试图启动档案整理工作，却发现许多关键的记录册缺失，而唯一知情的守门人拒绝沟通，主角面临着工作无法开展与被故乡排斥的双重压力。 - 矛盾结束条件：主角通过帮助守门人修缮漏雨的屋顶，并在深夜与其分享了一段关于离乡的真实感悟，赢得了对方的信任，获得了第一批关键的档案线索。"
+                    },
+                    "chapter2": {
+                      "conflict_end_condition": "主角选择将真相封存在档案的附录中，不对外公开，并与旧友达成了一种“虽然方向不同，但彼此理解”的默契，化解了内心的执念。",
+                      "main_conflict": "主角在整理过程中，意外挖掘出一段关于小镇曾经繁荣的真相，这段真相与主角家族的没落有关。主角陷入了“揭露真相以求公正”还是“维护小镇最后的宁静”的道德困境，同时，主角在小镇重逢了旧友，两人对未来的不同选择引发了激烈的冲突。 - 矛盾结束条件：主角选择将真相封存在档案的附录中，不对外公开，并与旧友达成了一种“虽然方向不同，但彼此理解”的默契，化解了内心的执念。"
+                    },
+                    "chapter3": {
+                      "conflict_end_condition": "主角完成了档案的最终归档，将其交付给小镇图书馆，虽然没能阻止驿站的拆除，但留下了珍贵的记录，主角最终决定离开小镇，带着遗憾与释然踏上新的旅程。 【主角规范信息】 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：青年 所属作品(中)：断桥夜谈 所属作品(英)：The Night Talks at Broken Bridge 标志性外观关键词：黑色短发、黑框眼镜、深色风衣、神情内敛、指尖常有墨迹、略显疲惫的眼神、背着旧皮包、步履沉稳、习惯性揣兜、清瘦。 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决",
+                      "main_conflict": "拆除工程提前启动，驿站面临被强行清理的风险。主角必须在有限的时间内完成最后一份核心档案的整理，同时要面对自己是否要为了这份工作而放弃去往大城市发展的机会，个人理想与现实羁绊在最后时刻剧烈碰撞。 - 矛盾结束条件：主角完成了档案的最终归档，将其交付给小镇图书馆，虽然没能阻止驿站的拆除，但留下了珍贵的记录，主角最终决定离开小镇，带着遗憾与释然踏上新的旅程。 【主角规范信息】 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：青年 所属作品(中)：断桥夜谈 所属作品(英)：The Night Talks at Broken Bridge 标志性外观关键词：黑色短发、黑框眼镜、深色风衣、神情内敛、指尖常有墨迹、略显疲惫的眼神、背着旧皮包、步履沉稳、习惯性揣兜、清瘦。 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决"
+                    }
+                  },
+                  "characters": {},
+                  "forces": {},
+                  "game_style": "采用写实主义叙事风格，画面呈现出一种带有颗粒感的胶片质感。游戏节奏舒缓，侧重于环境氛围的营造与细腻的心理描写，通过琐碎的日常对话与环境交互，构建出一种“在流动的时光中寻找锚点”的沉浸式体验。",
+                  "main_quest": "主角受托回到故乡“断桥”小镇，负责整理即将拆除的旧驿站档案。目标是在小镇彻底失去功能前，通过记录那些被遗忘的“夜谈”故事，为小镇的过去留下一份体面的注脚。任务步骤包括：搜集散落在各处的旧物、与镇民进行深度的夜谈交流、整理并归档这些碎片化的记忆。挑战在于，随着调查深入，主角不仅要面对小镇衰落的现实，还要处理自己当年离开小镇时留下的未竟心愿，以及在“记录者”与“参与者”身份之间的挣扎，最终在完成档案整理的同时，决定自己是留下还是彻底告别。",
+                  "protagonist_ability": "主角拥有一种名为“共鸣倾听”的特质，这并非超自然力量，而是源于其长期从事档案整理工作所磨练出的敏锐感知力。通过观察对方的微表情、语调变化以及对过往细节的精准捕捉，主角能引导他人卸下防备，还原出被隐藏的真实记忆。使用时需消耗大量精力，且无法改变对方的过去，仅能作为一种辅助手段，帮助他人与自我达成和解，同时主角自身也常因过度共情而陷入对自身生活困境的反复审视。",
+                  "world_basic_setting": "故事发生在一座名为“断桥”的边陲小镇，这里曾是繁华的贸易枢纽，如今却因交通线路的改道而逐渐被时代遗忘。小镇地理位置偏僻，终年被潮湿的雾气笼罩，社会结构由留守的老人、怀揣梦想却被困住的青年以及偶尔路过的旅人构成。文化上，这里保留着古老的“夜谈”习俗，人们习惯在驿站的炉火旁交换彼此的故事以抵御寒冷。关键事件是“旧铁轨的拆除”，这象征着小镇与外界最后联系的断裂。社会氛围呈现出一种温和的衰败感，人们在对过去的怀念与对未来的无力感中寻找平衡，生活节奏缓慢，充满了琐碎的生存压力与人际间的温情羁绊。"
+                },
+                "flow_worldline": {
+                  "characters": {},
+                  "environment": {}
+                },
+                "game_id": "game_1777632045_5ifn8j",
+                "image_style": {
+                  "type": "realistic"
+                },
+                "meta": {
+                  "detail_async": true
+                },
+                "protagonist_canonical": {
+                  "gender": "男性"
+                },
+                "tone": "normal_ending",
+                "user_theme": "边陲驿站夜谈录",
+                "_benchmark_profile": "fullready_strict",
+                "_benchmark_measurement": "fullready_nextturn",
+                "_benchmark_read_wait_s": 0.0
+              }
+            },
+            "start_ts": 1777632054.2705715,
+            "end_ts": 1777632106.3589358,
+            "provider_events": {
+              "event_count": 9,
+              "queue_wait_ms": {
+                "count": 9,
+                "min": 0.0,
+                "max": 0.0,
+                "mean": 0.0,
+                "median": 0.0,
+                "p95": 0.0
+              },
+              "latency_ms": {
+                "count": 5,
+                "min": 5770.0,
+                "max": 16319.0,
+                "mean": 9574.8,
+                "median": 7606.0,
+                "p95": 15206.8
+              },
+              "llm_success_count": 4,
+              "image_success_count": 0,
+              "request_thread_event_count": 0,
+              "provider_429_count": 0,
+              "provider_timeout_count": 0,
+              "shared_backoff_wait_ms_total": 0,
+              "retry_heavy_event_count": 0,
+              "main_character_event_count": 2,
+              "scene_image_event_count": 0
+            }
+          }
+        ],
+        "attempt_count": 1,
+        "request_elapsed_s": 52.088,
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "success",
+        "has_scene": true,
+        "has_image": true,
+        "setup_success": true
+      },
+      "second_click": {
+        "http_status": 200,
+        "elapsed_s": 20.679,
+        "response_json": {
+          "benchmark_diagnostics": {
+            "cache_hit_reason": "waited_request_scene_text_completed_no_image",
+            "cache_miss_reason": "request_scene_generation_in_progress",
+            "current_options_key_drift_detected": false,
+            "global_state_key_drift_detected": true,
+            "placeholder": false,
+            "previous_scene_id": "initial",
+            "recomputed_scene_cache_exists": false,
+            "recomputed_scene_id": "-6911034034732343137_-6483247161943031725",
+            "request_current_options_count": 2,
+            "request_current_options_hash": "90b570a38062df0dbed246f3166183e7",
+            "request_flow_worldline_hash": "27e3fb8ae2ed7c5d21462dfc73d48e61",
+            "request_global_state_hash": "91064e3102d35a9ab4bcdcbd9af494f0",
+            "request_option_at_index": "询问老陈关于档案册缺失的细节，并尝试与其沟通。",
+            "request_option_index": 0,
+            "request_option_text": "询问老陈关于档案册缺失的细节，并尝试与其沟通。",
+            "request_scene_cache_exists": true,
+            "request_scene_cache_meta": {
+              "canonical_scene_id": "-3252833061525417727_-6483247161943031725",
+              "current_options_hash": "90b570a38062df0dbed246f3166183e7",
+              "current_options_preview": [
+                "询问老陈关于档案册缺失的细节，并尝试与其沟通。",
+                "观察驿站屋顶的漏雨情况，寻找修缮的切入点以获取信任。"
+              ],
+              "flow_worldline_hash": "cc691995abda7798fd6dd38a43f76c25",
+              "global_state_hash": "f219700c3ea9aef0a49f44695d62ab77",
+              "option_count": 2,
+              "parent_scene_id": null,
+              "scene_id": "8431879153767155324_-6483247161943031725"
+            },
+            "request_scene_id": "8431879153767155324_-6483247161943031725",
+            "resolution_path": "wait_for_request_scene_cache_text_only",
+            "response_has_image": true,
+            "response_has_scene": true,
+            "response_scene_id": "4234571984834232670_613229797421529578",
+            "response_status": "success",
+            "scene_id_mismatch_detected": true,
+            "selected_option_mismatch_detected": false
+          },
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "主线任务推进至“档案搜集”阶段，明确了关键档案缺失的原因并非简单的遗失，而是被镇民挪作他用，这为后续寻找档案碎片提供了明确的调查方向。",
+              "recap_text": "你选择了“询问老陈关于档案册缺失的细节，并尝试与其沟通。”。当前章节：chapter1。主线进展：主线任务推进至“档案搜集”阶段，明确了关键档案缺失的原因并非简单的遗失，而是被镇民挪作他用，这为后续寻找档案碎片提供了明确的调查方向。。最近剧情：老陈听完我的话，并没有立刻放下手中的烟斗，他那双布满血丝的眼睛在昏暗的火光中闪烁了一下，似乎在评估我话语的真实性。他用力磕了磕烟斗，火星在空气中划出一道暗红的弧线，落在潮湿的木地板上瞬间熄灭。我站在原地，感受着指尖因寒冷而产生的轻微僵硬，目光始终保持着一种温和的克制，没有逼视他，而是看向他身旁那堆凌乱的旧纸张。“那些档案册不是丢了，是被人带走了。”老陈终于开了口，声音沙哑得如同砂纸摩擦，“镇上的人觉得这些旧纸头没用，有人拿去垫了桌角，有人拿去生了火。你回来得太晚了，林远，这里已经不是你记忆里的那个地方了。”他叹了口气，将烟斗搁在炉边，眼神里流露出一丝疲惫的无奈，仿佛在诉说着某种无法挽回的衰败。我看着他那双因为长年劳作而粗糙不堪的手，心中涌起一阵复杂的情绪，既有对档案缺失的焦虑，也有对这片土地逐渐消亡的无力感。"
+            },
+            "deep_background_links": {
+              "1": "老陈"
+            },
+            "flow_update": {
+              "chapter_conflict_solved": false,
+              "characters": {},
+              "environment": {},
+              "quest_progress": "主线任务推进至“档案搜集”阶段，明确了关键档案缺失的原因并非简单的遗失，而是被镇民挪作他用，这为后续寻找档案碎片提供了明确的调查方向。"
+            },
+            "next_options": [
+              "询问老陈关于那批被拿走档案的具体去向。",
+              "提出帮老陈修缮漏雨的屋顶，以此换取更多关于档案的线索。"
+            ],
+            "plot_mentioned_only": [],
+            "plot_supporting_characters": [
+              [
+                "老陈",
+                "配角1"
+              ]
+            ],
+            "scene": "老陈听完我的话，并没有立刻放下手中的烟斗，他那双布满血丝的眼睛在昏暗的火光中闪烁了一下，似乎在评估我话语的真实性。他用力磕了磕烟斗，火星在空气中划出一道暗红的弧线，落在潮湿的木地板上瞬间熄灭。我站在原地，感受着指尖因寒冷而产生的轻微僵硬，目光始终保持着一种温和的克制，没有逼视他，而是看向他身旁那堆凌乱的旧纸张。“那些档案册不是丢了，是被人带走了。”老陈终于开了口，声音沙哑得如同砂纸摩擦，“镇上的人觉得这些旧纸头没用，有人拿去垫了桌角，有人拿去生了火。你回来得太晚了，林远，这里已经不是你记忆里的那个地方了。”他叹了口气，将烟斗搁在炉边，眼神里流露出一丝疲惫的无奈，仿佛在诉说着某种无法挽回的衰败。我看着他那双因为长年劳作而粗糙不堪的手，心中涌起一阵复杂的情绪，既有对档案缺失的焦虑，也有对这片土地逐渐消亡的无力感。",
+            "sceneId": "4234571984834232670_613229797421529578",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-duanqiao-old-chen-dialogue, realistic, cinematic, melancholy, film-grain, atmospheric, photorealistic, film noir inspired, high detail, muted color palette, dramatic shadows, male protagonist using Image 0, young man with a weary yet observant expression, pale skin reflecting the dim interior light, slight tension in the shoulders, standing with a posture of restrained empathy, worn textured wool coat in earth tones, a simple scarf loosely wrapped around the neck, dark trousers with subtle signs of travel wear, standing in the foreground facing slightly toward the center, hands slightly clenched, showing signs of cold-induced stiffness, gaze directed at the cluttered floor and the old papers, body language conveys a mix of anxiety and helplessness, 8K detailed facial features, sharp focus on eyes reflecting the flickering firelight, lip color naturally muted, soft shadows emphasizing the contours of the face, expression of quiet sorrow and deep contemplation, dark brown hair with slightly messy texture, root fixation coefficient 0.8, tip swing amplitude 5cm, color layering: main color dark brown, secondary color charcoal, highlight soft amber from fire, shadow deep black, wind speed 0.2m/s, turbulence intensity 1%, heavy wool fabric with visible weave, slight fabric tension at the shoulders, matte finish on all clothing surfaces, dimly lit interior of an old station, weathered wooden floorboards with dust and debris, piles of scattered, yellowing archive papers on the floor, a rustic iron stove with dying embers, foggy window pane visible in the distance showing a dark, damp night, 老陈-配角1 sitting near the stove, holding an old pipe, wearing a weathered, thick, dark-colored sweater, face deeply lined with age and exhaustion, flickering warm firelight casting long, dancing shadows, visible dust particles floating in the air, damp, misty atmosphere permeating the room, warm amber from firelight, deep shadows in cool grey-blue tones, faded beige and sepia for the archive papers, muted earth tones for clothing, low-key lighting, strong contrast between the warm fire light and the cold surrounding shadows, side-lit facial features on protagonist, type medium shot, lens 35mm, aperture f/2.0, depth_of_field shallow focus on the protagonist and old papers, flash none, grain distinctive 35mm film grain, texture realistic fabric and weathered wood texture, protagonist positioned on the left, looking toward the center, 老陈-配角1 seated on the right, forming a triangle with the fire source, focal point on the interaction between the two characters and the scattered papers, action constraints: avoid direct eye contact between characters to emphasize distance, cinematic realism, no text or symbols in image, wistful nostalgia, gentle decay, quiet, heavy sadness, emotional resonance, sense of irreversible loss, no text, no symbols, no garbled characters, no words",
+              "scene_text_hash": "4931991869363fc350729ebaf19c54fc",
+              "style": "default",
+              "url": "/image_cache/1636ec17796892df0336c07e366d9437.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "request_payload": {
+          "option": "询问老陈关于档案册缺失的细节，并尝试与其沟通。",
+          "optionIndex": 0,
+          "sceneId": "8431879153767155324_-6483247161943031725",
+          "currentOptions": [
+            "询问老陈关于档案册缺失的细节，并尝试与其沟通。",
+            "观察驿站屋顶的漏雨情况，寻找修缮的切入点以获取信任。"
+          ],
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过帮助守门人修缮漏雨的屋顶，并在深夜与其分享了一段关于离乡的真实感悟，赢得了对方的信任，获得了第一批关键的档案线索。",
+                  "main_conflict": "主角回到小镇，发现旧驿站已被杂物堆满，且镇民对这位“外来者”的归来持有戒备。主角试图启动档案整理工作，却发现许多关键的记录册缺失，而唯一知情的守门人拒绝沟通，主角面临着工作无法开展与被故乡排斥的双重压力。 - 矛盾结束条件：主角通过帮助守门人修缮漏雨的屋顶，并在深夜与其分享了一段关于离乡的真实感悟，赢得了对方的信任，获得了第一批关键的档案线索。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角选择将真相封存在档案的附录中，不对外公开，并与旧友达成了一种“虽然方向不同，但彼此理解”的默契，化解了内心的执念。",
+                  "main_conflict": "主角在整理过程中，意外挖掘出一段关于小镇曾经繁荣的真相，这段真相与主角家族的没落有关。主角陷入了“揭露真相以求公正”还是“维护小镇最后的宁静”的道德困境，同时，主角在小镇重逢了旧友，两人对未来的不同选择引发了激烈的冲突。 - 矛盾结束条件：主角选择将真相封存在档案的附录中，不对外公开，并与旧友达成了一种“虽然方向不同，但彼此理解”的默契，化解了内心的执念。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角完成了档案的最终归档，将其交付给小镇图书馆，虽然没能阻止驿站的拆除，但留下了珍贵的记录，主角最终决定离开小镇，带着遗憾与释然踏上新的旅程。 【主角规范信息】 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：青年 所属作品(中)：断桥夜谈 所属作品(英)：The Night Talks at Broken Bridge 标志性外观关键词：黑色短发、黑框眼镜、深色风衣、神情内敛、指尖常有墨迹、略显疲惫的眼神、背着旧皮包、步履沉稳、习惯性揣兜、清瘦。 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决",
+                  "main_conflict": "拆除工程提前启动，驿站面临被强行清理的风险。主角必须在有限的时间内完成最后一份核心档案的整理，同时要面对自己是否要为了这份工作而放弃去往大城市发展的机会，个人理想与现实羁绊在最后时刻剧烈碰撞。 - 矛盾结束条件：主角完成了档案的最终归档，将其交付给小镇图书馆，虽然没能阻止驿站的拆除，但留下了珍贵的记录，主角最终决定离开小镇，带着遗憾与释然踏上新的旅程。 【主角规范信息】 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：青年 所属作品(中)：断桥夜谈 所属作品(英)：The Night Talks at Broken Bridge 标志性外观关键词：黑色短发、黑框眼镜、深色风衣、神情内敛、指尖常有墨迹、略显疲惫的眼神、背着旧皮包、步履沉稳、习惯性揣兜、清瘦。 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "采用写实主义叙事风格，画面呈现出一种带有颗粒感的胶片质感。游戏节奏舒缓，侧重于环境氛围的营造与细腻的心理描写，通过琐碎的日常对话与环境交互，构建出一种“在流动的时光中寻找锚点”的沉浸式体验。",
+              "main_quest": "主角受托回到故乡“断桥”小镇，负责整理即将拆除的旧驿站档案。目标是在小镇彻底失去功能前，通过记录那些被遗忘的“夜谈”故事，为小镇的过去留下一份体面的注脚。任务步骤包括：搜集散落在各处的旧物、与镇民进行深度的夜谈交流、整理并归档这些碎片化的记忆。挑战在于，随着调查深入，主角不仅要面对小镇衰落的现实，还要处理自己当年离开小镇时留下的未竟心愿，以及在“记录者”与“参与者”身份之间的挣扎，最终在完成档案整理的同时，决定自己是留下还是彻底告别。",
+              "protagonist_ability": "主角拥有一种名为“共鸣倾听”的特质，这并非超自然力量，而是源于其长期从事档案整理工作所磨练出的敏锐感知力。通过观察对方的微表情、语调变化以及对过往细节的精准捕捉，主角能引导他人卸下防备，还原出被隐藏的真实记忆。使用时需消耗大量精力，且无法改变对方的过去，仅能作为一种辅助手段，帮助他人与自我达成和解，同时主角自身也常因过度共情而陷入对自身生活困境的反复审视。",
+              "world_basic_setting": "故事发生在一座名为“断桥”的边陲小镇，这里曾是繁华的贸易枢纽，如今却因交通线路的改道而逐渐被时代遗忘。小镇地理位置偏僻，终年被潮湿的雾气笼罩，社会结构由留守的老人、怀揣梦想却被困住的青年以及偶尔路过的旅人构成。文化上，这里保留着古老的“夜谈”习俗，人们习惯在驿站的炉火旁交换彼此的故事以抵御寒冷。关键事件是“旧铁轨的拆除”，这象征着小镇与外界最后联系的断裂。社会氛围呈现出一种温和的衰败感，人们在对过去的怀念与对未来的无力感中寻找平衡，生活节奏缓慢，充满了琐碎的生存压力与人际间的温情羁绊。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "environment": {},
+              "chapter_progress": 2.0
+            },
+            "game_id": "game_1777632045_5ifn8j",
+            "image_style": {
+              "type": "realistic"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "gender": "男性"
+            },
+            "tone": "normal_ending",
+            "user_theme": "边陲驿站夜谈录",
+            "_benchmark_profile": "fullready_strict",
+            "_benchmark_measurement": "fullready_nextturn",
+            "_benchmark_read_wait_s": 0.0
+          },
+          "previousSceneId": "initial",
+          "previousSceneImage": {
+            "cached": true,
+            "height": 1080,
+            "image_type": "story_scene",
+            "prompt": "scene-station-arrival-confrontation, realistic, cinematic, melancholic, atmospheric, grainy-film-texture, photorealistic, high-fidelity-texture, muted-color-palette, soft-diffused-lighting, documentary-style, male protagonist林远, mid-20s, sharp observant eyes behind black-rimmed glasses, pensive and sincere expression with a hint of fatigue, posture is upright but cautious, hands tucked into deep pockets of a dark trench coat, uses Image 0 for facial and physical reference, dark textured trench coat, worn-in appearance, simple neutral-toned sweater underneath, old leather messenger bag with visible wear and tear, standing in the center of the dilapidated station hall, body facing forward towards the shadow, observing the environment, one hand slightly inside pocket, ready to take out his notebook, 8K detailed facial features, subtle eye movement focusing on the shadow, lip color naturally muted, soft shadows from the dim environment across the face, skin texture showing natural pores and subtle dust particles, neatly trimmed dark hair with natural texture, root fixation coefficient 0.8, tip swing amplitude 5cm, color layering: main color #2D2D2D, secondary color #1A1A1A, highlight #404040, shadow #000000, wind speed 0.2m/s, slight turbulence, hair slightly messy due to travel, trench coat fabric shows slight fraying at edges, dust particles clinging to the dark fabric surface, natural creases and folds from movement, dilapidated train station interior with broken windows, stacks of old wooden chairs and cardboard boxes piled up, rusted railway parts scattered on the floor, thick humid fog seeping through the window frame, dusty air with floating particles caught in dim light, 老陈-配角1 sitting in the dark corner near a rusty iron stove, holding a pipe, face partially obscured by shadow, heavy fog layer, diffused light filtering through dirty glass, visible dust motes in the air, cold, damp atmosphere, desaturated tones, grey, sepia, and earthy brown, muted cold blue for the fog, faint warm amber glow from the stove fire, low-key lighting, dim ambient light from the window, flickering warm light from the stove casting long shadows, soft rim light highlighting the protagonist's silhouette, type medium long shot, lens 35mm, aperture f/2.0, depth_of_field shallow focus, foreground sharp on protagonist, background slightly soft, flash none, grain heavy film grain texture, texture aged paper and damp wood aesthetic, protagonist centered slightly to the left, 老陈-配角1 positioned in the deep background right corner, the train station debris frames the interaction, action constraints: protagonist holding a steady gaze towards the shadow, photorealistic film aesthetic, no text or symbols in image, quiet melancholy, nostalgic decay, tense but polite confrontation, heavy atmosphere of forgotten times, no text, no symbols, no garbled characters, no words",
+            "prompt_json": {
+              "camera": {
+                "aperture": "f/2.0",
+                "depth_of_field": "shallow focus, foreground sharp on protagonist, background slightly soft",
+                "flash": "none",
+                "grain": "heavy film grain texture",
+                "lens": "35mm",
+                "texture": "aged paper and damp wood aesthetic",
+                "type": "medium long shot"
+              },
+              "clothing_system": [
+                "trench coat fabric shows slight fraying at edges",
+                "dust particles clinging to the dark fabric surface",
+                "natural creases and folds from movement"
+              ],
+              "color_restriction": [
+                "desaturated tones",
+                "grey, sepia, and earthy brown",
+                "muted cold blue for the fog",
+                "faint warm amber glow from the stove fire"
+              ],
+              "composition": [
+                "protagonist centered slightly to the left",
+                "老陈-配角1 positioned in the deep background right corner",
+                "the train station debris frames the interaction",
+                "action constraints: protagonist holding a steady gaze towards the shadow"
+              ],
+              "environment": {
+                "background": [
+                  "dilapidated train station interior with broken windows",
+                  "stacks of old wooden chairs and cardboard boxes piled up",
+                  "rusted railway parts scattered on the floor",
+                  "thick humid fog seeping through the window frame",
+                  "dusty air with floating particles caught in dim light"
+                ],
+                "characters": [
+                  "老陈-配角1 sitting in the dark corner near a rusty iron stove, holding a pipe, face partially obscured by shadow"
+                ],
+                "effects": [
+                  "heavy fog layer",
+                  "diffused light filtering through dirty glass",
+                  "visible dust motes in the air",
+                  "cold, damp atmosphere"
+                ]
+              },
+              "face_system": [
+                "8K detailed facial features",
+                "subtle eye movement focusing on the shadow",
+                "lip color naturally muted",
+                "soft shadows from the dim environment across the face",
+                "skin texture showing natural pores and subtle dust particles"
+              ],
+              "hair_system": [
+                "neatly trimmed dark hair with natural texture",
+                "root fixation coefficient 0.8",
+                "tip swing amplitude 5cm",
+                "color layering: main color #2D2D2D, secondary color #1A1A1A, highlight #404040, shadow #000000",
+                "wind speed 0.2m/s, slight turbulence",
+                "hair slightly messy due to travel"
+              ],
+              "label": "scene-station-arrival-confrontation",
+              "lighting": [
+                "low-key lighting",
+                "dim ambient light from the window",
+                "flickering warm light from the stove casting long shadows",
+                "soft rim light highlighting the protagonist's silhouette"
+              ],
+              "mood": [
+                "quiet melancholy",
+                "nostalgic decay",
+                "tense but polite confrontation",
+                "heavy atmosphere of forgotten times"
+              ],
+              "output_style": [
+                "photorealistic film aesthetic",
+                "no text or symbols in image"
+              ],
+              "style": [
+                "photorealistic",
+                "high-fidelity-texture",
+                "muted-color-palette",
+                "soft-diffused-lighting",
+                "documentary-style"
+              ],
+              "subject": {
+                "body_traits": [
+                  "male protagonist林远, mid-20s, sharp observant eyes behind black-rimmed glasses",
+                  "pensive and sincere expression with a hint of fatigue",
+                  "posture is upright but cautious, hands tucked into deep pockets of a dark trench coat",
+                  "uses Image 0 for facial and physical reference"
+                ],
+                "outfit": [
+                  "dark textured trench coat, worn-in appearance",
+                  "simple neutral-toned sweater underneath",
+                  "old leather messenger bag with visible wear and tear"
+                ],
+                "pose": [
+                  "standing in the center of the dilapidated station hall",
+                  "body facing forward towards the shadow, observing the environment",
+                  "one hand slightly inside pocket, ready to take out his notebook"
+                ]
+              },
+              "tags": [
+                "realistic",
+                "cinematic",
+                "melancholic",
+                "atmospheric",
+                "grainy-film-texture"
+              ]
+            },
+            "scene_text_hash": "05b9c4fec4561f92001112b2fe4ec484",
+            "style": "default",
+            "url": "/image_cache/ceab4167805a8417a66f12a4e6c0cc4b.png",
+            "width": 1920
+          },
+          "previousSceneText": "潮湿的雾气顺着驿站破碎的窗棂渗入，空气中弥漫着陈旧纸张与霉烂木头的气味。我推开那扇沉重的木门，指尖触碰到门框上积攒的厚重灰尘，指腹留下一道灰黑的痕迹。驿站大厅里，原本供旅人休憩的桌椅被堆叠成山，杂乱的纸箱与废弃的铁轨零件占据了大部分空间。我背着那只磨损严重的旧皮包，黑框眼镜后的双眼在昏暗中微微眯起，试图捕捉这片混乱中的秩序。\n\n“谁在那儿？”一声粗粝的咳嗽声从阴影处传来。\n\n守门人老陈正坐在角落的火炉旁，手里攥着一根干瘪的烟斗，他那双浑浊的眼睛警惕地盯着我，仿佛我是一个闯入禁地的窃贼。我停下脚步，习惯性地将手揣进深色风衣的口袋里，指尖触碰到那本记录着小镇往事的笔记。我没有急于解释，而是环顾四周，目光落在窗外那条锈迹斑斑、被杂草掩埋的旧铁轨上。这里的一切都在衰败，却又在某种沉默中固执地保留着最后的尊严。我深吸一口气，整理了一下领口，试图让自己的声音听起来平稳而诚恳：“我是林远，受托回来整理这里的档案。我知道这地方快要拆了，但有些东西，总得有人记下来。”"
+        },
+        "start_ts": 1777632106.3987327,
+        "end_ts": 1777632127.0776424,
+        "provider_events": {
+          "event_count": 12,
+          "queue_wait_ms": {
+            "count": 12,
+            "min": 0.0,
+            "max": 4701.0,
+            "mean": 2318.833,
+            "median": 2315.0,
+            "p95": 4701.0
+          },
+          "latency_ms": {
+            "count": 6,
+            "min": 4475.0,
+            "max": 4982.0,
+            "mean": 4683.5,
+            "median": 4665.0,
+            "p95": 4933.75
+          },
+          "llm_success_count": 6,
+          "image_success_count": 0,
+          "request_thread_event_count": 0,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0
+        },
+        "attempts": [
+          {
+            "http_status": 200,
+            "elapsed_s": 20.679,
+            "response_json": {
+              "benchmark_diagnostics": {
+                "cache_hit_reason": "waited_request_scene_text_completed_no_image",
+                "cache_miss_reason": "request_scene_generation_in_progress",
+                "current_options_key_drift_detected": false,
+                "global_state_key_drift_detected": true,
+                "placeholder": false,
+                "previous_scene_id": "initial",
+                "recomputed_scene_cache_exists": false,
+                "recomputed_scene_id": "-6911034034732343137_-6483247161943031725",
+                "request_current_options_count": 2,
+                "request_current_options_hash": "90b570a38062df0dbed246f3166183e7",
+                "request_flow_worldline_hash": "27e3fb8ae2ed7c5d21462dfc73d48e61",
+                "request_global_state_hash": "91064e3102d35a9ab4bcdcbd9af494f0",
+                "request_option_at_index": "询问老陈关于档案册缺失的细节，并尝试与其沟通。",
+                "request_option_index": 0,
+                "request_option_text": "询问老陈关于档案册缺失的细节，并尝试与其沟通。",
+                "request_scene_cache_exists": true,
+                "request_scene_cache_meta": {
+                  "canonical_scene_id": "-3252833061525417727_-6483247161943031725",
+                  "current_options_hash": "90b570a38062df0dbed246f3166183e7",
+                  "current_options_preview": [
+                    "询问老陈关于档案册缺失的细节，并尝试与其沟通。",
+                    "观察驿站屋顶的漏雨情况，寻找修缮的切入点以获取信任。"
+                  ],
+                  "flow_worldline_hash": "cc691995abda7798fd6dd38a43f76c25",
+                  "global_state_hash": "f219700c3ea9aef0a49f44695d62ab77",
+                  "option_count": 2,
+                  "parent_scene_id": null,
+                  "scene_id": "8431879153767155324_-6483247161943031725"
+                },
+                "request_scene_id": "8431879153767155324_-6483247161943031725",
+                "resolution_path": "wait_for_request_scene_cache_text_only",
+                "response_has_image": true,
+                "response_has_scene": true,
+                "response_scene_id": "4234571984834232670_613229797421529578",
+                "response_status": "success",
+                "scene_id_mismatch_detected": true,
+                "selected_option_mismatch_detected": false
+              },
+              "message": "选项剧情生成成功！",
+              "optionData": {
+                "checkpoint_packet": {
+                  "chapter": "chapter1",
+                  "chapter_conflict_solved": false,
+                  "quest_delta": "主线任务推进至“档案搜集”阶段，明确了关键档案缺失的原因并非简单的遗失，而是被镇民挪作他用，这为后续寻找档案碎片提供了明确的调查方向。",
+                  "recap_text": "你选择了“询问老陈关于档案册缺失的细节，并尝试与其沟通。”。当前章节：chapter1。主线进展：主线任务推进至“档案搜集”阶段，明确了关键档案缺失的原因并非简单的遗失，而是被镇民挪作他用，这为后续寻找档案碎片提供了明确的调查方向。。最近剧情：老陈听完我的话，并没有立刻放下手中的烟斗，他那双布满血丝的眼睛在昏暗的火光中闪烁了一下，似乎在评估我话语的真实性。他用力磕了磕烟斗，火星在空气中划出一道暗红的弧线，落在潮湿的木地板上瞬间熄灭。我站在原地，感受着指尖因寒冷而产生的轻微僵硬，目光始终保持着一种温和的克制，没有逼视他，而是看向他身旁那堆凌乱的旧纸张。“那些档案册不是丢了，是被人带走了。”老陈终于开了口，声音沙哑得如同砂纸摩擦，“镇上的人觉得这些旧纸头没用，有人拿去垫了桌角，有人拿去生了火。你回来得太晚了，林远，这里已经不是你记忆里的那个地方了。”他叹了口气，将烟斗搁在炉边，眼神里流露出一丝疲惫的无奈，仿佛在诉说着某种无法挽回的衰败。我看着他那双因为长年劳作而粗糙不堪的手，心中涌起一阵复杂的情绪，既有对档案缺失的焦虑，也有对这片土地逐渐消亡的无力感。"
+                },
+                "deep_background_links": {
+                  "1": "老陈"
+                },
+                "flow_update": {
+                  "chapter_conflict_solved": false,
+                  "characters": {},
+                  "environment": {},
+                  "quest_progress": "主线任务推进至“档案搜集”阶段，明确了关键档案缺失的原因并非简单的遗失，而是被镇民挪作他用，这为后续寻找档案碎片提供了明确的调查方向。"
+                },
+                "next_options": [
+                  "询问老陈关于那批被拿走档案的具体去向。",
+                  "提出帮老陈修缮漏雨的屋顶，以此换取更多关于档案的线索。"
+                ],
+                "plot_mentioned_only": [],
+                "plot_supporting_characters": [
+                  [
+                    "老陈",
+                    "配角1"
+                  ]
+                ],
+                "scene": "老陈听完我的话，并没有立刻放下手中的烟斗，他那双布满血丝的眼睛在昏暗的火光中闪烁了一下，似乎在评估我话语的真实性。他用力磕了磕烟斗，火星在空气中划出一道暗红的弧线，落在潮湿的木地板上瞬间熄灭。我站在原地，感受着指尖因寒冷而产生的轻微僵硬，目光始终保持着一种温和的克制，没有逼视他，而是看向他身旁那堆凌乱的旧纸张。“那些档案册不是丢了，是被人带走了。”老陈终于开了口，声音沙哑得如同砂纸摩擦，“镇上的人觉得这些旧纸头没用，有人拿去垫了桌角，有人拿去生了火。你回来得太晚了，林远，这里已经不是你记忆里的那个地方了。”他叹了口气，将烟斗搁在炉边，眼神里流露出一丝疲惫的无奈，仿佛在诉说着某种无法挽回的衰败。我看着他那双因为长年劳作而粗糙不堪的手，心中涌起一阵复杂的情绪，既有对档案缺失的焦虑，也有对这片土地逐渐消亡的无力感。",
+                "sceneId": "4234571984834232670_613229797421529578",
+                "scene_image": {
+                  "cached": true,
+                  "height": 1080,
+                  "image_type": "story_scene",
+                  "prompt": "scene-duanqiao-old-chen-dialogue, realistic, cinematic, melancholy, film-grain, atmospheric, photorealistic, film noir inspired, high detail, muted color palette, dramatic shadows, male protagonist using Image 0, young man with a weary yet observant expression, pale skin reflecting the dim interior light, slight tension in the shoulders, standing with a posture of restrained empathy, worn textured wool coat in earth tones, a simple scarf loosely wrapped around the neck, dark trousers with subtle signs of travel wear, standing in the foreground facing slightly toward the center, hands slightly clenched, showing signs of cold-induced stiffness, gaze directed at the cluttered floor and the old papers, body language conveys a mix of anxiety and helplessness, 8K detailed facial features, sharp focus on eyes reflecting the flickering firelight, lip color naturally muted, soft shadows emphasizing the contours of the face, expression of quiet sorrow and deep contemplation, dark brown hair with slightly messy texture, root fixation coefficient 0.8, tip swing amplitude 5cm, color layering: main color dark brown, secondary color charcoal, highlight soft amber from fire, shadow deep black, wind speed 0.2m/s, turbulence intensity 1%, heavy wool fabric with visible weave, slight fabric tension at the shoulders, matte finish on all clothing surfaces, dimly lit interior of an old station, weathered wooden floorboards with dust and debris, piles of scattered, yellowing archive papers on the floor, a rustic iron stove with dying embers, foggy window pane visible in the distance showing a dark, damp night, 老陈-配角1 sitting near the stove, holding an old pipe, wearing a weathered, thick, dark-colored sweater, face deeply lined with age and exhaustion, flickering warm firelight casting long, dancing shadows, visible dust particles floating in the air, damp, misty atmosphere permeating the room, warm amber from firelight, deep shadows in cool grey-blue tones, faded beige and sepia for the archive papers, muted earth tones for clothing, low-key lighting, strong contrast between the warm fire light and the cold surrounding shadows, side-lit facial features on protagonist, type medium shot, lens 35mm, aperture f/2.0, depth_of_field shallow focus on the protagonist and old papers, flash none, grain distinctive 35mm film grain, texture realistic fabric and weathered wood texture, protagonist positioned on the left, looking toward the center, 老陈-配角1 seated on the right, forming a triangle with the fire source, focal point on the interaction between the two characters and the scattered papers, action constraints: avoid direct eye contact between characters to emphasize distance, cinematic realism, no text or symbols in image, wistful nostalgia, gentle decay, quiet, heavy sadness, emotional resonance, sense of irreversible loss, no text, no symbols, no garbled characters, no words",
+                  "scene_text_hash": "4931991869363fc350729ebaf19c54fc",
+                  "style": "default",
+                  "url": "/image_cache/1636ec17796892df0336c07e366d9437.png",
+                  "width": 1920
+                }
+              },
+              "status": "success"
+            },
+            "request_payload": {
+              "option": "询问老陈关于档案册缺失的细节，并尝试与其沟通。",
+              "optionIndex": 0,
+              "sceneId": "8431879153767155324_-6483247161943031725",
+              "currentOptions": [
+                "询问老陈关于档案册缺失的细节，并尝试与其沟通。",
+                "观察驿站屋顶的漏雨情况，寻找修缮的切入点以获取信任。"
+              ],
+              "globalState": {
+                "core_worldview": {
+                  "chapters": {
+                    "chapter1": {
+                      "conflict_end_condition": "主角通过帮助守门人修缮漏雨的屋顶，并在深夜与其分享了一段关于离乡的真实感悟，赢得了对方的信任，获得了第一批关键的档案线索。",
+                      "main_conflict": "主角回到小镇，发现旧驿站已被杂物堆满，且镇民对这位“外来者”的归来持有戒备。主角试图启动档案整理工作，却发现许多关键的记录册缺失，而唯一知情的守门人拒绝沟通，主角面临着工作无法开展与被故乡排斥的双重压力。 - 矛盾结束条件：主角通过帮助守门人修缮漏雨的屋顶，并在深夜与其分享了一段关于离乡的真实感悟，赢得了对方的信任，获得了第一批关键的档案线索。"
+                    },
+                    "chapter2": {
+                      "conflict_end_condition": "主角选择将真相封存在档案的附录中，不对外公开，并与旧友达成了一种“虽然方向不同，但彼此理解”的默契，化解了内心的执念。",
+                      "main_conflict": "主角在整理过程中，意外挖掘出一段关于小镇曾经繁荣的真相，这段真相与主角家族的没落有关。主角陷入了“揭露真相以求公正”还是“维护小镇最后的宁静”的道德困境，同时，主角在小镇重逢了旧友，两人对未来的不同选择引发了激烈的冲突。 - 矛盾结束条件：主角选择将真相封存在档案的附录中，不对外公开，并与旧友达成了一种“虽然方向不同，但彼此理解”的默契，化解了内心的执念。"
+                    },
+                    "chapter3": {
+                      "conflict_end_condition": "主角完成了档案的最终归档，将其交付给小镇图书馆，虽然没能阻止驿站的拆除，但留下了珍贵的记录，主角最终决定离开小镇，带着遗憾与释然踏上新的旅程。 【主角规范信息】 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：青年 所属作品(中)：断桥夜谈 所属作品(英)：The Night Talks at Broken Bridge 标志性外观关键词：黑色短发、黑框眼镜、深色风衣、神情内敛、指尖常有墨迹、略显疲惫的眼神、背着旧皮包、步履沉稳、习惯性揣兜、清瘦。 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决",
+                      "main_conflict": "拆除工程提前启动，驿站面临被强行清理的风险。主角必须在有限的时间内完成最后一份核心档案的整理，同时要面对自己是否要为了这份工作而放弃去往大城市发展的机会，个人理想与现实羁绊在最后时刻剧烈碰撞。 - 矛盾结束条件：主角完成了档案的最终归档，将其交付给小镇图书馆，虽然没能阻止驿站的拆除，但留下了珍贵的记录，主角最终决定离开小镇，带着遗憾与释然踏上新的旅程。 【主角规范信息】 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：青年 所属作品(中)：断桥夜谈 所属作品(英)：The Night Talks at Broken Bridge 标志性外观关键词：黑色短发、黑框眼镜、深色风衣、神情内敛、指尖常有墨迹、略显疲惫的眼神、背着旧皮包、步履沉稳、习惯性揣兜、清瘦。 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决"
+                    }
+                  },
+                  "characters": {},
+                  "forces": {},
+                  "game_style": "采用写实主义叙事风格，画面呈现出一种带有颗粒感的胶片质感。游戏节奏舒缓，侧重于环境氛围的营造与细腻的心理描写，通过琐碎的日常对话与环境交互，构建出一种“在流动的时光中寻找锚点”的沉浸式体验。",
+                  "main_quest": "主角受托回到故乡“断桥”小镇，负责整理即将拆除的旧驿站档案。目标是在小镇彻底失去功能前，通过记录那些被遗忘的“夜谈”故事，为小镇的过去留下一份体面的注脚。任务步骤包括：搜集散落在各处的旧物、与镇民进行深度的夜谈交流、整理并归档这些碎片化的记忆。挑战在于，随着调查深入，主角不仅要面对小镇衰落的现实，还要处理自己当年离开小镇时留下的未竟心愿，以及在“记录者”与“参与者”身份之间的挣扎，最终在完成档案整理的同时，决定自己是留下还是彻底告别。",
+                  "protagonist_ability": "主角拥有一种名为“共鸣倾听”的特质，这并非超自然力量，而是源于其长期从事档案整理工作所磨练出的敏锐感知力。通过观察对方的微表情、语调变化以及对过往细节的精准捕捉，主角能引导他人卸下防备，还原出被隐藏的真实记忆。使用时需消耗大量精力，且无法改变对方的过去，仅能作为一种辅助手段，帮助他人与自我达成和解，同时主角自身也常因过度共情而陷入对自身生活困境的反复审视。",
+                  "world_basic_setting": "故事发生在一座名为“断桥”的边陲小镇，这里曾是繁华的贸易枢纽，如今却因交通线路的改道而逐渐被时代遗忘。小镇地理位置偏僻，终年被潮湿的雾气笼罩，社会结构由留守的老人、怀揣梦想却被困住的青年以及偶尔路过的旅人构成。文化上，这里保留着古老的“夜谈”习俗，人们习惯在驿站的炉火旁交换彼此的故事以抵御寒冷。关键事件是“旧铁轨的拆除”，这象征着小镇与外界最后联系的断裂。社会氛围呈现出一种温和的衰败感，人们在对过去的怀念与对未来的无力感中寻找平衡，生活节奏缓慢，充满了琐碎的生存压力与人际间的温情羁绊。"
+                },
+                "flow_worldline": {
+                  "characters": {},
+                  "environment": {},
+                  "chapter_progress": 2.0
+                },
+                "game_id": "game_1777632045_5ifn8j",
+                "image_style": {
+                  "type": "realistic"
+                },
+                "meta": {
+                  "detail_async": true
+                },
+                "protagonist_canonical": {
+                  "gender": "男性"
+                },
+                "tone": "normal_ending",
+                "user_theme": "边陲驿站夜谈录",
+                "_benchmark_profile": "fullready_strict",
+                "_benchmark_measurement": "fullready_nextturn",
+                "_benchmark_read_wait_s": 0.0
+              },
+              "previousSceneId": "initial",
+              "previousSceneImage": {
+                "cached": true,
+                "height": 1080,
+                "image_type": "story_scene",
+                "prompt": "scene-station-arrival-confrontation, realistic, cinematic, melancholic, atmospheric, grainy-film-texture, photorealistic, high-fidelity-texture, muted-color-palette, soft-diffused-lighting, documentary-style, male protagonist林远, mid-20s, sharp observant eyes behind black-rimmed glasses, pensive and sincere expression with a hint of fatigue, posture is upright but cautious, hands tucked into deep pockets of a dark trench coat, uses Image 0 for facial and physical reference, dark textured trench coat, worn-in appearance, simple neutral-toned sweater underneath, old leather messenger bag with visible wear and tear, standing in the center of the dilapidated station hall, body facing forward towards the shadow, observing the environment, one hand slightly inside pocket, ready to take out his notebook, 8K detailed facial features, subtle eye movement focusing on the shadow, lip color naturally muted, soft shadows from the dim environment across the face, skin texture showing natural pores and subtle dust particles, neatly trimmed dark hair with natural texture, root fixation coefficient 0.8, tip swing amplitude 5cm, color layering: main color #2D2D2D, secondary color #1A1A1A, highlight #404040, shadow #000000, wind speed 0.2m/s, slight turbulence, hair slightly messy due to travel, trench coat fabric shows slight fraying at edges, dust particles clinging to the dark fabric surface, natural creases and folds from movement, dilapidated train station interior with broken windows, stacks of old wooden chairs and cardboard boxes piled up, rusted railway parts scattered on the floor, thick humid fog seeping through the window frame, dusty air with floating particles caught in dim light, 老陈-配角1 sitting in the dark corner near a rusty iron stove, holding a pipe, face partially obscured by shadow, heavy fog layer, diffused light filtering through dirty glass, visible dust motes in the air, cold, damp atmosphere, desaturated tones, grey, sepia, and earthy brown, muted cold blue for the fog, faint warm amber glow from the stove fire, low-key lighting, dim ambient light from the window, flickering warm light from the stove casting long shadows, soft rim light highlighting the protagonist's silhouette, type medium long shot, lens 35mm, aperture f/2.0, depth_of_field shallow focus, foreground sharp on protagonist, background slightly soft, flash none, grain heavy film grain texture, texture aged paper and damp wood aesthetic, protagonist centered slightly to the left, 老陈-配角1 positioned in the deep background right corner, the train station debris frames the interaction, action constraints: protagonist holding a steady gaze towards the shadow, photorealistic film aesthetic, no text or symbols in image, quiet melancholy, nostalgic decay, tense but polite confrontation, heavy atmosphere of forgotten times, no text, no symbols, no garbled characters, no words",
+                "prompt_json": {
+                  "camera": {
+                    "aperture": "f/2.0",
+                    "depth_of_field": "shallow focus, foreground sharp on protagonist, background slightly soft",
+                    "flash": "none",
+                    "grain": "heavy film grain texture",
+                    "lens": "35mm",
+                    "texture": "aged paper and damp wood aesthetic",
+                    "type": "medium long shot"
+                  },
+                  "clothing_system": [
+                    "trench coat fabric shows slight fraying at edges",
+                    "dust particles clinging to the dark fabric surface",
+                    "natural creases and folds from movement"
+                  ],
+                  "color_restriction": [
+                    "desaturated tones",
+                    "grey, sepia, and earthy brown",
+                    "muted cold blue for the fog",
+                    "faint warm amber glow from the stove fire"
+                  ],
+                  "composition": [
+                    "protagonist centered slightly to the left",
+                    "老陈-配角1 positioned in the deep background right corner",
+                    "the train station debris frames the interaction",
+                    "action constraints: protagonist holding a steady gaze towards the shadow"
+                  ],
+                  "environment": {
+                    "background": [
+                      "dilapidated train station interior with broken windows",
+                      "stacks of old wooden chairs and cardboard boxes piled up",
+                      "rusted railway parts scattered on the floor",
+                      "thick humid fog seeping through the window frame",
+                      "dusty air with floating particles caught in dim light"
+                    ],
+                    "characters": [
+                      "老陈-配角1 sitting in the dark corner near a rusty iron stove, holding a pipe, face partially obscured by shadow"
+                    ],
+                    "effects": [
+                      "heavy fog layer",
+                      "diffused light filtering through dirty glass",
+                      "visible dust motes in the air",
+                      "cold, damp atmosphere"
+                    ]
+                  },
+                  "face_system": [
+                    "8K detailed facial features",
+                    "subtle eye movement focusing on the shadow",
+                    "lip color naturally muted",
+                    "soft shadows from the dim environment across the face",
+                    "skin texture showing natural pores and subtle dust particles"
+                  ],
+                  "hair_system": [
+                    "neatly trimmed dark hair with natural texture",
+                    "root fixation coefficient 0.8",
+                    "tip swing amplitude 5cm",
+                    "color layering: main color #2D2D2D, secondary color #1A1A1A, highlight #404040, shadow #000000",
+                    "wind speed 0.2m/s, slight turbulence",
+                    "hair slightly messy due to travel"
+                  ],
+                  "label": "scene-station-arrival-confrontation",
+                  "lighting": [
+                    "low-key lighting",
+                    "dim ambient light from the window",
+                    "flickering warm light from the stove casting long shadows",
+                    "soft rim light highlighting the protagonist's silhouette"
+                  ],
+                  "mood": [
+                    "quiet melancholy",
+                    "nostalgic decay",
+                    "tense but polite confrontation",
+                    "heavy atmosphere of forgotten times"
+                  ],
+                  "output_style": [
+                    "photorealistic film aesthetic",
+                    "no text or symbols in image"
+                  ],
+                  "style": [
+                    "photorealistic",
+                    "high-fidelity-texture",
+                    "muted-color-palette",
+                    "soft-diffused-lighting",
+                    "documentary-style"
+                  ],
+                  "subject": {
+                    "body_traits": [
+                      "male protagonist林远, mid-20s, sharp observant eyes behind black-rimmed glasses",
+                      "pensive and sincere expression with a hint of fatigue",
+                      "posture is upright but cautious, hands tucked into deep pockets of a dark trench coat",
+                      "uses Image 0 for facial and physical reference"
+                    ],
+                    "outfit": [
+                      "dark textured trench coat, worn-in appearance",
+                      "simple neutral-toned sweater underneath",
+                      "old leather messenger bag with visible wear and tear"
+                    ],
+                    "pose": [
+                      "standing in the center of the dilapidated station hall",
+                      "body facing forward towards the shadow, observing the environment",
+                      "one hand slightly inside pocket, ready to take out his notebook"
+                    ]
+                  },
+                  "tags": [
+                    "realistic",
+                    "cinematic",
+                    "melancholic",
+                    "atmospheric",
+                    "grainy-film-texture"
+                  ]
+                },
+                "scene_text_hash": "05b9c4fec4561f92001112b2fe4ec484",
+                "style": "default",
+                "url": "/image_cache/ceab4167805a8417a66f12a4e6c0cc4b.png",
+                "width": 1920
+              },
+              "previousSceneText": "潮湿的雾气顺着驿站破碎的窗棂渗入，空气中弥漫着陈旧纸张与霉烂木头的气味。我推开那扇沉重的木门，指尖触碰到门框上积攒的厚重灰尘，指腹留下一道灰黑的痕迹。驿站大厅里，原本供旅人休憩的桌椅被堆叠成山，杂乱的纸箱与废弃的铁轨零件占据了大部分空间。我背着那只磨损严重的旧皮包，黑框眼镜后的双眼在昏暗中微微眯起，试图捕捉这片混乱中的秩序。\n\n“谁在那儿？”一声粗粝的咳嗽声从阴影处传来。\n\n守门人老陈正坐在角落的火炉旁，手里攥着一根干瘪的烟斗，他那双浑浊的眼睛警惕地盯着我，仿佛我是一个闯入禁地的窃贼。我停下脚步，习惯性地将手揣进深色风衣的口袋里，指尖触碰到那本记录着小镇往事的笔记。我没有急于解释，而是环顾四周，目光落在窗外那条锈迹斑斑、被杂草掩埋的旧铁轨上。这里的一切都在衰败，却又在某种沉默中固执地保留着最后的尊严。我深吸一口气，整理了一下领口，试图让自己的声音听起来平稳而诚恳：“我是林远，受托回来整理这里的档案。我知道这地方快要拆了，但有些东西，总得有人记下来。”"
+            },
+            "start_ts": 1777632106.3987327,
+            "end_ts": 1777632127.0776424,
+            "provider_events": {
+              "event_count": 12,
+              "queue_wait_ms": {
+                "count": 12,
+                "min": 0.0,
+                "max": 4701.0,
+                "mean": 2318.833,
+                "median": 2315.0,
+                "p95": 4701.0
+              },
+              "latency_ms": {
+                "count": 6,
+                "min": 4475.0,
+                "max": 4982.0,
+                "mean": 4683.5,
+                "median": 4665.0,
+                "p95": 4933.75
+              },
+              "llm_success_count": 6,
+              "image_success_count": 0,
+              "request_thread_event_count": 0,
+              "provider_429_count": 0,
+              "provider_timeout_count": 0,
+              "shared_backoff_wait_ms_total": 0,
+              "retry_heavy_event_count": 0,
+              "main_character_event_count": 0,
+              "scene_image_event_count": 0
+            }
+          }
+        ],
+        "attempt_count": 1,
+        "request_elapsed_s": 20.679,
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "success",
+        "has_scene": true,
+        "has_image": true,
+        "selected_option_index": 0,
+        "selected_option_text": "询问老陈关于档案册缺失的细节，并尝试与其沟通。",
+        "input_scene_id": "8431879153767155324_-6483247161943031725",
+        "inferred_cache_result": "likely_miss_or_partial",
+        "used_updated_flow_state": true,
+        "cache_hit_reason": "waited_request_scene_text_completed_no_image",
+        "cache_miss_reason": "request_scene_generation_in_progress",
+        "global_state_key_drift_detected": true,
+        "scene_id_mismatch_detected": true,
+        "selected_option_mismatch_detected": false,
+        "current_options_key_drift_detected": false,
+        "benchmark_diagnostics": {
+          "cache_hit_reason": "waited_request_scene_text_completed_no_image",
+          "cache_miss_reason": "request_scene_generation_in_progress",
+          "current_options_key_drift_detected": false,
+          "global_state_key_drift_detected": true,
+          "placeholder": false,
+          "previous_scene_id": "initial",
+          "recomputed_scene_cache_exists": false,
+          "recomputed_scene_id": "-6911034034732343137_-6483247161943031725",
+          "request_current_options_count": 2,
+          "request_current_options_hash": "90b570a38062df0dbed246f3166183e7",
+          "request_flow_worldline_hash": "27e3fb8ae2ed7c5d21462dfc73d48e61",
+          "request_global_state_hash": "91064e3102d35a9ab4bcdcbd9af494f0",
+          "request_option_at_index": "询问老陈关于档案册缺失的细节，并尝试与其沟通。",
+          "request_option_index": 0,
+          "request_option_text": "询问老陈关于档案册缺失的细节，并尝试与其沟通。",
+          "request_scene_cache_exists": true,
+          "request_scene_cache_meta": {
+            "canonical_scene_id": "-3252833061525417727_-6483247161943031725",
+            "current_options_hash": "90b570a38062df0dbed246f3166183e7",
+            "current_options_preview": [
+              "询问老陈关于档案册缺失的细节，并尝试与其沟通。",
+              "观察驿站屋顶的漏雨情况，寻找修缮的切入点以获取信任。"
+            ],
+            "flow_worldline_hash": "cc691995abda7798fd6dd38a43f76c25",
+            "global_state_hash": "f219700c3ea9aef0a49f44695d62ab77",
+            "option_count": 2,
+            "parent_scene_id": null,
+            "scene_id": "8431879153767155324_-6483247161943031725"
+          },
+          "request_scene_id": "8431879153767155324_-6483247161943031725",
+          "resolution_path": "wait_for_request_scene_cache_text_only",
+          "response_has_image": true,
+          "response_has_scene": true,
+          "response_scene_id": "4234571984834232670_613229797421529578",
+          "response_status": "success",
+          "scene_id_mismatch_detected": true,
+          "selected_option_mismatch_detected": false
+        }
+      },
+      "full_ready": {
+        "text_ready_ts": 1777632127.0776424,
+        "text_ready_elapsed_s": 20.679,
+        "image_ready_ts": 1777632127.0776424,
+        "image_ready_elapsed_s": 20.679,
+        "full_ready_ts": 1777632127.0776424,
+        "full_ready_elapsed_s": 20.679,
+        "image_probe": {
+          "status": "success",
+          "source": "generate-option",
+          "image": {
+            "cached": true,
+            "height": 1080,
+            "image_type": "story_scene",
+            "prompt": "scene-duanqiao-old-chen-dialogue, realistic, cinematic, melancholy, film-grain, atmospheric, photorealistic, film noir inspired, high detail, muted color palette, dramatic shadows, male protagonist using Image 0, young man with a weary yet observant expression, pale skin reflecting the dim interior light, slight tension in the shoulders, standing with a posture of restrained empathy, worn textured wool coat in earth tones, a simple scarf loosely wrapped around the neck, dark trousers with subtle signs of travel wear, standing in the foreground facing slightly toward the center, hands slightly clenched, showing signs of cold-induced stiffness, gaze directed at the cluttered floor and the old papers, body language conveys a mix of anxiety and helplessness, 8K detailed facial features, sharp focus on eyes reflecting the flickering firelight, lip color naturally muted, soft shadows emphasizing the contours of the face, expression of quiet sorrow and deep contemplation, dark brown hair with slightly messy texture, root fixation coefficient 0.8, tip swing amplitude 5cm, color layering: main color dark brown, secondary color charcoal, highlight soft amber from fire, shadow deep black, wind speed 0.2m/s, turbulence intensity 1%, heavy wool fabric with visible weave, slight fabric tension at the shoulders, matte finish on all clothing surfaces, dimly lit interior of an old station, weathered wooden floorboards with dust and debris, piles of scattered, yellowing archive papers on the floor, a rustic iron stove with dying embers, foggy window pane visible in the distance showing a dark, damp night, 老陈-配角1 sitting near the stove, holding an old pipe, wearing a weathered, thick, dark-colored sweater, face deeply lined with age and exhaustion, flickering warm firelight casting long, dancing shadows, visible dust particles floating in the air, damp, misty atmosphere permeating the room, warm amber from firelight, deep shadows in cool grey-blue tones, faded beige and sepia for the archive papers, muted earth tones for clothing, low-key lighting, strong contrast between the warm fire light and the cold surrounding shadows, side-lit facial features on protagonist, type medium shot, lens 35mm, aperture f/2.0, depth_of_field shallow focus on the protagonist and old papers, flash none, grain distinctive 35mm film grain, texture realistic fabric and weathered wood texture, protagonist positioned on the left, looking toward the center, 老陈-配角1 seated on the right, forming a triangle with the fire source, focal point on the interaction between the two characters and the scattered papers, action constraints: avoid direct eye contact between characters to emphasize distance, cinematic realism, no text or symbols in image, wistful nostalgia, gentle decay, quiet, heavy sadness, emotional resonance, sense of irreversible loss, no text, no symbols, no garbled characters, no words",
+            "scene_text_hash": "4931991869363fc350729ebaf19c54fc",
+            "style": "default",
+            "url": "/image_cache/1636ec17796892df0336c07e366d9437.png",
+            "width": 1920
+          },
+          "attempt_count": 0
+        },
+        "ready_mode": "direct_in_generate_option",
+        "attribution": {
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "provider_retry_heavy_count": 0,
+          "provider_backoff_wait_ms_total": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0,
+          "image_probe_attempt_count": 0,
+          "main_character_contention_suspected": false
+        }
+      },
+      "placeholder": false,
+      "transport_success": true,
+      "strict_success": true,
+      "failure_bucket": null,
+      "cache_path_classification": "direct_real_scene",
+      "cache_hit_reason": "waited_request_scene_text_completed_no_image",
+      "cache_miss_reason": "request_scene_generation_in_progress",
+      "global_state_key_drift_detected": true,
+      "scene_id_mismatch_detected": true,
+      "selected_option_mismatch_detected": false,
+      "success": true
+    }
+  ]
+}

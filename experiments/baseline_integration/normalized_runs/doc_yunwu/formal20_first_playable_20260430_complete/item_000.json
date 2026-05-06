@@ -1,0 +1,146 @@
+{
+  "baseline_id": "doc",
+  "benchmark_id": "DNQBV1_001",
+  "run_id": "formal20_first_playable_20260430",
+  "mode": "first_playable",
+  "input_bundle": {
+    "original_dn_item": {
+      "benchmark_id": "DNQBV1_001",
+      "theme_id": 1,
+      "theme": "边陲驿站夜谈录",
+      "image_style": {
+        "type": "realistic"
+      },
+      "expected_genre": "现实边陲叙事",
+      "expected_tone": "克制、怀旧、微苦",
+      "must_have_constraints": [
+        "世界观必须围绕边陲驿站生存与人情展开",
+        "首段剧情应能自然引出一条可推进的现实冲突",
+        "至少返回 2 个具体可执行选项",
+        "场景图应与写实风格一致"
+      ],
+      "forbidden_issues": [
+        "现代互联网术语突兀混入",
+        "调试文本或报错文本外泄",
+        "图像 prompt 出现 URL 或 data:image",
+        "人物设定串场到其他作品"
+      ],
+      "focus": "full-set coverage: 现实边陲叙事",
+      "_subset_focus": "full-set coverage: 现实边陲叙事"
+    },
+    "doc_prompt": "Premise seed: 边陲驿站夜谈录\nGenre: 现实边陲叙事\nTone: 克制、怀旧、微苦\nWrite a long-form interactive story opening that could be expanded with a detailed outline.\nMust-have constraints:\n- 世界观必须围绕边陲驿站生存与人情展开\n- 首段剧情应能自然引出一条可推进的现实冲突\n- 至少返回 2 个具体可执行选项\n- 场景图应与写实风格一致\nForbidden issues:\n- 现代互联网术语突兀混入\n- 调试文本或报错文本外泄\n- 图像 prompt 出现 URL 或 data:image\n- 人物设定串场到其他作品\n",
+    "outline_seed": [
+      "Opening setup for 边陲驿站夜谈录 in a 现实边陲叙事 frame with a 克制、怀旧、微苦 tone.",
+      "Introduce the protagonist's immediate role, pressure, and conflict around: 世界观必须围绕边陲驿站生存与人情展开.",
+      "Reveal one concrete obstacle or tradeoff the player must respond to next.",
+      "End the first turn with 2-3 actionable next steps that can continue the story."
+    ],
+    "mode": "first_playable",
+    "baseline_params": {
+      "execution_mode": "cloud",
+      "doc_repo": "D:\\Projects\\DN\\baselines\\DOC",
+      "doc_data_dir": "D:\\Projects\\DN\\baselines\\DOC\\doc_data"
+    }
+  },
+  "raw_output": {
+    "execution_mode": "cloud",
+    "doc_upstream_executed": false,
+    "doc_api_adapter": "yunwu_chat_completions",
+    "provider": "yunwu",
+    "provider_config_prefix": "Origin_Segment_Analyst",
+    "provider_base_url": "https://yunwu.ai/v1",
+    "provider_model": "gemini-3.1-flash-lite-preview",
+    "request": {
+      "model": "gemini-3.1-flash-lite-preview",
+      "temperature": 0.7,
+      "top_p": 0.9,
+      "max_tokens": 900,
+      "response_format": {
+        "type": "json_object"
+      }
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are the DOC long-form story baseline adapted for DN playable-latency evaluation. Write concise, grounded, continuation-ready interactive fiction. Do not include debugging text, URLs, or commentary outside JSON."
+      },
+      {
+        "role": "user",
+        "content": "Convert this DN benchmark item into a DOC-style playable baseline output.\nPreserve DOC's premise -> outline -> story-opening semantics, but return only a playable first response.\nRun mode: first_playable\n\nDOC prompt:\nPremise seed: 边陲驿站夜谈录\nGenre: 现实边陲叙事\nTone: 克制、怀旧、微苦\nWrite a long-form interactive story opening that could be expanded with a detailed outline.\nMust-have constraints:\n- 世界观必须围绕边陲驿站生存与人情展开\n- 首段剧情应能自然引出一条可推进的现实冲突\n- 至少返回 2 个具体可执行选项\n- 场景图应与写实风格一致\nForbidden issues:\n- 现代互联网术语突兀混入\n- 调试文本或报错文本外泄\n- 图像 prompt 出现 URL 或 data:image\n- 人物设定串场到其他作品\n\nOutline seed:\n1. Opening setup for 边陲驿站夜谈录 in a 现实边陲叙事 frame with a 克制、怀旧、微苦 tone.\n2. Introduce the protagonist's immediate role, pressure, and conflict around: 世界观必须围绕边陲驿站生存与人情展开.\n3. Reveal one concrete obstacle or tradeoff the player must respond to next.\n4. End the first turn with 2-3 actionable next steps that can continue the story.\n\nReturn strict JSON with this shape and no markdown fences:\n{\n  \"scene_setup\": \"string\",\n  \"player_state\": \"string\",\n  \"narrative_response\": \"string\",\n  \"candidate_actions\": [\n    \"string\"\n  ],\n  \"suggested_next_step\": \"string\",\n  \"supports_next_turn\": true\n}"
+      }
+    ],
+    "response": {
+      "id": "chatcmpl-20260430170241932683471hNU0rNpN",
+      "model": "gemini-3.1-flash-lite-preview",
+      "object": "chat.completion",
+      "created": 1777539780,
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"scene_setup\": \"一座位于西北戈壁边缘的废弃驿站，风沙常年侵蚀着土坯墙面。屋内陈设简陋，只有一台老旧的无线电台和几盏昏黄的煤油灯。空气中弥漫着陈年旱烟与干草的味道，窗外是无尽的荒原与凄冷的月色。\",\n  \"player_state\": \"你是一名驻守在边陲驿站的守夜人，负责维护这片荒原上唯一的信号中继点。你感到疲惫，且驿站的补给已告急，而今晚的无线电讯号中夹杂着一段模糊的求救信号，似乎来自几十公里外的一支迷途商队。\",\n  \"narrative_response\": \"风沙拍打着窗棂，发出如同指甲抓挠木板的细碎声响。你手中的搪瓷杯早已凉透，杯底沉淀着一层厚厚的茶垢。无线电台的频率波动了一下，那阵刺耳的电流声中，断断续续地传来一个年轻男人的声音：‘……补给车……侧翻在枯井附近……坐标偏差……请求支援……’。你知道，如果现在出发，你的燃料储备只够往返，且今晚的强风暴随时可能将你困在荒原。如果你选择无视，这个声音很快就会彻底湮没在沙暴的轰鸣中。\",\n  \"candidate_actions\": [\n    \"检查燃料与备用物资，准备越野车出发搜救。\",\n    \"尝试通过无线电确认对方具体坐标，并告知补给匮乏的现状。\",\n    \"保持沉默，关闭无线电，优先维护驿站的防风设施以自保。\"\n  ],\n  \"suggested_next_step\": \"基于你的选择，故事将进入搜救过程中的生存抉择，或在驿站内面对风暴带来的物理损害与心理博弈。\",\n  \"supports_next_turn\": true\n}"
+          },
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 441,
+        "completion_tokens": 443,
+        "total_tokens": 884,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "text_tokens": 441,
+          "audio_tokens": 0,
+          "image_tokens": 0
+        },
+        "completion_tokens_details": {
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0
+        },
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "input_tokens_details": null,
+        "claude_cache_creation_5_m_tokens": 0,
+        "claude_cache_creation_1_h_tokens": 0
+      }
+    }
+  },
+  "success": true,
+  "latency_s": 20.663,
+  "playable": true,
+  "playable_components": {
+    "scene_setup": true,
+    "player_state": true,
+    "advanceable_next_step": true,
+    "interaction_continuity": true
+  },
+  "normalized_response": {
+    "scene_setup": "一座位于西北戈壁边缘的废弃驿站，风沙常年侵蚀着土坯墙面。屋内陈设简陋，只有一台老旧的无线电台和几盏昏黄的煤油灯。空气中弥漫着陈年旱烟与干草的味道，窗外是无尽的荒原与凄冷的月色。",
+    "player_state": "你是一名驻守在边陲驿站的守夜人，负责维护这片荒原上唯一的信号中继点。你感到疲惫，且驿站的补给已告急，而今晚的无线电讯号中夹杂着一段模糊的求救信号，似乎来自几十公里外的一支迷途商队。",
+    "narrative_response": "风沙拍打着窗棂，发出如同指甲抓挠木板的细碎声响。你手中的搪瓷杯早已凉透，杯底沉淀着一层厚厚的茶垢。无线电台的频率波动了一下，那阵刺耳的电流声中，断断续续地传来一个年轻男人的声音：‘……补给车……侧翻在枯井附近……坐标偏差……请求支援……’。你知道，如果现在出发，你的燃料储备只够往返，且今晚的强风暴随时可能将你困在荒原。如果你选择无视，这个声音很快就会彻底湮没在沙暴的轰鸣中。",
+    "candidate_actions": [
+      "检查燃料与备用物资，准备越野车出发搜救。",
+      "尝试通过无线电确认对方具体坐标，并告知补给匮乏的现状。",
+      "保持沉默，关闭无线电，优先维护驿站的防风设施以自保。"
+    ],
+    "suggested_next_step": "基于你的选择，故事将进入搜救过程中的生存抉择，或在驿站内面对风暴带来的物理损害与心理博弈。",
+    "is_playable": true,
+    "request_start_ts": 1777539760.5586658,
+    "first_playable_ts": 1777539781.2213047,
+    "finish_ts": 1777539781.2213047,
+    "error": null
+  },
+  "failure_reason": null,
+  "notes": [
+    "DOC-style artifact generated through Yunwu OpenAI-compatible chat/completions API."
+  ],
+  "resource_usage": {
+    "execution_mode": "cloud"
+  },
+  "agent_profile": {
+    "runner": "run_doc.py",
+    "adapter_style": "doc_cloud_yunwu_v1"
+  }
+}

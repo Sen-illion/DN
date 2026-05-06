@@ -1,0 +1,206 @@
+2026-04-17 20:29:58,368 INFO 启用模型: annotator-a (gemini-2.5-pro)
+2026-04-17 20:29:58,373 INFO 启用模型: gemini-2.5-pro (gemini-2.5-pro)
+2026-04-17 20:29:58,541 INFO 共 1 局待评 | 每模型每局 3 次打分
+2026-04-17 20:29:58,541 INFO ── [1/1] game_1776417898_zthbu3 ──
+2026-04-17 20:29:58,541 INFO   → 模型 annotator-a 打分中...
+2026-04-17 20:30:17,283 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 20:30:33,499 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 20:30:51,887 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 20:30:51,903 INFO     annotator-a: [5, 5, 4] → 均值 4.667
+2026-04-17 20:30:51,903 INFO   → 模型 gemini-2.5-pro 打分中...
+2026-04-17 20:31:11,181 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 20:31:29,845 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 20:31:45,259 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 20:31:45,261 INFO     gemini-2.5-pro: [5, 4, 5] → 均值 4.667
+2026-04-17 20:31:45,261 INFO ======== 皮尔逊相关（模型间，基于各样本平均分）========
+2026-04-17 20:31:45,261 INFO   annotator-a vs gemini-2.5-pro: r = N/A
+2026-04-17 20:31:45,261 INFO ======== 皮尔逊相关（同模型多次打分稳定性）========
+2026-04-17 20:31:45,261 INFO   [annotator-a] run1 vs run2: r = N/A
+2026-04-17 20:31:45,261 INFO   [annotator-a] run1 vs run3: r = N/A
+2026-04-17 20:31:45,261 INFO   [annotator-a] run2 vs run3: r = N/A
+2026-04-17 20:31:45,261 INFO   [gemini-2.5-pro] run1 vs run2: r = N/A
+2026-04-17 20:31:45,261 INFO   [gemini-2.5-pro] run1 vs run3: r = N/A
+2026-04-17 20:31:45,261 INFO   [gemini-2.5-pro] run2 vs run3: r = N/A
+2026-04-17 20:31:45,796 INFO 已写入: C:\Users\User\Desktop\DN-main\DN-experiment-2.0\eval_results\coherence_20260417_122958.xlsx
+2026-04-17 20:56:54,369 INFO 启用模型: claude-sonnet-4-20250514 (claude-sonnet-4-20250514)
+2026-04-17 20:56:54,369 INFO 启用模型: gemini-2.5-flash (gemini-2.5-flash)
+2026-04-17 20:56:54,369 INFO 启用模型: gpt-4o (gpt-4o)
+2026-04-17 20:56:54,459 INFO 共 10 局待评 | 每模型每局 3 次打分
+2026-04-17 20:56:54,459 INFO ── [1/10] game_1776417898_zthbu3 ──
+2026-04-17 20:56:54,459 INFO   → 模型 claude-sonnet-4-20250514 打分中...
+2026-04-17 20:57:03,217 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 20:57:10,631 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 20:57:15,708 INFO Retrying request to /chat/completions in 0.410035 seconds
+2026-04-17 20:57:24,505 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 20:57:24,505 INFO     claude-sonnet-4-20250514: [4, 4, 4] → 均值 4.000
+2026-04-17 20:57:24,505 INFO   → 模型 gemini-2.5-flash 打分中...
+2026-04-17 20:57:29,601 INFO Retrying request to /chat/completions in 0.443456 seconds
+2026-04-17 20:57:43,016 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 20:58:00,142 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 20:58:09,810 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 20:58:09,813 INFO     gemini-2.5-flash: [5, 5, 5] → 均值 5.000
+2026-04-17 20:58:09,813 INFO   → 模型 gpt-4o 打分中...
+2026-04-17 20:58:27,734 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 20:58:32,295 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 20:58:35,229 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 20:58:35,229 INFO     gpt-4o: [4, 5, 5] → 均值 4.667
+2026-04-17 20:58:35,229 INFO ── [2/10] game_1776418186_406ktb ──
+2026-04-17 20:58:35,229 INFO   → 模型 claude-sonnet-4-20250514 打分中...
+2026-04-17 20:58:41,292 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 20:58:51,591 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 20:58:56,728 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 20:58:56,728 INFO     claude-sonnet-4-20250514: [4, 4, 4] → 均值 4.000
+2026-04-17 20:58:56,728 INFO   → 模型 gemini-2.5-flash 打分中...
+2026-04-17 20:59:09,834 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 20:59:17,965 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 20:59:31,919 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 20:59:31,921 INFO     gemini-2.5-flash: [5, 5, 5] → 均值 5.000
+2026-04-17 20:59:31,922 INFO   → 模型 gpt-4o 打分中...
+2026-04-17 20:59:37,278 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 20:59:44,256 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 20:59:47,810 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 20:59:47,810 INFO     gpt-4o: [5, 5, 5] → 均值 5.000
+2026-04-17 20:59:47,810 INFO ── [3/10] game_1776418475_uho8y4 ──
+2026-04-17 20:59:47,810 INFO   → 模型 claude-sonnet-4-20250514 打分中...
+2026-04-17 20:59:54,419 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:00:00,327 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:00:06,539 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:00:06,539 INFO     claude-sonnet-4-20250514: [4, 4, 4] → 均值 4.000
+2026-04-17 21:00:06,539 INFO   → 模型 gemini-2.5-flash 打分中...
+2026-04-17 21:00:18,121 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:00:30,373 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:00:38,093 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:00:38,096 INFO     gemini-2.5-flash: [5, 5, 5] → 均值 5.000
+2026-04-17 21:00:38,097 INFO   → 模型 gpt-4o 打分中...
+2026-04-17 21:00:42,904 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:00:46,238 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:00:50,889 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:00:50,889 INFO     gpt-4o: [5, 5, 5] → 均值 5.000
+2026-04-17 21:00:50,893 INFO ── [4/10] game_1776418746_kox2ae ──
+2026-04-17 21:00:50,893 INFO   → 模型 claude-sonnet-4-20250514 打分中...
+2026-04-17 21:00:58,166 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:01:04,592 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:01:13,500 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:01:13,502 INFO     claude-sonnet-4-20250514: [4, 4, 4] → 均值 4.000
+2026-04-17 21:01:13,502 INFO   → 模型 gemini-2.5-flash 打分中...
+2026-04-17 21:01:21,776 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:01:31,793 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:01:46,824 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:01:46,824 INFO     gemini-2.5-flash: [5, 5, 5] → 均值 5.000
+2026-04-17 21:01:46,824 INFO   → 模型 gpt-4o 打分中...
+2026-04-17 21:01:50,530 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:01:53,654 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:02:02,417 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:02:02,420 INFO     gpt-4o: [5, 5, 5] → 均值 5.000
+2026-04-17 21:02:02,421 INFO ── [5/10] game_1776419026_gflx4b ──
+2026-04-17 21:02:02,421 INFO   → 模型 claude-sonnet-4-20250514 打分中...
+2026-04-17 21:02:08,841 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:02:16,475 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:02:22,094 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:02:22,094 INFO     claude-sonnet-4-20250514: [4, 4, 4] → 均值 4.000
+2026-04-17 21:02:22,094 INFO   → 模型 gemini-2.5-flash 打分中...
+2026-04-17 21:02:38,200 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:02:47,059 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:02:59,117 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:02:59,119 INFO     gemini-2.5-flash: [5, 5, 5] → 均值 5.000
+2026-04-17 21:02:59,119 INFO   → 模型 gpt-4o 打分中...
+2026-04-17 21:03:02,931 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:03:06,061 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:03:11,630 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:03:11,630 INFO     gpt-4o: [4, 4, 5] → 均值 4.333
+2026-04-17 21:03:11,630 INFO ── [6/10] game_1776419299_05783f ──
+2026-04-17 21:03:11,630 INFO   → 模型 claude-sonnet-4-20250514 打分中...
+2026-04-17 21:03:20,527 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:03:29,746 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:03:36,699 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:03:36,702 INFO     claude-sonnet-4-20250514: [4, 4, 4] → 均值 4.000
+2026-04-17 21:03:36,702 INFO   → 模型 gemini-2.5-flash 打分中...
+2026-04-17 21:03:46,045 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:03:54,611 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:04:04,461 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:04:04,463 INFO     gemini-2.5-flash: [5, 5, 5] → 均值 5.000
+2026-04-17 21:04:04,463 INFO   → 模型 gpt-4o 打分中...
+2026-04-17 21:04:08,341 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:04:11,885 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:04:15,011 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:04:15,015 INFO     gpt-4o: [5, 5, 5] → 均值 5.000
+2026-04-17 21:04:15,015 INFO ── [7/10] game_1776419613_9xv3kl ──
+2026-04-17 21:04:15,016 INFO   → 模型 claude-sonnet-4-20250514 打分中...
+2026-04-17 21:04:21,232 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:04:28,951 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:04:35,943 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:04:35,945 INFO     claude-sonnet-4-20250514: [4, 4, 4] → 均值 4.000
+2026-04-17 21:04:35,945 INFO   → 模型 gemini-2.5-flash 打分中...
+2026-04-17 21:04:47,118 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:04:57,515 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:05:02,594 INFO Retrying request to /chat/completions in 0.426340 seconds
+2026-04-17 21:05:14,677 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:05:14,680 INFO     gemini-2.5-flash: [5, 5, 5] → 均值 5.000
+2026-04-17 21:05:14,680 INFO   → 模型 gpt-4o 打分中...
+2026-04-17 21:05:17,881 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:05:21,045 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:05:24,173 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:05:24,176 INFO     gpt-4o: [5, 5, 5] → 均值 5.000
+2026-04-17 21:05:24,176 INFO ── [8/10] game_1776419881_ts9erz ──
+2026-04-17 21:05:24,176 INFO   → 模型 claude-sonnet-4-20250514 打分中...
+2026-04-17 21:05:36,310 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:05:47,338 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:05:55,626 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:05:55,628 INFO     claude-sonnet-4-20250514: [4, 4, 4] → 均值 4.000
+2026-04-17 21:05:55,629 INFO   → 模型 gemini-2.5-flash 打分中...
+2026-04-17 21:06:09,393 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:06:25,129 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:06:37,980 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:06:37,982 INFO     gemini-2.5-flash: [5, 5, 5] → 均值 5.000
+2026-04-17 21:06:37,983 INFO   → 模型 gpt-4o 打分中...
+2026-04-17 21:06:41,513 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:06:47,012 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:06:51,548 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:06:51,551 INFO     gpt-4o: [5, 5, 5] → 均值 5.000
+2026-04-17 21:06:51,551 INFO ── [9/10] game_1776420257_ds08b3 ──
+2026-04-17 21:06:51,551 INFO   → 模型 claude-sonnet-4-20250514 打分中...
+2026-04-17 21:06:57,573 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:07:03,467 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:07:12,317 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:07:12,318 INFO     claude-sonnet-4-20250514: [2, 3, 3] → 均值 2.667
+2026-04-17 21:07:12,319 INFO   → 模型 gemini-2.5-flash 打分中...
+2026-04-17 21:07:26,572 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:07:43,913 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:08:03,433 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:08:03,435 INFO     gemini-2.5-flash: [5, 5, 5] → 均值 5.000
+2026-04-17 21:08:03,436 INFO   → 模型 gpt-4o 打分中...
+2026-04-17 21:08:06,859 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:08:11,135 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:08:17,496 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:08:17,500 INFO     gpt-4o: [3, 4, 4] → 均值 3.667
+2026-04-17 21:08:17,500 INFO ── [10/10] game_1776420517_nejnnv ──
+2026-04-17 21:08:17,501 INFO   → 模型 claude-sonnet-4-20250514 打分中...
+2026-04-17 21:08:23,370 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:08:29,323 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:08:34,521 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:08:34,525 INFO     claude-sonnet-4-20250514: [4, 4, 4] → 均值 4.000
+2026-04-17 21:08:34,526 INFO   → 模型 gemini-2.5-flash 打分中...
+2026-04-17 21:08:46,112 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:08:57,312 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:09:12,367 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:09:12,370 INFO     gemini-2.5-flash: [5, 5, 5] → 均值 5.000
+2026-04-17 21:09:12,370 INFO   → 模型 gpt-4o 打分中...
+2026-04-17 21:09:16,301 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:09:19,951 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:09:22,968 INFO HTTP Request: POST https://yunwu.ai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-17 21:09:22,970 INFO     gpt-4o: [5, 5, 5] → 均值 5.000
+2026-04-17 21:09:22,980 INFO ======== 皮尔逊相关（模型间，基于各样本平均分）========
+2026-04-17 21:09:22,980 INFO   claude-sonnet-4-20250514 vs gemini-2.5-flash: r = N/A
+2026-04-17 21:09:22,981 INFO   claude-sonnet-4-20250514 vs gpt-4o: r = 0.8669
+2026-04-17 21:09:22,983 INFO   gemini-2.5-flash vs gpt-4o: r = N/A
+2026-04-17 21:09:22,983 INFO ======== 皮尔逊相关（同模型多次打分稳定性）========
+2026-04-17 21:09:22,983 INFO   [claude-sonnet-4-20250514] run1 vs run2: r = 1.0000
+2026-04-17 21:09:22,983 INFO   [claude-sonnet-4-20250514] run1 vs run3: r = 1.0000
+2026-04-17 21:09:22,984 INFO   [claude-sonnet-4-20250514] run2 vs run3: r = 1.0000
+2026-04-17 21:09:22,984 INFO   [gemini-2.5-flash] run1 vs run2: r = N/A
+2026-04-17 21:09:22,984 INFO   [gemini-2.5-flash] run1 vs run3: r = N/A
+2026-04-17 21:09:22,984 INFO   [gemini-2.5-flash] run2 vs run3: r = N/A
+2026-04-17 21:09:22,985 INFO   [gpt-4o] run1 vs run2: r = 0.8292
+2026-04-17 21:09:22,985 INFO   [gpt-4o] run1 vs run3: r = 0.8040
+2026-04-17 21:09:22,985 INFO   [gpt-4o] run2 vs run3: r = 0.6667
+2026-04-17 21:09:24,053 INFO 已写入: C:\Users\User\Desktop\DN-main\DN-experiment-2.0\eval_results\coherence_20260417_125654.xlsx

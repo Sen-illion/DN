@@ -1,0 +1,2509 @@
+{
+  "summary": {
+    "experiment_name": "benchmark_v15_fullready_nextturn_normal20",
+    "profile": "fullready_strict",
+    "sample_size": 2,
+    "read_wait_s": 0.0,
+    "suite_start_ts": 1777628229.4267159,
+    "suite_end_ts": 1777628455.394456,
+    "first_click_elapsed_s": {
+      "count": 2,
+      "min": 53.299,
+      "max": 56.035,
+      "mean": 54.667,
+      "median": 54.667,
+      "p95": 55.898
+    },
+    "first_click_setup_success_count": 2,
+    "second_click_elapsed_s": {
+      "count": 1,
+      "min": 23.434,
+      "max": 23.434,
+      "mean": 23.434,
+      "median": 23.434,
+      "p95": 23.434
+    },
+    "second_click_success_count": 1,
+    "transport_success_count": 1,
+    "strict_success_count": 1,
+    "likely_hit_count": 0,
+    "likely_hit_rate": 0.0,
+    "failure_bucket_counts": {
+      "second_click_timeout": 1
+    },
+    "placeholder_strict_fail_count": 0,
+    "cache_hit_reason_counts": {
+      "waited_request_scene_text_completed_no_image": 1
+    },
+    "cache_miss_reason_counts": {
+      "request_scene_generation_in_progress": 1
+    },
+    "global_state_key_drift_detected_count": 1,
+    "scene_id_mismatch_detected_count": 1,
+    "selected_option_mismatch_detected_count": 0,
+    "aborted": false,
+    "success_count": 1,
+    "text_ready_elapsed_s": {
+      "count": 2,
+      "min": 23.434,
+      "max": 60.034,
+      "mean": 41.734,
+      "median": 41.734,
+      "p95": 58.204
+    },
+    "image_ready_elapsed_s": {
+      "count": 1,
+      "min": 23.434,
+      "max": 23.434,
+      "mean": 23.434,
+      "median": 23.434,
+      "p95": 23.434
+    },
+    "full_ready_elapsed_s": {
+      "count": 1,
+      "min": 23.434,
+      "max": 23.434,
+      "mean": 23.434,
+      "median": 23.434,
+      "p95": 23.434
+    },
+    "real_scene_count": 1,
+    "real_scene_rate": 0.5,
+    "direct_image_count": 1,
+    "async_image_count": 0,
+    "placeholder_count": 0,
+    "placeholder_rate": 0.0,
+    "direct_image_rate": 0.5,
+    "async_image_rate": 0.0,
+    "provider_retry_heavy_count": 0,
+    "provider_429_count": 0,
+    "provider_timeout_count": 0,
+    "provider_backoff_wait_ms_total": 0,
+    "main_character_contention_suspected_count": 0,
+    "notes": "v15 strict normal20 treats first click as setup with a separate timeout budget, while preserving 60s fail-fast guards for second-click request, scene-image wait, and the measured next-turn full-ready path."
+  },
+  "runs": [
+    {
+      "benchmark_id": "DNQBV1_001",
+      "theme_id": 1,
+      "theme": "边陲驿站夜谈录",
+      "read_wait_s": 0.0,
+      "full_ready_mode": true,
+      "profile": "fullready_strict",
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 23.871,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过修缮部分核心管道，勉强维持了驿站的最低供暖需求，虽然因此耗尽了积蓄，导致离开隘口的计划被迫推迟，但成功挽救了滞留的旅人，赢得了初步的信任与口碑。",
+                  "main_conflict": "驿站面临严重的供暖系统故障，主角必须在有限的资金下，决定是优先修复取暖设备以留住即将冻死的流浪者，还是将资金用于购买离开隘口的通行证。这不仅是生存物资的博弈，更是主角在“维持驿站运营的责任感”与“个人渴望逃离的私心”之间的剧烈冲突。 矛盾结束条件：主角通过修缮部分核心管道，勉强维持了驿站的最低供暖需求，虽然因此耗尽了积蓄，导致离开隘口的计划被迫推迟，但成功挽救了滞留的旅人，赢得了初步的信任与口碑。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角拒绝了商人的非法交易，选择举报其行径，虽然因此失去了获得巨额报酬的机会，但也避开了潜在的法律风险，确保了驿站的合法经营权，却也让主角彻底失去了短期内离开隘口的经济基础。",
+                  "main_conflict": "一名携带违禁物资的商人试图通过驿站转运货物，并以高额报酬诱惑主角。主角陷入了道德困境：接受报酬可以瞬间攒够离开的资金，但极可能引来当地治安官的搜查，导致驿站被封禁，甚至连累在此避难的弱势群体。 矛盾结束条件：主角拒绝了商人的非法交易，选择举报其行径，虽然因此失去了获得巨额报酬的机会，但也避开了潜在的法律风险，确保了驿站的合法经营权，却也让主角彻底失去了短期内离开隘口的经济基础。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角选择资助了老常客，老常客最终获救，但驿站因资金链断裂被迫转让，主角未能离开隘口，而是选择留在当地成为一名普通的修理工，虽然梦想未圆，却在小镇中获得了一份平静而踏实的生活。 主角规范信息： 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：青年 所属作品(中)：边陲驿站夜谈录 所属作品(英)：The Frontier Station Chronicles 标志性外观关键词：黑色短发、粗布工装、眼神沉稳、指尖薄茧、略显疲惫、沉默寡言、常戴旧围巾、身形瘦削、朴素、内敛、坚韧、沧桑感",
+                  "main_conflict": "冬日临近尾声，主角终于攒够了离开的资金，但此时驿站的一位老常客因病急需一笔钱救命。主角面临最后的抉择：是带着积蓄远走高飞，实现多年夙愿，还是将钱全部捐出，让驿站彻底失去翻修机会，自己则继续困在这片荒原中。 矛盾结束条件：主角选择资助了老常客，老常客最终获救，但驿站因资金链断裂被迫转让，主角未能离开隘口，而是选择留在当地成为一名普通的修理工，虽然梦想未圆，却在小镇中获得了一份平静而踏实的生活。 主角规范信息： 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：青年 所属作品(中)：边陲驿站夜谈录 所属作品(英)：The Frontier Station Chronicles 标志性外观关键词：黑色短发、粗布工装、眼神沉稳、指尖薄茧、略显疲惫、沉默寡言、常戴旧围巾、身形瘦削、朴素、内敛、坚韧、沧桑感"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为一部沉浸式叙事模拟游戏，采用低饱和度的写实美术风格，配以环境音效驱动的极简UI。游戏强调生活质感，通过琐碎的日常对话与非线性叙事，构建出一种带有粗粝感与温情的现实主义氛围，旨在让玩家在平淡的经营与交流中，体悟生活得失的必然性。",
+              "main_quest": "完成边陲驿站夜谈录的任务，达成游戏目标",
+              "protagonist_ability": "主角拥有一种被称为“共情倾听”的特质，源于其长期在嘈杂环境中磨练出的敏锐感知力。通过专注地倾听与观察，主角能捕捉到旅人言语间的逻辑漏洞与情绪暗流，从而还原出对方隐藏的真实诉求或过往经历。此能力并非超自然力量，而是一种深度沟通技巧，使用时会消耗主角的精力值，且无法改变对方既定的命运轨迹，仅能作为一种辅助手段，帮助主角在有限的互动中做出更符合现实逻辑的选择。",
+              "world_basic_setting": "故事发生在一座名为“凛冬隘口”的边陲驿站，这里是连接繁华内陆与荒凉北境的唯一枢纽。世界处于工业化进程的中后期，社会阶层固化，资源分配极度不均。隘口常年风雪交加，往来者多为背井离乡的淘金客、寻找生计的流浪者或被时代遗忘的旧时代手艺人。这里没有宏大的史诗战争，只有永不停歇的生存博弈。社会文化呈现出一种“流动的孤岛”特征，人们在此短暂驻足，交换情报与物资，随后又匆匆奔赴各自的命运。关键事件“大停电”后，隘口的能源供应变得极其不稳定，驿站成为了方圆百里唯一的避风港，但也因此成为了各方势力压榨与底层民众求生的缩影。在这里，历史不是教科书上的宏大叙事，而是墙壁上斑驳的划痕与旅人酒杯中未竟的叹息。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "environment": {}
+            },
+            "game_id": "game_1777628229_yn4ati",
+            "image_style": {
+              "type": "realistic"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "gender": "男性"
+            },
+            "tone": "normal_ending",
+            "user_theme": "边陲驿站夜谈录"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "request_payload": {
+          "gameTheme": "边陲驿站夜谈录",
+          "protagonistAttr": {},
+          "difficulty": "normal",
+          "toneKey": "normal_ending",
+          "imageStyle": {
+            "type": "realistic"
+          },
+          "_benchmark_profile": "fullready_strict",
+          "_benchmark_measurement": "fullready_nextturn",
+          "_benchmark_read_wait_s": 0.0
+        },
+        "start_ts": 1777628229.42672,
+        "end_ts": 1777628253.2972293,
+        "provider_events": {
+          "event_count": 4,
+          "queue_wait_ms": {
+            "count": 4,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 1,
+            "min": 23853.0,
+            "max": 23853.0,
+            "mean": 23853.0,
+            "median": 23853.0,
+            "p95": 23853.0
+          },
+          "llm_success_count": 1,
+          "image_success_count": 0,
+          "request_thread_event_count": 2,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0
+        },
+        "status": "success",
+        "game_id": "game_1777628229_yn4ati"
+      },
+      "long_tail_attribution": {
+        "provider_429_count": 0,
+        "provider_timeout_count": 0,
+        "provider_retry_heavy_count": 0,
+        "provider_backoff_wait_ms_total": 0,
+        "main_character_event_count": 0,
+        "scene_image_event_count": 0,
+        "image_probe_attempt_count": 0,
+        "main_character_contention_suspected": false
+      },
+      "first_click": {
+        "http_status": 200,
+        "elapsed_s": 56.035,
+        "response_json": {
+          "benchmark_diagnostics": {
+            "cache_hit_reason": null,
+            "cache_miss_reason": null,
+            "current_options_key_drift_detected": false,
+            "global_state_key_drift_detected": false,
+            "placeholder": false,
+            "previous_scene_id": null,
+            "recomputed_scene_cache_exists": false,
+            "recomputed_scene_id": null,
+            "request_current_options_count": 0,
+            "request_current_options_hash": "d751713988987e9331980363e24189ce",
+            "request_flow_worldline_hash": "cc691995abda7798fd6dd38a43f76c25",
+            "request_global_state_hash": "855694c3da65987ee68c28431c23cacb",
+            "request_option_at_index": null,
+            "request_option_index": 0,
+            "request_option_text": "开始游戏",
+            "request_scene_cache_exists": false,
+            "request_scene_id": null,
+            "resolution_path": null,
+            "response_has_image": true,
+            "response_has_scene": true,
+            "response_scene_id": "-143839302299983375_-3195508799980136297",
+            "response_status": "success",
+            "scene_id_mismatch_detected": false,
+            "selected_option_mismatch_detected": false
+          },
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "",
+              "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：凛冬隘口的风雪像是有生命一般，疯狂地撞击着驿站那扇早已变形的木门。我紧了紧脖子上那条磨损严重的旧围巾，指尖传来的寒意提醒我，壁炉里的炭火又快燃尽了。我叫林远，这间破旧驿站的守门人。空气中弥漫着一股陈旧的煤灰味和潮湿的霉味，这是这片被遗忘之地的特有气息。\n\n“林远，那批过境的物资还没到吗？”老修理工陈叔缩在角落的阴影里，他那双布满老茧的手正机械地摆弄着一个坏掉的压力表。他的声音沙哑，带着一丝对生存的疲惫。我没回头，只是盯着窗外那片混沌的白，低声回应：“风雪封路了，陈叔。今晚恐怕没人能过得来。”\n\n墙壁上那道深深的划痕，是我记录停电天数的第142天。我感到一阵心悸，那种长期被困在狭窄空间里的压抑感如潮水般涌来。我必须在天亮前修好供暖管道的阀门，否则今晚滞留的几个旅人，恐怕熬不过这零下三十度的严寒。我摸了摸口袋里仅剩的几枚硬币，那是攒了许久准备离开隘口的盘缠，此刻却成了我唯一的筹码。"
+            },
+            "deep_background_links": {},
+            "flow_update": {},
+            "next_options": [
+              "动用积蓄购买煤炭，优先保障旅人的供暖。",
+              "尝试拆解驿站的备用零件，寻找陈叔提及的管道隐患。"
+            ],
+            "scene": "凛冬隘口的风雪像是有生命一般，疯狂地撞击着驿站那扇早已变形的木门。我紧了紧脖子上那条磨损严重的旧围巾，指尖传来的寒意提醒我，壁炉里的炭火又快燃尽了。我叫林远，这间破旧驿站的守门人。空气中弥漫着一股陈旧的煤灰味和潮湿的霉味，这是这片被遗忘之地的特有气息。\n\n“林远，那批过境的物资还没到吗？”老修理工陈叔缩在角落的阴影里，他那双布满老茧的手正机械地摆弄着一个坏掉的压力表。他的声音沙哑，带着一丝对生存的疲惫。我没回头，只是盯着窗外那片混沌的白，低声回应：“风雪封路了，陈叔。今晚恐怕没人能过得来。”\n\n墙壁上那道深深的划痕，是我记录停电天数的第142天。我感到一阵心悸，那种长期被困在狭窄空间里的压抑感如潮水般涌来。我必须在天亮前修好供暖管道的阀门，否则今晚滞留的几个旅人，恐怕熬不过这零下三十度的严寒。我摸了摸口袋里仅剩的几枚硬币，那是攒了许久准备离开隘口的盘缠，此刻却成了我唯一的筹码。",
+            "sceneId": "-143839302299983375_-3195508799980136297",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-winter-pass-station-interior, realistic, gritty-realism, cinematic-narrative, melancholic, low-saturation, photorealistic, highly-detailed-texture, cinematic-lighting, atmospheric-depth, matte-finish, male protagonist林远, mid-30s, weary eyes with sharp empathetic focus, pale skin reflecting harsh indoor conditions, expression of quiet exhaustion and grim determination, leaning slightly against a wooden counter, worn-out wool scarf with frayed edges around the neck, heavy coarse-textured dark brown work jacket, layered dirty linen shirt underneath, protagonist using Image 0, facing slightly away from the window, shoulders hunched from cold and stress, fingers clutching the edge of the wooden counter, looking towards 陈叔-配角1 who sits in the shadow, 8K detailed facial features, visible skin pores and subtle stubble, eyes showing a mix of empathy and survival fatigue, lip color naturally muted and slightly chapped, soft cold shadows accentuating facial structure, messy dark brown hair with slight frosting from snow, root fixation coefficient 0.7, tip swing amplitude 5cm, color layering: main color #3D3B38, secondary color #2A2826, highlight #5A5855, shadow #1A1816, wind speed 0.2m/s, turbulence intensity 5%, heavy wool texture with visible fiber wear, scratches and grime on fabric surface, slight fabric flutter from cold drafts through door gaps, dilapidated station interior with peeling paint, distorted wooden door vibrating from heavy wind outside, wall with deep, rhythmic scratch marks indicating 142 days, cluttered workbench with rusted tools and an old pressure gauge, dim flickering wall lamp casting long, distorted shadows, 陈叔-配角1 sitting in the dark corner, hunched over a broken pressure gauge, wearing grease-stained work clothes, dust motes dancing in weak light, faint swirling snow particles near the door frame, hazy atmosphere filled with coal dust and dampness, desaturated palette, muted grays, cold blues, and deep browns, faint, dying orange glow from a nearly extinguished fireplace, charcoal black shadows, harsh, cold blue ambient light filtering through the door gap, weak, flickering yellow light from the fireplace off-screen, high contrast between the cold exterior and the dim, stuffy interior, type medium shot, lens 35mm, aperture f/4.0, depth_of_field sharp focus on protagonist, soft bokeh on the background tools, flash none, grain fine film grain texture, texture gritty realism, protagonist positioned in the left third of the frame, 陈叔-配角1 in the dark background on the right, leading lines from the wooden door towards the protagonist, action constraints: protagonist looking towards the listener, body language conveying internal pressure, realistic cinematic narrative, no text or symbols in image, no watermarks or logos, claustrophobic pressure, existential weariness, somber reality, lingering sense of isolation, no text, no symbols, no garbled characters, no words",
+              "prompt_json": {
+                "camera": {
+                  "aperture": "f/4.0",
+                  "depth_of_field": "sharp focus on protagonist, soft bokeh on the background tools",
+                  "flash": "none",
+                  "grain": "fine film grain texture",
+                  "lens": "35mm",
+                  "texture": "gritty realism",
+                  "type": "medium shot"
+                },
+                "clothing_system": [
+                  "heavy wool texture with visible fiber wear",
+                  "scratches and grime on fabric surface",
+                  "slight fabric flutter from cold drafts through door gaps"
+                ],
+                "color_restriction": [
+                  "desaturated palette",
+                  "muted grays, cold blues, and deep browns",
+                  "faint, dying orange glow from a nearly extinguished fireplace",
+                  "charcoal black shadows"
+                ],
+                "composition": [
+                  "protagonist positioned in the left third of the frame",
+                  "陈叔-配角1 in the dark background on the right",
+                  "leading lines from the wooden door towards the protagonist",
+                  "action constraints: protagonist looking towards the listener, body language conveying internal pressure"
+                ],
+                "environment": {
+                  "background": [
+                    "dilapidated station interior with peeling paint",
+                    "distorted wooden door vibrating from heavy wind outside",
+                    "wall with deep, rhythmic scratch marks indicating 142 days",
+                    "cluttered workbench with rusted tools and an old pressure gauge",
+                    "dim flickering wall lamp casting long, distorted shadows"
+                  ],
+                  "characters": [
+                    "陈叔-配角1 sitting in the dark corner, hunched over a broken pressure gauge, wearing grease-stained work clothes"
+                  ],
+                  "effects": [
+                    "dust motes dancing in weak light",
+                    "faint swirling snow particles near the door frame",
+                    "hazy atmosphere filled with coal dust and dampness"
+                  ]
+                },
+                "face_system": [
+                  "8K detailed facial features",
+                  "visible skin pores and subtle stubble",
+                  "eyes showing a mix of empathy and survival fatigue",
+                  "lip color naturally muted and slightly chapped",
+                  "soft cold shadows accentuating facial structure"
+                ],
+                "hair_system": [
+                  "messy dark brown hair with slight frosting from snow",
+                  "root fixation coefficient 0.7",
+                  "tip swing amplitude 5cm",
+                  "color layering: main color #3D3B38, secondary color #2A2826, highlight #5A5855, shadow #1A1816",
+                  "wind speed 0.2m/s",
+                  "turbulence intensity 5%"
+                ],
+                "label": "scene-winter-pass-station-interior",
+                "lighting": [
+                  "harsh, cold blue ambient light filtering through the door gap",
+                  "weak, flickering yellow light from the fireplace off-screen",
+                  "high contrast between the cold exterior and the dim, stuffy interior"
+                ],
+                "mood": [
+                  "claustrophobic pressure",
+                  "existential weariness",
+                  "somber reality",
+                  "lingering sense of isolation"
+                ],
+                "output_style": [
+                  "realistic cinematic narrative",
+                  "no text or symbols in image",
+                  "no watermarks or logos"
+                ],
+                "style": [
+                  "photorealistic",
+                  "highly-detailed-texture",
+                  "cinematic-lighting",
+                  "atmospheric-depth",
+                  "matte-finish"
+                ],
+                "subject": {
+                  "body_traits": [
+                    "male protagonist林远, mid-30s",
+                    "weary eyes with sharp empathetic focus",
+                    "pale skin reflecting harsh indoor conditions",
+                    "expression of quiet exhaustion and grim determination",
+                    "leaning slightly against a wooden counter"
+                  ],
+                  "outfit": [
+                    "worn-out wool scarf with frayed edges around the neck",
+                    "heavy coarse-textured dark brown work jacket",
+                    "layered dirty linen shirt underneath"
+                  ],
+                  "pose": [
+                    "protagonist using Image 0, facing slightly away from the window",
+                    "shoulders hunched from cold and stress",
+                    "fingers clutching the edge of the wooden counter",
+                    "looking towards 陈叔-配角1 who sits in the shadow"
+                  ]
+                },
+                "tags": [
+                  "realistic",
+                  "gritty-realism",
+                  "cinematic-narrative",
+                  "melancholic",
+                  "low-saturation"
+                ]
+              },
+              "scene_text_hash": "1fe17aa05b2aa47b5201f58863209e54",
+              "style": "default",
+              "url": "/image_cache/33d15323584c68040579775deb1799a9.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "request_payload": {
+          "option": "开始游戏",
+          "optionIndex": 0,
+          "sceneId": null,
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过修缮部分核心管道，勉强维持了驿站的最低供暖需求，虽然因此耗尽了积蓄，导致离开隘口的计划被迫推迟，但成功挽救了滞留的旅人，赢得了初步的信任与口碑。",
+                  "main_conflict": "驿站面临严重的供暖系统故障，主角必须在有限的资金下，决定是优先修复取暖设备以留住即将冻死的流浪者，还是将资金用于购买离开隘口的通行证。这不仅是生存物资的博弈，更是主角在“维持驿站运营的责任感”与“个人渴望逃离的私心”之间的剧烈冲突。 矛盾结束条件：主角通过修缮部分核心管道，勉强维持了驿站的最低供暖需求，虽然因此耗尽了积蓄，导致离开隘口的计划被迫推迟，但成功挽救了滞留的旅人，赢得了初步的信任与口碑。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角拒绝了商人的非法交易，选择举报其行径，虽然因此失去了获得巨额报酬的机会，但也避开了潜在的法律风险，确保了驿站的合法经营权，却也让主角彻底失去了短期内离开隘口的经济基础。",
+                  "main_conflict": "一名携带违禁物资的商人试图通过驿站转运货物，并以高额报酬诱惑主角。主角陷入了道德困境：接受报酬可以瞬间攒够离开的资金，但极可能引来当地治安官的搜查，导致驿站被封禁，甚至连累在此避难的弱势群体。 矛盾结束条件：主角拒绝了商人的非法交易，选择举报其行径，虽然因此失去了获得巨额报酬的机会，但也避开了潜在的法律风险，确保了驿站的合法经营权，却也让主角彻底失去了短期内离开隘口的经济基础。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角选择资助了老常客，老常客最终获救，但驿站因资金链断裂被迫转让，主角未能离开隘口，而是选择留在当地成为一名普通的修理工，虽然梦想未圆，却在小镇中获得了一份平静而踏实的生活。 主角规范信息： 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：青年 所属作品(中)：边陲驿站夜谈录 所属作品(英)：The Frontier Station Chronicles 标志性外观关键词：黑色短发、粗布工装、眼神沉稳、指尖薄茧、略显疲惫、沉默寡言、常戴旧围巾、身形瘦削、朴素、内敛、坚韧、沧桑感",
+                  "main_conflict": "冬日临近尾声，主角终于攒够了离开的资金，但此时驿站的一位老常客因病急需一笔钱救命。主角面临最后的抉择：是带着积蓄远走高飞，实现多年夙愿，还是将钱全部捐出，让驿站彻底失去翻修机会，自己则继续困在这片荒原中。 矛盾结束条件：主角选择资助了老常客，老常客最终获救，但驿站因资金链断裂被迫转让，主角未能离开隘口，而是选择留在当地成为一名普通的修理工，虽然梦想未圆，却在小镇中获得了一份平静而踏实的生活。 主角规范信息： 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：青年 所属作品(中)：边陲驿站夜谈录 所属作品(英)：The Frontier Station Chronicles 标志性外观关键词：黑色短发、粗布工装、眼神沉稳、指尖薄茧、略显疲惫、沉默寡言、常戴旧围巾、身形瘦削、朴素、内敛、坚韧、沧桑感"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为一部沉浸式叙事模拟游戏，采用低饱和度的写实美术风格，配以环境音效驱动的极简UI。游戏强调生活质感，通过琐碎的日常对话与非线性叙事，构建出一种带有粗粝感与温情的现实主义氛围，旨在让玩家在平淡的经营与交流中，体悟生活得失的必然性。",
+              "main_quest": "完成边陲驿站夜谈录的任务，达成游戏目标",
+              "protagonist_ability": "主角拥有一种被称为“共情倾听”的特质，源于其长期在嘈杂环境中磨练出的敏锐感知力。通过专注地倾听与观察，主角能捕捉到旅人言语间的逻辑漏洞与情绪暗流，从而还原出对方隐藏的真实诉求或过往经历。此能力并非超自然力量，而是一种深度沟通技巧，使用时会消耗主角的精力值，且无法改变对方既定的命运轨迹，仅能作为一种辅助手段，帮助主角在有限的互动中做出更符合现实逻辑的选择。",
+              "world_basic_setting": "故事发生在一座名为“凛冬隘口”的边陲驿站，这里是连接繁华内陆与荒凉北境的唯一枢纽。世界处于工业化进程的中后期，社会阶层固化，资源分配极度不均。隘口常年风雪交加，往来者多为背井离乡的淘金客、寻找生计的流浪者或被时代遗忘的旧时代手艺人。这里没有宏大的史诗战争，只有永不停歇的生存博弈。社会文化呈现出一种“流动的孤岛”特征，人们在此短暂驻足，交换情报与物资，随后又匆匆奔赴各自的命运。关键事件“大停电”后，隘口的能源供应变得极其不稳定，驿站成为了方圆百里唯一的避风港，但也因此成为了各方势力压榨与底层民众求生的缩影。在这里，历史不是教科书上的宏大叙事，而是墙壁上斑驳的划痕与旅人酒杯中未竟的叹息。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "environment": {}
+            },
+            "game_id": "game_1777628229_yn4ati",
+            "image_style": {
+              "type": "realistic"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "gender": "男性"
+            },
+            "tone": "normal_ending",
+            "user_theme": "边陲驿站夜谈录",
+            "_benchmark_profile": "fullready_strict",
+            "_benchmark_measurement": "fullready_nextturn",
+            "_benchmark_read_wait_s": 0.0
+          }
+        },
+        "start_ts": 1777628253.361931,
+        "end_ts": 1777628309.3965847,
+        "provider_events": {
+          "event_count": 9,
+          "queue_wait_ms": {
+            "count": 9,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 5,
+            "min": 7477.0,
+            "max": 17918.0,
+            "mean": 12587.0,
+            "median": 12909.0,
+            "p95": 17229.8
+          },
+          "llm_success_count": 4,
+          "image_success_count": 0,
+          "request_thread_event_count": 0,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 2,
+          "scene_image_event_count": 0
+        },
+        "attempts": [
+          {
+            "http_status": 200,
+            "elapsed_s": 56.035,
+            "response_json": {
+              "benchmark_diagnostics": {
+                "cache_hit_reason": null,
+                "cache_miss_reason": null,
+                "current_options_key_drift_detected": false,
+                "global_state_key_drift_detected": false,
+                "placeholder": false,
+                "previous_scene_id": null,
+                "recomputed_scene_cache_exists": false,
+                "recomputed_scene_id": null,
+                "request_current_options_count": 0,
+                "request_current_options_hash": "d751713988987e9331980363e24189ce",
+                "request_flow_worldline_hash": "cc691995abda7798fd6dd38a43f76c25",
+                "request_global_state_hash": "855694c3da65987ee68c28431c23cacb",
+                "request_option_at_index": null,
+                "request_option_index": 0,
+                "request_option_text": "开始游戏",
+                "request_scene_cache_exists": false,
+                "request_scene_id": null,
+                "resolution_path": null,
+                "response_has_image": true,
+                "response_has_scene": true,
+                "response_scene_id": "-143839302299983375_-3195508799980136297",
+                "response_status": "success",
+                "scene_id_mismatch_detected": false,
+                "selected_option_mismatch_detected": false
+              },
+              "message": "选项剧情生成成功！",
+              "optionData": {
+                "checkpoint_packet": {
+                  "chapter": "chapter1",
+                  "chapter_conflict_solved": false,
+                  "quest_delta": "",
+                  "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：凛冬隘口的风雪像是有生命一般，疯狂地撞击着驿站那扇早已变形的木门。我紧了紧脖子上那条磨损严重的旧围巾，指尖传来的寒意提醒我，壁炉里的炭火又快燃尽了。我叫林远，这间破旧驿站的守门人。空气中弥漫着一股陈旧的煤灰味和潮湿的霉味，这是这片被遗忘之地的特有气息。\n\n“林远，那批过境的物资还没到吗？”老修理工陈叔缩在角落的阴影里，他那双布满老茧的手正机械地摆弄着一个坏掉的压力表。他的声音沙哑，带着一丝对生存的疲惫。我没回头，只是盯着窗外那片混沌的白，低声回应：“风雪封路了，陈叔。今晚恐怕没人能过得来。”\n\n墙壁上那道深深的划痕，是我记录停电天数的第142天。我感到一阵心悸，那种长期被困在狭窄空间里的压抑感如潮水般涌来。我必须在天亮前修好供暖管道的阀门，否则今晚滞留的几个旅人，恐怕熬不过这零下三十度的严寒。我摸了摸口袋里仅剩的几枚硬币，那是攒了许久准备离开隘口的盘缠，此刻却成了我唯一的筹码。"
+                },
+                "deep_background_links": {},
+                "flow_update": {},
+                "next_options": [
+                  "动用积蓄购买煤炭，优先保障旅人的供暖。",
+                  "尝试拆解驿站的备用零件，寻找陈叔提及的管道隐患。"
+                ],
+                "scene": "凛冬隘口的风雪像是有生命一般，疯狂地撞击着驿站那扇早已变形的木门。我紧了紧脖子上那条磨损严重的旧围巾，指尖传来的寒意提醒我，壁炉里的炭火又快燃尽了。我叫林远，这间破旧驿站的守门人。空气中弥漫着一股陈旧的煤灰味和潮湿的霉味，这是这片被遗忘之地的特有气息。\n\n“林远，那批过境的物资还没到吗？”老修理工陈叔缩在角落的阴影里，他那双布满老茧的手正机械地摆弄着一个坏掉的压力表。他的声音沙哑，带着一丝对生存的疲惫。我没回头，只是盯着窗外那片混沌的白，低声回应：“风雪封路了，陈叔。今晚恐怕没人能过得来。”\n\n墙壁上那道深深的划痕，是我记录停电天数的第142天。我感到一阵心悸，那种长期被困在狭窄空间里的压抑感如潮水般涌来。我必须在天亮前修好供暖管道的阀门，否则今晚滞留的几个旅人，恐怕熬不过这零下三十度的严寒。我摸了摸口袋里仅剩的几枚硬币，那是攒了许久准备离开隘口的盘缠，此刻却成了我唯一的筹码。",
+                "sceneId": "-143839302299983375_-3195508799980136297",
+                "scene_image": {
+                  "cached": true,
+                  "height": 1080,
+                  "image_type": "story_scene",
+                  "prompt": "scene-winter-pass-station-interior, realistic, gritty-realism, cinematic-narrative, melancholic, low-saturation, photorealistic, highly-detailed-texture, cinematic-lighting, atmospheric-depth, matte-finish, male protagonist林远, mid-30s, weary eyes with sharp empathetic focus, pale skin reflecting harsh indoor conditions, expression of quiet exhaustion and grim determination, leaning slightly against a wooden counter, worn-out wool scarf with frayed edges around the neck, heavy coarse-textured dark brown work jacket, layered dirty linen shirt underneath, protagonist using Image 0, facing slightly away from the window, shoulders hunched from cold and stress, fingers clutching the edge of the wooden counter, looking towards 陈叔-配角1 who sits in the shadow, 8K detailed facial features, visible skin pores and subtle stubble, eyes showing a mix of empathy and survival fatigue, lip color naturally muted and slightly chapped, soft cold shadows accentuating facial structure, messy dark brown hair with slight frosting from snow, root fixation coefficient 0.7, tip swing amplitude 5cm, color layering: main color #3D3B38, secondary color #2A2826, highlight #5A5855, shadow #1A1816, wind speed 0.2m/s, turbulence intensity 5%, heavy wool texture with visible fiber wear, scratches and grime on fabric surface, slight fabric flutter from cold drafts through door gaps, dilapidated station interior with peeling paint, distorted wooden door vibrating from heavy wind outside, wall with deep, rhythmic scratch marks indicating 142 days, cluttered workbench with rusted tools and an old pressure gauge, dim flickering wall lamp casting long, distorted shadows, 陈叔-配角1 sitting in the dark corner, hunched over a broken pressure gauge, wearing grease-stained work clothes, dust motes dancing in weak light, faint swirling snow particles near the door frame, hazy atmosphere filled with coal dust and dampness, desaturated palette, muted grays, cold blues, and deep browns, faint, dying orange glow from a nearly extinguished fireplace, charcoal black shadows, harsh, cold blue ambient light filtering through the door gap, weak, flickering yellow light from the fireplace off-screen, high contrast between the cold exterior and the dim, stuffy interior, type medium shot, lens 35mm, aperture f/4.0, depth_of_field sharp focus on protagonist, soft bokeh on the background tools, flash none, grain fine film grain texture, texture gritty realism, protagonist positioned in the left third of the frame, 陈叔-配角1 in the dark background on the right, leading lines from the wooden door towards the protagonist, action constraints: protagonist looking towards the listener, body language conveying internal pressure, realistic cinematic narrative, no text or symbols in image, no watermarks or logos, claustrophobic pressure, existential weariness, somber reality, lingering sense of isolation, no text, no symbols, no garbled characters, no words",
+                  "prompt_json": {
+                    "camera": {
+                      "aperture": "f/4.0",
+                      "depth_of_field": "sharp focus on protagonist, soft bokeh on the background tools",
+                      "flash": "none",
+                      "grain": "fine film grain texture",
+                      "lens": "35mm",
+                      "texture": "gritty realism",
+                      "type": "medium shot"
+                    },
+                    "clothing_system": [
+                      "heavy wool texture with visible fiber wear",
+                      "scratches and grime on fabric surface",
+                      "slight fabric flutter from cold drafts through door gaps"
+                    ],
+                    "color_restriction": [
+                      "desaturated palette",
+                      "muted grays, cold blues, and deep browns",
+                      "faint, dying orange glow from a nearly extinguished fireplace",
+                      "charcoal black shadows"
+                    ],
+                    "composition": [
+                      "protagonist positioned in the left third of the frame",
+                      "陈叔-配角1 in the dark background on the right",
+                      "leading lines from the wooden door towards the protagonist",
+                      "action constraints: protagonist looking towards the listener, body language conveying internal pressure"
+                    ],
+                    "environment": {
+                      "background": [
+                        "dilapidated station interior with peeling paint",
+                        "distorted wooden door vibrating from heavy wind outside",
+                        "wall with deep, rhythmic scratch marks indicating 142 days",
+                        "cluttered workbench with rusted tools and an old pressure gauge",
+                        "dim flickering wall lamp casting long, distorted shadows"
+                      ],
+                      "characters": [
+                        "陈叔-配角1 sitting in the dark corner, hunched over a broken pressure gauge, wearing grease-stained work clothes"
+                      ],
+                      "effects": [
+                        "dust motes dancing in weak light",
+                        "faint swirling snow particles near the door frame",
+                        "hazy atmosphere filled with coal dust and dampness"
+                      ]
+                    },
+                    "face_system": [
+                      "8K detailed facial features",
+                      "visible skin pores and subtle stubble",
+                      "eyes showing a mix of empathy and survival fatigue",
+                      "lip color naturally muted and slightly chapped",
+                      "soft cold shadows accentuating facial structure"
+                    ],
+                    "hair_system": [
+                      "messy dark brown hair with slight frosting from snow",
+                      "root fixation coefficient 0.7",
+                      "tip swing amplitude 5cm",
+                      "color layering: main color #3D3B38, secondary color #2A2826, highlight #5A5855, shadow #1A1816",
+                      "wind speed 0.2m/s",
+                      "turbulence intensity 5%"
+                    ],
+                    "label": "scene-winter-pass-station-interior",
+                    "lighting": [
+                      "harsh, cold blue ambient light filtering through the door gap",
+                      "weak, flickering yellow light from the fireplace off-screen",
+                      "high contrast between the cold exterior and the dim, stuffy interior"
+                    ],
+                    "mood": [
+                      "claustrophobic pressure",
+                      "existential weariness",
+                      "somber reality",
+                      "lingering sense of isolation"
+                    ],
+                    "output_style": [
+                      "realistic cinematic narrative",
+                      "no text or symbols in image",
+                      "no watermarks or logos"
+                    ],
+                    "style": [
+                      "photorealistic",
+                      "highly-detailed-texture",
+                      "cinematic-lighting",
+                      "atmospheric-depth",
+                      "matte-finish"
+                    ],
+                    "subject": {
+                      "body_traits": [
+                        "male protagonist林远, mid-30s",
+                        "weary eyes with sharp empathetic focus",
+                        "pale skin reflecting harsh indoor conditions",
+                        "expression of quiet exhaustion and grim determination",
+                        "leaning slightly against a wooden counter"
+                      ],
+                      "outfit": [
+                        "worn-out wool scarf with frayed edges around the neck",
+                        "heavy coarse-textured dark brown work jacket",
+                        "layered dirty linen shirt underneath"
+                      ],
+                      "pose": [
+                        "protagonist using Image 0, facing slightly away from the window",
+                        "shoulders hunched from cold and stress",
+                        "fingers clutching the edge of the wooden counter",
+                        "looking towards 陈叔-配角1 who sits in the shadow"
+                      ]
+                    },
+                    "tags": [
+                      "realistic",
+                      "gritty-realism",
+                      "cinematic-narrative",
+                      "melancholic",
+                      "low-saturation"
+                    ]
+                  },
+                  "scene_text_hash": "1fe17aa05b2aa47b5201f58863209e54",
+                  "style": "default",
+                  "url": "/image_cache/33d15323584c68040579775deb1799a9.png",
+                  "width": 1920
+                }
+              },
+              "status": "success"
+            },
+            "request_payload": {
+              "option": "开始游戏",
+              "optionIndex": 0,
+              "sceneId": null,
+              "globalState": {
+                "core_worldview": {
+                  "chapters": {
+                    "chapter1": {
+                      "conflict_end_condition": "主角通过修缮部分核心管道，勉强维持了驿站的最低供暖需求，虽然因此耗尽了积蓄，导致离开隘口的计划被迫推迟，但成功挽救了滞留的旅人，赢得了初步的信任与口碑。",
+                      "main_conflict": "驿站面临严重的供暖系统故障，主角必须在有限的资金下，决定是优先修复取暖设备以留住即将冻死的流浪者，还是将资金用于购买离开隘口的通行证。这不仅是生存物资的博弈，更是主角在“维持驿站运营的责任感”与“个人渴望逃离的私心”之间的剧烈冲突。 矛盾结束条件：主角通过修缮部分核心管道，勉强维持了驿站的最低供暖需求，虽然因此耗尽了积蓄，导致离开隘口的计划被迫推迟，但成功挽救了滞留的旅人，赢得了初步的信任与口碑。"
+                    },
+                    "chapter2": {
+                      "conflict_end_condition": "主角拒绝了商人的非法交易，选择举报其行径，虽然因此失去了获得巨额报酬的机会，但也避开了潜在的法律风险，确保了驿站的合法经营权，却也让主角彻底失去了短期内离开隘口的经济基础。",
+                      "main_conflict": "一名携带违禁物资的商人试图通过驿站转运货物，并以高额报酬诱惑主角。主角陷入了道德困境：接受报酬可以瞬间攒够离开的资金，但极可能引来当地治安官的搜查，导致驿站被封禁，甚至连累在此避难的弱势群体。 矛盾结束条件：主角拒绝了商人的非法交易，选择举报其行径，虽然因此失去了获得巨额报酬的机会，但也避开了潜在的法律风险，确保了驿站的合法经营权，却也让主角彻底失去了短期内离开隘口的经济基础。"
+                    },
+                    "chapter3": {
+                      "conflict_end_condition": "主角选择资助了老常客，老常客最终获救，但驿站因资金链断裂被迫转让，主角未能离开隘口，而是选择留在当地成为一名普通的修理工，虽然梦想未圆，却在小镇中获得了一份平静而踏实的生活。 主角规范信息： 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：青年 所属作品(中)：边陲驿站夜谈录 所属作品(英)：The Frontier Station Chronicles 标志性外观关键词：黑色短发、粗布工装、眼神沉稳、指尖薄茧、略显疲惫、沉默寡言、常戴旧围巾、身形瘦削、朴素、内敛、坚韧、沧桑感",
+                      "main_conflict": "冬日临近尾声，主角终于攒够了离开的资金，但此时驿站的一位老常客因病急需一笔钱救命。主角面临最后的抉择：是带着积蓄远走高飞，实现多年夙愿，还是将钱全部捐出，让驿站彻底失去翻修机会，自己则继续困在这片荒原中。 矛盾结束条件：主角选择资助了老常客，老常客最终获救，但驿站因资金链断裂被迫转让，主角未能离开隘口，而是选择留在当地成为一名普通的修理工，虽然梦想未圆，却在小镇中获得了一份平静而踏实的生活。 主角规范信息： 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：青年 所属作品(中)：边陲驿站夜谈录 所属作品(英)：The Frontier Station Chronicles 标志性外观关键词：黑色短发、粗布工装、眼神沉稳、指尖薄茧、略显疲惫、沉默寡言、常戴旧围巾、身形瘦削、朴素、内敛、坚韧、沧桑感"
+                    }
+                  },
+                  "characters": {},
+                  "forces": {},
+                  "game_style": "本作为一部沉浸式叙事模拟游戏，采用低饱和度的写实美术风格，配以环境音效驱动的极简UI。游戏强调生活质感，通过琐碎的日常对话与非线性叙事，构建出一种带有粗粝感与温情的现实主义氛围，旨在让玩家在平淡的经营与交流中，体悟生活得失的必然性。",
+                  "main_quest": "完成边陲驿站夜谈录的任务，达成游戏目标",
+                  "protagonist_ability": "主角拥有一种被称为“共情倾听”的特质，源于其长期在嘈杂环境中磨练出的敏锐感知力。通过专注地倾听与观察，主角能捕捉到旅人言语间的逻辑漏洞与情绪暗流，从而还原出对方隐藏的真实诉求或过往经历。此能力并非超自然力量，而是一种深度沟通技巧，使用时会消耗主角的精力值，且无法改变对方既定的命运轨迹，仅能作为一种辅助手段，帮助主角在有限的互动中做出更符合现实逻辑的选择。",
+                  "world_basic_setting": "故事发生在一座名为“凛冬隘口”的边陲驿站，这里是连接繁华内陆与荒凉北境的唯一枢纽。世界处于工业化进程的中后期，社会阶层固化，资源分配极度不均。隘口常年风雪交加，往来者多为背井离乡的淘金客、寻找生计的流浪者或被时代遗忘的旧时代手艺人。这里没有宏大的史诗战争，只有永不停歇的生存博弈。社会文化呈现出一种“流动的孤岛”特征，人们在此短暂驻足，交换情报与物资，随后又匆匆奔赴各自的命运。关键事件“大停电”后，隘口的能源供应变得极其不稳定，驿站成为了方圆百里唯一的避风港，但也因此成为了各方势力压榨与底层民众求生的缩影。在这里，历史不是教科书上的宏大叙事，而是墙壁上斑驳的划痕与旅人酒杯中未竟的叹息。"
+                },
+                "flow_worldline": {
+                  "characters": {},
+                  "environment": {}
+                },
+                "game_id": "game_1777628229_yn4ati",
+                "image_style": {
+                  "type": "realistic"
+                },
+                "meta": {
+                  "detail_async": true
+                },
+                "protagonist_canonical": {
+                  "gender": "男性"
+                },
+                "tone": "normal_ending",
+                "user_theme": "边陲驿站夜谈录",
+                "_benchmark_profile": "fullready_strict",
+                "_benchmark_measurement": "fullready_nextturn",
+                "_benchmark_read_wait_s": 0.0
+              }
+            },
+            "start_ts": 1777628253.361931,
+            "end_ts": 1777628309.3965847,
+            "provider_events": {
+              "event_count": 9,
+              "queue_wait_ms": {
+                "count": 9,
+                "min": 0.0,
+                "max": 0.0,
+                "mean": 0.0,
+                "median": 0.0,
+                "p95": 0.0
+              },
+              "latency_ms": {
+                "count": 5,
+                "min": 7477.0,
+                "max": 17918.0,
+                "mean": 12587.0,
+                "median": 12909.0,
+                "p95": 17229.8
+              },
+              "llm_success_count": 4,
+              "image_success_count": 0,
+              "request_thread_event_count": 0,
+              "provider_429_count": 0,
+              "provider_timeout_count": 0,
+              "shared_backoff_wait_ms_total": 0,
+              "retry_heavy_event_count": 0,
+              "main_character_event_count": 2,
+              "scene_image_event_count": 0
+            }
+          }
+        ],
+        "attempt_count": 1,
+        "request_elapsed_s": 56.035,
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "success",
+        "has_scene": true,
+        "has_image": true,
+        "setup_success": true
+      },
+      "second_click": {
+        "http_status": null,
+        "elapsed_s": 60.034,
+        "response_json": {
+          "status": "timeout",
+          "message": "HTTPConnectionPool(host='127.0.0.1', port=5006): Read timed out. (read timeout=60)"
+        },
+        "request_payload": {
+          "option": "动用积蓄购买煤炭，优先保障旅人的供暖。",
+          "optionIndex": 0,
+          "sceneId": "-143839302299983375_-3195508799980136297",
+          "currentOptions": [
+            "动用积蓄购买煤炭，优先保障旅人的供暖。",
+            "尝试拆解驿站的备用零件，寻找陈叔提及的管道隐患。"
+          ],
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过修缮部分核心管道，勉强维持了驿站的最低供暖需求，虽然因此耗尽了积蓄，导致离开隘口的计划被迫推迟，但成功挽救了滞留的旅人，赢得了初步的信任与口碑。",
+                  "main_conflict": "驿站面临严重的供暖系统故障，主角必须在有限的资金下，决定是优先修复取暖设备以留住即将冻死的流浪者，还是将资金用于购买离开隘口的通行证。这不仅是生存物资的博弈，更是主角在“维持驿站运营的责任感”与“个人渴望逃离的私心”之间的剧烈冲突。 矛盾结束条件：主角通过修缮部分核心管道，勉强维持了驿站的最低供暖需求，虽然因此耗尽了积蓄，导致离开隘口的计划被迫推迟，但成功挽救了滞留的旅人，赢得了初步的信任与口碑。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角拒绝了商人的非法交易，选择举报其行径，虽然因此失去了获得巨额报酬的机会，但也避开了潜在的法律风险，确保了驿站的合法经营权，却也让主角彻底失去了短期内离开隘口的经济基础。",
+                  "main_conflict": "一名携带违禁物资的商人试图通过驿站转运货物，并以高额报酬诱惑主角。主角陷入了道德困境：接受报酬可以瞬间攒够离开的资金，但极可能引来当地治安官的搜查，导致驿站被封禁，甚至连累在此避难的弱势群体。 矛盾结束条件：主角拒绝了商人的非法交易，选择举报其行径，虽然因此失去了获得巨额报酬的机会，但也避开了潜在的法律风险，确保了驿站的合法经营权，却也让主角彻底失去了短期内离开隘口的经济基础。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角选择资助了老常客，老常客最终获救，但驿站因资金链断裂被迫转让，主角未能离开隘口，而是选择留在当地成为一名普通的修理工，虽然梦想未圆，却在小镇中获得了一份平静而踏实的生活。 主角规范信息： 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：青年 所属作品(中)：边陲驿站夜谈录 所属作品(英)：The Frontier Station Chronicles 标志性外观关键词：黑色短发、粗布工装、眼神沉稳、指尖薄茧、略显疲惫、沉默寡言、常戴旧围巾、身形瘦削、朴素、内敛、坚韧、沧桑感",
+                  "main_conflict": "冬日临近尾声，主角终于攒够了离开的资金，但此时驿站的一位老常客因病急需一笔钱救命。主角面临最后的抉择：是带着积蓄远走高飞，实现多年夙愿，还是将钱全部捐出，让驿站彻底失去翻修机会，自己则继续困在这片荒原中。 矛盾结束条件：主角选择资助了老常客，老常客最终获救，但驿站因资金链断裂被迫转让，主角未能离开隘口，而是选择留在当地成为一名普通的修理工，虽然梦想未圆，却在小镇中获得了一份平静而踏实的生活。 主角规范信息： 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：青年 所属作品(中)：边陲驿站夜谈录 所属作品(英)：The Frontier Station Chronicles 标志性外观关键词：黑色短发、粗布工装、眼神沉稳、指尖薄茧、略显疲惫、沉默寡言、常戴旧围巾、身形瘦削、朴素、内敛、坚韧、沧桑感"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为一部沉浸式叙事模拟游戏，采用低饱和度的写实美术风格，配以环境音效驱动的极简UI。游戏强调生活质感，通过琐碎的日常对话与非线性叙事，构建出一种带有粗粝感与温情的现实主义氛围，旨在让玩家在平淡的经营与交流中，体悟生活得失的必然性。",
+              "main_quest": "完成边陲驿站夜谈录的任务，达成游戏目标",
+              "protagonist_ability": "主角拥有一种被称为“共情倾听”的特质，源于其长期在嘈杂环境中磨练出的敏锐感知力。通过专注地倾听与观察，主角能捕捉到旅人言语间的逻辑漏洞与情绪暗流，从而还原出对方隐藏的真实诉求或过往经历。此能力并非超自然力量，而是一种深度沟通技巧，使用时会消耗主角的精力值，且无法改变对方既定的命运轨迹，仅能作为一种辅助手段，帮助主角在有限的互动中做出更符合现实逻辑的选择。",
+              "world_basic_setting": "故事发生在一座名为“凛冬隘口”的边陲驿站，这里是连接繁华内陆与荒凉北境的唯一枢纽。世界处于工业化进程的中后期，社会阶层固化，资源分配极度不均。隘口常年风雪交加，往来者多为背井离乡的淘金客、寻找生计的流浪者或被时代遗忘的旧时代手艺人。这里没有宏大的史诗战争，只有永不停歇的生存博弈。社会文化呈现出一种“流动的孤岛”特征，人们在此短暂驻足，交换情报与物资，随后又匆匆奔赴各自的命运。关键事件“大停电”后，隘口的能源供应变得极其不稳定，驿站成为了方圆百里唯一的避风港，但也因此成为了各方势力压榨与底层民众求生的缩影。在这里，历史不是教科书上的宏大叙事，而是墙壁上斑驳的划痕与旅人酒杯中未竟的叹息。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "environment": {},
+              "chapter_progress": 2.0
+            },
+            "game_id": "game_1777628229_yn4ati",
+            "image_style": {
+              "type": "realistic"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "gender": "男性"
+            },
+            "tone": "normal_ending",
+            "user_theme": "边陲驿站夜谈录",
+            "_benchmark_profile": "fullready_strict",
+            "_benchmark_measurement": "fullready_nextturn",
+            "_benchmark_read_wait_s": 0.0
+          },
+          "previousSceneId": "initial",
+          "previousSceneImage": {
+            "cached": true,
+            "height": 1080,
+            "image_type": "story_scene",
+            "prompt": "scene-winter-pass-station-interior, realistic, gritty-realism, cinematic-narrative, melancholic, low-saturation, photorealistic, highly-detailed-texture, cinematic-lighting, atmospheric-depth, matte-finish, male protagonist林远, mid-30s, weary eyes with sharp empathetic focus, pale skin reflecting harsh indoor conditions, expression of quiet exhaustion and grim determination, leaning slightly against a wooden counter, worn-out wool scarf with frayed edges around the neck, heavy coarse-textured dark brown work jacket, layered dirty linen shirt underneath, protagonist using Image 0, facing slightly away from the window, shoulders hunched from cold and stress, fingers clutching the edge of the wooden counter, looking towards 陈叔-配角1 who sits in the shadow, 8K detailed facial features, visible skin pores and subtle stubble, eyes showing a mix of empathy and survival fatigue, lip color naturally muted and slightly chapped, soft cold shadows accentuating facial structure, messy dark brown hair with slight frosting from snow, root fixation coefficient 0.7, tip swing amplitude 5cm, color layering: main color #3D3B38, secondary color #2A2826, highlight #5A5855, shadow #1A1816, wind speed 0.2m/s, turbulence intensity 5%, heavy wool texture with visible fiber wear, scratches and grime on fabric surface, slight fabric flutter from cold drafts through door gaps, dilapidated station interior with peeling paint, distorted wooden door vibrating from heavy wind outside, wall with deep, rhythmic scratch marks indicating 142 days, cluttered workbench with rusted tools and an old pressure gauge, dim flickering wall lamp casting long, distorted shadows, 陈叔-配角1 sitting in the dark corner, hunched over a broken pressure gauge, wearing grease-stained work clothes, dust motes dancing in weak light, faint swirling snow particles near the door frame, hazy atmosphere filled with coal dust and dampness, desaturated palette, muted grays, cold blues, and deep browns, faint, dying orange glow from a nearly extinguished fireplace, charcoal black shadows, harsh, cold blue ambient light filtering through the door gap, weak, flickering yellow light from the fireplace off-screen, high contrast between the cold exterior and the dim, stuffy interior, type medium shot, lens 35mm, aperture f/4.0, depth_of_field sharp focus on protagonist, soft bokeh on the background tools, flash none, grain fine film grain texture, texture gritty realism, protagonist positioned in the left third of the frame, 陈叔-配角1 in the dark background on the right, leading lines from the wooden door towards the protagonist, action constraints: protagonist looking towards the listener, body language conveying internal pressure, realistic cinematic narrative, no text or symbols in image, no watermarks or logos, claustrophobic pressure, existential weariness, somber reality, lingering sense of isolation, no text, no symbols, no garbled characters, no words",
+            "prompt_json": {
+              "camera": {
+                "aperture": "f/4.0",
+                "depth_of_field": "sharp focus on protagonist, soft bokeh on the background tools",
+                "flash": "none",
+                "grain": "fine film grain texture",
+                "lens": "35mm",
+                "texture": "gritty realism",
+                "type": "medium shot"
+              },
+              "clothing_system": [
+                "heavy wool texture with visible fiber wear",
+                "scratches and grime on fabric surface",
+                "slight fabric flutter from cold drafts through door gaps"
+              ],
+              "color_restriction": [
+                "desaturated palette",
+                "muted grays, cold blues, and deep browns",
+                "faint, dying orange glow from a nearly extinguished fireplace",
+                "charcoal black shadows"
+              ],
+              "composition": [
+                "protagonist positioned in the left third of the frame",
+                "陈叔-配角1 in the dark background on the right",
+                "leading lines from the wooden door towards the protagonist",
+                "action constraints: protagonist looking towards the listener, body language conveying internal pressure"
+              ],
+              "environment": {
+                "background": [
+                  "dilapidated station interior with peeling paint",
+                  "distorted wooden door vibrating from heavy wind outside",
+                  "wall with deep, rhythmic scratch marks indicating 142 days",
+                  "cluttered workbench with rusted tools and an old pressure gauge",
+                  "dim flickering wall lamp casting long, distorted shadows"
+                ],
+                "characters": [
+                  "陈叔-配角1 sitting in the dark corner, hunched over a broken pressure gauge, wearing grease-stained work clothes"
+                ],
+                "effects": [
+                  "dust motes dancing in weak light",
+                  "faint swirling snow particles near the door frame",
+                  "hazy atmosphere filled with coal dust and dampness"
+                ]
+              },
+              "face_system": [
+                "8K detailed facial features",
+                "visible skin pores and subtle stubble",
+                "eyes showing a mix of empathy and survival fatigue",
+                "lip color naturally muted and slightly chapped",
+                "soft cold shadows accentuating facial structure"
+              ],
+              "hair_system": [
+                "messy dark brown hair with slight frosting from snow",
+                "root fixation coefficient 0.7",
+                "tip swing amplitude 5cm",
+                "color layering: main color #3D3B38, secondary color #2A2826, highlight #5A5855, shadow #1A1816",
+                "wind speed 0.2m/s",
+                "turbulence intensity 5%"
+              ],
+              "label": "scene-winter-pass-station-interior",
+              "lighting": [
+                "harsh, cold blue ambient light filtering through the door gap",
+                "weak, flickering yellow light from the fireplace off-screen",
+                "high contrast between the cold exterior and the dim, stuffy interior"
+              ],
+              "mood": [
+                "claustrophobic pressure",
+                "existential weariness",
+                "somber reality",
+                "lingering sense of isolation"
+              ],
+              "output_style": [
+                "realistic cinematic narrative",
+                "no text or symbols in image",
+                "no watermarks or logos"
+              ],
+              "style": [
+                "photorealistic",
+                "highly-detailed-texture",
+                "cinematic-lighting",
+                "atmospheric-depth",
+                "matte-finish"
+              ],
+              "subject": {
+                "body_traits": [
+                  "male protagonist林远, mid-30s",
+                  "weary eyes with sharp empathetic focus",
+                  "pale skin reflecting harsh indoor conditions",
+                  "expression of quiet exhaustion and grim determination",
+                  "leaning slightly against a wooden counter"
+                ],
+                "outfit": [
+                  "worn-out wool scarf with frayed edges around the neck",
+                  "heavy coarse-textured dark brown work jacket",
+                  "layered dirty linen shirt underneath"
+                ],
+                "pose": [
+                  "protagonist using Image 0, facing slightly away from the window",
+                  "shoulders hunched from cold and stress",
+                  "fingers clutching the edge of the wooden counter",
+                  "looking towards 陈叔-配角1 who sits in the shadow"
+                ]
+              },
+              "tags": [
+                "realistic",
+                "gritty-realism",
+                "cinematic-narrative",
+                "melancholic",
+                "low-saturation"
+              ]
+            },
+            "scene_text_hash": "1fe17aa05b2aa47b5201f58863209e54",
+            "style": "default",
+            "url": "/image_cache/33d15323584c68040579775deb1799a9.png",
+            "width": 1920
+          },
+          "previousSceneText": "凛冬隘口的风雪像是有生命一般，疯狂地撞击着驿站那扇早已变形的木门。我紧了紧脖子上那条磨损严重的旧围巾，指尖传来的寒意提醒我，壁炉里的炭火又快燃尽了。我叫林远，这间破旧驿站的守门人。空气中弥漫着一股陈旧的煤灰味和潮湿的霉味，这是这片被遗忘之地的特有气息。\n\n“林远，那批过境的物资还没到吗？”老修理工陈叔缩在角落的阴影里，他那双布满老茧的手正机械地摆弄着一个坏掉的压力表。他的声音沙哑，带着一丝对生存的疲惫。我没回头，只是盯着窗外那片混沌的白，低声回应：“风雪封路了，陈叔。今晚恐怕没人能过得来。”\n\n墙壁上那道深深的划痕，是我记录停电天数的第142天。我感到一阵心悸，那种长期被困在狭窄空间里的压抑感如潮水般涌来。我必须在天亮前修好供暖管道的阀门，否则今晚滞留的几个旅人，恐怕熬不过这零下三十度的严寒。我摸了摸口袋里仅剩的几枚硬币，那是攒了许久准备离开隘口的盘缠，此刻却成了我唯一的筹码。"
+        },
+        "start_ts": 1777628309.4509459,
+        "end_ts": 1777628369.484842,
+        "provider_events": {
+          "event_count": 13,
+          "queue_wait_ms": {
+            "count": 13,
+            "min": 0.0,
+            "max": 21368.0,
+            "mean": 6597.846,
+            "median": 3740.0,
+            "p95": 21368.0
+          },
+          "latency_ms": {
+            "count": 7,
+            "min": 4261.0,
+            "max": 21367.0,
+            "mean": 10006.0,
+            "median": 5868.0,
+            "p95": 19765.0
+          },
+          "llm_success_count": 7,
+          "image_success_count": 0,
+          "request_thread_event_count": 0,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0
+        },
+        "request_error": "timeout",
+        "attempts": [
+          {
+            "http_status": null,
+            "elapsed_s": 60.034,
+            "response_json": {
+              "status": "timeout",
+              "message": "HTTPConnectionPool(host='127.0.0.1', port=5006): Read timed out. (read timeout=60)"
+            },
+            "request_payload": {
+              "option": "动用积蓄购买煤炭，优先保障旅人的供暖。",
+              "optionIndex": 0,
+              "sceneId": "-143839302299983375_-3195508799980136297",
+              "currentOptions": [
+                "动用积蓄购买煤炭，优先保障旅人的供暖。",
+                "尝试拆解驿站的备用零件，寻找陈叔提及的管道隐患。"
+              ],
+              "globalState": {
+                "core_worldview": {
+                  "chapters": {
+                    "chapter1": {
+                      "conflict_end_condition": "主角通过修缮部分核心管道，勉强维持了驿站的最低供暖需求，虽然因此耗尽了积蓄，导致离开隘口的计划被迫推迟，但成功挽救了滞留的旅人，赢得了初步的信任与口碑。",
+                      "main_conflict": "驿站面临严重的供暖系统故障，主角必须在有限的资金下，决定是优先修复取暖设备以留住即将冻死的流浪者，还是将资金用于购买离开隘口的通行证。这不仅是生存物资的博弈，更是主角在“维持驿站运营的责任感”与“个人渴望逃离的私心”之间的剧烈冲突。 矛盾结束条件：主角通过修缮部分核心管道，勉强维持了驿站的最低供暖需求，虽然因此耗尽了积蓄，导致离开隘口的计划被迫推迟，但成功挽救了滞留的旅人，赢得了初步的信任与口碑。"
+                    },
+                    "chapter2": {
+                      "conflict_end_condition": "主角拒绝了商人的非法交易，选择举报其行径，虽然因此失去了获得巨额报酬的机会，但也避开了潜在的法律风险，确保了驿站的合法经营权，却也让主角彻底失去了短期内离开隘口的经济基础。",
+                      "main_conflict": "一名携带违禁物资的商人试图通过驿站转运货物，并以高额报酬诱惑主角。主角陷入了道德困境：接受报酬可以瞬间攒够离开的资金，但极可能引来当地治安官的搜查，导致驿站被封禁，甚至连累在此避难的弱势群体。 矛盾结束条件：主角拒绝了商人的非法交易，选择举报其行径，虽然因此失去了获得巨额报酬的机会，但也避开了潜在的法律风险，确保了驿站的合法经营权，却也让主角彻底失去了短期内离开隘口的经济基础。"
+                    },
+                    "chapter3": {
+                      "conflict_end_condition": "主角选择资助了老常客，老常客最终获救，但驿站因资金链断裂被迫转让，主角未能离开隘口，而是选择留在当地成为一名普通的修理工，虽然梦想未圆，却在小镇中获得了一份平静而踏实的生活。 主角规范信息： 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：青年 所属作品(中)：边陲驿站夜谈录 所属作品(英)：The Frontier Station Chronicles 标志性外观关键词：黑色短发、粗布工装、眼神沉稳、指尖薄茧、略显疲惫、沉默寡言、常戴旧围巾、身形瘦削、朴素、内敛、坚韧、沧桑感",
+                      "main_conflict": "冬日临近尾声，主角终于攒够了离开的资金，但此时驿站的一位老常客因病急需一笔钱救命。主角面临最后的抉择：是带着积蓄远走高飞，实现多年夙愿，还是将钱全部捐出，让驿站彻底失去翻修机会，自己则继续困在这片荒原中。 矛盾结束条件：主角选择资助了老常客，老常客最终获救，但驿站因资金链断裂被迫转让，主角未能离开隘口，而是选择留在当地成为一名普通的修理工，虽然梦想未圆，却在小镇中获得了一份平静而踏实的生活。 主角规范信息： 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：青年 所属作品(中)：边陲驿站夜谈录 所属作品(英)：The Frontier Station Chronicles 标志性外观关键词：黑色短发、粗布工装、眼神沉稳、指尖薄茧、略显疲惫、沉默寡言、常戴旧围巾、身形瘦削、朴素、内敛、坚韧、沧桑感"
+                    }
+                  },
+                  "characters": {},
+                  "forces": {},
+                  "game_style": "本作为一部沉浸式叙事模拟游戏，采用低饱和度的写实美术风格，配以环境音效驱动的极简UI。游戏强调生活质感，通过琐碎的日常对话与非线性叙事，构建出一种带有粗粝感与温情的现实主义氛围，旨在让玩家在平淡的经营与交流中，体悟生活得失的必然性。",
+                  "main_quest": "完成边陲驿站夜谈录的任务，达成游戏目标",
+                  "protagonist_ability": "主角拥有一种被称为“共情倾听”的特质，源于其长期在嘈杂环境中磨练出的敏锐感知力。通过专注地倾听与观察，主角能捕捉到旅人言语间的逻辑漏洞与情绪暗流，从而还原出对方隐藏的真实诉求或过往经历。此能力并非超自然力量，而是一种深度沟通技巧，使用时会消耗主角的精力值，且无法改变对方既定的命运轨迹，仅能作为一种辅助手段，帮助主角在有限的互动中做出更符合现实逻辑的选择。",
+                  "world_basic_setting": "故事发生在一座名为“凛冬隘口”的边陲驿站，这里是连接繁华内陆与荒凉北境的唯一枢纽。世界处于工业化进程的中后期，社会阶层固化，资源分配极度不均。隘口常年风雪交加，往来者多为背井离乡的淘金客、寻找生计的流浪者或被时代遗忘的旧时代手艺人。这里没有宏大的史诗战争，只有永不停歇的生存博弈。社会文化呈现出一种“流动的孤岛”特征，人们在此短暂驻足，交换情报与物资，随后又匆匆奔赴各自的命运。关键事件“大停电”后，隘口的能源供应变得极其不稳定，驿站成为了方圆百里唯一的避风港，但也因此成为了各方势力压榨与底层民众求生的缩影。在这里，历史不是教科书上的宏大叙事，而是墙壁上斑驳的划痕与旅人酒杯中未竟的叹息。"
+                },
+                "flow_worldline": {
+                  "characters": {},
+                  "environment": {},
+                  "chapter_progress": 2.0
+                },
+                "game_id": "game_1777628229_yn4ati",
+                "image_style": {
+                  "type": "realistic"
+                },
+                "meta": {
+                  "detail_async": true
+                },
+                "protagonist_canonical": {
+                  "gender": "男性"
+                },
+                "tone": "normal_ending",
+                "user_theme": "边陲驿站夜谈录",
+                "_benchmark_profile": "fullready_strict",
+                "_benchmark_measurement": "fullready_nextturn",
+                "_benchmark_read_wait_s": 0.0
+              },
+              "previousSceneId": "initial",
+              "previousSceneImage": {
+                "cached": true,
+                "height": 1080,
+                "image_type": "story_scene",
+                "prompt": "scene-winter-pass-station-interior, realistic, gritty-realism, cinematic-narrative, melancholic, low-saturation, photorealistic, highly-detailed-texture, cinematic-lighting, atmospheric-depth, matte-finish, male protagonist林远, mid-30s, weary eyes with sharp empathetic focus, pale skin reflecting harsh indoor conditions, expression of quiet exhaustion and grim determination, leaning slightly against a wooden counter, worn-out wool scarf with frayed edges around the neck, heavy coarse-textured dark brown work jacket, layered dirty linen shirt underneath, protagonist using Image 0, facing slightly away from the window, shoulders hunched from cold and stress, fingers clutching the edge of the wooden counter, looking towards 陈叔-配角1 who sits in the shadow, 8K detailed facial features, visible skin pores and subtle stubble, eyes showing a mix of empathy and survival fatigue, lip color naturally muted and slightly chapped, soft cold shadows accentuating facial structure, messy dark brown hair with slight frosting from snow, root fixation coefficient 0.7, tip swing amplitude 5cm, color layering: main color #3D3B38, secondary color #2A2826, highlight #5A5855, shadow #1A1816, wind speed 0.2m/s, turbulence intensity 5%, heavy wool texture with visible fiber wear, scratches and grime on fabric surface, slight fabric flutter from cold drafts through door gaps, dilapidated station interior with peeling paint, distorted wooden door vibrating from heavy wind outside, wall with deep, rhythmic scratch marks indicating 142 days, cluttered workbench with rusted tools and an old pressure gauge, dim flickering wall lamp casting long, distorted shadows, 陈叔-配角1 sitting in the dark corner, hunched over a broken pressure gauge, wearing grease-stained work clothes, dust motes dancing in weak light, faint swirling snow particles near the door frame, hazy atmosphere filled with coal dust and dampness, desaturated palette, muted grays, cold blues, and deep browns, faint, dying orange glow from a nearly extinguished fireplace, charcoal black shadows, harsh, cold blue ambient light filtering through the door gap, weak, flickering yellow light from the fireplace off-screen, high contrast between the cold exterior and the dim, stuffy interior, type medium shot, lens 35mm, aperture f/4.0, depth_of_field sharp focus on protagonist, soft bokeh on the background tools, flash none, grain fine film grain texture, texture gritty realism, protagonist positioned in the left third of the frame, 陈叔-配角1 in the dark background on the right, leading lines from the wooden door towards the protagonist, action constraints: protagonist looking towards the listener, body language conveying internal pressure, realistic cinematic narrative, no text or symbols in image, no watermarks or logos, claustrophobic pressure, existential weariness, somber reality, lingering sense of isolation, no text, no symbols, no garbled characters, no words",
+                "prompt_json": {
+                  "camera": {
+                    "aperture": "f/4.0",
+                    "depth_of_field": "sharp focus on protagonist, soft bokeh on the background tools",
+                    "flash": "none",
+                    "grain": "fine film grain texture",
+                    "lens": "35mm",
+                    "texture": "gritty realism",
+                    "type": "medium shot"
+                  },
+                  "clothing_system": [
+                    "heavy wool texture with visible fiber wear",
+                    "scratches and grime on fabric surface",
+                    "slight fabric flutter from cold drafts through door gaps"
+                  ],
+                  "color_restriction": [
+                    "desaturated palette",
+                    "muted grays, cold blues, and deep browns",
+                    "faint, dying orange glow from a nearly extinguished fireplace",
+                    "charcoal black shadows"
+                  ],
+                  "composition": [
+                    "protagonist positioned in the left third of the frame",
+                    "陈叔-配角1 in the dark background on the right",
+                    "leading lines from the wooden door towards the protagonist",
+                    "action constraints: protagonist looking towards the listener, body language conveying internal pressure"
+                  ],
+                  "environment": {
+                    "background": [
+                      "dilapidated station interior with peeling paint",
+                      "distorted wooden door vibrating from heavy wind outside",
+                      "wall with deep, rhythmic scratch marks indicating 142 days",
+                      "cluttered workbench with rusted tools and an old pressure gauge",
+                      "dim flickering wall lamp casting long, distorted shadows"
+                    ],
+                    "characters": [
+                      "陈叔-配角1 sitting in the dark corner, hunched over a broken pressure gauge, wearing grease-stained work clothes"
+                    ],
+                    "effects": [
+                      "dust motes dancing in weak light",
+                      "faint swirling snow particles near the door frame",
+                      "hazy atmosphere filled with coal dust and dampness"
+                    ]
+                  },
+                  "face_system": [
+                    "8K detailed facial features",
+                    "visible skin pores and subtle stubble",
+                    "eyes showing a mix of empathy and survival fatigue",
+                    "lip color naturally muted and slightly chapped",
+                    "soft cold shadows accentuating facial structure"
+                  ],
+                  "hair_system": [
+                    "messy dark brown hair with slight frosting from snow",
+                    "root fixation coefficient 0.7",
+                    "tip swing amplitude 5cm",
+                    "color layering: main color #3D3B38, secondary color #2A2826, highlight #5A5855, shadow #1A1816",
+                    "wind speed 0.2m/s",
+                    "turbulence intensity 5%"
+                  ],
+                  "label": "scene-winter-pass-station-interior",
+                  "lighting": [
+                    "harsh, cold blue ambient light filtering through the door gap",
+                    "weak, flickering yellow light from the fireplace off-screen",
+                    "high contrast between the cold exterior and the dim, stuffy interior"
+                  ],
+                  "mood": [
+                    "claustrophobic pressure",
+                    "existential weariness",
+                    "somber reality",
+                    "lingering sense of isolation"
+                  ],
+                  "output_style": [
+                    "realistic cinematic narrative",
+                    "no text or symbols in image",
+                    "no watermarks or logos"
+                  ],
+                  "style": [
+                    "photorealistic",
+                    "highly-detailed-texture",
+                    "cinematic-lighting",
+                    "atmospheric-depth",
+                    "matte-finish"
+                  ],
+                  "subject": {
+                    "body_traits": [
+                      "male protagonist林远, mid-30s",
+                      "weary eyes with sharp empathetic focus",
+                      "pale skin reflecting harsh indoor conditions",
+                      "expression of quiet exhaustion and grim determination",
+                      "leaning slightly against a wooden counter"
+                    ],
+                    "outfit": [
+                      "worn-out wool scarf with frayed edges around the neck",
+                      "heavy coarse-textured dark brown work jacket",
+                      "layered dirty linen shirt underneath"
+                    ],
+                    "pose": [
+                      "protagonist using Image 0, facing slightly away from the window",
+                      "shoulders hunched from cold and stress",
+                      "fingers clutching the edge of the wooden counter",
+                      "looking towards 陈叔-配角1 who sits in the shadow"
+                    ]
+                  },
+                  "tags": [
+                    "realistic",
+                    "gritty-realism",
+                    "cinematic-narrative",
+                    "melancholic",
+                    "low-saturation"
+                  ]
+                },
+                "scene_text_hash": "1fe17aa05b2aa47b5201f58863209e54",
+                "style": "default",
+                "url": "/image_cache/33d15323584c68040579775deb1799a9.png",
+                "width": 1920
+              },
+              "previousSceneText": "凛冬隘口的风雪像是有生命一般，疯狂地撞击着驿站那扇早已变形的木门。我紧了紧脖子上那条磨损严重的旧围巾，指尖传来的寒意提醒我，壁炉里的炭火又快燃尽了。我叫林远，这间破旧驿站的守门人。空气中弥漫着一股陈旧的煤灰味和潮湿的霉味，这是这片被遗忘之地的特有气息。\n\n“林远，那批过境的物资还没到吗？”老修理工陈叔缩在角落的阴影里，他那双布满老茧的手正机械地摆弄着一个坏掉的压力表。他的声音沙哑，带着一丝对生存的疲惫。我没回头，只是盯着窗外那片混沌的白，低声回应：“风雪封路了，陈叔。今晚恐怕没人能过得来。”\n\n墙壁上那道深深的划痕，是我记录停电天数的第142天。我感到一阵心悸，那种长期被困在狭窄空间里的压抑感如潮水般涌来。我必须在天亮前修好供暖管道的阀门，否则今晚滞留的几个旅人，恐怕熬不过这零下三十度的严寒。我摸了摸口袋里仅剩的几枚硬币，那是攒了许久准备离开隘口的盘缠，此刻却成了我唯一的筹码。"
+            },
+            "start_ts": 1777628309.4509459,
+            "end_ts": 1777628369.484842,
+            "provider_events": {
+              "event_count": 13,
+              "queue_wait_ms": {
+                "count": 13,
+                "min": 0.0,
+                "max": 21368.0,
+                "mean": 6597.846,
+                "median": 3740.0,
+                "p95": 21368.0
+              },
+              "latency_ms": {
+                "count": 7,
+                "min": 4261.0,
+                "max": 21367.0,
+                "mean": 10006.0,
+                "median": 5868.0,
+                "p95": 19765.0
+              },
+              "llm_success_count": 7,
+              "image_success_count": 0,
+              "request_thread_event_count": 0,
+              "provider_429_count": 0,
+              "provider_timeout_count": 0,
+              "shared_backoff_wait_ms_total": 0,
+              "retry_heavy_event_count": 0,
+              "main_character_event_count": 0,
+              "scene_image_event_count": 0
+            },
+            "request_error": "timeout"
+          }
+        ],
+        "attempt_count": 1,
+        "request_elapsed_s": 60.034,
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "timeout",
+        "has_scene": false,
+        "has_image": false,
+        "selected_option_index": 0,
+        "selected_option_text": "动用积蓄购买煤炭，优先保障旅人的供暖。",
+        "input_scene_id": "-143839302299983375_-3195508799980136297",
+        "inferred_cache_result": "likely_miss_or_partial",
+        "used_updated_flow_state": true,
+        "cache_hit_reason": null,
+        "cache_miss_reason": null,
+        "global_state_key_drift_detected": false,
+        "scene_id_mismatch_detected": false,
+        "selected_option_mismatch_detected": false,
+        "current_options_key_drift_detected": false,
+        "benchmark_diagnostics": {}
+      },
+      "full_ready": {
+        "text_ready_ts": 1777628369.484842,
+        "text_ready_elapsed_s": 60.034,
+        "image_ready_ts": null,
+        "image_ready_elapsed_s": null,
+        "full_ready_ts": null,
+        "full_ready_elapsed_s": null,
+        "image_probe": null,
+        "ready_mode": "blocked",
+        "error": "second_click_not_success",
+        "attribution": {
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "provider_retry_heavy_count": 0,
+          "provider_backoff_wait_ms_total": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0,
+          "image_probe_attempt_count": 0,
+          "main_character_contention_suspected": false
+        }
+      },
+      "placeholder": false,
+      "transport_success": false,
+      "strict_success": false,
+      "failure_bucket": "second_click_timeout",
+      "cache_path_classification": "second_click_timeout",
+      "cache_hit_reason": null,
+      "cache_miss_reason": null,
+      "global_state_key_drift_detected": false,
+      "scene_id_mismatch_detected": false,
+      "selected_option_mismatch_detected": false,
+      "success": false
+    },
+    {
+      "benchmark_id": "DNQBV1_002",
+      "theme_id": 9,
+      "theme": "末日温室园丁",
+      "read_wait_s": 0.0,
+      "full_ready_mode": true,
+      "profile": "fullready_strict",
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 8.978,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过优化灌溉系统节省了电力，保住了大部分粮食作物，但不得不亲手处理掉几株因缺光而枯萎的珍稀花卉，以此换取系统的稳定运行。",
+                  "main_conflict": "温室电力配额被大幅削减，主角面临“保住现有的珍稀观赏植物”还是“优先保障基础粮食作物”的道德困境。居民的饥饿感与对美的渴望在狭小的空间内碰撞，主角必须在有限的资源下做出取舍，平衡生存需求与精神慰藉。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角在一次意外的停电中，通过观察野生苔藓的生存方式找到了改良灵感，成功培育出第一批幼苗，但同时也因违抗管理层指令被降职，失去了部分研究权限。",
+                  "main_conflict": "改良品种“希望之种”在实验室阶段频频失败，主角因过度劳累产生自我怀疑。同时，温室管理层要求主角放弃研发，转而投入更高效的工业化种植，主角在“坚持理想”与“顺应现实管理”之间陷入深刻的职业焦虑。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角选择在温室边缘的通风口进行小规模试种，作物最终在酸雨中存活并开出了一朵微小的花，但因环境恶劣，该品种无法大规模推广，主角在遗憾中接受了“人类依然无法重返地表”的现实，但内心获得了释然。",
+                  "main_conflict": "最终的室外试种时刻到来，但气候监测显示酸雨强度超标。主角必须决定是否冒着毁掉所有心血的风险进行种植，还是选择在温室内安稳度日，放弃对室外生存的探索，接受人类永远被困在穹顶之下的现实。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "沉浸式叙事模拟，采用低饱和度的写实美术风格，强调光影在植物叶片上的细微变化。节奏舒缓，通过环境交互与碎片化文本构建一个在资源匮乏中维持秩序的末日温室，带给玩家一种在废墟之上经营平凡生活的宁静与忧伤。",
+              "main_quest": "主角受命在“第七号温室”培育出一种能够适应室外高酸环境的改良型作物“希望之种”。任务分为三个阶段：首先是收集旧时代的种子样本并进行实验室培育；其次是建立稳定的温室生态系统，确保作物在极端气候下存活；最后是进行室外试种。挑战在于，温室的电力配额不断削减，且主角必须在“维持现有居民口粮”与“投入资源研发改良品种”之间做出艰难取舍。最终目标并非彻底改变世界，而是成功培育出一株能在废墟中扎根的植物，为人类的未来留下一线微弱的可能，即便这株植物无法在短期内解决全球饥荒。",
+              "protagonist_ability": "主角拥有一种名为“感官共鸣”的特质，源于长期与植物共生而产生的生物电感知。通过指尖触碰，主角能感知植物的微弱生理需求，如水分缺失或养分失衡。这种能力并非超能力，而是一种基于经验的直觉，使用时会消耗主角的体力，且无法改变植物的基因缺陷或环境的物理限制，只能在既定条件下实现最优化的生长。",
+              "world_basic_setting": "世界经历了一场被称为“灰烬降临”的全球性生态崩溃，地表被高浓度的酸性尘埃覆盖，绝大多数植物灭绝。人类退守至几座由旧时代穹顶技术保护的“温室城”。温室不仅是食物来源，更是文明最后的精神寄托。社会阶层由对温室的贡献度决定，资源分配极其严苛。在这个世界，园丁是备受尊崇却又极度孤独的职业，他们不仅要对抗土壤盐碱化与病虫害，还要在有限的电力供应下，通过人工光照维持生态循环。历史的伤痕体现在每一寸贫瘠的土地上，人们在对旧世界绿色的怀念与对现实生存的妥协中，维持着一种脆弱的平衡。这里没有英雄，只有在温室玻璃墙内，日复一日修剪枯枝、记录湿度、为每一株作物祈祷的普通劳动者。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1777628369_g7khu5",
+            "image_style": {
+              "type": "realistic"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "深灰色工装、沾染泥土的双手、略显疲惫的眼神、修剪整齐的短发、常备的记录本、沉默寡言、专注的神情、清瘦、温和但坚定、指尖布满细小伤痕。",
+              "work_en": "Ash Greenhouse",
+              "work_zh": "灰烬温室"
+            },
+            "tone": "normal_ending",
+            "user_theme": "末日温室园丁"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "request_payload": {
+          "gameTheme": "末日温室园丁",
+          "protagonistAttr": {},
+          "difficulty": "normal",
+          "toneKey": "normal_ending",
+          "imageStyle": {
+            "type": "realistic"
+          },
+          "_benchmark_profile": "fullready_strict",
+          "_benchmark_measurement": "fullready_nextturn",
+          "_benchmark_read_wait_s": 0.0
+        },
+        "start_ts": 1777628369.5375557,
+        "end_ts": 1777628378.5153172,
+        "provider_events": {
+          "event_count": 4,
+          "queue_wait_ms": {
+            "count": 4,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 1,
+            "min": 8965.0,
+            "max": 8965.0,
+            "mean": 8965.0,
+            "median": 8965.0,
+            "p95": 8965.0
+          },
+          "llm_success_count": 1,
+          "image_success_count": 0,
+          "request_thread_event_count": 2,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0
+        },
+        "status": "success",
+        "game_id": "game_1777628369_g7khu5"
+      },
+      "long_tail_attribution": {
+        "provider_429_count": 0,
+        "provider_timeout_count": 0,
+        "provider_retry_heavy_count": 0,
+        "provider_backoff_wait_ms_total": 0,
+        "main_character_event_count": 0,
+        "scene_image_event_count": 0,
+        "image_probe_attempt_count": 0,
+        "main_character_contention_suspected": false
+      },
+      "first_click": {
+        "http_status": 200,
+        "elapsed_s": 53.299,
+        "response_json": {
+          "benchmark_diagnostics": {
+            "cache_hit_reason": null,
+            "cache_miss_reason": null,
+            "current_options_key_drift_detected": false,
+            "global_state_key_drift_detected": false,
+            "placeholder": false,
+            "previous_scene_id": null,
+            "recomputed_scene_cache_exists": false,
+            "recomputed_scene_id": null,
+            "request_current_options_count": 0,
+            "request_current_options_hash": "d751713988987e9331980363e24189ce",
+            "request_flow_worldline_hash": "940e38d5f8372eaa58cfdaf4d70a0d30",
+            "request_global_state_hash": "2f3eea97d4d67e4e80941a76a20fb0ac",
+            "request_option_at_index": null,
+            "request_option_index": 0,
+            "request_option_text": "开始游戏",
+            "request_scene_cache_exists": false,
+            "request_scene_id": null,
+            "resolution_path": null,
+            "response_has_image": true,
+            "response_has_scene": true,
+            "response_scene_id": "-2977567012417508795_3893592019561642851",
+            "response_status": "success",
+            "scene_id_mismatch_detected": false,
+            "selected_option_mismatch_detected": false
+          },
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "",
+              "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：穹顶外的酸性尘埃像一层厚重的铅灰色裹尸布，将第七号温室与外界彻底隔绝。我站在培育架前，指尖轻轻触碰着一株名为“极光蕨”的观赏植物，那种熟悉的生物电反馈告诉我，它正处于极度缺水的边缘。温室内的空气循环系统发出低沉的嗡鸣，那是电力不足的哀鸣。我低头看了看自己沾满泥土的双手，指尖布满细小的伤痕，这是长期与土壤和药剂打交道的代价。\n\n“林远，电力配额又削减了。”温室管理员老陈推开沉重的气闸门，他那双浑浊的眼睛扫过架子上那些娇贵的观赏植物，又看了看我身旁那几排长势平平的粮食作物，语气里透着一股疲惫的无奈，“上面要求优先保障基础口粮，这些‘绿色的摆设’，恐怕留不住了。”\n\n我沉默地收回手，记录本上密密麻麻写满了湿度与光照数据。我深知，如果切断这些观赏植物的电力，它们会在三天内枯萎，但如果坚持供电，下周的粮食产量将无法满足温室居民的最低需求。我抬起头，透过玻璃墙看向那片死寂的荒原，心中那种熟悉的、无力的焦虑感再次升起。"
+            },
+            "deep_background_links": {},
+            "flow_update": {},
+            "next_options": [
+              "优先保障粮食作物，忍痛切断观赏植物的电力供应。",
+              "尝试调整灌溉系统，寻找平衡点以保住老陈心爱的“极光蕨”。"
+            ],
+            "scene": "穹顶外的酸性尘埃像一层厚重的铅灰色裹尸布，将第七号温室与外界彻底隔绝。我站在培育架前，指尖轻轻触碰着一株名为“极光蕨”的观赏植物，那种熟悉的生物电反馈告诉我，它正处于极度缺水的边缘。温室内的空气循环系统发出低沉的嗡鸣，那是电力不足的哀鸣。我低头看了看自己沾满泥土的双手，指尖布满细小的伤痕，这是长期与土壤和药剂打交道的代价。\n\n“林远，电力配额又削减了。”温室管理员老陈推开沉重的气闸门，他那双浑浊的眼睛扫过架子上那些娇贵的观赏植物，又看了看我身旁那几排长势平平的粮食作物，语气里透着一股疲惫的无奈，“上面要求优先保障基础口粮，这些‘绿色的摆设’，恐怕留不住了。”\n\n我沉默地收回手，记录本上密密麻麻写满了湿度与光照数据。我深知，如果切断这些观赏植物的电力，它们会在三天内枯萎，但如果坚持供电，下周的粮食产量将无法满足温室居民的最低需求。我抬起头，透过玻璃墙看向那片死寂的荒原，心中那种熟悉的、无力的焦虑感再次升起。",
+            "sceneId": "-2977567012417508795_3893592019561642851",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-greenhouse-tension-lin-yuan, post-apocalyptic, realistic, melancholic, atmospheric, industrial-greenhouse, photorealistic, low-saturation, cinematic-lighting, highly-detailed-textures, soft-focus-background, Lin Yuan (Image 0), a young man with a slender build, tired eyes reflecting a sense of weary responsibility, neatly trimmed short hair, gentle yet firm expression, fingertips covered in small, faint scars from labor, deep grey workwear uniform, durable and slightly worn, hands stained with dark soil and plant residues, standing in front of a plant cultivation rack, body facing forward towards the viewer and 老陈-配角1, fingertips lightly touching the leaves of a fern, holding a small, worn notebook in one hand, 8K detailed facial features, weary yet focused expression, natural skin texture with subtle imperfections, soft shadows highlighting the cheekbones and tired eyes, lip color naturally muted, neatly trimmed short dark hair, root fixation coefficient 0.95, tip swing amplitude 2cm, color layering: main color #333333, secondary color #262626, highlight #4D4D4D, shadow #1A1A1A, wind speed 0.2m/s, turbulence intensity 1%, deep grey workwear with realistic fabric texture, visible dirt stains on the sleeves and cuffs, slight fabric creases from long hours of work, industrial greenhouse interior with metallic cultivation racks, glass walls revealing a desolate, grey wasteland outside, faint haze of acid dust visible beyond the glass, dim, flickering artificial growth lights overhead, 老陈-配角1, an older man with turbid eyes, standing near the heavy airlock door on the right side of the frame, dust particles floating in the dim light, subtle glow from artificial plant lights, condensation on the glass walls, muted grey and industrial steel tones, faded green of the wilting plants, deep charcoal for workwear, dusty, low-saturation earth tones, dim, high-contrast artificial light from overhead tubes, faint, cold grey light filtering through glass walls from the wasteland, soft rim light highlighting the protagonist's silhouette, type medium shot, lens 35mm, aperture f/2.0, depth_of_field shallow focus on the protagonist, background slightly blurred, flash none, grain fine film grain, texture realistic industrial surfaces, protagonist positioned slightly to the left of the center, 老陈-配角1 positioned on the right, partially in the frame, cultivation rack acts as a foreground frame, focus on protagonist's hands and weary face, cinematic realism, no text or symbols in image, melancholic, oppressive silence, quiet desperation, fragile resilience, no text, no symbols, no garbled characters, no words",
+              "prompt_json": {
+                "camera": {
+                  "aperture": "f/2.0",
+                  "depth_of_field": "shallow focus on the protagonist, background slightly blurred",
+                  "flash": "none",
+                  "grain": "fine film grain",
+                  "lens": "35mm",
+                  "texture": "realistic industrial surfaces",
+                  "type": "medium shot"
+                },
+                "clothing_system": [
+                  "deep grey workwear with realistic fabric texture",
+                  "visible dirt stains on the sleeves and cuffs",
+                  "slight fabric creases from long hours of work"
+                ],
+                "color_restriction": [
+                  "muted grey and industrial steel tones",
+                  "faded green of the wilting plants",
+                  "deep charcoal for workwear",
+                  "dusty, low-saturation earth tones"
+                ],
+                "composition": [
+                  "protagonist positioned slightly to the left of the center",
+                  "老陈-配角1 positioned on the right, partially in the frame",
+                  "cultivation rack acts as a foreground frame",
+                  "focus on protagonist's hands and weary face"
+                ],
+                "environment": {
+                  "background": [
+                    "industrial greenhouse interior with metallic cultivation racks",
+                    "glass walls revealing a desolate, grey wasteland outside",
+                    "faint haze of acid dust visible beyond the glass",
+                    "dim, flickering artificial growth lights overhead"
+                  ],
+                  "characters": [
+                    "老陈-配角1, an older man with turbid eyes, standing near the heavy airlock door on the right side of the frame"
+                  ],
+                  "effects": [
+                    "dust particles floating in the dim light",
+                    "subtle glow from artificial plant lights",
+                    "condensation on the glass walls"
+                  ]
+                },
+                "face_system": [
+                  "8K detailed facial features",
+                  "weary yet focused expression",
+                  "natural skin texture with subtle imperfections",
+                  "soft shadows highlighting the cheekbones and tired eyes",
+                  "lip color naturally muted"
+                ],
+                "hair_system": [
+                  "neatly trimmed short dark hair",
+                  "root fixation coefficient 0.95",
+                  "tip swing amplitude 2cm",
+                  "color layering: main color #333333, secondary color #262626, highlight #4D4D4D, shadow #1A1A1A",
+                  "wind speed 0.2m/s",
+                  "turbulence intensity 1%"
+                ],
+                "label": "scene-greenhouse-tension-lin-yuan",
+                "lighting": [
+                  "dim, high-contrast artificial light from overhead tubes",
+                  "faint, cold grey light filtering through glass walls from the wasteland",
+                  "soft rim light highlighting the protagonist's silhouette"
+                ],
+                "mood": [
+                  "melancholic",
+                  "oppressive silence",
+                  "quiet desperation",
+                  "fragile resilience"
+                ],
+                "output_style": [
+                  "cinematic realism",
+                  "no text or symbols in image"
+                ],
+                "style": [
+                  "photorealistic",
+                  "low-saturation",
+                  "cinematic-lighting",
+                  "highly-detailed-textures",
+                  "soft-focus-background"
+                ],
+                "subject": {
+                  "body_traits": [
+                    "Lin Yuan (Image 0), a young man with a slender build",
+                    "tired eyes reflecting a sense of weary responsibility",
+                    "neatly trimmed short hair",
+                    "gentle yet firm expression",
+                    "fingertips covered in small, faint scars from labor"
+                  ],
+                  "outfit": [
+                    "deep grey workwear uniform, durable and slightly worn",
+                    "hands stained with dark soil and plant residues"
+                  ],
+                  "pose": [
+                    "standing in front of a plant cultivation rack",
+                    "body facing forward towards the viewer and 老陈-配角1",
+                    "fingertips lightly touching the leaves of a fern",
+                    "holding a small, worn notebook in one hand"
+                  ]
+                },
+                "tags": [
+                  "post-apocalyptic",
+                  "realistic",
+                  "melancholic",
+                  "atmospheric",
+                  "industrial-greenhouse"
+                ]
+              },
+              "scene_text_hash": "90c5874f3fd7f406edd8aa9cea576fcd",
+              "style": "default",
+              "url": "/image_cache/925725c2d498a5c36a198bc2d1ef12d1.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "request_payload": {
+          "option": "开始游戏",
+          "optionIndex": 0,
+          "sceneId": null,
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过优化灌溉系统节省了电力，保住了大部分粮食作物，但不得不亲手处理掉几株因缺光而枯萎的珍稀花卉，以此换取系统的稳定运行。",
+                  "main_conflict": "温室电力配额被大幅削减，主角面临“保住现有的珍稀观赏植物”还是“优先保障基础粮食作物”的道德困境。居民的饥饿感与对美的渴望在狭小的空间内碰撞，主角必须在有限的资源下做出取舍，平衡生存需求与精神慰藉。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角在一次意外的停电中，通过观察野生苔藓的生存方式找到了改良灵感，成功培育出第一批幼苗，但同时也因违抗管理层指令被降职，失去了部分研究权限。",
+                  "main_conflict": "改良品种“希望之种”在实验室阶段频频失败，主角因过度劳累产生自我怀疑。同时，温室管理层要求主角放弃研发，转而投入更高效的工业化种植，主角在“坚持理想”与“顺应现实管理”之间陷入深刻的职业焦虑。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角选择在温室边缘的通风口进行小规模试种，作物最终在酸雨中存活并开出了一朵微小的花，但因环境恶劣，该品种无法大规模推广，主角在遗憾中接受了“人类依然无法重返地表”的现实，但内心获得了释然。",
+                  "main_conflict": "最终的室外试种时刻到来，但气候监测显示酸雨强度超标。主角必须决定是否冒着毁掉所有心血的风险进行种植，还是选择在温室内安稳度日，放弃对室外生存的探索，接受人类永远被困在穹顶之下的现实。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "沉浸式叙事模拟，采用低饱和度的写实美术风格，强调光影在植物叶片上的细微变化。节奏舒缓，通过环境交互与碎片化文本构建一个在资源匮乏中维持秩序的末日温室，带给玩家一种在废墟之上经营平凡生活的宁静与忧伤。",
+              "main_quest": "主角受命在“第七号温室”培育出一种能够适应室外高酸环境的改良型作物“希望之种”。任务分为三个阶段：首先是收集旧时代的种子样本并进行实验室培育；其次是建立稳定的温室生态系统，确保作物在极端气候下存活；最后是进行室外试种。挑战在于，温室的电力配额不断削减，且主角必须在“维持现有居民口粮”与“投入资源研发改良品种”之间做出艰难取舍。最终目标并非彻底改变世界，而是成功培育出一株能在废墟中扎根的植物，为人类的未来留下一线微弱的可能，即便这株植物无法在短期内解决全球饥荒。",
+              "protagonist_ability": "主角拥有一种名为“感官共鸣”的特质，源于长期与植物共生而产生的生物电感知。通过指尖触碰，主角能感知植物的微弱生理需求，如水分缺失或养分失衡。这种能力并非超能力，而是一种基于经验的直觉，使用时会消耗主角的体力，且无法改变植物的基因缺陷或环境的物理限制，只能在既定条件下实现最优化的生长。",
+              "world_basic_setting": "世界经历了一场被称为“灰烬降临”的全球性生态崩溃，地表被高浓度的酸性尘埃覆盖，绝大多数植物灭绝。人类退守至几座由旧时代穹顶技术保护的“温室城”。温室不仅是食物来源，更是文明最后的精神寄托。社会阶层由对温室的贡献度决定，资源分配极其严苛。在这个世界，园丁是备受尊崇却又极度孤独的职业，他们不仅要对抗土壤盐碱化与病虫害，还要在有限的电力供应下，通过人工光照维持生态循环。历史的伤痕体现在每一寸贫瘠的土地上，人们在对旧世界绿色的怀念与对现实生存的妥协中，维持着一种脆弱的平衡。这里没有英雄，只有在温室玻璃墙内，日复一日修剪枯枝、记录湿度、为每一株作物祈祷的普通劳动者。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1777628369_g7khu5",
+            "image_style": {
+              "type": "realistic"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "深灰色工装、沾染泥土的双手、略显疲惫的眼神、修剪整齐的短发、常备的记录本、沉默寡言、专注的神情、清瘦、温和但坚定、指尖布满细小伤痕。",
+              "work_en": "Ash Greenhouse",
+              "work_zh": "灰烬温室"
+            },
+            "tone": "normal_ending",
+            "user_theme": "末日温室园丁",
+            "_benchmark_profile": "fullready_strict",
+            "_benchmark_measurement": "fullready_nextturn",
+            "_benchmark_read_wait_s": 0.0
+          }
+        },
+        "start_ts": 1777628378.574357,
+        "end_ts": 1777628431.8731756,
+        "provider_events": {
+          "event_count": 9,
+          "queue_wait_ms": {
+            "count": 9,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 5,
+            "min": 6025.0,
+            "max": 14651.0,
+            "mean": 9052.6,
+            "median": 8423.0,
+            "p95": 13416.8
+          },
+          "llm_success_count": 4,
+          "image_success_count": 0,
+          "request_thread_event_count": 0,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 2,
+          "scene_image_event_count": 0
+        },
+        "attempts": [
+          {
+            "http_status": 200,
+            "elapsed_s": 53.299,
+            "response_json": {
+              "benchmark_diagnostics": {
+                "cache_hit_reason": null,
+                "cache_miss_reason": null,
+                "current_options_key_drift_detected": false,
+                "global_state_key_drift_detected": false,
+                "placeholder": false,
+                "previous_scene_id": null,
+                "recomputed_scene_cache_exists": false,
+                "recomputed_scene_id": null,
+                "request_current_options_count": 0,
+                "request_current_options_hash": "d751713988987e9331980363e24189ce",
+                "request_flow_worldline_hash": "940e38d5f8372eaa58cfdaf4d70a0d30",
+                "request_global_state_hash": "2f3eea97d4d67e4e80941a76a20fb0ac",
+                "request_option_at_index": null,
+                "request_option_index": 0,
+                "request_option_text": "开始游戏",
+                "request_scene_cache_exists": false,
+                "request_scene_id": null,
+                "resolution_path": null,
+                "response_has_image": true,
+                "response_has_scene": true,
+                "response_scene_id": "-2977567012417508795_3893592019561642851",
+                "response_status": "success",
+                "scene_id_mismatch_detected": false,
+                "selected_option_mismatch_detected": false
+              },
+              "message": "选项剧情生成成功！",
+              "optionData": {
+                "checkpoint_packet": {
+                  "chapter": "chapter1",
+                  "chapter_conflict_solved": false,
+                  "quest_delta": "",
+                  "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：穹顶外的酸性尘埃像一层厚重的铅灰色裹尸布，将第七号温室与外界彻底隔绝。我站在培育架前，指尖轻轻触碰着一株名为“极光蕨”的观赏植物，那种熟悉的生物电反馈告诉我，它正处于极度缺水的边缘。温室内的空气循环系统发出低沉的嗡鸣，那是电力不足的哀鸣。我低头看了看自己沾满泥土的双手，指尖布满细小的伤痕，这是长期与土壤和药剂打交道的代价。\n\n“林远，电力配额又削减了。”温室管理员老陈推开沉重的气闸门，他那双浑浊的眼睛扫过架子上那些娇贵的观赏植物，又看了看我身旁那几排长势平平的粮食作物，语气里透着一股疲惫的无奈，“上面要求优先保障基础口粮，这些‘绿色的摆设’，恐怕留不住了。”\n\n我沉默地收回手，记录本上密密麻麻写满了湿度与光照数据。我深知，如果切断这些观赏植物的电力，它们会在三天内枯萎，但如果坚持供电，下周的粮食产量将无法满足温室居民的最低需求。我抬起头，透过玻璃墙看向那片死寂的荒原，心中那种熟悉的、无力的焦虑感再次升起。"
+                },
+                "deep_background_links": {},
+                "flow_update": {},
+                "next_options": [
+                  "优先保障粮食作物，忍痛切断观赏植物的电力供应。",
+                  "尝试调整灌溉系统，寻找平衡点以保住老陈心爱的“极光蕨”。"
+                ],
+                "scene": "穹顶外的酸性尘埃像一层厚重的铅灰色裹尸布，将第七号温室与外界彻底隔绝。我站在培育架前，指尖轻轻触碰着一株名为“极光蕨”的观赏植物，那种熟悉的生物电反馈告诉我，它正处于极度缺水的边缘。温室内的空气循环系统发出低沉的嗡鸣，那是电力不足的哀鸣。我低头看了看自己沾满泥土的双手，指尖布满细小的伤痕，这是长期与土壤和药剂打交道的代价。\n\n“林远，电力配额又削减了。”温室管理员老陈推开沉重的气闸门，他那双浑浊的眼睛扫过架子上那些娇贵的观赏植物，又看了看我身旁那几排长势平平的粮食作物，语气里透着一股疲惫的无奈，“上面要求优先保障基础口粮，这些‘绿色的摆设’，恐怕留不住了。”\n\n我沉默地收回手，记录本上密密麻麻写满了湿度与光照数据。我深知，如果切断这些观赏植物的电力，它们会在三天内枯萎，但如果坚持供电，下周的粮食产量将无法满足温室居民的最低需求。我抬起头，透过玻璃墙看向那片死寂的荒原，心中那种熟悉的、无力的焦虑感再次升起。",
+                "sceneId": "-2977567012417508795_3893592019561642851",
+                "scene_image": {
+                  "cached": true,
+                  "height": 1080,
+                  "image_type": "story_scene",
+                  "prompt": "scene-greenhouse-tension-lin-yuan, post-apocalyptic, realistic, melancholic, atmospheric, industrial-greenhouse, photorealistic, low-saturation, cinematic-lighting, highly-detailed-textures, soft-focus-background, Lin Yuan (Image 0), a young man with a slender build, tired eyes reflecting a sense of weary responsibility, neatly trimmed short hair, gentle yet firm expression, fingertips covered in small, faint scars from labor, deep grey workwear uniform, durable and slightly worn, hands stained with dark soil and plant residues, standing in front of a plant cultivation rack, body facing forward towards the viewer and 老陈-配角1, fingertips lightly touching the leaves of a fern, holding a small, worn notebook in one hand, 8K detailed facial features, weary yet focused expression, natural skin texture with subtle imperfections, soft shadows highlighting the cheekbones and tired eyes, lip color naturally muted, neatly trimmed short dark hair, root fixation coefficient 0.95, tip swing amplitude 2cm, color layering: main color #333333, secondary color #262626, highlight #4D4D4D, shadow #1A1A1A, wind speed 0.2m/s, turbulence intensity 1%, deep grey workwear with realistic fabric texture, visible dirt stains on the sleeves and cuffs, slight fabric creases from long hours of work, industrial greenhouse interior with metallic cultivation racks, glass walls revealing a desolate, grey wasteland outside, faint haze of acid dust visible beyond the glass, dim, flickering artificial growth lights overhead, 老陈-配角1, an older man with turbid eyes, standing near the heavy airlock door on the right side of the frame, dust particles floating in the dim light, subtle glow from artificial plant lights, condensation on the glass walls, muted grey and industrial steel tones, faded green of the wilting plants, deep charcoal for workwear, dusty, low-saturation earth tones, dim, high-contrast artificial light from overhead tubes, faint, cold grey light filtering through glass walls from the wasteland, soft rim light highlighting the protagonist's silhouette, type medium shot, lens 35mm, aperture f/2.0, depth_of_field shallow focus on the protagonist, background slightly blurred, flash none, grain fine film grain, texture realistic industrial surfaces, protagonist positioned slightly to the left of the center, 老陈-配角1 positioned on the right, partially in the frame, cultivation rack acts as a foreground frame, focus on protagonist's hands and weary face, cinematic realism, no text or symbols in image, melancholic, oppressive silence, quiet desperation, fragile resilience, no text, no symbols, no garbled characters, no words",
+                  "prompt_json": {
+                    "camera": {
+                      "aperture": "f/2.0",
+                      "depth_of_field": "shallow focus on the protagonist, background slightly blurred",
+                      "flash": "none",
+                      "grain": "fine film grain",
+                      "lens": "35mm",
+                      "texture": "realistic industrial surfaces",
+                      "type": "medium shot"
+                    },
+                    "clothing_system": [
+                      "deep grey workwear with realistic fabric texture",
+                      "visible dirt stains on the sleeves and cuffs",
+                      "slight fabric creases from long hours of work"
+                    ],
+                    "color_restriction": [
+                      "muted grey and industrial steel tones",
+                      "faded green of the wilting plants",
+                      "deep charcoal for workwear",
+                      "dusty, low-saturation earth tones"
+                    ],
+                    "composition": [
+                      "protagonist positioned slightly to the left of the center",
+                      "老陈-配角1 positioned on the right, partially in the frame",
+                      "cultivation rack acts as a foreground frame",
+                      "focus on protagonist's hands and weary face"
+                    ],
+                    "environment": {
+                      "background": [
+                        "industrial greenhouse interior with metallic cultivation racks",
+                        "glass walls revealing a desolate, grey wasteland outside",
+                        "faint haze of acid dust visible beyond the glass",
+                        "dim, flickering artificial growth lights overhead"
+                      ],
+                      "characters": [
+                        "老陈-配角1, an older man with turbid eyes, standing near the heavy airlock door on the right side of the frame"
+                      ],
+                      "effects": [
+                        "dust particles floating in the dim light",
+                        "subtle glow from artificial plant lights",
+                        "condensation on the glass walls"
+                      ]
+                    },
+                    "face_system": [
+                      "8K detailed facial features",
+                      "weary yet focused expression",
+                      "natural skin texture with subtle imperfections",
+                      "soft shadows highlighting the cheekbones and tired eyes",
+                      "lip color naturally muted"
+                    ],
+                    "hair_system": [
+                      "neatly trimmed short dark hair",
+                      "root fixation coefficient 0.95",
+                      "tip swing amplitude 2cm",
+                      "color layering: main color #333333, secondary color #262626, highlight #4D4D4D, shadow #1A1A1A",
+                      "wind speed 0.2m/s",
+                      "turbulence intensity 1%"
+                    ],
+                    "label": "scene-greenhouse-tension-lin-yuan",
+                    "lighting": [
+                      "dim, high-contrast artificial light from overhead tubes",
+                      "faint, cold grey light filtering through glass walls from the wasteland",
+                      "soft rim light highlighting the protagonist's silhouette"
+                    ],
+                    "mood": [
+                      "melancholic",
+                      "oppressive silence",
+                      "quiet desperation",
+                      "fragile resilience"
+                    ],
+                    "output_style": [
+                      "cinematic realism",
+                      "no text or symbols in image"
+                    ],
+                    "style": [
+                      "photorealistic",
+                      "low-saturation",
+                      "cinematic-lighting",
+                      "highly-detailed-textures",
+                      "soft-focus-background"
+                    ],
+                    "subject": {
+                      "body_traits": [
+                        "Lin Yuan (Image 0), a young man with a slender build",
+                        "tired eyes reflecting a sense of weary responsibility",
+                        "neatly trimmed short hair",
+                        "gentle yet firm expression",
+                        "fingertips covered in small, faint scars from labor"
+                      ],
+                      "outfit": [
+                        "deep grey workwear uniform, durable and slightly worn",
+                        "hands stained with dark soil and plant residues"
+                      ],
+                      "pose": [
+                        "standing in front of a plant cultivation rack",
+                        "body facing forward towards the viewer and 老陈-配角1",
+                        "fingertips lightly touching the leaves of a fern",
+                        "holding a small, worn notebook in one hand"
+                      ]
+                    },
+                    "tags": [
+                      "post-apocalyptic",
+                      "realistic",
+                      "melancholic",
+                      "atmospheric",
+                      "industrial-greenhouse"
+                    ]
+                  },
+                  "scene_text_hash": "90c5874f3fd7f406edd8aa9cea576fcd",
+                  "style": "default",
+                  "url": "/image_cache/925725c2d498a5c36a198bc2d1ef12d1.png",
+                  "width": 1920
+                }
+              },
+              "status": "success"
+            },
+            "request_payload": {
+              "option": "开始游戏",
+              "optionIndex": 0,
+              "sceneId": null,
+              "globalState": {
+                "core_worldview": {
+                  "chapters": {
+                    "chapter1": {
+                      "conflict_end_condition": "主角通过优化灌溉系统节省了电力，保住了大部分粮食作物，但不得不亲手处理掉几株因缺光而枯萎的珍稀花卉，以此换取系统的稳定运行。",
+                      "main_conflict": "温室电力配额被大幅削减，主角面临“保住现有的珍稀观赏植物”还是“优先保障基础粮食作物”的道德困境。居民的饥饿感与对美的渴望在狭小的空间内碰撞，主角必须在有限的资源下做出取舍，平衡生存需求与精神慰藉。"
+                    },
+                    "chapter2": {
+                      "conflict_end_condition": "主角在一次意外的停电中，通过观察野生苔藓的生存方式找到了改良灵感，成功培育出第一批幼苗，但同时也因违抗管理层指令被降职，失去了部分研究权限。",
+                      "main_conflict": "改良品种“希望之种”在实验室阶段频频失败，主角因过度劳累产生自我怀疑。同时，温室管理层要求主角放弃研发，转而投入更高效的工业化种植，主角在“坚持理想”与“顺应现实管理”之间陷入深刻的职业焦虑。"
+                    },
+                    "chapter3": {
+                      "conflict_end_condition": "主角选择在温室边缘的通风口进行小规模试种，作物最终在酸雨中存活并开出了一朵微小的花，但因环境恶劣，该品种无法大规模推广，主角在遗憾中接受了“人类依然无法重返地表”的现实，但内心获得了释然。",
+                      "main_conflict": "最终的室外试种时刻到来，但气候监测显示酸雨强度超标。主角必须决定是否冒着毁掉所有心血的风险进行种植，还是选择在温室内安稳度日，放弃对室外生存的探索，接受人类永远被困在穹顶之下的现实。"
+                    }
+                  },
+                  "characters": {},
+                  "forces": {},
+                  "game_style": "沉浸式叙事模拟，采用低饱和度的写实美术风格，强调光影在植物叶片上的细微变化。节奏舒缓，通过环境交互与碎片化文本构建一个在资源匮乏中维持秩序的末日温室，带给玩家一种在废墟之上经营平凡生活的宁静与忧伤。",
+                  "main_quest": "主角受命在“第七号温室”培育出一种能够适应室外高酸环境的改良型作物“希望之种”。任务分为三个阶段：首先是收集旧时代的种子样本并进行实验室培育；其次是建立稳定的温室生态系统，确保作物在极端气候下存活；最后是进行室外试种。挑战在于，温室的电力配额不断削减，且主角必须在“维持现有居民口粮”与“投入资源研发改良品种”之间做出艰难取舍。最终目标并非彻底改变世界，而是成功培育出一株能在废墟中扎根的植物，为人类的未来留下一线微弱的可能，即便这株植物无法在短期内解决全球饥荒。",
+                  "protagonist_ability": "主角拥有一种名为“感官共鸣”的特质，源于长期与植物共生而产生的生物电感知。通过指尖触碰，主角能感知植物的微弱生理需求，如水分缺失或养分失衡。这种能力并非超能力，而是一种基于经验的直觉，使用时会消耗主角的体力，且无法改变植物的基因缺陷或环境的物理限制，只能在既定条件下实现最优化的生长。",
+                  "world_basic_setting": "世界经历了一场被称为“灰烬降临”的全球性生态崩溃，地表被高浓度的酸性尘埃覆盖，绝大多数植物灭绝。人类退守至几座由旧时代穹顶技术保护的“温室城”。温室不仅是食物来源，更是文明最后的精神寄托。社会阶层由对温室的贡献度决定，资源分配极其严苛。在这个世界，园丁是备受尊崇却又极度孤独的职业，他们不仅要对抗土壤盐碱化与病虫害，还要在有限的电力供应下，通过人工光照维持生态循环。历史的伤痕体现在每一寸贫瘠的土地上，人们在对旧世界绿色的怀念与对现实生存的妥协中，维持着一种脆弱的平衡。这里没有英雄，只有在温室玻璃墙内，日复一日修剪枯枝、记录湿度、为每一株作物祈祷的普通劳动者。"
+                },
+                "flow_worldline": {
+                  "characters": {},
+                  "current_chapter": "chapter1",
+                  "environment": {}
+                },
+                "game_id": "game_1777628369_g7khu5",
+                "image_style": {
+                  "type": "realistic"
+                },
+                "meta": {
+                  "detail_async": true
+                },
+                "protagonist_canonical": {
+                  "age_range": "青年",
+                  "gender": "男性",
+                  "name_en": "Lin Yuan",
+                  "name_zh": "林远",
+                  "signature_look_keywords": "深灰色工装、沾染泥土的双手、略显疲惫的眼神、修剪整齐的短发、常备的记录本、沉默寡言、专注的神情、清瘦、温和但坚定、指尖布满细小伤痕。",
+                  "work_en": "Ash Greenhouse",
+                  "work_zh": "灰烬温室"
+                },
+                "tone": "normal_ending",
+                "user_theme": "末日温室园丁",
+                "_benchmark_profile": "fullready_strict",
+                "_benchmark_measurement": "fullready_nextturn",
+                "_benchmark_read_wait_s": 0.0
+              }
+            },
+            "start_ts": 1777628378.574357,
+            "end_ts": 1777628431.8731756,
+            "provider_events": {
+              "event_count": 9,
+              "queue_wait_ms": {
+                "count": 9,
+                "min": 0.0,
+                "max": 0.0,
+                "mean": 0.0,
+                "median": 0.0,
+                "p95": 0.0
+              },
+              "latency_ms": {
+                "count": 5,
+                "min": 6025.0,
+                "max": 14651.0,
+                "mean": 9052.6,
+                "median": 8423.0,
+                "p95": 13416.8
+              },
+              "llm_success_count": 4,
+              "image_success_count": 0,
+              "request_thread_event_count": 0,
+              "provider_429_count": 0,
+              "provider_timeout_count": 0,
+              "shared_backoff_wait_ms_total": 0,
+              "retry_heavy_event_count": 0,
+              "main_character_event_count": 2,
+              "scene_image_event_count": 0
+            }
+          }
+        ],
+        "attempt_count": 1,
+        "request_elapsed_s": 53.299,
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "success",
+        "has_scene": true,
+        "has_image": true,
+        "setup_success": true
+      },
+      "second_click": {
+        "http_status": 200,
+        "elapsed_s": 23.434,
+        "response_json": {
+          "benchmark_diagnostics": {
+            "cache_hit_reason": "waited_request_scene_text_completed_no_image",
+            "cache_miss_reason": "request_scene_generation_in_progress",
+            "current_options_key_drift_detected": false,
+            "global_state_key_drift_detected": true,
+            "placeholder": false,
+            "previous_scene_id": "initial",
+            "recomputed_scene_cache_exists": false,
+            "recomputed_scene_id": "2869510454586353729_3893592019561642851",
+            "request_current_options_count": 2,
+            "request_current_options_hash": "4f3b247034671ebdd94c8fc1fdb64024",
+            "request_flow_worldline_hash": "0b7d2802f8e46ae104639ddbac325b51",
+            "request_global_state_hash": "c63ab0386599238e94fa8f747ee04622",
+            "request_option_at_index": "优先保障粮食作物，忍痛切断观赏植物的电力供应。",
+            "request_option_index": 0,
+            "request_option_text": "优先保障粮食作物，忍痛切断观赏植物的电力供应。",
+            "request_scene_cache_exists": true,
+            "request_scene_cache_meta": {
+              "canonical_scene_id": "-4708919335056954905_3893592019561642851",
+              "current_options_hash": "4f3b247034671ebdd94c8fc1fdb64024",
+              "current_options_preview": [
+                "优先保障粮食作物，忍痛切断观赏植物的电力供应。",
+                "尝试调整灌溉系统，寻找平衡点以保住老陈心爱的“极光蕨”。"
+              ],
+              "flow_worldline_hash": "940e38d5f8372eaa58cfdaf4d70a0d30",
+              "global_state_hash": "8e74a8a4daf8eb116c7cb9eab428c732",
+              "option_count": 2,
+              "parent_scene_id": null,
+              "scene_id": "-2977567012417508795_3893592019561642851"
+            },
+            "request_scene_id": "-2977567012417508795_3893592019561642851",
+            "resolution_path": "wait_for_request_scene_cache_text_only",
+            "response_has_image": true,
+            "response_has_scene": true,
+            "response_scene_id": "-7474170158993220622_3035703130226306007",
+            "response_status": "success",
+            "scene_id_mismatch_detected": true,
+            "selected_option_mismatch_detected": false
+          },
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": true,
+              "quest_delta": "电力分配问题已解决，粮食作物的生长环境得到保障，我正式将重心转移至“希望之种”的改良研发。通过此次取舍，我获得了管理层对于后续研究的初步认可，主线任务从“生存抉择”推进至“品种改良”阶段。",
+              "recap_text": "你选择了“优先保障粮食作物，忍痛切断观赏植物的电力供应。”。当前章节：chapter1。主线进展：电力分配问题已解决，粮食作物的生长环境得到保障，我正式将重心转移至“希望之种”的改良研发。通过此次取舍，我获得了管理层对于后续研究的初步认可，主线任务从“生存抉择”推进至“品种改良”阶段。。最近剧情：我深吸一口气，指尖在冰冷的控制面板上微微颤抖。看着老陈那双布满血丝的眼睛，我没有再多言，只是默默地将主控线路切换至粮食区。随着“咔哒”一声脆响，温室角落里那几盏一直为观赏植物提供暖光的灯管瞬间熄灭，原本生机勃勃的绿意在昏暗中迅速褪色，只剩下一片死寂的阴影。我能感觉到指尖传来的阵阵寒意，那是长期与植物共生而产生的生物电共鸣在这一刻戛然而止的空洞感。老陈叹了口气，拍了拍我的肩膀，粗糙的掌心带着温室里特有的泥土气息，“林远，别太难受了，这几株花本来就不属于这个饥饿的时代。”我低头看着自己沾满泥土的双手，指尖布满细小的伤痕，那是为了培育这些生命留下的勋章，如今却显得如此讽刺。我转过身，将记录本翻到新的一页，强迫自己将注意力集中在粮食作物的生长数据上，试图用这种机械的专注来掩盖内心深处那抹挥之不去的遗憾。"
+            },
+            "deep_background_links": {
+              "1": "老陈"
+            },
+            "flow_update": {
+              "chapter_conflict_solved": true,
+              "characters": {},
+              "environment": {},
+              "quest_progress": "电力分配问题已解决，粮食作物的生长环境得到保障，我正式将重心转移至“希望之种”的改良研发。通过此次取舍，我获得了管理层对于后续研究的初步认可，主线任务从“生存抉择”推进至“品种改良”阶段。"
+            },
+            "next_options": [
+              "整理观赏植物残骸，寻找可能存活的种子样本。",
+              "向老陈询问关于“希望之种”实验室的旧档案，寻找改良灵感。"
+            ],
+            "plot_mentioned_only": [],
+            "plot_supporting_characters": [],
+            "scene": "我深吸一口气，指尖在冰冷的控制面板上微微颤抖。看着老陈那双布满血丝的眼睛，我没有再多言，只是默默地将主控线路切换至粮食区。随着“咔哒”一声脆响，温室角落里那几盏一直为观赏植物提供暖光的灯管瞬间熄灭，原本生机勃勃的绿意在昏暗中迅速褪色，只剩下一片死寂的阴影。我能感觉到指尖传来的阵阵寒意，那是长期与植物共生而产生的生物电共鸣在这一刻戛然而止的空洞感。老陈叹了口气，拍了拍我的肩膀，粗糙的掌心带着温室里特有的泥土气息，“林远，别太难受了，这几株花本来就不属于这个饥饿的时代。”我低头看着自己沾满泥土的双手，指尖布满细小的伤痕，那是为了培育这些生命留下的勋章，如今却显得如此讽刺。我转过身，将记录本翻到新的一页，强迫自己将注意力集中在粮食作物的生长数据上，试图用这种机械的专注来掩盖内心深处那抹挥之不去的遗憾。",
+            "sceneId": "-7474170158993220622_3035703130226306007",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-greenhouse-power-switch-sorrow, post-apocalyptic, dystopian, melancholy, realistic, cinematic-lighting, hyper-realistic, low-saturation, sharp-focus, detailed-texture, gritty-realism, 林远-主角 (Image 0) as a young man with a slender build, tired eyes showing deep exhaustion and quiet sorrow, face displaying a gentle yet firm expression, hands covered in fine scars and soil residue, short neatly trimmed hair, rugged dark grey work jumpsuit, fabric stained with faint traces of greenhouse dust and earth, standing in front of a cold industrial control panel, using Image 0 for facial and physical reference, fingertips touching the panel with visible hesitation, body slightly angled towards 老陈-配角1, posture conveying a sense of heavy resignation, 8K detailed facial features, expression of suppressed grief and professional focus, subtle shadows under eyes emphasizing fatigue, lip color naturally muted, soft ambient lighting highlighting facial contours, short brown hair, neatly groomed, root fixation coefficient 0.95, tip swing amplitude 2cm, color layering: main #4A4A4A, secondary #333333, highlight #666666, shadow #1A1A1A, wind speed 0.1m/s, turbulence intensity 1%, heavy-duty dark grey industrial jumpsuit, material texture showing wear and tear, slight fabric folds around elbows and shoulders, dimly lit greenhouse interior with dying plants in the shadows, industrial glass walls showing a dusty, desolate exterior, darkened corners where artificial light tubes have just flickered out, control panel with flickering status indicators, scattered soil and withered leaves on the floor, 老陈-配角1 standing to the side, wearing a worn-out worker uniform, 老陈-配角1 with bloodshot eyes and a hand resting on 林远's shoulder, faint dust particles floating in the remaining artificial light, cold blue shadows creeping across the plant beds, muted atmosphere with high-contrast shadows, low saturation palette, cold grey and deep industrial blue tones, faded earthy brown highlights, no vibrant or neon colors, harsh artificial light from overhead panels fading into darkness, dull grey light filtering through glass walls, soft rim light highlighting the protagonist's silhouette, deep shadows emphasizing the sense of isolation, type medium close-up, lens 35mm, aperture f/1.8, depth_of_field shallow focus on the protagonist's hands and face, flash none, grain fine film grain, texture realistic industrial surfaces, 林远-主角 in the center-left focus, 老陈-配角1 slightly out of focus in the mid-ground right, control panel in the immediate foreground, action constraints: focus on the interaction between hands and panel, avoiding any text display, hyper-realistic photography, no text, no symbols, no watermarks, no alphabets, melancholic, resigned, quietly sorrowful, dystopian stillness, no text, no symbols, no garbled characters, no words",
+              "scene_text_hash": "b3f591efe64aa40ceaca55a1d45720a4",
+              "style": "default",
+              "url": "/image_cache/eb08f5872918a0df37594f82780c567b.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "request_payload": {
+          "option": "优先保障粮食作物，忍痛切断观赏植物的电力供应。",
+          "optionIndex": 0,
+          "sceneId": "-2977567012417508795_3893592019561642851",
+          "currentOptions": [
+            "优先保障粮食作物，忍痛切断观赏植物的电力供应。",
+            "尝试调整灌溉系统，寻找平衡点以保住老陈心爱的“极光蕨”。"
+          ],
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过优化灌溉系统节省了电力，保住了大部分粮食作物，但不得不亲手处理掉几株因缺光而枯萎的珍稀花卉，以此换取系统的稳定运行。",
+                  "main_conflict": "温室电力配额被大幅削减，主角面临“保住现有的珍稀观赏植物”还是“优先保障基础粮食作物”的道德困境。居民的饥饿感与对美的渴望在狭小的空间内碰撞，主角必须在有限的资源下做出取舍，平衡生存需求与精神慰藉。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角在一次意外的停电中，通过观察野生苔藓的生存方式找到了改良灵感，成功培育出第一批幼苗，但同时也因违抗管理层指令被降职，失去了部分研究权限。",
+                  "main_conflict": "改良品种“希望之种”在实验室阶段频频失败，主角因过度劳累产生自我怀疑。同时，温室管理层要求主角放弃研发，转而投入更高效的工业化种植，主角在“坚持理想”与“顺应现实管理”之间陷入深刻的职业焦虑。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角选择在温室边缘的通风口进行小规模试种，作物最终在酸雨中存活并开出了一朵微小的花，但因环境恶劣，该品种无法大规模推广，主角在遗憾中接受了“人类依然无法重返地表”的现实，但内心获得了释然。",
+                  "main_conflict": "最终的室外试种时刻到来，但气候监测显示酸雨强度超标。主角必须决定是否冒着毁掉所有心血的风险进行种植，还是选择在温室内安稳度日，放弃对室外生存的探索，接受人类永远被困在穹顶之下的现实。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "沉浸式叙事模拟，采用低饱和度的写实美术风格，强调光影在植物叶片上的细微变化。节奏舒缓，通过环境交互与碎片化文本构建一个在资源匮乏中维持秩序的末日温室，带给玩家一种在废墟之上经营平凡生活的宁静与忧伤。",
+              "main_quest": "主角受命在“第七号温室”培育出一种能够适应室外高酸环境的改良型作物“希望之种”。任务分为三个阶段：首先是收集旧时代的种子样本并进行实验室培育；其次是建立稳定的温室生态系统，确保作物在极端气候下存活；最后是进行室外试种。挑战在于，温室的电力配额不断削减，且主角必须在“维持现有居民口粮”与“投入资源研发改良品种”之间做出艰难取舍。最终目标并非彻底改变世界，而是成功培育出一株能在废墟中扎根的植物，为人类的未来留下一线微弱的可能，即便这株植物无法在短期内解决全球饥荒。",
+              "protagonist_ability": "主角拥有一种名为“感官共鸣”的特质，源于长期与植物共生而产生的生物电感知。通过指尖触碰，主角能感知植物的微弱生理需求，如水分缺失或养分失衡。这种能力并非超能力，而是一种基于经验的直觉，使用时会消耗主角的体力，且无法改变植物的基因缺陷或环境的物理限制，只能在既定条件下实现最优化的生长。",
+              "world_basic_setting": "世界经历了一场被称为“灰烬降临”的全球性生态崩溃，地表被高浓度的酸性尘埃覆盖，绝大多数植物灭绝。人类退守至几座由旧时代穹顶技术保护的“温室城”。温室不仅是食物来源，更是文明最后的精神寄托。社会阶层由对温室的贡献度决定，资源分配极其严苛。在这个世界，园丁是备受尊崇却又极度孤独的职业，他们不仅要对抗土壤盐碱化与病虫害，还要在有限的电力供应下，通过人工光照维持生态循环。历史的伤痕体现在每一寸贫瘠的土地上，人们在对旧世界绿色的怀念与对现实生存的妥协中，维持着一种脆弱的平衡。这里没有英雄，只有在温室玻璃墙内，日复一日修剪枯枝、记录湿度、为每一株作物祈祷的普通劳动者。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {},
+              "chapter_progress": 2.0
+            },
+            "game_id": "game_1777628369_g7khu5",
+            "image_style": {
+              "type": "realistic"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "深灰色工装、沾染泥土的双手、略显疲惫的眼神、修剪整齐的短发、常备的记录本、沉默寡言、专注的神情、清瘦、温和但坚定、指尖布满细小伤痕。",
+              "work_en": "Ash Greenhouse",
+              "work_zh": "灰烬温室"
+            },
+            "tone": "normal_ending",
+            "user_theme": "末日温室园丁",
+            "_benchmark_profile": "fullready_strict",
+            "_benchmark_measurement": "fullready_nextturn",
+            "_benchmark_read_wait_s": 0.0
+          },
+          "previousSceneId": "initial",
+          "previousSceneImage": {
+            "cached": true,
+            "height": 1080,
+            "image_type": "story_scene",
+            "prompt": "scene-greenhouse-tension-lin-yuan, post-apocalyptic, realistic, melancholic, atmospheric, industrial-greenhouse, photorealistic, low-saturation, cinematic-lighting, highly-detailed-textures, soft-focus-background, Lin Yuan (Image 0), a young man with a slender build, tired eyes reflecting a sense of weary responsibility, neatly trimmed short hair, gentle yet firm expression, fingertips covered in small, faint scars from labor, deep grey workwear uniform, durable and slightly worn, hands stained with dark soil and plant residues, standing in front of a plant cultivation rack, body facing forward towards the viewer and 老陈-配角1, fingertips lightly touching the leaves of a fern, holding a small, worn notebook in one hand, 8K detailed facial features, weary yet focused expression, natural skin texture with subtle imperfections, soft shadows highlighting the cheekbones and tired eyes, lip color naturally muted, neatly trimmed short dark hair, root fixation coefficient 0.95, tip swing amplitude 2cm, color layering: main color #333333, secondary color #262626, highlight #4D4D4D, shadow #1A1A1A, wind speed 0.2m/s, turbulence intensity 1%, deep grey workwear with realistic fabric texture, visible dirt stains on the sleeves and cuffs, slight fabric creases from long hours of work, industrial greenhouse interior with metallic cultivation racks, glass walls revealing a desolate, grey wasteland outside, faint haze of acid dust visible beyond the glass, dim, flickering artificial growth lights overhead, 老陈-配角1, an older man with turbid eyes, standing near the heavy airlock door on the right side of the frame, dust particles floating in the dim light, subtle glow from artificial plant lights, condensation on the glass walls, muted grey and industrial steel tones, faded green of the wilting plants, deep charcoal for workwear, dusty, low-saturation earth tones, dim, high-contrast artificial light from overhead tubes, faint, cold grey light filtering through glass walls from the wasteland, soft rim light highlighting the protagonist's silhouette, type medium shot, lens 35mm, aperture f/2.0, depth_of_field shallow focus on the protagonist, background slightly blurred, flash none, grain fine film grain, texture realistic industrial surfaces, protagonist positioned slightly to the left of the center, 老陈-配角1 positioned on the right, partially in the frame, cultivation rack acts as a foreground frame, focus on protagonist's hands and weary face, cinematic realism, no text or symbols in image, melancholic, oppressive silence, quiet desperation, fragile resilience, no text, no symbols, no garbled characters, no words",
+            "prompt_json": {
+              "camera": {
+                "aperture": "f/2.0",
+                "depth_of_field": "shallow focus on the protagonist, background slightly blurred",
+                "flash": "none",
+                "grain": "fine film grain",
+                "lens": "35mm",
+                "texture": "realistic industrial surfaces",
+                "type": "medium shot"
+              },
+              "clothing_system": [
+                "deep grey workwear with realistic fabric texture",
+                "visible dirt stains on the sleeves and cuffs",
+                "slight fabric creases from long hours of work"
+              ],
+              "color_restriction": [
+                "muted grey and industrial steel tones",
+                "faded green of the wilting plants",
+                "deep charcoal for workwear",
+                "dusty, low-saturation earth tones"
+              ],
+              "composition": [
+                "protagonist positioned slightly to the left of the center",
+                "老陈-配角1 positioned on the right, partially in the frame",
+                "cultivation rack acts as a foreground frame",
+                "focus on protagonist's hands and weary face"
+              ],
+              "environment": {
+                "background": [
+                  "industrial greenhouse interior with metallic cultivation racks",
+                  "glass walls revealing a desolate, grey wasteland outside",
+                  "faint haze of acid dust visible beyond the glass",
+                  "dim, flickering artificial growth lights overhead"
+                ],
+                "characters": [
+                  "老陈-配角1, an older man with turbid eyes, standing near the heavy airlock door on the right side of the frame"
+                ],
+                "effects": [
+                  "dust particles floating in the dim light",
+                  "subtle glow from artificial plant lights",
+                  "condensation on the glass walls"
+                ]
+              },
+              "face_system": [
+                "8K detailed facial features",
+                "weary yet focused expression",
+                "natural skin texture with subtle imperfections",
+                "soft shadows highlighting the cheekbones and tired eyes",
+                "lip color naturally muted"
+              ],
+              "hair_system": [
+                "neatly trimmed short dark hair",
+                "root fixation coefficient 0.95",
+                "tip swing amplitude 2cm",
+                "color layering: main color #333333, secondary color #262626, highlight #4D4D4D, shadow #1A1A1A",
+                "wind speed 0.2m/s",
+                "turbulence intensity 1%"
+              ],
+              "label": "scene-greenhouse-tension-lin-yuan",
+              "lighting": [
+                "dim, high-contrast artificial light from overhead tubes",
+                "faint, cold grey light filtering through glass walls from the wasteland",
+                "soft rim light highlighting the protagonist's silhouette"
+              ],
+              "mood": [
+                "melancholic",
+                "oppressive silence",
+                "quiet desperation",
+                "fragile resilience"
+              ],
+              "output_style": [
+                "cinematic realism",
+                "no text or symbols in image"
+              ],
+              "style": [
+                "photorealistic",
+                "low-saturation",
+                "cinematic-lighting",
+                "highly-detailed-textures",
+                "soft-focus-background"
+              ],
+              "subject": {
+                "body_traits": [
+                  "Lin Yuan (Image 0), a young man with a slender build",
+                  "tired eyes reflecting a sense of weary responsibility",
+                  "neatly trimmed short hair",
+                  "gentle yet firm expression",
+                  "fingertips covered in small, faint scars from labor"
+                ],
+                "outfit": [
+                  "deep grey workwear uniform, durable and slightly worn",
+                  "hands stained with dark soil and plant residues"
+                ],
+                "pose": [
+                  "standing in front of a plant cultivation rack",
+                  "body facing forward towards the viewer and 老陈-配角1",
+                  "fingertips lightly touching the leaves of a fern",
+                  "holding a small, worn notebook in one hand"
+                ]
+              },
+              "tags": [
+                "post-apocalyptic",
+                "realistic",
+                "melancholic",
+                "atmospheric",
+                "industrial-greenhouse"
+              ]
+            },
+            "scene_text_hash": "90c5874f3fd7f406edd8aa9cea576fcd",
+            "style": "default",
+            "url": "/image_cache/925725c2d498a5c36a198bc2d1ef12d1.png",
+            "width": 1920
+          },
+          "previousSceneText": "穹顶外的酸性尘埃像一层厚重的铅灰色裹尸布，将第七号温室与外界彻底隔绝。我站在培育架前，指尖轻轻触碰着一株名为“极光蕨”的观赏植物，那种熟悉的生物电反馈告诉我，它正处于极度缺水的边缘。温室内的空气循环系统发出低沉的嗡鸣，那是电力不足的哀鸣。我低头看了看自己沾满泥土的双手，指尖布满细小的伤痕，这是长期与土壤和药剂打交道的代价。\n\n“林远，电力配额又削减了。”温室管理员老陈推开沉重的气闸门，他那双浑浊的眼睛扫过架子上那些娇贵的观赏植物，又看了看我身旁那几排长势平平的粮食作物，语气里透着一股疲惫的无奈，“上面要求优先保障基础口粮，这些‘绿色的摆设’，恐怕留不住了。”\n\n我沉默地收回手，记录本上密密麻麻写满了湿度与光照数据。我深知，如果切断这些观赏植物的电力，它们会在三天内枯萎，但如果坚持供电，下周的粮食产量将无法满足温室居民的最低需求。我抬起头，透过玻璃墙看向那片死寂的荒原，心中那种熟悉的、无力的焦虑感再次升起。"
+        },
+        "start_ts": 1777628431.9212515,
+        "end_ts": 1777628455.3551393,
+        "provider_events": {
+          "event_count": 8,
+          "queue_wait_ms": {
+            "count": 8,
+            "min": 0.0,
+            "max": 23174.0,
+            "mean": 4344.5,
+            "median": 0.0,
+            "p95": 17089.95
+          },
+          "latency_ms": {
+            "count": 4,
+            "min": 5790.0,
+            "max": 23099.0,
+            "mean": 10426.5,
+            "median": 6408.5,
+            "p95": 20661.5
+          },
+          "llm_success_count": 4,
+          "image_success_count": 0,
+          "request_thread_event_count": 0,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0
+        },
+        "attempts": [
+          {
+            "http_status": 200,
+            "elapsed_s": 23.434,
+            "response_json": {
+              "benchmark_diagnostics": {
+                "cache_hit_reason": "waited_request_scene_text_completed_no_image",
+                "cache_miss_reason": "request_scene_generation_in_progress",
+                "current_options_key_drift_detected": false,
+                "global_state_key_drift_detected": true,
+                "placeholder": false,
+                "previous_scene_id": "initial",
+                "recomputed_scene_cache_exists": false,
+                "recomputed_scene_id": "2869510454586353729_3893592019561642851",
+                "request_current_options_count": 2,
+                "request_current_options_hash": "4f3b247034671ebdd94c8fc1fdb64024",
+                "request_flow_worldline_hash": "0b7d2802f8e46ae104639ddbac325b51",
+                "request_global_state_hash": "c63ab0386599238e94fa8f747ee04622",
+                "request_option_at_index": "优先保障粮食作物，忍痛切断观赏植物的电力供应。",
+                "request_option_index": 0,
+                "request_option_text": "优先保障粮食作物，忍痛切断观赏植物的电力供应。",
+                "request_scene_cache_exists": true,
+                "request_scene_cache_meta": {
+                  "canonical_scene_id": "-4708919335056954905_3893592019561642851",
+                  "current_options_hash": "4f3b247034671ebdd94c8fc1fdb64024",
+                  "current_options_preview": [
+                    "优先保障粮食作物，忍痛切断观赏植物的电力供应。",
+                    "尝试调整灌溉系统，寻找平衡点以保住老陈心爱的“极光蕨”。"
+                  ],
+                  "flow_worldline_hash": "940e38d5f8372eaa58cfdaf4d70a0d30",
+                  "global_state_hash": "8e74a8a4daf8eb116c7cb9eab428c732",
+                  "option_count": 2,
+                  "parent_scene_id": null,
+                  "scene_id": "-2977567012417508795_3893592019561642851"
+                },
+                "request_scene_id": "-2977567012417508795_3893592019561642851",
+                "resolution_path": "wait_for_request_scene_cache_text_only",
+                "response_has_image": true,
+                "response_has_scene": true,
+                "response_scene_id": "-7474170158993220622_3035703130226306007",
+                "response_status": "success",
+                "scene_id_mismatch_detected": true,
+                "selected_option_mismatch_detected": false
+              },
+              "message": "选项剧情生成成功！",
+              "optionData": {
+                "checkpoint_packet": {
+                  "chapter": "chapter1",
+                  "chapter_conflict_solved": true,
+                  "quest_delta": "电力分配问题已解决，粮食作物的生长环境得到保障，我正式将重心转移至“希望之种”的改良研发。通过此次取舍，我获得了管理层对于后续研究的初步认可，主线任务从“生存抉择”推进至“品种改良”阶段。",
+                  "recap_text": "你选择了“优先保障粮食作物，忍痛切断观赏植物的电力供应。”。当前章节：chapter1。主线进展：电力分配问题已解决，粮食作物的生长环境得到保障，我正式将重心转移至“希望之种”的改良研发。通过此次取舍，我获得了管理层对于后续研究的初步认可，主线任务从“生存抉择”推进至“品种改良”阶段。。最近剧情：我深吸一口气，指尖在冰冷的控制面板上微微颤抖。看着老陈那双布满血丝的眼睛，我没有再多言，只是默默地将主控线路切换至粮食区。随着“咔哒”一声脆响，温室角落里那几盏一直为观赏植物提供暖光的灯管瞬间熄灭，原本生机勃勃的绿意在昏暗中迅速褪色，只剩下一片死寂的阴影。我能感觉到指尖传来的阵阵寒意，那是长期与植物共生而产生的生物电共鸣在这一刻戛然而止的空洞感。老陈叹了口气，拍了拍我的肩膀，粗糙的掌心带着温室里特有的泥土气息，“林远，别太难受了，这几株花本来就不属于这个饥饿的时代。”我低头看着自己沾满泥土的双手，指尖布满细小的伤痕，那是为了培育这些生命留下的勋章，如今却显得如此讽刺。我转过身，将记录本翻到新的一页，强迫自己将注意力集中在粮食作物的生长数据上，试图用这种机械的专注来掩盖内心深处那抹挥之不去的遗憾。"
+                },
+                "deep_background_links": {
+                  "1": "老陈"
+                },
+                "flow_update": {
+                  "chapter_conflict_solved": true,
+                  "characters": {},
+                  "environment": {},
+                  "quest_progress": "电力分配问题已解决，粮食作物的生长环境得到保障，我正式将重心转移至“希望之种”的改良研发。通过此次取舍，我获得了管理层对于后续研究的初步认可，主线任务从“生存抉择”推进至“品种改良”阶段。"
+                },
+                "next_options": [
+                  "整理观赏植物残骸，寻找可能存活的种子样本。",
+                  "向老陈询问关于“希望之种”实验室的旧档案，寻找改良灵感。"
+                ],
+                "plot_mentioned_only": [],
+                "plot_supporting_characters": [],
+                "scene": "我深吸一口气，指尖在冰冷的控制面板上微微颤抖。看着老陈那双布满血丝的眼睛，我没有再多言，只是默默地将主控线路切换至粮食区。随着“咔哒”一声脆响，温室角落里那几盏一直为观赏植物提供暖光的灯管瞬间熄灭，原本生机勃勃的绿意在昏暗中迅速褪色，只剩下一片死寂的阴影。我能感觉到指尖传来的阵阵寒意，那是长期与植物共生而产生的生物电共鸣在这一刻戛然而止的空洞感。老陈叹了口气，拍了拍我的肩膀，粗糙的掌心带着温室里特有的泥土气息，“林远，别太难受了，这几株花本来就不属于这个饥饿的时代。”我低头看着自己沾满泥土的双手，指尖布满细小的伤痕，那是为了培育这些生命留下的勋章，如今却显得如此讽刺。我转过身，将记录本翻到新的一页，强迫自己将注意力集中在粮食作物的生长数据上，试图用这种机械的专注来掩盖内心深处那抹挥之不去的遗憾。",
+                "sceneId": "-7474170158993220622_3035703130226306007",
+                "scene_image": {
+                  "cached": true,
+                  "height": 1080,
+                  "image_type": "story_scene",
+                  "prompt": "scene-greenhouse-power-switch-sorrow, post-apocalyptic, dystopian, melancholy, realistic, cinematic-lighting, hyper-realistic, low-saturation, sharp-focus, detailed-texture, gritty-realism, 林远-主角 (Image 0) as a young man with a slender build, tired eyes showing deep exhaustion and quiet sorrow, face displaying a gentle yet firm expression, hands covered in fine scars and soil residue, short neatly trimmed hair, rugged dark grey work jumpsuit, fabric stained with faint traces of greenhouse dust and earth, standing in front of a cold industrial control panel, using Image 0 for facial and physical reference, fingertips touching the panel with visible hesitation, body slightly angled towards 老陈-配角1, posture conveying a sense of heavy resignation, 8K detailed facial features, expression of suppressed grief and professional focus, subtle shadows under eyes emphasizing fatigue, lip color naturally muted, soft ambient lighting highlighting facial contours, short brown hair, neatly groomed, root fixation coefficient 0.95, tip swing amplitude 2cm, color layering: main #4A4A4A, secondary #333333, highlight #666666, shadow #1A1A1A, wind speed 0.1m/s, turbulence intensity 1%, heavy-duty dark grey industrial jumpsuit, material texture showing wear and tear, slight fabric folds around elbows and shoulders, dimly lit greenhouse interior with dying plants in the shadows, industrial glass walls showing a dusty, desolate exterior, darkened corners where artificial light tubes have just flickered out, control panel with flickering status indicators, scattered soil and withered leaves on the floor, 老陈-配角1 standing to the side, wearing a worn-out worker uniform, 老陈-配角1 with bloodshot eyes and a hand resting on 林远's shoulder, faint dust particles floating in the remaining artificial light, cold blue shadows creeping across the plant beds, muted atmosphere with high-contrast shadows, low saturation palette, cold grey and deep industrial blue tones, faded earthy brown highlights, no vibrant or neon colors, harsh artificial light from overhead panels fading into darkness, dull grey light filtering through glass walls, soft rim light highlighting the protagonist's silhouette, deep shadows emphasizing the sense of isolation, type medium close-up, lens 35mm, aperture f/1.8, depth_of_field shallow focus on the protagonist's hands and face, flash none, grain fine film grain, texture realistic industrial surfaces, 林远-主角 in the center-left focus, 老陈-配角1 slightly out of focus in the mid-ground right, control panel in the immediate foreground, action constraints: focus on the interaction between hands and panel, avoiding any text display, hyper-realistic photography, no text, no symbols, no watermarks, no alphabets, melancholic, resigned, quietly sorrowful, dystopian stillness, no text, no symbols, no garbled characters, no words",
+                  "scene_text_hash": "b3f591efe64aa40ceaca55a1d45720a4",
+                  "style": "default",
+                  "url": "/image_cache/eb08f5872918a0df37594f82780c567b.png",
+                  "width": 1920
+                }
+              },
+              "status": "success"
+            },
+            "request_payload": {
+              "option": "优先保障粮食作物，忍痛切断观赏植物的电力供应。",
+              "optionIndex": 0,
+              "sceneId": "-2977567012417508795_3893592019561642851",
+              "currentOptions": [
+                "优先保障粮食作物，忍痛切断观赏植物的电力供应。",
+                "尝试调整灌溉系统，寻找平衡点以保住老陈心爱的“极光蕨”。"
+              ],
+              "globalState": {
+                "core_worldview": {
+                  "chapters": {
+                    "chapter1": {
+                      "conflict_end_condition": "主角通过优化灌溉系统节省了电力，保住了大部分粮食作物，但不得不亲手处理掉几株因缺光而枯萎的珍稀花卉，以此换取系统的稳定运行。",
+                      "main_conflict": "温室电力配额被大幅削减，主角面临“保住现有的珍稀观赏植物”还是“优先保障基础粮食作物”的道德困境。居民的饥饿感与对美的渴望在狭小的空间内碰撞，主角必须在有限的资源下做出取舍，平衡生存需求与精神慰藉。"
+                    },
+                    "chapter2": {
+                      "conflict_end_condition": "主角在一次意外的停电中，通过观察野生苔藓的生存方式找到了改良灵感，成功培育出第一批幼苗，但同时也因违抗管理层指令被降职，失去了部分研究权限。",
+                      "main_conflict": "改良品种“希望之种”在实验室阶段频频失败，主角因过度劳累产生自我怀疑。同时，温室管理层要求主角放弃研发，转而投入更高效的工业化种植，主角在“坚持理想”与“顺应现实管理”之间陷入深刻的职业焦虑。"
+                    },
+                    "chapter3": {
+                      "conflict_end_condition": "主角选择在温室边缘的通风口进行小规模试种，作物最终在酸雨中存活并开出了一朵微小的花，但因环境恶劣，该品种无法大规模推广，主角在遗憾中接受了“人类依然无法重返地表”的现实，但内心获得了释然。",
+                      "main_conflict": "最终的室外试种时刻到来，但气候监测显示酸雨强度超标。主角必须决定是否冒着毁掉所有心血的风险进行种植，还是选择在温室内安稳度日，放弃对室外生存的探索，接受人类永远被困在穹顶之下的现实。"
+                    }
+                  },
+                  "characters": {},
+                  "forces": {},
+                  "game_style": "沉浸式叙事模拟，采用低饱和度的写实美术风格，强调光影在植物叶片上的细微变化。节奏舒缓，通过环境交互与碎片化文本构建一个在资源匮乏中维持秩序的末日温室，带给玩家一种在废墟之上经营平凡生活的宁静与忧伤。",
+                  "main_quest": "主角受命在“第七号温室”培育出一种能够适应室外高酸环境的改良型作物“希望之种”。任务分为三个阶段：首先是收集旧时代的种子样本并进行实验室培育；其次是建立稳定的温室生态系统，确保作物在极端气候下存活；最后是进行室外试种。挑战在于，温室的电力配额不断削减，且主角必须在“维持现有居民口粮”与“投入资源研发改良品种”之间做出艰难取舍。最终目标并非彻底改变世界，而是成功培育出一株能在废墟中扎根的植物，为人类的未来留下一线微弱的可能，即便这株植物无法在短期内解决全球饥荒。",
+                  "protagonist_ability": "主角拥有一种名为“感官共鸣”的特质，源于长期与植物共生而产生的生物电感知。通过指尖触碰，主角能感知植物的微弱生理需求，如水分缺失或养分失衡。这种能力并非超能力，而是一种基于经验的直觉，使用时会消耗主角的体力，且无法改变植物的基因缺陷或环境的物理限制，只能在既定条件下实现最优化的生长。",
+                  "world_basic_setting": "世界经历了一场被称为“灰烬降临”的全球性生态崩溃，地表被高浓度的酸性尘埃覆盖，绝大多数植物灭绝。人类退守至几座由旧时代穹顶技术保护的“温室城”。温室不仅是食物来源，更是文明最后的精神寄托。社会阶层由对温室的贡献度决定，资源分配极其严苛。在这个世界，园丁是备受尊崇却又极度孤独的职业，他们不仅要对抗土壤盐碱化与病虫害，还要在有限的电力供应下，通过人工光照维持生态循环。历史的伤痕体现在每一寸贫瘠的土地上，人们在对旧世界绿色的怀念与对现实生存的妥协中，维持着一种脆弱的平衡。这里没有英雄，只有在温室玻璃墙内，日复一日修剪枯枝、记录湿度、为每一株作物祈祷的普通劳动者。"
+                },
+                "flow_worldline": {
+                  "characters": {},
+                  "current_chapter": "chapter1",
+                  "environment": {},
+                  "chapter_progress": 2.0
+                },
+                "game_id": "game_1777628369_g7khu5",
+                "image_style": {
+                  "type": "realistic"
+                },
+                "meta": {
+                  "detail_async": true
+                },
+                "protagonist_canonical": {
+                  "age_range": "青年",
+                  "gender": "男性",
+                  "name_en": "Lin Yuan",
+                  "name_zh": "林远",
+                  "signature_look_keywords": "深灰色工装、沾染泥土的双手、略显疲惫的眼神、修剪整齐的短发、常备的记录本、沉默寡言、专注的神情、清瘦、温和但坚定、指尖布满细小伤痕。",
+                  "work_en": "Ash Greenhouse",
+                  "work_zh": "灰烬温室"
+                },
+                "tone": "normal_ending",
+                "user_theme": "末日温室园丁",
+                "_benchmark_profile": "fullready_strict",
+                "_benchmark_measurement": "fullready_nextturn",
+                "_benchmark_read_wait_s": 0.0
+              },
+              "previousSceneId": "initial",
+              "previousSceneImage": {
+                "cached": true,
+                "height": 1080,
+                "image_type": "story_scene",
+                "prompt": "scene-greenhouse-tension-lin-yuan, post-apocalyptic, realistic, melancholic, atmospheric, industrial-greenhouse, photorealistic, low-saturation, cinematic-lighting, highly-detailed-textures, soft-focus-background, Lin Yuan (Image 0), a young man with a slender build, tired eyes reflecting a sense of weary responsibility, neatly trimmed short hair, gentle yet firm expression, fingertips covered in small, faint scars from labor, deep grey workwear uniform, durable and slightly worn, hands stained with dark soil and plant residues, standing in front of a plant cultivation rack, body facing forward towards the viewer and 老陈-配角1, fingertips lightly touching the leaves of a fern, holding a small, worn notebook in one hand, 8K detailed facial features, weary yet focused expression, natural skin texture with subtle imperfections, soft shadows highlighting the cheekbones and tired eyes, lip color naturally muted, neatly trimmed short dark hair, root fixation coefficient 0.95, tip swing amplitude 2cm, color layering: main color #333333, secondary color #262626, highlight #4D4D4D, shadow #1A1A1A, wind speed 0.2m/s, turbulence intensity 1%, deep grey workwear with realistic fabric texture, visible dirt stains on the sleeves and cuffs, slight fabric creases from long hours of work, industrial greenhouse interior with metallic cultivation racks, glass walls revealing a desolate, grey wasteland outside, faint haze of acid dust visible beyond the glass, dim, flickering artificial growth lights overhead, 老陈-配角1, an older man with turbid eyes, standing near the heavy airlock door on the right side of the frame, dust particles floating in the dim light, subtle glow from artificial plant lights, condensation on the glass walls, muted grey and industrial steel tones, faded green of the wilting plants, deep charcoal for workwear, dusty, low-saturation earth tones, dim, high-contrast artificial light from overhead tubes, faint, cold grey light filtering through glass walls from the wasteland, soft rim light highlighting the protagonist's silhouette, type medium shot, lens 35mm, aperture f/2.0, depth_of_field shallow focus on the protagonist, background slightly blurred, flash none, grain fine film grain, texture realistic industrial surfaces, protagonist positioned slightly to the left of the center, 老陈-配角1 positioned on the right, partially in the frame, cultivation rack acts as a foreground frame, focus on protagonist's hands and weary face, cinematic realism, no text or symbols in image, melancholic, oppressive silence, quiet desperation, fragile resilience, no text, no symbols, no garbled characters, no words",
+                "prompt_json": {
+                  "camera": {
+                    "aperture": "f/2.0",
+                    "depth_of_field": "shallow focus on the protagonist, background slightly blurred",
+                    "flash": "none",
+                    "grain": "fine film grain",
+                    "lens": "35mm",
+                    "texture": "realistic industrial surfaces",
+                    "type": "medium shot"
+                  },
+                  "clothing_system": [
+                    "deep grey workwear with realistic fabric texture",
+                    "visible dirt stains on the sleeves and cuffs",
+                    "slight fabric creases from long hours of work"
+                  ],
+                  "color_restriction": [
+                    "muted grey and industrial steel tones",
+                    "faded green of the wilting plants",
+                    "deep charcoal for workwear",
+                    "dusty, low-saturation earth tones"
+                  ],
+                  "composition": [
+                    "protagonist positioned slightly to the left of the center",
+                    "老陈-配角1 positioned on the right, partially in the frame",
+                    "cultivation rack acts as a foreground frame",
+                    "focus on protagonist's hands and weary face"
+                  ],
+                  "environment": {
+                    "background": [
+                      "industrial greenhouse interior with metallic cultivation racks",
+                      "glass walls revealing a desolate, grey wasteland outside",
+                      "faint haze of acid dust visible beyond the glass",
+                      "dim, flickering artificial growth lights overhead"
+                    ],
+                    "characters": [
+                      "老陈-配角1, an older man with turbid eyes, standing near the heavy airlock door on the right side of the frame"
+                    ],
+                    "effects": [
+                      "dust particles floating in the dim light",
+                      "subtle glow from artificial plant lights",
+                      "condensation on the glass walls"
+                    ]
+                  },
+                  "face_system": [
+                    "8K detailed facial features",
+                    "weary yet focused expression",
+                    "natural skin texture with subtle imperfections",
+                    "soft shadows highlighting the cheekbones and tired eyes",
+                    "lip color naturally muted"
+                  ],
+                  "hair_system": [
+                    "neatly trimmed short dark hair",
+                    "root fixation coefficient 0.95",
+                    "tip swing amplitude 2cm",
+                    "color layering: main color #333333, secondary color #262626, highlight #4D4D4D, shadow #1A1A1A",
+                    "wind speed 0.2m/s",
+                    "turbulence intensity 1%"
+                  ],
+                  "label": "scene-greenhouse-tension-lin-yuan",
+                  "lighting": [
+                    "dim, high-contrast artificial light from overhead tubes",
+                    "faint, cold grey light filtering through glass walls from the wasteland",
+                    "soft rim light highlighting the protagonist's silhouette"
+                  ],
+                  "mood": [
+                    "melancholic",
+                    "oppressive silence",
+                    "quiet desperation",
+                    "fragile resilience"
+                  ],
+                  "output_style": [
+                    "cinematic realism",
+                    "no text or symbols in image"
+                  ],
+                  "style": [
+                    "photorealistic",
+                    "low-saturation",
+                    "cinematic-lighting",
+                    "highly-detailed-textures",
+                    "soft-focus-background"
+                  ],
+                  "subject": {
+                    "body_traits": [
+                      "Lin Yuan (Image 0), a young man with a slender build",
+                      "tired eyes reflecting a sense of weary responsibility",
+                      "neatly trimmed short hair",
+                      "gentle yet firm expression",
+                      "fingertips covered in small, faint scars from labor"
+                    ],
+                    "outfit": [
+                      "deep grey workwear uniform, durable and slightly worn",
+                      "hands stained with dark soil and plant residues"
+                    ],
+                    "pose": [
+                      "standing in front of a plant cultivation rack",
+                      "body facing forward towards the viewer and 老陈-配角1",
+                      "fingertips lightly touching the leaves of a fern",
+                      "holding a small, worn notebook in one hand"
+                    ]
+                  },
+                  "tags": [
+                    "post-apocalyptic",
+                    "realistic",
+                    "melancholic",
+                    "atmospheric",
+                    "industrial-greenhouse"
+                  ]
+                },
+                "scene_text_hash": "90c5874f3fd7f406edd8aa9cea576fcd",
+                "style": "default",
+                "url": "/image_cache/925725c2d498a5c36a198bc2d1ef12d1.png",
+                "width": 1920
+              },
+              "previousSceneText": "穹顶外的酸性尘埃像一层厚重的铅灰色裹尸布，将第七号温室与外界彻底隔绝。我站在培育架前，指尖轻轻触碰着一株名为“极光蕨”的观赏植物，那种熟悉的生物电反馈告诉我，它正处于极度缺水的边缘。温室内的空气循环系统发出低沉的嗡鸣，那是电力不足的哀鸣。我低头看了看自己沾满泥土的双手，指尖布满细小的伤痕，这是长期与土壤和药剂打交道的代价。\n\n“林远，电力配额又削减了。”温室管理员老陈推开沉重的气闸门，他那双浑浊的眼睛扫过架子上那些娇贵的观赏植物，又看了看我身旁那几排长势平平的粮食作物，语气里透着一股疲惫的无奈，“上面要求优先保障基础口粮，这些‘绿色的摆设’，恐怕留不住了。”\n\n我沉默地收回手，记录本上密密麻麻写满了湿度与光照数据。我深知，如果切断这些观赏植物的电力，它们会在三天内枯萎，但如果坚持供电，下周的粮食产量将无法满足温室居民的最低需求。我抬起头，透过玻璃墙看向那片死寂的荒原，心中那种熟悉的、无力的焦虑感再次升起。"
+            },
+            "start_ts": 1777628431.9212515,
+            "end_ts": 1777628455.3551393,
+            "provider_events": {
+              "event_count": 8,
+              "queue_wait_ms": {
+                "count": 8,
+                "min": 0.0,
+                "max": 23174.0,
+                "mean": 4344.5,
+                "median": 0.0,
+                "p95": 17089.95
+              },
+              "latency_ms": {
+                "count": 4,
+                "min": 5790.0,
+                "max": 23099.0,
+                "mean": 10426.5,
+                "median": 6408.5,
+                "p95": 20661.5
+              },
+              "llm_success_count": 4,
+              "image_success_count": 0,
+              "request_thread_event_count": 0,
+              "provider_429_count": 0,
+              "provider_timeout_count": 0,
+              "shared_backoff_wait_ms_total": 0,
+              "retry_heavy_event_count": 0,
+              "main_character_event_count": 0,
+              "scene_image_event_count": 0
+            }
+          }
+        ],
+        "attempt_count": 1,
+        "request_elapsed_s": 23.434,
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "success",
+        "has_scene": true,
+        "has_image": true,
+        "selected_option_index": 0,
+        "selected_option_text": "优先保障粮食作物，忍痛切断观赏植物的电力供应。",
+        "input_scene_id": "-2977567012417508795_3893592019561642851",
+        "inferred_cache_result": "likely_miss_or_partial",
+        "used_updated_flow_state": true,
+        "cache_hit_reason": "waited_request_scene_text_completed_no_image",
+        "cache_miss_reason": "request_scene_generation_in_progress",
+        "global_state_key_drift_detected": true,
+        "scene_id_mismatch_detected": true,
+        "selected_option_mismatch_detected": false,
+        "current_options_key_drift_detected": false,
+        "benchmark_diagnostics": {
+          "cache_hit_reason": "waited_request_scene_text_completed_no_image",
+          "cache_miss_reason": "request_scene_generation_in_progress",
+          "current_options_key_drift_detected": false,
+          "global_state_key_drift_detected": true,
+          "placeholder": false,
+          "previous_scene_id": "initial",
+          "recomputed_scene_cache_exists": false,
+          "recomputed_scene_id": "2869510454586353729_3893592019561642851",
+          "request_current_options_count": 2,
+          "request_current_options_hash": "4f3b247034671ebdd94c8fc1fdb64024",
+          "request_flow_worldline_hash": "0b7d2802f8e46ae104639ddbac325b51",
+          "request_global_state_hash": "c63ab0386599238e94fa8f747ee04622",
+          "request_option_at_index": "优先保障粮食作物，忍痛切断观赏植物的电力供应。",
+          "request_option_index": 0,
+          "request_option_text": "优先保障粮食作物，忍痛切断观赏植物的电力供应。",
+          "request_scene_cache_exists": true,
+          "request_scene_cache_meta": {
+            "canonical_scene_id": "-4708919335056954905_3893592019561642851",
+            "current_options_hash": "4f3b247034671ebdd94c8fc1fdb64024",
+            "current_options_preview": [
+              "优先保障粮食作物，忍痛切断观赏植物的电力供应。",
+              "尝试调整灌溉系统，寻找平衡点以保住老陈心爱的“极光蕨”。"
+            ],
+            "flow_worldline_hash": "940e38d5f8372eaa58cfdaf4d70a0d30",
+            "global_state_hash": "8e74a8a4daf8eb116c7cb9eab428c732",
+            "option_count": 2,
+            "parent_scene_id": null,
+            "scene_id": "-2977567012417508795_3893592019561642851"
+          },
+          "request_scene_id": "-2977567012417508795_3893592019561642851",
+          "resolution_path": "wait_for_request_scene_cache_text_only",
+          "response_has_image": true,
+          "response_has_scene": true,
+          "response_scene_id": "-7474170158993220622_3035703130226306007",
+          "response_status": "success",
+          "scene_id_mismatch_detected": true,
+          "selected_option_mismatch_detected": false
+        }
+      },
+      "full_ready": {
+        "text_ready_ts": 1777628455.3551393,
+        "text_ready_elapsed_s": 23.434,
+        "image_ready_ts": 1777628455.3551393,
+        "image_ready_elapsed_s": 23.434,
+        "full_ready_ts": 1777628455.3551393,
+        "full_ready_elapsed_s": 23.434,
+        "image_probe": {
+          "status": "success",
+          "source": "generate-option",
+          "image": {
+            "cached": true,
+            "height": 1080,
+            "image_type": "story_scene",
+            "prompt": "scene-greenhouse-power-switch-sorrow, post-apocalyptic, dystopian, melancholy, realistic, cinematic-lighting, hyper-realistic, low-saturation, sharp-focus, detailed-texture, gritty-realism, 林远-主角 (Image 0) as a young man with a slender build, tired eyes showing deep exhaustion and quiet sorrow, face displaying a gentle yet firm expression, hands covered in fine scars and soil residue, short neatly trimmed hair, rugged dark grey work jumpsuit, fabric stained with faint traces of greenhouse dust and earth, standing in front of a cold industrial control panel, using Image 0 for facial and physical reference, fingertips touching the panel with visible hesitation, body slightly angled towards 老陈-配角1, posture conveying a sense of heavy resignation, 8K detailed facial features, expression of suppressed grief and professional focus, subtle shadows under eyes emphasizing fatigue, lip color naturally muted, soft ambient lighting highlighting facial contours, short brown hair, neatly groomed, root fixation coefficient 0.95, tip swing amplitude 2cm, color layering: main #4A4A4A, secondary #333333, highlight #666666, shadow #1A1A1A, wind speed 0.1m/s, turbulence intensity 1%, heavy-duty dark grey industrial jumpsuit, material texture showing wear and tear, slight fabric folds around elbows and shoulders, dimly lit greenhouse interior with dying plants in the shadows, industrial glass walls showing a dusty, desolate exterior, darkened corners where artificial light tubes have just flickered out, control panel with flickering status indicators, scattered soil and withered leaves on the floor, 老陈-配角1 standing to the side, wearing a worn-out worker uniform, 老陈-配角1 with bloodshot eyes and a hand resting on 林远's shoulder, faint dust particles floating in the remaining artificial light, cold blue shadows creeping across the plant beds, muted atmosphere with high-contrast shadows, low saturation palette, cold grey and deep industrial blue tones, faded earthy brown highlights, no vibrant or neon colors, harsh artificial light from overhead panels fading into darkness, dull grey light filtering through glass walls, soft rim light highlighting the protagonist's silhouette, deep shadows emphasizing the sense of isolation, type medium close-up, lens 35mm, aperture f/1.8, depth_of_field shallow focus on the protagonist's hands and face, flash none, grain fine film grain, texture realistic industrial surfaces, 林远-主角 in the center-left focus, 老陈-配角1 slightly out of focus in the mid-ground right, control panel in the immediate foreground, action constraints: focus on the interaction between hands and panel, avoiding any text display, hyper-realistic photography, no text, no symbols, no watermarks, no alphabets, melancholic, resigned, quietly sorrowful, dystopian stillness, no text, no symbols, no garbled characters, no words",
+            "scene_text_hash": "b3f591efe64aa40ceaca55a1d45720a4",
+            "style": "default",
+            "url": "/image_cache/eb08f5872918a0df37594f82780c567b.png",
+            "width": 1920
+          },
+          "attempt_count": 0
+        },
+        "ready_mode": "direct_in_generate_option",
+        "attribution": {
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "provider_retry_heavy_count": 0,
+          "provider_backoff_wait_ms_total": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0,
+          "image_probe_attempt_count": 0,
+          "main_character_contention_suspected": false
+        }
+      },
+      "placeholder": false,
+      "transport_success": true,
+      "strict_success": true,
+      "failure_bucket": null,
+      "cache_path_classification": "direct_real_scene",
+      "cache_hit_reason": "waited_request_scene_text_completed_no_image",
+      "cache_miss_reason": "request_scene_generation_in_progress",
+      "global_state_key_drift_detected": true,
+      "scene_id_mismatch_detected": true,
+      "selected_option_mismatch_detected": false,
+      "success": true
+    }
+  ]
+}

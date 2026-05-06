@@ -1,0 +1,145 @@
+{
+  "baseline_id": "doc",
+  "benchmark_id": "DNQBV1_020",
+  "run_id": "formal20_first_playable_20260430",
+  "mode": "first_playable",
+  "input_bundle": {
+    "original_dn_item": {
+      "benchmark_id": "DNQBV1_020",
+      "theme_id": 18,
+      "theme": "沙漠商队星图",
+      "image_style": {
+        "type": "oil_painting",
+        "subtype": "classic_oil"
+      },
+      "expected_genre": "商旅史诗",
+      "expected_tone": "辽阔、风沙感、命运感",
+      "must_have_constraints": [
+        "必须出现沙漠商队或星图线索",
+        "图像需符合经典油画风格",
+        "首段剧情需要建立远行目标或风险"
+      ],
+      "forbidden_issues": [
+        "完全没有商旅或地图元素",
+        "图像缺乏沙漠氛围",
+        "选项过于抽象"
+      ],
+      "focus": "full-set coverage: 商旅史诗",
+      "_subset_focus": "full-set coverage: 商旅史诗"
+    },
+    "doc_prompt": "Premise seed: 沙漠商队星图\nGenre: 商旅史诗\nTone: 辽阔、风沙感、命运感\nWrite a long-form interactive story opening that could be expanded with a detailed outline.\nMust-have constraints:\n- 必须出现沙漠商队或星图线索\n- 图像需符合经典油画风格\n- 首段剧情需要建立远行目标或风险\nForbidden issues:\n- 完全没有商旅或地图元素\n- 图像缺乏沙漠氛围\n- 选项过于抽象\n",
+    "outline_seed": [
+      "Opening setup for 沙漠商队星图 in a 商旅史诗 frame with a 辽阔、风沙感、命运感 tone.",
+      "Introduce the protagonist's immediate role, pressure, and conflict around: 必须出现沙漠商队或星图线索.",
+      "Reveal one concrete obstacle or tradeoff the player must respond to next.",
+      "End the first turn with 2-3 actionable next steps that can continue the story."
+    ],
+    "mode": "first_playable",
+    "baseline_params": {
+      "execution_mode": "cloud",
+      "doc_repo": "D:\\Projects\\DN\\baselines\\DOC",
+      "doc_data_dir": "D:\\Projects\\DN\\baselines\\DOC\\doc_data"
+    }
+  },
+  "raw_output": {
+    "execution_mode": "cloud",
+    "doc_upstream_executed": false,
+    "doc_api_adapter": "yunwu_chat_completions",
+    "provider": "yunwu",
+    "provider_config_prefix": "Origin_Segment_Analyst",
+    "provider_base_url": "https://yunwu.ai/v1",
+    "provider_model": "gemini-3.1-flash-lite-preview",
+    "request": {
+      "model": "gemini-3.1-flash-lite-preview",
+      "temperature": 0.7,
+      "top_p": 0.9,
+      "max_tokens": 900,
+      "response_format": {
+        "type": "json_object"
+      }
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are the DOC long-form story baseline adapted for DN playable-latency evaluation. Write concise, grounded, continuation-ready interactive fiction. Do not include debugging text, URLs, or commentary outside JSON."
+      },
+      {
+        "role": "user",
+        "content": "Convert this DN benchmark item into a DOC-style playable baseline output.\nPreserve DOC's premise -> outline -> story-opening semantics, but return only a playable first response.\nRun mode: first_playable\n\nDOC prompt:\nPremise seed: 沙漠商队星图\nGenre: 商旅史诗\nTone: 辽阔、风沙感、命运感\nWrite a long-form interactive story opening that could be expanded with a detailed outline.\nMust-have constraints:\n- 必须出现沙漠商队或星图线索\n- 图像需符合经典油画风格\n- 首段剧情需要建立远行目标或风险\nForbidden issues:\n- 完全没有商旅或地图元素\n- 图像缺乏沙漠氛围\n- 选项过于抽象\n\nOutline seed:\n1. Opening setup for 沙漠商队星图 in a 商旅史诗 frame with a 辽阔、风沙感、命运感 tone.\n2. Introduce the protagonist's immediate role, pressure, and conflict around: 必须出现沙漠商队或星图线索.\n3. Reveal one concrete obstacle or tradeoff the player must respond to next.\n4. End the first turn with 2-3 actionable next steps that can continue the story.\n\nReturn strict JSON with this shape and no markdown fences:\n{\n  \"scene_setup\": \"string\",\n  \"player_state\": \"string\",\n  \"narrative_response\": \"string\",\n  \"candidate_actions\": [\n    \"string\"\n  ],\n  \"suggested_next_step\": \"string\",\n  \"supports_next_turn\": true\n}"
+      }
+    ],
+    "response": {
+      "id": "chatcmpl-20260430171033106284923ZFrko9ik",
+      "model": "gemini-3.1-flash-lite-preview",
+      "object": "chat.completion",
+      "created": 1777540252,
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"scene_setup\": \"茫茫大漠，余晖将流沙染成枯萎的橘红。一支由三十头双峰驼组成的商队正顶着狂风缓慢行进，驼铃声在空旷的寂静中显得格外破碎。领队手中紧攥着一张残破的星图，那是通往古城遗迹的唯一指引，但图上的星位已与夜空偏移，预示着一场致命的迷失。\",\n  \"player_state\": \"你是商队领队，身上背负着全队三十口人的生计与寻找失落绿洲的重任。你手中的星图边角焦黑，关键的方位坐标被风沙磨损，而水源仅剩最后两天的配给。\",\n  \"narrative_response\": \"风沙在哨声中骤然变大，帐篷的支撑杆发出不堪重负的吱呀声。老向导凑近你，粗糙的手指指向星图上模糊的‘流沙漩涡’区域，低声警告道：‘头儿，星图不对劲，北斗七星的位置偏了三寸。如果我们继续按这张图走，今晚就会陷入流沙地，或者……直接撞进那群盘踞在沙丘后的劫掠者营地里。’你看着前方暗淡的星空，必须在天黑前做出抉择。\",\n  \"candidate_actions\": [\n    \"坚持按星图航向强行穿过流沙区，赌那是一个被夸大的传说。\",\n    \"立刻下令商队转向，向未知的干涸河床地带规避，哪怕这意味着彻底迷失方向。\",\n    \"停下修整，尝试用随身携带的星盘对星图进行二次校准，但这会消耗宝贵的夜间行进时间。\"\n  ],\n  \"suggested_next_step\": \"评估资源消耗与路线风险，决定商队的行进策略以应对即将到来的夜间危机。\",\n  \"supports_next_turn\": true\n}"
+          },
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 395,
+        "completion_tokens": 451,
+        "total_tokens": 846,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "text_tokens": 395,
+          "audio_tokens": 0,
+          "image_tokens": 0
+        },
+        "completion_tokens_details": {
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0
+        },
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "input_tokens_details": null,
+        "claude_cache_creation_5_m_tokens": 0,
+        "claude_cache_creation_1_h_tokens": 0
+      }
+    }
+  },
+  "success": true,
+  "latency_s": 20.707,
+  "playable": true,
+  "playable_components": {
+    "scene_setup": true,
+    "player_state": true,
+    "advanceable_next_step": true,
+    "interaction_continuity": true
+  },
+  "normalized_response": {
+    "scene_setup": "茫茫大漠，余晖将流沙染成枯萎的橘红。一支由三十头双峰驼组成的商队正顶着狂风缓慢行进，驼铃声在空旷的寂静中显得格外破碎。领队手中紧攥着一张残破的星图，那是通往古城遗迹的唯一指引，但图上的星位已与夜空偏移，预示着一场致命的迷失。",
+    "player_state": "你是商队领队，身上背负着全队三十口人的生计与寻找失落绿洲的重任。你手中的星图边角焦黑，关键的方位坐标被风沙磨损，而水源仅剩最后两天的配给。",
+    "narrative_response": "风沙在哨声中骤然变大，帐篷的支撑杆发出不堪重负的吱呀声。老向导凑近你，粗糙的手指指向星图上模糊的‘流沙漩涡’区域，低声警告道：‘头儿，星图不对劲，北斗七星的位置偏了三寸。如果我们继续按这张图走，今晚就会陷入流沙地，或者……直接撞进那群盘踞在沙丘后的劫掠者营地里。’你看着前方暗淡的星空，必须在天黑前做出抉择。",
+    "candidate_actions": [
+      "坚持按星图航向强行穿过流沙区，赌那是一个被夸大的传说。",
+      "立刻下令商队转向，向未知的干涸河床地带规避，哪怕这意味着彻底迷失方向。",
+      "停下修整，尝试用随身携带的星盘对星图进行二次校准，但这会消耗宝贵的夜间行进时间。"
+    ],
+    "suggested_next_step": "评估资源消耗与路线风险，决定商队的行进策略以应对即将到来的夜间危机。",
+    "is_playable": true,
+    "request_start_ts": 1777540232.2173111,
+    "first_playable_ts": 1777540252.9239488,
+    "finish_ts": 1777540252.9239488,
+    "error": null
+  },
+  "failure_reason": null,
+  "notes": [
+    "DOC-style artifact generated through Yunwu OpenAI-compatible chat/completions API."
+  ],
+  "resource_usage": {
+    "execution_mode": "cloud"
+  },
+  "agent_profile": {
+    "runner": "run_doc.py",
+    "adapter_style": "doc_cloud_yunwu_v1"
+  }
+}

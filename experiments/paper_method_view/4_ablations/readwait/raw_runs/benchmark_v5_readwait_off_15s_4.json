@@ -1,0 +1,1238 @@
+{
+  "summary": {
+    "experiment_name": "benchmark_v5_readwait_off_15s_4",
+    "sample_size": 4,
+    "read_wait_s": 15.0,
+    "suite_start_ts": 1776609147.344161,
+    "suite_end_ts": 1776609316.16678,
+    "second_click_elapsed_s": {
+      "count": 4,
+      "min": 0.007,
+      "max": 0.022,
+      "mean": 0.011,
+      "median": 0.007,
+      "p95": 0.02
+    },
+    "second_click_success_count": 4,
+    "likely_hit_count": 4,
+    "likely_hit_rate": 1.0
+  },
+  "runs": [
+    {
+      "benchmark_id": "DNQBV1_001",
+      "theme_id": 1,
+      "theme": "边陲驿站夜谈录",
+      "read_wait_s": 15.0,
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 35.06,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过筹集资金保住了酒馆的经营权，但青梅竹马最终选择离开。两人在车站达成谅解，主角意识到有些路注定要独自走，双方维持了体面的告别。",
+                  "main_conflict": "物流园扩建计划下达，主角的酒馆面临被征收的风险。同时，主角的青梅竹马决定离开小镇前往沿海城市，两人对未来的规划产生严重分歧，主角在“留守守护”与“追随离开”之间陷入了深刻的自我怀疑与现实拉扯。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角放弃了部分商业扩张计划，转而通过整合资源帮助孤儿完成学业，虽然经济收益未达预期，但赢得了镇民的尊重，酒馆获得了稳定的客源。",
+                  "main_conflict": "酒馆经营陷入瓶颈，主角试图引入新业务以增加收入，却遭到镇上传统商户的排挤与阻挠。同时，主角发现一直资助的孤儿面临辍学困境，主角必须在“扩大经营”与“资助他人”之间做出艰难的财务取舍。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角选择修缮老屋，但因资金不足，老屋仅完成了基础加固，未能达到预想中的舒适程度。主角最终留在了小镇，虽然生活依然拮据，但看着修缮后的老屋，内心获得了一种踏实的释然。",
+                  "main_conflict": "主角终于攒够了修缮老屋的钱，却发现老屋的结构损坏远超预期，修缮资金缺口巨大。此时，一个前往大城市工作的机会摆在面前，主角面临“修缮老屋实现阶段性圆满”还是“彻底放弃过去奔赴未知”的终极抉择。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为现实主义叙事模拟游戏，采用冷峻而克制的写实画风。通过细腻的日常琐碎、环境音效与非线性对话，构建一个充满烟火气与时代尘埃感的边陲小镇。游戏节奏舒缓，强调沉浸式的观察与选择，旨在通过平实的叙事触达玩家内心深处关于“得与失”的共鸣。",
+              "main_quest": "主角经营着一家名为“归途”的驿站酒馆，目标是在一年内通过经营积累足够的资金，修缮老屋并接回远方的亲人。任务分为三个阶段：首先是应对物流园扩建带来的拆迁压力，在保住酒馆的同时维持生计；其次是调解镇上几户关键人物的矛盾，以获取必要的经营资源与人脉；最后是面对个人理想与现实羁绊的抉择，决定是守着这份微薄的产业度过余生，还是放弃一切去往大城市寻找新的可能。挑战在于，每一次经营决策都会影响小镇的生态，而每一次对客人的帮助，都可能消耗掉主角本就紧缺的资金与时间，迫使主角在“利他”与“利己”之间不断权衡。",
+              "protagonist_ability": "主角拥有一种名为“共情倾听”的特质，源于其长期在驿站经营小酒馆的经历。通过观察客人的微表情、肢体语言与话语间的停顿，主角能捕捉到对方隐藏在日常寒暄下的真实情绪与未竟心愿。该能力并非超自然力量，而是基于丰富阅历的敏锐洞察。使用时需消耗主角的精力值，且无法改变他人的决定，仅能通过引导对话，让对方在有限的时间内完成自我和解或达成某种程度的心理疏导。",
+              "world_basic_setting": "故事发生于世纪之交的西北边陲小镇“鸣沙驿”。这里曾是繁华的商贸枢纽，随着交通干线的改道，小镇逐渐被时代遗忘，成为物流链条末端的停靠点。社会结构由留守的老人、试图外出的青年与南来北往的货车司机组成。文化上，这里交织着传统乡土观念与现代工业文明的碰撞，空气中常年弥漫着柴油味与风沙。关键事件是“老火车站的废弃与物流园的兴建”，这一变迁彻底改变了当地人的生计。人们在狭窄的生存空间里，既渴望通过奋斗改变命运，又被家庭责任、陈旧观念与经济困境所束缚。这里没有宏大的史诗，只有日复一日的劳作、无法言说的离别，以及在漫长夜色中，人们为了生存而不得不做出的妥协与坚持。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1776609147_ii96w7",
+            "image_style": {
+              "type": "realistic"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "黑色短发、工装衬衫、眼神沉稳、手腕有旧伤痕、神情疲惫但坚定、常穿深色围裙",
+              "work_en": "Tales of the Frontier Station",
+              "work_zh": "边陲驿站夜谈录"
+            },
+            "tone": "normal_ending",
+            "user_theme": "边陲驿站夜谈录"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "start_ts": 1776609147.3441634,
+        "end_ts": 1776609182.4037771,
+        "provider_events": {
+          "event_count": 5,
+          "queue_wait_ms": {
+            "count": 5,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 2,
+            "min": 9378.0,
+            "max": 35045.0,
+            "mean": 22211.5,
+            "median": 22211.5,
+            "p95": 33761.65
+          },
+          "llm_success_count": 2,
+          "image_success_count": 0,
+          "request_thread_event_count": 2
+        },
+        "status": "success",
+        "game_id": "game_1776609147_ii96w7"
+      },
+      "first_click": {
+        "http_status": 200,
+        "elapsed_s": 0.011,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "",
+              "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：新港的雨总是带着一股陈旧的金属锈味。我习惯性地揉了揉酸胀的太阳穴，推开“伦理庭”档案室那扇沉重的防爆门。空气中弥漫着廉价消毒水与陈年纸张混合的苦涩气息，昏黄的灯光在闪烁，将我清瘦的影子拉得扭曲而细长。我低头看了看袖口，那里又沾上了一抹洗不掉的墨渍，显得格外刺眼。\n\n我坐回工位，屏幕上跳动着待处理的报废记录。就在我机械地点击确认时，一份被系统标记为“冗余”的加密文件引起了我的注意。那是一份关于“C734号生物资产”的销毁报告，附件里附带着一张模糊的基因序列图谱。当我的视线扫过那串复杂的碱基对时，呼吸瞬间停滞了那组数据，与我失踪已久的妹妹林悦的基因序列吻合度高达998。\n\n“林远，这份报废清单还没整理完吗？审计组的人十分钟后就到。”主管老陈推门而入，他那张写满疲惫的脸上挂着标志性的冷漠，手里还攥着半截没抽完的烟。我迅速切换了屏幕，心脏在胸腔里剧烈跳动，指尖因过度用力而微微发白。这绝不是巧合，妹妹所谓的“远方工作”，难道一直隐藏在这些冰冷的销毁名单里？"
+            },
+            "deep_background_links": {},
+            "flow_update": {},
+            "next_options": [
+              "借口身体不适，请求老陈离开，以便深入调查这份异常数据。",
+              "假装顺从，询问老陈关于C-734号资产的归档历史。"
+            ],
+            "plot_supporting_characters": [],
+            "scene": "新港的雨总是带着一股陈旧的金属锈味。我习惯性地揉了揉酸胀的太阳穴，推开“伦理庭”档案室那扇沉重的防爆门。空气中弥漫着廉价消毒水与陈年纸张混合的苦涩气息，昏黄的灯光在闪烁，将我清瘦的影子拉得扭曲而细长。我低头看了看袖口，那里又沾上了一抹洗不掉的墨渍，显得格外刺眼。\n\n我坐回工位，屏幕上跳动着待处理的报废记录。就在我机械地点击确认时，一份被系统标记为“冗余”的加密文件引起了我的注意。那是一份关于“C734号生物资产”的销毁报告，附件里附带着一张模糊的基因序列图谱。当我的视线扫过那串复杂的碱基对时，呼吸瞬间停滞了那组数据，与我失踪已久的妹妹林悦的基因序列吻合度高达998。\n\n“林远，这份报废清单还没整理完吗？审计组的人十分钟后就到。”主管老陈推门而入，他那张写满疲惫的脸上挂着标志性的冷漠，手里还攥着半截没抽完的烟。我迅速切换了屏幕，心脏在胸腔里剧烈跳动，指尖因过度用力而微微发白。这绝不是巧合，妹妹所谓的“远方工作”，难道一直隐藏在这些冰冷的销毁名单里？",
+            "sceneId": "-5458189082037851688_6972327959776258423",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-archive-room-revelation, realistic, dystopian, cyberpunk-noir, industrial-grit, near-future, photorealistic, cinematic lighting, high-detail texture, grainy film aesthetic, muted color grading, young male protagonist, age mid-20s, with a lean and tired physique, pale skin with subtle signs of exhaustion and dark circles under eyes, intense, focused gaze fixed on computer screen, expression of shock and suppressed anxiety, fingertips slightly trembling and stained with ink, crumpled grey professional shirt with rolled-up sleeves, visible ink stain on the cuff, utilitarian dark vest with subtle wear, seated at a cluttered, metallic archive desk, leaning slightly forward toward the monitor, right hand frozen near the keyboard, facing away from 老陈-配角1, body tensed, 8K detailed facial features showing signs of fatigue, eyes wide with a mix of disbelief and panic, skin texture showing realistic pores and subtle sweat, soft shadows emphasizing the hollows of the cheeks, lips slightly parted in a shallow, uneven breath, short, slightly messy dark hair with natural texture, root fixation coefficient 0.85, tip swing amplitude 5cm, color layering: main color #2D2D2D, secondary color #1A1A1A, highlight #404040, shadow #0D0D0D, wind speed 0.2m/s for stagnant indoor air, turbulence intensity 1%, fabric texture showing weave and wrinkles, slight fabric tension around the shoulders, ink stains on cuff appearing dark and absorbed into the fabric, cramped archive room with heavy blast doors, rows of dusty, flickering fluorescent lights overhead, piles of paper files and outdated hardware, screen displaying complex genetic sequence graphs and red warning text, 老陈-配角1 standing in the doorway, holding a half-smoked cigarette, casting a long shadow, dust particles dancing in the dim, flickering light, faint haze of cigarette smoke near the door, blueish screen glow illuminating the protagonist's face, low-saturation industrial grey, flickering sickly warm yellow artificial light, cool electric blue from the monitor screen, deep shadows with no pure black, harsh, flickering overhead fluorescent tubes, cool, sharp light from the computer monitor contrasting with the room, dim ambient light coming from the doorway behind 老陈-配角1, type over-the-shoulder shot, lens 35mm, aperture f/1.8, depth_of_field shallow depth of field with background files slightly blurred, flash none, grain fine cinematic film grain, texture gritty, tactile, industrial, protagonist positioned in the lower-left foreground, 老陈-配角1 framed in the doorway on the right background, computer screen as the central point of tension, action constraints: protagonist's back tensed, focus on the screen, realistic cinematic photography, no text or symbols in image, no watermarks or logos, anxious and claustrophobic, sense of hidden truth revealed, oppressive bureaucratic atmosphere, cold, realistic tension, no text, no symbols, no garbled characters, no words",
+              "prompt_json": {
+                "camera": {
+                  "aperture": "f/1.8",
+                  "depth_of_field": "shallow depth of field with background files slightly blurred",
+                  "flash": "none",
+                  "grain": "fine cinematic film grain",
+                  "lens": "35mm",
+                  "texture": "gritty, tactile, industrial",
+                  "type": "over-the-shoulder shot"
+                },
+                "clothing_system": [
+                  "fabric texture showing weave and wrinkles",
+                  "slight fabric tension around the shoulders",
+                  "ink stains on cuff appearing dark and absorbed into the fabric"
+                ],
+                "color_restriction": [
+                  "low-saturation industrial grey",
+                  "flickering sickly warm yellow artificial light",
+                  "cool electric blue from the monitor screen",
+                  "deep shadows with no pure black"
+                ],
+                "composition": [
+                  "protagonist positioned in the lower-left foreground",
+                  "老陈-配角1 framed in the doorway on the right background",
+                  "computer screen as the central point of tension",
+                  "action constraints: protagonist's back tensed, focus on the screen"
+                ],
+                "environment": {
+                  "background": [
+                    "cramped archive room with heavy blast doors",
+                    "rows of dusty, flickering fluorescent lights overhead",
+                    "piles of paper files and outdated hardware",
+                    "screen displaying complex genetic sequence graphs and red warning text"
+                  ],
+                  "characters": [
+                    "老陈-配角1 standing in the doorway, holding a half-smoked cigarette, casting a long shadow"
+                  ],
+                  "effects": [
+                    "dust particles dancing in the dim, flickering light",
+                    "faint haze of cigarette smoke near the door",
+                    "blueish screen glow illuminating the protagonist's face"
+                  ]
+                },
+                "face_system": [
+                  "8K detailed facial features showing signs of fatigue",
+                  "eyes wide with a mix of disbelief and panic",
+                  "skin texture showing realistic pores and subtle sweat",
+                  "soft shadows emphasizing the hollows of the cheeks",
+                  "lips slightly parted in a shallow, uneven breath"
+                ],
+                "hair_system": [
+                  "short, slightly messy dark hair with natural texture",
+                  "root fixation coefficient 0.85",
+                  "tip swing amplitude 5cm",
+                  "color layering: main color #2D2D2D, secondary color #1A1A1A, highlight #404040, shadow #0D0D0D",
+                  "wind speed 0.2m/s for stagnant indoor air",
+                  "turbulence intensity 1%"
+                ],
+                "label": "scene-archive-room-revelation",
+                "lighting": [
+                  "harsh, flickering overhead fluorescent tubes",
+                  "cool, sharp light from the computer monitor contrasting with the room",
+                  "dim ambient light coming from the doorway behind 老陈-配角1"
+                ],
+                "mood": [
+                  "anxious and claustrophobic",
+                  "sense of hidden truth revealed",
+                  "oppressive bureaucratic atmosphere",
+                  "cold, realistic tension"
+                ],
+                "output_style": [
+                  "realistic cinematic photography",
+                  "no text or symbols in image",
+                  "no watermarks or logos"
+                ],
+                "style": [
+                  "photorealistic",
+                  "cinematic lighting",
+                  "high-detail texture",
+                  "grainy film aesthetic",
+                  "muted color grading"
+                ],
+                "subject": {
+                  "body_traits": [
+                    "young male protagonist, age mid-20s, with a lean and tired physique",
+                    "pale skin with subtle signs of exhaustion and dark circles under eyes",
+                    "intense, focused gaze fixed on computer screen",
+                    "expression of shock and suppressed anxiety",
+                    "fingertips slightly trembling and stained with ink"
+                  ],
+                  "outfit": [
+                    "crumpled grey professional shirt with rolled-up sleeves",
+                    "visible ink stain on the cuff",
+                    "utilitarian dark vest with subtle wear"
+                  ],
+                  "pose": [
+                    "seated at a cluttered, metallic archive desk",
+                    "leaning slightly forward toward the monitor",
+                    "right hand frozen near the keyboard",
+                    "facing away from 老陈-配角1, body tensed"
+                  ]
+                },
+                "tags": [
+                  "realistic",
+                  "dystopian",
+                  "cyberpunk-noir",
+                  "industrial-grit",
+                  "near-future"
+                ]
+              },
+              "scene_text_hash": "0d7aefa9d511fc4425980991fd025e66",
+              "style": "default",
+              "url": "/image_cache/aeef2534469ee3f656d5eb78767f47a1.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "start_ts": 1776609182.419169,
+        "end_ts": 1776609182.4301429,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "success",
+        "has_scene": true,
+        "has_image": true
+      },
+      "second_click": {
+        "http_status": 200,
+        "elapsed_s": 0.007,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "你正在执行任务：借口身体不适，请求老陈离开，以便深入调查这份异常数据。",
+              "recap_text": "你选择了“借口身体不适，请求老陈离开，以便深入调查这份异常数据。”。当前章节：chapter1。主线进展：你正在执行任务：借口身体不适，请求老陈离开，以便深入调查这份异常数据。。最近剧情：你选择了：借口身体不适，请求老陈离开，以便深入调查这份异常数据。。在你的努力下，你取得了一些进展。"
+            },
+            "deep_background_links": {},
+            "flow_update": {
+              "chapter_conflict_solved": false,
+              "characters": {},
+              "environment": {},
+              "quest_progress": "你正在执行任务：借口身体不适，请求老陈离开，以便深入调查这份异常数据。"
+            },
+            "next_options": [
+              "继续前进",
+              "查看当前状态",
+              "返回上一步",
+              "探索周围环境"
+            ],
+            "scene": "你选择了：借口身体不适，请求老陈离开，以便深入调查这份异常数据。。在你的努力下，你取得了一些进展。",
+            "sceneId": "4491327328642684185_-1313984671503898919"
+          },
+          "status": "success"
+        },
+        "start_ts": 1776609197.4433837,
+        "end_ts": 1776609197.4501667,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "status": "success",
+        "has_scene": true,
+        "has_image": false,
+        "selected_option_index": 0,
+        "selected_option_text": "借口身体不适，请求老陈离开，以便深入调查这份异常数据。",
+        "input_scene_id": "-5458189082037851688_6972327959776258423",
+        "inferred_cache_result": "likely_hit",
+        "is_placeholder": true
+      }
+    },
+    {
+      "benchmark_id": "DNQBV1_002",
+      "theme_id": 9,
+      "theme": "末日温室园丁",
+      "read_wait_s": 15.0,
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 41.375,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过在废弃的城市管道中搜寻零件并进行手工改造，成功修复了供水系统，但代价是失去了温室中一整排珍贵的观赏性花卉，温室变得更加单调且实用化。",
+                  "main_conflict": "温室的供水系统因老化发生严重泄漏，而城市管理部门拒绝提供维修零件，要求主角直接缩减种植面积以节省水资源。主角面临着“保住现有作物”还是“拆除部分温室以换取维修资源”的艰难抉择，这不仅是生存的考验，更是对园丁职业信仰的第一次冲击。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角通过优化种植技术，在极度拥挤的空间内实现了产量达标，保住了大部分辅助植物，但由于过度劳累，主角的身体状况恶化，且被迫放弃了培育“希望之种”的实验进度。",
+                  "main_conflict": "城市高层下达了“高产化指令”，要求主角将温室改为单一的蔬菜生产线，以应对日益严重的粮食危机。这要求主角必须铲除那些无法食用、但却是生态多样性关键的辅助植物。主角在“完成KPI以保住温室”与“守护生态多样性”之间陷入深重的道德困境。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角成功将“希望之种”移植，但温室最终还是被部分拆除，改建为能源储存站。主角保住了种子库的火种，却失去了那个陪伴多年的绿色空间，带着一身伤病与对未来的期许，在新的岗位上继续默默守护。",
+                  "main_conflict": "温室被列入城市扩建计划的拆除名单，管理层认为温室的占地面积已无法匹配其产出价值。主角必须在有限的时间内，将培育出的“希望之种”成功移植到温室外的一处微型生态保护区，并说服管理层保留温室作为“种子库”，否则一切努力将化为乌有。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "沉浸式叙事模拟，采用低饱和度写实美术风格，强调光影与植物纹理的细节刻画。节奏舒缓，通过环境叙事与碎片化对话构建末日后的孤独感与生命力，旨在传达一种在废墟之上与时间、自然共存的静谧美学。",
+              "main_quest": "主角的目标是守护第7号温室，并在城市能源配给不断削减的压力下，成功培育出一株能够适应酸性环境的“希望之种”。任务分为三个阶段：首先是修复温室老化的循环过滤系统，确保基础生存；其次是收集散落在废弃工业区中的旧时代种子样本，并进行杂交实验；最后是面对城市管理层的强制拆除令，通过展示培育成果或寻找替代方案，保住温室的火种。挑战在于，主角必须在“完成上级指标”与“保留物种多样性”之间反复权衡，每一次成功的培育都伴随着对其他珍稀植物的放弃，最终达成一种残缺但延续的生态平衡。",
+              "protagonist_ability": "主角拥有一种名为“共感培育”的直觉，源于其祖辈留下的古老园艺笔记与长期与植物共生的经验。通过触摸植物的叶脉与土壤湿度，主角能感知到植物的微弱生理需求与病变前兆。这种能力并非超自然力量，而是对植物生长规律的极致洞察。限制在于，这种感知极度消耗体力，且无法改变酸性尘埃对植物基因的侵蚀，只能通过精细的养护延缓其枯萎，无法从根本上逆转生态崩塌。",
+              "world_basic_setting": "故事发生于全球生态崩溃后的“灰烬纪元”，地表被不可逆的酸性尘埃覆盖，人类退守至几座由穹顶保护的“方舟城市”。资源极度匮乏，社会阶层由对生态循环系统的掌控力划分。主角所在的“第7号温室”是城市中仅存的几处植物培育基地之一，负责为高层提供稀缺的氧气与新鲜蔬果。历史背景中，旧时代的森林已成传说，植物被视为精密且昂贵的工业产品。社会文化推崇“效率至上”，任何无法产生直接经济价值的物种都会被无情剔除。关键事件是“温室供能缩减协议”的签署，这意味着主角必须在有限的资源下，在维持城市生存指标与保护那些“无用但珍贵”的旧时代花卉之间做出艰难抉择。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1776609197_j9utgv",
+            "image_style": {
+              "type": "realistic"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "黑色短发、沾满泥土的工装、消瘦、眼神专注、手部布满细小伤痕、沉默寡言、常年佩戴护目镜、温和而坚韧、朴素、带有植物清香。",
+              "work_en": "Ash Gardener",
+              "work_zh": "灰烬园丁"
+            },
+            "tone": "normal_ending",
+            "user_theme": "末日温室园丁"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "start_ts": 1776609197.4630632,
+        "end_ts": 1776609238.8381789,
+        "provider_events": {
+          "event_count": 8,
+          "queue_wait_ms": {
+            "count": 8,
+            "min": 0.0,
+            "max": 388941.0,
+            "mean": 57680.625,
+            "median": 2400.0,
+            "p95": 266355.95
+          },
+          "latency_ms": {
+            "count": 4,
+            "min": 17478.0,
+            "max": 56175.0,
+            "mean": 35145.25,
+            "median": 33464.0,
+            "p95": 53591.1
+          },
+          "llm_success_count": 3,
+          "image_success_count": 0,
+          "request_thread_event_count": 2
+        },
+        "status": "success",
+        "game_id": "game_1776609197_j9utgv"
+      },
+      "first_click": {
+        "http_status": 200,
+        "elapsed_s": 0.02,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "",
+              "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：新港的雨总是带着一股陈旧的金属锈味。我习惯性地揉了揉酸胀的太阳穴，推开“伦理庭”档案室那扇沉重的防爆门。空气中弥漫着廉价消毒水与陈年纸张混合的苦涩气息，昏黄的灯光在闪烁，将我清瘦的影子拉得扭曲而细长。我低头看了看袖口，那里又沾上了一抹洗不掉的墨渍，显得格外刺眼。\n\n我坐回工位，屏幕上跳动着待处理的报废记录。就在我机械地点击确认时，一份被系统标记为“冗余”的加密文件引起了我的注意。那是一份关于“C734号生物资产”的销毁报告，附件里附带着一张模糊的基因序列图谱。当我的视线扫过那串复杂的碱基对时，呼吸瞬间停滞了那组数据，与我失踪已久的妹妹林悦的基因序列吻合度高达998。\n\n“林远，这份报废清单还没整理完吗？审计组的人十分钟后就到。”主管老陈推门而入，他那张写满疲惫的脸上挂着标志性的冷漠，手里还攥着半截没抽完的烟。我迅速切换了屏幕，心脏在胸腔里剧烈跳动，指尖因过度用力而微微发白。这绝不是巧合，妹妹所谓的“远方工作”，难道一直隐藏在这些冰冷的销毁名单里？"
+            },
+            "deep_background_links": {},
+            "flow_update": {},
+            "next_options": [
+              "借口身体不适，请求老陈离开，以便深入调查这份异常数据。",
+              "假装顺从，询问老陈关于C-734号资产的归档历史。"
+            ],
+            "plot_supporting_characters": [],
+            "scene": "新港的雨总是带着一股陈旧的金属锈味。我习惯性地揉了揉酸胀的太阳穴，推开“伦理庭”档案室那扇沉重的防爆门。空气中弥漫着廉价消毒水与陈年纸张混合的苦涩气息，昏黄的灯光在闪烁，将我清瘦的影子拉得扭曲而细长。我低头看了看袖口，那里又沾上了一抹洗不掉的墨渍，显得格外刺眼。\n\n我坐回工位，屏幕上跳动着待处理的报废记录。就在我机械地点击确认时，一份被系统标记为“冗余”的加密文件引起了我的注意。那是一份关于“C734号生物资产”的销毁报告，附件里附带着一张模糊的基因序列图谱。当我的视线扫过那串复杂的碱基对时，呼吸瞬间停滞了那组数据，与我失踪已久的妹妹林悦的基因序列吻合度高达998。\n\n“林远，这份报废清单还没整理完吗？审计组的人十分钟后就到。”主管老陈推门而入，他那张写满疲惫的脸上挂着标志性的冷漠，手里还攥着半截没抽完的烟。我迅速切换了屏幕，心脏在胸腔里剧烈跳动，指尖因过度用力而微微发白。这绝不是巧合，妹妹所谓的“远方工作”，难道一直隐藏在这些冰冷的销毁名单里？",
+            "sceneId": "-5458189082037851688_6972327959776258423",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-archive-room-revelation, realistic, dystopian, cyberpunk-noir, industrial-grit, near-future, photorealistic, cinematic lighting, high-detail texture, grainy film aesthetic, muted color grading, young male protagonist, age mid-20s, with a lean and tired physique, pale skin with subtle signs of exhaustion and dark circles under eyes, intense, focused gaze fixed on computer screen, expression of shock and suppressed anxiety, fingertips slightly trembling and stained with ink, crumpled grey professional shirt with rolled-up sleeves, visible ink stain on the cuff, utilitarian dark vest with subtle wear, seated at a cluttered, metallic archive desk, leaning slightly forward toward the monitor, right hand frozen near the keyboard, facing away from 老陈-配角1, body tensed, 8K detailed facial features showing signs of fatigue, eyes wide with a mix of disbelief and panic, skin texture showing realistic pores and subtle sweat, soft shadows emphasizing the hollows of the cheeks, lips slightly parted in a shallow, uneven breath, short, slightly messy dark hair with natural texture, root fixation coefficient 0.85, tip swing amplitude 5cm, color layering: main color #2D2D2D, secondary color #1A1A1A, highlight #404040, shadow #0D0D0D, wind speed 0.2m/s for stagnant indoor air, turbulence intensity 1%, fabric texture showing weave and wrinkles, slight fabric tension around the shoulders, ink stains on cuff appearing dark and absorbed into the fabric, cramped archive room with heavy blast doors, rows of dusty, flickering fluorescent lights overhead, piles of paper files and outdated hardware, screen displaying complex genetic sequence graphs and red warning text, 老陈-配角1 standing in the doorway, holding a half-smoked cigarette, casting a long shadow, dust particles dancing in the dim, flickering light, faint haze of cigarette smoke near the door, blueish screen glow illuminating the protagonist's face, low-saturation industrial grey, flickering sickly warm yellow artificial light, cool electric blue from the monitor screen, deep shadows with no pure black, harsh, flickering overhead fluorescent tubes, cool, sharp light from the computer monitor contrasting with the room, dim ambient light coming from the doorway behind 老陈-配角1, type over-the-shoulder shot, lens 35mm, aperture f/1.8, depth_of_field shallow depth of field with background files slightly blurred, flash none, grain fine cinematic film grain, texture gritty, tactile, industrial, protagonist positioned in the lower-left foreground, 老陈-配角1 framed in the doorway on the right background, computer screen as the central point of tension, action constraints: protagonist's back tensed, focus on the screen, realistic cinematic photography, no text or symbols in image, no watermarks or logos, anxious and claustrophobic, sense of hidden truth revealed, oppressive bureaucratic atmosphere, cold, realistic tension, no text, no symbols, no garbled characters, no words",
+              "prompt_json": {
+                "camera": {
+                  "aperture": "f/1.8",
+                  "depth_of_field": "shallow depth of field with background files slightly blurred",
+                  "flash": "none",
+                  "grain": "fine cinematic film grain",
+                  "lens": "35mm",
+                  "texture": "gritty, tactile, industrial",
+                  "type": "over-the-shoulder shot"
+                },
+                "clothing_system": [
+                  "fabric texture showing weave and wrinkles",
+                  "slight fabric tension around the shoulders",
+                  "ink stains on cuff appearing dark and absorbed into the fabric"
+                ],
+                "color_restriction": [
+                  "low-saturation industrial grey",
+                  "flickering sickly warm yellow artificial light",
+                  "cool electric blue from the monitor screen",
+                  "deep shadows with no pure black"
+                ],
+                "composition": [
+                  "protagonist positioned in the lower-left foreground",
+                  "老陈-配角1 framed in the doorway on the right background",
+                  "computer screen as the central point of tension",
+                  "action constraints: protagonist's back tensed, focus on the screen"
+                ],
+                "environment": {
+                  "background": [
+                    "cramped archive room with heavy blast doors",
+                    "rows of dusty, flickering fluorescent lights overhead",
+                    "piles of paper files and outdated hardware",
+                    "screen displaying complex genetic sequence graphs and red warning text"
+                  ],
+                  "characters": [
+                    "老陈-配角1 standing in the doorway, holding a half-smoked cigarette, casting a long shadow"
+                  ],
+                  "effects": [
+                    "dust particles dancing in the dim, flickering light",
+                    "faint haze of cigarette smoke near the door",
+                    "blueish screen glow illuminating the protagonist's face"
+                  ]
+                },
+                "face_system": [
+                  "8K detailed facial features showing signs of fatigue",
+                  "eyes wide with a mix of disbelief and panic",
+                  "skin texture showing realistic pores and subtle sweat",
+                  "soft shadows emphasizing the hollows of the cheeks",
+                  "lips slightly parted in a shallow, uneven breath"
+                ],
+                "hair_system": [
+                  "short, slightly messy dark hair with natural texture",
+                  "root fixation coefficient 0.85",
+                  "tip swing amplitude 5cm",
+                  "color layering: main color #2D2D2D, secondary color #1A1A1A, highlight #404040, shadow #0D0D0D",
+                  "wind speed 0.2m/s for stagnant indoor air",
+                  "turbulence intensity 1%"
+                ],
+                "label": "scene-archive-room-revelation",
+                "lighting": [
+                  "harsh, flickering overhead fluorescent tubes",
+                  "cool, sharp light from the computer monitor contrasting with the room",
+                  "dim ambient light coming from the doorway behind 老陈-配角1"
+                ],
+                "mood": [
+                  "anxious and claustrophobic",
+                  "sense of hidden truth revealed",
+                  "oppressive bureaucratic atmosphere",
+                  "cold, realistic tension"
+                ],
+                "output_style": [
+                  "realistic cinematic photography",
+                  "no text or symbols in image",
+                  "no watermarks or logos"
+                ],
+                "style": [
+                  "photorealistic",
+                  "cinematic lighting",
+                  "high-detail texture",
+                  "grainy film aesthetic",
+                  "muted color grading"
+                ],
+                "subject": {
+                  "body_traits": [
+                    "young male protagonist, age mid-20s, with a lean and tired physique",
+                    "pale skin with subtle signs of exhaustion and dark circles under eyes",
+                    "intense, focused gaze fixed on computer screen",
+                    "expression of shock and suppressed anxiety",
+                    "fingertips slightly trembling and stained with ink"
+                  ],
+                  "outfit": [
+                    "crumpled grey professional shirt with rolled-up sleeves",
+                    "visible ink stain on the cuff",
+                    "utilitarian dark vest with subtle wear"
+                  ],
+                  "pose": [
+                    "seated at a cluttered, metallic archive desk",
+                    "leaning slightly forward toward the monitor",
+                    "right hand frozen near the keyboard",
+                    "facing away from 老陈-配角1, body tensed"
+                  ]
+                },
+                "tags": [
+                  "realistic",
+                  "dystopian",
+                  "cyberpunk-noir",
+                  "industrial-grit",
+                  "near-future"
+                ]
+              },
+              "scene_text_hash": "0d7aefa9d511fc4425980991fd025e66",
+              "style": "default",
+              "url": "/image_cache/aeef2534469ee3f656d5eb78767f47a1.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "start_ts": 1776609238.8516798,
+        "end_ts": 1776609238.8712976,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "success",
+        "has_scene": true,
+        "has_image": true
+      },
+      "second_click": {
+        "http_status": 200,
+        "elapsed_s": 0.007,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "你正在执行任务：借口身体不适，请求老陈离开，以便深入调查这份异常数据。",
+              "recap_text": "你选择了“借口身体不适，请求老陈离开，以便深入调查这份异常数据。”。当前章节：chapter1。主线进展：你正在执行任务：借口身体不适，请求老陈离开，以便深入调查这份异常数据。。最近剧情：你选择了：借口身体不适，请求老陈离开，以便深入调查这份异常数据。。在你的努力下，你取得了一些进展。"
+            },
+            "deep_background_links": {},
+            "flow_update": {
+              "chapter_conflict_solved": false,
+              "characters": {},
+              "environment": {},
+              "quest_progress": "你正在执行任务：借口身体不适，请求老陈离开，以便深入调查这份异常数据。"
+            },
+            "next_options": [
+              "继续前进",
+              "查看当前状态",
+              "返回上一步",
+              "探索周围环境"
+            ],
+            "scene": "你选择了：借口身体不适，请求老陈离开，以便深入调查这份异常数据。。在你的努力下，你取得了一些进展。",
+            "sceneId": "2446404160813814614_-1313984671503898919"
+          },
+          "status": "success"
+        },
+        "start_ts": 1776609253.8847065,
+        "end_ts": 1776609253.8916576,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "status": "success",
+        "has_scene": true,
+        "has_image": false,
+        "selected_option_index": 0,
+        "selected_option_text": "借口身体不适，请求老陈离开，以便深入调查这份异常数据。",
+        "input_scene_id": "-5458189082037851688_6972327959776258423",
+        "inferred_cache_result": "likely_hit",
+        "is_placeholder": true
+      }
+    },
+    {
+      "benchmark_id": "DNQBV1_003",
+      "theme_id": 19,
+      "theme": "都市天台养鸽人",
+      "read_wait_s": 15.0,
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 15.927,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过在赛事中获得小额奖金暂时支付了滞纳金，并与物业达成协议，通过义务清理楼顶垃圾换取了鸽舍暂时的保留权，虽然危机未除，但赢得了喘息时间。",
+                  "main_conflict": "主角面临职场裁员危机，同时旧公寓楼顶的鸽舍被物业下达了限期清理通知。主角需要在维持生计的繁重工作与守护鸽群的私人空间之间寻找平衡，面对邻居的投诉与房东的冷漠，主角感受到理想在现实生存压力下的脆弱与无力。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角意识到无法保住原址，转而将精力投入到为鸽群寻找最优迁徙方案上，并与一位同样热爱鸽子的老建筑师达成共识，获得了一处偏远但稳定的安置点信息。",
+                  "main_conflict": "城市拆迁计划正式公示，主角陷入了“搬迁还是坚持”的心理博弈。他试图联系鸽友会寻求帮助，却发现曾经的圈子早已分崩离析，大家都在现实面前选择了妥协。主角在努力为鸽群寻找新址的过程中，屡次碰壁，深刻体会到个体在城市规划面前的渺小。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角选择接受外地工作，将鸽群托付给可靠的友人，并在拆迁前夕最后一次放飞鸽群。他带着遗憾离开了这座城市，但内心因完成了对生命的责任而感到释然，达成了一种不完美但踏实的圆满。",
+                  "main_conflict": "拆迁日期临近，主角必须在搬迁与放弃之间做出最终抉择。他面临着一份薪资优渥但需要离开城市去外地工作的机会，这与他守护鸽群的初衷产生剧烈冲突。主角在现实的物质需求与内心的精神寄托之间反复拉扯，最终必须接受“无法两全”的现实。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为写实主义都市模拟叙事，采用低饱和度视觉风格，强调光影在水泥森林中的细微变化。节奏舒缓，注重环境音效与生活琐碎的交互，营造出一种在喧嚣都市中寻求静谧与秩序的孤独感与治愈感。",
+              "main_quest": "主角的目标是守护这片位于旧公寓顶层的鸽舍，并试图在城市拆迁浪潮中为鸽群寻找一处合法的栖息地。玩家需在日常工作中平衡生计，通过修缮鸽舍、繁育优良品种、参与民间信鸽赛事来积累声望与资金。挑战在于，主角不仅要应对高昂的租金压力与职场排挤，还要在“保留旧物”与“拥抱城市更新”之间做出艰难抉择。最终任务并非阻止拆迁，而是如何在有限的时间内，完成鸽群的妥善安置，并在这场与时代的博弈中，为自己的人生找到一个能够安放理想的归宿。",
+              "protagonist_ability": "主角拥有一种名为“共频感应”的敏锐直觉，源于长期与鸽群共处培养出的观察力。通过对鸽子飞行轨迹、鸣叫频率及羽毛状态的细微捕捉，主角能精准预判城市气流变化，甚至在嘈杂的都市噪音中辨识出特定的人群情绪波动。这种能力并非超能力，而是深度专注带来的经验积累。限制在于，它无法改变现实的物理规则，也无法左右他人的决策，仅能帮助主角在复杂的社会关系中寻找缝隙，获得片刻的安宁与预警。",
+              "world_basic_setting": "故事发生在一座名为“南港”的超大型工业化都市。这里高楼林立，阶层固化，人们在快节奏的通勤与高压工作中消磨着理想。城市的天际线被密集的写字楼切割，唯有老城区残存的几栋旧式公寓楼顶，保留着某种原始的、与天空连接的缝隙。这里没有超自然力量，只有被时代遗忘的角落。鸽子作为城市生态的边缘者，既是主角的精神寄托，也是连接城市不同阶层的纽带。社会文化崇尚效率与成功，而“养鸽”这一行为被视为一种低效且过时的消遣。关键事件是旧城区改造计划的推进，这不仅威胁到了主角赖以生存的天台空间，也象征着旧时代生活方式与现代城市扩张之间不可调和的矛盾。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1776609253_3quazn",
+            "image_style": {
+              "type": "realistic"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "清瘦、眼神专注、穿着洗旧的工装外套、常年带着哨子、指尖有细微的羽毛粉尘、略显凌乱的短发、沉默寡言、背影孤独、习惯仰望天空、手腕戴着廉价电子表",
+              "work_en": "The Rooftop Messenger",
+              "work_zh": "天台的信使"
+            },
+            "tone": "normal_ending",
+            "user_theme": "都市天台养鸽人"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "start_ts": 1776609253.9062603,
+        "end_ts": 1776609269.8334217,
+        "provider_events": {
+          "event_count": 10,
+          "queue_wait_ms": {
+            "count": 10,
+            "min": 0.0,
+            "max": 349248.0,
+            "mean": 55024.8,
+            "median": 4205.5,
+            "p95": 270860.25
+          },
+          "latency_ms": {
+            "count": 5,
+            "min": 4493.0,
+            "max": 22460.0,
+            "mean": 13306.8,
+            "median": 8697.0,
+            "p95": 22425.4
+          },
+          "llm_success_count": 4,
+          "image_success_count": 0,
+          "request_thread_event_count": 2
+        },
+        "status": "success",
+        "game_id": "game_1776609253_3quazn"
+      },
+      "first_click": {
+        "http_status": 200,
+        "elapsed_s": 0.022,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "",
+              "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：新港的雨总是带着一股陈旧的金属锈味。我习惯性地揉了揉酸胀的太阳穴，推开“伦理庭”档案室那扇沉重的防爆门。空气中弥漫着廉价消毒水与陈年纸张混合的苦涩气息，昏黄的灯光在闪烁，将我清瘦的影子拉得扭曲而细长。我低头看了看袖口，那里又沾上了一抹洗不掉的墨渍，显得格外刺眼。\n\n我坐回工位，屏幕上跳动着待处理的报废记录。就在我机械地点击确认时，一份被系统标记为“冗余”的加密文件引起了我的注意。那是一份关于“C734号生物资产”的销毁报告，附件里附带着一张模糊的基因序列图谱。当我的视线扫过那串复杂的碱基对时，呼吸瞬间停滞了那组数据，与我失踪已久的妹妹林悦的基因序列吻合度高达998。\n\n“林远，这份报废清单还没整理完吗？审计组的人十分钟后就到。”主管老陈推门而入，他那张写满疲惫的脸上挂着标志性的冷漠，手里还攥着半截没抽完的烟。我迅速切换了屏幕，心脏在胸腔里剧烈跳动，指尖因过度用力而微微发白。这绝不是巧合，妹妹所谓的“远方工作”，难道一直隐藏在这些冰冷的销毁名单里？"
+            },
+            "deep_background_links": {},
+            "flow_update": {},
+            "next_options": [
+              "借口身体不适，请求老陈离开，以便深入调查这份异常数据。",
+              "假装顺从，询问老陈关于C-734号资产的归档历史。"
+            ],
+            "plot_supporting_characters": [],
+            "scene": "新港的雨总是带着一股陈旧的金属锈味。我习惯性地揉了揉酸胀的太阳穴，推开“伦理庭”档案室那扇沉重的防爆门。空气中弥漫着廉价消毒水与陈年纸张混合的苦涩气息，昏黄的灯光在闪烁，将我清瘦的影子拉得扭曲而细长。我低头看了看袖口，那里又沾上了一抹洗不掉的墨渍，显得格外刺眼。\n\n我坐回工位，屏幕上跳动着待处理的报废记录。就在我机械地点击确认时，一份被系统标记为“冗余”的加密文件引起了我的注意。那是一份关于“C734号生物资产”的销毁报告，附件里附带着一张模糊的基因序列图谱。当我的视线扫过那串复杂的碱基对时，呼吸瞬间停滞了那组数据，与我失踪已久的妹妹林悦的基因序列吻合度高达998。\n\n“林远，这份报废清单还没整理完吗？审计组的人十分钟后就到。”主管老陈推门而入，他那张写满疲惫的脸上挂着标志性的冷漠，手里还攥着半截没抽完的烟。我迅速切换了屏幕，心脏在胸腔里剧烈跳动，指尖因过度用力而微微发白。这绝不是巧合，妹妹所谓的“远方工作”，难道一直隐藏在这些冰冷的销毁名单里？",
+            "sceneId": "-5458189082037851688_6972327959776258423",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-archive-room-revelation, realistic, dystopian, cyberpunk-noir, industrial-grit, near-future, photorealistic, cinematic lighting, high-detail texture, grainy film aesthetic, muted color grading, young male protagonist, age mid-20s, with a lean and tired physique, pale skin with subtle signs of exhaustion and dark circles under eyes, intense, focused gaze fixed on computer screen, expression of shock and suppressed anxiety, fingertips slightly trembling and stained with ink, crumpled grey professional shirt with rolled-up sleeves, visible ink stain on the cuff, utilitarian dark vest with subtle wear, seated at a cluttered, metallic archive desk, leaning slightly forward toward the monitor, right hand frozen near the keyboard, facing away from 老陈-配角1, body tensed, 8K detailed facial features showing signs of fatigue, eyes wide with a mix of disbelief and panic, skin texture showing realistic pores and subtle sweat, soft shadows emphasizing the hollows of the cheeks, lips slightly parted in a shallow, uneven breath, short, slightly messy dark hair with natural texture, root fixation coefficient 0.85, tip swing amplitude 5cm, color layering: main color #2D2D2D, secondary color #1A1A1A, highlight #404040, shadow #0D0D0D, wind speed 0.2m/s for stagnant indoor air, turbulence intensity 1%, fabric texture showing weave and wrinkles, slight fabric tension around the shoulders, ink stains on cuff appearing dark and absorbed into the fabric, cramped archive room with heavy blast doors, rows of dusty, flickering fluorescent lights overhead, piles of paper files and outdated hardware, screen displaying complex genetic sequence graphs and red warning text, 老陈-配角1 standing in the doorway, holding a half-smoked cigarette, casting a long shadow, dust particles dancing in the dim, flickering light, faint haze of cigarette smoke near the door, blueish screen glow illuminating the protagonist's face, low-saturation industrial grey, flickering sickly warm yellow artificial light, cool electric blue from the monitor screen, deep shadows with no pure black, harsh, flickering overhead fluorescent tubes, cool, sharp light from the computer monitor contrasting with the room, dim ambient light coming from the doorway behind 老陈-配角1, type over-the-shoulder shot, lens 35mm, aperture f/1.8, depth_of_field shallow depth of field with background files slightly blurred, flash none, grain fine cinematic film grain, texture gritty, tactile, industrial, protagonist positioned in the lower-left foreground, 老陈-配角1 framed in the doorway on the right background, computer screen as the central point of tension, action constraints: protagonist's back tensed, focus on the screen, realistic cinematic photography, no text or symbols in image, no watermarks or logos, anxious and claustrophobic, sense of hidden truth revealed, oppressive bureaucratic atmosphere, cold, realistic tension, no text, no symbols, no garbled characters, no words",
+              "prompt_json": {
+                "camera": {
+                  "aperture": "f/1.8",
+                  "depth_of_field": "shallow depth of field with background files slightly blurred",
+                  "flash": "none",
+                  "grain": "fine cinematic film grain",
+                  "lens": "35mm",
+                  "texture": "gritty, tactile, industrial",
+                  "type": "over-the-shoulder shot"
+                },
+                "clothing_system": [
+                  "fabric texture showing weave and wrinkles",
+                  "slight fabric tension around the shoulders",
+                  "ink stains on cuff appearing dark and absorbed into the fabric"
+                ],
+                "color_restriction": [
+                  "low-saturation industrial grey",
+                  "flickering sickly warm yellow artificial light",
+                  "cool electric blue from the monitor screen",
+                  "deep shadows with no pure black"
+                ],
+                "composition": [
+                  "protagonist positioned in the lower-left foreground",
+                  "老陈-配角1 framed in the doorway on the right background",
+                  "computer screen as the central point of tension",
+                  "action constraints: protagonist's back tensed, focus on the screen"
+                ],
+                "environment": {
+                  "background": [
+                    "cramped archive room with heavy blast doors",
+                    "rows of dusty, flickering fluorescent lights overhead",
+                    "piles of paper files and outdated hardware",
+                    "screen displaying complex genetic sequence graphs and red warning text"
+                  ],
+                  "characters": [
+                    "老陈-配角1 standing in the doorway, holding a half-smoked cigarette, casting a long shadow"
+                  ],
+                  "effects": [
+                    "dust particles dancing in the dim, flickering light",
+                    "faint haze of cigarette smoke near the door",
+                    "blueish screen glow illuminating the protagonist's face"
+                  ]
+                },
+                "face_system": [
+                  "8K detailed facial features showing signs of fatigue",
+                  "eyes wide with a mix of disbelief and panic",
+                  "skin texture showing realistic pores and subtle sweat",
+                  "soft shadows emphasizing the hollows of the cheeks",
+                  "lips slightly parted in a shallow, uneven breath"
+                ],
+                "hair_system": [
+                  "short, slightly messy dark hair with natural texture",
+                  "root fixation coefficient 0.85",
+                  "tip swing amplitude 5cm",
+                  "color layering: main color #2D2D2D, secondary color #1A1A1A, highlight #404040, shadow #0D0D0D",
+                  "wind speed 0.2m/s for stagnant indoor air",
+                  "turbulence intensity 1%"
+                ],
+                "label": "scene-archive-room-revelation",
+                "lighting": [
+                  "harsh, flickering overhead fluorescent tubes",
+                  "cool, sharp light from the computer monitor contrasting with the room",
+                  "dim ambient light coming from the doorway behind 老陈-配角1"
+                ],
+                "mood": [
+                  "anxious and claustrophobic",
+                  "sense of hidden truth revealed",
+                  "oppressive bureaucratic atmosphere",
+                  "cold, realistic tension"
+                ],
+                "output_style": [
+                  "realistic cinematic photography",
+                  "no text or symbols in image",
+                  "no watermarks or logos"
+                ],
+                "style": [
+                  "photorealistic",
+                  "cinematic lighting",
+                  "high-detail texture",
+                  "grainy film aesthetic",
+                  "muted color grading"
+                ],
+                "subject": {
+                  "body_traits": [
+                    "young male protagonist, age mid-20s, with a lean and tired physique",
+                    "pale skin with subtle signs of exhaustion and dark circles under eyes",
+                    "intense, focused gaze fixed on computer screen",
+                    "expression of shock and suppressed anxiety",
+                    "fingertips slightly trembling and stained with ink"
+                  ],
+                  "outfit": [
+                    "crumpled grey professional shirt with rolled-up sleeves",
+                    "visible ink stain on the cuff",
+                    "utilitarian dark vest with subtle wear"
+                  ],
+                  "pose": [
+                    "seated at a cluttered, metallic archive desk",
+                    "leaning slightly forward toward the monitor",
+                    "right hand frozen near the keyboard",
+                    "facing away from 老陈-配角1, body tensed"
+                  ]
+                },
+                "tags": [
+                  "realistic",
+                  "dystopian",
+                  "cyberpunk-noir",
+                  "industrial-grit",
+                  "near-future"
+                ]
+              },
+              "scene_text_hash": "0d7aefa9d511fc4425980991fd025e66",
+              "style": "default",
+              "url": "/image_cache/aeef2534469ee3f656d5eb78767f47a1.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "start_ts": 1776609269.8469584,
+        "end_ts": 1776609269.8687959,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "success",
+        "has_scene": true,
+        "has_image": true
+      },
+      "second_click": {
+        "http_status": 200,
+        "elapsed_s": 0.022,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "你正在执行任务：借口身体不适，请求老陈离开，以便深入调查这份异常数据。",
+              "recap_text": "你选择了“借口身体不适，请求老陈离开，以便深入调查这份异常数据。”。当前章节：chapter1。主线进展：你正在执行任务：借口身体不适，请求老陈离开，以便深入调查这份异常数据。。最近剧情：你选择了：借口身体不适，请求老陈离开，以便深入调查这份异常数据。。在你的努力下，你取得了一些进展。"
+            },
+            "deep_background_links": {},
+            "flow_update": {
+              "chapter_conflict_solved": false,
+              "characters": {},
+              "environment": {},
+              "quest_progress": "你正在执行任务：借口身体不适，请求老陈离开，以便深入调查这份异常数据。"
+            },
+            "next_options": [
+              "继续前进",
+              "查看当前状态",
+              "返回上一步",
+              "探索周围环境"
+            ],
+            "scene": "你选择了：借口身体不适，请求老陈离开，以便深入调查这份异常数据。。在你的努力下，你取得了一些进展。",
+            "sceneId": "-3295227231605055365_-1313984671503898919"
+          },
+          "status": "success"
+        },
+        "start_ts": 1776609284.88389,
+        "end_ts": 1776609284.9063728,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "status": "success",
+        "has_scene": true,
+        "has_image": false,
+        "selected_option_index": 0,
+        "selected_option_text": "借口身体不适，请求老陈离开，以便深入调查这份异常数据。",
+        "input_scene_id": "-5458189082037851688_6972327959776258423",
+        "inferred_cache_result": "likely_hit",
+        "is_placeholder": true
+      }
+    },
+    {
+      "benchmark_id": "DNQBV1_004",
+      "theme_id": 30,
+      "theme": "克隆体伦理庭",
+      "read_wait_s": 15.0,
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 16.156,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过共感能力确认了702的独立人格，选择冒着被内部审计发现的风险，将702的档案进行加密伪装，暂时将其留在身边作为助手，以此换取进一步调查的时间。",
+                  "main_conflict": "主角接手了名为“编号702”的克隆体案件，发现对方不仅是单纯的劳动力，还保留了已故原生主人的部分人格记忆。主角面临职业操守与个人同情的剧烈冲突，若上报则702会被销毁，若隐瞒则主角将面临失业与法律制裁的风险。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角在一次突发搜查中，利用职权漏洞将702转移至安全屋，并成功获取了部分非法交易的电子账目，但代价是主角失去了在伦理庭的晋升机会，并被调离核心档案室。",
+                  "main_conflict": "随着调查深入，主角发现“源点”集团内部存在大规模的克隆体器官非法交易，而702正是掌握证据的关键证人。主角陷入了被集团监视的困境，生活被监控渗透，不仅要保护702，还要在伦理庭的预审中应对咄咄逼人的检察官。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角选择了一种折中方案，仅公开了部分足以保全702身份的证据，换取了702作为“普通公民”的生存权，但代价是集团掩盖了核心罪行，主角被辞退并终身禁止进入行政区，两人在城市边缘过上了平凡且受限的生活。",
+                  "main_conflict": "最终庭审到来，主角必须在法庭上公开证据。然而，证据的公开虽能保住702的性命，却会引发集团的报复，导致主角失去所有社会保障。主角必须在“彻底揭露真相但自身毁灭”与“妥协换取702的平庸生存”之间做出抉择。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "沉浸式现实主义叙事，采用冷峻克制的镜头语言，强调环境细节与人物微表情的交互。游戏色调偏向低饱和度的工业灰与暖黄灯光，通过琐碎的日常琐事与压抑的职场博弈，构建出一种“在秩序中寻找呼吸空间”的真实质感。",
+              "main_quest": "主角受托调查一起涉及“非法克隆体”的伦理庭案件，目标是为一名被判定为“冗余”的克隆体争取合法的生存身份。任务分为三个阶段：首先需在庞大的档案库中搜集其作为独立个体的社会贡献证据；其次需在复杂的职场人际中周旋，获取关键的伦理庭投票权信息；最后需在庭审现场进行最终陈述。挑战在于，主角必须在“维护法律公正”与“个人私情”之间寻找平衡，且无论结果如何，都无法撼动整个克隆体制度的根基，只能在既定的规则缝隙中，为特定的个体争取到有限的尊严与生存空间。",
+              "protagonist_ability": "主角拥有一种名为“共感记忆提取”的非正式能力，源于其在伦理庭担任档案整理员时，长期接触克隆体遗留的电子神经碎片。通过特定的触碰，主角能短暂感知克隆体生前最深刻的一段情感记忆。此能力受限于精神负荷，过度使用会导致严重的偏头痛与认知混淆，且无法改变记忆内容，仅能作为寻找证据或理解真相的辅助手段，无法直接干预现实规则。",
+              "world_basic_setting": "故事发生于近未来的“新枢纽市”，一座由大型生物科技集团“源点”垄断的城市。社会由“原生公民”与“合法克隆体”构成，后者被视为可替换的劳动力与器官储备，拥有有限的公民权，需通过严苛的“社会贡献值”考核来换取延期生存权。城市地理被划分为高耸的云端行政区与拥挤的底层居住区，阶级壁垒森严。历史背景源于一场全球性的人口危机，克隆技术曾是救世良药，如今却演变为维持社会运转的残酷齿轮。文化上，社会推崇“高效与稳定”，任何偏离轨道的情感波动都被视为不必要的冗余。关键事件“伦理庭审判”每五年举行一次，决定着数万名克隆体的去留，这不仅是法律程序，更是无数家庭破碎或重组的生死线。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1776609284_shyyzz",
+            "image_style": {
+              "type": "realistic"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "黑色短发、黑框眼镜、略显疲惫的眼神、深灰色工装衬衫、清瘦、指尖常有电子胶带、沉默寡言、习惯性低头、袖口磨损、冷静但克制、步履匆忙",
+              "work_en": "Embers of the Ethics Court",
+              "work_zh": "伦理庭的余烬"
+            },
+            "tone": "normal_ending",
+            "user_theme": "克隆体伦理庭"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "start_ts": 1776609284.9216368,
+        "end_ts": 1776609301.078079,
+        "provider_events": {
+          "event_count": 6,
+          "queue_wait_ms": {
+            "count": 6,
+            "min": 0.0,
+            "max": 20049.0,
+            "mean": 6002.833,
+            "median": 3992.0,
+            "p95": 17032.75
+          },
+          "latency_ms": {
+            "count": 3,
+            "min": 8145.0,
+            "max": 26079.0,
+            "mean": 18090.0,
+            "median": 20046.0,
+            "p95": 25475.7
+          },
+          "llm_success_count": 3,
+          "image_success_count": 0,
+          "request_thread_event_count": 2
+        },
+        "status": "success",
+        "game_id": "game_1776609284_shyyzz"
+      },
+      "first_click": {
+        "http_status": 200,
+        "elapsed_s": 0.028,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "",
+              "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：新港的雨总是带着一股陈旧的金属锈味。我习惯性地揉了揉酸胀的太阳穴，推开“伦理庭”档案室那扇沉重的防爆门。空气中弥漫着廉价消毒水与陈年纸张混合的苦涩气息，昏黄的灯光在闪烁，将我清瘦的影子拉得扭曲而细长。我低头看了看袖口，那里又沾上了一抹洗不掉的墨渍，显得格外刺眼。\n\n我坐回工位，屏幕上跳动着待处理的报废记录。就在我机械地点击确认时，一份被系统标记为“冗余”的加密文件引起了我的注意。那是一份关于“C734号生物资产”的销毁报告，附件里附带着一张模糊的基因序列图谱。当我的视线扫过那串复杂的碱基对时，呼吸瞬间停滞了那组数据，与我失踪已久的妹妹林悦的基因序列吻合度高达998。\n\n“林远，这份报废清单还没整理完吗？审计组的人十分钟后就到。”主管老陈推门而入，他那张写满疲惫的脸上挂着标志性的冷漠，手里还攥着半截没抽完的烟。我迅速切换了屏幕，心脏在胸腔里剧烈跳动，指尖因过度用力而微微发白。这绝不是巧合，妹妹所谓的“远方工作”，难道一直隐藏在这些冰冷的销毁名单里？"
+            },
+            "deep_background_links": {},
+            "flow_update": {},
+            "next_options": [
+              "借口身体不适，请求老陈离开，以便深入调查这份异常数据。",
+              "假装顺从，询问老陈关于C-734号资产的归档历史。"
+            ],
+            "plot_supporting_characters": [],
+            "scene": "新港的雨总是带着一股陈旧的金属锈味。我习惯性地揉了揉酸胀的太阳穴，推开“伦理庭”档案室那扇沉重的防爆门。空气中弥漫着廉价消毒水与陈年纸张混合的苦涩气息，昏黄的灯光在闪烁，将我清瘦的影子拉得扭曲而细长。我低头看了看袖口，那里又沾上了一抹洗不掉的墨渍，显得格外刺眼。\n\n我坐回工位，屏幕上跳动着待处理的报废记录。就在我机械地点击确认时，一份被系统标记为“冗余”的加密文件引起了我的注意。那是一份关于“C734号生物资产”的销毁报告，附件里附带着一张模糊的基因序列图谱。当我的视线扫过那串复杂的碱基对时，呼吸瞬间停滞了那组数据，与我失踪已久的妹妹林悦的基因序列吻合度高达998。\n\n“林远，这份报废清单还没整理完吗？审计组的人十分钟后就到。”主管老陈推门而入，他那张写满疲惫的脸上挂着标志性的冷漠，手里还攥着半截没抽完的烟。我迅速切换了屏幕，心脏在胸腔里剧烈跳动，指尖因过度用力而微微发白。这绝不是巧合，妹妹所谓的“远方工作”，难道一直隐藏在这些冰冷的销毁名单里？",
+            "sceneId": "-5458189082037851688_6972327959776258423",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-archive-room-revelation, realistic, dystopian, cyberpunk-noir, industrial-grit, near-future, photorealistic, cinematic lighting, high-detail texture, grainy film aesthetic, muted color grading, young male protagonist, age mid-20s, with a lean and tired physique, pale skin with subtle signs of exhaustion and dark circles under eyes, intense, focused gaze fixed on computer screen, expression of shock and suppressed anxiety, fingertips slightly trembling and stained with ink, crumpled grey professional shirt with rolled-up sleeves, visible ink stain on the cuff, utilitarian dark vest with subtle wear, seated at a cluttered, metallic archive desk, leaning slightly forward toward the monitor, right hand frozen near the keyboard, facing away from 老陈-配角1, body tensed, 8K detailed facial features showing signs of fatigue, eyes wide with a mix of disbelief and panic, skin texture showing realistic pores and subtle sweat, soft shadows emphasizing the hollows of the cheeks, lips slightly parted in a shallow, uneven breath, short, slightly messy dark hair with natural texture, root fixation coefficient 0.85, tip swing amplitude 5cm, color layering: main color #2D2D2D, secondary color #1A1A1A, highlight #404040, shadow #0D0D0D, wind speed 0.2m/s for stagnant indoor air, turbulence intensity 1%, fabric texture showing weave and wrinkles, slight fabric tension around the shoulders, ink stains on cuff appearing dark and absorbed into the fabric, cramped archive room with heavy blast doors, rows of dusty, flickering fluorescent lights overhead, piles of paper files and outdated hardware, screen displaying complex genetic sequence graphs and red warning text, 老陈-配角1 standing in the doorway, holding a half-smoked cigarette, casting a long shadow, dust particles dancing in the dim, flickering light, faint haze of cigarette smoke near the door, blueish screen glow illuminating the protagonist's face, low-saturation industrial grey, flickering sickly warm yellow artificial light, cool electric blue from the monitor screen, deep shadows with no pure black, harsh, flickering overhead fluorescent tubes, cool, sharp light from the computer monitor contrasting with the room, dim ambient light coming from the doorway behind 老陈-配角1, type over-the-shoulder shot, lens 35mm, aperture f/1.8, depth_of_field shallow depth of field with background files slightly blurred, flash none, grain fine cinematic film grain, texture gritty, tactile, industrial, protagonist positioned in the lower-left foreground, 老陈-配角1 framed in the doorway on the right background, computer screen as the central point of tension, action constraints: protagonist's back tensed, focus on the screen, realistic cinematic photography, no text or symbols in image, no watermarks or logos, anxious and claustrophobic, sense of hidden truth revealed, oppressive bureaucratic atmosphere, cold, realistic tension, no text, no symbols, no garbled characters, no words",
+              "prompt_json": {
+                "camera": {
+                  "aperture": "f/1.8",
+                  "depth_of_field": "shallow depth of field with background files slightly blurred",
+                  "flash": "none",
+                  "grain": "fine cinematic film grain",
+                  "lens": "35mm",
+                  "texture": "gritty, tactile, industrial",
+                  "type": "over-the-shoulder shot"
+                },
+                "clothing_system": [
+                  "fabric texture showing weave and wrinkles",
+                  "slight fabric tension around the shoulders",
+                  "ink stains on cuff appearing dark and absorbed into the fabric"
+                ],
+                "color_restriction": [
+                  "low-saturation industrial grey",
+                  "flickering sickly warm yellow artificial light",
+                  "cool electric blue from the monitor screen",
+                  "deep shadows with no pure black"
+                ],
+                "composition": [
+                  "protagonist positioned in the lower-left foreground",
+                  "老陈-配角1 framed in the doorway on the right background",
+                  "computer screen as the central point of tension",
+                  "action constraints: protagonist's back tensed, focus on the screen"
+                ],
+                "environment": {
+                  "background": [
+                    "cramped archive room with heavy blast doors",
+                    "rows of dusty, flickering fluorescent lights overhead",
+                    "piles of paper files and outdated hardware",
+                    "screen displaying complex genetic sequence graphs and red warning text"
+                  ],
+                  "characters": [
+                    "老陈-配角1 standing in the doorway, holding a half-smoked cigarette, casting a long shadow"
+                  ],
+                  "effects": [
+                    "dust particles dancing in the dim, flickering light",
+                    "faint haze of cigarette smoke near the door",
+                    "blueish screen glow illuminating the protagonist's face"
+                  ]
+                },
+                "face_system": [
+                  "8K detailed facial features showing signs of fatigue",
+                  "eyes wide with a mix of disbelief and panic",
+                  "skin texture showing realistic pores and subtle sweat",
+                  "soft shadows emphasizing the hollows of the cheeks",
+                  "lips slightly parted in a shallow, uneven breath"
+                ],
+                "hair_system": [
+                  "short, slightly messy dark hair with natural texture",
+                  "root fixation coefficient 0.85",
+                  "tip swing amplitude 5cm",
+                  "color layering: main color #2D2D2D, secondary color #1A1A1A, highlight #404040, shadow #0D0D0D",
+                  "wind speed 0.2m/s for stagnant indoor air",
+                  "turbulence intensity 1%"
+                ],
+                "label": "scene-archive-room-revelation",
+                "lighting": [
+                  "harsh, flickering overhead fluorescent tubes",
+                  "cool, sharp light from the computer monitor contrasting with the room",
+                  "dim ambient light coming from the doorway behind 老陈-配角1"
+                ],
+                "mood": [
+                  "anxious and claustrophobic",
+                  "sense of hidden truth revealed",
+                  "oppressive bureaucratic atmosphere",
+                  "cold, realistic tension"
+                ],
+                "output_style": [
+                  "realistic cinematic photography",
+                  "no text or symbols in image",
+                  "no watermarks or logos"
+                ],
+                "style": [
+                  "photorealistic",
+                  "cinematic lighting",
+                  "high-detail texture",
+                  "grainy film aesthetic",
+                  "muted color grading"
+                ],
+                "subject": {
+                  "body_traits": [
+                    "young male protagonist, age mid-20s, with a lean and tired physique",
+                    "pale skin with subtle signs of exhaustion and dark circles under eyes",
+                    "intense, focused gaze fixed on computer screen",
+                    "expression of shock and suppressed anxiety",
+                    "fingertips slightly trembling and stained with ink"
+                  ],
+                  "outfit": [
+                    "crumpled grey professional shirt with rolled-up sleeves",
+                    "visible ink stain on the cuff",
+                    "utilitarian dark vest with subtle wear"
+                  ],
+                  "pose": [
+                    "seated at a cluttered, metallic archive desk",
+                    "leaning slightly forward toward the monitor",
+                    "right hand frozen near the keyboard",
+                    "facing away from 老陈-配角1, body tensed"
+                  ]
+                },
+                "tags": [
+                  "realistic",
+                  "dystopian",
+                  "cyberpunk-noir",
+                  "industrial-grit",
+                  "near-future"
+                ]
+              },
+              "scene_text_hash": "0d7aefa9d511fc4425980991fd025e66",
+              "style": "default",
+              "url": "/image_cache/aeef2534469ee3f656d5eb78767f47a1.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "start_ts": 1776609301.0956993,
+        "end_ts": 1776609301.1241474,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "success",
+        "has_scene": true,
+        "has_image": true
+      },
+      "second_click": {
+        "http_status": 200,
+        "elapsed_s": 0.007,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "你正在执行任务：借口身体不适，请求老陈离开，以便深入调查这份异常数据。",
+              "recap_text": "你选择了“借口身体不适，请求老陈离开，以便深入调查这份异常数据。”。当前章节：chapter1。主线进展：你正在执行任务：借口身体不适，请求老陈离开，以便深入调查这份异常数据。。最近剧情：你选择了：借口身体不适，请求老陈离开，以便深入调查这份异常数据。。在你的努力下，你取得了一些进展。"
+            },
+            "deep_background_links": {},
+            "flow_update": {
+              "chapter_conflict_solved": false,
+              "characters": {},
+              "environment": {},
+              "quest_progress": "你正在执行任务：借口身体不适，请求老陈离开，以便深入调查这份异常数据。"
+            },
+            "next_options": [
+              "继续前进",
+              "查看当前状态",
+              "返回上一步",
+              "探索周围环境"
+            ],
+            "scene": "你选择了：借口身体不适，请求老陈离开，以便深入调查这份异常数据。。在你的努力下，你取得了一些进展。",
+            "sceneId": "6985209932395052092_-1313984671503898919"
+          },
+          "status": "success"
+        },
+        "start_ts": 1776609316.1400635,
+        "end_ts": 1776609316.147035,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "status": "success",
+        "has_scene": true,
+        "has_image": false,
+        "selected_option_index": 0,
+        "selected_option_text": "借口身体不适，请求老陈离开，以便深入调查这份异常数据。",
+        "input_scene_id": "-5458189082037851688_6972327959776258423",
+        "inferred_cache_result": "likely_hit",
+        "is_placeholder": true
+      }
+    }
+  ]
+}

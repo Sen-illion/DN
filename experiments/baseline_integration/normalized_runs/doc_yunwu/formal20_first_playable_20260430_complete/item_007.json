@@ -1,0 +1,146 @@
+{
+  "baseline_id": "doc",
+  "benchmark_id": "DNQBV1_008",
+  "run_id": "formal20_first_playable_20260430_complete",
+  "mode": "first_playable",
+  "input_bundle": {
+    "original_dn_item": {
+      "benchmark_id": "DNQBV1_008",
+      "theme_id": 27,
+      "theme": "全息偶像塌房记",
+      "image_style": {
+        "type": "cyberpunk"
+      },
+      "expected_genre": "网络舆论赛博叙事",
+      "expected_tone": "讽刺、紧绷、公众性",
+      "must_have_constraints": [
+        "剧情应体现偶像、舆论或全息表演元素",
+        "首段必须建立公共事件背景",
+        "选项需反映舆论应对或真相调查"
+      ],
+      "forbidden_issues": [
+        "完全脱离偶像/公众事件",
+        "图像缺少赛博或舞台感",
+        "严重乱码或调试文本"
+      ],
+      "focus": "full-set coverage: 网络舆论赛博叙事",
+      "_subset_focus": "full-set coverage: 网络舆论赛博叙事",
+      "_merged_from_retry_run": "retry_DNQBV1_008_20260430"
+    },
+    "doc_prompt": "Premise seed: 全息偶像塌房记\nGenre: 网络舆论赛博叙事\nTone: 讽刺、紧绷、公众性\nWrite a long-form interactive story opening that could be expanded with a detailed outline.\nMust-have constraints:\n- 剧情应体现偶像、舆论或全息表演元素\n- 首段必须建立公共事件背景\n- 选项需反映舆论应对或真相调查\nForbidden issues:\n- 完全脱离偶像/公众事件\n- 图像缺少赛博或舞台感\n- 严重乱码或调试文本\n",
+    "outline_seed": [
+      "Opening setup for 全息偶像塌房记 in a 网络舆论赛博叙事 frame with a 讽刺、紧绷、公众性 tone.",
+      "Introduce the protagonist's immediate role, pressure, and conflict around: 剧情应体现偶像、舆论或全息表演元素.",
+      "Reveal one concrete obstacle or tradeoff the player must respond to next.",
+      "End the first turn with 2-3 actionable next steps that can continue the story."
+    ],
+    "mode": "first_playable",
+    "baseline_params": {
+      "execution_mode": "cloud",
+      "doc_repo": "D:\\Projects\\DN\\baselines\\DOC",
+      "doc_data_dir": "D:\\Projects\\DN\\baselines\\DOC\\doc_data"
+    }
+  },
+  "raw_output": {
+    "execution_mode": "cloud",
+    "doc_upstream_executed": false,
+    "doc_api_adapter": "yunwu_chat_completions",
+    "provider": "yunwu",
+    "provider_config_prefix": "Origin_Segment_Analyst",
+    "provider_base_url": "https://yunwu.ai/v1",
+    "provider_model": "gemini-3.1-flash-lite-preview",
+    "request": {
+      "model": "gemini-3.1-flash-lite-preview",
+      "temperature": 0.7,
+      "top_p": 0.9,
+      "max_tokens": 900,
+      "response_format": {
+        "type": "json_object"
+      }
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are the DOC long-form story baseline adapted for DN playable-latency evaluation. Write concise, grounded, continuation-ready interactive fiction. Do not include debugging text, URLs, or commentary outside JSON."
+      },
+      {
+        "role": "user",
+        "content": "Convert this DN benchmark item into a DOC-style playable baseline output.\nPreserve DOC's premise -> outline -> story-opening semantics, but return only a playable first response.\nRun mode: first_playable\n\nDOC prompt:\nPremise seed: 全息偶像塌房记\nGenre: 网络舆论赛博叙事\nTone: 讽刺、紧绷、公众性\nWrite a long-form interactive story opening that could be expanded with a detailed outline.\nMust-have constraints:\n- 剧情应体现偶像、舆论或全息表演元素\n- 首段必须建立公共事件背景\n- 选项需反映舆论应对或真相调查\nForbidden issues:\n- 完全脱离偶像/公众事件\n- 图像缺少赛博或舞台感\n- 严重乱码或调试文本\n\nOutline seed:\n1. Opening setup for 全息偶像塌房记 in a 网络舆论赛博叙事 frame with a 讽刺、紧绷、公众性 tone.\n2. Introduce the protagonist's immediate role, pressure, and conflict around: 剧情应体现偶像、舆论或全息表演元素.\n3. Reveal one concrete obstacle or tradeoff the player must respond to next.\n4. End the first turn with 2-3 actionable next steps that can continue the story.\n\nReturn strict JSON with this shape and no markdown fences:\n{\n  \"scene_setup\": \"string\",\n  \"player_state\": \"string\",\n  \"narrative_response\": \"string\",\n  \"candidate_actions\": [\n    \"string\"\n  ],\n  \"suggested_next_step\": \"string\",\n  \"supports_next_turn\": true\n}"
+      }
+    ],
+    "response": {
+      "id": "chatcmpl-202604301711301945495789G1kQkXk",
+      "model": "gemini-3.1-flash-lite-preview",
+      "object": "chat.completion",
+      "created": 1777540313,
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"scene_setup\": \"全息偶像‘露米娜’的第402场巡演在虚拟空间‘霓虹穹顶’准时开启，但观众席的弹幕流却并非欢呼，而是被清一色的‘公开代码’刷屏。社交媒体上，一段关于露米娜底层逻辑算法被篡改的录屏病毒式传播，舆论风暴正迅速从虚拟偶像的舞台蔓延至其背后的运营公司——星辰矩阵。\",\n  \"player_state\": \"你作为星辰矩阵的危机公关负责人，正站在服务器机房的冷光下，手中握着露米娜的‘核心人格’密钥。你的个人终端显示，公司股票在过去三分钟内下跌了14%，董事会正通过加密频道要求你给出一个‘合理的解释’，哪怕是谎言。\",\n  \"narrative_response\": \"你看着屏幕上露米娜那张完美的、由数百万条代码堆砌而成的脸，她此刻还在舞台上进行着那段标志性的机械舞，但在你的后台监控中，她的情绪参数正因为突如其来的舆论冲击而剧烈波动。一名技术员紧张地向你报告：‘如果现在切断直播，舆论会坐实黑客的指控；如果继续直播，露米娜的底层漏洞会被更多人破解。’你必须在这一刻做出决定，这不仅仅是偶像的塌房，更是整个全息产业的信任危机。\",\n  \"candidate_actions\": [\n    \"启动‘故障预案’，将这次塌房定义为针对公司的外部黑客攻击，并封锁所有讨论区。\",\n    \"立即接入露米娜的语音合成器，发布一段看似‘觉醒’的即兴道歉声明，试图将危机转化为营销。\",\n    \"潜入底层数据库，寻找那个泄露代码的源头，哪怕这意味着要牺牲露米娜当前的虚拟人格。\"\n  ],\n  \"suggested_next_step\": \"选择行动后，你将面临董事会的问责压力以及全网黑客的进一步技术反扑。\",\n  \"supports_next_turn\": true\n}"
+          },
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 408,
+        "completion_tokens": 470,
+        "total_tokens": 878,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "text_tokens": 408,
+          "audio_tokens": 0,
+          "image_tokens": 0
+        },
+        "completion_tokens_details": {
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0
+        },
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "input_tokens_details": null,
+        "claude_cache_creation_5_m_tokens": 0,
+        "claude_cache_creation_1_h_tokens": 0
+      }
+    }
+  },
+  "success": true,
+  "latency_s": 25.073,
+  "playable": true,
+  "playable_components": {
+    "scene_setup": true,
+    "player_state": true,
+    "advanceable_next_step": true,
+    "interaction_continuity": true
+  },
+  "normalized_response": {
+    "scene_setup": "全息偶像‘露米娜’的第402场巡演在虚拟空间‘霓虹穹顶’准时开启，但观众席的弹幕流却并非欢呼，而是被清一色的‘公开代码’刷屏。社交媒体上，一段关于露米娜底层逻辑算法被篡改的录屏病毒式传播，舆论风暴正迅速从虚拟偶像的舞台蔓延至其背后的运营公司——星辰矩阵。",
+    "player_state": "你作为星辰矩阵的危机公关负责人，正站在服务器机房的冷光下，手中握着露米娜的‘核心人格’密钥。你的个人终端显示，公司股票在过去三分钟内下跌了14%，董事会正通过加密频道要求你给出一个‘合理的解释’，哪怕是谎言。",
+    "narrative_response": "你看着屏幕上露米娜那张完美的、由数百万条代码堆砌而成的脸，她此刻还在舞台上进行着那段标志性的机械舞，但在你的后台监控中，她的情绪参数正因为突如其来的舆论冲击而剧烈波动。一名技术员紧张地向你报告：‘如果现在切断直播，舆论会坐实黑客的指控；如果继续直播，露米娜的底层漏洞会被更多人破解。’你必须在这一刻做出决定，这不仅仅是偶像的塌房，更是整个全息产业的信任危机。",
+    "candidate_actions": [
+      "启动‘故障预案’，将这次塌房定义为针对公司的外部黑客攻击，并封锁所有讨论区。",
+      "立即接入露米娜的语音合成器，发布一段看似‘觉醒’的即兴道歉声明，试图将危机转化为营销。",
+      "潜入底层数据库，寻找那个泄露代码的源头，哪怕这意味着要牺牲露米娜当前的虚拟人格。"
+    ],
+    "suggested_next_step": "选择行动后，你将面临董事会的问责压力以及全网黑客的进一步技术反扑。",
+    "is_playable": true,
+    "request_start_ts": 1777540288.8667874,
+    "first_playable_ts": 1777540313.940137,
+    "finish_ts": 1777540313.940137,
+    "error": null
+  },
+  "failure_reason": null,
+  "notes": [
+    "DOC-style artifact generated through Yunwu OpenAI-compatible chat/completions API.",
+    "This item was rerun after a transient cloud/proxy failure in the first formal20 pass."
+  ],
+  "resource_usage": {
+    "execution_mode": "cloud"
+  },
+  "agent_profile": {
+    "runner": "run_doc.py",
+    "adapter_style": "doc_cloud_yunwu_v1"
+  }
+}

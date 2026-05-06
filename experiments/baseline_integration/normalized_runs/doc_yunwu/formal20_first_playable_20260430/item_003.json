@@ -1,0 +1,144 @@
+{
+  "baseline_id": "doc",
+  "benchmark_id": "DNQBV1_004",
+  "run_id": "formal20_first_playable_20260430",
+  "mode": "first_playable",
+  "input_bundle": {
+    "original_dn_item": {
+      "benchmark_id": "DNQBV1_004",
+      "theme_id": 30,
+      "theme": "克隆体伦理庭",
+      "image_style": {
+        "type": "realistic"
+      },
+      "expected_genre": "伦理现实科幻",
+      "expected_tone": "冷静、辩论感、社会议题",
+      "must_have_constraints": [
+        "冲突应围绕克隆体或伦理审判展开",
+        "首段需要建立制度或社会背景",
+        "选项应体现立场或行动选择"
+      ],
+      "forbidden_issues": [
+        "空泛哲学套话堆砌",
+        "图像风格脱离写实基调",
+        "剧情不含可操作冲突"
+      ],
+      "focus": "full-set coverage: 伦理现实科幻",
+      "_subset_focus": "full-set coverage: 伦理现实科幻"
+    },
+    "doc_prompt": "Premise seed: 克隆体伦理庭\nGenre: 伦理现实科幻\nTone: 冷静、辩论感、社会议题\nWrite a long-form interactive story opening that could be expanded with a detailed outline.\nMust-have constraints:\n- 冲突应围绕克隆体或伦理审判展开\n- 首段需要建立制度或社会背景\n- 选项应体现立场或行动选择\nForbidden issues:\n- 空泛哲学套话堆砌\n- 图像风格脱离写实基调\n- 剧情不含可操作冲突\n",
+    "outline_seed": [
+      "Opening setup for 克隆体伦理庭 in a 伦理现实科幻 frame with a 冷静、辩论感、社会议题 tone.",
+      "Introduce the protagonist's immediate role, pressure, and conflict around: 冲突应围绕克隆体或伦理审判展开.",
+      "Reveal one concrete obstacle or tradeoff the player must respond to next.",
+      "End the first turn with 2-3 actionable next steps that can continue the story."
+    ],
+    "mode": "first_playable",
+    "baseline_params": {
+      "execution_mode": "cloud",
+      "doc_repo": "D:\\Projects\\DN\\baselines\\DOC",
+      "doc_data_dir": "D:\\Projects\\DN\\baselines\\DOC\\doc_data"
+    }
+  },
+  "raw_output": {
+    "execution_mode": "cloud",
+    "doc_upstream_executed": false,
+    "doc_api_adapter": "yunwu_chat_completions",
+    "provider": "yunwu",
+    "provider_config_prefix": "Origin_Segment_Analyst",
+    "provider_base_url": "https://yunwu.ai/v1",
+    "provider_model": "gemini-3.1-flash-lite-preview",
+    "request": {
+      "model": "gemini-3.1-flash-lite-preview",
+      "temperature": 0.7,
+      "top_p": 0.9,
+      "max_tokens": 900,
+      "response_format": {
+        "type": "json_object"
+      }
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are the DOC long-form story baseline adapted for DN playable-latency evaluation. Write concise, grounded, continuation-ready interactive fiction. Do not include debugging text, URLs, or commentary outside JSON."
+      },
+      {
+        "role": "user",
+        "content": "Convert this DN benchmark item into a DOC-style playable baseline output.\nPreserve DOC's premise -> outline -> story-opening semantics, but return only a playable first response.\nRun mode: first_playable\n\nDOC prompt:\nPremise seed: 克隆体伦理庭\nGenre: 伦理现实科幻\nTone: 冷静、辩论感、社会议题\nWrite a long-form interactive story opening that could be expanded with a detailed outline.\nMust-have constraints:\n- 冲突应围绕克隆体或伦理审判展开\n- 首段需要建立制度或社会背景\n- 选项应体现立场或行动选择\nForbidden issues:\n- 空泛哲学套话堆砌\n- 图像风格脱离写实基调\n- 剧情不含可操作冲突\n\nOutline seed:\n1. Opening setup for 克隆体伦理庭 in a 伦理现实科幻 frame with a 冷静、辩论感、社会议题 tone.\n2. Introduce the protagonist's immediate role, pressure, and conflict around: 冲突应围绕克隆体或伦理审判展开.\n3. Reveal one concrete obstacle or tradeoff the player must respond to next.\n4. End the first turn with 2-3 actionable next steps that can continue the story.\n\nReturn strict JSON with this shape and no markdown fences:\n{\n  \"scene_setup\": \"string\",\n  \"player_state\": \"string\",\n  \"narrative_response\": \"string\",\n  \"candidate_actions\": [\n    \"string\"\n  ],\n  \"suggested_next_step\": \"string\",\n  \"supports_next_turn\": true\n}"
+      }
+    ],
+    "response": {
+      "id": "chatcmpl-20260430170331461655288mrtNQ7je",
+      "model": "gemini-3.1-flash-lite-preview",
+      "object": "chat.completion",
+      "created": 1777539819,
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"scene_setup\": \"在《人类基因完整性法案》颁布后的第十二年，克隆体伦理庭成为社会秩序的最后防线。所有被判定为‘非必要冗余’的克隆个体，必须在此接受听证，以决定其是否拥有继续存续的社会价值。\",\n  \"player_state\": \"你是一名伦理庭的初级审查官，正手握一份关于编号7-09克隆体的判决书。这具克隆体表现出与其原型完全不同的艺术天赋，但资助方要求将其回收以提取神经重塑样本。\",\n  \"narrative_response\": \"审讯室的冷光灯打在7-09苍白的脸上，他正安静地观察着你，眼神里没有恐惧，只有一种近乎挑衅的冷静。桌上的电子屏显示着资助方的最终通牒：如果十分钟内不签署回收令，你个人的职业信用分将被扣除五十分。这足以让你失去下一年度的晋升资格，甚至面临纪律审查。7-09突然开口，声音平静得像是在谈论天气：‘审查官，如果我画的画能证明我拥有独立人格，你会为了那五十分而选择抹杀一个灵魂吗？’\",\n  \"candidate_actions\": [\n    \"签署回收令，优先保全自己的职业生涯。\",\n    \"推迟判决，要求调取7-09过去三个月的心理评估原始数据。\",\n    \"直接回应他的挑衅，要求他现场作画以验证其‘独立人格’。\"\n  ],\n  \"suggested_next_step\": \"评估证据的有效性并决定是否挑战资助方的权威。\",\n  \"supports_next_turn\": true\n}"
+          },
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 408,
+        "completion_tokens": 388,
+        "total_tokens": 796,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "text_tokens": 408,
+          "audio_tokens": 0,
+          "image_tokens": 0
+        },
+        "completion_tokens_details": {
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0
+        },
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "input_tokens_details": null,
+        "claude_cache_creation_5_m_tokens": 0,
+        "claude_cache_creation_1_h_tokens": 0
+      }
+    }
+  },
+  "success": true,
+  "latency_s": 9.67,
+  "playable": true,
+  "playable_components": {
+    "scene_setup": true,
+    "player_state": true,
+    "advanceable_next_step": true,
+    "interaction_continuity": true
+  },
+  "normalized_response": {
+    "scene_setup": "在《人类基因完整性法案》颁布后的第十二年，克隆体伦理庭成为社会秩序的最后防线。所有被判定为‘非必要冗余’的克隆个体，必须在此接受听证，以决定其是否拥有继续存续的社会价值。",
+    "player_state": "你是一名伦理庭的初级审查官，正手握一份关于编号7-09克隆体的判决书。这具克隆体表现出与其原型完全不同的艺术天赋，但资助方要求将其回收以提取神经重塑样本。",
+    "narrative_response": "审讯室的冷光灯打在7-09苍白的脸上，他正安静地观察着你，眼神里没有恐惧，只有一种近乎挑衅的冷静。桌上的电子屏显示着资助方的最终通牒：如果十分钟内不签署回收令，你个人的职业信用分将被扣除五十分。这足以让你失去下一年度的晋升资格，甚至面临纪律审查。7-09突然开口，声音平静得像是在谈论天气：‘审查官，如果我画的画能证明我拥有独立人格，你会为了那五十分而选择抹杀一个灵魂吗？’",
+    "candidate_actions": [
+      "签署回收令，优先保全自己的职业生涯。",
+      "推迟判决，要求调取7-09过去三个月的心理评估原始数据。",
+      "直接回应他的挑衅，要求他现场作画以验证其‘独立人格’。"
+    ],
+    "suggested_next_step": "评估证据的有效性并决定是否挑战资助方的权威。",
+    "is_playable": true,
+    "request_start_ts": 1777539810.6022365,
+    "first_playable_ts": 1777539820.2724466,
+    "finish_ts": 1777539820.2724466,
+    "error": null
+  },
+  "failure_reason": null,
+  "notes": [
+    "DOC-style artifact generated through Yunwu OpenAI-compatible chat/completions API."
+  ],
+  "resource_usage": {
+    "execution_mode": "cloud"
+  },
+  "agent_profile": {
+    "runner": "run_doc.py",
+    "adapter_style": "doc_cloud_yunwu_v1"
+  }
+}

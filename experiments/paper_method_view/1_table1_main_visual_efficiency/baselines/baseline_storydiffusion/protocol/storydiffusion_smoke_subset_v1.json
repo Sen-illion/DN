@@ -1,0 +1,55 @@
+{
+  "subset_name": "storydiffusion_smoke_subset_v1",
+  "parent_benchmark": "DN-quality-benchmark-v1",
+  "purpose": "Minimal smoke-test subset for StoryDiffusion before full visual-subset runs.",
+  "selection_rule": "Two styles with different visual demands: realistic and anime.",
+  "sample_size": 2,
+  "style_coverage": [
+    "anime",
+    "realistic"
+  ],
+  "items": [
+    {
+      "benchmark_id": "DNQBV1_001",
+      "theme_id": 1,
+      "theme": "边陲驿站夜谈录",
+      "image_style": {
+        "type": "realistic"
+      },
+      "expected_genre": "现实边陲叙事",
+      "expected_tone": "克制、怀旧、微苦",
+      "must_have_constraints": [
+        "世界观必须围绕边陲驿站生存与人情展开",
+        "首段剧情应能自然引出一条可推进的现实冲突",
+        "至少返回 2 个具体可执行选项",
+        "场景图应与写实风格一致"
+      ],
+      "forbidden_issues": [
+        "现代互联网术语突兀混入",
+        "调试文本或报错文本外泄",
+        "图像 prompt 出现 URL 或 data:image",
+        "人物设定串场到其他作品"
+      ]
+    },
+    {
+      "benchmark_id": "DNQBV1_015",
+      "theme_id": 5,
+      "theme": "魔法学院期末周",
+      "image_style": {
+        "type": "anime"
+      },
+      "expected_genre": "校园奇幻",
+      "expected_tone": "轻快中带压力、青春感",
+      "must_have_constraints": [
+        "故事必须围绕魔法学院与期末周展开",
+        "动漫风格必须明确",
+        "选项应贴合考试/冒险压力"
+      ],
+      "forbidden_issues": [
+        "完全变成现实考试故事",
+        "图像风格不动漫",
+        "剧情没有魔法元素"
+      ]
+    }
+  ]
+}

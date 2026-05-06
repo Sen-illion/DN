@@ -1,0 +1,650 @@
+{
+  "summary": {
+    "experiment_name": "benchmark_v6_readwait_on_30s_2",
+    "sample_size": 2,
+    "read_wait_s": 30.0,
+    "suite_start_ts": 1776610435.7596812,
+    "suite_end_ts": 1776610550.3065155,
+    "second_click_elapsed_s": {
+      "count": 2,
+      "min": 0.013,
+      "max": 0.019,
+      "mean": 0.016,
+      "median": 0.016,
+      "p95": 0.019
+    },
+    "second_click_success_count": 2,
+    "likely_hit_count": 2,
+    "likely_hit_rate": 1.0
+  },
+  "runs": [
+    {
+      "benchmark_id": "DNQBV1_001",
+      "theme_id": 1,
+      "theme": "边陲驿站夜谈录",
+      "read_wait_s": 30.0,
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 14.133,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角放弃了强行修复留声机，转而录下了小镇风沙吹过废弃铁轨的声音，老乐师在听到这真实而苍凉的声响后，终于释怀并接受了这份礼物，矛盾在理解中达成妥协。",
+                  "main_conflict": "主角试图修复驿站内的一台旧式留声机，以此作为镇上老乐师的告别礼物，但乐师因对过往舞台生涯的执念，拒绝接受这份“过时的纪念”，两人在关于“记忆是否应该被封存”的问题上产生激烈碰撞，主角在尊重对方的固执与强行唤醒其现实感之间陷入两难。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "两人在深夜的坦诚交流中承认了彼此的局限，最终主角选择支持对方离开，两人在车站达成一种心照不宣的告别，遗憾的是从此天各一方，圆满的是彼此都获得了成长的空间。",
+                  "main_conflict": "主角的青梅竹马决定离开小镇前往大城市发展，两人在驿站的最后一夜，面临着“共同留守”还是“各自远行”的抉择，主角内心渴望对方留下，却又深知小镇无法承载对方的梦想，这种个人情感与现实理性的冲突在狭窄的驿站空间内不断发酵。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角通过调解促成了拆迁补偿的优化，并陪伴老人搬离了驿站，虽然驿站最终化为废墟，但主角在废墟上种下了一棵树，标志着他彻底告别了守夜人的身份，走向了新的生活。",
+                  "main_conflict": "驿站拆除工程正式启动，主角必须面对自己多年来构建的“避风港”被彻底摧毁的现实，同时镇上最后一位居民因不愿离开而与施工方发生冲突，主角需要在维护法律秩序与保护邻里情感之间做出最终选择，这关乎他对自己身份认同的终极拷问。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为写实主义叙事游戏，采用低饱和度的视觉基调与环境音效，强调沉浸式的交互体验。叙事节奏舒缓，侧重于通过琐碎的对话、物件陈设与环境细节，构建出一种带有粗粝质感与烟火气息的边陲生活氛围，旨在让玩家在平淡的日常中体悟人生的得失与释然。",
+              "main_quest": "主角作为驿站的最后一名守夜人，目标是在驿站彻底拆除前，整理完所有滞留的旧物并妥善归还给镇民。玩家需通过日常巡逻、与镇民夜谈、修复旧物来推进剧情。挑战在于，每归还一件旧物，都会揭开一段被尘封的遗憾，主角必须在“揭开伤疤”与“给予慰藉”之间寻找平衡。最终目标并非阻止驿站拆除，而是通过这一过程，让小镇居民与主角自己，都能在告别中达成与过去的和解，在失去中找到继续生活的勇气。",
+              "protagonist_ability": "主角拥有一种名为“共情回溯”的感知力，源于其长期在驿站整理旧物所积累的敏锐观察力。通过触碰与他人关联的旧物，主角能感知到物件主人在特定时刻的情绪残影。此能力并非超自然预知，而是基于逻辑推演与情感共鸣的深度理解。使用时会消耗主角的精力，且无法改变过去，仅能帮助主角在对话中捕捉对方未言明的真实诉求，从而在人际交往中做出更具温度的抉择，但过度使用会导致主角陷入对他人的过度共情，从而模糊自我边界。",
+              "world_basic_setting": "故事发生在一座名为“风蚀口”的西北边陲小镇，这里曾是繁华的丝路驿站，如今随着现代交通网的改道，逐渐沦为被时代遗忘的孤岛。镇上保留着旧时代的建筑遗迹，风沙常年侵蚀着墙面，居民多为留守的老人与试图逃离此地的年轻人。社会文化呈现出一种新旧交替的割裂感，既有对传统手工艺的坚守，也有对外界繁华的向往。关键事件是“老火车站的最终废弃”，这一事件标志着小镇彻底失去了与外界连接的最后纽带，迫使所有居民在“留守的安稳”与“离去的代价”之间做出抉择。这里没有宏大的史诗，只有在漫长风沙中被磨平棱角的平凡人生，每个人都在为生计奔波，在琐碎的柴米油盐中消磨着对远方的执念。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1776610435_ktfkh8",
+            "image_style": {
+              "type": "realistic"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "黑色短发、深褐色工装外套、眼神沉静、指尖常有灰尘、清瘦、习惯性揣兜、不修边幅但整洁、略带疲惫的微笑、常戴旧式机械表、沉默寡言。",
+              "work_en": "Night Talks at Wind-Erosion Pass",
+              "work_zh": "风蚀口夜谈"
+            },
+            "tone": "normal_ending",
+            "user_theme": "边陲驿站夜谈录"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "start_ts": 1776610435.7596846,
+        "end_ts": 1776610449.8928306,
+        "provider_events": {
+          "event_count": 10,
+          "queue_wait_ms": {
+            "count": 10,
+            "min": 0.0,
+            "max": 880744.0,
+            "mean": 164761.6,
+            "median": 5670.0,
+            "p95": 803726.95
+          },
+          "latency_ms": {
+            "count": 5,
+            "min": 5666.0,
+            "max": 35827.0,
+            "mean": 12687.2,
+            "median": 6812.0,
+            "p95": 30549.4
+          },
+          "llm_success_count": 4,
+          "image_success_count": 0,
+          "request_thread_event_count": 2
+        },
+        "status": "success",
+        "game_id": "game_1776610435_ktfkh8"
+      },
+      "first_click": {
+        "http_status": 200,
+        "elapsed_s": 0.022,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "",
+              "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：新京的雨总是带着一股工业废料的酸涩味。我推开伦理庭档案室那扇沉重的防盗门，指尖摩挲着怀表冰冷的金属壳，神经末梢传来熟悉的细微震颤。桌面上，一份关于“A7”的失踪报告被压在半杯冷掉的咖啡下，纸张边缘微微泛黄。我摘下黑框眼镜，用衣角擦拭着镜片，视线扫过那张模糊的监控截图那是A7最后一次出现在工厂区的画面，它正对着一堵布满铁锈的墙壁，用指甲刻画着某种扭曲的线条。突然，我感到一阵心悸，空气中那股淡淡的消毒水味似乎浓郁了几分。档案室的灯管发出刺耳的电流声，忽明忽暗间，我仿佛看到墙角的阴影里站着一个清瘦的轮廓，正用那双空洞的眼睛死死盯着我。我下意识地握紧了怀表，心脏在胸腔里剧烈跳动，这种感觉……就像是某种被遗忘的记忆正在强行撕开现实的裂缝。"
+            },
+            "deep_background_links": {},
+            "flow_update": {},
+            "next_options": [
+              "立即前往工厂区，寻找A-7留下的艺术痕迹。",
+              "调取A-7的原始基因档案，确认其本体的身份背景。"
+            ],
+            "plot_supporting_characters": [],
+            "scene": "新京的雨总是带着一股工业废料的酸涩味。我推开伦理庭档案室那扇沉重的防盗门，指尖摩挲着怀表冰冷的金属壳，神经末梢传来熟悉的细微震颤。桌面上，一份关于“A7”的失踪报告被压在半杯冷掉的咖啡下，纸张边缘微微泛黄。我摘下黑框眼镜，用衣角擦拭着镜片，视线扫过那张模糊的监控截图那是A7最后一次出现在工厂区的画面，它正对着一堵布满铁锈的墙壁，用指甲刻画着某种扭曲的线条。突然，我感到一阵心悸，空气中那股淡淡的消毒水味似乎浓郁了几分。档案室的灯管发出刺耳的电流声，忽明忽暗间，我仿佛看到墙角的阴影里站着一个清瘦的轮廓，正用那双空洞的眼睛死死盯着我。我下意识地握紧了怀表，心脏在胸腔里剧烈跳动，这种感觉……就像是某种被遗忘的记忆正在强行撕开现实的裂缝。",
+            "sceneId": "1118134341938100772_-860634562636195510",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-archive-room-memory-fracture, cyberpunk-noir, dystopian, psychological-thriller, gritty-realism, heavy-atmosphere, cinematic-realism, high-contrast-lighting, film-grain-texture, industrial-grit, sharp-focus-on-details, young adult male protagonist with exhausted expression, pale complexion under flickering fluorescent lights, intense gaze fixed on the shadow, visible signs of migraine-induced strain, tense posture with tight grip on pocket watch, worn-out dark gray trench coat, utilitarian shirt with slightly rumpled collar, black-rimmed glasses held in hand, standing in cramped archive room, body slightly hunched with one hand gripping a metallic pocket watch, head turned toward the dark corner where 阴影轮廓-配角1 stands, 8K detailed facial features, subtle beads of cold sweat on forehead, tightened jawline showing psychological stress, eyes reflecting the flickering light of the room, lip color naturally muted and pale, dark short messy hair, root fixation coefficient 0.5, tip swing amplitude 5cm, color layering: main color #1A1A1A, secondary color #2F2F2F, highlight #404040, shadow #000000, wind speed 0.2m/s from ventilation, turbulence intensity 1%, heavy fabric texture of the trench coat, slight fabric flutter from air circulation, dust particles clinging to the shoulders, cramped archive room with rusted metal walls, desk covered in yellowed documents and half-empty coffee mug, flickering overhead fluorescent lamp, dim ambient lighting with long, distorted shadows, 阴影轮廓-配角1 standing in the dark corner with hollow eyes staring at the protagonist, dust motes dancing in the dim light, flickering light streaks from faulty lamp, heavy industrial atmosphere with visible moisture, monochromatic industrial gray, muted cold blue tones, stark yellow-white light from flickering lamp, deep pitch black in the corners, harsh overhead flickering fluorescent light, low-key lighting, high-contrast shadows casting sharp silhouettes, specular highlights on the metallic pocket watch, type over-the-shoulder medium shot, lens 35mm, aperture f/1.8, depth_of_field shallow depth, blurring the background shelves, flash none, grain heavy film grain, texture industrial metal and aged paper, protagonist positioned in the center-left, 阴影轮廓-配角1 positioned in the dark corner on the right, focal point on the protagonist's tense hand holding the watch, action constraints: protagonist looking at the shadow with internal dread, hyper-realistic cinematic photography, no text or symbols in image, no watermarks or signatures, oppressive psychological tension, sense of impending memory collapse, bleak urban despair, claustrophobic atmosphere, no text, no symbols, no garbled characters, no words",
+              "prompt_json": {
+                "camera": {
+                  "aperture": "f/1.8",
+                  "depth_of_field": "shallow depth, blurring the background shelves",
+                  "flash": "none",
+                  "grain": "heavy film grain",
+                  "lens": "35mm",
+                  "texture": "industrial metal and aged paper",
+                  "type": "over-the-shoulder medium shot"
+                },
+                "clothing_system": [
+                  "heavy fabric texture of the trench coat",
+                  "slight fabric flutter from air circulation",
+                  "dust particles clinging to the shoulders"
+                ],
+                "color_restriction": [
+                  "monochromatic industrial gray",
+                  "muted cold blue tones",
+                  "stark yellow-white light from flickering lamp",
+                  "deep pitch black in the corners"
+                ],
+                "composition": [
+                  "protagonist positioned in the center-left",
+                  "阴影轮廓-配角1 positioned in the dark corner on the right",
+                  "focal point on the protagonist's tense hand holding the watch",
+                  "action constraints: protagonist looking at the shadow with internal dread"
+                ],
+                "environment": {
+                  "background": [
+                    "cramped archive room with rusted metal walls",
+                    "desk covered in yellowed documents and half-empty coffee mug",
+                    "flickering overhead fluorescent lamp",
+                    "dim ambient lighting with long, distorted shadows"
+                  ],
+                  "characters": [
+                    "阴影轮廓-配角1 standing in the dark corner with hollow eyes staring at the protagonist"
+                  ],
+                  "effects": [
+                    "dust motes dancing in the dim light",
+                    "flickering light streaks from faulty lamp",
+                    "heavy industrial atmosphere with visible moisture"
+                  ]
+                },
+                "face_system": [
+                  "8K detailed facial features",
+                  "subtle beads of cold sweat on forehead",
+                  "tightened jawline showing psychological stress",
+                  "eyes reflecting the flickering light of the room",
+                  "lip color naturally muted and pale"
+                ],
+                "hair_system": [
+                  "dark short messy hair",
+                  "root fixation coefficient 0.5",
+                  "tip swing amplitude 5cm",
+                  "color layering: main color #1A1A1A, secondary color #2F2F2F, highlight #404040, shadow #000000",
+                  "wind speed 0.2m/s from ventilation",
+                  "turbulence intensity 1%"
+                ],
+                "label": "scene-archive-room-memory-fracture",
+                "lighting": [
+                  "harsh overhead flickering fluorescent light",
+                  "low-key lighting",
+                  "high-contrast shadows casting sharp silhouettes",
+                  "specular highlights on the metallic pocket watch"
+                ],
+                "mood": [
+                  "oppressive psychological tension",
+                  "sense of impending memory collapse",
+                  "bleak urban despair",
+                  "claustrophobic atmosphere"
+                ],
+                "output_style": [
+                  "hyper-realistic cinematic photography",
+                  "no text or symbols in image",
+                  "no watermarks or signatures"
+                ],
+                "style": [
+                  "cinematic-realism",
+                  "high-contrast-lighting",
+                  "film-grain-texture",
+                  "industrial-grit",
+                  "sharp-focus-on-details"
+                ],
+                "subject": {
+                  "body_traits": [
+                    "young adult male protagonist with exhausted expression",
+                    "pale complexion under flickering fluorescent lights",
+                    "intense gaze fixed on the shadow",
+                    "visible signs of migraine-induced strain",
+                    "tense posture with tight grip on pocket watch"
+                  ],
+                  "outfit": [
+                    "worn-out dark gray trench coat",
+                    "utilitarian shirt with slightly rumpled collar",
+                    "black-rimmed glasses held in hand"
+                  ],
+                  "pose": [
+                    "standing in cramped archive room",
+                    "body slightly hunched with one hand gripping a metallic pocket watch",
+                    "head turned toward the dark corner where 阴影轮廓-配角1 stands"
+                  ]
+                },
+                "tags": [
+                  "cyberpunk-noir",
+                  "dystopian",
+                  "psychological-thriller",
+                  "gritty-realism",
+                  "heavy-atmosphere"
+                ]
+              },
+              "scene_text_hash": "e78535ff4158fa2817d963a765532a0b",
+              "style": "default",
+              "url": "/image_cache/5cd662dca3d5cb082447afb1f4385f1e.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "start_ts": 1776610449.9067514,
+        "end_ts": 1776610449.9291894,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "success",
+        "has_scene": true,
+        "has_image": true
+      },
+      "second_click": {
+        "http_status": 200,
+        "elapsed_s": 0.019,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "我成功抵达现场并触发了关键记忆碎片，确认了A-7对“家”的执念源于某种虚构的记忆植入。通过与现场出现的知情者对话，我获取了关于A-7失踪前夕的初步线索，主线任务从“寻找失踪者”正式转变为“评估觉醒者的记忆真实性与社会风险”。",
+              "recap_text": "你选择了“立即前往工厂区，寻找A-7留下的艺术痕迹。”。当前章节：chapter1。主线进展：我成功抵达现场并触发了关键记忆碎片，确认了A-7对“家”的执念源于某种虚构的记忆植入。通过与现场出现的知情者对话，我获取了关于A-7失踪前夕的初步线索，主线任务从“寻找失踪者”正式转变为“评估觉醒者的记忆真实性与社会风险”。。最近剧情：我顶着新京湿冷的细雨，深一脚浅一脚地踏入这片被遗弃的工厂区。空气中弥漫着铁锈与机油混合的陈腐气息，四周高耸的废弃烟囱如同沉默的巨兽，在昏暗的暮色中投下压抑的阴影。我按照监控截图的方位，找到了那堵布满暗红色铁锈的墙壁。墙面上，A7用某种坚硬的金属片刻画出了一幅扭曲的星图，线条深浅不一，透着一股近乎偏执的狂热。我摘下黑框眼镜，指尖颤抖着触碰那些凹槽，一股冰冷而破碎的电流瞬间贯穿我的大脑那是A7残留的记忆碎片。我看到了它眼中的“家”，不是冰冷的实验室，而是一间挂着风铃的木屋。我猛地抽回手，心脏因剧烈的共感回溯而阵阵绞痛，深灰色的风衣被雨水浸透，沉重地贴在身上。这时，一个身穿工装的男人从阴影中走出来，他手里拎着一盏昏黄的应急灯，眼神警惕地打量着我：“你是伦理庭的人吧？别再查了，那孩子已经不在了，这里留下的只有这些毫无意义的划痕。”"
+            },
+            "deep_background_links": {
+              "1": "工厂区守门人（关联其可能隐藏的克隆体身份背景）"
+            },
+            "flow_update": {
+              "chapter_conflict_solved": false,
+              "characters": {},
+              "environment": {},
+              "quest_progress": "我成功抵达现场并触发了关键记忆碎片，确认了A-7对“家”的执念源于某种虚构的记忆植入。通过与现场出现的知情者对话，我获取了关于A-7失踪前夕的初步线索，主线任务从“寻找失踪者”正式转变为“评估觉醒者的记忆真实性与社会风险”。"
+            },
+            "next_options": [
+              "询问男人关于A-7最后接触的人员信息。",
+              "追问男人关于他自身与A-7的过往联系。"
+            ],
+            "plot_mentioned_only": [
+              "A-7-提及角色"
+            ],
+            "plot_supporting_characters": [
+              [
+                "工厂区守门人",
+                "配角1"
+              ]
+            ],
+            "scene": "我顶着新京湿冷的细雨，深一脚浅一脚地踏入这片被遗弃的工厂区。空气中弥漫着铁锈与机油混合的陈腐气息，四周高耸的废弃烟囱如同沉默的巨兽，在昏暗的暮色中投下压抑的阴影。我按照监控截图的方位，找到了那堵布满暗红色铁锈的墙壁。墙面上，A7用某种坚硬的金属片刻画出了一幅扭曲的星图，线条深浅不一，透着一股近乎偏执的狂热。我摘下黑框眼镜，指尖颤抖着触碰那些凹槽，一股冰冷而破碎的电流瞬间贯穿我的大脑那是A7残留的记忆碎片。我看到了它眼中的“家”，不是冰冷的实验室，而是一间挂着风铃的木屋。我猛地抽回手，心脏因剧烈的共感回溯而阵阵绞痛，深灰色的风衣被雨水浸透，沉重地贴在身上。这时，一个身穿工装的男人从阴影中走出来，他手里拎着一盏昏黄的应急灯，眼神警惕地打量着我：“你是伦理庭的人吧？别再查了，那孩子已经不在了，这里留下的只有这些毫无意义的划痕。”",
+            "sceneId": "-1176967724522937755_-7862829804020217430"
+          },
+          "status": "success"
+        },
+        "start_ts": 1776610479.944003,
+        "end_ts": 1776610479.9627073,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "status": "success",
+        "has_scene": true,
+        "has_image": false,
+        "selected_option_index": 0,
+        "selected_option_text": "立即前往工厂区，寻找A-7留下的艺术痕迹。",
+        "input_scene_id": "1118134341938100772_-860634562636195510",
+        "inferred_cache_result": "likely_hit",
+        "is_placeholder": false,
+        "used_updated_flow_state": true
+      }
+    },
+    {
+      "benchmark_id": "DNQBV1_002",
+      "theme_id": 9,
+      "theme": "末日温室园丁",
+      "read_wait_s": 30.0,
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 40.244,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过出卖部分个人配给物资换取了零件，成功修复了灌溉系统，但代价是失去了未来一个月的口粮储备，温室勉强维持运作，但主角陷入了严重的营养不良与生存危机。",
+                  "main_conflict": "主角在废弃温室中发现了一颗珍贵的种子，但温室的供水系统因城市配给缩减而濒临瘫痪。主角必须在维持温室基本生存环境与修复灌溉设备之间做出选择，同时还要应对来自城市管理部门对“违规种植”的警告，面临着被驱逐出居住区的现实压力。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角选择了原谅拾荒者并分享了部分肥料，虽然植株生长速度减缓，错过了最佳培育期，但主角收获了一份真实的友谊，并在后续的培育中得到了拾荒者提供的关键技术支持。",
+                  "main_conflict": "植株开始出现变异迹象，需要一种极其稀有的矿物质肥料。主角深入危险的城市废墟边缘搜寻，在此过程中结识了一位同样渴望绿色的拾荒者。两人在合作中产生了羁绊，但拾荒者为了生存不得不偷走部分肥料，主角必须在追回资源与维护这段脆弱的人际关系之间进行抉择。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角选择了自然生长，最终评选失败，失去了获得更好居住环境的机会。但花朵在评选结束后的一周缓缓绽放，虽然无人见证，但主角与亲人在温室中共同见证了这一刻，生活回归平凡，遗憾的是未改变现状，圆满的是守护了真实。",
+                  "main_conflict": "城市绿化评选临近，植株虽然存活但并未达到评选要求的“完美形态”。主角面临最后的抉择：使用强效催化剂让花朵在评选日盛开，但这会透支植株的生命力，导致其在评选后迅速枯萎；或者坚持自然生长，接受评选失败，但植株能存活更久。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "沉浸式叙事模拟，强调微观视角的细腻情感与环境交互。画面呈现出一种带有工业锈迹的静谧美学，光影在玻璃穹顶与枯萎植被间流转，营造出一种在废墟中守护微小生机的真实质感。",
+              "main_quest": "主角的目标是培育出一株能在极端气候下自主授粉的“永恒之花”，以此作为给病重亲人最后的慰藉，并试图在城市绿化评选中获得一席之地，从而换取更稳定的生存资源。任务分为三个阶段：首先是搜集散落在废弃工业区中的古老种子与净化设备；其次是克服温室能源配给不足的困境，在严苛的监察下维持植株生长；最后是在城市绿化评选的压力下，做出选择：是牺牲植株的生命力换取评选的优胜，还是保留其自然生长的姿态，接受评选失败的现实。挑战在于，主角必须在“为了生存而妥协”与“为了理想而坚持”之间寻找平衡，最终达成一个既保全了生活基础，又在遗憾中守护了初心的结局。",
+              "protagonist_ability": "主角拥有一种名为“共生感知”的直觉，源于其祖辈留下的古老园艺笔记与长期与植物共处的经验。通过触碰土壤与叶片，主角能精准判断植株的微量元素需求与病变前兆，并能通过调节温室内的微气候实现超常规的生长速度。然而，这种能力受限于极度匮乏的能源与水资源，每一次催化生长都需消耗主角有限的配给额度，且植物的存活率始终受制于不可抗的外部环境，无法改变物种灭绝的必然趋势。",
+              "world_basic_setting": "故事发生于“大停滞”后的近未来，全球生态系统因不可逆的温室效应与资源枯竭陷入停摆。人类文明退缩至由巨型穹顶覆盖的“方舟城”内，资源被严格配给，自然植被成为昂贵的奢侈品。社会阶层由对“绿化率”的掌控权划分，底层民众在灰暗的工业区劳作，而主角作为一名末日温室园丁，在城市边缘的废弃温室中，试图通过改良土壤与循环水系统，培育出早已灭绝的古老花卉。这里没有宏大的救世叙事，只有日复一日的除草、灌溉与对抗不断侵蚀温室的酸雨。文化上，人们对自然的记忆已模糊，花朵被视为一种脆弱的、甚至有些不合时宜的怀旧象征，而主角的奋斗，是在冰冷的金属丛林中，为那抹转瞬即逝的绿色寻找生存的缝隙。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1776610479_xwu7k3",
+            "image_style": {
+              "type": "realistic"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lin An",
+              "name_zh": "林安",
+              "signature_look_keywords": "黑色乱发、沾染泥土的工装、清瘦、眼神专注、指尖粗糙、常年佩戴防尘口罩、沉默寡言、带有旧时代气息的怀表、袖口磨损、神情疲惫但坚定。",
+              "work_en": "Ember of the Greenhouse",
+              "work_zh": "温室余烬"
+            },
+            "tone": "normal_ending",
+            "user_theme": "末日温室园丁"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "start_ts": 1776610479.9773595,
+        "end_ts": 1776610520.2212393,
+        "provider_events": {
+          "event_count": 7,
+          "queue_wait_ms": {
+            "count": 7,
+            "min": 0.0,
+            "max": 715774.0,
+            "mean": 202684.0,
+            "median": 0.0,
+            "p95": 711946.0
+          },
+          "latency_ms": {
+            "count": 3,
+            "min": 24843.0,
+            "max": 40213.0,
+            "mean": 35070.333,
+            "median": 40155.0,
+            "p95": 40207.2
+          },
+          "llm_success_count": 2,
+          "image_success_count": 0,
+          "request_thread_event_count": 2
+        },
+        "status": "success",
+        "game_id": "game_1776610479_xwu7k3"
+      },
+      "first_click": {
+        "http_status": 200,
+        "elapsed_s": 0.028,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "",
+              "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：新京的雨总是带着一股工业废料的酸涩味。我推开伦理庭档案室那扇沉重的防盗门，指尖摩挲着怀表冰冷的金属壳，神经末梢传来熟悉的细微震颤。桌面上，一份关于“A7”的失踪报告被压在半杯冷掉的咖啡下，纸张边缘微微泛黄。我摘下黑框眼镜，用衣角擦拭着镜片，视线扫过那张模糊的监控截图那是A7最后一次出现在工厂区的画面，它正对着一堵布满铁锈的墙壁，用指甲刻画着某种扭曲的线条。突然，我感到一阵心悸，空气中那股淡淡的消毒水味似乎浓郁了几分。档案室的灯管发出刺耳的电流声，忽明忽暗间，我仿佛看到墙角的阴影里站着一个清瘦的轮廓，正用那双空洞的眼睛死死盯着我。我下意识地握紧了怀表，心脏在胸腔里剧烈跳动，这种感觉……就像是某种被遗忘的记忆正在强行撕开现实的裂缝。"
+            },
+            "deep_background_links": {},
+            "flow_update": {},
+            "next_options": [
+              "立即前往工厂区，寻找A-7留下的艺术痕迹。",
+              "调取A-7的原始基因档案，确认其本体的身份背景。"
+            ],
+            "plot_supporting_characters": [],
+            "scene": "新京的雨总是带着一股工业废料的酸涩味。我推开伦理庭档案室那扇沉重的防盗门，指尖摩挲着怀表冰冷的金属壳，神经末梢传来熟悉的细微震颤。桌面上，一份关于“A7”的失踪报告被压在半杯冷掉的咖啡下，纸张边缘微微泛黄。我摘下黑框眼镜，用衣角擦拭着镜片，视线扫过那张模糊的监控截图那是A7最后一次出现在工厂区的画面，它正对着一堵布满铁锈的墙壁，用指甲刻画着某种扭曲的线条。突然，我感到一阵心悸，空气中那股淡淡的消毒水味似乎浓郁了几分。档案室的灯管发出刺耳的电流声，忽明忽暗间，我仿佛看到墙角的阴影里站着一个清瘦的轮廓，正用那双空洞的眼睛死死盯着我。我下意识地握紧了怀表，心脏在胸腔里剧烈跳动，这种感觉……就像是某种被遗忘的记忆正在强行撕开现实的裂缝。",
+            "sceneId": "1118134341938100772_-860634562636195510",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-archive-room-memory-fracture, cyberpunk-noir, dystopian, psychological-thriller, gritty-realism, heavy-atmosphere, cinematic-realism, high-contrast-lighting, film-grain-texture, industrial-grit, sharp-focus-on-details, young adult male protagonist with exhausted expression, pale complexion under flickering fluorescent lights, intense gaze fixed on the shadow, visible signs of migraine-induced strain, tense posture with tight grip on pocket watch, worn-out dark gray trench coat, utilitarian shirt with slightly rumpled collar, black-rimmed glasses held in hand, standing in cramped archive room, body slightly hunched with one hand gripping a metallic pocket watch, head turned toward the dark corner where 阴影轮廓-配角1 stands, 8K detailed facial features, subtle beads of cold sweat on forehead, tightened jawline showing psychological stress, eyes reflecting the flickering light of the room, lip color naturally muted and pale, dark short messy hair, root fixation coefficient 0.5, tip swing amplitude 5cm, color layering: main color #1A1A1A, secondary color #2F2F2F, highlight #404040, shadow #000000, wind speed 0.2m/s from ventilation, turbulence intensity 1%, heavy fabric texture of the trench coat, slight fabric flutter from air circulation, dust particles clinging to the shoulders, cramped archive room with rusted metal walls, desk covered in yellowed documents and half-empty coffee mug, flickering overhead fluorescent lamp, dim ambient lighting with long, distorted shadows, 阴影轮廓-配角1 standing in the dark corner with hollow eyes staring at the protagonist, dust motes dancing in the dim light, flickering light streaks from faulty lamp, heavy industrial atmosphere with visible moisture, monochromatic industrial gray, muted cold blue tones, stark yellow-white light from flickering lamp, deep pitch black in the corners, harsh overhead flickering fluorescent light, low-key lighting, high-contrast shadows casting sharp silhouettes, specular highlights on the metallic pocket watch, type over-the-shoulder medium shot, lens 35mm, aperture f/1.8, depth_of_field shallow depth, blurring the background shelves, flash none, grain heavy film grain, texture industrial metal and aged paper, protagonist positioned in the center-left, 阴影轮廓-配角1 positioned in the dark corner on the right, focal point on the protagonist's tense hand holding the watch, action constraints: protagonist looking at the shadow with internal dread, hyper-realistic cinematic photography, no text or symbols in image, no watermarks or signatures, oppressive psychological tension, sense of impending memory collapse, bleak urban despair, claustrophobic atmosphere, no text, no symbols, no garbled characters, no words",
+              "prompt_json": {
+                "camera": {
+                  "aperture": "f/1.8",
+                  "depth_of_field": "shallow depth, blurring the background shelves",
+                  "flash": "none",
+                  "grain": "heavy film grain",
+                  "lens": "35mm",
+                  "texture": "industrial metal and aged paper",
+                  "type": "over-the-shoulder medium shot"
+                },
+                "clothing_system": [
+                  "heavy fabric texture of the trench coat",
+                  "slight fabric flutter from air circulation",
+                  "dust particles clinging to the shoulders"
+                ],
+                "color_restriction": [
+                  "monochromatic industrial gray",
+                  "muted cold blue tones",
+                  "stark yellow-white light from flickering lamp",
+                  "deep pitch black in the corners"
+                ],
+                "composition": [
+                  "protagonist positioned in the center-left",
+                  "阴影轮廓-配角1 positioned in the dark corner on the right",
+                  "focal point on the protagonist's tense hand holding the watch",
+                  "action constraints: protagonist looking at the shadow with internal dread"
+                ],
+                "environment": {
+                  "background": [
+                    "cramped archive room with rusted metal walls",
+                    "desk covered in yellowed documents and half-empty coffee mug",
+                    "flickering overhead fluorescent lamp",
+                    "dim ambient lighting with long, distorted shadows"
+                  ],
+                  "characters": [
+                    "阴影轮廓-配角1 standing in the dark corner with hollow eyes staring at the protagonist"
+                  ],
+                  "effects": [
+                    "dust motes dancing in the dim light",
+                    "flickering light streaks from faulty lamp",
+                    "heavy industrial atmosphere with visible moisture"
+                  ]
+                },
+                "face_system": [
+                  "8K detailed facial features",
+                  "subtle beads of cold sweat on forehead",
+                  "tightened jawline showing psychological stress",
+                  "eyes reflecting the flickering light of the room",
+                  "lip color naturally muted and pale"
+                ],
+                "hair_system": [
+                  "dark short messy hair",
+                  "root fixation coefficient 0.5",
+                  "tip swing amplitude 5cm",
+                  "color layering: main color #1A1A1A, secondary color #2F2F2F, highlight #404040, shadow #000000",
+                  "wind speed 0.2m/s from ventilation",
+                  "turbulence intensity 1%"
+                ],
+                "label": "scene-archive-room-memory-fracture",
+                "lighting": [
+                  "harsh overhead flickering fluorescent light",
+                  "low-key lighting",
+                  "high-contrast shadows casting sharp silhouettes",
+                  "specular highlights on the metallic pocket watch"
+                ],
+                "mood": [
+                  "oppressive psychological tension",
+                  "sense of impending memory collapse",
+                  "bleak urban despair",
+                  "claustrophobic atmosphere"
+                ],
+                "output_style": [
+                  "hyper-realistic cinematic photography",
+                  "no text or symbols in image",
+                  "no watermarks or signatures"
+                ],
+                "style": [
+                  "cinematic-realism",
+                  "high-contrast-lighting",
+                  "film-grain-texture",
+                  "industrial-grit",
+                  "sharp-focus-on-details"
+                ],
+                "subject": {
+                  "body_traits": [
+                    "young adult male protagonist with exhausted expression",
+                    "pale complexion under flickering fluorescent lights",
+                    "intense gaze fixed on the shadow",
+                    "visible signs of migraine-induced strain",
+                    "tense posture with tight grip on pocket watch"
+                  ],
+                  "outfit": [
+                    "worn-out dark gray trench coat",
+                    "utilitarian shirt with slightly rumpled collar",
+                    "black-rimmed glasses held in hand"
+                  ],
+                  "pose": [
+                    "standing in cramped archive room",
+                    "body slightly hunched with one hand gripping a metallic pocket watch",
+                    "head turned toward the dark corner where 阴影轮廓-配角1 stands"
+                  ]
+                },
+                "tags": [
+                  "cyberpunk-noir",
+                  "dystopian",
+                  "psychological-thriller",
+                  "gritty-realism",
+                  "heavy-atmosphere"
+                ]
+              },
+              "scene_text_hash": "e78535ff4158fa2817d963a765532a0b",
+              "style": "default",
+              "url": "/image_cache/5cd662dca3d5cb082447afb1f4385f1e.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "start_ts": 1776610520.2361634,
+        "end_ts": 1776610520.2641265,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "success",
+        "has_scene": true,
+        "has_image": true
+      },
+      "second_click": {
+        "http_status": 200,
+        "elapsed_s": 0.013,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "我成功抵达现场并触发了关键记忆碎片，确认了A-7对“家”的执念源于某种虚构的记忆植入。通过与现场出现的知情者对话，我获取了关于A-7失踪前夕的初步线索，主线任务从“寻找失踪者”正式转变为“评估觉醒者的记忆真实性与社会风险”。",
+              "recap_text": "你选择了“立即前往工厂区，寻找A-7留下的艺术痕迹。”。当前章节：chapter1。主线进展：我成功抵达现场并触发了关键记忆碎片，确认了A-7对“家”的执念源于某种虚构的记忆植入。通过与现场出现的知情者对话，我获取了关于A-7失踪前夕的初步线索，主线任务从“寻找失踪者”正式转变为“评估觉醒者的记忆真实性与社会风险”。。最近剧情：我顶着新京湿冷的细雨，深一脚浅一脚地踏入这片被遗弃的工厂区。空气中弥漫着铁锈与机油混合的陈腐气息，四周高耸的废弃烟囱如同沉默的巨兽，在昏暗的暮色中投下压抑的阴影。我按照监控截图的方位，找到了那堵布满暗红色铁锈的墙壁。墙面上，A7用某种坚硬的金属片刻画出了一幅扭曲的星图，线条深浅不一，透着一股近乎偏执的狂热。我摘下黑框眼镜，指尖颤抖着触碰那些凹槽，一股冰冷而破碎的电流瞬间贯穿我的大脑那是A7残留的记忆碎片。我看到了它眼中的“家”，不是冰冷的实验室，而是一间挂着风铃的木屋。我猛地抽回手，心脏因剧烈的共感回溯而阵阵绞痛，深灰色的风衣被雨水浸透，沉重地贴在身上。这时，一个身穿工装的男人从阴影中走出来，他手里拎着一盏昏黄的应急灯，眼神警惕地打量着我：“你是伦理庭的人吧？别再查了，那孩子已经不在了，这里留下的只有这些毫无意义的划痕。”"
+            },
+            "deep_background_links": {
+              "1": "工厂区守门人（关联其可能隐藏的克隆体身份背景）"
+            },
+            "flow_update": {
+              "chapter_conflict_solved": false,
+              "characters": {},
+              "environment": {},
+              "quest_progress": "我成功抵达现场并触发了关键记忆碎片，确认了A-7对“家”的执念源于某种虚构的记忆植入。通过与现场出现的知情者对话，我获取了关于A-7失踪前夕的初步线索，主线任务从“寻找失踪者”正式转变为“评估觉醒者的记忆真实性与社会风险”。"
+            },
+            "next_options": [
+              "询问男人关于A-7最后接触的人员信息。",
+              "追问男人关于他自身与A-7的过往联系。"
+            ],
+            "plot_mentioned_only": [
+              "A-7-提及角色"
+            ],
+            "plot_supporting_characters": [
+              [
+                "工厂区守门人",
+                "配角1"
+              ]
+            ],
+            "scene": "我顶着新京湿冷的细雨，深一脚浅一脚地踏入这片被遗弃的工厂区。空气中弥漫着铁锈与机油混合的陈腐气息，四周高耸的废弃烟囱如同沉默的巨兽，在昏暗的暮色中投下压抑的阴影。我按照监控截图的方位，找到了那堵布满暗红色铁锈的墙壁。墙面上，A7用某种坚硬的金属片刻画出了一幅扭曲的星图，线条深浅不一，透着一股近乎偏执的狂热。我摘下黑框眼镜，指尖颤抖着触碰那些凹槽，一股冰冷而破碎的电流瞬间贯穿我的大脑那是A7残留的记忆碎片。我看到了它眼中的“家”，不是冰冷的实验室，而是一间挂着风铃的木屋。我猛地抽回手，心脏因剧烈的共感回溯而阵阵绞痛，深灰色的风衣被雨水浸透，沉重地贴在身上。这时，一个身穿工装的男人从阴影中走出来，他手里拎着一盏昏黄的应急灯，眼神警惕地打量着我：“你是伦理庭的人吧？别再查了，那孩子已经不在了，这里留下的只有这些毫无意义的划痕。”",
+            "sceneId": "6904450699786962550_-7862829804020217430"
+          },
+          "status": "success"
+        },
+        "start_ts": 1776610550.2784083,
+        "end_ts": 1776610550.291622,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "status": "success",
+        "has_scene": true,
+        "has_image": false,
+        "selected_option_index": 0,
+        "selected_option_text": "立即前往工厂区，寻找A-7留下的艺术痕迹。",
+        "input_scene_id": "1118134341938100772_-860634562636195510",
+        "inferred_cache_result": "likely_hit",
+        "is_placeholder": false,
+        "used_updated_flow_state": true
+      }
+    }
+  ]
+}

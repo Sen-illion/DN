@@ -1,0 +1,94 @@
+Traceback (most recent call last):
+  File "C:\Users\User\Desktop\DN-main\.venv\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\Desktop\DN-main\.venv\Lib\site-packages\urllib3\connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+               ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\Des4LASTEXITCODE : ÎÞ·¨½«¡°4LASTEXITCODE¡±ÏîÊ¶±ðÎª cmdlet¡¢º¯Êý¡¢½Å±¾ÎÄ¼þ»ò¿ÉÔËÐÐ³ÌÐòµÄÃû³Æ¡£Çë¼ì²éÃû³ÆµÄÆ´Ð´£¬Èç¹û°üÀ¨
+Â·¾¶£¬ÇëÈ·±£Â·¾¶ÕýÈ·£¬È»ºóÔÙÊÔÒ»´Î¡£
+ËùÔÚÎ»ÖÃ ÐÐ:1 ×Ö·û: 337
++ ... eriments\text_ablation\data\wv_on_text_on'; if(4LASTEXITCODE -ne 0){ ...
++                                                    ~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (4LASTEXITCODE:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+self._read_status()
+                              ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\http\client.py", line 297, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\socket.py", line 720, in readinto
+    return self._sock.recv_into(b)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+ConnectionResetError: [WinError 10054] è¿œç¨‹ä¸»æœºå¼ºè¿«å…³é—­äº†ä¸€ä¸ªçŽ°æœ‰çš„è¿žæŽ¥ã€‚
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\User\Desktop\DN-main\.venv\Lib\site-packages\requests\adapters.py", line 644, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "C:\Users\User\Desktop\DN-main\.venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\Desktop\DN-main\.venv\Lib\site-packages\urllib3\util\retry.py", line 490, in increment
+    raise reraise(type(error), error, _stacktrace)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\Desktop\DN-main\.venv\Lib\site-packages\urllib3\util\util.py", line 38, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\User\Desktop\DN-main\.venv\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\Desktop\DN-main\.venv\Lib\site-packages\urllib3\connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+               ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\Desktop\DN-main\.venv\Lib\site-packages\urllib3\connection.py", line 571, in getresponse
+    httplib_response = super().getresponse()
+                       ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\http\client.py", line 1450, in getresponse
+    response.begin()
+  File "C:\Users\User\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\http\client.py", line 336, in begin
+    version, status, reason = self._read_status()
+                              ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\http\client.py", line 297, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\socket.py", line 720, in readinto
+    return self._sock.recv_into(b)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.ProtocolError: ('Connection aborted.', ConnectionResetError(10054, 'è¿œç¨‹ä¸»æœºå¼ºè¿«å…³é—­äº†ä¸€ä¸ªçŽ°æœ‰çš„è¿žæŽ¥ã€‚', None, 10054, None))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\User\Desktop\DN-main\.venv\Lib\site-packages\oss2\http.py", line 47, in do_request
+    return Response(self.session.request(req.method, req.url,
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\Desktop\DN-main\.venv\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\Desktop\DN-main\.venv\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\Desktop\DN-main\.venv\Lib\site-packages\requests\adapters.py", line 659, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', ConnectionResetError(10054, 'è¿œç¨‹ä¸»æœºå¼ºè¿«å…³é—­äº†ä¸€ä¸ªçŽ°æœ‰çš„è¿žæŽ¥ã€‚', None, 10054, None))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\User\Desktop\DN-main\src\image\cloud_storage.py", line 150, in upload_image
+    oss_bucket.put_object(object_key, data, headers={"Content-Type": content_type})
+  File "C:\Users\User\Desktop\DN-main\.venv\Lib\site-packages\oss2\api.py", line 858, in put_object
+    resp = self.__do_object('PUT', key, data=data, headers=headers)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\Desktop\DN-main\.venv\Lib\site-packages\oss2\api.py", line 3392, in __do_object
+    return self._do(method, self.bucket_name, key, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\Desktop\DN-main\.venv\Lib\site-packages\oss2\api.py", line 237, in _do
+    resp = self.session.do_request(req, timeout=self.timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\Desktop\DN-main\.venv\Lib\site-packages\oss2\http.py", line 55, in do_request
+    raise RequestError(e)
+oss2.exceptions.RequestError: {'status': -2, 'x-oss-request-id': '', 'details': "RequestError: ('Connection aborted.', ConnectionResetError(10054, 'è¿œç¨‹ä¸»æœºå¼ºè¿«å…³é—­äº†ä¸€ä¸ªçŽ°æœ‰çš„è¿žæŽ¥ã€‚', None, 10054, None))"}

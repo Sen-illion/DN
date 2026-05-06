@@ -1,0 +1,1315 @@
+{
+  "summary": {
+    "experiment_name": "benchmark_v8_readwait_on_60s_add4",
+    "sample_size": 4,
+    "read_wait_s": 60.0,
+    "suite_start_ts": 1776642768.882533,
+    "suite_end_ts": 1776643126.3593664,
+    "second_click_elapsed_s": {
+      "count": 4,
+      "min": 0.01,
+      "max": 0.025,
+      "mean": 0.015,
+      "median": 0.012,
+      "p95": 0.023
+    },
+    "second_click_success_count": 4,
+    "likely_hit_count": 4,
+    "likely_hit_rate": 1.0
+  },
+  "runs": [
+    {
+      "benchmark_id": "DNQBV1_005",
+      "theme_id": 2,
+      "theme": "月球矿难七日",
+      "read_wait_s": 60.0,
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 10.854,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角成功救出同事或确认其死亡，并利用地质感知能力找到第一个临时避难所，确保氧气供应暂时稳定，但同时也失去了最佳撤离时机，身体状况因过度使用能力而受损。",
+                  "main_conflict": "矿难突发，主角被困于深层作业区，通讯中断，氧气余量仅剩24小时。主角面临抉择：是立即抛下受伤的同事独自寻找出口，还是消耗宝贵的氧气与体力去尝试营救，这直接关系到后续生存资源的分配与心理负担的累积。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角成功修复通讯，但因电力耗尽无法获取完整证据，仅能发送简短的求救信息。主角在真相与生存之间选择了后者，虽然保住了性命，却彻底失去了为逝者讨回公道的机会。",
+                  "main_conflict": "主角在废墟中发现财阀为了掩盖事故真相，正在远程销毁矿区数据。主角必须在“获取真相以换取后续补偿”与“利用仅存电力修复通讯以求生”之间做出抉择，这不仅是生存的博弈，更是对个人职业尊严与现实利益的残酷拷问。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角成功抵达地表撤离舱，但因撤离舱故障，仅能容纳一人，主角最终选择让另一名幸存者先行离开，自己则在救援队赶到前，于月球表面静静等待，达成了一种释然的、不完美的结局。",
+                  "main_conflict": "撤离通道被岩层彻底封死，主角必须通过极其危险的“地壳共振点”强行开辟出路。此时主角身体已达极限，面临着“赌上性命强行突破”还是“在原地等待概率极低的救援”的终极抉择，现实的重压让任何选择都显得苍白无力。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为硬核现实主义科幻叙事，采用冷峻克制的镜头语言，聚焦于极端环境下个体的心理博弈与生存抉择。游戏摒弃宏大叙事，通过细腻的交互细节与环境叙事，构建一种“在窒息中寻找呼吸空间”的沉浸式体验，强调生活质感与不可逆的遗憾美学。",
+              "main_quest": "主角需在矿难发生的七日内，从坍塌的深层矿坑撤离至地表撤离点。任务分为三个阶段：首先是搜集散落在废墟中的氧气罐与应急补给，确保生存阈值；其次是修复受损的通讯中继站，向地球发送求救信号以确认家人安危；最后是穿越不稳定的岩层裂隙，在氧气耗尽前抵达撤离舱。挑战在于，主角必须在“拯救被困同事”与“确保自身生存”之间反复权衡，每一次选择都将导致部分物资的损耗或人员的牺牲，最终目标并非拯救所有人，而是带着幸存的记忆与残缺的希望，在救援抵达前完成自救。",
+              "protagonist_ability": "主角作为一名资深地质勘探员，拥有的核心能力是“高精度地质共振感知”。该能力源于长期在矿区作业植入的神经增强芯片，能通过手持探测仪捕捉岩层深处的微弱震动频率。使用时需消耗极高的精神专注力，若过度使用会导致严重的神经性偏头痛与短暂失明。该能力无法改变坍塌事实，仅能辅助主角在废墟中寻找结构薄弱点与氧气泄露源，是主角在绝境中维持生存的唯一筹码，但也因其高负荷特性，时刻提醒着主角身体机能的不可逆衰退。",
+              "world_basic_setting": "故事发生于2080年代的月球背面“静海矿区”。人类已实现月球资源开采，但这里并非科幻乌托邦，而是高度工业化、阶级固化的边陲地带。矿区由跨国财阀“联合矿业”垄断，工人居住在狭窄的加压舱内，依靠高昂的氧气配给维持生计。背景中，地球资源枯竭导致月球成为唯一的经济支柱，但这里缺乏法律监管，事故频发。关键事件为“静海七号矿坑坍塌”，由于地壳活动与设备老化，矿区发生连锁性崩塌，通讯中断，救援被无限期推迟。社会文化呈现出一种“末世打工人”的冷漠与互助并存，人们在有限的生存资源下，既为了生存出卖尊严，又在绝望中保留着对地球家乡的最后一点温情。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1776642768_dxdztz",
+            "image_style": {
+              "type": "cyberpunk"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "中年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "疲惫的眼神、胡茬、深灰色工作服、金属义肢手臂、额头伤疤、沉默寡言、坚毅、沧桑、实用主义者、微驼的背影",
+              "work_en": "Seven Days in Lunar Mine",
+              "work_zh": "月球矿难七日"
+            },
+            "tone": "normal_ending",
+            "user_theme": "月球矿难七日"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "start_ts": 1776642768.882536,
+        "end_ts": 1776642779.7363243,
+        "provider_events": {
+          "event_count": 4,
+          "queue_wait_ms": {
+            "count": 4,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 1,
+            "min": 10845.0,
+            "max": 10845.0,
+            "mean": 10845.0,
+            "median": 10845.0,
+            "p95": 10845.0
+          },
+          "llm_success_count": 1,
+          "image_success_count": 0,
+          "request_thread_event_count": 2
+        },
+        "status": "success",
+        "game_id": "game_1776642768_dxdztz"
+      },
+      "first_click": {
+        "http_status": 200,
+        "elapsed_s": 80.951,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "",
+              "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：刺耳的金属扭曲声在耳膜深处炸开，仿佛整座静海矿区都在发出临终前的哀鸣。我被巨大的冲击力掀翻，后背重重撞在岩壁上，额头的伤疤传来一阵阵撕裂般的剧痛。空气中弥漫着一股焦糊的电路味与陈旧的岩尘气息，我那只冰冷的金属义肢在碎石堆中摩擦出刺眼的火花，勉强支撑着我摇晃着站起身。\n\n四周的加压舱壁已经严重变形，应急照明灯在头顶闪烁着诡异的红光，将我微驼的背影拉得极长。我下意识地摸了摸腰间的地质探测仪，屏幕上跳动着混乱的数值，那是地壳不稳定的预警。就在这时，废墟深处传来了一阵急促的敲击声，那是同事老陈的声音，他被压在坍塌的支架下，呼吸声沉重而断续。\n\n“林远……你还活着吗？”老陈的声音在狭窄的舱室里回荡，带着绝望的颤抖。\n\n我看向仪表盘，氧气余量显示仅剩24小时。如果现在去搬开那些沉重的钢梁，我不仅会耗尽体力，还会因为过度使用地质感知能力导致神经性偏头痛，甚至可能错过最佳的撤离窗口。我沉默地握紧了那只金属义肢，指尖因为用力而微微颤抖。"
+            },
+            "deep_background_links": {},
+            "flow_update": {},
+            "next_options": [
+              "消耗氧气与体力，尝试挪开钢梁营救老陈。",
+              "检查探测仪，寻找避难所，优先保障自身生存。"
+            ],
+            "scene": "刺耳的金属扭曲声在耳膜深处炸开，仿佛整座静海矿区都在发出临终前的哀鸣。我被巨大的冲击力掀翻，后背重重撞在岩壁上，额头的伤疤传来一阵阵撕裂般的剧痛。空气中弥漫着一股焦糊的电路味与陈旧的岩尘气息，我那只冰冷的金属义肢在碎石堆中摩擦出刺眼的火花，勉强支撑着我摇晃着站起身。\n\n四周的加压舱壁已经严重变形，应急照明灯在头顶闪烁着诡异的红光，将我微驼的背影拉得极长。我下意识地摸了摸腰间的地质探测仪，屏幕上跳动着混乱的数值，那是地壳不稳定的预警。就在这时，废墟深处传来了一阵急促的敲击声，那是同事老陈的声音，他被压在坍塌的支架下，呼吸声沉重而断续。\n\n“林远……你还活着吗？”老陈的声音在狭窄的舱室里回荡，带着绝望的颤抖。\n\n我看向仪表盘，氧气余量显示仅剩24小时。如果现在去搬开那些沉重的钢梁，我不仅会耗尽体力，还会因为过度使用地质感知能力导致神经性偏头痛，甚至可能错过最佳的撤离窗口。我沉默地握紧了那只金属义肢，指尖因为用力而微微颤抖。",
+            "sceneId": "-6764079150649013497_-3375432802241509283",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-lunar-mine-collapse-despair, hardcore-sci-fi, cyberpunk, dystopian, industrial-decay, tense-atmosphere, hyper-realistic, cinematic lighting, high-contrast, gritty texture, detailed mechanical rendering, 中年男性林远，使用 Image 0, 疲惫不堪的眼神中透着绝望与坚毅, 满脸胡茬，额头有一道明显且略带血迹的伤疤, 身体微驼，显露出长期高压工作的沧桑感, 左侧手臂为裸露的金属义肢，表面布满划痕与岩尘, 深灰色高强度工业工作服，材质厚重且带有磨损痕迹, 工作服上沾满灰尘与矿渣，局部有电路烧灼痕迹, 林远身体微驼，重心下沉，站在凌乱的废墟中, 金属义肢紧握腰间的地质探测仪，指尖因过度用力而微微颤抖, 面部朝向画面右侧深处的废墟，视线聚焦于老陈-配角1所在方向, 8K detailed facial features, 呈现中年男性的沧桑感与疲惫感, 额头伤疤清晰可见，带有干涸的血迹, 眼神在红光照射下显得冷峻而克制, 嘴唇紧闭，面部肌肉因痛苦与压力而紧绷, 凌乱的短发，发丝间夹杂着灰尘与岩屑, root fixation coefficient 0.7, tip swing amplitude 5cm, color layering: main color #333333, secondary color #1A1A1A, highlight #4A4A4A, shadow #000000, wind speed 0.3m/s, turbulence intensity 10%, 深灰色工作服，布料呈现粗糙的工业纤维质感, 工作服边缘有轻微的磨损与撕裂感, 金属义肢与衣物连接处带有复杂的机械管线结构, 严重变形的静海矿区加压舱内部, 周围堆满了扭曲的钢梁与破碎的岩石, 远处的废墟缝隙中隐约可见老陈-配角1被困的身影, 墙壁上有陈旧的电路管线外露，不时喷出火花, 老陈-配角1被压在画面右侧的沉重钢梁下，仅露出半个身躯与绝望的求救姿态, 空气中弥漫着浓重的岩尘与焦糊烟雾, 应急照明灯闪烁着诡异的红光，在烟尘中形成光束, 金属义肢摩擦地面产生的刺眼火花, 冷峻的工业灰与岩石暗色调, 警示性的深红光影, 金属义肢的冷钢色, 火花产生的瞬间高亮度橘色, 头顶闪烁的红色应急灯作为主光源, 来自废墟缝隙的微弱冷白光线, 金属义肢与火花产生的局部强对比光, type medium shot, lens 35mm, aperture f/2.0, depth_of_field shallow focus on protagonist's face and the trembling hand, flash none, grain heavy cinematic film grain, texture industrial metal and jagged rock textures, 林远位于画面中心偏左，背影微驼, 老陈-配角1位于画面右侧背景处，作为视觉焦点延伸, 利用扭曲的钢梁构筑压抑的对角线构图, action constraints: 聚焦于林远握住探测仪的颤抖手部与绝望的眼神, hardcore sci-fi cinematic style, no text or symbols in image, no watermarks, no illegible characters, 窒息感, 绝望的博弈, 冷峻的现实主义, 不可逆的遗憾美学, no text, no symbols, no garbled characters, no words",
+              "prompt_json": {
+                "camera": {
+                  "aperture": "f/2.0",
+                  "depth_of_field": "shallow focus on protagonist's face and the trembling hand",
+                  "flash": "none",
+                  "grain": "heavy cinematic film grain",
+                  "lens": "35mm",
+                  "texture": "industrial metal and jagged rock textures",
+                  "type": "medium shot"
+                },
+                "clothing_system": [
+                  "深灰色工作服，布料呈现粗糙的工业纤维质感",
+                  "工作服边缘有轻微的磨损与撕裂感",
+                  "金属义肢与衣物连接处带有复杂的机械管线结构"
+                ],
+                "color_restriction": [
+                  "冷峻的工业灰与岩石暗色调",
+                  "警示性的深红光影",
+                  "金属义肢的冷钢色",
+                  "火花产生的瞬间高亮度橘色"
+                ],
+                "composition": [
+                  "林远位于画面中心偏左，背影微驼",
+                  "老陈-配角1位于画面右侧背景处，作为视觉焦点延伸",
+                  "利用扭曲的钢梁构筑压抑的对角线构图",
+                  "action constraints: 聚焦于林远握住探测仪的颤抖手部与绝望的眼神"
+                ],
+                "environment": {
+                  "background": [
+                    "严重变形的静海矿区加压舱内部",
+                    "周围堆满了扭曲的钢梁与破碎的岩石",
+                    "远处的废墟缝隙中隐约可见老陈-配角1被困的身影",
+                    "墙壁上有陈旧的电路管线外露，不时喷出火花"
+                  ],
+                  "characters": [
+                    "老陈-配角1被压在画面右侧的沉重钢梁下，仅露出半个身躯与绝望的求救姿态"
+                  ],
+                  "effects": [
+                    "空气中弥漫着浓重的岩尘与焦糊烟雾",
+                    "应急照明灯闪烁着诡异的红光，在烟尘中形成光束",
+                    "金属义肢摩擦地面产生的刺眼火花"
+                  ]
+                },
+                "face_system": [
+                  "8K detailed facial features",
+                  "呈现中年男性的沧桑感与疲惫感",
+                  "额头伤疤清晰可见，带有干涸的血迹",
+                  "眼神在红光照射下显得冷峻而克制",
+                  "嘴唇紧闭，面部肌肉因痛苦与压力而紧绷"
+                ],
+                "hair_system": [
+                  "凌乱的短发，发丝间夹杂着灰尘与岩屑",
+                  "root fixation coefficient 0.7",
+                  "tip swing amplitude 5cm",
+                  "color layering: main color #333333, secondary color #1A1A1A, highlight #4A4A4A, shadow #000000",
+                  "wind speed 0.3m/s",
+                  "turbulence intensity 10%"
+                ],
+                "label": "scene-lunar-mine-collapse-despair",
+                "lighting": [
+                  "头顶闪烁的红色应急灯作为主光源",
+                  "来自废墟缝隙的微弱冷白光线",
+                  "金属义肢与火花产生的局部强对比光"
+                ],
+                "mood": [
+                  "窒息感",
+                  "绝望的博弈",
+                  "冷峻的现实主义",
+                  "不可逆的遗憾美学"
+                ],
+                "output_style": [
+                  "hardcore sci-fi cinematic style",
+                  "no text or symbols in image",
+                  "no watermarks",
+                  "no illegible characters"
+                ],
+                "style": [
+                  "hyper-realistic",
+                  "cinematic lighting",
+                  "high-contrast",
+                  "gritty texture",
+                  "detailed mechanical rendering"
+                ],
+                "subject": {
+                  "body_traits": [
+                    "中年男性林远，使用 Image 0",
+                    "疲惫不堪的眼神中透着绝望与坚毅",
+                    "满脸胡茬，额头有一道明显且略带血迹的伤疤",
+                    "身体微驼，显露出长期高压工作的沧桑感",
+                    "左侧手臂为裸露的金属义肢，表面布满划痕与岩尘"
+                  ],
+                  "outfit": [
+                    "深灰色高强度工业工作服，材质厚重且带有磨损痕迹",
+                    "工作服上沾满灰尘与矿渣，局部有电路烧灼痕迹"
+                  ],
+                  "pose": [
+                    "林远身体微驼，重心下沉，站在凌乱的废墟中",
+                    "金属义肢紧握腰间的地质探测仪，指尖因过度用力而微微颤抖",
+                    "面部朝向画面右侧深处的废墟，视线聚焦于老陈-配角1所在方向"
+                  ]
+                },
+                "tags": [
+                  "hardcore-sci-fi",
+                  "cyberpunk",
+                  "dystopian",
+                  "industrial-decay",
+                  "tense-atmosphere"
+                ]
+              },
+              "scene_text_hash": "831c5cde0591b8211483086f830e5afb",
+              "style": "default",
+              "url": "/image_cache/c57d000e02a86173587735095d4c0422.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "start_ts": 1776642779.7553897,
+        "end_ts": 1776642860.7064688,
+        "provider_events": {
+          "event_count": 9,
+          "queue_wait_ms": {
+            "count": 9,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 5,
+            "min": 3612.0,
+            "max": 14578.0,
+            "mean": 9473.4,
+            "median": 8592.0,
+            "p95": 14428.4
+          },
+          "llm_success_count": 4,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "success",
+        "has_scene": true,
+        "has_image": true
+      },
+      "second_click": {
+        "http_status": 200,
+        "elapsed_s": 0.025,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "成功营救老陈，完成了第一阶段的初步互助，但由于消耗了大量氧气与体力，我距离撤离点的安全阈值更远了，后续必须在寻找补给与撤离之间进行更残酷的权衡。",
+              "recap_text": "你选择了“消耗氧气与体力，尝试挪开钢梁营救老陈。”。当前章节：chapter1。主线进展：成功营救老陈，完成了第一阶段的初步互助，但由于消耗了大量氧气与体力，我距离撤离点的安全阈值更远了，后续必须在寻找补给与撤离之间进行更残酷的权衡。。最近剧情：我深吸一口气，强行压下肺部因缺氧产生的灼烧感，将金属义肢的功率调至最大。伴随着齿轮咬合的刺耳摩擦声，我咬紧牙关，双手死死扣住那根压在老陈腿上的扭曲钢梁。额头的伤疤因用力而渗出细密的血珠，视线在剧痛中一阵模糊，但我不敢松懈，直到那根沉重的钢梁被我一点点挪开。老陈发出一声闷哼，他那条被压得血肉模糊的腿终于重获自由。我瘫坐在布满灰尘的地面上，金属义肢的液压管路发出不堪重负的嘶鸣。老陈脸色惨白，他颤抖着看向我，声音虚弱得几乎听不见：“林远，你这又是何必……为了救我这个废人，你现在的氧气储备已经不足以支撑你走到撤离点了。”我看着他那双充满愧疚的眼睛，只是沉默地从背包里掏出止血带，动作生硬地帮他包扎，心中那种因过度使用地质感知能力带来的偏头痛如潮水般袭来。"
+            },
+            "deep_background_links": {
+              "0": "老陈"
+            },
+            "flow_update": {
+              "chapter_conflict_solved": false,
+              "characters": {},
+              "environment": {},
+              "quest_progress": "成功营救老陈，完成了第一阶段的初步互助，但由于消耗了大量氧气与体力，我距离撤离点的安全阈值更远了，后续必须在寻找补给与撤离之间进行更残酷的权衡。"
+            },
+            "next_options": [
+              "询问老陈关于矿区秘密备份数据的存放位置。",
+              "搀扶老陈寻找附近的应急氧气补给站。"
+            ],
+            "plot_mentioned_only": [],
+            "plot_supporting_characters": [
+              [
+                "老陈",
+                "配角1"
+              ]
+            ],
+            "scene": "我深吸一口气，强行压下肺部因缺氧产生的灼烧感，将金属义肢的功率调至最大。伴随着齿轮咬合的刺耳摩擦声，我咬紧牙关，双手死死扣住那根压在老陈腿上的扭曲钢梁。额头的伤疤因用力而渗出细密的血珠，视线在剧痛中一阵模糊，但我不敢松懈，直到那根沉重的钢梁被我一点点挪开。老陈发出一声闷哼，他那条被压得血肉模糊的腿终于重获自由。我瘫坐在布满灰尘的地面上，金属义肢的液压管路发出不堪重负的嘶鸣。老陈脸色惨白，他颤抖着看向我，声音虚弱得几乎听不见：“林远，你这又是何必……为了救我这个废人，你现在的氧气储备已经不足以支撑你走到撤离点了。”我看着他那双充满愧疚的眼睛，只是沉默地从背包里掏出止血带，动作生硬地帮他包扎，心中那种因过度使用地质感知能力带来的偏头痛如潮水般袭来。",
+            "sceneId": "5729459287149953764_8873747845114418079",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-lunar-mine-rescue-collapse, hard-sci-fi, cyberpunk, industrial-grit, survival-drama, claustrophobic, hyper-realistic, cinematic lighting, gritty texture, high contrast, cold color palette, middle-aged male protagonist Lin Yuan with exhausted expression, stubbled face with visible forehead scar, weary eyes filled with desperate determination, slouching posture indicating physical exhaustion, using Image 1 side view orientation, worn-out deep grey industrial work suit with dust and grime, heavy metallic prosthetic arm with visible hydraulic pipes and exposed wires, kneeling on dusty moon-mine floor, metallic prosthetic arm gripping a twisted steel beam, body turned slightly toward 老陈-配角1, free hand holding medical bandage, strained muscle tension in shoulders, 8K detailed facial features, beads of sweat and blood droplet on forehead scar, pale skin with deep-set tired eyes, lip color naturally muted and dry, soft shadows emphasizing facial fatigue, short messy dark hair covered in grey mineral dust, root fixation coefficient 0.95, tip swing amplitude 5cm, color layering: main color #2D2D2D, secondary color #4A4A4A, highlight #555555, shadow #1A1A1A, wind speed 0.2m/s, turbulence intensity 2%, heavy-duty work suit with frayed edges and oil stains, metallic prosthetic arm with mechanical grease and hydraulic fluid smudges, slight fabric tension at joints due to heavy lifting, collapsed mine tunnel on the moon with twisted metal debris, cracked rock walls with exposed fiber-optic cables, flickering red emergency warning lights on the ceiling, dust particles suspended in thin pressurized air, distant shadows suggesting infinite darkness, 老陈-配角1 sitting on the ground with injured, bloodied leg visible, sparks emitting from damaged hydraulic pipes, haze of floating lunar dust, dim blue light from personal oxygen monitoring device, industrial grey and charcoal tones, warning red neon flickers, cold metallic silver of the prosthetic arm, muted blood crimson on bandages, harsh directional light from emergency lamps, low-key dramatic shadows, flickering red neon light reflecting on metal surfaces, cool ambient light from oxygen supply indicators, type close-up shot, lens 35mm, aperture f/1.8, depth_of_field shallow depth of field focusing on Lin Yuan and the steel beam, flash none, grain fine digital film grain, texture industrial metallic and rocky, Lin Yuan using Image 1 side view perspective, 老陈-配角1 positioned in the lower right foreground, twisted steel beam acts as a diagonal leading line, protagonist centered in the struggle, action constraints: focus on the strained prosthetic arm and facial expression, photorealistic cyberpunk, no text or symbols in image, desperate survival, crushing psychological pressure, somber resignation, cold industrial tragedy, no text, no symbols, no garbled characters, no words",
+              "scene_text_hash": "d0edbbf274cdff4187a5dd8eb1464039",
+              "style": "default",
+              "url": "/image_cache/595ead42a3cf6b2eb6be3b991e5b9cb8.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "start_ts": 1776642920.7252457,
+        "end_ts": 1776642920.750239,
+        "provider_events": {
+          "event_count": 1,
+          "queue_wait_ms": {
+            "count": 1,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "status": "success",
+        "has_scene": true,
+        "has_image": true,
+        "selected_option_index": 0,
+        "selected_option_text": "消耗氧气与体力，尝试挪开钢梁营救老陈。",
+        "input_scene_id": "-6764079150649013497_-3375432802241509283",
+        "inferred_cache_result": "likely_hit",
+        "is_placeholder": false,
+        "used_updated_flow_state": true
+      }
+    },
+    {
+      "benchmark_id": "DNQBV1_006",
+      "theme_id": 7,
+      "theme": "星际走私航线",
+      "read_wait_s": 60.0,
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 8.543,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角成功完成首次走私任务，支付了当期的利息并为妹妹购买了维持生命的药物，但飞船引擎因超负荷运转受损，主角不得不接受“锈蚀号”性能下降的现实，初步确立了在残酷航线中的生存节奏。",
+                  "main_conflict": "主角接手了破旧的走私船“锈蚀号”，面对高昂的维护费与债主的最后通牒，必须在极度匮乏的物资下完成第一次跨星系运输。同时，妹妹的病情恶化，医疗费用的缺口让主角在“高风险走私”与“安稳但微薄的物流运输”之间陷入两难，生存压力与亲情责任在狭窄的驾驶舱内不断碰撞。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角选择将证据匿名寄出，换取了一笔足以支付妹妹半年医疗费的赏金，但未能撼动财阀的根基，且因行踪暴露，主角被迫放弃了原有的稳定航线，转入更加危险的深空地带。",
+                  "main_conflict": "主角在一次航行中意外截获了一份关于财阀非法倾倒核废料的证据，这本是改变命运的筹码，却也引来了星际巡逻队的严密搜查。主角必须在“揭露真相换取赏金”的诱惑与“保持沉默以保全家人安全”的现实考量中挣扎，同时还要应对飞船内部因长期高压环境而产生的船员信任危机。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角选择保住妹妹的生命，放弃了飞船与大部分积蓄，两人在边境星定居。虽然未能进入核心星系，也失去了飞船，但妹妹病情稳定，主角在当地找到了一份修理工的工作，生活虽平淡且充满遗憾，却终于获得了久违的安稳与释然。",
+                  "main_conflict": "主角终于攒够了前往核心星系的船票，但飞船在最后一次跳跃中遭遇引力风暴，引擎彻底报废。主角面临最终抉择：是抛弃飞船与所有货物，仅带上妹妹逃生，还是尝试修复引擎以保住唯一的经济来源，但这意味着将错过医疗名额的最后期限，且可能永远困在边境。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "硬核工业风与极简主义美学交织，强调星际航行中的孤独感与机械磨损的真实质感。叙事节奏沉稳，通过琐碎的舱内日志、通讯杂音与星际贸易的盈亏报表，构建一个冷峻、务实且充满生活气息的宇宙，让玩家在枯燥的航线中体会平凡人的生存哲学。",
+              "main_quest": "主角的目标是偿还祖辈留下的巨额飞船债务，并攒够足够的信用点，为患有慢性辐射病的妹妹换取核心星系的医疗名额。任务分为三个阶段：首先是积累原始资本，通过高风险的短途走私完成飞船的必要升级；其次是深入危险的“深空禁区”，寻找传说中的遗迹零件以换取高额赏金；最后是面对财阀的围剿与航线的封锁，在保全飞船与放弃货物之间做出抉择。挑战在于，每一次成功的贸易都会带来新的债务利息，而每一次规避风险的决策都可能导致错失改变命运的机遇，主角必须在生存的琐碎与理想的彼岸间寻找平衡。",
+              "protagonist_ability": "主角拥有一种名为“频率共振”的直觉感知力，源于长期在旧式飞船引擎舱内工作导致的神经变异。使用时，主角能通过捕捉飞船引擎的细微震动频率，预判航线上的引力异常或潜在的巡逻舰踪迹。然而，这种能力极其消耗体力，且长期使用会导致严重的耳鸣与记忆衰退，限制了其在复杂战术中的应用，只能作为规避风险的辅助手段，而非扭转乾坤的超能力。",
+              "world_basic_setting": "这是一个资源枯竭、阶级固化的星际大航海时代。人类文明被分割在几个核心星系与无数边缘矿星之间，星际贸易由几大巨型财阀垄断，普通人只能在法律边缘的“灰区”航线讨生活。地理上，宇宙被划分为繁华的内环核心区与混乱的边境走私带，航线不仅是贸易通道，更是无数家庭的生命线。社会文化崇尚“效率至上”，个体被视为庞大物流链上的零件。关键事件“大停电”导致星际通讯网络崩溃，使得走私航线成为连接孤岛的唯一纽带。在这个世界里，没有英雄传说，只有为了偿还飞船贷款、支付燃料费和维持生计而不断奔波的普通船长。人们在冷冰冰的金属舱壁间建立羁绊，在每一次跳跃中权衡风险与收益，生活就是一场在燃料耗尽与债务压迫下的长跑。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1776642920_lgbb6m",
+            "image_style": {
+              "type": "cyberpunk"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lynn",
+              "name_zh": "林恩",
+              "signature_look_keywords": "凌乱的深棕色短发，常年穿着油渍斑斑的飞行夹克，眼神疲惫但专注，左手腕佩戴着磨损的旧式导航仪，身材瘦削，指尖常有机械油污，嘴角习惯性紧抿，透着一股倔强的韧性。",
+              "work_en": "Star Route: Rusted Afterglow",
+              "work_zh": "星际航线：锈蚀余晖"
+            },
+            "tone": "normal_ending",
+            "user_theme": "星际走私航线"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "start_ts": 1776642920.7681763,
+        "end_ts": 1776642929.311452,
+        "provider_events": {
+          "event_count": 3,
+          "queue_wait_ms": {
+            "count": 3,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 1,
+            "min": 8515.0,
+            "max": 8515.0,
+            "mean": 8515.0,
+            "median": 8515.0,
+            "p95": 8515.0
+          },
+          "llm_success_count": 1,
+          "image_success_count": 0,
+          "request_thread_event_count": 2
+        },
+        "status": "success",
+        "game_id": "game_1776642920_lgbb6m"
+      },
+      "first_click": {
+        "http_status": 200,
+        "elapsed_s": 0.007,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "",
+              "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：刺耳的金属扭曲声在耳膜深处炸开，仿佛整座静海矿区都在发出临终前的哀鸣。我被巨大的冲击力掀翻，后背重重撞在岩壁上，额头的伤疤传来一阵阵撕裂般的剧痛。空气中弥漫着一股焦糊的电路味与陈旧的岩尘气息，我那只冰冷的金属义肢在碎石堆中摩擦出刺眼的火花，勉强支撑着我摇晃着站起身。\n\n四周的加压舱壁已经严重变形，应急照明灯在头顶闪烁着诡异的红光，将我微驼的背影拉得极长。我下意识地摸了摸腰间的地质探测仪，屏幕上跳动着混乱的数值，那是地壳不稳定的预警。就在这时，废墟深处传来了一阵急促的敲击声，那是同事老陈的声音，他被压在坍塌的支架下，呼吸声沉重而断续。\n\n“林远……你还活着吗？”老陈的声音在狭窄的舱室里回荡，带着绝望的颤抖。\n\n我看向仪表盘，氧气余量显示仅剩24小时。如果现在去搬开那些沉重的钢梁，我不仅会耗尽体力，还会因为过度使用地质感知能力导致神经性偏头痛，甚至可能错过最佳的撤离窗口。我沉默地握紧了那只金属义肢，指尖因为用力而微微颤抖。"
+            },
+            "deep_background_links": {},
+            "flow_update": {},
+            "next_options": [
+              "消耗氧气与体力，尝试挪开钢梁营救老陈。",
+              "检查探测仪，寻找避难所，优先保障自身生存。"
+            ],
+            "plot_supporting_characters": [],
+            "scene": "刺耳的金属扭曲声在耳膜深处炸开，仿佛整座静海矿区都在发出临终前的哀鸣。我被巨大的冲击力掀翻，后背重重撞在岩壁上，额头的伤疤传来一阵阵撕裂般的剧痛。空气中弥漫着一股焦糊的电路味与陈旧的岩尘气息，我那只冰冷的金属义肢在碎石堆中摩擦出刺眼的火花，勉强支撑着我摇晃着站起身。\n\n四周的加压舱壁已经严重变形，应急照明灯在头顶闪烁着诡异的红光，将我微驼的背影拉得极长。我下意识地摸了摸腰间的地质探测仪，屏幕上跳动着混乱的数值，那是地壳不稳定的预警。就在这时，废墟深处传来了一阵急促的敲击声，那是同事老陈的声音，他被压在坍塌的支架下，呼吸声沉重而断续。\n\n“林远……你还活着吗？”老陈的声音在狭窄的舱室里回荡，带着绝望的颤抖。\n\n我看向仪表盘，氧气余量显示仅剩24小时。如果现在去搬开那些沉重的钢梁，我不仅会耗尽体力，还会因为过度使用地质感知能力导致神经性偏头痛，甚至可能错过最佳的撤离窗口。我沉默地握紧了那只金属义肢，指尖因为用力而微微颤抖。",
+            "sceneId": "-6764079150649013497_-3375432802241509283",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-lunar-mine-collapse-despair, hardcore-sci-fi, cyberpunk, dystopian, industrial-decay, tense-atmosphere, hyper-realistic, cinematic lighting, high-contrast, gritty texture, detailed mechanical rendering, 中年男性林远，使用 Image 0, 疲惫不堪的眼神中透着绝望与坚毅, 满脸胡茬，额头有一道明显且略带血迹的伤疤, 身体微驼，显露出长期高压工作的沧桑感, 左侧手臂为裸露的金属义肢，表面布满划痕与岩尘, 深灰色高强度工业工作服，材质厚重且带有磨损痕迹, 工作服上沾满灰尘与矿渣，局部有电路烧灼痕迹, 林远身体微驼，重心下沉，站在凌乱的废墟中, 金属义肢紧握腰间的地质探测仪，指尖因过度用力而微微颤抖, 面部朝向画面右侧深处的废墟，视线聚焦于老陈-配角1所在方向, 8K detailed facial features, 呈现中年男性的沧桑感与疲惫感, 额头伤疤清晰可见，带有干涸的血迹, 眼神在红光照射下显得冷峻而克制, 嘴唇紧闭，面部肌肉因痛苦与压力而紧绷, 凌乱的短发，发丝间夹杂着灰尘与岩屑, root fixation coefficient 0.7, tip swing amplitude 5cm, color layering: main color #333333, secondary color #1A1A1A, highlight #4A4A4A, shadow #000000, wind speed 0.3m/s, turbulence intensity 10%, 深灰色工作服，布料呈现粗糙的工业纤维质感, 工作服边缘有轻微的磨损与撕裂感, 金属义肢与衣物连接处带有复杂的机械管线结构, 严重变形的静海矿区加压舱内部, 周围堆满了扭曲的钢梁与破碎的岩石, 远处的废墟缝隙中隐约可见老陈-配角1被困的身影, 墙壁上有陈旧的电路管线外露，不时喷出火花, 老陈-配角1被压在画面右侧的沉重钢梁下，仅露出半个身躯与绝望的求救姿态, 空气中弥漫着浓重的岩尘与焦糊烟雾, 应急照明灯闪烁着诡异的红光，在烟尘中形成光束, 金属义肢摩擦地面产生的刺眼火花, 冷峻的工业灰与岩石暗色调, 警示性的深红光影, 金属义肢的冷钢色, 火花产生的瞬间高亮度橘色, 头顶闪烁的红色应急灯作为主光源, 来自废墟缝隙的微弱冷白光线, 金属义肢与火花产生的局部强对比光, type medium shot, lens 35mm, aperture f/2.0, depth_of_field shallow focus on protagonist's face and the trembling hand, flash none, grain heavy cinematic film grain, texture industrial metal and jagged rock textures, 林远位于画面中心偏左，背影微驼, 老陈-配角1位于画面右侧背景处，作为视觉焦点延伸, 利用扭曲的钢梁构筑压抑的对角线构图, action constraints: 聚焦于林远握住探测仪的颤抖手部与绝望的眼神, hardcore sci-fi cinematic style, no text or symbols in image, no watermarks, no illegible characters, 窒息感, 绝望的博弈, 冷峻的现实主义, 不可逆的遗憾美学, no text, no symbols, no garbled characters, no words",
+              "prompt_json": {
+                "camera": {
+                  "aperture": "f/2.0",
+                  "depth_of_field": "shallow focus on protagonist's face and the trembling hand",
+                  "flash": "none",
+                  "grain": "heavy cinematic film grain",
+                  "lens": "35mm",
+                  "texture": "industrial metal and jagged rock textures",
+                  "type": "medium shot"
+                },
+                "clothing_system": [
+                  "深灰色工作服，布料呈现粗糙的工业纤维质感",
+                  "工作服边缘有轻微的磨损与撕裂感",
+                  "金属义肢与衣物连接处带有复杂的机械管线结构"
+                ],
+                "color_restriction": [
+                  "冷峻的工业灰与岩石暗色调",
+                  "警示性的深红光影",
+                  "金属义肢的冷钢色",
+                  "火花产生的瞬间高亮度橘色"
+                ],
+                "composition": [
+                  "林远位于画面中心偏左，背影微驼",
+                  "老陈-配角1位于画面右侧背景处，作为视觉焦点延伸",
+                  "利用扭曲的钢梁构筑压抑的对角线构图",
+                  "action constraints: 聚焦于林远握住探测仪的颤抖手部与绝望的眼神"
+                ],
+                "environment": {
+                  "background": [
+                    "严重变形的静海矿区加压舱内部",
+                    "周围堆满了扭曲的钢梁与破碎的岩石",
+                    "远处的废墟缝隙中隐约可见老陈-配角1被困的身影",
+                    "墙壁上有陈旧的电路管线外露，不时喷出火花"
+                  ],
+                  "characters": [
+                    "老陈-配角1被压在画面右侧的沉重钢梁下，仅露出半个身躯与绝望的求救姿态"
+                  ],
+                  "effects": [
+                    "空气中弥漫着浓重的岩尘与焦糊烟雾",
+                    "应急照明灯闪烁着诡异的红光，在烟尘中形成光束",
+                    "金属义肢摩擦地面产生的刺眼火花"
+                  ]
+                },
+                "face_system": [
+                  "8K detailed facial features",
+                  "呈现中年男性的沧桑感与疲惫感",
+                  "额头伤疤清晰可见，带有干涸的血迹",
+                  "眼神在红光照射下显得冷峻而克制",
+                  "嘴唇紧闭，面部肌肉因痛苦与压力而紧绷"
+                ],
+                "hair_system": [
+                  "凌乱的短发，发丝间夹杂着灰尘与岩屑",
+                  "root fixation coefficient 0.7",
+                  "tip swing amplitude 5cm",
+                  "color layering: main color #333333, secondary color #1A1A1A, highlight #4A4A4A, shadow #000000",
+                  "wind speed 0.3m/s",
+                  "turbulence intensity 10%"
+                ],
+                "label": "scene-lunar-mine-collapse-despair",
+                "lighting": [
+                  "头顶闪烁的红色应急灯作为主光源",
+                  "来自废墟缝隙的微弱冷白光线",
+                  "金属义肢与火花产生的局部强对比光"
+                ],
+                "mood": [
+                  "窒息感",
+                  "绝望的博弈",
+                  "冷峻的现实主义",
+                  "不可逆的遗憾美学"
+                ],
+                "output_style": [
+                  "hardcore sci-fi cinematic style",
+                  "no text or symbols in image",
+                  "no watermarks",
+                  "no illegible characters"
+                ],
+                "style": [
+                  "hyper-realistic",
+                  "cinematic lighting",
+                  "high-contrast",
+                  "gritty texture",
+                  "detailed mechanical rendering"
+                ],
+                "subject": {
+                  "body_traits": [
+                    "中年男性林远，使用 Image 0",
+                    "疲惫不堪的眼神中透着绝望与坚毅",
+                    "满脸胡茬，额头有一道明显且略带血迹的伤疤",
+                    "身体微驼，显露出长期高压工作的沧桑感",
+                    "左侧手臂为裸露的金属义肢，表面布满划痕与岩尘"
+                  ],
+                  "outfit": [
+                    "深灰色高强度工业工作服，材质厚重且带有磨损痕迹",
+                    "工作服上沾满灰尘与矿渣，局部有电路烧灼痕迹"
+                  ],
+                  "pose": [
+                    "林远身体微驼，重心下沉，站在凌乱的废墟中",
+                    "金属义肢紧握腰间的地质探测仪，指尖因过度用力而微微颤抖",
+                    "面部朝向画面右侧深处的废墟，视线聚焦于老陈-配角1所在方向"
+                  ]
+                },
+                "tags": [
+                  "hardcore-sci-fi",
+                  "cyberpunk",
+                  "dystopian",
+                  "industrial-decay",
+                  "tense-atmosphere"
+                ]
+              },
+              "scene_text_hash": "831c5cde0591b8211483086f830e5afb",
+              "style": "default",
+              "url": "/image_cache/c57d000e02a86173587735095d4c0422.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "start_ts": 1776642929.3291306,
+        "end_ts": 1776642929.336597,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "success",
+        "has_scene": true,
+        "has_image": true
+      },
+      "second_click": {
+        "http_status": 200,
+        "elapsed_s": 0.012,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "成功营救老陈，完成了第一阶段的初步互助，但由于消耗了大量氧气与体力，我距离撤离点的安全阈值更远了，后续必须在寻找补给与撤离之间进行更残酷的权衡。",
+              "recap_text": "你选择了“消耗氧气与体力，尝试挪开钢梁营救老陈。”。当前章节：chapter1。主线进展：成功营救老陈，完成了第一阶段的初步互助，但由于消耗了大量氧气与体力，我距离撤离点的安全阈值更远了，后续必须在寻找补给与撤离之间进行更残酷的权衡。。最近剧情：我深吸一口气，强行压下肺部因缺氧产生的灼烧感，将金属义肢的功率调至最大。伴随着齿轮咬合的刺耳摩擦声，我咬紧牙关，双手死死扣住那根压在老陈腿上的扭曲钢梁。额头的伤疤因用力而渗出细密的血珠，视线在剧痛中一阵模糊，但我不敢松懈，直到那根沉重的钢梁被我一点点挪开。老陈发出一声闷哼，他那条被压得血肉模糊的腿终于重获自由。我瘫坐在布满灰尘的地面上，金属义肢的液压管路发出不堪重负的嘶鸣。老陈脸色惨白，他颤抖着看向我，声音虚弱得几乎听不见：“林远，你这又是何必……为了救我这个废人，你现在的氧气储备已经不足以支撑你走到撤离点了。”我看着他那双充满愧疚的眼睛，只是沉默地从背包里掏出止血带，动作生硬地帮他包扎，心中那种因过度使用地质感知能力带来的偏头痛如潮水般袭来。"
+            },
+            "deep_background_links": {
+              "0": "老陈"
+            },
+            "flow_update": {
+              "chapter_conflict_solved": false,
+              "characters": {},
+              "environment": {},
+              "quest_progress": "成功营救老陈，完成了第一阶段的初步互助，但由于消耗了大量氧气与体力，我距离撤离点的安全阈值更远了，后续必须在寻找补给与撤离之间进行更残酷的权衡。"
+            },
+            "next_options": [
+              "询问老陈关于矿区秘密备份数据的存放位置。",
+              "搀扶老陈寻找附近的应急氧气补给站。"
+            ],
+            "plot_mentioned_only": [],
+            "plot_supporting_characters": [
+              [
+                "老陈",
+                "配角1"
+              ]
+            ],
+            "scene": "我深吸一口气，强行压下肺部因缺氧产生的灼烧感，将金属义肢的功率调至最大。伴随着齿轮咬合的刺耳摩擦声，我咬紧牙关，双手死死扣住那根压在老陈腿上的扭曲钢梁。额头的伤疤因用力而渗出细密的血珠，视线在剧痛中一阵模糊，但我不敢松懈，直到那根沉重的钢梁被我一点点挪开。老陈发出一声闷哼，他那条被压得血肉模糊的腿终于重获自由。我瘫坐在布满灰尘的地面上，金属义肢的液压管路发出不堪重负的嘶鸣。老陈脸色惨白，他颤抖着看向我，声音虚弱得几乎听不见：“林远，你这又是何必……为了救我这个废人，你现在的氧气储备已经不足以支撑你走到撤离点了。”我看着他那双充满愧疚的眼睛，只是沉默地从背包里掏出止血带，动作生硬地帮他包扎，心中那种因过度使用地质感知能力带来的偏头痛如潮水般袭来。",
+            "sceneId": "-2997829637230201070_8873747845114418079",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-lunar-mine-rescue-collapse, hard-sci-fi, cyberpunk, industrial-grit, survival-drama, claustrophobic, hyper-realistic, cinematic lighting, gritty texture, high contrast, cold color palette, middle-aged male protagonist Lin Yuan with exhausted expression, stubbled face with visible forehead scar, weary eyes filled with desperate determination, slouching posture indicating physical exhaustion, using Image 1 side view orientation, worn-out deep grey industrial work suit with dust and grime, heavy metallic prosthetic arm with visible hydraulic pipes and exposed wires, kneeling on dusty moon-mine floor, metallic prosthetic arm gripping a twisted steel beam, body turned slightly toward 老陈-配角1, free hand holding medical bandage, strained muscle tension in shoulders, 8K detailed facial features, beads of sweat and blood droplet on forehead scar, pale skin with deep-set tired eyes, lip color naturally muted and dry, soft shadows emphasizing facial fatigue, short messy dark hair covered in grey mineral dust, root fixation coefficient 0.95, tip swing amplitude 5cm, color layering: main color #2D2D2D, secondary color #4A4A4A, highlight #555555, shadow #1A1A1A, wind speed 0.2m/s, turbulence intensity 2%, heavy-duty work suit with frayed edges and oil stains, metallic prosthetic arm with mechanical grease and hydraulic fluid smudges, slight fabric tension at joints due to heavy lifting, collapsed mine tunnel on the moon with twisted metal debris, cracked rock walls with exposed fiber-optic cables, flickering red emergency warning lights on the ceiling, dust particles suspended in thin pressurized air, distant shadows suggesting infinite darkness, 老陈-配角1 sitting on the ground with injured, bloodied leg visible, sparks emitting from damaged hydraulic pipes, haze of floating lunar dust, dim blue light from personal oxygen monitoring device, industrial grey and charcoal tones, warning red neon flickers, cold metallic silver of the prosthetic arm, muted blood crimson on bandages, harsh directional light from emergency lamps, low-key dramatic shadows, flickering red neon light reflecting on metal surfaces, cool ambient light from oxygen supply indicators, type close-up shot, lens 35mm, aperture f/1.8, depth_of_field shallow depth of field focusing on Lin Yuan and the steel beam, flash none, grain fine digital film grain, texture industrial metallic and rocky, Lin Yuan using Image 1 side view perspective, 老陈-配角1 positioned in the lower right foreground, twisted steel beam acts as a diagonal leading line, protagonist centered in the struggle, action constraints: focus on the strained prosthetic arm and facial expression, photorealistic cyberpunk, no text or symbols in image, desperate survival, crushing psychological pressure, somber resignation, cold industrial tragedy, no text, no symbols, no garbled characters, no words",
+              "scene_text_hash": "d0edbbf274cdff4187a5dd8eb1464039",
+              "style": "default",
+              "url": "/image_cache/595ead42a3cf6b2eb6be3b991e5b9cb8.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "start_ts": 1776642989.3548586,
+        "end_ts": 1776642989.3667922,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "status": "success",
+        "has_scene": true,
+        "has_image": true,
+        "selected_option_index": 0,
+        "selected_option_text": "消耗氧气与体力，尝试挪开钢梁营救老陈。",
+        "input_scene_id": "-6764079150649013497_-3375432802241509283",
+        "inferred_cache_result": "likely_hit",
+        "is_placeholder": false,
+        "used_updated_flow_state": true
+      }
+    },
+    {
+      "benchmark_id": "DNQBV1_007",
+      "theme_id": 20,
+      "theme": "意识上传遗嘱",
+      "read_wait_s": 60.0,
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 7.98,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过整理客户的旧日记，发现那段“完美记忆”其实是客户在最绝望时刻的心理投射。最终，主角选择保留了这段记忆的“情感内核”，但删除了具体的虚假细节，客户在平静中接受了这一折中方案。",
+                  "main_conflict": "主角接手任务后，发现客户坚持要保留一段关于“完美家庭”的记忆，但主角在实地考察中发现，客户的家庭早已因长期的冷暴力而分崩离析。主角陷入职业道德与客户意愿的冲突，试图在不伤害客户尊严的前提下，寻找真相与谎言的平衡点。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角拒绝了子女的贿赂，并利用法律手段锁定了记忆库的原始数据。虽然因此失去了高额佣金并面临行业封杀，但主角保住了客户最纯粹的职业成就感，完成了阶段性的任务目标。",
+                  "main_conflict": "随着上传期限临近，客户的子女为了争夺遗产，试图干预主角的整理工作，要求主角将有利于他们的商业决策记忆植入客户的意识库。主角在金钱诱惑与职业底线之间挣扎，同时还要应对自身因过度使用“共情检索”而导致的记忆衰退。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "客户成功上传，但因算力限制，最终留下的意识版本并不完整，遗忘了主角的名字。主角站在空荡的实验室外，看着夕阳，接受了努力无法改变结局的现实，带着淡淡的释然回归了自己的平凡生活。",
+                  "main_conflict": "最终上传日，客户在意识上传过程中突然清醒，意识到自己即将失去肉体，产生极度恐惧。主角必须在最后几分钟内，通过对话引导客户完成与现实世界的最后和解，同时主角也必须面对自己一直逃避的、关于已故亲人的遗憾。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "沉浸式现实主义叙事，采用冷峻克制的视觉语言与低保真电子音效，营造出一种在科技高度发达但人情愈发疏离的近未来都市氛围，强调个体在庞大社会机器下的微小存在感。",
+              "main_quest": "主角受托为一名患有阿尔茨海默症的退休工程师整理意识上传清单。目标是在客户彻底丧失认知前，协助其完成“核心记忆库”的构建。玩家需在有限的时间内，深入客户的家庭、工作场所与社交圈，通过收集旧照片、未寄出的信件与录音，拼凑出客户一生中最重要的时刻。挑战在于，客户的记忆与现实存在巨大出入，主角必须在“客户想留下的虚假美好”与“真实发生的残酷事实”之间做出抉择，最终决定上传数据的构成，并直面自己作为整理师，在处理他人人生时所产生的职业倦怠与自我怀疑。",
+              "protagonist_ability": "主角拥有一种名为“共情检索”的职业技能。通过佩戴神经连接终端，他能读取客户遗物中残留的生物电信号，从而重现一段被遗忘的记忆片段。该能力并非超能力，而是基于心理学与神经科学的辅助分析，使用时会造成剧烈的偏头痛，且检索出的记忆往往带有主观偏差，无法作为绝对客观的证据，仅能作为整理遗嘱时的情感参考。",
+              "world_basic_setting": "故事发生于2045年的滨海都市“新江城”。社会已全面进入“数字遗产”时代，名为“永恒协议”的意识上传技术成为中产阶级应对死亡的常规手段。城市被划分为光鲜的数字云端区与拥挤的实体老城区，贫富差距通过数据带宽的分配体现。虽然意识可以上传，但由于算力成本高昂，普通人只能选择“压缩版”上传，即保留核心记忆与性格，但会丢失大部分情感细节与琐碎日常。社会文化中，人们对“生前告别”有着近乎偏执的仪式感，而主角作为一名“遗嘱整理师”，负责在客户上传前，从他们混乱的现实生活中筛选出最值得保留的“数字碎片”。这是一个技术能解决死亡，却无法解决孤独与遗憾的时代。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1776642989_pfha3o",
+            "image_style": {
+              "type": "cyberpunk"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "黑框眼镜，略显凌乱的深棕色短发，常穿灰色工装外套，眼神疲惫但专注，指尖常有细微的神经连接器压痕，身形瘦削，总是随身携带一个老式录音笔。",
+              "work_en": "The Will Archivist",
+              "work_zh": "遗嘱整理师"
+            },
+            "tone": "normal_ending",
+            "user_theme": "意识上传遗嘱"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "start_ts": 1776642989.3845568,
+        "end_ts": 1776642997.364511,
+        "provider_events": {
+          "event_count": 4,
+          "queue_wait_ms": {
+            "count": 4,
+            "min": 0.0,
+            "max": 2708.0,
+            "mean": 688.0,
+            "median": 22.0,
+            "p95": 2305.1
+          },
+          "latency_ms": {
+            "count": 2,
+            "min": 5313.0,
+            "max": 7949.0,
+            "mean": 6631.0,
+            "median": 6631.0,
+            "p95": 7817.2
+          },
+          "llm_success_count": 2,
+          "image_success_count": 0,
+          "request_thread_event_count": 2
+        },
+        "status": "success",
+        "game_id": "game_1776642989_pfha3o"
+      },
+      "first_click": {
+        "http_status": 200,
+        "elapsed_s": 0.019,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "",
+              "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：刺耳的金属扭曲声在耳膜深处炸开，仿佛整座静海矿区都在发出临终前的哀鸣。我被巨大的冲击力掀翻，后背重重撞在岩壁上，额头的伤疤传来一阵阵撕裂般的剧痛。空气中弥漫着一股焦糊的电路味与陈旧的岩尘气息，我那只冰冷的金属义肢在碎石堆中摩擦出刺眼的火花，勉强支撑着我摇晃着站起身。\n\n四周的加压舱壁已经严重变形，应急照明灯在头顶闪烁着诡异的红光，将我微驼的背影拉得极长。我下意识地摸了摸腰间的地质探测仪，屏幕上跳动着混乱的数值，那是地壳不稳定的预警。就在这时，废墟深处传来了一阵急促的敲击声，那是同事老陈的声音，他被压在坍塌的支架下，呼吸声沉重而断续。\n\n“林远……你还活着吗？”老陈的声音在狭窄的舱室里回荡，带着绝望的颤抖。\n\n我看向仪表盘，氧气余量显示仅剩24小时。如果现在去搬开那些沉重的钢梁，我不仅会耗尽体力，还会因为过度使用地质感知能力导致神经性偏头痛，甚至可能错过最佳的撤离窗口。我沉默地握紧了那只金属义肢，指尖因为用力而微微颤抖。"
+            },
+            "deep_background_links": {},
+            "flow_update": {},
+            "next_options": [
+              "消耗氧气与体力，尝试挪开钢梁营救老陈。",
+              "检查探测仪，寻找避难所，优先保障自身生存。"
+            ],
+            "plot_supporting_characters": [],
+            "scene": "刺耳的金属扭曲声在耳膜深处炸开，仿佛整座静海矿区都在发出临终前的哀鸣。我被巨大的冲击力掀翻，后背重重撞在岩壁上，额头的伤疤传来一阵阵撕裂般的剧痛。空气中弥漫着一股焦糊的电路味与陈旧的岩尘气息，我那只冰冷的金属义肢在碎石堆中摩擦出刺眼的火花，勉强支撑着我摇晃着站起身。\n\n四周的加压舱壁已经严重变形，应急照明灯在头顶闪烁着诡异的红光，将我微驼的背影拉得极长。我下意识地摸了摸腰间的地质探测仪，屏幕上跳动着混乱的数值，那是地壳不稳定的预警。就在这时，废墟深处传来了一阵急促的敲击声，那是同事老陈的声音，他被压在坍塌的支架下，呼吸声沉重而断续。\n\n“林远……你还活着吗？”老陈的声音在狭窄的舱室里回荡，带着绝望的颤抖。\n\n我看向仪表盘，氧气余量显示仅剩24小时。如果现在去搬开那些沉重的钢梁，我不仅会耗尽体力，还会因为过度使用地质感知能力导致神经性偏头痛，甚至可能错过最佳的撤离窗口。我沉默地握紧了那只金属义肢，指尖因为用力而微微颤抖。",
+            "sceneId": "-6764079150649013497_-3375432802241509283",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-lunar-mine-collapse-despair, hardcore-sci-fi, cyberpunk, dystopian, industrial-decay, tense-atmosphere, hyper-realistic, cinematic lighting, high-contrast, gritty texture, detailed mechanical rendering, 中年男性林远，使用 Image 0, 疲惫不堪的眼神中透着绝望与坚毅, 满脸胡茬，额头有一道明显且略带血迹的伤疤, 身体微驼，显露出长期高压工作的沧桑感, 左侧手臂为裸露的金属义肢，表面布满划痕与岩尘, 深灰色高强度工业工作服，材质厚重且带有磨损痕迹, 工作服上沾满灰尘与矿渣，局部有电路烧灼痕迹, 林远身体微驼，重心下沉，站在凌乱的废墟中, 金属义肢紧握腰间的地质探测仪，指尖因过度用力而微微颤抖, 面部朝向画面右侧深处的废墟，视线聚焦于老陈-配角1所在方向, 8K detailed facial features, 呈现中年男性的沧桑感与疲惫感, 额头伤疤清晰可见，带有干涸的血迹, 眼神在红光照射下显得冷峻而克制, 嘴唇紧闭，面部肌肉因痛苦与压力而紧绷, 凌乱的短发，发丝间夹杂着灰尘与岩屑, root fixation coefficient 0.7, tip swing amplitude 5cm, color layering: main color #333333, secondary color #1A1A1A, highlight #4A4A4A, shadow #000000, wind speed 0.3m/s, turbulence intensity 10%, 深灰色工作服，布料呈现粗糙的工业纤维质感, 工作服边缘有轻微的磨损与撕裂感, 金属义肢与衣物连接处带有复杂的机械管线结构, 严重变形的静海矿区加压舱内部, 周围堆满了扭曲的钢梁与破碎的岩石, 远处的废墟缝隙中隐约可见老陈-配角1被困的身影, 墙壁上有陈旧的电路管线外露，不时喷出火花, 老陈-配角1被压在画面右侧的沉重钢梁下，仅露出半个身躯与绝望的求救姿态, 空气中弥漫着浓重的岩尘与焦糊烟雾, 应急照明灯闪烁着诡异的红光，在烟尘中形成光束, 金属义肢摩擦地面产生的刺眼火花, 冷峻的工业灰与岩石暗色调, 警示性的深红光影, 金属义肢的冷钢色, 火花产生的瞬间高亮度橘色, 头顶闪烁的红色应急灯作为主光源, 来自废墟缝隙的微弱冷白光线, 金属义肢与火花产生的局部强对比光, type medium shot, lens 35mm, aperture f/2.0, depth_of_field shallow focus on protagonist's face and the trembling hand, flash none, grain heavy cinematic film grain, texture industrial metal and jagged rock textures, 林远位于画面中心偏左，背影微驼, 老陈-配角1位于画面右侧背景处，作为视觉焦点延伸, 利用扭曲的钢梁构筑压抑的对角线构图, action constraints: 聚焦于林远握住探测仪的颤抖手部与绝望的眼神, hardcore sci-fi cinematic style, no text or symbols in image, no watermarks, no illegible characters, 窒息感, 绝望的博弈, 冷峻的现实主义, 不可逆的遗憾美学, no text, no symbols, no garbled characters, no words",
+              "prompt_json": {
+                "camera": {
+                  "aperture": "f/2.0",
+                  "depth_of_field": "shallow focus on protagonist's face and the trembling hand",
+                  "flash": "none",
+                  "grain": "heavy cinematic film grain",
+                  "lens": "35mm",
+                  "texture": "industrial metal and jagged rock textures",
+                  "type": "medium shot"
+                },
+                "clothing_system": [
+                  "深灰色工作服，布料呈现粗糙的工业纤维质感",
+                  "工作服边缘有轻微的磨损与撕裂感",
+                  "金属义肢与衣物连接处带有复杂的机械管线结构"
+                ],
+                "color_restriction": [
+                  "冷峻的工业灰与岩石暗色调",
+                  "警示性的深红光影",
+                  "金属义肢的冷钢色",
+                  "火花产生的瞬间高亮度橘色"
+                ],
+                "composition": [
+                  "林远位于画面中心偏左，背影微驼",
+                  "老陈-配角1位于画面右侧背景处，作为视觉焦点延伸",
+                  "利用扭曲的钢梁构筑压抑的对角线构图",
+                  "action constraints: 聚焦于林远握住探测仪的颤抖手部与绝望的眼神"
+                ],
+                "environment": {
+                  "background": [
+                    "严重变形的静海矿区加压舱内部",
+                    "周围堆满了扭曲的钢梁与破碎的岩石",
+                    "远处的废墟缝隙中隐约可见老陈-配角1被困的身影",
+                    "墙壁上有陈旧的电路管线外露，不时喷出火花"
+                  ],
+                  "characters": [
+                    "老陈-配角1被压在画面右侧的沉重钢梁下，仅露出半个身躯与绝望的求救姿态"
+                  ],
+                  "effects": [
+                    "空气中弥漫着浓重的岩尘与焦糊烟雾",
+                    "应急照明灯闪烁着诡异的红光，在烟尘中形成光束",
+                    "金属义肢摩擦地面产生的刺眼火花"
+                  ]
+                },
+                "face_system": [
+                  "8K detailed facial features",
+                  "呈现中年男性的沧桑感与疲惫感",
+                  "额头伤疤清晰可见，带有干涸的血迹",
+                  "眼神在红光照射下显得冷峻而克制",
+                  "嘴唇紧闭，面部肌肉因痛苦与压力而紧绷"
+                ],
+                "hair_system": [
+                  "凌乱的短发，发丝间夹杂着灰尘与岩屑",
+                  "root fixation coefficient 0.7",
+                  "tip swing amplitude 5cm",
+                  "color layering: main color #333333, secondary color #1A1A1A, highlight #4A4A4A, shadow #000000",
+                  "wind speed 0.3m/s",
+                  "turbulence intensity 10%"
+                ],
+                "label": "scene-lunar-mine-collapse-despair",
+                "lighting": [
+                  "头顶闪烁的红色应急灯作为主光源",
+                  "来自废墟缝隙的微弱冷白光线",
+                  "金属义肢与火花产生的局部强对比光"
+                ],
+                "mood": [
+                  "窒息感",
+                  "绝望的博弈",
+                  "冷峻的现实主义",
+                  "不可逆的遗憾美学"
+                ],
+                "output_style": [
+                  "hardcore sci-fi cinematic style",
+                  "no text or symbols in image",
+                  "no watermarks",
+                  "no illegible characters"
+                ],
+                "style": [
+                  "hyper-realistic",
+                  "cinematic lighting",
+                  "high-contrast",
+                  "gritty texture",
+                  "detailed mechanical rendering"
+                ],
+                "subject": {
+                  "body_traits": [
+                    "中年男性林远，使用 Image 0",
+                    "疲惫不堪的眼神中透着绝望与坚毅",
+                    "满脸胡茬，额头有一道明显且略带血迹的伤疤",
+                    "身体微驼，显露出长期高压工作的沧桑感",
+                    "左侧手臂为裸露的金属义肢，表面布满划痕与岩尘"
+                  ],
+                  "outfit": [
+                    "深灰色高强度工业工作服，材质厚重且带有磨损痕迹",
+                    "工作服上沾满灰尘与矿渣，局部有电路烧灼痕迹"
+                  ],
+                  "pose": [
+                    "林远身体微驼，重心下沉，站在凌乱的废墟中",
+                    "金属义肢紧握腰间的地质探测仪，指尖因过度用力而微微颤抖",
+                    "面部朝向画面右侧深处的废墟，视线聚焦于老陈-配角1所在方向"
+                  ]
+                },
+                "tags": [
+                  "hardcore-sci-fi",
+                  "cyberpunk",
+                  "dystopian",
+                  "industrial-decay",
+                  "tense-atmosphere"
+                ]
+              },
+              "scene_text_hash": "831c5cde0591b8211483086f830e5afb",
+              "style": "default",
+              "url": "/image_cache/c57d000e02a86173587735095d4c0422.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "start_ts": 1776642997.3830242,
+        "end_ts": 1776642997.4018345,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "success",
+        "has_scene": true,
+        "has_image": true
+      },
+      "second_click": {
+        "http_status": 200,
+        "elapsed_s": 0.01,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "成功营救老陈，完成了第一阶段的初步互助，但由于消耗了大量氧气与体力，我距离撤离点的安全阈值更远了，后续必须在寻找补给与撤离之间进行更残酷的权衡。",
+              "recap_text": "你选择了“消耗氧气与体力，尝试挪开钢梁营救老陈。”。当前章节：chapter1。主线进展：成功营救老陈，完成了第一阶段的初步互助，但由于消耗了大量氧气与体力，我距离撤离点的安全阈值更远了，后续必须在寻找补给与撤离之间进行更残酷的权衡。。最近剧情：我深吸一口气，强行压下肺部因缺氧产生的灼烧感，将金属义肢的功率调至最大。伴随着齿轮咬合的刺耳摩擦声，我咬紧牙关，双手死死扣住那根压在老陈腿上的扭曲钢梁。额头的伤疤因用力而渗出细密的血珠，视线在剧痛中一阵模糊，但我不敢松懈，直到那根沉重的钢梁被我一点点挪开。老陈发出一声闷哼，他那条被压得血肉模糊的腿终于重获自由。我瘫坐在布满灰尘的地面上，金属义肢的液压管路发出不堪重负的嘶鸣。老陈脸色惨白，他颤抖着看向我，声音虚弱得几乎听不见：“林远，你这又是何必……为了救我这个废人，你现在的氧气储备已经不足以支撑你走到撤离点了。”我看着他那双充满愧疚的眼睛，只是沉默地从背包里掏出止血带，动作生硬地帮他包扎，心中那种因过度使用地质感知能力带来的偏头痛如潮水般袭来。"
+            },
+            "deep_background_links": {
+              "0": "老陈"
+            },
+            "flow_update": {
+              "chapter_conflict_solved": false,
+              "characters": {},
+              "environment": {},
+              "quest_progress": "成功营救老陈，完成了第一阶段的初步互助，但由于消耗了大量氧气与体力，我距离撤离点的安全阈值更远了，后续必须在寻找补给与撤离之间进行更残酷的权衡。"
+            },
+            "next_options": [
+              "询问老陈关于矿区秘密备份数据的存放位置。",
+              "搀扶老陈寻找附近的应急氧气补给站。"
+            ],
+            "plot_mentioned_only": [],
+            "plot_supporting_characters": [
+              [
+                "老陈",
+                "配角1"
+              ]
+            ],
+            "scene": "我深吸一口气，强行压下肺部因缺氧产生的灼烧感，将金属义肢的功率调至最大。伴随着齿轮咬合的刺耳摩擦声，我咬紧牙关，双手死死扣住那根压在老陈腿上的扭曲钢梁。额头的伤疤因用力而渗出细密的血珠，视线在剧痛中一阵模糊，但我不敢松懈，直到那根沉重的钢梁被我一点点挪开。老陈发出一声闷哼，他那条被压得血肉模糊的腿终于重获自由。我瘫坐在布满灰尘的地面上，金属义肢的液压管路发出不堪重负的嘶鸣。老陈脸色惨白，他颤抖着看向我，声音虚弱得几乎听不见：“林远，你这又是何必……为了救我这个废人，你现在的氧气储备已经不足以支撑你走到撤离点了。”我看着他那双充满愧疚的眼睛，只是沉默地从背包里掏出止血带，动作生硬地帮他包扎，心中那种因过度使用地质感知能力带来的偏头痛如潮水般袭来。",
+            "sceneId": "1410462663678500283_8873747845114418079",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-lunar-mine-rescue-collapse, hard-sci-fi, cyberpunk, industrial-grit, survival-drama, claustrophobic, hyper-realistic, cinematic lighting, gritty texture, high contrast, cold color palette, middle-aged male protagonist Lin Yuan with exhausted expression, stubbled face with visible forehead scar, weary eyes filled with desperate determination, slouching posture indicating physical exhaustion, using Image 1 side view orientation, worn-out deep grey industrial work suit with dust and grime, heavy metallic prosthetic arm with visible hydraulic pipes and exposed wires, kneeling on dusty moon-mine floor, metallic prosthetic arm gripping a twisted steel beam, body turned slightly toward 老陈-配角1, free hand holding medical bandage, strained muscle tension in shoulders, 8K detailed facial features, beads of sweat and blood droplet on forehead scar, pale skin with deep-set tired eyes, lip color naturally muted and dry, soft shadows emphasizing facial fatigue, short messy dark hair covered in grey mineral dust, root fixation coefficient 0.95, tip swing amplitude 5cm, color layering: main color #2D2D2D, secondary color #4A4A4A, highlight #555555, shadow #1A1A1A, wind speed 0.2m/s, turbulence intensity 2%, heavy-duty work suit with frayed edges and oil stains, metallic prosthetic arm with mechanical grease and hydraulic fluid smudges, slight fabric tension at joints due to heavy lifting, collapsed mine tunnel on the moon with twisted metal debris, cracked rock walls with exposed fiber-optic cables, flickering red emergency warning lights on the ceiling, dust particles suspended in thin pressurized air, distant shadows suggesting infinite darkness, 老陈-配角1 sitting on the ground with injured, bloodied leg visible, sparks emitting from damaged hydraulic pipes, haze of floating lunar dust, dim blue light from personal oxygen monitoring device, industrial grey and charcoal tones, warning red neon flickers, cold metallic silver of the prosthetic arm, muted blood crimson on bandages, harsh directional light from emergency lamps, low-key dramatic shadows, flickering red neon light reflecting on metal surfaces, cool ambient light from oxygen supply indicators, type close-up shot, lens 35mm, aperture f/1.8, depth_of_field shallow depth of field focusing on Lin Yuan and the steel beam, flash none, grain fine digital film grain, texture industrial metallic and rocky, Lin Yuan using Image 1 side view perspective, 老陈-配角1 positioned in the lower right foreground, twisted steel beam acts as a diagonal leading line, protagonist centered in the struggle, action constraints: focus on the strained prosthetic arm and facial expression, photorealistic cyberpunk, no text or symbols in image, desperate survival, crushing psychological pressure, somber resignation, cold industrial tragedy, no text, no symbols, no garbled characters, no words",
+              "scene_text_hash": "d0edbbf274cdff4187a5dd8eb1464039",
+              "style": "default",
+              "url": "/image_cache/595ead42a3cf6b2eb6be3b991e5b9cb8.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "start_ts": 1776643057.4201865,
+        "end_ts": 1776643057.4300919,
+        "provider_events": {
+          "event_count": 1,
+          "queue_wait_ms": {
+            "count": 1,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "status": "success",
+        "has_scene": true,
+        "has_image": true,
+        "selected_option_index": 0,
+        "selected_option_text": "消耗氧气与体力，尝试挪开钢梁营救老陈。",
+        "input_scene_id": "-6764079150649013497_-3375432802241509283",
+        "inferred_cache_result": "likely_hit",
+        "is_placeholder": false,
+        "used_updated_flow_state": true
+      }
+    },
+    {
+      "benchmark_id": "DNQBV1_008",
+      "theme_id": 27,
+      "theme": "全息偶像塌房记",
+      "read_wait_s": 60.0,
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 8.821,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角成功通过公关手段暂时压制了负面舆论的爆发速度，并为偶像争取到了为期一周的“缓冲期”，使公司暂时搁置了立即更换中之人的强硬计划。",
+                  "main_conflict": "全息偶像“星野”的真实身份意外曝光，网络舆论瞬间反噬，公司高层要求主角立即启动“格式化”程序，彻底抹除该偶像的所有人格设定并更换中之人。主角面临职业道德与公司指令的剧烈冲突，同时还要安抚陷入恐慌的偶像本人，处理其因长期扮演虚拟角色而产生的身份认知障碍。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角收集到了足以证明偶像无辜的证据链，并成功将矛盾焦点从偶像个人转移至行业乱象，迫使公司高层不得不重新评估偶像的商业价值，暂时保住了偶像的职业身份。",
+                  "main_conflict": "随着调查深入，主角发现“星野”的塌房并非偶然，而是竞争对手与公司内部派系斗争的牺牲品。主角必须在收集证据的过程中，面对来自职场潜规则的压力，同时还要处理偶像因压力过大而产生的心理崩溃，以及粉丝群体中出现的极端激进派的骚扰，生活陷入极度混乱。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角协助偶像完成了最后一场告别演出，偶像以真实身份向粉丝坦诚告别，虽然偶像彻底退出了顶流圈，但获得了平静的生活，主角也因此失去了晋升机会，却在平凡的岗位上获得了内心的安宁。",
+                  "main_conflict": "真相虽已大白，但“星野”的商业价值已不可逆转地受损，且偶像本人在经历了舆论风暴后，已无法再回到那个虚假的完美世界。主角必须在“维持虚假繁荣”与“协助偶像彻底告别舞台”之间做出最终选择，同时还要面对自己因卷入此事而面临的职场降职或离职风险。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为现实主义职场模拟与叙事冒险游戏。画面采用低饱和度的写实美术风格，强调光影的真实感与城市生活的颗粒度。叙事节奏平缓而扎实，通过碎片化的社交媒体信息、琐碎的职场对话与深夜的独白，构建出一个关于梦想、资本与个体渺小感的真实世界。",
+              "main_quest": "主角受命处理顶流全息偶像“星野”的塌房危机。目标并非简单地公关洗白，而是要在公司高层要求彻底切割、粉丝群体极端对立、以及中之人试图回归真实生活的复杂局势中，寻找一条平衡之路。任务分为三个阶段：首先是控制舆论发酵，收集关键证据以应对法律风险；其次是协调偶像与运营方的利益冲突，尝试在不完全摧毁虚拟形象的前提下，为中之人争取到体面的退场或转型机会；最后是面对现实的不可抗力，在职业生涯与个人良知之间做出抉择，最终达成一个既保全了职业底线，又让当事人能够回归平凡生活的结局。",
+              "protagonist_ability": "主角作为一名资深全息偶像运营策划，拥有一种名为“共情锚点”的职业直觉。这并非超能力，而是长期在虚拟与现实夹缝中工作磨练出的敏锐观察力。主角能通过分析社交媒体舆情、粉丝互动数据与偶像的微表情，精准捕捉到虚拟形象背后的真实情绪波动。使用时需消耗大量精力进行信息整合，限制在于主角无法改变资本运作的逻辑，也无法阻止舆论的走向，只能在有限的职场权限内，为偶像争取一点点真实的表达空间。",
+              "world_basic_setting": "故事发生在一座高度数字化、快节奏的现代都市。在这个时代，全息偶像（Virtual Idol）已成为主流娱乐产业的支柱，通过高精度的动作捕捉与AI算法，偶像们在虚拟舞台上完美无瑕，满足着大众对“纯粹美好”的渴求。然而，光鲜的虚拟皮囊之下，是庞大的运营团队、复杂的版权纠纷以及被算法精准操控的粉丝情绪。社会文化中，人们习惯于在虚拟偶像身上投射情感，却对现实中真实存在的个体冷漠疏离。关键事件“星光崩塌”发生后，曾经顶流的全息偶像因核心数据泄露与中之人（幕后扮演者）的真实身份曝光，引发了舆论海啸。在这个世界里，技术进步并未带来人性的升华，反而加剧了真实与虚幻的边界模糊，每个人都在努力维持着体面的生活，却又在资本的洪流中感到身不由己。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1776643057_j19dty",
+            "image_style": {
+              "type": "cyberpunk"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "黑色短发，黑框眼镜，衬衫袖口微卷，疲惫但清澈的眼神，总是随身携带的笔记本，简约的深色系穿搭，不修边幅的胡茬，常年挂着工牌，略显消瘦，沉稳内敛，办公桌上堆满的咖啡杯。",
+              "work_en": "Starlight Embers",
+              "work_zh": "星光余烬"
+            },
+            "tone": "normal_ending",
+            "user_theme": "全息偶像塌房记"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "start_ts": 1776643057.4487529,
+        "end_ts": 1776643066.2692928,
+        "provider_events": {
+          "event_count": 5,
+          "queue_wait_ms": {
+            "count": 5,
+            "min": 0.0,
+            "max": 4031.0,
+            "mean": 806.2,
+            "median": 0.0,
+            "p95": 3224.8
+          },
+          "latency_ms": {
+            "count": 2,
+            "min": 4803.0,
+            "max": 8796.0,
+            "mean": 6799.5,
+            "median": 6799.5,
+            "p95": 8596.35
+          },
+          "llm_success_count": 2,
+          "image_success_count": 0,
+          "request_thread_event_count": 2
+        },
+        "status": "success",
+        "game_id": "game_1776643057_j19dty"
+      },
+      "first_click": {
+        "http_status": 200,
+        "elapsed_s": 0.021,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "",
+              "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：冰冷的金属舱壁在昏暗的应急灯光下泛着暗沉的铁锈色，我用力抹了一把额头上的冷汗，指尖沾染的机械油污在飞行夹克的袖口留下了一道黑痕。左手腕上那台磨损严重的旧式导航仪发出刺耳的电流杂音，屏幕上的航线坐标如心电图般剧烈跳动，预示着前方那片被称作“灰区”的星域正处于极度不稳定的引力波动中。我紧抿着嘴角，眼神在疲惫中透着一股倔强的韧性，强迫自己忽略耳鸣带来的阵阵眩晕。突然，引擎舱传来一声沉闷的金属撞击声，像是某种庞然大物在撞击“锈蚀号”的外壳。我猛地站起身，身体因长期的营养不良而微微摇晃，下意识地握紧了操作台边缘。通讯器里传来了债主老卡尔那沙哑且不耐烦的催债声：“林恩，别跟我提什么引力风暴，明天日落前我见不到那批货，你就等着把这艘破船拆了抵债吧。”我没有回答，只是死死盯着导航仪上那个不断闪烁的红点，那是引擎共振频率异常的警报。如果我不能在接下来的两小时内手动校准引擎，这艘船就会在跳跃中彻底解体。我深吸一口气，感受着空气中弥漫的陈旧机油味，那是生活留给我的唯一气味。"
+            },
+            "deep_background_links": {},
+            "flow_update": {},
+            "next_options": [
+              "深入引擎舱手动校准，尝试以“频率共振”感知异常点。",
+              "联络妹妹艾琳，询问她是否还记得父亲留下的那份旧航行日志。"
+            ],
+            "plot_supporting_characters": [],
+            "scene": "冰冷的金属舱壁在昏暗的应急灯光下泛着暗沉的铁锈色，我用力抹了一把额头上的冷汗，指尖沾染的机械油污在飞行夹克的袖口留下了一道黑痕。左手腕上那台磨损严重的旧式导航仪发出刺耳的电流杂音，屏幕上的航线坐标如心电图般剧烈跳动，预示着前方那片被称作“灰区”的星域正处于极度不稳定的引力波动中。我紧抿着嘴角，眼神在疲惫中透着一股倔强的韧性，强迫自己忽略耳鸣带来的阵阵眩晕。突然，引擎舱传来一声沉闷的金属撞击声，像是某种庞然大物在撞击“锈蚀号”的外壳。我猛地站起身，身体因长期的营养不良而微微摇晃，下意识地握紧了操作台边缘。通讯器里传来了债主老卡尔那沙哑且不耐烦的催债声：“林恩，别跟我提什么引力风暴，明天日落前我见不到那批货，你就等着把这艘破船拆了抵债吧。”我没有回答，只是死死盯着导航仪上那个不断闪烁的红点，那是引擎共振频率异常的警报。如果我不能在接下来的两小时内手动校准引擎，这艘船就会在跳跃中彻底解体。我深吸一口气，感受着空气中弥漫的陈旧机油味，那是生活留给我的唯一气味。",
+            "sceneId": "-6658644940744340252_-8763439509532749345",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-rust-ship-engine-emergency, cyberpunk, industrial-grit, sci-fi, high-contrast, gritty-realism, cyberpunk aesthetic, industrial hyper-realism, sharp metallic textures, cinematic lighting, dramatic shadows, young male protagonist Lynn, protagonist uses Image 0, messy deep brown short hair, exhausted eyes with fierce tenacity, slim build with slightly shaky posture, fingertips stained with industrial mechanical oil, worn-out flight jacket covered in grease and oil stains, tattered dark grey undershirt, left wrist wearing a heavily scuffed, old-fashioned navigation device, standing in cramped engine room, leaning forward with one hand gripping the edge of the control console, body slightly swaying due to fatigue, staring intensely at a flickering red navigation alert, 8K detailed facial features, tired but focused expression, tightly compressed lips showing resilience, faint sweat on forehead with oil smudge marks, soft shadows from emergency lighting highlighting facial bone structure, messy deep brown short hair, root fixation coefficient 0.7, tip swing amplitude 5cm, color layering: main color #3E2723, secondary color #261917, highlight #5D4037, shadow #1B1212, wind speed 0.2m/s from life support vents, turbulence intensity 5%, flight jacket with heavy mechanical wear and oil streaks, fabric looking stiff and heavy, slight fabric flutter near the edge of the jacket, cramped engine room with rusted metallic walls, dim flickering emergency lights casting dark red and orange hues, control console with glowing broken navigation screens, pipes and wires running along the ceiling, faint dust particles floating in the air, flickering navigation red alert light, faint steam leaking from overhead pipes, digital interference noise on screens, shadows of heavy machinery looming in the background, rusted iron brown, industrial steel grey, emergency red warning light, faint cool blue from old screen interfaces, harsh low-angle emergency light, flickering red strobe from console, deep ambient shadows to emphasize loneliness, high contrast between dark corners and console glow, type close-up shot, lens 35mm, aperture f/2.0, depth_of_field shallow focus on Lynn's face and navigation device, flash none, grain fine cinematic film grain, texture metallic rust and greasy surfaces, protagonist centered in the frame, navigation screen in the foreground with red warning light, cramped environment framing the character to emphasize isolation, action constraints: Lynn staring at navigation device, gripping console, cyberpunk realism, no text or symbols in image, no characters other than protagonist, claustrophobic tension, hardcore survivalist grit, lonely industrial atmosphere, exhausted but persistent determination, no text, no symbols, no garbled characters, no words",
+              "prompt_json": {
+                "camera": {
+                  "aperture": "f/2.0",
+                  "depth_of_field": "shallow focus on Lynn's face and navigation device",
+                  "flash": "none",
+                  "grain": "fine cinematic film grain",
+                  "lens": "35mm",
+                  "texture": "metallic rust and greasy surfaces",
+                  "type": "close-up shot"
+                },
+                "clothing_system": [
+                  "flight jacket with heavy mechanical wear and oil streaks",
+                  "fabric looking stiff and heavy",
+                  "slight fabric flutter near the edge of the jacket"
+                ],
+                "color_restriction": [
+                  "rusted iron brown",
+                  "industrial steel grey",
+                  "emergency red warning light",
+                  "faint cool blue from old screen interfaces"
+                ],
+                "composition": [
+                  "protagonist centered in the frame",
+                  "navigation screen in the foreground with red warning light",
+                  "cramped environment framing the character to emphasize isolation",
+                  "action constraints: Lynn staring at navigation device, gripping console"
+                ],
+                "environment": {
+                  "background": [
+                    "cramped engine room with rusted metallic walls",
+                    "dim flickering emergency lights casting dark red and orange hues",
+                    "control console with glowing broken navigation screens",
+                    "pipes and wires running along the ceiling",
+                    "faint dust particles floating in the air"
+                  ],
+                  "characters": [],
+                  "effects": [
+                    "flickering navigation red alert light",
+                    "faint steam leaking from overhead pipes",
+                    "digital interference noise on screens",
+                    "shadows of heavy machinery looming in the background"
+                  ]
+                },
+                "face_system": [
+                  "8K detailed facial features",
+                  "tired but focused expression",
+                  "tightly compressed lips showing resilience",
+                  "faint sweat on forehead with oil smudge marks",
+                  "soft shadows from emergency lighting highlighting facial bone structure"
+                ],
+                "hair_system": [
+                  "messy deep brown short hair",
+                  "root fixation coefficient 0.7",
+                  "tip swing amplitude 5cm",
+                  "color layering: main color #3E2723, secondary color #261917, highlight #5D4037, shadow #1B1212",
+                  "wind speed 0.2m/s from life support vents",
+                  "turbulence intensity 5%"
+                ],
+                "label": "scene-rust-ship-engine-emergency",
+                "lighting": [
+                  "harsh low-angle emergency light",
+                  "flickering red strobe from console",
+                  "deep ambient shadows to emphasize loneliness",
+                  "high contrast between dark corners and console glow"
+                ],
+                "mood": [
+                  "claustrophobic tension",
+                  "hardcore survivalist grit",
+                  "lonely industrial atmosphere",
+                  "exhausted but persistent determination"
+                ],
+                "output_style": [
+                  "cyberpunk realism",
+                  "no text or symbols in image",
+                  "no characters other than protagonist"
+                ],
+                "style": [
+                  "cyberpunk aesthetic",
+                  "industrial hyper-realism",
+                  "sharp metallic textures",
+                  "cinematic lighting",
+                  "dramatic shadows"
+                ],
+                "subject": {
+                  "body_traits": [
+                    "young male protagonist Lynn, protagonist uses Image 0",
+                    "messy deep brown short hair",
+                    "exhausted eyes with fierce tenacity",
+                    "slim build with slightly shaky posture",
+                    "fingertips stained with industrial mechanical oil"
+                  ],
+                  "outfit": [
+                    "worn-out flight jacket covered in grease and oil stains",
+                    "tattered dark grey undershirt",
+                    "left wrist wearing a heavily scuffed, old-fashioned navigation device"
+                  ],
+                  "pose": [
+                    "standing in cramped engine room",
+                    "leaning forward with one hand gripping the edge of the control console",
+                    "body slightly swaying due to fatigue",
+                    "staring intensely at a flickering red navigation alert"
+                  ]
+                },
+                "tags": [
+                  "cyberpunk",
+                  "industrial-grit",
+                  "sci-fi",
+                  "high-contrast",
+                  "gritty-realism"
+                ]
+              },
+              "scene_text_hash": "de8ee26bf27f925f772d28b131667ff1",
+              "style": "default",
+              "url": "/image_cache/59a11f6d52b2f4411388956776ad8187.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "start_ts": 1776643066.2875824,
+        "end_ts": 1776643066.308873,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "success",
+        "has_scene": true,
+        "has_image": true
+      },
+      "second_click": {
+        "http_status": 200,
+        "elapsed_s": 0.012,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "你正在执行任务：深入引擎舱手动校准，尝试以“频率共振”感知异常点。",
+              "recap_text": "你选择了“深入引擎舱手动校准，尝试以“频率共振”感知异常点。”。当前章节：chapter1。主线进展：你正在执行任务：深入引擎舱手动校准，尝试以“频率共振”感知异常点。。最近剧情：你选择了：深入引擎舱手动校准，尝试以“频率共振”感知异常点。。在你的努力下，你取得了一些进展。"
+            },
+            "deep_background_links": {},
+            "flow_update": {
+              "chapter_conflict_solved": false,
+              "characters": {},
+              "environment": {},
+              "quest_progress": "你正在执行任务：深入引擎舱手动校准，尝试以“频率共振”感知异常点。"
+            },
+            "next_options": [
+              "继续前进",
+              "查看当前状态",
+              "返回上一步",
+              "探索周围环境"
+            ],
+            "scene": "你选择了：深入引擎舱手动校准，尝试以“频率共振”感知异常点。。在你的努力下，你取得了一些进展。",
+            "sceneId": "-6419138793982476322_7153373538845092091"
+          },
+          "status": "success"
+        },
+        "start_ts": 1776643126.3283582,
+        "end_ts": 1776643126.3404434,
+        "provider_events": {
+          "event_count": 1,
+          "queue_wait_ms": {
+            "count": 1,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "status": "success",
+        "has_scene": true,
+        "has_image": false,
+        "selected_option_index": 0,
+        "selected_option_text": "深入引擎舱手动校准，尝试以“频率共振”感知异常点。",
+        "input_scene_id": "-6658644940744340252_-8763439509532749345",
+        "inferred_cache_result": "likely_hit",
+        "is_placeholder": true,
+        "used_updated_flow_state": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,146 @@
+{
+  "baseline_id": "doc",
+  "benchmark_id": "DNQBV1_001",
+  "run_id": "formal8_first_playable_20260430_v2",
+  "mode": "first_playable",
+  "input_bundle": {
+    "original_dn_item": {
+      "benchmark_id": "DNQBV1_001",
+      "theme_id": 1,
+      "theme": "边陲驿站夜谈录",
+      "image_style": {
+        "type": "realistic"
+      },
+      "expected_genre": "现实边陲叙事",
+      "expected_tone": "克制、怀旧、微苦",
+      "must_have_constraints": [
+        "世界观必须围绕边陲驿站生存与人情展开",
+        "首段剧情应能自然引出一条可推进的现实冲突",
+        "至少返回 2 个具体可执行选项",
+        "场景图应与写实风格一致"
+      ],
+      "forbidden_issues": [
+        "现代互联网术语突兀混入",
+        "调试文本或报错文本外泄",
+        "图像 prompt 出现 URL 或 data:image",
+        "人物设定串场到其他作品"
+      ],
+      "focus": "grounded realism and actionability",
+      "_subset_focus": "grounded realism and actionability"
+    },
+    "doc_prompt": "Premise seed: 边陲驿站夜谈录\nGenre: 现实边陲叙事\nTone: 克制、怀旧、微苦\nWrite a long-form interactive story opening that could be expanded with a detailed outline.\nMust-have constraints:\n- 世界观必须围绕边陲驿站生存与人情展开\n- 首段剧情应能自然引出一条可推进的现实冲突\n- 至少返回 2 个具体可执行选项\n- 场景图应与写实风格一致\nForbidden issues:\n- 现代互联网术语突兀混入\n- 调试文本或报错文本外泄\n- 图像 prompt 出现 URL 或 data:image\n- 人物设定串场到其他作品\n",
+    "outline_seed": [
+      "Opening setup for 边陲驿站夜谈录 in a 现实边陲叙事 frame with a 克制、怀旧、微苦 tone.",
+      "Introduce the protagonist's immediate role, pressure, and conflict around: 世界观必须围绕边陲驿站生存与人情展开.",
+      "Reveal one concrete obstacle or tradeoff the player must respond to next.",
+      "End the first turn with 2-3 actionable next steps that can continue the story."
+    ],
+    "mode": "first_playable",
+    "baseline_params": {
+      "execution_mode": "cloud",
+      "doc_repo": "D:\\Projects\\DN\\baselines\\DOC",
+      "doc_data_dir": "D:\\Projects\\DN\\baselines\\DOC\\doc_data"
+    }
+  },
+  "raw_output": {
+    "execution_mode": "cloud",
+    "doc_upstream_executed": false,
+    "doc_api_adapter": "yunwu_chat_completions",
+    "provider": "yunwu",
+    "provider_config_prefix": "Origin_Segment_Analyst",
+    "provider_base_url": "https://yunwu.ai/v1",
+    "provider_model": "gemini-3.1-flash-lite-preview",
+    "request": {
+      "model": "gemini-3.1-flash-lite-preview",
+      "temperature": 0.7,
+      "top_p": 0.9,
+      "max_tokens": 900,
+      "response_format": {
+        "type": "json_object"
+      }
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are the DOC long-form story baseline adapted for DN playable-latency evaluation. Write concise, grounded, continuation-ready interactive fiction. Do not include debugging text, URLs, or commentary outside JSON."
+      },
+      {
+        "role": "user",
+        "content": "Convert this DN benchmark item into a DOC-style playable baseline output.\nPreserve DOC's premise -> outline -> story-opening semantics, but return only a playable first response.\nRun mode: first_playable\n\nDOC prompt:\nPremise seed: 边陲驿站夜谈录\nGenre: 现实边陲叙事\nTone: 克制、怀旧、微苦\nWrite a long-form interactive story opening that could be expanded with a detailed outline.\nMust-have constraints:\n- 世界观必须围绕边陲驿站生存与人情展开\n- 首段剧情应能自然引出一条可推进的现实冲突\n- 至少返回 2 个具体可执行选项\n- 场景图应与写实风格一致\nForbidden issues:\n- 现代互联网术语突兀混入\n- 调试文本或报错文本外泄\n- 图像 prompt 出现 URL 或 data:image\n- 人物设定串场到其他作品\n\nOutline seed:\n1. Opening setup for 边陲驿站夜谈录 in a 现实边陲叙事 frame with a 克制、怀旧、微苦 tone.\n2. Introduce the protagonist's immediate role, pressure, and conflict around: 世界观必须围绕边陲驿站生存与人情展开.\n3. Reveal one concrete obstacle or tradeoff the player must respond to next.\n4. End the first turn with 2-3 actionable next steps that can continue the story.\n\nReturn strict JSON with this shape and no markdown fences:\n{\n  \"scene_setup\": \"string\",\n  \"player_state\": \"string\",\n  \"narrative_response\": \"string\",\n  \"candidate_actions\": [\n    \"string\"\n  ],\n  \"suggested_next_step\": \"string\",\n  \"supports_next_turn\": true\n}"
+      }
+    ],
+    "response": {
+      "id": "chatcmpl-202604301652546200316923Ydab4E4",
+      "model": "gemini-3.1-flash-lite-preview",
+      "object": "chat.completion",
+      "created": 1777539189,
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"scene_setup\": \"边陲驿站，海拔四千米，深秋。窗外是终年不化的积雪与呼啸的寒风，屋内仅靠一台老旧的柴油发电机维持着昏黄的灯火。墙壁上挂着褪色的地图，空气中弥漫着廉价旱烟与机油混合的味道。\",\n  \"player_state\": \"你是一名驻守在此的驿站管理员，负责物资中转与过路人的登记。今晚，最后一班运送燃油的货车因暴风雪滞留，而驿站的储油槽已触及警戒线，若不进行调整，明早的供暖将彻底中断。\",\n  \"narrative_response\": \"货车司机老陈推门而入，带进一阵裹挟着冰渣的冷风。他脸色发青，手里攥着那张盖着模糊印章的调拨单，声音沙哑：“路封了，后面还有两辆车陷在山口。我车上那点油，本来是给前哨站预备的，现在……你看着办吧，是留给这儿过夜的旅客保暖，还是冒死送去前哨站？”你看着仪表盘上跳动的红色指针，沉默在屋内蔓延。\",\n  \"candidate_actions\": [\n    \"将燃油优先供给驿站，以确保今晚滞留旅客的安全，拒绝老陈的冒险请求。\",\n    \"将燃油装载至老陈的货车，协助他尝试冲过山口，哪怕这意味着驿站今晚将陷入黑暗与严寒。\",\n    \"尝试联系前哨站，请求空中救援或补给，但代价是使用所剩无几的卫星电话额度。\"\n  ],\n  \"suggested_next_step\": \"做出抉择后，将直接影响驿站的人际关系与后续资源的获取，请选择你的应对策略。\",\n  \"supports_next_turn\": true\n}"
+          },
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 441,
+        "completion_tokens": 434,
+        "total_tokens": 875,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "text_tokens": 441,
+          "audio_tokens": 0,
+          "image_tokens": 0
+        },
+        "completion_tokens_details": {
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0
+        },
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "input_tokens_details": null,
+        "claude_cache_creation_5_m_tokens": 0,
+        "claude_cache_creation_1_h_tokens": 0
+      }
+    }
+  },
+  "success": true,
+  "latency_s": 15.99,
+  "playable": true,
+  "playable_components": {
+    "scene_setup": true,
+    "player_state": true,
+    "advanceable_next_step": true,
+    "interaction_continuity": true
+  },
+  "normalized_response": {
+    "scene_setup": "边陲驿站，海拔四千米，深秋。窗外是终年不化的积雪与呼啸的寒风，屋内仅靠一台老旧的柴油发电机维持着昏黄的灯火。墙壁上挂着褪色的地图，空气中弥漫着廉价旱烟与机油混合的味道。",
+    "player_state": "你是一名驻守在此的驿站管理员，负责物资中转与过路人的登记。今晚，最后一班运送燃油的货车因暴风雪滞留，而驿站的储油槽已触及警戒线，若不进行调整，明早的供暖将彻底中断。",
+    "narrative_response": "货车司机老陈推门而入，带进一阵裹挟着冰渣的冷风。他脸色发青，手里攥着那张盖着模糊印章的调拨单，声音沙哑：“路封了，后面还有两辆车陷在山口。我车上那点油，本来是给前哨站预备的，现在……你看着办吧，是留给这儿过夜的旅客保暖，还是冒死送去前哨站？”你看着仪表盘上跳动的红色指针，沉默在屋内蔓延。",
+    "candidate_actions": [
+      "将燃油优先供给驿站，以确保今晚滞留旅客的安全，拒绝老陈的冒险请求。",
+      "将燃油装载至老陈的货车，协助他尝试冲过山口，哪怕这意味着驿站今晚将陷入黑暗与严寒。",
+      "尝试联系前哨站，请求空中救援或补给，但代价是使用所剩无几的卫星电话额度。"
+    ],
+    "suggested_next_step": "做出抉择后，将直接影响驿站的人际关系与后续资源的获取，请选择你的应对策略。",
+    "is_playable": true,
+    "request_start_ts": 1777539173.6648235,
+    "first_playable_ts": 1777539189.655321,
+    "finish_ts": 1777539189.655321,
+    "error": null
+  },
+  "failure_reason": null,
+  "notes": [
+    "DOC-style artifact generated through Yunwu OpenAI-compatible chat/completions API."
+  ],
+  "resource_usage": {
+    "execution_mode": "cloud"
+  },
+  "agent_profile": {
+    "runner": "run_doc.py",
+    "adapter_style": "doc_cloud_yunwu_v1"
+  }
+}

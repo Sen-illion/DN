@@ -1,0 +1,199 @@
+{
+  "on12": {
+    "n": 12,
+    "worldview": [
+      10.301,
+      13.652,
+      33.069,
+      14.443,
+      15.532,
+      16.77,
+      13.424,
+      12.442,
+      8.823,
+      101.111,
+      8.781,
+      69.85
+    ],
+    "option": [
+      90.26,
+      0.021,
+      0.028,
+      0.009,
+      0.02,
+      0.007,
+      0.009,
+      0.01,
+      0.011,
+      0.017,
+      0.009,
+      0.026
+    ],
+    "main_character": [
+      0.029,
+      38.312,
+      56.521,
+      36.348,
+      80.743,
+      68.556,
+      54.565,
+      76.646,
+      38.326,
+      52.45,
+      66.681,
+      52.454
+    ],
+    "success": 12,
+    "option_has_scene": 12,
+    "option_has_image": 11,
+    "provider_queue_mean_ms": 3462.463,
+    "provider_latency_mean_ms": 17070.994
+  },
+  "off12": {
+    "n": 12,
+    "worldview": [
+      13.732,
+      8.765,
+      9.969,
+      21.319,
+      29.405,
+      41.648,
+      8.501,
+      9.179,
+      57.833,
+      132.485,
+      9.304,
+      8.469
+    ],
+    "option": [
+      0.017,
+      0.013,
+      0.027,
+      0.008,
+      0.033,
+      0.008,
+      0.022,
+      0.008,
+      0.029,
+      0.008,
+      0.018,
+      0.025
+    ],
+    "main_character": [
+      26.267,
+      20.203,
+      54.591,
+      18.19,
+      54.505,
+      40.4,
+      40.363,
+      20.171,
+      40.378,
+      36.298,
+      68.69
+    ],
+    "success": 11,
+    "option_has_scene": 12,
+    "option_has_image": 10,
+    "provider_queue_mean_ms": 6237.421,
+    "provider_latency_mean_ms": 16900.38
+  },
+  "on_repeat6": {
+    "n": 6,
+    "worldview": [
+      8.476,
+      70.69,
+      14.877,
+      8.893,
+      35.973,
+      17.886
+    ],
+    "option": [
+      0.028,
+      0.022,
+      0.011,
+      0.025,
+      28.629,
+      0.029
+    ],
+    "main_character": [
+      38.287,
+      46.37,
+      58.579,
+      72.702,
+      32.38,
+      56.406
+    ],
+    "success": 6,
+    "option_has_scene": 6,
+    "option_has_image": 4,
+    "provider_queue_mean_ms": 2751.629,
+    "provider_latency_mean_ms": 16601.962
+  },
+  "derived": {
+    "on12_option_mean_s": 7.536,
+    "on12_option_median_s": 0.014,
+    "off12_option_mean_s": 0.018,
+    "off12_option_median_s": 0.018,
+    "on_repeat6_option_mean_s": 4.791,
+    "on_repeat6_option_median_s": 0.027,
+    "off_first6_option_mean_s": 0.018,
+    "off_first6_option_median_s": 0.015
+  },
+  "pair_first6_onrepeat_vs_off": [
+    {
+      "benchmark_id": "DNQBV1_001",
+      "on_option_s": 0.028,
+      "off_option_s": 0.017,
+      "on_worldview_s": 8.476,
+      "off_worldview_s": 13.732,
+      "on_full_success": true,
+      "off_full_success": true
+    },
+    {
+      "benchmark_id": "DNQBV1_002",
+      "on_option_s": 0.022,
+      "off_option_s": 0.013,
+      "on_worldview_s": 70.69,
+      "off_worldview_s": 8.765,
+      "on_full_success": true,
+      "off_full_success": false
+    },
+    {
+      "benchmark_id": "DNQBV1_003",
+      "on_option_s": 0.011,
+      "off_option_s": 0.027,
+      "on_worldview_s": 14.877,
+      "off_worldview_s": 9.969,
+      "on_full_success": true,
+      "off_full_success": true
+    },
+    {
+      "benchmark_id": "DNQBV1_004",
+      "on_option_s": 0.025,
+      "off_option_s": 0.008,
+      "on_worldview_s": 8.893,
+      "off_worldview_s": 21.319,
+      "on_full_success": true,
+      "off_full_success": true
+    },
+    {
+      "benchmark_id": "DNQBV1_005",
+      "on_option_s": 28.629,
+      "off_option_s": 0.033,
+      "on_worldview_s": 35.973,
+      "off_worldview_s": 29.405,
+      "on_full_success": true,
+      "off_full_success": true
+    },
+    {
+      "benchmark_id": "DNQBV1_006",
+      "on_option_s": 0.029,
+      "off_option_s": 0.008,
+      "on_worldview_s": 17.886,
+      "off_worldview_s": 41.648,
+      "on_full_success": true,
+      "off_full_success": true
+    }
+  ]
+}

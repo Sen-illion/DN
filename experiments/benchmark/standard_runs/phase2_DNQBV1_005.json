@@ -1,0 +1,371 @@
+{
+  "summary": {
+    "experiment_name": "phase2_DNQBV1_005",
+    "profile": "fullready_strict",
+    "sample_size": 1,
+    "read_wait_s": 0.0,
+    "suite_start_ts": 1777623322.4117978,
+    "suite_end_ts": 1777623390.233651,
+    "second_click_elapsed_s": {
+      "count": 0
+    },
+    "second_click_success_count": 0,
+    "transport_success_count": 0,
+    "strict_success_count": 0,
+    "likely_hit_count": 0,
+    "likely_hit_rate": 0.0,
+    "failure_bucket_counts": {
+      "first_click_timeout": 1
+    },
+    "placeholder_strict_fail_count": 0,
+    "cache_hit_reason_counts": {},
+    "cache_miss_reason_counts": {},
+    "global_state_key_drift_detected_count": 0,
+    "scene_id_mismatch_detected_count": 0,
+    "selected_option_mismatch_detected_count": 0,
+    "aborted": false,
+    "success_count": 0,
+    "text_ready_elapsed_s": {
+      "count": 0
+    },
+    "image_ready_elapsed_s": {
+      "count": 0
+    },
+    "full_ready_elapsed_s": {
+      "count": 0
+    },
+    "real_scene_count": 0,
+    "real_scene_rate": 0.0,
+    "direct_image_count": 0,
+    "async_image_count": 0,
+    "placeholder_count": 0,
+    "placeholder_rate": 0.0,
+    "direct_image_rate": 0.0,
+    "async_image_rate": 0.0,
+    "provider_retry_heavy_count": 0,
+    "provider_429_count": 0,
+    "provider_timeout_count": 0,
+    "provider_backoff_wait_ms_total": 0,
+    "main_character_contention_suspected_count": 0,
+    "notes": "phase2 cache diagnosis probe"
+  },
+  "runs": [
+    {
+      "benchmark_id": "DNQBV1_005",
+      "theme_id": 2,
+      "theme": "月球矿难七日",
+      "read_wait_s": 0.0,
+      "full_ready_mode": true,
+      "profile": "fullready_strict",
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 7.719,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角成功修复了区域内的应急照明与空气过滤装置，稳定了幸存者的情绪，并确定了初步的撤离路线，但为此消耗了大量的体力与备用氧气。",
+                  "main_conflict": "矿难突发，主角被困于深层作业区，通讯中断，氧气储备仅剩24小时。面对惊慌失措的同事，主角必须在混乱中建立秩序，决定是独自寻找出口，还是组织人员进行初步的管网加固，以防止坍塌范围扩大。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角最终选择绕行废弃矿道，虽然成功避开了坍塌区，但受伤同事因体力不支未能跟上，主角在极度愧疚中独自抵达了中转站。",
+                  "main_conflict": "撤离途中遭遇二次地壳震动，通往中转站的唯一通道被封死。主角面临抉择：是强行挖掘耗尽氧气，还是绕行至高辐射的废弃矿道。此时，一名受伤的同事请求主角放弃他，以减轻负担，主角需在“抛弃”与“拖累”中寻找平衡。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角与幸存者达成默契，通过抽签决定留守者。主角最终获救，但看着舱门外逐渐静止的同伴，他意识到自己虽完成了任务，却永远失去了那段并肩作战的羁绊，带着这份遗憾回归地球。",
+                  "main_conflict": "抵达救援舱前夕，氧气循环系统彻底失效，救援舱仅剩一个舱位。主角发现还有一名幸存者，两人必须通过协作完成最后的舱门手动开启，但开启过程需要一人留在外部手动操作，这意味着留守者将因氧气耗尽而无法生还。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为硬核工业现实主义风格，采用冷峻的低饱和度视觉表现。叙事节奏平稳且压抑，侧重于展现极端环境下人类的生理极限与心理博弈，强调“人在系统面前的渺小”与“个体在绝境中的微弱尊严”。",
+              "main_quest": "在矿难发生后的七日内，主角需从坍塌的深层矿区撤离至地表救援舱。目标并非拯救所有人，而是尽可能在有限的氧气储备下，修复关键节点的维生系统，确保自己与部分同事能存活至救援队抵达。挑战在于资源分配的道德困境：是优先修复公共氧气循环系统以救助更多人，还是通过牺牲部分区域的供氧来保障自身撤离路线的畅通。最终目标是达成撤离，但无论如何选择，都无法挽回所有逝去的生命，主角将带着这份沉重的记忆回归地球，面对失去同伴的现实。",
+              "protagonist_ability": "主角并无超能力，其“能力”源于长期的工程实践经验与对矿区复杂管网的深度记忆。使用方式表现为通过手持终端对环境数据进行精准分析，通过有限的维修工具进行应急修复。限制在于其体力与精神值随时间流逝而剧烈下降，且任何修复行为都会消耗宝贵的氧气与时间，主角必须在“抢修设备”与“维持自身生存”之间做出残酷的取舍。",
+              "world_basic_setting": "故事背景设定在21世纪末，月球背面“静海”工业区。人类已实现月球矿产的商业化开采，主角作为一名普通的氦-3开采工程师，生活在由高压舱室构成的封闭聚落中。这里没有英雄主义，只有严苛的排班表、不断老化的维生系统与高额的债务压力。社会结构高度阶级化，矿工被视为消耗品，企业通过算法控制氧气配给与工时。关键事件“静海矿难”并非源于外星入侵或阴谋，而是因地壳微震导致的一场不可抗力的工业事故，导致主供氧管道断裂，整个矿区陷入了长达七日的生存倒计时。这里没有超能力，只有物理定律、有限的资源与人性在生存压力下的真实折射。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1777623322_9hwb3v",
+            "image_style": {
+              "type": "cyberpunk"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "中年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "疲惫的眼神、灰白的工装、粗糙的双手、略显凌乱的短发、额头的伤疤、沉默寡言、坚韧、写实风格、沧桑感、实用主义者",
+              "work_en": "The Silence of Mare Tranquillitatis",
+              "work_zh": "静海余生"
+            },
+            "tone": "normal_ending",
+            "user_theme": "月球矿难七日"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "request_payload": {
+          "gameTheme": "月球矿难七日",
+          "protagonistAttr": {},
+          "difficulty": "normal",
+          "toneKey": "normal_ending",
+          "imageStyle": {
+            "type": "cyberpunk"
+          },
+          "_benchmark_profile": "fullready_strict",
+          "_benchmark_measurement": "fullready_nextturn",
+          "_benchmark_read_wait_s": 0.0
+        },
+        "start_ts": 1777623322.4118023,
+        "end_ts": 1777623330.1306055,
+        "provider_events": {
+          "event_count": 4,
+          "queue_wait_ms": {
+            "count": 4,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 1,
+            "min": 7706.0,
+            "max": 7706.0,
+            "mean": 7706.0,
+            "median": 7706.0,
+            "p95": 7706.0
+          },
+          "llm_success_count": 1,
+          "image_success_count": 0,
+          "request_thread_event_count": 2,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0
+        },
+        "status": "success",
+        "game_id": "game_1777623322_9hwb3v"
+      },
+      "first_click": {
+        "http_status": null,
+        "elapsed_s": 60.023,
+        "response_json": {
+          "status": "timeout",
+          "message": "HTTPConnectionPool(host='127.0.0.1', port=5006): Read timed out. (read timeout=60)"
+        },
+        "request_payload": {
+          "option": "开始游戏",
+          "optionIndex": 0,
+          "sceneId": null,
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角成功修复了区域内的应急照明与空气过滤装置，稳定了幸存者的情绪，并确定了初步的撤离路线，但为此消耗了大量的体力与备用氧气。",
+                  "main_conflict": "矿难突发，主角被困于深层作业区，通讯中断，氧气储备仅剩24小时。面对惊慌失措的同事，主角必须在混乱中建立秩序，决定是独自寻找出口，还是组织人员进行初步的管网加固，以防止坍塌范围扩大。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角最终选择绕行废弃矿道，虽然成功避开了坍塌区，但受伤同事因体力不支未能跟上，主角在极度愧疚中独自抵达了中转站。",
+                  "main_conflict": "撤离途中遭遇二次地壳震动，通往中转站的唯一通道被封死。主角面临抉择：是强行挖掘耗尽氧气，还是绕行至高辐射的废弃矿道。此时，一名受伤的同事请求主角放弃他，以减轻负担，主角需在“抛弃”与“拖累”中寻找平衡。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角与幸存者达成默契，通过抽签决定留守者。主角最终获救，但看着舱门外逐渐静止的同伴，他意识到自己虽完成了任务，却永远失去了那段并肩作战的羁绊，带着这份遗憾回归地球。",
+                  "main_conflict": "抵达救援舱前夕，氧气循环系统彻底失效，救援舱仅剩一个舱位。主角发现还有一名幸存者，两人必须通过协作完成最后的舱门手动开启，但开启过程需要一人留在外部手动操作，这意味着留守者将因氧气耗尽而无法生还。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为硬核工业现实主义风格，采用冷峻的低饱和度视觉表现。叙事节奏平稳且压抑，侧重于展现极端环境下人类的生理极限与心理博弈，强调“人在系统面前的渺小”与“个体在绝境中的微弱尊严”。",
+              "main_quest": "在矿难发生后的七日内，主角需从坍塌的深层矿区撤离至地表救援舱。目标并非拯救所有人，而是尽可能在有限的氧气储备下，修复关键节点的维生系统，确保自己与部分同事能存活至救援队抵达。挑战在于资源分配的道德困境：是优先修复公共氧气循环系统以救助更多人，还是通过牺牲部分区域的供氧来保障自身撤离路线的畅通。最终目标是达成撤离，但无论如何选择，都无法挽回所有逝去的生命，主角将带着这份沉重的记忆回归地球，面对失去同伴的现实。",
+              "protagonist_ability": "主角并无超能力，其“能力”源于长期的工程实践经验与对矿区复杂管网的深度记忆。使用方式表现为通过手持终端对环境数据进行精准分析，通过有限的维修工具进行应急修复。限制在于其体力与精神值随时间流逝而剧烈下降，且任何修复行为都会消耗宝贵的氧气与时间，主角必须在“抢修设备”与“维持自身生存”之间做出残酷的取舍。",
+              "world_basic_setting": "故事背景设定在21世纪末，月球背面“静海”工业区。人类已实现月球矿产的商业化开采，主角作为一名普通的氦-3开采工程师，生活在由高压舱室构成的封闭聚落中。这里没有英雄主义，只有严苛的排班表、不断老化的维生系统与高额的债务压力。社会结构高度阶级化，矿工被视为消耗品，企业通过算法控制氧气配给与工时。关键事件“静海矿难”并非源于外星入侵或阴谋，而是因地壳微震导致的一场不可抗力的工业事故，导致主供氧管道断裂，整个矿区陷入了长达七日的生存倒计时。这里没有超能力，只有物理定律、有限的资源与人性在生存压力下的真实折射。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1777623322_9hwb3v",
+            "image_style": {
+              "type": "cyberpunk"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "中年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "疲惫的眼神、灰白的工装、粗糙的双手、略显凌乱的短发、额头的伤疤、沉默寡言、坚韧、写实风格、沧桑感、实用主义者",
+              "work_en": "The Silence of Mare Tranquillitatis",
+              "work_zh": "静海余生"
+            },
+            "tone": "normal_ending",
+            "user_theme": "月球矿难七日",
+            "_benchmark_profile": "fullready_strict",
+            "_benchmark_measurement": "fullready_nextturn",
+            "_benchmark_read_wait_s": 0.0
+          }
+        },
+        "start_ts": 1777623330.171165,
+        "end_ts": 1777623390.193727,
+        "provider_events": {
+          "event_count": 6,
+          "queue_wait_ms": {
+            "count": 6,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 4,
+            "min": 3229.0,
+            "max": 13038.0,
+            "mean": 7021.25,
+            "median": 5909.0,
+            "p95": 12199.8
+          },
+          "llm_success_count": 4,
+          "image_success_count": 0,
+          "request_thread_event_count": 0,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0
+        },
+        "request_error": "timeout",
+        "attempts": [
+          {
+            "http_status": null,
+            "elapsed_s": 60.023,
+            "response_json": {
+              "status": "timeout",
+              "message": "HTTPConnectionPool(host='127.0.0.1', port=5006): Read timed out. (read timeout=60)"
+            },
+            "request_payload": {
+              "option": "开始游戏",
+              "optionIndex": 0,
+              "sceneId": null,
+              "globalState": {
+                "core_worldview": {
+                  "chapters": {
+                    "chapter1": {
+                      "conflict_end_condition": "主角成功修复了区域内的应急照明与空气过滤装置，稳定了幸存者的情绪，并确定了初步的撤离路线，但为此消耗了大量的体力与备用氧气。",
+                      "main_conflict": "矿难突发，主角被困于深层作业区，通讯中断，氧气储备仅剩24小时。面对惊慌失措的同事，主角必须在混乱中建立秩序，决定是独自寻找出口，还是组织人员进行初步的管网加固，以防止坍塌范围扩大。"
+                    },
+                    "chapter2": {
+                      "conflict_end_condition": "主角最终选择绕行废弃矿道，虽然成功避开了坍塌区，但受伤同事因体力不支未能跟上，主角在极度愧疚中独自抵达了中转站。",
+                      "main_conflict": "撤离途中遭遇二次地壳震动，通往中转站的唯一通道被封死。主角面临抉择：是强行挖掘耗尽氧气，还是绕行至高辐射的废弃矿道。此时，一名受伤的同事请求主角放弃他，以减轻负担，主角需在“抛弃”与“拖累”中寻找平衡。"
+                    },
+                    "chapter3": {
+                      "conflict_end_condition": "主角与幸存者达成默契，通过抽签决定留守者。主角最终获救，但看着舱门外逐渐静止的同伴，他意识到自己虽完成了任务，却永远失去了那段并肩作战的羁绊，带着这份遗憾回归地球。",
+                      "main_conflict": "抵达救援舱前夕，氧气循环系统彻底失效，救援舱仅剩一个舱位。主角发现还有一名幸存者，两人必须通过协作完成最后的舱门手动开启，但开启过程需要一人留在外部手动操作，这意味着留守者将因氧气耗尽而无法生还。"
+                    }
+                  },
+                  "characters": {},
+                  "forces": {},
+                  "game_style": "本作为硬核工业现实主义风格，采用冷峻的低饱和度视觉表现。叙事节奏平稳且压抑，侧重于展现极端环境下人类的生理极限与心理博弈，强调“人在系统面前的渺小”与“个体在绝境中的微弱尊严”。",
+                  "main_quest": "在矿难发生后的七日内，主角需从坍塌的深层矿区撤离至地表救援舱。目标并非拯救所有人，而是尽可能在有限的氧气储备下，修复关键节点的维生系统，确保自己与部分同事能存活至救援队抵达。挑战在于资源分配的道德困境：是优先修复公共氧气循环系统以救助更多人，还是通过牺牲部分区域的供氧来保障自身撤离路线的畅通。最终目标是达成撤离，但无论如何选择，都无法挽回所有逝去的生命，主角将带着这份沉重的记忆回归地球，面对失去同伴的现实。",
+                  "protagonist_ability": "主角并无超能力，其“能力”源于长期的工程实践经验与对矿区复杂管网的深度记忆。使用方式表现为通过手持终端对环境数据进行精准分析，通过有限的维修工具进行应急修复。限制在于其体力与精神值随时间流逝而剧烈下降，且任何修复行为都会消耗宝贵的氧气与时间，主角必须在“抢修设备”与“维持自身生存”之间做出残酷的取舍。",
+                  "world_basic_setting": "故事背景设定在21世纪末，月球背面“静海”工业区。人类已实现月球矿产的商业化开采，主角作为一名普通的氦-3开采工程师，生活在由高压舱室构成的封闭聚落中。这里没有英雄主义，只有严苛的排班表、不断老化的维生系统与高额的债务压力。社会结构高度阶级化，矿工被视为消耗品，企业通过算法控制氧气配给与工时。关键事件“静海矿难”并非源于外星入侵或阴谋，而是因地壳微震导致的一场不可抗力的工业事故，导致主供氧管道断裂，整个矿区陷入了长达七日的生存倒计时。这里没有超能力，只有物理定律、有限的资源与人性在生存压力下的真实折射。"
+                },
+                "flow_worldline": {
+                  "characters": {},
+                  "current_chapter": "chapter1",
+                  "environment": {}
+                },
+                "game_id": "game_1777623322_9hwb3v",
+                "image_style": {
+                  "type": "cyberpunk"
+                },
+                "meta": {
+                  "detail_async": true
+                },
+                "protagonist_canonical": {
+                  "age_range": "中年",
+                  "gender": "男性",
+                  "name_en": "Lin Yuan",
+                  "name_zh": "林远",
+                  "signature_look_keywords": "疲惫的眼神、灰白的工装、粗糙的双手、略显凌乱的短发、额头的伤疤、沉默寡言、坚韧、写实风格、沧桑感、实用主义者",
+                  "work_en": "The Silence of Mare Tranquillitatis",
+                  "work_zh": "静海余生"
+                },
+                "tone": "normal_ending",
+                "user_theme": "月球矿难七日",
+                "_benchmark_profile": "fullready_strict",
+                "_benchmark_measurement": "fullready_nextturn",
+                "_benchmark_read_wait_s": 0.0
+              }
+            },
+            "start_ts": 1777623330.171165,
+            "end_ts": 1777623390.193727,
+            "provider_events": {
+              "event_count": 6,
+              "queue_wait_ms": {
+                "count": 6,
+                "min": 0.0,
+                "max": 0.0,
+                "mean": 0.0,
+                "median": 0.0,
+                "p95": 0.0
+              },
+              "latency_ms": {
+                "count": 4,
+                "min": 3229.0,
+                "max": 13038.0,
+                "mean": 7021.25,
+                "median": 5909.0,
+                "p95": 12199.8
+              },
+              "llm_success_count": 4,
+              "image_success_count": 0,
+              "request_thread_event_count": 0,
+              "provider_429_count": 0,
+              "provider_timeout_count": 0,
+              "shared_backoff_wait_ms_total": 0,
+              "retry_heavy_event_count": 0,
+              "main_character_event_count": 0,
+              "scene_image_event_count": 0
+            },
+            "request_error": "timeout"
+          }
+        ],
+        "attempt_count": 1,
+        "request_elapsed_s": 60.023,
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "timeout",
+        "has_scene": false,
+        "has_image": false
+      },
+      "second_click": {},
+      "full_ready": {},
+      "placeholder": false,
+      "transport_success": false,
+      "strict_success": false,
+      "failure_bucket": "first_click_timeout",
+      "cache_path_classification": "first_click_timeout",
+      "cache_hit_reason": null,
+      "cache_miss_reason": null,
+      "global_state_key_drift_detected": false,
+      "scene_id_mismatch_detected": false,
+      "selected_option_mismatch_detected": false,
+      "success": false
+    }
+  ]
+}

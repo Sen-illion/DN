@@ -1,0 +1,362 @@
+{
+  "summary": {
+    "experiment_name": "phase26_DNQBV1_019",
+    "profile": "fullready_strict",
+    "sample_size": 1,
+    "read_wait_s": 0.0,
+    "suite_start_ts": 1777627243.1175852,
+    "suite_end_ts": 1777627431.3105516,
+    "first_click_elapsed_s": {
+      "count": 0
+    },
+    "first_click_setup_success_count": 0,
+    "second_click_elapsed_s": {
+      "count": 0
+    },
+    "second_click_success_count": 0,
+    "transport_success_count": 0,
+    "strict_success_count": 0,
+    "likely_hit_count": 0,
+    "likely_hit_rate": 0.0,
+    "failure_bucket_counts": {
+      "first_click_timeout": 1
+    },
+    "placeholder_strict_fail_count": 0,
+    "cache_hit_reason_counts": {},
+    "cache_miss_reason_counts": {},
+    "global_state_key_drift_detected_count": 0,
+    "scene_id_mismatch_detected_count": 0,
+    "selected_option_mismatch_detected_count": 0,
+    "aborted": false,
+    "success_count": 0,
+    "text_ready_elapsed_s": {
+      "count": 0
+    },
+    "image_ready_elapsed_s": {
+      "count": 0
+    },
+    "full_ready_elapsed_s": {
+      "count": 0
+    },
+    "real_scene_count": 0,
+    "real_scene_rate": 0.0,
+    "direct_image_count": 0,
+    "async_image_count": 0,
+    "placeholder_count": 0,
+    "placeholder_rate": 0.0,
+    "direct_image_rate": 0.0,
+    "async_image_rate": 0.0,
+    "provider_retry_heavy_count": 0,
+    "provider_429_count": 0,
+    "provider_timeout_count": 0,
+    "provider_backoff_wait_ms_total": 0,
+    "main_character_contention_suspected_count": 0,
+    "notes": "phase26 setup-vs-measurement separation probe"
+  },
+  "runs": [
+    {
+      "benchmark_id": "DNQBV1_019",
+      "theme_id": 12,
+      "theme": "维多利亚钟表匠",
+      "read_wait_s": 0.0,
+      "full_ready_mode": true,
+      "profile": "fullready_strict",
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 8.086,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过变卖父亲留下的旧工具筹集资金，成功修复了古董计时器，赢得了贵族的赏识并获得了一笔报酬，暂时缓解了经济危机，但同时也因过度劳累导致手部出现轻微震颤，为后续修复工作埋下隐患。",
+                  "main_conflict": "主角面临着沉重的房租压力与学徒的生计问题，同时，他接到了一个来自贵族的棘手订单，对方要求修复一件被视为“诅咒”的古董计时器。主角必须在维持日常修表业务的微薄收入与投入大量精力修复古董之间做出抉择，而此时，城市钟楼的频繁故障引发了社会恐慌，主角的职业信誉正处于崩溃边缘。 - 矛盾结束条件：主角通过变卖父亲留下的旧工具筹集资金，成功修复了古董计时器，赢得了贵族的赏识并获得了一笔报酬，暂时缓解了经济危机，但同时也因过度劳累导致手部出现轻微震颤，为后续修复工作埋下隐患。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角在废弃的钟表仓库中找到了替代零件，并凭借“机械共鸣”能力修正了图纸错误，完成了古钟主体的修复，但因私自修改图纸，他被取消了部分官方补贴，不得不以更低廉的价格继续承接繁重的民用修理工作。",
+                  "main_conflict": "主角开始着手修复“百年古钟”，却发现其核心零件早已被腐蚀，且官方提供的图纸存在致命错误。与此同时，竞争对手为了垄断市场，暗中破坏了主角的工坊，导致主角失去了关键的精密校准仪。主角陷入了技术瓶颈与外部打压的双重困境，他必须在坚持真相与妥协于官方错误图纸之间做出艰难抉择。 - 矛盾结束条件：主角在废弃的钟表仓库中找到了替代零件，并凭借“机械共鸣”能力修正了图纸错误，完成了古钟主体的修复，但因私自修改图纸，他被取消了部分官方补贴，不得不以更低廉的价格继续承接繁重的民用修理工作。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角选择修复古钟的计时功能，却隐瞒了其揭露真相的联动机制，古钟重新敲响，主角获得了预期的头衔与安稳，但古钟从此失去了灵魂，成为了一件平庸的装饰品，主角在钟声中释然，接受了这份不完美的圆满。 ### 【主角规范信息】 主角姓名(中)：埃利亚斯·索恩 主角姓名(英)：Elias Thorne 性别：男性 年龄感：青年 所属作品(中)：齿轮与余烬 所属作品(英)：Gears and Embers 标志性外观关键词：棕色卷发、沾满油污的围裙、深陷的眼窝、专注的眼神、指尖布满老茧、常年佩戴单片放大镜、瘦削、沉默寡言、怀表链、深色衬衫、忧郁而坚韧、工装裤 ## 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决",
+                  "main_conflict": "古钟修复进入最后阶段，主角发现古钟的运行逻辑与城市当前的计时制度存在根本冲突，若完全修复，古钟将揭露城市供能系统的秘密，从而招致政府的取缔。主角面临着“揭露真相但失去一切”与“维持现状但获得安稳”的终极抉择，他必须在理想的完整与现实的生存之间，为自己的努力画上句号。 - 矛盾结束条件：主角选择修复古钟的计时功能，却隐瞒了其揭露真相的联动机制，古钟重新敲响，主角获得了预期的头衔与安稳，但古钟从此失去了灵魂，成为了一件平庸的装饰品，主角在钟声中释然，接受了这份不完美的圆满。 ### 【主角规范信息】 主角姓名(中)：埃利亚斯·索恩 主角姓名(英)：Elias Thorne 性别：男性 年龄感：青年 所属作品(中)：齿轮与余烬 所属作品(英)：Gears and Embers 标志性外观关键词：棕色卷发、沾满油污的围裙、深陷的眼窝、专注的眼神、指尖布满老茧、常年佩戴单片放大镜、瘦削、沉默寡言、怀表链、深色衬衫、忧郁而坚韧、工装裤 ## 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "采用冷峻而细腻的写实主义风格，色调偏向黄铜色与阴雨灰。通过对机械齿轮、油渍、陈旧木质纹理的极致刻画，营造出一种工业革命末期特有的压抑与秩序感。叙事节奏平稳，强调环境叙事与细微的情绪流动，力求在琐碎的日常劳作中，勾勒出个体在时代洪流下的真实质感。",
+              "main_quest": "主角的目标是修复一座象征城市荣耀的“百年古钟”，以此获得官方认证的“首席钟表匠”头衔，从而改善贫困的家庭生活。任务分为三个阶段：首先是搜集失传的特种合金零件，这需要深入城市最底层的黑市交易；其次是攻克古钟内部复杂的联动结构，这要求主角在繁重的日常订单中挤出时间进行钻研；最后是应对来自竞争对手的恶意破坏与政府审查。挑战在于，主角必须在维持生计的琐碎订单与追求梦想的宏大目标间寻找平衡，最终发现，即便修复了古钟，也无法改变城市计时制度的压迫，只能在有限的范围内，为自己和身边人争取到一点点喘息的自由。",
+              "protagonist_ability": "主角拥有一种被称为“机械共鸣”的感知力，源于长期与精密零件接触产生的职业直觉。通过指尖触碰，能感知钟表内部齿轮的微小磨损与运行阻滞，从而在不拆解的情况下精准定位故障。限制在于，这种能力极度消耗体力，且只能用于修复，无法改变机械本身的物理结构，更无法修复因时代变迁而彻底过时的旧式机芯。",
+              "world_basic_setting": "故事发生于19世纪末的虚构工业城市“格林威治”，这里是蒸汽与齿轮的巅峰，也是贫富差距的深渊。城市被严格的钟表计时系统统治，所有人的生活节奏被统一的公共大钟校准，迟到意味着扣除生存配给。社会阶层固化，上层贵族追求精密机械带来的虚荣，底层劳工则在烟囱与齿轮间耗尽生命。关键事件“大停摆”曾导致城市供能系统瘫痪，引发了长达三年的混乱，此后政府对精密计时器实施了严苛的管制。在这个世界，时间不仅是度量衡，更是权力的象征。钟表匠不仅是修理工，更是维护城市秩序的底层齿轮，他们终日与发条、游丝为伍，在精密零件的缝隙中，窥见这座城市冰冷而真实的运作逻辑。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1777627243_ndz42e",
+            "image_style": {
+              "subtype": "rococo",
+              "type": "oil_painting"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "gender": "男性"
+            },
+            "tone": "normal_ending",
+            "user_theme": "维多利亚钟表匠"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "request_payload": {
+          "gameTheme": "维多利亚钟表匠",
+          "protagonistAttr": {},
+          "difficulty": "normal",
+          "toneKey": "normal_ending",
+          "imageStyle": {
+            "type": "oil_painting",
+            "subtype": "rococo"
+          },
+          "_benchmark_profile": "fullready_strict",
+          "_benchmark_measurement": "fullready_nextturn",
+          "_benchmark_read_wait_s": 0.0
+        },
+        "start_ts": 1777627243.1175888,
+        "end_ts": 1777627251.2037039,
+        "provider_events": {
+          "event_count": 4,
+          "queue_wait_ms": {
+            "count": 4,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 1,
+            "min": 8076.0,
+            "max": 8076.0,
+            "mean": 8076.0,
+            "median": 8076.0,
+            "p95": 8076.0
+          },
+          "llm_success_count": 1,
+          "image_success_count": 0,
+          "request_thread_event_count": 2,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0
+        },
+        "status": "success",
+        "game_id": "game_1777627243_ndz42e"
+      },
+      "first_click": {
+        "http_status": null,
+        "elapsed_s": 180.014,
+        "response_json": {
+          "status": "timeout",
+          "message": "HTTPConnectionPool(host='127.0.0.1', port=5008): Read timed out. (read timeout=180)"
+        },
+        "request_payload": {
+          "option": "开始游戏",
+          "optionIndex": 0,
+          "sceneId": null,
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过变卖父亲留下的旧工具筹集资金，成功修复了古董计时器，赢得了贵族的赏识并获得了一笔报酬，暂时缓解了经济危机，但同时也因过度劳累导致手部出现轻微震颤，为后续修复工作埋下隐患。",
+                  "main_conflict": "主角面临着沉重的房租压力与学徒的生计问题，同时，他接到了一个来自贵族的棘手订单，对方要求修复一件被视为“诅咒”的古董计时器。主角必须在维持日常修表业务的微薄收入与投入大量精力修复古董之间做出抉择，而此时，城市钟楼的频繁故障引发了社会恐慌，主角的职业信誉正处于崩溃边缘。 - 矛盾结束条件：主角通过变卖父亲留下的旧工具筹集资金，成功修复了古董计时器，赢得了贵族的赏识并获得了一笔报酬，暂时缓解了经济危机，但同时也因过度劳累导致手部出现轻微震颤，为后续修复工作埋下隐患。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角在废弃的钟表仓库中找到了替代零件，并凭借“机械共鸣”能力修正了图纸错误，完成了古钟主体的修复，但因私自修改图纸，他被取消了部分官方补贴，不得不以更低廉的价格继续承接繁重的民用修理工作。",
+                  "main_conflict": "主角开始着手修复“百年古钟”，却发现其核心零件早已被腐蚀，且官方提供的图纸存在致命错误。与此同时，竞争对手为了垄断市场，暗中破坏了主角的工坊，导致主角失去了关键的精密校准仪。主角陷入了技术瓶颈与外部打压的双重困境，他必须在坚持真相与妥协于官方错误图纸之间做出艰难抉择。 - 矛盾结束条件：主角在废弃的钟表仓库中找到了替代零件，并凭借“机械共鸣”能力修正了图纸错误，完成了古钟主体的修复，但因私自修改图纸，他被取消了部分官方补贴，不得不以更低廉的价格继续承接繁重的民用修理工作。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角选择修复古钟的计时功能，却隐瞒了其揭露真相的联动机制，古钟重新敲响，主角获得了预期的头衔与安稳，但古钟从此失去了灵魂，成为了一件平庸的装饰品，主角在钟声中释然，接受了这份不完美的圆满。 ### 【主角规范信息】 主角姓名(中)：埃利亚斯·索恩 主角姓名(英)：Elias Thorne 性别：男性 年龄感：青年 所属作品(中)：齿轮与余烬 所属作品(英)：Gears and Embers 标志性外观关键词：棕色卷发、沾满油污的围裙、深陷的眼窝、专注的眼神、指尖布满老茧、常年佩戴单片放大镜、瘦削、沉默寡言、怀表链、深色衬衫、忧郁而坚韧、工装裤 ## 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决",
+                  "main_conflict": "古钟修复进入最后阶段，主角发现古钟的运行逻辑与城市当前的计时制度存在根本冲突，若完全修复，古钟将揭露城市供能系统的秘密，从而招致政府的取缔。主角面临着“揭露真相但失去一切”与“维持现状但获得安稳”的终极抉择，他必须在理想的完整与现实的生存之间，为自己的努力画上句号。 - 矛盾结束条件：主角选择修复古钟的计时功能，却隐瞒了其揭露真相的联动机制，古钟重新敲响，主角获得了预期的头衔与安稳，但古钟从此失去了灵魂，成为了一件平庸的装饰品，主角在钟声中释然，接受了这份不完美的圆满。 ### 【主角规范信息】 主角姓名(中)：埃利亚斯·索恩 主角姓名(英)：Elias Thorne 性别：男性 年龄感：青年 所属作品(中)：齿轮与余烬 所属作品(英)：Gears and Embers 标志性外观关键词：棕色卷发、沾满油污的围裙、深陷的眼窝、专注的眼神、指尖布满老茧、常年佩戴单片放大镜、瘦削、沉默寡言、怀表链、深色衬衫、忧郁而坚韧、工装裤 ## 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "采用冷峻而细腻的写实主义风格，色调偏向黄铜色与阴雨灰。通过对机械齿轮、油渍、陈旧木质纹理的极致刻画，营造出一种工业革命末期特有的压抑与秩序感。叙事节奏平稳，强调环境叙事与细微的情绪流动，力求在琐碎的日常劳作中，勾勒出个体在时代洪流下的真实质感。",
+              "main_quest": "主角的目标是修复一座象征城市荣耀的“百年古钟”，以此获得官方认证的“首席钟表匠”头衔，从而改善贫困的家庭生活。任务分为三个阶段：首先是搜集失传的特种合金零件，这需要深入城市最底层的黑市交易；其次是攻克古钟内部复杂的联动结构，这要求主角在繁重的日常订单中挤出时间进行钻研；最后是应对来自竞争对手的恶意破坏与政府审查。挑战在于，主角必须在维持生计的琐碎订单与追求梦想的宏大目标间寻找平衡，最终发现，即便修复了古钟，也无法改变城市计时制度的压迫，只能在有限的范围内，为自己和身边人争取到一点点喘息的自由。",
+              "protagonist_ability": "主角拥有一种被称为“机械共鸣”的感知力，源于长期与精密零件接触产生的职业直觉。通过指尖触碰，能感知钟表内部齿轮的微小磨损与运行阻滞，从而在不拆解的情况下精准定位故障。限制在于，这种能力极度消耗体力，且只能用于修复，无法改变机械本身的物理结构，更无法修复因时代变迁而彻底过时的旧式机芯。",
+              "world_basic_setting": "故事发生于19世纪末的虚构工业城市“格林威治”，这里是蒸汽与齿轮的巅峰，也是贫富差距的深渊。城市被严格的钟表计时系统统治，所有人的生活节奏被统一的公共大钟校准，迟到意味着扣除生存配给。社会阶层固化，上层贵族追求精密机械带来的虚荣，底层劳工则在烟囱与齿轮间耗尽生命。关键事件“大停摆”曾导致城市供能系统瘫痪，引发了长达三年的混乱，此后政府对精密计时器实施了严苛的管制。在这个世界，时间不仅是度量衡，更是权力的象征。钟表匠不仅是修理工，更是维护城市秩序的底层齿轮，他们终日与发条、游丝为伍，在精密零件的缝隙中，窥见这座城市冰冷而真实的运作逻辑。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1777627243_ndz42e",
+            "image_style": {
+              "subtype": "rococo",
+              "type": "oil_painting"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "gender": "男性"
+            },
+            "tone": "normal_ending",
+            "user_theme": "维多利亚钟表匠",
+            "_benchmark_profile": "fullready_strict",
+            "_benchmark_measurement": "fullready_nextturn",
+            "_benchmark_read_wait_s": 0.0
+          }
+        },
+        "start_ts": 1777627251.254695,
+        "end_ts": 1777627431.2686758,
+        "provider_events": {
+          "event_count": 10,
+          "queue_wait_ms": {
+            "count": 10,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 6,
+            "min": 2463.0,
+            "max": 14795.0,
+            "mean": 8427.0,
+            "median": 9070.0,
+            "p95": 13564.75
+          },
+          "llm_success_count": 4,
+          "image_success_count": 0,
+          "request_thread_event_count": 2,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 4
+        },
+        "request_error": "timeout",
+        "attempts": [
+          {
+            "http_status": null,
+            "elapsed_s": 180.014,
+            "response_json": {
+              "status": "timeout",
+              "message": "HTTPConnectionPool(host='127.0.0.1', port=5008): Read timed out. (read timeout=180)"
+            },
+            "request_payload": {
+              "option": "开始游戏",
+              "optionIndex": 0,
+              "sceneId": null,
+              "globalState": {
+                "core_worldview": {
+                  "chapters": {
+                    "chapter1": {
+                      "conflict_end_condition": "主角通过变卖父亲留下的旧工具筹集资金，成功修复了古董计时器，赢得了贵族的赏识并获得了一笔报酬，暂时缓解了经济危机，但同时也因过度劳累导致手部出现轻微震颤，为后续修复工作埋下隐患。",
+                      "main_conflict": "主角面临着沉重的房租压力与学徒的生计问题，同时，他接到了一个来自贵族的棘手订单，对方要求修复一件被视为“诅咒”的古董计时器。主角必须在维持日常修表业务的微薄收入与投入大量精力修复古董之间做出抉择，而此时，城市钟楼的频繁故障引发了社会恐慌，主角的职业信誉正处于崩溃边缘。 - 矛盾结束条件：主角通过变卖父亲留下的旧工具筹集资金，成功修复了古董计时器，赢得了贵族的赏识并获得了一笔报酬，暂时缓解了经济危机，但同时也因过度劳累导致手部出现轻微震颤，为后续修复工作埋下隐患。"
+                    },
+                    "chapter2": {
+                      "conflict_end_condition": "主角在废弃的钟表仓库中找到了替代零件，并凭借“机械共鸣”能力修正了图纸错误，完成了古钟主体的修复，但因私自修改图纸，他被取消了部分官方补贴，不得不以更低廉的价格继续承接繁重的民用修理工作。",
+                      "main_conflict": "主角开始着手修复“百年古钟”，却发现其核心零件早已被腐蚀，且官方提供的图纸存在致命错误。与此同时，竞争对手为了垄断市场，暗中破坏了主角的工坊，导致主角失去了关键的精密校准仪。主角陷入了技术瓶颈与外部打压的双重困境，他必须在坚持真相与妥协于官方错误图纸之间做出艰难抉择。 - 矛盾结束条件：主角在废弃的钟表仓库中找到了替代零件，并凭借“机械共鸣”能力修正了图纸错误，完成了古钟主体的修复，但因私自修改图纸，他被取消了部分官方补贴，不得不以更低廉的价格继续承接繁重的民用修理工作。"
+                    },
+                    "chapter3": {
+                      "conflict_end_condition": "主角选择修复古钟的计时功能，却隐瞒了其揭露真相的联动机制，古钟重新敲响，主角获得了预期的头衔与安稳，但古钟从此失去了灵魂，成为了一件平庸的装饰品，主角在钟声中释然，接受了这份不完美的圆满。 ### 【主角规范信息】 主角姓名(中)：埃利亚斯·索恩 主角姓名(英)：Elias Thorne 性别：男性 年龄感：青年 所属作品(中)：齿轮与余烬 所属作品(英)：Gears and Embers 标志性外观关键词：棕色卷发、沾满油污的围裙、深陷的眼窝、专注的眼神、指尖布满老茧、常年佩戴单片放大镜、瘦削、沉默寡言、怀表链、深色衬衫、忧郁而坚韧、工装裤 ## 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决",
+                      "main_conflict": "古钟修复进入最后阶段，主角发现古钟的运行逻辑与城市当前的计时制度存在根本冲突，若完全修复，古钟将揭露城市供能系统的秘密，从而招致政府的取缔。主角面临着“揭露真相但失去一切”与“维持现状但获得安稳”的终极抉择，他必须在理想的完整与现实的生存之间，为自己的努力画上句号。 - 矛盾结束条件：主角选择修复古钟的计时功能，却隐瞒了其揭露真相的联动机制，古钟重新敲响，主角获得了预期的头衔与安稳，但古钟从此失去了灵魂，成为了一件平庸的装饰品，主角在钟声中释然，接受了这份不完美的圆满。 ### 【主角规范信息】 主角姓名(中)：埃利亚斯·索恩 主角姓名(英)：Elias Thorne 性别：男性 年龄感：青年 所属作品(中)：齿轮与余烬 所属作品(英)：Gears and Embers 标志性外观关键词：棕色卷发、沾满油污的围裙、深陷的眼窝、专注的眼神、指尖布满老茧、常年佩戴单片放大镜、瘦削、沉默寡言、怀表链、深色衬衫、忧郁而坚韧、工装裤 ## 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决"
+                    }
+                  },
+                  "characters": {},
+                  "forces": {},
+                  "game_style": "采用冷峻而细腻的写实主义风格，色调偏向黄铜色与阴雨灰。通过对机械齿轮、油渍、陈旧木质纹理的极致刻画，营造出一种工业革命末期特有的压抑与秩序感。叙事节奏平稳，强调环境叙事与细微的情绪流动，力求在琐碎的日常劳作中，勾勒出个体在时代洪流下的真实质感。",
+                  "main_quest": "主角的目标是修复一座象征城市荣耀的“百年古钟”，以此获得官方认证的“首席钟表匠”头衔，从而改善贫困的家庭生活。任务分为三个阶段：首先是搜集失传的特种合金零件，这需要深入城市最底层的黑市交易；其次是攻克古钟内部复杂的联动结构，这要求主角在繁重的日常订单中挤出时间进行钻研；最后是应对来自竞争对手的恶意破坏与政府审查。挑战在于，主角必须在维持生计的琐碎订单与追求梦想的宏大目标间寻找平衡，最终发现，即便修复了古钟，也无法改变城市计时制度的压迫，只能在有限的范围内，为自己和身边人争取到一点点喘息的自由。",
+                  "protagonist_ability": "主角拥有一种被称为“机械共鸣”的感知力，源于长期与精密零件接触产生的职业直觉。通过指尖触碰，能感知钟表内部齿轮的微小磨损与运行阻滞，从而在不拆解的情况下精准定位故障。限制在于，这种能力极度消耗体力，且只能用于修复，无法改变机械本身的物理结构，更无法修复因时代变迁而彻底过时的旧式机芯。",
+                  "world_basic_setting": "故事发生于19世纪末的虚构工业城市“格林威治”，这里是蒸汽与齿轮的巅峰，也是贫富差距的深渊。城市被严格的钟表计时系统统治，所有人的生活节奏被统一的公共大钟校准，迟到意味着扣除生存配给。社会阶层固化，上层贵族追求精密机械带来的虚荣，底层劳工则在烟囱与齿轮间耗尽生命。关键事件“大停摆”曾导致城市供能系统瘫痪，引发了长达三年的混乱，此后政府对精密计时器实施了严苛的管制。在这个世界，时间不仅是度量衡，更是权力的象征。钟表匠不仅是修理工，更是维护城市秩序的底层齿轮，他们终日与发条、游丝为伍，在精密零件的缝隙中，窥见这座城市冰冷而真实的运作逻辑。"
+                },
+                "flow_worldline": {
+                  "characters": {},
+                  "current_chapter": "chapter1",
+                  "environment": {}
+                },
+                "game_id": "game_1777627243_ndz42e",
+                "image_style": {
+                  "subtype": "rococo",
+                  "type": "oil_painting"
+                },
+                "meta": {
+                  "detail_async": true
+                },
+                "protagonist_canonical": {
+                  "gender": "男性"
+                },
+                "tone": "normal_ending",
+                "user_theme": "维多利亚钟表匠",
+                "_benchmark_profile": "fullready_strict",
+                "_benchmark_measurement": "fullready_nextturn",
+                "_benchmark_read_wait_s": 0.0
+              }
+            },
+            "start_ts": 1777627251.254695,
+            "end_ts": 1777627431.2686758,
+            "provider_events": {
+              "event_count": 10,
+              "queue_wait_ms": {
+                "count": 10,
+                "min": 0.0,
+                "max": 0.0,
+                "mean": 0.0,
+                "median": 0.0,
+                "p95": 0.0
+              },
+              "latency_ms": {
+                "count": 6,
+                "min": 2463.0,
+                "max": 14795.0,
+                "mean": 8427.0,
+                "median": 9070.0,
+                "p95": 13564.75
+              },
+              "llm_success_count": 4,
+              "image_success_count": 0,
+              "request_thread_event_count": 2,
+              "provider_429_count": 0,
+              "provider_timeout_count": 0,
+              "shared_backoff_wait_ms_total": 0,
+              "retry_heavy_event_count": 0,
+              "main_character_event_count": 0,
+              "scene_image_event_count": 4
+            },
+            "request_error": "timeout"
+          }
+        ],
+        "attempt_count": 1,
+        "request_elapsed_s": 180.014,
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "timeout",
+        "has_scene": false,
+        "has_image": false,
+        "setup_success": false
+      },
+      "second_click": {},
+      "full_ready": {},
+      "placeholder": false,
+      "transport_success": false,
+      "strict_success": false,
+      "failure_bucket": "first_click_timeout",
+      "cache_path_classification": "first_click_timeout",
+      "cache_hit_reason": null,
+      "cache_miss_reason": null,
+      "global_state_key_drift_detected": false,
+      "scene_id_mismatch_detected": false,
+      "selected_option_mismatch_detected": false,
+      "success": false
+    }
+  ]
+}

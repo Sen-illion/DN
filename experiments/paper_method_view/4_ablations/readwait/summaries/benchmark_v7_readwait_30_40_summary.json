@@ -1,0 +1,215 @@
+{
+  "summary": {
+    "off_30s": {
+      "sample_size": 6,
+      "read_wait_s": 30.0,
+      "success_count": 6,
+      "second_click_mean_s": 0.028,
+      "second_click_median_s": 0.029,
+      "second_click_p95_s": 0.039,
+      "real_scene_count": 0,
+      "real_scene_rate": 0.0,
+      "placeholder_count": 6,
+      "likely_hit_count": 6,
+      "likely_hit_rate": 1.0,
+      "real_scene_mean_s": null,
+      "real_scene_median_s": null
+    },
+    "on_30s": {
+      "sample_size": 6,
+      "read_wait_s": 30.0,
+      "success_count": 6,
+      "second_click_mean_s": 10.968,
+      "second_click_median_s": 0.015,
+      "second_click_p95_s": 49.302,
+      "real_scene_count": 1,
+      "real_scene_rate": 0.167,
+      "placeholder_count": 5,
+      "likely_hit_count": 5,
+      "likely_hit_rate": 0.833,
+      "real_scene_mean_s": 65.725,
+      "real_scene_median_s": 65.725
+    },
+    "off_40s": {
+      "sample_size": 6,
+      "read_wait_s": 40.0,
+      "success_count": 6,
+      "second_click_mean_s": 0.017,
+      "second_click_median_s": 0.013,
+      "second_click_p95_s": 0.029,
+      "real_scene_count": 3,
+      "real_scene_rate": 0.5,
+      "placeholder_count": 3,
+      "likely_hit_count": 6,
+      "likely_hit_rate": 1.0,
+      "real_scene_mean_s": 0.016,
+      "real_scene_median_s": 0.013
+    },
+    "on_40s": {
+      "sample_size": 6,
+      "read_wait_s": 40.0,
+      "success_count": 6,
+      "second_click_mean_s": 20.106,
+      "second_click_median_s": 0.032,
+      "second_click_p95_s": 90.394,
+      "real_scene_count": 3,
+      "real_scene_rate": 0.5,
+      "placeholder_count": 3,
+      "likely_hit_count": 5,
+      "likely_hit_rate": 0.833,
+      "real_scene_mean_s": 40.186,
+      "real_scene_median_s": 0.031
+    }
+  },
+  "paired": {
+    "30s": {
+      "rows": [
+        {
+          "benchmark_id": "DNQBV1_001",
+          "off_elapsed_s": 0.036,
+          "on_elapsed_s": 0.007,
+          "off_real": false,
+          "on_real": false,
+          "off_hit": "likely_hit",
+          "on_hit": "likely_hit",
+          "faster": "on"
+        },
+        {
+          "benchmark_id": "DNQBV1_002",
+          "off_elapsed_s": 0.028,
+          "on_elapsed_s": 0.017,
+          "off_real": false,
+          "on_real": false,
+          "off_hit": "likely_hit",
+          "on_hit": "likely_hit",
+          "faster": "on"
+        },
+        {
+          "benchmark_id": "DNQBV1_003",
+          "off_elapsed_s": 0.04,
+          "on_elapsed_s": 65.725,
+          "off_real": false,
+          "on_real": true,
+          "off_hit": "likely_hit",
+          "on_hit": "likely_miss_or_partial",
+          "faster": "off"
+        },
+        {
+          "benchmark_id": "DNQBV1_004",
+          "off_elapsed_s": 0.021,
+          "on_elapsed_s": 0.035,
+          "off_real": false,
+          "on_real": false,
+          "off_hit": "likely_hit",
+          "on_hit": "likely_hit",
+          "faster": "off"
+        },
+        {
+          "benchmark_id": "DNQBV1_005",
+          "off_elapsed_s": 0.03,
+          "on_elapsed_s": 0.01,
+          "off_real": false,
+          "on_real": false,
+          "off_hit": "likely_hit",
+          "on_hit": "likely_hit",
+          "faster": "on"
+        },
+        {
+          "benchmark_id": "DNQBV1_006",
+          "off_elapsed_s": 0.01,
+          "on_elapsed_s": 0.013,
+          "off_real": false,
+          "on_real": false,
+          "off_hit": "likely_hit",
+          "on_hit": "likely_hit",
+          "faster": "off"
+        }
+      ],
+      "counts": {
+        "off_faster": 3,
+        "on_faster": 3,
+        "tie": 0
+      }
+    },
+    "40s": {
+      "rows": [
+        {
+          "benchmark_id": "DNQBV1_001",
+          "off_elapsed_s": 0.014,
+          "on_elapsed_s": 120.514,
+          "off_real": false,
+          "on_real": true,
+          "off_hit": "likely_hit",
+          "on_hit": "likely_miss_or_partial",
+          "faster": "off"
+        },
+        {
+          "benchmark_id": "DNQBV1_002",
+          "off_elapsed_s": 0.025,
+          "on_elapsed_s": 0.013,
+          "off_real": true,
+          "on_real": true,
+          "off_hit": "likely_hit",
+          "on_hit": "likely_hit",
+          "faster": "on"
+        },
+        {
+          "benchmark_id": "DNQBV1_003",
+          "off_elapsed_s": 0.013,
+          "on_elapsed_s": 0.031,
+          "off_real": true,
+          "on_real": true,
+          "off_hit": "likely_hit",
+          "on_hit": "likely_hit",
+          "faster": "off"
+        },
+        {
+          "benchmark_id": "DNQBV1_004",
+          "off_elapsed_s": 0.01,
+          "on_elapsed_s": 0.033,
+          "off_real": true,
+          "on_real": false,
+          "off_hit": "likely_hit",
+          "on_hit": "likely_hit",
+          "faster": "off"
+        },
+        {
+          "benchmark_id": "DNQBV1_005",
+          "off_elapsed_s": 0.011,
+          "on_elapsed_s": 0.032,
+          "off_real": false,
+          "on_real": false,
+          "off_hit": "likely_hit",
+          "on_hit": "likely_hit",
+          "faster": "off"
+        },
+        {
+          "benchmark_id": "DNQBV1_006",
+          "off_elapsed_s": 0.03,
+          "on_elapsed_s": 0.011,
+          "off_real": false,
+          "on_real": false,
+          "off_hit": "likely_hit",
+          "on_hit": "likely_hit",
+          "faster": "on"
+        }
+      ],
+      "counts": {
+        "off_faster": 4,
+        "on_faster": 2,
+        "tie": 0
+      }
+    }
+  },
+  "derived": {
+    "real_scene_rate_gain_on_minus_off": {
+      "30s": 0.167,
+      "40s": 0.0
+    },
+    "all_second_click_median_gain_s_off_minus_on": {
+      "30s": 0.014,
+      "40s": -0.019
+    }
+  },
+  "note": "v7 uses frontend-aligned second-click payload and realistic 30-40s reading delays."
+}

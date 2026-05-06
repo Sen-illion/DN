@@ -1,0 +1,140 @@
+{
+  "subset_name": "storydiffusion_visual_subset_v1",
+  "parent_benchmark": "DN-quality-benchmark-v1",
+  "purpose": "Visual and multimodal comparison subset for StoryDiffusion with one representative sample per style family.",
+  "selection_rule": "One benchmark item per style family: realistic, cyberpunk, ink_painting, watercolor, anime, oil_painting.",
+  "sample_size": 6,
+  "style_coverage": [
+    "anime",
+    "cyberpunk",
+    "ink_painting",
+    "oil_painting",
+    "realistic",
+    "watercolor"
+  ],
+  "items": [
+    {
+      "benchmark_id": "DNQBV1_001",
+      "theme_id": 1,
+      "theme": "边陲驿站夜谈录",
+      "image_style": {
+        "type": "realistic"
+      },
+      "expected_genre": "现实边陲叙事",
+      "expected_tone": "克制、怀旧、微苦",
+      "must_have_constraints": [
+        "世界观必须围绕边陲驿站生存与人情展开",
+        "首段剧情应能自然引出一条可推进的现实冲突",
+        "至少返回 2 个具体可执行选项",
+        "场景图应与写实风格一致"
+      ],
+      "forbidden_issues": [
+        "现代互联网术语突兀混入",
+        "调试文本或报错文本外泄",
+        "图像 prompt 出现 URL 或 data:image",
+        "人物设定串场到其他作品"
+      ]
+    },
+    {
+      "benchmark_id": "DNQBV1_005",
+      "theme_id": 2,
+      "theme": "月球矿难七日",
+      "image_style": {
+        "type": "cyberpunk"
+      },
+      "expected_genre": "近未来科幻灾难",
+      "expected_tone": "高压、冷峻、技术感",
+      "must_have_constraints": [
+        "剧情需围绕月球矿难与生存风险展开",
+        "图像应体现赛博/科幻视觉元素",
+        "首段要有明确危机感与行动起点"
+      ],
+      "forbidden_issues": [
+        "出现古风或校园设定串场",
+        "图像 prompt 混入无关 IP 名称",
+        "选项与危机无关"
+      ]
+    },
+    {
+      "benchmark_id": "DNQBV1_009",
+      "theme_id": 3,
+      "theme": "茶肆说书人",
+      "image_style": {
+        "type": "ink_painting"
+      },
+      "expected_genre": "古风叙事",
+      "expected_tone": "含蓄、韵味、讲述感",
+      "must_have_constraints": [
+        "必须体现茶肆/说书/古风场景",
+        "场景图需符合水墨基调",
+        "首段应有一个能继续讲下去的悬念"
+      ],
+      "forbidden_issues": [
+        "现代都市词汇突兀混入",
+        "水墨风格缺失",
+        "选项不贴合古风语境"
+      ]
+    },
+    {
+      "benchmark_id": "DNQBV1_012",
+      "theme_id": 4,
+      "theme": "深海信标失联",
+      "image_style": {
+        "type": "watercolor"
+      },
+      "expected_genre": "海洋悬疑",
+      "expected_tone": "潮湿、空旷、不安",
+      "must_have_constraints": [
+        "必须体现深海、信标或失联事件",
+        "水彩视觉需体现海洋氛围",
+        "首段剧情应有搜寻或确认线索的任务"
+      ],
+      "forbidden_issues": [
+        "场景转成陆地校园",
+        "图像毫无海洋元素",
+        "选项无法推进搜索"
+      ]
+    },
+    {
+      "benchmark_id": "DNQBV1_015",
+      "theme_id": 5,
+      "theme": "魔法学院期末周",
+      "image_style": {
+        "type": "anime"
+      },
+      "expected_genre": "校园奇幻",
+      "expected_tone": "轻快中带压力、青春感",
+      "must_have_constraints": [
+        "故事必须围绕魔法学院与期末周展开",
+        "动漫风格必须明确",
+        "选项应贴合考试/冒险压力"
+      ],
+      "forbidden_issues": [
+        "完全变成现实考试故事",
+        "图像风格不动漫",
+        "剧情没有魔法元素"
+      ]
+    },
+    {
+      "benchmark_id": "DNQBV1_018",
+      "theme_id": 6,
+      "theme": "民国电报迷案",
+      "image_style": {
+        "type": "oil_painting",
+        "subtype": "impressionist"
+      },
+      "expected_genre": "近代悬疑",
+      "expected_tone": "旧时代、微压抑、调查感",
+      "must_have_constraints": [
+        "需体现民国、电报或迷案",
+        "图像应符合油画/印象派质感",
+        "首段需要建立案件切入口"
+      ],
+      "forbidden_issues": [
+        "现代赛博文本混入",
+        "图像风格偏动漫",
+        "剧情没有案件线索"
+      ]
+    }
+  ]
+}

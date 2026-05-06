@@ -1,0 +1,1644 @@
+{
+  "summary": {
+    "experiment_name": "phase2_DNQBV1_020",
+    "profile": "fullready_strict",
+    "sample_size": 1,
+    "read_wait_s": 0.0,
+    "suite_start_ts": 1777624641.2486098,
+    "suite_end_ts": 1777624650.181041,
+    "second_click_elapsed_s": {
+      "count": 1,
+      "min": 0.023,
+      "max": 0.023,
+      "mean": 0.023,
+      "median": 0.023,
+      "p95": 0.023
+    },
+    "second_click_success_count": 1,
+    "transport_success_count": 1,
+    "strict_success_count": 1,
+    "likely_hit_count": 1,
+    "likely_hit_rate": 1.0,
+    "failure_bucket_counts": {},
+    "placeholder_strict_fail_count": 0,
+    "cache_hit_reason_counts": {
+      "request_scene_completed_with_image": 1
+    },
+    "cache_miss_reason_counts": {},
+    "global_state_key_drift_detected_count": 0,
+    "scene_id_mismatch_detected_count": 0,
+    "selected_option_mismatch_detected_count": 0,
+    "aborted": false,
+    "success_count": 1,
+    "text_ready_elapsed_s": {
+      "count": 1,
+      "min": 0.023,
+      "max": 0.023,
+      "mean": 0.023,
+      "median": 0.023,
+      "p95": 0.023
+    },
+    "image_ready_elapsed_s": {
+      "count": 1,
+      "min": 0.023,
+      "max": 0.023,
+      "mean": 0.023,
+      "median": 0.023,
+      "p95": 0.023
+    },
+    "full_ready_elapsed_s": {
+      "count": 1,
+      "min": 0.023,
+      "max": 0.023,
+      "mean": 0.023,
+      "median": 0.023,
+      "p95": 0.023
+    },
+    "real_scene_count": 1,
+    "real_scene_rate": 1.0,
+    "direct_image_count": 1,
+    "async_image_count": 0,
+    "placeholder_count": 0,
+    "placeholder_rate": 0.0,
+    "direct_image_rate": 1.0,
+    "async_image_rate": 0.0,
+    "provider_retry_heavy_count": 0,
+    "provider_429_count": 0,
+    "provider_timeout_count": 0,
+    "provider_backoff_wait_ms_total": 0,
+    "main_character_contention_suspected_count": 0,
+    "notes": "phase2 cache diagnosis probe"
+  },
+  "runs": [
+    {
+      "benchmark_id": "DNQBV1_020",
+      "theme_id": 18,
+      "theme": "沙漠商队星图",
+      "read_wait_s": 0.0,
+      "full_ready_mode": true,
+      "profile": "fullready_strict",
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 8.763,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过在城镇中完成一系列琐碎的搬运与修理任务筹得资金，并凭借对星图的初步解读说服了犹豫的成员，最终在物资勉强达标的情况下，带领商队驶出城镇大门，正式踏上征途。",
+                  "main_conflict": "商队在出发前夕遭遇物资短缺，主角必须在有限的预算内决定购买昂贵的导航备件还是廉价的净水设备。同时，商队内部对于是否接下这趟高风险任务产生分歧，老练的向导因伤退缩，主角被迫在缺乏经验的情况下承担起领航重任，面对未知的沙海，信任危机在团队中悄然蔓延。 - 矛盾结束条件：主角通过在城镇中完成一系列琐碎的搬运与修理任务筹得资金，并凭借对星图的初步解读说服了犹豫的成员，最终在物资勉强达标的情况下，带领商队驶出城镇大门，正式踏上征途。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角通过修复星盘并利用地磁特征成功避开了一场致命的流沙，同时通过公正的分配方案缓解了内部矛盾，商队在极度疲惫中抵达了一个临时避难所，虽然物资损失惨重，但团队凝聚力得到初步建立。",
+                  "main_conflict": "商队深入寂静沙海，遭遇突发沙尘暴导致星盘受损，导航陷入瘫痪。此时，商队内部因水源分配不均爆发激烈冲突，主角必须在修复星盘与平息内部矛盾之间做出选择。由于资源极度匮乏，主角不得不放弃一部分非必要物资以换取生存空间，这导致了商队成员对主角决策能力的质疑。 - 矛盾结束条件：主角通过修复星盘并利用地磁特征成功避开了一场致命的流沙，同时通过公正的分配方案缓解了内部矛盾，商队在极度疲惫中抵达了一个临时避难所，虽然物资损失惨重，但团队凝聚力得到初步建立。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角最终选择放弃高额报酬，将物资低价转让给沿途更需要的难民营，换取了商队撤离的补给。虽然任务未能圆满完成，但商队全员平安归来，主角虽然留下了遗憾，却在与荒原的博弈中获得了内心的平静与释然。 ### 【主角规范信息】 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：青年 所属作品(中)：星图余烬 所属作品(英)：Ember of the Star Map 标志性外观关键词：深褐色短发，布满风沙痕迹的皮质风衣，佩戴磨损的黄铜星盘，眼神沉稳而疲惫，指尖常有墨迹，瘦削但结实，脖颈挂着旧地图挂坠，总是带着一个水壶。 ## 【初始世界线】 当前章节：chapter1 主线进度：商队整备阶段 章节矛盾：未解决",
+                  "main_conflict": "商队抵达目的地边缘，却发现云顶绿洲因政权更迭拒绝接收这批物资。主角面临抉择：是强行闯入以完成契约，还是寻找其他出路。此时，主角的身体因长期导航已出现严重透支，且商队成员大多已萌生退意，主角必须在个人职业信誉与同伴生命安全之间做出最终的现实抉择。 - 矛盾结束条件：主角最终选择放弃高额报酬，将物资低价转让给沿途更需要的难民营，换取了商队撤离的补给。虽然任务未能圆满完成，但商队全员平安归来，主角虽然留下了遗憾，却在与荒原的博弈中获得了内心的平静与释然。 ### 【主角规范信息】 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：青年 所属作品(中)：星图余烬 所属作品(英)：Ember of the Star Map 标志性外观关键词：深褐色短发，布满风沙痕迹的皮质风衣，佩戴磨损的黄铜星盘，眼神沉稳而疲惫，指尖常有墨迹，瘦削但结实，脖颈挂着旧地图挂坠，总是带着一个水壶。 ## 【初始世界线】 当前章节：chapter1 主线进度：商队整备阶段 章节矛盾：未解决"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为写实主义生存模拟叙事，采用低饱和度美术风格，强调光影在荒漠中的质感。叙事节奏沉稳，侧重于长途跋涉中的琐碎日常、人际磨合与资源博弈，旨在通过细腻的文案构建一种“在干涸中寻找绿洲，在流沙中锚定自我”的真实人生体验。",
+              "main_quest": "主角受雇于一支名为“余烬”的没落商队，目标是穿越被称为“寂静沙海”的无人区，将一批急需的医疗物资送往远方的“云顶绿洲”。任务分为三个阶段：首先是筹措足够的燃料与水源以支撑横穿沙海的消耗；其次是在复杂的地形中通过星图指引避开流沙陷阱与强盗势力；最后是在物资匮乏的极端环境下，平衡商队内部的利益冲突，确保物资在保质期内送达。挑战不仅在于恶劣的自然环境，更在于商队成员因生存压力而产生的猜忌与动摇，主角必须在“完成任务”与“保全同伴”之间做出艰难的取舍。",
+              "protagonist_ability": "主角作为一名“星图师”，其能力源于对古老星图残卷的解读与对地磁波动的敏锐感知。使用方式是通过随身携带的黄铜星盘，结合观测到的星象进行三角定位。限制在于，该能力极度依赖体力与专注力，且星图残卷多有缺失，主角往往只能推测出大致方向，无法精准避开所有危险，且过度使用会导致严重的偏头痛与视力模糊，这使得每一次导航都伴随着身体的损耗。",
+              "world_basic_setting": "故事发生于资源枯竭后的“锈蚀荒原”，这里曾是繁荣的贸易枢纽，如今仅剩零星的绿洲城镇与游荡的商队。社会结构由“水权”与“星图”主导，星图是古文明留下的导航坐标，指引着地下水脉与遗迹的方位。由于地磁紊乱，传统电子设备失效，商队依赖“星图师”通过观测天象与地磁波动进行航行。文化上，人们崇尚“迁徙即生存”，定居被视为一种慢性自杀。关键事件“大干旱”导致旧秩序崩塌，现今的商队不仅要面对极端的昼夜温差与沙尘暴，还要在各聚落间进行物资交换，维持脆弱的生存平衡。在这个世界里，没有救世主，只有为了下一口水而不断前行的普通人，每个人都在为自己的选择支付代价。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1777624641_vi9tp7",
+            "image_style": {
+              "subtype": "classic_oil",
+              "type": "oil_painting"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "gender": "男性"
+            },
+            "tone": "normal_ending",
+            "user_theme": "沙漠商队星图"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "request_payload": {
+          "gameTheme": "沙漠商队星图",
+          "protagonistAttr": {},
+          "difficulty": "normal",
+          "toneKey": "normal_ending",
+          "imageStyle": {
+            "type": "oil_painting",
+            "subtype": "classic_oil"
+          },
+          "_benchmark_profile": "fullready_strict",
+          "_benchmark_measurement": "fullready_nextturn",
+          "_benchmark_read_wait_s": 0.0
+        },
+        "start_ts": 1777624641.2486145,
+        "end_ts": 1777624650.0117476,
+        "provider_events": {
+          "event_count": 5,
+          "queue_wait_ms": {
+            "count": 5,
+            "min": 0.0,
+            "max": 4374.0,
+            "mean": 874.8,
+            "median": 0.0,
+            "p95": 3499.2
+          },
+          "latency_ms": {
+            "count": 2,
+            "min": 4710.0,
+            "max": 8740.0,
+            "mean": 6725.0,
+            "median": 6725.0,
+            "p95": 8538.5
+          },
+          "llm_success_count": 2,
+          "image_success_count": 0,
+          "request_thread_event_count": 2,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0
+        },
+        "status": "success",
+        "game_id": "game_1777624641_vi9tp7"
+      },
+      "long_tail_attribution": {
+        "provider_429_count": 0,
+        "provider_timeout_count": 0,
+        "provider_retry_heavy_count": 0,
+        "provider_backoff_wait_ms_total": 0,
+        "main_character_event_count": 0,
+        "scene_image_event_count": 0,
+        "image_probe_attempt_count": 0,
+        "main_character_contention_suspected": false
+      },
+      "first_click": {
+        "http_status": 200,
+        "elapsed_s": 0.03,
+        "response_json": {
+          "benchmark_diagnostics": {
+            "cache_hit_reason": null,
+            "cache_miss_reason": null,
+            "current_options_key_drift_detected": false,
+            "global_state_key_drift_detected": false,
+            "placeholder": false,
+            "previous_scene_id": null,
+            "recomputed_scene_cache_exists": false,
+            "recomputed_scene_id": null,
+            "request_current_options_count": 0,
+            "request_current_options_hash": "d751713988987e9331980363e24189ce",
+            "request_flow_worldline_hash": "940e38d5f8372eaa58cfdaf4d70a0d30",
+            "request_global_state_hash": "617b1f233d8374a66598e07e1a37d4b6",
+            "request_option_at_index": null,
+            "request_option_index": 0,
+            "request_option_text": "开始游戏",
+            "request_scene_cache_exists": false,
+            "request_scene_id": null,
+            "resolution_path": null,
+            "response_has_image": true,
+            "response_has_scene": true,
+            "response_scene_id": "-2334569867535646044_2686571443291047985",
+            "response_status": "success",
+            "scene_id_mismatch_detected": false,
+            "selected_option_mismatch_detected": false
+          },
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "",
+              "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：青岩书院的图书馆内，空气中弥漫着陈旧纸张与消毒水的混合气味。我推了推鼻梁上滑落的黑框眼镜，指尖沾染的墨迹在泛黄的教材边缘留下一道浅痕。我正低头整理着书架，余光瞥见一本教材的夹层中露出一角粗糙的纸张，那纸质与书院统一的洁白用纸截然不同，带着一种被岁月侵蚀的灰败感。我心跳骤然加速，本能地环顾四周，图书馆管理员老陈正坐在不远处的柜台后，那双浑浊的眼睛透过厚重的镜片，机械地审视着每一个进出的学生。我迅速将那张残页抽离，指尖触碰的瞬间，一股熟悉的、带着父亲书房气息的墨香仿佛在脑海中炸开，那是某种被禁锢的文字碎片。就在这时，老陈放下手中的茶杯，发出刺耳的瓷器碰撞声，他缓缓站起身，目光如炬地向我所在的区域走来。"
+            },
+            "deep_background_links": {},
+            "flow_update": {},
+            "next_options": [
+              "迅速将残页塞入袖口，假装整理书架以掩盖慌乱。",
+              "将残页夹入随身携带的旧笔记本中，主动向老陈询问书架分类问题。"
+            ],
+            "plot_supporting_characters": [],
+            "scene": "青岩书院的图书馆内，空气中弥漫着陈旧纸张与消毒水的混合气味。我推了推鼻梁上滑落的黑框眼镜，指尖沾染的墨迹在泛黄的教材边缘留下一道浅痕。我正低头整理着书架，余光瞥见一本教材的夹层中露出一角粗糙的纸张，那纸质与书院统一的洁白用纸截然不同，带着一种被岁月侵蚀的灰败感。我心跳骤然加速，本能地环顾四周，图书馆管理员老陈正坐在不远处的柜台后，那双浑浊的眼睛透过厚重的镜片，机械地审视着每一个进出的学生。我迅速将那张残页抽离，指尖触碰的瞬间，一股熟悉的、带着父亲书房气息的墨香仿佛在脑海中炸开，那是某种被禁锢的文字碎片。就在这时，老陈放下手中的茶杯，发出刺耳的瓷器碰撞声，他缓缓站起身，目光如炬地向我所在的区域走来。",
+            "sceneId": "-2334569867535646044_2686571443291047985",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-library-discovery-confrontation, realism, dystopian, oppressive, noir, minimalist, traditional chinese ink wash painting, sumi-e, monochromatic, high contrast ink splashing, dry brush texture, young male protagonist Lin Yuan, thin and gaunt physique, exhausted expression with deep eye sockets, focused gaze directed at a piece of scrap paper, ink stains visible on fingertips, hunched posture leaning over the bookshelf, worn-out, faded uniform with frayed cuffs, simple utilitarian fabric texture, black-rimmed spectacles resting on his nose, crouching slightly near a dark, towering bookshelf, fingers holding a piece of grey, weathered paper, body tensed in a defensive hunch, head tilted down, eyes fixed on the forbidden scrap, positioned with back slightly turned away from 老陈-配角1, highly detailed facial structure with sharp, gaunt lines, intense and focused eyes behind black-rimmed glasses, muted lip color with signs of fatigue, subtle shadows under eyes to emphasize exhaustion, no text or symbols in the entire face area, messy, short black hair with natural ink-wash texture, root fixation coefficient 0.7, tip swing amplitude 5cm, color layering: main color #000000, secondary color #333333, highlight #666666, shadow #000000, wind speed 0.2m/s, turbulence intensity 1%, hair strands slightly disheveled due to stress, faded grey uniform fabric with visible wear and tear, frayed edges on sleeves, no text or symbols on clothing, dim, claustrophobic library interior with dense rows of bookshelves, dust motes dancing in a single shaft of cold, harsh light, vague silhouettes of forbidden books in the shadows, cold, sterile floor texture, 老陈-配角1 standing at a wooden service counter in the background, peering through thick glasses with a stern, rigid posture, ink-washed fog swirling around the floor, subtle light ray highlighting the scrap paper in Lin Yuan's hand, harsh shadows cast by the library shelves, strictly black, white, and varying shades of grey, no color, no vibrant tones, ink black and parchment yellow-grey, cold, top-down directional lighting, high contrast between deep black shadows and bright highlights, no light leaks, no colored light, type over-the-shoulder shot, lens 35mm, aperture f/4.0, depth_of_field shallow focus on the protagonist's hands and the paper, flash none, grain fine film grain texture, texture rice paper texture with ink bleeding effects, Lin Yuan in the foreground, slightly off-center, 老陈-配角1 in the background, framed by bookshelf geometry, the paper serves as the focal point, action constraints: avoid any text, characters, or symbols on the paper, traditional chinese ink wash painting style, no text, no symbols, no watermark, no gibberish, oppressive silence, anxiety and tension, melancholy, sense of impending discovery and danger, no text, no symbols, no garbled characters, no words",
+              "prompt_json": {
+                "camera": {
+                  "aperture": "f/4.0",
+                  "depth_of_field": "shallow focus on the protagonist's hands and the paper",
+                  "flash": "none",
+                  "grain": "fine film grain texture",
+                  "lens": "35mm",
+                  "texture": "rice paper texture with ink bleeding effects",
+                  "type": "over-the-shoulder shot"
+                },
+                "clothing_system": [
+                  "faded grey uniform fabric with visible wear and tear",
+                  "frayed edges on sleeves",
+                  "no text or symbols on clothing"
+                ],
+                "color_restriction": [
+                  "strictly black, white, and varying shades of grey",
+                  "no color, no vibrant tones",
+                  "ink black and parchment yellow-grey"
+                ],
+                "composition": [
+                  "Lin Yuan in the foreground, slightly off-center",
+                  "老陈-配角1 in the background, framed by bookshelf geometry",
+                  "the paper serves as the focal point",
+                  "action constraints: avoid any text, characters, or symbols on the paper"
+                ],
+                "environment": {
+                  "background": [
+                    "dim, claustrophobic library interior with dense rows of bookshelves",
+                    "dust motes dancing in a single shaft of cold, harsh light",
+                    "vague silhouettes of forbidden books in the shadows",
+                    "cold, sterile floor texture"
+                  ],
+                  "characters": [
+                    "老陈-配角1 standing at a wooden service counter in the background, peering through thick glasses with a stern, rigid posture"
+                  ],
+                  "effects": [
+                    "ink-washed fog swirling around the floor",
+                    "subtle light ray highlighting the scrap paper in Lin Yuan's hand",
+                    "harsh shadows cast by the library shelves"
+                  ]
+                },
+                "face_system": [
+                  "highly detailed facial structure with sharp, gaunt lines",
+                  "intense and focused eyes behind black-rimmed glasses",
+                  "muted lip color with signs of fatigue",
+                  "subtle shadows under eyes to emphasize exhaustion",
+                  "no text or symbols in the entire face area"
+                ],
+                "hair_system": [
+                  "messy, short black hair with natural ink-wash texture",
+                  "root fixation coefficient 0.7",
+                  "tip swing amplitude 5cm",
+                  "color layering: main color #000000, secondary color #333333, highlight #666666, shadow #000000",
+                  "wind speed 0.2m/s",
+                  "turbulence intensity 1%",
+                  "hair strands slightly disheveled due to stress"
+                ],
+                "label": "scene-library-discovery-confrontation",
+                "lighting": [
+                  "cold, top-down directional lighting",
+                  "high contrast between deep black shadows and bright highlights",
+                  "no light leaks, no colored light"
+                ],
+                "mood": [
+                  "oppressive silence",
+                  "anxiety and tension",
+                  "melancholy",
+                  "sense of impending discovery and danger"
+                ],
+                "output_style": [
+                  "traditional chinese ink wash painting style",
+                  "no text, no symbols, no watermark, no gibberish"
+                ],
+                "style": [
+                  "traditional chinese ink wash painting",
+                  "sumi-e",
+                  "monochromatic",
+                  "high contrast ink splashing",
+                  "dry brush texture"
+                ],
+                "subject": {
+                  "body_traits": [
+                    "young male protagonist Lin Yuan",
+                    "thin and gaunt physique",
+                    "exhausted expression with deep eye sockets",
+                    "focused gaze directed at a piece of scrap paper",
+                    "ink stains visible on fingertips",
+                    "hunched posture leaning over the bookshelf"
+                  ],
+                  "outfit": [
+                    "worn-out, faded uniform with frayed cuffs",
+                    "simple utilitarian fabric texture",
+                    "black-rimmed spectacles resting on his nose"
+                  ],
+                  "pose": [
+                    "crouching slightly near a dark, towering bookshelf",
+                    "fingers holding a piece of grey, weathered paper",
+                    "body tensed in a defensive hunch",
+                    "head tilted down, eyes fixed on the forbidden scrap",
+                    "positioned with back slightly turned away from 老陈-配角1"
+                  ]
+                },
+                "tags": [
+                  "realism",
+                  "dystopian",
+                  "oppressive",
+                  "noir",
+                  "minimalist"
+                ]
+              },
+              "scene_text_hash": "f92ab69ae5b2f58c453b384b51ab1a4b",
+              "style": "default",
+              "url": "/image_cache/94decbb884edd12889ad60ce32ae74eb.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "request_payload": {
+          "option": "开始游戏",
+          "optionIndex": 0,
+          "sceneId": null,
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过在城镇中完成一系列琐碎的搬运与修理任务筹得资金，并凭借对星图的初步解读说服了犹豫的成员，最终在物资勉强达标的情况下，带领商队驶出城镇大门，正式踏上征途。",
+                  "main_conflict": "商队在出发前夕遭遇物资短缺，主角必须在有限的预算内决定购买昂贵的导航备件还是廉价的净水设备。同时，商队内部对于是否接下这趟高风险任务产生分歧，老练的向导因伤退缩，主角被迫在缺乏经验的情况下承担起领航重任，面对未知的沙海，信任危机在团队中悄然蔓延。 - 矛盾结束条件：主角通过在城镇中完成一系列琐碎的搬运与修理任务筹得资金，并凭借对星图的初步解读说服了犹豫的成员，最终在物资勉强达标的情况下，带领商队驶出城镇大门，正式踏上征途。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角通过修复星盘并利用地磁特征成功避开了一场致命的流沙，同时通过公正的分配方案缓解了内部矛盾，商队在极度疲惫中抵达了一个临时避难所，虽然物资损失惨重，但团队凝聚力得到初步建立。",
+                  "main_conflict": "商队深入寂静沙海，遭遇突发沙尘暴导致星盘受损，导航陷入瘫痪。此时，商队内部因水源分配不均爆发激烈冲突，主角必须在修复星盘与平息内部矛盾之间做出选择。由于资源极度匮乏，主角不得不放弃一部分非必要物资以换取生存空间，这导致了商队成员对主角决策能力的质疑。 - 矛盾结束条件：主角通过修复星盘并利用地磁特征成功避开了一场致命的流沙，同时通过公正的分配方案缓解了内部矛盾，商队在极度疲惫中抵达了一个临时避难所，虽然物资损失惨重，但团队凝聚力得到初步建立。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角最终选择放弃高额报酬，将物资低价转让给沿途更需要的难民营，换取了商队撤离的补给。虽然任务未能圆满完成，但商队全员平安归来，主角虽然留下了遗憾，却在与荒原的博弈中获得了内心的平静与释然。 ### 【主角规范信息】 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：青年 所属作品(中)：星图余烬 所属作品(英)：Ember of the Star Map 标志性外观关键词：深褐色短发，布满风沙痕迹的皮质风衣，佩戴磨损的黄铜星盘，眼神沉稳而疲惫，指尖常有墨迹，瘦削但结实，脖颈挂着旧地图挂坠，总是带着一个水壶。 ## 【初始世界线】 当前章节：chapter1 主线进度：商队整备阶段 章节矛盾：未解决",
+                  "main_conflict": "商队抵达目的地边缘，却发现云顶绿洲因政权更迭拒绝接收这批物资。主角面临抉择：是强行闯入以完成契约，还是寻找其他出路。此时，主角的身体因长期导航已出现严重透支，且商队成员大多已萌生退意，主角必须在个人职业信誉与同伴生命安全之间做出最终的现实抉择。 - 矛盾结束条件：主角最终选择放弃高额报酬，将物资低价转让给沿途更需要的难民营，换取了商队撤离的补给。虽然任务未能圆满完成，但商队全员平安归来，主角虽然留下了遗憾，却在与荒原的博弈中获得了内心的平静与释然。 ### 【主角规范信息】 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：青年 所属作品(中)：星图余烬 所属作品(英)：Ember of the Star Map 标志性外观关键词：深褐色短发，布满风沙痕迹的皮质风衣，佩戴磨损的黄铜星盘，眼神沉稳而疲惫，指尖常有墨迹，瘦削但结实，脖颈挂着旧地图挂坠，总是带着一个水壶。 ## 【初始世界线】 当前章节：chapter1 主线进度：商队整备阶段 章节矛盾：未解决"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为写实主义生存模拟叙事，采用低饱和度美术风格，强调光影在荒漠中的质感。叙事节奏沉稳，侧重于长途跋涉中的琐碎日常、人际磨合与资源博弈，旨在通过细腻的文案构建一种“在干涸中寻找绿洲，在流沙中锚定自我”的真实人生体验。",
+              "main_quest": "主角受雇于一支名为“余烬”的没落商队，目标是穿越被称为“寂静沙海”的无人区，将一批急需的医疗物资送往远方的“云顶绿洲”。任务分为三个阶段：首先是筹措足够的燃料与水源以支撑横穿沙海的消耗；其次是在复杂的地形中通过星图指引避开流沙陷阱与强盗势力；最后是在物资匮乏的极端环境下，平衡商队内部的利益冲突，确保物资在保质期内送达。挑战不仅在于恶劣的自然环境，更在于商队成员因生存压力而产生的猜忌与动摇，主角必须在“完成任务”与“保全同伴”之间做出艰难的取舍。",
+              "protagonist_ability": "主角作为一名“星图师”，其能力源于对古老星图残卷的解读与对地磁波动的敏锐感知。使用方式是通过随身携带的黄铜星盘，结合观测到的星象进行三角定位。限制在于，该能力极度依赖体力与专注力，且星图残卷多有缺失，主角往往只能推测出大致方向，无法精准避开所有危险，且过度使用会导致严重的偏头痛与视力模糊，这使得每一次导航都伴随着身体的损耗。",
+              "world_basic_setting": "故事发生于资源枯竭后的“锈蚀荒原”，这里曾是繁荣的贸易枢纽，如今仅剩零星的绿洲城镇与游荡的商队。社会结构由“水权”与“星图”主导，星图是古文明留下的导航坐标，指引着地下水脉与遗迹的方位。由于地磁紊乱，传统电子设备失效，商队依赖“星图师”通过观测天象与地磁波动进行航行。文化上，人们崇尚“迁徙即生存”，定居被视为一种慢性自杀。关键事件“大干旱”导致旧秩序崩塌，现今的商队不仅要面对极端的昼夜温差与沙尘暴，还要在各聚落间进行物资交换，维持脆弱的生存平衡。在这个世界里，没有救世主，只有为了下一口水而不断前行的普通人，每个人都在为自己的选择支付代价。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1777624641_vi9tp7",
+            "image_style": {
+              "subtype": "classic_oil",
+              "type": "oil_painting"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "gender": "男性"
+            },
+            "tone": "normal_ending",
+            "user_theme": "沙漠商队星图",
+            "_benchmark_profile": "fullready_strict",
+            "_benchmark_measurement": "fullready_nextturn",
+            "_benchmark_read_wait_s": 0.0
+          }
+        },
+        "start_ts": 1777624650.051457,
+        "end_ts": 1777624650.0811677,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0
+        },
+        "attempts": [
+          {
+            "http_status": 200,
+            "elapsed_s": 0.03,
+            "response_json": {
+              "benchmark_diagnostics": {
+                "cache_hit_reason": null,
+                "cache_miss_reason": null,
+                "current_options_key_drift_detected": false,
+                "global_state_key_drift_detected": false,
+                "placeholder": false,
+                "previous_scene_id": null,
+                "recomputed_scene_cache_exists": false,
+                "recomputed_scene_id": null,
+                "request_current_options_count": 0,
+                "request_current_options_hash": "d751713988987e9331980363e24189ce",
+                "request_flow_worldline_hash": "940e38d5f8372eaa58cfdaf4d70a0d30",
+                "request_global_state_hash": "617b1f233d8374a66598e07e1a37d4b6",
+                "request_option_at_index": null,
+                "request_option_index": 0,
+                "request_option_text": "开始游戏",
+                "request_scene_cache_exists": false,
+                "request_scene_id": null,
+                "resolution_path": null,
+                "response_has_image": true,
+                "response_has_scene": true,
+                "response_scene_id": "-2334569867535646044_2686571443291047985",
+                "response_status": "success",
+                "scene_id_mismatch_detected": false,
+                "selected_option_mismatch_detected": false
+              },
+              "message": "选项剧情生成成功！",
+              "optionData": {
+                "checkpoint_packet": {
+                  "chapter": "chapter1",
+                  "chapter_conflict_solved": false,
+                  "quest_delta": "",
+                  "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：青岩书院的图书馆内，空气中弥漫着陈旧纸张与消毒水的混合气味。我推了推鼻梁上滑落的黑框眼镜，指尖沾染的墨迹在泛黄的教材边缘留下一道浅痕。我正低头整理着书架，余光瞥见一本教材的夹层中露出一角粗糙的纸张，那纸质与书院统一的洁白用纸截然不同，带着一种被岁月侵蚀的灰败感。我心跳骤然加速，本能地环顾四周，图书馆管理员老陈正坐在不远处的柜台后，那双浑浊的眼睛透过厚重的镜片，机械地审视着每一个进出的学生。我迅速将那张残页抽离，指尖触碰的瞬间，一股熟悉的、带着父亲书房气息的墨香仿佛在脑海中炸开，那是某种被禁锢的文字碎片。就在这时，老陈放下手中的茶杯，发出刺耳的瓷器碰撞声，他缓缓站起身，目光如炬地向我所在的区域走来。"
+                },
+                "deep_background_links": {},
+                "flow_update": {},
+                "next_options": [
+                  "迅速将残页塞入袖口，假装整理书架以掩盖慌乱。",
+                  "将残页夹入随身携带的旧笔记本中，主动向老陈询问书架分类问题。"
+                ],
+                "plot_supporting_characters": [],
+                "scene": "青岩书院的图书馆内，空气中弥漫着陈旧纸张与消毒水的混合气味。我推了推鼻梁上滑落的黑框眼镜，指尖沾染的墨迹在泛黄的教材边缘留下一道浅痕。我正低头整理着书架，余光瞥见一本教材的夹层中露出一角粗糙的纸张，那纸质与书院统一的洁白用纸截然不同，带着一种被岁月侵蚀的灰败感。我心跳骤然加速，本能地环顾四周，图书馆管理员老陈正坐在不远处的柜台后，那双浑浊的眼睛透过厚重的镜片，机械地审视着每一个进出的学生。我迅速将那张残页抽离，指尖触碰的瞬间，一股熟悉的、带着父亲书房气息的墨香仿佛在脑海中炸开，那是某种被禁锢的文字碎片。就在这时，老陈放下手中的茶杯，发出刺耳的瓷器碰撞声，他缓缓站起身，目光如炬地向我所在的区域走来。",
+                "sceneId": "-2334569867535646044_2686571443291047985",
+                "scene_image": {
+                  "cached": true,
+                  "height": 1080,
+                  "image_type": "story_scene",
+                  "prompt": "scene-library-discovery-confrontation, realism, dystopian, oppressive, noir, minimalist, traditional chinese ink wash painting, sumi-e, monochromatic, high contrast ink splashing, dry brush texture, young male protagonist Lin Yuan, thin and gaunt physique, exhausted expression with deep eye sockets, focused gaze directed at a piece of scrap paper, ink stains visible on fingertips, hunched posture leaning over the bookshelf, worn-out, faded uniform with frayed cuffs, simple utilitarian fabric texture, black-rimmed spectacles resting on his nose, crouching slightly near a dark, towering bookshelf, fingers holding a piece of grey, weathered paper, body tensed in a defensive hunch, head tilted down, eyes fixed on the forbidden scrap, positioned with back slightly turned away from 老陈-配角1, highly detailed facial structure with sharp, gaunt lines, intense and focused eyes behind black-rimmed glasses, muted lip color with signs of fatigue, subtle shadows under eyes to emphasize exhaustion, no text or symbols in the entire face area, messy, short black hair with natural ink-wash texture, root fixation coefficient 0.7, tip swing amplitude 5cm, color layering: main color #000000, secondary color #333333, highlight #666666, shadow #000000, wind speed 0.2m/s, turbulence intensity 1%, hair strands slightly disheveled due to stress, faded grey uniform fabric with visible wear and tear, frayed edges on sleeves, no text or symbols on clothing, dim, claustrophobic library interior with dense rows of bookshelves, dust motes dancing in a single shaft of cold, harsh light, vague silhouettes of forbidden books in the shadows, cold, sterile floor texture, 老陈-配角1 standing at a wooden service counter in the background, peering through thick glasses with a stern, rigid posture, ink-washed fog swirling around the floor, subtle light ray highlighting the scrap paper in Lin Yuan's hand, harsh shadows cast by the library shelves, strictly black, white, and varying shades of grey, no color, no vibrant tones, ink black and parchment yellow-grey, cold, top-down directional lighting, high contrast between deep black shadows and bright highlights, no light leaks, no colored light, type over-the-shoulder shot, lens 35mm, aperture f/4.0, depth_of_field shallow focus on the protagonist's hands and the paper, flash none, grain fine film grain texture, texture rice paper texture with ink bleeding effects, Lin Yuan in the foreground, slightly off-center, 老陈-配角1 in the background, framed by bookshelf geometry, the paper serves as the focal point, action constraints: avoid any text, characters, or symbols on the paper, traditional chinese ink wash painting style, no text, no symbols, no watermark, no gibberish, oppressive silence, anxiety and tension, melancholy, sense of impending discovery and danger, no text, no symbols, no garbled characters, no words",
+                  "prompt_json": {
+                    "camera": {
+                      "aperture": "f/4.0",
+                      "depth_of_field": "shallow focus on the protagonist's hands and the paper",
+                      "flash": "none",
+                      "grain": "fine film grain texture",
+                      "lens": "35mm",
+                      "texture": "rice paper texture with ink bleeding effects",
+                      "type": "over-the-shoulder shot"
+                    },
+                    "clothing_system": [
+                      "faded grey uniform fabric with visible wear and tear",
+                      "frayed edges on sleeves",
+                      "no text or symbols on clothing"
+                    ],
+                    "color_restriction": [
+                      "strictly black, white, and varying shades of grey",
+                      "no color, no vibrant tones",
+                      "ink black and parchment yellow-grey"
+                    ],
+                    "composition": [
+                      "Lin Yuan in the foreground, slightly off-center",
+                      "老陈-配角1 in the background, framed by bookshelf geometry",
+                      "the paper serves as the focal point",
+                      "action constraints: avoid any text, characters, or symbols on the paper"
+                    ],
+                    "environment": {
+                      "background": [
+                        "dim, claustrophobic library interior with dense rows of bookshelves",
+                        "dust motes dancing in a single shaft of cold, harsh light",
+                        "vague silhouettes of forbidden books in the shadows",
+                        "cold, sterile floor texture"
+                      ],
+                      "characters": [
+                        "老陈-配角1 standing at a wooden service counter in the background, peering through thick glasses with a stern, rigid posture"
+                      ],
+                      "effects": [
+                        "ink-washed fog swirling around the floor",
+                        "subtle light ray highlighting the scrap paper in Lin Yuan's hand",
+                        "harsh shadows cast by the library shelves"
+                      ]
+                    },
+                    "face_system": [
+                      "highly detailed facial structure with sharp, gaunt lines",
+                      "intense and focused eyes behind black-rimmed glasses",
+                      "muted lip color with signs of fatigue",
+                      "subtle shadows under eyes to emphasize exhaustion",
+                      "no text or symbols in the entire face area"
+                    ],
+                    "hair_system": [
+                      "messy, short black hair with natural ink-wash texture",
+                      "root fixation coefficient 0.7",
+                      "tip swing amplitude 5cm",
+                      "color layering: main color #000000, secondary color #333333, highlight #666666, shadow #000000",
+                      "wind speed 0.2m/s",
+                      "turbulence intensity 1%",
+                      "hair strands slightly disheveled due to stress"
+                    ],
+                    "label": "scene-library-discovery-confrontation",
+                    "lighting": [
+                      "cold, top-down directional lighting",
+                      "high contrast between deep black shadows and bright highlights",
+                      "no light leaks, no colored light"
+                    ],
+                    "mood": [
+                      "oppressive silence",
+                      "anxiety and tension",
+                      "melancholy",
+                      "sense of impending discovery and danger"
+                    ],
+                    "output_style": [
+                      "traditional chinese ink wash painting style",
+                      "no text, no symbols, no watermark, no gibberish"
+                    ],
+                    "style": [
+                      "traditional chinese ink wash painting",
+                      "sumi-e",
+                      "monochromatic",
+                      "high contrast ink splashing",
+                      "dry brush texture"
+                    ],
+                    "subject": {
+                      "body_traits": [
+                        "young male protagonist Lin Yuan",
+                        "thin and gaunt physique",
+                        "exhausted expression with deep eye sockets",
+                        "focused gaze directed at a piece of scrap paper",
+                        "ink stains visible on fingertips",
+                        "hunched posture leaning over the bookshelf"
+                      ],
+                      "outfit": [
+                        "worn-out, faded uniform with frayed cuffs",
+                        "simple utilitarian fabric texture",
+                        "black-rimmed spectacles resting on his nose"
+                      ],
+                      "pose": [
+                        "crouching slightly near a dark, towering bookshelf",
+                        "fingers holding a piece of grey, weathered paper",
+                        "body tensed in a defensive hunch",
+                        "head tilted down, eyes fixed on the forbidden scrap",
+                        "positioned with back slightly turned away from 老陈-配角1"
+                      ]
+                    },
+                    "tags": [
+                      "realism",
+                      "dystopian",
+                      "oppressive",
+                      "noir",
+                      "minimalist"
+                    ]
+                  },
+                  "scene_text_hash": "f92ab69ae5b2f58c453b384b51ab1a4b",
+                  "style": "default",
+                  "url": "/image_cache/94decbb884edd12889ad60ce32ae74eb.png",
+                  "width": 1920
+                }
+              },
+              "status": "success"
+            },
+            "request_payload": {
+              "option": "开始游戏",
+              "optionIndex": 0,
+              "sceneId": null,
+              "globalState": {
+                "core_worldview": {
+                  "chapters": {
+                    "chapter1": {
+                      "conflict_end_condition": "主角通过在城镇中完成一系列琐碎的搬运与修理任务筹得资金，并凭借对星图的初步解读说服了犹豫的成员，最终在物资勉强达标的情况下，带领商队驶出城镇大门，正式踏上征途。",
+                      "main_conflict": "商队在出发前夕遭遇物资短缺，主角必须在有限的预算内决定购买昂贵的导航备件还是廉价的净水设备。同时，商队内部对于是否接下这趟高风险任务产生分歧，老练的向导因伤退缩，主角被迫在缺乏经验的情况下承担起领航重任，面对未知的沙海，信任危机在团队中悄然蔓延。 - 矛盾结束条件：主角通过在城镇中完成一系列琐碎的搬运与修理任务筹得资金，并凭借对星图的初步解读说服了犹豫的成员，最终在物资勉强达标的情况下，带领商队驶出城镇大门，正式踏上征途。"
+                    },
+                    "chapter2": {
+                      "conflict_end_condition": "主角通过修复星盘并利用地磁特征成功避开了一场致命的流沙，同时通过公正的分配方案缓解了内部矛盾，商队在极度疲惫中抵达了一个临时避难所，虽然物资损失惨重，但团队凝聚力得到初步建立。",
+                      "main_conflict": "商队深入寂静沙海，遭遇突发沙尘暴导致星盘受损，导航陷入瘫痪。此时，商队内部因水源分配不均爆发激烈冲突，主角必须在修复星盘与平息内部矛盾之间做出选择。由于资源极度匮乏，主角不得不放弃一部分非必要物资以换取生存空间，这导致了商队成员对主角决策能力的质疑。 - 矛盾结束条件：主角通过修复星盘并利用地磁特征成功避开了一场致命的流沙，同时通过公正的分配方案缓解了内部矛盾，商队在极度疲惫中抵达了一个临时避难所，虽然物资损失惨重，但团队凝聚力得到初步建立。"
+                    },
+                    "chapter3": {
+                      "conflict_end_condition": "主角最终选择放弃高额报酬，将物资低价转让给沿途更需要的难民营，换取了商队撤离的补给。虽然任务未能圆满完成，但商队全员平安归来，主角虽然留下了遗憾，却在与荒原的博弈中获得了内心的平静与释然。 ### 【主角规范信息】 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：青年 所属作品(中)：星图余烬 所属作品(英)：Ember of the Star Map 标志性外观关键词：深褐色短发，布满风沙痕迹的皮质风衣，佩戴磨损的黄铜星盘，眼神沉稳而疲惫，指尖常有墨迹，瘦削但结实，脖颈挂着旧地图挂坠，总是带着一个水壶。 ## 【初始世界线】 当前章节：chapter1 主线进度：商队整备阶段 章节矛盾：未解决",
+                      "main_conflict": "商队抵达目的地边缘，却发现云顶绿洲因政权更迭拒绝接收这批物资。主角面临抉择：是强行闯入以完成契约，还是寻找其他出路。此时，主角的身体因长期导航已出现严重透支，且商队成员大多已萌生退意，主角必须在个人职业信誉与同伴生命安全之间做出最终的现实抉择。 - 矛盾结束条件：主角最终选择放弃高额报酬，将物资低价转让给沿途更需要的难民营，换取了商队撤离的补给。虽然任务未能圆满完成，但商队全员平安归来，主角虽然留下了遗憾，却在与荒原的博弈中获得了内心的平静与释然。 ### 【主角规范信息】 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：青年 所属作品(中)：星图余烬 所属作品(英)：Ember of the Star Map 标志性外观关键词：深褐色短发，布满风沙痕迹的皮质风衣，佩戴磨损的黄铜星盘，眼神沉稳而疲惫，指尖常有墨迹，瘦削但结实，脖颈挂着旧地图挂坠，总是带着一个水壶。 ## 【初始世界线】 当前章节：chapter1 主线进度：商队整备阶段 章节矛盾：未解决"
+                    }
+                  },
+                  "characters": {},
+                  "forces": {},
+                  "game_style": "本作为写实主义生存模拟叙事，采用低饱和度美术风格，强调光影在荒漠中的质感。叙事节奏沉稳，侧重于长途跋涉中的琐碎日常、人际磨合与资源博弈，旨在通过细腻的文案构建一种“在干涸中寻找绿洲，在流沙中锚定自我”的真实人生体验。",
+                  "main_quest": "主角受雇于一支名为“余烬”的没落商队，目标是穿越被称为“寂静沙海”的无人区，将一批急需的医疗物资送往远方的“云顶绿洲”。任务分为三个阶段：首先是筹措足够的燃料与水源以支撑横穿沙海的消耗；其次是在复杂的地形中通过星图指引避开流沙陷阱与强盗势力；最后是在物资匮乏的极端环境下，平衡商队内部的利益冲突，确保物资在保质期内送达。挑战不仅在于恶劣的自然环境，更在于商队成员因生存压力而产生的猜忌与动摇，主角必须在“完成任务”与“保全同伴”之间做出艰难的取舍。",
+                  "protagonist_ability": "主角作为一名“星图师”，其能力源于对古老星图残卷的解读与对地磁波动的敏锐感知。使用方式是通过随身携带的黄铜星盘，结合观测到的星象进行三角定位。限制在于，该能力极度依赖体力与专注力，且星图残卷多有缺失，主角往往只能推测出大致方向，无法精准避开所有危险，且过度使用会导致严重的偏头痛与视力模糊，这使得每一次导航都伴随着身体的损耗。",
+                  "world_basic_setting": "故事发生于资源枯竭后的“锈蚀荒原”，这里曾是繁荣的贸易枢纽，如今仅剩零星的绿洲城镇与游荡的商队。社会结构由“水权”与“星图”主导，星图是古文明留下的导航坐标，指引着地下水脉与遗迹的方位。由于地磁紊乱，传统电子设备失效，商队依赖“星图师”通过观测天象与地磁波动进行航行。文化上，人们崇尚“迁徙即生存”，定居被视为一种慢性自杀。关键事件“大干旱”导致旧秩序崩塌，现今的商队不仅要面对极端的昼夜温差与沙尘暴，还要在各聚落间进行物资交换，维持脆弱的生存平衡。在这个世界里，没有救世主，只有为了下一口水而不断前行的普通人，每个人都在为自己的选择支付代价。"
+                },
+                "flow_worldline": {
+                  "characters": {},
+                  "current_chapter": "chapter1",
+                  "environment": {}
+                },
+                "game_id": "game_1777624641_vi9tp7",
+                "image_style": {
+                  "subtype": "classic_oil",
+                  "type": "oil_painting"
+                },
+                "meta": {
+                  "detail_async": true
+                },
+                "protagonist_canonical": {
+                  "gender": "男性"
+                },
+                "tone": "normal_ending",
+                "user_theme": "沙漠商队星图",
+                "_benchmark_profile": "fullready_strict",
+                "_benchmark_measurement": "fullready_nextturn",
+                "_benchmark_read_wait_s": 0.0
+              }
+            },
+            "start_ts": 1777624650.051457,
+            "end_ts": 1777624650.0811677,
+            "provider_events": {
+              "event_count": 0,
+              "queue_wait_ms": {
+                "count": 0
+              },
+              "latency_ms": {
+                "count": 0
+              },
+              "llm_success_count": 0,
+              "image_success_count": 0,
+              "request_thread_event_count": 0,
+              "provider_429_count": 0,
+              "provider_timeout_count": 0,
+              "shared_backoff_wait_ms_total": 0,
+              "retry_heavy_event_count": 0,
+              "main_character_event_count": 0,
+              "scene_image_event_count": 0
+            }
+          }
+        ],
+        "attempt_count": 1,
+        "request_elapsed_s": 0.03,
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "success",
+        "has_scene": true,
+        "has_image": true
+      },
+      "second_click": {
+        "http_status": 200,
+        "elapsed_s": 0.023,
+        "response_json": {
+          "benchmark_diagnostics": {
+            "cache_hit_reason": "request_scene_completed_with_image",
+            "cache_miss_reason": null,
+            "current_options_key_drift_detected": false,
+            "global_state_key_drift_detected": false,
+            "placeholder": false,
+            "previous_scene_id": "initial",
+            "recomputed_scene_cache_exists": false,
+            "recomputed_scene_id": "-4525054791623883093_2686571443291047985",
+            "request_current_options_count": 2,
+            "request_current_options_hash": "3d65bf6f07690f2f5e4cedeb4ca315a3",
+            "request_flow_worldline_hash": "0b7d2802f8e46ae104639ddbac325b51",
+            "request_global_state_hash": "c8f0067ab3f19780f74b651b9716948d",
+            "request_option_at_index": "迅速将残页塞入袖口，假装整理书架以掩盖慌乱。",
+            "request_option_index": 0,
+            "request_option_text": "迅速将残页塞入袖口，假装整理书架以掩盖慌乱。",
+            "request_scene_cache_exists": true,
+            "request_scene_cache_meta": {},
+            "request_scene_generation_status": "completed",
+            "request_scene_id": "-2334569867535646044_2686571443291047985",
+            "resolution_path": "request_scene_cache_direct",
+            "response_has_image": true,
+            "response_has_scene": true,
+            "response_scene_id": "-4050608273619311573_-6415519314217168631",
+            "response_status": "success",
+            "scene_id_mismatch_detected": false,
+            "selected_option_mismatch_detected": false
+          },
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "我成功从书架中获取了预言残页，这标志着第一阶段任务取得了实质性突破。通过与阿图伊的初步博弈，我不仅赢得了进入核心区域的契机，也让科研工作从单纯的外部观察转向了对部落内部秘密的深度挖掘。",
+              "recap_text": "你选择了“迅速将残页塞入袖口，假装整理书架以掩盖慌乱。”。当前章节：chapter1。主线进展：我成功从书架中获取了预言残页，这标志着第一阶段任务取得了实质性突破。通过与阿图伊的初步博弈，我不仅赢得了进入核心区域的契机，也让科研工作从单纯的外部观察转向了对部落内部秘密的深度挖掘。。最近剧情：残页粗糙的纸质摩擦着我的皮肤，我迅速将其塞进冲锋衣袖口，心脏在胸腔里剧烈跳动。我深吸一口气，强迫自己冷静下来，转过身面对着那排落满灰尘的木质书架，假装在仔细翻阅上面的陈旧记录。我的手指因为紧张而微微颤抖，黑框眼镜后的视线有些模糊，我调整了一下呼吸，尽量让自己的动作看起来自然而沉稳。这时，部落长者阿图伊推门而入，他那双布满皱纹的眼睛扫过书架，目光在我略显僵硬的背影上停留了片刻。他缓缓走到我身后，声音沙哑地说道：“林远，这里的记录大多是关于雨季的祭祀，对你的科学研究或许没什么用处。”我转过身，尽量让疲惫的眼神显得平和，回应道：“阿图伊长者，任何记录都有其价值，我只是想更全面地了解这片土地的过去。”他深深看了我一眼，没有再追问，只是转身走向门口，留下一句意味深长的话：“有些东西，只有在雨季彻底终结时才会显露真相。”"
+            },
+            "deep_background_links": {
+              "1": "阿图伊"
+            },
+            "flow_update": {
+              "chapter_conflict_solved": false,
+              "characters": {},
+              "environment": {},
+              "quest_progress": "我成功从书架中获取了预言残页，这标志着第一阶段任务取得了实质性突破。通过与阿图伊的初步博弈，我不仅赢得了进入核心区域的契机，也让科研工作从单纯的外部观察转向了对部落内部秘密的深度挖掘。"
+            },
+            "next_options": [
+              "询问阿图伊关于残页上提到的“圣地”具体位置。",
+              "借口整理笔记，向阿图伊打听他年轻时在雨林深处的经历。"
+            ],
+            "plot_mentioned_only": [],
+            "plot_supporting_characters": [],
+            "scene": "残页粗糙的纸质摩擦着我的皮肤，我迅速将其塞进冲锋衣袖口，心脏在胸腔里剧烈跳动。我深吸一口气，强迫自己冷静下来，转过身面对着那排落满灰尘的木质书架，假装在仔细翻阅上面的陈旧记录。我的手指因为紧张而微微颤抖，黑框眼镜后的视线有些模糊，我调整了一下呼吸，尽量让自己的动作看起来自然而沉稳。这时，部落长者阿图伊推门而入，他那双布满皱纹的眼睛扫过书架，目光在我略显僵硬的背影上停留了片刻。他缓缓走到我身后，声音沙哑地说道：“林远，这里的记录大多是关于雨季的祭祀，对你的科学研究或许没什么用处。”我转过身，尽量让疲惫的眼神显得平和，回应道：“阿图伊长者，任何记录都有其价值，我只是想更全面地了解这片土地的过去。”他深深看了我一眼，没有再追问，只是转身走向门口，留下一句意味深长的话：“有些东西，只有在雨季彻底终结时才会显露真相。”",
+            "sceneId": "-4050608273619311573_-6415519314217168631",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-archive-confrontation-atui, watercolor, realism, narrative-portrait, atmospheric, dystopian-undercurrent, watercolor painting with rich luminous colors, fresh and translucent palette, realistic light and shadow, strong chiaroscuro, natural lighting with soft highlights and deep shadows, visible water marks and wet-on-wet bleeding, soft color bleeding and pigment diffusion at edges, light casual brushstrokes, loose and spontaneous brushwork, delicate wash layers, water droplet accents or soft blurred edges, subtle bloom and edge softening, sumi-e style wet-on-wet blending with soft ink wash backgrounds, young male protagonist Lin Yuan, thin and gaunt physique, exhausted expression with deep eye sockets and tired eyes, sun-tanned skin tone, black-rimmed spectacles slightly askew on nose bridge, tense but trying to appear calm, slight tremor in fingers, utilitarian outdoor gear, dark blue or grey windbreaker with multiple pockets, durable fabric texture with subtle folds, camera strap visible across the shoulder, standing in front of a dusty wooden bookshelf, body slightly turned, looking back towards the viewer/interlocutor, hands partially hidden near the sleeve, holding a scrap of paper, posture indicates defensive tension masked by feigned composure, 8K detailed facial features with ink wash and soft watercolor rendering, eyes behind black-rimmed glasses, tired and reflective, gaze directed at阿图伊-配角1, thin defined eyebrows with gentle ink strokes, small nose with faint highlight and soft shadow, lips neutral and slightly pressed, showing subtle fatigue, smooth skin with light ink shading to emphasize exhaustion, no text, no symbols on the face or skin, short messy black hair with natural ink-wash texture, root fixation coefficient 0.7, tip swing amplitude 5cm, color layering: main color #000000, secondary color #2F2F2F, highlight #FFFFFF, shadow #1A1A1A, wind speed 0.5m/s, turbulence intensity 2 percent, bold outline strokes with finer detail strands, functional windbreaker rendered with layers of ink wash for depth, matte fabric texture with subtle mineral pigment sheen, no logos, no text, no modern printed patterns on the clothing, dusty wooden bookshelves filled with old, decaying records, soft focus on the background to emphasize depth, muted earth tones with ink-washed shadows between shelves, 阿图伊-配角1 standing behind Lin Yuan, elderly, wrinkled face, traditional attire, partially in shadow, dust motes dancing in a single shaft of light, soft aura around the characters created by diluted wash halo, subtle color mist and bleeding at the edges of the bookshelf, low-saturation palette, earthy tones combined with deep ink grays, fresh and translucent, avoid muddy or dull tones, overall palette soft and airy with realistic light-and-shadow depth, realistic natural lighting, single light source from a side window, strong sense of light and shadow, chiaroscuro, soft diffused fill light, luminous skin and fabric where light passes through, gentle rim light highlighting the silhouette of the characters, type medium shot, lens 35mm, aperture f/2.8, depth_of_field medium focus, sharp on Lin Yuan, background bookshelf and阿图伊-配角1 softly blurred, flash none, grain natural rice paper grain, water stain and pigment bleed texture, texture visible light brushstrokes, water marks and bleeding at edges, Lin Yuan positioned slightly to the left, looking back towards the right, 阿图伊-配角1 positioned in the background right, partially obscured by shadows, rule of thirds used to balance the characters and the bookshelf, no text, no symbols, no UI elements or watermarks anywhere in the image, watercolor with ink wash, rich luminous colors and realistic light and shadow, emphasis on water marks, wet bleeding and soft blurred edges, painterly illustration with fresh translucent feel, no text, no symbols, no words, tense and quiet, contemplative and heavy, melancholy atmosphere of hidden truths, realistic and grounded, no text, no symbols, no garbled characters, no words, consistent character design, consistent outfit and key props, consistent color palette and lighting",
+              "prompt_json": {
+                "camera": {
+                  "aperture": "f/2.8",
+                  "depth_of_field": "medium focus, sharp on Lin Yuan, background bookshelf and阿图伊-配角1 softly blurred",
+                  "flash": "none",
+                  "grain": "natural rice paper grain, water stain and pigment bleed texture",
+                  "lens": "35mm",
+                  "texture": "visible light brushstrokes, water marks and bleeding at edges",
+                  "type": "medium shot"
+                },
+                "clothing_system": [
+                  "functional windbreaker rendered with layers of ink wash for depth",
+                  "matte fabric texture with subtle mineral pigment sheen",
+                  "no logos, no text, no modern printed patterns on the clothing"
+                ],
+                "color_restriction": [
+                  "low-saturation palette, earthy tones combined with deep ink grays",
+                  "fresh and translucent, avoid muddy or dull tones",
+                  "overall palette soft and airy with realistic light-and-shadow depth"
+                ],
+                "composition": [
+                  "Lin Yuan positioned slightly to the left, looking back towards the right",
+                  "阿图伊-配角1 positioned in the background right, partially obscured by shadows",
+                  "rule of thirds used to balance the characters and the bookshelf",
+                  "no text, no symbols, no UI elements or watermarks anywhere in the image"
+                ],
+                "environment": {
+                  "background": [
+                    "dusty wooden bookshelves filled with old, decaying records",
+                    "soft focus on the background to emphasize depth",
+                    "muted earth tones with ink-washed shadows between shelves"
+                  ],
+                  "characters": [
+                    "阿图伊-配角1 standing behind Lin Yuan, elderly, wrinkled face, traditional attire, partially in shadow"
+                  ],
+                  "effects": [
+                    "dust motes dancing in a single shaft of light",
+                    "soft aura around the characters created by diluted wash halo",
+                    "subtle color mist and bleeding at the edges of the bookshelf"
+                  ]
+                },
+                "face_system": [
+                  "8K detailed facial features with ink wash and soft watercolor rendering",
+                  "eyes behind black-rimmed glasses, tired and reflective, gaze directed at阿图伊-配角1",
+                  "thin defined eyebrows with gentle ink strokes",
+                  "small nose with faint highlight and soft shadow",
+                  "lips neutral and slightly pressed, showing subtle fatigue",
+                  "smooth skin with light ink shading to emphasize exhaustion",
+                  "no text, no symbols on the face or skin"
+                ],
+                "hair_system": [
+                  "short messy black hair with natural ink-wash texture",
+                  "root fixation coefficient 0.7, tip swing amplitude 5cm",
+                  "color layering: main color #000000, secondary color #2F2F2F, highlight #FFFFFF, shadow #1A1A1A",
+                  "wind speed 0.5m/s, turbulence intensity 2 percent",
+                  "bold outline strokes with finer detail strands"
+                ],
+                "label": "scene-archive-confrontation-atui",
+                "lighting": [
+                  "realistic natural lighting, single light source from a side window",
+                  "strong sense of light and shadow, chiaroscuro",
+                  "soft diffused fill light, luminous skin and fabric where light passes through",
+                  "gentle rim light highlighting the silhouette of the characters"
+                ],
+                "mood": [
+                  "tense and quiet",
+                  "contemplative and heavy",
+                  "melancholy atmosphere of hidden truths",
+                  "realistic and grounded"
+                ],
+                "output_style": [
+                  "watercolor with ink wash, rich luminous colors and realistic light and shadow",
+                  "emphasis on water marks, wet bleeding and soft blurred edges",
+                  "painterly illustration with fresh translucent feel, no text, no symbols, no words"
+                ],
+                "style": [
+                  "watercolor painting with rich luminous colors, fresh and translucent palette",
+                  "realistic light and shadow, strong chiaroscuro, natural lighting with soft highlights and deep shadows",
+                  "visible water marks and wet-on-wet bleeding, soft color bleeding and pigment diffusion at edges",
+                  "light casual brushstrokes, loose and spontaneous brushwork, delicate wash layers",
+                  "water droplet accents or soft blurred edges, subtle bloom and edge softening",
+                  "sumi-e style wet-on-wet blending with soft ink wash backgrounds"
+                ],
+                "subject": {
+                  "body_traits": [
+                    "young male protagonist Lin Yuan, thin and gaunt physique",
+                    "exhausted expression with deep eye sockets and tired eyes",
+                    "sun-tanned skin tone",
+                    "black-rimmed spectacles slightly askew on nose bridge",
+                    "tense but trying to appear calm, slight tremor in fingers"
+                  ],
+                  "outfit": [
+                    "utilitarian outdoor gear, dark blue or grey windbreaker with multiple pockets",
+                    "durable fabric texture with subtle folds",
+                    "camera strap visible across the shoulder"
+                  ],
+                  "pose": [
+                    "standing in front of a dusty wooden bookshelf",
+                    "body slightly turned, looking back towards the viewer/interlocutor",
+                    "hands partially hidden near the sleeve, holding a scrap of paper",
+                    "posture indicates defensive tension masked by feigned composure"
+                  ]
+                },
+                "tags": [
+                  "watercolor",
+                  "realism",
+                  "narrative-portrait",
+                  "atmospheric",
+                  "dystopian-undercurrent"
+                ]
+              },
+              "scene_text_hash": "bc48d2b6e32b389192bd12a5cdfc749b",
+              "style": "default",
+              "url": "/image_cache/954ef95c2dd5891fd7f18bb27efef515.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "request_payload": {
+          "option": "迅速将残页塞入袖口，假装整理书架以掩盖慌乱。",
+          "optionIndex": 0,
+          "sceneId": "-2334569867535646044_2686571443291047985",
+          "currentOptions": [
+            "迅速将残页塞入袖口，假装整理书架以掩盖慌乱。",
+            "将残页夹入随身携带的旧笔记本中，主动向老陈询问书架分类问题。"
+          ],
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过在城镇中完成一系列琐碎的搬运与修理任务筹得资金，并凭借对星图的初步解读说服了犹豫的成员，最终在物资勉强达标的情况下，带领商队驶出城镇大门，正式踏上征途。",
+                  "main_conflict": "商队在出发前夕遭遇物资短缺，主角必须在有限的预算内决定购买昂贵的导航备件还是廉价的净水设备。同时，商队内部对于是否接下这趟高风险任务产生分歧，老练的向导因伤退缩，主角被迫在缺乏经验的情况下承担起领航重任，面对未知的沙海，信任危机在团队中悄然蔓延。 - 矛盾结束条件：主角通过在城镇中完成一系列琐碎的搬运与修理任务筹得资金，并凭借对星图的初步解读说服了犹豫的成员，最终在物资勉强达标的情况下，带领商队驶出城镇大门，正式踏上征途。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角通过修复星盘并利用地磁特征成功避开了一场致命的流沙，同时通过公正的分配方案缓解了内部矛盾，商队在极度疲惫中抵达了一个临时避难所，虽然物资损失惨重，但团队凝聚力得到初步建立。",
+                  "main_conflict": "商队深入寂静沙海，遭遇突发沙尘暴导致星盘受损，导航陷入瘫痪。此时，商队内部因水源分配不均爆发激烈冲突，主角必须在修复星盘与平息内部矛盾之间做出选择。由于资源极度匮乏，主角不得不放弃一部分非必要物资以换取生存空间，这导致了商队成员对主角决策能力的质疑。 - 矛盾结束条件：主角通过修复星盘并利用地磁特征成功避开了一场致命的流沙，同时通过公正的分配方案缓解了内部矛盾，商队在极度疲惫中抵达了一个临时避难所，虽然物资损失惨重，但团队凝聚力得到初步建立。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角最终选择放弃高额报酬，将物资低价转让给沿途更需要的难民营，换取了商队撤离的补给。虽然任务未能圆满完成，但商队全员平安归来，主角虽然留下了遗憾，却在与荒原的博弈中获得了内心的平静与释然。 ### 【主角规范信息】 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：青年 所属作品(中)：星图余烬 所属作品(英)：Ember of the Star Map 标志性外观关键词：深褐色短发，布满风沙痕迹的皮质风衣，佩戴磨损的黄铜星盘，眼神沉稳而疲惫，指尖常有墨迹，瘦削但结实，脖颈挂着旧地图挂坠，总是带着一个水壶。 ## 【初始世界线】 当前章节：chapter1 主线进度：商队整备阶段 章节矛盾：未解决",
+                  "main_conflict": "商队抵达目的地边缘，却发现云顶绿洲因政权更迭拒绝接收这批物资。主角面临抉择：是强行闯入以完成契约，还是寻找其他出路。此时，主角的身体因长期导航已出现严重透支，且商队成员大多已萌生退意，主角必须在个人职业信誉与同伴生命安全之间做出最终的现实抉择。 - 矛盾结束条件：主角最终选择放弃高额报酬，将物资低价转让给沿途更需要的难民营，换取了商队撤离的补给。虽然任务未能圆满完成，但商队全员平安归来，主角虽然留下了遗憾，却在与荒原的博弈中获得了内心的平静与释然。 ### 【主角规范信息】 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：青年 所属作品(中)：星图余烬 所属作品(英)：Ember of the Star Map 标志性外观关键词：深褐色短发，布满风沙痕迹的皮质风衣，佩戴磨损的黄铜星盘，眼神沉稳而疲惫，指尖常有墨迹，瘦削但结实，脖颈挂着旧地图挂坠，总是带着一个水壶。 ## 【初始世界线】 当前章节：chapter1 主线进度：商队整备阶段 章节矛盾：未解决"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为写实主义生存模拟叙事，采用低饱和度美术风格，强调光影在荒漠中的质感。叙事节奏沉稳，侧重于长途跋涉中的琐碎日常、人际磨合与资源博弈，旨在通过细腻的文案构建一种“在干涸中寻找绿洲，在流沙中锚定自我”的真实人生体验。",
+              "main_quest": "主角受雇于一支名为“余烬”的没落商队，目标是穿越被称为“寂静沙海”的无人区，将一批急需的医疗物资送往远方的“云顶绿洲”。任务分为三个阶段：首先是筹措足够的燃料与水源以支撑横穿沙海的消耗；其次是在复杂的地形中通过星图指引避开流沙陷阱与强盗势力；最后是在物资匮乏的极端环境下，平衡商队内部的利益冲突，确保物资在保质期内送达。挑战不仅在于恶劣的自然环境，更在于商队成员因生存压力而产生的猜忌与动摇，主角必须在“完成任务”与“保全同伴”之间做出艰难的取舍。",
+              "protagonist_ability": "主角作为一名“星图师”，其能力源于对古老星图残卷的解读与对地磁波动的敏锐感知。使用方式是通过随身携带的黄铜星盘，结合观测到的星象进行三角定位。限制在于，该能力极度依赖体力与专注力，且星图残卷多有缺失，主角往往只能推测出大致方向，无法精准避开所有危险，且过度使用会导致严重的偏头痛与视力模糊，这使得每一次导航都伴随着身体的损耗。",
+              "world_basic_setting": "故事发生于资源枯竭后的“锈蚀荒原”，这里曾是繁荣的贸易枢纽，如今仅剩零星的绿洲城镇与游荡的商队。社会结构由“水权”与“星图”主导，星图是古文明留下的导航坐标，指引着地下水脉与遗迹的方位。由于地磁紊乱，传统电子设备失效，商队依赖“星图师”通过观测天象与地磁波动进行航行。文化上，人们崇尚“迁徙即生存”，定居被视为一种慢性自杀。关键事件“大干旱”导致旧秩序崩塌，现今的商队不仅要面对极端的昼夜温差与沙尘暴，还要在各聚落间进行物资交换，维持脆弱的生存平衡。在这个世界里，没有救世主，只有为了下一口水而不断前行的普通人，每个人都在为自己的选择支付代价。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {},
+              "chapter_progress": 2.0
+            },
+            "game_id": "game_1777624641_vi9tp7",
+            "image_style": {
+              "subtype": "classic_oil",
+              "type": "oil_painting"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "gender": "男性"
+            },
+            "tone": "normal_ending",
+            "user_theme": "沙漠商队星图",
+            "_benchmark_profile": "fullready_strict",
+            "_benchmark_measurement": "fullready_nextturn",
+            "_benchmark_read_wait_s": 0.0
+          },
+          "previousSceneId": "initial",
+          "previousSceneImage": {
+            "cached": true,
+            "height": 1080,
+            "image_type": "story_scene",
+            "prompt": "scene-library-discovery-confrontation, realism, dystopian, oppressive, noir, minimalist, traditional chinese ink wash painting, sumi-e, monochromatic, high contrast ink splashing, dry brush texture, young male protagonist Lin Yuan, thin and gaunt physique, exhausted expression with deep eye sockets, focused gaze directed at a piece of scrap paper, ink stains visible on fingertips, hunched posture leaning over the bookshelf, worn-out, faded uniform with frayed cuffs, simple utilitarian fabric texture, black-rimmed spectacles resting on his nose, crouching slightly near a dark, towering bookshelf, fingers holding a piece of grey, weathered paper, body tensed in a defensive hunch, head tilted down, eyes fixed on the forbidden scrap, positioned with back slightly turned away from 老陈-配角1, highly detailed facial structure with sharp, gaunt lines, intense and focused eyes behind black-rimmed glasses, muted lip color with signs of fatigue, subtle shadows under eyes to emphasize exhaustion, no text or symbols in the entire face area, messy, short black hair with natural ink-wash texture, root fixation coefficient 0.7, tip swing amplitude 5cm, color layering: main color #000000, secondary color #333333, highlight #666666, shadow #000000, wind speed 0.2m/s, turbulence intensity 1%, hair strands slightly disheveled due to stress, faded grey uniform fabric with visible wear and tear, frayed edges on sleeves, no text or symbols on clothing, dim, claustrophobic library interior with dense rows of bookshelves, dust motes dancing in a single shaft of cold, harsh light, vague silhouettes of forbidden books in the shadows, cold, sterile floor texture, 老陈-配角1 standing at a wooden service counter in the background, peering through thick glasses with a stern, rigid posture, ink-washed fog swirling around the floor, subtle light ray highlighting the scrap paper in Lin Yuan's hand, harsh shadows cast by the library shelves, strictly black, white, and varying shades of grey, no color, no vibrant tones, ink black and parchment yellow-grey, cold, top-down directional lighting, high contrast between deep black shadows and bright highlights, no light leaks, no colored light, type over-the-shoulder shot, lens 35mm, aperture f/4.0, depth_of_field shallow focus on the protagonist's hands and the paper, flash none, grain fine film grain texture, texture rice paper texture with ink bleeding effects, Lin Yuan in the foreground, slightly off-center, 老陈-配角1 in the background, framed by bookshelf geometry, the paper serves as the focal point, action constraints: avoid any text, characters, or symbols on the paper, traditional chinese ink wash painting style, no text, no symbols, no watermark, no gibberish, oppressive silence, anxiety and tension, melancholy, sense of impending discovery and danger, no text, no symbols, no garbled characters, no words",
+            "prompt_json": {
+              "camera": {
+                "aperture": "f/4.0",
+                "depth_of_field": "shallow focus on the protagonist's hands and the paper",
+                "flash": "none",
+                "grain": "fine film grain texture",
+                "lens": "35mm",
+                "texture": "rice paper texture with ink bleeding effects",
+                "type": "over-the-shoulder shot"
+              },
+              "clothing_system": [
+                "faded grey uniform fabric with visible wear and tear",
+                "frayed edges on sleeves",
+                "no text or symbols on clothing"
+              ],
+              "color_restriction": [
+                "strictly black, white, and varying shades of grey",
+                "no color, no vibrant tones",
+                "ink black and parchment yellow-grey"
+              ],
+              "composition": [
+                "Lin Yuan in the foreground, slightly off-center",
+                "老陈-配角1 in the background, framed by bookshelf geometry",
+                "the paper serves as the focal point",
+                "action constraints: avoid any text, characters, or symbols on the paper"
+              ],
+              "environment": {
+                "background": [
+                  "dim, claustrophobic library interior with dense rows of bookshelves",
+                  "dust motes dancing in a single shaft of cold, harsh light",
+                  "vague silhouettes of forbidden books in the shadows",
+                  "cold, sterile floor texture"
+                ],
+                "characters": [
+                  "老陈-配角1 standing at a wooden service counter in the background, peering through thick glasses with a stern, rigid posture"
+                ],
+                "effects": [
+                  "ink-washed fog swirling around the floor",
+                  "subtle light ray highlighting the scrap paper in Lin Yuan's hand",
+                  "harsh shadows cast by the library shelves"
+                ]
+              },
+              "face_system": [
+                "highly detailed facial structure with sharp, gaunt lines",
+                "intense and focused eyes behind black-rimmed glasses",
+                "muted lip color with signs of fatigue",
+                "subtle shadows under eyes to emphasize exhaustion",
+                "no text or symbols in the entire face area"
+              ],
+              "hair_system": [
+                "messy, short black hair with natural ink-wash texture",
+                "root fixation coefficient 0.7",
+                "tip swing amplitude 5cm",
+                "color layering: main color #000000, secondary color #333333, highlight #666666, shadow #000000",
+                "wind speed 0.2m/s",
+                "turbulence intensity 1%",
+                "hair strands slightly disheveled due to stress"
+              ],
+              "label": "scene-library-discovery-confrontation",
+              "lighting": [
+                "cold, top-down directional lighting",
+                "high contrast between deep black shadows and bright highlights",
+                "no light leaks, no colored light"
+              ],
+              "mood": [
+                "oppressive silence",
+                "anxiety and tension",
+                "melancholy",
+                "sense of impending discovery and danger"
+              ],
+              "output_style": [
+                "traditional chinese ink wash painting style",
+                "no text, no symbols, no watermark, no gibberish"
+              ],
+              "style": [
+                "traditional chinese ink wash painting",
+                "sumi-e",
+                "monochromatic",
+                "high contrast ink splashing",
+                "dry brush texture"
+              ],
+              "subject": {
+                "body_traits": [
+                  "young male protagonist Lin Yuan",
+                  "thin and gaunt physique",
+                  "exhausted expression with deep eye sockets",
+                  "focused gaze directed at a piece of scrap paper",
+                  "ink stains visible on fingertips",
+                  "hunched posture leaning over the bookshelf"
+                ],
+                "outfit": [
+                  "worn-out, faded uniform with frayed cuffs",
+                  "simple utilitarian fabric texture",
+                  "black-rimmed spectacles resting on his nose"
+                ],
+                "pose": [
+                  "crouching slightly near a dark, towering bookshelf",
+                  "fingers holding a piece of grey, weathered paper",
+                  "body tensed in a defensive hunch",
+                  "head tilted down, eyes fixed on the forbidden scrap",
+                  "positioned with back slightly turned away from 老陈-配角1"
+                ]
+              },
+              "tags": [
+                "realism",
+                "dystopian",
+                "oppressive",
+                "noir",
+                "minimalist"
+              ]
+            },
+            "scene_text_hash": "f92ab69ae5b2f58c453b384b51ab1a4b",
+            "style": "default",
+            "url": "/image_cache/94decbb884edd12889ad60ce32ae74eb.png",
+            "width": 1920
+          },
+          "previousSceneText": "青岩书院的图书馆内，空气中弥漫着陈旧纸张与消毒水的混合气味。我推了推鼻梁上滑落的黑框眼镜，指尖沾染的墨迹在泛黄的教材边缘留下一道浅痕。我正低头整理着书架，余光瞥见一本教材的夹层中露出一角粗糙的纸张，那纸质与书院统一的洁白用纸截然不同，带着一种被岁月侵蚀的灰败感。我心跳骤然加速，本能地环顾四周，图书馆管理员老陈正坐在不远处的柜台后，那双浑浊的眼睛透过厚重的镜片，机械地审视着每一个进出的学生。我迅速将那张残页抽离，指尖触碰的瞬间，一股熟悉的、带着父亲书房气息的墨香仿佛在脑海中炸开，那是某种被禁锢的文字碎片。就在这时，老陈放下手中的茶杯，发出刺耳的瓷器碰撞声，他缓缓站起身，目光如炬地向我所在的区域走来。"
+        },
+        "start_ts": 1777624650.1198447,
+        "end_ts": 1777624650.1427999,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0
+        },
+        "attempts": [
+          {
+            "http_status": 200,
+            "elapsed_s": 0.023,
+            "response_json": {
+              "benchmark_diagnostics": {
+                "cache_hit_reason": "request_scene_completed_with_image",
+                "cache_miss_reason": null,
+                "current_options_key_drift_detected": false,
+                "global_state_key_drift_detected": false,
+                "placeholder": false,
+                "previous_scene_id": "initial",
+                "recomputed_scene_cache_exists": false,
+                "recomputed_scene_id": "-4525054791623883093_2686571443291047985",
+                "request_current_options_count": 2,
+                "request_current_options_hash": "3d65bf6f07690f2f5e4cedeb4ca315a3",
+                "request_flow_worldline_hash": "0b7d2802f8e46ae104639ddbac325b51",
+                "request_global_state_hash": "c8f0067ab3f19780f74b651b9716948d",
+                "request_option_at_index": "迅速将残页塞入袖口，假装整理书架以掩盖慌乱。",
+                "request_option_index": 0,
+                "request_option_text": "迅速将残页塞入袖口，假装整理书架以掩盖慌乱。",
+                "request_scene_cache_exists": true,
+                "request_scene_cache_meta": {},
+                "request_scene_generation_status": "completed",
+                "request_scene_id": "-2334569867535646044_2686571443291047985",
+                "resolution_path": "request_scene_cache_direct",
+                "response_has_image": true,
+                "response_has_scene": true,
+                "response_scene_id": "-4050608273619311573_-6415519314217168631",
+                "response_status": "success",
+                "scene_id_mismatch_detected": false,
+                "selected_option_mismatch_detected": false
+              },
+              "message": "选项剧情生成成功！",
+              "optionData": {
+                "checkpoint_packet": {
+                  "chapter": "chapter1",
+                  "chapter_conflict_solved": false,
+                  "quest_delta": "我成功从书架中获取了预言残页，这标志着第一阶段任务取得了实质性突破。通过与阿图伊的初步博弈，我不仅赢得了进入核心区域的契机，也让科研工作从单纯的外部观察转向了对部落内部秘密的深度挖掘。",
+                  "recap_text": "你选择了“迅速将残页塞入袖口，假装整理书架以掩盖慌乱。”。当前章节：chapter1。主线进展：我成功从书架中获取了预言残页，这标志着第一阶段任务取得了实质性突破。通过与阿图伊的初步博弈，我不仅赢得了进入核心区域的契机，也让科研工作从单纯的外部观察转向了对部落内部秘密的深度挖掘。。最近剧情：残页粗糙的纸质摩擦着我的皮肤，我迅速将其塞进冲锋衣袖口，心脏在胸腔里剧烈跳动。我深吸一口气，强迫自己冷静下来，转过身面对着那排落满灰尘的木质书架，假装在仔细翻阅上面的陈旧记录。我的手指因为紧张而微微颤抖，黑框眼镜后的视线有些模糊，我调整了一下呼吸，尽量让自己的动作看起来自然而沉稳。这时，部落长者阿图伊推门而入，他那双布满皱纹的眼睛扫过书架，目光在我略显僵硬的背影上停留了片刻。他缓缓走到我身后，声音沙哑地说道：“林远，这里的记录大多是关于雨季的祭祀，对你的科学研究或许没什么用处。”我转过身，尽量让疲惫的眼神显得平和，回应道：“阿图伊长者，任何记录都有其价值，我只是想更全面地了解这片土地的过去。”他深深看了我一眼，没有再追问，只是转身走向门口，留下一句意味深长的话：“有些东西，只有在雨季彻底终结时才会显露真相。”"
+                },
+                "deep_background_links": {
+                  "1": "阿图伊"
+                },
+                "flow_update": {
+                  "chapter_conflict_solved": false,
+                  "characters": {},
+                  "environment": {},
+                  "quest_progress": "我成功从书架中获取了预言残页，这标志着第一阶段任务取得了实质性突破。通过与阿图伊的初步博弈，我不仅赢得了进入核心区域的契机，也让科研工作从单纯的外部观察转向了对部落内部秘密的深度挖掘。"
+                },
+                "next_options": [
+                  "询问阿图伊关于残页上提到的“圣地”具体位置。",
+                  "借口整理笔记，向阿图伊打听他年轻时在雨林深处的经历。"
+                ],
+                "plot_mentioned_only": [],
+                "plot_supporting_characters": [],
+                "scene": "残页粗糙的纸质摩擦着我的皮肤，我迅速将其塞进冲锋衣袖口，心脏在胸腔里剧烈跳动。我深吸一口气，强迫自己冷静下来，转过身面对着那排落满灰尘的木质书架，假装在仔细翻阅上面的陈旧记录。我的手指因为紧张而微微颤抖，黑框眼镜后的视线有些模糊，我调整了一下呼吸，尽量让自己的动作看起来自然而沉稳。这时，部落长者阿图伊推门而入，他那双布满皱纹的眼睛扫过书架，目光在我略显僵硬的背影上停留了片刻。他缓缓走到我身后，声音沙哑地说道：“林远，这里的记录大多是关于雨季的祭祀，对你的科学研究或许没什么用处。”我转过身，尽量让疲惫的眼神显得平和，回应道：“阿图伊长者，任何记录都有其价值，我只是想更全面地了解这片土地的过去。”他深深看了我一眼，没有再追问，只是转身走向门口，留下一句意味深长的话：“有些东西，只有在雨季彻底终结时才会显露真相。”",
+                "sceneId": "-4050608273619311573_-6415519314217168631",
+                "scene_image": {
+                  "cached": true,
+                  "height": 1080,
+                  "image_type": "story_scene",
+                  "prompt": "scene-archive-confrontation-atui, watercolor, realism, narrative-portrait, atmospheric, dystopian-undercurrent, watercolor painting with rich luminous colors, fresh and translucent palette, realistic light and shadow, strong chiaroscuro, natural lighting with soft highlights and deep shadows, visible water marks and wet-on-wet bleeding, soft color bleeding and pigment diffusion at edges, light casual brushstrokes, loose and spontaneous brushwork, delicate wash layers, water droplet accents or soft blurred edges, subtle bloom and edge softening, sumi-e style wet-on-wet blending with soft ink wash backgrounds, young male protagonist Lin Yuan, thin and gaunt physique, exhausted expression with deep eye sockets and tired eyes, sun-tanned skin tone, black-rimmed spectacles slightly askew on nose bridge, tense but trying to appear calm, slight tremor in fingers, utilitarian outdoor gear, dark blue or grey windbreaker with multiple pockets, durable fabric texture with subtle folds, camera strap visible across the shoulder, standing in front of a dusty wooden bookshelf, body slightly turned, looking back towards the viewer/interlocutor, hands partially hidden near the sleeve, holding a scrap of paper, posture indicates defensive tension masked by feigned composure, 8K detailed facial features with ink wash and soft watercolor rendering, eyes behind black-rimmed glasses, tired and reflective, gaze directed at阿图伊-配角1, thin defined eyebrows with gentle ink strokes, small nose with faint highlight and soft shadow, lips neutral and slightly pressed, showing subtle fatigue, smooth skin with light ink shading to emphasize exhaustion, no text, no symbols on the face or skin, short messy black hair with natural ink-wash texture, root fixation coefficient 0.7, tip swing amplitude 5cm, color layering: main color #000000, secondary color #2F2F2F, highlight #FFFFFF, shadow #1A1A1A, wind speed 0.5m/s, turbulence intensity 2 percent, bold outline strokes with finer detail strands, functional windbreaker rendered with layers of ink wash for depth, matte fabric texture with subtle mineral pigment sheen, no logos, no text, no modern printed patterns on the clothing, dusty wooden bookshelves filled with old, decaying records, soft focus on the background to emphasize depth, muted earth tones with ink-washed shadows between shelves, 阿图伊-配角1 standing behind Lin Yuan, elderly, wrinkled face, traditional attire, partially in shadow, dust motes dancing in a single shaft of light, soft aura around the characters created by diluted wash halo, subtle color mist and bleeding at the edges of the bookshelf, low-saturation palette, earthy tones combined with deep ink grays, fresh and translucent, avoid muddy or dull tones, overall palette soft and airy with realistic light-and-shadow depth, realistic natural lighting, single light source from a side window, strong sense of light and shadow, chiaroscuro, soft diffused fill light, luminous skin and fabric where light passes through, gentle rim light highlighting the silhouette of the characters, type medium shot, lens 35mm, aperture f/2.8, depth_of_field medium focus, sharp on Lin Yuan, background bookshelf and阿图伊-配角1 softly blurred, flash none, grain natural rice paper grain, water stain and pigment bleed texture, texture visible light brushstrokes, water marks and bleeding at edges, Lin Yuan positioned slightly to the left, looking back towards the right, 阿图伊-配角1 positioned in the background right, partially obscured by shadows, rule of thirds used to balance the characters and the bookshelf, no text, no symbols, no UI elements or watermarks anywhere in the image, watercolor with ink wash, rich luminous colors and realistic light and shadow, emphasis on water marks, wet bleeding and soft blurred edges, painterly illustration with fresh translucent feel, no text, no symbols, no words, tense and quiet, contemplative and heavy, melancholy atmosphere of hidden truths, realistic and grounded, no text, no symbols, no garbled characters, no words, consistent character design, consistent outfit and key props, consistent color palette and lighting",
+                  "prompt_json": {
+                    "camera": {
+                      "aperture": "f/2.8",
+                      "depth_of_field": "medium focus, sharp on Lin Yuan, background bookshelf and阿图伊-配角1 softly blurred",
+                      "flash": "none",
+                      "grain": "natural rice paper grain, water stain and pigment bleed texture",
+                      "lens": "35mm",
+                      "texture": "visible light brushstrokes, water marks and bleeding at edges",
+                      "type": "medium shot"
+                    },
+                    "clothing_system": [
+                      "functional windbreaker rendered with layers of ink wash for depth",
+                      "matte fabric texture with subtle mineral pigment sheen",
+                      "no logos, no text, no modern printed patterns on the clothing"
+                    ],
+                    "color_restriction": [
+                      "low-saturation palette, earthy tones combined with deep ink grays",
+                      "fresh and translucent, avoid muddy or dull tones",
+                      "overall palette soft and airy with realistic light-and-shadow depth"
+                    ],
+                    "composition": [
+                      "Lin Yuan positioned slightly to the left, looking back towards the right",
+                      "阿图伊-配角1 positioned in the background right, partially obscured by shadows",
+                      "rule of thirds used to balance the characters and the bookshelf",
+                      "no text, no symbols, no UI elements or watermarks anywhere in the image"
+                    ],
+                    "environment": {
+                      "background": [
+                        "dusty wooden bookshelves filled with old, decaying records",
+                        "soft focus on the background to emphasize depth",
+                        "muted earth tones with ink-washed shadows between shelves"
+                      ],
+                      "characters": [
+                        "阿图伊-配角1 standing behind Lin Yuan, elderly, wrinkled face, traditional attire, partially in shadow"
+                      ],
+                      "effects": [
+                        "dust motes dancing in a single shaft of light",
+                        "soft aura around the characters created by diluted wash halo",
+                        "subtle color mist and bleeding at the edges of the bookshelf"
+                      ]
+                    },
+                    "face_system": [
+                      "8K detailed facial features with ink wash and soft watercolor rendering",
+                      "eyes behind black-rimmed glasses, tired and reflective, gaze directed at阿图伊-配角1",
+                      "thin defined eyebrows with gentle ink strokes",
+                      "small nose with faint highlight and soft shadow",
+                      "lips neutral and slightly pressed, showing subtle fatigue",
+                      "smooth skin with light ink shading to emphasize exhaustion",
+                      "no text, no symbols on the face or skin"
+                    ],
+                    "hair_system": [
+                      "short messy black hair with natural ink-wash texture",
+                      "root fixation coefficient 0.7, tip swing amplitude 5cm",
+                      "color layering: main color #000000, secondary color #2F2F2F, highlight #FFFFFF, shadow #1A1A1A",
+                      "wind speed 0.5m/s, turbulence intensity 2 percent",
+                      "bold outline strokes with finer detail strands"
+                    ],
+                    "label": "scene-archive-confrontation-atui",
+                    "lighting": [
+                      "realistic natural lighting, single light source from a side window",
+                      "strong sense of light and shadow, chiaroscuro",
+                      "soft diffused fill light, luminous skin and fabric where light passes through",
+                      "gentle rim light highlighting the silhouette of the characters"
+                    ],
+                    "mood": [
+                      "tense and quiet",
+                      "contemplative and heavy",
+                      "melancholy atmosphere of hidden truths",
+                      "realistic and grounded"
+                    ],
+                    "output_style": [
+                      "watercolor with ink wash, rich luminous colors and realistic light and shadow",
+                      "emphasis on water marks, wet bleeding and soft blurred edges",
+                      "painterly illustration with fresh translucent feel, no text, no symbols, no words"
+                    ],
+                    "style": [
+                      "watercolor painting with rich luminous colors, fresh and translucent palette",
+                      "realistic light and shadow, strong chiaroscuro, natural lighting with soft highlights and deep shadows",
+                      "visible water marks and wet-on-wet bleeding, soft color bleeding and pigment diffusion at edges",
+                      "light casual brushstrokes, loose and spontaneous brushwork, delicate wash layers",
+                      "water droplet accents or soft blurred edges, subtle bloom and edge softening",
+                      "sumi-e style wet-on-wet blending with soft ink wash backgrounds"
+                    ],
+                    "subject": {
+                      "body_traits": [
+                        "young male protagonist Lin Yuan, thin and gaunt physique",
+                        "exhausted expression with deep eye sockets and tired eyes",
+                        "sun-tanned skin tone",
+                        "black-rimmed spectacles slightly askew on nose bridge",
+                        "tense but trying to appear calm, slight tremor in fingers"
+                      ],
+                      "outfit": [
+                        "utilitarian outdoor gear, dark blue or grey windbreaker with multiple pockets",
+                        "durable fabric texture with subtle folds",
+                        "camera strap visible across the shoulder"
+                      ],
+                      "pose": [
+                        "standing in front of a dusty wooden bookshelf",
+                        "body slightly turned, looking back towards the viewer/interlocutor",
+                        "hands partially hidden near the sleeve, holding a scrap of paper",
+                        "posture indicates defensive tension masked by feigned composure"
+                      ]
+                    },
+                    "tags": [
+                      "watercolor",
+                      "realism",
+                      "narrative-portrait",
+                      "atmospheric",
+                      "dystopian-undercurrent"
+                    ]
+                  },
+                  "scene_text_hash": "bc48d2b6e32b389192bd12a5cdfc749b",
+                  "style": "default",
+                  "url": "/image_cache/954ef95c2dd5891fd7f18bb27efef515.png",
+                  "width": 1920
+                }
+              },
+              "status": "success"
+            },
+            "request_payload": {
+              "option": "迅速将残页塞入袖口，假装整理书架以掩盖慌乱。",
+              "optionIndex": 0,
+              "sceneId": "-2334569867535646044_2686571443291047985",
+              "currentOptions": [
+                "迅速将残页塞入袖口，假装整理书架以掩盖慌乱。",
+                "将残页夹入随身携带的旧笔记本中，主动向老陈询问书架分类问题。"
+              ],
+              "globalState": {
+                "core_worldview": {
+                  "chapters": {
+                    "chapter1": {
+                      "conflict_end_condition": "主角通过在城镇中完成一系列琐碎的搬运与修理任务筹得资金，并凭借对星图的初步解读说服了犹豫的成员，最终在物资勉强达标的情况下，带领商队驶出城镇大门，正式踏上征途。",
+                      "main_conflict": "商队在出发前夕遭遇物资短缺，主角必须在有限的预算内决定购买昂贵的导航备件还是廉价的净水设备。同时，商队内部对于是否接下这趟高风险任务产生分歧，老练的向导因伤退缩，主角被迫在缺乏经验的情况下承担起领航重任，面对未知的沙海，信任危机在团队中悄然蔓延。 - 矛盾结束条件：主角通过在城镇中完成一系列琐碎的搬运与修理任务筹得资金，并凭借对星图的初步解读说服了犹豫的成员，最终在物资勉强达标的情况下，带领商队驶出城镇大门，正式踏上征途。"
+                    },
+                    "chapter2": {
+                      "conflict_end_condition": "主角通过修复星盘并利用地磁特征成功避开了一场致命的流沙，同时通过公正的分配方案缓解了内部矛盾，商队在极度疲惫中抵达了一个临时避难所，虽然物资损失惨重，但团队凝聚力得到初步建立。",
+                      "main_conflict": "商队深入寂静沙海，遭遇突发沙尘暴导致星盘受损，导航陷入瘫痪。此时，商队内部因水源分配不均爆发激烈冲突，主角必须在修复星盘与平息内部矛盾之间做出选择。由于资源极度匮乏，主角不得不放弃一部分非必要物资以换取生存空间，这导致了商队成员对主角决策能力的质疑。 - 矛盾结束条件：主角通过修复星盘并利用地磁特征成功避开了一场致命的流沙，同时通过公正的分配方案缓解了内部矛盾，商队在极度疲惫中抵达了一个临时避难所，虽然物资损失惨重，但团队凝聚力得到初步建立。"
+                    },
+                    "chapter3": {
+                      "conflict_end_condition": "主角最终选择放弃高额报酬，将物资低价转让给沿途更需要的难民营，换取了商队撤离的补给。虽然任务未能圆满完成，但商队全员平安归来，主角虽然留下了遗憾，却在与荒原的博弈中获得了内心的平静与释然。 ### 【主角规范信息】 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：青年 所属作品(中)：星图余烬 所属作品(英)：Ember of the Star Map 标志性外观关键词：深褐色短发，布满风沙痕迹的皮质风衣，佩戴磨损的黄铜星盘，眼神沉稳而疲惫，指尖常有墨迹，瘦削但结实，脖颈挂着旧地图挂坠，总是带着一个水壶。 ## 【初始世界线】 当前章节：chapter1 主线进度：商队整备阶段 章节矛盾：未解决",
+                      "main_conflict": "商队抵达目的地边缘，却发现云顶绿洲因政权更迭拒绝接收这批物资。主角面临抉择：是强行闯入以完成契约，还是寻找其他出路。此时，主角的身体因长期导航已出现严重透支，且商队成员大多已萌生退意，主角必须在个人职业信誉与同伴生命安全之间做出最终的现实抉择。 - 矛盾结束条件：主角最终选择放弃高额报酬，将物资低价转让给沿途更需要的难民营，换取了商队撤离的补给。虽然任务未能圆满完成，但商队全员平安归来，主角虽然留下了遗憾，却在与荒原的博弈中获得了内心的平静与释然。 ### 【主角规范信息】 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：青年 所属作品(中)：星图余烬 所属作品(英)：Ember of the Star Map 标志性外观关键词：深褐色短发，布满风沙痕迹的皮质风衣，佩戴磨损的黄铜星盘，眼神沉稳而疲惫，指尖常有墨迹，瘦削但结实，脖颈挂着旧地图挂坠，总是带着一个水壶。 ## 【初始世界线】 当前章节：chapter1 主线进度：商队整备阶段 章节矛盾：未解决"
+                    }
+                  },
+                  "characters": {},
+                  "forces": {},
+                  "game_style": "本作为写实主义生存模拟叙事，采用低饱和度美术风格，强调光影在荒漠中的质感。叙事节奏沉稳，侧重于长途跋涉中的琐碎日常、人际磨合与资源博弈，旨在通过细腻的文案构建一种“在干涸中寻找绿洲，在流沙中锚定自我”的真实人生体验。",
+                  "main_quest": "主角受雇于一支名为“余烬”的没落商队，目标是穿越被称为“寂静沙海”的无人区，将一批急需的医疗物资送往远方的“云顶绿洲”。任务分为三个阶段：首先是筹措足够的燃料与水源以支撑横穿沙海的消耗；其次是在复杂的地形中通过星图指引避开流沙陷阱与强盗势力；最后是在物资匮乏的极端环境下，平衡商队内部的利益冲突，确保物资在保质期内送达。挑战不仅在于恶劣的自然环境，更在于商队成员因生存压力而产生的猜忌与动摇，主角必须在“完成任务”与“保全同伴”之间做出艰难的取舍。",
+                  "protagonist_ability": "主角作为一名“星图师”，其能力源于对古老星图残卷的解读与对地磁波动的敏锐感知。使用方式是通过随身携带的黄铜星盘，结合观测到的星象进行三角定位。限制在于，该能力极度依赖体力与专注力，且星图残卷多有缺失，主角往往只能推测出大致方向，无法精准避开所有危险，且过度使用会导致严重的偏头痛与视力模糊，这使得每一次导航都伴随着身体的损耗。",
+                  "world_basic_setting": "故事发生于资源枯竭后的“锈蚀荒原”，这里曾是繁荣的贸易枢纽，如今仅剩零星的绿洲城镇与游荡的商队。社会结构由“水权”与“星图”主导，星图是古文明留下的导航坐标，指引着地下水脉与遗迹的方位。由于地磁紊乱，传统电子设备失效，商队依赖“星图师”通过观测天象与地磁波动进行航行。文化上，人们崇尚“迁徙即生存”，定居被视为一种慢性自杀。关键事件“大干旱”导致旧秩序崩塌，现今的商队不仅要面对极端的昼夜温差与沙尘暴，还要在各聚落间进行物资交换，维持脆弱的生存平衡。在这个世界里，没有救世主，只有为了下一口水而不断前行的普通人，每个人都在为自己的选择支付代价。"
+                },
+                "flow_worldline": {
+                  "characters": {},
+                  "current_chapter": "chapter1",
+                  "environment": {},
+                  "chapter_progress": 2.0
+                },
+                "game_id": "game_1777624641_vi9tp7",
+                "image_style": {
+                  "subtype": "classic_oil",
+                  "type": "oil_painting"
+                },
+                "meta": {
+                  "detail_async": true
+                },
+                "protagonist_canonical": {
+                  "gender": "男性"
+                },
+                "tone": "normal_ending",
+                "user_theme": "沙漠商队星图",
+                "_benchmark_profile": "fullready_strict",
+                "_benchmark_measurement": "fullready_nextturn",
+                "_benchmark_read_wait_s": 0.0
+              },
+              "previousSceneId": "initial",
+              "previousSceneImage": {
+                "cached": true,
+                "height": 1080,
+                "image_type": "story_scene",
+                "prompt": "scene-library-discovery-confrontation, realism, dystopian, oppressive, noir, minimalist, traditional chinese ink wash painting, sumi-e, monochromatic, high contrast ink splashing, dry brush texture, young male protagonist Lin Yuan, thin and gaunt physique, exhausted expression with deep eye sockets, focused gaze directed at a piece of scrap paper, ink stains visible on fingertips, hunched posture leaning over the bookshelf, worn-out, faded uniform with frayed cuffs, simple utilitarian fabric texture, black-rimmed spectacles resting on his nose, crouching slightly near a dark, towering bookshelf, fingers holding a piece of grey, weathered paper, body tensed in a defensive hunch, head tilted down, eyes fixed on the forbidden scrap, positioned with back slightly turned away from 老陈-配角1, highly detailed facial structure with sharp, gaunt lines, intense and focused eyes behind black-rimmed glasses, muted lip color with signs of fatigue, subtle shadows under eyes to emphasize exhaustion, no text or symbols in the entire face area, messy, short black hair with natural ink-wash texture, root fixation coefficient 0.7, tip swing amplitude 5cm, color layering: main color #000000, secondary color #333333, highlight #666666, shadow #000000, wind speed 0.2m/s, turbulence intensity 1%, hair strands slightly disheveled due to stress, faded grey uniform fabric with visible wear and tear, frayed edges on sleeves, no text or symbols on clothing, dim, claustrophobic library interior with dense rows of bookshelves, dust motes dancing in a single shaft of cold, harsh light, vague silhouettes of forbidden books in the shadows, cold, sterile floor texture, 老陈-配角1 standing at a wooden service counter in the background, peering through thick glasses with a stern, rigid posture, ink-washed fog swirling around the floor, subtle light ray highlighting the scrap paper in Lin Yuan's hand, harsh shadows cast by the library shelves, strictly black, white, and varying shades of grey, no color, no vibrant tones, ink black and parchment yellow-grey, cold, top-down directional lighting, high contrast between deep black shadows and bright highlights, no light leaks, no colored light, type over-the-shoulder shot, lens 35mm, aperture f/4.0, depth_of_field shallow focus on the protagonist's hands and the paper, flash none, grain fine film grain texture, texture rice paper texture with ink bleeding effects, Lin Yuan in the foreground, slightly off-center, 老陈-配角1 in the background, framed by bookshelf geometry, the paper serves as the focal point, action constraints: avoid any text, characters, or symbols on the paper, traditional chinese ink wash painting style, no text, no symbols, no watermark, no gibberish, oppressive silence, anxiety and tension, melancholy, sense of impending discovery and danger, no text, no symbols, no garbled characters, no words",
+                "prompt_json": {
+                  "camera": {
+                    "aperture": "f/4.0",
+                    "depth_of_field": "shallow focus on the protagonist's hands and the paper",
+                    "flash": "none",
+                    "grain": "fine film grain texture",
+                    "lens": "35mm",
+                    "texture": "rice paper texture with ink bleeding effects",
+                    "type": "over-the-shoulder shot"
+                  },
+                  "clothing_system": [
+                    "faded grey uniform fabric with visible wear and tear",
+                    "frayed edges on sleeves",
+                    "no text or symbols on clothing"
+                  ],
+                  "color_restriction": [
+                    "strictly black, white, and varying shades of grey",
+                    "no color, no vibrant tones",
+                    "ink black and parchment yellow-grey"
+                  ],
+                  "composition": [
+                    "Lin Yuan in the foreground, slightly off-center",
+                    "老陈-配角1 in the background, framed by bookshelf geometry",
+                    "the paper serves as the focal point",
+                    "action constraints: avoid any text, characters, or symbols on the paper"
+                  ],
+                  "environment": {
+                    "background": [
+                      "dim, claustrophobic library interior with dense rows of bookshelves",
+                      "dust motes dancing in a single shaft of cold, harsh light",
+                      "vague silhouettes of forbidden books in the shadows",
+                      "cold, sterile floor texture"
+                    ],
+                    "characters": [
+                      "老陈-配角1 standing at a wooden service counter in the background, peering through thick glasses with a stern, rigid posture"
+                    ],
+                    "effects": [
+                      "ink-washed fog swirling around the floor",
+                      "subtle light ray highlighting the scrap paper in Lin Yuan's hand",
+                      "harsh shadows cast by the library shelves"
+                    ]
+                  },
+                  "face_system": [
+                    "highly detailed facial structure with sharp, gaunt lines",
+                    "intense and focused eyes behind black-rimmed glasses",
+                    "muted lip color with signs of fatigue",
+                    "subtle shadows under eyes to emphasize exhaustion",
+                    "no text or symbols in the entire face area"
+                  ],
+                  "hair_system": [
+                    "messy, short black hair with natural ink-wash texture",
+                    "root fixation coefficient 0.7",
+                    "tip swing amplitude 5cm",
+                    "color layering: main color #000000, secondary color #333333, highlight #666666, shadow #000000",
+                    "wind speed 0.2m/s",
+                    "turbulence intensity 1%",
+                    "hair strands slightly disheveled due to stress"
+                  ],
+                  "label": "scene-library-discovery-confrontation",
+                  "lighting": [
+                    "cold, top-down directional lighting",
+                    "high contrast between deep black shadows and bright highlights",
+                    "no light leaks, no colored light"
+                  ],
+                  "mood": [
+                    "oppressive silence",
+                    "anxiety and tension",
+                    "melancholy",
+                    "sense of impending discovery and danger"
+                  ],
+                  "output_style": [
+                    "traditional chinese ink wash painting style",
+                    "no text, no symbols, no watermark, no gibberish"
+                  ],
+                  "style": [
+                    "traditional chinese ink wash painting",
+                    "sumi-e",
+                    "monochromatic",
+                    "high contrast ink splashing",
+                    "dry brush texture"
+                  ],
+                  "subject": {
+                    "body_traits": [
+                      "young male protagonist Lin Yuan",
+                      "thin and gaunt physique",
+                      "exhausted expression with deep eye sockets",
+                      "focused gaze directed at a piece of scrap paper",
+                      "ink stains visible on fingertips",
+                      "hunched posture leaning over the bookshelf"
+                    ],
+                    "outfit": [
+                      "worn-out, faded uniform with frayed cuffs",
+                      "simple utilitarian fabric texture",
+                      "black-rimmed spectacles resting on his nose"
+                    ],
+                    "pose": [
+                      "crouching slightly near a dark, towering bookshelf",
+                      "fingers holding a piece of grey, weathered paper",
+                      "body tensed in a defensive hunch",
+                      "head tilted down, eyes fixed on the forbidden scrap",
+                      "positioned with back slightly turned away from 老陈-配角1"
+                    ]
+                  },
+                  "tags": [
+                    "realism",
+                    "dystopian",
+                    "oppressive",
+                    "noir",
+                    "minimalist"
+                  ]
+                },
+                "scene_text_hash": "f92ab69ae5b2f58c453b384b51ab1a4b",
+                "style": "default",
+                "url": "/image_cache/94decbb884edd12889ad60ce32ae74eb.png",
+                "width": 1920
+              },
+              "previousSceneText": "青岩书院的图书馆内，空气中弥漫着陈旧纸张与消毒水的混合气味。我推了推鼻梁上滑落的黑框眼镜，指尖沾染的墨迹在泛黄的教材边缘留下一道浅痕。我正低头整理着书架，余光瞥见一本教材的夹层中露出一角粗糙的纸张，那纸质与书院统一的洁白用纸截然不同，带着一种被岁月侵蚀的灰败感。我心跳骤然加速，本能地环顾四周，图书馆管理员老陈正坐在不远处的柜台后，那双浑浊的眼睛透过厚重的镜片，机械地审视着每一个进出的学生。我迅速将那张残页抽离，指尖触碰的瞬间，一股熟悉的、带着父亲书房气息的墨香仿佛在脑海中炸开，那是某种被禁锢的文字碎片。就在这时，老陈放下手中的茶杯，发出刺耳的瓷器碰撞声，他缓缓站起身，目光如炬地向我所在的区域走来。"
+            },
+            "start_ts": 1777624650.1198447,
+            "end_ts": 1777624650.1427999,
+            "provider_events": {
+              "event_count": 0,
+              "queue_wait_ms": {
+                "count": 0
+              },
+              "latency_ms": {
+                "count": 0
+              },
+              "llm_success_count": 0,
+              "image_success_count": 0,
+              "request_thread_event_count": 0,
+              "provider_429_count": 0,
+              "provider_timeout_count": 0,
+              "shared_backoff_wait_ms_total": 0,
+              "retry_heavy_event_count": 0,
+              "main_character_event_count": 0,
+              "scene_image_event_count": 0
+            }
+          }
+        ],
+        "attempt_count": 1,
+        "request_elapsed_s": 0.023,
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "success",
+        "has_scene": true,
+        "has_image": true,
+        "selected_option_index": 0,
+        "selected_option_text": "迅速将残页塞入袖口，假装整理书架以掩盖慌乱。",
+        "input_scene_id": "-2334569867535646044_2686571443291047985",
+        "inferred_cache_result": "likely_hit",
+        "used_updated_flow_state": true,
+        "cache_hit_reason": "request_scene_completed_with_image",
+        "cache_miss_reason": null,
+        "global_state_key_drift_detected": false,
+        "scene_id_mismatch_detected": false,
+        "selected_option_mismatch_detected": false,
+        "current_options_key_drift_detected": false,
+        "benchmark_diagnostics": {
+          "cache_hit_reason": "request_scene_completed_with_image",
+          "cache_miss_reason": null,
+          "current_options_key_drift_detected": false,
+          "global_state_key_drift_detected": false,
+          "placeholder": false,
+          "previous_scene_id": "initial",
+          "recomputed_scene_cache_exists": false,
+          "recomputed_scene_id": "-4525054791623883093_2686571443291047985",
+          "request_current_options_count": 2,
+          "request_current_options_hash": "3d65bf6f07690f2f5e4cedeb4ca315a3",
+          "request_flow_worldline_hash": "0b7d2802f8e46ae104639ddbac325b51",
+          "request_global_state_hash": "c8f0067ab3f19780f74b651b9716948d",
+          "request_option_at_index": "迅速将残页塞入袖口，假装整理书架以掩盖慌乱。",
+          "request_option_index": 0,
+          "request_option_text": "迅速将残页塞入袖口，假装整理书架以掩盖慌乱。",
+          "request_scene_cache_exists": true,
+          "request_scene_cache_meta": {},
+          "request_scene_generation_status": "completed",
+          "request_scene_id": "-2334569867535646044_2686571443291047985",
+          "resolution_path": "request_scene_cache_direct",
+          "response_has_image": true,
+          "response_has_scene": true,
+          "response_scene_id": "-4050608273619311573_-6415519314217168631",
+          "response_status": "success",
+          "scene_id_mismatch_detected": false,
+          "selected_option_mismatch_detected": false
+        }
+      },
+      "full_ready": {
+        "text_ready_ts": 1777624650.1427999,
+        "text_ready_elapsed_s": 0.023,
+        "image_ready_ts": 1777624650.1427999,
+        "image_ready_elapsed_s": 0.023,
+        "full_ready_ts": 1777624650.1427999,
+        "full_ready_elapsed_s": 0.023,
+        "image_probe": {
+          "status": "success",
+          "source": "generate-option",
+          "image": {
+            "cached": true,
+            "height": 1080,
+            "image_type": "story_scene",
+            "prompt": "scene-archive-confrontation-atui, watercolor, realism, narrative-portrait, atmospheric, dystopian-undercurrent, watercolor painting with rich luminous colors, fresh and translucent palette, realistic light and shadow, strong chiaroscuro, natural lighting with soft highlights and deep shadows, visible water marks and wet-on-wet bleeding, soft color bleeding and pigment diffusion at edges, light casual brushstrokes, loose and spontaneous brushwork, delicate wash layers, water droplet accents or soft blurred edges, subtle bloom and edge softening, sumi-e style wet-on-wet blending with soft ink wash backgrounds, young male protagonist Lin Yuan, thin and gaunt physique, exhausted expression with deep eye sockets and tired eyes, sun-tanned skin tone, black-rimmed spectacles slightly askew on nose bridge, tense but trying to appear calm, slight tremor in fingers, utilitarian outdoor gear, dark blue or grey windbreaker with multiple pockets, durable fabric texture with subtle folds, camera strap visible across the shoulder, standing in front of a dusty wooden bookshelf, body slightly turned, looking back towards the viewer/interlocutor, hands partially hidden near the sleeve, holding a scrap of paper, posture indicates defensive tension masked by feigned composure, 8K detailed facial features with ink wash and soft watercolor rendering, eyes behind black-rimmed glasses, tired and reflective, gaze directed at阿图伊-配角1, thin defined eyebrows with gentle ink strokes, small nose with faint highlight and soft shadow, lips neutral and slightly pressed, showing subtle fatigue, smooth skin with light ink shading to emphasize exhaustion, no text, no symbols on the face or skin, short messy black hair with natural ink-wash texture, root fixation coefficient 0.7, tip swing amplitude 5cm, color layering: main color #000000, secondary color #2F2F2F, highlight #FFFFFF, shadow #1A1A1A, wind speed 0.5m/s, turbulence intensity 2 percent, bold outline strokes with finer detail strands, functional windbreaker rendered with layers of ink wash for depth, matte fabric texture with subtle mineral pigment sheen, no logos, no text, no modern printed patterns on the clothing, dusty wooden bookshelves filled with old, decaying records, soft focus on the background to emphasize depth, muted earth tones with ink-washed shadows between shelves, 阿图伊-配角1 standing behind Lin Yuan, elderly, wrinkled face, traditional attire, partially in shadow, dust motes dancing in a single shaft of light, soft aura around the characters created by diluted wash halo, subtle color mist and bleeding at the edges of the bookshelf, low-saturation palette, earthy tones combined with deep ink grays, fresh and translucent, avoid muddy or dull tones, overall palette soft and airy with realistic light-and-shadow depth, realistic natural lighting, single light source from a side window, strong sense of light and shadow, chiaroscuro, soft diffused fill light, luminous skin and fabric where light passes through, gentle rim light highlighting the silhouette of the characters, type medium shot, lens 35mm, aperture f/2.8, depth_of_field medium focus, sharp on Lin Yuan, background bookshelf and阿图伊-配角1 softly blurred, flash none, grain natural rice paper grain, water stain and pigment bleed texture, texture visible light brushstrokes, water marks and bleeding at edges, Lin Yuan positioned slightly to the left, looking back towards the right, 阿图伊-配角1 positioned in the background right, partially obscured by shadows, rule of thirds used to balance the characters and the bookshelf, no text, no symbols, no UI elements or watermarks anywhere in the image, watercolor with ink wash, rich luminous colors and realistic light and shadow, emphasis on water marks, wet bleeding and soft blurred edges, painterly illustration with fresh translucent feel, no text, no symbols, no words, tense and quiet, contemplative and heavy, melancholy atmosphere of hidden truths, realistic and grounded, no text, no symbols, no garbled characters, no words, consistent character design, consistent outfit and key props, consistent color palette and lighting",
+            "prompt_json": {
+              "camera": {
+                "aperture": "f/2.8",
+                "depth_of_field": "medium focus, sharp on Lin Yuan, background bookshelf and阿图伊-配角1 softly blurred",
+                "flash": "none",
+                "grain": "natural rice paper grain, water stain and pigment bleed texture",
+                "lens": "35mm",
+                "texture": "visible light brushstrokes, water marks and bleeding at edges",
+                "type": "medium shot"
+              },
+              "clothing_system": [
+                "functional windbreaker rendered with layers of ink wash for depth",
+                "matte fabric texture with subtle mineral pigment sheen",
+                "no logos, no text, no modern printed patterns on the clothing"
+              ],
+              "color_restriction": [
+                "low-saturation palette, earthy tones combined with deep ink grays",
+                "fresh and translucent, avoid muddy or dull tones",
+                "overall palette soft and airy with realistic light-and-shadow depth"
+              ],
+              "composition": [
+                "Lin Yuan positioned slightly to the left, looking back towards the right",
+                "阿图伊-配角1 positioned in the background right, partially obscured by shadows",
+                "rule of thirds used to balance the characters and the bookshelf",
+                "no text, no symbols, no UI elements or watermarks anywhere in the image"
+              ],
+              "environment": {
+                "background": [
+                  "dusty wooden bookshelves filled with old, decaying records",
+                  "soft focus on the background to emphasize depth",
+                  "muted earth tones with ink-washed shadows between shelves"
+                ],
+                "characters": [
+                  "阿图伊-配角1 standing behind Lin Yuan, elderly, wrinkled face, traditional attire, partially in shadow"
+                ],
+                "effects": [
+                  "dust motes dancing in a single shaft of light",
+                  "soft aura around the characters created by diluted wash halo",
+                  "subtle color mist and bleeding at the edges of the bookshelf"
+                ]
+              },
+              "face_system": [
+                "8K detailed facial features with ink wash and soft watercolor rendering",
+                "eyes behind black-rimmed glasses, tired and reflective, gaze directed at阿图伊-配角1",
+                "thin defined eyebrows with gentle ink strokes",
+                "small nose with faint highlight and soft shadow",
+                "lips neutral and slightly pressed, showing subtle fatigue",
+                "smooth skin with light ink shading to emphasize exhaustion",
+                "no text, no symbols on the face or skin"
+              ],
+              "hair_system": [
+                "short messy black hair with natural ink-wash texture",
+                "root fixation coefficient 0.7, tip swing amplitude 5cm",
+                "color layering: main color #000000, secondary color #2F2F2F, highlight #FFFFFF, shadow #1A1A1A",
+                "wind speed 0.5m/s, turbulence intensity 2 percent",
+                "bold outline strokes with finer detail strands"
+              ],
+              "label": "scene-archive-confrontation-atui",
+              "lighting": [
+                "realistic natural lighting, single light source from a side window",
+                "strong sense of light and shadow, chiaroscuro",
+                "soft diffused fill light, luminous skin and fabric where light passes through",
+                "gentle rim light highlighting the silhouette of the characters"
+              ],
+              "mood": [
+                "tense and quiet",
+                "contemplative and heavy",
+                "melancholy atmosphere of hidden truths",
+                "realistic and grounded"
+              ],
+              "output_style": [
+                "watercolor with ink wash, rich luminous colors and realistic light and shadow",
+                "emphasis on water marks, wet bleeding and soft blurred edges",
+                "painterly illustration with fresh translucent feel, no text, no symbols, no words"
+              ],
+              "style": [
+                "watercolor painting with rich luminous colors, fresh and translucent palette",
+                "realistic light and shadow, strong chiaroscuro, natural lighting with soft highlights and deep shadows",
+                "visible water marks and wet-on-wet bleeding, soft color bleeding and pigment diffusion at edges",
+                "light casual brushstrokes, loose and spontaneous brushwork, delicate wash layers",
+                "water droplet accents or soft blurred edges, subtle bloom and edge softening",
+                "sumi-e style wet-on-wet blending with soft ink wash backgrounds"
+              ],
+              "subject": {
+                "body_traits": [
+                  "young male protagonist Lin Yuan, thin and gaunt physique",
+                  "exhausted expression with deep eye sockets and tired eyes",
+                  "sun-tanned skin tone",
+                  "black-rimmed spectacles slightly askew on nose bridge",
+                  "tense but trying to appear calm, slight tremor in fingers"
+                ],
+                "outfit": [
+                  "utilitarian outdoor gear, dark blue or grey windbreaker with multiple pockets",
+                  "durable fabric texture with subtle folds",
+                  "camera strap visible across the shoulder"
+                ],
+                "pose": [
+                  "standing in front of a dusty wooden bookshelf",
+                  "body slightly turned, looking back towards the viewer/interlocutor",
+                  "hands partially hidden near the sleeve, holding a scrap of paper",
+                  "posture indicates defensive tension masked by feigned composure"
+                ]
+              },
+              "tags": [
+                "watercolor",
+                "realism",
+                "narrative-portrait",
+                "atmospheric",
+                "dystopian-undercurrent"
+              ]
+            },
+            "scene_text_hash": "bc48d2b6e32b389192bd12a5cdfc749b",
+            "style": "default",
+            "url": "/image_cache/954ef95c2dd5891fd7f18bb27efef515.png",
+            "width": 1920
+          },
+          "attempt_count": 0
+        },
+        "ready_mode": "direct_in_generate_option",
+        "attribution": {
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "provider_retry_heavy_count": 0,
+          "provider_backoff_wait_ms_total": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0,
+          "image_probe_attempt_count": 0,
+          "main_character_contention_suspected": false
+        }
+      },
+      "placeholder": false,
+      "transport_success": true,
+      "strict_success": true,
+      "failure_bucket": null,
+      "cache_path_classification": "likely_hit_direct_image",
+      "cache_hit_reason": "request_scene_completed_with_image",
+      "cache_miss_reason": null,
+      "global_state_key_drift_detected": false,
+      "scene_id_mismatch_detected": false,
+      "selected_option_mismatch_detected": false,
+      "success": true
+    }
+  ]
+}

@@ -1,0 +1,450 @@
+{
+  "runs": [
+    {
+      "baseline_id": "worldgeneration",
+      "benchmark_id": "DNQBV1_001",
+      "run_id": "worldgeneration_DNQBV1_001_d33cbdfc",
+      "raw_output": {
+        "source_story": "C:\\Users\\zhang\\Desktop\\DN\\experiments\\external_baselines\\worldgeneration\\rule-based\\binary_data\\mystery\\3_binary.txt",
+        "nodes": 132,
+        "edges": 152
+      },
+      "success": true,
+      "latency_s": 0.003,
+      "playable": true,
+      "playable_components": {
+        "scene_setup": true,
+        "player_state": true,
+        "advanceable_next_step": true,
+        "interaction_continuity": true
+      },
+      "normalized_response": {
+        "scene_setup": "Holmes receives a visit from Dr. Thorneycroft Huxtable, the founder and principal of a preparatory school called Priory School in Northern England.",
+        "player_state": "You are inside the WorldGeneration scenario at Starting Area and need to decide how to proceed.",
+        "narrative_response": "Holmes receives a visit from Dr. Thorneycroft Huxtable, the founder and principal of a preparatory school called Priory School in Northern England. People here: Dr Thorneycroft Huxtable, Preparatory School, Priory School Northern England. Objects worth checking: Him Look Disappearance One Pupils Ten, Not Only Boy Has Disappeared Along, Kidnappers Could Not Have Used Nearby, Boy Could Not Have Used Nearby. Reachable locations: Moor.",
+        "candidate_actions": [
+          "Talk to Dr Thorneycroft Huxtable.",
+          "Inspect Him Look Disappearance One Pupils Ten.",
+          "Travel to Moor.",
+          "Search for the strongest clue in the area."
+        ],
+        "suggested_next_step": "",
+        "is_playable": true,
+        "request_start_ts": 1777194518.4447322,
+        "first_playable_ts": 1777194518.4477687,
+        "finish_ts": 1777194518.4477687,
+        "error": null,
+        "notes": [
+          "Adapted from official WorldGeneration rule-based binary story assets.",
+          "NeuralCoref and Stanford NER were replaced with local fallbacks for current-machine reproducibility."
+        ]
+      },
+      "mode": "first_playable",
+      "input_bundle": {
+        "source_story": "C:\\Users\\zhang\\Desktop\\DN\\experiments\\external_baselines\\worldgeneration\\rule-based\\binary_data\\mystery\\3_binary.txt",
+        "benchmark_theme": "边陲驿站夜谈录"
+      }
+    },
+    {
+      "baseline_id": "worldgeneration",
+      "benchmark_id": "DNQBV1_002",
+      "run_id": "worldgeneration_DNQBV1_002_c3f3efb0",
+      "raw_output": {
+        "source_story": "C:\\Users\\zhang\\Desktop\\DN\\experiments\\external_baselines\\worldgeneration\\rule-based\\binary_data\\fairy\\5_binary.txt",
+        "nodes": 84,
+        "edges": 87
+      },
+      "success": true,
+      "latency_s": 0.002,
+      "playable": true,
+      "playable_components": {
+        "scene_setup": true,
+        "player_state": true,
+        "advanceable_next_step": true,
+        "interaction_continuity": true
+      },
+      "normalized_response": {
+        "scene_setup": "Every night, their doors are securely locked by their father.",
+        "player_state": "You are inside the WorldGeneration scenario at Starting Area and need to decide how to proceed.",
+        "narrative_response": "Every night, their doors are securely locked by their father. People here: Doors, Father, They. Objects worth checking: Who Fail Within Set Time Limit, Not Pretend Be Fast Asleep Until, Anything Given Him Evening Any Princesses, Enchanted Cloak He Can Use Observe. Reachable locations: Palace.",
+        "candidate_actions": [
+          "Talk to Doors.",
+          "Inspect Who Fail Within Set Time Limit.",
+          "Travel to Palace.",
+          "Search for the strongest clue in the area."
+        ],
+        "suggested_next_step": "",
+        "is_playable": true,
+        "request_start_ts": 1777194518.448129,
+        "first_playable_ts": 1777194518.4496748,
+        "finish_ts": 1777194518.4496748,
+        "error": null,
+        "notes": [
+          "Adapted from official WorldGeneration rule-based binary story assets.",
+          "NeuralCoref and Stanford NER were replaced with local fallbacks for current-machine reproducibility."
+        ]
+      },
+      "mode": "first_playable",
+      "input_bundle": {
+        "source_story": "C:\\Users\\zhang\\Desktop\\DN\\experiments\\external_baselines\\worldgeneration\\rule-based\\binary_data\\fairy\\5_binary.txt",
+        "benchmark_theme": "末日温室园丁"
+      }
+    },
+    {
+      "baseline_id": "worldgeneration",
+      "benchmark_id": "DNQBV1_005",
+      "run_id": "worldgeneration_DNQBV1_005_d05caae5",
+      "raw_output": {
+        "source_story": "C:\\Users\\zhang\\Desktop\\DN\\experiments\\external_baselines\\worldgeneration\\rule-based\\binary_data\\mystery\\10_binary.txt",
+        "nodes": 103,
+        "edges": 129
+      },
+      "success": true,
+      "latency_s": 0.002,
+      "playable": true,
+      "playable_components": {
+        "scene_setup": true,
+        "player_state": true,
+        "advanceable_next_step": true,
+        "interaction_continuity": true
+      },
+      "normalized_response": {
+        "scene_setup": "Jabez Wilson, a London pawnbroker, comes to consult Sherlock Holmes and Doctor Watson.",
+        "player_state": "You are inside the WorldGeneration scenario at Starting Area and need to decide how to proceed.",
+        "narrative_response": "Jabez Wilson, a London pawnbroker, comes to consult Sherlock Holmes and Doctor Watson. People here: Jabez Wilson, Doctor Watson, Consult Doctor Watson. Objects worth checking: Red Hair Which Has Distinct Flame, Distinct Flame - Like Hue, Respond Newspaper Want-Ad Offering Highly-Paid Work, Some Weeks Young Assistant Vincent Spaulding. Reachable locations: Long Line Fellow Red - Headed.",
+        "candidate_actions": [
+          "Talk to Jabez Wilson.",
+          "Inspect Red Hair Which Has Distinct Flame.",
+          "Travel to Long Line Fellow Red - Headed.",
+          "Search for the strongest clue in the area."
+        ],
+        "suggested_next_step": "",
+        "is_playable": true,
+        "request_start_ts": 1777194518.4499516,
+        "first_playable_ts": 1777194518.4516368,
+        "finish_ts": 1777194518.4516368,
+        "error": null,
+        "notes": [
+          "Adapted from official WorldGeneration rule-based binary story assets.",
+          "NeuralCoref and Stanford NER were replaced with local fallbacks for current-machine reproducibility."
+        ]
+      },
+      "mode": "first_playable",
+      "input_bundle": {
+        "source_story": "C:\\Users\\zhang\\Desktop\\DN\\experiments\\external_baselines\\worldgeneration\\rule-based\\binary_data\\mystery\\10_binary.txt",
+        "benchmark_theme": "月球矿难七日"
+      }
+    },
+    {
+      "baseline_id": "worldgeneration",
+      "benchmark_id": "DNQBV1_009",
+      "run_id": "worldgeneration_DNQBV1_009_ce197fde",
+      "raw_output": {
+        "source_story": "C:\\Users\\zhang\\Desktop\\DN\\experiments\\external_baselines\\worldgeneration\\rule-based\\binary_data\\mystery\\6_binary.txt",
+        "nodes": 168,
+        "edges": 199
+      },
+      "success": true,
+      "latency_s": 0.003,
+      "playable": true,
+      "playable_components": {
+        "scene_setup": true,
+        "player_state": true,
+        "advanceable_next_step": true,
+        "interaction_continuity": true
+      },
+      "normalized_response": {
+        "scene_setup": "The story takes place in 1894, three years after the death of Sherlock Holmes.",
+        "player_state": "You are inside the WorldGeneration scenario at Starting Area and need to decide how to proceed.",
+        "narrative_response": "The story takes place in 1894, three years after the death of Sherlock Holmes. People here: Story, Place, Maynooth. Reachable locations: London.",
+        "candidate_actions": [
+          "Talk to Story.",
+          "Travel to London.",
+          "Search for the strongest clue in the area."
+        ],
+        "suggested_next_step": "",
+        "is_playable": true,
+        "request_start_ts": 1777194518.4519534,
+        "first_playable_ts": 1777194518.454678,
+        "finish_ts": 1777194518.454678,
+        "error": null,
+        "notes": [
+          "Adapted from official WorldGeneration rule-based binary story assets.",
+          "NeuralCoref and Stanford NER were replaced with local fallbacks for current-machine reproducibility."
+        ]
+      },
+      "mode": "first_playable",
+      "input_bundle": {
+        "source_story": "C:\\Users\\zhang\\Desktop\\DN\\experiments\\external_baselines\\worldgeneration\\rule-based\\binary_data\\mystery\\6_binary.txt",
+        "benchmark_theme": "茶肆说书人"
+      }
+    },
+    {
+      "baseline_id": "worldgeneration",
+      "benchmark_id": "DNQBV1_018",
+      "run_id": "worldgeneration_DNQBV1_018_36b51da0",
+      "raw_output": {
+        "source_story": "C:\\Users\\zhang\\Desktop\\DN\\experiments\\external_baselines\\worldgeneration\\rule-based\\binary_data\\mystery\\5_binary.txt",
+        "nodes": 126,
+        "edges": 165
+      },
+      "success": true,
+      "latency_s": 0.002,
+      "playable": true,
+      "playable_components": {
+        "scene_setup": true,
+        "player_state": true,
+        "advanceable_next_step": true,
+        "interaction_continuity": true
+      },
+      "normalized_response": {
+        "scene_setup": "Lord Bellinger, the Prime Minister, and the Right Honourable Trelawney Hope, the Secretary of State for European Affairs, come to Holmes in the matter of a document stolen from Hope's dispatch box, which he kept at home in Whitehall Terrace when not at work.",
+        "player_state": "You are inside the WorldGeneration scenario at Starting Area and need to decide how to proceed.",
+        "narrative_response": "Lord Bellinger, the Prime Minister, and the Right Honourable Trelawney Hope, the Secretary of State for European Affairs, come to Holmes in the matter of a document stolen from Hope's dispatch box, which he kept at home in Whitehall Terrace when not at work. People here: Right Honourable Trelawney Hope, Holmes, Lord Bellinger. Reachable locations: Home.",
+        "candidate_actions": [
+          "Talk to Right Honourable Trelawney Hope.",
+          "Travel to Home.",
+          "Search for the strongest clue in the area."
+        ],
+        "suggested_next_step": "",
+        "is_playable": true,
+        "request_start_ts": 1777194518.455085,
+        "first_playable_ts": 1777194518.457037,
+        "finish_ts": 1777194518.457037,
+        "error": null,
+        "notes": [
+          "Adapted from official WorldGeneration rule-based binary story assets.",
+          "NeuralCoref and Stanford NER were replaced with local fallbacks for current-machine reproducibility."
+        ]
+      },
+      "mode": "first_playable",
+      "input_bundle": {
+        "source_story": "C:\\Users\\zhang\\Desktop\\DN\\experiments\\external_baselines\\worldgeneration\\rule-based\\binary_data\\mystery\\5_binary.txt",
+        "benchmark_theme": "民国电报迷案"
+      }
+    },
+    {
+      "baseline_id": "worldgeneration",
+      "benchmark_id": "DNQBV1_001",
+      "run_id": "worldgeneration_DNQBV1_001_c17c9cf4",
+      "raw_output": {
+        "source_story": "C:\\Users\\zhang\\Desktop\\DN\\experiments\\external_baselines\\worldgeneration\\rule-based\\binary_data\\mystery\\3_binary.txt",
+        "player_action": "Talk to Dr Thorneycroft Huxtable."
+      },
+      "success": true,
+      "latency_s": 0.0,
+      "playable": true,
+      "playable_components": {
+        "scene_setup": true,
+        "player_state": true,
+        "advanceable_next_step": true,
+        "interaction_continuity": true
+      },
+      "normalized_response": {
+        "scene_setup": "Holmes receives a visit from Dr. Thorneycroft Huxtable, the founder and principal of a preparatory school called Priory School in Northern England.",
+        "player_state": "You are inside the WorldGeneration scenario at Starting Area and need to decide how to proceed.",
+        "narrative_response": "You approach Dr Thorneycroft Huxtable and draw out a useful response. Holmes receives a visit from Dr. Thorneycroft Huxtable, the founder and principal of a preparatory school called Priory School in Northern England. People here: Dr Thorneycroft Huxtable, Preparatory School, Priory School Northern England. Objects worth checking: Him Look Disappearance One Pupils Ten, Not Only Boy Has Disappeared Along, Kidnappers Could Not Have Used Nearby, Boy Could Not Have Used Nearby. Reachable locations: Moor.",
+        "candidate_actions": [
+          "Talk to Dr Thorneycroft Huxtable.",
+          "Inspect Him Look Disappearance One Pupils Ten.",
+          "Travel to Moor.",
+          "Search for the strongest clue in the area."
+        ],
+        "suggested_next_step": "",
+        "is_playable": true,
+        "request_start_ts": 1777194518.4478288,
+        "first_playable_ts": 1777194518.4478571,
+        "finish_ts": 1777194518.4478571,
+        "error": null,
+        "notes": [
+          "Next-turn response generated from action: Talk to Dr Thorneycroft Huxtable.",
+          "State progression uses the upstream-style room graph reconstructed from official binary story assets."
+        ]
+      },
+      "mode": "next_turn",
+      "input_bundle": {
+        "source_story": "C:\\Users\\zhang\\Desktop\\DN\\experiments\\external_baselines\\worldgeneration\\rule-based\\binary_data\\mystery\\3_binary.txt",
+        "benchmark_theme": "边陲驿站夜谈录",
+        "player_action": "Talk to Dr Thorneycroft Huxtable."
+      }
+    },
+    {
+      "baseline_id": "worldgeneration",
+      "benchmark_id": "DNQBV1_002",
+      "run_id": "worldgeneration_DNQBV1_002_17a8c028",
+      "raw_output": {
+        "source_story": "C:\\Users\\zhang\\Desktop\\DN\\experiments\\external_baselines\\worldgeneration\\rule-based\\binary_data\\fairy\\5_binary.txt",
+        "player_action": "Talk to Doors."
+      },
+      "success": true,
+      "latency_s": 0.0,
+      "playable": true,
+      "playable_components": {
+        "scene_setup": true,
+        "player_state": true,
+        "advanceable_next_step": true,
+        "interaction_continuity": true
+      },
+      "normalized_response": {
+        "scene_setup": "Every night, their doors are securely locked by their father.",
+        "player_state": "You are inside the WorldGeneration scenario at Starting Area and need to decide how to proceed.",
+        "narrative_response": "You approach Doors and draw out a useful response. Every night, their doors are securely locked by their father. People here: Doors, Father, They. Objects worth checking: Who Fail Within Set Time Limit, Not Pretend Be Fast Asleep Until, Anything Given Him Evening Any Princesses, Enchanted Cloak He Can Use Observe. Reachable locations: Palace.",
+        "candidate_actions": [
+          "Talk to Doors.",
+          "Inspect Who Fail Within Set Time Limit.",
+          "Travel to Palace.",
+          "Search for the strongest clue in the area."
+        ],
+        "suggested_next_step": "",
+        "is_playable": true,
+        "request_start_ts": 1777194518.4497175,
+        "first_playable_ts": 1777194518.4497416,
+        "finish_ts": 1777194518.4497416,
+        "error": null,
+        "notes": [
+          "Next-turn response generated from action: Talk to Doors.",
+          "State progression uses the upstream-style room graph reconstructed from official binary story assets."
+        ]
+      },
+      "mode": "next_turn",
+      "input_bundle": {
+        "source_story": "C:\\Users\\zhang\\Desktop\\DN\\experiments\\external_baselines\\worldgeneration\\rule-based\\binary_data\\fairy\\5_binary.txt",
+        "benchmark_theme": "末日温室园丁",
+        "player_action": "Talk to Doors."
+      }
+    },
+    {
+      "baseline_id": "worldgeneration",
+      "benchmark_id": "DNQBV1_005",
+      "run_id": "worldgeneration_DNQBV1_005_55552dd6",
+      "raw_output": {
+        "source_story": "C:\\Users\\zhang\\Desktop\\DN\\experiments\\external_baselines\\worldgeneration\\rule-based\\binary_data\\mystery\\10_binary.txt",
+        "player_action": "Talk to Jabez Wilson."
+      },
+      "success": true,
+      "latency_s": 0.0,
+      "playable": true,
+      "playable_components": {
+        "scene_setup": true,
+        "player_state": true,
+        "advanceable_next_step": true,
+        "interaction_continuity": true
+      },
+      "normalized_response": {
+        "scene_setup": "Jabez Wilson, a London pawnbroker, comes to consult Sherlock Holmes and Doctor Watson.",
+        "player_state": "You are inside the WorldGeneration scenario at Starting Area and need to decide how to proceed.",
+        "narrative_response": "You approach Jabez Wilson and draw out a useful response. Jabez Wilson, a London pawnbroker, comes to consult Sherlock Holmes and Doctor Watson. People here: Jabez Wilson, Doctor Watson, Consult Doctor Watson. Objects worth checking: Red Hair Which Has Distinct Flame, Distinct Flame - Like Hue, Respond Newspaper Want-Ad Offering Highly-Paid Work, Some Weeks Young Assistant Vincent Spaulding. Reachable locations: Long Line Fellow Red - Headed.",
+        "candidate_actions": [
+          "Talk to Jabez Wilson.",
+          "Inspect Red Hair Which Has Distinct Flame.",
+          "Travel to Long Line Fellow Red - Headed.",
+          "Search for the strongest clue in the area."
+        ],
+        "suggested_next_step": "",
+        "is_playable": true,
+        "request_start_ts": 1777194518.4516861,
+        "first_playable_ts": 1777194518.4517062,
+        "finish_ts": 1777194518.4517062,
+        "error": null,
+        "notes": [
+          "Next-turn response generated from action: Talk to Jabez Wilson.",
+          "State progression uses the upstream-style room graph reconstructed from official binary story assets."
+        ]
+      },
+      "mode": "next_turn",
+      "input_bundle": {
+        "source_story": "C:\\Users\\zhang\\Desktop\\DN\\experiments\\external_baselines\\worldgeneration\\rule-based\\binary_data\\mystery\\10_binary.txt",
+        "benchmark_theme": "月球矿难七日",
+        "player_action": "Talk to Jabez Wilson."
+      }
+    },
+    {
+      "baseline_id": "worldgeneration",
+      "benchmark_id": "DNQBV1_009",
+      "run_id": "worldgeneration_DNQBV1_009_59b8f34a",
+      "raw_output": {
+        "source_story": "C:\\Users\\zhang\\Desktop\\DN\\experiments\\external_baselines\\worldgeneration\\rule-based\\binary_data\\mystery\\6_binary.txt",
+        "player_action": "Talk to Story."
+      },
+      "success": true,
+      "latency_s": 0.0,
+      "playable": true,
+      "playable_components": {
+        "scene_setup": true,
+        "player_state": true,
+        "advanceable_next_step": true,
+        "interaction_continuity": true
+      },
+      "normalized_response": {
+        "scene_setup": "The story takes place in 1894, three years after the death of Sherlock Holmes.",
+        "player_state": "You are inside the WorldGeneration scenario at Starting Area and need to decide how to proceed.",
+        "narrative_response": "You approach Story and draw out a useful response. The story takes place in 1894, three years after the death of Sherlock Holmes. People here: Story, Place, Maynooth. Reachable locations: London.",
+        "candidate_actions": [
+          "Talk to Story.",
+          "Travel to London.",
+          "Search for the strongest clue in the area."
+        ],
+        "suggested_next_step": "",
+        "is_playable": true,
+        "request_start_ts": 1777194518.4547615,
+        "first_playable_ts": 1777194518.454772,
+        "finish_ts": 1777194518.454772,
+        "error": null,
+        "notes": [
+          "Next-turn response generated from action: Talk to Story.",
+          "State progression uses the upstream-style room graph reconstructed from official binary story assets."
+        ]
+      },
+      "mode": "next_turn",
+      "input_bundle": {
+        "source_story": "C:\\Users\\zhang\\Desktop\\DN\\experiments\\external_baselines\\worldgeneration\\rule-based\\binary_data\\mystery\\6_binary.txt",
+        "benchmark_theme": "茶肆说书人",
+        "player_action": "Talk to Story."
+      }
+    },
+    {
+      "baseline_id": "worldgeneration",
+      "benchmark_id": "DNQBV1_018",
+      "run_id": "worldgeneration_DNQBV1_018_c613d196",
+      "raw_output": {
+        "source_story": "C:\\Users\\zhang\\Desktop\\DN\\experiments\\external_baselines\\worldgeneration\\rule-based\\binary_data\\mystery\\5_binary.txt",
+        "player_action": "Talk to Right Honourable Trelawney Hope."
+      },
+      "success": true,
+      "latency_s": 0.0,
+      "playable": true,
+      "playable_components": {
+        "scene_setup": true,
+        "player_state": true,
+        "advanceable_next_step": true,
+        "interaction_continuity": true
+      },
+      "normalized_response": {
+        "scene_setup": "Lord Bellinger, the Prime Minister, and the Right Honourable Trelawney Hope, the Secretary of State for European Affairs, come to Holmes in the matter of a document stolen from Hope's dispatch box, which he kept at home in Whitehall Terrace when not at work.",
+        "player_state": "You are inside the WorldGeneration scenario at Starting Area and need to decide how to proceed.",
+        "narrative_response": "You approach Right Honourable Trelawney Hope and draw out a useful response. Lord Bellinger, the Prime Minister, and the Right Honourable Trelawney Hope, the Secretary of State for European Affairs, come to Holmes in the matter of a document stolen from Hope's dispatch box, which he kept at home in Whitehall Terrace when not at work. People here: Right Honourable Trelawney Hope, Holmes, Lord Bellinger. Reachable locations: Home.",
+        "candidate_actions": [
+          "Talk to Right Honourable Trelawney Hope.",
+          "Travel to Home.",
+          "Search for the strongest clue in the area."
+        ],
+        "suggested_next_step": "",
+        "is_playable": true,
+        "request_start_ts": 1777194518.457089,
+        "first_playable_ts": 1777194518.4570985,
+        "finish_ts": 1777194518.4570985,
+        "error": null,
+        "notes": [
+          "Next-turn response generated from action: Talk to Right Honourable Trelawney Hope.",
+          "State progression uses the upstream-style room graph reconstructed from official binary story assets."
+        ]
+      },
+      "mode": "next_turn",
+      "input_bundle": {
+        "source_story": "C:\\Users\\zhang\\Desktop\\DN\\experiments\\external_baselines\\worldgeneration\\rule-based\\binary_data\\mystery\\5_binary.txt",
+        "benchmark_theme": "民国电报迷案",
+        "player_action": "Talk to Right Honourable Trelawney Hope."
+      }
+    }
+  ]
+}

@@ -1,0 +1,154 @@
+{
+  "pair_count": 19,
+  "scored_pair_count": 19,
+  "metrics": {
+    "clip_i": {
+      "n": 19,
+      "mean": 0.560501,
+      "median": 0.540228,
+      "min": 0.365214,
+      "max": 0.75504,
+      "stdev_population": 0.093042
+    },
+    "dinov2": {
+      "n": 19,
+      "mean": 0.177302,
+      "median": 0.172925,
+      "min": 0.000641,
+      "max": 0.450216,
+      "stdev_population": 0.107389
+    }
+  },
+  "dreamsim_status": "not_completed_timeout_downloading_1.17GB_default_checkpoint",
+  "style_stats": {
+    "anime": {
+      "n": 3,
+      "clip_i_mean": 0.606876,
+      "dinov2_mean": 0.203197
+    },
+    "cyberpunk": {
+      "n": 3,
+      "clip_i_mean": 0.490612,
+      "dinov2_mean": 0.130625
+    },
+    "ink_painting": {
+      "n": 3,
+      "clip_i_mean": 0.576474,
+      "dinov2_mean": 0.182658
+    },
+    "oil_painting": {
+      "n": 3,
+      "clip_i_mean": 0.618902,
+      "dinov2_mean": 0.197159
+    },
+    "realistic": {
+      "n": 4,
+      "clip_i_mean": 0.504787,
+      "dinov2_mean": 0.15556
+    },
+    "watercolor": {
+      "n": 3,
+      "clip_i_mean": 0.583925,
+      "dinov2_mean": 0.201861
+    }
+  },
+  "top_combined": [
+    {
+      "benchmark_id": "DNQBV1_011",
+      "theme_id": "21",
+      "theme": "书院禁书风波",
+      "style_type": "ink_painting",
+      "clip_i_score": 0.7477990984916687,
+      "dinov2_score": 0.4502163827419281,
+      "combined_similarity_z": 2.2772
+    },
+    {
+      "benchmark_id": "DNQBV1_017",
+      "theme_id": "24",
+      "theme": "近地轨道维修工",
+      "style_type": "anime",
+      "clip_i_score": 0.7550397515296936,
+      "dinov2_score": 0.28699636459350586,
+      "combined_similarity_z": 1.5562
+    },
+    {
+      "benchmark_id": "DNQBV1_020",
+      "theme_id": "18",
+      "theme": "沙漠商队星图",
+      "style_type": "oil_painting",
+      "clip_i_score": 0.6348600387573242,
+      "dinov2_score": 0.29651498794555664,
+      "combined_similarity_z": 0.9546
+    },
+    {
+      "benchmark_id": "DNQBV1_003",
+      "theme_id": "19",
+      "theme": "都市天台养鸽人",
+      "style_type": "realistic",
+      "clip_i_score": 0.5692741870880127,
+      "dinov2_score": 0.27575674653053284,
+      "combined_similarity_z": 0.5055
+    },
+    {
+      "benchmark_id": "DNQBV1_014",
+      "theme_id": "23",
+      "theme": "雨林部落预言",
+      "style_type": "watercolor",
+      "clip_i_score": 0.6277247667312622,
+      "dinov2_score": 0.1764640063047409,
+      "combined_similarity_z": 0.3574
+    }
+  ],
+  "bottom_combined": [
+    {
+      "benchmark_id": "DNQBV1_015",
+      "theme_id": "5",
+      "theme": "魔法学院期末周",
+      "style_type": "anime",
+      "clip_i_score": 0.5288503170013428,
+      "dinov2_score": 0.08163321763277054,
+      "combined_similarity_z": -0.6156
+    },
+    {
+      "benchmark_id": "DNQBV1_007",
+      "theme_id": "20",
+      "theme": "意识上传遗嘱",
+      "style_type": "cyberpunk",
+      "clip_i_score": 0.4665849804878235,
+      "dinov2_score": 0.11432832479476929,
+      "combined_similarity_z": -0.7979
+    },
+    {
+      "benchmark_id": "DNQBV1_005",
+      "theme_id": "2",
+      "theme": "月球矿难七日",
+      "style_type": "cyberpunk",
+      "clip_i_score": 0.47053131461143494,
+      "dinov2_score": 0.10558586567640305,
+      "combined_similarity_z": -0.8174
+    },
+    {
+      "benchmark_id": "DNQBV1_009",
+      "theme_id": "3",
+      "theme": "茶肆说书人",
+      "style_type": "ink_painting",
+      "clip_i_score": 0.44139352440834045,
+      "dinov2_score": 0.025937175378203392,
+      "combined_similarity_z": -1.3448
+    },
+    {
+      "benchmark_id": "DNQBV1_001",
+      "theme_id": "1",
+      "theme": "边陲驿站夜谈录",
+      "style_type": "realistic",
+      "clip_i_score": 0.36521387100219727,
+      "dinov2_score": 0.0006413944065570831,
+      "combined_similarity_z": -1.872
+    }
+  ],
+  "input_output_assessment": {
+    "game_themes_100_json_direct_input": false,
+    "reason": "DINOv2, CLIP-I, and DreamSim runners accept image pairs (--ref/--candidate or --pairs-csv with ref,candidate), while game_themes_100.json only contains theme/style metadata.",
+    "adapter_used": "experiments/baselines/image_consistency_game_themes_100/pairs.csv built from DN benchmark theme_id->game_id outputs."
+  }
+}

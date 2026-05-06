@@ -1,0 +1,139 @@
+{
+  "generated_at": "2026-05-01T12:18:44.588397+00:00",
+  "profiles": {
+    "normal20": {
+      "evidence_path": "D:\\Projects\\DN\\experiments\\benchmark\\standard_runs\\benchmark_v15_fullready_nextturn_normal20_fixed_v2.json",
+      "profile": "fullready_strict",
+      "sample_size": 20,
+      "transport_success_count": 19,
+      "strict_success_count": 19,
+      "success_count": 19,
+      "success_rate": 0.95,
+      "text_ready_elapsed_s": {
+        "count": 20,
+        "min": 7.52,
+        "max": 58.28,
+        "mean": 28.868,
+        "median": 25.017,
+        "p95": 48.578
+      },
+      "image_ready_elapsed_s": {
+        "count": 19,
+        "min": 7.52,
+        "max": 48.067,
+        "mean": 27.32,
+        "median": 24.919,
+        "p95": 46.06
+      },
+      "full_ready_elapsed_s": {
+        "count": 19,
+        "min": 7.52,
+        "max": 48.067,
+        "mean": 27.32,
+        "median": 24.919,
+        "p95": 46.06
+      },
+      "real_scene_rate": 1.0,
+      "likely_hit_rate": 0.05,
+      "direct_image_count": 19,
+      "async_image_count": 0,
+      "placeholder_count": 0,
+      "placeholder_rate": 0.0,
+      "direct_image_rate": 0.95,
+      "async_image_rate": 0.0,
+      "provider_retry_heavy_count": 0,
+      "provider_429_count": 0,
+      "provider_timeout_count": 0,
+      "provider_backoff_wait_ms_total": 0,
+      "main_character_contention_suspected_count": 0,
+      "failure_bucket_counts": {
+        "image_probe_timeout": 1
+      },
+      "placeholder_strict_fail_count": 0,
+      "cache_hit_reason_counts": {
+        "waited_request_scene_text_completed_no_image": 15,
+        "request_scene_text_completed_no_image": 3,
+        "waited_request_scene_completed_with_image": 2
+      },
+      "cache_miss_reason_counts": {
+        "request_scene_generation_in_progress": 15,
+        "image_not_ready_in_cache": 3,
+        "request_scene_cache_missing": 2
+      },
+      "global_state_key_drift_detected_count": 18,
+      "scene_id_mismatch_detected_count": 18,
+      "selected_option_mismatch_detected_count": 0,
+      "read_wait_s": 0.0,
+      "notes": "v15 strict normal20 treats first click as setup with a separate timeout budget, while preserving 60s fail-fast guards for second-click request, scene-image wait, and the measured next-turn full-ready path."
+    },
+    "pregen60s20": {
+      "evidence_path": "D:\\Projects\\DN\\experiments\\benchmark\\standard_runs\\benchmark_v15_fullready_nextturn_pregen60s20_fixed_v2.json",
+      "profile": "fullready_pregen60",
+      "sample_size": 20,
+      "transport_success_count": 19,
+      "strict_success_count": 19,
+      "success_count": 19,
+      "success_rate": 0.95,
+      "text_ready_elapsed_s": {
+        "count": 20,
+        "min": 0.009,
+        "max": 60.017,
+        "mean": 8.299,
+        "median": 0.028,
+        "p95": 49.077
+      },
+      "image_ready_elapsed_s": {
+        "count": 19,
+        "min": 0.009,
+        "max": 48.501,
+        "mean": 5.577,
+        "median": 0.028,
+        "p95": 28.273
+      },
+      "full_ready_elapsed_s": {
+        "count": 19,
+        "min": 0.009,
+        "max": 48.501,
+        "mean": 5.577,
+        "median": 0.028,
+        "p95": 28.273
+      },
+      "real_scene_rate": 0.95,
+      "likely_hit_rate": 0.75,
+      "direct_image_count": 19,
+      "async_image_count": 0,
+      "placeholder_count": 0,
+      "placeholder_rate": 0.0,
+      "direct_image_rate": 0.95,
+      "async_image_rate": 0.0,
+      "provider_retry_heavy_count": 0,
+      "provider_429_count": 0,
+      "provider_timeout_count": 0,
+      "provider_backoff_wait_ms_total": 0,
+      "main_character_contention_suspected_count": 0,
+      "failure_bucket_counts": {
+        "second_click_timeout": 1
+      },
+      "placeholder_strict_fail_count": 0,
+      "cache_hit_reason_counts": {
+        "request_scene_completed_with_image": 14,
+        "request_scene_text_completed_no_image": 2,
+        "waited_request_scene_completed_with_image": 3
+      },
+      "cache_miss_reason_counts": {
+        "image_not_ready_in_cache": 2,
+        "request_scene_cache_missing": 3
+      },
+      "global_state_key_drift_detected_count": 16,
+      "scene_id_mismatch_detected_count": 16,
+      "selected_option_mismatch_detected_count": 0,
+      "read_wait_s": 60.0,
+      "notes": "v15 strict pregen60s20 keeps the same 60-second dwell interval but now uses the same strict-v2 split timeouts and block-for-image cutoff as normal20, so placeholder and async backfill long tails do not silently leak into the measured path."
+    }
+  },
+  "notes": [
+    "normal20 is intended for strict comparison against the formal20 image-baseline next-turn rows.",
+    "pregen60s20 keeps the same 20 benchmark items but simulates a 60-second player read interval to expose pregeneration benefit.",
+    "StoryDiffusion / SDM-v2 / IC-LoRA rows in the strict table continue to use their existing formal20 next-turn image-continuation results."
+  ]
+}

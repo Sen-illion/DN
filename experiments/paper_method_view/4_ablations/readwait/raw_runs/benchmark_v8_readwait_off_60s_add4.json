@@ -1,0 +1,1264 @@
+{
+  "summary": {
+    "experiment_name": "benchmark_v8_readwait_off_60s_add4",
+    "sample_size": 4,
+    "read_wait_s": 60.0,
+    "suite_start_ts": 1776642377.561303,
+    "suite_end_ts": 1776642735.8961868,
+    "second_click_elapsed_s": {
+      "count": 4,
+      "min": 0.007,
+      "max": 0.02,
+      "mean": 0.013,
+      "median": 0.014,
+      "p95": 0.02
+    },
+    "second_click_success_count": 4,
+    "likely_hit_count": 4,
+    "likely_hit_rate": 1.0
+  },
+  "runs": [
+    {
+      "benchmark_id": "DNQBV1_005",
+      "theme_id": 2,
+      "theme": "月球矿难七日",
+      "read_wait_s": 60.0,
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 9.0,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过精准的资源盘点与合理的轮班制度，成功稳住了基地核心舱室的生命维持系统，并平息了幸存者间的初步骚乱，使团队达成“先活过第一晚”的共识。",
+                  "main_conflict": "基地坍塌后的混乱期，幸存者们陷入极度的恐慌与物资匮乏中。主角作为维护员，必须在氧气告急的压力下，迅速整合幸存者并建立起最基本的生存秩序。矛盾点在于，每个人都想优先保障自己的生存空间，而有限的密封舱位与氧气罐引发了激烈的分配冲突，主角需要在维持团队凝聚力与执行冷酷生存法则之间寻找平衡。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角通过一次成功的短途勘探证明了修复方案的可行性，并以身作则带领团队完成了关键备件的回收，虽然过程中导致一名同伴因设备故障受重伤，但团队重新统一了目标。",
+                  "main_conflict": "通讯阵列的修复需要深入高危的坍塌区，而此时基地内部的物资储备已降至临界点。主角面临两难：是冒险派遣精锐去修复通讯，还是将剩余物资用于加固避难所等待救援。团队内部出现分歧，部分人认为应放弃通讯，转而通过节流来延长生存时间，而主角则坚持修复通讯是唯一的生路，这种认知偏差导致了团队的信任危机。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角最终选择带走伤员并放弃了部分科研数据，虽然救援队抵达时基地已大半损毁，但幸存者们在主角的引导下成功撤离。主角虽未能保住所有成果与同伴，但完成了最重要的生存使命，在遗憾中达成了与现实的和解。",
+                  "main_conflict": "救援信号发出后，基地进入最后的等待期。然而，由于地质结构持续不稳定，基地面临彻底崩塌的风险。主角必须在“撤离”与“保护基地核心数据”之间做出抉择，同时，受伤同伴的恶化让主角必须面对“放弃伤员以减轻撤离负担”的残酷现实。这是对人性与职业操守的终极拷问，也是主角内心挣扎最剧烈的时刻。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "沉浸式叙事模拟，强调资源管理与心理博弈。画面采用冷峻的工业写实风，通过低饱和度的月面灰与舱内暖黄灯光的对比，营造出一种在极端生存压力下，个体依然试图维持生活秩序的真实质感。",
+              "main_quest": "在静海基地坍塌后的七日内，主角需带领幸存的小组在氧气耗尽前维持基地核心舱室的运转，并修复长距离通讯阵列以发出求救信号。任务分为三个阶段：第一阶段是清理废墟、整合剩余物资并建立临时避难所；第二阶段是深入坍塌区寻找关键备件，期间需在资源分配与人员安危间做出艰难抉择；第三阶段是顶着高辐射风险完成通讯阵列的最后调试。挑战不仅来自恶劣的月面环境与不断恶化的设备，更来自幸存者之间因生存压力产生的信任危机与利益冲突。最终目标并非拯救所有人，而是确保在有限的条件下，尽可能多地保留生存的火种，并接受那些无法挽回的生命损失。",
+              "protagonist_ability": "主角拥有一种名为“逻辑重构”的认知习惯，源于其长期从事基地结构维护工作的职业素养。使用方式为通过对环境数据的快速扫描与逻辑推演，精准识别出系统故障的优先级与资源分配的最优解。限制在于该能力极度依赖冷静的心理状态，一旦面临极端情绪波动或生理极限，推演准确率会大幅下降，且该能力无法改变物理法则，只能在既定困境中寻找“损失最小化”的路径。",
+              "world_basic_setting": "故事背景设定在2080年的月球“静海”采矿基地。人类已实现月球资源开采的工业化，但月球并非科幻乌托邦，而是充满高压与职业病的高危工业区。社会结构由跨国财团垄断，矿工们多为背负债务的普通劳动者，生活在狭窄的模块化舱室中。关键事件“静海坍塌”源于一次地质勘探失误，导致主矿脉发生连锁性塌陷，基地核心生命维持系统受损，通讯中断，救援队抵达需七个地球日。此时的月球，不再是探索的边疆，而是一座被遗忘的孤岛。社会文化中弥漫着一种“合同制”的宿命论，人们习惯了在有限的氧气与配给中计算得失，将生存视为一种精密计算的日常。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1776642377_cxqzr0",
+            "image_style": {
+              "type": "cyberpunk"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "中年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "灰白短发、疲惫的眼神、沾满油污的工装、左手腕的旧式计时器、沉默寡言、眼角细纹、坚毅的下颌线、习惯性检查设备、背部微驼、冷静的姿态",
+              "work_en": "Seven Days in the Sea of Tranquility",
+              "work_zh": "月球矿难七日"
+            },
+            "tone": "normal_ending",
+            "user_theme": "月球矿难七日"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "start_ts": 1776642377.561307,
+        "end_ts": 1776642386.5611992,
+        "provider_events": {
+          "event_count": 3,
+          "queue_wait_ms": {
+            "count": 3,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 1,
+            "min": 8995.0,
+            "max": 8995.0,
+            "mean": 8995.0,
+            "median": 8995.0,
+            "p95": 8995.0
+          },
+          "llm_success_count": 1,
+          "image_success_count": 0,
+          "request_thread_event_count": 1
+        },
+        "status": "success",
+        "game_id": "game_1776642377_cxqzr0"
+      },
+      "first_click": {
+        "http_status": 200,
+        "elapsed_s": 81.024,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "",
+              "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：刺耳的金属扭曲声在耳膜深处炸开，我猛地从昏迷中惊醒，肺部像是被灌入了冰冷的铅粉，每一次呼吸都伴随着胸腔的剧痛。四周是压抑的暗红色应急灯光，空气中弥漫着焦糊的线路味和陈旧的月尘气息。我下意识地抬起左手，手腕上的旧式计时器表盘已经碎裂，指针在“0412”的位置诡异地抽动着，仿佛在倒数某种终结。\n\n我撑着地面站起，沾满油污的工装裤摩擦着冰冷的金属地板，背部微驼的姿态让我感到一阵眩晕。不远处，舱壁的隔断板已经严重变形，透过缝隙，我能看见外侧主矿脉坍塌后的深渊，那里正不断向内喷涌着高压气流。\n\n“林远，你还活着吗？”一个颤抖的声音从阴影中传来。那是负责后勤的赵岩，他蜷缩在角落里，怀里死死抱着一个氧气罐，眼底满是绝望。\n\n我没有立即回答，而是习惯性地眯起眼，扫视着控制台上的闪烁灯光。逻辑重构的本能让我迅速过滤掉杂乱的噪音，将目光锁定在生命维持系统的压力表上红色指针已经触底，氧气余量仅剩15。我深吸一口气，强压下内心的焦虑，用沙哑的声音回应道：“我还活着。赵岩，把你的氧气罐放下，我们需要先合力封死通风口的泄露点，否则我们活不过下一个小时。”"
+            },
+            "deep_background_links": {},
+            "flow_update": {},
+            "next_options": [
+              "强行要求赵岩协助，利用备用密封胶封堵通风口。",
+              "询问赵岩关于坍塌前夕的异常记录，试图从他的记忆中寻找故障源头。"
+            ],
+            "scene": "刺耳的金属扭曲声在耳膜深处炸开，我猛地从昏迷中惊醒，肺部像是被灌入了冰冷的铅粉，每一次呼吸都伴随着胸腔的剧痛。四周是压抑的暗红色应急灯光，空气中弥漫着焦糊的线路味和陈旧的月尘气息。我下意识地抬起左手，手腕上的旧式计时器表盘已经碎裂，指针在“0412”的位置诡异地抽动着，仿佛在倒数某种终结。\n\n我撑着地面站起，沾满油污的工装裤摩擦着冰冷的金属地板，背部微驼的姿态让我感到一阵眩晕。不远处，舱壁的隔断板已经严重变形，透过缝隙，我能看见外侧主矿脉坍塌后的深渊，那里正不断向内喷涌着高压气流。\n\n“林远，你还活着吗？”一个颤抖的声音从阴影中传来。那是负责后勤的赵岩，他蜷缩在角落里，怀里死死抱着一个氧气罐，眼底满是绝望。\n\n我没有立即回答，而是习惯性地眯起眼，扫视着控制台上的闪烁灯光。逻辑重构的本能让我迅速过滤掉杂乱的噪音，将目光锁定在生命维持系统的压力表上红色指针已经触底，氧气余量仅剩15。我深吸一口气，强压下内心的焦虑，用沙哑的声音回应道：“我还活着。赵岩，把你的氧气罐放下，我们需要先合力封死通风口的泄露点，否则我们活不过下一个小时。”",
+            "sceneId": "5842471496165105236_1483937123551411265",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-lunar-base-collapse-crisis, cyberpunk, industrial-realism, dystopian, high-tension, survival-drama, industrial-realist, cinematic-lighting, high-contrast, gritty-texture, cold-lunar-grey-vs-warm-emergency-yellow, 中年男性主角林远使用 Image 0, 灰白短发，眼角带有深刻的细纹, 眼神疲惫但充满冷静的逻辑推演光芒, 背部微驼，下颌线坚毅, 神情专注，正在扫视控制台的设备状态, 沾满油污的深灰色工业工装, 左手腕佩戴着表盘碎裂的旧式计时器, 工装上有明显的磨损与作业痕迹, 林远站立在控制台前，身体略微前倾, 左手抬起检查计时器，右手按在控制台边缘, 身体朝向画面右侧的赵岩-配角1, 保持冷静沉稳的姿态，与周围坍塌的混乱环境形成对比, 8K detailed facial features, 眼角可见明显的细纹与疲惫感, 冷静的眼神聚焦于压力表指针, 嘴唇紧闭，处于一种冷静应对危机的状态, 皮肤质感真实，带有月尘的灰暗感, 应急灯光的红色映射在面部轮廓上, 灰白短发，凌乱且带有油污感, root fixation coefficient 0.85, tip swing amplitude 5cm, color layering: main color #A0A0A0, secondary color #D3D3D3, highlight #E0E0E0, shadow #505050, 轻微的静电感, wind speed 0.2m/s, turbulence intensity 5%, 厚重的工业工装材质，带有金属扣件, 衣物表面有明显的油污与月尘污渍, 布料褶皱真实，体现长期高压工作的磨损, 阴暗狭窄的模块化舱室内部, 背景中隔断板严重变形，露出外侧矿脉塌陷后的深渊, 深渊处有高压气流喷涌的模糊视觉效果, 控制台闪烁着触底的红色警示灯, 空气中弥漫着细微的月尘颗粒感, 赵岩-配角1蜷缩在角落阴影中，怀抱氧气罐，神情绝望, 暗红色的应急灯光营造压抑氛围, 空气中飘浮的焦糊线路烟尘, 高压气流带来的光影扭曲效果, 冷峻的月面灰作为基调, 高对比度的应急暖黄与红色警示光, 阴影处呈现出深邃的工业金属蓝黑色, 从控制台发出的低位红色警示光, 舱顶闪烁的暗黄色应急灯, 来自矿脉深渊的冷冽蓝光侧漏, 强烈的明暗对比强化工业写实质感, type medium shot, lens 35mm, aperture f/1.8, depth_of_field shallow focus on 林远，背景边缘呈现虚化, flash none, grain fine film grain, texture industrial metal and dust, 林远位于画面中心左侧，作为视觉焦点, 赵岩-配角1位于画面右下角的阴影区域, 控制台压力表作为构图的视觉引导线, action constraints: 林远呈现检查设备动作，赵岩呈现绝望蜷缩动作, industrial cyberpunk realism, no text or symbols in image, no characters names or labels in image, 极端生存压力, 冷静与绝望的对抗, 沉重的宿命感, 压抑的工业末世氛围, no text, no symbols, no garbled characters, no words",
+              "prompt_json": {
+                "camera": {
+                  "aperture": "f/1.8",
+                  "depth_of_field": "shallow focus on 林远，背景边缘呈现虚化",
+                  "flash": "none",
+                  "grain": "fine film grain",
+                  "lens": "35mm",
+                  "texture": "industrial metal and dust",
+                  "type": "medium shot"
+                },
+                "clothing_system": [
+                  "厚重的工业工装材质，带有金属扣件",
+                  "衣物表面有明显的油污与月尘污渍",
+                  "布料褶皱真实，体现长期高压工作的磨损"
+                ],
+                "color_restriction": [
+                  "冷峻的月面灰作为基调",
+                  "高对比度的应急暖黄与红色警示光",
+                  "阴影处呈现出深邃的工业金属蓝黑色"
+                ],
+                "composition": [
+                  "林远位于画面中心左侧，作为视觉焦点",
+                  "赵岩-配角1位于画面右下角的阴影区域",
+                  "控制台压力表作为构图的视觉引导线",
+                  "action constraints: 林远呈现检查设备动作，赵岩呈现绝望蜷缩动作"
+                ],
+                "environment": {
+                  "background": [
+                    "阴暗狭窄的模块化舱室内部",
+                    "背景中隔断板严重变形，露出外侧矿脉塌陷后的深渊",
+                    "深渊处有高压气流喷涌的模糊视觉效果",
+                    "控制台闪烁着触底的红色警示灯",
+                    "空气中弥漫着细微的月尘颗粒感"
+                  ],
+                  "characters": [
+                    "赵岩-配角1蜷缩在角落阴影中，怀抱氧气罐，神情绝望"
+                  ],
+                  "effects": [
+                    "暗红色的应急灯光营造压抑氛围",
+                    "空气中飘浮的焦糊线路烟尘",
+                    "高压气流带来的光影扭曲效果"
+                  ]
+                },
+                "face_system": [
+                  "8K detailed facial features",
+                  "眼角可见明显的细纹与疲惫感",
+                  "冷静的眼神聚焦于压力表指针",
+                  "嘴唇紧闭，处于一种冷静应对危机的状态",
+                  "皮肤质感真实，带有月尘的灰暗感",
+                  "应急灯光的红色映射在面部轮廓上"
+                ],
+                "hair_system": [
+                  "灰白短发，凌乱且带有油污感",
+                  "root fixation coefficient 0.85",
+                  "tip swing amplitude 5cm",
+                  "color layering: main color #A0A0A0, secondary color #D3D3D3, highlight #E0E0E0, shadow #505050",
+                  "轻微的静电感",
+                  "wind speed 0.2m/s",
+                  "turbulence intensity 5%"
+                ],
+                "label": "scene-lunar-base-collapse-crisis",
+                "lighting": [
+                  "从控制台发出的低位红色警示光",
+                  "舱顶闪烁的暗黄色应急灯",
+                  "来自矿脉深渊的冷冽蓝光侧漏",
+                  "强烈的明暗对比强化工业写实质感"
+                ],
+                "mood": [
+                  "极端生存压力",
+                  "冷静与绝望的对抗",
+                  "沉重的宿命感",
+                  "压抑的工业末世氛围"
+                ],
+                "output_style": [
+                  "industrial cyberpunk realism",
+                  "no text or symbols in image",
+                  "no characters names or labels in image"
+                ],
+                "style": [
+                  "industrial-realist",
+                  "cinematic-lighting",
+                  "high-contrast",
+                  "gritty-texture",
+                  "cold-lunar-grey-vs-warm-emergency-yellow"
+                ],
+                "subject": {
+                  "body_traits": [
+                    "中年男性主角林远使用 Image 0",
+                    "灰白短发，眼角带有深刻的细纹",
+                    "眼神疲惫但充满冷静的逻辑推演光芒",
+                    "背部微驼，下颌线坚毅",
+                    "神情专注，正在扫视控制台的设备状态"
+                  ],
+                  "outfit": [
+                    "沾满油污的深灰色工业工装",
+                    "左手腕佩戴着表盘碎裂的旧式计时器",
+                    "工装上有明显的磨损与作业痕迹"
+                  ],
+                  "pose": [
+                    "林远站立在控制台前，身体略微前倾",
+                    "左手抬起检查计时器，右手按在控制台边缘",
+                    "身体朝向画面右侧的赵岩-配角1",
+                    "保持冷静沉稳的姿态，与周围坍塌的混乱环境形成对比"
+                  ]
+                },
+                "tags": [
+                  "cyberpunk",
+                  "industrial-realism",
+                  "dystopian",
+                  "high-tension",
+                  "survival-drama"
+                ]
+              },
+              "scene_text_hash": "a1ac7536395f2e5fe823dceadd02f7e0",
+              "style": "default",
+              "url": "/image_cache/800f8ee8dda0924f9d3afb911b73c5c9.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "start_ts": 1776642386.581467,
+        "end_ts": 1776642467.6051776,
+        "provider_events": {
+          "event_count": 8,
+          "queue_wait_ms": {
+            "count": 8,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 5,
+            "min": 3791.0,
+            "max": 38518.0,
+            "mean": 18585.8,
+            "median": 13359.0,
+            "p95": 36628.2
+          },
+          "llm_success_count": 4,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "success",
+        "has_scene": true,
+        "has_image": true
+      },
+      "second_click": {
+        "http_status": 200,
+        "elapsed_s": 0.007,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "你正在执行任务：强行要求赵岩协助，利用备用密封胶封堵通风口。",
+              "recap_text": "你选择了“强行要求赵岩协助，利用备用密封胶封堵通风口。”。当前章节：chapter1。主线进展：你正在执行任务：强行要求赵岩协助，利用备用密封胶封堵通风口。。最近剧情：你选择了：强行要求赵岩协助，利用备用密封胶封堵通风口。。在你的努力下，你取得了一些进展。"
+            },
+            "deep_background_links": {},
+            "flow_update": {
+              "chapter_conflict_solved": false,
+              "characters": {},
+              "environment": {},
+              "quest_progress": "你正在执行任务：强行要求赵岩协助，利用备用密封胶封堵通风口。"
+            },
+            "next_options": [
+              "继续前进",
+              "查看当前状态",
+              "返回上一步",
+              "探索周围环境"
+            ],
+            "scene": "你选择了：强行要求赵岩协助，利用备用密封胶封堵通风口。。在你的努力下，你取得了一些进展。",
+            "sceneId": "7157766354678901897_-1700443417007498195"
+          },
+          "status": "success"
+        },
+        "start_ts": 1776642527.6237555,
+        "end_ts": 1776642527.6307974,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "status": "success",
+        "has_scene": true,
+        "has_image": false,
+        "selected_option_index": 0,
+        "selected_option_text": "强行要求赵岩协助，利用备用密封胶封堵通风口。",
+        "input_scene_id": "5842471496165105236_1483937123551411265",
+        "inferred_cache_result": "likely_hit",
+        "is_placeholder": true,
+        "used_updated_flow_state": true
+      }
+    },
+    {
+      "benchmark_id": "DNQBV1_006",
+      "theme_id": 7,
+      "theme": "星际走私航线",
+      "read_wait_s": 60.0,
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 10.865,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角成功完成一次高风险走私，获得了一笔足以支付下个月贷款与药费的资金，但货船的推进器受损，且因行踪可疑被当地港口列入重点监控名单，生活压力并未减轻，反而增加了未来的隐患。",
+                  "main_conflict": "主角刚接手破旧的货船，面临高额的月度还款压力，同时妹妹的特效药价格上涨，家庭收支濒临崩溃。主角必须在“运送合法但利润微薄的矿石”与“冒险接下报酬丰厚但可能涉及违禁品的走私订单”之间做出抉择，这种抉择直接关系到能否维持基本生存。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角最终选择协助对方，虽然成功获取了航线数据，但因暴露行踪导致星舰被联盟没收了部分关键设备，主角失去了稳定的走私渠道，被迫转入地下，生活变得更加颠沛流离。",
+                  "main_conflict": "主角在一次航行中意外救下了一名被联盟通缉的科研人员，对方承诺提供一条通往核心星系的捷径。主角陷入了道德与利益的纠葛：继续走私维持现状，还是冒着被联盟彻底封杀的风险协助对方，以换取妹妹的医疗机会。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角选择返航，用仅剩的积蓄在边缘星域为妹妹换取了最好的临终关怀，虽然没能带她去核心星系，但两人在最后的时光里达成了和解，主角最终接受了平凡的结局，在星港做了一名普通的维修工，守着关于星空的记忆。",
+                  "main_conflict": "主角终于抵达了核心星系的边缘，却发现所谓的“隐秘航线”因星际环境变动已无法通行。此时妹妹病情危急，主角必须在“放弃航行返航照顾妹妹”与“孤注一掷尝试穿越危险星云”之间做出最终选择，这不仅是生存的博弈，更是对人生目标的终极拷问。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "沉浸式现实主义星际模拟，强调资源匮乏下的生存博弈与人际羁绊。美术风格为工业废土与冷峻科技的结合，叙事节奏平缓而扎实，通过琐碎的航运日志与舱内对话，构建一种在浩瀚星海中讨生活的真实疲惫感与微小温情。",
+              "main_quest": "主角的目标是偿还家族遗留的巨额星舰贷款，并攒够足够的信用点，带患有慢性肺病的妹妹离开灰区，前往核心星系接受治疗。任务分为三个阶段：首先是积累原始资金，通过高风险的短途走私完成原始积累；其次是升级星舰性能，以应对更复杂的深空航线与联盟审查；最后是寻找那条传说中通往核心星系的“隐秘航线”。挑战在于，每一次航行都在透支星舰的寿命与主角的健康，主角必须在“高额报酬但高风险”与“低回报但安全”的任务中不断权衡，同时还要应对妹妹病情恶化带来的心理压力与经济支出。",
+              "protagonist_ability": "主角拥有一台名为“共振导航仪”的旧时代遗物，这是其父亲留下的唯一遗产。它能通过捕捉星际尘埃的微弱震动，预测航线中潜在的引力异常与巡逻舰动向。使用时需消耗主角的体力与专注力，且由于设备老化，预测结果存在15%的误差率。这种能力并非超能力，而是一种基于经验与老旧算法的辅助，它无法改变星际环境的残酷，只能在绝境中为主角争取几分钟的避险时间，且过度使用会导致主角出现严重的耳鸣与神经衰弱。",
+              "world_basic_setting": "人类已进入星际殖民时代，但并非乌托邦。银河系被“星际贸易联盟”垄断，资源高度集中于核心星系，边缘星域则沦为贫瘠的“灰区”。这里没有史诗战争，只有永无止境的物流运输与债务偿还。地理上，星际航线由不稳定的跃迁点构成，航行需消耗昂贵的燃料与维护成本。社会结构极度阶级化，底层民众依靠走私违禁品或低价值物资维持生计。文化上，边缘星域流行一种“航路宿命论”，人们相信星辰冷漠，唯有手中的货单与舱内的氧气循环系统是真实的。关键事件“大停滞”导致核心星系封锁了部分跃迁点，使得边缘星域的物资价格飞涨，走私成为许多家庭维持生计的唯一手段，但也让无数航行者在深空失踪，成为星图上被遗忘的坐标。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1776642527_81i4wy",
+            "image_style": {
+              "type": "cyberpunk"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lynn",
+              "name_zh": "林恩",
+              "signature_look_keywords": "凌乱的深棕色短发、带有油污的工装夹克、疲惫的眼神、左手腕处的旧式导航仪、瘦削的身材、常年佩戴的防尘护目镜、沉稳但略显局促的动作。",
+              "work_en": "Embers of the Starry Sea",
+              "work_zh": "星海余烬"
+            },
+            "tone": "normal_ending",
+            "user_theme": "星际走私航线"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "start_ts": 1776642527.64917,
+        "end_ts": 1776642538.5139832,
+        "provider_events": {
+          "event_count": 4,
+          "queue_wait_ms": {
+            "count": 4,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 1,
+            "min": 10855.0,
+            "max": 10855.0,
+            "mean": 10855.0,
+            "median": 10855.0,
+            "p95": 10855.0
+          },
+          "llm_success_count": 1,
+          "image_success_count": 0,
+          "request_thread_event_count": 2
+        },
+        "status": "success",
+        "game_id": "game_1776642527_81i4wy"
+      },
+      "first_click": {
+        "http_status": 200,
+        "elapsed_s": 0.031,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "",
+              "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：刺耳的金属扭曲声在耳膜深处炸开，我猛地从昏迷中惊醒，肺部像是被灌入了冰冷的铅粉，每一次呼吸都伴随着胸腔的剧痛。四周是压抑的暗红色应急灯光，空气中弥漫着焦糊的线路味和陈旧的月尘气息。我下意识地抬起左手，手腕上的旧式计时器表盘已经碎裂，指针在“0412”的位置诡异地抽动着，仿佛在倒数某种终结。\n\n我撑着地面站起，沾满油污的工装裤摩擦着冰冷的金属地板，背部微驼的姿态让我感到一阵眩晕。不远处，舱壁的隔断板已经严重变形，透过缝隙，我能看见外侧主矿脉坍塌后的深渊，那里正不断向内喷涌着高压气流。\n\n“林远，你还活着吗？”一个颤抖的声音从阴影中传来。那是负责后勤的赵岩，他蜷缩在角落里，怀里死死抱着一个氧气罐，眼底满是绝望。\n\n我没有立即回答，而是习惯性地眯起眼，扫视着控制台上的闪烁灯光。逻辑重构的本能让我迅速过滤掉杂乱的噪音，将目光锁定在生命维持系统的压力表上红色指针已经触底，氧气余量仅剩15。我深吸一口气，强压下内心的焦虑，用沙哑的声音回应道：“我还活着。赵岩，把你的氧气罐放下，我们需要先合力封死通风口的泄露点，否则我们活不过下一个小时。”"
+            },
+            "deep_background_links": {},
+            "flow_update": {},
+            "next_options": [
+              "强行要求赵岩协助，利用备用密封胶封堵通风口。",
+              "询问赵岩关于坍塌前夕的异常记录，试图从他的记忆中寻找故障源头。"
+            ],
+            "plot_supporting_characters": [],
+            "scene": "刺耳的金属扭曲声在耳膜深处炸开，我猛地从昏迷中惊醒，肺部像是被灌入了冰冷的铅粉，每一次呼吸都伴随着胸腔的剧痛。四周是压抑的暗红色应急灯光，空气中弥漫着焦糊的线路味和陈旧的月尘气息。我下意识地抬起左手，手腕上的旧式计时器表盘已经碎裂，指针在“0412”的位置诡异地抽动着，仿佛在倒数某种终结。\n\n我撑着地面站起，沾满油污的工装裤摩擦着冰冷的金属地板，背部微驼的姿态让我感到一阵眩晕。不远处，舱壁的隔断板已经严重变形，透过缝隙，我能看见外侧主矿脉坍塌后的深渊，那里正不断向内喷涌着高压气流。\n\n“林远，你还活着吗？”一个颤抖的声音从阴影中传来。那是负责后勤的赵岩，他蜷缩在角落里，怀里死死抱着一个氧气罐，眼底满是绝望。\n\n我没有立即回答，而是习惯性地眯起眼，扫视着控制台上的闪烁灯光。逻辑重构的本能让我迅速过滤掉杂乱的噪音，将目光锁定在生命维持系统的压力表上红色指针已经触底，氧气余量仅剩15。我深吸一口气，强压下内心的焦虑，用沙哑的声音回应道：“我还活着。赵岩，把你的氧气罐放下，我们需要先合力封死通风口的泄露点，否则我们活不过下一个小时。”",
+            "sceneId": "5842471496165105236_1483937123551411265",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-lunar-base-collapse-crisis, cyberpunk, industrial-realism, dystopian, high-tension, survival-drama, industrial-realist, cinematic-lighting, high-contrast, gritty-texture, cold-lunar-grey-vs-warm-emergency-yellow, 中年男性主角林远使用 Image 0, 灰白短发，眼角带有深刻的细纹, 眼神疲惫但充满冷静的逻辑推演光芒, 背部微驼，下颌线坚毅, 神情专注，正在扫视控制台的设备状态, 沾满油污的深灰色工业工装, 左手腕佩戴着表盘碎裂的旧式计时器, 工装上有明显的磨损与作业痕迹, 林远站立在控制台前，身体略微前倾, 左手抬起检查计时器，右手按在控制台边缘, 身体朝向画面右侧的赵岩-配角1, 保持冷静沉稳的姿态，与周围坍塌的混乱环境形成对比, 8K detailed facial features, 眼角可见明显的细纹与疲惫感, 冷静的眼神聚焦于压力表指针, 嘴唇紧闭，处于一种冷静应对危机的状态, 皮肤质感真实，带有月尘的灰暗感, 应急灯光的红色映射在面部轮廓上, 灰白短发，凌乱且带有油污感, root fixation coefficient 0.85, tip swing amplitude 5cm, color layering: main color #A0A0A0, secondary color #D3D3D3, highlight #E0E0E0, shadow #505050, 轻微的静电感, wind speed 0.2m/s, turbulence intensity 5%, 厚重的工业工装材质，带有金属扣件, 衣物表面有明显的油污与月尘污渍, 布料褶皱真实，体现长期高压工作的磨损, 阴暗狭窄的模块化舱室内部, 背景中隔断板严重变形，露出外侧矿脉塌陷后的深渊, 深渊处有高压气流喷涌的模糊视觉效果, 控制台闪烁着触底的红色警示灯, 空气中弥漫着细微的月尘颗粒感, 赵岩-配角1蜷缩在角落阴影中，怀抱氧气罐，神情绝望, 暗红色的应急灯光营造压抑氛围, 空气中飘浮的焦糊线路烟尘, 高压气流带来的光影扭曲效果, 冷峻的月面灰作为基调, 高对比度的应急暖黄与红色警示光, 阴影处呈现出深邃的工业金属蓝黑色, 从控制台发出的低位红色警示光, 舱顶闪烁的暗黄色应急灯, 来自矿脉深渊的冷冽蓝光侧漏, 强烈的明暗对比强化工业写实质感, type medium shot, lens 35mm, aperture f/1.8, depth_of_field shallow focus on 林远，背景边缘呈现虚化, flash none, grain fine film grain, texture industrial metal and dust, 林远位于画面中心左侧，作为视觉焦点, 赵岩-配角1位于画面右下角的阴影区域, 控制台压力表作为构图的视觉引导线, action constraints: 林远呈现检查设备动作，赵岩呈现绝望蜷缩动作, industrial cyberpunk realism, no text or symbols in image, no characters names or labels in image, 极端生存压力, 冷静与绝望的对抗, 沉重的宿命感, 压抑的工业末世氛围, no text, no symbols, no garbled characters, no words",
+              "prompt_json": {
+                "camera": {
+                  "aperture": "f/1.8",
+                  "depth_of_field": "shallow focus on 林远，背景边缘呈现虚化",
+                  "flash": "none",
+                  "grain": "fine film grain",
+                  "lens": "35mm",
+                  "texture": "industrial metal and dust",
+                  "type": "medium shot"
+                },
+                "clothing_system": [
+                  "厚重的工业工装材质，带有金属扣件",
+                  "衣物表面有明显的油污与月尘污渍",
+                  "布料褶皱真实，体现长期高压工作的磨损"
+                ],
+                "color_restriction": [
+                  "冷峻的月面灰作为基调",
+                  "高对比度的应急暖黄与红色警示光",
+                  "阴影处呈现出深邃的工业金属蓝黑色"
+                ],
+                "composition": [
+                  "林远位于画面中心左侧，作为视觉焦点",
+                  "赵岩-配角1位于画面右下角的阴影区域",
+                  "控制台压力表作为构图的视觉引导线",
+                  "action constraints: 林远呈现检查设备动作，赵岩呈现绝望蜷缩动作"
+                ],
+                "environment": {
+                  "background": [
+                    "阴暗狭窄的模块化舱室内部",
+                    "背景中隔断板严重变形，露出外侧矿脉塌陷后的深渊",
+                    "深渊处有高压气流喷涌的模糊视觉效果",
+                    "控制台闪烁着触底的红色警示灯",
+                    "空气中弥漫着细微的月尘颗粒感"
+                  ],
+                  "characters": [
+                    "赵岩-配角1蜷缩在角落阴影中，怀抱氧气罐，神情绝望"
+                  ],
+                  "effects": [
+                    "暗红色的应急灯光营造压抑氛围",
+                    "空气中飘浮的焦糊线路烟尘",
+                    "高压气流带来的光影扭曲效果"
+                  ]
+                },
+                "face_system": [
+                  "8K detailed facial features",
+                  "眼角可见明显的细纹与疲惫感",
+                  "冷静的眼神聚焦于压力表指针",
+                  "嘴唇紧闭，处于一种冷静应对危机的状态",
+                  "皮肤质感真实，带有月尘的灰暗感",
+                  "应急灯光的红色映射在面部轮廓上"
+                ],
+                "hair_system": [
+                  "灰白短发，凌乱且带有油污感",
+                  "root fixation coefficient 0.85",
+                  "tip swing amplitude 5cm",
+                  "color layering: main color #A0A0A0, secondary color #D3D3D3, highlight #E0E0E0, shadow #505050",
+                  "轻微的静电感",
+                  "wind speed 0.2m/s",
+                  "turbulence intensity 5%"
+                ],
+                "label": "scene-lunar-base-collapse-crisis",
+                "lighting": [
+                  "从控制台发出的低位红色警示光",
+                  "舱顶闪烁的暗黄色应急灯",
+                  "来自矿脉深渊的冷冽蓝光侧漏",
+                  "强烈的明暗对比强化工业写实质感"
+                ],
+                "mood": [
+                  "极端生存压力",
+                  "冷静与绝望的对抗",
+                  "沉重的宿命感",
+                  "压抑的工业末世氛围"
+                ],
+                "output_style": [
+                  "industrial cyberpunk realism",
+                  "no text or symbols in image",
+                  "no characters names or labels in image"
+                ],
+                "style": [
+                  "industrial-realist",
+                  "cinematic-lighting",
+                  "high-contrast",
+                  "gritty-texture",
+                  "cold-lunar-grey-vs-warm-emergency-yellow"
+                ],
+                "subject": {
+                  "body_traits": [
+                    "中年男性主角林远使用 Image 0",
+                    "灰白短发，眼角带有深刻的细纹",
+                    "眼神疲惫但充满冷静的逻辑推演光芒",
+                    "背部微驼，下颌线坚毅",
+                    "神情专注，正在扫视控制台的设备状态"
+                  ],
+                  "outfit": [
+                    "沾满油污的深灰色工业工装",
+                    "左手腕佩戴着表盘碎裂的旧式计时器",
+                    "工装上有明显的磨损与作业痕迹"
+                  ],
+                  "pose": [
+                    "林远站立在控制台前，身体略微前倾",
+                    "左手抬起检查计时器，右手按在控制台边缘",
+                    "身体朝向画面右侧的赵岩-配角1",
+                    "保持冷静沉稳的姿态，与周围坍塌的混乱环境形成对比"
+                  ]
+                },
+                "tags": [
+                  "cyberpunk",
+                  "industrial-realism",
+                  "dystopian",
+                  "high-tension",
+                  "survival-drama"
+                ]
+              },
+              "scene_text_hash": "a1ac7536395f2e5fe823dceadd02f7e0",
+              "style": "default",
+              "url": "/image_cache/800f8ee8dda0924f9d3afb911b73c5c9.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "start_ts": 1776642538.5335357,
+        "end_ts": 1776642538.564047,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "success",
+        "has_scene": true,
+        "has_image": true
+      },
+      "second_click": {
+        "http_status": 200,
+        "elapsed_s": 0.01,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "你正在执行任务：强行要求赵岩协助，利用备用密封胶封堵通风口。",
+              "recap_text": "你选择了“强行要求赵岩协助，利用备用密封胶封堵通风口。”。当前章节：chapter1。主线进展：你正在执行任务：强行要求赵岩协助，利用备用密封胶封堵通风口。。最近剧情：你选择了：强行要求赵岩协助，利用备用密封胶封堵通风口。。在你的努力下，你取得了一些进展。"
+            },
+            "deep_background_links": {},
+            "flow_update": {
+              "chapter_conflict_solved": false,
+              "characters": {},
+              "environment": {},
+              "quest_progress": "你正在执行任务：强行要求赵岩协助，利用备用密封胶封堵通风口。"
+            },
+            "next_options": [
+              "继续前进",
+              "查看当前状态",
+              "返回上一步",
+              "探索周围环境"
+            ],
+            "scene": "你选择了：强行要求赵岩协助，利用备用密封胶封堵通风口。。在你的努力下，你取得了一些进展。",
+            "sceneId": "-3326635898902661821_-1700443417007498195"
+          },
+          "status": "success"
+        },
+        "start_ts": 1776642598.5824127,
+        "end_ts": 1776642598.59234,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "status": "success",
+        "has_scene": true,
+        "has_image": false,
+        "selected_option_index": 0,
+        "selected_option_text": "强行要求赵岩协助，利用备用密封胶封堵通风口。",
+        "input_scene_id": "5842471496165105236_1483937123551411265",
+        "inferred_cache_result": "likely_hit",
+        "is_placeholder": true,
+        "used_updated_flow_state": true
+      }
+    },
+    {
+      "benchmark_id": "DNQBV1_007",
+      "theme_id": 20,
+      "theme": "意识上传遗嘱",
+      "read_wait_s": 60.0,
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 8.305,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过整理第一阶段的碎片，提取出建筑师真实的情感逻辑，虽然无法完全抹除谎言，但成功筛选出了一段关键的、真实的父子互动记忆，作为折中方案交付给委托人，暂时缓解了家庭内部的对立情绪。",
+                  "main_conflict": "主角初次接触建筑师的数字碎片，发现其留下的记忆与现实记录存在巨大偏差。建筑师在数字人格中将自己塑造为完美的慈父，但主角在碎片中却窥见了其对家庭长期的冷暴力与忽视。主角陷入职业道德的挣扎，是揭穿虚假的温情，还是顺应委托人的期待，维持这份脆弱的体面。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角在精神临界点前成功破解加密，找回了图纸的核心逻辑，但由于数据损坏，图纸呈现出残缺状态。主角选择保留这份残缺，并向委托人坦诚了数据受损的现实，双方共同接受了“无法完美复原”的结果。",
+                  "main_conflict": "随着调查深入，主角发现建筑师生前遗失的图纸并非单纯的商业机密，而是其对已故妻子的忏悔之作。然而，该图纸被建筑师的合伙人恶意篡改并加密，试图将其据为己有。主角必须在有限的数字连接时间内，破解复杂的加密逻辑，同时还要应对自身因过度使用“记忆溯源”而产生的认知模糊，面临着个人健康与职业操守的双重考验。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角最终选择删除虚假记忆，只留下了那段真实但带有缺憾的影像。委托人虽然失去了完美的遗产，却通过这段真实的影像，真正理解了父亲的复杂与脆弱，双方在一种释然的氛围中结束了委托，主角也完成了职业生涯中一次深刻的自我审视。",
+                  "main_conflict": "最终交付时刻，主角发现建筑师的数字人格即将因“认知衰减”彻底消散。此时，建筑师的数字人格请求主角删除其所有关于“完美”的虚假记忆，只留下那段充满遗憾的真实片段。主角面临最后的抉择：是满足逝者最后的愿望，还是为了委托人的利益，保留那些被美化过的、能带来商业价值的虚假人格。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为现实主义叙事模拟游戏，采用冷峻克制的写实画风，注重生活细节的颗粒感与环境音效的沉浸感。叙事节奏平缓，通过琐碎的日常对话与数字遗存的交互，构建一种介于科技冰冷与人性温存之间的忧郁美学，旨在引发玩家对生命价值与存在意义的深度共鸣。",
+              "main_quest": "主角受托整理一位已故建筑师的数字遗嘱，目标是找回其生前遗失的某项关键设计图纸，以解决其子女面临的遗产纠纷。玩家需通过整理海量琐碎的数字碎片，拼凑出建筑师真实的一生。挑战在于，随着调查深入，主角发现建筑师生前曾为了追求完美作品而牺牲了家庭，其留下的数字人格中充满了自我美化与谎言。主角必须在“还原真相”与“维护逝者尊严”之间做出抉择，最终目标并非彻底揭露或掩盖，而是通过整理，让委托人与逝者达成一种基于现实的、不完美的和解，完成这份沉重的遗嘱交付。",
+              "protagonist_ability": "主角作为一名“数字遗嘱整理师”，拥有名为“记忆溯源”的辅助终端。该设备通过神经连接，能让主角进入逝者的数字碎片空间，以旁观者视角重现关键记忆片段。使用该能力需消耗极高的精神专注度，且由于数据碎片的不完整性，每次溯源都会伴随严重的偏头痛与认知错位，限制了其无法长时间沉浸于虚构的过去，必须在有限的连接时间内提取出最核心的遗嘱线索。",
+              "world_basic_setting": "故事背景设定在2040年代的近未来都市，社会高度数字化，名为“永恒协议”的意识上传技术已进入商业化普及阶段。人们可以将记忆与人格碎片上传至云端，作为“数字遗嘱”留给亲人。然而，该技术存在严重的“认知衰减”缺陷，上传后的意识并非永生，而是会随着时间推移逐渐模糊，最终化为一段无法交互的静态数据。社会阶层因上传成本的差异而产生新的割裂，底层民众往往只能负担低配版的“记忆压缩包”，而富裕阶层则能维持更久的高保真人格。城市中充斥着各种处理数字遗产的代理机构，人们在处理逝者数据时，不得不面对那些被刻意隐藏的真相、未竟的承诺以及被数字美化后的虚假记忆，整个社会在追求“永恒”的执念中，逐渐遗忘了活在当下的真实重量。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1776642598_4e4q3w",
+            "image_style": {
+              "type": "cyberpunk"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "黑框眼镜，略显凌乱的短发，常穿深灰色工装外套，神情疲惫，眼下有青黑，手指常有神经性颤抖，沉默寡言，总是随身携带便携式终端，气质内敛且带有疏离感。",
+              "work_en": "The Will Archivist",
+              "work_zh": "遗嘱整理师"
+            },
+            "tone": "normal_ending",
+            "user_theme": "意识上传遗嘱"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "start_ts": 1776642598.6111953,
+        "end_ts": 1776642606.9158225,
+        "provider_events": {
+          "event_count": 4,
+          "queue_wait_ms": {
+            "count": 4,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 1,
+            "min": 8297.0,
+            "max": 8297.0,
+            "mean": 8297.0,
+            "median": 8297.0,
+            "p95": 8297.0
+          },
+          "llm_success_count": 1,
+          "image_success_count": 0,
+          "request_thread_event_count": 2
+        },
+        "status": "success",
+        "game_id": "game_1776642598_4e4q3w"
+      },
+      "first_click": {
+        "http_status": 200,
+        "elapsed_s": 0.019,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "",
+              "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：刺耳的金属扭曲声在耳膜深处炸开，我猛地从昏迷中惊醒，肺部像是被灌入了冰冷的铅粉，每一次呼吸都伴随着胸腔的剧痛。四周是压抑的暗红色应急灯光，空气中弥漫着焦糊的线路味和陈旧的月尘气息。我下意识地抬起左手，手腕上的旧式计时器表盘已经碎裂，指针在“0412”的位置诡异地抽动着，仿佛在倒数某种终结。\n\n我撑着地面站起，沾满油污的工装裤摩擦着冰冷的金属地板，背部微驼的姿态让我感到一阵眩晕。不远处，舱壁的隔断板已经严重变形，透过缝隙，我能看见外侧主矿脉坍塌后的深渊，那里正不断向内喷涌着高压气流。\n\n“林远，你还活着吗？”一个颤抖的声音从阴影中传来。那是负责后勤的赵岩，他蜷缩在角落里，怀里死死抱着一个氧气罐，眼底满是绝望。\n\n我没有立即回答，而是习惯性地眯起眼，扫视着控制台上的闪烁灯光。逻辑重构的本能让我迅速过滤掉杂乱的噪音，将目光锁定在生命维持系统的压力表上红色指针已经触底，氧气余量仅剩15。我深吸一口气，强压下内心的焦虑，用沙哑的声音回应道：“我还活着。赵岩，把你的氧气罐放下，我们需要先合力封死通风口的泄露点，否则我们活不过下一个小时。”"
+            },
+            "deep_background_links": {},
+            "flow_update": {},
+            "next_options": [
+              "强行要求赵岩协助，利用备用密封胶封堵通风口。",
+              "询问赵岩关于坍塌前夕的异常记录，试图从他的记忆中寻找故障源头。"
+            ],
+            "plot_supporting_characters": [],
+            "scene": "刺耳的金属扭曲声在耳膜深处炸开，我猛地从昏迷中惊醒，肺部像是被灌入了冰冷的铅粉，每一次呼吸都伴随着胸腔的剧痛。四周是压抑的暗红色应急灯光，空气中弥漫着焦糊的线路味和陈旧的月尘气息。我下意识地抬起左手，手腕上的旧式计时器表盘已经碎裂，指针在“0412”的位置诡异地抽动着，仿佛在倒数某种终结。\n\n我撑着地面站起，沾满油污的工装裤摩擦着冰冷的金属地板，背部微驼的姿态让我感到一阵眩晕。不远处，舱壁的隔断板已经严重变形，透过缝隙，我能看见外侧主矿脉坍塌后的深渊，那里正不断向内喷涌着高压气流。\n\n“林远，你还活着吗？”一个颤抖的声音从阴影中传来。那是负责后勤的赵岩，他蜷缩在角落里，怀里死死抱着一个氧气罐，眼底满是绝望。\n\n我没有立即回答，而是习惯性地眯起眼，扫视着控制台上的闪烁灯光。逻辑重构的本能让我迅速过滤掉杂乱的噪音，将目光锁定在生命维持系统的压力表上红色指针已经触底，氧气余量仅剩15。我深吸一口气，强压下内心的焦虑，用沙哑的声音回应道：“我还活着。赵岩，把你的氧气罐放下，我们需要先合力封死通风口的泄露点，否则我们活不过下一个小时。”",
+            "sceneId": "5842471496165105236_1483937123551411265",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-lunar-base-collapse-crisis, cyberpunk, industrial-realism, dystopian, high-tension, survival-drama, industrial-realist, cinematic-lighting, high-contrast, gritty-texture, cold-lunar-grey-vs-warm-emergency-yellow, 中年男性主角林远使用 Image 0, 灰白短发，眼角带有深刻的细纹, 眼神疲惫但充满冷静的逻辑推演光芒, 背部微驼，下颌线坚毅, 神情专注，正在扫视控制台的设备状态, 沾满油污的深灰色工业工装, 左手腕佩戴着表盘碎裂的旧式计时器, 工装上有明显的磨损与作业痕迹, 林远站立在控制台前，身体略微前倾, 左手抬起检查计时器，右手按在控制台边缘, 身体朝向画面右侧的赵岩-配角1, 保持冷静沉稳的姿态，与周围坍塌的混乱环境形成对比, 8K detailed facial features, 眼角可见明显的细纹与疲惫感, 冷静的眼神聚焦于压力表指针, 嘴唇紧闭，处于一种冷静应对危机的状态, 皮肤质感真实，带有月尘的灰暗感, 应急灯光的红色映射在面部轮廓上, 灰白短发，凌乱且带有油污感, root fixation coefficient 0.85, tip swing amplitude 5cm, color layering: main color #A0A0A0, secondary color #D3D3D3, highlight #E0E0E0, shadow #505050, 轻微的静电感, wind speed 0.2m/s, turbulence intensity 5%, 厚重的工业工装材质，带有金属扣件, 衣物表面有明显的油污与月尘污渍, 布料褶皱真实，体现长期高压工作的磨损, 阴暗狭窄的模块化舱室内部, 背景中隔断板严重变形，露出外侧矿脉塌陷后的深渊, 深渊处有高压气流喷涌的模糊视觉效果, 控制台闪烁着触底的红色警示灯, 空气中弥漫着细微的月尘颗粒感, 赵岩-配角1蜷缩在角落阴影中，怀抱氧气罐，神情绝望, 暗红色的应急灯光营造压抑氛围, 空气中飘浮的焦糊线路烟尘, 高压气流带来的光影扭曲效果, 冷峻的月面灰作为基调, 高对比度的应急暖黄与红色警示光, 阴影处呈现出深邃的工业金属蓝黑色, 从控制台发出的低位红色警示光, 舱顶闪烁的暗黄色应急灯, 来自矿脉深渊的冷冽蓝光侧漏, 强烈的明暗对比强化工业写实质感, type medium shot, lens 35mm, aperture f/1.8, depth_of_field shallow focus on 林远，背景边缘呈现虚化, flash none, grain fine film grain, texture industrial metal and dust, 林远位于画面中心左侧，作为视觉焦点, 赵岩-配角1位于画面右下角的阴影区域, 控制台压力表作为构图的视觉引导线, action constraints: 林远呈现检查设备动作，赵岩呈现绝望蜷缩动作, industrial cyberpunk realism, no text or symbols in image, no characters names or labels in image, 极端生存压力, 冷静与绝望的对抗, 沉重的宿命感, 压抑的工业末世氛围, no text, no symbols, no garbled characters, no words",
+              "prompt_json": {
+                "camera": {
+                  "aperture": "f/1.8",
+                  "depth_of_field": "shallow focus on 林远，背景边缘呈现虚化",
+                  "flash": "none",
+                  "grain": "fine film grain",
+                  "lens": "35mm",
+                  "texture": "industrial metal and dust",
+                  "type": "medium shot"
+                },
+                "clothing_system": [
+                  "厚重的工业工装材质，带有金属扣件",
+                  "衣物表面有明显的油污与月尘污渍",
+                  "布料褶皱真实，体现长期高压工作的磨损"
+                ],
+                "color_restriction": [
+                  "冷峻的月面灰作为基调",
+                  "高对比度的应急暖黄与红色警示光",
+                  "阴影处呈现出深邃的工业金属蓝黑色"
+                ],
+                "composition": [
+                  "林远位于画面中心左侧，作为视觉焦点",
+                  "赵岩-配角1位于画面右下角的阴影区域",
+                  "控制台压力表作为构图的视觉引导线",
+                  "action constraints: 林远呈现检查设备动作，赵岩呈现绝望蜷缩动作"
+                ],
+                "environment": {
+                  "background": [
+                    "阴暗狭窄的模块化舱室内部",
+                    "背景中隔断板严重变形，露出外侧矿脉塌陷后的深渊",
+                    "深渊处有高压气流喷涌的模糊视觉效果",
+                    "控制台闪烁着触底的红色警示灯",
+                    "空气中弥漫着细微的月尘颗粒感"
+                  ],
+                  "characters": [
+                    "赵岩-配角1蜷缩在角落阴影中，怀抱氧气罐，神情绝望"
+                  ],
+                  "effects": [
+                    "暗红色的应急灯光营造压抑氛围",
+                    "空气中飘浮的焦糊线路烟尘",
+                    "高压气流带来的光影扭曲效果"
+                  ]
+                },
+                "face_system": [
+                  "8K detailed facial features",
+                  "眼角可见明显的细纹与疲惫感",
+                  "冷静的眼神聚焦于压力表指针",
+                  "嘴唇紧闭，处于一种冷静应对危机的状态",
+                  "皮肤质感真实，带有月尘的灰暗感",
+                  "应急灯光的红色映射在面部轮廓上"
+                ],
+                "hair_system": [
+                  "灰白短发，凌乱且带有油污感",
+                  "root fixation coefficient 0.85",
+                  "tip swing amplitude 5cm",
+                  "color layering: main color #A0A0A0, secondary color #D3D3D3, highlight #E0E0E0, shadow #505050",
+                  "轻微的静电感",
+                  "wind speed 0.2m/s",
+                  "turbulence intensity 5%"
+                ],
+                "label": "scene-lunar-base-collapse-crisis",
+                "lighting": [
+                  "从控制台发出的低位红色警示光",
+                  "舱顶闪烁的暗黄色应急灯",
+                  "来自矿脉深渊的冷冽蓝光侧漏",
+                  "强烈的明暗对比强化工业写实质感"
+                ],
+                "mood": [
+                  "极端生存压力",
+                  "冷静与绝望的对抗",
+                  "沉重的宿命感",
+                  "压抑的工业末世氛围"
+                ],
+                "output_style": [
+                  "industrial cyberpunk realism",
+                  "no text or symbols in image",
+                  "no characters names or labels in image"
+                ],
+                "style": [
+                  "industrial-realist",
+                  "cinematic-lighting",
+                  "high-contrast",
+                  "gritty-texture",
+                  "cold-lunar-grey-vs-warm-emergency-yellow"
+                ],
+                "subject": {
+                  "body_traits": [
+                    "中年男性主角林远使用 Image 0",
+                    "灰白短发，眼角带有深刻的细纹",
+                    "眼神疲惫但充满冷静的逻辑推演光芒",
+                    "背部微驼，下颌线坚毅",
+                    "神情专注，正在扫视控制台的设备状态"
+                  ],
+                  "outfit": [
+                    "沾满油污的深灰色工业工装",
+                    "左手腕佩戴着表盘碎裂的旧式计时器",
+                    "工装上有明显的磨损与作业痕迹"
+                  ],
+                  "pose": [
+                    "林远站立在控制台前，身体略微前倾",
+                    "左手抬起检查计时器，右手按在控制台边缘",
+                    "身体朝向画面右侧的赵岩-配角1",
+                    "保持冷静沉稳的姿态，与周围坍塌的混乱环境形成对比"
+                  ]
+                },
+                "tags": [
+                  "cyberpunk",
+                  "industrial-realism",
+                  "dystopian",
+                  "high-tension",
+                  "survival-drama"
+                ]
+              },
+              "scene_text_hash": "a1ac7536395f2e5fe823dceadd02f7e0",
+              "style": "default",
+              "url": "/image_cache/800f8ee8dda0924f9d3afb911b73c5c9.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "start_ts": 1776642606.9353058,
+        "end_ts": 1776642606.954333,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "success",
+        "has_scene": true,
+        "has_image": true
+      },
+      "second_click": {
+        "http_status": 200,
+        "elapsed_s": 0.02,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "你正在执行任务：强行要求赵岩协助，利用备用密封胶封堵通风口。",
+              "recap_text": "你选择了“强行要求赵岩协助，利用备用密封胶封堵通风口。”。当前章节：chapter1。主线进展：你正在执行任务：强行要求赵岩协助，利用备用密封胶封堵通风口。。最近剧情：你选择了：强行要求赵岩协助，利用备用密封胶封堵通风口。。在你的努力下，你取得了一些进展。"
+            },
+            "deep_background_links": {},
+            "flow_update": {
+              "chapter_conflict_solved": false,
+              "characters": {},
+              "environment": {},
+              "quest_progress": "你正在执行任务：强行要求赵岩协助，利用备用密封胶封堵通风口。"
+            },
+            "next_options": [
+              "继续前进",
+              "查看当前状态",
+              "返回上一步",
+              "探索周围环境"
+            ],
+            "scene": "你选择了：强行要求赵岩协助，利用备用密封胶封堵通风口。。在你的努力下，你取得了一些进展。",
+            "sceneId": "-4878717504595307809_-1700443417007498195"
+          },
+          "status": "success"
+        },
+        "start_ts": 1776642666.9731774,
+        "end_ts": 1776642666.9927697,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "status": "success",
+        "has_scene": true,
+        "has_image": false,
+        "selected_option_index": 0,
+        "selected_option_text": "强行要求赵岩协助，利用备用密封胶封堵通风口。",
+        "input_scene_id": "5842471496165105236_1483937123551411265",
+        "inferred_cache_result": "likely_hit",
+        "is_placeholder": true,
+        "used_updated_flow_state": true
+      }
+    },
+    {
+      "benchmark_id": "DNQBV1_008",
+      "theme_id": 27,
+      "theme": "全息偶像塌房记",
+      "read_wait_s": 60.0,
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 8.706,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角选择隐瞒数据异常，并私下联系配音演员提供微薄的经济援助，双方达成脆弱的共识，但主角因此错失了公司内部的晋升机会，被调往边缘部门。",
+                  "main_conflict": "主角在日常维护中意外触发了“星野”的异常数据，发现其背后隐藏着一名被公司长期压榨、甚至被剥夺了署名权的真实配音演员。主角面临职业道德与生存压力的双重拷问：是选择上报公司以换取晋升，还是保护这位处于崩溃边缘的真实创作者？"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角通过巧妙的舆论引导，将丑闻的焦点从配音演员转移至技术故障，成功保住了配音演员的隐私，但代价是主角被公司列入“不可信任名单”，面临被裁员的风险。",
+                  "main_conflict": "资本方决定通过制造“星野”的丑闻来引发舆论热度，从而完成品牌转型。主角发现自己被卷入这场舆论操纵的漩涡，必须在保护配音演员的真实身份不被曝光，与阻止公司恶意营销之间寻找平衡，同时还要应对来自竞争对手的职场排挤。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角选择将部分真相以匿名方式公开，配音演员获得了行业内的认可，但主角彻底失去了在业内的立足之地，回归平凡的职场生活，带着对这段经历的释然，接受了并不完美的结局。",
+                  "main_conflict": "真相最终无法完全掩盖，公司决定彻底废弃“星野”这一IP。主角必须在最后期限内，决定是否要将真相公之于众，让配音演员获得应有的尊重，还是接受公司的封口费，换取自己未来生活的保障。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "沉浸式职场模拟与叙事冒险，采用冷峻写实的低饱和度美术风格，配合琐碎的都市环境音，营造出一种在霓虹灯影下，个体被巨大流量机器裹挟的真实压迫感与疏离感。",
+              "main_quest": "主角作为一名落魄的虚拟偶像运营助理，意外发现当红全息偶像“星野”的底层逻辑代码中，隐藏着一段未被删除的真人录音。为了查明真相并挽救即将因“塌房”危机而面临解散的团队，主角需在有限的三个月内，通过搜集碎片化证据、处理复杂的职场人际关系以及应对资本方的施压，完成对“星野”形象的重构或彻底剥离。任务的挑战在于，主角必须在“揭露真相导致团队毁灭”与“掩盖真相维持虚假繁荣”之间寻找平衡，最终目标并非拯救偶像，而是通过这段经历，在职业生涯的十字路口做出符合个人良知的抉择，并承担随之而来的职业变动与生活代价。",
+              "protagonist_ability": "主角拥有一种被称为“数据共感”的直觉，源于其长期从事底层数据清洗工作的职业习惯。通过观察全息偶像的微表情参数与动作捕捉轨迹，主角能敏锐捕捉到虚拟形象中残留的“真人情绪碎片”。这种能力仅能用于辅助分析与逻辑推演，无法改变既定事实，且过度使用会导致严重的认知疲劳与现实脱节感，必须通过繁琐的线下生活琐事（如整理房间、烹饪）来强制锚定现实。",
+              "world_basic_setting": "故事发生于近未来的超大都市“新京”，全息偶像产业已成为社会精神支柱。在这个高度数字化的时代，名为“幻影”的虚拟偶像占据了大众的审美与情感投射，背后的运营公司通过算法精准捕捉用户需求。然而，光鲜亮丽的虚拟外壳下，是无数底层运营人员、建模师与数据分析师的血汗。社会阶层固化，普通人通过成为“造梦者”试图跨越阶级，却往往在资本的博弈中沦为弃子。关键事件“零点崩塌”曾导致顶级虚拟偶像数据泄露，引发行业震荡，从此行业进入严苛的合规化时代。在这个世界，真实的情感被视为低效的冗余，而完美的虚拟形象则是被精心包装的商品，人们在虚构的完美中寻找慰藉，却在现实的粗粝中不断碰壁。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1776642667_mqsj9s",
+            "image_style": {
+              "type": "cyberpunk"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "黑框眼镜、略显凌乱的短发、常穿深灰色卫衣、黑眼圈、神情疲惫、总是随身携带笔记本、手指上有长期敲击键盘留下的茧、不修边幅但眼神清澈、背着沉重的双肩包、习惯性地低头走路。",
+              "work_en": "Echoes of Phantom",
+              "work_zh": "幻影余音"
+            },
+            "tone": "normal_ending",
+            "user_theme": "全息偶像塌房记"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "start_ts": 1776642667.0319207,
+        "end_ts": 1776642675.7383993,
+        "provider_events": {
+          "event_count": 4,
+          "queue_wait_ms": {
+            "count": 4,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 1,
+            "min": 8692.0,
+            "max": 8692.0,
+            "mean": 8692.0,
+            "median": 8692.0,
+            "p95": 8692.0
+          },
+          "llm_success_count": 1,
+          "image_success_count": 0,
+          "request_thread_event_count": 2
+        },
+        "status": "success",
+        "game_id": "game_1776642667_mqsj9s"
+      },
+      "first_click": {
+        "http_status": 200,
+        "elapsed_s": 0.027,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "",
+              "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：舱内循环系统发出沉闷的嗡嗡声，像是某种垂死生物的喘息。我揉了揉干涩的眼睛，凌乱的深棕色短发下，防尘护目镜的边缘勒得皮肤生疼。我低头看向左手腕，那台父亲留下的旧式导航仪正闪烁着微弱的红光，指针在引力异常的边缘疯狂跳动。空气中弥漫着一股陈旧的金属锈味与劣质合成燃料的焦糊气，这是我这艘破旧货船“锈蚀号”独有的味道。\n\n“林恩，贷款催缴单又来了。”妹妹艾拉的声音从通讯器那头传来，带着掩盖不住的虚弱与急促，“药剂商说，如果下周再凑不齐信用点，他们将停止供应。”\n\n我沉默地握紧了操纵杆，瘦削的指节因用力而发白。窗外，边缘星域的星云呈现出一种死寂的灰蓝色，仿佛在嘲笑着我的无能。我深吸一口气，强迫自己冷静下来，目光扫过控制台上的两份货单：一份是运往近地矿场的合法矿石，报酬微薄但安全；另一份则是来自黑市的加密订单，报酬丰厚，但需要穿过那片充满不确定性的引力乱流区。我感到一阵耳鸣，那是过度使用导航仪的后遗症，但我没有退路。"
+            },
+            "deep_background_links": {},
+            "flow_update": {},
+            "next_options": [
+              "接受黑市订单，冒着风险穿过乱流区以获取高额报酬。",
+              "承接矿石运输，虽然利润微薄，但能确保星舰的平稳运行。"
+            ],
+            "plot_supporting_characters": [],
+            "scene": "舱内循环系统发出沉闷的嗡嗡声，像是某种垂死生物的喘息。我揉了揉干涩的眼睛，凌乱的深棕色短发下，防尘护目镜的边缘勒得皮肤生疼。我低头看向左手腕，那台父亲留下的旧式导航仪正闪烁着微弱的红光，指针在引力异常的边缘疯狂跳动。空气中弥漫着一股陈旧的金属锈味与劣质合成燃料的焦糊气，这是我这艘破旧货船“锈蚀号”独有的味道。\n\n“林恩，贷款催缴单又来了。”妹妹艾拉的声音从通讯器那头传来，带着掩盖不住的虚弱与急促，“药剂商说，如果下周再凑不齐信用点，他们将停止供应。”\n\n我沉默地握紧了操纵杆，瘦削的指节因用力而发白。窗外，边缘星域的星云呈现出一种死寂的灰蓝色，仿佛在嘲笑着我的无能。我深吸一口气，强迫自己冷静下来，目光扫过控制台上的两份货单：一份是运往近地矿场的合法矿石，报酬微薄但安全；另一份则是来自黑市的加密订单，报酬丰厚，但需要穿过那片充满不确定性的引力乱流区。我感到一阵耳鸣，那是过度使用导航仪的后遗症，但我没有退路。",
+            "sceneId": "4489745578458416686_-6412808742167462512",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-lynn-cockpit-tension, cyberpunk, industrial-wasteland, gritty-realism, high-contrast, sci-fi-dystopia, cinematic-lighting, detailed-mechanical-texture, sharp-focus, moody-atmospheric-perspective, young male protagonist Lynn, using Image 0, messy dark brown short hair, exhausted eyes with dark circles, lean and thin build, strained and focused expression, pale skin with subtle grease smudges, worn-out industrial work jacket stained with oil and grime, protective dust goggles worn around neck or on forehead, old-fashioned resonance navigator device strapped to left wrist, sitting in the pilot seat of Rust-Eater ship, hands tightly gripping the worn control stick, white knuckles showing physical strain, body hunched forward in intense concentration, head turned slightly toward the glowing console, 8K detailed facial features, exhausted gaze reflecting the red console light, strained jawline, lip color naturally muted, subtle shadows under eyes to emphasize fatigue, skin pores and light perspiration visible, messy dark brown short hair, root fixation coefficient 0.85, tip swing amplitude 5cm, color layering: main color #3E2723, secondary color #261A16, highlight #5D4037, shadow #1B1210, wind speed 0.2m/s from life support fan, turbulence intensity 2%, heavy fabric work jacket with metallic frayed edges, oil stains and grease marks on sleeves, slight fabric tension at the shoulders from hunched posture, cramped cockpit of the Rust-Eater ship, messy control panel with flickering red and amber status lights, viewscreen showing gray-blue nebula of the edge sector, exposed wires and rusted metal bulkheads, haze of dust particles in the air, glowing red light from the resonance navigator on wrist, flickering console illumination, faint steam or coolant vapor in the air, dust motes dancing in the dim cockpit lights, predominantly industrial gray and rusted metal tones, harsh red warning light accents, cold gray-blue nebula light from the window, low-key lighting contrast, dramatic side lighting from the control console, cold ambient light from the starship window, harsh red glow illuminating protagonist's hands and face, deep shadows in the corners of the cockpit, type close-up shot, lens 35mm, aperture f/1.8, depth_of_field shallow focus on protagonist's face and wrist navigator, flash none, grain fine film grain, texture gritty metallic surface details, protagonist centered in the cockpit, wrist-mounted navigator as a key focal point in the foreground, viewscreen nebula as the background frame, action constraints: intense focus on the navigator's flickering red light, photorealistic sci-fi illustration, no text or symbols in image, no letters, no signatures, oppressive fatigue, tense survivalism, melancholic isolation, industrial grit, no text, no symbols, no garbled characters, no words",
+              "prompt_json": {
+                "camera": {
+                  "aperture": "f/1.8",
+                  "depth_of_field": "shallow focus on protagonist's face and wrist navigator",
+                  "flash": "none",
+                  "grain": "fine film grain",
+                  "lens": "35mm",
+                  "texture": "gritty metallic surface details",
+                  "type": "close-up shot"
+                },
+                "clothing_system": [
+                  "heavy fabric work jacket with metallic frayed edges",
+                  "oil stains and grease marks on sleeves",
+                  "slight fabric tension at the shoulders from hunched posture"
+                ],
+                "color_restriction": [
+                  "predominantly industrial gray and rusted metal tones",
+                  "harsh red warning light accents",
+                  "cold gray-blue nebula light from the window",
+                  "low-key lighting contrast"
+                ],
+                "composition": [
+                  "protagonist centered in the cockpit",
+                  "wrist-mounted navigator as a key focal point in the foreground",
+                  "viewscreen nebula as the background frame",
+                  "action constraints: intense focus on the navigator's flickering red light"
+                ],
+                "environment": {
+                  "background": [
+                    "cramped cockpit of the Rust-Eater ship",
+                    "messy control panel with flickering red and amber status lights",
+                    "viewscreen showing gray-blue nebula of the edge sector",
+                    "exposed wires and rusted metal bulkheads",
+                    "haze of dust particles in the air"
+                  ],
+                  "characters": [],
+                  "effects": [
+                    "glowing red light from the resonance navigator on wrist",
+                    "flickering console illumination",
+                    "faint steam or coolant vapor in the air",
+                    "dust motes dancing in the dim cockpit lights"
+                  ]
+                },
+                "face_system": [
+                  "8K detailed facial features",
+                  "exhausted gaze reflecting the red console light",
+                  "strained jawline",
+                  "lip color naturally muted",
+                  "subtle shadows under eyes to emphasize fatigue",
+                  "skin pores and light perspiration visible"
+                ],
+                "hair_system": [
+                  "messy dark brown short hair",
+                  "root fixation coefficient 0.85",
+                  "tip swing amplitude 5cm",
+                  "color layering: main color #3E2723, secondary color #261A16, highlight #5D4037, shadow #1B1210",
+                  "wind speed 0.2m/s from life support fan",
+                  "turbulence intensity 2%"
+                ],
+                "label": "scene-lynn-cockpit-tension",
+                "lighting": [
+                  "dramatic side lighting from the control console",
+                  "cold ambient light from the starship window",
+                  "harsh red glow illuminating protagonist's hands and face",
+                  "deep shadows in the corners of the cockpit"
+                ],
+                "mood": [
+                  "oppressive fatigue",
+                  "tense survivalism",
+                  "melancholic isolation",
+                  "industrial grit"
+                ],
+                "output_style": [
+                  "photorealistic sci-fi illustration",
+                  "no text or symbols in image",
+                  "no letters",
+                  "no signatures"
+                ],
+                "style": [
+                  "cinematic-lighting",
+                  "detailed-mechanical-texture",
+                  "sharp-focus",
+                  "moody-atmospheric-perspective"
+                ],
+                "subject": {
+                  "body_traits": [
+                    "young male protagonist Lynn, using Image 0",
+                    "messy dark brown short hair",
+                    "exhausted eyes with dark circles",
+                    "lean and thin build",
+                    "strained and focused expression",
+                    "pale skin with subtle grease smudges"
+                  ],
+                  "outfit": [
+                    "worn-out industrial work jacket stained with oil and grime",
+                    "protective dust goggles worn around neck or on forehead",
+                    "old-fashioned resonance navigator device strapped to left wrist"
+                  ],
+                  "pose": [
+                    "sitting in the pilot seat of Rust-Eater ship",
+                    "hands tightly gripping the worn control stick",
+                    "white knuckles showing physical strain",
+                    "body hunched forward in intense concentration",
+                    "head turned slightly toward the glowing console"
+                  ]
+                },
+                "tags": [
+                  "cyberpunk",
+                  "industrial-wasteland",
+                  "gritty-realism",
+                  "high-contrast",
+                  "sci-fi-dystopia"
+                ]
+              },
+              "scene_text_hash": "b7907e1f755f1a4a98af762dac45f57d",
+              "style": "default",
+              "url": "/image_cache/6f3d5d40ae820431d9429b3eb1973603.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "start_ts": 1776642675.7693393,
+        "end_ts": 1776642675.7965605,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "success",
+        "has_scene": true,
+        "has_image": true
+      },
+      "second_click": {
+        "http_status": 200,
+        "elapsed_s": 0.017,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "你正在执行任务：接受黑市订单，冒着风险穿过乱流区以获取高额报酬。",
+              "recap_text": "你选择了“接受黑市订单，冒着风险穿过乱流区以获取高额报酬。”。当前章节：chapter1。主线进展：你正在执行任务：接受黑市订单，冒着风险穿过乱流区以获取高额报酬。。最近剧情：你选择了：接受黑市订单，冒着风险穿过乱流区以获取高额报酬。。在你的努力下，你取得了一些进展。"
+            },
+            "deep_background_links": {},
+            "flow_update": {
+              "chapter_conflict_solved": false,
+              "characters": {},
+              "environment": {},
+              "quest_progress": "你正在执行任务：接受黑市订单，冒着风险穿过乱流区以获取高额报酬。"
+            },
+            "next_options": [
+              "继续前进",
+              "查看当前状态",
+              "返回上一步",
+              "探索周围环境"
+            ],
+            "scene": "你选择了：接受黑市订单，冒着风险穿过乱流区以获取高额报酬。。在你的努力下，你取得了一些进展。",
+            "sceneId": "3088848791816215206_-1700443417007498195"
+          },
+          "status": "success"
+        },
+        "start_ts": 1776642735.8358836,
+        "end_ts": 1776642735.8533401,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "status": "success",
+        "has_scene": true,
+        "has_image": false,
+        "selected_option_index": 0,
+        "selected_option_text": "接受黑市订单，冒着风险穿过乱流区以获取高额报酬。",
+        "input_scene_id": "4489745578458416686_-6412808742167462512",
+        "inferred_cache_result": "likely_hit",
+        "is_placeholder": true,
+        "used_updated_flow_state": true
+      }
+    }
+  ]
+}

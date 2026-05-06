@@ -1,0 +1,56 @@
+{
+  "experiment": "benchmark_v13_readwait_70s_7v8_cleaned",
+  "invalidated_sample": {
+    "benchmark_id": "DNQBV1_008",
+    "reason": "External interruption: screen sleep / display off during run; user-confirmed non-engineering anomaly."
+  },
+  "source_files": {
+    "off_raw": "C:\\Users\\zhang\\Desktop\\DN\\experiments\\benchmark\\standard_runs\\benchmark_v13_readwait_off_70s_8.json",
+    "on_raw": "C:\\Users\\zhang\\Desktop\\DN\\experiments\\benchmark\\standard_runs\\benchmark_v13_readwait_on_70s_8.json"
+  },
+  "summary": {
+    "off": {
+      "sample_size": 7,
+      "success_count": 7,
+      "second_click": {
+        "count": 7,
+        "min": 0.007,
+        "max": 0.022,
+        "mean": 0.017,
+        "median": 0.019,
+        "p95": 0.022
+      },
+      "real_scene_count": 0,
+      "real_scene_rate": 0.0,
+      "real_scene_second_click": {
+        "count": 0
+      },
+      "likely_hit_count": 7,
+      "likely_hit_rate": 1.0
+    },
+    "on": {
+      "sample_size": 8,
+      "success_count": 8,
+      "second_click": {
+        "count": 8,
+        "min": 0.005,
+        "max": 0.035,
+        "mean": 0.02,
+        "median": 0.018,
+        "p95": 0.034
+      },
+      "real_scene_count": 4,
+      "real_scene_rate": 0.5,
+      "real_scene_second_click": {
+        "count": 4,
+        "min": 0.013,
+        "max": 0.035,
+        "mean": 0.026,
+        "median": 0.029,
+        "p95": 0.035
+      },
+      "likely_hit_count": 8,
+      "likely_hit_rate": 1.0
+    }
+  }
+}
