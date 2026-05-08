@@ -1,0 +1,1233 @@
+{
+  "summary": {
+    "experiment_name": "phase1_DNQBV1_008",
+    "profile": "fullready_strict",
+    "sample_size": 1,
+    "read_wait_s": 0.0,
+    "suite_start_ts": 1777621651.0853317,
+    "suite_end_ts": 1777621747.33528,
+    "second_click_elapsed_s": {
+      "count": 1,
+      "min": 26.556,
+      "max": 26.556,
+      "mean": 26.556,
+      "median": 26.556,
+      "p95": 26.556
+    },
+    "second_click_success_count": 1,
+    "transport_success_count": 1,
+    "strict_success_count": 1,
+    "likely_hit_count": 0,
+    "likely_hit_rate": 0.0,
+    "failure_bucket_counts": {},
+    "placeholder_strict_fail_count": 0,
+    "aborted": false,
+    "success_count": 1,
+    "text_ready_elapsed_s": {
+      "count": 1,
+      "min": 26.556,
+      "max": 26.556,
+      "mean": 26.556,
+      "median": 26.556,
+      "p95": 26.556
+    },
+    "image_ready_elapsed_s": {
+      "count": 1,
+      "min": 26.556,
+      "max": 26.556,
+      "mean": 26.556,
+      "median": 26.556,
+      "p95": 26.556
+    },
+    "full_ready_elapsed_s": {
+      "count": 1,
+      "min": 26.556,
+      "max": 26.556,
+      "mean": 26.556,
+      "median": 26.556,
+      "p95": 26.556
+    },
+    "real_scene_count": 1,
+    "real_scene_rate": 1.0,
+    "direct_image_count": 1,
+    "async_image_count": 0,
+    "placeholder_count": 0,
+    "placeholder_rate": 0.0,
+    "direct_image_rate": 1.0,
+    "async_image_rate": 0.0,
+    "provider_retry_heavy_count": 0,
+    "provider_429_count": 0,
+    "provider_timeout_count": 0,
+    "provider_backoff_wait_ms_total": 0,
+    "main_character_contention_suspected_count": 0,
+    "notes": "Phase 1 probe for failure bucket classification"
+  },
+  "runs": [
+    {
+      "benchmark_id": "DNQBV1_008",
+      "theme_id": 27,
+      "theme": "全息偶像塌房记",
+      "read_wait_s": 0.0,
+      "full_ready_mode": true,
+      "profile": "fullready_strict",
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 10.604,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "通过一系列公关操作，成功将直播事故解释为“角色沉浸式演出”，暂时平息舆论压力，但代价是中之人被迫签署了更严苛的保密协议，且双方的信任基础出现了不可逆的裂痕。",
+                  "main_conflict": "虚拟偶像“星野”的配音演员因长期高压工作导致心理崩溃，在直播中无意泄露了真实生活中的负面情绪，引发粉丝群体对“人设崩塌”的强烈抗议。主角需在舆论发酵的黄金48小时内，既要安抚愤怒的粉丝群体，又要处理公司高层为了止损而提出的“解约并起诉”的冷酷方案，同时还要面对中之人对职业尊严的最后坚持。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "成功揪出内鬼并稳住核心粉丝群，公司暂时度过财务危机，但主角因此得罪了公司高层，被剥夺了部分决策权，团队的未来变得更加扑朔迷离。",
+                  "main_conflict": "公司内部出现内鬼，将“星野”的运营数据与中之人的真实收入差距泄露给竞争对手，导致粉丝群体内部发生分裂，部分核心粉丝开始抵制消费。主角需在公司资金链断裂的边缘，通过挖掘内鬼并重构粉丝社群的信任，同时还要应对竞争对手发起的恶意收购邀约，在保住公司独立性与出卖团队利益之间艰难抉择。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角选择折中方案，在演唱会上通过技术手段让中之人与AI共演，虽未彻底改变行业格局，但保住了中之人的职业尊严，公司项目最终平稳落地，主角虽未获得晋升，却在行业内赢得了尊重，最终选择辞职，回归平凡生活。",
+                  "main_conflict": "年度全息演唱会前夕，AI技术全面取代真人中之人的方案被提上日程，公司决定在演唱会上直接启用AI替代“星野”。主角面临最终抉择：是顺从公司安排，牺牲中之人以换取项目成功，还是在演唱会上揭露真相，让“星野”彻底终结，但换取中之人作为独立个体的自由与尊严。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为现实主义职场模拟与叙事冒险游戏，采用低饱和度写实美术风格，强调光影的颗粒感与环境的压抑感。叙事节奏平缓，侧重于通过琐碎的对话、社交媒体动态与职场邮件，构建一个充满真实感、利益纠葛与人情冷暖的现代都市职场生态。",
+              "main_quest": "主角作为虚拟偶像“星野”的运营负责人，目标是在公司被收购前，通过一系列危机公关与内容策划，将“星野”打造为具有独立商业价值的IP，从而保住团队成员的饭碗。玩家需在三个月内完成：优化偶像人设、平息网络暴力事件、处理中之人的合同纠纷，并最终在年度全息演唱会上实现数据达标。挑战在于，主角必须在“维护偶像完美形象”与“保护中之人真实人格”之间不断博弈，面对资本的冷血指令与粉丝的非理性期待，主角必须在有限的资源下做出取舍，最终目标并非成为行业巨头，而是让团队在行业洗牌中体面地存续。",
+              "protagonist_ability": "主角拥有的“共情捕捉”能力源于多年底层运营的经验积累，能够通过分析社交媒体数据、语音语调细微变化及肢体语言，精准预判舆论风向与人物心理防线。使用方式为在对话中选择关键切入点，引导对方暴露真实诉求。限制在于该能力无法改变既定的资本逻辑与社会偏见，且过度使用会消耗主角的个人信誉，导致其在职场中被边缘化，甚至引发严重的心理疲劳。",
+              "world_basic_setting": "故事发生于近未来的超一线城市，全息偶像产业已成为资本市场的核心支柱。社会高度数字化，大众通过虚拟偶像获取情感慰藉，而幕后的中之人（配音与动作捕捉演员）则被严格剥离于聚光灯之外。在这个高度原子化的社会中，虚拟偶像不仅是娱乐产品，更是资本运作的傀儡。随着AI技术的迭代，真人中之人的生存空间被极度压缩，行业内部充斥着合同陷阱、舆论操控与残酷的末位淘汰制。主角身处一家濒临破产的偶像运营公司，在虚拟偶像“星野”的辉煌表象下，是中之人为了维持生计而不得不出卖隐私、忍受严苛KPI的真实困境。社会舆论对偶像的道德要求近乎苛刻，任何微小的瑕疵都会引发连锁反应，导致资本撤资与职业生涯的终结。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1777621651_0la1k9",
+            "image_style": {
+              "type": "cyberpunk"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "黑色短发、黑框眼镜、略显疲惫的眼神、常穿深色衬衫、袖口微卷、随身携带笔记本、清瘦、神情专注、不修边幅的胡茬、总是带着耳机、沉默寡言、步履匆忙",
+              "work_en": "The Collapse of Holographic Idols",
+              "work_zh": "全息偶像塌房记"
+            },
+            "tone": "normal_ending",
+            "user_theme": "全息偶像塌房记"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "request_payload": {
+          "gameTheme": "全息偶像塌房记",
+          "protagonistAttr": {},
+          "difficulty": "normal",
+          "toneKey": "normal_ending",
+          "imageStyle": {
+            "type": "cyberpunk"
+          },
+          "_benchmark_profile": "fullready_strict",
+          "_benchmark_measurement": "fullready_nextturn",
+          "_benchmark_read_wait_s": 0.0
+        },
+        "start_ts": 1777621651.0853357,
+        "end_ts": 1777621661.6890028,
+        "provider_events": {
+          "event_count": 5,
+          "queue_wait_ms": {
+            "count": 5,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 2,
+            "min": 9753.0,
+            "max": 10570.0,
+            "mean": 10161.5,
+            "median": 10161.5,
+            "p95": 10529.15
+          },
+          "llm_success_count": 2,
+          "image_success_count": 0,
+          "request_thread_event_count": 2,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0
+        },
+        "status": "success",
+        "game_id": "game_1777621651_0la1k9"
+      },
+      "long_tail_attribution": {
+        "provider_429_count": 0,
+        "provider_timeout_count": 0,
+        "provider_retry_heavy_count": 0,
+        "provider_backoff_wait_ms_total": 0,
+        "main_character_event_count": 0,
+        "scene_image_event_count": 4,
+        "image_probe_attempt_count": 0,
+        "main_character_contention_suspected": false
+      },
+      "first_click": {
+        "http_status": 200,
+        "elapsed_s": 58.978,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "",
+              "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：冰冷的白炽灯光在“伦理庭”审核室的金属桌面上投下刺眼的白斑，我习惯性地推了推鼻梁上的黑框眼镜，指尖摩挲着略显粗糙的灰色工装衬衫袖口。空气中弥漫着一股淡淡的臭氧味，这是终端机高负荷运转留下的痕迹。我深吸一口气，试图压下眼底因长期熬夜而产生的酸胀感，目光落在屏幕上那份代号为“余烬”的审核档案上。档案显示，这具克隆体在最近的记忆同步测试中出现了严重的逻辑断层，它反复梦见一个从未去过的海边小镇，并试图在记忆中构建出一种名为“家”的虚假情感。\n\n“林审核员，KPI考核的时间快到了，上面要求今天必须签署报废协议。”主管推门而入，皮鞋敲击地面的声音在空旷的室内显得格外刺耳。他将一份电子签署板重重拍在桌上，眼神中透着不耐烦，“别让那些无用的数据干扰你的判断，它只是个工具，坏了就该报废。”我看着屏幕上“余烬”那双写满困惑与渴望的电子眼，心中那股熟悉的疲惫感再次涌上。我能感觉到，在它的记忆碎片深处，似乎藏着某种不属于克隆体的、极其私人的秘密。"
+            },
+            "deep_background_links": {},
+            "flow_update": {},
+            "next_options": [
+              "签署报废协议，以保住目前的工作岗位。",
+              "启动“共感校准”，深入探查“余烬”记忆中海边小镇的真相。"
+            ],
+            "scene": "冰冷的白炽灯光在“伦理庭”审核室的金属桌面上投下刺眼的白斑，我习惯性地推了推鼻梁上的黑框眼镜，指尖摩挲着略显粗糙的灰色工装衬衫袖口。空气中弥漫着一股淡淡的臭氧味，这是终端机高负荷运转留下的痕迹。我深吸一口气，试图压下眼底因长期熬夜而产生的酸胀感，目光落在屏幕上那份代号为“余烬”的审核档案上。档案显示，这具克隆体在最近的记忆同步测试中出现了严重的逻辑断层，它反复梦见一个从未去过的海边小镇，并试图在记忆中构建出一种名为“家”的虚假情感。\n\n“林审核员，KPI考核的时间快到了，上面要求今天必须签署报废协议。”主管推门而入，皮鞋敲击地面的声音在空旷的室内显得格外刺耳。他将一份电子签署板重重拍在桌上，眼神中透着不耐烦，“别让那些无用的数据干扰你的判断，它只是个工具，坏了就该报废。”我看着屏幕上“余烬”那双写满困惑与渴望的电子眼，心中那股熟悉的疲惫感再次涌上。我能感觉到，在它的记忆碎片深处，似乎藏着某种不属于克隆体的、极其私人的秘密。",
+            "sceneId": "-94228758643841056_-7068311312569457161",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-ethics-bureau-audit-room, cyberpunk-realism, dystopian, clinical-atmosphere, oppressive-bureaucracy, near-future, hyper-realistic, cinematic-lighting, high-contrast-shadows, sharp-detail-rendering, industrial-texture, young male protagonist with exhausted and weary expression, pale complexion with visible dark circles under eyes, short messy dark hair suggesting long-term fatigue, intense and empathetic gaze fixed on terminal screen, slight forward hunch indicating psychological burden, rough-textured grey industrial work shirt, shirt collar slightly rumpled, sleeves pushed up to expose forearms, seated at a cold metallic desk in the ethics bureau audit room, right hand pushing up black-rimmed glasses, left hand resting near an electronic signature pad, body angled slightly away from 主管-配角1, 8K detailed facial features, lip color naturally muted and slightly dry, soft shadows from overhead fluorescent lights carving deep facial contours, eyes reflecting the flickering blue light from the terminal screen, expression of conflicted moral weight and professional exhaustion, short dark hair with natural messy texture, root fixation coefficient 0.5, tip swing amplitude 2cm, color layering: main color #2D2D2D, secondary color #1A1A1A, highlight #404040, shadow #000000, no wind effect, wind speed 0m/s, turbulence intensity 0%, coarse grey fabric with visible weave, slight fabric tension around shoulders, no luminous effects on clothing, cramped ethics bureau audit room with brushed metal walls, flickering harsh white fluorescent tube lights on ceiling, glowing terminal screen showing 'Ember' diagnostic data with blue graphs, cluttered desk with electronic devices and cables, 主管-配角1 standing behind protagonist in a sharp, cold-toned business suit, looking down with an impatient expression, faint haze of ozone and dust particles visible in light beams, sharp white light spots reflecting on the metal desk surface, monochromatic grey tones, clinical cold white light, flickering digital blue from screen, muted office colors, harsh overhead fluorescent lighting, cool blue screen backlight casting glow on protagonist's face, deep shadows in room corners, stark highlights on metallic surfaces, type over-the-shoulder shot, lens 35mm, aperture f/1.8, depth_of_field shallow focus on protagonist's face and terminal screen, flash none, grain fine digital noise, texture industrial matte, protagonist in foreground center-left, 主管-配角1 standing in background right, screen data as the central narrative focus, action constraints: protagonist's hand mid-motion adjusting glasses, realistic narrative art, no text or symbols in image, no watermarks, no character names in image, oppressive, melancholy, bureaucratic coldness, internal moral struggle, stifling realism, no text, no symbols, no garbled characters, no words",
+              "prompt_json": {
+                "camera": {
+                  "aperture": "f/1.8",
+                  "depth_of_field": "shallow focus on protagonist's face and terminal screen",
+                  "flash": "none",
+                  "grain": "fine digital noise",
+                  "lens": "35mm",
+                  "texture": "industrial matte",
+                  "type": "over-the-shoulder shot"
+                },
+                "clothing_system": [
+                  "coarse grey fabric with visible weave",
+                  "slight fabric tension around shoulders",
+                  "no luminous effects on clothing"
+                ],
+                "color_restriction": [
+                  "monochromatic grey tones",
+                  "clinical cold white light",
+                  "flickering digital blue from screen",
+                  "muted office colors"
+                ],
+                "composition": [
+                  "protagonist in foreground center-left",
+                  "主管-配角1 standing in background right",
+                  "screen data as the central narrative focus",
+                  "action constraints: protagonist's hand mid-motion adjusting glasses"
+                ],
+                "environment": {
+                  "background": [
+                    "cramped ethics bureau audit room with brushed metal walls",
+                    "flickering harsh white fluorescent tube lights on ceiling",
+                    "glowing terminal screen showing 'Ember' diagnostic data with blue graphs",
+                    "cluttered desk with electronic devices and cables"
+                  ],
+                  "characters": [
+                    "主管-配角1 standing behind protagonist in a sharp, cold-toned business suit, looking down with an impatient expression"
+                  ],
+                  "effects": [
+                    "faint haze of ozone and dust particles visible in light beams",
+                    "sharp white light spots reflecting on the metal desk surface"
+                  ]
+                },
+                "face_system": [
+                  "8K detailed facial features",
+                  "lip color naturally muted and slightly dry",
+                  "soft shadows from overhead fluorescent lights carving deep facial contours",
+                  "eyes reflecting the flickering blue light from the terminal screen",
+                  "expression of conflicted moral weight and professional exhaustion"
+                ],
+                "hair_system": [
+                  "short dark hair with natural messy texture",
+                  "root fixation coefficient 0.5",
+                  "tip swing amplitude 2cm",
+                  "color layering: main color #2D2D2D, secondary color #1A1A1A, highlight #404040, shadow #000000",
+                  "no wind effect",
+                  "wind speed 0m/s",
+                  "turbulence intensity 0%"
+                ],
+                "label": "scene-ethics-bureau-audit-room",
+                "lighting": [
+                  "harsh overhead fluorescent lighting",
+                  "cool blue screen backlight casting glow on protagonist's face",
+                  "deep shadows in room corners",
+                  "stark highlights on metallic surfaces"
+                ],
+                "mood": [
+                  "oppressive",
+                  "melancholy",
+                  "bureaucratic coldness",
+                  "internal moral struggle",
+                  "stifling realism"
+                ],
+                "output_style": [
+                  "realistic narrative art",
+                  "no text or symbols in image",
+                  "no watermarks",
+                  "no character names in image"
+                ],
+                "style": [
+                  "hyper-realistic",
+                  "cinematic-lighting",
+                  "high-contrast-shadows",
+                  "sharp-detail-rendering",
+                  "industrial-texture"
+                ],
+                "subject": {
+                  "body_traits": [
+                    "young male protagonist with exhausted and weary expression",
+                    "pale complexion with visible dark circles under eyes",
+                    "short messy dark hair suggesting long-term fatigue",
+                    "intense and empathetic gaze fixed on terminal screen",
+                    "slight forward hunch indicating psychological burden"
+                  ],
+                  "outfit": [
+                    "rough-textured grey industrial work shirt",
+                    "shirt collar slightly rumpled",
+                    "sleeves pushed up to expose forearms"
+                  ],
+                  "pose": [
+                    "seated at a cold metallic desk in the ethics bureau audit room",
+                    "right hand pushing up black-rimmed glasses",
+                    "left hand resting near an electronic signature pad",
+                    "body angled slightly away from 主管-配角1"
+                  ]
+                },
+                "tags": [
+                  "cyberpunk-realism",
+                  "dystopian",
+                  "clinical-atmosphere",
+                  "oppressive-bureaucracy",
+                  "near-future"
+                ]
+              },
+              "scene_text_hash": "ccbe1765e9b3221c371725cc571fbff0",
+              "style": "default",
+              "url": "/image_cache/3a74c36d4bb2119c3acfd790d0112491.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "request_payload": {
+          "option": "开始游戏",
+          "optionIndex": 0,
+          "sceneId": null,
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "通过一系列公关操作，成功将直播事故解释为“角色沉浸式演出”，暂时平息舆论压力，但代价是中之人被迫签署了更严苛的保密协议，且双方的信任基础出现了不可逆的裂痕。",
+                  "main_conflict": "虚拟偶像“星野”的配音演员因长期高压工作导致心理崩溃，在直播中无意泄露了真实生活中的负面情绪，引发粉丝群体对“人设崩塌”的强烈抗议。主角需在舆论发酵的黄金48小时内，既要安抚愤怒的粉丝群体，又要处理公司高层为了止损而提出的“解约并起诉”的冷酷方案，同时还要面对中之人对职业尊严的最后坚持。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "成功揪出内鬼并稳住核心粉丝群，公司暂时度过财务危机，但主角因此得罪了公司高层，被剥夺了部分决策权，团队的未来变得更加扑朔迷离。",
+                  "main_conflict": "公司内部出现内鬼，将“星野”的运营数据与中之人的真实收入差距泄露给竞争对手，导致粉丝群体内部发生分裂，部分核心粉丝开始抵制消费。主角需在公司资金链断裂的边缘，通过挖掘内鬼并重构粉丝社群的信任，同时还要应对竞争对手发起的恶意收购邀约，在保住公司独立性与出卖团队利益之间艰难抉择。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角选择折中方案，在演唱会上通过技术手段让中之人与AI共演，虽未彻底改变行业格局，但保住了中之人的职业尊严，公司项目最终平稳落地，主角虽未获得晋升，却在行业内赢得了尊重，最终选择辞职，回归平凡生活。",
+                  "main_conflict": "年度全息演唱会前夕，AI技术全面取代真人中之人的方案被提上日程，公司决定在演唱会上直接启用AI替代“星野”。主角面临最终抉择：是顺从公司安排，牺牲中之人以换取项目成功，还是在演唱会上揭露真相，让“星野”彻底终结，但换取中之人作为独立个体的自由与尊严。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为现实主义职场模拟与叙事冒险游戏，采用低饱和度写实美术风格，强调光影的颗粒感与环境的压抑感。叙事节奏平缓，侧重于通过琐碎的对话、社交媒体动态与职场邮件，构建一个充满真实感、利益纠葛与人情冷暖的现代都市职场生态。",
+              "main_quest": "主角作为虚拟偶像“星野”的运营负责人，目标是在公司被收购前，通过一系列危机公关与内容策划，将“星野”打造为具有独立商业价值的IP，从而保住团队成员的饭碗。玩家需在三个月内完成：优化偶像人设、平息网络暴力事件、处理中之人的合同纠纷，并最终在年度全息演唱会上实现数据达标。挑战在于，主角必须在“维护偶像完美形象”与“保护中之人真实人格”之间不断博弈，面对资本的冷血指令与粉丝的非理性期待，主角必须在有限的资源下做出取舍，最终目标并非成为行业巨头，而是让团队在行业洗牌中体面地存续。",
+              "protagonist_ability": "主角拥有的“共情捕捉”能力源于多年底层运营的经验积累，能够通过分析社交媒体数据、语音语调细微变化及肢体语言，精准预判舆论风向与人物心理防线。使用方式为在对话中选择关键切入点，引导对方暴露真实诉求。限制在于该能力无法改变既定的资本逻辑与社会偏见，且过度使用会消耗主角的个人信誉，导致其在职场中被边缘化，甚至引发严重的心理疲劳。",
+              "world_basic_setting": "故事发生于近未来的超一线城市，全息偶像产业已成为资本市场的核心支柱。社会高度数字化，大众通过虚拟偶像获取情感慰藉，而幕后的中之人（配音与动作捕捉演员）则被严格剥离于聚光灯之外。在这个高度原子化的社会中，虚拟偶像不仅是娱乐产品，更是资本运作的傀儡。随着AI技术的迭代，真人中之人的生存空间被极度压缩，行业内部充斥着合同陷阱、舆论操控与残酷的末位淘汰制。主角身处一家濒临破产的偶像运营公司，在虚拟偶像“星野”的辉煌表象下，是中之人为了维持生计而不得不出卖隐私、忍受严苛KPI的真实困境。社会舆论对偶像的道德要求近乎苛刻，任何微小的瑕疵都会引发连锁反应，导致资本撤资与职业生涯的终结。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1777621651_0la1k9",
+            "image_style": {
+              "type": "cyberpunk"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "黑色短发、黑框眼镜、略显疲惫的眼神、常穿深色衬衫、袖口微卷、随身携带笔记本、清瘦、神情专注、不修边幅的胡茬、总是带着耳机、沉默寡言、步履匆忙",
+              "work_en": "The Collapse of Holographic Idols",
+              "work_zh": "全息偶像塌房记"
+            },
+            "tone": "normal_ending",
+            "user_theme": "全息偶像塌房记",
+            "_benchmark_profile": "fullready_strict",
+            "_benchmark_measurement": "fullready_nextturn",
+            "_benchmark_read_wait_s": 0.0
+          }
+        },
+        "start_ts": 1777621661.7285633,
+        "end_ts": 1777621720.7062383,
+        "provider_events": {
+          "event_count": 9,
+          "queue_wait_ms": {
+            "count": 9,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 5,
+            "min": 4436.0,
+            "max": 19588.0,
+            "mean": 9828.0,
+            "median": 8304.0,
+            "p95": 17676.4
+          },
+          "llm_success_count": 4,
+          "image_success_count": 0,
+          "request_thread_event_count": 0,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 2
+        },
+        "attempts": [
+          {
+            "http_status": 200,
+            "elapsed_s": 58.978,
+            "response_json": {
+              "message": "选项剧情生成成功！",
+              "optionData": {
+                "checkpoint_packet": {
+                  "chapter": "chapter1",
+                  "chapter_conflict_solved": false,
+                  "quest_delta": "",
+                  "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：冰冷的白炽灯光在“伦理庭”审核室的金属桌面上投下刺眼的白斑，我习惯性地推了推鼻梁上的黑框眼镜，指尖摩挲着略显粗糙的灰色工装衬衫袖口。空气中弥漫着一股淡淡的臭氧味，这是终端机高负荷运转留下的痕迹。我深吸一口气，试图压下眼底因长期熬夜而产生的酸胀感，目光落在屏幕上那份代号为“余烬”的审核档案上。档案显示，这具克隆体在最近的记忆同步测试中出现了严重的逻辑断层，它反复梦见一个从未去过的海边小镇，并试图在记忆中构建出一种名为“家”的虚假情感。\n\n“林审核员，KPI考核的时间快到了，上面要求今天必须签署报废协议。”主管推门而入，皮鞋敲击地面的声音在空旷的室内显得格外刺耳。他将一份电子签署板重重拍在桌上，眼神中透着不耐烦，“别让那些无用的数据干扰你的判断，它只是个工具，坏了就该报废。”我看着屏幕上“余烬”那双写满困惑与渴望的电子眼，心中那股熟悉的疲惫感再次涌上。我能感觉到，在它的记忆碎片深处，似乎藏着某种不属于克隆体的、极其私人的秘密。"
+                },
+                "deep_background_links": {},
+                "flow_update": {},
+                "next_options": [
+                  "签署报废协议，以保住目前的工作岗位。",
+                  "启动“共感校准”，深入探查“余烬”记忆中海边小镇的真相。"
+                ],
+                "scene": "冰冷的白炽灯光在“伦理庭”审核室的金属桌面上投下刺眼的白斑，我习惯性地推了推鼻梁上的黑框眼镜，指尖摩挲着略显粗糙的灰色工装衬衫袖口。空气中弥漫着一股淡淡的臭氧味，这是终端机高负荷运转留下的痕迹。我深吸一口气，试图压下眼底因长期熬夜而产生的酸胀感，目光落在屏幕上那份代号为“余烬”的审核档案上。档案显示，这具克隆体在最近的记忆同步测试中出现了严重的逻辑断层，它反复梦见一个从未去过的海边小镇，并试图在记忆中构建出一种名为“家”的虚假情感。\n\n“林审核员，KPI考核的时间快到了，上面要求今天必须签署报废协议。”主管推门而入，皮鞋敲击地面的声音在空旷的室内显得格外刺耳。他将一份电子签署板重重拍在桌上，眼神中透着不耐烦，“别让那些无用的数据干扰你的判断，它只是个工具，坏了就该报废。”我看着屏幕上“余烬”那双写满困惑与渴望的电子眼，心中那股熟悉的疲惫感再次涌上。我能感觉到，在它的记忆碎片深处，似乎藏着某种不属于克隆体的、极其私人的秘密。",
+                "sceneId": "-94228758643841056_-7068311312569457161",
+                "scene_image": {
+                  "cached": true,
+                  "height": 1080,
+                  "image_type": "story_scene",
+                  "prompt": "scene-ethics-bureau-audit-room, cyberpunk-realism, dystopian, clinical-atmosphere, oppressive-bureaucracy, near-future, hyper-realistic, cinematic-lighting, high-contrast-shadows, sharp-detail-rendering, industrial-texture, young male protagonist with exhausted and weary expression, pale complexion with visible dark circles under eyes, short messy dark hair suggesting long-term fatigue, intense and empathetic gaze fixed on terminal screen, slight forward hunch indicating psychological burden, rough-textured grey industrial work shirt, shirt collar slightly rumpled, sleeves pushed up to expose forearms, seated at a cold metallic desk in the ethics bureau audit room, right hand pushing up black-rimmed glasses, left hand resting near an electronic signature pad, body angled slightly away from 主管-配角1, 8K detailed facial features, lip color naturally muted and slightly dry, soft shadows from overhead fluorescent lights carving deep facial contours, eyes reflecting the flickering blue light from the terminal screen, expression of conflicted moral weight and professional exhaustion, short dark hair with natural messy texture, root fixation coefficient 0.5, tip swing amplitude 2cm, color layering: main color #2D2D2D, secondary color #1A1A1A, highlight #404040, shadow #000000, no wind effect, wind speed 0m/s, turbulence intensity 0%, coarse grey fabric with visible weave, slight fabric tension around shoulders, no luminous effects on clothing, cramped ethics bureau audit room with brushed metal walls, flickering harsh white fluorescent tube lights on ceiling, glowing terminal screen showing 'Ember' diagnostic data with blue graphs, cluttered desk with electronic devices and cables, 主管-配角1 standing behind protagonist in a sharp, cold-toned business suit, looking down with an impatient expression, faint haze of ozone and dust particles visible in light beams, sharp white light spots reflecting on the metal desk surface, monochromatic grey tones, clinical cold white light, flickering digital blue from screen, muted office colors, harsh overhead fluorescent lighting, cool blue screen backlight casting glow on protagonist's face, deep shadows in room corners, stark highlights on metallic surfaces, type over-the-shoulder shot, lens 35mm, aperture f/1.8, depth_of_field shallow focus on protagonist's face and terminal screen, flash none, grain fine digital noise, texture industrial matte, protagonist in foreground center-left, 主管-配角1 standing in background right, screen data as the central narrative focus, action constraints: protagonist's hand mid-motion adjusting glasses, realistic narrative art, no text or symbols in image, no watermarks, no character names in image, oppressive, melancholy, bureaucratic coldness, internal moral struggle, stifling realism, no text, no symbols, no garbled characters, no words",
+                  "prompt_json": {
+                    "camera": {
+                      "aperture": "f/1.8",
+                      "depth_of_field": "shallow focus on protagonist's face and terminal screen",
+                      "flash": "none",
+                      "grain": "fine digital noise",
+                      "lens": "35mm",
+                      "texture": "industrial matte",
+                      "type": "over-the-shoulder shot"
+                    },
+                    "clothing_system": [
+                      "coarse grey fabric with visible weave",
+                      "slight fabric tension around shoulders",
+                      "no luminous effects on clothing"
+                    ],
+                    "color_restriction": [
+                      "monochromatic grey tones",
+                      "clinical cold white light",
+                      "flickering digital blue from screen",
+                      "muted office colors"
+                    ],
+                    "composition": [
+                      "protagonist in foreground center-left",
+                      "主管-配角1 standing in background right",
+                      "screen data as the central narrative focus",
+                      "action constraints: protagonist's hand mid-motion adjusting glasses"
+                    ],
+                    "environment": {
+                      "background": [
+                        "cramped ethics bureau audit room with brushed metal walls",
+                        "flickering harsh white fluorescent tube lights on ceiling",
+                        "glowing terminal screen showing 'Ember' diagnostic data with blue graphs",
+                        "cluttered desk with electronic devices and cables"
+                      ],
+                      "characters": [
+                        "主管-配角1 standing behind protagonist in a sharp, cold-toned business suit, looking down with an impatient expression"
+                      ],
+                      "effects": [
+                        "faint haze of ozone and dust particles visible in light beams",
+                        "sharp white light spots reflecting on the metal desk surface"
+                      ]
+                    },
+                    "face_system": [
+                      "8K detailed facial features",
+                      "lip color naturally muted and slightly dry",
+                      "soft shadows from overhead fluorescent lights carving deep facial contours",
+                      "eyes reflecting the flickering blue light from the terminal screen",
+                      "expression of conflicted moral weight and professional exhaustion"
+                    ],
+                    "hair_system": [
+                      "short dark hair with natural messy texture",
+                      "root fixation coefficient 0.5",
+                      "tip swing amplitude 2cm",
+                      "color layering: main color #2D2D2D, secondary color #1A1A1A, highlight #404040, shadow #000000",
+                      "no wind effect",
+                      "wind speed 0m/s",
+                      "turbulence intensity 0%"
+                    ],
+                    "label": "scene-ethics-bureau-audit-room",
+                    "lighting": [
+                      "harsh overhead fluorescent lighting",
+                      "cool blue screen backlight casting glow on protagonist's face",
+                      "deep shadows in room corners",
+                      "stark highlights on metallic surfaces"
+                    ],
+                    "mood": [
+                      "oppressive",
+                      "melancholy",
+                      "bureaucratic coldness",
+                      "internal moral struggle",
+                      "stifling realism"
+                    ],
+                    "output_style": [
+                      "realistic narrative art",
+                      "no text or symbols in image",
+                      "no watermarks",
+                      "no character names in image"
+                    ],
+                    "style": [
+                      "hyper-realistic",
+                      "cinematic-lighting",
+                      "high-contrast-shadows",
+                      "sharp-detail-rendering",
+                      "industrial-texture"
+                    ],
+                    "subject": {
+                      "body_traits": [
+                        "young male protagonist with exhausted and weary expression",
+                        "pale complexion with visible dark circles under eyes",
+                        "short messy dark hair suggesting long-term fatigue",
+                        "intense and empathetic gaze fixed on terminal screen",
+                        "slight forward hunch indicating psychological burden"
+                      ],
+                      "outfit": [
+                        "rough-textured grey industrial work shirt",
+                        "shirt collar slightly rumpled",
+                        "sleeves pushed up to expose forearms"
+                      ],
+                      "pose": [
+                        "seated at a cold metallic desk in the ethics bureau audit room",
+                        "right hand pushing up black-rimmed glasses",
+                        "left hand resting near an electronic signature pad",
+                        "body angled slightly away from 主管-配角1"
+                      ]
+                    },
+                    "tags": [
+                      "cyberpunk-realism",
+                      "dystopian",
+                      "clinical-atmosphere",
+                      "oppressive-bureaucracy",
+                      "near-future"
+                    ]
+                  },
+                  "scene_text_hash": "ccbe1765e9b3221c371725cc571fbff0",
+                  "style": "default",
+                  "url": "/image_cache/3a74c36d4bb2119c3acfd790d0112491.png",
+                  "width": 1920
+                }
+              },
+              "status": "success"
+            },
+            "request_payload": {
+              "option": "开始游戏",
+              "optionIndex": 0,
+              "sceneId": null,
+              "globalState": {
+                "core_worldview": {
+                  "chapters": {
+                    "chapter1": {
+                      "conflict_end_condition": "通过一系列公关操作，成功将直播事故解释为“角色沉浸式演出”，暂时平息舆论压力，但代价是中之人被迫签署了更严苛的保密协议，且双方的信任基础出现了不可逆的裂痕。",
+                      "main_conflict": "虚拟偶像“星野”的配音演员因长期高压工作导致心理崩溃，在直播中无意泄露了真实生活中的负面情绪，引发粉丝群体对“人设崩塌”的强烈抗议。主角需在舆论发酵的黄金48小时内，既要安抚愤怒的粉丝群体，又要处理公司高层为了止损而提出的“解约并起诉”的冷酷方案，同时还要面对中之人对职业尊严的最后坚持。"
+                    },
+                    "chapter2": {
+                      "conflict_end_condition": "成功揪出内鬼并稳住核心粉丝群，公司暂时度过财务危机，但主角因此得罪了公司高层，被剥夺了部分决策权，团队的未来变得更加扑朔迷离。",
+                      "main_conflict": "公司内部出现内鬼，将“星野”的运营数据与中之人的真实收入差距泄露给竞争对手，导致粉丝群体内部发生分裂，部分核心粉丝开始抵制消费。主角需在公司资金链断裂的边缘，通过挖掘内鬼并重构粉丝社群的信任，同时还要应对竞争对手发起的恶意收购邀约，在保住公司独立性与出卖团队利益之间艰难抉择。"
+                    },
+                    "chapter3": {
+                      "conflict_end_condition": "主角选择折中方案，在演唱会上通过技术手段让中之人与AI共演，虽未彻底改变行业格局，但保住了中之人的职业尊严，公司项目最终平稳落地，主角虽未获得晋升，却在行业内赢得了尊重，最终选择辞职，回归平凡生活。",
+                      "main_conflict": "年度全息演唱会前夕，AI技术全面取代真人中之人的方案被提上日程，公司决定在演唱会上直接启用AI替代“星野”。主角面临最终抉择：是顺从公司安排，牺牲中之人以换取项目成功，还是在演唱会上揭露真相，让“星野”彻底终结，但换取中之人作为独立个体的自由与尊严。"
+                    }
+                  },
+                  "characters": {},
+                  "forces": {},
+                  "game_style": "本作为现实主义职场模拟与叙事冒险游戏，采用低饱和度写实美术风格，强调光影的颗粒感与环境的压抑感。叙事节奏平缓，侧重于通过琐碎的对话、社交媒体动态与职场邮件，构建一个充满真实感、利益纠葛与人情冷暖的现代都市职场生态。",
+                  "main_quest": "主角作为虚拟偶像“星野”的运营负责人，目标是在公司被收购前，通过一系列危机公关与内容策划，将“星野”打造为具有独立商业价值的IP，从而保住团队成员的饭碗。玩家需在三个月内完成：优化偶像人设、平息网络暴力事件、处理中之人的合同纠纷，并最终在年度全息演唱会上实现数据达标。挑战在于，主角必须在“维护偶像完美形象”与“保护中之人真实人格”之间不断博弈，面对资本的冷血指令与粉丝的非理性期待，主角必须在有限的资源下做出取舍，最终目标并非成为行业巨头，而是让团队在行业洗牌中体面地存续。",
+                  "protagonist_ability": "主角拥有的“共情捕捉”能力源于多年底层运营的经验积累，能够通过分析社交媒体数据、语音语调细微变化及肢体语言，精准预判舆论风向与人物心理防线。使用方式为在对话中选择关键切入点，引导对方暴露真实诉求。限制在于该能力无法改变既定的资本逻辑与社会偏见，且过度使用会消耗主角的个人信誉，导致其在职场中被边缘化，甚至引发严重的心理疲劳。",
+                  "world_basic_setting": "故事发生于近未来的超一线城市，全息偶像产业已成为资本市场的核心支柱。社会高度数字化，大众通过虚拟偶像获取情感慰藉，而幕后的中之人（配音与动作捕捉演员）则被严格剥离于聚光灯之外。在这个高度原子化的社会中，虚拟偶像不仅是娱乐产品，更是资本运作的傀儡。随着AI技术的迭代，真人中之人的生存空间被极度压缩，行业内部充斥着合同陷阱、舆论操控与残酷的末位淘汰制。主角身处一家濒临破产的偶像运营公司，在虚拟偶像“星野”的辉煌表象下，是中之人为了维持生计而不得不出卖隐私、忍受严苛KPI的真实困境。社会舆论对偶像的道德要求近乎苛刻，任何微小的瑕疵都会引发连锁反应，导致资本撤资与职业生涯的终结。"
+                },
+                "flow_worldline": {
+                  "characters": {},
+                  "current_chapter": "chapter1",
+                  "environment": {}
+                },
+                "game_id": "game_1777621651_0la1k9",
+                "image_style": {
+                  "type": "cyberpunk"
+                },
+                "meta": {
+                  "detail_async": true
+                },
+                "protagonist_canonical": {
+                  "age_range": "青年",
+                  "gender": "男性",
+                  "name_en": "Lin Yuan",
+                  "name_zh": "林远",
+                  "signature_look_keywords": "黑色短发、黑框眼镜、略显疲惫的眼神、常穿深色衬衫、袖口微卷、随身携带笔记本、清瘦、神情专注、不修边幅的胡茬、总是带着耳机、沉默寡言、步履匆忙",
+                  "work_en": "The Collapse of Holographic Idols",
+                  "work_zh": "全息偶像塌房记"
+                },
+                "tone": "normal_ending",
+                "user_theme": "全息偶像塌房记",
+                "_benchmark_profile": "fullready_strict",
+                "_benchmark_measurement": "fullready_nextturn",
+                "_benchmark_read_wait_s": 0.0
+              }
+            },
+            "start_ts": 1777621661.7285633,
+            "end_ts": 1777621720.7062383,
+            "provider_events": {
+              "event_count": 9,
+              "queue_wait_ms": {
+                "count": 9,
+                "min": 0.0,
+                "max": 0.0,
+                "mean": 0.0,
+                "median": 0.0,
+                "p95": 0.0
+              },
+              "latency_ms": {
+                "count": 5,
+                "min": 4436.0,
+                "max": 19588.0,
+                "mean": 9828.0,
+                "median": 8304.0,
+                "p95": 17676.4
+              },
+              "llm_success_count": 4,
+              "image_success_count": 0,
+              "request_thread_event_count": 0,
+              "provider_429_count": 0,
+              "provider_timeout_count": 0,
+              "shared_backoff_wait_ms_total": 0,
+              "retry_heavy_event_count": 0,
+              "main_character_event_count": 0,
+              "scene_image_event_count": 2
+            }
+          }
+        ],
+        "attempt_count": 1,
+        "request_elapsed_s": 58.978,
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "success",
+        "has_scene": true,
+        "has_image": true
+      },
+      "second_click": {
+        "http_status": 200,
+        "elapsed_s": 26.556,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "主线任务已推进至“报废程序启动”阶段。虽然我选择了保住工作，但“余烬”的记忆碎片中隐藏的非法移植真相仍未揭开，我通过签署协议获得了短暂的职业安全，却也失去了直接干预“余烬”命运的合法权限，必须在后续暗中调查。",
+              "recap_text": "你选择了“签署报废协议，以保住目前的工作岗位。”。当前章节：chapter1。主线进展：主线任务已推进至“报废程序启动”阶段。虽然我选择了保住工作，但“余烬”的记忆碎片中隐藏的非法移植真相仍未揭开，我通过签署协议获得了短暂的职业安全，却也失去了直接干预“余烬”命运的合法权限，必须在后续暗中调查。。最近剧情：我看着主管那双布满血丝的眼睛，指尖在电子签署板上微微颤抖。金属笔尖触碰屏幕的瞬间，发出细微的摩擦声，仿佛在切割某种无形的羁绊。我深吸一口气，强迫自己不去回想“余烬”那双充满困惑的电子眼，而是将注意力集中在薪资单上那串维持我房贷和生活开销的数字。随着“确认”键的按下，系统发出一声冰冷的提示音，宣告了“余烬”报废程序的正式启动。主管满意地拍了拍我的肩膀，力道沉重得让我感到一阵窒息。“林远，你做出了明智的选择，在这个岗位上，情绪是最廉价的奢侈品。”他丢下这句话，转身走出了审核室。我瘫坐在椅子上，摘下黑框眼镜，用粗糙的袖口用力擦拭着镜片，眼下的黑眼圈在冷光灯下显得格外颓丧。窗外，新京的霓虹灯火影绰，我却感到一种前所未有的空虚，仿佛刚刚亲手抹去了一段不该存在的生命痕迹。"
+            },
+            "deep_background_links": {
+              "0": "余烬（关联其记忆碎片中的非法移植线索）"
+            },
+            "flow_update": {
+              "chapter_conflict_solved": false,
+              "characters": {},
+              "environment": {},
+              "quest_progress": "主线任务已推进至“报废程序启动”阶段。虽然我选择了保住工作，但“余烬”的记忆碎片中隐藏的非法移植真相仍未揭开，我通过签署协议获得了短暂的职业安全，却也失去了直接干预“余烬”命运的合法权限，必须在后续暗中调查。"
+            },
+            "next_options": [
+              "申请调阅“余烬”的原始记忆备份，试图寻找它产生逻辑断层的根源。",
+              "整理办公桌上的私人物品，准备申请调离这个令我窒息的审核室。"
+            ],
+            "plot_mentioned_only": [
+              "余烬-配角2"
+            ],
+            "plot_supporting_characters": [
+              [
+                "主管",
+                "配角1"
+              ]
+            ],
+            "scene": "我看着主管那双布满血丝的眼睛，指尖在电子签署板上微微颤抖。金属笔尖触碰屏幕的瞬间，发出细微的摩擦声，仿佛在切割某种无形的羁绊。我深吸一口气，强迫自己不去回想“余烬”那双充满困惑的电子眼，而是将注意力集中在薪资单上那串维持我房贷和生活开销的数字。随着“确认”键的按下，系统发出一声冰冷的提示音，宣告了“余烬”报废程序的正式启动。主管满意地拍了拍我的肩膀，力道沉重得让我感到一阵窒息。“林远，你做出了明智的选择，在这个岗位上，情绪是最廉价的奢侈品。”他丢下这句话，转身走出了审核室。我瘫坐在椅子上，摘下黑框眼镜，用粗糙的袖口用力擦拭着镜片，眼下的黑眼圈在冷光灯下显得格外颓丧。窗外，新京的霓虹灯火影绰，我却感到一种前所未有的空虚，仿佛刚刚亲手抹去了一段不该存在的生命痕迹。",
+            "sceneId": "153280004844787670_5032139501935947564",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-audit-room-final-clearance, cyberpunk-noir, dystopian, melancholy, cinematic-realism, tense-atmosphere, photorealistic, high-contrast-lighting, sharp-focus, detailed-texture, gritty-urban-realism, male protagonist, mid-30s, tired and weary expression, pale complexion with visible fatigue and dark circles under eyes, slumped posture indicating emotional exhaustion, hands slightly trembling, one holding a black-rimmed spectacle, professional but rumpled office shirt, neutral grey tone, loose tie, slightly disheveled collar, sitting at a sterile metallic office desk, body turned slightly away from 主管-配角1, one hand wiping glasses with a sleeve, head slightly bowed, shoulders hunched in a state of defeat, 8K detailed facial features, eyes reflecting the cold blue light of the monitor, lip color naturally muted, tightened in suppressed emotion, soft shadows emphasizing the hollows of the face, glistening moisture in eyes suggesting repressed tears, short dark hair, slightly messy, root fixation coefficient 0.5, tip swing amplitude 2cm, color layering: main color #2B2B2B, secondary color #1A1A1A, highlight #404040, shadow #000000, static style with slight dishevelment, wind speed 0m/s, turbulence intensity 0%, fabric texture showing subtle wrinkles from prolonged wear, slightly untucked shirt hem, non-reflective matte fabric material, sterile, claustrophobic audit room with cold LED strip lighting, electronic signing pad on desk with glowing interface, large floor-to-ceiling glass window showing the blurred, rainy neon sprawl of Xinjing city, dimly lit office interior with metallic surfaces, 主管-配角1, a burly figure in a sharp, dark suit, walking towards the room exit, back turned to the camera, flickering cold light from the monitor, dust particles suspended in the air, cool blue and harsh white color temperature contrast, dominant cold blue and grey tones, harsh neon pink and cyan hues from city background, muted skin tones, dark shadows with deep blacks, harsh artificial overhead fluorescent light, soft blue glow from the digital screen illuminating the protagonist's face, ambient neon light leaking from the window, type close-up shot, lens 35mm, aperture f/1.8, depth_of_field sharp focus on protagonist, blurred background, flash none, grain fine film grain, texture hyper-realistic skin and fabric textures, protagonist centered in foreground, 主管-配角1 partially visible in the background, walking away, desk and digital pad in the lower third of the frame, action constraints: protagonist's dejected posture contrasted with the retreating authoritative figure, cinematic realism, no text or symbols in image, no watermarks, no logos, oppressive silence, moral exhaustion, profound emptiness, cold bureaucratic indifference, lingering regret, no text, no symbols, no garbled characters, no words",
+              "scene_text_hash": "390e2703f93247660b822ff315daa2e3",
+              "style": "default",
+              "url": "/image_cache/cd384e2e698b9baad6716f87b6b1042e.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "request_payload": {
+          "option": "签署报废协议，以保住目前的工作岗位。",
+          "optionIndex": 0,
+          "sceneId": "-94228758643841056_-7068311312569457161",
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "通过一系列公关操作，成功将直播事故解释为“角色沉浸式演出”，暂时平息舆论压力，但代价是中之人被迫签署了更严苛的保密协议，且双方的信任基础出现了不可逆的裂痕。",
+                  "main_conflict": "虚拟偶像“星野”的配音演员因长期高压工作导致心理崩溃，在直播中无意泄露了真实生活中的负面情绪，引发粉丝群体对“人设崩塌”的强烈抗议。主角需在舆论发酵的黄金48小时内，既要安抚愤怒的粉丝群体，又要处理公司高层为了止损而提出的“解约并起诉”的冷酷方案，同时还要面对中之人对职业尊严的最后坚持。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "成功揪出内鬼并稳住核心粉丝群，公司暂时度过财务危机，但主角因此得罪了公司高层，被剥夺了部分决策权，团队的未来变得更加扑朔迷离。",
+                  "main_conflict": "公司内部出现内鬼，将“星野”的运营数据与中之人的真实收入差距泄露给竞争对手，导致粉丝群体内部发生分裂，部分核心粉丝开始抵制消费。主角需在公司资金链断裂的边缘，通过挖掘内鬼并重构粉丝社群的信任，同时还要应对竞争对手发起的恶意收购邀约，在保住公司独立性与出卖团队利益之间艰难抉择。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角选择折中方案，在演唱会上通过技术手段让中之人与AI共演，虽未彻底改变行业格局，但保住了中之人的职业尊严，公司项目最终平稳落地，主角虽未获得晋升，却在行业内赢得了尊重，最终选择辞职，回归平凡生活。",
+                  "main_conflict": "年度全息演唱会前夕，AI技术全面取代真人中之人的方案被提上日程，公司决定在演唱会上直接启用AI替代“星野”。主角面临最终抉择：是顺从公司安排，牺牲中之人以换取项目成功，还是在演唱会上揭露真相，让“星野”彻底终结，但换取中之人作为独立个体的自由与尊严。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为现实主义职场模拟与叙事冒险游戏，采用低饱和度写实美术风格，强调光影的颗粒感与环境的压抑感。叙事节奏平缓，侧重于通过琐碎的对话、社交媒体动态与职场邮件，构建一个充满真实感、利益纠葛与人情冷暖的现代都市职场生态。",
+              "main_quest": "主角作为虚拟偶像“星野”的运营负责人，目标是在公司被收购前，通过一系列危机公关与内容策划，将“星野”打造为具有独立商业价值的IP，从而保住团队成员的饭碗。玩家需在三个月内完成：优化偶像人设、平息网络暴力事件、处理中之人的合同纠纷，并最终在年度全息演唱会上实现数据达标。挑战在于，主角必须在“维护偶像完美形象”与“保护中之人真实人格”之间不断博弈，面对资本的冷血指令与粉丝的非理性期待，主角必须在有限的资源下做出取舍，最终目标并非成为行业巨头，而是让团队在行业洗牌中体面地存续。",
+              "protagonist_ability": "主角拥有的“共情捕捉”能力源于多年底层运营的经验积累，能够通过分析社交媒体数据、语音语调细微变化及肢体语言，精准预判舆论风向与人物心理防线。使用方式为在对话中选择关键切入点，引导对方暴露真实诉求。限制在于该能力无法改变既定的资本逻辑与社会偏见，且过度使用会消耗主角的个人信誉，导致其在职场中被边缘化，甚至引发严重的心理疲劳。",
+              "world_basic_setting": "故事发生于近未来的超一线城市，全息偶像产业已成为资本市场的核心支柱。社会高度数字化，大众通过虚拟偶像获取情感慰藉，而幕后的中之人（配音与动作捕捉演员）则被严格剥离于聚光灯之外。在这个高度原子化的社会中，虚拟偶像不仅是娱乐产品，更是资本运作的傀儡。随着AI技术的迭代，真人中之人的生存空间被极度压缩，行业内部充斥着合同陷阱、舆论操控与残酷的末位淘汰制。主角身处一家濒临破产的偶像运营公司，在虚拟偶像“星野”的辉煌表象下，是中之人为了维持生计而不得不出卖隐私、忍受严苛KPI的真实困境。社会舆论对偶像的道德要求近乎苛刻，任何微小的瑕疵都会引发连锁反应，导致资本撤资与职业生涯的终结。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {},
+              "chapter_progress": 2.0
+            },
+            "game_id": "game_1777621651_0la1k9",
+            "image_style": {
+              "type": "cyberpunk"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "黑色短发、黑框眼镜、略显疲惫的眼神、常穿深色衬衫、袖口微卷、随身携带笔记本、清瘦、神情专注、不修边幅的胡茬、总是带着耳机、沉默寡言、步履匆忙",
+              "work_en": "The Collapse of Holographic Idols",
+              "work_zh": "全息偶像塌房记"
+            },
+            "tone": "normal_ending",
+            "user_theme": "全息偶像塌房记",
+            "_benchmark_profile": "fullready_strict",
+            "_benchmark_measurement": "fullready_nextturn",
+            "_benchmark_read_wait_s": 0.0
+          },
+          "previousSceneId": "initial",
+          "previousSceneImage": {
+            "cached": true,
+            "height": 1080,
+            "image_type": "story_scene",
+            "prompt": "scene-ethics-bureau-audit-room, cyberpunk-realism, dystopian, clinical-atmosphere, oppressive-bureaucracy, near-future, hyper-realistic, cinematic-lighting, high-contrast-shadows, sharp-detail-rendering, industrial-texture, young male protagonist with exhausted and weary expression, pale complexion with visible dark circles under eyes, short messy dark hair suggesting long-term fatigue, intense and empathetic gaze fixed on terminal screen, slight forward hunch indicating psychological burden, rough-textured grey industrial work shirt, shirt collar slightly rumpled, sleeves pushed up to expose forearms, seated at a cold metallic desk in the ethics bureau audit room, right hand pushing up black-rimmed glasses, left hand resting near an electronic signature pad, body angled slightly away from 主管-配角1, 8K detailed facial features, lip color naturally muted and slightly dry, soft shadows from overhead fluorescent lights carving deep facial contours, eyes reflecting the flickering blue light from the terminal screen, expression of conflicted moral weight and professional exhaustion, short dark hair with natural messy texture, root fixation coefficient 0.5, tip swing amplitude 2cm, color layering: main color #2D2D2D, secondary color #1A1A1A, highlight #404040, shadow #000000, no wind effect, wind speed 0m/s, turbulence intensity 0%, coarse grey fabric with visible weave, slight fabric tension around shoulders, no luminous effects on clothing, cramped ethics bureau audit room with brushed metal walls, flickering harsh white fluorescent tube lights on ceiling, glowing terminal screen showing 'Ember' diagnostic data with blue graphs, cluttered desk with electronic devices and cables, 主管-配角1 standing behind protagonist in a sharp, cold-toned business suit, looking down with an impatient expression, faint haze of ozone and dust particles visible in light beams, sharp white light spots reflecting on the metal desk surface, monochromatic grey tones, clinical cold white light, flickering digital blue from screen, muted office colors, harsh overhead fluorescent lighting, cool blue screen backlight casting glow on protagonist's face, deep shadows in room corners, stark highlights on metallic surfaces, type over-the-shoulder shot, lens 35mm, aperture f/1.8, depth_of_field shallow focus on protagonist's face and terminal screen, flash none, grain fine digital noise, texture industrial matte, protagonist in foreground center-left, 主管-配角1 standing in background right, screen data as the central narrative focus, action constraints: protagonist's hand mid-motion adjusting glasses, realistic narrative art, no text or symbols in image, no watermarks, no character names in image, oppressive, melancholy, bureaucratic coldness, internal moral struggle, stifling realism, no text, no symbols, no garbled characters, no words",
+            "prompt_json": {
+              "camera": {
+                "aperture": "f/1.8",
+                "depth_of_field": "shallow focus on protagonist's face and terminal screen",
+                "flash": "none",
+                "grain": "fine digital noise",
+                "lens": "35mm",
+                "texture": "industrial matte",
+                "type": "over-the-shoulder shot"
+              },
+              "clothing_system": [
+                "coarse grey fabric with visible weave",
+                "slight fabric tension around shoulders",
+                "no luminous effects on clothing"
+              ],
+              "color_restriction": [
+                "monochromatic grey tones",
+                "clinical cold white light",
+                "flickering digital blue from screen",
+                "muted office colors"
+              ],
+              "composition": [
+                "protagonist in foreground center-left",
+                "主管-配角1 standing in background right",
+                "screen data as the central narrative focus",
+                "action constraints: protagonist's hand mid-motion adjusting glasses"
+              ],
+              "environment": {
+                "background": [
+                  "cramped ethics bureau audit room with brushed metal walls",
+                  "flickering harsh white fluorescent tube lights on ceiling",
+                  "glowing terminal screen showing 'Ember' diagnostic data with blue graphs",
+                  "cluttered desk with electronic devices and cables"
+                ],
+                "characters": [
+                  "主管-配角1 standing behind protagonist in a sharp, cold-toned business suit, looking down with an impatient expression"
+                ],
+                "effects": [
+                  "faint haze of ozone and dust particles visible in light beams",
+                  "sharp white light spots reflecting on the metal desk surface"
+                ]
+              },
+              "face_system": [
+                "8K detailed facial features",
+                "lip color naturally muted and slightly dry",
+                "soft shadows from overhead fluorescent lights carving deep facial contours",
+                "eyes reflecting the flickering blue light from the terminal screen",
+                "expression of conflicted moral weight and professional exhaustion"
+              ],
+              "hair_system": [
+                "short dark hair with natural messy texture",
+                "root fixation coefficient 0.5",
+                "tip swing amplitude 2cm",
+                "color layering: main color #2D2D2D, secondary color #1A1A1A, highlight #404040, shadow #000000",
+                "no wind effect",
+                "wind speed 0m/s",
+                "turbulence intensity 0%"
+              ],
+              "label": "scene-ethics-bureau-audit-room",
+              "lighting": [
+                "harsh overhead fluorescent lighting",
+                "cool blue screen backlight casting glow on protagonist's face",
+                "deep shadows in room corners",
+                "stark highlights on metallic surfaces"
+              ],
+              "mood": [
+                "oppressive",
+                "melancholy",
+                "bureaucratic coldness",
+                "internal moral struggle",
+                "stifling realism"
+              ],
+              "output_style": [
+                "realistic narrative art",
+                "no text or symbols in image",
+                "no watermarks",
+                "no character names in image"
+              ],
+              "style": [
+                "hyper-realistic",
+                "cinematic-lighting",
+                "high-contrast-shadows",
+                "sharp-detail-rendering",
+                "industrial-texture"
+              ],
+              "subject": {
+                "body_traits": [
+                  "young male protagonist with exhausted and weary expression",
+                  "pale complexion with visible dark circles under eyes",
+                  "short messy dark hair suggesting long-term fatigue",
+                  "intense and empathetic gaze fixed on terminal screen",
+                  "slight forward hunch indicating psychological burden"
+                ],
+                "outfit": [
+                  "rough-textured grey industrial work shirt",
+                  "shirt collar slightly rumpled",
+                  "sleeves pushed up to expose forearms"
+                ],
+                "pose": [
+                  "seated at a cold metallic desk in the ethics bureau audit room",
+                  "right hand pushing up black-rimmed glasses",
+                  "left hand resting near an electronic signature pad",
+                  "body angled slightly away from 主管-配角1"
+                ]
+              },
+              "tags": [
+                "cyberpunk-realism",
+                "dystopian",
+                "clinical-atmosphere",
+                "oppressive-bureaucracy",
+                "near-future"
+              ]
+            },
+            "scene_text_hash": "ccbe1765e9b3221c371725cc571fbff0",
+            "style": "default",
+            "url": "/image_cache/3a74c36d4bb2119c3acfd790d0112491.png",
+            "width": 1920
+          },
+          "previousSceneText": "冰冷的白炽灯光在“伦理庭”审核室的金属桌面上投下刺眼的白斑，我习惯性地推了推鼻梁上的黑框眼镜，指尖摩挲着略显粗糙的灰色工装衬衫袖口。空气中弥漫着一股淡淡的臭氧味，这是终端机高负荷运转留下的痕迹。我深吸一口气，试图压下眼底因长期熬夜而产生的酸胀感，目光落在屏幕上那份代号为“余烬”的审核档案上。档案显示，这具克隆体在最近的记忆同步测试中出现了严重的逻辑断层，它反复梦见一个从未去过的海边小镇，并试图在记忆中构建出一种名为“家”的虚假情感。\n\n“林审核员，KPI考核的时间快到了，上面要求今天必须签署报废协议。”主管推门而入，皮鞋敲击地面的声音在空旷的室内显得格外刺耳。他将一份电子签署板重重拍在桌上，眼神中透着不耐烦，“别让那些无用的数据干扰你的判断，它只是个工具，坏了就该报废。”我看着屏幕上“余烬”那双写满困惑与渴望的电子眼，心中那股熟悉的疲惫感再次涌上。我能感觉到，在它的记忆碎片深处，似乎藏着某种不属于克隆体的、极其私人的秘密。"
+        },
+        "start_ts": 1777621720.7427995,
+        "end_ts": 1777621747.2988117,
+        "provider_events": {
+          "event_count": 13,
+          "queue_wait_ms": {
+            "count": 13,
+            "min": 0.0,
+            "max": 9171.0,
+            "mean": 2885.077,
+            "median": 0.0,
+            "p95": 7914.6
+          },
+          "latency_ms": {
+            "count": 6,
+            "min": 5576.0,
+            "max": 11674.0,
+            "mean": 7961.333,
+            "median": 7037.5,
+            "p95": 11403.0
+          },
+          "llm_success_count": 5,
+          "image_success_count": 0,
+          "request_thread_event_count": 0,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 2
+        },
+        "attempts": [
+          {
+            "http_status": 200,
+            "elapsed_s": 26.556,
+            "response_json": {
+              "message": "选项剧情生成成功！",
+              "optionData": {
+                "checkpoint_packet": {
+                  "chapter": "chapter1",
+                  "chapter_conflict_solved": false,
+                  "quest_delta": "主线任务已推进至“报废程序启动”阶段。虽然我选择了保住工作，但“余烬”的记忆碎片中隐藏的非法移植真相仍未揭开，我通过签署协议获得了短暂的职业安全，却也失去了直接干预“余烬”命运的合法权限，必须在后续暗中调查。",
+                  "recap_text": "你选择了“签署报废协议，以保住目前的工作岗位。”。当前章节：chapter1。主线进展：主线任务已推进至“报废程序启动”阶段。虽然我选择了保住工作，但“余烬”的记忆碎片中隐藏的非法移植真相仍未揭开，我通过签署协议获得了短暂的职业安全，却也失去了直接干预“余烬”命运的合法权限，必须在后续暗中调查。。最近剧情：我看着主管那双布满血丝的眼睛，指尖在电子签署板上微微颤抖。金属笔尖触碰屏幕的瞬间，发出细微的摩擦声，仿佛在切割某种无形的羁绊。我深吸一口气，强迫自己不去回想“余烬”那双充满困惑的电子眼，而是将注意力集中在薪资单上那串维持我房贷和生活开销的数字。随着“确认”键的按下，系统发出一声冰冷的提示音，宣告了“余烬”报废程序的正式启动。主管满意地拍了拍我的肩膀，力道沉重得让我感到一阵窒息。“林远，你做出了明智的选择，在这个岗位上，情绪是最廉价的奢侈品。”他丢下这句话，转身走出了审核室。我瘫坐在椅子上，摘下黑框眼镜，用粗糙的袖口用力擦拭着镜片，眼下的黑眼圈在冷光灯下显得格外颓丧。窗外，新京的霓虹灯火影绰，我却感到一种前所未有的空虚，仿佛刚刚亲手抹去了一段不该存在的生命痕迹。"
+                },
+                "deep_background_links": {
+                  "0": "余烬（关联其记忆碎片中的非法移植线索）"
+                },
+                "flow_update": {
+                  "chapter_conflict_solved": false,
+                  "characters": {},
+                  "environment": {},
+                  "quest_progress": "主线任务已推进至“报废程序启动”阶段。虽然我选择了保住工作，但“余烬”的记忆碎片中隐藏的非法移植真相仍未揭开，我通过签署协议获得了短暂的职业安全，却也失去了直接干预“余烬”命运的合法权限，必须在后续暗中调查。"
+                },
+                "next_options": [
+                  "申请调阅“余烬”的原始记忆备份，试图寻找它产生逻辑断层的根源。",
+                  "整理办公桌上的私人物品，准备申请调离这个令我窒息的审核室。"
+                ],
+                "plot_mentioned_only": [
+                  "余烬-配角2"
+                ],
+                "plot_supporting_characters": [
+                  [
+                    "主管",
+                    "配角1"
+                  ]
+                ],
+                "scene": "我看着主管那双布满血丝的眼睛，指尖在电子签署板上微微颤抖。金属笔尖触碰屏幕的瞬间，发出细微的摩擦声，仿佛在切割某种无形的羁绊。我深吸一口气，强迫自己不去回想“余烬”那双充满困惑的电子眼，而是将注意力集中在薪资单上那串维持我房贷和生活开销的数字。随着“确认”键的按下，系统发出一声冰冷的提示音，宣告了“余烬”报废程序的正式启动。主管满意地拍了拍我的肩膀，力道沉重得让我感到一阵窒息。“林远，你做出了明智的选择，在这个岗位上，情绪是最廉价的奢侈品。”他丢下这句话，转身走出了审核室。我瘫坐在椅子上，摘下黑框眼镜，用粗糙的袖口用力擦拭着镜片，眼下的黑眼圈在冷光灯下显得格外颓丧。窗外，新京的霓虹灯火影绰，我却感到一种前所未有的空虚，仿佛刚刚亲手抹去了一段不该存在的生命痕迹。",
+                "sceneId": "153280004844787670_5032139501935947564",
+                "scene_image": {
+                  "cached": true,
+                  "height": 1080,
+                  "image_type": "story_scene",
+                  "prompt": "scene-audit-room-final-clearance, cyberpunk-noir, dystopian, melancholy, cinematic-realism, tense-atmosphere, photorealistic, high-contrast-lighting, sharp-focus, detailed-texture, gritty-urban-realism, male protagonist, mid-30s, tired and weary expression, pale complexion with visible fatigue and dark circles under eyes, slumped posture indicating emotional exhaustion, hands slightly trembling, one holding a black-rimmed spectacle, professional but rumpled office shirt, neutral grey tone, loose tie, slightly disheveled collar, sitting at a sterile metallic office desk, body turned slightly away from 主管-配角1, one hand wiping glasses with a sleeve, head slightly bowed, shoulders hunched in a state of defeat, 8K detailed facial features, eyes reflecting the cold blue light of the monitor, lip color naturally muted, tightened in suppressed emotion, soft shadows emphasizing the hollows of the face, glistening moisture in eyes suggesting repressed tears, short dark hair, slightly messy, root fixation coefficient 0.5, tip swing amplitude 2cm, color layering: main color #2B2B2B, secondary color #1A1A1A, highlight #404040, shadow #000000, static style with slight dishevelment, wind speed 0m/s, turbulence intensity 0%, fabric texture showing subtle wrinkles from prolonged wear, slightly untucked shirt hem, non-reflective matte fabric material, sterile, claustrophobic audit room with cold LED strip lighting, electronic signing pad on desk with glowing interface, large floor-to-ceiling glass window showing the blurred, rainy neon sprawl of Xinjing city, dimly lit office interior with metallic surfaces, 主管-配角1, a burly figure in a sharp, dark suit, walking towards the room exit, back turned to the camera, flickering cold light from the monitor, dust particles suspended in the air, cool blue and harsh white color temperature contrast, dominant cold blue and grey tones, harsh neon pink and cyan hues from city background, muted skin tones, dark shadows with deep blacks, harsh artificial overhead fluorescent light, soft blue glow from the digital screen illuminating the protagonist's face, ambient neon light leaking from the window, type close-up shot, lens 35mm, aperture f/1.8, depth_of_field sharp focus on protagonist, blurred background, flash none, grain fine film grain, texture hyper-realistic skin and fabric textures, protagonist centered in foreground, 主管-配角1 partially visible in the background, walking away, desk and digital pad in the lower third of the frame, action constraints: protagonist's dejected posture contrasted with the retreating authoritative figure, cinematic realism, no text or symbols in image, no watermarks, no logos, oppressive silence, moral exhaustion, profound emptiness, cold bureaucratic indifference, lingering regret, no text, no symbols, no garbled characters, no words",
+                  "scene_text_hash": "390e2703f93247660b822ff315daa2e3",
+                  "style": "default",
+                  "url": "/image_cache/cd384e2e698b9baad6716f87b6b1042e.png",
+                  "width": 1920
+                }
+              },
+              "status": "success"
+            },
+            "request_payload": {
+              "option": "签署报废协议，以保住目前的工作岗位。",
+              "optionIndex": 0,
+              "sceneId": "-94228758643841056_-7068311312569457161",
+              "globalState": {
+                "core_worldview": {
+                  "chapters": {
+                    "chapter1": {
+                      "conflict_end_condition": "通过一系列公关操作，成功将直播事故解释为“角色沉浸式演出”，暂时平息舆论压力，但代价是中之人被迫签署了更严苛的保密协议，且双方的信任基础出现了不可逆的裂痕。",
+                      "main_conflict": "虚拟偶像“星野”的配音演员因长期高压工作导致心理崩溃，在直播中无意泄露了真实生活中的负面情绪，引发粉丝群体对“人设崩塌”的强烈抗议。主角需在舆论发酵的黄金48小时内，既要安抚愤怒的粉丝群体，又要处理公司高层为了止损而提出的“解约并起诉”的冷酷方案，同时还要面对中之人对职业尊严的最后坚持。"
+                    },
+                    "chapter2": {
+                      "conflict_end_condition": "成功揪出内鬼并稳住核心粉丝群，公司暂时度过财务危机，但主角因此得罪了公司高层，被剥夺了部分决策权，团队的未来变得更加扑朔迷离。",
+                      "main_conflict": "公司内部出现内鬼，将“星野”的运营数据与中之人的真实收入差距泄露给竞争对手，导致粉丝群体内部发生分裂，部分核心粉丝开始抵制消费。主角需在公司资金链断裂的边缘，通过挖掘内鬼并重构粉丝社群的信任，同时还要应对竞争对手发起的恶意收购邀约，在保住公司独立性与出卖团队利益之间艰难抉择。"
+                    },
+                    "chapter3": {
+                      "conflict_end_condition": "主角选择折中方案，在演唱会上通过技术手段让中之人与AI共演，虽未彻底改变行业格局，但保住了中之人的职业尊严，公司项目最终平稳落地，主角虽未获得晋升，却在行业内赢得了尊重，最终选择辞职，回归平凡生活。",
+                      "main_conflict": "年度全息演唱会前夕，AI技术全面取代真人中之人的方案被提上日程，公司决定在演唱会上直接启用AI替代“星野”。主角面临最终抉择：是顺从公司安排，牺牲中之人以换取项目成功，还是在演唱会上揭露真相，让“星野”彻底终结，但换取中之人作为独立个体的自由与尊严。"
+                    }
+                  },
+                  "characters": {},
+                  "forces": {},
+                  "game_style": "本作为现实主义职场模拟与叙事冒险游戏，采用低饱和度写实美术风格，强调光影的颗粒感与环境的压抑感。叙事节奏平缓，侧重于通过琐碎的对话、社交媒体动态与职场邮件，构建一个充满真实感、利益纠葛与人情冷暖的现代都市职场生态。",
+                  "main_quest": "主角作为虚拟偶像“星野”的运营负责人，目标是在公司被收购前，通过一系列危机公关与内容策划，将“星野”打造为具有独立商业价值的IP，从而保住团队成员的饭碗。玩家需在三个月内完成：优化偶像人设、平息网络暴力事件、处理中之人的合同纠纷，并最终在年度全息演唱会上实现数据达标。挑战在于，主角必须在“维护偶像完美形象”与“保护中之人真实人格”之间不断博弈，面对资本的冷血指令与粉丝的非理性期待，主角必须在有限的资源下做出取舍，最终目标并非成为行业巨头，而是让团队在行业洗牌中体面地存续。",
+                  "protagonist_ability": "主角拥有的“共情捕捉”能力源于多年底层运营的经验积累，能够通过分析社交媒体数据、语音语调细微变化及肢体语言，精准预判舆论风向与人物心理防线。使用方式为在对话中选择关键切入点，引导对方暴露真实诉求。限制在于该能力无法改变既定的资本逻辑与社会偏见，且过度使用会消耗主角的个人信誉，导致其在职场中被边缘化，甚至引发严重的心理疲劳。",
+                  "world_basic_setting": "故事发生于近未来的超一线城市，全息偶像产业已成为资本市场的核心支柱。社会高度数字化，大众通过虚拟偶像获取情感慰藉，而幕后的中之人（配音与动作捕捉演员）则被严格剥离于聚光灯之外。在这个高度原子化的社会中，虚拟偶像不仅是娱乐产品，更是资本运作的傀儡。随着AI技术的迭代，真人中之人的生存空间被极度压缩，行业内部充斥着合同陷阱、舆论操控与残酷的末位淘汰制。主角身处一家濒临破产的偶像运营公司，在虚拟偶像“星野”的辉煌表象下，是中之人为了维持生计而不得不出卖隐私、忍受严苛KPI的真实困境。社会舆论对偶像的道德要求近乎苛刻，任何微小的瑕疵都会引发连锁反应，导致资本撤资与职业生涯的终结。"
+                },
+                "flow_worldline": {
+                  "characters": {},
+                  "current_chapter": "chapter1",
+                  "environment": {},
+                  "chapter_progress": 2.0
+                },
+                "game_id": "game_1777621651_0la1k9",
+                "image_style": {
+                  "type": "cyberpunk"
+                },
+                "meta": {
+                  "detail_async": true
+                },
+                "protagonist_canonical": {
+                  "age_range": "青年",
+                  "gender": "男性",
+                  "name_en": "Lin Yuan",
+                  "name_zh": "林远",
+                  "signature_look_keywords": "黑色短发、黑框眼镜、略显疲惫的眼神、常穿深色衬衫、袖口微卷、随身携带笔记本、清瘦、神情专注、不修边幅的胡茬、总是带着耳机、沉默寡言、步履匆忙",
+                  "work_en": "The Collapse of Holographic Idols",
+                  "work_zh": "全息偶像塌房记"
+                },
+                "tone": "normal_ending",
+                "user_theme": "全息偶像塌房记",
+                "_benchmark_profile": "fullready_strict",
+                "_benchmark_measurement": "fullready_nextturn",
+                "_benchmark_read_wait_s": 0.0
+              },
+              "previousSceneId": "initial",
+              "previousSceneImage": {
+                "cached": true,
+                "height": 1080,
+                "image_type": "story_scene",
+                "prompt": "scene-ethics-bureau-audit-room, cyberpunk-realism, dystopian, clinical-atmosphere, oppressive-bureaucracy, near-future, hyper-realistic, cinematic-lighting, high-contrast-shadows, sharp-detail-rendering, industrial-texture, young male protagonist with exhausted and weary expression, pale complexion with visible dark circles under eyes, short messy dark hair suggesting long-term fatigue, intense and empathetic gaze fixed on terminal screen, slight forward hunch indicating psychological burden, rough-textured grey industrial work shirt, shirt collar slightly rumpled, sleeves pushed up to expose forearms, seated at a cold metallic desk in the ethics bureau audit room, right hand pushing up black-rimmed glasses, left hand resting near an electronic signature pad, body angled slightly away from 主管-配角1, 8K detailed facial features, lip color naturally muted and slightly dry, soft shadows from overhead fluorescent lights carving deep facial contours, eyes reflecting the flickering blue light from the terminal screen, expression of conflicted moral weight and professional exhaustion, short dark hair with natural messy texture, root fixation coefficient 0.5, tip swing amplitude 2cm, color layering: main color #2D2D2D, secondary color #1A1A1A, highlight #404040, shadow #000000, no wind effect, wind speed 0m/s, turbulence intensity 0%, coarse grey fabric with visible weave, slight fabric tension around shoulders, no luminous effects on clothing, cramped ethics bureau audit room with brushed metal walls, flickering harsh white fluorescent tube lights on ceiling, glowing terminal screen showing 'Ember' diagnostic data with blue graphs, cluttered desk with electronic devices and cables, 主管-配角1 standing behind protagonist in a sharp, cold-toned business suit, looking down with an impatient expression, faint haze of ozone and dust particles visible in light beams, sharp white light spots reflecting on the metal desk surface, monochromatic grey tones, clinical cold white light, flickering digital blue from screen, muted office colors, harsh overhead fluorescent lighting, cool blue screen backlight casting glow on protagonist's face, deep shadows in room corners, stark highlights on metallic surfaces, type over-the-shoulder shot, lens 35mm, aperture f/1.8, depth_of_field shallow focus on protagonist's face and terminal screen, flash none, grain fine digital noise, texture industrial matte, protagonist in foreground center-left, 主管-配角1 standing in background right, screen data as the central narrative focus, action constraints: protagonist's hand mid-motion adjusting glasses, realistic narrative art, no text or symbols in image, no watermarks, no character names in image, oppressive, melancholy, bureaucratic coldness, internal moral struggle, stifling realism, no text, no symbols, no garbled characters, no words",
+                "prompt_json": {
+                  "camera": {
+                    "aperture": "f/1.8",
+                    "depth_of_field": "shallow focus on protagonist's face and terminal screen",
+                    "flash": "none",
+                    "grain": "fine digital noise",
+                    "lens": "35mm",
+                    "texture": "industrial matte",
+                    "type": "over-the-shoulder shot"
+                  },
+                  "clothing_system": [
+                    "coarse grey fabric with visible weave",
+                    "slight fabric tension around shoulders",
+                    "no luminous effects on clothing"
+                  ],
+                  "color_restriction": [
+                    "monochromatic grey tones",
+                    "clinical cold white light",
+                    "flickering digital blue from screen",
+                    "muted office colors"
+                  ],
+                  "composition": [
+                    "protagonist in foreground center-left",
+                    "主管-配角1 standing in background right",
+                    "screen data as the central narrative focus",
+                    "action constraints: protagonist's hand mid-motion adjusting glasses"
+                  ],
+                  "environment": {
+                    "background": [
+                      "cramped ethics bureau audit room with brushed metal walls",
+                      "flickering harsh white fluorescent tube lights on ceiling",
+                      "glowing terminal screen showing 'Ember' diagnostic data with blue graphs",
+                      "cluttered desk with electronic devices and cables"
+                    ],
+                    "characters": [
+                      "主管-配角1 standing behind protagonist in a sharp, cold-toned business suit, looking down with an impatient expression"
+                    ],
+                    "effects": [
+                      "faint haze of ozone and dust particles visible in light beams",
+                      "sharp white light spots reflecting on the metal desk surface"
+                    ]
+                  },
+                  "face_system": [
+                    "8K detailed facial features",
+                    "lip color naturally muted and slightly dry",
+                    "soft shadows from overhead fluorescent lights carving deep facial contours",
+                    "eyes reflecting the flickering blue light from the terminal screen",
+                    "expression of conflicted moral weight and professional exhaustion"
+                  ],
+                  "hair_system": [
+                    "short dark hair with natural messy texture",
+                    "root fixation coefficient 0.5",
+                    "tip swing amplitude 2cm",
+                    "color layering: main color #2D2D2D, secondary color #1A1A1A, highlight #404040, shadow #000000",
+                    "no wind effect",
+                    "wind speed 0m/s",
+                    "turbulence intensity 0%"
+                  ],
+                  "label": "scene-ethics-bureau-audit-room",
+                  "lighting": [
+                    "harsh overhead fluorescent lighting",
+                    "cool blue screen backlight casting glow on protagonist's face",
+                    "deep shadows in room corners",
+                    "stark highlights on metallic surfaces"
+                  ],
+                  "mood": [
+                    "oppressive",
+                    "melancholy",
+                    "bureaucratic coldness",
+                    "internal moral struggle",
+                    "stifling realism"
+                  ],
+                  "output_style": [
+                    "realistic narrative art",
+                    "no text or symbols in image",
+                    "no watermarks",
+                    "no character names in image"
+                  ],
+                  "style": [
+                    "hyper-realistic",
+                    "cinematic-lighting",
+                    "high-contrast-shadows",
+                    "sharp-detail-rendering",
+                    "industrial-texture"
+                  ],
+                  "subject": {
+                    "body_traits": [
+                      "young male protagonist with exhausted and weary expression",
+                      "pale complexion with visible dark circles under eyes",
+                      "short messy dark hair suggesting long-term fatigue",
+                      "intense and empathetic gaze fixed on terminal screen",
+                      "slight forward hunch indicating psychological burden"
+                    ],
+                    "outfit": [
+                      "rough-textured grey industrial work shirt",
+                      "shirt collar slightly rumpled",
+                      "sleeves pushed up to expose forearms"
+                    ],
+                    "pose": [
+                      "seated at a cold metallic desk in the ethics bureau audit room",
+                      "right hand pushing up black-rimmed glasses",
+                      "left hand resting near an electronic signature pad",
+                      "body angled slightly away from 主管-配角1"
+                    ]
+                  },
+                  "tags": [
+                    "cyberpunk-realism",
+                    "dystopian",
+                    "clinical-atmosphere",
+                    "oppressive-bureaucracy",
+                    "near-future"
+                  ]
+                },
+                "scene_text_hash": "ccbe1765e9b3221c371725cc571fbff0",
+                "style": "default",
+                "url": "/image_cache/3a74c36d4bb2119c3acfd790d0112491.png",
+                "width": 1920
+              },
+              "previousSceneText": "冰冷的白炽灯光在“伦理庭”审核室的金属桌面上投下刺眼的白斑，我习惯性地推了推鼻梁上的黑框眼镜，指尖摩挲着略显粗糙的灰色工装衬衫袖口。空气中弥漫着一股淡淡的臭氧味，这是终端机高负荷运转留下的痕迹。我深吸一口气，试图压下眼底因长期熬夜而产生的酸胀感，目光落在屏幕上那份代号为“余烬”的审核档案上。档案显示，这具克隆体在最近的记忆同步测试中出现了严重的逻辑断层，它反复梦见一个从未去过的海边小镇，并试图在记忆中构建出一种名为“家”的虚假情感。\n\n“林审核员，KPI考核的时间快到了，上面要求今天必须签署报废协议。”主管推门而入，皮鞋敲击地面的声音在空旷的室内显得格外刺耳。他将一份电子签署板重重拍在桌上，眼神中透着不耐烦，“别让那些无用的数据干扰你的判断，它只是个工具，坏了就该报废。”我看着屏幕上“余烬”那双写满困惑与渴望的电子眼，心中那股熟悉的疲惫感再次涌上。我能感觉到，在它的记忆碎片深处，似乎藏着某种不属于克隆体的、极其私人的秘密。"
+            },
+            "start_ts": 1777621720.7427995,
+            "end_ts": 1777621747.2988117,
+            "provider_events": {
+              "event_count": 13,
+              "queue_wait_ms": {
+                "count": 13,
+                "min": 0.0,
+                "max": 9171.0,
+                "mean": 2885.077,
+                "median": 0.0,
+                "p95": 7914.6
+              },
+              "latency_ms": {
+                "count": 6,
+                "min": 5576.0,
+                "max": 11674.0,
+                "mean": 7961.333,
+                "median": 7037.5,
+                "p95": 11403.0
+              },
+              "llm_success_count": 5,
+              "image_success_count": 0,
+              "request_thread_event_count": 0,
+              "provider_429_count": 0,
+              "provider_timeout_count": 0,
+              "shared_backoff_wait_ms_total": 0,
+              "retry_heavy_event_count": 0,
+              "main_character_event_count": 0,
+              "scene_image_event_count": 2
+            }
+          }
+        ],
+        "attempt_count": 1,
+        "request_elapsed_s": 26.556,
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "success",
+        "has_scene": true,
+        "has_image": true,
+        "selected_option_index": 0,
+        "selected_option_text": "签署报废协议，以保住目前的工作岗位。",
+        "input_scene_id": "-94228758643841056_-7068311312569457161",
+        "inferred_cache_result": "likely_miss_or_partial",
+        "used_updated_flow_state": true
+      },
+      "full_ready": {
+        "text_ready_ts": 1777621747.2988117,
+        "text_ready_elapsed_s": 26.556,
+        "image_ready_ts": 1777621747.2988117,
+        "image_ready_elapsed_s": 26.556,
+        "full_ready_ts": 1777621747.2988117,
+        "full_ready_elapsed_s": 26.556,
+        "image_probe": {
+          "status": "success",
+          "source": "generate-option",
+          "image": {
+            "cached": true,
+            "height": 1080,
+            "image_type": "story_scene",
+            "prompt": "scene-audit-room-final-clearance, cyberpunk-noir, dystopian, melancholy, cinematic-realism, tense-atmosphere, photorealistic, high-contrast-lighting, sharp-focus, detailed-texture, gritty-urban-realism, male protagonist, mid-30s, tired and weary expression, pale complexion with visible fatigue and dark circles under eyes, slumped posture indicating emotional exhaustion, hands slightly trembling, one holding a black-rimmed spectacle, professional but rumpled office shirt, neutral grey tone, loose tie, slightly disheveled collar, sitting at a sterile metallic office desk, body turned slightly away from 主管-配角1, one hand wiping glasses with a sleeve, head slightly bowed, shoulders hunched in a state of defeat, 8K detailed facial features, eyes reflecting the cold blue light of the monitor, lip color naturally muted, tightened in suppressed emotion, soft shadows emphasizing the hollows of the face, glistening moisture in eyes suggesting repressed tears, short dark hair, slightly messy, root fixation coefficient 0.5, tip swing amplitude 2cm, color layering: main color #2B2B2B, secondary color #1A1A1A, highlight #404040, shadow #000000, static style with slight dishevelment, wind speed 0m/s, turbulence intensity 0%, fabric texture showing subtle wrinkles from prolonged wear, slightly untucked shirt hem, non-reflective matte fabric material, sterile, claustrophobic audit room with cold LED strip lighting, electronic signing pad on desk with glowing interface, large floor-to-ceiling glass window showing the blurred, rainy neon sprawl of Xinjing city, dimly lit office interior with metallic surfaces, 主管-配角1, a burly figure in a sharp, dark suit, walking towards the room exit, back turned to the camera, flickering cold light from the monitor, dust particles suspended in the air, cool blue and harsh white color temperature contrast, dominant cold blue and grey tones, harsh neon pink and cyan hues from city background, muted skin tones, dark shadows with deep blacks, harsh artificial overhead fluorescent light, soft blue glow from the digital screen illuminating the protagonist's face, ambient neon light leaking from the window, type close-up shot, lens 35mm, aperture f/1.8, depth_of_field sharp focus on protagonist, blurred background, flash none, grain fine film grain, texture hyper-realistic skin and fabric textures, protagonist centered in foreground, 主管-配角1 partially visible in the background, walking away, desk and digital pad in the lower third of the frame, action constraints: protagonist's dejected posture contrasted with the retreating authoritative figure, cinematic realism, no text or symbols in image, no watermarks, no logos, oppressive silence, moral exhaustion, profound emptiness, cold bureaucratic indifference, lingering regret, no text, no symbols, no garbled characters, no words",
+            "scene_text_hash": "390e2703f93247660b822ff315daa2e3",
+            "style": "default",
+            "url": "/image_cache/cd384e2e698b9baad6716f87b6b1042e.png",
+            "width": 1920
+          },
+          "attempt_count": 0
+        },
+        "ready_mode": "direct_in_generate_option",
+        "attribution": {
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "provider_retry_heavy_count": 0,
+          "provider_backoff_wait_ms_total": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 4,
+          "image_probe_attempt_count": 0,
+          "main_character_contention_suspected": false
+        }
+      },
+      "placeholder": false,
+      "transport_success": true,
+      "strict_success": true,
+      "failure_bucket": null,
+      "cache_path_classification": "direct_real_scene",
+      "success": true
+    }
+  ]
+}

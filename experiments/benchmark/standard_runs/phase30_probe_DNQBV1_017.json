@@ -1,0 +1,1418 @@
+{
+  "summary": {
+    "experiment_name": "benchmark_v15_fullready_nextturn_normal20",
+    "profile": "fullready_strict",
+    "sample_size": 1,
+    "read_wait_s": 0.0,
+    "suite_start_ts": 1777632157.9911566,
+    "suite_end_ts": 1777632242.6885035,
+    "first_click_elapsed_s": {
+      "count": 1,
+      "min": 46.755,
+      "max": 46.755,
+      "mean": 46.755,
+      "median": 46.755,
+      "p95": 46.755
+    },
+    "first_click_setup_success_count": 1,
+    "second_click_elapsed_s": {
+      "count": 1,
+      "min": 21.83,
+      "max": 21.83,
+      "mean": 21.83,
+      "median": 21.83,
+      "p95": 21.83
+    },
+    "second_click_success_count": 1,
+    "transport_success_count": 1,
+    "strict_success_count": 1,
+    "likely_hit_count": 0,
+    "likely_hit_rate": 0.0,
+    "failure_bucket_counts": {},
+    "placeholder_strict_fail_count": 0,
+    "cache_hit_reason_counts": {
+      "waited_request_scene_text_completed_no_image": 1
+    },
+    "cache_miss_reason_counts": {
+      "request_scene_generation_in_progress": 1
+    },
+    "global_state_key_drift_detected_count": 1,
+    "scene_id_mismatch_detected_count": 1,
+    "selected_option_mismatch_detected_count": 0,
+    "aborted": false,
+    "success_count": 1,
+    "text_ready_elapsed_s": {
+      "count": 1,
+      "min": 21.83,
+      "max": 21.83,
+      "mean": 21.83,
+      "median": 21.83,
+      "p95": 21.83
+    },
+    "image_ready_elapsed_s": {
+      "count": 1,
+      "min": 21.83,
+      "max": 21.83,
+      "mean": 21.83,
+      "median": 21.83,
+      "p95": 21.83
+    },
+    "full_ready_elapsed_s": {
+      "count": 1,
+      "min": 21.83,
+      "max": 21.83,
+      "mean": 21.83,
+      "median": 21.83,
+      "p95": 21.83
+    },
+    "real_scene_count": 1,
+    "real_scene_rate": 1.0,
+    "direct_image_count": 1,
+    "async_image_count": 0,
+    "placeholder_count": 0,
+    "placeholder_rate": 0.0,
+    "direct_image_rate": 1.0,
+    "async_image_rate": 0.0,
+    "provider_retry_heavy_count": 0,
+    "provider_429_count": 0,
+    "provider_timeout_count": 0,
+    "provider_backoff_wait_ms_total": 0,
+    "main_character_contention_suspected_count": 0,
+    "notes": "v15 strict normal20 treats first click as setup with a separate timeout budget, while preserving 60s fail-fast guards for second-click request, scene-image wait, and the measured next-turn full-ready path."
+  },
+  "runs": [
+    {
+      "benchmark_id": "DNQBV1_017",
+      "theme_id": 24,
+      "theme": "近地轨道维修工",
+      "read_wait_s": 0.0,
+      "full_ready_mode": true,
+      "profile": "fullready_strict",
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 15.985,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角成功修复了关键的供氧循环系统，获得了第一笔可观的绩效奖金，但因过度使用外骨骼导致听力受损，不得不接受这一不可逆的身体代价。",
+                  "main_conflict": "主角初入轨道站，面对严苛的绩效考核与陈旧设备的频繁罢工，陷入了生存焦虑。他必须在有限的氧气配额与维修时限内，完成高难度的舱外作业，同时还要应对工友间的资源竞争，试图在冷漠的工业体系中寻找立足之地。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角通过收集证据与人脉周旋，成功为妹妹争取到了一个地面的疗养名额，但代价是放弃了对事故真相的追责，并被迫签署了长期的卖身契约。",
+                  "main_conflict": "空间站内部爆发了关于“报废计划”的传闻，主角发现自己长期维护的区域被列为优先弃置区。他试图通过修复父亲留下的旧式通讯器，联系地面上的医疗机构，却发现当年的事故真相涉及复杂的利益输送，自己正处于被随时牺牲的边缘。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "空间站部分区域成功撤离，主角带着保险金与妹妹团聚，但因长期太空作业留下的后遗症，他再也无法适应地面的重力生活，只能在轮椅上度过余生，看着窗外曾经工作过的轨道，达成了一种平静的释然。",
+                  "main_conflict": "空间站进入报废倒计时，主角面临最后的抉择：是利用仅存的资源逃离，还是留在岗位上完成最后一次维护以换取全额保险金。他必须在个人尊严、家庭责任与现实困境中寻找平衡，最终面对不可避免的离别与遗憾。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为硬核工业风与写实生活流的结合，采用低饱和度色调与沉浸式第一人称视角。游戏强调机械操作的真实质感与太空作业的孤独感，通过琐碎的日常对话、陈旧的维修日志与窗外永恒的星空，构建出一种“在宏大宇宙中处理微小故障”的平凡叙事美学。",
+              "main_quest": "主角的目标是攒够足够的“轨道贡献点”，以换取返回地面的永久居住权，并为患有慢性辐射病的妹妹支付昂贵的医疗费。任务分为三个阶段：首先，通过完成高风险的舱外维修任务积累原始资金；其次，在空间站内部的劳资纠纷与设备老化危机中寻求生存空间，并试图修复父亲遗留的旧式通讯器，以寻找当年事故的真相；最后，在面对空间站即将被强制报废的决策时，主角必须在“保住工作以维持妹妹治疗”与“揭露真相以换取微薄赔偿”之间做出抉择。挑战在于，无论如何努力，主角都无法改变空间站整体衰败的命运，只能在有限的资源中为自己和家人争取一个相对安稳的未来。",
+              "protagonist_ability": "主角拥有一套名为“旧式多功能维修外骨骼”的装备，这是其父亲留下的遗产。它并非战斗武器，而是通过神经接口与空间站的电路系统进行“共感式诊断”。使用时，主角能感知到金属疲劳的震动与电流的微弱脉冲，从而精准定位故障点。限制在于，该设备已严重老化，每次高强度使用都会对主角的神经系统造成不可逆的负荷，导致短暂的感官丧失，且维修零件极度匮乏，必须在有限的预算内进行“拆东墙补西墙”的资源博弈。",
+              "world_basic_setting": "故事发生于21世纪末，人类已在近地轨道建立起庞大的空间站网络，作为全球物流与能源的中转站。这里并非科幻电影中的乌托邦，而是高度工业化、阶级固化的“高空工厂”。社会由“地面资产阶级”与“轨道蓝领”构成，轨道维修工是其中最底层的劳动力。由于长期暴露在微重力与高辐射环境下，工人们普遍患有骨质疏松与神经衰弱。空间站内部充满了陈旧的通风管噪音、循环水的金属味与过期合成食品的气息。这里没有英雄，只有为了高额工伤保险金而日复一日修补老化舱壁的普通人。关键事件“零号空间站泄露事故”后，轨道管理署大幅削减了维护预算，导致设备故障频发，维修工的生存环境进一步恶化，每个人都在为了维持这份“体面但危险”的工作而精疲力竭。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1777632157_a16vbr",
+            "image_style": {
+              "type": "anime"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "深灰色工装，布满油污的护目镜，消瘦的脸庞，眼神疲惫但坚定，左手腕处有明显的神经接口疤痕，短发，总是带着一个旧式金属吊坠，沉默寡言，动作迟缓而精准。",
+              "work_en": "The Orbital Mechanic",
+              "work_zh": "轨道边缘的维修工"
+            },
+            "tone": "normal_ending",
+            "user_theme": "近地轨道维修工"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "request_payload": {
+          "gameTheme": "近地轨道维修工",
+          "protagonistAttr": {},
+          "difficulty": "normal",
+          "toneKey": "normal_ending",
+          "imageStyle": {
+            "type": "anime"
+          },
+          "_benchmark_profile": "fullready_strict",
+          "_benchmark_measurement": "fullready_nextturn",
+          "_benchmark_read_wait_s": 0.0
+        },
+        "start_ts": 1777632157.9911604,
+        "end_ts": 1777632173.9766574,
+        "provider_events": {
+          "event_count": 4,
+          "queue_wait_ms": {
+            "count": 4,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 1,
+            "min": 15973.0,
+            "max": 15973.0,
+            "mean": 15973.0,
+            "median": 15973.0,
+            "p95": 15973.0
+          },
+          "llm_success_count": 1,
+          "image_success_count": 0,
+          "request_thread_event_count": 2,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0
+        },
+        "status": "success",
+        "game_id": "game_1777632157_a16vbr"
+      },
+      "long_tail_attribution": {
+        "provider_429_count": 0,
+        "provider_timeout_count": 0,
+        "provider_retry_heavy_count": 0,
+        "provider_backoff_wait_ms_total": 0,
+        "main_character_event_count": 0,
+        "scene_image_event_count": 0,
+        "image_probe_attempt_count": 0,
+        "main_character_contention_suspected": false
+      },
+      "first_click": {
+        "http_status": 200,
+        "elapsed_s": 46.755,
+        "response_json": {
+          "benchmark_diagnostics": {
+            "cache_hit_reason": null,
+            "cache_miss_reason": null,
+            "current_options_key_drift_detected": false,
+            "global_state_key_drift_detected": false,
+            "placeholder": false,
+            "previous_scene_id": null,
+            "recomputed_scene_cache_exists": false,
+            "recomputed_scene_id": null,
+            "request_current_options_count": 0,
+            "request_current_options_hash": "d751713988987e9331980363e24189ce",
+            "request_flow_worldline_hash": "940e38d5f8372eaa58cfdaf4d70a0d30",
+            "request_global_state_hash": "01d11b8d85095c0288ab395be31c5de1",
+            "request_option_at_index": null,
+            "request_option_index": 0,
+            "request_option_text": "开始游戏",
+            "request_scene_cache_exists": false,
+            "request_scene_id": null,
+            "resolution_path": null,
+            "response_has_image": true,
+            "response_has_scene": true,
+            "response_scene_id": "7159957072957647655_-6107190542361399680",
+            "response_status": "success",
+            "scene_id_mismatch_detected": false,
+            "selected_option_mismatch_detected": false
+          },
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "",
+              "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：舱内循环泵发出的尖锐啸叫声像是一根细针，不断刺痛着我的耳膜。我抹了一把额头上的冷汗，深灰色工装的袖口蹭到了护目镜上的油污，视线变得模糊不清。我下意识地用左手按住手腕处的神经接口，那里有一道狰狞的疤痕，随着舱壁的轻微震动，阵阵刺痛感顺着神经末梢直冲脑门。\n\n“林远，别在那儿发呆了，氧气配额还有最后15分钟，要是供氧循环系统修不好，咱们这层舱室就得强制断气。”工头老陈的声音从通讯频道里传来，带着那种特有的、令人烦躁的沙哑。他推开舱门，手里拎着一盒过期的合成营养膏，眼神冷漠地扫过我身后的旧式维修外骨骼。\n\n我没有抬头，只是沉默地将金属吊坠塞回领口，动作迟缓而精准地将外骨骼的探针插入舱壁的检修口。随着神经连接的建立，那种熟悉的、冰冷的电流感瞬间贯穿全身，我仿佛能“听见”舱壁内金属疲劳的哀鸣。我必须在预算耗尽前找到那个该死的断路点，否则妹妹下个月的药费就彻底没着落了。"
+            },
+            "deep_background_links": {},
+            "flow_update": {},
+            "next_options": [
+              "尝试强行过载外骨骼，以牺牲神经系统稳定性为代价快速定位故障。",
+              "询问老陈关于“零号空间站”事故的旧档案，试图寻找维修捷径。"
+            ],
+            "scene": "舱内循环泵发出的尖锐啸叫声像是一根细针，不断刺痛着我的耳膜。我抹了一把额头上的冷汗，深灰色工装的袖口蹭到了护目镜上的油污，视线变得模糊不清。我下意识地用左手按住手腕处的神经接口，那里有一道狰狞的疤痕，随着舱壁的轻微震动，阵阵刺痛感顺着神经末梢直冲脑门。\n\n“林远，别在那儿发呆了，氧气配额还有最后15分钟，要是供氧循环系统修不好，咱们这层舱室就得强制断气。”工头老陈的声音从通讯频道里传来，带着那种特有的、令人烦躁的沙哑。他推开舱门，手里拎着一盒过期的合成营养膏，眼神冷漠地扫过我身后的旧式维修外骨骼。\n\n我没有抬头，只是沉默地将金属吊坠塞回领口，动作迟缓而精准地将外骨骼的探针插入舱壁的检修口。随着神经连接的建立，那种熟悉的、冰冷的电流感瞬间贯穿全身，我仿佛能“听见”舱壁内金属疲劳的哀鸣。我必须在预算耗尽前找到那个该死的断路点，否则妹妹下个月的药费就彻底没着落了。",
+            "sceneId": "7159957072957647655_-6107190542361399680",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-emergency-repair-lin-yuan, anime, industrial-sci-fi, dramatic-lighting, hardcore-industrial, low-saturation, atmospheric, japanese-anime-aesthetic, clean-bold-line-art, dramatic-chiaroscuro-shadows, manga-style-dot-screen-shading, high-contrast-composition, no-watercolor-texture, no-paper-grain, young male protagonist Lin Yuan using Image 0, slim build with clear signs of fatigue, hollowed cheeks and pale skin from long-term space labor, exhausted yet focused eyes, visible scar and neural interface on left wrist, deep grey industrial jumpsuit stained with grease, worn-out goggles pushed up to forehead with smudge marks, old metal pendant hanging from neck, crouching in front of the metallic bulkhead, left hand firmly gripping wrist neural interface, right hand holding maintenance probe inserted into wall, body facing the wall, slightly angled away from the door, sharp-featured face with realistic anime proportions, exhausted expression with beads of cold sweat on forehead, focused, piercing gaze directed at the repair point, 8K detailed facial features, muted lip color, short messy dark hair, root-fixation-coefficient 0.8, tip-swing-amplitude 0.2, color-layering with dark-grey-main, black-shadow, and subtle-metallic-highlight, wind-speed low, minimal turbulence, heavy grease-stained jumpsuit with realistic fabric folds, metallic sheen on industrial utility belt, slight fabric flutter due to air circulation, cramped, decaying space station bulkhead with exposed wires and steam, dim ambient lighting from flickering overhead tubes, depth-of-field focus on the repair point and protagonist, 老陈-配角1 standing at the doorway, holding a synthetic nutrition pack, silhouette cast against the corridor light, faint blue sparks from the neural interface connection, glowing electrical pulse visual effects around the wall panel, dust particles floating in the dim light, low-saturation palette dominated by metallic grey, rust orange, and cold industrial blue, high-contrast black and white manga-style shadows, harsh side-lighting emphasizing the texture of the metallic walls, cool blue light from the maintenance interface, dim, flickering overhead yellow light from the corridor, dramatic deep shadows to enhance the sense of isolation, type close-up shot focusing on the character and his interaction with the wall, lens 35mm, aperture f/2.0, depth_of_field sharp focus on Lin Yuan's face and hands, blurred background, flash none, grain fine digital noise, texture smooth digital manga finish, character-centric composition, the bulkhead repair point acts as the primary focal point, Lin Yuan positioned in the lower-left third, 老陈-配角1 positioned in the background right, creating a sense of pressure, high-quality japanese anime art style, no text, no symbols, no watermarks, no logos, no distorted anatomy, 8K resolution, clean digital lines, tense and lonely, oppressive industrial atmosphere, sense of urgent survival, no text, no symbols, no garbled characters, no words",
+              "prompt_json": {
+                "camera": {
+                  "aperture": "f/2.0",
+                  "depth_of_field": "sharp focus on Lin Yuan's face and hands, blurred background",
+                  "flash": "none",
+                  "grain": "fine digital noise",
+                  "lens": "35mm",
+                  "texture": "smooth digital manga finish",
+                  "type": "close-up shot focusing on the character and his interaction with the wall"
+                },
+                "clothing_system": [
+                  "heavy grease-stained jumpsuit with realistic fabric folds",
+                  "metallic sheen on industrial utility belt",
+                  "slight fabric flutter due to air circulation"
+                ],
+                "color_restriction": [
+                  "low-saturation palette dominated by metallic grey, rust orange, and cold industrial blue",
+                  "high-contrast black and white manga-style shadows"
+                ],
+                "composition": [
+                  "character-centric composition",
+                  "the bulkhead repair point acts as the primary focal point",
+                  "Lin Yuan positioned in the lower-left third",
+                  "老陈-配角1 positioned in the background right, creating a sense of pressure"
+                ],
+                "environment": {
+                  "background": [
+                    "cramped, decaying space station bulkhead with exposed wires and steam",
+                    "dim ambient lighting from flickering overhead tubes",
+                    "depth-of-field focus on the repair point and protagonist"
+                  ],
+                  "characters": [
+                    "老陈-配角1 standing at the doorway, holding a synthetic nutrition pack, silhouette cast against the corridor light"
+                  ],
+                  "effects": [
+                    "faint blue sparks from the neural interface connection",
+                    "glowing electrical pulse visual effects around the wall panel",
+                    "dust particles floating in the dim light"
+                  ]
+                },
+                "face_system": [
+                  "sharp-featured face with realistic anime proportions",
+                  "exhausted expression with beads of cold sweat on forehead",
+                  "focused, piercing gaze directed at the repair point",
+                  "8K detailed facial features",
+                  "muted lip color"
+                ],
+                "hair_system": [
+                  "short messy dark hair",
+                  "root-fixation-coefficient 0.8",
+                  "tip-swing-amplitude 0.2",
+                  "color-layering with dark-grey-main, black-shadow, and subtle-metallic-highlight",
+                  "wind-speed low, minimal turbulence"
+                ],
+                "label": "scene-emergency-repair-lin-yuan",
+                "lighting": [
+                  "harsh side-lighting emphasizing the texture of the metallic walls",
+                  "cool blue light from the maintenance interface",
+                  "dim, flickering overhead yellow light from the corridor",
+                  "dramatic deep shadows to enhance the sense of isolation"
+                ],
+                "mood": [
+                  "tense and lonely",
+                  "oppressive industrial atmosphere",
+                  "sense of urgent survival"
+                ],
+                "output_style": [
+                  "high-quality japanese anime art style",
+                  "no text, no symbols, no watermarks, no logos",
+                  "no distorted anatomy",
+                  "8K resolution, clean digital lines"
+                ],
+                "style": [
+                  "japanese-anime-aesthetic",
+                  "clean-bold-line-art",
+                  "dramatic-chiaroscuro-shadows",
+                  "manga-style-dot-screen-shading",
+                  "high-contrast-composition",
+                  "no-watercolor-texture",
+                  "no-paper-grain"
+                ],
+                "subject": {
+                  "body_traits": [
+                    "young male protagonist Lin Yuan using Image 0",
+                    "slim build with clear signs of fatigue",
+                    "hollowed cheeks and pale skin from long-term space labor",
+                    "exhausted yet focused eyes",
+                    "visible scar and neural interface on left wrist"
+                  ],
+                  "outfit": [
+                    "deep grey industrial jumpsuit stained with grease",
+                    "worn-out goggles pushed up to forehead with smudge marks",
+                    "old metal pendant hanging from neck"
+                  ],
+                  "pose": [
+                    "crouching in front of the metallic bulkhead",
+                    "left hand firmly gripping wrist neural interface",
+                    "right hand holding maintenance probe inserted into wall",
+                    "body facing the wall, slightly angled away from the door"
+                  ]
+                },
+                "tags": [
+                  "anime",
+                  "industrial-sci-fi",
+                  "dramatic-lighting",
+                  "hardcore-industrial",
+                  "low-saturation",
+                  "atmospheric"
+                ]
+              },
+              "scene_text_hash": "65c9c3c49b1ee361988c384add8829ed",
+              "style": "default",
+              "url": "/image_cache/53f5bdb12429452a256aaa4824930ff3.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "request_payload": {
+          "option": "开始游戏",
+          "optionIndex": 0,
+          "sceneId": null,
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角成功修复了关键的供氧循环系统，获得了第一笔可观的绩效奖金，但因过度使用外骨骼导致听力受损，不得不接受这一不可逆的身体代价。",
+                  "main_conflict": "主角初入轨道站，面对严苛的绩效考核与陈旧设备的频繁罢工，陷入了生存焦虑。他必须在有限的氧气配额与维修时限内，完成高难度的舱外作业，同时还要应对工友间的资源竞争，试图在冷漠的工业体系中寻找立足之地。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角通过收集证据与人脉周旋，成功为妹妹争取到了一个地面的疗养名额，但代价是放弃了对事故真相的追责，并被迫签署了长期的卖身契约。",
+                  "main_conflict": "空间站内部爆发了关于“报废计划”的传闻，主角发现自己长期维护的区域被列为优先弃置区。他试图通过修复父亲留下的旧式通讯器，联系地面上的医疗机构，却发现当年的事故真相涉及复杂的利益输送，自己正处于被随时牺牲的边缘。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "空间站部分区域成功撤离，主角带着保险金与妹妹团聚，但因长期太空作业留下的后遗症，他再也无法适应地面的重力生活，只能在轮椅上度过余生，看着窗外曾经工作过的轨道，达成了一种平静的释然。",
+                  "main_conflict": "空间站进入报废倒计时，主角面临最后的抉择：是利用仅存的资源逃离，还是留在岗位上完成最后一次维护以换取全额保险金。他必须在个人尊严、家庭责任与现实困境中寻找平衡，最终面对不可避免的离别与遗憾。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为硬核工业风与写实生活流的结合，采用低饱和度色调与沉浸式第一人称视角。游戏强调机械操作的真实质感与太空作业的孤独感，通过琐碎的日常对话、陈旧的维修日志与窗外永恒的星空，构建出一种“在宏大宇宙中处理微小故障”的平凡叙事美学。",
+              "main_quest": "主角的目标是攒够足够的“轨道贡献点”，以换取返回地面的永久居住权，并为患有慢性辐射病的妹妹支付昂贵的医疗费。任务分为三个阶段：首先，通过完成高风险的舱外维修任务积累原始资金；其次，在空间站内部的劳资纠纷与设备老化危机中寻求生存空间，并试图修复父亲遗留的旧式通讯器，以寻找当年事故的真相；最后，在面对空间站即将被强制报废的决策时，主角必须在“保住工作以维持妹妹治疗”与“揭露真相以换取微薄赔偿”之间做出抉择。挑战在于，无论如何努力，主角都无法改变空间站整体衰败的命运，只能在有限的资源中为自己和家人争取一个相对安稳的未来。",
+              "protagonist_ability": "主角拥有一套名为“旧式多功能维修外骨骼”的装备，这是其父亲留下的遗产。它并非战斗武器，而是通过神经接口与空间站的电路系统进行“共感式诊断”。使用时，主角能感知到金属疲劳的震动与电流的微弱脉冲，从而精准定位故障点。限制在于，该设备已严重老化，每次高强度使用都会对主角的神经系统造成不可逆的负荷，导致短暂的感官丧失，且维修零件极度匮乏，必须在有限的预算内进行“拆东墙补西墙”的资源博弈。",
+              "world_basic_setting": "故事发生于21世纪末，人类已在近地轨道建立起庞大的空间站网络，作为全球物流与能源的中转站。这里并非科幻电影中的乌托邦，而是高度工业化、阶级固化的“高空工厂”。社会由“地面资产阶级”与“轨道蓝领”构成，轨道维修工是其中最底层的劳动力。由于长期暴露在微重力与高辐射环境下，工人们普遍患有骨质疏松与神经衰弱。空间站内部充满了陈旧的通风管噪音、循环水的金属味与过期合成食品的气息。这里没有英雄，只有为了高额工伤保险金而日复一日修补老化舱壁的普通人。关键事件“零号空间站泄露事故”后，轨道管理署大幅削减了维护预算，导致设备故障频发，维修工的生存环境进一步恶化，每个人都在为了维持这份“体面但危险”的工作而精疲力竭。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1777632157_a16vbr",
+            "image_style": {
+              "type": "anime"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "深灰色工装，布满油污的护目镜，消瘦的脸庞，眼神疲惫但坚定，左手腕处有明显的神经接口疤痕，短发，总是带着一个旧式金属吊坠，沉默寡言，动作迟缓而精准。",
+              "work_en": "The Orbital Mechanic",
+              "work_zh": "轨道边缘的维修工"
+            },
+            "tone": "normal_ending",
+            "user_theme": "近地轨道维修工",
+            "_benchmark_profile": "fullready_strict",
+            "_benchmark_measurement": "fullready_nextturn",
+            "_benchmark_read_wait_s": 0.0
+          }
+        },
+        "start_ts": 1777632174.0215988,
+        "end_ts": 1777632220.777081,
+        "provider_events": {
+          "event_count": 9,
+          "queue_wait_ms": {
+            "count": 9,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 5,
+            "min": 5136.0,
+            "max": 21876.0,
+            "mean": 11362.6,
+            "median": 8331.0,
+            "p95": 20367.2
+          },
+          "llm_success_count": 4,
+          "image_success_count": 0,
+          "request_thread_event_count": 0,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 2,
+          "scene_image_event_count": 0
+        },
+        "attempts": [
+          {
+            "http_status": 200,
+            "elapsed_s": 46.755,
+            "response_json": {
+              "benchmark_diagnostics": {
+                "cache_hit_reason": null,
+                "cache_miss_reason": null,
+                "current_options_key_drift_detected": false,
+                "global_state_key_drift_detected": false,
+                "placeholder": false,
+                "previous_scene_id": null,
+                "recomputed_scene_cache_exists": false,
+                "recomputed_scene_id": null,
+                "request_current_options_count": 0,
+                "request_current_options_hash": "d751713988987e9331980363e24189ce",
+                "request_flow_worldline_hash": "940e38d5f8372eaa58cfdaf4d70a0d30",
+                "request_global_state_hash": "01d11b8d85095c0288ab395be31c5de1",
+                "request_option_at_index": null,
+                "request_option_index": 0,
+                "request_option_text": "开始游戏",
+                "request_scene_cache_exists": false,
+                "request_scene_id": null,
+                "resolution_path": null,
+                "response_has_image": true,
+                "response_has_scene": true,
+                "response_scene_id": "7159957072957647655_-6107190542361399680",
+                "response_status": "success",
+                "scene_id_mismatch_detected": false,
+                "selected_option_mismatch_detected": false
+              },
+              "message": "选项剧情生成成功！",
+              "optionData": {
+                "checkpoint_packet": {
+                  "chapter": "chapter1",
+                  "chapter_conflict_solved": false,
+                  "quest_delta": "",
+                  "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：舱内循环泵发出的尖锐啸叫声像是一根细针，不断刺痛着我的耳膜。我抹了一把额头上的冷汗，深灰色工装的袖口蹭到了护目镜上的油污，视线变得模糊不清。我下意识地用左手按住手腕处的神经接口，那里有一道狰狞的疤痕，随着舱壁的轻微震动，阵阵刺痛感顺着神经末梢直冲脑门。\n\n“林远，别在那儿发呆了，氧气配额还有最后15分钟，要是供氧循环系统修不好，咱们这层舱室就得强制断气。”工头老陈的声音从通讯频道里传来，带着那种特有的、令人烦躁的沙哑。他推开舱门，手里拎着一盒过期的合成营养膏，眼神冷漠地扫过我身后的旧式维修外骨骼。\n\n我没有抬头，只是沉默地将金属吊坠塞回领口，动作迟缓而精准地将外骨骼的探针插入舱壁的检修口。随着神经连接的建立，那种熟悉的、冰冷的电流感瞬间贯穿全身，我仿佛能“听见”舱壁内金属疲劳的哀鸣。我必须在预算耗尽前找到那个该死的断路点，否则妹妹下个月的药费就彻底没着落了。"
+                },
+                "deep_background_links": {},
+                "flow_update": {},
+                "next_options": [
+                  "尝试强行过载外骨骼，以牺牲神经系统稳定性为代价快速定位故障。",
+                  "询问老陈关于“零号空间站”事故的旧档案，试图寻找维修捷径。"
+                ],
+                "scene": "舱内循环泵发出的尖锐啸叫声像是一根细针，不断刺痛着我的耳膜。我抹了一把额头上的冷汗，深灰色工装的袖口蹭到了护目镜上的油污，视线变得模糊不清。我下意识地用左手按住手腕处的神经接口，那里有一道狰狞的疤痕，随着舱壁的轻微震动，阵阵刺痛感顺着神经末梢直冲脑门。\n\n“林远，别在那儿发呆了，氧气配额还有最后15分钟，要是供氧循环系统修不好，咱们这层舱室就得强制断气。”工头老陈的声音从通讯频道里传来，带着那种特有的、令人烦躁的沙哑。他推开舱门，手里拎着一盒过期的合成营养膏，眼神冷漠地扫过我身后的旧式维修外骨骼。\n\n我没有抬头，只是沉默地将金属吊坠塞回领口，动作迟缓而精准地将外骨骼的探针插入舱壁的检修口。随着神经连接的建立，那种熟悉的、冰冷的电流感瞬间贯穿全身，我仿佛能“听见”舱壁内金属疲劳的哀鸣。我必须在预算耗尽前找到那个该死的断路点，否则妹妹下个月的药费就彻底没着落了。",
+                "sceneId": "7159957072957647655_-6107190542361399680",
+                "scene_image": {
+                  "cached": true,
+                  "height": 1080,
+                  "image_type": "story_scene",
+                  "prompt": "scene-emergency-repair-lin-yuan, anime, industrial-sci-fi, dramatic-lighting, hardcore-industrial, low-saturation, atmospheric, japanese-anime-aesthetic, clean-bold-line-art, dramatic-chiaroscuro-shadows, manga-style-dot-screen-shading, high-contrast-composition, no-watercolor-texture, no-paper-grain, young male protagonist Lin Yuan using Image 0, slim build with clear signs of fatigue, hollowed cheeks and pale skin from long-term space labor, exhausted yet focused eyes, visible scar and neural interface on left wrist, deep grey industrial jumpsuit stained with grease, worn-out goggles pushed up to forehead with smudge marks, old metal pendant hanging from neck, crouching in front of the metallic bulkhead, left hand firmly gripping wrist neural interface, right hand holding maintenance probe inserted into wall, body facing the wall, slightly angled away from the door, sharp-featured face with realistic anime proportions, exhausted expression with beads of cold sweat on forehead, focused, piercing gaze directed at the repair point, 8K detailed facial features, muted lip color, short messy dark hair, root-fixation-coefficient 0.8, tip-swing-amplitude 0.2, color-layering with dark-grey-main, black-shadow, and subtle-metallic-highlight, wind-speed low, minimal turbulence, heavy grease-stained jumpsuit with realistic fabric folds, metallic sheen on industrial utility belt, slight fabric flutter due to air circulation, cramped, decaying space station bulkhead with exposed wires and steam, dim ambient lighting from flickering overhead tubes, depth-of-field focus on the repair point and protagonist, 老陈-配角1 standing at the doorway, holding a synthetic nutrition pack, silhouette cast against the corridor light, faint blue sparks from the neural interface connection, glowing electrical pulse visual effects around the wall panel, dust particles floating in the dim light, low-saturation palette dominated by metallic grey, rust orange, and cold industrial blue, high-contrast black and white manga-style shadows, harsh side-lighting emphasizing the texture of the metallic walls, cool blue light from the maintenance interface, dim, flickering overhead yellow light from the corridor, dramatic deep shadows to enhance the sense of isolation, type close-up shot focusing on the character and his interaction with the wall, lens 35mm, aperture f/2.0, depth_of_field sharp focus on Lin Yuan's face and hands, blurred background, flash none, grain fine digital noise, texture smooth digital manga finish, character-centric composition, the bulkhead repair point acts as the primary focal point, Lin Yuan positioned in the lower-left third, 老陈-配角1 positioned in the background right, creating a sense of pressure, high-quality japanese anime art style, no text, no symbols, no watermarks, no logos, no distorted anatomy, 8K resolution, clean digital lines, tense and lonely, oppressive industrial atmosphere, sense of urgent survival, no text, no symbols, no garbled characters, no words",
+                  "prompt_json": {
+                    "camera": {
+                      "aperture": "f/2.0",
+                      "depth_of_field": "sharp focus on Lin Yuan's face and hands, blurred background",
+                      "flash": "none",
+                      "grain": "fine digital noise",
+                      "lens": "35mm",
+                      "texture": "smooth digital manga finish",
+                      "type": "close-up shot focusing on the character and his interaction with the wall"
+                    },
+                    "clothing_system": [
+                      "heavy grease-stained jumpsuit with realistic fabric folds",
+                      "metallic sheen on industrial utility belt",
+                      "slight fabric flutter due to air circulation"
+                    ],
+                    "color_restriction": [
+                      "low-saturation palette dominated by metallic grey, rust orange, and cold industrial blue",
+                      "high-contrast black and white manga-style shadows"
+                    ],
+                    "composition": [
+                      "character-centric composition",
+                      "the bulkhead repair point acts as the primary focal point",
+                      "Lin Yuan positioned in the lower-left third",
+                      "老陈-配角1 positioned in the background right, creating a sense of pressure"
+                    ],
+                    "environment": {
+                      "background": [
+                        "cramped, decaying space station bulkhead with exposed wires and steam",
+                        "dim ambient lighting from flickering overhead tubes",
+                        "depth-of-field focus on the repair point and protagonist"
+                      ],
+                      "characters": [
+                        "老陈-配角1 standing at the doorway, holding a synthetic nutrition pack, silhouette cast against the corridor light"
+                      ],
+                      "effects": [
+                        "faint blue sparks from the neural interface connection",
+                        "glowing electrical pulse visual effects around the wall panel",
+                        "dust particles floating in the dim light"
+                      ]
+                    },
+                    "face_system": [
+                      "sharp-featured face with realistic anime proportions",
+                      "exhausted expression with beads of cold sweat on forehead",
+                      "focused, piercing gaze directed at the repair point",
+                      "8K detailed facial features",
+                      "muted lip color"
+                    ],
+                    "hair_system": [
+                      "short messy dark hair",
+                      "root-fixation-coefficient 0.8",
+                      "tip-swing-amplitude 0.2",
+                      "color-layering with dark-grey-main, black-shadow, and subtle-metallic-highlight",
+                      "wind-speed low, minimal turbulence"
+                    ],
+                    "label": "scene-emergency-repair-lin-yuan",
+                    "lighting": [
+                      "harsh side-lighting emphasizing the texture of the metallic walls",
+                      "cool blue light from the maintenance interface",
+                      "dim, flickering overhead yellow light from the corridor",
+                      "dramatic deep shadows to enhance the sense of isolation"
+                    ],
+                    "mood": [
+                      "tense and lonely",
+                      "oppressive industrial atmosphere",
+                      "sense of urgent survival"
+                    ],
+                    "output_style": [
+                      "high-quality japanese anime art style",
+                      "no text, no symbols, no watermarks, no logos",
+                      "no distorted anatomy",
+                      "8K resolution, clean digital lines"
+                    ],
+                    "style": [
+                      "japanese-anime-aesthetic",
+                      "clean-bold-line-art",
+                      "dramatic-chiaroscuro-shadows",
+                      "manga-style-dot-screen-shading",
+                      "high-contrast-composition",
+                      "no-watercolor-texture",
+                      "no-paper-grain"
+                    ],
+                    "subject": {
+                      "body_traits": [
+                        "young male protagonist Lin Yuan using Image 0",
+                        "slim build with clear signs of fatigue",
+                        "hollowed cheeks and pale skin from long-term space labor",
+                        "exhausted yet focused eyes",
+                        "visible scar and neural interface on left wrist"
+                      ],
+                      "outfit": [
+                        "deep grey industrial jumpsuit stained with grease",
+                        "worn-out goggles pushed up to forehead with smudge marks",
+                        "old metal pendant hanging from neck"
+                      ],
+                      "pose": [
+                        "crouching in front of the metallic bulkhead",
+                        "left hand firmly gripping wrist neural interface",
+                        "right hand holding maintenance probe inserted into wall",
+                        "body facing the wall, slightly angled away from the door"
+                      ]
+                    },
+                    "tags": [
+                      "anime",
+                      "industrial-sci-fi",
+                      "dramatic-lighting",
+                      "hardcore-industrial",
+                      "low-saturation",
+                      "atmospheric"
+                    ]
+                  },
+                  "scene_text_hash": "65c9c3c49b1ee361988c384add8829ed",
+                  "style": "default",
+                  "url": "/image_cache/53f5bdb12429452a256aaa4824930ff3.png",
+                  "width": 1920
+                }
+              },
+              "status": "success"
+            },
+            "request_payload": {
+              "option": "开始游戏",
+              "optionIndex": 0,
+              "sceneId": null,
+              "globalState": {
+                "core_worldview": {
+                  "chapters": {
+                    "chapter1": {
+                      "conflict_end_condition": "主角成功修复了关键的供氧循环系统，获得了第一笔可观的绩效奖金，但因过度使用外骨骼导致听力受损，不得不接受这一不可逆的身体代价。",
+                      "main_conflict": "主角初入轨道站，面对严苛的绩效考核与陈旧设备的频繁罢工，陷入了生存焦虑。他必须在有限的氧气配额与维修时限内，完成高难度的舱外作业，同时还要应对工友间的资源竞争，试图在冷漠的工业体系中寻找立足之地。"
+                    },
+                    "chapter2": {
+                      "conflict_end_condition": "主角通过收集证据与人脉周旋，成功为妹妹争取到了一个地面的疗养名额，但代价是放弃了对事故真相的追责，并被迫签署了长期的卖身契约。",
+                      "main_conflict": "空间站内部爆发了关于“报废计划”的传闻，主角发现自己长期维护的区域被列为优先弃置区。他试图通过修复父亲留下的旧式通讯器，联系地面上的医疗机构，却发现当年的事故真相涉及复杂的利益输送，自己正处于被随时牺牲的边缘。"
+                    },
+                    "chapter3": {
+                      "conflict_end_condition": "空间站部分区域成功撤离，主角带着保险金与妹妹团聚，但因长期太空作业留下的后遗症，他再也无法适应地面的重力生活，只能在轮椅上度过余生，看着窗外曾经工作过的轨道，达成了一种平静的释然。",
+                      "main_conflict": "空间站进入报废倒计时，主角面临最后的抉择：是利用仅存的资源逃离，还是留在岗位上完成最后一次维护以换取全额保险金。他必须在个人尊严、家庭责任与现实困境中寻找平衡，最终面对不可避免的离别与遗憾。"
+                    }
+                  },
+                  "characters": {},
+                  "forces": {},
+                  "game_style": "本作为硬核工业风与写实生活流的结合，采用低饱和度色调与沉浸式第一人称视角。游戏强调机械操作的真实质感与太空作业的孤独感，通过琐碎的日常对话、陈旧的维修日志与窗外永恒的星空，构建出一种“在宏大宇宙中处理微小故障”的平凡叙事美学。",
+                  "main_quest": "主角的目标是攒够足够的“轨道贡献点”，以换取返回地面的永久居住权，并为患有慢性辐射病的妹妹支付昂贵的医疗费。任务分为三个阶段：首先，通过完成高风险的舱外维修任务积累原始资金；其次，在空间站内部的劳资纠纷与设备老化危机中寻求生存空间，并试图修复父亲遗留的旧式通讯器，以寻找当年事故的真相；最后，在面对空间站即将被强制报废的决策时，主角必须在“保住工作以维持妹妹治疗”与“揭露真相以换取微薄赔偿”之间做出抉择。挑战在于，无论如何努力，主角都无法改变空间站整体衰败的命运，只能在有限的资源中为自己和家人争取一个相对安稳的未来。",
+                  "protagonist_ability": "主角拥有一套名为“旧式多功能维修外骨骼”的装备，这是其父亲留下的遗产。它并非战斗武器，而是通过神经接口与空间站的电路系统进行“共感式诊断”。使用时，主角能感知到金属疲劳的震动与电流的微弱脉冲，从而精准定位故障点。限制在于，该设备已严重老化，每次高强度使用都会对主角的神经系统造成不可逆的负荷，导致短暂的感官丧失，且维修零件极度匮乏，必须在有限的预算内进行“拆东墙补西墙”的资源博弈。",
+                  "world_basic_setting": "故事发生于21世纪末，人类已在近地轨道建立起庞大的空间站网络，作为全球物流与能源的中转站。这里并非科幻电影中的乌托邦，而是高度工业化、阶级固化的“高空工厂”。社会由“地面资产阶级”与“轨道蓝领”构成，轨道维修工是其中最底层的劳动力。由于长期暴露在微重力与高辐射环境下，工人们普遍患有骨质疏松与神经衰弱。空间站内部充满了陈旧的通风管噪音、循环水的金属味与过期合成食品的气息。这里没有英雄，只有为了高额工伤保险金而日复一日修补老化舱壁的普通人。关键事件“零号空间站泄露事故”后，轨道管理署大幅削减了维护预算，导致设备故障频发，维修工的生存环境进一步恶化，每个人都在为了维持这份“体面但危险”的工作而精疲力竭。"
+                },
+                "flow_worldline": {
+                  "characters": {},
+                  "current_chapter": "chapter1",
+                  "environment": {}
+                },
+                "game_id": "game_1777632157_a16vbr",
+                "image_style": {
+                  "type": "anime"
+                },
+                "meta": {
+                  "detail_async": true
+                },
+                "protagonist_canonical": {
+                  "age_range": "青年",
+                  "gender": "男性",
+                  "name_en": "Lin Yuan",
+                  "name_zh": "林远",
+                  "signature_look_keywords": "深灰色工装，布满油污的护目镜，消瘦的脸庞，眼神疲惫但坚定，左手腕处有明显的神经接口疤痕，短发，总是带着一个旧式金属吊坠，沉默寡言，动作迟缓而精准。",
+                  "work_en": "The Orbital Mechanic",
+                  "work_zh": "轨道边缘的维修工"
+                },
+                "tone": "normal_ending",
+                "user_theme": "近地轨道维修工",
+                "_benchmark_profile": "fullready_strict",
+                "_benchmark_measurement": "fullready_nextturn",
+                "_benchmark_read_wait_s": 0.0
+              }
+            },
+            "start_ts": 1777632174.0215988,
+            "end_ts": 1777632220.777081,
+            "provider_events": {
+              "event_count": 9,
+              "queue_wait_ms": {
+                "count": 9,
+                "min": 0.0,
+                "max": 0.0,
+                "mean": 0.0,
+                "median": 0.0,
+                "p95": 0.0
+              },
+              "latency_ms": {
+                "count": 5,
+                "min": 5136.0,
+                "max": 21876.0,
+                "mean": 11362.6,
+                "median": 8331.0,
+                "p95": 20367.2
+              },
+              "llm_success_count": 4,
+              "image_success_count": 0,
+              "request_thread_event_count": 0,
+              "provider_429_count": 0,
+              "provider_timeout_count": 0,
+              "shared_backoff_wait_ms_total": 0,
+              "retry_heavy_event_count": 0,
+              "main_character_event_count": 2,
+              "scene_image_event_count": 0
+            }
+          }
+        ],
+        "attempt_count": 1,
+        "request_elapsed_s": 46.755,
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "success",
+        "has_scene": true,
+        "has_image": true,
+        "setup_success": true
+      },
+      "second_click": {
+        "http_status": 200,
+        "elapsed_s": 21.83,
+        "response_json": {
+          "benchmark_diagnostics": {
+            "cache_hit_reason": "waited_request_scene_text_completed_no_image",
+            "cache_miss_reason": "request_scene_generation_in_progress",
+            "current_options_key_drift_detected": false,
+            "global_state_key_drift_detected": true,
+            "placeholder": false,
+            "previous_scene_id": "initial",
+            "recomputed_scene_cache_exists": false,
+            "recomputed_scene_id": "-937993661450064869_-6107190542361399680",
+            "request_current_options_count": 2,
+            "request_current_options_hash": "b3b6ead5e3234540ddd790fddca3323c",
+            "request_flow_worldline_hash": "0b7d2802f8e46ae104639ddbac325b51",
+            "request_global_state_hash": "6a475a0eccd9b06363db851290e6f7a4",
+            "request_option_at_index": "尝试强行过载外骨骼，以牺牲神经系统稳定性为代价快速定位故障。",
+            "request_option_index": 0,
+            "request_option_text": "尝试强行过载外骨骼，以牺牲神经系统稳定性为代价快速定位故障。",
+            "request_scene_cache_exists": true,
+            "request_scene_cache_meta": {
+              "canonical_scene_id": "5133719238673516603_-6107190542361399680",
+              "current_options_hash": "b3b6ead5e3234540ddd790fddca3323c",
+              "current_options_preview": [
+                "尝试强行过载外骨骼，以牺牲神经系统稳定性为代价快速定位故障。",
+                "询问老陈关于“零号空间站”事故的旧档案，试图寻找维修捷径。"
+              ],
+              "flow_worldline_hash": "940e38d5f8372eaa58cfdaf4d70a0d30",
+              "global_state_hash": "e43e29f23c12a38bde4030086fd6833c",
+              "option_count": 2,
+              "parent_scene_id": null,
+              "scene_id": "7159957072957647655_-6107190542361399680"
+            },
+            "request_scene_id": "7159957072957647655_-6107190542361399680",
+            "resolution_path": "wait_for_request_scene_cache_text_only",
+            "response_has_image": true,
+            "response_has_scene": true,
+            "response_scene_id": "4582794518845337769_-2713451487312490967",
+            "response_status": "success",
+            "scene_id_mismatch_detected": true,
+            "selected_option_mismatch_detected": false
+          },
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": true,
+              "quest_delta": "我成功完成了第一阶段的高风险维修任务，获得了第一笔绩效奖金，这笔钱足以支付妹妹下个月的医疗费，同时我通过这次过载操作，掌握了空间站核心电路的布局逻辑，为后续寻找事故真相积累了关键数据。",
+              "recap_text": "你选择了“尝试强行过载外骨骼，以牺牲神经系统稳定性为代价快速定位故障。”。当前章节：chapter1。主线进展：我成功完成了第一阶段的高风险维修任务，获得了第一笔绩效奖金，这笔钱足以支付妹妹下个月的医疗费，同时我通过这次过载操作，掌握了空间站核心电路的布局逻辑，为后续寻找事故真相积累了关键数据。。最近剧情：我咬紧牙关，将外骨骼的功率输出旋钮猛地推向极限。随着一阵刺耳的金属摩擦声，电流顺着神经接口疯狂涌入我的脊椎，那种感觉就像是有无数细小的钢针在脑髓里穿刺。视野中，原本模糊的电路图瞬间变得清晰，舱壁内那些被氧化腐蚀的线路如同跳动的脉搏般显现出来。我感到左耳一阵剧痛，温热的液体顺着耳廓流下，但我顾不上擦拭，颤抖着手精准地将探针刺入那个隐藏在隔热层下的断路点。电流激起的火花灼伤了我的指尖，但我终于听见了供氧循环系统重新启动的低沉轰鸣声。老陈在通讯频道里发出了一声惊呼，随即是长长的叹息：“你这疯子，为了这点绩效奖金连命都不要了？看看你的手，抖成什么样了。”我靠在冰冷的舱壁上，大口喘着粗气，视野边缘开始出现大片的黑斑，我低头看着那枚旧式金属吊坠，心中只有一种疲惫的平静。"
+            },
+            "deep_background_links": {
+              "1": "老陈"
+            },
+            "flow_update": {
+              "chapter_conflict_solved": true,
+              "characters": {},
+              "environment": {},
+              "quest_progress": "我成功完成了第一阶段的高风险维修任务，获得了第一笔绩效奖金，这笔钱足以支付妹妹下个月的医疗费，同时我通过这次过载操作，掌握了空间站核心电路的布局逻辑，为后续寻找事故真相积累了关键数据。"
+            },
+            "next_options": [
+              "强撑着身体向老陈索要这笔绩效奖金的结算单。",
+              "询问老陈关于父亲当年遗留的维修日志线索。"
+            ],
+            "plot_mentioned_only": [
+              "妹妹"
+            ],
+            "plot_supporting_characters": [],
+            "scene": "我咬紧牙关，将外骨骼的功率输出旋钮猛地推向极限。随着一阵刺耳的金属摩擦声，电流顺着神经接口疯狂涌入我的脊椎，那种感觉就像是有无数细小的钢针在脑髓里穿刺。视野中，原本模糊的电路图瞬间变得清晰，舱壁内那些被氧化腐蚀的线路如同跳动的脉搏般显现出来。我感到左耳一阵剧痛，温热的液体顺着耳廓流下，但我顾不上擦拭，颤抖着手精准地将探针刺入那个隐藏在隔热层下的断路点。电流激起的火花灼伤了我的指尖，但我终于听见了供氧循环系统重新启动的低沉轰鸣声。老陈在通讯频道里发出了一声惊呼，随即是长长的叹息：“你这疯子，为了这点绩效奖金连命都不要了？看看你的手，抖成什么样了。”我靠在冰冷的舱壁上，大口喘着粗气，视野边缘开始出现大片的黑斑，我低头看着那枚旧式金属吊坠，心中只有一种疲惫的平静。",
+            "sceneId": "4582794518845337769_-2713451487312490967",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-lin-yuan-repair-emergency, anime, hardcore-industrial, cyberpunk-realism, dramatic-lighting, first-person-perspective-vibe, gritty-atmosphere, japanese anime digital illustration, clean line art with moderate thickness, dot-pattern shading for depth, high-contrast dramatic lighting, no watercolor texture, no paper grain, no hand-drawn splatters, young male protagonist Lin Yuan using Image 0, slim and gaunt face with evident signs of fatigue, eyes tired but showing intense, sharp focus, noticeable nerve-interface scar on left wrist, short messy hair, hand trembling while holding a repair probe, worn-out deep gray industrial jumpsuit with grease stains, old-fashioned metallic pendant hanging around the neck, heavy-duty goggles with oil smudges pushed onto forehead, Lin Yuan leaning against a cold metallic bulkhead, right hand holding a probe piercing a sparking circuit, left hand clutching the old pendant for emotional support, body language conveys exhaustion and physical pain, 8K detailed facial features with sharp, tired gaze, blood leaking from the left earlobe, pale skin tone with slight sweat beads, expression of intense concentration mixed with suppressed agony, soft shadows emphasizing the sunken cheeks, short dark hair with root fixation coefficient 0.8, tip swing amplitude 0.2, color layering: main black, secondary dark gray, shadow deep charcoal, wind speed low, turbulence intensity minimal, heavy fabric with slight mechanical wear and oil stains, visible folds and tension lines on the jumpsuit, old-fashioned metallic pendant reflecting sparks, cramped space station bulkhead interior with exposed wiring, oxidized metal surfaces with rust patches, dim, flickering emergency lights, background blurred to emphasize the foreground action, 老陈-配角1 is represented only as a voice icon or distorted communication terminal light on the wall, vibrant electrical sparks flying from the circuit point, blue-tinted digital interface overlays shimmering in the air, faint smoke rising from the overheated exoskeleton, visual artifacts like black spots on the edges of the frame to simulate sensory loss, low-saturation color palette dominated by steel gray, rusted orange, and cold industrial blue, sharp contrast between the cold background and the bright electrical sparks, no over-saturated colors, harsh, flickering cold light from the bulkhead, intense warm glow from the electrical short-circuit, dramatic rim light on the protagonist's silhouette, type close-up to medium shot, lens 35mm, aperture f/2.0, depth_of_field sharp focus on the hand and the circuit, background softly blurred, flash none, grain fine industrial metallic texture, texture smooth digital finish, Lin Yuan positioned in the lower-right third of the frame, focus on the interaction between the probe and the sparking circuit, dramatic diagonal lines formed by the bulkhead pipes to guide the eye, high-detail japanese anime digital illustration, no text, no watermark, no signature, no logo in image, no symbols, no garbled text, 8K ultra-high resolution, perfect anime character anatomy, tense, desperate, and lonely, feeling of crushing industrial pressure, quiet exhaustion after the adrenaline spike, no text, no symbols, no garbled characters, no words",
+              "scene_text_hash": "71276fc3af23cbc9828533d71a1eaf1a",
+              "style": "default",
+              "url": "/image_cache/e744b0c2b13373394351ecef6bc48388.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "request_payload": {
+          "option": "尝试强行过载外骨骼，以牺牲神经系统稳定性为代价快速定位故障。",
+          "optionIndex": 0,
+          "sceneId": "7159957072957647655_-6107190542361399680",
+          "currentOptions": [
+            "尝试强行过载外骨骼，以牺牲神经系统稳定性为代价快速定位故障。",
+            "询问老陈关于“零号空间站”事故的旧档案，试图寻找维修捷径。"
+          ],
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角成功修复了关键的供氧循环系统，获得了第一笔可观的绩效奖金，但因过度使用外骨骼导致听力受损，不得不接受这一不可逆的身体代价。",
+                  "main_conflict": "主角初入轨道站，面对严苛的绩效考核与陈旧设备的频繁罢工，陷入了生存焦虑。他必须在有限的氧气配额与维修时限内，完成高难度的舱外作业，同时还要应对工友间的资源竞争，试图在冷漠的工业体系中寻找立足之地。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角通过收集证据与人脉周旋，成功为妹妹争取到了一个地面的疗养名额，但代价是放弃了对事故真相的追责，并被迫签署了长期的卖身契约。",
+                  "main_conflict": "空间站内部爆发了关于“报废计划”的传闻，主角发现自己长期维护的区域被列为优先弃置区。他试图通过修复父亲留下的旧式通讯器，联系地面上的医疗机构，却发现当年的事故真相涉及复杂的利益输送，自己正处于被随时牺牲的边缘。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "空间站部分区域成功撤离，主角带着保险金与妹妹团聚，但因长期太空作业留下的后遗症，他再也无法适应地面的重力生活，只能在轮椅上度过余生，看着窗外曾经工作过的轨道，达成了一种平静的释然。",
+                  "main_conflict": "空间站进入报废倒计时，主角面临最后的抉择：是利用仅存的资源逃离，还是留在岗位上完成最后一次维护以换取全额保险金。他必须在个人尊严、家庭责任与现实困境中寻找平衡，最终面对不可避免的离别与遗憾。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为硬核工业风与写实生活流的结合，采用低饱和度色调与沉浸式第一人称视角。游戏强调机械操作的真实质感与太空作业的孤独感，通过琐碎的日常对话、陈旧的维修日志与窗外永恒的星空，构建出一种“在宏大宇宙中处理微小故障”的平凡叙事美学。",
+              "main_quest": "主角的目标是攒够足够的“轨道贡献点”，以换取返回地面的永久居住权，并为患有慢性辐射病的妹妹支付昂贵的医疗费。任务分为三个阶段：首先，通过完成高风险的舱外维修任务积累原始资金；其次，在空间站内部的劳资纠纷与设备老化危机中寻求生存空间，并试图修复父亲遗留的旧式通讯器，以寻找当年事故的真相；最后，在面对空间站即将被强制报废的决策时，主角必须在“保住工作以维持妹妹治疗”与“揭露真相以换取微薄赔偿”之间做出抉择。挑战在于，无论如何努力，主角都无法改变空间站整体衰败的命运，只能在有限的资源中为自己和家人争取一个相对安稳的未来。",
+              "protagonist_ability": "主角拥有一套名为“旧式多功能维修外骨骼”的装备，这是其父亲留下的遗产。它并非战斗武器，而是通过神经接口与空间站的电路系统进行“共感式诊断”。使用时，主角能感知到金属疲劳的震动与电流的微弱脉冲，从而精准定位故障点。限制在于，该设备已严重老化，每次高强度使用都会对主角的神经系统造成不可逆的负荷，导致短暂的感官丧失，且维修零件极度匮乏，必须在有限的预算内进行“拆东墙补西墙”的资源博弈。",
+              "world_basic_setting": "故事发生于21世纪末，人类已在近地轨道建立起庞大的空间站网络，作为全球物流与能源的中转站。这里并非科幻电影中的乌托邦，而是高度工业化、阶级固化的“高空工厂”。社会由“地面资产阶级”与“轨道蓝领”构成，轨道维修工是其中最底层的劳动力。由于长期暴露在微重力与高辐射环境下，工人们普遍患有骨质疏松与神经衰弱。空间站内部充满了陈旧的通风管噪音、循环水的金属味与过期合成食品的气息。这里没有英雄，只有为了高额工伤保险金而日复一日修补老化舱壁的普通人。关键事件“零号空间站泄露事故”后，轨道管理署大幅削减了维护预算，导致设备故障频发，维修工的生存环境进一步恶化，每个人都在为了维持这份“体面但危险”的工作而精疲力竭。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {},
+              "chapter_progress": 2.0
+            },
+            "game_id": "game_1777632157_a16vbr",
+            "image_style": {
+              "type": "anime"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "深灰色工装，布满油污的护目镜，消瘦的脸庞，眼神疲惫但坚定，左手腕处有明显的神经接口疤痕，短发，总是带着一个旧式金属吊坠，沉默寡言，动作迟缓而精准。",
+              "work_en": "The Orbital Mechanic",
+              "work_zh": "轨道边缘的维修工"
+            },
+            "tone": "normal_ending",
+            "user_theme": "近地轨道维修工",
+            "_benchmark_profile": "fullready_strict",
+            "_benchmark_measurement": "fullready_nextturn",
+            "_benchmark_read_wait_s": 0.0
+          },
+          "previousSceneId": "initial",
+          "previousSceneImage": {
+            "cached": true,
+            "height": 1080,
+            "image_type": "story_scene",
+            "prompt": "scene-emergency-repair-lin-yuan, anime, industrial-sci-fi, dramatic-lighting, hardcore-industrial, low-saturation, atmospheric, japanese-anime-aesthetic, clean-bold-line-art, dramatic-chiaroscuro-shadows, manga-style-dot-screen-shading, high-contrast-composition, no-watercolor-texture, no-paper-grain, young male protagonist Lin Yuan using Image 0, slim build with clear signs of fatigue, hollowed cheeks and pale skin from long-term space labor, exhausted yet focused eyes, visible scar and neural interface on left wrist, deep grey industrial jumpsuit stained with grease, worn-out goggles pushed up to forehead with smudge marks, old metal pendant hanging from neck, crouching in front of the metallic bulkhead, left hand firmly gripping wrist neural interface, right hand holding maintenance probe inserted into wall, body facing the wall, slightly angled away from the door, sharp-featured face with realistic anime proportions, exhausted expression with beads of cold sweat on forehead, focused, piercing gaze directed at the repair point, 8K detailed facial features, muted lip color, short messy dark hair, root-fixation-coefficient 0.8, tip-swing-amplitude 0.2, color-layering with dark-grey-main, black-shadow, and subtle-metallic-highlight, wind-speed low, minimal turbulence, heavy grease-stained jumpsuit with realistic fabric folds, metallic sheen on industrial utility belt, slight fabric flutter due to air circulation, cramped, decaying space station bulkhead with exposed wires and steam, dim ambient lighting from flickering overhead tubes, depth-of-field focus on the repair point and protagonist, 老陈-配角1 standing at the doorway, holding a synthetic nutrition pack, silhouette cast against the corridor light, faint blue sparks from the neural interface connection, glowing electrical pulse visual effects around the wall panel, dust particles floating in the dim light, low-saturation palette dominated by metallic grey, rust orange, and cold industrial blue, high-contrast black and white manga-style shadows, harsh side-lighting emphasizing the texture of the metallic walls, cool blue light from the maintenance interface, dim, flickering overhead yellow light from the corridor, dramatic deep shadows to enhance the sense of isolation, type close-up shot focusing on the character and his interaction with the wall, lens 35mm, aperture f/2.0, depth_of_field sharp focus on Lin Yuan's face and hands, blurred background, flash none, grain fine digital noise, texture smooth digital manga finish, character-centric composition, the bulkhead repair point acts as the primary focal point, Lin Yuan positioned in the lower-left third, 老陈-配角1 positioned in the background right, creating a sense of pressure, high-quality japanese anime art style, no text, no symbols, no watermarks, no logos, no distorted anatomy, 8K resolution, clean digital lines, tense and lonely, oppressive industrial atmosphere, sense of urgent survival, no text, no symbols, no garbled characters, no words",
+            "prompt_json": {
+              "camera": {
+                "aperture": "f/2.0",
+                "depth_of_field": "sharp focus on Lin Yuan's face and hands, blurred background",
+                "flash": "none",
+                "grain": "fine digital noise",
+                "lens": "35mm",
+                "texture": "smooth digital manga finish",
+                "type": "close-up shot focusing on the character and his interaction with the wall"
+              },
+              "clothing_system": [
+                "heavy grease-stained jumpsuit with realistic fabric folds",
+                "metallic sheen on industrial utility belt",
+                "slight fabric flutter due to air circulation"
+              ],
+              "color_restriction": [
+                "low-saturation palette dominated by metallic grey, rust orange, and cold industrial blue",
+                "high-contrast black and white manga-style shadows"
+              ],
+              "composition": [
+                "character-centric composition",
+                "the bulkhead repair point acts as the primary focal point",
+                "Lin Yuan positioned in the lower-left third",
+                "老陈-配角1 positioned in the background right, creating a sense of pressure"
+              ],
+              "environment": {
+                "background": [
+                  "cramped, decaying space station bulkhead with exposed wires and steam",
+                  "dim ambient lighting from flickering overhead tubes",
+                  "depth-of-field focus on the repair point and protagonist"
+                ],
+                "characters": [
+                  "老陈-配角1 standing at the doorway, holding a synthetic nutrition pack, silhouette cast against the corridor light"
+                ],
+                "effects": [
+                  "faint blue sparks from the neural interface connection",
+                  "glowing electrical pulse visual effects around the wall panel",
+                  "dust particles floating in the dim light"
+                ]
+              },
+              "face_system": [
+                "sharp-featured face with realistic anime proportions",
+                "exhausted expression with beads of cold sweat on forehead",
+                "focused, piercing gaze directed at the repair point",
+                "8K detailed facial features",
+                "muted lip color"
+              ],
+              "hair_system": [
+                "short messy dark hair",
+                "root-fixation-coefficient 0.8",
+                "tip-swing-amplitude 0.2",
+                "color-layering with dark-grey-main, black-shadow, and subtle-metallic-highlight",
+                "wind-speed low, minimal turbulence"
+              ],
+              "label": "scene-emergency-repair-lin-yuan",
+              "lighting": [
+                "harsh side-lighting emphasizing the texture of the metallic walls",
+                "cool blue light from the maintenance interface",
+                "dim, flickering overhead yellow light from the corridor",
+                "dramatic deep shadows to enhance the sense of isolation"
+              ],
+              "mood": [
+                "tense and lonely",
+                "oppressive industrial atmosphere",
+                "sense of urgent survival"
+              ],
+              "output_style": [
+                "high-quality japanese anime art style",
+                "no text, no symbols, no watermarks, no logos",
+                "no distorted anatomy",
+                "8K resolution, clean digital lines"
+              ],
+              "style": [
+                "japanese-anime-aesthetic",
+                "clean-bold-line-art",
+                "dramatic-chiaroscuro-shadows",
+                "manga-style-dot-screen-shading",
+                "high-contrast-composition",
+                "no-watercolor-texture",
+                "no-paper-grain"
+              ],
+              "subject": {
+                "body_traits": [
+                  "young male protagonist Lin Yuan using Image 0",
+                  "slim build with clear signs of fatigue",
+                  "hollowed cheeks and pale skin from long-term space labor",
+                  "exhausted yet focused eyes",
+                  "visible scar and neural interface on left wrist"
+                ],
+                "outfit": [
+                  "deep grey industrial jumpsuit stained with grease",
+                  "worn-out goggles pushed up to forehead with smudge marks",
+                  "old metal pendant hanging from neck"
+                ],
+                "pose": [
+                  "crouching in front of the metallic bulkhead",
+                  "left hand firmly gripping wrist neural interface",
+                  "right hand holding maintenance probe inserted into wall",
+                  "body facing the wall, slightly angled away from the door"
+                ]
+              },
+              "tags": [
+                "anime",
+                "industrial-sci-fi",
+                "dramatic-lighting",
+                "hardcore-industrial",
+                "low-saturation",
+                "atmospheric"
+              ]
+            },
+            "scene_text_hash": "65c9c3c49b1ee361988c384add8829ed",
+            "style": "default",
+            "url": "/image_cache/53f5bdb12429452a256aaa4824930ff3.png",
+            "width": 1920
+          },
+          "previousSceneText": "舱内循环泵发出的尖锐啸叫声像是一根细针，不断刺痛着我的耳膜。我抹了一把额头上的冷汗，深灰色工装的袖口蹭到了护目镜上的油污，视线变得模糊不清。我下意识地用左手按住手腕处的神经接口，那里有一道狰狞的疤痕，随着舱壁的轻微震动，阵阵刺痛感顺着神经末梢直冲脑门。\n\n“林远，别在那儿发呆了，氧气配额还有最后15分钟，要是供氧循环系统修不好，咱们这层舱室就得强制断气。”工头老陈的声音从通讯频道里传来，带着那种特有的、令人烦躁的沙哑。他推开舱门，手里拎着一盒过期的合成营养膏，眼神冷漠地扫过我身后的旧式维修外骨骼。\n\n我没有抬头，只是沉默地将金属吊坠塞回领口，动作迟缓而精准地将外骨骼的探针插入舱壁的检修口。随着神经连接的建立，那种熟悉的、冰冷的电流感瞬间贯穿全身，我仿佛能“听见”舱壁内金属疲劳的哀鸣。我必须在预算耗尽前找到那个该死的断路点，否则妹妹下个月的药费就彻底没着落了。"
+        },
+        "start_ts": 1777632220.8181279,
+        "end_ts": 1777632242.6485534,
+        "provider_events": {
+          "event_count": 12,
+          "queue_wait_ms": {
+            "count": 12,
+            "min": 0.0,
+            "max": 4850.0,
+            "mean": 2298.333,
+            "median": 2091.5,
+            "p95": 4850.0
+          },
+          "latency_ms": {
+            "count": 6,
+            "min": 4301.0,
+            "max": 4878.0,
+            "mean": 4713.0,
+            "median": 4754.5,
+            "p95": 4870.75
+          },
+          "llm_success_count": 6,
+          "image_success_count": 0,
+          "request_thread_event_count": 0,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0
+        },
+        "attempts": [
+          {
+            "http_status": 200,
+            "elapsed_s": 21.83,
+            "response_json": {
+              "benchmark_diagnostics": {
+                "cache_hit_reason": "waited_request_scene_text_completed_no_image",
+                "cache_miss_reason": "request_scene_generation_in_progress",
+                "current_options_key_drift_detected": false,
+                "global_state_key_drift_detected": true,
+                "placeholder": false,
+                "previous_scene_id": "initial",
+                "recomputed_scene_cache_exists": false,
+                "recomputed_scene_id": "-937993661450064869_-6107190542361399680",
+                "request_current_options_count": 2,
+                "request_current_options_hash": "b3b6ead5e3234540ddd790fddca3323c",
+                "request_flow_worldline_hash": "0b7d2802f8e46ae104639ddbac325b51",
+                "request_global_state_hash": "6a475a0eccd9b06363db851290e6f7a4",
+                "request_option_at_index": "尝试强行过载外骨骼，以牺牲神经系统稳定性为代价快速定位故障。",
+                "request_option_index": 0,
+                "request_option_text": "尝试强行过载外骨骼，以牺牲神经系统稳定性为代价快速定位故障。",
+                "request_scene_cache_exists": true,
+                "request_scene_cache_meta": {
+                  "canonical_scene_id": "5133719238673516603_-6107190542361399680",
+                  "current_options_hash": "b3b6ead5e3234540ddd790fddca3323c",
+                  "current_options_preview": [
+                    "尝试强行过载外骨骼，以牺牲神经系统稳定性为代价快速定位故障。",
+                    "询问老陈关于“零号空间站”事故的旧档案，试图寻找维修捷径。"
+                  ],
+                  "flow_worldline_hash": "940e38d5f8372eaa58cfdaf4d70a0d30",
+                  "global_state_hash": "e43e29f23c12a38bde4030086fd6833c",
+                  "option_count": 2,
+                  "parent_scene_id": null,
+                  "scene_id": "7159957072957647655_-6107190542361399680"
+                },
+                "request_scene_id": "7159957072957647655_-6107190542361399680",
+                "resolution_path": "wait_for_request_scene_cache_text_only",
+                "response_has_image": true,
+                "response_has_scene": true,
+                "response_scene_id": "4582794518845337769_-2713451487312490967",
+                "response_status": "success",
+                "scene_id_mismatch_detected": true,
+                "selected_option_mismatch_detected": false
+              },
+              "message": "选项剧情生成成功！",
+              "optionData": {
+                "checkpoint_packet": {
+                  "chapter": "chapter1",
+                  "chapter_conflict_solved": true,
+                  "quest_delta": "我成功完成了第一阶段的高风险维修任务，获得了第一笔绩效奖金，这笔钱足以支付妹妹下个月的医疗费，同时我通过这次过载操作，掌握了空间站核心电路的布局逻辑，为后续寻找事故真相积累了关键数据。",
+                  "recap_text": "你选择了“尝试强行过载外骨骼，以牺牲神经系统稳定性为代价快速定位故障。”。当前章节：chapter1。主线进展：我成功完成了第一阶段的高风险维修任务，获得了第一笔绩效奖金，这笔钱足以支付妹妹下个月的医疗费，同时我通过这次过载操作，掌握了空间站核心电路的布局逻辑，为后续寻找事故真相积累了关键数据。。最近剧情：我咬紧牙关，将外骨骼的功率输出旋钮猛地推向极限。随着一阵刺耳的金属摩擦声，电流顺着神经接口疯狂涌入我的脊椎，那种感觉就像是有无数细小的钢针在脑髓里穿刺。视野中，原本模糊的电路图瞬间变得清晰，舱壁内那些被氧化腐蚀的线路如同跳动的脉搏般显现出来。我感到左耳一阵剧痛，温热的液体顺着耳廓流下，但我顾不上擦拭，颤抖着手精准地将探针刺入那个隐藏在隔热层下的断路点。电流激起的火花灼伤了我的指尖，但我终于听见了供氧循环系统重新启动的低沉轰鸣声。老陈在通讯频道里发出了一声惊呼，随即是长长的叹息：“你这疯子，为了这点绩效奖金连命都不要了？看看你的手，抖成什么样了。”我靠在冰冷的舱壁上，大口喘着粗气，视野边缘开始出现大片的黑斑，我低头看着那枚旧式金属吊坠，心中只有一种疲惫的平静。"
+                },
+                "deep_background_links": {
+                  "1": "老陈"
+                },
+                "flow_update": {
+                  "chapter_conflict_solved": true,
+                  "characters": {},
+                  "environment": {},
+                  "quest_progress": "我成功完成了第一阶段的高风险维修任务，获得了第一笔绩效奖金，这笔钱足以支付妹妹下个月的医疗费，同时我通过这次过载操作，掌握了空间站核心电路的布局逻辑，为后续寻找事故真相积累了关键数据。"
+                },
+                "next_options": [
+                  "强撑着身体向老陈索要这笔绩效奖金的结算单。",
+                  "询问老陈关于父亲当年遗留的维修日志线索。"
+                ],
+                "plot_mentioned_only": [
+                  "妹妹"
+                ],
+                "plot_supporting_characters": [],
+                "scene": "我咬紧牙关，将外骨骼的功率输出旋钮猛地推向极限。随着一阵刺耳的金属摩擦声，电流顺着神经接口疯狂涌入我的脊椎，那种感觉就像是有无数细小的钢针在脑髓里穿刺。视野中，原本模糊的电路图瞬间变得清晰，舱壁内那些被氧化腐蚀的线路如同跳动的脉搏般显现出来。我感到左耳一阵剧痛，温热的液体顺着耳廓流下，但我顾不上擦拭，颤抖着手精准地将探针刺入那个隐藏在隔热层下的断路点。电流激起的火花灼伤了我的指尖，但我终于听见了供氧循环系统重新启动的低沉轰鸣声。老陈在通讯频道里发出了一声惊呼，随即是长长的叹息：“你这疯子，为了这点绩效奖金连命都不要了？看看你的手，抖成什么样了。”我靠在冰冷的舱壁上，大口喘着粗气，视野边缘开始出现大片的黑斑，我低头看着那枚旧式金属吊坠，心中只有一种疲惫的平静。",
+                "sceneId": "4582794518845337769_-2713451487312490967",
+                "scene_image": {
+                  "cached": true,
+                  "height": 1080,
+                  "image_type": "story_scene",
+                  "prompt": "scene-lin-yuan-repair-emergency, anime, hardcore-industrial, cyberpunk-realism, dramatic-lighting, first-person-perspective-vibe, gritty-atmosphere, japanese anime digital illustration, clean line art with moderate thickness, dot-pattern shading for depth, high-contrast dramatic lighting, no watercolor texture, no paper grain, no hand-drawn splatters, young male protagonist Lin Yuan using Image 0, slim and gaunt face with evident signs of fatigue, eyes tired but showing intense, sharp focus, noticeable nerve-interface scar on left wrist, short messy hair, hand trembling while holding a repair probe, worn-out deep gray industrial jumpsuit with grease stains, old-fashioned metallic pendant hanging around the neck, heavy-duty goggles with oil smudges pushed onto forehead, Lin Yuan leaning against a cold metallic bulkhead, right hand holding a probe piercing a sparking circuit, left hand clutching the old pendant for emotional support, body language conveys exhaustion and physical pain, 8K detailed facial features with sharp, tired gaze, blood leaking from the left earlobe, pale skin tone with slight sweat beads, expression of intense concentration mixed with suppressed agony, soft shadows emphasizing the sunken cheeks, short dark hair with root fixation coefficient 0.8, tip swing amplitude 0.2, color layering: main black, secondary dark gray, shadow deep charcoal, wind speed low, turbulence intensity minimal, heavy fabric with slight mechanical wear and oil stains, visible folds and tension lines on the jumpsuit, old-fashioned metallic pendant reflecting sparks, cramped space station bulkhead interior with exposed wiring, oxidized metal surfaces with rust patches, dim, flickering emergency lights, background blurred to emphasize the foreground action, 老陈-配角1 is represented only as a voice icon or distorted communication terminal light on the wall, vibrant electrical sparks flying from the circuit point, blue-tinted digital interface overlays shimmering in the air, faint smoke rising from the overheated exoskeleton, visual artifacts like black spots on the edges of the frame to simulate sensory loss, low-saturation color palette dominated by steel gray, rusted orange, and cold industrial blue, sharp contrast between the cold background and the bright electrical sparks, no over-saturated colors, harsh, flickering cold light from the bulkhead, intense warm glow from the electrical short-circuit, dramatic rim light on the protagonist's silhouette, type close-up to medium shot, lens 35mm, aperture f/2.0, depth_of_field sharp focus on the hand and the circuit, background softly blurred, flash none, grain fine industrial metallic texture, texture smooth digital finish, Lin Yuan positioned in the lower-right third of the frame, focus on the interaction between the probe and the sparking circuit, dramatic diagonal lines formed by the bulkhead pipes to guide the eye, high-detail japanese anime digital illustration, no text, no watermark, no signature, no logo in image, no symbols, no garbled text, 8K ultra-high resolution, perfect anime character anatomy, tense, desperate, and lonely, feeling of crushing industrial pressure, quiet exhaustion after the adrenaline spike, no text, no symbols, no garbled characters, no words",
+                  "scene_text_hash": "71276fc3af23cbc9828533d71a1eaf1a",
+                  "style": "default",
+                  "url": "/image_cache/e744b0c2b13373394351ecef6bc48388.png",
+                  "width": 1920
+                }
+              },
+              "status": "success"
+            },
+            "request_payload": {
+              "option": "尝试强行过载外骨骼，以牺牲神经系统稳定性为代价快速定位故障。",
+              "optionIndex": 0,
+              "sceneId": "7159957072957647655_-6107190542361399680",
+              "currentOptions": [
+                "尝试强行过载外骨骼，以牺牲神经系统稳定性为代价快速定位故障。",
+                "询问老陈关于“零号空间站”事故的旧档案，试图寻找维修捷径。"
+              ],
+              "globalState": {
+                "core_worldview": {
+                  "chapters": {
+                    "chapter1": {
+                      "conflict_end_condition": "主角成功修复了关键的供氧循环系统，获得了第一笔可观的绩效奖金，但因过度使用外骨骼导致听力受损，不得不接受这一不可逆的身体代价。",
+                      "main_conflict": "主角初入轨道站，面对严苛的绩效考核与陈旧设备的频繁罢工，陷入了生存焦虑。他必须在有限的氧气配额与维修时限内，完成高难度的舱外作业，同时还要应对工友间的资源竞争，试图在冷漠的工业体系中寻找立足之地。"
+                    },
+                    "chapter2": {
+                      "conflict_end_condition": "主角通过收集证据与人脉周旋，成功为妹妹争取到了一个地面的疗养名额，但代价是放弃了对事故真相的追责，并被迫签署了长期的卖身契约。",
+                      "main_conflict": "空间站内部爆发了关于“报废计划”的传闻，主角发现自己长期维护的区域被列为优先弃置区。他试图通过修复父亲留下的旧式通讯器，联系地面上的医疗机构，却发现当年的事故真相涉及复杂的利益输送，自己正处于被随时牺牲的边缘。"
+                    },
+                    "chapter3": {
+                      "conflict_end_condition": "空间站部分区域成功撤离，主角带着保险金与妹妹团聚，但因长期太空作业留下的后遗症，他再也无法适应地面的重力生活，只能在轮椅上度过余生，看着窗外曾经工作过的轨道，达成了一种平静的释然。",
+                      "main_conflict": "空间站进入报废倒计时，主角面临最后的抉择：是利用仅存的资源逃离，还是留在岗位上完成最后一次维护以换取全额保险金。他必须在个人尊严、家庭责任与现实困境中寻找平衡，最终面对不可避免的离别与遗憾。"
+                    }
+                  },
+                  "characters": {},
+                  "forces": {},
+                  "game_style": "本作为硬核工业风与写实生活流的结合，采用低饱和度色调与沉浸式第一人称视角。游戏强调机械操作的真实质感与太空作业的孤独感，通过琐碎的日常对话、陈旧的维修日志与窗外永恒的星空，构建出一种“在宏大宇宙中处理微小故障”的平凡叙事美学。",
+                  "main_quest": "主角的目标是攒够足够的“轨道贡献点”，以换取返回地面的永久居住权，并为患有慢性辐射病的妹妹支付昂贵的医疗费。任务分为三个阶段：首先，通过完成高风险的舱外维修任务积累原始资金；其次，在空间站内部的劳资纠纷与设备老化危机中寻求生存空间，并试图修复父亲遗留的旧式通讯器，以寻找当年事故的真相；最后，在面对空间站即将被强制报废的决策时，主角必须在“保住工作以维持妹妹治疗”与“揭露真相以换取微薄赔偿”之间做出抉择。挑战在于，无论如何努力，主角都无法改变空间站整体衰败的命运，只能在有限的资源中为自己和家人争取一个相对安稳的未来。",
+                  "protagonist_ability": "主角拥有一套名为“旧式多功能维修外骨骼”的装备，这是其父亲留下的遗产。它并非战斗武器，而是通过神经接口与空间站的电路系统进行“共感式诊断”。使用时，主角能感知到金属疲劳的震动与电流的微弱脉冲，从而精准定位故障点。限制在于，该设备已严重老化，每次高强度使用都会对主角的神经系统造成不可逆的负荷，导致短暂的感官丧失，且维修零件极度匮乏，必须在有限的预算内进行“拆东墙补西墙”的资源博弈。",
+                  "world_basic_setting": "故事发生于21世纪末，人类已在近地轨道建立起庞大的空间站网络，作为全球物流与能源的中转站。这里并非科幻电影中的乌托邦，而是高度工业化、阶级固化的“高空工厂”。社会由“地面资产阶级”与“轨道蓝领”构成，轨道维修工是其中最底层的劳动力。由于长期暴露在微重力与高辐射环境下，工人们普遍患有骨质疏松与神经衰弱。空间站内部充满了陈旧的通风管噪音、循环水的金属味与过期合成食品的气息。这里没有英雄，只有为了高额工伤保险金而日复一日修补老化舱壁的普通人。关键事件“零号空间站泄露事故”后，轨道管理署大幅削减了维护预算，导致设备故障频发，维修工的生存环境进一步恶化，每个人都在为了维持这份“体面但危险”的工作而精疲力竭。"
+                },
+                "flow_worldline": {
+                  "characters": {},
+                  "current_chapter": "chapter1",
+                  "environment": {},
+                  "chapter_progress": 2.0
+                },
+                "game_id": "game_1777632157_a16vbr",
+                "image_style": {
+                  "type": "anime"
+                },
+                "meta": {
+                  "detail_async": true
+                },
+                "protagonist_canonical": {
+                  "age_range": "青年",
+                  "gender": "男性",
+                  "name_en": "Lin Yuan",
+                  "name_zh": "林远",
+                  "signature_look_keywords": "深灰色工装，布满油污的护目镜，消瘦的脸庞，眼神疲惫但坚定，左手腕处有明显的神经接口疤痕，短发，总是带着一个旧式金属吊坠，沉默寡言，动作迟缓而精准。",
+                  "work_en": "The Orbital Mechanic",
+                  "work_zh": "轨道边缘的维修工"
+                },
+                "tone": "normal_ending",
+                "user_theme": "近地轨道维修工",
+                "_benchmark_profile": "fullready_strict",
+                "_benchmark_measurement": "fullready_nextturn",
+                "_benchmark_read_wait_s": 0.0
+              },
+              "previousSceneId": "initial",
+              "previousSceneImage": {
+                "cached": true,
+                "height": 1080,
+                "image_type": "story_scene",
+                "prompt": "scene-emergency-repair-lin-yuan, anime, industrial-sci-fi, dramatic-lighting, hardcore-industrial, low-saturation, atmospheric, japanese-anime-aesthetic, clean-bold-line-art, dramatic-chiaroscuro-shadows, manga-style-dot-screen-shading, high-contrast-composition, no-watercolor-texture, no-paper-grain, young male protagonist Lin Yuan using Image 0, slim build with clear signs of fatigue, hollowed cheeks and pale skin from long-term space labor, exhausted yet focused eyes, visible scar and neural interface on left wrist, deep grey industrial jumpsuit stained with grease, worn-out goggles pushed up to forehead with smudge marks, old metal pendant hanging from neck, crouching in front of the metallic bulkhead, left hand firmly gripping wrist neural interface, right hand holding maintenance probe inserted into wall, body facing the wall, slightly angled away from the door, sharp-featured face with realistic anime proportions, exhausted expression with beads of cold sweat on forehead, focused, piercing gaze directed at the repair point, 8K detailed facial features, muted lip color, short messy dark hair, root-fixation-coefficient 0.8, tip-swing-amplitude 0.2, color-layering with dark-grey-main, black-shadow, and subtle-metallic-highlight, wind-speed low, minimal turbulence, heavy grease-stained jumpsuit with realistic fabric folds, metallic sheen on industrial utility belt, slight fabric flutter due to air circulation, cramped, decaying space station bulkhead with exposed wires and steam, dim ambient lighting from flickering overhead tubes, depth-of-field focus on the repair point and protagonist, 老陈-配角1 standing at the doorway, holding a synthetic nutrition pack, silhouette cast against the corridor light, faint blue sparks from the neural interface connection, glowing electrical pulse visual effects around the wall panel, dust particles floating in the dim light, low-saturation palette dominated by metallic grey, rust orange, and cold industrial blue, high-contrast black and white manga-style shadows, harsh side-lighting emphasizing the texture of the metallic walls, cool blue light from the maintenance interface, dim, flickering overhead yellow light from the corridor, dramatic deep shadows to enhance the sense of isolation, type close-up shot focusing on the character and his interaction with the wall, lens 35mm, aperture f/2.0, depth_of_field sharp focus on Lin Yuan's face and hands, blurred background, flash none, grain fine digital noise, texture smooth digital manga finish, character-centric composition, the bulkhead repair point acts as the primary focal point, Lin Yuan positioned in the lower-left third, 老陈-配角1 positioned in the background right, creating a sense of pressure, high-quality japanese anime art style, no text, no symbols, no watermarks, no logos, no distorted anatomy, 8K resolution, clean digital lines, tense and lonely, oppressive industrial atmosphere, sense of urgent survival, no text, no symbols, no garbled characters, no words",
+                "prompt_json": {
+                  "camera": {
+                    "aperture": "f/2.0",
+                    "depth_of_field": "sharp focus on Lin Yuan's face and hands, blurred background",
+                    "flash": "none",
+                    "grain": "fine digital noise",
+                    "lens": "35mm",
+                    "texture": "smooth digital manga finish",
+                    "type": "close-up shot focusing on the character and his interaction with the wall"
+                  },
+                  "clothing_system": [
+                    "heavy grease-stained jumpsuit with realistic fabric folds",
+                    "metallic sheen on industrial utility belt",
+                    "slight fabric flutter due to air circulation"
+                  ],
+                  "color_restriction": [
+                    "low-saturation palette dominated by metallic grey, rust orange, and cold industrial blue",
+                    "high-contrast black and white manga-style shadows"
+                  ],
+                  "composition": [
+                    "character-centric composition",
+                    "the bulkhead repair point acts as the primary focal point",
+                    "Lin Yuan positioned in the lower-left third",
+                    "老陈-配角1 positioned in the background right, creating a sense of pressure"
+                  ],
+                  "environment": {
+                    "background": [
+                      "cramped, decaying space station bulkhead with exposed wires and steam",
+                      "dim ambient lighting from flickering overhead tubes",
+                      "depth-of-field focus on the repair point and protagonist"
+                    ],
+                    "characters": [
+                      "老陈-配角1 standing at the doorway, holding a synthetic nutrition pack, silhouette cast against the corridor light"
+                    ],
+                    "effects": [
+                      "faint blue sparks from the neural interface connection",
+                      "glowing electrical pulse visual effects around the wall panel",
+                      "dust particles floating in the dim light"
+                    ]
+                  },
+                  "face_system": [
+                    "sharp-featured face with realistic anime proportions",
+                    "exhausted expression with beads of cold sweat on forehead",
+                    "focused, piercing gaze directed at the repair point",
+                    "8K detailed facial features",
+                    "muted lip color"
+                  ],
+                  "hair_system": [
+                    "short messy dark hair",
+                    "root-fixation-coefficient 0.8",
+                    "tip-swing-amplitude 0.2",
+                    "color-layering with dark-grey-main, black-shadow, and subtle-metallic-highlight",
+                    "wind-speed low, minimal turbulence"
+                  ],
+                  "label": "scene-emergency-repair-lin-yuan",
+                  "lighting": [
+                    "harsh side-lighting emphasizing the texture of the metallic walls",
+                    "cool blue light from the maintenance interface",
+                    "dim, flickering overhead yellow light from the corridor",
+                    "dramatic deep shadows to enhance the sense of isolation"
+                  ],
+                  "mood": [
+                    "tense and lonely",
+                    "oppressive industrial atmosphere",
+                    "sense of urgent survival"
+                  ],
+                  "output_style": [
+                    "high-quality japanese anime art style",
+                    "no text, no symbols, no watermarks, no logos",
+                    "no distorted anatomy",
+                    "8K resolution, clean digital lines"
+                  ],
+                  "style": [
+                    "japanese-anime-aesthetic",
+                    "clean-bold-line-art",
+                    "dramatic-chiaroscuro-shadows",
+                    "manga-style-dot-screen-shading",
+                    "high-contrast-composition",
+                    "no-watercolor-texture",
+                    "no-paper-grain"
+                  ],
+                  "subject": {
+                    "body_traits": [
+                      "young male protagonist Lin Yuan using Image 0",
+                      "slim build with clear signs of fatigue",
+                      "hollowed cheeks and pale skin from long-term space labor",
+                      "exhausted yet focused eyes",
+                      "visible scar and neural interface on left wrist"
+                    ],
+                    "outfit": [
+                      "deep grey industrial jumpsuit stained with grease",
+                      "worn-out goggles pushed up to forehead with smudge marks",
+                      "old metal pendant hanging from neck"
+                    ],
+                    "pose": [
+                      "crouching in front of the metallic bulkhead",
+                      "left hand firmly gripping wrist neural interface",
+                      "right hand holding maintenance probe inserted into wall",
+                      "body facing the wall, slightly angled away from the door"
+                    ]
+                  },
+                  "tags": [
+                    "anime",
+                    "industrial-sci-fi",
+                    "dramatic-lighting",
+                    "hardcore-industrial",
+                    "low-saturation",
+                    "atmospheric"
+                  ]
+                },
+                "scene_text_hash": "65c9c3c49b1ee361988c384add8829ed",
+                "style": "default",
+                "url": "/image_cache/53f5bdb12429452a256aaa4824930ff3.png",
+                "width": 1920
+              },
+              "previousSceneText": "舱内循环泵发出的尖锐啸叫声像是一根细针，不断刺痛着我的耳膜。我抹了一把额头上的冷汗，深灰色工装的袖口蹭到了护目镜上的油污，视线变得模糊不清。我下意识地用左手按住手腕处的神经接口，那里有一道狰狞的疤痕，随着舱壁的轻微震动，阵阵刺痛感顺着神经末梢直冲脑门。\n\n“林远，别在那儿发呆了，氧气配额还有最后15分钟，要是供氧循环系统修不好，咱们这层舱室就得强制断气。”工头老陈的声音从通讯频道里传来，带着那种特有的、令人烦躁的沙哑。他推开舱门，手里拎着一盒过期的合成营养膏，眼神冷漠地扫过我身后的旧式维修外骨骼。\n\n我没有抬头，只是沉默地将金属吊坠塞回领口，动作迟缓而精准地将外骨骼的探针插入舱壁的检修口。随着神经连接的建立，那种熟悉的、冰冷的电流感瞬间贯穿全身，我仿佛能“听见”舱壁内金属疲劳的哀鸣。我必须在预算耗尽前找到那个该死的断路点，否则妹妹下个月的药费就彻底没着落了。"
+            },
+            "start_ts": 1777632220.8181279,
+            "end_ts": 1777632242.6485534,
+            "provider_events": {
+              "event_count": 12,
+              "queue_wait_ms": {
+                "count": 12,
+                "min": 0.0,
+                "max": 4850.0,
+                "mean": 2298.333,
+                "median": 2091.5,
+                "p95": 4850.0
+              },
+              "latency_ms": {
+                "count": 6,
+                "min": 4301.0,
+                "max": 4878.0,
+                "mean": 4713.0,
+                "median": 4754.5,
+                "p95": 4870.75
+              },
+              "llm_success_count": 6,
+              "image_success_count": 0,
+              "request_thread_event_count": 0,
+              "provider_429_count": 0,
+              "provider_timeout_count": 0,
+              "shared_backoff_wait_ms_total": 0,
+              "retry_heavy_event_count": 0,
+              "main_character_event_count": 0,
+              "scene_image_event_count": 0
+            }
+          }
+        ],
+        "attempt_count": 1,
+        "request_elapsed_s": 21.83,
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "success",
+        "has_scene": true,
+        "has_image": true,
+        "selected_option_index": 0,
+        "selected_option_text": "尝试强行过载外骨骼，以牺牲神经系统稳定性为代价快速定位故障。",
+        "input_scene_id": "7159957072957647655_-6107190542361399680",
+        "inferred_cache_result": "likely_miss_or_partial",
+        "used_updated_flow_state": true,
+        "cache_hit_reason": "waited_request_scene_text_completed_no_image",
+        "cache_miss_reason": "request_scene_generation_in_progress",
+        "global_state_key_drift_detected": true,
+        "scene_id_mismatch_detected": true,
+        "selected_option_mismatch_detected": false,
+        "current_options_key_drift_detected": false,
+        "benchmark_diagnostics": {
+          "cache_hit_reason": "waited_request_scene_text_completed_no_image",
+          "cache_miss_reason": "request_scene_generation_in_progress",
+          "current_options_key_drift_detected": false,
+          "global_state_key_drift_detected": true,
+          "placeholder": false,
+          "previous_scene_id": "initial",
+          "recomputed_scene_cache_exists": false,
+          "recomputed_scene_id": "-937993661450064869_-6107190542361399680",
+          "request_current_options_count": 2,
+          "request_current_options_hash": "b3b6ead5e3234540ddd790fddca3323c",
+          "request_flow_worldline_hash": "0b7d2802f8e46ae104639ddbac325b51",
+          "request_global_state_hash": "6a475a0eccd9b06363db851290e6f7a4",
+          "request_option_at_index": "尝试强行过载外骨骼，以牺牲神经系统稳定性为代价快速定位故障。",
+          "request_option_index": 0,
+          "request_option_text": "尝试强行过载外骨骼，以牺牲神经系统稳定性为代价快速定位故障。",
+          "request_scene_cache_exists": true,
+          "request_scene_cache_meta": {
+            "canonical_scene_id": "5133719238673516603_-6107190542361399680",
+            "current_options_hash": "b3b6ead5e3234540ddd790fddca3323c",
+            "current_options_preview": [
+              "尝试强行过载外骨骼，以牺牲神经系统稳定性为代价快速定位故障。",
+              "询问老陈关于“零号空间站”事故的旧档案，试图寻找维修捷径。"
+            ],
+            "flow_worldline_hash": "940e38d5f8372eaa58cfdaf4d70a0d30",
+            "global_state_hash": "e43e29f23c12a38bde4030086fd6833c",
+            "option_count": 2,
+            "parent_scene_id": null,
+            "scene_id": "7159957072957647655_-6107190542361399680"
+          },
+          "request_scene_id": "7159957072957647655_-6107190542361399680",
+          "resolution_path": "wait_for_request_scene_cache_text_only",
+          "response_has_image": true,
+          "response_has_scene": true,
+          "response_scene_id": "4582794518845337769_-2713451487312490967",
+          "response_status": "success",
+          "scene_id_mismatch_detected": true,
+          "selected_option_mismatch_detected": false
+        }
+      },
+      "full_ready": {
+        "text_ready_ts": 1777632242.6485534,
+        "text_ready_elapsed_s": 21.83,
+        "image_ready_ts": 1777632242.6485534,
+        "image_ready_elapsed_s": 21.83,
+        "full_ready_ts": 1777632242.6485534,
+        "full_ready_elapsed_s": 21.83,
+        "image_probe": {
+          "status": "success",
+          "source": "generate-option",
+          "image": {
+            "cached": true,
+            "height": 1080,
+            "image_type": "story_scene",
+            "prompt": "scene-lin-yuan-repair-emergency, anime, hardcore-industrial, cyberpunk-realism, dramatic-lighting, first-person-perspective-vibe, gritty-atmosphere, japanese anime digital illustration, clean line art with moderate thickness, dot-pattern shading for depth, high-contrast dramatic lighting, no watercolor texture, no paper grain, no hand-drawn splatters, young male protagonist Lin Yuan using Image 0, slim and gaunt face with evident signs of fatigue, eyes tired but showing intense, sharp focus, noticeable nerve-interface scar on left wrist, short messy hair, hand trembling while holding a repair probe, worn-out deep gray industrial jumpsuit with grease stains, old-fashioned metallic pendant hanging around the neck, heavy-duty goggles with oil smudges pushed onto forehead, Lin Yuan leaning against a cold metallic bulkhead, right hand holding a probe piercing a sparking circuit, left hand clutching the old pendant for emotional support, body language conveys exhaustion and physical pain, 8K detailed facial features with sharp, tired gaze, blood leaking from the left earlobe, pale skin tone with slight sweat beads, expression of intense concentration mixed with suppressed agony, soft shadows emphasizing the sunken cheeks, short dark hair with root fixation coefficient 0.8, tip swing amplitude 0.2, color layering: main black, secondary dark gray, shadow deep charcoal, wind speed low, turbulence intensity minimal, heavy fabric with slight mechanical wear and oil stains, visible folds and tension lines on the jumpsuit, old-fashioned metallic pendant reflecting sparks, cramped space station bulkhead interior with exposed wiring, oxidized metal surfaces with rust patches, dim, flickering emergency lights, background blurred to emphasize the foreground action, 老陈-配角1 is represented only as a voice icon or distorted communication terminal light on the wall, vibrant electrical sparks flying from the circuit point, blue-tinted digital interface overlays shimmering in the air, faint smoke rising from the overheated exoskeleton, visual artifacts like black spots on the edges of the frame to simulate sensory loss, low-saturation color palette dominated by steel gray, rusted orange, and cold industrial blue, sharp contrast between the cold background and the bright electrical sparks, no over-saturated colors, harsh, flickering cold light from the bulkhead, intense warm glow from the electrical short-circuit, dramatic rim light on the protagonist's silhouette, type close-up to medium shot, lens 35mm, aperture f/2.0, depth_of_field sharp focus on the hand and the circuit, background softly blurred, flash none, grain fine industrial metallic texture, texture smooth digital finish, Lin Yuan positioned in the lower-right third of the frame, focus on the interaction between the probe and the sparking circuit, dramatic diagonal lines formed by the bulkhead pipes to guide the eye, high-detail japanese anime digital illustration, no text, no watermark, no signature, no logo in image, no symbols, no garbled text, 8K ultra-high resolution, perfect anime character anatomy, tense, desperate, and lonely, feeling of crushing industrial pressure, quiet exhaustion after the adrenaline spike, no text, no symbols, no garbled characters, no words",
+            "scene_text_hash": "71276fc3af23cbc9828533d71a1eaf1a",
+            "style": "default",
+            "url": "/image_cache/e744b0c2b13373394351ecef6bc48388.png",
+            "width": 1920
+          },
+          "attempt_count": 0
+        },
+        "ready_mode": "direct_in_generate_option",
+        "attribution": {
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "provider_retry_heavy_count": 0,
+          "provider_backoff_wait_ms_total": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0,
+          "image_probe_attempt_count": 0,
+          "main_character_contention_suspected": false
+        }
+      },
+      "placeholder": false,
+      "transport_success": true,
+      "strict_success": true,
+      "failure_bucket": null,
+      "cache_path_classification": "direct_real_scene",
+      "cache_hit_reason": "waited_request_scene_text_completed_no_image",
+      "cache_miss_reason": "request_scene_generation_in_progress",
+      "global_state_key_drift_detected": true,
+      "scene_id_mismatch_detected": true,
+      "selected_option_mismatch_detected": false,
+      "success": true
+    }
+  ]
+}

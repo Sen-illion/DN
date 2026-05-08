@@ -1,0 +1,29 @@
+{
+  "baseline_id": "doc",
+  "run_id": "smoke1_20260430",
+  "mode": "first_playable",
+  "execution_mode": "cloud",
+  "subset": "D:\\Projects\\DN\\experiments\\baseline_integration\\subsets\\efficiency_playable_subset_smoke1.json",
+  "output_dir": "experiments\\baseline_integration\\normalized_runs\\doc_yunwu\\smoke1_20260430",
+  "provider": {
+    "name": "yunwu",
+    "config_prefix": "Origin_Segment_Analyst",
+    "base_url": "https://yunwu.ai/v1",
+    "model": "gemini-3.1-flash-lite-preview",
+    "api_key_present": true
+  },
+  "environment": {
+    "python": "3.13.9",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "cwd": "D:\\Projects\\DN",
+    "hf_home": null,
+    "transformers_cache": null,
+    "hf_hub_cache": null,
+    "gpu": {
+      "available": false,
+      "name": null,
+      "count": 0,
+      "error": "ModuleNotFoundError(\"No module named 'torch'\")"
+    }
+  }
+}

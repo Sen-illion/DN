@@ -1,0 +1,706 @@
+{
+  "summary": {
+    "experiment_name": "benchmark_v15_fullready_nextturn_pregen60s20",
+    "profile": "fullready_pregen60",
+    "sample_size": 1,
+    "read_wait_s": 60.0,
+    "suite_start_ts": 1777644427.0287044,
+    "suite_end_ts": 1777644621.064631,
+    "first_click_elapsed_s": {
+      "count": 1,
+      "min": 64.194,
+      "max": 64.194,
+      "mean": 64.194,
+      "median": 64.194,
+      "p95": 64.194
+    },
+    "first_click_setup_success_count": 1,
+    "second_click_elapsed_s": {
+      "count": 0
+    },
+    "second_click_success_count": 0,
+    "transport_success_count": 0,
+    "strict_success_count": 0,
+    "likely_hit_count": 1,
+    "likely_hit_rate": 1.0,
+    "failure_bucket_counts": {
+      "second_click_timeout": 1
+    },
+    "placeholder_strict_fail_count": 0,
+    "cache_hit_reason_counts": {},
+    "cache_miss_reason_counts": {},
+    "global_state_key_drift_detected_count": 0,
+    "scene_id_mismatch_detected_count": 0,
+    "selected_option_mismatch_detected_count": 0,
+    "aborted": false,
+    "success_count": 0,
+    "text_ready_elapsed_s": {
+      "count": 1,
+      "min": 60.026,
+      "max": 60.026,
+      "mean": 60.026,
+      "median": 60.026,
+      "p95": 60.026
+    },
+    "image_ready_elapsed_s": {
+      "count": 0
+    },
+    "full_ready_elapsed_s": {
+      "count": 0
+    },
+    "real_scene_count": 0,
+    "real_scene_rate": 0.0,
+    "direct_image_count": 0,
+    "async_image_count": 0,
+    "placeholder_count": 0,
+    "placeholder_rate": 0.0,
+    "direct_image_rate": 0.0,
+    "async_image_rate": 0.0,
+    "provider_retry_heavy_count": 0,
+    "provider_429_count": 0,
+    "provider_timeout_count": 0,
+    "provider_backoff_wait_ms_total": 0,
+    "main_character_contention_suspected_count": 0,
+    "notes": "v15 strict pregen60s20 keeps the same 60-second dwell interval but now uses the same strict-v2 split timeouts and block-for-image cutoff as normal20, so placeholder and async backfill long tails do not silently leak into the measured path."
+  },
+  "runs": [
+    {
+      "benchmark_id": "DNQBV1_005",
+      "theme_id": 2,
+      "theme": "月球矿难七日",
+      "read_wait_s": 60.0,
+      "full_ready_mode": true,
+      "profile": "fullready_pregen60",
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 9.669,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过精密计算利用液压设备移开岩板，但同伴已因伤势过重无法移动，主角最终只能带走同伴的身份铭牌与记录仪，独自踏上撤离路，营救的失败成为贯穿后续的心理负担。",
+                  "main_conflict": "矿难突发，主角被困于深层矿区，通讯中断，氧气储备告急。此时，主角发现同伴被压在坍塌的岩板下，救援队因成本考量拒绝进行高风险挖掘。主角必须在“独自逃生”与“尝试营救”之间做出抉择，这种选择不仅关乎同伴的生死，更关乎主角内心对职业道德与个人良知的最后坚守。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角选择了折中方案，将部分数据匿名上传，虽引发了舆论关注，但因证据链不完整，管理层仅受到轻微处罚，主角虽保住了撤离机会，却因泄露信息被列入行业黑名单，彻底断送了职业生涯。",
+                  "main_conflict": "主角在撤离途中遭遇能源供给站的资源争夺。幸存者们为了争夺仅剩的应急电源陷入混乱，主角作为掌握勘探数据的关键人物，被迫卷入利益博弈。他必须决定是将数据交给管理层以换取撤离资格，还是将其公开以揭露导致矿难的设备隐患，从而可能失去唯一的救援机会。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角最终登上了撤离舱，但因舱位超载，他被迫丢弃了所有关于矿难的证据与同伴的遗物。他成功回到了地球，却发现自己已一无所有，只能在平凡的余生中，带着那份无法言说的遗憾，平静地接受生活给予的平庸馈赠。",
+                  "main_conflict": "抵达撤离点后，救援舱位因突发余震再次缩减。主角面临最后的抉择：是利用自己掌握的勘探数据优先登舱，还是将机会让给一名同样幸存的年轻实习生。此时，主角已身心俱疲，对未来的迷茫与对过去遗憾的沉淀交织在一起，他必须在这一刻与自己的平凡人生达成最终和解。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为硬核工业现实主义风格，采用冷峻克制的叙事视角。画面呈现低饱和度的金属质感与幽闭空间，配乐以低频环境音与机械运作声为主，营造出一种在窒息感中寻找生存缝隙的真实生活质感，强调人在庞大工业机器与极端环境下的渺小与韧性。",
+              "main_quest": "主角在矿难发生后的七日内，目标并非拯救所有人或揭露惊天阴谋，而是通过有限的资源与通讯权限，在坍塌的矿区中寻找撤离路径，并尝试带回失踪搭档的遗物或关键数据。任务分为三个阶段：首先是维持生命体征并建立局部通讯；其次是穿越受损的工业区，在资源分配的道德困境中做出选择；最后是抵达撤离点，面对救援舱位不足的现实。挑战在于，主角必须在“保全自己”与“履行承诺”之间不断权衡，每一项决策都会导致部分目标的永久性缺失，最终达成一个既保全了生命又留有遗憾的现实结局。",
+              "protagonist_ability": "主角拥有的“能力”并非超自然力量，而是其作为资深地质勘探员的“直觉式数据分析”。通过长期在极端环境下工作，主角能通过矿井震动的频率、空气中微量气体的成分变化，精准预判岩层结构与设备故障。这种能力源于无数次生死边缘的经验积累，使用时需消耗极高的精神专注力，且受限于个人体能与设备精度，无法改变坍塌的必然性，仅能为自己与同伴争取到极其有限的生存窗口。",
+              "world_basic_setting": "故事背景设定在21世纪末的月球背面“静海工业区”，人类已实现月球矿产的商业化开采。社会结构高度阶级化，矿工群体生活在狭窄的地下舱室，依靠高强度的轮班制维持地球的能源供应。这里没有英雄主义，只有严苛的绩效考核与复杂的劳资纠纷。地理上，月球背面是永恒的阴影与荒凉的岩石，通讯延迟与资源匮乏是常态。关键事件“静海矿难”并非突发的史诗灾难，而是因设备老化与管理层忽视导致的连锁性坍塌。社会文化中，人们将“返回地球”视为唯一的阶级跃迁途径，但这种希望往往被高昂的债务与身体损耗所消磨。在这个世界里，每个人都是精密齿轮上的一颗螺丝，即便在灾难面前，也必须遵循生存的逻辑，而非戏剧化的拯救。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1777644427_9wgnt2",
+            "image_style": {
+              "type": "cyberpunk"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "中年",
+              "gender": "男性",
+              "name_en": "Chen Mo",
+              "name_zh": "陈默",
+              "signature_look_keywords": "灰白鬓角、疲惫的眼神、粗糙的双手、深蓝色工装、破损的护目镜、沉默寡言、背部微驼、坚毅的下颌线、烟草味、沉稳、内敛、沧桑感",
+              "work_en": "Seven Days of Lunar Collapse",
+              "work_zh": "月球矿难七日"
+            },
+            "tone": "normal_ending",
+            "user_theme": "月球矿难七日"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "request_payload": {
+          "gameTheme": "月球矿难七日",
+          "protagonistAttr": {},
+          "difficulty": "normal",
+          "toneKey": "normal_ending",
+          "imageStyle": {
+            "type": "cyberpunk"
+          },
+          "_benchmark_profile": "fullready_pregen60",
+          "_benchmark_measurement": "fullready_nextturn",
+          "_benchmark_read_wait_s": 60.0
+        },
+        "start_ts": 1777644427.028709,
+        "end_ts": 1777644436.6980197,
+        "provider_events": {
+          "event_count": 4,
+          "queue_wait_ms": {
+            "count": 4,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 1,
+            "min": 9656.0,
+            "max": 9656.0,
+            "mean": 9656.0,
+            "median": 9656.0,
+            "p95": 9656.0
+          },
+          "llm_success_count": 1,
+          "image_success_count": 0,
+          "request_thread_event_count": 2,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0
+        },
+        "status": "success",
+        "game_id": "game_1777644427_9wgnt2"
+      },
+      "long_tail_attribution": {
+        "provider_429_count": 0,
+        "provider_timeout_count": 0,
+        "provider_retry_heavy_count": 0,
+        "provider_backoff_wait_ms_total": 0,
+        "main_character_event_count": 0,
+        "scene_image_event_count": 0,
+        "image_probe_attempt_count": 0,
+        "main_character_contention_suspected": false
+      },
+      "first_click": {
+        "http_status": 200,
+        "elapsed_s": 64.194,
+        "response_json": {
+          "benchmark_diagnostics": {
+            "cache_hit_reason": null,
+            "cache_miss_reason": null,
+            "current_options_key_drift_detected": false,
+            "global_state_key_drift_detected": false,
+            "initial_sync_backfill_skipped_for_strict_benchmark": true,
+            "placeholder": false,
+            "previous_scene_id": null,
+            "recomputed_scene_cache_exists": false,
+            "recomputed_scene_id": null,
+            "request_current_options_count": 0,
+            "request_current_options_hash": "d751713988987e9331980363e24189ce",
+            "request_flow_worldline_hash": "940e38d5f8372eaa58cfdaf4d70a0d30",
+            "request_global_state_hash": "7dea6977f5b7badf22c87087ebdb08a1",
+            "request_option_at_index": null,
+            "request_option_index": 0,
+            "request_option_text": "开始游戏",
+            "request_scene_cache_exists": false,
+            "request_scene_id": null,
+            "resolution_path": null,
+            "response_has_image": false,
+            "response_has_scene": true,
+            "response_scene_id": "5983087521578934252_-8687190070788830633",
+            "response_status": "success",
+            "scene_id_mismatch_detected": false,
+            "selected_option_mismatch_detected": false
+          },
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "",
+              "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：刺耳的金属扭曲声在狭窄的矿道内回荡，震得我耳膜生疼。我下意识地抬起粗糙的双手，护住那副破损的护目镜，灰白鬓角间渗出的汗水顺着脸颊滑落，滴在冰冷的岩石地面上。空气中弥漫着一股刺鼻的焦糊味，那是液压系统过载后的味道。我背部微驼，借着矿灯昏暗的光束看向前方那是我的搭档老林，他的下半身被一块巨大的岩板死死压住，鲜血正从他破碎的工装裤下渗出。\n\n“陈默，别管我了……这地方快塌了。”老林的声音虚弱得像是在风中摇曳的烛火，他那双布满血丝的眼睛死死盯着我，试图推开我伸出的手。\n\n我没有说话，只是沉默地咬紧下颌线，感受着矿井深处传来的低频震动。根据岩层的共振频率，我知道留给我们的时间不足5分钟。我深吸一口气，强迫自己冷静下来，指尖触碰着液压控制台，试图通过那微弱的压力反馈寻找岩板的受力平衡点。这是我作为地质勘探员的本能，也是我唯一能抓住的生机。"
+            },
+            "deep_background_links": {},
+            "flow_update": {},
+            "next_options": [
+              "尝试利用液压设备移开岩板，哪怕冒着矿道二次坍塌的风险。",
+              "放弃营救，带走老林记录仪里的核心数据，独自寻找撤离通道。"
+            ],
+            "scene": "刺耳的金属扭曲声在狭窄的矿道内回荡，震得我耳膜生疼。我下意识地抬起粗糙的双手，护住那副破损的护目镜，灰白鬓角间渗出的汗水顺着脸颊滑落，滴在冰冷的岩石地面上。空气中弥漫着一股刺鼻的焦糊味，那是液压系统过载后的味道。我背部微驼，借着矿灯昏暗的光束看向前方那是我的搭档老林，他的下半身被一块巨大的岩板死死压住，鲜血正从他破碎的工装裤下渗出。\n\n“陈默，别管我了……这地方快塌了。”老林的声音虚弱得像是在风中摇曳的烛火，他那双布满血丝的眼睛死死盯着我，试图推开我伸出的手。\n\n我没有说话，只是沉默地咬紧下颌线，感受着矿井深处传来的低频震动。根据岩层的共振频率，我知道留给我们的时间不足5分钟。我深吸一口气，强迫自己冷静下来，指尖触碰着液压控制台，试图通过那微弱的压力反馈寻找岩板的受力平衡点。这是我作为地质勘探员的本能，也是我唯一能抓住的生机。",
+            "sceneId": "5983087521578934252_-8687190070788830633",
+            "scene_image": null
+          },
+          "status": "success"
+        },
+        "request_payload": {
+          "option": "开始游戏",
+          "optionIndex": 0,
+          "sceneId": null,
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过精密计算利用液压设备移开岩板，但同伴已因伤势过重无法移动，主角最终只能带走同伴的身份铭牌与记录仪，独自踏上撤离路，营救的失败成为贯穿后续的心理负担。",
+                  "main_conflict": "矿难突发，主角被困于深层矿区，通讯中断，氧气储备告急。此时，主角发现同伴被压在坍塌的岩板下，救援队因成本考量拒绝进行高风险挖掘。主角必须在“独自逃生”与“尝试营救”之间做出抉择，这种选择不仅关乎同伴的生死，更关乎主角内心对职业道德与个人良知的最后坚守。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角选择了折中方案，将部分数据匿名上传，虽引发了舆论关注，但因证据链不完整，管理层仅受到轻微处罚，主角虽保住了撤离机会，却因泄露信息被列入行业黑名单，彻底断送了职业生涯。",
+                  "main_conflict": "主角在撤离途中遭遇能源供给站的资源争夺。幸存者们为了争夺仅剩的应急电源陷入混乱，主角作为掌握勘探数据的关键人物，被迫卷入利益博弈。他必须决定是将数据交给管理层以换取撤离资格，还是将其公开以揭露导致矿难的设备隐患，从而可能失去唯一的救援机会。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角最终登上了撤离舱，但因舱位超载，他被迫丢弃了所有关于矿难的证据与同伴的遗物。他成功回到了地球，却发现自己已一无所有，只能在平凡的余生中，带着那份无法言说的遗憾，平静地接受生活给予的平庸馈赠。",
+                  "main_conflict": "抵达撤离点后，救援舱位因突发余震再次缩减。主角面临最后的抉择：是利用自己掌握的勘探数据优先登舱，还是将机会让给一名同样幸存的年轻实习生。此时，主角已身心俱疲，对未来的迷茫与对过去遗憾的沉淀交织在一起，他必须在这一刻与自己的平凡人生达成最终和解。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为硬核工业现实主义风格，采用冷峻克制的叙事视角。画面呈现低饱和度的金属质感与幽闭空间，配乐以低频环境音与机械运作声为主，营造出一种在窒息感中寻找生存缝隙的真实生活质感，强调人在庞大工业机器与极端环境下的渺小与韧性。",
+              "main_quest": "主角在矿难发生后的七日内，目标并非拯救所有人或揭露惊天阴谋，而是通过有限的资源与通讯权限，在坍塌的矿区中寻找撤离路径，并尝试带回失踪搭档的遗物或关键数据。任务分为三个阶段：首先是维持生命体征并建立局部通讯；其次是穿越受损的工业区，在资源分配的道德困境中做出选择；最后是抵达撤离点，面对救援舱位不足的现实。挑战在于，主角必须在“保全自己”与“履行承诺”之间不断权衡，每一项决策都会导致部分目标的永久性缺失，最终达成一个既保全了生命又留有遗憾的现实结局。",
+              "protagonist_ability": "主角拥有的“能力”并非超自然力量，而是其作为资深地质勘探员的“直觉式数据分析”。通过长期在极端环境下工作，主角能通过矿井震动的频率、空气中微量气体的成分变化，精准预判岩层结构与设备故障。这种能力源于无数次生死边缘的经验积累，使用时需消耗极高的精神专注力，且受限于个人体能与设备精度，无法改变坍塌的必然性，仅能为自己与同伴争取到极其有限的生存窗口。",
+              "world_basic_setting": "故事背景设定在21世纪末的月球背面“静海工业区”，人类已实现月球矿产的商业化开采。社会结构高度阶级化，矿工群体生活在狭窄的地下舱室，依靠高强度的轮班制维持地球的能源供应。这里没有英雄主义，只有严苛的绩效考核与复杂的劳资纠纷。地理上，月球背面是永恒的阴影与荒凉的岩石，通讯延迟与资源匮乏是常态。关键事件“静海矿难”并非突发的史诗灾难，而是因设备老化与管理层忽视导致的连锁性坍塌。社会文化中，人们将“返回地球”视为唯一的阶级跃迁途径，但这种希望往往被高昂的债务与身体损耗所消磨。在这个世界里，每个人都是精密齿轮上的一颗螺丝，即便在灾难面前，也必须遵循生存的逻辑，而非戏剧化的拯救。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1777644427_9wgnt2",
+            "image_style": {
+              "type": "cyberpunk"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "中年",
+              "gender": "男性",
+              "name_en": "Chen Mo",
+              "name_zh": "陈默",
+              "signature_look_keywords": "灰白鬓角、疲惫的眼神、粗糙的双手、深蓝色工装、破损的护目镜、沉默寡言、背部微驼、坚毅的下颌线、烟草味、沉稳、内敛、沧桑感",
+              "work_en": "Seven Days of Lunar Collapse",
+              "work_zh": "月球矿难七日"
+            },
+            "tone": "normal_ending",
+            "user_theme": "月球矿难七日",
+            "_benchmark_profile": "fullready_pregen60",
+            "_benchmark_measurement": "fullready_nextturn",
+            "_benchmark_read_wait_s": 60.0
+          }
+        },
+        "start_ts": 1777644436.74802,
+        "end_ts": 1777644500.94224,
+        "provider_events": {
+          "event_count": 9,
+          "queue_wait_ms": {
+            "count": 9,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 5,
+            "min": 3241.0,
+            "max": 13440.0,
+            "mean": 7877.0,
+            "median": 8659.0,
+            "p95": 12484.2
+          },
+          "llm_success_count": 4,
+          "image_success_count": 0,
+          "request_thread_event_count": 0,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 2,
+          "scene_image_event_count": 0
+        },
+        "attempts": [
+          {
+            "http_status": 200,
+            "elapsed_s": 64.194,
+            "response_json": {
+              "benchmark_diagnostics": {
+                "cache_hit_reason": null,
+                "cache_miss_reason": null,
+                "current_options_key_drift_detected": false,
+                "global_state_key_drift_detected": false,
+                "initial_sync_backfill_skipped_for_strict_benchmark": true,
+                "placeholder": false,
+                "previous_scene_id": null,
+                "recomputed_scene_cache_exists": false,
+                "recomputed_scene_id": null,
+                "request_current_options_count": 0,
+                "request_current_options_hash": "d751713988987e9331980363e24189ce",
+                "request_flow_worldline_hash": "940e38d5f8372eaa58cfdaf4d70a0d30",
+                "request_global_state_hash": "7dea6977f5b7badf22c87087ebdb08a1",
+                "request_option_at_index": null,
+                "request_option_index": 0,
+                "request_option_text": "开始游戏",
+                "request_scene_cache_exists": false,
+                "request_scene_id": null,
+                "resolution_path": null,
+                "response_has_image": false,
+                "response_has_scene": true,
+                "response_scene_id": "5983087521578934252_-8687190070788830633",
+                "response_status": "success",
+                "scene_id_mismatch_detected": false,
+                "selected_option_mismatch_detected": false
+              },
+              "message": "选项剧情生成成功！",
+              "optionData": {
+                "checkpoint_packet": {
+                  "chapter": "chapter1",
+                  "chapter_conflict_solved": false,
+                  "quest_delta": "",
+                  "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：刺耳的金属扭曲声在狭窄的矿道内回荡，震得我耳膜生疼。我下意识地抬起粗糙的双手，护住那副破损的护目镜，灰白鬓角间渗出的汗水顺着脸颊滑落，滴在冰冷的岩石地面上。空气中弥漫着一股刺鼻的焦糊味，那是液压系统过载后的味道。我背部微驼，借着矿灯昏暗的光束看向前方那是我的搭档老林，他的下半身被一块巨大的岩板死死压住，鲜血正从他破碎的工装裤下渗出。\n\n“陈默，别管我了……这地方快塌了。”老林的声音虚弱得像是在风中摇曳的烛火，他那双布满血丝的眼睛死死盯着我，试图推开我伸出的手。\n\n我没有说话，只是沉默地咬紧下颌线，感受着矿井深处传来的低频震动。根据岩层的共振频率，我知道留给我们的时间不足5分钟。我深吸一口气，强迫自己冷静下来，指尖触碰着液压控制台，试图通过那微弱的压力反馈寻找岩板的受力平衡点。这是我作为地质勘探员的本能，也是我唯一能抓住的生机。"
+                },
+                "deep_background_links": {},
+                "flow_update": {},
+                "next_options": [
+                  "尝试利用液压设备移开岩板，哪怕冒着矿道二次坍塌的风险。",
+                  "放弃营救，带走老林记录仪里的核心数据，独自寻找撤离通道。"
+                ],
+                "scene": "刺耳的金属扭曲声在狭窄的矿道内回荡，震得我耳膜生疼。我下意识地抬起粗糙的双手，护住那副破损的护目镜，灰白鬓角间渗出的汗水顺着脸颊滑落，滴在冰冷的岩石地面上。空气中弥漫着一股刺鼻的焦糊味，那是液压系统过载后的味道。我背部微驼，借着矿灯昏暗的光束看向前方那是我的搭档老林，他的下半身被一块巨大的岩板死死压住，鲜血正从他破碎的工装裤下渗出。\n\n“陈默，别管我了……这地方快塌了。”老林的声音虚弱得像是在风中摇曳的烛火，他那双布满血丝的眼睛死死盯着我，试图推开我伸出的手。\n\n我没有说话，只是沉默地咬紧下颌线，感受着矿井深处传来的低频震动。根据岩层的共振频率，我知道留给我们的时间不足5分钟。我深吸一口气，强迫自己冷静下来，指尖触碰着液压控制台，试图通过那微弱的压力反馈寻找岩板的受力平衡点。这是我作为地质勘探员的本能，也是我唯一能抓住的生机。",
+                "sceneId": "5983087521578934252_-8687190070788830633",
+                "scene_image": null
+              },
+              "status": "success"
+            },
+            "request_payload": {
+              "option": "开始游戏",
+              "optionIndex": 0,
+              "sceneId": null,
+              "globalState": {
+                "core_worldview": {
+                  "chapters": {
+                    "chapter1": {
+                      "conflict_end_condition": "主角通过精密计算利用液压设备移开岩板，但同伴已因伤势过重无法移动，主角最终只能带走同伴的身份铭牌与记录仪，独自踏上撤离路，营救的失败成为贯穿后续的心理负担。",
+                      "main_conflict": "矿难突发，主角被困于深层矿区，通讯中断，氧气储备告急。此时，主角发现同伴被压在坍塌的岩板下，救援队因成本考量拒绝进行高风险挖掘。主角必须在“独自逃生”与“尝试营救”之间做出抉择，这种选择不仅关乎同伴的生死，更关乎主角内心对职业道德与个人良知的最后坚守。"
+                    },
+                    "chapter2": {
+                      "conflict_end_condition": "主角选择了折中方案，将部分数据匿名上传，虽引发了舆论关注，但因证据链不完整，管理层仅受到轻微处罚，主角虽保住了撤离机会，却因泄露信息被列入行业黑名单，彻底断送了职业生涯。",
+                      "main_conflict": "主角在撤离途中遭遇能源供给站的资源争夺。幸存者们为了争夺仅剩的应急电源陷入混乱，主角作为掌握勘探数据的关键人物，被迫卷入利益博弈。他必须决定是将数据交给管理层以换取撤离资格，还是将其公开以揭露导致矿难的设备隐患，从而可能失去唯一的救援机会。"
+                    },
+                    "chapter3": {
+                      "conflict_end_condition": "主角最终登上了撤离舱，但因舱位超载，他被迫丢弃了所有关于矿难的证据与同伴的遗物。他成功回到了地球，却发现自己已一无所有，只能在平凡的余生中，带着那份无法言说的遗憾，平静地接受生活给予的平庸馈赠。",
+                      "main_conflict": "抵达撤离点后，救援舱位因突发余震再次缩减。主角面临最后的抉择：是利用自己掌握的勘探数据优先登舱，还是将机会让给一名同样幸存的年轻实习生。此时，主角已身心俱疲，对未来的迷茫与对过去遗憾的沉淀交织在一起，他必须在这一刻与自己的平凡人生达成最终和解。"
+                    }
+                  },
+                  "characters": {},
+                  "forces": {},
+                  "game_style": "本作为硬核工业现实主义风格，采用冷峻克制的叙事视角。画面呈现低饱和度的金属质感与幽闭空间，配乐以低频环境音与机械运作声为主，营造出一种在窒息感中寻找生存缝隙的真实生活质感，强调人在庞大工业机器与极端环境下的渺小与韧性。",
+                  "main_quest": "主角在矿难发生后的七日内，目标并非拯救所有人或揭露惊天阴谋，而是通过有限的资源与通讯权限，在坍塌的矿区中寻找撤离路径，并尝试带回失踪搭档的遗物或关键数据。任务分为三个阶段：首先是维持生命体征并建立局部通讯；其次是穿越受损的工业区，在资源分配的道德困境中做出选择；最后是抵达撤离点，面对救援舱位不足的现实。挑战在于，主角必须在“保全自己”与“履行承诺”之间不断权衡，每一项决策都会导致部分目标的永久性缺失，最终达成一个既保全了生命又留有遗憾的现实结局。",
+                  "protagonist_ability": "主角拥有的“能力”并非超自然力量，而是其作为资深地质勘探员的“直觉式数据分析”。通过长期在极端环境下工作，主角能通过矿井震动的频率、空气中微量气体的成分变化，精准预判岩层结构与设备故障。这种能力源于无数次生死边缘的经验积累，使用时需消耗极高的精神专注力，且受限于个人体能与设备精度，无法改变坍塌的必然性，仅能为自己与同伴争取到极其有限的生存窗口。",
+                  "world_basic_setting": "故事背景设定在21世纪末的月球背面“静海工业区”，人类已实现月球矿产的商业化开采。社会结构高度阶级化，矿工群体生活在狭窄的地下舱室，依靠高强度的轮班制维持地球的能源供应。这里没有英雄主义，只有严苛的绩效考核与复杂的劳资纠纷。地理上，月球背面是永恒的阴影与荒凉的岩石，通讯延迟与资源匮乏是常态。关键事件“静海矿难”并非突发的史诗灾难，而是因设备老化与管理层忽视导致的连锁性坍塌。社会文化中，人们将“返回地球”视为唯一的阶级跃迁途径，但这种希望往往被高昂的债务与身体损耗所消磨。在这个世界里，每个人都是精密齿轮上的一颗螺丝，即便在灾难面前，也必须遵循生存的逻辑，而非戏剧化的拯救。"
+                },
+                "flow_worldline": {
+                  "characters": {},
+                  "current_chapter": "chapter1",
+                  "environment": {}
+                },
+                "game_id": "game_1777644427_9wgnt2",
+                "image_style": {
+                  "type": "cyberpunk"
+                },
+                "meta": {
+                  "detail_async": true
+                },
+                "protagonist_canonical": {
+                  "age_range": "中年",
+                  "gender": "男性",
+                  "name_en": "Chen Mo",
+                  "name_zh": "陈默",
+                  "signature_look_keywords": "灰白鬓角、疲惫的眼神、粗糙的双手、深蓝色工装、破损的护目镜、沉默寡言、背部微驼、坚毅的下颌线、烟草味、沉稳、内敛、沧桑感",
+                  "work_en": "Seven Days of Lunar Collapse",
+                  "work_zh": "月球矿难七日"
+                },
+                "tone": "normal_ending",
+                "user_theme": "月球矿难七日",
+                "_benchmark_profile": "fullready_pregen60",
+                "_benchmark_measurement": "fullready_nextturn",
+                "_benchmark_read_wait_s": 60.0
+              }
+            },
+            "start_ts": 1777644436.74802,
+            "end_ts": 1777644500.94224,
+            "provider_events": {
+              "event_count": 9,
+              "queue_wait_ms": {
+                "count": 9,
+                "min": 0.0,
+                "max": 0.0,
+                "mean": 0.0,
+                "median": 0.0,
+                "p95": 0.0
+              },
+              "latency_ms": {
+                "count": 5,
+                "min": 3241.0,
+                "max": 13440.0,
+                "mean": 7877.0,
+                "median": 8659.0,
+                "p95": 12484.2
+              },
+              "llm_success_count": 4,
+              "image_success_count": 0,
+              "request_thread_event_count": 0,
+              "provider_429_count": 0,
+              "provider_timeout_count": 0,
+              "shared_backoff_wait_ms_total": 0,
+              "retry_heavy_event_count": 0,
+              "main_character_event_count": 2,
+              "scene_image_event_count": 0
+            }
+          }
+        ],
+        "attempt_count": 1,
+        "request_elapsed_s": 64.194,
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "success",
+        "has_scene": true,
+        "has_image": false,
+        "setup_success": true
+      },
+      "second_click": {
+        "http_status": null,
+        "elapsed_s": 60.026,
+        "response_json": {
+          "status": "timeout",
+          "message": "HTTPConnectionPool(host='127.0.0.1', port=5026): Read timed out. (read timeout=60)"
+        },
+        "request_payload": {
+          "option": "尝试利用液压设备移开岩板，哪怕冒着矿道二次坍塌的风险。",
+          "optionIndex": 0,
+          "sceneId": "5983087521578934252_-8687190070788830633",
+          "currentOptions": [
+            "尝试利用液压设备移开岩板，哪怕冒着矿道二次坍塌的风险。",
+            "放弃营救，带走老林记录仪里的核心数据，独自寻找撤离通道。"
+          ],
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过精密计算利用液压设备移开岩板，但同伴已因伤势过重无法移动，主角最终只能带走同伴的身份铭牌与记录仪，独自踏上撤离路，营救的失败成为贯穿后续的心理负担。",
+                  "main_conflict": "矿难突发，主角被困于深层矿区，通讯中断，氧气储备告急。此时，主角发现同伴被压在坍塌的岩板下，救援队因成本考量拒绝进行高风险挖掘。主角必须在“独自逃生”与“尝试营救”之间做出抉择，这种选择不仅关乎同伴的生死，更关乎主角内心对职业道德与个人良知的最后坚守。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角选择了折中方案，将部分数据匿名上传，虽引发了舆论关注，但因证据链不完整，管理层仅受到轻微处罚，主角虽保住了撤离机会，却因泄露信息被列入行业黑名单，彻底断送了职业生涯。",
+                  "main_conflict": "主角在撤离途中遭遇能源供给站的资源争夺。幸存者们为了争夺仅剩的应急电源陷入混乱，主角作为掌握勘探数据的关键人物，被迫卷入利益博弈。他必须决定是将数据交给管理层以换取撤离资格，还是将其公开以揭露导致矿难的设备隐患，从而可能失去唯一的救援机会。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角最终登上了撤离舱，但因舱位超载，他被迫丢弃了所有关于矿难的证据与同伴的遗物。他成功回到了地球，却发现自己已一无所有，只能在平凡的余生中，带着那份无法言说的遗憾，平静地接受生活给予的平庸馈赠。",
+                  "main_conflict": "抵达撤离点后，救援舱位因突发余震再次缩减。主角面临最后的抉择：是利用自己掌握的勘探数据优先登舱，还是将机会让给一名同样幸存的年轻实习生。此时，主角已身心俱疲，对未来的迷茫与对过去遗憾的沉淀交织在一起，他必须在这一刻与自己的平凡人生达成最终和解。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为硬核工业现实主义风格，采用冷峻克制的叙事视角。画面呈现低饱和度的金属质感与幽闭空间，配乐以低频环境音与机械运作声为主，营造出一种在窒息感中寻找生存缝隙的真实生活质感，强调人在庞大工业机器与极端环境下的渺小与韧性。",
+              "main_quest": "主角在矿难发生后的七日内，目标并非拯救所有人或揭露惊天阴谋，而是通过有限的资源与通讯权限，在坍塌的矿区中寻找撤离路径，并尝试带回失踪搭档的遗物或关键数据。任务分为三个阶段：首先是维持生命体征并建立局部通讯；其次是穿越受损的工业区，在资源分配的道德困境中做出选择；最后是抵达撤离点，面对救援舱位不足的现实。挑战在于，主角必须在“保全自己”与“履行承诺”之间不断权衡，每一项决策都会导致部分目标的永久性缺失，最终达成一个既保全了生命又留有遗憾的现实结局。",
+              "protagonist_ability": "主角拥有的“能力”并非超自然力量，而是其作为资深地质勘探员的“直觉式数据分析”。通过长期在极端环境下工作，主角能通过矿井震动的频率、空气中微量气体的成分变化，精准预判岩层结构与设备故障。这种能力源于无数次生死边缘的经验积累，使用时需消耗极高的精神专注力，且受限于个人体能与设备精度，无法改变坍塌的必然性，仅能为自己与同伴争取到极其有限的生存窗口。",
+              "world_basic_setting": "故事背景设定在21世纪末的月球背面“静海工业区”，人类已实现月球矿产的商业化开采。社会结构高度阶级化，矿工群体生活在狭窄的地下舱室，依靠高强度的轮班制维持地球的能源供应。这里没有英雄主义，只有严苛的绩效考核与复杂的劳资纠纷。地理上，月球背面是永恒的阴影与荒凉的岩石，通讯延迟与资源匮乏是常态。关键事件“静海矿难”并非突发的史诗灾难，而是因设备老化与管理层忽视导致的连锁性坍塌。社会文化中，人们将“返回地球”视为唯一的阶级跃迁途径，但这种希望往往被高昂的债务与身体损耗所消磨。在这个世界里，每个人都是精密齿轮上的一颗螺丝，即便在灾难面前，也必须遵循生存的逻辑，而非戏剧化的拯救。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {},
+              "chapter_progress": 2.0
+            },
+            "game_id": "game_1777644427_9wgnt2",
+            "image_style": {
+              "type": "cyberpunk"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "中年",
+              "gender": "男性",
+              "name_en": "Chen Mo",
+              "name_zh": "陈默",
+              "signature_look_keywords": "灰白鬓角、疲惫的眼神、粗糙的双手、深蓝色工装、破损的护目镜、沉默寡言、背部微驼、坚毅的下颌线、烟草味、沉稳、内敛、沧桑感",
+              "work_en": "Seven Days of Lunar Collapse",
+              "work_zh": "月球矿难七日"
+            },
+            "tone": "normal_ending",
+            "user_theme": "月球矿难七日",
+            "_benchmark_profile": "fullready_pregen60",
+            "_benchmark_measurement": "fullready_nextturn",
+            "_benchmark_read_wait_s": 60.0
+          },
+          "previousSceneId": "initial",
+          "previousSceneImage": null,
+          "previousSceneText": "刺耳的金属扭曲声在狭窄的矿道内回荡，震得我耳膜生疼。我下意识地抬起粗糙的双手，护住那副破损的护目镜，灰白鬓角间渗出的汗水顺着脸颊滑落，滴在冰冷的岩石地面上。空气中弥漫着一股刺鼻的焦糊味，那是液压系统过载后的味道。我背部微驼，借着矿灯昏暗的光束看向前方那是我的搭档老林，他的下半身被一块巨大的岩板死死压住，鲜血正从他破碎的工装裤下渗出。\n\n“陈默，别管我了……这地方快塌了。”老林的声音虚弱得像是在风中摇曳的烛火，他那双布满血丝的眼睛死死盯着我，试图推开我伸出的手。\n\n我没有说话，只是沉默地咬紧下颌线，感受着矿井深处传来的低频震动。根据岩层的共振频率，我知道留给我们的时间不足5分钟。我深吸一口气，强迫自己冷静下来，指尖触碰着液压控制台，试图通过那微弱的压力反馈寻找岩板的受力平衡点。这是我作为地质勘探员的本能，也是我唯一能抓住的生机。"
+        },
+        "start_ts": 1777644560.990841,
+        "end_ts": 1777644621.0172474,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0
+        },
+        "request_error": "timeout",
+        "attempts": [
+          {
+            "http_status": null,
+            "elapsed_s": 60.026,
+            "response_json": {
+              "status": "timeout",
+              "message": "HTTPConnectionPool(host='127.0.0.1', port=5026): Read timed out. (read timeout=60)"
+            },
+            "request_payload": {
+              "option": "尝试利用液压设备移开岩板，哪怕冒着矿道二次坍塌的风险。",
+              "optionIndex": 0,
+              "sceneId": "5983087521578934252_-8687190070788830633",
+              "currentOptions": [
+                "尝试利用液压设备移开岩板，哪怕冒着矿道二次坍塌的风险。",
+                "放弃营救，带走老林记录仪里的核心数据，独自寻找撤离通道。"
+              ],
+              "globalState": {
+                "core_worldview": {
+                  "chapters": {
+                    "chapter1": {
+                      "conflict_end_condition": "主角通过精密计算利用液压设备移开岩板，但同伴已因伤势过重无法移动，主角最终只能带走同伴的身份铭牌与记录仪，独自踏上撤离路，营救的失败成为贯穿后续的心理负担。",
+                      "main_conflict": "矿难突发，主角被困于深层矿区，通讯中断，氧气储备告急。此时，主角发现同伴被压在坍塌的岩板下，救援队因成本考量拒绝进行高风险挖掘。主角必须在“独自逃生”与“尝试营救”之间做出抉择，这种选择不仅关乎同伴的生死，更关乎主角内心对职业道德与个人良知的最后坚守。"
+                    },
+                    "chapter2": {
+                      "conflict_end_condition": "主角选择了折中方案，将部分数据匿名上传，虽引发了舆论关注，但因证据链不完整，管理层仅受到轻微处罚，主角虽保住了撤离机会，却因泄露信息被列入行业黑名单，彻底断送了职业生涯。",
+                      "main_conflict": "主角在撤离途中遭遇能源供给站的资源争夺。幸存者们为了争夺仅剩的应急电源陷入混乱，主角作为掌握勘探数据的关键人物，被迫卷入利益博弈。他必须决定是将数据交给管理层以换取撤离资格，还是将其公开以揭露导致矿难的设备隐患，从而可能失去唯一的救援机会。"
+                    },
+                    "chapter3": {
+                      "conflict_end_condition": "主角最终登上了撤离舱，但因舱位超载，他被迫丢弃了所有关于矿难的证据与同伴的遗物。他成功回到了地球，却发现自己已一无所有，只能在平凡的余生中，带着那份无法言说的遗憾，平静地接受生活给予的平庸馈赠。",
+                      "main_conflict": "抵达撤离点后，救援舱位因突发余震再次缩减。主角面临最后的抉择：是利用自己掌握的勘探数据优先登舱，还是将机会让给一名同样幸存的年轻实习生。此时，主角已身心俱疲，对未来的迷茫与对过去遗憾的沉淀交织在一起，他必须在这一刻与自己的平凡人生达成最终和解。"
+                    }
+                  },
+                  "characters": {},
+                  "forces": {},
+                  "game_style": "本作为硬核工业现实主义风格，采用冷峻克制的叙事视角。画面呈现低饱和度的金属质感与幽闭空间，配乐以低频环境音与机械运作声为主，营造出一种在窒息感中寻找生存缝隙的真实生活质感，强调人在庞大工业机器与极端环境下的渺小与韧性。",
+                  "main_quest": "主角在矿难发生后的七日内，目标并非拯救所有人或揭露惊天阴谋，而是通过有限的资源与通讯权限，在坍塌的矿区中寻找撤离路径，并尝试带回失踪搭档的遗物或关键数据。任务分为三个阶段：首先是维持生命体征并建立局部通讯；其次是穿越受损的工业区，在资源分配的道德困境中做出选择；最后是抵达撤离点，面对救援舱位不足的现实。挑战在于，主角必须在“保全自己”与“履行承诺”之间不断权衡，每一项决策都会导致部分目标的永久性缺失，最终达成一个既保全了生命又留有遗憾的现实结局。",
+                  "protagonist_ability": "主角拥有的“能力”并非超自然力量，而是其作为资深地质勘探员的“直觉式数据分析”。通过长期在极端环境下工作，主角能通过矿井震动的频率、空气中微量气体的成分变化，精准预判岩层结构与设备故障。这种能力源于无数次生死边缘的经验积累，使用时需消耗极高的精神专注力，且受限于个人体能与设备精度，无法改变坍塌的必然性，仅能为自己与同伴争取到极其有限的生存窗口。",
+                  "world_basic_setting": "故事背景设定在21世纪末的月球背面“静海工业区”，人类已实现月球矿产的商业化开采。社会结构高度阶级化，矿工群体生活在狭窄的地下舱室，依靠高强度的轮班制维持地球的能源供应。这里没有英雄主义，只有严苛的绩效考核与复杂的劳资纠纷。地理上，月球背面是永恒的阴影与荒凉的岩石，通讯延迟与资源匮乏是常态。关键事件“静海矿难”并非突发的史诗灾难，而是因设备老化与管理层忽视导致的连锁性坍塌。社会文化中，人们将“返回地球”视为唯一的阶级跃迁途径，但这种希望往往被高昂的债务与身体损耗所消磨。在这个世界里，每个人都是精密齿轮上的一颗螺丝，即便在灾难面前，也必须遵循生存的逻辑，而非戏剧化的拯救。"
+                },
+                "flow_worldline": {
+                  "characters": {},
+                  "current_chapter": "chapter1",
+                  "environment": {},
+                  "chapter_progress": 2.0
+                },
+                "game_id": "game_1777644427_9wgnt2",
+                "image_style": {
+                  "type": "cyberpunk"
+                },
+                "meta": {
+                  "detail_async": true
+                },
+                "protagonist_canonical": {
+                  "age_range": "中年",
+                  "gender": "男性",
+                  "name_en": "Chen Mo",
+                  "name_zh": "陈默",
+                  "signature_look_keywords": "灰白鬓角、疲惫的眼神、粗糙的双手、深蓝色工装、破损的护目镜、沉默寡言、背部微驼、坚毅的下颌线、烟草味、沉稳、内敛、沧桑感",
+                  "work_en": "Seven Days of Lunar Collapse",
+                  "work_zh": "月球矿难七日"
+                },
+                "tone": "normal_ending",
+                "user_theme": "月球矿难七日",
+                "_benchmark_profile": "fullready_pregen60",
+                "_benchmark_measurement": "fullready_nextturn",
+                "_benchmark_read_wait_s": 60.0
+              },
+              "previousSceneId": "initial",
+              "previousSceneImage": null,
+              "previousSceneText": "刺耳的金属扭曲声在狭窄的矿道内回荡，震得我耳膜生疼。我下意识地抬起粗糙的双手，护住那副破损的护目镜，灰白鬓角间渗出的汗水顺着脸颊滑落，滴在冰冷的岩石地面上。空气中弥漫着一股刺鼻的焦糊味，那是液压系统过载后的味道。我背部微驼，借着矿灯昏暗的光束看向前方那是我的搭档老林，他的下半身被一块巨大的岩板死死压住，鲜血正从他破碎的工装裤下渗出。\n\n“陈默，别管我了……这地方快塌了。”老林的声音虚弱得像是在风中摇曳的烛火，他那双布满血丝的眼睛死死盯着我，试图推开我伸出的手。\n\n我没有说话，只是沉默地咬紧下颌线，感受着矿井深处传来的低频震动。根据岩层的共振频率，我知道留给我们的时间不足5分钟。我深吸一口气，强迫自己冷静下来，指尖触碰着液压控制台，试图通过那微弱的压力反馈寻找岩板的受力平衡点。这是我作为地质勘探员的本能，也是我唯一能抓住的生机。"
+            },
+            "start_ts": 1777644560.990841,
+            "end_ts": 1777644621.0172474,
+            "provider_events": {
+              "event_count": 0,
+              "queue_wait_ms": {
+                "count": 0
+              },
+              "latency_ms": {
+                "count": 0
+              },
+              "llm_success_count": 0,
+              "image_success_count": 0,
+              "request_thread_event_count": 0,
+              "provider_429_count": 0,
+              "provider_timeout_count": 0,
+              "shared_backoff_wait_ms_total": 0,
+              "retry_heavy_event_count": 0,
+              "main_character_event_count": 0,
+              "scene_image_event_count": 0
+            },
+            "request_error": "timeout"
+          }
+        ],
+        "attempt_count": 1,
+        "request_elapsed_s": 60.026,
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "timeout",
+        "has_scene": false,
+        "has_image": false,
+        "selected_option_index": 0,
+        "selected_option_text": "尝试利用液压设备移开岩板，哪怕冒着矿道二次坍塌的风险。",
+        "input_scene_id": "5983087521578934252_-8687190070788830633",
+        "inferred_cache_result": "likely_hit",
+        "used_updated_flow_state": true,
+        "cache_hit_reason": null,
+        "cache_miss_reason": null,
+        "global_state_key_drift_detected": false,
+        "scene_id_mismatch_detected": false,
+        "selected_option_mismatch_detected": false,
+        "current_options_key_drift_detected": false,
+        "benchmark_diagnostics": {}
+      },
+      "full_ready": {
+        "text_ready_ts": 1777644621.0172474,
+        "text_ready_elapsed_s": 60.026,
+        "image_ready_ts": null,
+        "image_ready_elapsed_s": null,
+        "full_ready_ts": null,
+        "full_ready_elapsed_s": null,
+        "image_probe": null,
+        "ready_mode": "blocked",
+        "error": "second_click_not_success",
+        "attribution": {
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "provider_retry_heavy_count": 0,
+          "provider_backoff_wait_ms_total": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0,
+          "image_probe_attempt_count": 0,
+          "main_character_contention_suspected": false
+        }
+      },
+      "placeholder": false,
+      "transport_success": false,
+      "strict_success": false,
+      "failure_bucket": "second_click_timeout",
+      "cache_path_classification": "second_click_timeout",
+      "cache_hit_reason": null,
+      "cache_miss_reason": null,
+      "global_state_key_drift_detected": false,
+      "scene_id_mismatch_detected": false,
+      "selected_option_mismatch_detected": false,
+      "success": false
+    }
+  ]
+}

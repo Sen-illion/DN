@@ -70,8 +70,8 @@ def _load_themes(path: Path) -> Dict[int, Dict[str, Any]]:
 
 
 def _list_segment_jsons(folder: Path) -> List[Path]:
-    # 仅 {game_id}_{段号三位}.json；勿用 game_*_*.json，否则会误匹配 *_image_paths.json
-    files = sorted(folder.glob("game_*_[0-9][0-9][0-9].json"), key=lambda p: p.name)
+    files = sorted(folder.glob("game_*_*.json"), key=lambda p: p.name)
+    # 排除 manifest
     return [p for p in files if "manifest" not in p.name.lower()]
 
 

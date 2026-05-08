@@ -1,0 +1,144 @@
+{
+  "baseline_id": "doc",
+  "benchmark_id": "DNQBV1_012",
+  "run_id": "formal20_first_playable_20260430",
+  "mode": "first_playable",
+  "input_bundle": {
+    "original_dn_item": {
+      "benchmark_id": "DNQBV1_012",
+      "theme_id": 4,
+      "theme": "深海信标失联",
+      "image_style": {
+        "type": "watercolor"
+      },
+      "expected_genre": "海洋悬疑",
+      "expected_tone": "潮湿、空旷、不安",
+      "must_have_constraints": [
+        "必须体现深海、信标或失联事件",
+        "水彩视觉需体现海洋氛围",
+        "首段剧情应有搜寻或确认线索的任务"
+      ],
+      "forbidden_issues": [
+        "场景转成陆地校园",
+        "图像毫无海洋元素",
+        "选项无法推进搜索"
+      ],
+      "focus": "full-set coverage: 海洋悬疑",
+      "_subset_focus": "full-set coverage: 海洋悬疑"
+    },
+    "doc_prompt": "Premise seed: 深海信标失联\nGenre: 海洋悬疑\nTone: 潮湿、空旷、不安\nWrite a long-form interactive story opening that could be expanded with a detailed outline.\nMust-have constraints:\n- 必须体现深海、信标或失联事件\n- 水彩视觉需体现海洋氛围\n- 首段剧情应有搜寻或确认线索的任务\nForbidden issues:\n- 场景转成陆地校园\n- 图像毫无海洋元素\n- 选项无法推进搜索\n",
+    "outline_seed": [
+      "Opening setup for 深海信标失联 in a 海洋悬疑 frame with a 潮湿、空旷、不安 tone.",
+      "Introduce the protagonist's immediate role, pressure, and conflict around: 必须体现深海、信标或失联事件.",
+      "Reveal one concrete obstacle or tradeoff the player must respond to next.",
+      "End the first turn with 2-3 actionable next steps that can continue the story."
+    ],
+    "mode": "first_playable",
+    "baseline_params": {
+      "execution_mode": "cloud",
+      "doc_repo": "D:\\Projects\\DN\\baselines\\DOC",
+      "doc_data_dir": "D:\\Projects\\DN\\baselines\\DOC\\doc_data"
+    }
+  },
+  "raw_output": {
+    "execution_mode": "cloud",
+    "doc_upstream_executed": false,
+    "doc_api_adapter": "yunwu_chat_completions",
+    "provider": "yunwu",
+    "provider_config_prefix": "Origin_Segment_Analyst",
+    "provider_base_url": "https://yunwu.ai/v1",
+    "provider_model": "gemini-3.1-flash-lite-preview",
+    "request": {
+      "model": "gemini-3.1-flash-lite-preview",
+      "temperature": 0.7,
+      "top_p": 0.9,
+      "max_tokens": 900,
+      "response_format": {
+        "type": "json_object"
+      }
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are the DOC long-form story baseline adapted for DN playable-latency evaluation. Write concise, grounded, continuation-ready interactive fiction. Do not include debugging text, URLs, or commentary outside JSON."
+      },
+      {
+        "role": "user",
+        "content": "Convert this DN benchmark item into a DOC-style playable baseline output.\nPreserve DOC's premise -> outline -> story-opening semantics, but return only a playable first response.\nRun mode: first_playable\n\nDOC prompt:\nPremise seed: 深海信标失联\nGenre: 海洋悬疑\nTone: 潮湿、空旷、不安\nWrite a long-form interactive story opening that could be expanded with a detailed outline.\nMust-have constraints:\n- 必须体现深海、信标或失联事件\n- 水彩视觉需体现海洋氛围\n- 首段剧情应有搜寻或确认线索的任务\nForbidden issues:\n- 场景转成陆地校园\n- 图像毫无海洋元素\n- 选项无法推进搜索\n\nOutline seed:\n1. Opening setup for 深海信标失联 in a 海洋悬疑 frame with a 潮湿、空旷、不安 tone.\n2. Introduce the protagonist's immediate role, pressure, and conflict around: 必须体现深海、信标或失联事件.\n3. Reveal one concrete obstacle or tradeoff the player must respond to next.\n4. End the first turn with 2-3 actionable next steps that can continue the story.\n\nReturn strict JSON with this shape and no markdown fences:\n{\n  \"scene_setup\": \"string\",\n  \"player_state\": \"string\",\n  \"narrative_response\": \"string\",\n  \"candidate_actions\": [\n    \"string\"\n  ],\n  \"suggested_next_step\": \"string\",\n  \"supports_next_turn\": true\n}"
+      }
+    ],
+    "response": {
+      "id": "chatcmpl-20260430170841208363291Lu2NduuA",
+      "model": "gemini-3.1-flash-lite-preview",
+      "object": "chat.completion",
+      "created": 1777540131,
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"scene_setup\": \"深海探测站‘深渊之眼’，水下4000米。环境色调为冰冷的深蓝与幽绿，舱内充斥着金属锈蚀与循环空气的陈腐味。墙壁水彩晕染出深海压抑的轮廓，远处是巨大的探照灯光束在浑浊的海水中徒劳地穿刺。\",\n  \"player_state\": \"你是驻守站点的维修员，距离与地表指挥部失去联系已过去4小时。信标频率显示为零，舱外传来规律的金属撞击声，仿佛有东西在试探密封舱的极限。\",\n  \"narrative_response\": \"控制室的显示屏闪烁着雪花点，最后一次信号记录停留在三分钟前，那是一个被扰动的声呐波形，看起来像是某种生物的轮廓，但又被密集的干扰掩盖。氧气循环系统发出刺耳的警报，显示外部供氧管线被某种外力扯断了。你必须决定是先去查明撞击声的来源，还是尝试修复那条至关重要的信标发射器。\",\n  \"candidate_actions\": [\n    \"穿上加压潜水服，通过气闸舱手动检查外部受损的信标发射器。\",\n    \"将舱内电力全部切换至声呐阵列，试图捕捉并解析那阵规律撞击声的真实来源。\",\n    \"尝试强制重启通讯中继站，向地表发送最后一段加密求救录音。\"\n  ],\n  \"suggested_next_step\": \"玩家需要权衡生存资源（氧气）与获取信息的优先级，选择行动后将触发与深海异物的直接接触或技术性修复环节。\",\n  \"supports_next_turn\": true\n}"
+          },
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 395,
+        "completion_tokens": 402,
+        "total_tokens": 797,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "text_tokens": 395,
+          "audio_tokens": 0,
+          "image_tokens": 0
+        },
+        "completion_tokens_details": {
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0
+        },
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "input_tokens_details": null,
+        "claude_cache_creation_5_m_tokens": 0,
+        "claude_cache_creation_1_h_tokens": 0
+      }
+    }
+  },
+  "success": true,
+  "latency_s": 11.437,
+  "playable": true,
+  "playable_components": {
+    "scene_setup": true,
+    "player_state": true,
+    "advanceable_next_step": true,
+    "interaction_continuity": true
+  },
+  "normalized_response": {
+    "scene_setup": "深海探测站‘深渊之眼’，水下4000米。环境色调为冰冷的深蓝与幽绿，舱内充斥着金属锈蚀与循环空气的陈腐味。墙壁水彩晕染出深海压抑的轮廓，远处是巨大的探照灯光束在浑浊的海水中徒劳地穿刺。",
+    "player_state": "你是驻守站点的维修员，距离与地表指挥部失去联系已过去4小时。信标频率显示为零，舱外传来规律的金属撞击声，仿佛有东西在试探密封舱的极限。",
+    "narrative_response": "控制室的显示屏闪烁着雪花点，最后一次信号记录停留在三分钟前，那是一个被扰动的声呐波形，看起来像是某种生物的轮廓，但又被密集的干扰掩盖。氧气循环系统发出刺耳的警报，显示外部供氧管线被某种外力扯断了。你必须决定是先去查明撞击声的来源，还是尝试修复那条至关重要的信标发射器。",
+    "candidate_actions": [
+      "穿上加压潜水服，通过气闸舱手动检查外部受损的信标发射器。",
+      "将舱内电力全部切换至声呐阵列，试图捕捉并解析那阵规律撞击声的真实来源。",
+      "尝试强制重启通讯中继站，向地表发送最后一段加密求救录音。"
+    ],
+    "suggested_next_step": "玩家需要权衡生存资源（氧气）与获取信息的优先级，选择行动后将触发与深海异物的直接接触或技术性修复环节。",
+    "is_playable": true,
+    "request_start_ts": 1777540120.1638377,
+    "first_playable_ts": 1777540131.6008556,
+    "finish_ts": 1777540131.6008556,
+    "error": null
+  },
+  "failure_reason": null,
+  "notes": [
+    "DOC-style artifact generated through Yunwu OpenAI-compatible chat/completions API."
+  ],
+  "resource_usage": {
+    "execution_mode": "cloud"
+  },
+  "agent_profile": {
+    "runner": "run_doc.py",
+    "adapter_style": "doc_cloud_yunwu_v1"
+  }
+}

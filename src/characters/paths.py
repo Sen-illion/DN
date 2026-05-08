@@ -8,9 +8,6 @@ from pathlib import Path
 SUPPORTING_ROLE_ARCHIVES_FILE = "role_archives.json"
 PENDING_ROLES_FILE = "pending_roles.json"  # 预配角：只被提及未出场，积累碎片化特征
 
-# Anchor character asset paths to the repository root so callers don't depend on cwd.
-REPO_ROOT = Path(__file__).resolve().parents[2]
-
 
 def generate_game_id() -> str:
     """
@@ -28,13 +25,13 @@ def ensure_main_character_dir(game_id: str) -> Path:
     :param game_id: 游戏ID
     :return: 目录路径
     """
-    main_character_dir = REPO_ROOT / "initial" / "main_character" / game_id
+    main_character_dir = Path("initial") / "main_character" / game_id
     main_character_dir.mkdir(parents=True, exist_ok=True)
     return main_character_dir
 
 
 def ensure_character_references_dir(game_id: str) -> Path:
     """确保配角参考图目录存在"""
-    ref_dir = REPO_ROOT / "initial" / "character_references" / game_id
+    ref_dir = Path("initial") / "character_references" / game_id
     ref_dir.mkdir(parents=True, exist_ok=True)
     return ref_dir

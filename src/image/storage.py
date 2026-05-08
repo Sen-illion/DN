@@ -7,9 +7,6 @@ import hashlib
 from pathlib import Path
 from typing import Optional
 
-REPO_ROOT = Path(__file__).resolve().parents[2]
-IMAGE_CACHE_DIR = REPO_ROOT / "image_cache"
-
 
 def save_base64_image(data_uri: str, prompt: str, cache_key_suffix: str = None) -> Optional[str]:
     """
@@ -67,6 +64,7 @@ def save_base64_image(data_uri: str, prompt: str, cache_key_suffix: str = None) 
             print("⚠️ 检测到 1x1/2x2 PNG 占位 base64，已丢弃该图片数据")
             return None
 
+        IMAGE_CACHE_DIR = "image_cache"
         os.makedirs(IMAGE_CACHE_DIR, exist_ok=True)
 
         key_str = f"{prompt}_{data_uri[:100]}"

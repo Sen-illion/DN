@@ -1,0 +1,82 @@
+{
+  "generated_at": "2026-05-01T02:40:17.580052+00:00",
+  "profiles": {
+    "normal20": {
+      "evidence_path": "D:\\Projects\\DN\\experiments\\benchmark\\standard_runs\\benchmark_v14_fullready_nextturn_normal20.json",
+      "sample_size": 20,
+      "success_count": 20,
+      "success_rate": 1.0,
+      "text_ready_elapsed_s": {
+        "count": 20,
+        "min": 0.006,
+        "max": 6.005,
+        "mean": 0.574,
+        "median": 0.024,
+        "p95": 5.142
+      },
+      "image_ready_elapsed_s": {
+        "count": 20,
+        "min": 0.006,
+        "max": 174.19,
+        "mean": 47.403,
+        "median": 23.119,
+        "p95": 126.81
+      },
+      "full_ready_elapsed_s": {
+        "count": 20,
+        "min": 0.006,
+        "max": 174.19,
+        "mean": 47.403,
+        "median": 23.119,
+        "p95": 126.81
+      },
+      "real_scene_rate": 0.85,
+      "likely_hit_rate": 0.9,
+      "direct_image_count": 9,
+      "async_image_count": 11,
+      "read_wait_s": 0.0,
+      "notes": "normal20 uses pregeneration-enabled production path with zero dwell time; this avoids invalid fallback behavior from PREGENERATION_ENABLED=false."
+    },
+    "pregen60s20": {
+      "evidence_path": "D:\\Projects\\DN\\experiments\\benchmark\\standard_runs\\benchmark_v14_fullready_nextturn_pregen60s20.json",
+      "sample_size": 20,
+      "success_count": 20,
+      "success_rate": 1.0,
+      "text_ready_elapsed_s": {
+        "count": 20,
+        "min": 0.007,
+        "max": 21.269,
+        "mean": 1.419,
+        "median": 0.023,
+        "p95": 7.458
+      },
+      "image_ready_elapsed_s": {
+        "count": 20,
+        "min": 0.011,
+        "max": 234.506,
+        "mean": 34.813,
+        "median": 0.031,
+        "p95": 197.039
+      },
+      "full_ready_elapsed_s": {
+        "count": 20,
+        "min": 0.011,
+        "max": 234.506,
+        "mean": 34.813,
+        "median": 0.031,
+        "p95": 197.039
+      },
+      "real_scene_rate": 0.7,
+      "likely_hit_rate": 1.0,
+      "direct_image_count": 13,
+      "async_image_count": 7,
+      "read_wait_s": 60.0,
+      "notes": ""
+    }
+  },
+  "notes": [
+    "normal20 is intended for strict comparison against the formal20 image-baseline next-turn rows.",
+    "pregen60s20 keeps the same 20 benchmark items but simulates a 60-second player read interval to expose pregeneration benefit.",
+    "StoryDiffusion / SDM-v2 / IC-LoRA rows in the strict table continue to use their existing formal20 next-turn image-continuation results."
+  ]
+}

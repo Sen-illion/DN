@@ -2,7 +2,11 @@ services:
   - type: web
     name: dn-human-eval
     runtime: python
-    plan: free
+    plan: starter
     buildCommand: pip install -r human_eval_site/requirements.txt
     startCommand: gunicorn --chdir human_eval_site --bind 0.0.0.0:$PORT server:app
     healthCheckPath: /api/health
+    disk:
+      name: dn-human-eval-data
+      mountPath: /opt/render/project/src/human_eval_site/collected_results
+      sizeGB: 10

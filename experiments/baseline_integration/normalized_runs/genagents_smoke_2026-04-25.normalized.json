@@ -1,0 +1,108 @@
+{
+  "baseline_id": "genagents",
+  "run_id": "genagents_smoke_2026-04-25",
+  "mode": "text_planning_smoke",
+  "input_bundle": {
+    "benchmark_source": "DN-quality-benchmark-v1",
+    "subset_name": "genagents_smoke_subset_v1",
+    "sample_size": 3,
+    "benchmark_ids": [
+      "DNQBV1_001",
+      "DNQBV1_005",
+      "DNQBV1_013"
+    ]
+  },
+  "agent_profile": {
+    "agent_fullname": "Joon Park",
+    "scratch_key_count": 30,
+    "memory_node_count": 116
+  },
+  "raw_output": {
+    "baseline": "genagents",
+    "date": "2026-04-25",
+    "external_repo": "C:\\Users\\zhang\\Desktop\\DN\\experiments\\external_baselines\\genagents",
+    "sample_agent_dir": "C:\\Users\\zhang\\Desktop\\DN\\experiments\\external_baselines\\genagents\\agent_bank\\populations\\single_agent\\01fd7d2a-0357-4c1b-9f3e-8eade2d537ae",
+    "environment": {
+      "python_utf8": null,
+      "openai_api_key_present": false,
+      "genagents_model": "gpt-4o-mini"
+    },
+    "loader_smoke": {
+      "loaded": true,
+      "agent_fullname": "Joon Park",
+      "scratch_keys": [
+        "age",
+        "born_in_us",
+        "city",
+        "detailed_race",
+        "ethnicity",
+        "family_income_at_16",
+        "family_structure_at_16",
+        "fathers_highest_degree",
+        "first_name",
+        "highest_degree_received",
+        "hispanic_origin",
+        "last_name",
+        "marital_status",
+        "military_service_duration",
+        "mothers_highest_degree",
+        "mothers_work_history",
+        "party_identification",
+        "political_views",
+        "race",
+        "religion",
+        "religion_at_16",
+        "residence_at_16",
+        "same_residence_since_16",
+        "sex",
+        "speak_other_language",
+        "state",
+        "street_address",
+        "total_wealth",
+        "us_citizenship_status",
+        "work_status"
+      ],
+      "memory_node_count": 116
+    },
+    "benchmark_subset": {
+      "subset_name": "genagents_smoke_subset_v1",
+      "baseline": "genagents",
+      "benchmark_source": "DN-quality-benchmark-v1",
+      "created_on": "2026-04-25",
+      "sample_size": 3,
+      "purpose": "Use a small text-planning subset to validate baseline loading, prompt mapping, and normalized result export.",
+      "items": [
+        {
+          "benchmark_id": "DNQBV1_001",
+          "adapted_task": "single-turn interview-style response",
+          "focus": "grounded setting consistency"
+        },
+        {
+          "benchmark_id": "DNQBV1_005",
+          "adapted_task": "high-pressure scenario response",
+          "focus": "genre-conditioned reaction and action preference"
+        },
+        {
+          "benchmark_id": "DNQBV1_013",
+          "adapted_task": "stylized narrative reaction",
+          "focus": "persona stability under non-realist theme"
+        }
+      ]
+    },
+    "active_inference": {
+      "attempted": false,
+      "success": null,
+      "blocked_reason": "OPENAI_API_KEY missing",
+      "response_preview": null
+    },
+    "elapsed_s": 1.037
+  },
+  "success": true,
+  "latency_s": 1.037,
+  "failure_reason": "OPENAI_API_KEY missing",
+  "notes": [
+    "Loader smoke passed.",
+    "Live model response is credential-gated.",
+    "Use this normalized run for integration testing, not final scored comparison."
+  ]
+}

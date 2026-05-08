@@ -350,6 +350,7 @@ function renderCandidates(currentCase) {
     const card = fragment.querySelector(".candidate-card");
     const label = fragment.querySelector(".candidate-label");
     const completion = fragment.querySelector(".candidate-completion");
+    const copy = fragment.querySelector(".candidate-copy");
     const imageStrip = fragment.querySelector(".image-strip");
     const ratingList = fragment.querySelector(".rating-list");
     const note = fragment.querySelector("textarea");
@@ -359,8 +360,11 @@ function renderCandidates(currentCase) {
     card.classList.toggle("is-complete", complete);
     label.textContent = `方案 ${candidate.label}`;
     completion.textContent = complete ? "已完成" : "待评分";
+    copy.textContent = Array.isArray(candidate.text) && candidate.text.length
+      ? "请结合上方共享文本，比较当前方案候选文本的连贯性和一致性。"
+      : "请判断下列连续图片与上方共享文本的整体一致性、连续性与质量。";
 
-    renderImages(imageStrip, candidate.images || []);
+    renderCandidateContent(imageStrip, candidate);
     renderRatings(ratingList, currentCase.id, candidate.label);
 
     note.value = getCandidateState(currentCase.id, candidate.label).note || "";
@@ -373,6 +377,33 @@ function renderCandidates(currentCase) {
     });
 
     els.candidateList.appendChild(fragment);
+  });
+}
+
+function renderCandidateContent(container, candidate) {
+  if (Array.isArray(candidate.text) && candidate.text.length) {
+    renderCandidateText(container, candidate.text);
+    return;
+  }
+  renderImages(container, candidate.images || []);
+}
+
+function renderCandidateText(container, paragraphs) {
+  container.innerHTML = "";
+  paragraphs.forEach((text, index) => {
+    const block = document.createElement("article");
+    block.className = "story-segment";
+
+    const title = document.createElement("p");
+    title.className = "story-segment-title";
+    title.textContent = `候选文本 ${index + 1}`;
+
+    const body = document.createElement("p");
+    body.className = "rich-copy";
+    body.textContent = String(text || "");
+
+    block.append(title, body);
+    container.appendChild(block);
   });
 }
 
@@ -643,6 +674,7 @@ function buildExportPayload() {
           anonymousLabel: candidate.label,
           system: candidate.system || "unknown",
           imageCount: Array.isArray(candidate.images) ? candidate.images.length : 0,
+          textCount: Array.isArray(candidate.text) ? candidate.text.length : 0,
           scores: candidateState.scores || {},
           note: candidateState.note || "",
           complete: isCandidateComplete(currentCase.id, candidate.label)
@@ -673,6 +705,7 @@ function toCsv(payload) {
     "anonymousLabel",
     "system",
     "imageCount",
+    "textCount",
     "dimensionId",
     "dimensionLabel",
     "score",
@@ -695,6 +728,7 @@ function toCsv(payload) {
           rating.anonymousLabel,
           rating.system,
           rating.imageCount,
+          rating.textCount,
           dimension.id,
           dimension.label,
           rating.scores?.[dimension.id] || "",

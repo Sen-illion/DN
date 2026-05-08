@@ -1,0 +1,2779 @@
+{
+  "summary": {
+    "experiment_name": "benchmark_v15_fullready_nextturn_normal20",
+    "profile": "fullready_strict",
+    "sample_size": 2,
+    "read_wait_s": 0.0,
+    "suite_start_ts": 1777641848.5287726,
+    "suite_end_ts": 1777642033.2830162,
+    "first_click_elapsed_s": {
+      "count": 2,
+      "min": 50.505,
+      "max": 63.124,
+      "mean": 56.815,
+      "median": 56.815,
+      "p95": 62.493
+    },
+    "first_click_setup_success_count": 2,
+    "second_click_elapsed_s": {
+      "count": 2,
+      "min": 23.664,
+      "max": 28.806,
+      "mean": 26.235,
+      "median": 26.235,
+      "p95": 28.549
+    },
+    "second_click_success_count": 2,
+    "transport_success_count": 2,
+    "strict_success_count": 2,
+    "likely_hit_count": 0,
+    "likely_hit_rate": 0.0,
+    "failure_bucket_counts": {},
+    "placeholder_strict_fail_count": 0,
+    "cache_hit_reason_counts": {
+      "waited_request_scene_text_completed_no_image": 2
+    },
+    "cache_miss_reason_counts": {
+      "request_scene_generation_in_progress": 2
+    },
+    "global_state_key_drift_detected_count": 2,
+    "scene_id_mismatch_detected_count": 2,
+    "selected_option_mismatch_detected_count": 0,
+    "aborted": false,
+    "success_count": 2,
+    "text_ready_elapsed_s": {
+      "count": 2,
+      "min": 23.664,
+      "max": 28.806,
+      "mean": 26.235,
+      "median": 26.235,
+      "p95": 28.549
+    },
+    "image_ready_elapsed_s": {
+      "count": 2,
+      "min": 23.664,
+      "max": 28.806,
+      "mean": 26.235,
+      "median": 26.235,
+      "p95": 28.549
+    },
+    "full_ready_elapsed_s": {
+      "count": 2,
+      "min": 23.664,
+      "max": 28.806,
+      "mean": 26.235,
+      "median": 26.235,
+      "p95": 28.549
+    },
+    "real_scene_count": 2,
+    "real_scene_rate": 1.0,
+    "direct_image_count": 2,
+    "async_image_count": 0,
+    "placeholder_count": 0,
+    "placeholder_rate": 0.0,
+    "direct_image_rate": 1.0,
+    "async_image_rate": 0.0,
+    "provider_retry_heavy_count": 0,
+    "provider_429_count": 0,
+    "provider_timeout_count": 0,
+    "provider_backoff_wait_ms_total": 0,
+    "main_character_contention_suspected_count": 0,
+    "notes": "v15 strict normal20 treats first click as setup with a separate timeout budget, while preserving 60s fail-fast guards for second-click request, scene-image wait, and the measured next-turn full-ready path."
+  },
+  "runs": [
+    {
+      "benchmark_id": "DNQBV1_019",
+      "theme_id": 12,
+      "theme": "维多利亚钟表匠",
+      "read_wait_s": 0.0,
+      "full_ready_mode": true,
+      "profile": "fullready_strict",
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 8.652,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过完成一系列高难度的平民维修订单，勉强凑齐了工坊的租金，并初步掌握了老市政厅大钟的内部结构图，虽然生活依然拮据，但暂时保住了工坊的经营权。",
+                  "main_conflict": "主角面临工坊租金上涨与订单匮乏的双重压力，必须在维持生计的低端维修与修复那台象征意义的大钟之间做出选择。此时，主角对“工匠精神”抱有执念，试图通过完美修复每一台钟表来证明价值，却因效率低下而陷入入不敷出的困境，生活琐碎与理想追求产生剧烈碰撞。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角通过放弃部分个人利益，与工业巨头达成了一项不平等的零件置换协议，虽然大钟修复进度得以推进，但主角失去了工坊的独立经营权，被迫成为工业体系下的附属工匠。",
+                  "main_conflict": "城市拆迁计划正式下达，主角发现修复大钟所需的关键零件被垄断在工业巨头手中。主角试图通过技术交换获取零件，却被卷入复杂的商业博弈，面临着出卖手艺尊严或放弃大钟修复的道德困境，周围邻居的冷漠与现实的残酷让主角开始怀疑坚持的意义。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "大钟在拆迁的前夜准时敲响，声音苍凉而真实。主角最终选择保留了大钟内部的一处细微误差，以此作为对旧时光的致敬。工坊如期关闭，主角带着工具箱平静离去，虽然失去了奋斗的据点，但内心获得了与现实和解的释然。",
+                  "main_conflict": "大钟修复进入最后阶段，但主角发现即便大钟敲响，也无法改变旧城区被拆迁的既定事实。主角在“完成作品”与“接受失败”之间挣扎，面对即将消逝的工坊与邻里羁绊，主角必须在最后一次校准中，决定是将大钟修复至完美，还是留下一个属于旧时代的“瑕疵”。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为写实主义叙事游戏，采用低饱和度的工业维多利亚美学。画面强调光影的颗粒感与机械运作的精密质感，通过对钟表零件、煤烟街道与陈旧工坊的细腻刻画，营造出一种沉稳、克制且带有时代余温的沉浸式氛围，旨在让玩家在齿轮咬合的节奏中，感受平凡生活里的琐碎与真实。",
+              "main_quest": "主角的目标是修复一座象征旧城区历史的“老市政厅大钟”，以争取政府的修缮拨款，从而保住即将被拆迁的祖传工坊。玩家需在有限的资源与时间内，通过承接零散的修表订单积累资金与声望，同时搜集修复大钟所需的稀有零件。挑战在于，主角必须在“维持生计的廉价维修”与“追求极致的修复理想”之间不断权衡，面对日益恶化的经济环境与工坊拆迁的倒计时，主角不仅要对抗机械的磨损，更要对抗被时代抛弃的无力感，最终在现实的妥协中完成大钟的修复，却不得不接受工坊最终转型或搬迁的命运。",
+              "protagonist_ability": "主角继承了家族传承的“共振听力”，能够通过听觉感知机械内部细微的磨损与节奏偏差。这种能力源于长期的精密训练，使用时需极度专注，通过触碰钟表外壳与内部零件产生共鸣。限制在于，过度使用会导致听觉过载与神经衰弱，且该能力无法修复物理层面的断裂，只能在既定的机械逻辑内寻找最优的运行平衡，无法改变时间的流逝，更无法逆转已发生的损耗。",
+              "world_basic_setting": "故事发生于工业革命鼎盛时期的雾都“格林威治”，这是一座被蒸汽与发条驱动的城市。社会阶层固化严重，上层建筑追求极致的精密与效率，而底层平民则在永不停歇的钟摆声中消耗着生命。钟表匠不仅是时间的记录者，更是城市秩序的维护者。然而，随着廉价工业制品的涌入，传统手工制表业正面临毁灭性打击。城市中弥漫着一种“时间焦虑”，人们试图通过精准的计时来掌控命运，却在无尽的劳作中失去了对生活的感知。关键事件“大停摆”曾让城市陷入瘫痪，自此，人们对时间的崇拜演变为一种近乎病态的执念，而主角所在的旧城区，正是在这种时代洪流中被逐渐遗忘的角落。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1777641848_fm3lym",
+            "image_style": {
+              "subtype": "rococo",
+              "type": "oil_painting"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Elias Thorne",
+              "name_zh": "埃利亚斯·索恩",
+              "signature_look_keywords": "深棕色乱发，常年佩戴单片放大镜，手指布满细小伤痕，穿着磨损的皮围裙，眼神专注而疲惫，袖口总是沾着机油，沉默寡言，清瘦，背部微驼，怀表链条，旧时代工匠气质。",
+              "work_en": "Clockwork Afterglow",
+              "work_zh": "发条余温"
+            },
+            "tone": "normal_ending",
+            "user_theme": "维多利亚钟表匠"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "request_payload": {
+          "gameTheme": "维多利亚钟表匠",
+          "protagonistAttr": {},
+          "difficulty": "normal",
+          "toneKey": "normal_ending",
+          "imageStyle": {
+            "type": "oil_painting",
+            "subtype": "rococo"
+          },
+          "_benchmark_profile": "fullready_strict",
+          "_benchmark_measurement": "fullready_nextturn",
+          "_benchmark_read_wait_s": 0.0
+        },
+        "start_ts": 1777641848.5287793,
+        "end_ts": 1777641857.1804705,
+        "provider_events": {
+          "event_count": 4,
+          "queue_wait_ms": {
+            "count": 4,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 1,
+            "min": 8637.0,
+            "max": 8637.0,
+            "mean": 8637.0,
+            "median": 8637.0,
+            "p95": 8637.0
+          },
+          "llm_success_count": 1,
+          "image_success_count": 0,
+          "request_thread_event_count": 2,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0
+        },
+        "status": "success",
+        "game_id": "game_1777641848_fm3lym"
+      },
+      "long_tail_attribution": {
+        "provider_429_count": 0,
+        "provider_timeout_count": 0,
+        "provider_retry_heavy_count": 0,
+        "provider_backoff_wait_ms_total": 0,
+        "main_character_event_count": 0,
+        "scene_image_event_count": 0,
+        "image_probe_attempt_count": 0,
+        "main_character_contention_suspected": false
+      },
+      "first_click": {
+        "http_status": 200,
+        "elapsed_s": 50.505,
+        "response_json": {
+          "benchmark_diagnostics": {
+            "cache_hit_reason": null,
+            "cache_miss_reason": null,
+            "current_options_key_drift_detected": false,
+            "global_state_key_drift_detected": false,
+            "placeholder": false,
+            "previous_scene_id": null,
+            "recomputed_scene_cache_exists": false,
+            "recomputed_scene_id": null,
+            "request_current_options_count": 0,
+            "request_current_options_hash": "d751713988987e9331980363e24189ce",
+            "request_flow_worldline_hash": "940e38d5f8372eaa58cfdaf4d70a0d30",
+            "request_global_state_hash": "afb30b4a797bdf73af222cced9551991",
+            "request_option_at_index": null,
+            "request_option_index": 0,
+            "request_option_text": "开始游戏",
+            "request_scene_cache_exists": false,
+            "request_scene_id": null,
+            "resolution_path": null,
+            "response_has_image": true,
+            "response_has_scene": true,
+            "response_scene_id": "-3809074981350219632_4440051508562349923",
+            "response_status": "success",
+            "scene_id_mismatch_detected": false,
+            "selected_option_mismatch_detected": false
+          },
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "",
+              "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：潮湿的煤烟味混合着陈旧机油的苦涩，透过工坊那扇布满裂纹的玻璃窗渗了进来。我习惯性地推了推鼻梁上的单片放大镜，深棕色的乱发垂在额前，遮住了我疲惫的视线。工坊里，数十座钟摆在墙上以参差不齐的节奏摇晃，发出令人心烦意乱的滴答声。我低头看着怀里那座齿轮卡死的黄铜座钟，指尖布满细小的伤痕，那是多年来与精密零件搏斗留下的勋章。\n\n“埃利亚斯，如果你还是坚持用这种慢吞吞的纯手工方式，下个月的租金就只能去河里捞了。”房东老莫里森站在门口，他那双浑浊的眼睛贪婪地扫视着我这间堆满零件的工坊，手里晃动着那张盖着红色印章的催缴单。\n\n我没有抬头，只是将耳朵贴近座钟外壳，利用“共振听力”去捕捉内部那细微的、断裂的金属摩擦声。那声音像是一场微小的崩塌，清晰地在我脑海中回响。“我会修好它的，莫里森。”我声音沙哑，怀表链条随着我的动作在皮围裙上轻轻碰撞，“这钟的擒纵机构有独特的工艺，不能用廉价的工业件替换。”\n\n“工艺？这年头，除了那些怀旧的疯子，谁还在乎工艺？”莫里森冷笑一声，转身离去，沉重的脚步声在木地板上回荡。我深吸一口气，强压下神经衰弱带来的阵阵耳鸣，将注意力重新沉入那精密却冰冷的机械世界中。老市政厅大钟的结构图就压在桌角，那是我最后的底牌，也是我保住这间工坊的唯一希望。"
+            },
+            "deep_background_links": {},
+            "flow_update": {},
+            "next_options": [
+              "专注修复眼前的座钟，以此积累声望并赚取租金。",
+              "尝试向莫里森打听市政厅大钟零件的下落，关联家族往事。"
+            ],
+            "scene": "潮湿的煤烟味混合着陈旧机油的苦涩，透过工坊那扇布满裂纹的玻璃窗渗了进来。我习惯性地推了推鼻梁上的单片放大镜，深棕色的乱发垂在额前，遮住了我疲惫的视线。工坊里，数十座钟摆在墙上以参差不齐的节奏摇晃，发出令人心烦意乱的滴答声。我低头看着怀里那座齿轮卡死的黄铜座钟，指尖布满细小的伤痕，那是多年来与精密零件搏斗留下的勋章。\n\n“埃利亚斯，如果你还是坚持用这种慢吞吞的纯手工方式，下个月的租金就只能去河里捞了。”房东老莫里森站在门口，他那双浑浊的眼睛贪婪地扫视着我这间堆满零件的工坊，手里晃动着那张盖着红色印章的催缴单。\n\n我没有抬头，只是将耳朵贴近座钟外壳，利用“共振听力”去捕捉内部那细微的、断裂的金属摩擦声。那声音像是一场微小的崩塌，清晰地在我脑海中回响。“我会修好它的，莫里森。”我声音沙哑，怀表链条随着我的动作在皮围裙上轻轻碰撞，“这钟的擒纵机构有独特的工艺，不能用廉价的工业件替换。”\n\n“工艺？这年头，除了那些怀旧的疯子，谁还在乎工艺？”莫里森冷笑一声，转身离去，沉重的脚步声在木地板上回荡。我深吸一口气，强压下神经衰弱带来的阵阵耳鸣，将注意力重新沉入那精密却冰冷的机械世界中。老市政厅大钟的结构图就压在桌角，那是我最后的底牌，也是我保住这间工坊的唯一希望。",
+            "sceneId": "-3809074981350219632_4440051508562349923",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-workshop-confrontation-elias-morrison, industrial-victorian, steampunk-aesthetic, rococo-oil-painting, melancholic-atmosphere, cinematic-lighting, rococo-style oil painting, exquisite and decorative brushwork, rich texture and heavy impasto, atmospheric soot and smog perspective, soft-shading with dramatic contrast, Elias Thorne, young male protagonist, using Image 0, deep brown messy hair, slightly stooped posture, monocle magnifying glass worn over one eye, fingers covered in fine scars from mechanical work, exhausted and focused expression with deep eye fatigue, worn-out leather apron stained with oil and grime, tattered linen shirt underneath with grease-stained cuffs, vintage watch chain hanging from belt, Elias Thorne bending over a brass mantle clock on workbench, body turned slightly toward 老莫里森-配角1 at the workshop entrance, Elias Thorne ear close to the clock body, listening with resonance ability, one hand holding the clock, the other resting on the table, 8K detailed facial features, Elias Thorne with pale skin and dark eye circles, intense focused gaze through monocular glass, lip color naturally muted and dry, soft shadows emphasizing the weary facial structure, messy deep brown hair with loose strands, root fixation coefficient 0.8, tip swing amplitude 5cm, color layering: main color #3E2723, secondary color #261A19, highlight #5D4037, shadow #1B1212, wind speed 0.2m/s, turbulence intensity 2%, heavy leather apron with visible wear and tear, grease stains on sleeves with detailed texture, slight fabric flutter near the workshop door draft, cluttered workshop filled with intricate clockwork parts, dozens of pendulum clocks on walls with staggered rhythms, cracked glass window revealing a foggy Victorian street, old city hall clock blueprint spread on the corner of the table, dust motes dancing in the dim light, 老莫里森-配角1 standing at the workshop doorway, holding a red-stamped eviction notice, 老莫里森-配角1 with greedy, murky eyes and a stern, impatient posture, hazy soot and coal smoke drifting from the window, faint golden light reflecting off brass gears, subtle particle dust caught in light beams, low-saturation industrial tones, sepia, charcoal grey, and rusted brass yellow, faded red color on the eviction notice, muted earth tones for the workshop interior, directional light from the cracked window, dim warm light from a small oil lamp on the workbench, harsh silhouette lighting on 老莫里森-配角1 at the door, type medium shot, lens 35mm, aperture f/1.8, depth_of_field shallow focus on Elias Thorne and the clock, flash none, grain fine film grain texture, texture oil painting canvas texture, Elias Thorne in the foreground center-left, 老莫里森-配角1 positioned in the background doorway, frame right, workbench as the central visual anchor, action constraints: Elias Thorne maintaining intense concentration on clock gears, rococo oil painting style, no text or symbols in image, no watermarks or artifacts, oppressive time anxiety, melancholic realism, stagnant industrial decay, quiet desperation of a craftsman, no text, no symbols, no garbled characters, no words",
+              "prompt_json": {
+                "camera": {
+                  "aperture": "f/1.8",
+                  "depth_of_field": "shallow focus on Elias Thorne and the clock",
+                  "flash": "none",
+                  "grain": "fine film grain texture",
+                  "lens": "35mm",
+                  "texture": "oil painting canvas texture",
+                  "type": "medium shot"
+                },
+                "clothing_system": [
+                  "heavy leather apron with visible wear and tear",
+                  "grease stains on sleeves with detailed texture",
+                  "slight fabric flutter near the workshop door draft"
+                ],
+                "color_restriction": [
+                  "low-saturation industrial tones",
+                  "sepia, charcoal grey, and rusted brass yellow",
+                  "faded red color on the eviction notice",
+                  "muted earth tones for the workshop interior"
+                ],
+                "composition": [
+                  "Elias Thorne in the foreground center-left",
+                  "老莫里森-配角1 positioned in the background doorway, frame right",
+                  "workbench as the central visual anchor",
+                  "action constraints: Elias Thorne maintaining intense concentration on clock gears"
+                ],
+                "environment": {
+                  "background": [
+                    "cluttered workshop filled with intricate clockwork parts",
+                    "dozens of pendulum clocks on walls with staggered rhythms",
+                    "cracked glass window revealing a foggy Victorian street",
+                    "old city hall clock blueprint spread on the corner of the table",
+                    "dust motes dancing in the dim light"
+                  ],
+                  "characters": [
+                    "老莫里森-配角1 standing at the workshop doorway, holding a red-stamped eviction notice",
+                    "老莫里森-配角1 with greedy, murky eyes and a stern, impatient posture"
+                  ],
+                  "effects": [
+                    "hazy soot and coal smoke drifting from the window",
+                    "faint golden light reflecting off brass gears",
+                    "subtle particle dust caught in light beams"
+                  ]
+                },
+                "face_system": [
+                  "8K detailed facial features",
+                  "Elias Thorne with pale skin and dark eye circles",
+                  "intense focused gaze through monocular glass",
+                  "lip color naturally muted and dry",
+                  "soft shadows emphasizing the weary facial structure"
+                ],
+                "hair_system": [
+                  "messy deep brown hair with loose strands",
+                  "root fixation coefficient 0.8",
+                  "tip swing amplitude 5cm",
+                  "color layering: main color #3E2723, secondary color #261A19, highlight #5D4037, shadow #1B1212",
+                  "wind speed 0.2m/s",
+                  "turbulence intensity 2%"
+                ],
+                "label": "scene-workshop-confrontation-elias-morrison",
+                "lighting": [
+                  "directional light from the cracked window",
+                  "dim warm light from a small oil lamp on the workbench",
+                  "harsh silhouette lighting on 老莫里森-配角1 at the door"
+                ],
+                "mood": [
+                  "oppressive time anxiety",
+                  "melancholic realism",
+                  "stagnant industrial decay",
+                  "quiet desperation of a craftsman"
+                ],
+                "output_style": [
+                  "rococo oil painting style",
+                  "no text or symbols in image",
+                  "no watermarks or artifacts"
+                ],
+                "style": [
+                  "rococo-style oil painting",
+                  "exquisite and decorative brushwork",
+                  "rich texture and heavy impasto",
+                  "atmospheric soot and smog perspective",
+                  "soft-shading with dramatic contrast"
+                ],
+                "subject": {
+                  "body_traits": [
+                    "Elias Thorne, young male protagonist, using Image 0",
+                    "deep brown messy hair, slightly stooped posture",
+                    "monocle magnifying glass worn over one eye",
+                    "fingers covered in fine scars from mechanical work",
+                    "exhausted and focused expression with deep eye fatigue"
+                  ],
+                  "outfit": [
+                    "worn-out leather apron stained with oil and grime",
+                    "tattered linen shirt underneath with grease-stained cuffs",
+                    "vintage watch chain hanging from belt"
+                  ],
+                  "pose": [
+                    "Elias Thorne bending over a brass mantle clock on workbench",
+                    "body turned slightly toward 老莫里森-配角1 at the workshop entrance",
+                    "Elias Thorne ear close to the clock body, listening with resonance ability",
+                    "one hand holding the clock, the other resting on the table"
+                  ]
+                },
+                "tags": [
+                  "industrial-victorian",
+                  "steampunk-aesthetic",
+                  "rococo-oil-painting",
+                  "melancholic-atmosphere",
+                  "cinematic-lighting"
+                ]
+              },
+              "scene_text_hash": "8a7253f4712096951b452e0ecc426d49",
+              "style": "default",
+              "url": "/image_cache/a469f32ac400ee1359c05a0f1eb6a5e5.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "request_payload": {
+          "option": "开始游戏",
+          "optionIndex": 0,
+          "sceneId": null,
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过完成一系列高难度的平民维修订单，勉强凑齐了工坊的租金，并初步掌握了老市政厅大钟的内部结构图，虽然生活依然拮据，但暂时保住了工坊的经营权。",
+                  "main_conflict": "主角面临工坊租金上涨与订单匮乏的双重压力，必须在维持生计的低端维修与修复那台象征意义的大钟之间做出选择。此时，主角对“工匠精神”抱有执念，试图通过完美修复每一台钟表来证明价值，却因效率低下而陷入入不敷出的困境，生活琐碎与理想追求产生剧烈碰撞。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角通过放弃部分个人利益，与工业巨头达成了一项不平等的零件置换协议，虽然大钟修复进度得以推进，但主角失去了工坊的独立经营权，被迫成为工业体系下的附属工匠。",
+                  "main_conflict": "城市拆迁计划正式下达，主角发现修复大钟所需的关键零件被垄断在工业巨头手中。主角试图通过技术交换获取零件，却被卷入复杂的商业博弈，面临着出卖手艺尊严或放弃大钟修复的道德困境，周围邻居的冷漠与现实的残酷让主角开始怀疑坚持的意义。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "大钟在拆迁的前夜准时敲响，声音苍凉而真实。主角最终选择保留了大钟内部的一处细微误差，以此作为对旧时光的致敬。工坊如期关闭，主角带着工具箱平静离去，虽然失去了奋斗的据点，但内心获得了与现实和解的释然。",
+                  "main_conflict": "大钟修复进入最后阶段，但主角发现即便大钟敲响，也无法改变旧城区被拆迁的既定事实。主角在“完成作品”与“接受失败”之间挣扎，面对即将消逝的工坊与邻里羁绊，主角必须在最后一次校准中，决定是将大钟修复至完美，还是留下一个属于旧时代的“瑕疵”。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为写实主义叙事游戏，采用低饱和度的工业维多利亚美学。画面强调光影的颗粒感与机械运作的精密质感，通过对钟表零件、煤烟街道与陈旧工坊的细腻刻画，营造出一种沉稳、克制且带有时代余温的沉浸式氛围，旨在让玩家在齿轮咬合的节奏中，感受平凡生活里的琐碎与真实。",
+              "main_quest": "主角的目标是修复一座象征旧城区历史的“老市政厅大钟”，以争取政府的修缮拨款，从而保住即将被拆迁的祖传工坊。玩家需在有限的资源与时间内，通过承接零散的修表订单积累资金与声望，同时搜集修复大钟所需的稀有零件。挑战在于，主角必须在“维持生计的廉价维修”与“追求极致的修复理想”之间不断权衡，面对日益恶化的经济环境与工坊拆迁的倒计时，主角不仅要对抗机械的磨损，更要对抗被时代抛弃的无力感，最终在现实的妥协中完成大钟的修复，却不得不接受工坊最终转型或搬迁的命运。",
+              "protagonist_ability": "主角继承了家族传承的“共振听力”，能够通过听觉感知机械内部细微的磨损与节奏偏差。这种能力源于长期的精密训练，使用时需极度专注，通过触碰钟表外壳与内部零件产生共鸣。限制在于，过度使用会导致听觉过载与神经衰弱，且该能力无法修复物理层面的断裂，只能在既定的机械逻辑内寻找最优的运行平衡，无法改变时间的流逝，更无法逆转已发生的损耗。",
+              "world_basic_setting": "故事发生于工业革命鼎盛时期的雾都“格林威治”，这是一座被蒸汽与发条驱动的城市。社会阶层固化严重，上层建筑追求极致的精密与效率，而底层平民则在永不停歇的钟摆声中消耗着生命。钟表匠不仅是时间的记录者，更是城市秩序的维护者。然而，随着廉价工业制品的涌入，传统手工制表业正面临毁灭性打击。城市中弥漫着一种“时间焦虑”，人们试图通过精准的计时来掌控命运，却在无尽的劳作中失去了对生活的感知。关键事件“大停摆”曾让城市陷入瘫痪，自此，人们对时间的崇拜演变为一种近乎病态的执念，而主角所在的旧城区，正是在这种时代洪流中被逐渐遗忘的角落。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1777641848_fm3lym",
+            "image_style": {
+              "subtype": "rococo",
+              "type": "oil_painting"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Elias Thorne",
+              "name_zh": "埃利亚斯·索恩",
+              "signature_look_keywords": "深棕色乱发，常年佩戴单片放大镜，手指布满细小伤痕，穿着磨损的皮围裙，眼神专注而疲惫，袖口总是沾着机油，沉默寡言，清瘦，背部微驼，怀表链条，旧时代工匠气质。",
+              "work_en": "Clockwork Afterglow",
+              "work_zh": "发条余温"
+            },
+            "tone": "normal_ending",
+            "user_theme": "维多利亚钟表匠",
+            "_benchmark_profile": "fullready_strict",
+            "_benchmark_measurement": "fullready_nextturn",
+            "_benchmark_read_wait_s": 0.0
+          }
+        },
+        "start_ts": 1777641857.2459443,
+        "end_ts": 1777641907.7510383,
+        "provider_events": {
+          "event_count": 9,
+          "queue_wait_ms": {
+            "count": 9,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 5,
+            "min": 2759.0,
+            "max": 11721.0,
+            "mean": 7242.4,
+            "median": 7445.0,
+            "p95": 11243.6
+          },
+          "llm_success_count": 4,
+          "image_success_count": 0,
+          "request_thread_event_count": 0,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 2,
+          "scene_image_event_count": 0
+        },
+        "attempts": [
+          {
+            "http_status": 200,
+            "elapsed_s": 50.505,
+            "response_json": {
+              "benchmark_diagnostics": {
+                "cache_hit_reason": null,
+                "cache_miss_reason": null,
+                "current_options_key_drift_detected": false,
+                "global_state_key_drift_detected": false,
+                "placeholder": false,
+                "previous_scene_id": null,
+                "recomputed_scene_cache_exists": false,
+                "recomputed_scene_id": null,
+                "request_current_options_count": 0,
+                "request_current_options_hash": "d751713988987e9331980363e24189ce",
+                "request_flow_worldline_hash": "940e38d5f8372eaa58cfdaf4d70a0d30",
+                "request_global_state_hash": "afb30b4a797bdf73af222cced9551991",
+                "request_option_at_index": null,
+                "request_option_index": 0,
+                "request_option_text": "开始游戏",
+                "request_scene_cache_exists": false,
+                "request_scene_id": null,
+                "resolution_path": null,
+                "response_has_image": true,
+                "response_has_scene": true,
+                "response_scene_id": "-3809074981350219632_4440051508562349923",
+                "response_status": "success",
+                "scene_id_mismatch_detected": false,
+                "selected_option_mismatch_detected": false
+              },
+              "message": "选项剧情生成成功！",
+              "optionData": {
+                "checkpoint_packet": {
+                  "chapter": "chapter1",
+                  "chapter_conflict_solved": false,
+                  "quest_delta": "",
+                  "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：潮湿的煤烟味混合着陈旧机油的苦涩，透过工坊那扇布满裂纹的玻璃窗渗了进来。我习惯性地推了推鼻梁上的单片放大镜，深棕色的乱发垂在额前，遮住了我疲惫的视线。工坊里，数十座钟摆在墙上以参差不齐的节奏摇晃，发出令人心烦意乱的滴答声。我低头看着怀里那座齿轮卡死的黄铜座钟，指尖布满细小的伤痕，那是多年来与精密零件搏斗留下的勋章。\n\n“埃利亚斯，如果你还是坚持用这种慢吞吞的纯手工方式，下个月的租金就只能去河里捞了。”房东老莫里森站在门口，他那双浑浊的眼睛贪婪地扫视着我这间堆满零件的工坊，手里晃动着那张盖着红色印章的催缴单。\n\n我没有抬头，只是将耳朵贴近座钟外壳，利用“共振听力”去捕捉内部那细微的、断裂的金属摩擦声。那声音像是一场微小的崩塌，清晰地在我脑海中回响。“我会修好它的，莫里森。”我声音沙哑，怀表链条随着我的动作在皮围裙上轻轻碰撞，“这钟的擒纵机构有独特的工艺，不能用廉价的工业件替换。”\n\n“工艺？这年头，除了那些怀旧的疯子，谁还在乎工艺？”莫里森冷笑一声，转身离去，沉重的脚步声在木地板上回荡。我深吸一口气，强压下神经衰弱带来的阵阵耳鸣，将注意力重新沉入那精密却冰冷的机械世界中。老市政厅大钟的结构图就压在桌角，那是我最后的底牌，也是我保住这间工坊的唯一希望。"
+                },
+                "deep_background_links": {},
+                "flow_update": {},
+                "next_options": [
+                  "专注修复眼前的座钟，以此积累声望并赚取租金。",
+                  "尝试向莫里森打听市政厅大钟零件的下落，关联家族往事。"
+                ],
+                "scene": "潮湿的煤烟味混合着陈旧机油的苦涩，透过工坊那扇布满裂纹的玻璃窗渗了进来。我习惯性地推了推鼻梁上的单片放大镜，深棕色的乱发垂在额前，遮住了我疲惫的视线。工坊里，数十座钟摆在墙上以参差不齐的节奏摇晃，发出令人心烦意乱的滴答声。我低头看着怀里那座齿轮卡死的黄铜座钟，指尖布满细小的伤痕，那是多年来与精密零件搏斗留下的勋章。\n\n“埃利亚斯，如果你还是坚持用这种慢吞吞的纯手工方式，下个月的租金就只能去河里捞了。”房东老莫里森站在门口，他那双浑浊的眼睛贪婪地扫视着我这间堆满零件的工坊，手里晃动着那张盖着红色印章的催缴单。\n\n我没有抬头，只是将耳朵贴近座钟外壳，利用“共振听力”去捕捉内部那细微的、断裂的金属摩擦声。那声音像是一场微小的崩塌，清晰地在我脑海中回响。“我会修好它的，莫里森。”我声音沙哑，怀表链条随着我的动作在皮围裙上轻轻碰撞，“这钟的擒纵机构有独特的工艺，不能用廉价的工业件替换。”\n\n“工艺？这年头，除了那些怀旧的疯子，谁还在乎工艺？”莫里森冷笑一声，转身离去，沉重的脚步声在木地板上回荡。我深吸一口气，强压下神经衰弱带来的阵阵耳鸣，将注意力重新沉入那精密却冰冷的机械世界中。老市政厅大钟的结构图就压在桌角，那是我最后的底牌，也是我保住这间工坊的唯一希望。",
+                "sceneId": "-3809074981350219632_4440051508562349923",
+                "scene_image": {
+                  "cached": true,
+                  "height": 1080,
+                  "image_type": "story_scene",
+                  "prompt": "scene-workshop-confrontation-elias-morrison, industrial-victorian, steampunk-aesthetic, rococo-oil-painting, melancholic-atmosphere, cinematic-lighting, rococo-style oil painting, exquisite and decorative brushwork, rich texture and heavy impasto, atmospheric soot and smog perspective, soft-shading with dramatic contrast, Elias Thorne, young male protagonist, using Image 0, deep brown messy hair, slightly stooped posture, monocle magnifying glass worn over one eye, fingers covered in fine scars from mechanical work, exhausted and focused expression with deep eye fatigue, worn-out leather apron stained with oil and grime, tattered linen shirt underneath with grease-stained cuffs, vintage watch chain hanging from belt, Elias Thorne bending over a brass mantle clock on workbench, body turned slightly toward 老莫里森-配角1 at the workshop entrance, Elias Thorne ear close to the clock body, listening with resonance ability, one hand holding the clock, the other resting on the table, 8K detailed facial features, Elias Thorne with pale skin and dark eye circles, intense focused gaze through monocular glass, lip color naturally muted and dry, soft shadows emphasizing the weary facial structure, messy deep brown hair with loose strands, root fixation coefficient 0.8, tip swing amplitude 5cm, color layering: main color #3E2723, secondary color #261A19, highlight #5D4037, shadow #1B1212, wind speed 0.2m/s, turbulence intensity 2%, heavy leather apron with visible wear and tear, grease stains on sleeves with detailed texture, slight fabric flutter near the workshop door draft, cluttered workshop filled with intricate clockwork parts, dozens of pendulum clocks on walls with staggered rhythms, cracked glass window revealing a foggy Victorian street, old city hall clock blueprint spread on the corner of the table, dust motes dancing in the dim light, 老莫里森-配角1 standing at the workshop doorway, holding a red-stamped eviction notice, 老莫里森-配角1 with greedy, murky eyes and a stern, impatient posture, hazy soot and coal smoke drifting from the window, faint golden light reflecting off brass gears, subtle particle dust caught in light beams, low-saturation industrial tones, sepia, charcoal grey, and rusted brass yellow, faded red color on the eviction notice, muted earth tones for the workshop interior, directional light from the cracked window, dim warm light from a small oil lamp on the workbench, harsh silhouette lighting on 老莫里森-配角1 at the door, type medium shot, lens 35mm, aperture f/1.8, depth_of_field shallow focus on Elias Thorne and the clock, flash none, grain fine film grain texture, texture oil painting canvas texture, Elias Thorne in the foreground center-left, 老莫里森-配角1 positioned in the background doorway, frame right, workbench as the central visual anchor, action constraints: Elias Thorne maintaining intense concentration on clock gears, rococo oil painting style, no text or symbols in image, no watermarks or artifacts, oppressive time anxiety, melancholic realism, stagnant industrial decay, quiet desperation of a craftsman, no text, no symbols, no garbled characters, no words",
+                  "prompt_json": {
+                    "camera": {
+                      "aperture": "f/1.8",
+                      "depth_of_field": "shallow focus on Elias Thorne and the clock",
+                      "flash": "none",
+                      "grain": "fine film grain texture",
+                      "lens": "35mm",
+                      "texture": "oil painting canvas texture",
+                      "type": "medium shot"
+                    },
+                    "clothing_system": [
+                      "heavy leather apron with visible wear and tear",
+                      "grease stains on sleeves with detailed texture",
+                      "slight fabric flutter near the workshop door draft"
+                    ],
+                    "color_restriction": [
+                      "low-saturation industrial tones",
+                      "sepia, charcoal grey, and rusted brass yellow",
+                      "faded red color on the eviction notice",
+                      "muted earth tones for the workshop interior"
+                    ],
+                    "composition": [
+                      "Elias Thorne in the foreground center-left",
+                      "老莫里森-配角1 positioned in the background doorway, frame right",
+                      "workbench as the central visual anchor",
+                      "action constraints: Elias Thorne maintaining intense concentration on clock gears"
+                    ],
+                    "environment": {
+                      "background": [
+                        "cluttered workshop filled with intricate clockwork parts",
+                        "dozens of pendulum clocks on walls with staggered rhythms",
+                        "cracked glass window revealing a foggy Victorian street",
+                        "old city hall clock blueprint spread on the corner of the table",
+                        "dust motes dancing in the dim light"
+                      ],
+                      "characters": [
+                        "老莫里森-配角1 standing at the workshop doorway, holding a red-stamped eviction notice",
+                        "老莫里森-配角1 with greedy, murky eyes and a stern, impatient posture"
+                      ],
+                      "effects": [
+                        "hazy soot and coal smoke drifting from the window",
+                        "faint golden light reflecting off brass gears",
+                        "subtle particle dust caught in light beams"
+                      ]
+                    },
+                    "face_system": [
+                      "8K detailed facial features",
+                      "Elias Thorne with pale skin and dark eye circles",
+                      "intense focused gaze through monocular glass",
+                      "lip color naturally muted and dry",
+                      "soft shadows emphasizing the weary facial structure"
+                    ],
+                    "hair_system": [
+                      "messy deep brown hair with loose strands",
+                      "root fixation coefficient 0.8",
+                      "tip swing amplitude 5cm",
+                      "color layering: main color #3E2723, secondary color #261A19, highlight #5D4037, shadow #1B1212",
+                      "wind speed 0.2m/s",
+                      "turbulence intensity 2%"
+                    ],
+                    "label": "scene-workshop-confrontation-elias-morrison",
+                    "lighting": [
+                      "directional light from the cracked window",
+                      "dim warm light from a small oil lamp on the workbench",
+                      "harsh silhouette lighting on 老莫里森-配角1 at the door"
+                    ],
+                    "mood": [
+                      "oppressive time anxiety",
+                      "melancholic realism",
+                      "stagnant industrial decay",
+                      "quiet desperation of a craftsman"
+                    ],
+                    "output_style": [
+                      "rococo oil painting style",
+                      "no text or symbols in image",
+                      "no watermarks or artifacts"
+                    ],
+                    "style": [
+                      "rococo-style oil painting",
+                      "exquisite and decorative brushwork",
+                      "rich texture and heavy impasto",
+                      "atmospheric soot and smog perspective",
+                      "soft-shading with dramatic contrast"
+                    ],
+                    "subject": {
+                      "body_traits": [
+                        "Elias Thorne, young male protagonist, using Image 0",
+                        "deep brown messy hair, slightly stooped posture",
+                        "monocle magnifying glass worn over one eye",
+                        "fingers covered in fine scars from mechanical work",
+                        "exhausted and focused expression with deep eye fatigue"
+                      ],
+                      "outfit": [
+                        "worn-out leather apron stained with oil and grime",
+                        "tattered linen shirt underneath with grease-stained cuffs",
+                        "vintage watch chain hanging from belt"
+                      ],
+                      "pose": [
+                        "Elias Thorne bending over a brass mantle clock on workbench",
+                        "body turned slightly toward 老莫里森-配角1 at the workshop entrance",
+                        "Elias Thorne ear close to the clock body, listening with resonance ability",
+                        "one hand holding the clock, the other resting on the table"
+                      ]
+                    },
+                    "tags": [
+                      "industrial-victorian",
+                      "steampunk-aesthetic",
+                      "rococo-oil-painting",
+                      "melancholic-atmosphere",
+                      "cinematic-lighting"
+                    ]
+                  },
+                  "scene_text_hash": "8a7253f4712096951b452e0ecc426d49",
+                  "style": "default",
+                  "url": "/image_cache/a469f32ac400ee1359c05a0f1eb6a5e5.png",
+                  "width": 1920
+                }
+              },
+              "status": "success"
+            },
+            "request_payload": {
+              "option": "开始游戏",
+              "optionIndex": 0,
+              "sceneId": null,
+              "globalState": {
+                "core_worldview": {
+                  "chapters": {
+                    "chapter1": {
+                      "conflict_end_condition": "主角通过完成一系列高难度的平民维修订单，勉强凑齐了工坊的租金，并初步掌握了老市政厅大钟的内部结构图，虽然生活依然拮据，但暂时保住了工坊的经营权。",
+                      "main_conflict": "主角面临工坊租金上涨与订单匮乏的双重压力，必须在维持生计的低端维修与修复那台象征意义的大钟之间做出选择。此时，主角对“工匠精神”抱有执念，试图通过完美修复每一台钟表来证明价值，却因效率低下而陷入入不敷出的困境，生活琐碎与理想追求产生剧烈碰撞。"
+                    },
+                    "chapter2": {
+                      "conflict_end_condition": "主角通过放弃部分个人利益，与工业巨头达成了一项不平等的零件置换协议，虽然大钟修复进度得以推进，但主角失去了工坊的独立经营权，被迫成为工业体系下的附属工匠。",
+                      "main_conflict": "城市拆迁计划正式下达，主角发现修复大钟所需的关键零件被垄断在工业巨头手中。主角试图通过技术交换获取零件，却被卷入复杂的商业博弈，面临着出卖手艺尊严或放弃大钟修复的道德困境，周围邻居的冷漠与现实的残酷让主角开始怀疑坚持的意义。"
+                    },
+                    "chapter3": {
+                      "conflict_end_condition": "大钟在拆迁的前夜准时敲响，声音苍凉而真实。主角最终选择保留了大钟内部的一处细微误差，以此作为对旧时光的致敬。工坊如期关闭，主角带着工具箱平静离去，虽然失去了奋斗的据点，但内心获得了与现实和解的释然。",
+                      "main_conflict": "大钟修复进入最后阶段，但主角发现即便大钟敲响，也无法改变旧城区被拆迁的既定事实。主角在“完成作品”与“接受失败”之间挣扎，面对即将消逝的工坊与邻里羁绊，主角必须在最后一次校准中，决定是将大钟修复至完美，还是留下一个属于旧时代的“瑕疵”。"
+                    }
+                  },
+                  "characters": {},
+                  "forces": {},
+                  "game_style": "本作为写实主义叙事游戏，采用低饱和度的工业维多利亚美学。画面强调光影的颗粒感与机械运作的精密质感，通过对钟表零件、煤烟街道与陈旧工坊的细腻刻画，营造出一种沉稳、克制且带有时代余温的沉浸式氛围，旨在让玩家在齿轮咬合的节奏中，感受平凡生活里的琐碎与真实。",
+                  "main_quest": "主角的目标是修复一座象征旧城区历史的“老市政厅大钟”，以争取政府的修缮拨款，从而保住即将被拆迁的祖传工坊。玩家需在有限的资源与时间内，通过承接零散的修表订单积累资金与声望，同时搜集修复大钟所需的稀有零件。挑战在于，主角必须在“维持生计的廉价维修”与“追求极致的修复理想”之间不断权衡，面对日益恶化的经济环境与工坊拆迁的倒计时，主角不仅要对抗机械的磨损，更要对抗被时代抛弃的无力感，最终在现实的妥协中完成大钟的修复，却不得不接受工坊最终转型或搬迁的命运。",
+                  "protagonist_ability": "主角继承了家族传承的“共振听力”，能够通过听觉感知机械内部细微的磨损与节奏偏差。这种能力源于长期的精密训练，使用时需极度专注，通过触碰钟表外壳与内部零件产生共鸣。限制在于，过度使用会导致听觉过载与神经衰弱，且该能力无法修复物理层面的断裂，只能在既定的机械逻辑内寻找最优的运行平衡，无法改变时间的流逝，更无法逆转已发生的损耗。",
+                  "world_basic_setting": "故事发生于工业革命鼎盛时期的雾都“格林威治”，这是一座被蒸汽与发条驱动的城市。社会阶层固化严重，上层建筑追求极致的精密与效率，而底层平民则在永不停歇的钟摆声中消耗着生命。钟表匠不仅是时间的记录者，更是城市秩序的维护者。然而，随着廉价工业制品的涌入，传统手工制表业正面临毁灭性打击。城市中弥漫着一种“时间焦虑”，人们试图通过精准的计时来掌控命运，却在无尽的劳作中失去了对生活的感知。关键事件“大停摆”曾让城市陷入瘫痪，自此，人们对时间的崇拜演变为一种近乎病态的执念，而主角所在的旧城区，正是在这种时代洪流中被逐渐遗忘的角落。"
+                },
+                "flow_worldline": {
+                  "characters": {},
+                  "current_chapter": "chapter1",
+                  "environment": {}
+                },
+                "game_id": "game_1777641848_fm3lym",
+                "image_style": {
+                  "subtype": "rococo",
+                  "type": "oil_painting"
+                },
+                "meta": {
+                  "detail_async": true
+                },
+                "protagonist_canonical": {
+                  "age_range": "青年",
+                  "gender": "男性",
+                  "name_en": "Elias Thorne",
+                  "name_zh": "埃利亚斯·索恩",
+                  "signature_look_keywords": "深棕色乱发，常年佩戴单片放大镜，手指布满细小伤痕，穿着磨损的皮围裙，眼神专注而疲惫，袖口总是沾着机油，沉默寡言，清瘦，背部微驼，怀表链条，旧时代工匠气质。",
+                  "work_en": "Clockwork Afterglow",
+                  "work_zh": "发条余温"
+                },
+                "tone": "normal_ending",
+                "user_theme": "维多利亚钟表匠",
+                "_benchmark_profile": "fullready_strict",
+                "_benchmark_measurement": "fullready_nextturn",
+                "_benchmark_read_wait_s": 0.0
+              }
+            },
+            "start_ts": 1777641857.2459443,
+            "end_ts": 1777641907.7510383,
+            "provider_events": {
+              "event_count": 9,
+              "queue_wait_ms": {
+                "count": 9,
+                "min": 0.0,
+                "max": 0.0,
+                "mean": 0.0,
+                "median": 0.0,
+                "p95": 0.0
+              },
+              "latency_ms": {
+                "count": 5,
+                "min": 2759.0,
+                "max": 11721.0,
+                "mean": 7242.4,
+                "median": 7445.0,
+                "p95": 11243.6
+              },
+              "llm_success_count": 4,
+              "image_success_count": 0,
+              "request_thread_event_count": 0,
+              "provider_429_count": 0,
+              "provider_timeout_count": 0,
+              "shared_backoff_wait_ms_total": 0,
+              "retry_heavy_event_count": 0,
+              "main_character_event_count": 2,
+              "scene_image_event_count": 0
+            }
+          }
+        ],
+        "attempt_count": 1,
+        "request_elapsed_s": 50.505,
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "success",
+        "has_scene": true,
+        "has_image": true,
+        "setup_success": true
+      },
+      "second_click": {
+        "http_status": 200,
+        "elapsed_s": 23.664,
+        "response_json": {
+          "benchmark_diagnostics": {
+            "cache_hit_reason": "waited_request_scene_text_completed_no_image",
+            "cache_miss_reason": "request_scene_generation_in_progress",
+            "current_options_key_drift_detected": false,
+            "global_state_key_drift_detected": true,
+            "placeholder": false,
+            "previous_scene_id": "initial",
+            "recomputed_scene_cache_exists": false,
+            "recomputed_scene_id": "-3119646592473943495_4440051508562349923",
+            "request_current_options_count": 2,
+            "request_current_options_hash": "abb1bf8c7560e5423aeb96360ca0d1cb",
+            "request_flow_worldline_hash": "0b7d2802f8e46ae104639ddbac325b51",
+            "request_global_state_hash": "0b52df89e444d7577ccd60bc7a048e6b",
+            "request_option_at_index": "专注修复眼前的座钟，以此积累声望并赚取租金。",
+            "request_option_index": 0,
+            "request_option_text": "专注修复眼前的座钟，以此积累声望并赚取租金。",
+            "request_scene_cache_exists": true,
+            "request_scene_cache_meta": {
+              "canonical_scene_id": "-6810647802588833892_4440051508562349923",
+              "current_options_hash": "abb1bf8c7560e5423aeb96360ca0d1cb",
+              "current_options_preview": [
+                "专注修复眼前的座钟，以此积累声望并赚取租金。",
+                "尝试向莫里森打听市政厅大钟零件的下落，关联家族往事。"
+              ],
+              "flow_worldline_hash": "940e38d5f8372eaa58cfdaf4d70a0d30",
+              "global_state_hash": "485c704a2fe6cc545e363d3ace445e47",
+              "option_count": 2,
+              "parent_scene_id": null,
+              "scene_id": "-3809074981350219632_4440051508562349923"
+            },
+            "request_scene_id": "-3809074981350219632_4440051508562349923",
+            "resolution_path": "wait_for_request_scene_cache_text_only",
+            "response_has_image": true,
+            "response_has_scene": true,
+            "response_scene_id": "-387209434091524627_928511252345016542",
+            "response_status": "success",
+            "scene_id_mismatch_detected": true,
+            "selected_option_mismatch_detected": false
+          },
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "成功修复了座钟的擒纵机构，赚取了维持工坊运转的初步租金，并从座钟内部发现了一张残缺的图纸碎片，指向老市政厅大钟的隐藏结构。",
+              "recap_text": "你选择了“专注修复眼前的座钟，以此积累声望并赚取租金。”。当前章节：chapter1。主线进展：成功修复了座钟的擒纵机构，赚取了维持工坊运转的初步租金，并从座钟内部发现了一张残缺的图纸碎片，指向老市政厅大钟的隐藏结构。。最近剧情：我深吸一口气，将单片放大镜扣在眼眶上，冰冷的金属边缘压迫着我的皮肤。眼前的座钟像是一个沉默的病人，发条盒内部传出的断续摩擦声在我的“共振听力”下被放大成刺耳的金属哀鸣。我颤抖着手指，用镊子小心翼翼地拨开那层厚重的积灰，露出下方磨损严重的擒纵叉。为了赚取下个月的租金，我必须在天亮前完成这次修复。我将怀表链条缠在手腕上，以此稳定因长期疲劳而微微发抖的指尖。汗水顺着我的鬓角滑落，滴在磨损的皮围裙上。我低声自语：“别急，再坚持一下，只要齿轮咬合的节奏恢复，你就还能再走上十年。”我专注地调整着游丝的张力，每一次细微的拨动都伴随着神经衰弱带来的阵阵耳鸣，但我不敢停下，因为这不仅是我的生计，也是我证明自己手艺尚存的唯一方式。"
+            },
+            "deep_background_links": {
+              "1": "老修表匠（通过询问可解锁关于主角家族与市政厅大钟历史的深层关联）"
+            },
+            "flow_update": {
+              "chapter_conflict_solved": false,
+              "characters": {},
+              "environment": {},
+              "quest_progress": "成功修复了座钟的擒纵机构，赚取了维持工坊运转的初步租金，并从座钟内部发现了一张残缺的图纸碎片，指向老市政厅大钟的隐藏结构。"
+            },
+            "next_options": [
+              "坚持手工打磨零件，试图恢复其原始的精准度。",
+              "询问常客老修表匠关于这台座钟的特殊工艺背景。"
+            ],
+            "plot_mentioned_only": [
+              "莫里森"
+            ],
+            "plot_supporting_characters": [],
+            "scene": "我深吸一口气，将单片放大镜扣在眼眶上，冰冷的金属边缘压迫着我的皮肤。眼前的座钟像是一个沉默的病人，发条盒内部传出的断续摩擦声在我的“共振听力”下被放大成刺耳的金属哀鸣。我颤抖着手指，用镊子小心翼翼地拨开那层厚重的积灰，露出下方磨损严重的擒纵叉。为了赚取下个月的租金，我必须在天亮前完成这次修复。我将怀表链条缠在手腕上，以此稳定因长期疲劳而微微发抖的指尖。汗水顺着我的鬓角滑落，滴在磨损的皮围裙上。我低声自语：“别急，再坚持一下，只要齿轮咬合的节奏恢复，你就还能再走上十年。”我专注地调整着游丝的张力，每一次细微的拨动都伴随着神经衰弱带来的阵阵耳鸣，但我不敢停下，因为这不仅是我的生计，也是我证明自己手艺尚存的唯一方式。",
+            "sceneId": "-387209434091524627_928511252345016542",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-elias-thorne-clockwork-repair, victorian-industrial, steampunk-realism, melancholic-atmosphere, rococo-oil-painting, intricate-mechanical-detail, rococo oil painting, rich brushstrokes, ornate and decorative composition, chiaroscuro lighting, antique texture, young male protagonist Elias Thorne, deep brown messy hair, focused and exhausted expression with dark circles, slim build with slightly hunched back, fingers covered in tiny scars and oil stains, using Image 0 as reference, worn-out leather apron stained with grease and oil, long-sleeved shirt with rolled-up cuffs, watch chain draped around the wrist, monocle magnifying glass attached to the eye, hunched over a large ornate clock mechanism, holding precision tweezers in right hand, left hand carefully stabilizing the gear, leaning forward with intense focus, body facing the clockwork directly, 8K detailed facial features, monocle magnifying glass over one eye, exhausted but sharp gaze focused on gears, lip color naturally muted, soft shadows emphasizing facial fatigue, sweat droplets visible on the temple, messy deep brown hair, root fixation coefficient 0.8, tip swing amplitude 5cm, color layering: main color #3E2723, secondary color #261716, highlight #5D4037, shadow #1B1212, wind speed 0.2m/s, turbulence intensity 2%, leather apron with visible signs of wear and age, grease smudges on fabric textures, slight fabric tension at the shoulders from hunched posture, dimly lit cluttered clockmaker workshop, walls filled with hanging pendulum clocks and scattered gear parts, heavy dust motes dancing in the dim light, thick soot-covered window showing a foggy victorian street, faint steam rising from mechanical parts, dramatic light beams cutting through the haze, glint of polished brass gears under intense light, low saturation palette, sepia, charcoal grey, and metallic brass tones, dark umber and muted ochre highlights, focused warm task light illuminating the clockwork, cold ambient moonlight filtering through the dusty window, strong chiaroscuro contrast between workbench and shadows, type close-up shot, lens 35mm macro, aperture f/1.8, depth_of_field shallow focus on the clock mechanism and protagonist's eye, flash none, grain fine film grain, texture oil painting canvas texture, protagonist centered in the workspace, clockwork mechanism as the central focal point, asymmetrical balanced framing of tools and debris, action constraints: intense focus, delicate hand movement, rococo oil painting aesthetic, no text or symbols in image, melancholic obsession, quiet desperation, claustrophobic precision, stagnant time-anxiety, no text, no symbols, no garbled characters, no words",
+              "scene_text_hash": "4b8c9b0dfda5f62608a9aec907afbcb0",
+              "style": "default",
+              "url": "/image_cache/2d001282a15401015c8c149ce76cfab6.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "request_payload": {
+          "option": "专注修复眼前的座钟，以此积累声望并赚取租金。",
+          "optionIndex": 0,
+          "sceneId": "-3809074981350219632_4440051508562349923",
+          "currentOptions": [
+            "专注修复眼前的座钟，以此积累声望并赚取租金。",
+            "尝试向莫里森打听市政厅大钟零件的下落，关联家族往事。"
+          ],
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过完成一系列高难度的平民维修订单，勉强凑齐了工坊的租金，并初步掌握了老市政厅大钟的内部结构图，虽然生活依然拮据，但暂时保住了工坊的经营权。",
+                  "main_conflict": "主角面临工坊租金上涨与订单匮乏的双重压力，必须在维持生计的低端维修与修复那台象征意义的大钟之间做出选择。此时，主角对“工匠精神”抱有执念，试图通过完美修复每一台钟表来证明价值，却因效率低下而陷入入不敷出的困境，生活琐碎与理想追求产生剧烈碰撞。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角通过放弃部分个人利益，与工业巨头达成了一项不平等的零件置换协议，虽然大钟修复进度得以推进，但主角失去了工坊的独立经营权，被迫成为工业体系下的附属工匠。",
+                  "main_conflict": "城市拆迁计划正式下达，主角发现修复大钟所需的关键零件被垄断在工业巨头手中。主角试图通过技术交换获取零件，却被卷入复杂的商业博弈，面临着出卖手艺尊严或放弃大钟修复的道德困境，周围邻居的冷漠与现实的残酷让主角开始怀疑坚持的意义。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "大钟在拆迁的前夜准时敲响，声音苍凉而真实。主角最终选择保留了大钟内部的一处细微误差，以此作为对旧时光的致敬。工坊如期关闭，主角带着工具箱平静离去，虽然失去了奋斗的据点，但内心获得了与现实和解的释然。",
+                  "main_conflict": "大钟修复进入最后阶段，但主角发现即便大钟敲响，也无法改变旧城区被拆迁的既定事实。主角在“完成作品”与“接受失败”之间挣扎，面对即将消逝的工坊与邻里羁绊，主角必须在最后一次校准中，决定是将大钟修复至完美，还是留下一个属于旧时代的“瑕疵”。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为写实主义叙事游戏，采用低饱和度的工业维多利亚美学。画面强调光影的颗粒感与机械运作的精密质感，通过对钟表零件、煤烟街道与陈旧工坊的细腻刻画，营造出一种沉稳、克制且带有时代余温的沉浸式氛围，旨在让玩家在齿轮咬合的节奏中，感受平凡生活里的琐碎与真实。",
+              "main_quest": "主角的目标是修复一座象征旧城区历史的“老市政厅大钟”，以争取政府的修缮拨款，从而保住即将被拆迁的祖传工坊。玩家需在有限的资源与时间内，通过承接零散的修表订单积累资金与声望，同时搜集修复大钟所需的稀有零件。挑战在于，主角必须在“维持生计的廉价维修”与“追求极致的修复理想”之间不断权衡，面对日益恶化的经济环境与工坊拆迁的倒计时，主角不仅要对抗机械的磨损，更要对抗被时代抛弃的无力感，最终在现实的妥协中完成大钟的修复，却不得不接受工坊最终转型或搬迁的命运。",
+              "protagonist_ability": "主角继承了家族传承的“共振听力”，能够通过听觉感知机械内部细微的磨损与节奏偏差。这种能力源于长期的精密训练，使用时需极度专注，通过触碰钟表外壳与内部零件产生共鸣。限制在于，过度使用会导致听觉过载与神经衰弱，且该能力无法修复物理层面的断裂，只能在既定的机械逻辑内寻找最优的运行平衡，无法改变时间的流逝，更无法逆转已发生的损耗。",
+              "world_basic_setting": "故事发生于工业革命鼎盛时期的雾都“格林威治”，这是一座被蒸汽与发条驱动的城市。社会阶层固化严重，上层建筑追求极致的精密与效率，而底层平民则在永不停歇的钟摆声中消耗着生命。钟表匠不仅是时间的记录者，更是城市秩序的维护者。然而，随着廉价工业制品的涌入，传统手工制表业正面临毁灭性打击。城市中弥漫着一种“时间焦虑”，人们试图通过精准的计时来掌控命运，却在无尽的劳作中失去了对生活的感知。关键事件“大停摆”曾让城市陷入瘫痪，自此，人们对时间的崇拜演变为一种近乎病态的执念，而主角所在的旧城区，正是在这种时代洪流中被逐渐遗忘的角落。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {},
+              "chapter_progress": 2.0
+            },
+            "game_id": "game_1777641848_fm3lym",
+            "image_style": {
+              "subtype": "rococo",
+              "type": "oil_painting"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Elias Thorne",
+              "name_zh": "埃利亚斯·索恩",
+              "signature_look_keywords": "深棕色乱发，常年佩戴单片放大镜，手指布满细小伤痕，穿着磨损的皮围裙，眼神专注而疲惫，袖口总是沾着机油，沉默寡言，清瘦，背部微驼，怀表链条，旧时代工匠气质。",
+              "work_en": "Clockwork Afterglow",
+              "work_zh": "发条余温"
+            },
+            "tone": "normal_ending",
+            "user_theme": "维多利亚钟表匠",
+            "_benchmark_profile": "fullready_strict",
+            "_benchmark_measurement": "fullready_nextturn",
+            "_benchmark_read_wait_s": 0.0
+          },
+          "previousSceneId": "initial",
+          "previousSceneImage": {
+            "cached": true,
+            "height": 1080,
+            "image_type": "story_scene",
+            "prompt": "scene-workshop-confrontation-elias-morrison, industrial-victorian, steampunk-aesthetic, rococo-oil-painting, melancholic-atmosphere, cinematic-lighting, rococo-style oil painting, exquisite and decorative brushwork, rich texture and heavy impasto, atmospheric soot and smog perspective, soft-shading with dramatic contrast, Elias Thorne, young male protagonist, using Image 0, deep brown messy hair, slightly stooped posture, monocle magnifying glass worn over one eye, fingers covered in fine scars from mechanical work, exhausted and focused expression with deep eye fatigue, worn-out leather apron stained with oil and grime, tattered linen shirt underneath with grease-stained cuffs, vintage watch chain hanging from belt, Elias Thorne bending over a brass mantle clock on workbench, body turned slightly toward 老莫里森-配角1 at the workshop entrance, Elias Thorne ear close to the clock body, listening with resonance ability, one hand holding the clock, the other resting on the table, 8K detailed facial features, Elias Thorne with pale skin and dark eye circles, intense focused gaze through monocular glass, lip color naturally muted and dry, soft shadows emphasizing the weary facial structure, messy deep brown hair with loose strands, root fixation coefficient 0.8, tip swing amplitude 5cm, color layering: main color #3E2723, secondary color #261A19, highlight #5D4037, shadow #1B1212, wind speed 0.2m/s, turbulence intensity 2%, heavy leather apron with visible wear and tear, grease stains on sleeves with detailed texture, slight fabric flutter near the workshop door draft, cluttered workshop filled with intricate clockwork parts, dozens of pendulum clocks on walls with staggered rhythms, cracked glass window revealing a foggy Victorian street, old city hall clock blueprint spread on the corner of the table, dust motes dancing in the dim light, 老莫里森-配角1 standing at the workshop doorway, holding a red-stamped eviction notice, 老莫里森-配角1 with greedy, murky eyes and a stern, impatient posture, hazy soot and coal smoke drifting from the window, faint golden light reflecting off brass gears, subtle particle dust caught in light beams, low-saturation industrial tones, sepia, charcoal grey, and rusted brass yellow, faded red color on the eviction notice, muted earth tones for the workshop interior, directional light from the cracked window, dim warm light from a small oil lamp on the workbench, harsh silhouette lighting on 老莫里森-配角1 at the door, type medium shot, lens 35mm, aperture f/1.8, depth_of_field shallow focus on Elias Thorne and the clock, flash none, grain fine film grain texture, texture oil painting canvas texture, Elias Thorne in the foreground center-left, 老莫里森-配角1 positioned in the background doorway, frame right, workbench as the central visual anchor, action constraints: Elias Thorne maintaining intense concentration on clock gears, rococo oil painting style, no text or symbols in image, no watermarks or artifacts, oppressive time anxiety, melancholic realism, stagnant industrial decay, quiet desperation of a craftsman, no text, no symbols, no garbled characters, no words",
+            "prompt_json": {
+              "camera": {
+                "aperture": "f/1.8",
+                "depth_of_field": "shallow focus on Elias Thorne and the clock",
+                "flash": "none",
+                "grain": "fine film grain texture",
+                "lens": "35mm",
+                "texture": "oil painting canvas texture",
+                "type": "medium shot"
+              },
+              "clothing_system": [
+                "heavy leather apron with visible wear and tear",
+                "grease stains on sleeves with detailed texture",
+                "slight fabric flutter near the workshop door draft"
+              ],
+              "color_restriction": [
+                "low-saturation industrial tones",
+                "sepia, charcoal grey, and rusted brass yellow",
+                "faded red color on the eviction notice",
+                "muted earth tones for the workshop interior"
+              ],
+              "composition": [
+                "Elias Thorne in the foreground center-left",
+                "老莫里森-配角1 positioned in the background doorway, frame right",
+                "workbench as the central visual anchor",
+                "action constraints: Elias Thorne maintaining intense concentration on clock gears"
+              ],
+              "environment": {
+                "background": [
+                  "cluttered workshop filled with intricate clockwork parts",
+                  "dozens of pendulum clocks on walls with staggered rhythms",
+                  "cracked glass window revealing a foggy Victorian street",
+                  "old city hall clock blueprint spread on the corner of the table",
+                  "dust motes dancing in the dim light"
+                ],
+                "characters": [
+                  "老莫里森-配角1 standing at the workshop doorway, holding a red-stamped eviction notice",
+                  "老莫里森-配角1 with greedy, murky eyes and a stern, impatient posture"
+                ],
+                "effects": [
+                  "hazy soot and coal smoke drifting from the window",
+                  "faint golden light reflecting off brass gears",
+                  "subtle particle dust caught in light beams"
+                ]
+              },
+              "face_system": [
+                "8K detailed facial features",
+                "Elias Thorne with pale skin and dark eye circles",
+                "intense focused gaze through monocular glass",
+                "lip color naturally muted and dry",
+                "soft shadows emphasizing the weary facial structure"
+              ],
+              "hair_system": [
+                "messy deep brown hair with loose strands",
+                "root fixation coefficient 0.8",
+                "tip swing amplitude 5cm",
+                "color layering: main color #3E2723, secondary color #261A19, highlight #5D4037, shadow #1B1212",
+                "wind speed 0.2m/s",
+                "turbulence intensity 2%"
+              ],
+              "label": "scene-workshop-confrontation-elias-morrison",
+              "lighting": [
+                "directional light from the cracked window",
+                "dim warm light from a small oil lamp on the workbench",
+                "harsh silhouette lighting on 老莫里森-配角1 at the door"
+              ],
+              "mood": [
+                "oppressive time anxiety",
+                "melancholic realism",
+                "stagnant industrial decay",
+                "quiet desperation of a craftsman"
+              ],
+              "output_style": [
+                "rococo oil painting style",
+                "no text or symbols in image",
+                "no watermarks or artifacts"
+              ],
+              "style": [
+                "rococo-style oil painting",
+                "exquisite and decorative brushwork",
+                "rich texture and heavy impasto",
+                "atmospheric soot and smog perspective",
+                "soft-shading with dramatic contrast"
+              ],
+              "subject": {
+                "body_traits": [
+                  "Elias Thorne, young male protagonist, using Image 0",
+                  "deep brown messy hair, slightly stooped posture",
+                  "monocle magnifying glass worn over one eye",
+                  "fingers covered in fine scars from mechanical work",
+                  "exhausted and focused expression with deep eye fatigue"
+                ],
+                "outfit": [
+                  "worn-out leather apron stained with oil and grime",
+                  "tattered linen shirt underneath with grease-stained cuffs",
+                  "vintage watch chain hanging from belt"
+                ],
+                "pose": [
+                  "Elias Thorne bending over a brass mantle clock on workbench",
+                  "body turned slightly toward 老莫里森-配角1 at the workshop entrance",
+                  "Elias Thorne ear close to the clock body, listening with resonance ability",
+                  "one hand holding the clock, the other resting on the table"
+                ]
+              },
+              "tags": [
+                "industrial-victorian",
+                "steampunk-aesthetic",
+                "rococo-oil-painting",
+                "melancholic-atmosphere",
+                "cinematic-lighting"
+              ]
+            },
+            "scene_text_hash": "8a7253f4712096951b452e0ecc426d49",
+            "style": "default",
+            "url": "/image_cache/a469f32ac400ee1359c05a0f1eb6a5e5.png",
+            "width": 1920
+          },
+          "previousSceneText": "潮湿的煤烟味混合着陈旧机油的苦涩，透过工坊那扇布满裂纹的玻璃窗渗了进来。我习惯性地推了推鼻梁上的单片放大镜，深棕色的乱发垂在额前，遮住了我疲惫的视线。工坊里，数十座钟摆在墙上以参差不齐的节奏摇晃，发出令人心烦意乱的滴答声。我低头看着怀里那座齿轮卡死的黄铜座钟，指尖布满细小的伤痕，那是多年来与精密零件搏斗留下的勋章。\n\n“埃利亚斯，如果你还是坚持用这种慢吞吞的纯手工方式，下个月的租金就只能去河里捞了。”房东老莫里森站在门口，他那双浑浊的眼睛贪婪地扫视着我这间堆满零件的工坊，手里晃动着那张盖着红色印章的催缴单。\n\n我没有抬头，只是将耳朵贴近座钟外壳，利用“共振听力”去捕捉内部那细微的、断裂的金属摩擦声。那声音像是一场微小的崩塌，清晰地在我脑海中回响。“我会修好它的，莫里森。”我声音沙哑，怀表链条随着我的动作在皮围裙上轻轻碰撞，“这钟的擒纵机构有独特的工艺，不能用廉价的工业件替换。”\n\n“工艺？这年头，除了那些怀旧的疯子，谁还在乎工艺？”莫里森冷笑一声，转身离去，沉重的脚步声在木地板上回荡。我深吸一口气，强压下神经衰弱带来的阵阵耳鸣，将注意力重新沉入那精密却冰冷的机械世界中。老市政厅大钟的结构图就压在桌角，那是我最后的底牌，也是我保住这间工坊的唯一希望。"
+        },
+        "start_ts": 1777641907.8198607,
+        "end_ts": 1777641931.4840243,
+        "provider_events": {
+          "event_count": 3,
+          "queue_wait_ms": {
+            "count": 3,
+            "min": 0.0,
+            "max": 4712.0,
+            "mean": 3141.333,
+            "median": 4712.0,
+            "p95": 4712.0
+          },
+          "latency_ms": {
+            "count": 2,
+            "min": 4639.0,
+            "max": 4711.0,
+            "mean": 4675.0,
+            "median": 4675.0,
+            "p95": 4707.4
+          },
+          "llm_success_count": 2,
+          "image_success_count": 0,
+          "request_thread_event_count": 0,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0
+        },
+        "attempts": [
+          {
+            "http_status": 200,
+            "elapsed_s": 23.664,
+            "response_json": {
+              "benchmark_diagnostics": {
+                "cache_hit_reason": "waited_request_scene_text_completed_no_image",
+                "cache_miss_reason": "request_scene_generation_in_progress",
+                "current_options_key_drift_detected": false,
+                "global_state_key_drift_detected": true,
+                "placeholder": false,
+                "previous_scene_id": "initial",
+                "recomputed_scene_cache_exists": false,
+                "recomputed_scene_id": "-3119646592473943495_4440051508562349923",
+                "request_current_options_count": 2,
+                "request_current_options_hash": "abb1bf8c7560e5423aeb96360ca0d1cb",
+                "request_flow_worldline_hash": "0b7d2802f8e46ae104639ddbac325b51",
+                "request_global_state_hash": "0b52df89e444d7577ccd60bc7a048e6b",
+                "request_option_at_index": "专注修复眼前的座钟，以此积累声望并赚取租金。",
+                "request_option_index": 0,
+                "request_option_text": "专注修复眼前的座钟，以此积累声望并赚取租金。",
+                "request_scene_cache_exists": true,
+                "request_scene_cache_meta": {
+                  "canonical_scene_id": "-6810647802588833892_4440051508562349923",
+                  "current_options_hash": "abb1bf8c7560e5423aeb96360ca0d1cb",
+                  "current_options_preview": [
+                    "专注修复眼前的座钟，以此积累声望并赚取租金。",
+                    "尝试向莫里森打听市政厅大钟零件的下落，关联家族往事。"
+                  ],
+                  "flow_worldline_hash": "940e38d5f8372eaa58cfdaf4d70a0d30",
+                  "global_state_hash": "485c704a2fe6cc545e363d3ace445e47",
+                  "option_count": 2,
+                  "parent_scene_id": null,
+                  "scene_id": "-3809074981350219632_4440051508562349923"
+                },
+                "request_scene_id": "-3809074981350219632_4440051508562349923",
+                "resolution_path": "wait_for_request_scene_cache_text_only",
+                "response_has_image": true,
+                "response_has_scene": true,
+                "response_scene_id": "-387209434091524627_928511252345016542",
+                "response_status": "success",
+                "scene_id_mismatch_detected": true,
+                "selected_option_mismatch_detected": false
+              },
+              "message": "选项剧情生成成功！",
+              "optionData": {
+                "checkpoint_packet": {
+                  "chapter": "chapter1",
+                  "chapter_conflict_solved": false,
+                  "quest_delta": "成功修复了座钟的擒纵机构，赚取了维持工坊运转的初步租金，并从座钟内部发现了一张残缺的图纸碎片，指向老市政厅大钟的隐藏结构。",
+                  "recap_text": "你选择了“专注修复眼前的座钟，以此积累声望并赚取租金。”。当前章节：chapter1。主线进展：成功修复了座钟的擒纵机构，赚取了维持工坊运转的初步租金，并从座钟内部发现了一张残缺的图纸碎片，指向老市政厅大钟的隐藏结构。。最近剧情：我深吸一口气，将单片放大镜扣在眼眶上，冰冷的金属边缘压迫着我的皮肤。眼前的座钟像是一个沉默的病人，发条盒内部传出的断续摩擦声在我的“共振听力”下被放大成刺耳的金属哀鸣。我颤抖着手指，用镊子小心翼翼地拨开那层厚重的积灰，露出下方磨损严重的擒纵叉。为了赚取下个月的租金，我必须在天亮前完成这次修复。我将怀表链条缠在手腕上，以此稳定因长期疲劳而微微发抖的指尖。汗水顺着我的鬓角滑落，滴在磨损的皮围裙上。我低声自语：“别急，再坚持一下，只要齿轮咬合的节奏恢复，你就还能再走上十年。”我专注地调整着游丝的张力，每一次细微的拨动都伴随着神经衰弱带来的阵阵耳鸣，但我不敢停下，因为这不仅是我的生计，也是我证明自己手艺尚存的唯一方式。"
+                },
+                "deep_background_links": {
+                  "1": "老修表匠（通过询问可解锁关于主角家族与市政厅大钟历史的深层关联）"
+                },
+                "flow_update": {
+                  "chapter_conflict_solved": false,
+                  "characters": {},
+                  "environment": {},
+                  "quest_progress": "成功修复了座钟的擒纵机构，赚取了维持工坊运转的初步租金，并从座钟内部发现了一张残缺的图纸碎片，指向老市政厅大钟的隐藏结构。"
+                },
+                "next_options": [
+                  "坚持手工打磨零件，试图恢复其原始的精准度。",
+                  "询问常客老修表匠关于这台座钟的特殊工艺背景。"
+                ],
+                "plot_mentioned_only": [
+                  "莫里森"
+                ],
+                "plot_supporting_characters": [],
+                "scene": "我深吸一口气，将单片放大镜扣在眼眶上，冰冷的金属边缘压迫着我的皮肤。眼前的座钟像是一个沉默的病人，发条盒内部传出的断续摩擦声在我的“共振听力”下被放大成刺耳的金属哀鸣。我颤抖着手指，用镊子小心翼翼地拨开那层厚重的积灰，露出下方磨损严重的擒纵叉。为了赚取下个月的租金，我必须在天亮前完成这次修复。我将怀表链条缠在手腕上，以此稳定因长期疲劳而微微发抖的指尖。汗水顺着我的鬓角滑落，滴在磨损的皮围裙上。我低声自语：“别急，再坚持一下，只要齿轮咬合的节奏恢复，你就还能再走上十年。”我专注地调整着游丝的张力，每一次细微的拨动都伴随着神经衰弱带来的阵阵耳鸣，但我不敢停下，因为这不仅是我的生计，也是我证明自己手艺尚存的唯一方式。",
+                "sceneId": "-387209434091524627_928511252345016542",
+                "scene_image": {
+                  "cached": true,
+                  "height": 1080,
+                  "image_type": "story_scene",
+                  "prompt": "scene-elias-thorne-clockwork-repair, victorian-industrial, steampunk-realism, melancholic-atmosphere, rococo-oil-painting, intricate-mechanical-detail, rococo oil painting, rich brushstrokes, ornate and decorative composition, chiaroscuro lighting, antique texture, young male protagonist Elias Thorne, deep brown messy hair, focused and exhausted expression with dark circles, slim build with slightly hunched back, fingers covered in tiny scars and oil stains, using Image 0 as reference, worn-out leather apron stained with grease and oil, long-sleeved shirt with rolled-up cuffs, watch chain draped around the wrist, monocle magnifying glass attached to the eye, hunched over a large ornate clock mechanism, holding precision tweezers in right hand, left hand carefully stabilizing the gear, leaning forward with intense focus, body facing the clockwork directly, 8K detailed facial features, monocle magnifying glass over one eye, exhausted but sharp gaze focused on gears, lip color naturally muted, soft shadows emphasizing facial fatigue, sweat droplets visible on the temple, messy deep brown hair, root fixation coefficient 0.8, tip swing amplitude 5cm, color layering: main color #3E2723, secondary color #261716, highlight #5D4037, shadow #1B1212, wind speed 0.2m/s, turbulence intensity 2%, leather apron with visible signs of wear and age, grease smudges on fabric textures, slight fabric tension at the shoulders from hunched posture, dimly lit cluttered clockmaker workshop, walls filled with hanging pendulum clocks and scattered gear parts, heavy dust motes dancing in the dim light, thick soot-covered window showing a foggy victorian street, faint steam rising from mechanical parts, dramatic light beams cutting through the haze, glint of polished brass gears under intense light, low saturation palette, sepia, charcoal grey, and metallic brass tones, dark umber and muted ochre highlights, focused warm task light illuminating the clockwork, cold ambient moonlight filtering through the dusty window, strong chiaroscuro contrast between workbench and shadows, type close-up shot, lens 35mm macro, aperture f/1.8, depth_of_field shallow focus on the clock mechanism and protagonist's eye, flash none, grain fine film grain, texture oil painting canvas texture, protagonist centered in the workspace, clockwork mechanism as the central focal point, asymmetrical balanced framing of tools and debris, action constraints: intense focus, delicate hand movement, rococo oil painting aesthetic, no text or symbols in image, melancholic obsession, quiet desperation, claustrophobic precision, stagnant time-anxiety, no text, no symbols, no garbled characters, no words",
+                  "scene_text_hash": "4b8c9b0dfda5f62608a9aec907afbcb0",
+                  "style": "default",
+                  "url": "/image_cache/2d001282a15401015c8c149ce76cfab6.png",
+                  "width": 1920
+                }
+              },
+              "status": "success"
+            },
+            "request_payload": {
+              "option": "专注修复眼前的座钟，以此积累声望并赚取租金。",
+              "optionIndex": 0,
+              "sceneId": "-3809074981350219632_4440051508562349923",
+              "currentOptions": [
+                "专注修复眼前的座钟，以此积累声望并赚取租金。",
+                "尝试向莫里森打听市政厅大钟零件的下落，关联家族往事。"
+              ],
+              "globalState": {
+                "core_worldview": {
+                  "chapters": {
+                    "chapter1": {
+                      "conflict_end_condition": "主角通过完成一系列高难度的平民维修订单，勉强凑齐了工坊的租金，并初步掌握了老市政厅大钟的内部结构图，虽然生活依然拮据，但暂时保住了工坊的经营权。",
+                      "main_conflict": "主角面临工坊租金上涨与订单匮乏的双重压力，必须在维持生计的低端维修与修复那台象征意义的大钟之间做出选择。此时，主角对“工匠精神”抱有执念，试图通过完美修复每一台钟表来证明价值，却因效率低下而陷入入不敷出的困境，生活琐碎与理想追求产生剧烈碰撞。"
+                    },
+                    "chapter2": {
+                      "conflict_end_condition": "主角通过放弃部分个人利益，与工业巨头达成了一项不平等的零件置换协议，虽然大钟修复进度得以推进，但主角失去了工坊的独立经营权，被迫成为工业体系下的附属工匠。",
+                      "main_conflict": "城市拆迁计划正式下达，主角发现修复大钟所需的关键零件被垄断在工业巨头手中。主角试图通过技术交换获取零件，却被卷入复杂的商业博弈，面临着出卖手艺尊严或放弃大钟修复的道德困境，周围邻居的冷漠与现实的残酷让主角开始怀疑坚持的意义。"
+                    },
+                    "chapter3": {
+                      "conflict_end_condition": "大钟在拆迁的前夜准时敲响，声音苍凉而真实。主角最终选择保留了大钟内部的一处细微误差，以此作为对旧时光的致敬。工坊如期关闭，主角带着工具箱平静离去，虽然失去了奋斗的据点，但内心获得了与现实和解的释然。",
+                      "main_conflict": "大钟修复进入最后阶段，但主角发现即便大钟敲响，也无法改变旧城区被拆迁的既定事实。主角在“完成作品”与“接受失败”之间挣扎，面对即将消逝的工坊与邻里羁绊，主角必须在最后一次校准中，决定是将大钟修复至完美，还是留下一个属于旧时代的“瑕疵”。"
+                    }
+                  },
+                  "characters": {},
+                  "forces": {},
+                  "game_style": "本作为写实主义叙事游戏，采用低饱和度的工业维多利亚美学。画面强调光影的颗粒感与机械运作的精密质感，通过对钟表零件、煤烟街道与陈旧工坊的细腻刻画，营造出一种沉稳、克制且带有时代余温的沉浸式氛围，旨在让玩家在齿轮咬合的节奏中，感受平凡生活里的琐碎与真实。",
+                  "main_quest": "主角的目标是修复一座象征旧城区历史的“老市政厅大钟”，以争取政府的修缮拨款，从而保住即将被拆迁的祖传工坊。玩家需在有限的资源与时间内，通过承接零散的修表订单积累资金与声望，同时搜集修复大钟所需的稀有零件。挑战在于，主角必须在“维持生计的廉价维修”与“追求极致的修复理想”之间不断权衡，面对日益恶化的经济环境与工坊拆迁的倒计时，主角不仅要对抗机械的磨损，更要对抗被时代抛弃的无力感，最终在现实的妥协中完成大钟的修复，却不得不接受工坊最终转型或搬迁的命运。",
+                  "protagonist_ability": "主角继承了家族传承的“共振听力”，能够通过听觉感知机械内部细微的磨损与节奏偏差。这种能力源于长期的精密训练，使用时需极度专注，通过触碰钟表外壳与内部零件产生共鸣。限制在于，过度使用会导致听觉过载与神经衰弱，且该能力无法修复物理层面的断裂，只能在既定的机械逻辑内寻找最优的运行平衡，无法改变时间的流逝，更无法逆转已发生的损耗。",
+                  "world_basic_setting": "故事发生于工业革命鼎盛时期的雾都“格林威治”，这是一座被蒸汽与发条驱动的城市。社会阶层固化严重，上层建筑追求极致的精密与效率，而底层平民则在永不停歇的钟摆声中消耗着生命。钟表匠不仅是时间的记录者，更是城市秩序的维护者。然而，随着廉价工业制品的涌入，传统手工制表业正面临毁灭性打击。城市中弥漫着一种“时间焦虑”，人们试图通过精准的计时来掌控命运，却在无尽的劳作中失去了对生活的感知。关键事件“大停摆”曾让城市陷入瘫痪，自此，人们对时间的崇拜演变为一种近乎病态的执念，而主角所在的旧城区，正是在这种时代洪流中被逐渐遗忘的角落。"
+                },
+                "flow_worldline": {
+                  "characters": {},
+                  "current_chapter": "chapter1",
+                  "environment": {},
+                  "chapter_progress": 2.0
+                },
+                "game_id": "game_1777641848_fm3lym",
+                "image_style": {
+                  "subtype": "rococo",
+                  "type": "oil_painting"
+                },
+                "meta": {
+                  "detail_async": true
+                },
+                "protagonist_canonical": {
+                  "age_range": "青年",
+                  "gender": "男性",
+                  "name_en": "Elias Thorne",
+                  "name_zh": "埃利亚斯·索恩",
+                  "signature_look_keywords": "深棕色乱发，常年佩戴单片放大镜，手指布满细小伤痕，穿着磨损的皮围裙，眼神专注而疲惫，袖口总是沾着机油，沉默寡言，清瘦，背部微驼，怀表链条，旧时代工匠气质。",
+                  "work_en": "Clockwork Afterglow",
+                  "work_zh": "发条余温"
+                },
+                "tone": "normal_ending",
+                "user_theme": "维多利亚钟表匠",
+                "_benchmark_profile": "fullready_strict",
+                "_benchmark_measurement": "fullready_nextturn",
+                "_benchmark_read_wait_s": 0.0
+              },
+              "previousSceneId": "initial",
+              "previousSceneImage": {
+                "cached": true,
+                "height": 1080,
+                "image_type": "story_scene",
+                "prompt": "scene-workshop-confrontation-elias-morrison, industrial-victorian, steampunk-aesthetic, rococo-oil-painting, melancholic-atmosphere, cinematic-lighting, rococo-style oil painting, exquisite and decorative brushwork, rich texture and heavy impasto, atmospheric soot and smog perspective, soft-shading with dramatic contrast, Elias Thorne, young male protagonist, using Image 0, deep brown messy hair, slightly stooped posture, monocle magnifying glass worn over one eye, fingers covered in fine scars from mechanical work, exhausted and focused expression with deep eye fatigue, worn-out leather apron stained with oil and grime, tattered linen shirt underneath with grease-stained cuffs, vintage watch chain hanging from belt, Elias Thorne bending over a brass mantle clock on workbench, body turned slightly toward 老莫里森-配角1 at the workshop entrance, Elias Thorne ear close to the clock body, listening with resonance ability, one hand holding the clock, the other resting on the table, 8K detailed facial features, Elias Thorne with pale skin and dark eye circles, intense focused gaze through monocular glass, lip color naturally muted and dry, soft shadows emphasizing the weary facial structure, messy deep brown hair with loose strands, root fixation coefficient 0.8, tip swing amplitude 5cm, color layering: main color #3E2723, secondary color #261A19, highlight #5D4037, shadow #1B1212, wind speed 0.2m/s, turbulence intensity 2%, heavy leather apron with visible wear and tear, grease stains on sleeves with detailed texture, slight fabric flutter near the workshop door draft, cluttered workshop filled with intricate clockwork parts, dozens of pendulum clocks on walls with staggered rhythms, cracked glass window revealing a foggy Victorian street, old city hall clock blueprint spread on the corner of the table, dust motes dancing in the dim light, 老莫里森-配角1 standing at the workshop doorway, holding a red-stamped eviction notice, 老莫里森-配角1 with greedy, murky eyes and a stern, impatient posture, hazy soot and coal smoke drifting from the window, faint golden light reflecting off brass gears, subtle particle dust caught in light beams, low-saturation industrial tones, sepia, charcoal grey, and rusted brass yellow, faded red color on the eviction notice, muted earth tones for the workshop interior, directional light from the cracked window, dim warm light from a small oil lamp on the workbench, harsh silhouette lighting on 老莫里森-配角1 at the door, type medium shot, lens 35mm, aperture f/1.8, depth_of_field shallow focus on Elias Thorne and the clock, flash none, grain fine film grain texture, texture oil painting canvas texture, Elias Thorne in the foreground center-left, 老莫里森-配角1 positioned in the background doorway, frame right, workbench as the central visual anchor, action constraints: Elias Thorne maintaining intense concentration on clock gears, rococo oil painting style, no text or symbols in image, no watermarks or artifacts, oppressive time anxiety, melancholic realism, stagnant industrial decay, quiet desperation of a craftsman, no text, no symbols, no garbled characters, no words",
+                "prompt_json": {
+                  "camera": {
+                    "aperture": "f/1.8",
+                    "depth_of_field": "shallow focus on Elias Thorne and the clock",
+                    "flash": "none",
+                    "grain": "fine film grain texture",
+                    "lens": "35mm",
+                    "texture": "oil painting canvas texture",
+                    "type": "medium shot"
+                  },
+                  "clothing_system": [
+                    "heavy leather apron with visible wear and tear",
+                    "grease stains on sleeves with detailed texture",
+                    "slight fabric flutter near the workshop door draft"
+                  ],
+                  "color_restriction": [
+                    "low-saturation industrial tones",
+                    "sepia, charcoal grey, and rusted brass yellow",
+                    "faded red color on the eviction notice",
+                    "muted earth tones for the workshop interior"
+                  ],
+                  "composition": [
+                    "Elias Thorne in the foreground center-left",
+                    "老莫里森-配角1 positioned in the background doorway, frame right",
+                    "workbench as the central visual anchor",
+                    "action constraints: Elias Thorne maintaining intense concentration on clock gears"
+                  ],
+                  "environment": {
+                    "background": [
+                      "cluttered workshop filled with intricate clockwork parts",
+                      "dozens of pendulum clocks on walls with staggered rhythms",
+                      "cracked glass window revealing a foggy Victorian street",
+                      "old city hall clock blueprint spread on the corner of the table",
+                      "dust motes dancing in the dim light"
+                    ],
+                    "characters": [
+                      "老莫里森-配角1 standing at the workshop doorway, holding a red-stamped eviction notice",
+                      "老莫里森-配角1 with greedy, murky eyes and a stern, impatient posture"
+                    ],
+                    "effects": [
+                      "hazy soot and coal smoke drifting from the window",
+                      "faint golden light reflecting off brass gears",
+                      "subtle particle dust caught in light beams"
+                    ]
+                  },
+                  "face_system": [
+                    "8K detailed facial features",
+                    "Elias Thorne with pale skin and dark eye circles",
+                    "intense focused gaze through monocular glass",
+                    "lip color naturally muted and dry",
+                    "soft shadows emphasizing the weary facial structure"
+                  ],
+                  "hair_system": [
+                    "messy deep brown hair with loose strands",
+                    "root fixation coefficient 0.8",
+                    "tip swing amplitude 5cm",
+                    "color layering: main color #3E2723, secondary color #261A19, highlight #5D4037, shadow #1B1212",
+                    "wind speed 0.2m/s",
+                    "turbulence intensity 2%"
+                  ],
+                  "label": "scene-workshop-confrontation-elias-morrison",
+                  "lighting": [
+                    "directional light from the cracked window",
+                    "dim warm light from a small oil lamp on the workbench",
+                    "harsh silhouette lighting on 老莫里森-配角1 at the door"
+                  ],
+                  "mood": [
+                    "oppressive time anxiety",
+                    "melancholic realism",
+                    "stagnant industrial decay",
+                    "quiet desperation of a craftsman"
+                  ],
+                  "output_style": [
+                    "rococo oil painting style",
+                    "no text or symbols in image",
+                    "no watermarks or artifacts"
+                  ],
+                  "style": [
+                    "rococo-style oil painting",
+                    "exquisite and decorative brushwork",
+                    "rich texture and heavy impasto",
+                    "atmospheric soot and smog perspective",
+                    "soft-shading with dramatic contrast"
+                  ],
+                  "subject": {
+                    "body_traits": [
+                      "Elias Thorne, young male protagonist, using Image 0",
+                      "deep brown messy hair, slightly stooped posture",
+                      "monocle magnifying glass worn over one eye",
+                      "fingers covered in fine scars from mechanical work",
+                      "exhausted and focused expression with deep eye fatigue"
+                    ],
+                    "outfit": [
+                      "worn-out leather apron stained with oil and grime",
+                      "tattered linen shirt underneath with grease-stained cuffs",
+                      "vintage watch chain hanging from belt"
+                    ],
+                    "pose": [
+                      "Elias Thorne bending over a brass mantle clock on workbench",
+                      "body turned slightly toward 老莫里森-配角1 at the workshop entrance",
+                      "Elias Thorne ear close to the clock body, listening with resonance ability",
+                      "one hand holding the clock, the other resting on the table"
+                    ]
+                  },
+                  "tags": [
+                    "industrial-victorian",
+                    "steampunk-aesthetic",
+                    "rococo-oil-painting",
+                    "melancholic-atmosphere",
+                    "cinematic-lighting"
+                  ]
+                },
+                "scene_text_hash": "8a7253f4712096951b452e0ecc426d49",
+                "style": "default",
+                "url": "/image_cache/a469f32ac400ee1359c05a0f1eb6a5e5.png",
+                "width": 1920
+              },
+              "previousSceneText": "潮湿的煤烟味混合着陈旧机油的苦涩，透过工坊那扇布满裂纹的玻璃窗渗了进来。我习惯性地推了推鼻梁上的单片放大镜，深棕色的乱发垂在额前，遮住了我疲惫的视线。工坊里，数十座钟摆在墙上以参差不齐的节奏摇晃，发出令人心烦意乱的滴答声。我低头看着怀里那座齿轮卡死的黄铜座钟，指尖布满细小的伤痕，那是多年来与精密零件搏斗留下的勋章。\n\n“埃利亚斯，如果你还是坚持用这种慢吞吞的纯手工方式，下个月的租金就只能去河里捞了。”房东老莫里森站在门口，他那双浑浊的眼睛贪婪地扫视着我这间堆满零件的工坊，手里晃动着那张盖着红色印章的催缴单。\n\n我没有抬头，只是将耳朵贴近座钟外壳，利用“共振听力”去捕捉内部那细微的、断裂的金属摩擦声。那声音像是一场微小的崩塌，清晰地在我脑海中回响。“我会修好它的，莫里森。”我声音沙哑，怀表链条随着我的动作在皮围裙上轻轻碰撞，“这钟的擒纵机构有独特的工艺，不能用廉价的工业件替换。”\n\n“工艺？这年头，除了那些怀旧的疯子，谁还在乎工艺？”莫里森冷笑一声，转身离去，沉重的脚步声在木地板上回荡。我深吸一口气，强压下神经衰弱带来的阵阵耳鸣，将注意力重新沉入那精密却冰冷的机械世界中。老市政厅大钟的结构图就压在桌角，那是我最后的底牌，也是我保住这间工坊的唯一希望。"
+            },
+            "start_ts": 1777641907.8198607,
+            "end_ts": 1777641931.4840243,
+            "provider_events": {
+              "event_count": 3,
+              "queue_wait_ms": {
+                "count": 3,
+                "min": 0.0,
+                "max": 4712.0,
+                "mean": 3141.333,
+                "median": 4712.0,
+                "p95": 4712.0
+              },
+              "latency_ms": {
+                "count": 2,
+                "min": 4639.0,
+                "max": 4711.0,
+                "mean": 4675.0,
+                "median": 4675.0,
+                "p95": 4707.4
+              },
+              "llm_success_count": 2,
+              "image_success_count": 0,
+              "request_thread_event_count": 0,
+              "provider_429_count": 0,
+              "provider_timeout_count": 0,
+              "shared_backoff_wait_ms_total": 0,
+              "retry_heavy_event_count": 0,
+              "main_character_event_count": 0,
+              "scene_image_event_count": 0
+            }
+          }
+        ],
+        "attempt_count": 1,
+        "request_elapsed_s": 23.664,
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "success",
+        "has_scene": true,
+        "has_image": true,
+        "selected_option_index": 0,
+        "selected_option_text": "专注修复眼前的座钟，以此积累声望并赚取租金。",
+        "input_scene_id": "-3809074981350219632_4440051508562349923",
+        "inferred_cache_result": "likely_miss_or_partial",
+        "used_updated_flow_state": true,
+        "cache_hit_reason": "waited_request_scene_text_completed_no_image",
+        "cache_miss_reason": "request_scene_generation_in_progress",
+        "global_state_key_drift_detected": true,
+        "scene_id_mismatch_detected": true,
+        "selected_option_mismatch_detected": false,
+        "current_options_key_drift_detected": false,
+        "benchmark_diagnostics": {
+          "cache_hit_reason": "waited_request_scene_text_completed_no_image",
+          "cache_miss_reason": "request_scene_generation_in_progress",
+          "current_options_key_drift_detected": false,
+          "global_state_key_drift_detected": true,
+          "placeholder": false,
+          "previous_scene_id": "initial",
+          "recomputed_scene_cache_exists": false,
+          "recomputed_scene_id": "-3119646592473943495_4440051508562349923",
+          "request_current_options_count": 2,
+          "request_current_options_hash": "abb1bf8c7560e5423aeb96360ca0d1cb",
+          "request_flow_worldline_hash": "0b7d2802f8e46ae104639ddbac325b51",
+          "request_global_state_hash": "0b52df89e444d7577ccd60bc7a048e6b",
+          "request_option_at_index": "专注修复眼前的座钟，以此积累声望并赚取租金。",
+          "request_option_index": 0,
+          "request_option_text": "专注修复眼前的座钟，以此积累声望并赚取租金。",
+          "request_scene_cache_exists": true,
+          "request_scene_cache_meta": {
+            "canonical_scene_id": "-6810647802588833892_4440051508562349923",
+            "current_options_hash": "abb1bf8c7560e5423aeb96360ca0d1cb",
+            "current_options_preview": [
+              "专注修复眼前的座钟，以此积累声望并赚取租金。",
+              "尝试向莫里森打听市政厅大钟零件的下落，关联家族往事。"
+            ],
+            "flow_worldline_hash": "940e38d5f8372eaa58cfdaf4d70a0d30",
+            "global_state_hash": "485c704a2fe6cc545e363d3ace445e47",
+            "option_count": 2,
+            "parent_scene_id": null,
+            "scene_id": "-3809074981350219632_4440051508562349923"
+          },
+          "request_scene_id": "-3809074981350219632_4440051508562349923",
+          "resolution_path": "wait_for_request_scene_cache_text_only",
+          "response_has_image": true,
+          "response_has_scene": true,
+          "response_scene_id": "-387209434091524627_928511252345016542",
+          "response_status": "success",
+          "scene_id_mismatch_detected": true,
+          "selected_option_mismatch_detected": false
+        }
+      },
+      "full_ready": {
+        "text_ready_ts": 1777641931.4840243,
+        "text_ready_elapsed_s": 23.664,
+        "image_ready_ts": 1777641931.4840243,
+        "image_ready_elapsed_s": 23.664,
+        "full_ready_ts": 1777641931.4840243,
+        "full_ready_elapsed_s": 23.664,
+        "image_probe": {
+          "status": "success",
+          "source": "generate-option",
+          "image": {
+            "cached": true,
+            "height": 1080,
+            "image_type": "story_scene",
+            "prompt": "scene-elias-thorne-clockwork-repair, victorian-industrial, steampunk-realism, melancholic-atmosphere, rococo-oil-painting, intricate-mechanical-detail, rococo oil painting, rich brushstrokes, ornate and decorative composition, chiaroscuro lighting, antique texture, young male protagonist Elias Thorne, deep brown messy hair, focused and exhausted expression with dark circles, slim build with slightly hunched back, fingers covered in tiny scars and oil stains, using Image 0 as reference, worn-out leather apron stained with grease and oil, long-sleeved shirt with rolled-up cuffs, watch chain draped around the wrist, monocle magnifying glass attached to the eye, hunched over a large ornate clock mechanism, holding precision tweezers in right hand, left hand carefully stabilizing the gear, leaning forward with intense focus, body facing the clockwork directly, 8K detailed facial features, monocle magnifying glass over one eye, exhausted but sharp gaze focused on gears, lip color naturally muted, soft shadows emphasizing facial fatigue, sweat droplets visible on the temple, messy deep brown hair, root fixation coefficient 0.8, tip swing amplitude 5cm, color layering: main color #3E2723, secondary color #261716, highlight #5D4037, shadow #1B1212, wind speed 0.2m/s, turbulence intensity 2%, leather apron with visible signs of wear and age, grease smudges on fabric textures, slight fabric tension at the shoulders from hunched posture, dimly lit cluttered clockmaker workshop, walls filled with hanging pendulum clocks and scattered gear parts, heavy dust motes dancing in the dim light, thick soot-covered window showing a foggy victorian street, faint steam rising from mechanical parts, dramatic light beams cutting through the haze, glint of polished brass gears under intense light, low saturation palette, sepia, charcoal grey, and metallic brass tones, dark umber and muted ochre highlights, focused warm task light illuminating the clockwork, cold ambient moonlight filtering through the dusty window, strong chiaroscuro contrast between workbench and shadows, type close-up shot, lens 35mm macro, aperture f/1.8, depth_of_field shallow focus on the clock mechanism and protagonist's eye, flash none, grain fine film grain, texture oil painting canvas texture, protagonist centered in the workspace, clockwork mechanism as the central focal point, asymmetrical balanced framing of tools and debris, action constraints: intense focus, delicate hand movement, rococo oil painting aesthetic, no text or symbols in image, melancholic obsession, quiet desperation, claustrophobic precision, stagnant time-anxiety, no text, no symbols, no garbled characters, no words",
+            "scene_text_hash": "4b8c9b0dfda5f62608a9aec907afbcb0",
+            "style": "default",
+            "url": "/image_cache/2d001282a15401015c8c149ce76cfab6.png",
+            "width": 1920
+          },
+          "attempt_count": 0
+        },
+        "ready_mode": "direct_in_generate_option",
+        "attribution": {
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "provider_retry_heavy_count": 0,
+          "provider_backoff_wait_ms_total": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0,
+          "image_probe_attempt_count": 0,
+          "main_character_contention_suspected": false
+        }
+      },
+      "placeholder": false,
+      "transport_success": true,
+      "strict_success": true,
+      "failure_bucket": null,
+      "cache_path_classification": "direct_real_scene",
+      "cache_hit_reason": "waited_request_scene_text_completed_no_image",
+      "cache_miss_reason": "request_scene_generation_in_progress",
+      "global_state_key_drift_detected": true,
+      "scene_id_mismatch_detected": true,
+      "selected_option_mismatch_detected": false,
+      "success": true
+    },
+    {
+      "benchmark_id": "DNQBV1_020",
+      "theme_id": 18,
+      "theme": "沙漠商队星图",
+      "read_wait_s": 0.0,
+      "full_ready_mode": true,
+      "profile": "fullready_strict",
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 9.682,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过一次高风险的短途贸易赚取了微薄利润，最终选择购买净水设备，暂时缓解了生存危机，但同时也失去了获取那张星图残片的机会，被迫推迟了寻找绿洲的计划。",
+                  "main_conflict": "商队面临严重的物资短缺，主角必须在有限的预算内决定是购买昂贵的净水设备以保证生存，还是投资购买一张真伪难辨的星图残片以追寻未来。现实的饥饿与虚无的希望在主角心中激烈碰撞，周围人的质疑与压力让主角陷入了自我怀疑。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角成功带领商队绕过封锁，但因路径险峻，大部分货物受损，商队陷入财务困境。主角虽然保全了所有成员的性命，却不得不向竞争对手低头，签署了一份苛刻的长期供货协议。",
+                  "main_conflict": "商队在穿越“回音峡谷”时遭遇了竞争对手的恶意封锁，主角被迫在保护商队成员安全与维护贸易信誉之间做出选择。由于缺乏足够的武装力量，主角必须利用“星感”能力寻找一条极其危险的捷径，这可能导致商队部分货物的损毁。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角向商队坦白了真相，并利用积累的经验将这片河床改造成了小型蓄水池，商队在此定居。主角虽然没能找到传说中的绿洲，却凭借踏实的经营让大家活了下来，他最终释然，接受了这份平凡的安稳。",
+                  "main_conflict": "主角终于抵达了星图指向的终点，却发现那里只有一片干涸的古老河床。面对一直以来支撑自己奋斗的信念崩塌，主角必须在“隐瞒真相继续流浪”与“坦白事实面对现实”之间抉择，同时还要应对商队内部因失望而引发的离散危机。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "沉浸式现实主义模拟，融合荒漠生存与星际贸易元素。画面呈现粗粝的沙尘质感与冷峻的工业废土风，强调光影在漫长旅途中的细微变化。叙事节奏缓慢而扎实，注重环境叙事与人物内心独白，营造一种在无尽荒原中寻找归宿的孤独感与踏实感。",
+              "main_quest": "主角的目标是重绘一张失传的“星图”，以带领没落的家族商队找到传说中的“永恒绿洲”。任务分为三个阶段：首先，在各大城邦间进行低买高卖的贸易，积累启动资金与人脉；其次，通过收集散落在废墟中的星图碎片，破解复杂的地理谜题；最后，在资源匮乏与商会排挤的重压下，穿越死亡沙海。挑战在于，主角必须在“家族的生存”与“理想的远方”之间做出取舍，最终主角会发现，所谓的永恒绿洲并不存在，但通过努力，他成功为商队建立了一个可持续发展的贸易据点，虽未达成最初的宏大目标，却换来了安稳的日常。",
+              "protagonist_ability": "主角拥有一种被称为“星感”的感知力，源于其家族世代传承的古老导航仪。通过触碰特定的星图残片，主角能在脑海中构建出短暂的“地貌投影”，预判沙暴走向与隐藏的地下水源。限制在于，这种能力极度消耗体力，且每次使用都会导致记忆的轻微模糊，过度依赖会导致主角逐渐遗忘出发的初衷，必须在“寻找真相”与“保持自我”之间寻找平衡。",
+              "world_basic_setting": "故事发生在一颗被流沙覆盖的行星“尘寰”。这里曾是繁荣的星际中转站，但随着恒星衰变与贸易航线的偏移，文明退化为以商队为核心的游牧社会。社会结构由一个个依靠地下水脉生存的“绿洲城邦”构成，商队是连接孤岛的唯一纽带。历史的残骸埋在沙下，人们通过挖掘旧时代的“星图碎片”来寻找传说中的宜居地。文化上，这里崇尚“行者哲学”，认为人生的价值不在于抵达终点，而在于在沙暴中保持方向。关键事件“大迁徙”导致了旧秩序崩塌，如今的社会由各大商会垄断水资源，普通人为了生存必须在残酷的贸易规则中博弈，同时还要面对沙暴带来的不可预测的地理变迁。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1777641931_yvbbtt",
+            "image_style": {
+              "subtype": "classic_oil",
+              "type": "oil_painting"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "深褐色短发、防风护目镜、磨损的皮质斗篷、坚毅的眼神、指尖的陈旧茧子、腰间的黄铜导航仪、略显疲惫的嘴角、粗布衬衫、多功能工具包、沉稳的步态、风沙洗礼的肤色、不离手的星图残片",
+              "work_en": "Dust Walker",
+              "work_zh": "尘寰行者"
+            },
+            "tone": "normal_ending",
+            "user_theme": "沙漠商队星图"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "request_payload": {
+          "gameTheme": "沙漠商队星图",
+          "protagonistAttr": {},
+          "difficulty": "normal",
+          "toneKey": "normal_ending",
+          "imageStyle": {
+            "type": "oil_painting",
+            "subtype": "classic_oil"
+          },
+          "_benchmark_profile": "fullready_strict",
+          "_benchmark_measurement": "fullready_nextturn",
+          "_benchmark_read_wait_s": 0.0
+        },
+        "start_ts": 1777641931.5292897,
+        "end_ts": 1777641941.2112412,
+        "provider_events": {
+          "event_count": 4,
+          "queue_wait_ms": {
+            "count": 4,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 1,
+            "min": 9653.0,
+            "max": 9653.0,
+            "mean": 9653.0,
+            "median": 9653.0,
+            "p95": 9653.0
+          },
+          "llm_success_count": 1,
+          "image_success_count": 0,
+          "request_thread_event_count": 2,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0
+        },
+        "status": "success",
+        "game_id": "game_1777641931_yvbbtt"
+      },
+      "long_tail_attribution": {
+        "provider_429_count": 0,
+        "provider_timeout_count": 0,
+        "provider_retry_heavy_count": 0,
+        "provider_backoff_wait_ms_total": 0,
+        "main_character_event_count": 0,
+        "scene_image_event_count": 0,
+        "image_probe_attempt_count": 0,
+        "main_character_contention_suspected": false
+      },
+      "first_click": {
+        "http_status": 200,
+        "elapsed_s": 63.124,
+        "response_json": {
+          "benchmark_diagnostics": {
+            "cache_hit_reason": null,
+            "cache_miss_reason": null,
+            "current_options_key_drift_detected": false,
+            "global_state_key_drift_detected": false,
+            "placeholder": false,
+            "previous_scene_id": null,
+            "recomputed_scene_cache_exists": false,
+            "recomputed_scene_id": null,
+            "request_current_options_count": 0,
+            "request_current_options_hash": "d751713988987e9331980363e24189ce",
+            "request_flow_worldline_hash": "940e38d5f8372eaa58cfdaf4d70a0d30",
+            "request_global_state_hash": "de28ea8bd9df1ef4a8e44840c03c9067",
+            "request_option_at_index": null,
+            "request_option_index": 0,
+            "request_option_text": "开始游戏",
+            "request_scene_cache_exists": false,
+            "request_scene_id": null,
+            "resolution_path": null,
+            "response_has_image": true,
+            "response_has_scene": true,
+            "response_scene_id": "-3925848268390290312_2700848442111339279",
+            "response_status": "success",
+            "scene_id_mismatch_detected": false,
+            "selected_option_mismatch_detected": false
+          },
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "",
+              "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：狂风卷着细碎的沙砾，狠狠拍打在我的防风护目镜上，发出令人牙酸的摩擦声。我紧了紧磨损的皮质斗篷，指尖下意识地摩挲着腰间那枚冰冷的黄铜导航仪，金属表面的划痕记录着无数次在沙暴中死里逃生的经历。空气中弥漫着一股陈旧的铁锈味与干燥的尘土气息，这是“尘寰”特有的味道，也是死亡的预兆。\n\n我面前的破旧工作台上，散落着几块刚从废墟中挖掘出的星图残片。它们在昏暗的油灯下闪烁着诡异的微光，仿佛在嘲笑我的无知。商队领队老莫推门而入，他那张被风沙洗礼得如同老树皮般的脸上满是焦急，粗布衬衫的袖口已经磨出了毛边。他将一个空荡荡的水囊重重地摔在桌上，发出沉闷的响声。“林远，这是最后一点水了。”他沙哑着嗓子，眼神中透着疲惫与绝望，“商队撑不过明天，如果再找不到水源，我们只能选择向黑市商会低头，把这批货贱卖掉。”\n\n我沉默地看着他，又看向那几块残片。我的星感在微微颤动，脑海中隐约浮现出一段模糊的地貌投影，那是通往绿洲的希望，却也是将我们推向深渊的诱饵。我深吸一口气，感受着指尖传来的阵痛，那是过度使用能力的代价。"
+            },
+            "deep_background_links": {},
+            "flow_update": {},
+            "next_options": [
+              "动用星感解析残片，寻找可能存在的隐秘水源。",
+              "听从老莫的建议，将残片抵押换取净水设备以维持生存。"
+            ],
+            "scene": "狂风卷着细碎的沙砾，狠狠拍打在我的防风护目镜上，发出令人牙酸的摩擦声。我紧了紧磨损的皮质斗篷，指尖下意识地摩挲着腰间那枚冰冷的黄铜导航仪，金属表面的划痕记录着无数次在沙暴中死里逃生的经历。空气中弥漫着一股陈旧的铁锈味与干燥的尘土气息，这是“尘寰”特有的味道，也是死亡的预兆。\n\n我面前的破旧工作台上，散落着几块刚从废墟中挖掘出的星图残片。它们在昏暗的油灯下闪烁着诡异的微光，仿佛在嘲笑我的无知。商队领队老莫推门而入，他那张被风沙洗礼得如同老树皮般的脸上满是焦急，粗布衬衫的袖口已经磨出了毛边。他将一个空荡荡的水囊重重地摔在桌上，发出沉闷的响声。“林远，这是最后一点水了。”他沙哑着嗓子，眼神中透着疲惫与绝望，“商队撑不过明天，如果再找不到水源，我们只能选择向黑市商会低头，把这批货贱卖掉。”\n\n我沉默地看着他，又看向那几块残片。我的星感在微微颤动，脑海中隐约浮现出一段模糊的地貌投影，那是通往绿洲的希望，却也是将我们推向深渊的诱饵。我深吸一口气，感受着指尖传来的阵痛，那是过度使用能力的代价。",
+            "sceneId": "-3925848268390290312_2700848442111339279",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-desert-outpost-negotiation, post-apocalyptic, industrial-wasteland, dramatic-narrative, survival-grit, classic oil painting, thick impasto texture, rich and earthy color palette, dramatic chiaroscuro lighting, visible expressive brushstrokes, young male protagonist Lin Yuan using Image 0, deep brown short hair with dusty texture, weather-beaten tanned skin showing signs of harsh desert life, determined and steady gaze with a hint of deep exhaustion, calloused fingertips from years of manual labor, slightly weary corners of the mouth, worn-out leather cloak with sand-blasted texture, simple coarse fabric shirt, utility belt with various tools and a brass navigation device, protective wind goggles resting around neck or on forehead, standing behind a cluttered workbench, body facing forward towards the workbench and 老莫-配角1, fingers hovering over glowing star map fragments, steady stance reflecting long-term survival discipline, 8K detailed facial features, weathered skin texture with fine sand particles, resolute eyes reflecting the faint light of star fragments, lip color naturally muted and dry, soft shadows emphasizing facial structure and fatigue, deep brown short hair, messy and wind-blown, root fixation coefficient 0.85, tip swing amplitude 5cm, color layering: main color #3E2723, secondary #2D1B18, highlight #5D4037, shadow #1B1210, wind speed 1.2m/s, turbulence intensity 15%, embedded with fine desert dust particles, heavy leather cloak showing signs of wear and tear, coarse fabric texture on shirt, brass navigation device with metallic patina and scratches, slight fabric flutter due to the indoor draft, dimly lit interior of a makeshift desert workshop, scattered ancient star map fragments on a rough wooden table, rusty metal tools and debris in the background, flickering dim oil lamp casting long, dancing shadows, thick air filled with suspended dust motes, 老莫-配角1 standing on the right side of the frame, face appearing like weathered tree bark, wearing a frayed coarse shirt, looking desperate and exhausted, faint, flickering mystical light emanating from the star fragments, dusty atmosphere with light beams piercing through gaps in the wall, warm, low-intensity glow from the oil lamp, earthy tones of ochre, burnt sienna, and deep brown, muted iron-rust red, faint ethereal blue glow from star fragments, dim warm amber for lamp light, low-key dramatic lighting, strong contrast between the warm oil lamp light and cool starlight, harsh shadows emphasizing the industrial decay of the environment, type medium shot, lens 35mm, aperture f/4, depth_of_field shallow focus on the protagonist and the star fragments, flash none, grain heavy film grain mixed with oil painting texture, texture classic oil painting on canvas, protagonist Lin Yuan centered, using Image 0, 老莫-配角1 positioned in the right foreground, workbench as the central horizontal element, action constraints: tense negotiation, protagonist focused on the fragments, realistic oil painting style, no text or symbols in image, loneliness and survival pressure, contemplative determination, gritty industrial despair, quiet tension between hope and reality, no text, no symbols, no garbled characters, no words",
+              "prompt_json": {
+                "camera": {
+                  "aperture": "f/4",
+                  "depth_of_field": "shallow focus on the protagonist and the star fragments",
+                  "flash": "none",
+                  "grain": "heavy film grain mixed with oil painting texture",
+                  "lens": "35mm",
+                  "texture": "classic oil painting on canvas",
+                  "type": "medium shot"
+                },
+                "clothing_system": [
+                  "heavy leather cloak showing signs of wear and tear",
+                  "coarse fabric texture on shirt",
+                  "brass navigation device with metallic patina and scratches",
+                  "slight fabric flutter due to the indoor draft"
+                ],
+                "color_restriction": [
+                  "earthy tones of ochre, burnt sienna, and deep brown",
+                  "muted iron-rust red",
+                  "faint ethereal blue glow from star fragments",
+                  "dim warm amber for lamp light"
+                ],
+                "composition": [
+                  "protagonist Lin Yuan centered, using Image 0",
+                  "老莫-配角1 positioned in the right foreground",
+                  "workbench as the central horizontal element",
+                  "action constraints: tense negotiation, protagonist focused on the fragments"
+                ],
+                "environment": {
+                  "background": [
+                    "dimly lit interior of a makeshift desert workshop",
+                    "scattered ancient star map fragments on a rough wooden table",
+                    "rusty metal tools and debris in the background",
+                    "flickering dim oil lamp casting long, dancing shadows",
+                    "thick air filled with suspended dust motes"
+                  ],
+                  "characters": [
+                    "老莫-配角1 standing on the right side of the frame, face appearing like weathered tree bark, wearing a frayed coarse shirt, looking desperate and exhausted"
+                  ],
+                  "effects": [
+                    "faint, flickering mystical light emanating from the star fragments",
+                    "dusty atmosphere with light beams piercing through gaps in the wall",
+                    "warm, low-intensity glow from the oil lamp"
+                  ]
+                },
+                "face_system": [
+                  "8K detailed facial features",
+                  "weathered skin texture with fine sand particles",
+                  "resolute eyes reflecting the faint light of star fragments",
+                  "lip color naturally muted and dry",
+                  "soft shadows emphasizing facial structure and fatigue"
+                ],
+                "hair_system": [
+                  "deep brown short hair, messy and wind-blown",
+                  "root fixation coefficient 0.85",
+                  "tip swing amplitude 5cm",
+                  "color layering: main color #3E2723, secondary #2D1B18, highlight #5D4037, shadow #1B1210",
+                  "wind speed 1.2m/s",
+                  "turbulence intensity 15%",
+                  "embedded with fine desert dust particles"
+                ],
+                "label": "scene-desert-outpost-negotiation",
+                "lighting": [
+                  "low-key dramatic lighting",
+                  "strong contrast between the warm oil lamp light and cool starlight",
+                  "harsh shadows emphasizing the industrial decay of the environment"
+                ],
+                "mood": [
+                  "loneliness and survival pressure",
+                  "contemplative determination",
+                  "gritty industrial despair",
+                  "quiet tension between hope and reality"
+                ],
+                "output_style": [
+                  "realistic oil painting style",
+                  "no text or symbols in image"
+                ],
+                "style": [
+                  "classic oil painting",
+                  "thick impasto texture",
+                  "rich and earthy color palette",
+                  "dramatic chiaroscuro lighting",
+                  "visible expressive brushstrokes"
+                ],
+                "subject": {
+                  "body_traits": [
+                    "young male protagonist Lin Yuan using Image 0",
+                    "deep brown short hair with dusty texture",
+                    "weather-beaten tanned skin showing signs of harsh desert life",
+                    "determined and steady gaze with a hint of deep exhaustion",
+                    "calloused fingertips from years of manual labor",
+                    "slightly weary corners of the mouth"
+                  ],
+                  "outfit": [
+                    "worn-out leather cloak with sand-blasted texture",
+                    "simple coarse fabric shirt",
+                    "utility belt with various tools and a brass navigation device",
+                    "protective wind goggles resting around neck or on forehead"
+                  ],
+                  "pose": [
+                    "standing behind a cluttered workbench",
+                    "body facing forward towards the workbench and 老莫-配角1",
+                    "fingers hovering over glowing star map fragments",
+                    "steady stance reflecting long-term survival discipline"
+                  ]
+                },
+                "tags": [
+                  "post-apocalyptic",
+                  "industrial-wasteland",
+                  "dramatic-narrative",
+                  "survival-grit"
+                ]
+              },
+              "scene_text_hash": "d67a1d7068f7629eed705d3c25a485c3",
+              "style": "default",
+              "url": "/image_cache/a69fcc5b846947d40ca9aa7a1033caf3.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "request_payload": {
+          "option": "开始游戏",
+          "optionIndex": 0,
+          "sceneId": null,
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过一次高风险的短途贸易赚取了微薄利润，最终选择购买净水设备，暂时缓解了生存危机，但同时也失去了获取那张星图残片的机会，被迫推迟了寻找绿洲的计划。",
+                  "main_conflict": "商队面临严重的物资短缺，主角必须在有限的预算内决定是购买昂贵的净水设备以保证生存，还是投资购买一张真伪难辨的星图残片以追寻未来。现实的饥饿与虚无的希望在主角心中激烈碰撞，周围人的质疑与压力让主角陷入了自我怀疑。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角成功带领商队绕过封锁，但因路径险峻，大部分货物受损，商队陷入财务困境。主角虽然保全了所有成员的性命，却不得不向竞争对手低头，签署了一份苛刻的长期供货协议。",
+                  "main_conflict": "商队在穿越“回音峡谷”时遭遇了竞争对手的恶意封锁，主角被迫在保护商队成员安全与维护贸易信誉之间做出选择。由于缺乏足够的武装力量，主角必须利用“星感”能力寻找一条极其危险的捷径，这可能导致商队部分货物的损毁。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角向商队坦白了真相，并利用积累的经验将这片河床改造成了小型蓄水池，商队在此定居。主角虽然没能找到传说中的绿洲，却凭借踏实的经营让大家活了下来，他最终释然，接受了这份平凡的安稳。",
+                  "main_conflict": "主角终于抵达了星图指向的终点，却发现那里只有一片干涸的古老河床。面对一直以来支撑自己奋斗的信念崩塌，主角必须在“隐瞒真相继续流浪”与“坦白事实面对现实”之间抉择，同时还要应对商队内部因失望而引发的离散危机。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "沉浸式现实主义模拟，融合荒漠生存与星际贸易元素。画面呈现粗粝的沙尘质感与冷峻的工业废土风，强调光影在漫长旅途中的细微变化。叙事节奏缓慢而扎实，注重环境叙事与人物内心独白，营造一种在无尽荒原中寻找归宿的孤独感与踏实感。",
+              "main_quest": "主角的目标是重绘一张失传的“星图”，以带领没落的家族商队找到传说中的“永恒绿洲”。任务分为三个阶段：首先，在各大城邦间进行低买高卖的贸易，积累启动资金与人脉；其次，通过收集散落在废墟中的星图碎片，破解复杂的地理谜题；最后，在资源匮乏与商会排挤的重压下，穿越死亡沙海。挑战在于，主角必须在“家族的生存”与“理想的远方”之间做出取舍，最终主角会发现，所谓的永恒绿洲并不存在，但通过努力，他成功为商队建立了一个可持续发展的贸易据点，虽未达成最初的宏大目标，却换来了安稳的日常。",
+              "protagonist_ability": "主角拥有一种被称为“星感”的感知力，源于其家族世代传承的古老导航仪。通过触碰特定的星图残片，主角能在脑海中构建出短暂的“地貌投影”，预判沙暴走向与隐藏的地下水源。限制在于，这种能力极度消耗体力，且每次使用都会导致记忆的轻微模糊，过度依赖会导致主角逐渐遗忘出发的初衷，必须在“寻找真相”与“保持自我”之间寻找平衡。",
+              "world_basic_setting": "故事发生在一颗被流沙覆盖的行星“尘寰”。这里曾是繁荣的星际中转站，但随着恒星衰变与贸易航线的偏移，文明退化为以商队为核心的游牧社会。社会结构由一个个依靠地下水脉生存的“绿洲城邦”构成，商队是连接孤岛的唯一纽带。历史的残骸埋在沙下，人们通过挖掘旧时代的“星图碎片”来寻找传说中的宜居地。文化上，这里崇尚“行者哲学”，认为人生的价值不在于抵达终点，而在于在沙暴中保持方向。关键事件“大迁徙”导致了旧秩序崩塌，如今的社会由各大商会垄断水资源，普通人为了生存必须在残酷的贸易规则中博弈，同时还要面对沙暴带来的不可预测的地理变迁。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1777641931_yvbbtt",
+            "image_style": {
+              "subtype": "classic_oil",
+              "type": "oil_painting"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "深褐色短发、防风护目镜、磨损的皮质斗篷、坚毅的眼神、指尖的陈旧茧子、腰间的黄铜导航仪、略显疲惫的嘴角、粗布衬衫、多功能工具包、沉稳的步态、风沙洗礼的肤色、不离手的星图残片",
+              "work_en": "Dust Walker",
+              "work_zh": "尘寰行者"
+            },
+            "tone": "normal_ending",
+            "user_theme": "沙漠商队星图",
+            "_benchmark_profile": "fullready_strict",
+            "_benchmark_measurement": "fullready_nextturn",
+            "_benchmark_read_wait_s": 0.0
+          }
+        },
+        "start_ts": 1777641941.261206,
+        "end_ts": 1777642004.3855913,
+        "provider_events": {
+          "event_count": 9,
+          "queue_wait_ms": {
+            "count": 9,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 5,
+            "min": 4854.0,
+            "max": 15293.0,
+            "mean": 9833.4,
+            "median": 7577.0,
+            "p95": 15043.0
+          },
+          "llm_success_count": 4,
+          "image_success_count": 0,
+          "request_thread_event_count": 0,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 2,
+          "scene_image_event_count": 0
+        },
+        "attempts": [
+          {
+            "http_status": 200,
+            "elapsed_s": 63.124,
+            "response_json": {
+              "benchmark_diagnostics": {
+                "cache_hit_reason": null,
+                "cache_miss_reason": null,
+                "current_options_key_drift_detected": false,
+                "global_state_key_drift_detected": false,
+                "placeholder": false,
+                "previous_scene_id": null,
+                "recomputed_scene_cache_exists": false,
+                "recomputed_scene_id": null,
+                "request_current_options_count": 0,
+                "request_current_options_hash": "d751713988987e9331980363e24189ce",
+                "request_flow_worldline_hash": "940e38d5f8372eaa58cfdaf4d70a0d30",
+                "request_global_state_hash": "de28ea8bd9df1ef4a8e44840c03c9067",
+                "request_option_at_index": null,
+                "request_option_index": 0,
+                "request_option_text": "开始游戏",
+                "request_scene_cache_exists": false,
+                "request_scene_id": null,
+                "resolution_path": null,
+                "response_has_image": true,
+                "response_has_scene": true,
+                "response_scene_id": "-3925848268390290312_2700848442111339279",
+                "response_status": "success",
+                "scene_id_mismatch_detected": false,
+                "selected_option_mismatch_detected": false
+              },
+              "message": "选项剧情生成成功！",
+              "optionData": {
+                "checkpoint_packet": {
+                  "chapter": "chapter1",
+                  "chapter_conflict_solved": false,
+                  "quest_delta": "",
+                  "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：狂风卷着细碎的沙砾，狠狠拍打在我的防风护目镜上，发出令人牙酸的摩擦声。我紧了紧磨损的皮质斗篷，指尖下意识地摩挲着腰间那枚冰冷的黄铜导航仪，金属表面的划痕记录着无数次在沙暴中死里逃生的经历。空气中弥漫着一股陈旧的铁锈味与干燥的尘土气息，这是“尘寰”特有的味道，也是死亡的预兆。\n\n我面前的破旧工作台上，散落着几块刚从废墟中挖掘出的星图残片。它们在昏暗的油灯下闪烁着诡异的微光，仿佛在嘲笑我的无知。商队领队老莫推门而入，他那张被风沙洗礼得如同老树皮般的脸上满是焦急，粗布衬衫的袖口已经磨出了毛边。他将一个空荡荡的水囊重重地摔在桌上，发出沉闷的响声。“林远，这是最后一点水了。”他沙哑着嗓子，眼神中透着疲惫与绝望，“商队撑不过明天，如果再找不到水源，我们只能选择向黑市商会低头，把这批货贱卖掉。”\n\n我沉默地看着他，又看向那几块残片。我的星感在微微颤动，脑海中隐约浮现出一段模糊的地貌投影，那是通往绿洲的希望，却也是将我们推向深渊的诱饵。我深吸一口气，感受着指尖传来的阵痛，那是过度使用能力的代价。"
+                },
+                "deep_background_links": {},
+                "flow_update": {},
+                "next_options": [
+                  "动用星感解析残片，寻找可能存在的隐秘水源。",
+                  "听从老莫的建议，将残片抵押换取净水设备以维持生存。"
+                ],
+                "scene": "狂风卷着细碎的沙砾，狠狠拍打在我的防风护目镜上，发出令人牙酸的摩擦声。我紧了紧磨损的皮质斗篷，指尖下意识地摩挲着腰间那枚冰冷的黄铜导航仪，金属表面的划痕记录着无数次在沙暴中死里逃生的经历。空气中弥漫着一股陈旧的铁锈味与干燥的尘土气息，这是“尘寰”特有的味道，也是死亡的预兆。\n\n我面前的破旧工作台上，散落着几块刚从废墟中挖掘出的星图残片。它们在昏暗的油灯下闪烁着诡异的微光，仿佛在嘲笑我的无知。商队领队老莫推门而入，他那张被风沙洗礼得如同老树皮般的脸上满是焦急，粗布衬衫的袖口已经磨出了毛边。他将一个空荡荡的水囊重重地摔在桌上，发出沉闷的响声。“林远，这是最后一点水了。”他沙哑着嗓子，眼神中透着疲惫与绝望，“商队撑不过明天，如果再找不到水源，我们只能选择向黑市商会低头，把这批货贱卖掉。”\n\n我沉默地看着他，又看向那几块残片。我的星感在微微颤动，脑海中隐约浮现出一段模糊的地貌投影，那是通往绿洲的希望，却也是将我们推向深渊的诱饵。我深吸一口气，感受着指尖传来的阵痛，那是过度使用能力的代价。",
+                "sceneId": "-3925848268390290312_2700848442111339279",
+                "scene_image": {
+                  "cached": true,
+                  "height": 1080,
+                  "image_type": "story_scene",
+                  "prompt": "scene-desert-outpost-negotiation, post-apocalyptic, industrial-wasteland, dramatic-narrative, survival-grit, classic oil painting, thick impasto texture, rich and earthy color palette, dramatic chiaroscuro lighting, visible expressive brushstrokes, young male protagonist Lin Yuan using Image 0, deep brown short hair with dusty texture, weather-beaten tanned skin showing signs of harsh desert life, determined and steady gaze with a hint of deep exhaustion, calloused fingertips from years of manual labor, slightly weary corners of the mouth, worn-out leather cloak with sand-blasted texture, simple coarse fabric shirt, utility belt with various tools and a brass navigation device, protective wind goggles resting around neck or on forehead, standing behind a cluttered workbench, body facing forward towards the workbench and 老莫-配角1, fingers hovering over glowing star map fragments, steady stance reflecting long-term survival discipline, 8K detailed facial features, weathered skin texture with fine sand particles, resolute eyes reflecting the faint light of star fragments, lip color naturally muted and dry, soft shadows emphasizing facial structure and fatigue, deep brown short hair, messy and wind-blown, root fixation coefficient 0.85, tip swing amplitude 5cm, color layering: main color #3E2723, secondary #2D1B18, highlight #5D4037, shadow #1B1210, wind speed 1.2m/s, turbulence intensity 15%, embedded with fine desert dust particles, heavy leather cloak showing signs of wear and tear, coarse fabric texture on shirt, brass navigation device with metallic patina and scratches, slight fabric flutter due to the indoor draft, dimly lit interior of a makeshift desert workshop, scattered ancient star map fragments on a rough wooden table, rusty metal tools and debris in the background, flickering dim oil lamp casting long, dancing shadows, thick air filled with suspended dust motes, 老莫-配角1 standing on the right side of the frame, face appearing like weathered tree bark, wearing a frayed coarse shirt, looking desperate and exhausted, faint, flickering mystical light emanating from the star fragments, dusty atmosphere with light beams piercing through gaps in the wall, warm, low-intensity glow from the oil lamp, earthy tones of ochre, burnt sienna, and deep brown, muted iron-rust red, faint ethereal blue glow from star fragments, dim warm amber for lamp light, low-key dramatic lighting, strong contrast between the warm oil lamp light and cool starlight, harsh shadows emphasizing the industrial decay of the environment, type medium shot, lens 35mm, aperture f/4, depth_of_field shallow focus on the protagonist and the star fragments, flash none, grain heavy film grain mixed with oil painting texture, texture classic oil painting on canvas, protagonist Lin Yuan centered, using Image 0, 老莫-配角1 positioned in the right foreground, workbench as the central horizontal element, action constraints: tense negotiation, protagonist focused on the fragments, realistic oil painting style, no text or symbols in image, loneliness and survival pressure, contemplative determination, gritty industrial despair, quiet tension between hope and reality, no text, no symbols, no garbled characters, no words",
+                  "prompt_json": {
+                    "camera": {
+                      "aperture": "f/4",
+                      "depth_of_field": "shallow focus on the protagonist and the star fragments",
+                      "flash": "none",
+                      "grain": "heavy film grain mixed with oil painting texture",
+                      "lens": "35mm",
+                      "texture": "classic oil painting on canvas",
+                      "type": "medium shot"
+                    },
+                    "clothing_system": [
+                      "heavy leather cloak showing signs of wear and tear",
+                      "coarse fabric texture on shirt",
+                      "brass navigation device with metallic patina and scratches",
+                      "slight fabric flutter due to the indoor draft"
+                    ],
+                    "color_restriction": [
+                      "earthy tones of ochre, burnt sienna, and deep brown",
+                      "muted iron-rust red",
+                      "faint ethereal blue glow from star fragments",
+                      "dim warm amber for lamp light"
+                    ],
+                    "composition": [
+                      "protagonist Lin Yuan centered, using Image 0",
+                      "老莫-配角1 positioned in the right foreground",
+                      "workbench as the central horizontal element",
+                      "action constraints: tense negotiation, protagonist focused on the fragments"
+                    ],
+                    "environment": {
+                      "background": [
+                        "dimly lit interior of a makeshift desert workshop",
+                        "scattered ancient star map fragments on a rough wooden table",
+                        "rusty metal tools and debris in the background",
+                        "flickering dim oil lamp casting long, dancing shadows",
+                        "thick air filled with suspended dust motes"
+                      ],
+                      "characters": [
+                        "老莫-配角1 standing on the right side of the frame, face appearing like weathered tree bark, wearing a frayed coarse shirt, looking desperate and exhausted"
+                      ],
+                      "effects": [
+                        "faint, flickering mystical light emanating from the star fragments",
+                        "dusty atmosphere with light beams piercing through gaps in the wall",
+                        "warm, low-intensity glow from the oil lamp"
+                      ]
+                    },
+                    "face_system": [
+                      "8K detailed facial features",
+                      "weathered skin texture with fine sand particles",
+                      "resolute eyes reflecting the faint light of star fragments",
+                      "lip color naturally muted and dry",
+                      "soft shadows emphasizing facial structure and fatigue"
+                    ],
+                    "hair_system": [
+                      "deep brown short hair, messy and wind-blown",
+                      "root fixation coefficient 0.85",
+                      "tip swing amplitude 5cm",
+                      "color layering: main color #3E2723, secondary #2D1B18, highlight #5D4037, shadow #1B1210",
+                      "wind speed 1.2m/s",
+                      "turbulence intensity 15%",
+                      "embedded with fine desert dust particles"
+                    ],
+                    "label": "scene-desert-outpost-negotiation",
+                    "lighting": [
+                      "low-key dramatic lighting",
+                      "strong contrast between the warm oil lamp light and cool starlight",
+                      "harsh shadows emphasizing the industrial decay of the environment"
+                    ],
+                    "mood": [
+                      "loneliness and survival pressure",
+                      "contemplative determination",
+                      "gritty industrial despair",
+                      "quiet tension between hope and reality"
+                    ],
+                    "output_style": [
+                      "realistic oil painting style",
+                      "no text or symbols in image"
+                    ],
+                    "style": [
+                      "classic oil painting",
+                      "thick impasto texture",
+                      "rich and earthy color palette",
+                      "dramatic chiaroscuro lighting",
+                      "visible expressive brushstrokes"
+                    ],
+                    "subject": {
+                      "body_traits": [
+                        "young male protagonist Lin Yuan using Image 0",
+                        "deep brown short hair with dusty texture",
+                        "weather-beaten tanned skin showing signs of harsh desert life",
+                        "determined and steady gaze with a hint of deep exhaustion",
+                        "calloused fingertips from years of manual labor",
+                        "slightly weary corners of the mouth"
+                      ],
+                      "outfit": [
+                        "worn-out leather cloak with sand-blasted texture",
+                        "simple coarse fabric shirt",
+                        "utility belt with various tools and a brass navigation device",
+                        "protective wind goggles resting around neck or on forehead"
+                      ],
+                      "pose": [
+                        "standing behind a cluttered workbench",
+                        "body facing forward towards the workbench and 老莫-配角1",
+                        "fingers hovering over glowing star map fragments",
+                        "steady stance reflecting long-term survival discipline"
+                      ]
+                    },
+                    "tags": [
+                      "post-apocalyptic",
+                      "industrial-wasteland",
+                      "dramatic-narrative",
+                      "survival-grit"
+                    ]
+                  },
+                  "scene_text_hash": "d67a1d7068f7629eed705d3c25a485c3",
+                  "style": "default",
+                  "url": "/image_cache/a69fcc5b846947d40ca9aa7a1033caf3.png",
+                  "width": 1920
+                }
+              },
+              "status": "success"
+            },
+            "request_payload": {
+              "option": "开始游戏",
+              "optionIndex": 0,
+              "sceneId": null,
+              "globalState": {
+                "core_worldview": {
+                  "chapters": {
+                    "chapter1": {
+                      "conflict_end_condition": "主角通过一次高风险的短途贸易赚取了微薄利润，最终选择购买净水设备，暂时缓解了生存危机，但同时也失去了获取那张星图残片的机会，被迫推迟了寻找绿洲的计划。",
+                      "main_conflict": "商队面临严重的物资短缺，主角必须在有限的预算内决定是购买昂贵的净水设备以保证生存，还是投资购买一张真伪难辨的星图残片以追寻未来。现实的饥饿与虚无的希望在主角心中激烈碰撞，周围人的质疑与压力让主角陷入了自我怀疑。"
+                    },
+                    "chapter2": {
+                      "conflict_end_condition": "主角成功带领商队绕过封锁，但因路径险峻，大部分货物受损，商队陷入财务困境。主角虽然保全了所有成员的性命，却不得不向竞争对手低头，签署了一份苛刻的长期供货协议。",
+                      "main_conflict": "商队在穿越“回音峡谷”时遭遇了竞争对手的恶意封锁，主角被迫在保护商队成员安全与维护贸易信誉之间做出选择。由于缺乏足够的武装力量，主角必须利用“星感”能力寻找一条极其危险的捷径，这可能导致商队部分货物的损毁。"
+                    },
+                    "chapter3": {
+                      "conflict_end_condition": "主角向商队坦白了真相，并利用积累的经验将这片河床改造成了小型蓄水池，商队在此定居。主角虽然没能找到传说中的绿洲，却凭借踏实的经营让大家活了下来，他最终释然，接受了这份平凡的安稳。",
+                      "main_conflict": "主角终于抵达了星图指向的终点，却发现那里只有一片干涸的古老河床。面对一直以来支撑自己奋斗的信念崩塌，主角必须在“隐瞒真相继续流浪”与“坦白事实面对现实”之间抉择，同时还要应对商队内部因失望而引发的离散危机。"
+                    }
+                  },
+                  "characters": {},
+                  "forces": {},
+                  "game_style": "沉浸式现实主义模拟，融合荒漠生存与星际贸易元素。画面呈现粗粝的沙尘质感与冷峻的工业废土风，强调光影在漫长旅途中的细微变化。叙事节奏缓慢而扎实，注重环境叙事与人物内心独白，营造一种在无尽荒原中寻找归宿的孤独感与踏实感。",
+                  "main_quest": "主角的目标是重绘一张失传的“星图”，以带领没落的家族商队找到传说中的“永恒绿洲”。任务分为三个阶段：首先，在各大城邦间进行低买高卖的贸易，积累启动资金与人脉；其次，通过收集散落在废墟中的星图碎片，破解复杂的地理谜题；最后，在资源匮乏与商会排挤的重压下，穿越死亡沙海。挑战在于，主角必须在“家族的生存”与“理想的远方”之间做出取舍，最终主角会发现，所谓的永恒绿洲并不存在，但通过努力，他成功为商队建立了一个可持续发展的贸易据点，虽未达成最初的宏大目标，却换来了安稳的日常。",
+                  "protagonist_ability": "主角拥有一种被称为“星感”的感知力，源于其家族世代传承的古老导航仪。通过触碰特定的星图残片，主角能在脑海中构建出短暂的“地貌投影”，预判沙暴走向与隐藏的地下水源。限制在于，这种能力极度消耗体力，且每次使用都会导致记忆的轻微模糊，过度依赖会导致主角逐渐遗忘出发的初衷，必须在“寻找真相”与“保持自我”之间寻找平衡。",
+                  "world_basic_setting": "故事发生在一颗被流沙覆盖的行星“尘寰”。这里曾是繁荣的星际中转站，但随着恒星衰变与贸易航线的偏移，文明退化为以商队为核心的游牧社会。社会结构由一个个依靠地下水脉生存的“绿洲城邦”构成，商队是连接孤岛的唯一纽带。历史的残骸埋在沙下，人们通过挖掘旧时代的“星图碎片”来寻找传说中的宜居地。文化上，这里崇尚“行者哲学”，认为人生的价值不在于抵达终点，而在于在沙暴中保持方向。关键事件“大迁徙”导致了旧秩序崩塌，如今的社会由各大商会垄断水资源，普通人为了生存必须在残酷的贸易规则中博弈，同时还要面对沙暴带来的不可预测的地理变迁。"
+                },
+                "flow_worldline": {
+                  "characters": {},
+                  "current_chapter": "chapter1",
+                  "environment": {}
+                },
+                "game_id": "game_1777641931_yvbbtt",
+                "image_style": {
+                  "subtype": "classic_oil",
+                  "type": "oil_painting"
+                },
+                "meta": {
+                  "detail_async": true
+                },
+                "protagonist_canonical": {
+                  "age_range": "青年",
+                  "gender": "男性",
+                  "name_en": "Lin Yuan",
+                  "name_zh": "林远",
+                  "signature_look_keywords": "深褐色短发、防风护目镜、磨损的皮质斗篷、坚毅的眼神、指尖的陈旧茧子、腰间的黄铜导航仪、略显疲惫的嘴角、粗布衬衫、多功能工具包、沉稳的步态、风沙洗礼的肤色、不离手的星图残片",
+                  "work_en": "Dust Walker",
+                  "work_zh": "尘寰行者"
+                },
+                "tone": "normal_ending",
+                "user_theme": "沙漠商队星图",
+                "_benchmark_profile": "fullready_strict",
+                "_benchmark_measurement": "fullready_nextturn",
+                "_benchmark_read_wait_s": 0.0
+              }
+            },
+            "start_ts": 1777641941.261206,
+            "end_ts": 1777642004.3855913,
+            "provider_events": {
+              "event_count": 9,
+              "queue_wait_ms": {
+                "count": 9,
+                "min": 0.0,
+                "max": 0.0,
+                "mean": 0.0,
+                "median": 0.0,
+                "p95": 0.0
+              },
+              "latency_ms": {
+                "count": 5,
+                "min": 4854.0,
+                "max": 15293.0,
+                "mean": 9833.4,
+                "median": 7577.0,
+                "p95": 15043.0
+              },
+              "llm_success_count": 4,
+              "image_success_count": 0,
+              "request_thread_event_count": 0,
+              "provider_429_count": 0,
+              "provider_timeout_count": 0,
+              "shared_backoff_wait_ms_total": 0,
+              "retry_heavy_event_count": 0,
+              "main_character_event_count": 2,
+              "scene_image_event_count": 0
+            }
+          }
+        ],
+        "attempt_count": 1,
+        "request_elapsed_s": 63.124,
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "success",
+        "has_scene": true,
+        "has_image": true,
+        "setup_success": true
+      },
+      "second_click": {
+        "http_status": 200,
+        "elapsed_s": 28.806,
+        "response_json": {
+          "benchmark_diagnostics": {
+            "cache_hit_reason": "waited_request_scene_text_completed_no_image",
+            "cache_miss_reason": "request_scene_generation_in_progress",
+            "current_options_key_drift_detected": false,
+            "global_state_key_drift_detected": true,
+            "placeholder": false,
+            "previous_scene_id": "initial",
+            "recomputed_scene_cache_exists": false,
+            "recomputed_scene_id": "-8466426353923272117_2700848442111339279",
+            "request_current_options_count": 2,
+            "request_current_options_hash": "07ba0368259e6ad936aba1acb23c0335",
+            "request_flow_worldline_hash": "0b7d2802f8e46ae104639ddbac325b51",
+            "request_global_state_hash": "440170e3699adb0cfdcea99db73dae97",
+            "request_option_at_index": "动用星感解析残片，寻找可能存在的隐秘水源。",
+            "request_option_index": 0,
+            "request_option_text": "动用星感解析残片，寻找可能存在的隐秘水源。",
+            "request_scene_cache_exists": true,
+            "request_scene_cache_meta": {
+              "canonical_scene_id": "-1767619879834430302_2700848442111339279",
+              "current_options_hash": "07ba0368259e6ad936aba1acb23c0335",
+              "current_options_preview": [
+                "动用星感解析残片，寻找可能存在的隐秘水源。",
+                "听从老莫的建议，将残片抵押换取净水设备以维持生存。"
+              ],
+              "flow_worldline_hash": "940e38d5f8372eaa58cfdaf4d70a0d30",
+              "global_state_hash": "0586762beb49c70f10782032ea435094",
+              "option_count": 2,
+              "parent_scene_id": null,
+              "scene_id": "-3925848268390290312_2700848442111339279"
+            },
+            "request_scene_id": "-3925848268390290312_2700848442111339279",
+            "resolution_path": "wait_for_request_scene_cache_text_only",
+            "response_has_image": true,
+            "response_has_scene": true,
+            "response_scene_id": "5359837790103458903_5438378684377902636",
+            "response_status": "success",
+            "scene_id_mismatch_detected": true,
+            "selected_option_mismatch_detected": false
+          },
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "成功通过星感定位了隐秘水源，暂时避开了向黑市低头的屈辱，主线任务从“生存危机”推进至“资源获取与家族秘密探索”阶段，为后续修复星图提供了关键的地理坐标。",
+              "recap_text": "你选择了“动用星感解析残片，寻找可能存在的隐秘水源。”。当前章节：chapter1。主线进展：成功通过星感定位了隐秘水源，暂时避开了向黑市低头的屈辱，主线任务从“生存危机”推进至“资源获取与家族秘密探索”阶段，为后续修复星图提供了关键的地理坐标。。最近剧情：我深吸一口气，指尖微微颤抖，将那几块粗糙的星图残片拼凑在一起。随着我闭上双眼，意识沉入那片熟悉的、冰冷的虚无之中，腰间的黄铜导航仪发出细微的齿轮咬合声。我的星感如同一根细丝，在脑海中勾勒出地貌的轮廓。起初是一片混沌的沙暴，紧接着，一道幽蓝色的光影在意识深处炸开，那是地下深处微弱的脉动。我看到了一处被流沙掩盖的古老岩层裂隙，那里残留着一丝湿润的痕迹。我猛地睁开眼，额头渗出细密的汗珠，防风护目镜下的视线有些模糊，我扶着工作台稳住身形，对身旁焦急的老莫说道：“老莫，别去黑市。在东南方向三公里处的废弃矿坑下，有一条被沙层封住的暗河，虽然水量不多，但足够我们撑过这次危机。”老莫愣住了，他那双浑浊的眼睛里闪过一丝惊疑，随即化作深深的敬畏与希冀。他紧紧攥住我的肩膀，粗糙的指节因为用力而发白，声音颤抖着说：“林远，你确定吗？如果那是错觉，我们整个商队就真的完了。”我看着指尖留下的陈旧茧子，那是多年风沙留下的印记，我平静地回答：“这是我最后的能力了，去准备挖掘工具吧。”"
+            },
+            "deep_background_links": {
+              "1": "老莫（通过询问可解锁关于父亲与商队起源的深层背景信息）"
+            },
+            "flow_update": {
+              "chapter_conflict_solved": false,
+              "characters": {},
+              "environment": {},
+              "quest_progress": "成功通过星感定位了隐秘水源，暂时避开了向黑市低头的屈辱，主线任务从“生存危机”推进至“资源获取与家族秘密探索”阶段，为后续修复星图提供了关键的地理坐标。"
+            },
+            "next_options": [
+              "立即组织人手前往矿坑挖掘，争取在沙暴来临前获取水源。",
+              "询问老莫关于那块残片背后的家族往事，试图挖掘父亲留下的线索。"
+            ],
+            "plot_mentioned_only": [],
+            "plot_supporting_characters": [],
+            "scene": "我深吸一口气，指尖微微颤抖，将那几块粗糙的星图残片拼凑在一起。随着我闭上双眼，意识沉入那片熟悉的、冰冷的虚无之中，腰间的黄铜导航仪发出细微的齿轮咬合声。我的星感如同一根细丝，在脑海中勾勒出地貌的轮廓。起初是一片混沌的沙暴，紧接着，一道幽蓝色的光影在意识深处炸开，那是地下深处微弱的脉动。我看到了一处被流沙掩盖的古老岩层裂隙，那里残留着一丝湿润的痕迹。我猛地睁开眼，额头渗出细密的汗珠，防风护目镜下的视线有些模糊，我扶着工作台稳住身形，对身旁焦急的老莫说道：“老莫，别去黑市。在东南方向三公里处的废弃矿坑下，有一条被沙层封住的暗河，虽然水量不多，但足够我们撑过这次危机。”老莫愣住了，他那双浑浊的眼睛里闪过一丝惊疑，随即化作深深的敬畏与希冀。他紧紧攥住我的肩膀，粗糙的指节因为用力而发白，声音颤抖着说：“林远，你确定吗？如果那是错觉，我们整个商队就真的完了。”我看着指尖留下的陈旧茧子，那是多年风沙留下的印记，我平静地回答：“这是我最后的能力了，去准备挖掘工具吧。”",
+            "sceneId": "5359837790103458903_5438378684377902636",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-desert-star-navigation-revelation, industrial-wasteland, survival, solitude, gritty-realism, atmospheric-tension, classic oil painting, heavy impasto texture, rich brushstrokes, chiaroscuro lighting, earthy color palette, young male protagonist Lin Yuan (using Image 0), skin weathered by sandstorms with rugged texture, determined and weary eyes showing deep exhaustion, fingertips covered in deep calluses from years of labor, expression of intense focus mixed with relief, worn leather cloak with sand-worn edges, rugged coarse linen shirt, utility pouches strapped to belt, brass navigation device hanging at waist, standing firmly at a cluttered makeshift workbench, using Image 0 for正面视角, left hand resting on the workbench for stability, right hand gesturing slightly toward the map fragments, body angled slightly toward 老莫-配角1, 8K detailed facial features, protective anti-sand goggles pushed up on forehead, sweat beads visible on forehead, mouth slightly parted with a look of exhausted resolution, soft shadows emphasizing the rugged bone structure, short deep brown hair with fine sand particles, root fixation coefficient 0.5, tip swing amplitude 5cm, color layering: main #3E2723, secondary #2D1B1B, highlight #5D4037, shadow #1B1212, wind speed 1.2m/s, turbulence intensity 15%, leather cloak with frayed edges and dust accumulation, coarse linen texture with visible fabric weave, slight fabric flutter from the drafty underground chamber, dimly lit underground chamber with rusted metal walls, workbench covered with scattered metallic star-map fragments, faint ethereal blue light emanating from map fragments, shadowy corners filled with discarded mining tools, 老莫-配角1 standing to the right with a weathered face and wide, fearful eyes, wearing ragged heavy work clothes, faint blue holographic light casting on Lin Yuan's face, dust motes dancing in the dim light, cold atmosphere of an abandoned subterranean structure, ochre and burnt sienna for the desert environment, cold steel grey and rusted metal tones, sharp contrast of ethereal electric blue for the star-map projection, muted earthy tones for clothing, dramatic side lighting from the blue map projection, dim ambient light from a flickering overhead lamp, deep shadows to emphasize the industrial wasteland mood, type medium close-up, lens 35mm, aperture f/4, depth_of_field shallow focus on protagonist's face and map, flash none, grain heavy painterly texture, texture oil on canvas, protagonist positioned in the left-center frame, 老莫-配角1 positioned on the right side of the frame, star-map fragments as the central focal point, action constraints: intense eye contact between characters, realistic industrial wasteland oil painting, no text or symbols in image, solemn determination, cautious hope amidst despair, profound solitude, weight of survival, no text, no symbols, no garbled characters, no words",
+              "scene_text_hash": "056a9f219a5482cbdb3e21ba309b5090",
+              "style": "default",
+              "url": "/image_cache/a44fad5c6987f17ade31eff13ec11e75.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "request_payload": {
+          "option": "动用星感解析残片，寻找可能存在的隐秘水源。",
+          "optionIndex": 0,
+          "sceneId": "-3925848268390290312_2700848442111339279",
+          "currentOptions": [
+            "动用星感解析残片，寻找可能存在的隐秘水源。",
+            "听从老莫的建议，将残片抵押换取净水设备以维持生存。"
+          ],
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过一次高风险的短途贸易赚取了微薄利润，最终选择购买净水设备，暂时缓解了生存危机，但同时也失去了获取那张星图残片的机会，被迫推迟了寻找绿洲的计划。",
+                  "main_conflict": "商队面临严重的物资短缺，主角必须在有限的预算内决定是购买昂贵的净水设备以保证生存，还是投资购买一张真伪难辨的星图残片以追寻未来。现实的饥饿与虚无的希望在主角心中激烈碰撞，周围人的质疑与压力让主角陷入了自我怀疑。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角成功带领商队绕过封锁，但因路径险峻，大部分货物受损，商队陷入财务困境。主角虽然保全了所有成员的性命，却不得不向竞争对手低头，签署了一份苛刻的长期供货协议。",
+                  "main_conflict": "商队在穿越“回音峡谷”时遭遇了竞争对手的恶意封锁，主角被迫在保护商队成员安全与维护贸易信誉之间做出选择。由于缺乏足够的武装力量，主角必须利用“星感”能力寻找一条极其危险的捷径，这可能导致商队部分货物的损毁。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角向商队坦白了真相，并利用积累的经验将这片河床改造成了小型蓄水池，商队在此定居。主角虽然没能找到传说中的绿洲，却凭借踏实的经营让大家活了下来，他最终释然，接受了这份平凡的安稳。",
+                  "main_conflict": "主角终于抵达了星图指向的终点，却发现那里只有一片干涸的古老河床。面对一直以来支撑自己奋斗的信念崩塌，主角必须在“隐瞒真相继续流浪”与“坦白事实面对现实”之间抉择，同时还要应对商队内部因失望而引发的离散危机。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "沉浸式现实主义模拟，融合荒漠生存与星际贸易元素。画面呈现粗粝的沙尘质感与冷峻的工业废土风，强调光影在漫长旅途中的细微变化。叙事节奏缓慢而扎实，注重环境叙事与人物内心独白，营造一种在无尽荒原中寻找归宿的孤独感与踏实感。",
+              "main_quest": "主角的目标是重绘一张失传的“星图”，以带领没落的家族商队找到传说中的“永恒绿洲”。任务分为三个阶段：首先，在各大城邦间进行低买高卖的贸易，积累启动资金与人脉；其次，通过收集散落在废墟中的星图碎片，破解复杂的地理谜题；最后，在资源匮乏与商会排挤的重压下，穿越死亡沙海。挑战在于，主角必须在“家族的生存”与“理想的远方”之间做出取舍，最终主角会发现，所谓的永恒绿洲并不存在，但通过努力，他成功为商队建立了一个可持续发展的贸易据点，虽未达成最初的宏大目标，却换来了安稳的日常。",
+              "protagonist_ability": "主角拥有一种被称为“星感”的感知力，源于其家族世代传承的古老导航仪。通过触碰特定的星图残片，主角能在脑海中构建出短暂的“地貌投影”，预判沙暴走向与隐藏的地下水源。限制在于，这种能力极度消耗体力，且每次使用都会导致记忆的轻微模糊，过度依赖会导致主角逐渐遗忘出发的初衷，必须在“寻找真相”与“保持自我”之间寻找平衡。",
+              "world_basic_setting": "故事发生在一颗被流沙覆盖的行星“尘寰”。这里曾是繁荣的星际中转站，但随着恒星衰变与贸易航线的偏移，文明退化为以商队为核心的游牧社会。社会结构由一个个依靠地下水脉生存的“绿洲城邦”构成，商队是连接孤岛的唯一纽带。历史的残骸埋在沙下，人们通过挖掘旧时代的“星图碎片”来寻找传说中的宜居地。文化上，这里崇尚“行者哲学”，认为人生的价值不在于抵达终点，而在于在沙暴中保持方向。关键事件“大迁徙”导致了旧秩序崩塌，如今的社会由各大商会垄断水资源，普通人为了生存必须在残酷的贸易规则中博弈，同时还要面对沙暴带来的不可预测的地理变迁。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {},
+              "chapter_progress": 2.0
+            },
+            "game_id": "game_1777641931_yvbbtt",
+            "image_style": {
+              "subtype": "classic_oil",
+              "type": "oil_painting"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "深褐色短发、防风护目镜、磨损的皮质斗篷、坚毅的眼神、指尖的陈旧茧子、腰间的黄铜导航仪、略显疲惫的嘴角、粗布衬衫、多功能工具包、沉稳的步态、风沙洗礼的肤色、不离手的星图残片",
+              "work_en": "Dust Walker",
+              "work_zh": "尘寰行者"
+            },
+            "tone": "normal_ending",
+            "user_theme": "沙漠商队星图",
+            "_benchmark_profile": "fullready_strict",
+            "_benchmark_measurement": "fullready_nextturn",
+            "_benchmark_read_wait_s": 0.0
+          },
+          "previousSceneId": "initial",
+          "previousSceneImage": {
+            "cached": true,
+            "height": 1080,
+            "image_type": "story_scene",
+            "prompt": "scene-desert-outpost-negotiation, post-apocalyptic, industrial-wasteland, dramatic-narrative, survival-grit, classic oil painting, thick impasto texture, rich and earthy color palette, dramatic chiaroscuro lighting, visible expressive brushstrokes, young male protagonist Lin Yuan using Image 0, deep brown short hair with dusty texture, weather-beaten tanned skin showing signs of harsh desert life, determined and steady gaze with a hint of deep exhaustion, calloused fingertips from years of manual labor, slightly weary corners of the mouth, worn-out leather cloak with sand-blasted texture, simple coarse fabric shirt, utility belt with various tools and a brass navigation device, protective wind goggles resting around neck or on forehead, standing behind a cluttered workbench, body facing forward towards the workbench and 老莫-配角1, fingers hovering over glowing star map fragments, steady stance reflecting long-term survival discipline, 8K detailed facial features, weathered skin texture with fine sand particles, resolute eyes reflecting the faint light of star fragments, lip color naturally muted and dry, soft shadows emphasizing facial structure and fatigue, deep brown short hair, messy and wind-blown, root fixation coefficient 0.85, tip swing amplitude 5cm, color layering: main color #3E2723, secondary #2D1B18, highlight #5D4037, shadow #1B1210, wind speed 1.2m/s, turbulence intensity 15%, embedded with fine desert dust particles, heavy leather cloak showing signs of wear and tear, coarse fabric texture on shirt, brass navigation device with metallic patina and scratches, slight fabric flutter due to the indoor draft, dimly lit interior of a makeshift desert workshop, scattered ancient star map fragments on a rough wooden table, rusty metal tools and debris in the background, flickering dim oil lamp casting long, dancing shadows, thick air filled with suspended dust motes, 老莫-配角1 standing on the right side of the frame, face appearing like weathered tree bark, wearing a frayed coarse shirt, looking desperate and exhausted, faint, flickering mystical light emanating from the star fragments, dusty atmosphere with light beams piercing through gaps in the wall, warm, low-intensity glow from the oil lamp, earthy tones of ochre, burnt sienna, and deep brown, muted iron-rust red, faint ethereal blue glow from star fragments, dim warm amber for lamp light, low-key dramatic lighting, strong contrast between the warm oil lamp light and cool starlight, harsh shadows emphasizing the industrial decay of the environment, type medium shot, lens 35mm, aperture f/4, depth_of_field shallow focus on the protagonist and the star fragments, flash none, grain heavy film grain mixed with oil painting texture, texture classic oil painting on canvas, protagonist Lin Yuan centered, using Image 0, 老莫-配角1 positioned in the right foreground, workbench as the central horizontal element, action constraints: tense negotiation, protagonist focused on the fragments, realistic oil painting style, no text or symbols in image, loneliness and survival pressure, contemplative determination, gritty industrial despair, quiet tension between hope and reality, no text, no symbols, no garbled characters, no words",
+            "prompt_json": {
+              "camera": {
+                "aperture": "f/4",
+                "depth_of_field": "shallow focus on the protagonist and the star fragments",
+                "flash": "none",
+                "grain": "heavy film grain mixed with oil painting texture",
+                "lens": "35mm",
+                "texture": "classic oil painting on canvas",
+                "type": "medium shot"
+              },
+              "clothing_system": [
+                "heavy leather cloak showing signs of wear and tear",
+                "coarse fabric texture on shirt",
+                "brass navigation device with metallic patina and scratches",
+                "slight fabric flutter due to the indoor draft"
+              ],
+              "color_restriction": [
+                "earthy tones of ochre, burnt sienna, and deep brown",
+                "muted iron-rust red",
+                "faint ethereal blue glow from star fragments",
+                "dim warm amber for lamp light"
+              ],
+              "composition": [
+                "protagonist Lin Yuan centered, using Image 0",
+                "老莫-配角1 positioned in the right foreground",
+                "workbench as the central horizontal element",
+                "action constraints: tense negotiation, protagonist focused on the fragments"
+              ],
+              "environment": {
+                "background": [
+                  "dimly lit interior of a makeshift desert workshop",
+                  "scattered ancient star map fragments on a rough wooden table",
+                  "rusty metal tools and debris in the background",
+                  "flickering dim oil lamp casting long, dancing shadows",
+                  "thick air filled with suspended dust motes"
+                ],
+                "characters": [
+                  "老莫-配角1 standing on the right side of the frame, face appearing like weathered tree bark, wearing a frayed coarse shirt, looking desperate and exhausted"
+                ],
+                "effects": [
+                  "faint, flickering mystical light emanating from the star fragments",
+                  "dusty atmosphere with light beams piercing through gaps in the wall",
+                  "warm, low-intensity glow from the oil lamp"
+                ]
+              },
+              "face_system": [
+                "8K detailed facial features",
+                "weathered skin texture with fine sand particles",
+                "resolute eyes reflecting the faint light of star fragments",
+                "lip color naturally muted and dry",
+                "soft shadows emphasizing facial structure and fatigue"
+              ],
+              "hair_system": [
+                "deep brown short hair, messy and wind-blown",
+                "root fixation coefficient 0.85",
+                "tip swing amplitude 5cm",
+                "color layering: main color #3E2723, secondary #2D1B18, highlight #5D4037, shadow #1B1210",
+                "wind speed 1.2m/s",
+                "turbulence intensity 15%",
+                "embedded with fine desert dust particles"
+              ],
+              "label": "scene-desert-outpost-negotiation",
+              "lighting": [
+                "low-key dramatic lighting",
+                "strong contrast between the warm oil lamp light and cool starlight",
+                "harsh shadows emphasizing the industrial decay of the environment"
+              ],
+              "mood": [
+                "loneliness and survival pressure",
+                "contemplative determination",
+                "gritty industrial despair",
+                "quiet tension between hope and reality"
+              ],
+              "output_style": [
+                "realistic oil painting style",
+                "no text or symbols in image"
+              ],
+              "style": [
+                "classic oil painting",
+                "thick impasto texture",
+                "rich and earthy color palette",
+                "dramatic chiaroscuro lighting",
+                "visible expressive brushstrokes"
+              ],
+              "subject": {
+                "body_traits": [
+                  "young male protagonist Lin Yuan using Image 0",
+                  "deep brown short hair with dusty texture",
+                  "weather-beaten tanned skin showing signs of harsh desert life",
+                  "determined and steady gaze with a hint of deep exhaustion",
+                  "calloused fingertips from years of manual labor",
+                  "slightly weary corners of the mouth"
+                ],
+                "outfit": [
+                  "worn-out leather cloak with sand-blasted texture",
+                  "simple coarse fabric shirt",
+                  "utility belt with various tools and a brass navigation device",
+                  "protective wind goggles resting around neck or on forehead"
+                ],
+                "pose": [
+                  "standing behind a cluttered workbench",
+                  "body facing forward towards the workbench and 老莫-配角1",
+                  "fingers hovering over glowing star map fragments",
+                  "steady stance reflecting long-term survival discipline"
+                ]
+              },
+              "tags": [
+                "post-apocalyptic",
+                "industrial-wasteland",
+                "dramatic-narrative",
+                "survival-grit"
+              ]
+            },
+            "scene_text_hash": "d67a1d7068f7629eed705d3c25a485c3",
+            "style": "default",
+            "url": "/image_cache/a69fcc5b846947d40ca9aa7a1033caf3.png",
+            "width": 1920
+          },
+          "previousSceneText": "狂风卷着细碎的沙砾，狠狠拍打在我的防风护目镜上，发出令人牙酸的摩擦声。我紧了紧磨损的皮质斗篷，指尖下意识地摩挲着腰间那枚冰冷的黄铜导航仪，金属表面的划痕记录着无数次在沙暴中死里逃生的经历。空气中弥漫着一股陈旧的铁锈味与干燥的尘土气息，这是“尘寰”特有的味道，也是死亡的预兆。\n\n我面前的破旧工作台上，散落着几块刚从废墟中挖掘出的星图残片。它们在昏暗的油灯下闪烁着诡异的微光，仿佛在嘲笑我的无知。商队领队老莫推门而入，他那张被风沙洗礼得如同老树皮般的脸上满是焦急，粗布衬衫的袖口已经磨出了毛边。他将一个空荡荡的水囊重重地摔在桌上，发出沉闷的响声。“林远，这是最后一点水了。”他沙哑着嗓子，眼神中透着疲惫与绝望，“商队撑不过明天，如果再找不到水源，我们只能选择向黑市商会低头，把这批货贱卖掉。”\n\n我沉默地看着他，又看向那几块残片。我的星感在微微颤动，脑海中隐约浮现出一段模糊的地貌投影，那是通往绿洲的希望，却也是将我们推向深渊的诱饵。我深吸一口气，感受着指尖传来的阵痛，那是过度使用能力的代价。"
+        },
+        "start_ts": 1777642004.4313247,
+        "end_ts": 1777642033.2377033,
+        "provider_events": {
+          "event_count": 3,
+          "queue_wait_ms": {
+            "count": 3,
+            "min": 0.0,
+            "max": 4850.0,
+            "mean": 3233.333,
+            "median": 4850.0,
+            "p95": 4850.0
+          },
+          "latency_ms": {
+            "count": 2,
+            "min": 4849.0,
+            "max": 6108.0,
+            "mean": 5478.5,
+            "median": 5478.5,
+            "p95": 6045.05
+          },
+          "llm_success_count": 2,
+          "image_success_count": 0,
+          "request_thread_event_count": 0,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0
+        },
+        "attempts": [
+          {
+            "http_status": 200,
+            "elapsed_s": 28.806,
+            "response_json": {
+              "benchmark_diagnostics": {
+                "cache_hit_reason": "waited_request_scene_text_completed_no_image",
+                "cache_miss_reason": "request_scene_generation_in_progress",
+                "current_options_key_drift_detected": false,
+                "global_state_key_drift_detected": true,
+                "placeholder": false,
+                "previous_scene_id": "initial",
+                "recomputed_scene_cache_exists": false,
+                "recomputed_scene_id": "-8466426353923272117_2700848442111339279",
+                "request_current_options_count": 2,
+                "request_current_options_hash": "07ba0368259e6ad936aba1acb23c0335",
+                "request_flow_worldline_hash": "0b7d2802f8e46ae104639ddbac325b51",
+                "request_global_state_hash": "440170e3699adb0cfdcea99db73dae97",
+                "request_option_at_index": "动用星感解析残片，寻找可能存在的隐秘水源。",
+                "request_option_index": 0,
+                "request_option_text": "动用星感解析残片，寻找可能存在的隐秘水源。",
+                "request_scene_cache_exists": true,
+                "request_scene_cache_meta": {
+                  "canonical_scene_id": "-1767619879834430302_2700848442111339279",
+                  "current_options_hash": "07ba0368259e6ad936aba1acb23c0335",
+                  "current_options_preview": [
+                    "动用星感解析残片，寻找可能存在的隐秘水源。",
+                    "听从老莫的建议，将残片抵押换取净水设备以维持生存。"
+                  ],
+                  "flow_worldline_hash": "940e38d5f8372eaa58cfdaf4d70a0d30",
+                  "global_state_hash": "0586762beb49c70f10782032ea435094",
+                  "option_count": 2,
+                  "parent_scene_id": null,
+                  "scene_id": "-3925848268390290312_2700848442111339279"
+                },
+                "request_scene_id": "-3925848268390290312_2700848442111339279",
+                "resolution_path": "wait_for_request_scene_cache_text_only",
+                "response_has_image": true,
+                "response_has_scene": true,
+                "response_scene_id": "5359837790103458903_5438378684377902636",
+                "response_status": "success",
+                "scene_id_mismatch_detected": true,
+                "selected_option_mismatch_detected": false
+              },
+              "message": "选项剧情生成成功！",
+              "optionData": {
+                "checkpoint_packet": {
+                  "chapter": "chapter1",
+                  "chapter_conflict_solved": false,
+                  "quest_delta": "成功通过星感定位了隐秘水源，暂时避开了向黑市低头的屈辱，主线任务从“生存危机”推进至“资源获取与家族秘密探索”阶段，为后续修复星图提供了关键的地理坐标。",
+                  "recap_text": "你选择了“动用星感解析残片，寻找可能存在的隐秘水源。”。当前章节：chapter1。主线进展：成功通过星感定位了隐秘水源，暂时避开了向黑市低头的屈辱，主线任务从“生存危机”推进至“资源获取与家族秘密探索”阶段，为后续修复星图提供了关键的地理坐标。。最近剧情：我深吸一口气，指尖微微颤抖，将那几块粗糙的星图残片拼凑在一起。随着我闭上双眼，意识沉入那片熟悉的、冰冷的虚无之中，腰间的黄铜导航仪发出细微的齿轮咬合声。我的星感如同一根细丝，在脑海中勾勒出地貌的轮廓。起初是一片混沌的沙暴，紧接着，一道幽蓝色的光影在意识深处炸开，那是地下深处微弱的脉动。我看到了一处被流沙掩盖的古老岩层裂隙，那里残留着一丝湿润的痕迹。我猛地睁开眼，额头渗出细密的汗珠，防风护目镜下的视线有些模糊，我扶着工作台稳住身形，对身旁焦急的老莫说道：“老莫，别去黑市。在东南方向三公里处的废弃矿坑下，有一条被沙层封住的暗河，虽然水量不多，但足够我们撑过这次危机。”老莫愣住了，他那双浑浊的眼睛里闪过一丝惊疑，随即化作深深的敬畏与希冀。他紧紧攥住我的肩膀，粗糙的指节因为用力而发白，声音颤抖着说：“林远，你确定吗？如果那是错觉，我们整个商队就真的完了。”我看着指尖留下的陈旧茧子，那是多年风沙留下的印记，我平静地回答：“这是我最后的能力了，去准备挖掘工具吧。”"
+                },
+                "deep_background_links": {
+                  "1": "老莫（通过询问可解锁关于父亲与商队起源的深层背景信息）"
+                },
+                "flow_update": {
+                  "chapter_conflict_solved": false,
+                  "characters": {},
+                  "environment": {},
+                  "quest_progress": "成功通过星感定位了隐秘水源，暂时避开了向黑市低头的屈辱，主线任务从“生存危机”推进至“资源获取与家族秘密探索”阶段，为后续修复星图提供了关键的地理坐标。"
+                },
+                "next_options": [
+                  "立即组织人手前往矿坑挖掘，争取在沙暴来临前获取水源。",
+                  "询问老莫关于那块残片背后的家族往事，试图挖掘父亲留下的线索。"
+                ],
+                "plot_mentioned_only": [],
+                "plot_supporting_characters": [],
+                "scene": "我深吸一口气，指尖微微颤抖，将那几块粗糙的星图残片拼凑在一起。随着我闭上双眼，意识沉入那片熟悉的、冰冷的虚无之中，腰间的黄铜导航仪发出细微的齿轮咬合声。我的星感如同一根细丝，在脑海中勾勒出地貌的轮廓。起初是一片混沌的沙暴，紧接着，一道幽蓝色的光影在意识深处炸开，那是地下深处微弱的脉动。我看到了一处被流沙掩盖的古老岩层裂隙，那里残留着一丝湿润的痕迹。我猛地睁开眼，额头渗出细密的汗珠，防风护目镜下的视线有些模糊，我扶着工作台稳住身形，对身旁焦急的老莫说道：“老莫，别去黑市。在东南方向三公里处的废弃矿坑下，有一条被沙层封住的暗河，虽然水量不多，但足够我们撑过这次危机。”老莫愣住了，他那双浑浊的眼睛里闪过一丝惊疑，随即化作深深的敬畏与希冀。他紧紧攥住我的肩膀，粗糙的指节因为用力而发白，声音颤抖着说：“林远，你确定吗？如果那是错觉，我们整个商队就真的完了。”我看着指尖留下的陈旧茧子，那是多年风沙留下的印记，我平静地回答：“这是我最后的能力了，去准备挖掘工具吧。”",
+                "sceneId": "5359837790103458903_5438378684377902636",
+                "scene_image": {
+                  "cached": true,
+                  "height": 1080,
+                  "image_type": "story_scene",
+                  "prompt": "scene-desert-star-navigation-revelation, industrial-wasteland, survival, solitude, gritty-realism, atmospheric-tension, classic oil painting, heavy impasto texture, rich brushstrokes, chiaroscuro lighting, earthy color palette, young male protagonist Lin Yuan (using Image 0), skin weathered by sandstorms with rugged texture, determined and weary eyes showing deep exhaustion, fingertips covered in deep calluses from years of labor, expression of intense focus mixed with relief, worn leather cloak with sand-worn edges, rugged coarse linen shirt, utility pouches strapped to belt, brass navigation device hanging at waist, standing firmly at a cluttered makeshift workbench, using Image 0 for正面视角, left hand resting on the workbench for stability, right hand gesturing slightly toward the map fragments, body angled slightly toward 老莫-配角1, 8K detailed facial features, protective anti-sand goggles pushed up on forehead, sweat beads visible on forehead, mouth slightly parted with a look of exhausted resolution, soft shadows emphasizing the rugged bone structure, short deep brown hair with fine sand particles, root fixation coefficient 0.5, tip swing amplitude 5cm, color layering: main #3E2723, secondary #2D1B1B, highlight #5D4037, shadow #1B1212, wind speed 1.2m/s, turbulence intensity 15%, leather cloak with frayed edges and dust accumulation, coarse linen texture with visible fabric weave, slight fabric flutter from the drafty underground chamber, dimly lit underground chamber with rusted metal walls, workbench covered with scattered metallic star-map fragments, faint ethereal blue light emanating from map fragments, shadowy corners filled with discarded mining tools, 老莫-配角1 standing to the right with a weathered face and wide, fearful eyes, wearing ragged heavy work clothes, faint blue holographic light casting on Lin Yuan's face, dust motes dancing in the dim light, cold atmosphere of an abandoned subterranean structure, ochre and burnt sienna for the desert environment, cold steel grey and rusted metal tones, sharp contrast of ethereal electric blue for the star-map projection, muted earthy tones for clothing, dramatic side lighting from the blue map projection, dim ambient light from a flickering overhead lamp, deep shadows to emphasize the industrial wasteland mood, type medium close-up, lens 35mm, aperture f/4, depth_of_field shallow focus on protagonist's face and map, flash none, grain heavy painterly texture, texture oil on canvas, protagonist positioned in the left-center frame, 老莫-配角1 positioned on the right side of the frame, star-map fragments as the central focal point, action constraints: intense eye contact between characters, realistic industrial wasteland oil painting, no text or symbols in image, solemn determination, cautious hope amidst despair, profound solitude, weight of survival, no text, no symbols, no garbled characters, no words",
+                  "scene_text_hash": "056a9f219a5482cbdb3e21ba309b5090",
+                  "style": "default",
+                  "url": "/image_cache/a44fad5c6987f17ade31eff13ec11e75.png",
+                  "width": 1920
+                }
+              },
+              "status": "success"
+            },
+            "request_payload": {
+              "option": "动用星感解析残片，寻找可能存在的隐秘水源。",
+              "optionIndex": 0,
+              "sceneId": "-3925848268390290312_2700848442111339279",
+              "currentOptions": [
+                "动用星感解析残片，寻找可能存在的隐秘水源。",
+                "听从老莫的建议，将残片抵押换取净水设备以维持生存。"
+              ],
+              "globalState": {
+                "core_worldview": {
+                  "chapters": {
+                    "chapter1": {
+                      "conflict_end_condition": "主角通过一次高风险的短途贸易赚取了微薄利润，最终选择购买净水设备，暂时缓解了生存危机，但同时也失去了获取那张星图残片的机会，被迫推迟了寻找绿洲的计划。",
+                      "main_conflict": "商队面临严重的物资短缺，主角必须在有限的预算内决定是购买昂贵的净水设备以保证生存，还是投资购买一张真伪难辨的星图残片以追寻未来。现实的饥饿与虚无的希望在主角心中激烈碰撞，周围人的质疑与压力让主角陷入了自我怀疑。"
+                    },
+                    "chapter2": {
+                      "conflict_end_condition": "主角成功带领商队绕过封锁，但因路径险峻，大部分货物受损，商队陷入财务困境。主角虽然保全了所有成员的性命，却不得不向竞争对手低头，签署了一份苛刻的长期供货协议。",
+                      "main_conflict": "商队在穿越“回音峡谷”时遭遇了竞争对手的恶意封锁，主角被迫在保护商队成员安全与维护贸易信誉之间做出选择。由于缺乏足够的武装力量，主角必须利用“星感”能力寻找一条极其危险的捷径，这可能导致商队部分货物的损毁。"
+                    },
+                    "chapter3": {
+                      "conflict_end_condition": "主角向商队坦白了真相，并利用积累的经验将这片河床改造成了小型蓄水池，商队在此定居。主角虽然没能找到传说中的绿洲，却凭借踏实的经营让大家活了下来，他最终释然，接受了这份平凡的安稳。",
+                      "main_conflict": "主角终于抵达了星图指向的终点，却发现那里只有一片干涸的古老河床。面对一直以来支撑自己奋斗的信念崩塌，主角必须在“隐瞒真相继续流浪”与“坦白事实面对现实”之间抉择，同时还要应对商队内部因失望而引发的离散危机。"
+                    }
+                  },
+                  "characters": {},
+                  "forces": {},
+                  "game_style": "沉浸式现实主义模拟，融合荒漠生存与星际贸易元素。画面呈现粗粝的沙尘质感与冷峻的工业废土风，强调光影在漫长旅途中的细微变化。叙事节奏缓慢而扎实，注重环境叙事与人物内心独白，营造一种在无尽荒原中寻找归宿的孤独感与踏实感。",
+                  "main_quest": "主角的目标是重绘一张失传的“星图”，以带领没落的家族商队找到传说中的“永恒绿洲”。任务分为三个阶段：首先，在各大城邦间进行低买高卖的贸易，积累启动资金与人脉；其次，通过收集散落在废墟中的星图碎片，破解复杂的地理谜题；最后，在资源匮乏与商会排挤的重压下，穿越死亡沙海。挑战在于，主角必须在“家族的生存”与“理想的远方”之间做出取舍，最终主角会发现，所谓的永恒绿洲并不存在，但通过努力，他成功为商队建立了一个可持续发展的贸易据点，虽未达成最初的宏大目标，却换来了安稳的日常。",
+                  "protagonist_ability": "主角拥有一种被称为“星感”的感知力，源于其家族世代传承的古老导航仪。通过触碰特定的星图残片，主角能在脑海中构建出短暂的“地貌投影”，预判沙暴走向与隐藏的地下水源。限制在于，这种能力极度消耗体力，且每次使用都会导致记忆的轻微模糊，过度依赖会导致主角逐渐遗忘出发的初衷，必须在“寻找真相”与“保持自我”之间寻找平衡。",
+                  "world_basic_setting": "故事发生在一颗被流沙覆盖的行星“尘寰”。这里曾是繁荣的星际中转站，但随着恒星衰变与贸易航线的偏移，文明退化为以商队为核心的游牧社会。社会结构由一个个依靠地下水脉生存的“绿洲城邦”构成，商队是连接孤岛的唯一纽带。历史的残骸埋在沙下，人们通过挖掘旧时代的“星图碎片”来寻找传说中的宜居地。文化上，这里崇尚“行者哲学”，认为人生的价值不在于抵达终点，而在于在沙暴中保持方向。关键事件“大迁徙”导致了旧秩序崩塌，如今的社会由各大商会垄断水资源，普通人为了生存必须在残酷的贸易规则中博弈，同时还要面对沙暴带来的不可预测的地理变迁。"
+                },
+                "flow_worldline": {
+                  "characters": {},
+                  "current_chapter": "chapter1",
+                  "environment": {},
+                  "chapter_progress": 2.0
+                },
+                "game_id": "game_1777641931_yvbbtt",
+                "image_style": {
+                  "subtype": "classic_oil",
+                  "type": "oil_painting"
+                },
+                "meta": {
+                  "detail_async": true
+                },
+                "protagonist_canonical": {
+                  "age_range": "青年",
+                  "gender": "男性",
+                  "name_en": "Lin Yuan",
+                  "name_zh": "林远",
+                  "signature_look_keywords": "深褐色短发、防风护目镜、磨损的皮质斗篷、坚毅的眼神、指尖的陈旧茧子、腰间的黄铜导航仪、略显疲惫的嘴角、粗布衬衫、多功能工具包、沉稳的步态、风沙洗礼的肤色、不离手的星图残片",
+                  "work_en": "Dust Walker",
+                  "work_zh": "尘寰行者"
+                },
+                "tone": "normal_ending",
+                "user_theme": "沙漠商队星图",
+                "_benchmark_profile": "fullready_strict",
+                "_benchmark_measurement": "fullready_nextturn",
+                "_benchmark_read_wait_s": 0.0
+              },
+              "previousSceneId": "initial",
+              "previousSceneImage": {
+                "cached": true,
+                "height": 1080,
+                "image_type": "story_scene",
+                "prompt": "scene-desert-outpost-negotiation, post-apocalyptic, industrial-wasteland, dramatic-narrative, survival-grit, classic oil painting, thick impasto texture, rich and earthy color palette, dramatic chiaroscuro lighting, visible expressive brushstrokes, young male protagonist Lin Yuan using Image 0, deep brown short hair with dusty texture, weather-beaten tanned skin showing signs of harsh desert life, determined and steady gaze with a hint of deep exhaustion, calloused fingertips from years of manual labor, slightly weary corners of the mouth, worn-out leather cloak with sand-blasted texture, simple coarse fabric shirt, utility belt with various tools and a brass navigation device, protective wind goggles resting around neck or on forehead, standing behind a cluttered workbench, body facing forward towards the workbench and 老莫-配角1, fingers hovering over glowing star map fragments, steady stance reflecting long-term survival discipline, 8K detailed facial features, weathered skin texture with fine sand particles, resolute eyes reflecting the faint light of star fragments, lip color naturally muted and dry, soft shadows emphasizing facial structure and fatigue, deep brown short hair, messy and wind-blown, root fixation coefficient 0.85, tip swing amplitude 5cm, color layering: main color #3E2723, secondary #2D1B18, highlight #5D4037, shadow #1B1210, wind speed 1.2m/s, turbulence intensity 15%, embedded with fine desert dust particles, heavy leather cloak showing signs of wear and tear, coarse fabric texture on shirt, brass navigation device with metallic patina and scratches, slight fabric flutter due to the indoor draft, dimly lit interior of a makeshift desert workshop, scattered ancient star map fragments on a rough wooden table, rusty metal tools and debris in the background, flickering dim oil lamp casting long, dancing shadows, thick air filled with suspended dust motes, 老莫-配角1 standing on the right side of the frame, face appearing like weathered tree bark, wearing a frayed coarse shirt, looking desperate and exhausted, faint, flickering mystical light emanating from the star fragments, dusty atmosphere with light beams piercing through gaps in the wall, warm, low-intensity glow from the oil lamp, earthy tones of ochre, burnt sienna, and deep brown, muted iron-rust red, faint ethereal blue glow from star fragments, dim warm amber for lamp light, low-key dramatic lighting, strong contrast between the warm oil lamp light and cool starlight, harsh shadows emphasizing the industrial decay of the environment, type medium shot, lens 35mm, aperture f/4, depth_of_field shallow focus on the protagonist and the star fragments, flash none, grain heavy film grain mixed with oil painting texture, texture classic oil painting on canvas, protagonist Lin Yuan centered, using Image 0, 老莫-配角1 positioned in the right foreground, workbench as the central horizontal element, action constraints: tense negotiation, protagonist focused on the fragments, realistic oil painting style, no text or symbols in image, loneliness and survival pressure, contemplative determination, gritty industrial despair, quiet tension between hope and reality, no text, no symbols, no garbled characters, no words",
+                "prompt_json": {
+                  "camera": {
+                    "aperture": "f/4",
+                    "depth_of_field": "shallow focus on the protagonist and the star fragments",
+                    "flash": "none",
+                    "grain": "heavy film grain mixed with oil painting texture",
+                    "lens": "35mm",
+                    "texture": "classic oil painting on canvas",
+                    "type": "medium shot"
+                  },
+                  "clothing_system": [
+                    "heavy leather cloak showing signs of wear and tear",
+                    "coarse fabric texture on shirt",
+                    "brass navigation device with metallic patina and scratches",
+                    "slight fabric flutter due to the indoor draft"
+                  ],
+                  "color_restriction": [
+                    "earthy tones of ochre, burnt sienna, and deep brown",
+                    "muted iron-rust red",
+                    "faint ethereal blue glow from star fragments",
+                    "dim warm amber for lamp light"
+                  ],
+                  "composition": [
+                    "protagonist Lin Yuan centered, using Image 0",
+                    "老莫-配角1 positioned in the right foreground",
+                    "workbench as the central horizontal element",
+                    "action constraints: tense negotiation, protagonist focused on the fragments"
+                  ],
+                  "environment": {
+                    "background": [
+                      "dimly lit interior of a makeshift desert workshop",
+                      "scattered ancient star map fragments on a rough wooden table",
+                      "rusty metal tools and debris in the background",
+                      "flickering dim oil lamp casting long, dancing shadows",
+                      "thick air filled with suspended dust motes"
+                    ],
+                    "characters": [
+                      "老莫-配角1 standing on the right side of the frame, face appearing like weathered tree bark, wearing a frayed coarse shirt, looking desperate and exhausted"
+                    ],
+                    "effects": [
+                      "faint, flickering mystical light emanating from the star fragments",
+                      "dusty atmosphere with light beams piercing through gaps in the wall",
+                      "warm, low-intensity glow from the oil lamp"
+                    ]
+                  },
+                  "face_system": [
+                    "8K detailed facial features",
+                    "weathered skin texture with fine sand particles",
+                    "resolute eyes reflecting the faint light of star fragments",
+                    "lip color naturally muted and dry",
+                    "soft shadows emphasizing facial structure and fatigue"
+                  ],
+                  "hair_system": [
+                    "deep brown short hair, messy and wind-blown",
+                    "root fixation coefficient 0.85",
+                    "tip swing amplitude 5cm",
+                    "color layering: main color #3E2723, secondary #2D1B18, highlight #5D4037, shadow #1B1210",
+                    "wind speed 1.2m/s",
+                    "turbulence intensity 15%",
+                    "embedded with fine desert dust particles"
+                  ],
+                  "label": "scene-desert-outpost-negotiation",
+                  "lighting": [
+                    "low-key dramatic lighting",
+                    "strong contrast between the warm oil lamp light and cool starlight",
+                    "harsh shadows emphasizing the industrial decay of the environment"
+                  ],
+                  "mood": [
+                    "loneliness and survival pressure",
+                    "contemplative determination",
+                    "gritty industrial despair",
+                    "quiet tension between hope and reality"
+                  ],
+                  "output_style": [
+                    "realistic oil painting style",
+                    "no text or symbols in image"
+                  ],
+                  "style": [
+                    "classic oil painting",
+                    "thick impasto texture",
+                    "rich and earthy color palette",
+                    "dramatic chiaroscuro lighting",
+                    "visible expressive brushstrokes"
+                  ],
+                  "subject": {
+                    "body_traits": [
+                      "young male protagonist Lin Yuan using Image 0",
+                      "deep brown short hair with dusty texture",
+                      "weather-beaten tanned skin showing signs of harsh desert life",
+                      "determined and steady gaze with a hint of deep exhaustion",
+                      "calloused fingertips from years of manual labor",
+                      "slightly weary corners of the mouth"
+                    ],
+                    "outfit": [
+                      "worn-out leather cloak with sand-blasted texture",
+                      "simple coarse fabric shirt",
+                      "utility belt with various tools and a brass navigation device",
+                      "protective wind goggles resting around neck or on forehead"
+                    ],
+                    "pose": [
+                      "standing behind a cluttered workbench",
+                      "body facing forward towards the workbench and 老莫-配角1",
+                      "fingers hovering over glowing star map fragments",
+                      "steady stance reflecting long-term survival discipline"
+                    ]
+                  },
+                  "tags": [
+                    "post-apocalyptic",
+                    "industrial-wasteland",
+                    "dramatic-narrative",
+                    "survival-grit"
+                  ]
+                },
+                "scene_text_hash": "d67a1d7068f7629eed705d3c25a485c3",
+                "style": "default",
+                "url": "/image_cache/a69fcc5b846947d40ca9aa7a1033caf3.png",
+                "width": 1920
+              },
+              "previousSceneText": "狂风卷着细碎的沙砾，狠狠拍打在我的防风护目镜上，发出令人牙酸的摩擦声。我紧了紧磨损的皮质斗篷，指尖下意识地摩挲着腰间那枚冰冷的黄铜导航仪，金属表面的划痕记录着无数次在沙暴中死里逃生的经历。空气中弥漫着一股陈旧的铁锈味与干燥的尘土气息，这是“尘寰”特有的味道，也是死亡的预兆。\n\n我面前的破旧工作台上，散落着几块刚从废墟中挖掘出的星图残片。它们在昏暗的油灯下闪烁着诡异的微光，仿佛在嘲笑我的无知。商队领队老莫推门而入，他那张被风沙洗礼得如同老树皮般的脸上满是焦急，粗布衬衫的袖口已经磨出了毛边。他将一个空荡荡的水囊重重地摔在桌上，发出沉闷的响声。“林远，这是最后一点水了。”他沙哑着嗓子，眼神中透着疲惫与绝望，“商队撑不过明天，如果再找不到水源，我们只能选择向黑市商会低头，把这批货贱卖掉。”\n\n我沉默地看着他，又看向那几块残片。我的星感在微微颤动，脑海中隐约浮现出一段模糊的地貌投影，那是通往绿洲的希望，却也是将我们推向深渊的诱饵。我深吸一口气，感受着指尖传来的阵痛，那是过度使用能力的代价。"
+            },
+            "start_ts": 1777642004.4313247,
+            "end_ts": 1777642033.2377033,
+            "provider_events": {
+              "event_count": 3,
+              "queue_wait_ms": {
+                "count": 3,
+                "min": 0.0,
+                "max": 4850.0,
+                "mean": 3233.333,
+                "median": 4850.0,
+                "p95": 4850.0
+              },
+              "latency_ms": {
+                "count": 2,
+                "min": 4849.0,
+                "max": 6108.0,
+                "mean": 5478.5,
+                "median": 5478.5,
+                "p95": 6045.05
+              },
+              "llm_success_count": 2,
+              "image_success_count": 0,
+              "request_thread_event_count": 0,
+              "provider_429_count": 0,
+              "provider_timeout_count": 0,
+              "shared_backoff_wait_ms_total": 0,
+              "retry_heavy_event_count": 0,
+              "main_character_event_count": 0,
+              "scene_image_event_count": 0
+            }
+          }
+        ],
+        "attempt_count": 1,
+        "request_elapsed_s": 28.806,
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "success",
+        "has_scene": true,
+        "has_image": true,
+        "selected_option_index": 0,
+        "selected_option_text": "动用星感解析残片，寻找可能存在的隐秘水源。",
+        "input_scene_id": "-3925848268390290312_2700848442111339279",
+        "inferred_cache_result": "likely_miss_or_partial",
+        "used_updated_flow_state": true,
+        "cache_hit_reason": "waited_request_scene_text_completed_no_image",
+        "cache_miss_reason": "request_scene_generation_in_progress",
+        "global_state_key_drift_detected": true,
+        "scene_id_mismatch_detected": true,
+        "selected_option_mismatch_detected": false,
+        "current_options_key_drift_detected": false,
+        "benchmark_diagnostics": {
+          "cache_hit_reason": "waited_request_scene_text_completed_no_image",
+          "cache_miss_reason": "request_scene_generation_in_progress",
+          "current_options_key_drift_detected": false,
+          "global_state_key_drift_detected": true,
+          "placeholder": false,
+          "previous_scene_id": "initial",
+          "recomputed_scene_cache_exists": false,
+          "recomputed_scene_id": "-8466426353923272117_2700848442111339279",
+          "request_current_options_count": 2,
+          "request_current_options_hash": "07ba0368259e6ad936aba1acb23c0335",
+          "request_flow_worldline_hash": "0b7d2802f8e46ae104639ddbac325b51",
+          "request_global_state_hash": "440170e3699adb0cfdcea99db73dae97",
+          "request_option_at_index": "动用星感解析残片，寻找可能存在的隐秘水源。",
+          "request_option_index": 0,
+          "request_option_text": "动用星感解析残片，寻找可能存在的隐秘水源。",
+          "request_scene_cache_exists": true,
+          "request_scene_cache_meta": {
+            "canonical_scene_id": "-1767619879834430302_2700848442111339279",
+            "current_options_hash": "07ba0368259e6ad936aba1acb23c0335",
+            "current_options_preview": [
+              "动用星感解析残片，寻找可能存在的隐秘水源。",
+              "听从老莫的建议，将残片抵押换取净水设备以维持生存。"
+            ],
+            "flow_worldline_hash": "940e38d5f8372eaa58cfdaf4d70a0d30",
+            "global_state_hash": "0586762beb49c70f10782032ea435094",
+            "option_count": 2,
+            "parent_scene_id": null,
+            "scene_id": "-3925848268390290312_2700848442111339279"
+          },
+          "request_scene_id": "-3925848268390290312_2700848442111339279",
+          "resolution_path": "wait_for_request_scene_cache_text_only",
+          "response_has_image": true,
+          "response_has_scene": true,
+          "response_scene_id": "5359837790103458903_5438378684377902636",
+          "response_status": "success",
+          "scene_id_mismatch_detected": true,
+          "selected_option_mismatch_detected": false
+        }
+      },
+      "full_ready": {
+        "text_ready_ts": 1777642033.2377033,
+        "text_ready_elapsed_s": 28.806,
+        "image_ready_ts": 1777642033.2377033,
+        "image_ready_elapsed_s": 28.806,
+        "full_ready_ts": 1777642033.2377033,
+        "full_ready_elapsed_s": 28.806,
+        "image_probe": {
+          "status": "success",
+          "source": "generate-option",
+          "image": {
+            "cached": true,
+            "height": 1080,
+            "image_type": "story_scene",
+            "prompt": "scene-desert-star-navigation-revelation, industrial-wasteland, survival, solitude, gritty-realism, atmospheric-tension, classic oil painting, heavy impasto texture, rich brushstrokes, chiaroscuro lighting, earthy color palette, young male protagonist Lin Yuan (using Image 0), skin weathered by sandstorms with rugged texture, determined and weary eyes showing deep exhaustion, fingertips covered in deep calluses from years of labor, expression of intense focus mixed with relief, worn leather cloak with sand-worn edges, rugged coarse linen shirt, utility pouches strapped to belt, brass navigation device hanging at waist, standing firmly at a cluttered makeshift workbench, using Image 0 for正面视角, left hand resting on the workbench for stability, right hand gesturing slightly toward the map fragments, body angled slightly toward 老莫-配角1, 8K detailed facial features, protective anti-sand goggles pushed up on forehead, sweat beads visible on forehead, mouth slightly parted with a look of exhausted resolution, soft shadows emphasizing the rugged bone structure, short deep brown hair with fine sand particles, root fixation coefficient 0.5, tip swing amplitude 5cm, color layering: main #3E2723, secondary #2D1B1B, highlight #5D4037, shadow #1B1212, wind speed 1.2m/s, turbulence intensity 15%, leather cloak with frayed edges and dust accumulation, coarse linen texture with visible fabric weave, slight fabric flutter from the drafty underground chamber, dimly lit underground chamber with rusted metal walls, workbench covered with scattered metallic star-map fragments, faint ethereal blue light emanating from map fragments, shadowy corners filled with discarded mining tools, 老莫-配角1 standing to the right with a weathered face and wide, fearful eyes, wearing ragged heavy work clothes, faint blue holographic light casting on Lin Yuan's face, dust motes dancing in the dim light, cold atmosphere of an abandoned subterranean structure, ochre and burnt sienna for the desert environment, cold steel grey and rusted metal tones, sharp contrast of ethereal electric blue for the star-map projection, muted earthy tones for clothing, dramatic side lighting from the blue map projection, dim ambient light from a flickering overhead lamp, deep shadows to emphasize the industrial wasteland mood, type medium close-up, lens 35mm, aperture f/4, depth_of_field shallow focus on protagonist's face and map, flash none, grain heavy painterly texture, texture oil on canvas, protagonist positioned in the left-center frame, 老莫-配角1 positioned on the right side of the frame, star-map fragments as the central focal point, action constraints: intense eye contact between characters, realistic industrial wasteland oil painting, no text or symbols in image, solemn determination, cautious hope amidst despair, profound solitude, weight of survival, no text, no symbols, no garbled characters, no words",
+            "scene_text_hash": "056a9f219a5482cbdb3e21ba309b5090",
+            "style": "default",
+            "url": "/image_cache/a44fad5c6987f17ade31eff13ec11e75.png",
+            "width": 1920
+          },
+          "attempt_count": 0
+        },
+        "ready_mode": "direct_in_generate_option",
+        "attribution": {
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "provider_retry_heavy_count": 0,
+          "provider_backoff_wait_ms_total": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0,
+          "image_probe_attempt_count": 0,
+          "main_character_contention_suspected": false
+        }
+      },
+      "placeholder": false,
+      "transport_success": true,
+      "strict_success": true,
+      "failure_bucket": null,
+      "cache_path_classification": "direct_real_scene",
+      "cache_hit_reason": "waited_request_scene_text_completed_no_image",
+      "cache_miss_reason": "request_scene_generation_in_progress",
+      "global_state_key_drift_detected": true,
+      "scene_id_mismatch_detected": true,
+      "selected_option_mismatch_detected": false,
+      "success": true
+    }
+  ]
+}

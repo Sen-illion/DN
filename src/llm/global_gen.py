@@ -220,12 +220,6 @@ def llm_generate_global(
                 print("❌ 错误：AI返回内容为空，将重试...")
                 continue
 
-            print(f"📄 [调试] 模型原始输出长度: {len(raw_content)} 字符")
-            print(f"📄 [调试] 模型原始输出前500字符：\n{raw_content[:500]}\n--- 前500字符结束 ---")
-            # 检查关键字段名是否存在于原始输出中
-            for _dbg_key in ["游戏风格", "世界观基础设定", "主角核心能力", "核心世界观"]:
-                print(f"📄 [调试] 原始输出是否包含「{_dbg_key}」: {'✅ 是' if _dbg_key in raw_content else '❌ 否'}")
-
             # 直接从文本中提取信息，不依赖JSON解析
             global_state = {}
 
@@ -233,9 +227,8 @@ def llm_generate_global(
             global_state['core_worldview'] = {}
             global_state['flow_worldline'] = {}
 
-            # 处理原始文本（先清除 Markdown 加粗/斜体标记，避免 **字段名**： 格式导致解析失败）
-            raw_content_clean = raw_content.replace('**', '').replace('*', '')
-            lines = raw_content_clean.split('\n')
+            # 处理原始文本
+            lines = raw_content.split('\n')
 
             # 提取核心世界观
             core_section = False
@@ -279,12 +272,11 @@ def llm_generate_global(
                     else:
                         continue
 
-                # 检测章节（兼容 ## 【核心世界观】 / # 核心世界观 / 【核心世界观】 等各种格式）
-                stripped_for_section = line.lstrip('#').strip().strip('【】')
-                if '核心世界观' in stripped_for_section and len(stripped_for_section) < 20:
+                # 检测章节
+                if line.startswith('## 【核心世界观】'):
                     core_section = True
                     continue
-                elif '初始世界线' in line:
+                elif line.startswith('## 【初始世界线】'):
                     # 退出主角规范信息前先保存未刷新的字段
                     if in_canonical_section and current_canonical_key and current_canonical_content:
                         protagonist_canonical[current_canonical_key] = ' '.join(current_canonical_content).strip().replace('**', '').replace('*', '')
@@ -297,13 +289,13 @@ def llm_generate_global(
                     core_section = False
                     break
                 # 主角规范信息区块（仅内部使用）
-                if core_section and '主角规范信息' in line:
+                if core_section and line.startswith('### 【主角规范信息】'):
                     in_canonical_section = True
                     current_canonical_key = None
                     current_canonical_content = []
                     continue
                 if in_canonical_section:
-                    if ('###' in line or line.startswith('#')) and '主角规范信息' not in line and ('【' in line or '】' in line):
+                    if line.startswith('### 【') and '主角规范信息' not in line:
                         in_canonical_section = False
                         if current_canonical_key and current_canonical_content:
                             protagonist_canonical[current_canonical_key] = ' '.join(current_canonical_content).strip().replace('**', '').replace('*', '')
@@ -332,69 +324,23 @@ def llm_generate_global(
                         continue
 
                 if core_section:
-                    _line_clean = line.lstrip('#').strip()
-
-                    # ── 已知字段/章节 头部映射 ──
-                    _sub_field_map = {
-                        "游戏风格": "game_style",
-                        "世界观基础设定": "world_basic_setting",
-                        "主角核心能力": "protagonist_ability",
-                        "主线任务": "main_quest",
-                        "游戏主线任务": "main_quest",
-                        "游戏结束触发条件": "end_trigger_condition",
-                    }
-                    _section_only = {"章节设定", "角色设定", "势力设定"}
-
-                    # ── A. 标题行检测（#/#### 开头 或 【】 包裹）──
-                    _is_heading = line.startswith('#') or (line.startswith('【') and line.endswith('】'))
-                    if _is_heading and '核心世界观' not in line and '初始世界线' not in line and '主角规范信息' not in line:
+                    # 检测子章节
+                    if line.startswith('### 【'):
                         # 保存上一个字段的内容
                         if current_field and current_field_content:
                             content = ' '.join(current_field_content).strip()
-                            if content:
-                                core_worldview[current_field] = content
+                            content = content.replace('**', '').replace('*', '')
+                            core_worldview[current_field] = content
                             current_field_content = []
-
-                        # A1. 已知字段头（#### 游戏风格 等，内容在下一行）
-                        if _line_clean in _sub_field_map:
-                            current_field = _sub_field_map[_line_clean]
-                            current_field_content = []
-                            continue
-
-                        # A2. 纯分区头（章节设定 / 角色设定 等），不对应字段
-                        if _line_clean in _section_only:
-                            current_section = line
-                            current_field = None
-                            continue
-
-                        # A3. 章节头（#### 第1章 / 第2章：xxx）
-                        _ch_match = re.search(r'第(\d+)章', _line_clean)
-                        if _ch_match:
-                            if current_chapter:
-                                if current_conflict_content:
-                                    chapters.setdefault(current_chapter, {})['main_conflict'] = ' '.join(current_conflict_content).strip()
-                                if current_end_condition_content:
-                                    chapters.setdefault(current_chapter, {})['conflict_end_condition'] = ' '.join(current_end_condition_content).strip()
-                            current_chapter = f"chapter{_ch_match.group(1)}"
-                            chapters[current_chapter] = {}
-                            current_conflict_content = []
-                            current_end_condition_content = []
-                            current_field = None
-                            continue
-
-                        # A4. 其他未知子标题
                         current_section = line
                         current_field = None
                         continue
 
-                    # ── B. 分隔线 --- 跳过 ──
-                    if line == '---':
-                        continue
-
-                    # ── C. 非标题行：字段名：值 格式（同一行内有冒号）──
+                    # 提取基本信息（支持多行内容，兼容全角/半角冒号）
                     if "游戏风格" in line and ("：" in line or ":" in line):
                         if current_field and current_field_content:
                             content = ' '.join(current_field_content).strip()
+                            content = content.replace('**', '').replace('*', '')
                             if content:
                                 core_worldview[current_field] = content
                         current_field = 'game_style'
@@ -403,6 +349,7 @@ def llm_generate_global(
                     elif "世界观基础设定" in line and ("：" in line or ":" in line):
                         if current_field and current_field_content:
                             content = ' '.join(current_field_content).strip()
+                            content = content.replace('**', '').replace('*', '')
                             if content:
                                 core_worldview[current_field] = content
                         current_field = 'world_basic_setting'
@@ -411,67 +358,68 @@ def llm_generate_global(
                     elif "主角核心能力" in line and ("：" in line or ":" in line):
                         if current_field and current_field_content:
                             content = ' '.join(current_field_content).strip()
+                            content = content.replace('**', '').replace('*', '')
                             if content:
                                 core_worldview[current_field] = content
                         current_field = 'protagonist_ability'
                         part = _extract_after_key(line, "主角核心能力")
                         current_field_content = [part] if part else []
-                    elif "主线任务" in line and ("：" in line or ":" in line):
+                    elif "游戏主线任务：" in line:
                         if current_field and current_field_content:
                             content = ' '.join(current_field_content).strip()
+                            content = content.replace('**', '').replace('*', '')
                             if content:
                                 core_worldview[current_field] = content
-                        current_field = 'main_quest'
-                        part = _extract_after_key(line, "游戏主线任务") or _extract_after_key(line, "主线任务")
-                        current_field_content = [part] if part else []
-                    elif "游戏结束触发条件" in line and ("：" in line or ":" in line):
+                            current_field = None
+                            current_field_content = []
+                        core_worldview['main_quest'] = line.split("游戏主线任务：")[1].strip()
+                    elif "游戏结束触发条件：" in line:
                         if current_field and current_field_content:
                             content = ' '.join(current_field_content).strip()
+                            content = content.replace('**', '').replace('*', '')
                             if content:
                                 core_worldview[current_field] = content
-                        current_field = 'end_trigger_condition'
-                        part = _extract_after_key(line, "游戏结束触发条件")
-                        current_field_content = [part] if part else []
+                            current_field = None
+                            current_field_content = []
+                        core_worldview['end_trigger_condition'] = line.split("游戏结束触发条件：")[1].strip()
                     # 提取势力设定
-                    elif "正派势力" in line and ("：" in line or ":" in line):
+                    elif "正派势力：" in line:
                         if current_field and current_field_content:
                             content = ' '.join(current_field_content).strip()
+                            content = content.replace('**', '').replace('*', '')
                             if content:
                                 core_worldview[current_field] = content
                             current_field = None
                             current_field_content = []
-                        part = _extract_after_key(line, "正派势力")
-                        if part:
-                            forces['positive'] = [f.strip() for f in part.split(',')]
-                    elif "反派势力" in line and ("：" in line or ":" in line):
+                        forces['positive'] = [f.strip() for f in line.split("正派势力：")[1].split(',')]
+                    elif "反派势力：" in line:
                         if current_field and current_field_content:
                             content = ' '.join(current_field_content).strip()
+                            content = content.replace('**', '').replace('*', '')
                             if content:
                                 core_worldview[current_field] = content
                             current_field = None
                             current_field_content = []
-                        part = _extract_after_key(line, "反派势力")
-                        if part:
-                            forces['negative'] = [f.strip() for f in part.split(',')]
-                    elif "中立势力" in line and ("：" in line or ":" in line):
+                        forces['negative'] = [f.strip() for f in line.split("反派势力：")[1].split(',')]
+                    elif "中立势力：" in line:
                         if current_field and current_field_content:
                             content = ' '.join(current_field_content).strip()
+                            content = content.replace('**', '').replace('*', '')
                             if content:
                                 core_worldview[current_field] = content
                             current_field = None
                             current_field_content = []
-                        part = _extract_after_key(line, "中立势力")
-                        if part:
-                            forces['neutral'] = [f.strip() for f in part.split(',')]
+                        forces['neutral'] = [f.strip() for f in line.split("中立势力：")[1].split(',')]
                     # 角色设定
                     elif line in ["主角：", "配角1："]:
                         if current_field and current_field_content:
                             content = ' '.join(current_field_content).strip()
+                            content = content.replace('**', '').replace('*', '')
                             if content:
                                 core_worldview[current_field] = content
                             current_field = None
                             current_field_content = []
-                        current_character = line[:-1]
+                        current_character = line[:-1]  # 去掉冒号
                         characters[current_character] = {}
                     elif current_character and line.startswith('- 核心性格：'):
                         characters[current_character]['core_personality'] = line.split('- 核心性格：')[1].strip()
@@ -479,20 +427,26 @@ def llm_generate_global(
                         characters[current_character]['shallow_background'] = line.split('- 浅层背景：')[1].strip()
                     elif current_character and line.startswith('- 深层背景：'):
                         characters[current_character]['deep_background'] = line.split('- 深层背景：')[1].strip()
-
-                    # ── D. 章节矛盾检测（非标题行格式：第X章：/ - 核心矛盾：）──
+                    # 章节设定（优先检查，避免被其他条件拦截）
                     if line.startswith('第') and ('章：' in line or '章' in line):
                         if current_field and current_field_content:
                             content = ' '.join(current_field_content).strip()
+                            content = content.replace('**', '').replace('*', '')
                             if content:
                                 core_worldview[current_field] = content
                             current_field = None
                             current_field_content = []
                         if current_chapter:
                             if current_conflict_content:
-                                chapters.setdefault(current_chapter, {})['main_conflict'] = ' '.join(current_conflict_content).strip()
+                                conflict_text = ' '.join(current_conflict_content).strip()
+                                conflict_text = conflict_text.replace('**', '').replace('*', '').strip()
+                                if conflict_text:
+                                    chapters[current_chapter]['main_conflict'] = conflict_text
                             if current_end_condition_content:
-                                chapters.setdefault(current_chapter, {})['conflict_end_condition'] = ' '.join(current_end_condition_content).strip()
+                                end_condition_text = ' '.join(current_end_condition_content).strip()
+                                end_condition_text = end_condition_text.replace('**', '').replace('*', '').strip()
+                                if end_condition_text:
+                                    chapters[current_chapter]['conflict_end_condition'] = end_condition_text
                         if '章：' in line:
                             chapter_num = line.split('章：')[0].replace('第', '').strip()
                         else:
@@ -502,16 +456,42 @@ def llm_generate_global(
                         chapters[current_chapter] = {}
                         current_conflict_content = []
                         current_end_condition_content = []
-                    elif current_chapter and ('核心矛盾' in line):
+
+                        remaining_line = line.split('章：', 1)[1] if '章：' in line else ''
+                        if remaining_line and ('核心矛盾' in remaining_line or '矛盾：' in remaining_line):
+                            if '- 核心矛盾：' in remaining_line:
+                                conflict_part = remaining_line.split('- 核心矛盾：', 1)[1].strip()
+                                if conflict_part:
+                                    current_conflict_content.append(conflict_part)
+                            elif '核心矛盾：' in remaining_line:
+                                conflict_part = remaining_line.split('核心矛盾：', 1)[1].strip()
+                                if conflict_part:
+                                    current_conflict_content.append(conflict_part)
+                            if '- 矛盾结束条件：' in remaining_line:
+                                end_part = remaining_line.split('- 矛盾结束条件：', 1)[1].strip()
+                                if end_part:
+                                    current_end_condition_content.append(end_part)
+                            elif '矛盾结束条件：' in remaining_line:
+                                end_part = remaining_line.split('矛盾结束条件：', 1)[1].strip()
+                                if end_part:
+                                    current_end_condition_content.append(end_part)
+                    elif current_chapter and ('核心矛盾' in line or '矛盾：' in line):
                         conflict_text = None
                         if '- 核心矛盾：' in line:
                             conflict_text = line.split('- 核心矛盾：', 1)[1].strip()
                         elif '核心矛盾：' in line:
                             conflict_text = line.split('核心矛盾：', 1)[1].strip()
-                        elif '核心矛盾:' in line:
-                            conflict_text = line.split('核心矛盾:', 1)[1].strip()
+                        elif line.strip().startswith('核心矛盾') and '：' not in line:
+                            conflict_text = line.replace('核心矛盾', '').strip()
+
                         if conflict_text:
-                            current_conflict_content.append(conflict_text)
+                            conflict_text = conflict_text.replace('**', '').replace('*', '').strip()
+                            if conflict_text:
+                                current_conflict_content.append(conflict_text)
+                        elif current_conflict_content:
+                            stripped_line = line.strip()
+                            if stripped_line and not stripped_line.startswith('-') and not stripped_line.startswith('第') and '：' not in stripped_line:
+                                current_conflict_content.append(stripped_line)
                     elif current_chapter and ('矛盾结束条件' in line or '结束条件' in line):
                         end_condition_text = None
                         if '- 矛盾结束条件：' in line:
@@ -522,14 +502,20 @@ def llm_generate_global(
                             end_condition_text = line.split('- 结束条件：', 1)[1].strip()
                         elif '结束条件：' in line:
                             end_condition_text = line.split('结束条件：', 1)[1].strip()
-                        elif '矛盾结束条件:' in line:
-                            end_condition_text = line.split('矛盾结束条件:', 1)[1].strip()
-                        if end_condition_text:
-                            current_end_condition_content.append(end_condition_text)
+                        elif line.strip().startswith('矛盾结束条件') or line.strip().startswith('结束条件'):
+                            end_condition_text = line.replace('矛盾结束条件', '').replace('结束条件', '').strip()
 
-                    # ── E. 内容续行（当前正在收集某个字段的多行内容）──
-                    elif current_field and line and not line.startswith('#') and line != '---':
-                        current_field_content.append(line)
+                        if end_condition_text:
+                            end_condition_text = end_condition_text.replace('**', '').replace('*', '').strip()
+                            if end_condition_text:
+                                current_end_condition_content.append(end_condition_text)
+                        elif current_end_condition_content:
+                            stripped_line = line.strip()
+                            if stripped_line and not stripped_line.startswith('-') and not stripped_line.startswith('第') and '：' not in stripped_line:
+                                current_end_condition_content.append(stripped_line)
+                    elif current_field and not line.startswith('-') and not line.startswith('第') and '：' not in line:
+                        if line and not line.startswith('###'):
+                            current_field_content.append(line)
 
             # 保存最后一个字段（如果还在收集）
             if current_field and current_field_content:
@@ -556,54 +542,8 @@ def llm_generate_global(
             core_worldview['forces'] = forces
             core_worldview['chapters'] = chapters
 
-            # 使用正则表达式回填缺失的章节矛盾信息（作为备用方案，使用清洗后的文本）
-            _regex_fill_worldview(raw_content_clean, core_worldview, chapters)
-
-            # 最终兜底：逐行扫描整个文本（不依赖 section header）
-            # 支持两种格式：a) 字段名：内容 (同行)  b) #### 字段名 \n 内容 (下一行)
-            _fallback_keys = [
-                ("game_style", ["游戏风格"]),
-                ("world_basic_setting", ["世界观基础设定"]),
-                ("protagonist_ability", ["主角核心能力"]),
-                ("main_quest", ["游戏主线任务", "主线任务"]),
-                ("end_trigger_condition", ["游戏结束触发条件"]),
-            ]
-            for field_key, cn_keys in _fallback_keys:
-                if not core_worldview.get(field_key):
-                    for idx_fb, fb_line in enumerate(lines):
-                        fb_line_s = fb_line.strip()
-                        matched_cn = None
-                        for ck in cn_keys:
-                            if ck in fb_line_s:
-                                matched_cn = ck
-                                break
-                        if not matched_cn:
-                            continue
-                        # 格式 a: 同行有冒号
-                        if "：" in fb_line_s or ":" in fb_line_s:
-                            part = _extract_after_key(fb_line_s, matched_cn)
-                            if part:
-                                core_worldview[field_key] = part
-                                print(f"✅ [兜底] {field_key} 通过逐行扫描(同行冒号)提取成功")
-                                break
-                        # 格式 b: 字段名独占一行（标题头），内容在下一行
-                        elif fb_line_s.lstrip('#').strip() == matched_cn:
-                            content_parts = []
-                            for next_line in lines[idx_fb + 1:]:
-                                nl = next_line.strip()
-                                if not nl or nl == '---' or nl.startswith('#'):
-                                    break
-                                content_parts.append(nl)
-                            if content_parts:
-                                core_worldview[field_key] = ' '.join(content_parts)
-                                print(f"✅ [兜底] {field_key} 通过逐行扫描(标题+下行内容)提取成功")
-                                break
-
-            # 诊断：如果关键字段仍缺失，打印完整原始输出帮助排查
-            _missing = [k for k, _ in _fallback_keys[:3] if not core_worldview.get(k)]
-            if _missing:
-                print(f"⚠️ [诊断] 以下字段在三层解析后仍缺失: {_missing}")
-                print(f"⚠️ [诊断] 模型完整输出（清洗后）:\n{raw_content_clean}\n--- END ---")
+            # 使用正则表达式回填缺失的章节矛盾信息（作为备用方案）
+            _regex_fill_worldview(raw_content, core_worldview, chapters)
 
             # 如果字段仍然缺失，设置默认值（避免完全为空）
             if not core_worldview.get('game_style'):
@@ -662,10 +602,10 @@ def llm_generate_global(
                 if not line:
                     continue
 
-                if '初始世界线' in line and (line.startswith('#') or '【' in line):
+                if line.startswith('## 【初始世界线】'):
                     flow_section = True
                     continue
-                elif flow_section and (line.startswith('## ') or (line.startswith('【') and line.endswith('】'))) and '初始世界线' not in line:
+                elif flow_section and line.startswith('## 【'):
                     flow_section = False
                     break
 

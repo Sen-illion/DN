@@ -1,0 +1,132 @@
+{
+  "experiment": "benchmark_v12_readwait_65s_8v8",
+  "source_files": {
+    "off": "C:\\Users\\zhang\\Desktop\\DN\\experiments\\benchmark\\standard_runs\\benchmark_v12_readwait_off_65s_8.json",
+    "on": "C:\\Users\\zhang\\Desktop\\DN\\experiments\\benchmark\\standard_runs\\benchmark_v12_readwait_on_65s_8.json"
+  },
+  "summary": {
+    "off": {
+      "sample_size": 8,
+      "success_count": 8,
+      "second_click": {
+        "count": 8,
+        "min": 0.008,
+        "max": 0.026,
+        "mean": 0.021,
+        "median": 0.022,
+        "p95": 0.026
+      },
+      "real_scene_count": 0,
+      "real_scene_rate": 0.0,
+      "real_scene_second_click": {
+        "count": 0
+      },
+      "likely_hit_count": 8,
+      "likely_hit_rate": 1.0
+    },
+    "on": {
+      "sample_size": 8,
+      "success_count": 8,
+      "second_click": {
+        "count": 8,
+        "min": 0.016,
+        "max": 0.03,
+        "mean": 0.023,
+        "median": 0.021,
+        "p95": 0.029
+      },
+      "real_scene_count": 3,
+      "real_scene_rate": 0.375,
+      "real_scene_second_click": {
+        "count": 3,
+        "min": 0.022,
+        "max": 0.027,
+        "mean": 0.025,
+        "median": 0.026,
+        "p95": 0.027
+      },
+      "likely_hit_count": 8,
+      "likely_hit_rate": 1.0
+    }
+  },
+  "paired": {
+    "rows": [
+      {
+        "benchmark_id": "DNQBV1_001",
+        "off_elapsed_s": 0.019,
+        "on_elapsed_s": 0.027,
+        "off_real": false,
+        "on_real": true,
+        "faster": "off"
+      },
+      {
+        "benchmark_id": "DNQBV1_002",
+        "off_elapsed_s": 0.026,
+        "on_elapsed_s": 0.022,
+        "off_real": false,
+        "on_real": true,
+        "faster": "on"
+      },
+      {
+        "benchmark_id": "DNQBV1_003",
+        "off_elapsed_s": 0.022,
+        "on_elapsed_s": 0.026,
+        "off_real": false,
+        "on_real": true,
+        "faster": "off"
+      },
+      {
+        "benchmark_id": "DNQBV1_004",
+        "off_elapsed_s": 0.018,
+        "on_elapsed_s": 0.021,
+        "off_real": false,
+        "on_real": false,
+        "faster": "off"
+      },
+      {
+        "benchmark_id": "DNQBV1_005",
+        "off_elapsed_s": 0.026,
+        "on_elapsed_s": 0.02,
+        "off_real": false,
+        "on_real": false,
+        "faster": "on"
+      },
+      {
+        "benchmark_id": "DNQBV1_006",
+        "off_elapsed_s": 0.025,
+        "on_elapsed_s": 0.03,
+        "off_real": false,
+        "on_real": false,
+        "faster": "off"
+      },
+      {
+        "benchmark_id": "DNQBV1_007",
+        "off_elapsed_s": 0.023,
+        "on_elapsed_s": 0.016,
+        "off_real": false,
+        "on_real": false,
+        "faster": "on"
+      },
+      {
+        "benchmark_id": "DNQBV1_008",
+        "off_elapsed_s": 0.008,
+        "on_elapsed_s": 0.019,
+        "off_real": false,
+        "on_real": false,
+        "faster": "off"
+      }
+    ],
+    "counts": {
+      "on_faster": 3,
+      "off_faster": 5,
+      "tie": 0,
+      "both_real_count": 0,
+      "on_faster_when_both_real": 0,
+      "off_faster_when_both_real": 0
+    }
+  },
+  "notes": [
+    "65s run is a threshold exploration experiment.",
+    "real_scene is approximated by second_click.is_placeholder == false."
+  ]
+}

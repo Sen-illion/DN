@@ -1,0 +1,2542 @@
+{
+  "summary": {
+    "experiment_name": "benchmark_v11_readwait_on_55s_8",
+    "sample_size": 8,
+    "read_wait_s": 55.0,
+    "suite_start_ts": 1776656239.2397118,
+    "suite_end_ts": 1776656848.110638,
+    "second_click_elapsed_s": {
+      "count": 8,
+      "min": 0.007,
+      "max": 0.027,
+      "mean": 0.017,
+      "median": 0.018,
+      "p95": 0.027
+    },
+    "second_click_success_count": 8,
+    "likely_hit_count": 8,
+    "likely_hit_rate": 1.0
+  },
+  "runs": [
+    {
+      "benchmark_id": "DNQBV1_001",
+      "theme_id": 1,
+      "theme": "边陲驿站夜谈录",
+      "read_wait_s": 55.0,
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 9.516,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过修复了一件极具象征意义的旧物（如老邮差的怀表），赢得了镇上核心人物的初步认可，并获得了在驿站继续工作的合法身份，但同时也接到了拆迁期限缩短的坏消息。",
+                  "main_conflict": "主角刚回到鸣沙驿，面对的是破败的祖宅与疏离的邻里关系。他试图重启修复铺，却遭到镇上老一辈人的排斥，认为他只是个“想靠卖情怀赚钱的投机者”。同时，拆迁办的通知书如期而至，主角必须在“修复旧物”的理想与“维持生计”的现实压力下，寻找第一个愿意信任他的客户，以此证明自己并非过客。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角意识到自己无法解决所有人的遗憾，选择退回到“记录者”的身份，通过客观呈现旧物背后的故事，化解了邻里间的误会，虽未改变拆迁大局，但修复铺成为了镇民们倾诉与告别的公共空间。",
+                  "main_conflict": "修复工作进入瓶颈期，主角发现自己修复的每一件物品，都牵扯出一段无法弥补的遗憾：有人为了生计卖掉传家宝，有人因误会与亲人断绝联系。主角试图介入调解，却发现自己的“共情回响”在复杂的现实利益面前显得苍白无力，甚至因多管闲事引发了邻里间的矛盾，导致修复铺险些被强制关停。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角将修复好的物件捐赠给社区，保留了小镇的记忆，但他个人并未获得世俗意义上的成功，而是带着一份释然，平静地收拾行囊离开，留下了一个既有遗憾又充满希望的背影。",
+                  "main_conflict": "拆迁进入倒计时，主角面临最终抉择：是带走修复好的物件远走高飞，还是将它们留在小镇的博物馆中随之埋葬。此时，主角发现自己一直追寻的“圆满”其实并不存在，他必须面对自己当年离开的真正原因——一段无法释怀的家庭创伤，并决定是否要与这份痛苦彻底和解。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为写实主义叙事游戏，采用低饱和度视觉风格与环境音效叙事。通过细腻的日常交互与非线性对话，构建一个充满烟火气与时代颗粒感的边陲小镇，强调人与人之间微妙的羁绊与现实生活的沉重质感。",
+              "main_quest": "主角作为一名归乡的旧物修复师，目标是在驿站彻底拆迁前，完成“百件旧物”的修复与归档，以此为小镇留存最后的影像记忆。任务步骤包括：搜集散落在镇上的废弃物件、通过对话挖掘物件背后的故事、在有限的资金与材料限制下进行修复，并最终决定这些物件的去向。挑战在于，随着修复工作的深入，主角被迫面对小镇衰败的真相，以及自己当年逃离家乡又不得不回归的尴尬处境。主角需在“保留过去”与“拥抱未来”之间做出抉择，最终目标并非阻止拆迁，而是通过修复过程，与过去的自己及小镇达成和解。",
+              "protagonist_ability": "主角拥有一种名为“共情回响”的感知力，源于其长期从事旧物修复工作的职业习惯。通过触碰旧物或观察他人的微表情，主角能捕捉到一段被遗忘的记忆碎片或情绪残留。这种能力并非超自然力量，而是极度敏锐的观察与逻辑推演。限制在于，它无法改变既定事实，只能帮助主角理解他人的苦衷与遗憾，且过度使用会带来强烈的精神疲惫，导致主角在处理自身问题时往往显得迟钝与无力。",
+              "world_basic_setting": "故事发生于世纪之交的西北边陲小镇“鸣沙驿”。这里曾是繁华的商贸枢纽，随着高速公路的改道与产业结构的转型，小镇逐渐被时代遗忘，成为人口流失严重的“留守之地”。社会文化呈现出新旧交替的撕裂感：老一辈坚守着传统的修理铺与茶馆，年轻人则在渴望远方与现实困境间挣扎。这里没有宏大的史诗，只有漫天风沙中日复一日的琐碎生活。关键事件是“驿站拆迁计划”的推进，这一变动不仅是地理空间的重构，更是镇民们关于归属感、生存方式与未来选择的集体博弈。在这里，每个人都是时代的注脚，在平庸的日常中寻找着微弱的生存意义。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1776656239_ccopmf",
+            "image_style": {
+              "type": "realistic"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "黑色短发、工装外套、指尖薄茧、眼神清澈、神情沉稳、略带疲惫、背着工具包、常穿深色系衣物",
+              "work_en": "Echoes of Mingsha",
+              "work_zh": "鸣沙驿夜谈"
+            },
+            "tone": "normal_ending",
+            "user_theme": "边陲驿站夜谈录"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "start_ts": 1776656239.239714,
+        "end_ts": 1776656248.755959,
+        "provider_events": {
+          "event_count": 4,
+          "queue_wait_ms": {
+            "count": 4,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 1,
+            "min": 9507.0,
+            "max": 9507.0,
+            "mean": 9507.0,
+            "median": 9507.0,
+            "p95": 9507.0
+          },
+          "llm_success_count": 1,
+          "image_success_count": 0,
+          "request_thread_event_count": 2
+        },
+        "status": "success",
+        "game_id": "game_1776656239_ccopmf"
+      },
+      "first_click": {
+        "http_status": 200,
+        "elapsed_s": 76.96,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "",
+              "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：风沙拍打在鸣沙驿老旧的木门上，发出沉闷的声响。我背着沉重的工具包，站在那间阔别多年的祖宅门前，指尖触碰到斑驳的门环，冰冷的触感顺着指尖蔓延。推开门，一股陈旧的木质霉味扑面而来，灰尘在昏黄的夕阳余晖中飞舞。我环顾四周，屋内的陈设依旧维持着我离开时的模样，只是墙角堆积的蛛网和那张落满灰尘的修复台，无声地诉说着岁月的荒凉。\n\n“哟，这不是林远吗？离家这么多年，终于舍得回来了？”\n\n我转过身，看见邻居老陈正倚在门框边，手里掐着半截旱烟，浑浊的眼神中透着一丝审视与冷漠。他吐出一口烟圈，烟雾模糊了他的表情，“镇上都要拆迁了，你这时候回来，是想捡点什么值钱的破烂，还是想靠着这老铺子讹点拆迁费？”\n\n我放下工具包，指尖轻轻摩挲着台面上的一只残破铜铃，那是父亲留下的遗物。我没有理会他的嘲讽，只是平静地回答：“我回来，只是想把没做完的事做完。”"
+            },
+            "deep_background_links": {},
+            "flow_update": {},
+            "next_options": [
+              "询问老陈关于拆迁办的具体动向与补偿细则。",
+              "尝试修复手中的铜铃，以此向老陈证明我并非投机者。"
+            ],
+            "scene": "风沙拍打在鸣沙驿老旧的木门上，发出沉闷的声响。我背着沉重的工具包，站在那间阔别多年的祖宅门前，指尖触碰到斑驳的门环，冰冷的触感顺着指尖蔓延。推开门，一股陈旧的木质霉味扑面而来，灰尘在昏黄的夕阳余晖中飞舞。我环顾四周，屋内的陈设依旧维持着我离开时的模样，只是墙角堆积的蛛网和那张落满灰尘的修复台，无声地诉说着岁月的荒凉。\n\n“哟，这不是林远吗？离家这么多年，终于舍得回来了？”\n\n我转过身，看见邻居老陈正倚在门框边，手里掐着半截旱烟，浑浊的眼神中透着一丝审视与冷漠。他吐出一口烟圈，烟雾模糊了他的表情，“镇上都要拆迁了，你这时候回来，是想捡点什么值钱的破烂，还是想靠着这老铺子讹点拆迁费？”\n\n我放下工具包，指尖轻轻摩挲着台面上的一只残破铜铃，那是父亲留下的遗物。我没有理会他的嘲讽，只是平静地回答：“我回来，只是想把没做完的事做完。”",
+            "sceneId": "-1457917991718746599_2850703281341343082",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-return-to-ming-sha-station, realistic-narrative, desolate-frontier-town, nostalgic-melancholy, dusty-atmosphere, cinematic-realism, realistic-photography, low-saturation-color-palette, high-detail-textures, cinematic-lighting, documentary-style, Lin Yuan (Image 0): young male with short black hair, clear and observant eyes with a touch of fatigue, steady and calm expression showing inner resilience, fingertips with slight calluses from craftsmanship, standing firmly with a heavy tool bag strapped to his shoulder, dark-colored utility jacket with worn-in texture, rugged work pants with multiple pockets, sturdy dark boots covered in thin layer of desert dust, Lin Yuan (Image 0) standing in the center of the old workshop, facing the doorway where the neighbor stands, body slightly angled towards old-chen-配角1, right hand resting on a dusty workbench near a broken copper bell, 8K detailed facial features, clear eyes conveying empathy and fatigue, natural skin texture with subtle pores and realistic lighting, lip color naturally muted, calm and stoic expression, short black hair with natural texture, root fixation coefficient 0.7, tip swing amplitude 5cm, color layering: main color #1A1A1A, secondary color #2F2F2F, highlight #404040, shadow #000000, wind speed 0.3m/s, turbulence intensity 2%, dark utility jacket with visible fabric grain, slight fabric flutter from the draft of the open door, sturdy and practical clothing texture, dust particles settling on shoulders, dimly lit interior of a dilapidated traditional workshop, old wooden door frames showing signs of decay, dust motes dancing in shafts of golden sunset light, cluttered workbench with scattered repair tools and a broken copper bell, walls covered in faint cobwebs and peeling paint, 老陈-配角1 standing at the doorway, leaning against the wooden frame with a half-smoked cigarette in hand, wearing worn-out local clothing, eyes squinting with suspicion, golden hour sunlight streaming through the open door, visible dust particles in the air, hazy smoke trails from old-chen-配角1's cigarette, low saturation tones, warm golden sunset light contrasting with cool interior shadows, muted earth tones, deep browns, dusty greys, and faded wood colors, dramatic backlighting from the sunset outside, soft interior ambient light highlighting dust particles, long shadows stretching across the wooden floor, subtle rim lighting on protagonist's silhouette, type medium full shot, lens 35mm, aperture f/4.0, depth_of_field sharp focus on protagonist, soft bokeh on the background, flash none, grain fine film grain, texture high-resolution photographic detail, protagonist positioned in the foreground center, 老陈-配角1 framed in the doorway on the left side, workbench and copper bell as secondary focal point, action constraints: Lin Yuan looking calmly at the neighbor, photorealistic, no text or symbols in image, no watermarks or logos, no messy lines or distorted characters, melancholic nostalgia, tense interpersonal friction, sense of inevitable decay, quiet determination, no text, no symbols, no garbled characters, no words",
+              "prompt_json": {
+                "camera": {
+                  "aperture": "f/4.0",
+                  "depth_of_field": "sharp focus on protagonist, soft bokeh on the background",
+                  "flash": "none",
+                  "grain": "fine film grain",
+                  "lens": "35mm",
+                  "texture": "high-resolution photographic detail",
+                  "type": "medium full shot"
+                },
+                "clothing_system": [
+                  "dark utility jacket with visible fabric grain",
+                  "slight fabric flutter from the draft of the open door",
+                  "sturdy and practical clothing texture",
+                  "dust particles settling on shoulders"
+                ],
+                "color_restriction": [
+                  "low saturation tones",
+                  "warm golden sunset light contrasting with cool interior shadows",
+                  "muted earth tones, deep browns, dusty greys, and faded wood colors"
+                ],
+                "composition": [
+                  "protagonist positioned in the foreground center",
+                  "老陈-配角1 framed in the doorway on the left side",
+                  "workbench and copper bell as secondary focal point",
+                  "action constraints: Lin Yuan looking calmly at the neighbor"
+                ],
+                "environment": {
+                  "background": [
+                    "dimly lit interior of a dilapidated traditional workshop",
+                    "old wooden door frames showing signs of decay",
+                    "dust motes dancing in shafts of golden sunset light",
+                    "cluttered workbench with scattered repair tools and a broken copper bell",
+                    "walls covered in faint cobwebs and peeling paint"
+                  ],
+                  "characters": [
+                    "老陈-配角1 standing at the doorway, leaning against the wooden frame with a half-smoked cigarette in hand, wearing worn-out local clothing, eyes squinting with suspicion"
+                  ],
+                  "effects": [
+                    "golden hour sunlight streaming through the open door",
+                    "visible dust particles in the air",
+                    "hazy smoke trails from old-chen-配角1's cigarette"
+                  ]
+                },
+                "face_system": [
+                  "8K detailed facial features",
+                  "clear eyes conveying empathy and fatigue",
+                  "natural skin texture with subtle pores and realistic lighting",
+                  "lip color naturally muted",
+                  "calm and stoic expression"
+                ],
+                "hair_system": [
+                  "short black hair with natural texture",
+                  "root fixation coefficient 0.7",
+                  "tip swing amplitude 5cm",
+                  "color layering: main color #1A1A1A, secondary color #2F2F2F, highlight #404040, shadow #000000",
+                  "wind speed 0.3m/s",
+                  "turbulence intensity 2%"
+                ],
+                "label": "scene-return-to-ming-sha-station",
+                "lighting": [
+                  "dramatic backlighting from the sunset outside",
+                  "soft interior ambient light highlighting dust particles",
+                  "long shadows stretching across the wooden floor",
+                  "subtle rim lighting on protagonist's silhouette"
+                ],
+                "mood": [
+                  "melancholic nostalgia",
+                  "tense interpersonal friction",
+                  "sense of inevitable decay",
+                  "quiet determination"
+                ],
+                "output_style": [
+                  "photorealistic",
+                  "no text or symbols in image",
+                  "no watermarks or logos",
+                  "no messy lines or distorted characters"
+                ],
+                "style": [
+                  "realistic-photography",
+                  "low-saturation-color-palette",
+                  "high-detail-textures",
+                  "cinematic-lighting",
+                  "documentary-style"
+                ],
+                "subject": {
+                  "body_traits": [
+                    "Lin Yuan (Image 0): young male with short black hair",
+                    "clear and observant eyes with a touch of fatigue",
+                    "steady and calm expression showing inner resilience",
+                    "fingertips with slight calluses from craftsmanship",
+                    "standing firmly with a heavy tool bag strapped to his shoulder"
+                  ],
+                  "outfit": [
+                    "dark-colored utility jacket with worn-in texture",
+                    "rugged work pants with multiple pockets",
+                    "sturdy dark boots covered in thin layer of desert dust"
+                  ],
+                  "pose": [
+                    "Lin Yuan (Image 0) standing in the center of the old workshop",
+                    "facing the doorway where the neighbor stands",
+                    "body slightly angled towards old-chen-配角1",
+                    "right hand resting on a dusty workbench near a broken copper bell"
+                  ]
+                },
+                "tags": [
+                  "realistic-narrative",
+                  "desolate-frontier-town",
+                  "nostalgic-melancholy",
+                  "dusty-atmosphere",
+                  "cinematic-realism"
+                ]
+              },
+              "scene_text_hash": "7a9e2c0822024a7475f54f362d1a0c4c",
+              "style": "default",
+              "url": "/image_cache/37f0804c26a428acbc1adac0e2aaa46e.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "start_ts": 1776656248.7788112,
+        "end_ts": 1776656325.7391806,
+        "provider_events": {
+          "event_count": 9,
+          "queue_wait_ms": {
+            "count": 9,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 5,
+            "min": 3540.0,
+            "max": 23531.0,
+            "mean": 12508.8,
+            "median": 9240.0,
+            "p95": 22470.2
+          },
+          "llm_success_count": 4,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "success",
+        "has_scene": true,
+        "has_image": true
+      },
+      "second_click": {
+        "http_status": 200,
+        "elapsed_s": 0.012,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "我明确了拆迁的时间节点（下周三）以及潜在的补偿路径（旧物置换），主线任务从“重启修复铺”推进到了“获取合法补偿与历史价值认定”的阶段，我必须在有限时间内证明铺子的价值。",
+              "recap_text": "你选择了“询问老陈关于拆迁办的具体动向与补偿细则。”。当前章节：chapter1。主线进展：我明确了拆迁的时间节点（下周三）以及潜在的补偿路径（旧物置换），主线任务从“重启修复铺”推进到了“获取合法补偿与历史价值认定”的阶段，我必须在有限时间内证明铺子的价值。。最近剧情：我将目光从铜铃移向老陈，他那双浑浊的眼睛里闪过一丝不耐，但还是掐灭了烟头。我压低声音，语气平稳地问道：“老陈，既然镇上拆迁已成定局，你作为老住户，肯定知道拆迁办的具体动向和补偿细则吧？我不想在这里闹事，只想弄清楚这铺子到底还有多少时间。”老陈冷哼一声，将烟蒂在鞋底碾碎，压低嗓音道：“你小子倒是现实。补偿细则？那帮人只认房产证上的红章，像你这种祖传铺子，没经过正规过户的，补偿款少得可怜。他们下周三就要来贴封条了，说是要统一规划，你若是想拿那点微薄的补偿，现在就得去镇公所排队，晚了连渣都不剩。”他顿了顿，眼神中透出一丝复杂，“不过，听说这次补偿方案里有个‘旧物置换’的条款，说是能折算成现金，但具体怎么折，得看你能不能拿出证明这铺子历史价值的凭证。”我看着他那张布满沟壑的脸，指尖摩挲着粗糙的工具包，心中涌起一股难以言说的沉重，这不仅仅是拆迁，更是对这片土地记忆的彻底清算。"
+            },
+            "deep_background_links": {
+              "1": "老陈（通过询问过户隐情，将揭开主角父亲当年离开小镇的真实原因，即“深层背景"
+            },
+            "flow_update": {
+              "chapter_conflict_solved": false,
+              "characters": {},
+              "environment": {},
+              "quest_progress": "我明确了拆迁的时间节点（下周三）以及潜在的补偿路径（旧物置换），主线任务从“重启修复铺”推进到了“获取合法补偿与历史价值认定”的阶段，我必须在有限时间内证明铺子的价值。"
+            },
+            "next_options": [
+              "前往镇公所查询补偿细则，并询问“旧物置换”条款的细节。",
+              "追问老陈关于当年父亲为何没过户铺子的隐情，试图寻找转机。"
+            ],
+            "plot_mentioned_only": [
+              "父亲-已故亲人",
+              "拆迁办工作人员-群体角色"
+            ],
+            "plot_supporting_characters": [],
+            "scene": "我将目光从铜铃移向老陈，他那双浑浊的眼睛里闪过一丝不耐，但还是掐灭了烟头。我压低声音，语气平稳地问道：“老陈，既然镇上拆迁已成定局，你作为老住户，肯定知道拆迁办的具体动向和补偿细则吧？我不想在这里闹事，只想弄清楚这铺子到底还有多少时间。”老陈冷哼一声，将烟蒂在鞋底碾碎，压低嗓音道：“你小子倒是现实。补偿细则？那帮人只认房产证上的红章，像你这种祖传铺子，没经过正规过户的，补偿款少得可怜。他们下周三就要来贴封条了，说是要统一规划，你若是想拿那点微薄的补偿，现在就得去镇公所排队，晚了连渣都不剩。”他顿了顿，眼神中透出一丝复杂，“不过，听说这次补偿方案里有个‘旧物置换’的条款，说是能折算成现金，但具体怎么折，得看你能不能拿出证明这铺子历史价值的凭证。”我看着他那张布满沟壑的脸，指尖摩挲着粗糙的工具包，心中涌起一股难以言说的沉重，这不仅仅是拆迁，更是对这片土地记忆的彻底清算。",
+            "sceneId": "1481246585351503549_-7950801221779908391",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-n-chen-workshop-confrontation, realistic, narrative-driven, atmospheric, gritty, cinematic-noir, photorealistic, cinematic lighting, high-detail textures, low-saturation color palette, film grain, young male protagonist Lin Yuan with clear eyes and signs of fatigue, fingertips with subtle calluses from manual labor, composed but heavy-hearted expression, standing in a tense posture, protagonist uses Image 1 for side profile view, rugged dark-colored work jacket, worn tool bag slung over shoulder, utility-focused dark clothing with realistic fabric textures, standing in a cramped workshop, body oriented slightly toward 老陈-配角1, fingers gently rubbing the rough strap of the tool bag, head tilted slightly listening to the conversation, 8K highly detailed facial features, clear eyes reflecting dim workshop light, subtle expression of weariness and hidden anxiety, lip color naturally muted, soft shadows emphasizing facial structure, short black hair, root fixation coefficient 0.95, tip swing amplitude 5cm, color layering: main color #1A1A1A, secondary color #262626, highlight #333333, shadow #0D0D0D, wind speed 0.2m/s, turbulence intensity 1%, heavy cotton work jacket with realistic folds, worn tool bag leather texture, stitching details visible on clothing, dimly lit old repair shop interior, dusty shelves filled with forgotten mechanical parts, faded posters on peeling walls, cluttered workbench with scattered tools, faint light filtering through a grime-covered window, 老陈-配角1, an elderly man with a face full of deep wrinkles, standing on the right side of the frame, holding a cigarette butt, floating dust particles in stagnant air, hazy smoke lingering from a recently extinguished cigarette, low-key moody lighting, muted earth tones, faded browns and greys, deep shadows with low saturation, dull metallic highlights, single source of dim natural light from the side window, harsh shadows emphasizing the weathered texture of the room, low-contrast ambient lighting, type medium shot, lens 35mm, aperture f/2.0, depth_of_field shallow focus with blurred background tools, flash none, grain fine film grain, texture realistic material representation, protagonist on the left side looking toward the right, 老陈-配角1 positioned on the right side of the frame, focus on the interaction and tension between the two characters, action constraints: subtle emotional tension, raw realistic narrative style, no text or symbols in image, melancholic, heavy with the weight of reality, tense and quiet, era-specific decay, no text, no symbols, no garbled characters, no words",
+              "scene_text_hash": "32df07f0b7169c7457400d1e1d31ca78",
+              "style": "default",
+              "url": "/image_cache/304f24c723a7666f2bf8f84fe3ffe2d1.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "start_ts": 1776656380.7767603,
+        "end_ts": 1776656380.7892056,
+        "provider_events": {
+          "event_count": 1,
+          "queue_wait_ms": {
+            "count": 1,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "status": "success",
+        "has_scene": true,
+        "has_image": true,
+        "selected_option_index": 0,
+        "selected_option_text": "询问老陈关于拆迁办的具体动向与补偿细则。",
+        "input_scene_id": "-1457917991718746599_2850703281341343082",
+        "inferred_cache_result": "likely_hit",
+        "is_placeholder": false,
+        "used_updated_flow_state": true
+      }
+    },
+    {
+      "benchmark_id": "DNQBV1_002",
+      "theme_id": 9,
+      "theme": "末日温室园丁",
+      "read_wait_s": 55.0,
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 9.399,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过修复供水管线并利用职务之便，将部分配给水私下挪用给濒危植株，虽然植株保住了，但主角因违规操作被扣除绩效，面临降职风险。",
+                  "main_conflict": "温室内部的供水系统因老化频频故障，导致主角精心培育的古老植株面临枯萎风险。同时，上级部门要求主角优先保障高产作物的产量，这与主角保护濒危植株的初衷产生剧烈冲突，主角必须在完成KPI与守护个人理想之间寻找平衡。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角劝阻了学徒并将其秘密送往外围劳工区，种子得以保全，但主角失去了唯一的助手，不得不独自承担繁重的培育工作，生活节奏彻底被打乱。",
+                  "main_conflict": "一名渴望逃离温室的年轻学徒试图偷走主角培育的“先驱种子”，认为这是通往自由的钥匙。主角不仅要面对信任被背叛的痛苦，还要在温室安保系统的严密监控下，保护种子不被没收或损毁，同时还要处理学徒因冲动可能带来的连带责任。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角选择种下种子，种子在酸雨中艰难发芽却最终未能长成森林。主角看着那抹微弱的绿意，接受了人类无法立即重返地表的事实，将观察记录留给后人，带着遗憾与释然回归日常的园丁生活。",
+                  "main_conflict": "最终的移植实验窗口期到来，但外部环境监测显示酸性尘埃浓度异常升高。主角面临抉择：是冒险将种子种下，赌那万分之一的存活率，还是放弃实验，将种子作为标本永久封存，以确保其作为“文明记忆”的完整性。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "沉浸式叙事模拟，采用低饱和度写实美术风格，强调光影与植物纹理的细节刻画。节奏舒缓，通过环境叙事与碎片化文本构建一个在资源匮乏中寻求秩序的末世图景，带给玩家一种在废墟中耕耘、在孤独中与生命对话的静谧压抑感。",
+              "main_quest": "主角的目标是培育出一株能在穹顶外酸性土壤中存活的“先驱种子”，以实现人类重返地表的愿景。任务分为三个阶段：首先是收集并复原旧时代植物的基因片段，这需要主角在温室与废弃的旧城区之间往返，搜寻遗落的样本；其次是优化培育方案，在有限的配给资源下平衡产量与品质，同时应对官僚机构的审计与技术故障；最后是进行户外移植实验。挑战在于，主角不仅要面对恶劣的自然环境，还要在“维持温室现状的安稳”与“冒着失败风险去探索未来”之间做出抉择，最终达成的是一个既保留了珍贵物种，又不得不面对人类短期内无法重返地表这一现实的普通结局。",
+              "protagonist_ability": "主角拥有一种被称为“共感培育”的直觉，源于其家族世代传承的园艺经验与对植物生理周期的敏锐感知。通过触摸叶片与监测土壤微量元素，主角能精准判断植株的健康状态并进行微调。限制在于，这种能力无法对抗环境恶化带来的不可逆基因衰退，且过度使用会消耗主角的体能，导致其在长期高压环境下出现生理性疲劳与情感麻木。",
+              "world_basic_setting": "故事发生于全球生态崩溃后的“灰烬纪元”。地表被酸性尘埃覆盖，人类退守至几座由巨型穹顶保护的“温室都市”。资源配给制度严苛，植物不仅是食物来源，更是维持空气循环的唯一手段。社会结构由“技术官僚”与“劳工阶层”构成，文化核心在于对“绿色”的极度崇拜与对“枯萎”的深层恐惧。关键事件“大枯萎”导致旧时代物种灭绝，现存植物多为基因改良后的高产低质品种。主角作为一名底层园丁，在第7号温室负责培育濒危的古老植株，这里不仅是生产基地，也是幸存者们在冰冷机械生活外，唯一能触碰泥土与生命气息的避难所。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1776656380_ra4bjx",
+            "image_style": {
+              "type": "realistic"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "深褐色短发、沾染泥土的工装、消瘦、眼神专注、指尖粗糙、沉默寡言、佩戴护目镜、总是随身携带一把旧剪刀",
+              "work_en": "Ash Gardener",
+              "work_zh": "灰烬园丁"
+            },
+            "tone": "normal_ending",
+            "user_theme": "末日温室园丁"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "start_ts": 1776656380.8114035,
+        "end_ts": 1776656390.2099054,
+        "provider_events": {
+          "event_count": 3,
+          "queue_wait_ms": {
+            "count": 3,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 1,
+            "min": 9389.0,
+            "max": 9389.0,
+            "mean": 9389.0,
+            "median": 9389.0,
+            "p95": 9389.0
+          },
+          "llm_success_count": 1,
+          "image_success_count": 0,
+          "request_thread_event_count": 2
+        },
+        "status": "success",
+        "game_id": "game_1776656380_ra4bjx"
+      },
+      "first_click": {
+        "http_status": 200,
+        "elapsed_s": 0.028,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "",
+              "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：风沙拍打在鸣沙驿老旧的木门上，发出沉闷的声响。我背着沉重的工具包，站在那间阔别多年的祖宅门前，指尖触碰到斑驳的门环，冰冷的触感顺着指尖蔓延。推开门，一股陈旧的木质霉味扑面而来，灰尘在昏黄的夕阳余晖中飞舞。我环顾四周，屋内的陈设依旧维持着我离开时的模样，只是墙角堆积的蛛网和那张落满灰尘的修复台，无声地诉说着岁月的荒凉。\n\n“哟，这不是林远吗？离家这么多年，终于舍得回来了？”\n\n我转过身，看见邻居老陈正倚在门框边，手里掐着半截旱烟，浑浊的眼神中透着一丝审视与冷漠。他吐出一口烟圈，烟雾模糊了他的表情，“镇上都要拆迁了，你这时候回来，是想捡点什么值钱的破烂，还是想靠着这老铺子讹点拆迁费？”\n\n我放下工具包，指尖轻轻摩挲着台面上的一只残破铜铃，那是父亲留下的遗物。我没有理会他的嘲讽，只是平静地回答：“我回来，只是想把没做完的事做完。”"
+            },
+            "deep_background_links": {},
+            "flow_update": {},
+            "next_options": [
+              "询问老陈关于拆迁办的具体动向与补偿细则。",
+              "尝试修复手中的铜铃，以此向老陈证明我并非投机者。"
+            ],
+            "plot_supporting_characters": [],
+            "scene": "风沙拍打在鸣沙驿老旧的木门上，发出沉闷的声响。我背着沉重的工具包，站在那间阔别多年的祖宅门前，指尖触碰到斑驳的门环，冰冷的触感顺着指尖蔓延。推开门，一股陈旧的木质霉味扑面而来，灰尘在昏黄的夕阳余晖中飞舞。我环顾四周，屋内的陈设依旧维持着我离开时的模样，只是墙角堆积的蛛网和那张落满灰尘的修复台，无声地诉说着岁月的荒凉。\n\n“哟，这不是林远吗？离家这么多年，终于舍得回来了？”\n\n我转过身，看见邻居老陈正倚在门框边，手里掐着半截旱烟，浑浊的眼神中透着一丝审视与冷漠。他吐出一口烟圈，烟雾模糊了他的表情，“镇上都要拆迁了，你这时候回来，是想捡点什么值钱的破烂，还是想靠着这老铺子讹点拆迁费？”\n\n我放下工具包，指尖轻轻摩挲着台面上的一只残破铜铃，那是父亲留下的遗物。我没有理会他的嘲讽，只是平静地回答：“我回来，只是想把没做完的事做完。”",
+            "sceneId": "-1457917991718746599_2850703281341343082",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-return-to-ming-sha-station, realistic-narrative, desolate-frontier-town, nostalgic-melancholy, dusty-atmosphere, cinematic-realism, realistic-photography, low-saturation-color-palette, high-detail-textures, cinematic-lighting, documentary-style, Lin Yuan (Image 0): young male with short black hair, clear and observant eyes with a touch of fatigue, steady and calm expression showing inner resilience, fingertips with slight calluses from craftsmanship, standing firmly with a heavy tool bag strapped to his shoulder, dark-colored utility jacket with worn-in texture, rugged work pants with multiple pockets, sturdy dark boots covered in thin layer of desert dust, Lin Yuan (Image 0) standing in the center of the old workshop, facing the doorway where the neighbor stands, body slightly angled towards old-chen-配角1, right hand resting on a dusty workbench near a broken copper bell, 8K detailed facial features, clear eyes conveying empathy and fatigue, natural skin texture with subtle pores and realistic lighting, lip color naturally muted, calm and stoic expression, short black hair with natural texture, root fixation coefficient 0.7, tip swing amplitude 5cm, color layering: main color #1A1A1A, secondary color #2F2F2F, highlight #404040, shadow #000000, wind speed 0.3m/s, turbulence intensity 2%, dark utility jacket with visible fabric grain, slight fabric flutter from the draft of the open door, sturdy and practical clothing texture, dust particles settling on shoulders, dimly lit interior of a dilapidated traditional workshop, old wooden door frames showing signs of decay, dust motes dancing in shafts of golden sunset light, cluttered workbench with scattered repair tools and a broken copper bell, walls covered in faint cobwebs and peeling paint, 老陈-配角1 standing at the doorway, leaning against the wooden frame with a half-smoked cigarette in hand, wearing worn-out local clothing, eyes squinting with suspicion, golden hour sunlight streaming through the open door, visible dust particles in the air, hazy smoke trails from old-chen-配角1's cigarette, low saturation tones, warm golden sunset light contrasting with cool interior shadows, muted earth tones, deep browns, dusty greys, and faded wood colors, dramatic backlighting from the sunset outside, soft interior ambient light highlighting dust particles, long shadows stretching across the wooden floor, subtle rim lighting on protagonist's silhouette, type medium full shot, lens 35mm, aperture f/4.0, depth_of_field sharp focus on protagonist, soft bokeh on the background, flash none, grain fine film grain, texture high-resolution photographic detail, protagonist positioned in the foreground center, 老陈-配角1 framed in the doorway on the left side, workbench and copper bell as secondary focal point, action constraints: Lin Yuan looking calmly at the neighbor, photorealistic, no text or symbols in image, no watermarks or logos, no messy lines or distorted characters, melancholic nostalgia, tense interpersonal friction, sense of inevitable decay, quiet determination, no text, no symbols, no garbled characters, no words",
+              "prompt_json": {
+                "camera": {
+                  "aperture": "f/4.0",
+                  "depth_of_field": "sharp focus on protagonist, soft bokeh on the background",
+                  "flash": "none",
+                  "grain": "fine film grain",
+                  "lens": "35mm",
+                  "texture": "high-resolution photographic detail",
+                  "type": "medium full shot"
+                },
+                "clothing_system": [
+                  "dark utility jacket with visible fabric grain",
+                  "slight fabric flutter from the draft of the open door",
+                  "sturdy and practical clothing texture",
+                  "dust particles settling on shoulders"
+                ],
+                "color_restriction": [
+                  "low saturation tones",
+                  "warm golden sunset light contrasting with cool interior shadows",
+                  "muted earth tones, deep browns, dusty greys, and faded wood colors"
+                ],
+                "composition": [
+                  "protagonist positioned in the foreground center",
+                  "老陈-配角1 framed in the doorway on the left side",
+                  "workbench and copper bell as secondary focal point",
+                  "action constraints: Lin Yuan looking calmly at the neighbor"
+                ],
+                "environment": {
+                  "background": [
+                    "dimly lit interior of a dilapidated traditional workshop",
+                    "old wooden door frames showing signs of decay",
+                    "dust motes dancing in shafts of golden sunset light",
+                    "cluttered workbench with scattered repair tools and a broken copper bell",
+                    "walls covered in faint cobwebs and peeling paint"
+                  ],
+                  "characters": [
+                    "老陈-配角1 standing at the doorway, leaning against the wooden frame with a half-smoked cigarette in hand, wearing worn-out local clothing, eyes squinting with suspicion"
+                  ],
+                  "effects": [
+                    "golden hour sunlight streaming through the open door",
+                    "visible dust particles in the air",
+                    "hazy smoke trails from old-chen-配角1's cigarette"
+                  ]
+                },
+                "face_system": [
+                  "8K detailed facial features",
+                  "clear eyes conveying empathy and fatigue",
+                  "natural skin texture with subtle pores and realistic lighting",
+                  "lip color naturally muted",
+                  "calm and stoic expression"
+                ],
+                "hair_system": [
+                  "short black hair with natural texture",
+                  "root fixation coefficient 0.7",
+                  "tip swing amplitude 5cm",
+                  "color layering: main color #1A1A1A, secondary color #2F2F2F, highlight #404040, shadow #000000",
+                  "wind speed 0.3m/s",
+                  "turbulence intensity 2%"
+                ],
+                "label": "scene-return-to-ming-sha-station",
+                "lighting": [
+                  "dramatic backlighting from the sunset outside",
+                  "soft interior ambient light highlighting dust particles",
+                  "long shadows stretching across the wooden floor",
+                  "subtle rim lighting on protagonist's silhouette"
+                ],
+                "mood": [
+                  "melancholic nostalgia",
+                  "tense interpersonal friction",
+                  "sense of inevitable decay",
+                  "quiet determination"
+                ],
+                "output_style": [
+                  "photorealistic",
+                  "no text or symbols in image",
+                  "no watermarks or logos",
+                  "no messy lines or distorted characters"
+                ],
+                "style": [
+                  "realistic-photography",
+                  "low-saturation-color-palette",
+                  "high-detail-textures",
+                  "cinematic-lighting",
+                  "documentary-style"
+                ],
+                "subject": {
+                  "body_traits": [
+                    "Lin Yuan (Image 0): young male with short black hair",
+                    "clear and observant eyes with a touch of fatigue",
+                    "steady and calm expression showing inner resilience",
+                    "fingertips with slight calluses from craftsmanship",
+                    "standing firmly with a heavy tool bag strapped to his shoulder"
+                  ],
+                  "outfit": [
+                    "dark-colored utility jacket with worn-in texture",
+                    "rugged work pants with multiple pockets",
+                    "sturdy dark boots covered in thin layer of desert dust"
+                  ],
+                  "pose": [
+                    "Lin Yuan (Image 0) standing in the center of the old workshop",
+                    "facing the doorway where the neighbor stands",
+                    "body slightly angled towards old-chen-配角1",
+                    "right hand resting on a dusty workbench near a broken copper bell"
+                  ]
+                },
+                "tags": [
+                  "realistic-narrative",
+                  "desolate-frontier-town",
+                  "nostalgic-melancholy",
+                  "dusty-atmosphere",
+                  "cinematic-realism"
+                ]
+              },
+              "scene_text_hash": "7a9e2c0822024a7475f54f362d1a0c4c",
+              "style": "default",
+              "url": "/image_cache/37f0804c26a428acbc1adac0e2aaa46e.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "start_ts": 1776656390.2368593,
+        "end_ts": 1776656390.2644026,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "success",
+        "has_scene": true,
+        "has_image": true
+      },
+      "second_click": {
+        "http_status": 200,
+        "elapsed_s": 0.023,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "我明确了拆迁的时间节点（下周三）以及潜在的补偿路径（旧物置换），主线任务从“重启修复铺”推进到了“获取合法补偿与历史价值认定”的阶段，我必须在有限时间内证明铺子的价值。",
+              "recap_text": "你选择了“询问老陈关于拆迁办的具体动向与补偿细则。”。当前章节：chapter1。主线进展：我明确了拆迁的时间节点（下周三）以及潜在的补偿路径（旧物置换），主线任务从“重启修复铺”推进到了“获取合法补偿与历史价值认定”的阶段，我必须在有限时间内证明铺子的价值。。最近剧情：我将目光从铜铃移向老陈，他那双浑浊的眼睛里闪过一丝不耐，但还是掐灭了烟头。我压低声音，语气平稳地问道：“老陈，既然镇上拆迁已成定局，你作为老住户，肯定知道拆迁办的具体动向和补偿细则吧？我不想在这里闹事，只想弄清楚这铺子到底还有多少时间。”老陈冷哼一声，将烟蒂在鞋底碾碎，压低嗓音道：“你小子倒是现实。补偿细则？那帮人只认房产证上的红章，像你这种祖传铺子，没经过正规过户的，补偿款少得可怜。他们下周三就要来贴封条了，说是要统一规划，你若是想拿那点微薄的补偿，现在就得去镇公所排队，晚了连渣都不剩。”他顿了顿，眼神中透出一丝复杂，“不过，听说这次补偿方案里有个‘旧物置换’的条款，说是能折算成现金，但具体怎么折，得看你能不能拿出证明这铺子历史价值的凭证。”我看着他那张布满沟壑的脸，指尖摩挲着粗糙的工具包，心中涌起一股难以言说的沉重，这不仅仅是拆迁，更是对这片土地记忆的彻底清算。"
+            },
+            "deep_background_links": {
+              "1": "老陈（通过询问过户隐情，将揭开主角父亲当年离开小镇的真实原因，即“深层背景"
+            },
+            "flow_update": {
+              "chapter_conflict_solved": false,
+              "characters": {},
+              "environment": {},
+              "quest_progress": "我明确了拆迁的时间节点（下周三）以及潜在的补偿路径（旧物置换），主线任务从“重启修复铺”推进到了“获取合法补偿与历史价值认定”的阶段，我必须在有限时间内证明铺子的价值。"
+            },
+            "next_options": [
+              "前往镇公所查询补偿细则，并询问“旧物置换”条款的细节。",
+              "追问老陈关于当年父亲为何没过户铺子的隐情，试图寻找转机。"
+            ],
+            "plot_mentioned_only": [
+              "父亲-已故亲人",
+              "拆迁办工作人员-群体角色"
+            ],
+            "plot_supporting_characters": [],
+            "scene": "我将目光从铜铃移向老陈，他那双浑浊的眼睛里闪过一丝不耐，但还是掐灭了烟头。我压低声音，语气平稳地问道：“老陈，既然镇上拆迁已成定局，你作为老住户，肯定知道拆迁办的具体动向和补偿细则吧？我不想在这里闹事，只想弄清楚这铺子到底还有多少时间。”老陈冷哼一声，将烟蒂在鞋底碾碎，压低嗓音道：“你小子倒是现实。补偿细则？那帮人只认房产证上的红章，像你这种祖传铺子，没经过正规过户的，补偿款少得可怜。他们下周三就要来贴封条了，说是要统一规划，你若是想拿那点微薄的补偿，现在就得去镇公所排队，晚了连渣都不剩。”他顿了顿，眼神中透出一丝复杂，“不过，听说这次补偿方案里有个‘旧物置换’的条款，说是能折算成现金，但具体怎么折，得看你能不能拿出证明这铺子历史价值的凭证。”我看着他那张布满沟壑的脸，指尖摩挲着粗糙的工具包，心中涌起一股难以言说的沉重，这不仅仅是拆迁，更是对这片土地记忆的彻底清算。",
+            "sceneId": "-7714699735805604380_-7950801221779908391",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-n-chen-workshop-confrontation, realistic, narrative-driven, atmospheric, gritty, cinematic-noir, photorealistic, cinematic lighting, high-detail textures, low-saturation color palette, film grain, young male protagonist Lin Yuan with clear eyes and signs of fatigue, fingertips with subtle calluses from manual labor, composed but heavy-hearted expression, standing in a tense posture, protagonist uses Image 1 for side profile view, rugged dark-colored work jacket, worn tool bag slung over shoulder, utility-focused dark clothing with realistic fabric textures, standing in a cramped workshop, body oriented slightly toward 老陈-配角1, fingers gently rubbing the rough strap of the tool bag, head tilted slightly listening to the conversation, 8K highly detailed facial features, clear eyes reflecting dim workshop light, subtle expression of weariness and hidden anxiety, lip color naturally muted, soft shadows emphasizing facial structure, short black hair, root fixation coefficient 0.95, tip swing amplitude 5cm, color layering: main color #1A1A1A, secondary color #262626, highlight #333333, shadow #0D0D0D, wind speed 0.2m/s, turbulence intensity 1%, heavy cotton work jacket with realistic folds, worn tool bag leather texture, stitching details visible on clothing, dimly lit old repair shop interior, dusty shelves filled with forgotten mechanical parts, faded posters on peeling walls, cluttered workbench with scattered tools, faint light filtering through a grime-covered window, 老陈-配角1, an elderly man with a face full of deep wrinkles, standing on the right side of the frame, holding a cigarette butt, floating dust particles in stagnant air, hazy smoke lingering from a recently extinguished cigarette, low-key moody lighting, muted earth tones, faded browns and greys, deep shadows with low saturation, dull metallic highlights, single source of dim natural light from the side window, harsh shadows emphasizing the weathered texture of the room, low-contrast ambient lighting, type medium shot, lens 35mm, aperture f/2.0, depth_of_field shallow focus with blurred background tools, flash none, grain fine film grain, texture realistic material representation, protagonist on the left side looking toward the right, 老陈-配角1 positioned on the right side of the frame, focus on the interaction and tension between the two characters, action constraints: subtle emotional tension, raw realistic narrative style, no text or symbols in image, melancholic, heavy with the weight of reality, tense and quiet, era-specific decay, no text, no symbols, no garbled characters, no words",
+              "scene_text_hash": "32df07f0b7169c7457400d1e1d31ca78",
+              "style": "default",
+              "url": "/image_cache/304f24c723a7666f2bf8f84fe3ffe2d1.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "start_ts": 1776656445.2940755,
+        "end_ts": 1776656445.3170393,
+        "provider_events": {
+          "event_count": 1,
+          "queue_wait_ms": {
+            "count": 1,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "status": "success",
+        "has_scene": true,
+        "has_image": true,
+        "selected_option_index": 0,
+        "selected_option_text": "询问老陈关于拆迁办的具体动向与补偿细则。",
+        "input_scene_id": "-1457917991718746599_2850703281341343082",
+        "inferred_cache_result": "likely_hit",
+        "is_placeholder": false,
+        "used_updated_flow_state": true
+      }
+    },
+    {
+      "benchmark_id": "DNQBV1_003",
+      "theme_id": 19,
+      "theme": "都市天台养鸽人",
+      "read_wait_s": 55.0,
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 9.361,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过兼职赚取了修缮费，并利用鸽群带来的微小情报帮助物业解决了楼道安全隐患，换取了暂时的天台使用权，鸽舍得以加固。",
+                  "main_conflict": "主角面临老旧住宅区即将拆迁的压力，同时鸽舍因年久失修面临倒塌风险。主角需要在微薄的薪水与昂贵的修缮费之间做选择，同时还要应对物业对天台违建的频繁警告，生活陷入了“维持爱好”还是“顺应现实”的剧烈冲突中。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角在城市边缘发现了一处被废弃的信号塔，通过多次往返搬运物资，成功在信号塔顶端搭建了临时中转站，鸽群开始适应新的环境。",
+                  "main_conflict": "城市环境恶化，鸽群因食物匮乏与空气污染开始出现大面积迁徙或死亡，主角试图寻找新的栖息地却屡屡碰壁。与此同时，主角在职场遭遇挫折，不得不面临是否放弃天台生活、全身心投入高强度工作的抉择，现实的重压让其感到孤独与无力。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角在拆迁前夜吹响哨音，鸽群最终飞向了保护区。主角看着空荡荡的天台，平静地收拾行李搬离，虽失去了心爱的鸽舍，但内心获得了与生活和解的平静。",
+                  "main_conflict": "拆迁令正式下达，天台被封锁。主角必须在最后期限内引导鸽群完成迁徙，同时要处理自己多年积累的物品与情感寄托。面对即将消失的“精神避难所”，主角在留恋与前行之间徘徊，最终需在“强行留下”与“体面告别”中做出抉择。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为写实主义都市模拟叙事，采用低饱和度的视觉色调与环境音效，强调城市肌理的颗粒感。叙事节奏舒缓，通过鸽群的起落与都市的喧嚣形成对比，营造一种在拥挤水泥森林中寻找私人领地的孤独与静谧感。",
+              "main_quest": "主角的目标是修缮天台的鸽舍，并在城市拆迁规划前，完成一场名为“归巢”的仪式，让鸽群能够迁徙至城市边缘的自然保护区。玩家需在日常工作中平衡生计与鸽舍维护，通过收集废旧材料、应对邻里投诉、处理鸽群疾病等挑战，逐步建立与鸽群的深层羁绊。最终任务并非阻止拆迁，而是确保在天台被拆除的那一刻，鸽群已寻得新家，而主角则带着对这段岁月的释然，搬入狭窄但安稳的公寓，达成一种生活重心的平稳过渡。",
+              "protagonist_ability": "主角拥有“共鸣式驯养”能力，源于其长期与鸽群共处的孤独生活。通过特定的哨音频率与肢体语言，主角能感知鸽群的飞行路径与情绪波动，并以此获取城市高处的视野情报。限制在于，这种能力仅限于鸽群，且受制于城市恶劣的气候与高频的电磁干扰，一旦鸽群因环境恶化而减少，主角的感知能力也会随之衰减，无法改变城市规则，只能作为旁观者记录。",
+              "world_basic_setting": "故事发生在一座名为“临江”的超大型工业化都市。这里高楼林立，旧城区与CBD仅一墙之隔，社会阶层被垂直的建筑高度切割。城市文化崇尚效率与快节奏，人们在钢筋水泥中被异化为齿轮。鸽子作为城市中唯一的“非人类原住民”，在摩天大楼的缝隙间建立起脆弱的生态。主角居住在老旧住宅区的顶层天台，这里是城市中少有的、未被资本完全规训的“真空地带”。社会背景强调个体的渺小与奋斗的艰辛，每个人都在为房贷、生计与所谓的“体面”奔波。鸽子不仅是主角的伙伴，更是城市变迁的见证者，它们在烟囱与霓虹灯之间穿梭，象征着一种无法被完全驯服的、属于底层的自由。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1776656445_6mvxa3",
+            "image_style": {
+              "type": "realistic"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "凌乱黑发、粗布工装、常年佩戴的旧哨子、清瘦、眼神平和、指尖有细微伤痕、穿着磨损的帆布鞋、沉默寡言、背影单薄、带有烟火气的疲惫感",
+              "work_en": "Pigeon Whistle and Concrete Forest",
+              "work_zh": "鸽哨与水泥森林"
+            },
+            "tone": "normal_ending",
+            "user_theme": "都市天台养鸽人"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "start_ts": 1776656445.3448782,
+        "end_ts": 1776656454.7057512,
+        "provider_events": {
+          "event_count": 5,
+          "queue_wait_ms": {
+            "count": 5,
+            "min": 0.0,
+            "max": 3492.0,
+            "mean": 698.4,
+            "median": 0.0,
+            "p95": 2793.6
+          },
+          "latency_ms": {
+            "count": 2,
+            "min": 5899.0,
+            "max": 9342.0,
+            "mean": 7620.5,
+            "median": 7620.5,
+            "p95": 9169.85
+          },
+          "llm_success_count": 2,
+          "image_success_count": 0,
+          "request_thread_event_count": 2
+        },
+        "status": "success",
+        "game_id": "game_1776656445_6mvxa3"
+      },
+      "first_click": {
+        "http_status": 200,
+        "elapsed_s": 0.007,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "",
+              "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：风沙拍打在鸣沙驿老旧的木门上，发出沉闷的声响。我背着沉重的工具包，站在那间阔别多年的祖宅门前，指尖触碰到斑驳的门环，冰冷的触感顺着指尖蔓延。推开门，一股陈旧的木质霉味扑面而来，灰尘在昏黄的夕阳余晖中飞舞。我环顾四周，屋内的陈设依旧维持着我离开时的模样，只是墙角堆积的蛛网和那张落满灰尘的修复台，无声地诉说着岁月的荒凉。\n\n“哟，这不是林远吗？离家这么多年，终于舍得回来了？”\n\n我转过身，看见邻居老陈正倚在门框边，手里掐着半截旱烟，浑浊的眼神中透着一丝审视与冷漠。他吐出一口烟圈，烟雾模糊了他的表情，“镇上都要拆迁了，你这时候回来，是想捡点什么值钱的破烂，还是想靠着这老铺子讹点拆迁费？”\n\n我放下工具包，指尖轻轻摩挲着台面上的一只残破铜铃，那是父亲留下的遗物。我没有理会他的嘲讽，只是平静地回答：“我回来，只是想把没做完的事做完。”"
+            },
+            "deep_background_links": {},
+            "flow_update": {},
+            "next_options": [
+              "询问老陈关于拆迁办的具体动向与补偿细则。",
+              "尝试修复手中的铜铃，以此向老陈证明我并非投机者。"
+            ],
+            "plot_supporting_characters": [],
+            "scene": "风沙拍打在鸣沙驿老旧的木门上，发出沉闷的声响。我背着沉重的工具包，站在那间阔别多年的祖宅门前，指尖触碰到斑驳的门环，冰冷的触感顺着指尖蔓延。推开门，一股陈旧的木质霉味扑面而来，灰尘在昏黄的夕阳余晖中飞舞。我环顾四周，屋内的陈设依旧维持着我离开时的模样，只是墙角堆积的蛛网和那张落满灰尘的修复台，无声地诉说着岁月的荒凉。\n\n“哟，这不是林远吗？离家这么多年，终于舍得回来了？”\n\n我转过身，看见邻居老陈正倚在门框边，手里掐着半截旱烟，浑浊的眼神中透着一丝审视与冷漠。他吐出一口烟圈，烟雾模糊了他的表情，“镇上都要拆迁了，你这时候回来，是想捡点什么值钱的破烂，还是想靠着这老铺子讹点拆迁费？”\n\n我放下工具包，指尖轻轻摩挲着台面上的一只残破铜铃，那是父亲留下的遗物。我没有理会他的嘲讽，只是平静地回答：“我回来，只是想把没做完的事做完。”",
+            "sceneId": "-1457917991718746599_2850703281341343082",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-return-to-ming-sha-station, realistic-narrative, desolate-frontier-town, nostalgic-melancholy, dusty-atmosphere, cinematic-realism, realistic-photography, low-saturation-color-palette, high-detail-textures, cinematic-lighting, documentary-style, Lin Yuan (Image 0): young male with short black hair, clear and observant eyes with a touch of fatigue, steady and calm expression showing inner resilience, fingertips with slight calluses from craftsmanship, standing firmly with a heavy tool bag strapped to his shoulder, dark-colored utility jacket with worn-in texture, rugged work pants with multiple pockets, sturdy dark boots covered in thin layer of desert dust, Lin Yuan (Image 0) standing in the center of the old workshop, facing the doorway where the neighbor stands, body slightly angled towards old-chen-配角1, right hand resting on a dusty workbench near a broken copper bell, 8K detailed facial features, clear eyes conveying empathy and fatigue, natural skin texture with subtle pores and realistic lighting, lip color naturally muted, calm and stoic expression, short black hair with natural texture, root fixation coefficient 0.7, tip swing amplitude 5cm, color layering: main color #1A1A1A, secondary color #2F2F2F, highlight #404040, shadow #000000, wind speed 0.3m/s, turbulence intensity 2%, dark utility jacket with visible fabric grain, slight fabric flutter from the draft of the open door, sturdy and practical clothing texture, dust particles settling on shoulders, dimly lit interior of a dilapidated traditional workshop, old wooden door frames showing signs of decay, dust motes dancing in shafts of golden sunset light, cluttered workbench with scattered repair tools and a broken copper bell, walls covered in faint cobwebs and peeling paint, 老陈-配角1 standing at the doorway, leaning against the wooden frame with a half-smoked cigarette in hand, wearing worn-out local clothing, eyes squinting with suspicion, golden hour sunlight streaming through the open door, visible dust particles in the air, hazy smoke trails from old-chen-配角1's cigarette, low saturation tones, warm golden sunset light contrasting with cool interior shadows, muted earth tones, deep browns, dusty greys, and faded wood colors, dramatic backlighting from the sunset outside, soft interior ambient light highlighting dust particles, long shadows stretching across the wooden floor, subtle rim lighting on protagonist's silhouette, type medium full shot, lens 35mm, aperture f/4.0, depth_of_field sharp focus on protagonist, soft bokeh on the background, flash none, grain fine film grain, texture high-resolution photographic detail, protagonist positioned in the foreground center, 老陈-配角1 framed in the doorway on the left side, workbench and copper bell as secondary focal point, action constraints: Lin Yuan looking calmly at the neighbor, photorealistic, no text or symbols in image, no watermarks or logos, no messy lines or distorted characters, melancholic nostalgia, tense interpersonal friction, sense of inevitable decay, quiet determination, no text, no symbols, no garbled characters, no words",
+              "prompt_json": {
+                "camera": {
+                  "aperture": "f/4.0",
+                  "depth_of_field": "sharp focus on protagonist, soft bokeh on the background",
+                  "flash": "none",
+                  "grain": "fine film grain",
+                  "lens": "35mm",
+                  "texture": "high-resolution photographic detail",
+                  "type": "medium full shot"
+                },
+                "clothing_system": [
+                  "dark utility jacket with visible fabric grain",
+                  "slight fabric flutter from the draft of the open door",
+                  "sturdy and practical clothing texture",
+                  "dust particles settling on shoulders"
+                ],
+                "color_restriction": [
+                  "low saturation tones",
+                  "warm golden sunset light contrasting with cool interior shadows",
+                  "muted earth tones, deep browns, dusty greys, and faded wood colors"
+                ],
+                "composition": [
+                  "protagonist positioned in the foreground center",
+                  "老陈-配角1 framed in the doorway on the left side",
+                  "workbench and copper bell as secondary focal point",
+                  "action constraints: Lin Yuan looking calmly at the neighbor"
+                ],
+                "environment": {
+                  "background": [
+                    "dimly lit interior of a dilapidated traditional workshop",
+                    "old wooden door frames showing signs of decay",
+                    "dust motes dancing in shafts of golden sunset light",
+                    "cluttered workbench with scattered repair tools and a broken copper bell",
+                    "walls covered in faint cobwebs and peeling paint"
+                  ],
+                  "characters": [
+                    "老陈-配角1 standing at the doorway, leaning against the wooden frame with a half-smoked cigarette in hand, wearing worn-out local clothing, eyes squinting with suspicion"
+                  ],
+                  "effects": [
+                    "golden hour sunlight streaming through the open door",
+                    "visible dust particles in the air",
+                    "hazy smoke trails from old-chen-配角1's cigarette"
+                  ]
+                },
+                "face_system": [
+                  "8K detailed facial features",
+                  "clear eyes conveying empathy and fatigue",
+                  "natural skin texture with subtle pores and realistic lighting",
+                  "lip color naturally muted",
+                  "calm and stoic expression"
+                ],
+                "hair_system": [
+                  "short black hair with natural texture",
+                  "root fixation coefficient 0.7",
+                  "tip swing amplitude 5cm",
+                  "color layering: main color #1A1A1A, secondary color #2F2F2F, highlight #404040, shadow #000000",
+                  "wind speed 0.3m/s",
+                  "turbulence intensity 2%"
+                ],
+                "label": "scene-return-to-ming-sha-station",
+                "lighting": [
+                  "dramatic backlighting from the sunset outside",
+                  "soft interior ambient light highlighting dust particles",
+                  "long shadows stretching across the wooden floor",
+                  "subtle rim lighting on protagonist's silhouette"
+                ],
+                "mood": [
+                  "melancholic nostalgia",
+                  "tense interpersonal friction",
+                  "sense of inevitable decay",
+                  "quiet determination"
+                ],
+                "output_style": [
+                  "photorealistic",
+                  "no text or symbols in image",
+                  "no watermarks or logos",
+                  "no messy lines or distorted characters"
+                ],
+                "style": [
+                  "realistic-photography",
+                  "low-saturation-color-palette",
+                  "high-detail-textures",
+                  "cinematic-lighting",
+                  "documentary-style"
+                ],
+                "subject": {
+                  "body_traits": [
+                    "Lin Yuan (Image 0): young male with short black hair",
+                    "clear and observant eyes with a touch of fatigue",
+                    "steady and calm expression showing inner resilience",
+                    "fingertips with slight calluses from craftsmanship",
+                    "standing firmly with a heavy tool bag strapped to his shoulder"
+                  ],
+                  "outfit": [
+                    "dark-colored utility jacket with worn-in texture",
+                    "rugged work pants with multiple pockets",
+                    "sturdy dark boots covered in thin layer of desert dust"
+                  ],
+                  "pose": [
+                    "Lin Yuan (Image 0) standing in the center of the old workshop",
+                    "facing the doorway where the neighbor stands",
+                    "body slightly angled towards old-chen-配角1",
+                    "right hand resting on a dusty workbench near a broken copper bell"
+                  ]
+                },
+                "tags": [
+                  "realistic-narrative",
+                  "desolate-frontier-town",
+                  "nostalgic-melancholy",
+                  "dusty-atmosphere",
+                  "cinematic-realism"
+                ]
+              },
+              "scene_text_hash": "7a9e2c0822024a7475f54f362d1a0c4c",
+              "style": "default",
+              "url": "/image_cache/37f0804c26a428acbc1adac0e2aaa46e.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "start_ts": 1776656454.7381651,
+        "end_ts": 1776656454.745411,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "success",
+        "has_scene": true,
+        "has_image": true
+      },
+      "second_click": {
+        "http_status": 200,
+        "elapsed_s": 0.027,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "我明确了拆迁的时间节点（下周三）以及潜在的补偿路径（旧物置换），主线任务从“重启修复铺”推进到了“获取合法补偿与历史价值认定”的阶段，我必须在有限时间内证明铺子的价值。",
+              "recap_text": "你选择了“询问老陈关于拆迁办的具体动向与补偿细则。”。当前章节：chapter1。主线进展：我明确了拆迁的时间节点（下周三）以及潜在的补偿路径（旧物置换），主线任务从“重启修复铺”推进到了“获取合法补偿与历史价值认定”的阶段，我必须在有限时间内证明铺子的价值。。最近剧情：我将目光从铜铃移向老陈，他那双浑浊的眼睛里闪过一丝不耐，但还是掐灭了烟头。我压低声音，语气平稳地问道：“老陈，既然镇上拆迁已成定局，你作为老住户，肯定知道拆迁办的具体动向和补偿细则吧？我不想在这里闹事，只想弄清楚这铺子到底还有多少时间。”老陈冷哼一声，将烟蒂在鞋底碾碎，压低嗓音道：“你小子倒是现实。补偿细则？那帮人只认房产证上的红章，像你这种祖传铺子，没经过正规过户的，补偿款少得可怜。他们下周三就要来贴封条了，说是要统一规划，你若是想拿那点微薄的补偿，现在就得去镇公所排队，晚了连渣都不剩。”他顿了顿，眼神中透出一丝复杂，“不过，听说这次补偿方案里有个‘旧物置换’的条款，说是能折算成现金，但具体怎么折，得看你能不能拿出证明这铺子历史价值的凭证。”我看着他那张布满沟壑的脸，指尖摩挲着粗糙的工具包，心中涌起一股难以言说的沉重，这不仅仅是拆迁，更是对这片土地记忆的彻底清算。"
+            },
+            "deep_background_links": {
+              "1": "老陈（通过询问过户隐情，将揭开主角父亲当年离开小镇的真实原因，即“深层背景"
+            },
+            "flow_update": {
+              "chapter_conflict_solved": false,
+              "characters": {},
+              "environment": {},
+              "quest_progress": "我明确了拆迁的时间节点（下周三）以及潜在的补偿路径（旧物置换），主线任务从“重启修复铺”推进到了“获取合法补偿与历史价值认定”的阶段，我必须在有限时间内证明铺子的价值。"
+            },
+            "next_options": [
+              "前往镇公所查询补偿细则，并询问“旧物置换”条款的细节。",
+              "追问老陈关于当年父亲为何没过户铺子的隐情，试图寻找转机。"
+            ],
+            "plot_mentioned_only": [
+              "父亲-已故亲人",
+              "拆迁办工作人员-群体角色"
+            ],
+            "plot_supporting_characters": [],
+            "scene": "我将目光从铜铃移向老陈，他那双浑浊的眼睛里闪过一丝不耐，但还是掐灭了烟头。我压低声音，语气平稳地问道：“老陈，既然镇上拆迁已成定局，你作为老住户，肯定知道拆迁办的具体动向和补偿细则吧？我不想在这里闹事，只想弄清楚这铺子到底还有多少时间。”老陈冷哼一声，将烟蒂在鞋底碾碎，压低嗓音道：“你小子倒是现实。补偿细则？那帮人只认房产证上的红章，像你这种祖传铺子，没经过正规过户的，补偿款少得可怜。他们下周三就要来贴封条了，说是要统一规划，你若是想拿那点微薄的补偿，现在就得去镇公所排队，晚了连渣都不剩。”他顿了顿，眼神中透出一丝复杂，“不过，听说这次补偿方案里有个‘旧物置换’的条款，说是能折算成现金，但具体怎么折，得看你能不能拿出证明这铺子历史价值的凭证。”我看着他那张布满沟壑的脸，指尖摩挲着粗糙的工具包，心中涌起一股难以言说的沉重，这不仅仅是拆迁，更是对这片土地记忆的彻底清算。",
+            "sceneId": "-7242116859750260945_-7950801221779908391",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-n-chen-workshop-confrontation, realistic, narrative-driven, atmospheric, gritty, cinematic-noir, photorealistic, cinematic lighting, high-detail textures, low-saturation color palette, film grain, young male protagonist Lin Yuan with clear eyes and signs of fatigue, fingertips with subtle calluses from manual labor, composed but heavy-hearted expression, standing in a tense posture, protagonist uses Image 1 for side profile view, rugged dark-colored work jacket, worn tool bag slung over shoulder, utility-focused dark clothing with realistic fabric textures, standing in a cramped workshop, body oriented slightly toward 老陈-配角1, fingers gently rubbing the rough strap of the tool bag, head tilted slightly listening to the conversation, 8K highly detailed facial features, clear eyes reflecting dim workshop light, subtle expression of weariness and hidden anxiety, lip color naturally muted, soft shadows emphasizing facial structure, short black hair, root fixation coefficient 0.95, tip swing amplitude 5cm, color layering: main color #1A1A1A, secondary color #262626, highlight #333333, shadow #0D0D0D, wind speed 0.2m/s, turbulence intensity 1%, heavy cotton work jacket with realistic folds, worn tool bag leather texture, stitching details visible on clothing, dimly lit old repair shop interior, dusty shelves filled with forgotten mechanical parts, faded posters on peeling walls, cluttered workbench with scattered tools, faint light filtering through a grime-covered window, 老陈-配角1, an elderly man with a face full of deep wrinkles, standing on the right side of the frame, holding a cigarette butt, floating dust particles in stagnant air, hazy smoke lingering from a recently extinguished cigarette, low-key moody lighting, muted earth tones, faded browns and greys, deep shadows with low saturation, dull metallic highlights, single source of dim natural light from the side window, harsh shadows emphasizing the weathered texture of the room, low-contrast ambient lighting, type medium shot, lens 35mm, aperture f/2.0, depth_of_field shallow focus with blurred background tools, flash none, grain fine film grain, texture realistic material representation, protagonist on the left side looking toward the right, 老陈-配角1 positioned on the right side of the frame, focus on the interaction and tension between the two characters, action constraints: subtle emotional tension, raw realistic narrative style, no text or symbols in image, melancholic, heavy with the weight of reality, tense and quiet, era-specific decay, no text, no symbols, no garbled characters, no words",
+              "scene_text_hash": "32df07f0b7169c7457400d1e1d31ca78",
+              "style": "default",
+              "url": "/image_cache/304f24c723a7666f2bf8f84fe3ffe2d1.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "start_ts": 1776656509.774411,
+        "end_ts": 1776656509.8010218,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "status": "success",
+        "has_scene": true,
+        "has_image": true,
+        "selected_option_index": 0,
+        "selected_option_text": "询问老陈关于拆迁办的具体动向与补偿细则。",
+        "input_scene_id": "-1457917991718746599_2850703281341343082",
+        "inferred_cache_result": "likely_hit",
+        "is_placeholder": false,
+        "used_updated_flow_state": true
+      }
+    },
+    {
+      "benchmark_id": "DNQBV1_004",
+      "theme_id": 30,
+      "theme": "克隆体伦理庭",
+      "read_wait_s": 55.0,
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 12.742,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角选择通过伪造部分技术日志来掩盖异常，成功保住了克隆体的暂存状态，但代价是主角的职业信用分被扣除，且被上司列入重点观察名单。",
+                  "main_conflict": "主角在例行审计中发现型号-7的记忆数据存在异常波动，这不仅威胁到审计工作的准确性，更可能让主角因“监管不力”被停职。主角面临着是按程序上报、导致克隆体立即报废，还是隐瞒数据、承担个人职业风险的道德困境。 - 矛盾结束条件：主角选择通过伪造部分技术日志来掩盖异常，成功保住了克隆体的暂存状态，但代价是主角的职业信用分被扣除，且被上司列入重点观察名单。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角获取了部分核心证据，但被迫放弃了对该克隆体身份的进一步追查，以换取监察部门撤销对自己的调查，双方达成了一种脆弱的默契。",
+                  "main_conflict": "随着调查深入，主角发现伦理庭内部存在非法克隆交易，而主角的调查行为已引起内部监察部门的注意。主角必须在收集证据与保护自身安全之间挣扎，同时还要应对克隆体因意识到“报废期限”临近而产生的剧烈情绪波动。 - 矛盾结束条件：主角获取了部分核心证据，但被迫放弃了对该克隆体身份的进一步追查，以换取监察部门撤销对自己的调查，双方达成了一种脆弱的默契。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "克隆体成功逃离，主角留下了伪造的死亡证明。主角保住了工作，但永远失去了亲人的线索，生活回归平庸，只在深夜偶尔想起那个消失在工业废墟中的背影。 【主角规范信息】 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：青年 所属作品(中)：冗余审计员 所属作品(英)：Redundant Auditor 标志性外观关键词：黑框眼镜，深灰色工装，疲惫的眼神，凌乱的短发，常年佩戴的工牌，指尖的电子烧灼痕迹，沉默寡言，清瘦，不合身的制服，习惯性低头，冷色调着装，缺乏表情。 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决",
+                  "main_conflict": "报废期限最终降临，主角必须在“销毁证据并保全自己”与“协助克隆体逃离”之间做出最终选择。现实的重压让主角意识到，彻底的解放是不可能的，他只能在体制的缝隙中，为克隆体争取到一个“被遗忘在荒野”的生存机会。 - 矛盾结束条件：克隆体成功逃离，主角留下了伪造的死亡证明。主角保住了工作，但永远失去了亲人的线索，生活回归平庸，只在深夜偶尔想起那个消失在工业废墟中的背影。 【主角规范信息】 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：青年 所属作品(中)：冗余审计员 所属作品(英)：Redundant Auditor 标志性外观关键词：黑框眼镜，深灰色工装，疲惫的眼神，凌乱的短发，常年佩戴的工牌，指尖的电子烧灼痕迹，沉默寡言，清瘦，不合身的制服，习惯性低头，冷色调着装，缺乏表情。 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为写实主义叙事游戏，采用冷峻克制的工业风视觉美学。通过琐碎的职场对话、陈旧的档案记录与沉浸式的环境叙事，构建一个压抑但真实的近未来社会，强调个体在庞大伦理机器下的无力感与微小的自我救赎。",
+              "main_quest": "主角受命对一批即将到期的“型号-7”克隆体进行最终审计，目标是确保其在报废前完成所有工业指标。在执行过程中，主角意外发现其中一名克隆体保留了关于“原生家庭”的模糊记忆，这与主角失踪多年的亲人线索重合。主角需在完成审计任务以保住饭碗、与暗中调查克隆体真相之间寻找平衡。挑战在于，每一步调查都会触碰伦理庭的红线，主角必须在维持平庸的职场表现与追寻真相带来的职业毁灭风险中做出抉择，最终目标是揭开真相，并为这名克隆体争取到一个不被彻底抹除的“存在证明”。",
+              "protagonist_ability": "主角拥有一种名为“共感解析”的神经连接技术，源于其作为“冗余审计员”的特殊岗位。通过接入克隆体的生物芯片，主角能读取其残存的记忆片段与情感逻辑。使用时需消耗高昂的神经负荷，且由于法律限制，该能力仅能用于核实报废流程，若过度使用或试图篡改数据，将导致主角自身记忆的混乱与职场信用评级的永久性降级。",
+              "world_basic_setting": "故事背景设定在资源枯竭后的近未来，人类通过“生物冗余计划”合法化了克隆体劳工，用于承担高危环境下的基础建设。社会被划分为“原生公民”与“冗余个体”，后者被视为消耗品，拥有固定的使用寿命与强制报废机制。城市景观由高耸的工业塔楼与贫民窟构成，空气中弥漫着金属锈蚀与合成营养液的气味。文化层面，社会对克隆体持冷漠的工具化态度，法律严禁克隆体拥有财产与家庭。关键事件“零号法案”确立了克隆体作为“生物资产”的地位，任何试图赋予其公民权的尝试均被视为非法。在这个世界里，阶级固化不仅是经济问题，更是生物学上的鸿沟，普通人为了维持生活，不得不与这些被制造出来的“同类”在狭窄的生存空间中博弈。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "environment": {}
+            },
+            "game_id": "game_1776656509_0jf2pa",
+            "image_style": {
+              "type": "realistic"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "gender": "男性"
+            },
+            "tone": "normal_ending",
+            "user_theme": "克隆体伦理庭"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "start_ts": 1776656509.835854,
+        "end_ts": 1776656522.5781236,
+        "provider_events": {
+          "event_count": 8,
+          "queue_wait_ms": {
+            "count": 8,
+            "min": 0.0,
+            "max": 17372.0,
+            "mean": 5771.0,
+            "median": 2856.0,
+            "p95": 17372.0
+          },
+          "latency_ms": {
+            "count": 4,
+            "min": 5546.0,
+            "max": 18592.0,
+            "mean": 12127.0,
+            "median": 12185.0,
+            "p95": 18408.85
+          },
+          "llm_success_count": 4,
+          "image_success_count": 0,
+          "request_thread_event_count": 2
+        },
+        "status": "success",
+        "game_id": "game_1776656509_0jf2pa"
+      },
+      "first_click": {
+        "http_status": 200,
+        "elapsed_s": 0.009,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "",
+              "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：穹顶之下的空气里弥漫着一股陈旧的金属锈味与潮湿的腐殖质气息。我站在第7号温室的中央，指尖粗糙的皮肤摩挲着一株名为“希望之芽”的古老植株叶片，它那原本翠绿的脉络此刻正呈现出一种病态的暗黄。我佩戴的护目镜边缘渗出一层细密的汗珠，我下意识地推了推它，目光锁定在温室角落那根不断滴水的供水管线上。\n\n“林远，你又在给这些没用的‘老古董’浪费配给水了。”主管老陈的声音从金属回廊上方传来，他那双浑浊的眼睛透过监控探头冷冷地盯着我，“上头刚下达了KPI指标，高产作物的灌溉量必须提升15，你如果再把水挪给这些濒危品种，下个月的绩效考核你心里有数。”\n\n我沉默地握紧了口袋里那把旧剪刀，指尖传来的刺痛感让我保持着冷静。我没有抬头，只是低声回应：“这些植株的基因序列是人类最后的底牌，如果它们枯萎了，我们连重返地表的希望都会彻底断绝。”\n\n“希望？那东西能当饭吃吗？”老陈冷哼一声，转身消失在阴影中。我看着那滴答作响的管线，心中清楚，如果今晚不修复这处渗漏并设法调配水源，这株植株熬不过明天。"
+            },
+            "deep_background_links": {},
+            "flow_update": {},
+            "next_options": [
+              "冒着违规风险，利用职务之便将配给水私下挪用给濒危植株。",
+              "尝试修复供水管线，并向老陈申请额外的维护资源以保全植株。"
+            ],
+            "plot_supporting_characters": [],
+            "scene": "穹顶之下的空气里弥漫着一股陈旧的金属锈味与潮湿的腐殖质气息。我站在第7号温室的中央，指尖粗糙的皮肤摩挲着一株名为“希望之芽”的古老植株叶片，它那原本翠绿的脉络此刻正呈现出一种病态的暗黄。我佩戴的护目镜边缘渗出一层细密的汗珠，我下意识地推了推它，目光锁定在温室角落那根不断滴水的供水管线上。\n\n“林远，你又在给这些没用的‘老古董’浪费配给水了。”主管老陈的声音从金属回廊上方传来，他那双浑浊的眼睛透过监控探头冷冷地盯着我，“上头刚下达了KPI指标，高产作物的灌溉量必须提升15，你如果再把水挪给这些濒危品种，下个月的绩效考核你心里有数。”\n\n我沉默地握紧了口袋里那把旧剪刀，指尖传来的刺痛感让我保持着冷静。我没有抬头，只是低声回应：“这些植株的基因序列是人类最后的底牌，如果它们枯萎了，我们连重返地表的希望都会彻底断绝。”\n\n“希望？那东西能当饭吃吗？”老陈冷哼一声，转身消失在阴影中。我看着那滴答作响的管线，心中清楚，如果今晚不修复这处渗漏并设法调配水源，这株植株熬不过明天。",
+            "sceneId": "-4063884962910963899_2529527582679821397",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-7-greenhouse-tension-confrontation, post-apocalyptic, dystopian, gritty-realism, industrial-decay, botanical-melancholy, hyper-realistic, cinematic lighting, low-saturation, high-detail-texture, photorealistic-rendering, Lin Yuan (Image 0), young male protagonist with lean, gaunt build, deep brown short hair, slightly messy, focused, weary eyes with subtle dark circles, rough, soil-stained fingertips, expression of concentrated anxiety and silent defiance, standing in a tense posture with slight forward lean, worn, dark-colored utility jumpsuit covered in smudges and soil, protective goggles pushed up onto forehead, old, rusted shears held firmly in hand, gloves stained with organic residue, standing at the center of the greenhouse, body facing the plant bed, right hand touching a wilting plant leaf with delicate care, left hand holding shears tightly in pocket, gaze fixed on the plant, ignoring the overhead walkway, 8K detailed facial features, realistic skin texture with pores and sweat beads, intense, focused eyes reflecting the dim greenhouse light, lip color naturally muted, slightly chapped, subtle moisture on brow and edge of goggles, soft shadows emphasizing sharp cheekbones and exhaustion, short dark brown hair, slightly damp from humidity, root fixation coefficient 0.8, tip swing amplitude 5cm, color layering: main color #3D2B1F, secondary color #2A1F18, highlight #4F3D30, shadow #1A120B, static, heavy texture matching the stagnant air, wind speed 0.1m/s, turbulence intensity 1%, rugged industrial canvas fabric with visible wear and tear, stains of mineral deposits and dark soil, slight fabric tension at shoulders and elbows, metallic sheen of the shears visible from pocket, futuristic greenhouse interior with rusted metal pipes and dripping water, wilting 'Hope Sprout' plant with yellowish veins in the foreground, dark, shadowy metallic catwalks visible in the upper background, leaking water supply pipe in the corner, hazy, dust-filled atmosphere under the dome, 老陈-配角1, a blurry, imposing silhouette watching from the high metal catwalk, water droplets suspended in mid-air, dust motes dancing in the dim, harsh overhead light, damp, condensation-covered glass surfaces, muted earth tones: slate gray, rusted iron brown, pale olive, sickly yellowish-green for the wilting leaves, shadowy, deep charcoal for the background infrastructure, harsh, cold overhead fluorescent light from the catwalk, dim, diffuse light filtering through the grime-covered dome, dramatic rim light highlighting Lin Yuan's profile, deep shadows in the greenhouse corners, type medium shot, lens 35mm, aperture f/2.0, depth_of_field shallow focus, sharp on Lin Yuan and the plant, blurred catwalk, flash none, grain fine film grain, texture industrial matte, Lin Yuan positioned in the lower-left foreground, facing the plant, 老陈-配角1 positioned in the upper-right background on the walkway, the wilting plant acts as the central connecting element, action constraints: Lin Yuan's focus is on the plant, creating a disconnect with the overhead threat, realistic, cinematic, no text or symbols in image, oppressive silence, melancholic determination, lonely struggle against decay, tense, claustrophobic atmosphere, no text, no symbols, no garbled characters, no words",
+              "prompt_json": {
+                "camera": {
+                  "aperture": "f/2.0",
+                  "depth_of_field": "shallow focus, sharp on Lin Yuan and the plant, blurred catwalk",
+                  "flash": "none",
+                  "grain": "fine film grain",
+                  "lens": "35mm",
+                  "texture": "industrial matte",
+                  "type": "medium shot"
+                },
+                "clothing_system": [
+                  "rugged industrial canvas fabric with visible wear and tear",
+                  "stains of mineral deposits and dark soil",
+                  "slight fabric tension at shoulders and elbows",
+                  "metallic sheen of the shears visible from pocket"
+                ],
+                "color_restriction": [
+                  "muted earth tones: slate gray, rusted iron brown, pale olive",
+                  "sickly yellowish-green for the wilting leaves",
+                  "shadowy, deep charcoal for the background infrastructure"
+                ],
+                "composition": [
+                  "Lin Yuan positioned in the lower-left foreground, facing the plant",
+                  "老陈-配角1 positioned in the upper-right background on the walkway",
+                  "the wilting plant acts as the central connecting element",
+                  "action constraints: Lin Yuan's focus is on the plant, creating a disconnect with the overhead threat"
+                ],
+                "environment": {
+                  "background": [
+                    "futuristic greenhouse interior with rusted metal pipes and dripping water",
+                    "wilting 'Hope Sprout' plant with yellowish veins in the foreground",
+                    "dark, shadowy metallic catwalks visible in the upper background",
+                    "leaking water supply pipe in the corner",
+                    "hazy, dust-filled atmosphere under the dome"
+                  ],
+                  "characters": [
+                    "老陈-配角1, a blurry, imposing silhouette watching from the high metal catwalk"
+                  ],
+                  "effects": [
+                    "water droplets suspended in mid-air",
+                    "dust motes dancing in the dim, harsh overhead light",
+                    "damp, condensation-covered glass surfaces"
+                  ]
+                },
+                "face_system": [
+                  "8K detailed facial features, realistic skin texture with pores and sweat beads",
+                  "intense, focused eyes reflecting the dim greenhouse light",
+                  "lip color naturally muted, slightly chapped",
+                  "subtle moisture on brow and edge of goggles",
+                  "soft shadows emphasizing sharp cheekbones and exhaustion"
+                ],
+                "hair_system": [
+                  "short dark brown hair, slightly damp from humidity",
+                  "root fixation coefficient 0.8",
+                  "tip swing amplitude 5cm",
+                  "color layering: main color #3D2B1F, secondary color #2A1F18, highlight #4F3D30, shadow #1A120B",
+                  "static, heavy texture matching the stagnant air",
+                  "wind speed 0.1m/s",
+                  "turbulence intensity 1%"
+                ],
+                "label": "scene-7-greenhouse-tension-confrontation",
+                "lighting": [
+                  "harsh, cold overhead fluorescent light from the catwalk",
+                  "dim, diffuse light filtering through the grime-covered dome",
+                  "dramatic rim light highlighting Lin Yuan's profile",
+                  "deep shadows in the greenhouse corners"
+                ],
+                "mood": [
+                  "oppressive silence",
+                  "melancholic determination",
+                  "lonely struggle against decay",
+                  "tense, claustrophobic atmosphere"
+                ],
+                "output_style": [
+                  "realistic, cinematic, no text or symbols in image"
+                ],
+                "style": [
+                  "hyper-realistic",
+                  "cinematic lighting",
+                  "low-saturation",
+                  "high-detail-texture",
+                  "photorealistic-rendering"
+                ],
+                "subject": {
+                  "body_traits": [
+                    "Lin Yuan (Image 0), young male protagonist with lean, gaunt build",
+                    "deep brown short hair, slightly messy",
+                    "focused, weary eyes with subtle dark circles",
+                    "rough, soil-stained fingertips",
+                    "expression of concentrated anxiety and silent defiance",
+                    "standing in a tense posture with slight forward lean"
+                  ],
+                  "outfit": [
+                    "worn, dark-colored utility jumpsuit covered in smudges and soil",
+                    "protective goggles pushed up onto forehead",
+                    "old, rusted shears held firmly in hand",
+                    "gloves stained with organic residue"
+                  ],
+                  "pose": [
+                    "standing at the center of the greenhouse, body facing the plant bed",
+                    "right hand touching a wilting plant leaf with delicate care",
+                    "left hand holding shears tightly in pocket",
+                    "gaze fixed on the plant, ignoring the overhead walkway"
+                  ]
+                },
+                "tags": [
+                  "post-apocalyptic",
+                  "dystopian",
+                  "gritty-realism",
+                  "industrial-decay",
+                  "botanical-melancholy"
+                ]
+              },
+              "scene_text_hash": "628172487c6ecb3d3626831aac223c7a",
+              "style": "default",
+              "url": "/image_cache/69653082ec8246be65db00b06c7cbed5.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "start_ts": 1776656522.610928,
+        "end_ts": 1776656522.6202717,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "success",
+        "has_scene": true,
+        "has_image": true
+      },
+      "second_click": {
+        "http_status": 200,
+        "elapsed_s": 0.017,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "你正在执行任务：冒着违规风险，利用职务之便将配给水私下挪用给濒危植株。",
+              "recap_text": "你选择了“冒着违规风险，利用职务之便将配给水私下挪用给濒危植株。”。当前章节：chapter1。主线进展：你正在执行任务：冒着违规风险，利用职务之便将配给水私下挪用给濒危植株。。最近剧情：你选择了：冒着违规风险，利用职务之便将配给水私下挪用给濒危植株。。在你的努力下，你取得了一些进展。"
+            },
+            "deep_background_links": {},
+            "flow_update": {
+              "chapter_conflict_solved": false,
+              "characters": {},
+              "environment": {},
+              "quest_progress": "你正在执行任务：冒着违规风险，利用职务之便将配给水私下挪用给濒危植株。"
+            },
+            "next_options": [
+              "继续前进",
+              "查看当前状态",
+              "返回上一步",
+              "探索周围环境"
+            ],
+            "scene": "你选择了：冒着违规风险，利用职务之便将配给水私下挪用给濒危植株。。在你的努力下，你取得了一些进展。",
+            "sceneId": "-3145738684052939449_1449117661144806288"
+          },
+          "status": "success"
+        },
+        "start_ts": 1776656577.6532285,
+        "end_ts": 1776656577.6703887,
+        "provider_events": {
+          "event_count": 1,
+          "queue_wait_ms": {
+            "count": 1,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "status": "success",
+        "has_scene": true,
+        "has_image": false,
+        "selected_option_index": 0,
+        "selected_option_text": "冒着违规风险，利用职务之便将配给水私下挪用给濒危植株。",
+        "input_scene_id": "-4063884962910963899_2529527582679821397",
+        "inferred_cache_result": "likely_hit",
+        "is_placeholder": true,
+        "used_updated_flow_state": true
+      }
+    },
+    {
+      "benchmark_id": "DNQBV1_005",
+      "theme_id": 2,
+      "theme": "月球矿难七日",
+      "read_wait_s": 55.0,
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 8.309,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角成功修复通风管道，将幸存者带至临时避难点，但因救援时间延误，不得不放弃了一部分重要的勘探设备，导致后续任务难度增加。",
+                  "main_conflict": "矿难突发，主角被困于深层矿坑，氧气供应受损。面对惊慌失措的同事，主角必须在“安抚人心”与“寻找出口”之间做出选择，同时还要面对是否要带上受伤同伴的道德拷问，这种选择直接影响后续的资源分配与团队信任度。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角通过技术手段重新分配了能源，平息了冲突，但代价是牺牲了自己的一名好友，使其留在了坍塌的区域，主角被迫带着这份愧疚继续前行。",
+                  "main_conflict": "基地内部资源告急，幸存者群体因分配不均产生内讧。主角作为技术骨干，被迫卷入权力斗争，必须在维护秩序与保护弱者之间寻找平衡，同时还要应对不断发生的余震带来的心理压力与身体负荷。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角成功抵达避难舱，但因撤离时间仓促，未能带回原本承诺给家人的高额奖金数据，仅带回了幸存者的名单，在踏上返回地球的飞船时，内心既有劫后余生的庆幸，也有对未来经济困境的深深忧虑。",
+                  "main_conflict": "最终撤离通道被岩石封死，主角需在“强行爆破”与“寻找备用路径”中抉择。爆破可能导致基地彻底崩塌，而寻找路径则意味着可能错过最后的撤离飞船，主角必须在个人生存与集体责任之间做出最终的割舍。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "冷峻写实风格，强调工业质感与幽闭空间的心理压迫。视觉上采用低饱和度色调，音效注重机械运作的低频震动与人物细微的呼吸声，营造一种在绝望边缘仍需保持理性工作的沉浸式体验。",
+              "main_quest": "主角需在矿难发生的七日内，从坍塌的深层矿区撤离至地表的紧急避难舱。目标并非拯救所有人，而是要在有限的氧气储备与不断恶化的地质环境中，做出无数次关于“谁先走”、“带走什么”的艰难抉择。玩家需通过修复关键通讯基站、搜集生存物资、协调幸存者之间的矛盾来推进进度。最终挑战并非战胜灾难，而是如何在氧气耗尽前，在“带回珍贵的矿石数据以换取家人抚恤金”与“放弃数据以换取更多撤离时间”之间达成平衡，最终达成一个既保全了生命又留有遗憾的现实结局。",
+              "protagonist_ability": "主角作为一名资深地质勘探员，拥有“地层共振感知”能力。这是长期在月面高压环境下工作形成的职业本能，通过手持声呐设备与自身的听觉经验，能精准捕捉岩层细微的裂纹声与气流走向。该能力虽能辅助寻找逃生路径，但受限于设备电量与个人体力，无法改变地质灾害本身，且过度使用会加剧耳鸣与精神疲劳，是典型的“在极限中寻找生机”的辅助手段。",
+              "world_basic_setting": "故事发生于2084年，人类已实现月球背面氦-3资源的规模化开采。月球基地“静海-7号”是全球能源供应的核心，这里不仅是工业重镇，也是数千名合同工的临时家园。社会阶层分明，矿工们在极度严苛的真空环境下劳作，以换取地球家人的优渥生活。然而，一场突如其来的地壳震动引发了大规模矿难，导致基地核心舱室损毁，通讯中断，氧气循环系统进入倒计时。这里没有英雄，只有在极端环境下被剥离了社会面具的普通人。社会文化崇尚“效率至上”，但当生存成为唯一议题时，曾经的等级制度在濒死的恐惧与求生本能面前迅速瓦解，留下的只有对地球家人的思念与对生命价值的重新审视。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1776656577_9602ri",
+            "image_style": {
+              "type": "cyberpunk"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "中年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "疲惫的眼神、灰白的短发、沾满矿尘的工装、左手腕的旧式计时器、胡茬、沉稳、坚毅、沉默寡言、略微佝偻的背影、带有伤疤的指节",
+              "work_en": "Seven Days of Lunar Collapse",
+              "work_zh": "月球矿难七日"
+            },
+            "tone": "normal_ending",
+            "user_theme": "月球矿难七日"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "start_ts": 1776656577.6963735,
+        "end_ts": 1776656586.004894,
+        "provider_events": {
+          "event_count": 5,
+          "queue_wait_ms": {
+            "count": 5,
+            "min": 0.0,
+            "max": 2639.0,
+            "mean": 527.8,
+            "median": 0.0,
+            "p95": 2111.2
+          },
+          "latency_ms": {
+            "count": 2,
+            "min": 5685.0,
+            "max": 8295.0,
+            "mean": 6990.0,
+            "median": 6990.0,
+            "p95": 8164.5
+          },
+          "llm_success_count": 2,
+          "image_success_count": 0,
+          "request_thread_event_count": 2
+        },
+        "status": "success",
+        "game_id": "game_1776656577_9602ri"
+      },
+      "first_click": {
+        "http_status": 200,
+        "elapsed_s": 0.018,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "",
+              "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：清晨五点，临江市的雾霾像一层洗不掉的灰布，死死压在老旧住宅区的楼顶。我站在天台边缘，凌乱的黑发被冷风吹得有些刺眼，指尖那枚常年佩戴的旧哨子透着冰凉的金属质感。鸽舍的木板在风中发出令人牙酸的吱呀声，几只灰鸽不安地扑腾着翅膀，羽毛混杂着灰尘落下。我低头看了看自己磨损的帆布鞋，鞋底已经快要磨穿了。\n\n“林远，这地方下周就要贴封条了，你那堆破鸟笼子还没处理掉？”物业老张的声音从楼梯口传来，他手里拎着一叠红色的拆迁通知单，眼神里透着那种看透生活的疲惫与冷漠。我沉默地抚摸着鸽舍粗糙的边缘，指尖的细微伤痕在寒风中微微发麻。我没有回头，只是轻轻吹响了哨子，那是一种低沉且破碎的频率，鸽群在头顶盘旋，似乎在回应我这无声的挣扎。"
+            },
+            "deep_background_links": {},
+            "flow_update": {},
+            "next_options": [
+              "询问老张关于拆迁补偿的具体细节，争取多一点时间。",
+              "拿出积攒的修缮费，请求老张帮忙隐瞒天台违建的情况。"
+            ],
+            "plot_supporting_characters": [],
+            "scene": "清晨五点，临江市的雾霾像一层洗不掉的灰布，死死压在老旧住宅区的楼顶。我站在天台边缘，凌乱的黑发被冷风吹得有些刺眼，指尖那枚常年佩戴的旧哨子透着冰凉的金属质感。鸽舍的木板在风中发出令人牙酸的吱呀声，几只灰鸽不安地扑腾着翅膀，羽毛混杂着灰尘落下。我低头看了看自己磨损的帆布鞋，鞋底已经快要磨穿了。\n\n“林远，这地方下周就要贴封条了，你那堆破鸟笼子还没处理掉？”物业老张的声音从楼梯口传来，他手里拎着一叠红色的拆迁通知单，眼神里透着那种看透生活的疲惫与冷漠。我沉默地抚摸着鸽舍粗糙的边缘，指尖的细微伤痕在寒风中微微发麻。我没有回头，只是轻轻吹响了哨子，那是一种低沉且破碎的频率，鸽群在头顶盘旋，似乎在回应我这无声的挣扎。",
+            "sceneId": "-6701384261262806672_574179822580570992",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-rooftop-confrontation-lin-yuan, urban-realism, cinematic-storytelling, melancholy, gritty-texture, dystopian-atmosphere, hyper-realistic photography, low-saturation cinematic color palette, high-detail urban textures, soft-focus depth of field, documentary-style lighting, young male protagonist Lin Yuan using Image 0, messy black hair blown by cold wind, slender build with thin shoulders, calm but weary expression with subtle exhaustion, fingertips showing faint scars from daily labor, standing on the edge of a dilapidated rooftop, worn-out rough workwear jacket with muted fabric texture, old, frayed canvas shoes with visible signs of wear, standing on the rooftop edge facing slightly away from the stairs, holding an old metallic whistle near lips, body turned partially toward 物业老张-配角1, posture conveying a sense of lonely resilience, 8K detailed facial features, skin texture showing subtle fatigue and cold-weather pallor, calm and steady gaze, lip color naturally muted, soft shadows emphasizing facial contours, messy black hair with natural strand detail, root fixation coefficient 0.85, tip swing amplitude 20cm, color layering: main black #1A1A1A, secondary charcoal #333333, highlight #4A4A4A, shadow #000000, wind speed 2.5m/s, turbulence intensity 8%, wind direction from left to right, coarse workwear fabric with visible fiber texture, slight fabric flutter due to cold rooftop wind, worn-out canvas shoes with scuffed edges, foggy Lingjiang city skyline at 5 AM, old residential building rooftop with weathered concrete texture, dilapidated wooden pigeon coop in the corner, pigeons fluttering in the air, creating a sense of movement, distant view of high-rise CBD buildings partially obscured by smog, 物业老张-配角1 standing near the stairwell entrance, holding red eviction notices, wearing a tired and indifferent expression, thick morning smog layer covering the city, dust particles floating in the air, cold gray morning light filtering through heavy clouds, low-saturation gray and concrete tones, muted earth tones for clothing, faded red color for eviction notices, cold blue-gray morning atmosphere, diffuse gray dawn light, flat lighting emphasizing urban grit, subtle shadows under the eyes and clothing folds, type medium shot, lens 35mm, aperture f/4.0, depth_of_field shallow focus on protagonist with background city blur, flash none, grain fine film grain, texture industrial concrete and worn fabric, protagonist positioned slightly to the left of the center, 物业老张-配角1 on the right side near the stairs, pigeon coop as a framing element in the background, action constraints: protagonist holding whistle, 物业老张-配角1 holding red notices, realistic urban narrative, no text or symbols in image, no watermarks, solitary and quiet, melancholic urban struggle, sense of impending displacement, stoic endurance, no text, no symbols, no garbled characters, no words",
+              "prompt_json": {
+                "camera": {
+                  "aperture": "f/4.0",
+                  "depth_of_field": "shallow focus on protagonist with background city blur",
+                  "flash": "none",
+                  "grain": "fine film grain",
+                  "lens": "35mm",
+                  "texture": "industrial concrete and worn fabric",
+                  "type": "medium shot"
+                },
+                "clothing_system": [
+                  "coarse workwear fabric with visible fiber texture",
+                  "slight fabric flutter due to cold rooftop wind",
+                  "worn-out canvas shoes with scuffed edges"
+                ],
+                "color_restriction": [
+                  "low-saturation gray and concrete tones",
+                  "muted earth tones for clothing",
+                  "faded red color for eviction notices",
+                  "cold blue-gray morning atmosphere"
+                ],
+                "composition": [
+                  "protagonist positioned slightly to the left of the center",
+                  "物业老张-配角1 on the right side near the stairs",
+                  "pigeon coop as a framing element in the background",
+                  "action constraints: protagonist holding whistle, 物业老张-配角1 holding red notices"
+                ],
+                "environment": {
+                  "background": [
+                    "foggy Lingjiang city skyline at 5 AM",
+                    "old residential building rooftop with weathered concrete texture",
+                    "dilapidated wooden pigeon coop in the corner",
+                    "pigeons fluttering in the air, creating a sense of movement",
+                    "distant view of high-rise CBD buildings partially obscured by smog"
+                  ],
+                  "characters": [
+                    "物业老张-配角1 standing near the stairwell entrance, holding red eviction notices, wearing a tired and indifferent expression"
+                  ],
+                  "effects": [
+                    "thick morning smog layer covering the city",
+                    "dust particles floating in the air",
+                    "cold gray morning light filtering through heavy clouds"
+                  ]
+                },
+                "face_system": [
+                  "8K detailed facial features",
+                  "skin texture showing subtle fatigue and cold-weather pallor",
+                  "calm and steady gaze",
+                  "lip color naturally muted",
+                  "soft shadows emphasizing facial contours"
+                ],
+                "hair_system": [
+                  "messy black hair with natural strand detail",
+                  "root fixation coefficient 0.85",
+                  "tip swing amplitude 20cm",
+                  "color layering: main black #1A1A1A, secondary charcoal #333333, highlight #4A4A4A, shadow #000000",
+                  "wind speed 2.5m/s",
+                  "turbulence intensity 8%",
+                  "wind direction from left to right"
+                ],
+                "label": "scene-rooftop-confrontation-lin-yuan",
+                "lighting": [
+                  "diffuse gray dawn light",
+                  "flat lighting emphasizing urban grit",
+                  "subtle shadows under the eyes and clothing folds"
+                ],
+                "mood": [
+                  "solitary and quiet",
+                  "melancholic urban struggle",
+                  "sense of impending displacement",
+                  "stoic endurance"
+                ],
+                "output_style": [
+                  "realistic urban narrative",
+                  "no text or symbols in image",
+                  "no watermarks"
+                ],
+                "style": [
+                  "hyper-realistic photography",
+                  "low-saturation cinematic color palette",
+                  "high-detail urban textures",
+                  "soft-focus depth of field",
+                  "documentary-style lighting"
+                ],
+                "subject": {
+                  "body_traits": [
+                    "young male protagonist Lin Yuan using Image 0",
+                    "messy black hair blown by cold wind",
+                    "slender build with thin shoulders",
+                    "calm but weary expression with subtle exhaustion",
+                    "fingertips showing faint scars from daily labor",
+                    "standing on the edge of a dilapidated rooftop"
+                  ],
+                  "outfit": [
+                    "worn-out rough workwear jacket with muted fabric texture",
+                    "old, frayed canvas shoes with visible signs of wear"
+                  ],
+                  "pose": [
+                    "standing on the rooftop edge facing slightly away from the stairs",
+                    "holding an old metallic whistle near lips",
+                    "body turned partially toward 物业老张-配角1",
+                    "posture conveying a sense of lonely resilience"
+                  ]
+                },
+                "tags": [
+                  "urban-realism",
+                  "cinematic-storytelling",
+                  "melancholy",
+                  "gritty-texture",
+                  "dystopian-atmosphere"
+                ]
+              },
+              "scene_text_hash": "51790c73c006f91f4dae98ddfbabcb25",
+              "style": "default",
+              "url": "/image_cache/3269522cb258927d5f8f7067e0dcb8b3.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "start_ts": 1776656586.0362809,
+        "end_ts": 1776656586.0543501,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "success",
+        "has_scene": true,
+        "has_image": true
+      },
+      "second_click": {
+        "http_status": 200,
+        "elapsed_s": 0.008,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "你正在执行任务：询问老张关于拆迁补偿的具体细节，争取多一点时间。",
+              "recap_text": "你选择了“询问老张关于拆迁补偿的具体细节，争取多一点时间。”。当前章节：chapter1。主线进展：你正在执行任务：询问老张关于拆迁补偿的具体细节，争取多一点时间。。最近剧情：你选择了：询问老张关于拆迁补偿的具体细节，争取多一点时间。。在你的努力下，你取得了一些进展。"
+            },
+            "deep_background_links": {},
+            "flow_update": {
+              "chapter_conflict_solved": false,
+              "characters": {},
+              "environment": {},
+              "quest_progress": "你正在执行任务：询问老张关于拆迁补偿的具体细节，争取多一点时间。"
+            },
+            "next_options": [
+              "继续前进",
+              "查看当前状态",
+              "返回上一步",
+              "探索周围环境"
+            ],
+            "scene": "你选择了：询问老张关于拆迁补偿的具体细节，争取多一点时间。。在你的努力下，你取得了一些进展。",
+            "sceneId": "-6370669104433576172_1449117661144806288"
+          },
+          "status": "success"
+        },
+        "start_ts": 1776656641.0807214,
+        "end_ts": 1776656641.0885189,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "status": "success",
+        "has_scene": true,
+        "has_image": false,
+        "selected_option_index": 0,
+        "selected_option_text": "询问老张关于拆迁补偿的具体细节，争取多一点时间。",
+        "input_scene_id": "-6701384261262806672_574179822580570992",
+        "inferred_cache_result": "likely_hit",
+        "is_placeholder": true,
+        "used_updated_flow_state": true
+      }
+    },
+    {
+      "benchmark_id": "DNQBV1_006",
+      "theme_id": 7,
+      "theme": "星际走私航线",
+      "read_wait_s": 55.0,
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 11.551,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过完成一次高难度的走私任务，成功筹集了引擎维修费，并暂时安抚了债权人，但飞船因超负荷运转留下了不可逆的磨损，且主角因过度使用“深空直觉”导致身体状况恶化。",
+                  "main_conflict": "主角面临飞船引擎核心报废的危机，若不立即更换，飞船将无法通过海关检查，进而失去唯一的经济来源。此时，债权人发来最后通牒，要求在限定时间内偿还利息，否则将强制收回飞船。主角被迫在“变卖飞船零件以求生存”与“孤注一掷接下高风险走私单”之间抉择，这种生存压力直接考验着主角对未来的规划与当下的决断。 矛盾结束条件：主角通过完成一次高难度的走私任务，成功筹集了引擎维修费，并暂时安抚了债权人，但飞船因超负荷运转留下了不可逆的磨损，且主角因过度使用“深空直觉”导致身体状况恶化。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角通过巧妙的周旋与部分利益让渡，成功保住了部分医疗物资，但被迫与当地黑帮达成了一项长期且危险的协作协议，虽然暂时解决了妹妹的病情，却让自己彻底卷入了更深层的利益纠葛。",
+                  "main_conflict": "主角在一次航行中意外发现了一批被遗弃的医疗物资，这本是救治妹妹的良药，却也是当地黑帮势力急于寻找的赃物。主角陷入了道德与利益的剧烈冲突：归还物资意味着失去救治妹妹的唯一机会，私吞物资则会引来黑帮的追杀，导致航线被封锁，彻底断绝未来的生计。 矛盾结束条件：主角通过巧妙的周旋与部分利益让渡，成功保住了部分医疗物资，但被迫与当地黑帮达成了一项长期且危险的协作协议，虽然暂时解决了妹妹的病情，却让自己彻底卷入了更深层的利益纠葛。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角最终放弃了那份高额合同，选择了更稳妥但收益微薄的常规航线，虽然债务未能完全清偿，但保住了飞船与家人的安宁。主角与妹妹在边缘星域定居，虽然生活依然拮据，但内心获得了久违的平静与释然。 【主角规范信息】 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：青年 所属作品(中)：星尘余烬 所属作品(英)：Ember of Stardust 标志性外观关键词：深色飞行夹克、眼神疲惫、左手机械义肢、短发、领口挂着导航芯片、身上有长期接触机油的痕迹、沉默寡言、清瘦、坚毅的下颌线、常年佩戴防辐射护目镜。 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决",
+                  "main_conflict": "最终的清偿机会到来，主角获得了一份足以彻底摆脱债务的走私合同，但执行过程中，主角发现该合同涉及对边缘星域平民区的资源掠夺。此时，主角的身体已无法支撑高强度航行，妹妹的病情也因环境恶化反复。主角必须在“彻底清偿债务、获得自由”与“守护底线、回归平凡”之间做出最终选择。 矛盾结束条件：主角最终放弃了那份高额合同，选择了更稳妥但收益微薄的常规航线，虽然债务未能完全清偿，但保住了飞船与家人的安宁。主角与妹妹在边缘星域定居，虽然生活依然拮据，但内心获得了久违的平静与释然。 【主角规范信息】 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：青年 所属作品(中)：星尘余烬 所属作品(英)：Ember of Stardust 标志性外观关键词：深色飞行夹克、眼神疲惫、左手机械义肢、短发、领口挂着导航芯片、身上有长期接触机油的痕迹、沉默寡言、清瘦、坚毅的下颌线、常年佩戴防辐射护目镜。 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "沉浸式硬核科幻，采用写实主义叙事风格。画面质感偏向工业废土与冷峻星空，强调机械磨损的真实感与宇宙的静谧压抑。叙事节奏平稳，侧重于在琐碎的航运物流、债务压力与人际羁绊中，展现个体在庞大星际贸易体系下的挣扎与妥协，营造一种“在繁星间讨生活”的真实生活质感。",
+              "main_quest": "主角的目标是偿还继承自父亲的巨额飞船维修债务，并攒够足够的信用点，为患有慢性辐射病的妹妹换取核心星系的定居资格。任务分为三个阶段：首先是积累原始资本，在危险的走私航线中完成高难度货物运输；其次是应对债权人的步步紧逼，在法律与生存之间寻找灰色地带；最后是面对最终的抉择，是孤注一掷完成一笔足以清偿债务的非法大单，还是放弃执念，带着妹妹在边缘星域过上平凡但安稳的清贫生活。挑战在于，每一次选择都伴随着资源损耗与人际关系的变动，玩家必须在理想的圆满与现实的妥协中，做出最符合生存逻辑的判断。",
+              "protagonist_ability": "主角拥有一种名为“深空直觉”的神经连接技术，源于早年参与星际导航系统测试留下的后遗症。通过与飞船老旧的中央处理器进行低频神经同步，主角能感知到航线中微小的引力波动与潜在的巡逻舰信号。这种能力并非超能力，而是对物理规律的极致敏感，使用时会造成严重的偏头痛与神经衰弱，且长期使用会导致记忆力衰退，是典型的“以健康换取生存空间”的代价式能力。",
+              "world_basic_setting": "故事发生于“后殖民扩张时代”的边缘星域，人类文明已实现星际航行，但资源分配极度不均。核心星系由巨型企业垄断，边缘星域则沦为资源掠夺后的废弃地带。社会结构呈现明显的阶级固化，底层民众依靠陈旧的货运飞船在法律边缘游走，从事高风险的星际走私以维持生计。这里没有史诗级的战争，只有永无止境的燃料账单、维修费用与海关检查。文化上，边缘星域形成了一种独特的“航路文化”，强调契约精神与生存智慧，人们习惯于在严苛的物理规则与复杂的利益博弈中寻找平衡。关键事件“大停电”导致星际导航网络部分瘫痪，使得边缘航线成为法外之地，也让无数像主角一样的独立船长陷入了“为了生存而违规，为了违规而背负债务”的死循环。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "environment": {}
+            },
+            "game_id": "game_1776656641_nt2jgg",
+            "image_style": {
+              "type": "cyberpunk"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "gender": "男性"
+            },
+            "tone": "normal_ending",
+            "user_theme": "星际走私航线"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "start_ts": 1776656641.1220243,
+        "end_ts": 1776656652.6727948,
+        "provider_events": {
+          "event_count": 7,
+          "queue_wait_ms": {
+            "count": 7,
+            "min": 0.0,
+            "max": 17492.0,
+            "mean": 3341.571,
+            "median": 0.0,
+            "p95": 14014.1
+          },
+          "latency_ms": {
+            "count": 3,
+            "min": 4914.0,
+            "max": 11540.0,
+            "mean": 7451.0,
+            "median": 5899.0,
+            "p95": 10975.9
+          },
+          "llm_success_count": 3,
+          "image_success_count": 0,
+          "request_thread_event_count": 2
+        },
+        "status": "success",
+        "game_id": "game_1776656641_nt2jgg"
+      },
+      "first_click": {
+        "http_status": 200,
+        "elapsed_s": 0.012,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "",
+              "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：空气中弥漫着合成营养液那股令人作呕的甜腥味，我推开锈迹斑斑的审计室大门，指尖传来金属外壳冰冷的触感。作为一名冗余审计员，我习惯了这种压抑的氛围，但今天，桌面上那份型号7克隆体的审计档案却让我感到一丝不安。我推了推鼻梁上滑落的黑框眼镜，疲惫地揉了揉太阳穴，指尖那块因长期接触神经连接器而留下的电子烧灼痕迹隐隐作痛。\n\n我将工牌插入读取槽，屏幕闪烁着冷冽的蓝光。随着神经连接技术的启动，一阵剧烈的眩晕感袭来，我被迫接入了那名克隆体的记忆缓存。本应是枯燥的工业指标数据，却在读取的瞬间出现了异常波动那是一段模糊的、关于老式木质摇篮的记忆片段。这不该出现在型号7的逻辑库里，这甚至触碰了“零号法案”的禁区。\n\n“林远，你还在磨蹭什么？上头催得紧，这批货必须在今晚完成报废核准。”主管老陈的声音从走廊尽头传来，他那双浑浊的眼睛正透过半掩的门缝审视着我。我迅速切断连接，心跳在胸腔里剧烈撞击，那段记忆碎片像是一根刺，扎进了我原本平静的职业生涯。"
+            },
+            "deep_background_links": {},
+            "flow_update": {},
+            "next_options": [
+              "按照程序上报数据异常，将克隆体送去报废。",
+              "尝试利用共感解析深入读取记忆，确认其与失踪亲人的关联。"
+            ],
+            "plot_supporting_characters": [],
+            "scene": "空气中弥漫着合成营养液那股令人作呕的甜腥味，我推开锈迹斑斑的审计室大门，指尖传来金属外壳冰冷的触感。作为一名冗余审计员，我习惯了这种压抑的氛围，但今天，桌面上那份型号7克隆体的审计档案却让我感到一丝不安。我推了推鼻梁上滑落的黑框眼镜，疲惫地揉了揉太阳穴，指尖那块因长期接触神经连接器而留下的电子烧灼痕迹隐隐作痛。\n\n我将工牌插入读取槽，屏幕闪烁着冷冽的蓝光。随着神经连接技术的启动，一阵剧烈的眩晕感袭来，我被迫接入了那名克隆体的记忆缓存。本应是枯燥的工业指标数据，却在读取的瞬间出现了异常波动那是一段模糊的、关于老式木质摇篮的记忆片段。这不该出现在型号7的逻辑库里，这甚至触碰了“零号法案”的禁区。\n\n“林远，你还在磨蹭什么？上头催得紧，这批货必须在今晚完成报废核准。”主管老陈的声音从走廊尽头传来，他那双浑浊的眼睛正透过半掩的门缝审视着我。我迅速切断连接，心跳在胸腔里剧烈撞击，那段记忆碎片像是一根刺，扎进了我原本平静的职业生涯。",
+            "sceneId": "-8812932718536760378_4537085362835378479",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-audit-room-memory-breach, cyberpunk, industrial-noir, dystopian, realistic-narrative, oppressive-atmosphere, photorealistic, cinematic-lighting, high-detail-industrial-texture, cold-color-palette, gritty-realism, male protagonist, using Image 0, tired eyes with visible fatigue and dark circles, black-rimmed glasses slightly askew, fingertip shows electronic burn marks from neural connector, pained and tense facial expression, worn grey utility uniform of an auditor, metallic ID badge clipped to chest, stiff, utilitarian fabric with oil stains, sitting at a cluttered metallic desk, one hand rubbing temple, another resting near a glowing neural interface, body slightly hunched, facing the flickering blue screen, turned slightly toward the doorway where 老陈-配角1 stands, 8K detailed facial features, skin texture showing pores and sweat, expression of shock and internal conflict, eyes reflecting the cold blue light of the monitor, soft shadows emphasizing the stress lines on the forehead, short, slightly unkempt dark hair, root fixation coefficient 0.5, tip swing amplitude 2cm, color layering: main black, secondary dark grey, highlight cool white, shadow deep black, wind speed 0.1m/s, turbulence intensity 1%, static, lifeless texture, heavy industrial fabric, slight fabric creases at elbows, muted color palette to match the environment, rusted industrial audit room with exposed pipes, flickering blue holographic monitor displaying forbidden memory fragments, dim, gloomy corridor visible through the half-open door, cluttered desk with old data archives and metal scrap, 老陈-配角1 standing at the doorway, only partially visible, eyes appearing cloudy and suspicious, haze of synthetic nutrient mist in the air, flickering harsh fluorescent light, cold blue glow from the interface reflecting on the protagonist's face, industrial grey and cold steel tones, harsh neon blue from the screen, dim yellow flickering corridor light, muted, desaturated overall palette, harsh, cold blue screen light illuminating protagonist's face from below, dim, sickly ambient light from the ceiling, low-key lighting in the corridor for 老陈-配角1, type over-the-shoulder shot, lens 35mm, aperture f/2.0, depth_of_field shallow focus on the protagonist and the glowing screen, flash none, grain fine film grain, texture industrial metal and worn plastic, protagonist centered at desk, 老陈-配角1 placed in the background doorway, framing the scene, monitor screen as a secondary focal point showing abstract, blurry memory data, action constraints: protagonist's hand in contact with the neural connector, realistic-narrative-photography, no text or symbols in image, oppressive, suspenseful, mentally exhausted, claustrophobic, anxious, no text, no symbols, no garbled characters, no words",
+              "prompt_json": {
+                "camera": {
+                  "aperture": "f/2.0",
+                  "depth_of_field": "shallow focus on the protagonist and the glowing screen",
+                  "flash": "none",
+                  "grain": "fine film grain",
+                  "lens": "35mm",
+                  "texture": "industrial metal and worn plastic",
+                  "type": "over-the-shoulder shot"
+                },
+                "clothing_system": [
+                  "heavy industrial fabric",
+                  "slight fabric creases at elbows",
+                  "muted color palette to match the environment"
+                ],
+                "color_restriction": [
+                  "industrial grey and cold steel tones",
+                  "harsh neon blue from the screen",
+                  "dim yellow flickering corridor light",
+                  "muted, desaturated overall palette"
+                ],
+                "composition": [
+                  "protagonist centered at desk",
+                  "老陈-配角1 placed in the background doorway, framing the scene",
+                  "monitor screen as a secondary focal point showing abstract, blurry memory data",
+                  "action constraints: protagonist's hand in contact with the neural connector"
+                ],
+                "environment": {
+                  "background": [
+                    "rusted industrial audit room with exposed pipes",
+                    "flickering blue holographic monitor displaying forbidden memory fragments",
+                    "dim, gloomy corridor visible through the half-open door",
+                    "cluttered desk with old data archives and metal scrap"
+                  ],
+                  "characters": [
+                    "老陈-配角1 standing at the doorway, only partially visible, eyes appearing cloudy and suspicious"
+                  ],
+                  "effects": [
+                    "haze of synthetic nutrient mist in the air",
+                    "flickering harsh fluorescent light",
+                    "cold blue glow from the interface reflecting on the protagonist's face"
+                  ]
+                },
+                "face_system": [
+                  "8K detailed facial features",
+                  "skin texture showing pores and sweat",
+                  "expression of shock and internal conflict",
+                  "eyes reflecting the cold blue light of the monitor",
+                  "soft shadows emphasizing the stress lines on the forehead"
+                ],
+                "hair_system": [
+                  "short, slightly unkempt dark hair",
+                  "root fixation coefficient 0.5",
+                  "tip swing amplitude 2cm",
+                  "color layering: main black, secondary dark grey, highlight cool white, shadow deep black",
+                  "wind speed 0.1m/s",
+                  "turbulence intensity 1%",
+                  "static, lifeless texture"
+                ],
+                "label": "scene-audit-room-memory-breach",
+                "lighting": [
+                  "harsh, cold blue screen light illuminating protagonist's face from below",
+                  "dim, sickly ambient light from the ceiling",
+                  "low-key lighting in the corridor for 老陈-配角1"
+                ],
+                "mood": [
+                  "oppressive",
+                  "suspenseful",
+                  "mentally exhausted",
+                  "claustrophobic",
+                  "anxious"
+                ],
+                "output_style": [
+                  "realistic-narrative-photography",
+                  "no text or symbols in image"
+                ],
+                "style": [
+                  "photorealistic",
+                  "cinematic-lighting",
+                  "high-detail-industrial-texture",
+                  "cold-color-palette",
+                  "gritty-realism"
+                ],
+                "subject": {
+                  "body_traits": [
+                    "male protagonist, using Image 0",
+                    "tired eyes with visible fatigue and dark circles",
+                    "black-rimmed glasses slightly askew",
+                    "fingertip shows electronic burn marks from neural connector",
+                    "pained and tense facial expression"
+                  ],
+                  "outfit": [
+                    "worn grey utility uniform of an auditor",
+                    "metallic ID badge clipped to chest",
+                    "stiff, utilitarian fabric with oil stains"
+                  ],
+                  "pose": [
+                    "sitting at a cluttered metallic desk",
+                    "one hand rubbing temple, another resting near a glowing neural interface",
+                    "body slightly hunched, facing the flickering blue screen",
+                    "turned slightly toward the doorway where 老陈-配角1 stands"
+                  ]
+                },
+                "tags": [
+                  "cyberpunk",
+                  "industrial-noir",
+                  "dystopian",
+                  "realistic-narrative",
+                  "oppressive-atmosphere"
+                ]
+              },
+              "scene_text_hash": "800245c90b71bf11da36d8ebadbd8a12",
+              "style": "default",
+              "url": "/image_cache/5c887d73a90b864c93e7171101c2cc7c.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "start_ts": 1776656652.6979778,
+        "end_ts": 1776656652.7096205,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "success",
+        "has_scene": true,
+        "has_image": true
+      },
+      "second_click": {
+        "http_status": 200,
+        "elapsed_s": 0.018,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "你正在执行任务：按照程序上报数据异常，将克隆体送去报废。",
+              "recap_text": "你选择了“按照程序上报数据异常，将克隆体送去报废。”。当前章节：chapter1。主线进展：你正在执行任务：按照程序上报数据异常，将克隆体送去报废。。最近剧情：你选择了：按照程序上报数据异常，将克隆体送去报废。。在你的努力下，你取得了一些进展。"
+            },
+            "deep_background_links": {},
+            "flow_update": {
+              "chapter_conflict_solved": false,
+              "characters": {},
+              "environment": {},
+              "quest_progress": "你正在执行任务：按照程序上报数据异常，将克隆体送去报废。"
+            },
+            "next_options": [
+              "继续前进",
+              "查看当前状态",
+              "返回上一步",
+              "探索周围环境"
+            ],
+            "scene": "你选择了：按照程序上报数据异常，将克隆体送去报废。。在你的努力下，你取得了一些进展。",
+            "sceneId": "315982024038163260_1449117661144806288"
+          },
+          "status": "success"
+        },
+        "start_ts": 1776656707.7349455,
+        "end_ts": 1776656707.7530358,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "status": "success",
+        "has_scene": true,
+        "has_image": false,
+        "selected_option_index": 0,
+        "selected_option_text": "按照程序上报数据异常，将克隆体送去报废。",
+        "input_scene_id": "-8812932718536760378_4537085362835378479",
+        "inferred_cache_result": "likely_hit",
+        "is_placeholder": true,
+        "used_updated_flow_state": true
+      }
+    },
+    {
+      "benchmark_id": "DNQBV1_007",
+      "theme_id": 20,
+      "theme": "意识上传遗嘱",
+      "read_wait_s": 55.0,
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 19.948,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "通过修复一段关于建筑师童年图书馆的模糊记忆，主角成功解锁了第一层加密数据，并获得了一笔足以支付短期房租的报酬，暂时缓解了现实的生存危机，但也意识到这份工作远比想象中沉重。",
+                  "main_conflict": "主角接手委托后，发现建筑师的意识备份损坏严重，核心记忆区被加密锁定。与此同时，主角在现实中面临着房东的驱逐压力与微薄的收入困境，工作与生活的双重压力让他开始怀疑这份工作的意义，究竟是在整理人生，还是在消费他人的苦难。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角通过与家属的深入沟通，不仅修复了部分关键记忆，更让家属理解了建筑师的初衷，双方达成和解，主角获得了进入建筑师核心意识区的权限，但也因过度接入导致自身出现短暂的记忆错乱。",
+                  "main_conflict": "主角在调查中发现，建筑师的“未竟之作”并非单纯的建筑，而是为了弥补其早年因追求事业而忽视家庭的遗憾。然而，建筑师的家属拒绝配合，认为主角是在挖掘伤疤，双方在现实与数字世界的认知产生剧烈冲突，主角陷入职业道德与情感共鸣的拉锯。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角选择保留了建筑师最真实、最遗憾的片段，放弃了完美的数字重构。建筑师的意识平静消散，留下一份充满缺憾却真实的遗嘱。主角最终未能改变自己的贫穷现状，但通过这次经历，他与现实生活达成了某种释然的妥协，带着一份沉甸甸的感悟继续前行。",
+                  "main_conflict": "最终修复阶段，主角发现建筑师的意识已无法支撑完整的“数字永生”，若强行整合，意识将彻底崩解。主角必须在“保留一份残缺但真实的人生记录”与“强行拼凑出一个虚假的圆满结局”之间做出最终抉择，同时主角自身的生活也因这次委托而发生了不可逆的改变。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "沉浸式现实主义叙事，采用冷峻克制的笔触描绘近未来都市生活。画面色调偏向低饱和度的工业灰与暖黄灯光，强调环境细节的颗粒感与生活气息，通过非线性叙事与碎片化环境交互，构建一种在科技异化中寻找个体存在意义的孤独感与温情。",
+              "main_quest": "主角受一位身患绝症的建筑师委托，整理其上传至云端的意识备份。目标是拼凑出建筑师一生中最重要的“未竟之作”——一座从未落成的社区图书馆的设计蓝图与情感寄托。玩家需在现实中走访建筑师曾生活过的街区，寻找实物线索，并在数字空间中修复受损的意识片段。挑战在于，随着调查深入，主角发现建筑师的记忆中存在大量被刻意删除的痛苦片段，这些片段不仅关乎设计图的缺失，更牵扯到一段被遗忘的家庭羁绊。主角必须在“还原真相”与“维护逝者尊严”之间做出抉择，最终目标是完成遗嘱交付，让建筑师的意识在数字世界中获得安宁，同时主角需在这一过程中处理好自己与现实生活中的疏离感。",
+              "protagonist_ability": "主角拥有“记忆重构与修复”的职业天赋，源于其曾作为神经科学实验室数据清洗员的背景。通过接入终端，主角能读取逝者留下的碎片化意识数据，并将其整理为连贯的“人生遗嘱”。使用时需消耗极高的精神专注度，且受限于“数据完整度”，无法凭空创造记忆，只能在有限的碎片中寻找逻辑，一旦过度挖掘，主角自身的情感认知会受到数据残留的干扰，产生现实与记忆的混淆。",
+              "world_basic_setting": "故事发生于2040年代的滨海都市“新江城”。这是一个高度数字化、阶级固化的社会，名为“永续协议”的意识上传技术已成为精英阶层的“数字永生”手段。然而，该技术昂贵且存在严重的记忆损耗风险，普通民众大多将其视为一种昂贵的心理慰藉，而非真正的救赎。城市中，高耸的服务器塔与破旧的城中村共存，贫富差距通过数据带宽的分配被具象化。社会文化崇尚“高效与留痕”，人们习惯于将生活片段上传至云端，以证明自己曾存在过。关键事件“大断电”曾导致数万人的数字备份永久丢失，这让社会对意识上传产生了深刻的信任危机，也让主角所从事的“遗嘱整理师”这一职业，成为连接生者与逝者、现实与虚幻的最后一道桥梁。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1776656707_42g2tj",
+            "image_style": {
+              "type": "cyberpunk"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "凌乱黑发、黑框眼镜、略显疲惫的眼神、常穿深色冲锋衣、袖口磨损、指尖常有电子触点痕迹、身形消瘦、沉默寡言、习惯性低头、随身携带旧式记录仪",
+              "work_en": "The Will Archivist",
+              "work_zh": "遗嘱整理师"
+            },
+            "tone": "normal_ending",
+            "user_theme": "意识上传遗嘱"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "start_ts": 1776656707.7803543,
+        "end_ts": 1776656727.7283068,
+        "provider_events": {
+          "event_count": 5,
+          "queue_wait_ms": {
+            "count": 5,
+            "min": 0.0,
+            "max": 3717.0,
+            "mean": 743.4,
+            "median": 0.0,
+            "p95": 2973.6
+          },
+          "latency_ms": {
+            "count": 2,
+            "min": 5775.0,
+            "max": 19935.0,
+            "mean": 12855.0,
+            "median": 12855.0,
+            "p95": 19227.0
+          },
+          "llm_success_count": 2,
+          "image_success_count": 0,
+          "request_thread_event_count": 2
+        },
+        "status": "success",
+        "game_id": "game_1776656707_42g2tj"
+      },
+      "first_click": {
+        "http_status": 200,
+        "elapsed_s": 0.019,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "",
+              "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：刺耳的金属扭曲声在狭窄的矿道内回荡，我下意识地用那双布满伤疤的指节护住头部，灰白的短发间落满了细碎的岩尘。氧气面罩的报警灯在昏暗中闪烁着红光，发出沉闷的滴答声，提醒我剩余的氧气量已不足20。我撑着略微佝偻的背影从碎石堆中站起，左手腕上那块旧式计时器显示，距离震动发生已经过去了12分钟。周围的空气中弥漫着焦糊的电缆味，我凭借职业本能，将手持声呐设备贴在震颤的岩壁上，耳边传来一阵阵不规则的共振声，那是地层深处不安的低吼。\n\n“林远，你还活着吗？”不远处的阴影里，年轻的矿工阿强正蜷缩在断裂的支架下，他那沾满矿尘的工装被撕开了一道口子，左腿被一块巨大的矿石死死压住，脸上写满了惊恐与绝望。我深吸一口气，强迫自己那双疲惫的眼神聚焦在眼前的地形上，声呐显示前方通风管道虽有裂纹，但尚能通行，只是需要清理出一道狭窄的缝隙。我看着阿强，又看了看自己手中那台电量仅剩15的勘探终端，如果现在放弃清理通道直接撤离，我或许能保住这台记录了矿脉数据的终端，那是留给家人的最后保障；但如果留下，我不仅要面对氧气耗尽的风险，还要承担救援失败的后果。"
+            },
+            "deep_background_links": {},
+            "flow_update": {},
+            "next_options": [
+              "优先清理通风管道，尝试将阿强带离坍塌区。",
+              "记录矿脉数据并先行撤离，寻找外部救援力量。"
+            ],
+            "plot_supporting_characters": [],
+            "scene": "刺耳的金属扭曲声在狭窄的矿道内回荡，我下意识地用那双布满伤疤的指节护住头部，灰白的短发间落满了细碎的岩尘。氧气面罩的报警灯在昏暗中闪烁着红光，发出沉闷的滴答声，提醒我剩余的氧气量已不足20。我撑着略微佝偻的背影从碎石堆中站起，左手腕上那块旧式计时器显示，距离震动发生已经过去了12分钟。周围的空气中弥漫着焦糊的电缆味，我凭借职业本能，将手持声呐设备贴在震颤的岩壁上，耳边传来一阵阵不规则的共振声，那是地层深处不安的低吼。\n\n“林远，你还活着吗？”不远处的阴影里，年轻的矿工阿强正蜷缩在断裂的支架下，他那沾满矿尘的工装被撕开了一道口子，左腿被一块巨大的矿石死死压住，脸上写满了惊恐与绝望。我深吸一口气，强迫自己那双疲惫的眼神聚焦在眼前的地形上，声呐显示前方通风管道虽有裂纹，但尚能通行，只是需要清理出一道狭窄的缝隙。我看着阿强，又看了看自己手中那台电量仅剩15的勘探终端，如果现在放弃清理通道直接撤离，我或许能保住这台记录了矿脉数据的终端，那是留给家人的最后保障；但如果留下，我不仅要面对氧气耗尽的风险，还要承担救援失败的后果。",
+            "sceneId": "8673625377339377689_-3453938614444620402",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-lunar-mine-collapse-survival, cyberpunk, industrial-grit, claustrophobic, low-saturation, dystopian, photorealistic, gritty industrial aesthetic, high-contrast lighting, cinematic composition, sharp focus, Lin Yuan (using Image 0) as a middle-aged male protagonist, tired eyes with deep exhaustion and heavy bags, graying short hair covered in fine lunar mineral dust, stubble on jawline, face marked by grime and hardship, slightly hunched back showing physical fatigue, knuckles with visible old scars, determined but weary expression focusing on geological terminal, worn-out industrial miner jumpsuit covered in thick gray mineral dust, tattered textures revealing signs of long-term wear, old-fashioned chronometer strapped to left wrist, oxygen mask hanging loosely around neck with red warning light blinking, crouching in a narrow, debris-filled mine tunnel, body turned slightly toward 阿强-配角1, left hand holding a handheld sonar device against vibrating rock wall, right hand steadying himself against a twisted metal support beam, 8K highly detailed skin texture with mineral dust and sweat, tired eyes reflecting faint red alarm light, stoic and resilient facial expression, muted skin tones with cold, desaturated highlights, soft shadows emphasizing deep wrinkles and exhaustion, graying short hair with messy texture, root fixation coefficient 0.5, tip swing amplitude 2cm, color layering: main color #808080, secondary color #A9A9A9, highlight #D3D3D3, shadow #404040, static atmosphere with fine floating dust particles, wind speed 0.1m/s, turbulence intensity 1%, hair matted with lunar dust, industrial jumpsuit with heavy grime and oil stains, slight fabric tension at seams due to hunched posture, tears and frayed edges on sleeves, metallic sheen on old-fashioned chronometer, narrow, dark mine tunnel with twisted metal supports and debris, glowing red alarm lights from oxygen system flickering on rock walls, cables sparking and emitting wisps of smoke, jagged lunar rock formations in the background, narrow ventilation pipe with visible cracks, 阿强-配角1 crouching in the shadow on the left side, trapped under a large rock with torn jumpsuit, fine dust particles suspended in the air, faint atmospheric haze from electrical cables, flickering red light creating harsh shadows, dramatic volumetric lighting from emergency lamps, desaturated grays and metallic blues, harsh emergency red alarm accents, burnt orange sparks from damaged cables, dark, somber shadows, harsh, flickering red emergency lighting, low-key dramatic chiaroscuro, cold blue ambient light reflecting off metallic surfaces, subtle backlight to define silhouette, type close-up to medium shot, lens 35mm, aperture f/1.8, depth_of_field shallow focus on protagonist, blurred tunnel depth, flash none, grain fine cinematic film grain, texture gritty, industrial, realistic texture, protagonist centered slightly to the right, facing inward, 阿强-配角1 positioned in lower left foreground, diagonal lines of collapsed tunnel leading eye to the sonar device, action constraints: focus on the interaction between the protagonist and the terminal, cyberpunk realistic, high-fidelity industrial grit, no text or symbols in image, no watermarks or artifacts, claustrophobic pressure, desperate survival, cold rationality in the face of death, quiet melancholy, intense psychological strain, no text, no symbols, no garbled characters, no words",
+              "prompt_json": {
+                "camera": {
+                  "aperture": "f/1.8",
+                  "depth_of_field": "shallow focus on protagonist, blurred tunnel depth",
+                  "flash": "none",
+                  "grain": "fine cinematic film grain",
+                  "lens": "35mm",
+                  "texture": "gritty, industrial, realistic texture",
+                  "type": "close-up to medium shot"
+                },
+                "clothing_system": [
+                  "industrial jumpsuit with heavy grime and oil stains",
+                  "slight fabric tension at seams due to hunched posture",
+                  "tears and frayed edges on sleeves",
+                  "metallic sheen on old-fashioned chronometer"
+                ],
+                "color_restriction": [
+                  "desaturated grays and metallic blues",
+                  "harsh emergency red alarm accents",
+                  "burnt orange sparks from damaged cables",
+                  "dark, somber shadows"
+                ],
+                "composition": [
+                  "protagonist centered slightly to the right, facing inward",
+                  "阿强-配角1 positioned in lower left foreground",
+                  "diagonal lines of collapsed tunnel leading eye to the sonar device",
+                  "action constraints: focus on the interaction between the protagonist and the terminal"
+                ],
+                "environment": {
+                  "background": [
+                    "narrow, dark mine tunnel with twisted metal supports and debris",
+                    "glowing red alarm lights from oxygen system flickering on rock walls",
+                    "cables sparking and emitting wisps of smoke",
+                    "jagged lunar rock formations in the background",
+                    "narrow ventilation pipe with visible cracks"
+                  ],
+                  "characters": [
+                    "阿强-配角1 crouching in the shadow on the left side, trapped under a large rock with torn jumpsuit"
+                  ],
+                  "effects": [
+                    "fine dust particles suspended in the air",
+                    "faint atmospheric haze from electrical cables",
+                    "flickering red light creating harsh shadows",
+                    "dramatic volumetric lighting from emergency lamps"
+                  ]
+                },
+                "face_system": [
+                  "8K highly detailed skin texture with mineral dust and sweat",
+                  "tired eyes reflecting faint red alarm light",
+                  "stoic and resilient facial expression",
+                  "muted skin tones with cold, desaturated highlights",
+                  "soft shadows emphasizing deep wrinkles and exhaustion"
+                ],
+                "hair_system": [
+                  "graying short hair with messy texture",
+                  "root fixation coefficient 0.5",
+                  "tip swing amplitude 2cm",
+                  "color layering: main color #808080, secondary color #A9A9A9, highlight #D3D3D3, shadow #404040",
+                  "static atmosphere with fine floating dust particles",
+                  "wind speed 0.1m/s",
+                  "turbulence intensity 1%",
+                  "hair matted with lunar dust"
+                ],
+                "label": "scene-lunar-mine-collapse-survival",
+                "lighting": [
+                  "harsh, flickering red emergency lighting",
+                  "low-key dramatic chiaroscuro",
+                  "cold blue ambient light reflecting off metallic surfaces",
+                  "subtle backlight to define silhouette"
+                ],
+                "mood": [
+                  "claustrophobic pressure",
+                  "desperate survival",
+                  "cold rationality in the face of death",
+                  "quiet melancholy",
+                  "intense psychological strain"
+                ],
+                "output_style": [
+                  "cyberpunk realistic, high-fidelity industrial grit",
+                  "no text or symbols in image",
+                  "no watermarks or artifacts"
+                ],
+                "style": [
+                  "photorealistic",
+                  "gritty industrial aesthetic",
+                  "high-contrast lighting",
+                  "cinematic composition",
+                  "sharp focus"
+                ],
+                "subject": {
+                  "body_traits": [
+                    "Lin Yuan (using Image 0) as a middle-aged male protagonist",
+                    "tired eyes with deep exhaustion and heavy bags",
+                    "graying short hair covered in fine lunar mineral dust",
+                    "stubble on jawline, face marked by grime and hardship",
+                    "slightly hunched back showing physical fatigue",
+                    "knuckles with visible old scars",
+                    "determined but weary expression focusing on geological terminal"
+                  ],
+                  "outfit": [
+                    "worn-out industrial miner jumpsuit covered in thick gray mineral dust",
+                    "tattered textures revealing signs of long-term wear",
+                    "old-fashioned chronometer strapped to left wrist",
+                    "oxygen mask hanging loosely around neck with red warning light blinking"
+                  ],
+                  "pose": [
+                    "crouching in a narrow, debris-filled mine tunnel",
+                    "body turned slightly toward 阿强-配角1",
+                    "left hand holding a handheld sonar device against vibrating rock wall",
+                    "right hand steadying himself against a twisted metal support beam"
+                  ]
+                },
+                "tags": [
+                  "cyberpunk",
+                  "industrial-grit",
+                  "claustrophobic",
+                  "low-saturation",
+                  "dystopian"
+                ]
+              },
+              "scene_text_hash": "0bedeaea0610b898969f841d310392e6",
+              "style": "default",
+              "url": "/image_cache/30109c4e21c0915806226d7fa5d5e711.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "start_ts": 1776656727.75912,
+        "end_ts": 1776656727.778507,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "success",
+        "has_scene": true,
+        "has_image": true
+      },
+      "second_click": {
+        "http_status": 200,
+        "elapsed_s": 0.026,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "你正在执行任务：优先清理通风管道，尝试将阿强带离坍塌区。",
+              "recap_text": "你选择了“优先清理通风管道，尝试将阿强带离坍塌区。”。当前章节：chapter1。主线进展：你正在执行任务：优先清理通风管道，尝试将阿强带离坍塌区。。最近剧情：你选择了：优先清理通风管道，尝试将阿强带离坍塌区。。在你的努力下，你取得了一些进展。"
+            },
+            "deep_background_links": {},
+            "flow_update": {
+              "chapter_conflict_solved": false,
+              "characters": {},
+              "environment": {},
+              "quest_progress": "你正在执行任务：优先清理通风管道，尝试将阿强带离坍塌区。"
+            },
+            "next_options": [
+              "继续前进",
+              "查看当前状态",
+              "返回上一步",
+              "探索周围环境"
+            ],
+            "scene": "你选择了：优先清理通风管道，尝试将阿强带离坍塌区。。在你的努力下，你取得了一些进展。",
+            "sceneId": "4895254424025643392_1449117661144806288"
+          },
+          "status": "success"
+        },
+        "start_ts": 1776656782.8079374,
+        "end_ts": 1776656782.8334904,
+        "provider_events": {
+          "event_count": 1,
+          "queue_wait_ms": {
+            "count": 1,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "status": "success",
+        "has_scene": true,
+        "has_image": false,
+        "selected_option_index": 0,
+        "selected_option_text": "优先清理通风管道，尝试将阿强带离坍塌区。",
+        "input_scene_id": "8673625377339377689_-3453938614444620402",
+        "inferred_cache_result": "likely_hit",
+        "is_placeholder": true,
+        "used_updated_flow_state": true
+      }
+    },
+    {
+      "benchmark_id": "DNQBV1_008",
+      "theme_id": 27,
+      "theme": "全息偶像塌房记",
+      "read_wait_s": 55.0,
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 10.147,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过精细化的舆论引导与部分真相的披露，成功将舆论焦点转移，保住了“星野”的商业价值，但代价是牺牲了一名无辜的实习生作为替罪羊，主角内心产生了第一次职业道德的动摇。",
+                  "main_conflict": "全息偶像“星野”被爆出后台数据异常，疑似存在代练与人设造假，社交媒体舆论瞬间反噬。主角作为运营负责人，面临着公司高层要求“不惜一切代价掩盖真相”的压力，以及粉丝群体对偶像完美形象崩塌的愤怒质询，职场信任危机一触即发。 - 矛盾结束条件：主角通过精细化的舆论引导与部分真相的披露，成功将舆论焦点转移，保住了“星野”的商业价值，但代价是牺牲了一名无辜的实习生作为替罪羊，主角内心产生了第一次职业道德的动摇。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角通过个人积蓄为演员争取到了更好的合同条款，但演员最终因身心俱疲选择解约离开，主角失去了最得力的合作者，项目陷入停滞，个人职业生涯进入瓶颈期。",
+                  "main_conflict": "动捕演员因长期高强度工作且被剥夺署名权，开始在直播中流露真实情绪，导致偶像人设出现“人格分裂”的诡异感。主角必须在公司监控与演员的私人求助之间周旋，试图在不触怒高层的前提下，改善演员的生存环境，却发现自己早已被卷入公司内部的派系斗争。 - 矛盾结束条件：主角通过个人积蓄为演员争取到了更好的合同条款，但演员最终因身心俱疲选择解约离开，主角失去了最得力的合作者，项目陷入停滞，个人职业生涯进入瓶颈期。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角成功举办了告别演出，偶像“星野”在舞台上以一种近乎真实的方式谢幕，获得了粉丝的谅解与怀念，但项目最终还是被公司裁撤，主角失业，回归平凡生活，留下了一段无法重来的职业遗憾。 【主角规范信息】 主角姓名(中)：林晓 主角姓名(英)：Lin Xiao 性别：女性 年龄感：青年 所属作品(中)：虚构之光 所属作品(英)：Light of Fiction 标志性外观关键词：黑色中长发、黑框眼镜、职业套装、疲惫的眼神、随身携带的平板电脑、总是喝咖啡、清瘦、干练、略显局促、常穿平底鞋、工牌不离身、低调的职场人 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决",
+                  "main_conflict": "全息偶像产业迎来AI全面替代动捕演员的浪潮，主角负责的项目面临被彻底裁撤的风险。主角必须在“彻底放弃项目”与“孤注一掷进行最后一场告别演出”之间做出选择，同时还要面对自己多年奋斗可能化为乌有的现实压力。 - 矛盾结束条件：主角成功举办了告别演出，偶像“星野”在舞台上以一种近乎真实的方式谢幕，获得了粉丝的谅解与怀念，但项目最终还是被公司裁撤，主角失业，回归平凡生活，留下了一段无法重来的职业遗憾。 【主角规范信息】 主角姓名(中)：林晓 主角姓名(英)：Lin Xiao 性别：女性 年龄感：青年 所属作品(中)：虚构之光 所属作品(英)：Light of Fiction 标志性外观关键词：黑色中长发、黑框眼镜、职业套装、疲惫的眼神、随身携带的平板电脑、总是喝咖啡、清瘦、干练、略显局促、常穿平底鞋、工牌不离身、低调的职场人 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为写实主义模拟经营与互动叙事游戏，采用低饱和度冷色调美术风格，强调职场与社交的颗粒感。叙事节奏平稳，通过琐碎的对话、社交媒体碎片与工作流模拟，构建出一种真实、压抑却又透着微光的都市生活质感，旨在探讨个体在资本洪流中的挣扎与妥协。",
+              "main_quest": "主角的目标是协助“星野”完成年度巡回演唱会并维持其商业价值。任务分为三个阶段：首先是应对突发的“塌房”危机，通过公关手段平息舆论；其次是深入挖掘偶像背后的动捕演员真实诉求，在公司利益与演员尊严间寻找平衡；最后是面对全息技术更新换代带来的职业淘汰危机。玩家需在有限的资源与时间内，通过处理繁杂的职场琐事、平衡各方利益诉求，最终决定“星野”的命运走向。挑战在于，无论如何努力，都无法完全掩盖行业腐朽的本质，主角必须在保住饭碗与坚守职业底线之间做出艰难取舍，最终达成一个既保全了项目又不得不接受行业残酷现实的普通结局。",
+              "protagonist_ability": "主角拥有一种名为“共情洞察”的感知力，源于其长期从事基层客服与运营工作的职业积累。通过分析海量的用户反馈数据、社交媒体情绪波动以及动捕演员的微表情细节，主角能够精准捕捉到偶像人设与现实逻辑之间的“裂痕”。这种能力的使用受限于公司的数据权限与个人精力，过度使用会导致主角对现实人际关系的疏离，且无法改变资本运作的既定规则，仅能作为辅助决策的工具。",
+              "world_basic_setting": "故事发生于近未来的超一线城市“新京”，全息偶像产业已成为大众娱乐的支柱。这里的偶像并非真人，而是由顶尖算法与真人动捕演员共同构建的“数字神祇”。社会文化高度原子化，人们在虚拟偶像的完美人设中寻找情感寄托，而幕后的运营团队则在数据与资本的夹缝中维持着脆弱的平衡。主角作为一名怀揣理想的初级运营，入职了行业头部公司，负责维护当红全息偶像“星野”的日常运营。然而，随着技术的迭代与资本的博弈，行业内部的潜规则、数据造假的黑幕以及偶像背后动捕演员的真实困境逐渐浮出水面。这是一个关于“造梦者”如何面对梦境破碎，并在虚实交织的现实中寻找自我立足点的故事，没有宏大的救世叙事，只有职场升迁的艰辛与人际关系的冷暖。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "environment": {}
+            },
+            "game_id": "game_1776656782_h316ij",
+            "image_style": {
+              "type": "cyberpunk"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "gender": "男性"
+            },
+            "tone": "normal_ending",
+            "user_theme": "全息偶像塌房记"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "start_ts": 1776656782.8651724,
+        "end_ts": 1776656793.01266,
+        "provider_events": {
+          "event_count": 5,
+          "queue_wait_ms": {
+            "count": 5,
+            "min": 0.0,
+            "max": 4876.0,
+            "mean": 975.2,
+            "median": 0.0,
+            "p95": 3900.8
+          },
+          "latency_ms": {
+            "count": 2,
+            "min": 5299.0,
+            "max": 10138.0,
+            "mean": 7718.5,
+            "median": 7718.5,
+            "p95": 9896.05
+          },
+          "llm_success_count": 2,
+          "image_success_count": 0,
+          "request_thread_event_count": 2
+        },
+        "status": "success",
+        "game_id": "game_1776656782_h316ij"
+      },
+      "first_click": {
+        "http_status": 200,
+        "elapsed_s": 0.008,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "",
+              "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：刺鼻的机油味混杂着陈旧的臭氧气息，在狭窄的驾驶舱内挥之不去。我猛地从神经同步椅上弹起，左手的机械义肢发出细微的金属摩擦声，那是长期缺乏润滑的抗议。舱内红色的警示灯正有节奏地闪烁，映照着我疲惫且清瘦的脸庞，护目镜后的双眼被强光刺得生疼。刚才那阵“深空直觉”带来的剧烈偏头痛尚未消退，脑海中残留着航线边缘引力波动的诡异回响。\n\n“林远，你又在透支你的神经系统了。”飞船的中央处理器发出机械且冰冷的合成音，那是父亲留下的唯一遗产，也是我目前唯一的伙伴。\n\n我低头看向领口挂着的导航芯片，它正因为过载而发烫。仪表盘上，引擎核心的压力读数已经逼近临界点，如果不在下一次跃迁前更换核心，这艘名为“余烬号”的飞船将彻底报废。就在这时，通讯频道突然被强行接入，债权人那尖锐且不耐烦的声音在舱内炸开：“林远，距离还款期限只剩最后12小时。别想耍花招，如果你拿不出那笔利息，我会让回收队直接把你的飞船拆成废铁。”\n\n我紧紧握住操作杆，坚毅的下颌线因用力而绷紧。窗外，边缘星域的冷峻星光显得格外遥远，仿佛在嘲笑我的困境。"
+            },
+            "deep_background_links": {},
+            "flow_update": {},
+            "next_options": [
+              "变卖飞船的备用能源模块，凑钱偿还部分利息。",
+              "尝试连接黑市频道，接下那个高风险的走私单。"
+            ],
+            "plot_supporting_characters": [],
+            "scene": "刺鼻的机油味混杂着陈旧的臭氧气息，在狭窄的驾驶舱内挥之不去。我猛地从神经同步椅上弹起，左手的机械义肢发出细微的金属摩擦声，那是长期缺乏润滑的抗议。舱内红色的警示灯正有节奏地闪烁，映照着我疲惫且清瘦的脸庞，护目镜后的双眼被强光刺得生疼。刚才那阵“深空直觉”带来的剧烈偏头痛尚未消退，脑海中残留着航线边缘引力波动的诡异回响。\n\n“林远，你又在透支你的神经系统了。”飞船的中央处理器发出机械且冰冷的合成音，那是父亲留下的唯一遗产，也是我目前唯一的伙伴。\n\n我低头看向领口挂着的导航芯片，它正因为过载而发烫。仪表盘上，引擎核心的压力读数已经逼近临界点，如果不在下一次跃迁前更换核心，这艘名为“余烬号”的飞船将彻底报废。就在这时，通讯频道突然被强行接入，债权人那尖锐且不耐烦的声音在舱内炸开：“林远，距离还款期限只剩最后12小时。别想耍花招，如果你拿不出那笔利息，我会让回收队直接把你的飞船拆成废铁。”\n\n我紧紧握住操作杆，坚毅的下颌线因用力而绷紧。窗外，边缘星域的冷峻星光显得格外遥远，仿佛在嘲笑我的困境。",
+            "sceneId": "7817401221114876292_1233483459984566132",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-ship-cockpit-emergency-strained-reality, cyberpunk, hard-sci-fi, industrial-wasteland, gritty-realism, high-contrast, cinematic lighting, photorealistic, industrial texture, grimy atmosphere, neon-accented shadows, male protagonist using Image 0, lean and weary physique reflecting long-term exhaustion, pale complexion with visible fatigue and dark circles under eyes, strong jawline clenched in tension, left arm is a weathered, exposed mechanical prosthetic with visible grease and scratches, worn-out flight suit with frayed edges and oil stains, utility harness with metallic buckles and hanging cables, navigation chip hanging from a charred cord around neck, sitting in neural synchronization chair, upper body jolting forward, one hand gripping the flight control stick tightly, head tilted slightly, eyes squinting behind reflective goggles, posture conveying physical pain from neural overload, 8K detailed facial features, expression of intense pain and focus, skin texture showing sweat and faint grime, eyes partially hidden behind scratched, glowing HUD goggles, soft shadows from console lights emphasizing facial contours, short, messy, dark hair with oil smudges, root fixation coefficient 0.5, tip swing amplitude 5cm, color layering: main color #2D2D2D, secondary color #1A1A1A, highlight #4A4A4A, shadow #000000, static-charged strands, wind speed 0.2m/s, turbulence intensity 10%, flight suit fabric showing heavy wear and tear, exposed mechanical joints of prosthetic arm showing worn metal surfaces, slight fabric flutter due to cabin air circulation, cramped, cluttered spaceship cockpit, blinking red warning lights on control panels, exposed circuitry and coolant pipes on the walls, porthole window revealing distant, cold, lonely starfield, interface screen showing critical engine pressure warning, haze of floating dust and ozone particles, flickering red emergency light rays, lens flare from cold neon instrument panels, faint holographic distortion around navigation chip, harsh emergency red lighting, industrial grey and oil-stained black, cold blue starlight from window, faded neon cyan interface accents, dramatic side-lighting from console displays, pulsing red warning light casting long, sharp shadows, cool white ambient light from the distant starfield, high contrast between warm red warnings and cold exterior space, type close-up, lens 35mm, aperture f/1.8, depth_of_field shallow focus on protagonist's face and control stick, flash none, grain fine film grain, texture metallic and organic grime, protagonist centered in the cockpit, control stick in the foreground as a leading line, porthole window in the background framing the cold space, action constraints: tense grip on controls, dynamic posture of sudden awakening, hard sci-fi aesthetic, no text or symbols in image, no characters or logos in image, oppressive anxiety, desperate survival, industrial loneliness, high-stakes tension, no text, no symbols, no garbled characters, no words",
+              "prompt_json": {
+                "camera": {
+                  "aperture": "f/1.8",
+                  "depth_of_field": "shallow focus on protagonist's face and control stick",
+                  "flash": "none",
+                  "grain": "fine film grain",
+                  "lens": "35mm",
+                  "texture": "metallic and organic grime",
+                  "type": "close-up"
+                },
+                "clothing_system": [
+                  "flight suit fabric showing heavy wear and tear",
+                  "exposed mechanical joints of prosthetic arm showing worn metal surfaces",
+                  "slight fabric flutter due to cabin air circulation"
+                ],
+                "color_restriction": [
+                  "harsh emergency red lighting",
+                  "industrial grey and oil-stained black",
+                  "cold blue starlight from window",
+                  "faded neon cyan interface accents"
+                ],
+                "composition": [
+                  "protagonist centered in the cockpit",
+                  "control stick in the foreground as a leading line",
+                  "porthole window in the background framing the cold space",
+                  "action constraints: tense grip on controls, dynamic posture of sudden awakening"
+                ],
+                "environment": {
+                  "background": [
+                    "cramped, cluttered spaceship cockpit",
+                    "blinking red warning lights on control panels",
+                    "exposed circuitry and coolant pipes on the walls",
+                    "porthole window revealing distant, cold, lonely starfield",
+                    "interface screen showing critical engine pressure warning"
+                  ],
+                  "characters": [],
+                  "effects": [
+                    "haze of floating dust and ozone particles",
+                    "flickering red emergency light rays",
+                    "lens flare from cold neon instrument panels",
+                    "faint holographic distortion around navigation chip"
+                  ]
+                },
+                "face_system": [
+                  "8K detailed facial features",
+                  "expression of intense pain and focus",
+                  "skin texture showing sweat and faint grime",
+                  "eyes partially hidden behind scratched, glowing HUD goggles",
+                  "soft shadows from console lights emphasizing facial contours"
+                ],
+                "hair_system": [
+                  "short, messy, dark hair with oil smudges",
+                  "root fixation coefficient 0.5",
+                  "tip swing amplitude 5cm",
+                  "color layering: main color #2D2D2D, secondary color #1A1A1A, highlight #4A4A4A, shadow #000000",
+                  "static-charged strands",
+                  "wind speed 0.2m/s",
+                  "turbulence intensity 10%"
+                ],
+                "label": "scene-ship-cockpit-emergency-strained-reality",
+                "lighting": [
+                  "dramatic side-lighting from console displays",
+                  "pulsing red warning light casting long, sharp shadows",
+                  "cool white ambient light from the distant starfield",
+                  "high contrast between warm red warnings and cold exterior space"
+                ],
+                "mood": [
+                  "oppressive anxiety",
+                  "desperate survival",
+                  "industrial loneliness",
+                  "high-stakes tension"
+                ],
+                "output_style": [
+                  "hard sci-fi aesthetic",
+                  "no text or symbols in image",
+                  "no characters or logos in image"
+                ],
+                "style": [
+                  "cinematic lighting",
+                  "photorealistic",
+                  "industrial texture",
+                  "grimy atmosphere",
+                  "neon-accented shadows"
+                ],
+                "subject": {
+                  "body_traits": [
+                    "male protagonist using Image 0",
+                    "lean and weary physique reflecting long-term exhaustion",
+                    "pale complexion with visible fatigue and dark circles under eyes",
+                    "strong jawline clenched in tension",
+                    "left arm is a weathered, exposed mechanical prosthetic with visible grease and scratches"
+                  ],
+                  "outfit": [
+                    "worn-out flight suit with frayed edges and oil stains",
+                    "utility harness with metallic buckles and hanging cables",
+                    "navigation chip hanging from a charred cord around neck"
+                  ],
+                  "pose": [
+                    "sitting in neural synchronization chair, upper body jolting forward",
+                    "one hand gripping the flight control stick tightly",
+                    "head tilted slightly, eyes squinting behind reflective goggles",
+                    "posture conveying physical pain from neural overload"
+                  ]
+                },
+                "tags": [
+                  "cyberpunk",
+                  "hard-sci-fi",
+                  "industrial-wasteland",
+                  "gritty-realism",
+                  "high-contrast"
+                ]
+              },
+              "scene_text_hash": "278f5a017c8157c79cfc83332d47a5c2",
+              "style": "default",
+              "url": "/image_cache/9b64826e76d4bf5b79726b1fa56649c2.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "start_ts": 1776656793.0423715,
+        "end_ts": 1776656793.0508351,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "success",
+        "has_scene": true,
+        "has_image": true
+      },
+      "second_click": {
+        "http_status": 200,
+        "elapsed_s": 0.007,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "你正在执行任务：变卖飞船的备用能源模块，凑钱偿还部分利息。",
+              "recap_text": "你选择了“变卖飞船的备用能源模块，凑钱偿还部分利息。”。当前章节：chapter1。主线进展：你正在执行任务：变卖飞船的备用能源模块，凑钱偿还部分利息。。最近剧情：你选择了：变卖飞船的备用能源模块，凑钱偿还部分利息。。在你的努力下，你取得了一些进展。"
+            },
+            "deep_background_links": {},
+            "flow_update": {
+              "chapter_conflict_solved": false,
+              "characters": {},
+              "environment": {},
+              "quest_progress": "你正在执行任务：变卖飞船的备用能源模块，凑钱偿还部分利息。"
+            },
+            "next_options": [
+              "继续前进",
+              "查看当前状态",
+              "返回上一步",
+              "探索周围环境"
+            ],
+            "scene": "你选择了：变卖飞船的备用能源模块，凑钱偿还部分利息。。在你的努力下，你取得了一些进展。",
+            "sceneId": "-5570034190207097271_1449117661144806288"
+          },
+          "status": "success"
+        },
+        "start_ts": 1776656848.080109,
+        "end_ts": 1776656848.0867126,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "status": "success",
+        "has_scene": true,
+        "has_image": false,
+        "selected_option_index": 0,
+        "selected_option_text": "变卖飞船的备用能源模块，凑钱偿还部分利息。",
+        "input_scene_id": "7817401221114876292_1233483459984566132",
+        "inferred_cache_result": "likely_hit",
+        "is_placeholder": true,
+        "used_updated_flow_state": true
+      }
+    }
+  ]
+}

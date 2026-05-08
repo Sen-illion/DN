@@ -1,0 +1,231 @@
+{
+  "summary": [
+    {
+      "config": "wv_on_text_on",
+      "sample_count": 6,
+      "avg_consistency": 4.6296,
+      "avg_story_chars": 4237.5,
+      "best_theme": "边陲驿站夜谈录",
+      "worst_theme": "民国电报迷案"
+    },
+    {
+      "config": "wv_off_text_on",
+      "sample_count": 6,
+      "avg_consistency": 4.3889,
+      "avg_story_chars": 4367,
+      "best_theme": "月球矿难七日",
+      "worst_theme": "民国电报迷案"
+    },
+    {
+      "config": "wv_on_text_off",
+      "sample_count": 6,
+      "avg_consistency": 4.3704,
+      "avg_story_chars": 2582.3,
+      "best_theme": "月球矿难七日",
+      "worst_theme": "边陲驿站夜谈录"
+    },
+    {
+      "config": "wv_off_text_off",
+      "sample_count": 6,
+      "avg_consistency": 4.0556,
+      "avg_story_chars": 4136.8,
+      "best_theme": "茶肆说书人",
+      "worst_theme": "民国电报迷案"
+    }
+  ],
+  "per_theme": [
+    {
+      "theme_item_id": 1,
+      "theme": "边陲驿站夜谈录",
+      "wv_off_text_off": 4.3333,
+      "wv_off_text_on": 4.8889,
+      "wv_on_text_off": 4,
+      "wv_on_text_on": 5,
+      "spread": 1
+    },
+    {
+      "theme_item_id": 2,
+      "theme": "月球矿难七日",
+      "wv_off_text_off": 3.5,
+      "wv_off_text_on": 5,
+      "wv_on_text_off": 4.6667,
+      "wv_on_text_on": 4.8889,
+      "spread": 1.5
+    },
+    {
+      "theme_item_id": 3,
+      "theme": "茶肆说书人",
+      "wv_off_text_off": 5,
+      "wv_off_text_on": 4.5556,
+      "wv_on_text_off": 4.6667,
+      "wv_on_text_on": 4.6667,
+      "spread": 0.4444
+    },
+    {
+      "theme_item_id": 4,
+      "theme": "深海信标失联",
+      "wv_off_text_off": 4.3334,
+      "wv_off_text_on": 4.6667,
+      "wv_on_text_off": 4.1111,
+      "wv_on_text_on": 5,
+      "spread": 0.8889
+    },
+    {
+      "theme_item_id": 5,
+      "theme": "魔法学院期末周",
+      "wv_off_text_off": 4.1667,
+      "wv_off_text_on": 4.5556,
+      "wv_on_text_off": 4.1111,
+      "wv_on_text_on": 4.8889,
+      "spread": 0.7778
+    },
+    {
+      "theme_item_id": 6,
+      "theme": "民国电报迷案",
+      "wv_off_text_off": 3.0,
+      "wv_off_text_on": 2.6666,
+      "wv_on_text_off": 4.6667,
+      "wv_on_text_on": 3.3333,
+      "spread": 2.0001
+    }
+  ],
+  "excluded": [
+    {
+      "config": "wv_off_text_off",
+      "theme_item_id": 12,
+      "theme": "维多利亚钟表匠",
+      "story_chars": 323,
+      "consensus": 1.7778,
+      "claude": 1,
+      "gemini": 3.3333,
+      "gpt4o": 1,
+      "exclude_reason": "story_chars=323 / fallback-like sample"
+    },
+    {
+      "config": "wv_off_text_off",
+      "theme_item_id": 18,
+      "theme": "沙漠商队星图",
+      "story_chars": 323,
+      "consensus": 1.8889,
+      "claude": 1,
+      "gemini": 3.6667,
+      "gpt4o": 1,
+      "exclude_reason": "story_chars=323 / fallback-like sample"
+    },
+    {
+      "config": "wv_off_text_off",
+      "theme_item_id": 54,
+      "theme": "太空电梯检修",
+      "story_chars": 323,
+      "consensus": 2,
+      "claude": 1,
+      "gemini": 4,
+      "gpt4o": 1,
+      "exclude_reason": "story_chars=323 / fallback-like sample"
+    },
+    {
+      "config": "wv_off_text_off",
+      "theme_item_id": 73,
+      "theme": "龙与地下城公会",
+      "story_chars": 323,
+      "consensus": 2.1111,
+      "claude": 1,
+      "gemini": 4.3333,
+      "gpt4o": 1,
+      "exclude_reason": "story_chars=323 / fallback-like sample"
+    },
+    {
+      "config": "wv_off_text_on",
+      "theme_item_id": 12,
+      "theme": "维多利亚钟表匠",
+      "story_chars": 323,
+      "consensus": 2.1111,
+      "claude": 1,
+      "gemini": 4.3333,
+      "gpt4o": 1,
+      "exclude_reason": "story_chars=323 / fallback-like sample"
+    },
+    {
+      "config": "wv_off_text_on",
+      "theme_item_id": 18,
+      "theme": "沙漠商队星图",
+      "story_chars": 323,
+      "consensus": 1.1111,
+      "claude": 1,
+      "gemini": 1.3333,
+      "gpt4o": 1,
+      "exclude_reason": "story_chars=323 / fallback-like sample"
+    },
+    {
+      "config": "wv_off_text_on",
+      "theme_item_id": 54,
+      "theme": "太空电梯检修",
+      "story_chars": 323,
+      "consensus": 1.4444,
+      "claude": 1.3333,
+      "gemini": 2,
+      "gpt4o": 1,
+      "exclude_reason": "story_chars=323 / fallback-like sample"
+    },
+    {
+      "config": "wv_off_text_on",
+      "theme_item_id": 73,
+      "theme": "龙与地下城公会",
+      "story_chars": 323,
+      "consensus": 2,
+      "claude": 1,
+      "gemini": 4,
+      "gpt4o": 1,
+      "exclude_reason": "story_chars=323 / fallback-like sample"
+    },
+    {
+      "config": "wv_on_text_on",
+      "theme_item_id": 12,
+      "theme": "维多利亚钟表匠",
+      "story_chars": 323,
+      "consensus": 1.1111,
+      "claude": 1,
+      "gemini": 1.3333,
+      "gpt4o": 1,
+      "exclude_reason": "story_chars=323 / fallback-like sample"
+    },
+    {
+      "config": "wv_on_text_on",
+      "theme_item_id": 18,
+      "theme": "沙漠商队星图",
+      "story_chars": 323,
+      "consensus": 1.5556,
+      "claude": 1,
+      "gemini": 2.6667,
+      "gpt4o": 1,
+      "exclude_reason": "story_chars=323 / fallback-like sample"
+    },
+    {
+      "config": "wv_on_text_on",
+      "theme_item_id": 54,
+      "theme": "太空电梯检修",
+      "story_chars": 323,
+      "consensus": 1.6667,
+      "claude": 1,
+      "gemini": 3,
+      "gpt4o": 1,
+      "exclude_reason": "story_chars=323 / fallback-like sample"
+    },
+    {
+      "config": "wv_on_text_on",
+      "theme_item_id": 73,
+      "theme": "龙与地下城公会",
+      "story_chars": 323,
+      "consensus": 2.3333,
+      "claude": 1,
+      "gemini": 5,
+      "gpt4o": 1,
+      "exclude_reason": "story_chars=323 / fallback-like sample"
+    }
+  ],
+  "notes": [
+    "Only theme_item_id 1-6 are kept for fair cross-condition comparison.",
+    "theme_item_id 12/18/54/73 are excluded because story_chars=323 and content is fallback-like.",
+    "wv_on_text_off is the rerun six-sample version; the other three are filtered to the same six themes in this workbook."
+  ]
+}

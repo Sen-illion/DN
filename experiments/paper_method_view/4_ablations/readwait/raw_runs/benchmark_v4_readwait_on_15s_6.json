@@ -1,0 +1,1118 @@
+{
+  "summary": {
+    "experiment_name": "benchmark_v4_readwait_on_15s_6",
+    "sample_size": 6,
+    "read_wait_s": 15.0,
+    "suite_start_ts": 1776608549.7984421,
+    "suite_end_ts": 1776608867.1001074,
+    "second_click_elapsed_s": {
+      "count": 6,
+      "min": 0.008,
+      "max": 0.028,
+      "mean": 0.018,
+      "median": 0.019,
+      "p95": 0.027
+    },
+    "second_click_success_count": 6,
+    "likely_hit_count": 6,
+    "likely_hit_rate": 1.0
+  },
+  "runs": [
+    {
+      "benchmark_id": "DNQBV1_001",
+      "theme_id": 1,
+      "theme": "边陲驿站夜谈录",
+      "read_wait_s": 15.0,
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 20.711,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "通过完成一系列基础修缮任务，成功留住了一位常年奔波的货车司机，并从对方口中获得了关于驿站历史的肯定，主角初步适应了孤独的经营生活，实现了收支平衡。",
+                  "main_conflict": "驿站经营初期，设施陈旧导致客源稀少，主角面临严重的入不敷出。同时，主角对未来感到迷茫，试图通过经营驿站证明自己的价值，却在繁琐的修缮工作与孤独感中不断质疑留下的意义。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角通过协调各方利益，为常客们争取到了过渡安置方案，并与开发商达成了一份折中的协议，虽然驿站注定要消失，但主角成功保住了这段时间的尊严与情感记忆。",
+                  "main_conflict": "驿站名声渐起，但也引来了外部开发商的介入，要求主角配合拆迁并腾空场地。主角在守护驿站的归属感与接受现实补偿以换取更好未来的机会之间陷入挣扎，同时还要处理驿站常客们因拆迁消息而产生的焦虑与离散。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "在最后一个夜晚，主角与最后一位客人进行了一场平静的告别，驿站正式停业。主角带着积攒的资金与一段深刻的成长记忆踏上新的旅程，虽然留下了对驿站的不舍，但内心已达成释然。",
+                  "main_conflict": "拆迁进入倒计时，驿站即将关门。主角必须面对与所有常客的告别，以及对自己这一年努力的最终审视。主角发现，尽管自己努力经营，但驿站终究无法成为永恒，那种“努力过却依然要面对失去”的无力感达到顶峰。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为现实主义叙事模拟游戏，采用低饱和度的写实美术风格，强调光影的颗粒感与环境的沉浸感。叙事节奏舒缓，通过细腻的对话与琐碎的日常交互，构建一种带有粗粝质感与温情底色的生活图景，让玩家在平淡的经营与交流中，体悟个体在时代洪流下的真实重量。",
+              "main_quest": "主角的目标是在驿站被彻底拆除前，将其经营为周边长途司机与过路人心中真正的“归处”，并为自己积累下一笔离开此地、开启新生活的启动资金。任务分为三个阶段：首先是修缮破败的设施以维持基础运营，通过提供热食与温暖的休息环境赢得口碑；其次是深入挖掘过路人的故事，通过建立深厚的人际纽带，让驿站成为情感交流的枢纽；最后是面对拆迁补偿与个人理想的抉择。挑战在于，经营的利润往往难以覆盖修缮与生活的开支，且主角必须在“为了留住客人而过度付出”与“为了未来而保持理性抽离”之间不断权衡，最终达成一种既不亏欠他人、也不委屈自己的平衡。",
+              "protagonist_ability": "主角拥有一种名为“共情倾听”的被动能力，源于其长期在复杂人际中磨砺出的敏锐感知。通过观察客人的微表情、肢体语言与谈话间隙的沉默，主角能捕捉到对方隐藏在日常寒暄下的真实诉求与遗憾。使用方式为在对话中选择特定的引导语，从而解锁深层对话分支。限制在于，这种能力无法改变现实困境，只能提供情绪价值，且过度使用会消耗主角自身的精力，导致在经营决策中出现失误，体现了“洞察人心却无力回天”的现实无奈。",
+              "world_basic_setting": "故事发生于西北边陲的一座老旧驿站，这里曾是繁华的贸易枢纽，如今随着高铁与高速公路的改道，沦为被时代遗忘的边缘地带。社会背景设定在经济转型期的当下，人口流失严重，留守者多为老人与像主角这样因各种原因在此驻足的“漂泊者”。这里没有宏大的史诗，只有风沙、长途货车司机的短暂停留、以及驿站内那盏彻夜不亮的昏黄灯光。文化氛围呈现出一种典型的“离散感”，人们在此相遇、倾诉、又匆匆离去。关键事件是驿站面临拆迁的最后一年，主角作为接手驿站的年轻人，试图在维持生计与守护这处“避风港”之间寻找平衡，而外部的商业开发计划与内部的经营困境，构成了这个微观世界最真实的博弈。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1776608549_z6g7zh",
+            "image_style": {
+              "type": "realistic"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "黑色短发、深色工装外套、眼神沉稳、略显疲惫、手腕上有旧伤疤、朴素、清瘦、常穿旧球鞋、不修边幅但干净、沉默寡言、轮廓分明",
+              "work_en": "The Frontier Station Night Tales",
+              "work_zh": "边陲驿站夜谈录"
+            },
+            "tone": "normal_ending",
+            "user_theme": "边陲驿站夜谈录"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "start_ts": 1776608549.7984624,
+        "end_ts": 1776608570.5099118,
+        "provider_events": {
+          "event_count": 3,
+          "queue_wait_ms": {
+            "count": 3,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 1,
+            "min": 20681.0,
+            "max": 20681.0,
+            "mean": 20681.0,
+            "median": 20681.0,
+            "p95": 20681.0
+          },
+          "llm_success_count": 1,
+          "image_success_count": 0,
+          "request_thread_event_count": 2
+        },
+        "status": "success",
+        "game_id": "game_1776608549_z6g7zh"
+      },
+      "first_click": {
+        "http_status": 200,
+        "elapsed_s": 0.018,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "继续推进",
+              "recap_text": "你选择了“寮€濮嬫父鎴?”。当前章节：chapter1。主线进展：继续推进。最近剧情：当前内容生成耗时较长，但你仍可以继续推进剧情。你决定先观察局势并寻找下一步行动方向。"
+            },
+            "deep_background_links": {},
+            "flow_update": {
+              "chapter_conflict_solved": false,
+              "characters": {},
+              "environment": {},
+              "quest_progress": "继续推进"
+            },
+            "next_options": [
+              "继续前进",
+              "查看周围环境"
+            ],
+            "scene": "当前内容生成耗时较长，但你仍可以继续推进剧情。你决定先观察局势并寻找下一步行动方向。",
+            "sceneId": "-9058891924475767658_-5451272069238170775"
+          },
+          "status": "success"
+        },
+        "start_ts": 1776608570.525589,
+        "end_ts": 1776608570.5431886,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "status": "success",
+        "has_scene": true,
+        "has_image": false
+      },
+      "second_click": {
+        "http_status": 200,
+        "elapsed_s": 0.009,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "你正在执行任务：继续前进",
+              "recap_text": "你选择了“继续前进”。当前章节：chapter1。主线进展：你正在执行任务：继续前进。最近剧情：你选择了：继续前进。在你的努力下，你取得了一些进展。"
+            },
+            "deep_background_links": {},
+            "flow_update": {
+              "chapter_conflict_solved": false,
+              "characters": {},
+              "environment": {},
+              "quest_progress": "你正在执行任务：继续前进"
+            },
+            "next_options": [
+              "继续前进",
+              "查看当前状态",
+              "返回上一步",
+              "探索周围环境"
+            ],
+            "scene": "你选择了：继续前进。在你的努力下，你取得了一些进展。",
+            "sceneId": "7871991327969875654_-1313984671503898919"
+          },
+          "status": "success"
+        },
+        "start_ts": 1776608585.5566602,
+        "end_ts": 1776608585.5657835,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "status": "success",
+        "has_scene": true,
+        "has_image": false,
+        "selected_option_index": 0,
+        "selected_option_text": "继续前进",
+        "input_scene_id": "-9058891924475767658_-5451272069238170775",
+        "inferred_cache_result": "likely_hit"
+      }
+    },
+    {
+      "benchmark_id": "DNQBV1_002",
+      "theme_id": 9,
+      "theme": "末日温室园丁",
+      "read_wait_s": 15.0,
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 13.946,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过修复核心水泵并成功培育出第一批耐旱作物，赢得了社区居民的初步认可，温室重新运作，主角获得了维持基本生活的报酬，但温室的长期维护隐患依然存在。",
+                  "main_conflict": "主角接手了一座被遗弃多时的温室，面对的是满地锈蚀的管道、贫瘠的土壤以及社区居民的不信任。主角急需在有限的配给额度下，完成第一批作物的播种，但温室的供水系统频繁故障，且主角的个人积蓄即将耗尽，生活压力与工作难度双重挤压。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角通过巧妙的临时加固方案保住了大部分样本，但为了维持供电，不得不牺牲了温室中一部分观赏性植物，虽然保住了核心目标，但温室的生态多样性遭到了一定程度的破坏。",
+                  "main_conflict": "温室进入关键生长期，但一场突如其来的酸雨导致穹顶密封性受损，部分珍贵的实验样本面临枯萎风险。主角必须在修补穹顶与保护样本之间做出选择，同时还要面对上级部门因资源紧缺而下达的缩减温室供电的无理指令。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角拒绝了催化剂，选择顺应自然规律，最终作物虽未达到完美标准，但成功存活并产出。温室最终被拆除，主角带着培育出的种子离开，虽然失去了一切奋斗的载体，但收获了内心的释然与对生命韧性的深刻理解。",
+                  "main_conflict": "最终收割期临近，但“希望之种”因基因缺陷出现生长停滞。主角面临着是否要使用违规的化学催化剂来强行催熟的道德困境，同时，温室所在的区域面临拆迁改建，主角必须在守护这片心血与接受现实补偿之间做出最终抉择。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "沉浸式叙事模拟，强调微观视角的细腻情感与环境交互。画面呈现出一种带有工业废土质感的静谧美学，光影柔和而克制，配乐以低保真环境音为主，营造出一种在荒芜中守护生机的孤独与温情。",
+              "main_quest": "主角受命于资源匮乏的边缘区，负责修复一座濒临报废的公共温室，并培育出能够适应酸雨环境的“希望之种”。任务分为三个阶段：首先是清理废弃温室并建立基础生态循环；其次是寻找并改良耐受性强的植物基因样本；最后是应对突发的系统故障与资源配给缩减，确保作物在严苛环境下成熟。挑战在于，主角必须在有限的配给额度内，平衡个人生存需求与温室维护成本，同时在冷漠的官僚体系与渴望绿色的居民之间周旋，最终目标并非拯救世界，而是让这片温室成为社区的一抹真实慰藉。",
+              "protagonist_ability": "主角拥有一种名为“共感植培”的特质，源于其家族世代传承的植物生理感知力。通过指尖接触，主角能感知植物的微弱生物电信号，从而精准判断其缺水、缺光或病虫害的早期征兆。这种能力并非超自然魔法，而是一种基于长期观察与生理反馈的深度经验积累。限制在于，过度使用会消耗主角的体力与精神，且无法逆转植物因基因缺陷导致的先天性枯萎，它只能优化生长环境，无法创造奇迹。",
+              "world_basic_setting": "故事发生于全球生态崩溃后的“穹顶纪元”。地表被不可逆的酸雨与高浓度辐射覆盖，人类残存文明被迫迁入由巨型穹顶保护的“温室都市”。社会阶层由对生态循环系统的掌控权划分，资源极度匮乏，每一克有机土壤都受到严格配给。文化上，人们崇尚“循环哲学”，推崇将废弃物转化为生命养料的园艺技术。关键事件“大枯萎”曾导致温室系统瘫痪，现今的温室园丁不仅是技术人员，更是社会维系生存的基石。在这个世界，植物的生长周期即是衡量时间与价值的唯一尺度，而每一株成功存活的作物，都承载着人们对旧世界绿色的集体记忆与对未来微茫的希望。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1776608585_yejdoa",
+            "image_style": {
+              "type": "realistic"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "黑色短发、沾染泥土的工装、眼神沉稳、指尖粗糙、消瘦、总是带着一个旧水壶、沉默寡言、实用主义者、疲惫但坚定、朴素、内敛",
+              "work_en": "The Gardener Under the Dome",
+              "work_zh": "穹顶下的园丁"
+            },
+            "tone": "normal_ending",
+            "user_theme": "末日温室园丁"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "start_ts": 1776608585.5783534,
+        "end_ts": 1776608599.524341,
+        "provider_events": {
+          "event_count": 8,
+          "queue_wait_ms": {
+            "count": 8,
+            "min": 0.0,
+            "max": 8521.0,
+            "mean": 2923.375,
+            "median": 1458.0,
+            "p95": 7629.9
+          },
+          "latency_ms": {
+            "count": 4,
+            "min": 4804.0,
+            "max": 16529.0,
+            "mean": 10541.25,
+            "median": 10416.0,
+            "p95": 15920.6
+          },
+          "llm_success_count": 4,
+          "image_success_count": 0,
+          "request_thread_event_count": 2
+        },
+        "status": "success",
+        "game_id": "game_1776608585_yejdoa"
+      },
+      "first_click": {
+        "http_status": 200,
+        "elapsed_s": 0.024,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "继续推进",
+              "recap_text": "你选择了“寮€濮嬫父鎴?”。当前章节：chapter1。主线进展：继续推进。最近剧情：当前内容生成耗时较长，但你仍可以继续推进剧情。你决定先观察局势并寻找下一步行动方向。"
+            },
+            "deep_background_links": {},
+            "flow_update": {
+              "chapter_conflict_solved": false,
+              "characters": {},
+              "environment": {},
+              "quest_progress": "继续推进"
+            },
+            "next_options": [
+              "继续前进",
+              "查看周围环境"
+            ],
+            "scene": "当前内容生成耗时较长，但你仍可以继续推进剧情。你决定先观察局势并寻找下一步行动方向。",
+            "sceneId": "-6653865955577449109_-7850974664757358982"
+          },
+          "status": "success"
+        },
+        "start_ts": 1776608599.5404224,
+        "end_ts": 1776608599.5648813,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "status": "success",
+        "has_scene": true,
+        "has_image": false
+      },
+      "second_click": {
+        "http_status": 200,
+        "elapsed_s": 0.028,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "你正在执行任务：继续前进",
+              "recap_text": "你选择了“继续前进”。当前章节：chapter1。主线进展：你正在执行任务：继续前进。最近剧情：你选择了：继续前进。在你的努力下，你取得了一些进展。"
+            },
+            "deep_background_links": {},
+            "flow_update": {
+              "chapter_conflict_solved": false,
+              "characters": {},
+              "environment": {},
+              "quest_progress": "你正在执行任务：继续前进"
+            },
+            "next_options": [
+              "继续前进",
+              "查看当前状态",
+              "返回上一步",
+              "探索周围环境"
+            ],
+            "scene": "你选择了：继续前进。在你的努力下，你取得了一些进展。",
+            "sceneId": "-2027155160472839297_-1313984671503898919"
+          },
+          "status": "success"
+        },
+        "start_ts": 1776608614.5773633,
+        "end_ts": 1776608614.605294,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "status": "success",
+        "has_scene": true,
+        "has_image": false,
+        "selected_option_index": 0,
+        "selected_option_text": "继续前进",
+        "input_scene_id": "-6653865955577449109_-7850974664757358982",
+        "inferred_cache_result": "likely_hit"
+      }
+    },
+    {
+      "benchmark_id": "DNQBV1_003",
+      "theme_id": 19,
+      "theme": "都市天台养鸽人",
+      "read_wait_s": 15.0,
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 37.796,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过牺牲睡眠时间，在深夜完成了鸽舍的加固，并成功通过了职场考核，但代价是身体的极度透支，且鸽舍被邻居投诉的隐患并未彻底根除。",
+                  "main_conflict": "主角面临着鸽舍因违建被举报的危机，同时还要应对职场上严苛的绩效考核。如何在被压缩的休息时间里，既要保住这份维持生计的底层工作，又要修缮摇摇欲坠的鸽舍，成为主角必须面对的生存困境。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角动用了全部积蓄救治了领头鸽，虽然鸽子保住了性命，但因伤无法再进行高强度飞行，主角不得不重新挑选接班者，并接受了天台即将被拆除的既定事实。",
+                  "main_conflict": "鸽群在一次训练中遭遇了城市猛禽的袭击，主角最心爱的一只领头鸽受重伤。主角需要在昂贵的兽医费用与鸽群的后续训练资源之间做出抉择，同时还要面对城市规划局提前下达的拆迁通知，时间变得极其紧迫。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角最终选择打开鸽笼，目送鸽群飞向远方。天台被夷为平地，主角回归了普通人的生活，虽然失去了鸽舍，但他在城市的某个角落再次看到了那群熟悉的鸽子，达成了一种释然的平衡。",
+                  "main_conflict": "拆迁队进驻，主角必须在最后期限前完成鸽群的放飞。此时，主角面临着是强行带走鸽群导致它们因不适应环境而死亡，还是让它们回归自然、从此彻底失去这群伙伴的痛苦抉择。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为写实主义都市模拟叙事，采用低饱和度的视觉色调与环境音效，强调城市水泥森林的压抑感与天台微风的自由感。叙事节奏舒缓，侧重于通过日常琐碎的劳作、鸽群的起落与邻里的闲谈，构建一种在钢筋水泥缝隙中寻找生活支点的真实质感。",
+              "main_quest": "主角的目标是在城市拆迁令生效前，完成“最后一次远航”——即训练出一群能够飞越城市最高地标并安全返航的信鸽，以此作为对自己平庸生活的一次致敬。任务分为三个阶段：首先是修缮破旧的天台鸽舍，通过打工筹集饲料与物资；其次是进行高强度的飞行训练，克服城市高楼造成的复杂气流干扰；最后是面对拆迁办的强制清理，在保留鸽群血脉与放弃鸽舍之间做出抉择。挑战在于，主角必须在维持生计的繁重工作与鸽群的训练之间寻找平衡，每一次鸽子的伤亡或丢失都将成为不可逆的遗憾，最终主角将收获一群飞向远方的鸽子，却不得不接受天台被拆除、生活回归平庸的现实。",
+              "protagonist_ability": "主角拥有一种名为“共频感应”的直觉能力，源于长期与鸽群共处的深度观察。通过这种能力，主角能敏锐捕捉到鸽群在气流中的细微变化，从而预判风向与天气，甚至能通过鸽子的飞行轨迹感知到城市中某些被忽视的角落发生的变动。这种能力并非超自然力量，而是极度专注带来的经验积累，限制在于它无法改变现实的物理规则，且在极度焦虑或疲惫时会失效，仅能作为一种辅助生活的生存智慧。",
+              "world_basic_setting": "故事发生在一座名为“南港”的旧工业转型城市。这里高楼林立，老旧居民楼的天台是城市中被遗忘的荒原。社会结构呈现出明显的阶层固化，年轻人被困在繁琐的职场与高昂的房租中，精神世界处于一种慢性疲劳状态。鸽子作为城市唯一的“原住民”，在摩天大楼间穿梭，成为连接现实与理想的唯一纽带。历史背景中，南港曾是繁荣的港口，如今却只剩下锈迹斑斑的吊塔与被拆迁边缘化的老社区。文化上，这里流行着一种“天台哲学”，即在离地几十米的高处，人们试图通过饲养鸽子来对抗生活的失重感。关键事件是城市规划局下达的“天台绿化与违建清理令”，这直接威胁到了主角赖以生存的鸽舍，也迫使主角在个人爱好与城市生存法则之间做出最终抉择。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1776608614_dx23ex",
+            "image_style": {
+              "type": "realistic"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "黑色短发、略显凌乱、穿着洗旧的工装外套、眼神清澈但带有疲惫、手上有长期劳作的茧、常年背着装有鸽食的帆布包",
+              "work_en": "The Rooftop Voyage",
+              "work_zh": "天台的远航"
+            },
+            "tone": "normal_ending",
+            "user_theme": "都市天台养鸽人"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "start_ts": 1776608614.6180632,
+        "end_ts": 1776608652.4143102,
+        "provider_events": {
+          "event_count": 8,
+          "queue_wait_ms": {
+            "count": 8,
+            "min": 0.0,
+            "max": 1011123.0,
+            "mean": 139713.125,
+            "median": 18880.0,
+            "p95": 668361.0
+          },
+          "latency_ms": {
+            "count": 4,
+            "min": 12856.0,
+            "max": 40019.0,
+            "mean": 31366.75,
+            "median": 36296.0,
+            "p95": 39880.55
+          },
+          "llm_success_count": 3,
+          "image_success_count": 0,
+          "request_thread_event_count": 2
+        },
+        "status": "success",
+        "game_id": "game_1776608614_dx23ex"
+      },
+      "first_click": {
+        "http_status": 200,
+        "elapsed_s": 0.024,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "继续推进",
+              "recap_text": "你选择了“寮€濮嬫父鎴?”。当前章节：chapter1。主线进展：继续推进。最近剧情：当前内容生成耗时较长，但你仍可以继续推进剧情。你决定先观察局势并寻找下一步行动方向。"
+            },
+            "deep_background_links": {},
+            "flow_update": {
+              "chapter_conflict_solved": false,
+              "characters": {},
+              "environment": {},
+              "quest_progress": "继续推进"
+            },
+            "next_options": [
+              "继续前进",
+              "查看周围环境"
+            ],
+            "scene": "当前内容生成耗时较长，但你仍可以继续推进剧情。你决定先观察局势并寻找下一步行动方向。",
+            "sceneId": "-77004092694745408_5971191610973961075"
+          },
+          "status": "success"
+        },
+        "start_ts": 1776608652.4271088,
+        "end_ts": 1776608652.4511616,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "status": "success",
+        "has_scene": true,
+        "has_image": false
+      },
+      "second_click": {
+        "http_status": 200,
+        "elapsed_s": 0.025,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "你正在执行任务：继续前进",
+              "recap_text": "你选择了“继续前进”。当前章节：chapter1。主线进展：你正在执行任务：继续前进。最近剧情：你选择了：继续前进。在你的努力下，你取得了一些进展。"
+            },
+            "deep_background_links": {},
+            "flow_update": {
+              "chapter_conflict_solved": false,
+              "characters": {},
+              "environment": {},
+              "quest_progress": "你正在执行任务：继续前进"
+            },
+            "next_options": [
+              "继续前进",
+              "查看当前状态",
+              "返回上一步",
+              "探索周围环境"
+            ],
+            "scene": "你选择了：继续前进。在你的努力下，你取得了一些进展。",
+            "sceneId": "3562283632837366816_-1313984671503898919"
+          },
+          "status": "success"
+        },
+        "start_ts": 1776608667.4641943,
+        "end_ts": 1776608667.488992,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "status": "success",
+        "has_scene": true,
+        "has_image": false,
+        "selected_option_index": 0,
+        "selected_option_text": "继续前进",
+        "input_scene_id": "-77004092694745408_5971191610973961075",
+        "inferred_cache_result": "likely_hit"
+      }
+    },
+    {
+      "benchmark_id": "DNQBV1_004",
+      "theme_id": 30,
+      "theme": "克隆体伦理庭",
+      "read_wait_s": 15.0,
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 52.49,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过修复克隆体的神经回路，证实了记忆植入的真实性，并向上级提交了部分调查报告。虽然成功阻止了该克隆体的进一步崩溃，但为了保住工作，主角被迫隐瞒了地下组织的核心成员名单，仅将责任归咎于系统维护疏忽。",
+                  "main_conflict": "主角接手了一名因记忆过载而产生自我认知障碍的克隆体案件。该克隆体坚称自己拥有“从未被赋予”的童年记忆，这直接挑战了伦理庭关于“克隆体无情感记忆”的官方定论。主角在调查中发现，这并非简单的系统故障，而是某种地下组织在利用克隆体进行记忆植入实验，试图通过制造“虚假身份”来渗透社会核心层。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角最终选择了保护线人，放弃了部分关键证据的获取。虽然未能彻底扳倒高层官员，但主角通过匿名渠道将部分真相公之于众，引发了小范围的社会舆论，迫使伦理庭暂停了部分高风险实验。",
+                  "main_conflict": "主角发现自己被卷入了伦理庭内部的权力斗争。一名高层官员试图销毁所有关于“记忆植入”的证据，并计划将主角作为替罪羊。主角在调查中与一名同为克隆体的线人建立了深厚羁绊，对方提供了关键证据，但代价是该线人必须接受“彻底格式化”以掩盖行踪。主角面临着“牺牲他人换取真相”还是“放弃调查保全同伴”的道德困境。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角将证据封存并移交给了一位可信的第三方，选择放弃追究真相的执念。主角接受了自己作为“普通个体”的局限性，虽然失去了职业身份，但换取了平静的生活。结局中，主角在城市的角落里看着夕阳，虽然仍有关于身份的困惑，但已能坦然面对不完美的自我。",
+                  "main_conflict": "真相的碎片化披露导致社会陷入动荡，主角因泄密嫌疑被停职调查。主角必须在有限的时间内，处理掉自己手中掌握的最后一份核心证据。此时，主角发现自己也开始出现记忆混淆的症状，意识到自己可能也是实验的受害者之一。主角需要在“揭露自己身份”与“回归平凡生活”之间做出最终抉择。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "沉浸式现实主义叙事，采用冷峻克制的镜头语言，强调环境细节与生活质感的堆叠。通过碎片化叙事展现社会肌理，在平淡的日常琐碎中嵌入伦理困境，旨在引发玩家对“个体存在价值”与“社会功能性”的深层反思。",
+              "main_quest": "主角受雇于伦理庭，负责处理一起因克隆体记忆泄露引发的社会骚乱。目标是追回一段被非法复制的“核心记忆”，并平息由此引发的舆论风波。玩家需在繁杂的城市档案中搜集线索，通过修复受损的克隆体神经回路，逐步拼凑出事件真相。挑战在于，主角在调查过程中会发现自己与该克隆体存在某种隐秘的基因关联，必须在“维护社会秩序的职业职责”与“揭露真相的个人良知”之间做出选择。最终目标并非推翻体制，而是为受害者争取到一份迟来的社会补偿，并在这个过程中，完成主角对自身存在意义的确认。",
+              "protagonist_ability": "主角拥有一种名为“共感频率调谐”的感知能力，源于其作为“克隆体修复师”的职业训练与基因突变。通过接触克隆体的神经接口，主角能读取其残存的记忆碎片与情绪波动。使用时需消耗极高的精神专注力，且过度使用会导致自身记忆与被读取者产生混淆。该能力受到法律严格限制，仅能用于修复受损的神经回路，严禁用于挖掘隐私，一旦被检测到非法读取，将面临被强制格式化的风险。",
+              "world_basic_setting": "故事发生于近未来的“新安平市”，一座高度依赖生物工程维持运转的工业都市。社会将克隆技术作为解决劳动力短缺与器官移植的基石，克隆体被定义为“功能性资产”，拥有合法的社会身份，但被剥夺了继承权与部分公民自由。城市地理被严格划分为“核心区”与“循环区”，核心区享受科技红利，循环区则是克隆体与底层劳动者的聚居地。历史背景源于五十年前的“大衰退”，政府为维持社会稳定，通过《生物资产法案》将克隆人纳入社会保障体系，但也将其锁死在特定的职业轨道中。文化上，社会普遍存在一种“功能至上论”，人们习惯于将他人的价值与职业贡献挂钩。关键事件“零号法案修订”引发了关于克隆体是否拥有情感记忆的社会大讨论，但最终以“记忆碎片化处理”作为妥协，导致克隆体普遍存在认知偏差与身份认同危机。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1776608667_i78mn0",
+            "image_style": {
+              "type": "realistic"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lynn",
+              "name_zh": "林恩",
+              "signature_look_keywords": "深灰色工装外套，佩戴单侧神经接口扫描仪，眼神疲惫且专注，手指常有细微颤抖，黑色短发，清瘦，沉默寡言，总是随身携带一本旧笔记本。",
+              "work_en": "Memory Stitcher",
+              "work_zh": "记忆缝合者"
+            },
+            "tone": "normal_ending",
+            "user_theme": "克隆体伦理庭"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "start_ts": 1776608667.5012543,
+        "end_ts": 1776608719.991337,
+        "provider_events": {
+          "event_count": 16,
+          "queue_wait_ms": {
+            "count": 16,
+            "min": 0.0,
+            "max": 1011123.0,
+            "mean": 197306.062,
+            "median": 43306.5,
+            "p95": 838233.75
+          },
+          "latency_ms": {
+            "count": 8,
+            "min": 4469.0,
+            "max": 69969.0,
+            "mean": 25918.75,
+            "median": 19178.0,
+            "p95": 59819.35
+          },
+          "llm_success_count": 6,
+          "image_success_count": 0,
+          "request_thread_event_count": 2
+        },
+        "status": "success",
+        "game_id": "game_1776608667_i78mn0"
+      },
+      "first_click": {
+        "http_status": 200,
+        "elapsed_s": 0.006,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "继续推进",
+              "recap_text": "你选择了“寮€濮嬫父鎴?”。当前章节：chapter1。主线进展：继续推进。最近剧情：当前内容生成耗时较长，但你仍可以继续推进剧情。你决定先观察局势并寻找下一步行动方向。"
+            },
+            "deep_background_links": {},
+            "flow_update": {
+              "chapter_conflict_solved": false,
+              "characters": {},
+              "environment": {},
+              "quest_progress": "继续推进"
+            },
+            "next_options": [
+              "继续前进",
+              "查看周围环境"
+            ],
+            "scene": "当前内容生成耗时较长，但你仍可以继续推进剧情。你决定先观察局势并寻找下一步行动方向。",
+            "sceneId": "5397417536656552636_-7939630799439053221"
+          },
+          "status": "success"
+        },
+        "start_ts": 1776608720.004681,
+        "end_ts": 1776608720.0109422,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "status": "success",
+        "has_scene": true,
+        "has_image": false
+      },
+      "second_click": {
+        "http_status": 200,
+        "elapsed_s": 0.018,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "你正在执行任务：继续前进",
+              "recap_text": "你选择了“继续前进”。当前章节：chapter1。主线进展：你正在执行任务：继续前进。最近剧情：你选择了：继续前进。在你的努力下，你取得了一些进展。"
+            },
+            "deep_background_links": {},
+            "flow_update": {
+              "chapter_conflict_solved": false,
+              "characters": {},
+              "environment": {},
+              "quest_progress": "你正在执行任务：继续前进"
+            },
+            "next_options": [
+              "继续前进",
+              "查看当前状态",
+              "返回上一步",
+              "探索周围环境"
+            ],
+            "scene": "你选择了：继续前进。在你的努力下，你取得了一些进展。",
+            "sceneId": "6104914194174580040_-1313984671503898919"
+          },
+          "status": "success"
+        },
+        "start_ts": 1776608735.0241275,
+        "end_ts": 1776608735.042238,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "status": "success",
+        "has_scene": true,
+        "has_image": false,
+        "selected_option_index": 0,
+        "selected_option_text": "继续前进",
+        "input_scene_id": "5397417536656552636_-7939630799439053221",
+        "inferred_cache_result": "likely_hit"
+      }
+    },
+    {
+      "benchmark_id": "DNQBV1_005",
+      "theme_id": 2,
+      "theme": "月球矿难七日",
+      "read_wait_s": 15.0,
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 66.92,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过修复备用通风管道，暂时缓解了氧气危机，并确立了作为临时领导者的地位，但代价是牺牲了部分珍贵的维修零件，导致后续逃生设备的修复难度增加。",
+                  "main_conflict": "矿难突发，通讯彻底中断，主角所在的维修小组被困在深层矿道。氧气循环系统受损，剩余氧气仅够维持三天，而救援队预计七日后才能到达。此时，工友们陷入恐慌，关于“是否应该抛弃伤员以节省氧气”的争论引发了第一次剧烈的道德冲突，主角必须在维持秩序与保全自我之间做出艰难的平衡。 矛盾结束条件：主角通过修复备用通风管道，暂时缓解了氧气危机，并确立了作为临时领导者的地位，但代价是牺牲了部分珍贵的维修零件，导致后续逃生设备的修复难度增加。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角通过公开真相并重新分配资源，平息了冲突，但团队彻底失去了凝聚力，每个人都开始各怀鬼胎，主角意识到自己无法拯救所有人，只能选择保护最弱小的一员。",
+                  "main_conflict": "随着时间推移，资源匮乏导致团队内部信任崩塌。一名工友因私藏氧气罐被发现，引发了群体暴力冲突。主角试图调解，却发现自己曾信任的伙伴为了生存，早已背地里与财阀签订了“优先撤离协议”。主角面临着“揭露真相导致团队分裂”还是“隐瞒真相维持虚假团结”的困境，心理压力达到极限。 矛盾结束条件：主角通过公开真相并重新分配资源，平息了冲突，但团队彻底失去了凝聚力，每个人都开始各怀鬼胎，主角意识到自己无法拯救所有人，只能选择保护最弱小的一员。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角成功将两名工友送上逃生舱，自己因通道坍塌被困在舱外。最终，主角在缺氧的昏迷中听到了救援队的呼喊，虽然未能亲眼看到地球，但通过通讯器确认了工友的安全，在遗憾与释然中达成了一种不完美的结局。 【主角规范信息】 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：中年 所属作品(中)：月球矿难七日 所属作品(英)：Seven Days in Lunar Mine 标志性外观关键词：灰白短发、满脸胡茬、深陷的眼窝、沾满矿尘的工装、左手腕的旧式机械表、沉默寡言、疲惫但坚毅的眼神、粗糙的双手、常年佩戴的护目镜、略显佝偻的背影、冷静的表情、沧桑感。 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决",
+                  "main_conflict": "最终撤离时刻，逃生舱仅能容纳两人，而幸存者还有三人。救援队抵达，但因矿区结构不稳定，撤离通道即将彻底封闭。主角必须在“牺牲自己成全他人”、“带走最亲近的工友”或“放弃部分人以求自保”中做出最终选择，这不仅是生存的博弈，更是对个人道德底线的终极审判。 矛盾结束条件：主角成功将两名工友送上逃生舱，自己因通道坍塌被困在舱外。最终，主角在缺氧的昏迷中听到了救援队的呼喊，虽然未能亲眼看到地球，但通过通讯器确认了工友的安全，在遗憾与释然中达成了一种不完美的结局。 【主角规范信息】 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：中年 所属作品(中)：月球矿难七日 所属作品(英)：Seven Days in Lunar Mine 标志性外观关键词：灰白短发、满脸胡茬、深陷的眼窝、沾满矿尘的工装、左手腕的旧式机械表、沉默寡言、疲惫但坚毅的眼神、粗糙的双手、常年佩戴的护目镜、略显佝偻的背影、冷静的表情、沧桑感。 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "硬核工业写实风格，强调幽闭环境下的心理博弈与生存压力。画面色调冷峻，音效注重机械运作的低频震动与真空的死寂，营造一种“在宏大宇宙背景下，个体命运如尘埃般渺小且真实”的沉浸式体验。",
+              "main_quest": "主角作为静海矿区的一名普通维修工，在矿难发生后的七日内，目标是带领幸存的几名工友，从坍塌的深层矿区撤离至地表避难所。任务分为三个阶段：首先是修复受损的生命维持系统以争取时间；其次是协调工友间因资源分配产生的矛盾，维持团队稳定；最后是寻找备用逃生舱并完成撤离。挑战在于氧气配额的持续减少、财阀救援队的迟缓，以及在人性自私与集体生存之间的艰难抉择。最终目标并非拯救所有人，而是尽可能多地带回同伴，并接受那些因客观条件无法幸存者的离去。",
+              "protagonist_ability": "主角拥有一套名为“旧时代矿工直觉”的经验感知系统。该能力源于其在地球废弃矿区长达十年的实操积累，通过观察气压表细微抖动、听取金属疲劳的共振频率，能预判坍塌风险或寻找微小的氧气泄漏点。限制在于该能力极度依赖体力与专注力，在极度缺氧环境下会产生幻觉，且无法改变物理坍塌的既定事实，只能在有限的资源中寻找最优生存路径。",
+              "world_basic_setting": "故事背景设定在2070年代的月球背面“静海工业区”。人类已实现月球资源开采的常态化，但高昂的维护成本与极端的生存环境，使得这里成为底层劳工的“镀金炼狱”。社会结构由垄断矿业的巨型财阀与依附其生存的合同工组成，文化上充斥着对地球的乡愁与对未来的虚无感。关键事件“静海矿难”发生于一次地壳震动引发的深层坍塌，导致矿区通讯中断、氧气循环系统受损。此时的月球不再是科幻的乐土，而是一个由金属、氧气配额、阶级差异与生存本能构成的封闭系统。在这里，科技无法解决所有危机，人与人之间的信任与利益交换，才是决定能否在七日内等到救援的关键。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "environment": {}
+            },
+            "game_id": "game_1776608735_ebn9a7",
+            "image_style": {
+              "type": "cyberpunk"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "gender": "男性"
+            },
+            "tone": "normal_ending",
+            "user_theme": "月球矿难七日"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "start_ts": 1776608735.054725,
+        "end_ts": 1776608801.974399,
+        "provider_events": {
+          "event_count": 14,
+          "queue_wait_ms": {
+            "count": 14,
+            "min": 0.0,
+            "max": 547519.0,
+            "mean": 154881.0,
+            "median": 40080.0,
+            "p95": 547519.0
+          },
+          "latency_ms": {
+            "count": 7,
+            "min": 4145.0,
+            "max": 65711.0,
+            "mean": 35712.571,
+            "median": 34207.0,
+            "p95": 62541.8
+          },
+          "llm_success_count": 4,
+          "image_success_count": 0,
+          "request_thread_event_count": 2
+        },
+        "status": "success",
+        "game_id": "game_1776608735_ebn9a7"
+      },
+      "first_click": {
+        "http_status": 200,
+        "elapsed_s": 0.005,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "继续推进",
+              "recap_text": "你选择了“寮€濮嬫父鎴?”。当前章节：chapter1。主线进展：继续推进。最近剧情：当前内容生成耗时较长，但你仍可以继续推进剧情。你决定先观察局势并寻找下一步行动方向。"
+            },
+            "deep_background_links": {},
+            "flow_update": {
+              "chapter_conflict_solved": false,
+              "characters": {},
+              "environment": {},
+              "quest_progress": "继续推进"
+            },
+            "next_options": [
+              "继续前进",
+              "查看周围环境"
+            ],
+            "scene": "当前内容生成耗时较长，但你仍可以继续推进剧情。你决定先观察局势并寻找下一步行动方向。",
+            "sceneId": "-7121983161687322609_-1142694126917950463"
+          },
+          "status": "success"
+        },
+        "start_ts": 1776608801.9878292,
+        "end_ts": 1776608801.9929345,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "status": "success",
+        "has_scene": true,
+        "has_image": false
+      },
+      "second_click": {
+        "http_status": 200,
+        "elapsed_s": 0.021,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "你正在执行任务：继续前进",
+              "recap_text": "你选择了“继续前进”。当前章节：chapter1。主线进展：你正在执行任务：继续前进。最近剧情：你选择了：继续前进。在你的努力下，你取得了一些进展。"
+            },
+            "deep_background_links": {},
+            "flow_update": {
+              "chapter_conflict_solved": false,
+              "characters": {},
+              "environment": {},
+              "quest_progress": "你正在执行任务：继续前进"
+            },
+            "next_options": [
+              "继续前进",
+              "查看当前状态",
+              "返回上一步",
+              "探索周围环境"
+            ],
+            "scene": "你选择了：继续前进。在你的努力下，你取得了一些进展。",
+            "sceneId": "-4629686250511444144_-1313984671503898919"
+          },
+          "status": "success"
+        },
+        "start_ts": 1776608817.0067873,
+        "end_ts": 1776608817.0281088,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "status": "success",
+        "has_scene": true,
+        "has_image": false,
+        "selected_option_index": 0,
+        "selected_option_text": "继续前进",
+        "input_scene_id": "-7121983161687322609_-1142694126917950463",
+        "inferred_cache_result": "likely_hit"
+      }
+    },
+    {
+      "benchmark_id": "DNQBV1_006",
+      "theme_id": 7,
+      "theme": "星际走私航线",
+      "read_wait_s": 15.0,
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 34.998,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过精密的机械维修技术，在不触碰违禁品的情况下，通过改装飞船的备用动力系统，勉强完成了第一次短途运输，虽然赚取的报酬仅够维持现状，但成功保住了飞船的飞行能力。",
+                  "main_conflict": "主角面临飞船核心循环系统即将报废的困境，急需一笔资金进行维修，否则飞船将无法起飞，妹妹的药物供应也将中断。与此同时，当地黑帮强迫主角运输一批不明的危险化学品，这不仅违背了主角的原则，还可能导致飞船被星际巡逻队没收。 矛盾结束条件：主角通过精密的机械维修技术，在不触碰违禁品的情况下，通过改装飞船的备用动力系统，勉强完成了第一次短途运输，虽然赚取的报酬仅够维持现状，但成功保住了飞船的飞行能力。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角最终选择了折中方案，将数据匿名发布给所有小型商户，打破了黑帮的垄断，虽然没能获得暴利，但换取了当地商户的信任与长期的航线保护，为后续的稳定收入打下了基础。",
+                  "main_conflict": "主角在一次走私任务中意外救下了一名被遗弃的科研人员，对方掌握着能改变航线利润分配的关键数据。主角陷入了巨大的道德困境：将数据卖给黑帮可以瞬间获得巨额财富，足以立刻送妹妹去治疗；但这样做会摧毁当地贫民赖以生存的地下贸易网络，导致无数家庭陷入绝境。 矛盾结束条件：主角最终选择了折中方案，将数据匿名发布给所有小型商户，打破了黑帮的垄断，虽然没能获得暴利，但换取了当地商户的信任与长期的航线保护，为后续的稳定收入打下了基础。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角选择抛弃了飞船上所有珍贵的私人收藏与备用零件，以极度危险的方式完成了交付。最终，主角攒够了治疗费用，但飞船彻底报废，主角失去了赖以生存的工具，只能在核心星区的边缘，看着妹妹远去的医疗船，独自在陌生的港口开始新的生活。 【主角规范信息】 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：青年 所属作品(中)：锈蚀航线 所属作品(英)：Rust Route 标志性外观关键词：黑色短发、油渍斑驳的工装、消瘦、眼神疲惫但坚定、左手腕有机械义肢接口、常年佩戴护目镜、沉默寡言、略显佝偻的背影、指尖布满老茧、穿着磨损的帆布靴、总是带着一个旧金属挂坠。 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决",
+                  "main_conflict": "最终的跨区运输任务开启，主角在航行途中遭遇了严重的太阳风暴，飞船受损严重。为了保证货物安全交付，主角必须在“抛弃部分关键维修零件以减轻重量”和“冒着飞船解体的风险强行跃迁”之间抉择，这直接关系到任务的最终成败与个人安危。 矛盾结束条件：主角选择抛弃了飞船上所有珍贵的私人收藏与备用零件，以极度危险的方式完成了交付。最终，主角攒够了治疗费用，但飞船彻底报废，主角失去了赖以生存的工具，只能在核心星区的边缘，看着妹妹远去的医疗船，独自在陌生的港口开始新的生活。 【主角规范信息】 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：青年 所属作品(中)：锈蚀航线 所属作品(英)：Rust Route 标志性外观关键词：黑色短发、油渍斑驳的工装、消瘦、眼神疲惫但坚定、左手腕有机械义肢接口、常年佩戴护目镜、沉默寡言、略显佝偻的背影、指尖布满老茧、穿着磨损的帆布靴、总是带着一个旧金属挂坠。 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "采用冷峻写实的工业废土美学，强调星际航行的孤独感与机械磨损的真实质感。叙事节奏沉稳，通过琐碎的舱内生活、报废的零件与电台杂音，构建出一种“在浩瀚宇宙中为生存而奔波”的平民视角，拒绝宏大叙事，聚焦于个体在星际贸易链条底层的挣扎与温情。",
+              "main_quest": "主角的目标是攒够一笔足以购买“合法公民身份”的信用点，从而将患有慢性辐射病的妹妹送往核心星区接受正规治疗。任务分为三个阶段：首先是在锈蚀带积累原始资本，通过高风险的短途走私获取第一桶金；其次是升级飞船性能，以应对更长距离的航线挑战，同时在各方势力间周旋，平衡走私利润与安全风险；最后是执行一次孤注一掷的“长途跨区运输”，试图在规则的缝隙中完成最终交付。挑战不仅来自恶劣的宇宙环境，更来自主角必须在“为了妹妹的未来而彻底出卖良知”与“保持底线但可能导致治疗延误”之间做出痛苦的抉择。",
+              "protagonist_ability": "主角拥有一种名为“共振感知”的特质，源于其长期在旧飞船引擎室工作时，对机械频率产生的生理性适应。通过触摸飞船的金属外壳，主角能感知到引擎细微的磨损与能量回路的阻塞点。这种能力并非超能力，而是一种基于经验的直觉，能极大提高维修效率与航行安全性。然而，长期使用会引发严重的神经衰弱与耳鸣，且无法修复结构性的物理损坏，只能作为一种辅助生存的手段。",
+              "world_basic_setting": "故事发生于“大迁徙时代”后的边缘星域，人类文明被割裂为核心星区的繁华与边境星系的荒芜。这里没有英雄史诗，只有被巨型企业垄断的物流航线。主角身处名为“锈蚀带”的灰色地带，这里是星际走私者的避风港，也是被遗忘的垃圾场。社会结构由严苛的信用点体系统治，底层民众依靠翻新旧时代遗留的飞船，在法律边缘游走，通过运输违禁医疗物资、旧时代芯片或廉价合成食品维持生计。这里没有绝对的善恶，只有为了生存而必须支付的代价。星际航行不再是浪漫的探索，而是高风险的体力活，燃料价格、氧气循环系统的维护、以及随时可能遭遇的星际海盗，构成了普通人生活的全部背景。文化上，这里流行一种“及时行乐”的悲观主义，人们在狭窄的船舱里交换着关于“核心星区”的虚假传说，以此对抗永恒的寂静。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "environment": {}
+            },
+            "game_id": "game_1776608817_tkt7wt",
+            "image_style": {
+              "type": "cyberpunk"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "gender": "男性"
+            },
+            "tone": "normal_ending",
+            "user_theme": "星际走私航线"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "start_ts": 1776608817.0405388,
+        "end_ts": 1776608852.0386138,
+        "provider_events": {
+          "event_count": 8,
+          "queue_wait_ms": {
+            "count": 8,
+            "min": 9203.0,
+            "max": 690033.0,
+            "mean": 109452.5,
+            "median": 24027.5,
+            "p95": 472446.05
+          },
+          "latency_ms": {
+            "count": 4,
+            "min": 6639.0,
+            "max": 23452.0,
+            "mean": 15394.5,
+            "median": 15743.5,
+            "p95": 23276.95
+          },
+          "llm_success_count": 3,
+          "image_success_count": 0,
+          "request_thread_event_count": 2
+        },
+        "status": "success",
+        "game_id": "game_1776608817_tkt7wt"
+      },
+      "first_click": {
+        "http_status": 200,
+        "elapsed_s": 0.015,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "继续推进",
+              "recap_text": "你选择了“寮€濮嬫父鎴?”。当前章节：chapter1。主线进展：继续推进。最近剧情：当前内容生成耗时较长，但你仍可以继续推进剧情。你决定先观察局势并寻找下一步行动方向。"
+            },
+            "deep_background_links": {},
+            "flow_update": {
+              "chapter_conflict_solved": false,
+              "characters": {},
+              "environment": {},
+              "quest_progress": "继续推进"
+            },
+            "next_options": [
+              "继续前进",
+              "查看周围环境"
+            ],
+            "scene": "当前内容生成耗时较长，但你仍可以继续推进剧情。你决定先观察局势并寻找下一步行动方向。",
+            "sceneId": "-7121983161687322609_-1142694126917950463"
+          },
+          "status": "success"
+        },
+        "start_ts": 1776608852.052159,
+        "end_ts": 1776608852.067046,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "status": "success",
+        "has_scene": true,
+        "has_image": false
+      },
+      "second_click": {
+        "http_status": 200,
+        "elapsed_s": 0.008,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "你正在执行任务：继续前进",
+              "recap_text": "你选择了“继续前进”。当前章节：chapter1。主线进展：你正在执行任务：继续前进。最近剧情：你选择了：继续前进。在你的努力下，你取得了一些进展。"
+            },
+            "deep_background_links": {},
+            "flow_update": {
+              "chapter_conflict_solved": false,
+              "characters": {},
+              "environment": {},
+              "quest_progress": "你正在执行任务：继续前进"
+            },
+            "next_options": [
+              "继续前进",
+              "查看当前状态",
+              "返回上一步",
+              "探索周围环境"
+            ],
+            "scene": "你选择了：继续前进。在你的努力下，你取得了一些进展。",
+            "sceneId": "-8119164628387970245_-1313984671503898919"
+          },
+          "status": "success"
+        },
+        "start_ts": 1776608867.07942,
+        "end_ts": 1776608867.0877273,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "status": "success",
+        "has_scene": true,
+        "has_image": false,
+        "selected_option_index": 0,
+        "selected_option_text": "继续前进",
+        "input_scene_id": "-7121983161687322609_-1142694126917950463",
+        "inferred_cache_result": "likely_hit"
+      }
+    }
+  ]
+}

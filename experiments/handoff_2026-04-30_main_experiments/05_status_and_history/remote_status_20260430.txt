@@ -1,0 +1,361 @@
+=== time ===
+Thu Apr 30 11:15:47 CST 2026
+=== processes ===
+root       3639   3628  0 11:15 ?        00:00:00 bash -c  set -e cd /root/autodl-tmp/DN source /root/autodl-tmp/env_sdmv2.sh python scripts/baselines/summarize_image_baselines.py \   /root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1128 \   /root/autodl-tmp/outputs/storydiffusion_formal8/storydiffusion_formal8_unstable_20260430_1131 \   /root/autodl-tmp/outputs/sdmv2_smoke3/sdmv2_smoke3_blocker_20260429 \   /root/autodl-tmp/outputs/sd_public_v14_smoke3/sdmv2_smoke3_compvis_v14_20260430_1135 \   /root/autodl-tmp/outputs/sd_public_v14_formal8/sdmv2_formal8_compvis_v14_20260430_1142 \   /root/autodl-tmp/outputs/iclora_smoke3/ic-lora_smoke3_check \   --output /root/autodl-tmp/outputs/image_baseline_summary_20260430.csv cat > /root/autodl-tmp/outputs/failure_report_20260430.md <<'EOF' # Baseline Failure / Blocker Report - 2026-04-30  ## Completed real generation  - StoryDiffusion smoke3: success 3/3, model source `stablediffusionapi/sdxl-unstable-diffusers-y`, 512x512, 6 steps, 4 images/sample. - StoryDiffusion formal8: success 8/8, model source `stablediffusionapi/sdxl-unstable-diffusers-y`, 512x512, 6 steps, 4 images/sample. - Public SD sanity fallback smoke3/formal8: success, model `CompVis/stable-diffusion-v1-4`. This is not the selected SDM-v2 baseline; it is only a public fallback sanity run.  ## Still blocked  - Strict SDM-v2 (`stabilityai/stable-diffusion-2-1-base`) is blocked by model access: hf-mirror returns 401 and the model is not cached locally. - IC-LoRA is blocked because ComfyUI workflow and model weights are not configured; no training attempted.  ## Notes  - StoryDiffusion initially failed on PhotoMaker eager download and incomplete SDXL cache. The DN runner now skips unused PhotoMaker in textual mode and uses the fully downloaded `Unstable` SDXL-compatible model snapshot. - StoryDiffusion formal8 is the closest current image-baseline deliverable. EOF bash scripts/baselines/remote_status_check.sh > /root/autodl-tmp/outputs/remote_status_20260430.txt cat /root/autodl-tmp/outputs/image_baseline_summary_20260430.csv cd /root/autodl-tmp rm -f DN-baseline-results-lite-20260430.tar.gz # Include images and JSON summaries; exclude model/cache weights. tar -czf DN-baseline-results-lite-20260430.tar.gz --ignore-failed-read \   --exclude='*.ckpt' --exclude='*.safetensors' --exclude='*.bin' --exclude='*.pt' \   outputs/image_baseline_summary_20260430.csv \   outputs/failure_report_20260430.md \   outputs/remote_status_20260430.txt \   outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1128 \   outputs/storydiffusion_formal8/storydiffusion_formal8_unstable_20260430_1131 \   outputs/sdmv2_smoke3/sdmv2_smoke3_blocker_20260429 \   outputs/sd_public_v14_smoke3/sdmv2_smoke3_compvis_v14_20260430_1135 \   outputs/sd_public_v14_formal8/sdmv2_formal8_compvis_v14_20260430_1142 \   outputs/iclora_smoke3/ic-lora_smoke3_check ls -lh DN-baseline-results-lite-20260430.tar.gz 
+=== gpu ===
+NVIDIA GeForce RTX 4090, 0 MiB, 24564 MiB, 0 %
+=== conda envs ===
+# conda environments:
+#
+base                     /root/miniconda3
+sdmv2                 *  /root/miniconda3/envs/sdmv2
+storydiffusion           /root/miniconda3/envs/storydiffusion
+
+=== latest logs ===
+2026-04-28 19:35 28957 /root/autodl-tmp/logs/storydiffusion_setup.log
+2026-04-28 19:40 4703 /root/autodl-tmp/logs/storydiffusion_fix_install.log
+2026-04-28 19:47 34154 /root/autodl-tmp/logs/storydiffusion_install2.log
+2026-04-28 19:49 6636 /root/autodl-tmp/logs/storydiffusion_smoke3_smoke3_20260428_1919.log
+2026-04-28 20:00 8368 /root/autodl-tmp/logs/storydiffusion_smoke3_smoke3_sdxl_20260428_1958.log
+2026-04-29 19:21 11598 /root/autodl-tmp/logs/status_after_upload.log
+2026-04-29 19:47 19890 /root/autodl-tmp/logs/sdmv2_setup_20260429_1935.log
+2026-04-29 19:50 3680 /root/autodl-tmp/logs/sdm_smoke_launcher_20260429_1950.log
+2026-04-29 19:50 3680 /root/autodl-tmp/logs/sdmv2_smoke3_20260429_1950.log
+2026-04-29 19:53 11 /root/autodl-tmp/logs/story_smoke_launcher_20260429_1924.log
+2026-04-29 19:53 11 /root/autodl-tmp/logs/storydiffusion_smoke3_20260429_1924.log
+2026-04-30 10:58 965 /root/autodl-tmp/logs/download_unstable_retry_20260430.log
+2026-04-30 10:59 92 /root/autodl-tmp/logs/storydiffusion_smoke3_unstable_20260430_1107.log
+=== latest StoryDiffusion log tail ===
+/root/autodl-tmp/logs/storydiffusion_smoke3_unstable_20260430_1107.log
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1107
+=== output metrics ===
+/root/autodl-tmp/outputs/iclora_smoke3/ic-lora_smoke3_check/metrics.json
+{
+  "baseline": "ic-lora",
+  "sample_size": 3,
+  "success_count": 0,
+  "failed_count": 0,
+  "blocked_count": 3,
+  "success_rate": 0.0,
+  "mean_latency_s": null,
+  "p95_latency_s": null,
+  "mean_images_per_sample": 0,
+  "oom_count": 0,
+  "failed_ids": [
+    "DNQBV1_001",
+    "DNQBV1_002",
+    "DNQBV1_005"
+  ],
+  "output_dir": "/root/autodl-tmp/outputs/iclora_smoke3/ic-lora_smoke3_check",
+  "notes": "IC-LoRA smoke currently records workflow/model blocker only; no training is attempted."
+}
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_blocker_20260429/metrics.json
+{
+  "baseline": "storydiffusion",
+  "sample_size": 3,
+  "success_count": 0,
+  "failed_count": 0,
+  "blocked_count": 3,
+  "success_rate": 0.0,
+  "mean_latency_s": null,
+  "p95_latency_s": null,
+  "mean_images_per_sample": 0,
+  "oom_count": 0,
+  "failed_ids": [
+    "DNQBV1_001",
+    "DNQBV1_002",
+    "DNQBV1_005"
+  ],
+  "output_dir": "/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_blocker_20260429",
+  "notes": "StoryDiffusion low-VRAM textual-description mode; 4 DN-style scene prompts per item by default."
+}
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1107/metrics.json
+{
+  "baseline": "storydiffusion",
+  "sample_size": 3,
+  "success_count": 0,
+  "failed_count": 0,
+  "blocked_count": 3,
+  "success_rate": 0.0,
+  "mean_latency_s": null,
+  "p95_latency_s": null,
+  "mean_images_per_sample": 0,
+  "oom_count": 0,
+  "failed_ids": [
+    "DNQBV1_001",
+    "DNQBV1_002",
+    "DNQBV1_005"
+  ],
+  "output_dir": "/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1107",
+  "notes": "StoryDiffusion low-VRAM textual-description mode; 4 DN-style scene prompts per item by default."
+}
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1118/metrics.json
+{
+  "baseline": "storydiffusion",
+  "sample_size": 3,
+  "success_count": 0,
+  "failed_count": 3,
+  "blocked_count": 0,
+  "success_rate": 0.0,
+  "mean_latency_s": null,
+  "p95_latency_s": null,
+  "mean_images_per_sample": 0,
+  "oom_count": 0,
+  "failed_ids": [
+    "DNQBV1_001",
+    "DNQBV1_002",
+    "DNQBV1_005"
+  ],
+  "output_dir": "/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1118",
+  "notes": "StoryDiffusion low-VRAM textual-description mode; 4 DN-style scene prompts per item by default."
+}
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1128/metrics.json
+{
+  "baseline": "storydiffusion",
+  "sample_size": 3,
+  "success_count": 3,
+  "failed_count": 0,
+  "blocked_count": 0,
+  "success_rate": 1.0,
+  "mean_latency_s": 9.088,
+  "p95_latency_s": 11.152,
+  "mean_images_per_sample": 4,
+  "oom_count": 0,
+  "failed_ids": [],
+  "output_dir": "/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1128",
+  "notes": "StoryDiffusion low-VRAM textual-description mode; 4 DN-style scene prompts per item by default."
+}
+/root/autodl-tmp/outputs/sdmv2_smoke3/sdmv2_smoke3_blocker_20260429/metrics.json
+{
+  "baseline": "sdmv2",
+  "sample_size": 3,
+  "success_count": 0,
+  "failed_count": 0,
+  "blocked_count": 3,
+  "success_rate": 0.0,
+  "mean_latency_s": null,
+  "p95_latency_s": null,
+  "mean_images_per_sample": 0,
+  "oom_count": 0,
+  "failed_ids": [
+    "DNQBV1_001",
+    "DNQBV1_002",
+    "DNQBV1_005"
+  ],
+  "output_dir": "/root/autodl-tmp/outputs/sdmv2_smoke3/sdmv2_smoke3_blocker_20260429",
+  "notes": "SDM-v2 model load blocked before generation; likely gated model access or network/cache issue."
+}
+/root/autodl-tmp/outputs/storydiffusion_formal8/storydiffusion_formal8_unstable_20260430_1131/metrics.json
+{
+  "baseline": "storydiffusion",
+  "sample_size": 8,
+  "success_count": 8,
+  "failed_count": 0,
+  "blocked_count": 0,
+  "success_rate": 1.0,
+  "mean_latency_s": 8.053,
+  "p95_latency_s": 10.036,
+  "mean_images_per_sample": 4,
+  "oom_count": 0,
+  "failed_ids": [],
+  "output_dir": "/root/autodl-tmp/outputs/storydiffusion_formal8/storydiffusion_formal8_unstable_20260430_1131",
+  "notes": "StoryDiffusion low-VRAM textual-description mode; 4 DN-style scene prompts per item by default."
+}
+/root/autodl-tmp/outputs/sd_public_v14_smoke3/sdmv2_smoke3_compvis_v14_20260430_1135/metrics.json
+{
+  "baseline": "sdmv2",
+  "sample_size": 3,
+  "success_count": 3,
+  "failed_count": 0,
+  "blocked_count": 0,
+  "success_rate": 1.0,
+  "mean_latency_s": 0.915,
+  "p95_latency_s": 1.3,
+  "mean_images_per_sample": 1,
+  "oom_count": 0,
+  "failed_ids": [],
+  "output_dir": "/root/autodl-tmp/outputs/sd_public_v14_smoke3/sdmv2_smoke3_compvis_v14_20260430_1135",
+  "notes": "SDM-v2 uses diffusers and generates one image per DN-style item; no character-consistency claim."
+}
+/root/autodl-tmp/outputs/sd_public_v14_formal8/sdmv2_formal8_compvis_v14_20260430_1142/metrics.json
+{
+  "baseline": "sdmv2",
+  "sample_size": 8,
+  "success_count": 8,
+  "failed_count": 0,
+  "blocked_count": 0,
+  "success_rate": 1.0,
+  "mean_latency_s": 0.588,
+  "p95_latency_s": 0.931,
+  "mean_images_per_sample": 1,
+  "oom_count": 0,
+  "failed_ids": [],
+  "output_dir": "/root/autodl-tmp/outputs/sd_public_v14_formal8/sdmv2_formal8_compvis_v14_20260430_1142",
+  "notes": "SDM-v2 uses diffusers and generates one image per DN-style item; no character-consistency claim."
+}
+=== output files tail ===
+/root/autodl-tmp/outputs/sdmv2_smoke3/sdmv2_smoke3_blocker_20260429/DNQBV1_001/prompt.json
+/root/autodl-tmp/outputs/sdmv2_smoke3/sdmv2_smoke3_blocker_20260429/DNQBV1_001/result.json
+/root/autodl-tmp/outputs/sdmv2_smoke3/sdmv2_smoke3_blocker_20260429/DNQBV1_002/prompt.json
+/root/autodl-tmp/outputs/sdmv2_smoke3/sdmv2_smoke3_blocker_20260429/DNQBV1_002/result.json
+/root/autodl-tmp/outputs/sdmv2_smoke3/sdmv2_smoke3_blocker_20260429/DNQBV1_005/prompt.json
+/root/autodl-tmp/outputs/sdmv2_smoke3/sdmv2_smoke3_blocker_20260429/DNQBV1_005/result.json
+/root/autodl-tmp/outputs/sdmv2_smoke3/sdmv2_smoke3_blocker_20260429/config.json
+/root/autodl-tmp/outputs/sdmv2_smoke3/sdmv2_smoke3_blocker_20260429/environment.json
+/root/autodl-tmp/outputs/sdmv2_smoke3/sdmv2_smoke3_blocker_20260429/metrics.json
+/root/autodl-tmp/outputs/sdmv2_smoke3/sdmv2_smoke3_blocker_20260429/sample_index.md
+/root/autodl-tmp/outputs/sdmv2_smoke3/sdmv2_smoke3_blocker_20260429/summary.csv
+/root/autodl-tmp/outputs/sdmv2_smoke3/sdmv2_smoke3_blocker_20260429/summary.json
+/root/autodl-tmp/outputs/storydiffusion_formal8/storydiffusion_formal8_unstable_20260430_1131/DNQBV1_001/image_001.png
+/root/autodl-tmp/outputs/storydiffusion_formal8/storydiffusion_formal8_unstable_20260430_1131/DNQBV1_001/image_002.png
+/root/autodl-tmp/outputs/storydiffusion_formal8/storydiffusion_formal8_unstable_20260430_1131/DNQBV1_001/image_003.png
+/root/autodl-tmp/outputs/storydiffusion_formal8/storydiffusion_formal8_unstable_20260430_1131/DNQBV1_001/image_004.png
+/root/autodl-tmp/outputs/storydiffusion_formal8/storydiffusion_formal8_unstable_20260430_1131/DNQBV1_001/prompt.json
+/root/autodl-tmp/outputs/storydiffusion_formal8/storydiffusion_formal8_unstable_20260430_1131/DNQBV1_001/prompt.txt
+/root/autodl-tmp/outputs/storydiffusion_formal8/storydiffusion_formal8_unstable_20260430_1131/DNQBV1_001/result.json
+/root/autodl-tmp/outputs/storydiffusion_formal8/storydiffusion_formal8_unstable_20260430_1131/DNQBV1_002/image_001.png
+/root/autodl-tmp/outputs/storydiffusion_formal8/storydiffusion_formal8_unstable_20260430_1131/DNQBV1_002/image_002.png
+/root/autodl-tmp/outputs/storydiffusion_formal8/storydiffusion_formal8_unstable_20260430_1131/DNQBV1_002/image_003.png
+/root/autodl-tmp/outputs/storydiffusion_formal8/storydiffusion_formal8_unstable_20260430_1131/DNQBV1_002/image_004.png
+/root/autodl-tmp/outputs/storydiffusion_formal8/storydiffusion_formal8_unstable_20260430_1131/DNQBV1_002/prompt.json
+/root/autodl-tmp/outputs/storydiffusion_formal8/storydiffusion_formal8_unstable_20260430_1131/DNQBV1_002/prompt.txt
+/root/autodl-tmp/outputs/storydiffusion_formal8/storydiffusion_formal8_unstable_20260430_1131/DNQBV1_002/result.json
+/root/autodl-tmp/outputs/storydiffusion_formal8/storydiffusion_formal8_unstable_20260430_1131/DNQBV1_004/image_001.png
+/root/autodl-tmp/outputs/storydiffusion_formal8/storydiffusion_formal8_unstable_20260430_1131/DNQBV1_004/image_002.png
+/root/autodl-tmp/outputs/storydiffusion_formal8/storydiffusion_formal8_unstable_20260430_1131/DNQBV1_004/image_003.png
+/root/autodl-tmp/outputs/storydiffusion_formal8/storydiffusion_formal8_unstable_20260430_1131/DNQBV1_004/image_004.png
+/root/autodl-tmp/outputs/storydiffusion_formal8/storydiffusion_formal8_unstable_20260430_1131/DNQBV1_004/prompt.json
+/root/autodl-tmp/outputs/storydiffusion_formal8/storydiffusion_formal8_unstable_20260430_1131/DNQBV1_004/prompt.txt
+/root/autodl-tmp/outputs/storydiffusion_formal8/storydiffusion_formal8_unstable_20260430_1131/DNQBV1_004/result.json
+/root/autodl-tmp/outputs/storydiffusion_formal8/storydiffusion_formal8_unstable_20260430_1131/DNQBV1_005/image_001.png
+/root/autodl-tmp/outputs/storydiffusion_formal8/storydiffusion_formal8_unstable_20260430_1131/DNQBV1_005/image_002.png
+/root/autodl-tmp/outputs/storydiffusion_formal8/storydiffusion_formal8_unstable_20260430_1131/DNQBV1_005/image_003.png
+/root/autodl-tmp/outputs/storydiffusion_formal8/storydiffusion_formal8_unstable_20260430_1131/DNQBV1_005/image_004.png
+/root/autodl-tmp/outputs/storydiffusion_formal8/storydiffusion_formal8_unstable_20260430_1131/DNQBV1_005/prompt.json
+/root/autodl-tmp/outputs/storydiffusion_formal8/storydiffusion_formal8_unstable_20260430_1131/DNQBV1_005/prompt.txt
+/root/autodl-tmp/outputs/storydiffusion_formal8/storydiffusion_formal8_unstable_20260430_1131/DNQBV1_005/result.json
+/root/autodl-tmp/outputs/storydiffusion_formal8/storydiffusion_formal8_unstable_20260430_1131/DNQBV1_006/image_001.png
+/root/autodl-tmp/outputs/storydiffusion_formal8/storydiffusion_formal8_unstable_20260430_1131/DNQBV1_006/image_002.png
+/root/autodl-tmp/outputs/storydiffusion_formal8/storydiffusion_formal8_unstable_20260430_1131/DNQBV1_006/image_003.png
+/root/autodl-tmp/outputs/storydiffusion_formal8/storydiffusion_formal8_unstable_20260430_1131/DNQBV1_006/image_004.png
+/root/autodl-tmp/outputs/storydiffusion_formal8/storydiffusion_formal8_unstable_20260430_1131/DNQBV1_006/prompt.json
+/root/autodl-tmp/outputs/storydiffusion_formal8/storydiffusion_formal8_unstable_20260430_1131/DNQBV1_006/prompt.txt
+/root/autodl-tmp/outputs/storydiffusion_formal8/storydiffusion_formal8_unstable_20260430_1131/DNQBV1_006/result.json
+/root/autodl-tmp/outputs/storydiffusion_formal8/storydiffusion_formal8_unstable_20260430_1131/DNQBV1_007/image_001.png
+/root/autodl-tmp/outputs/storydiffusion_formal8/storydiffusion_formal8_unstable_20260430_1131/DNQBV1_007/image_002.png
+/root/autodl-tmp/outputs/storydiffusion_formal8/storydiffusion_formal8_unstable_20260430_1131/DNQBV1_007/image_003.png
+/root/autodl-tmp/outputs/storydiffusion_formal8/storydiffusion_formal8_unstable_20260430_1131/DNQBV1_007/image_004.png
+/root/autodl-tmp/outputs/storydiffusion_formal8/storydiffusion_formal8_unstable_20260430_1131/DNQBV1_007/prompt.json
+/root/autodl-tmp/outputs/storydiffusion_formal8/storydiffusion_formal8_unstable_20260430_1131/DNQBV1_007/prompt.txt
+/root/autodl-tmp/outputs/storydiffusion_formal8/storydiffusion_formal8_unstable_20260430_1131/DNQBV1_007/result.json
+/root/autodl-tmp/outputs/storydiffusion_formal8/storydiffusion_formal8_unstable_20260430_1131/DNQBV1_009/image_001.png
+/root/autodl-tmp/outputs/storydiffusion_formal8/storydiffusion_formal8_unstable_20260430_1131/DNQBV1_009/image_002.png
+/root/autodl-tmp/outputs/storydiffusion_formal8/storydiffusion_formal8_unstable_20260430_1131/DNQBV1_009/image_003.png
+/root/autodl-tmp/outputs/storydiffusion_formal8/storydiffusion_formal8_unstable_20260430_1131/DNQBV1_009/image_004.png
+/root/autodl-tmp/outputs/storydiffusion_formal8/storydiffusion_formal8_unstable_20260430_1131/DNQBV1_009/prompt.json
+/root/autodl-tmp/outputs/storydiffusion_formal8/storydiffusion_formal8_unstable_20260430_1131/DNQBV1_009/prompt.txt
+/root/autodl-tmp/outputs/storydiffusion_formal8/storydiffusion_formal8_unstable_20260430_1131/DNQBV1_009/result.json
+/root/autodl-tmp/outputs/storydiffusion_formal8/storydiffusion_formal8_unstable_20260430_1131/DNQBV1_010/image_001.png
+/root/autodl-tmp/outputs/storydiffusion_formal8/storydiffusion_formal8_unstable_20260430_1131/DNQBV1_010/image_002.png
+/root/autodl-tmp/outputs/storydiffusion_formal8/storydiffusion_formal8_unstable_20260430_1131/DNQBV1_010/image_003.png
+/root/autodl-tmp/outputs/storydiffusion_formal8/storydiffusion_formal8_unstable_20260430_1131/DNQBV1_010/image_004.png
+/root/autodl-tmp/outputs/storydiffusion_formal8/storydiffusion_formal8_unstable_20260430_1131/DNQBV1_010/prompt.json
+/root/autodl-tmp/outputs/storydiffusion_formal8/storydiffusion_formal8_unstable_20260430_1131/DNQBV1_010/prompt.txt
+/root/autodl-tmp/outputs/storydiffusion_formal8/storydiffusion_formal8_unstable_20260430_1131/DNQBV1_010/result.json
+/root/autodl-tmp/outputs/storydiffusion_formal8/storydiffusion_formal8_unstable_20260430_1131/config.json
+/root/autodl-tmp/outputs/storydiffusion_formal8/storydiffusion_formal8_unstable_20260430_1131/environment.json
+/root/autodl-tmp/outputs/storydiffusion_formal8/storydiffusion_formal8_unstable_20260430_1131/metrics.json
+/root/autodl-tmp/outputs/storydiffusion_formal8/storydiffusion_formal8_unstable_20260430_1131/run.log
+/root/autodl-tmp/outputs/storydiffusion_formal8/storydiffusion_formal8_unstable_20260430_1131/sample_index.md
+/root/autodl-tmp/outputs/storydiffusion_formal8/storydiffusion_formal8_unstable_20260430_1131/summary.csv
+/root/autodl-tmp/outputs/storydiffusion_formal8/storydiffusion_formal8_unstable_20260430_1131/summary.json
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_20260428_1919/config.json
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_20260428_1919/environment.json
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_20260428_1919/run.log
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_20260429_1924/config.json
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_20260429_1924/environment.json
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_20260429_1924/run.log
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_blocker_20260429/DNQBV1_001/prompt.json
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_blocker_20260429/DNQBV1_001/prompt.txt
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_blocker_20260429/DNQBV1_001/result.json
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_blocker_20260429/DNQBV1_002/prompt.json
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_blocker_20260429/DNQBV1_002/prompt.txt
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_blocker_20260429/DNQBV1_002/result.json
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_blocker_20260429/DNQBV1_005/prompt.json
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_blocker_20260429/DNQBV1_005/prompt.txt
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_blocker_20260429/DNQBV1_005/result.json
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_blocker_20260429/config.json
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_blocker_20260429/environment.json
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_blocker_20260429/metrics.json
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_blocker_20260429/run.log
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_blocker_20260429/sample_index.md
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_blocker_20260429/summary.csv
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_blocker_20260429/summary.json
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_sdxl_20260428_1958/config.json
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_sdxl_20260428_1958/environment.json
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_sdxl_20260428_1958/run.log
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1107/DNQBV1_001/prompt.json
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1107/DNQBV1_001/prompt.txt
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1107/DNQBV1_001/result.json
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1107/DNQBV1_002/prompt.json
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1107/DNQBV1_002/prompt.txt
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1107/DNQBV1_002/result.json
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1107/DNQBV1_005/prompt.json
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1107/DNQBV1_005/prompt.txt
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1107/DNQBV1_005/result.json
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1107/config.json
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1107/environment.json
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1107/metrics.json
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1107/run.log
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1107/sample_index.md
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1107/summary.csv
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1107/summary.json
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1118/DNQBV1_001/prompt.json
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1118/DNQBV1_001/prompt.txt
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1118/DNQBV1_001/result.json
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1118/DNQBV1_002/prompt.json
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1118/DNQBV1_002/prompt.txt
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1118/DNQBV1_002/result.json
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1118/DNQBV1_005/prompt.json
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1118/DNQBV1_005/prompt.txt
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1118/DNQBV1_005/result.json
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1118/config.json
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1118/environment.json
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1118/metrics.json
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1118/run.log
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1118/sample_index.md
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1118/summary.csv
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1118/summary.json
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1128/DNQBV1_001/image_001.png
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1128/DNQBV1_001/image_002.png
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1128/DNQBV1_001/image_003.png
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1128/DNQBV1_001/image_004.png
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1128/DNQBV1_001/prompt.json
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1128/DNQBV1_001/prompt.txt
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1128/DNQBV1_001/result.json
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1128/DNQBV1_002/image_001.png
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1128/DNQBV1_002/image_002.png
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1128/DNQBV1_002/image_003.png
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1128/DNQBV1_002/image_004.png
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1128/DNQBV1_002/prompt.json
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1128/DNQBV1_002/prompt.txt
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1128/DNQBV1_002/result.json
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1128/DNQBV1_005/image_001.png
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1128/DNQBV1_005/image_002.png
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1128/DNQBV1_005/image_003.png
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1128/DNQBV1_005/image_004.png
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1128/DNQBV1_005/prompt.json
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1128/DNQBV1_005/prompt.txt
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1128/DNQBV1_005/result.json
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1128/config.json
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1128/environment.json
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1128/metrics.json
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1128/run.log
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1128/sample_index.md
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1128/summary.csv
+/root/autodl-tmp/outputs/storydiffusion_smoke3/storydiffusion_smoke3_unstable_20260430_1128/summary.json
+=== disk ===
+Filesystem       Size  Used Avail Use% Mounted on
+overlay           30G   15G   16G  50% /
+/dev/md0         140G   16G  125G  11% /root/autodl-tmp
+AutoFS:fswestb1   20T  1.6T   18T   9% /autodl-pub/data

@@ -1,0 +1,340 @@
+{
+  "summary": {
+    "experiment_name": "phase1_DNQBV1_004",
+    "profile": "fullready_strict",
+    "sample_size": 1,
+    "read_wait_s": 0.0,
+    "suite_start_ts": 1777621477.6471546,
+    "suite_end_ts": 1777621567.9643364,
+    "second_click_elapsed_s": {
+      "count": 0
+    },
+    "second_click_success_count": 0,
+    "transport_success_count": 0,
+    "strict_success_count": 0,
+    "likely_hit_count": 0,
+    "likely_hit_rate": 0.0,
+    "failure_bucket_counts": {
+      "first_click_timeout": 1
+    },
+    "placeholder_strict_fail_count": 0,
+    "aborted": false,
+    "success_count": 0,
+    "text_ready_elapsed_s": {
+      "count": 0
+    },
+    "image_ready_elapsed_s": {
+      "count": 0
+    },
+    "full_ready_elapsed_s": {
+      "count": 0
+    },
+    "real_scene_count": 0,
+    "real_scene_rate": 0.0,
+    "direct_image_count": 0,
+    "async_image_count": 0,
+    "placeholder_count": 0,
+    "placeholder_rate": 0.0,
+    "direct_image_rate": 0.0,
+    "async_image_rate": 0.0,
+    "provider_retry_heavy_count": 0,
+    "provider_429_count": 0,
+    "provider_timeout_count": 0,
+    "provider_backoff_wait_ms_total": 0,
+    "main_character_contention_suspected_count": 0,
+    "notes": "Phase 1 probe for failure bucket classification"
+  },
+  "runs": [
+    {
+      "benchmark_id": "DNQBV1_004",
+      "theme_id": 30,
+      "theme": "克隆体伦理庭",
+      "read_wait_s": 0.0,
+      "full_ready_mode": true,
+      "profile": "fullready_strict",
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 30.221,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过深入调查，确认了“余烬”记忆的真实性，并顶住压力签署了“暂缓报废”的申请，虽然保住了对方的性命，但主角因此被降职并调离核心部门，陷入了职业生涯的第一次低谷。",
+                  "main_conflict": "主角接手了“余烬”的审核案，发现其记忆中存在大量不符合逻辑的私人情感片段，这与伦理庭宣称的“克隆体仅为工具”的设定产生剧烈冲突。主角面临来自上司的KPI压力，要求其尽快签署报废协议，而“余烬”表现出的对平凡生活的渴望，让主角开始怀疑自己工作的正当性。 矛盾结束条件：主角通过深入调查，确认了“余烬”记忆的真实性，并顶住压力签署了“暂缓报废”的申请，虽然保住了对方的性命，但主角因此被降职并调离核心部门，陷入了职业生涯的第一次低谷。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角选择放弃揭露宏大阴谋，转而通过私人关系将“余烬”的身份信息进行篡改，使其在系统中彻底“消失”，主角为此耗尽了多年积攒的积蓄与人脉，生活质量大幅下降。",
+                  "main_conflict": "主角在边缘岗位上继续暗中调查，发现伦理庭内部存在大规模的记忆贩卖链条。主角试图搜集证据揭露真相，却发现自己保护的“余烬”竟是某位高层非法克隆的产物，若真相曝光，“余烬”将作为非法证据被彻底销毁。主角陷入了“揭露正义”还是“保全个体”的道德两难。 矛盾结束条件：主角选择放弃揭露宏大阴谋，转而通过私人关系将“余烬”的身份信息进行篡改，使其在系统中彻底“消失”，主角为此耗尽了多年积攒的积蓄与人脉，生活质量大幅下降。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角选择让“余烬”以普通人的身份隐姓埋名生活，自己则承担了所有违规责任，被永久吊销执照。结局中，主角在一家小店重逢了已失去大部分记忆、过着平凡生活的“余烬”，两人相视一笑，虽不再有交集，但彼此都获得了平静。 【主角规范信息】 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：青年 所属作品(中)：伦理庭的余烬 所属作品(英)：Embers of the Ethics Court 标志性外观关键词：黑框眼镜，略显凌乱的深棕色短发，常穿灰色工装衬衫，眼下有明显的黑眼圈，神情疲惫但眼神专注，袖口常卷起，习惯性摩挲指尖，身形瘦削，气质内敛且带有疏离感。 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决",
+                  "main_conflict": "最终审核日到来，伦理庭对主角的违规操作产生了怀疑。主角必须在最后的评估会议上，面对严苛的质询，同时还要处理“余烬”因记忆排异反应而即将崩溃的生理危机。主角需要做出最后的选择：是彻底暴露自己以换取“余烬”的彻底自由，还是在规则边缘游走，让其以平庸的身份在社会底层苟活。 矛盾结束条件：主角选择让“余烬”以普通人的身份隐姓埋名生活，自己则承担了所有违规责任，被永久吊销执照。结局中，主角在一家小店重逢了已失去大部分记忆、过着平凡生活的“余烬”，两人相视一笑，虽不再有交集，但彼此都获得了平静。 【主角规范信息】 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：青年 所属作品(中)：伦理庭的余烬 所属作品(英)：Embers of the Ethics Court 标志性外观关键词：黑框眼镜，略显凌乱的深棕色短发，常穿灰色工装衬衫，眼下有明显的黑眼圈，神情疲惫但眼神专注，袖口常卷起，习惯性摩挲指尖，身形瘦削，气质内敛且带有疏离感。 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为写实主义叙事游戏，采用冷峻克制的美术风格与沉浸式交互设计。通过琐碎的职场日常、压抑的都市景观与细腻的心理描写，构建出一个充满真实质感、拒绝宏大叙事，聚焦于个体在伦理夹缝中挣扎与妥协的现实主义世界。",
+              "main_quest": "主角的目标是完成对“代号：余烬”克隆体的最终审核，并决定其是否进入强制报废程序。玩家需通过日常走访、搜集克隆体生前的记忆碎片、应对伦理庭内部的官僚压力，逐步揭开“余烬”背后隐藏的非法记忆移植真相。挑战在于，主角必须在“维护法律权威以保住饭碗”与“保护一个拥有独立人格的克隆体”之间寻找平衡。最终，主角无法推翻整个伦理庭制度，但能通过伪造评估报告，让“余烬”以残缺的身份获得自由，代价是主角将失去职业资格并背负长期的审查监视，生活回归平庸与困顿。",
+              "protagonist_ability": "主角拥有一种名为“共感校准”的感知能力，源于其曾作为神经心理学家的职业背景。通过与克隆体的深度对话及生物反馈监测，主角能捕捉到对方记忆碎片中的情感波动。这种能力并非超能力，而是极度敏锐的观察与逻辑推演，但使用时会造成严重的精神疲劳，且受限于伦理庭的评估系统，主角无法改变既定的法律裁决，只能在规则内为克隆体争取微小的生存缓冲期。",
+              "world_basic_setting": "故事发生于近未来的东亚都市“新京”，这里是全球生物科技的中心。由于人口老龄化与劳动力短缺，名为“伦理庭”的机构合法化了有限制的“记忆备份克隆”技术，允许逝者或重症者通过克隆体延续社会职能。然而，克隆体并非单纯的容器，它们拥有独立的意识萌芽，却被法律定义为“财产”。社会被划分为“原体阶层”与“代行者阶层”，两者在就业、医疗与社会福利上存在巨大鸿沟。城市表面繁荣，实则充斥着对身份认同的焦虑。关键事件“零号法案”通过后，克隆体的服役期被强制延长，导致社会矛盾激化，而主角作为伦理庭的基层审核员，每日处理着关于克隆体是否具备“人格完整性”的枯燥评估，在冰冷的行政流程与克隆体卑微的求生欲之间，被迫审视生命的价值与代价。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "environment": {}
+            },
+            "game_id": "game_1777621477_fo283w",
+            "image_style": {
+              "type": "realistic"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "gender": "男性"
+            },
+            "tone": "normal_ending",
+            "user_theme": "克隆体伦理庭"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "request_payload": {
+          "gameTheme": "克隆体伦理庭",
+          "protagonistAttr": {},
+          "difficulty": "normal",
+          "toneKey": "normal_ending",
+          "imageStyle": {
+            "type": "realistic"
+          },
+          "_benchmark_profile": "fullready_strict",
+          "_benchmark_measurement": "fullready_nextturn",
+          "_benchmark_read_wait_s": 0.0
+        },
+        "start_ts": 1777621477.647158,
+        "end_ts": 1777621507.8685913,
+        "provider_events": {
+          "event_count": 4,
+          "queue_wait_ms": {
+            "count": 4,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 1,
+            "min": 30202.0,
+            "max": 30202.0,
+            "mean": 30202.0,
+            "median": 30202.0,
+            "p95": 30202.0
+          },
+          "llm_success_count": 1,
+          "image_success_count": 0,
+          "request_thread_event_count": 2,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0
+        },
+        "status": "success",
+        "game_id": "game_1777621477_fo283w"
+      },
+      "first_click": {
+        "http_status": null,
+        "elapsed_s": 60.02,
+        "response_json": {
+          "status": "timeout",
+          "message": "HTTPConnectionPool(host='127.0.0.1', port=5003): Read timed out. (read timeout=60)"
+        },
+        "request_payload": {
+          "option": "开始游戏",
+          "optionIndex": 0,
+          "sceneId": null,
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过深入调查，确认了“余烬”记忆的真实性，并顶住压力签署了“暂缓报废”的申请，虽然保住了对方的性命，但主角因此被降职并调离核心部门，陷入了职业生涯的第一次低谷。",
+                  "main_conflict": "主角接手了“余烬”的审核案，发现其记忆中存在大量不符合逻辑的私人情感片段，这与伦理庭宣称的“克隆体仅为工具”的设定产生剧烈冲突。主角面临来自上司的KPI压力，要求其尽快签署报废协议，而“余烬”表现出的对平凡生活的渴望，让主角开始怀疑自己工作的正当性。 矛盾结束条件：主角通过深入调查，确认了“余烬”记忆的真实性，并顶住压力签署了“暂缓报废”的申请，虽然保住了对方的性命，但主角因此被降职并调离核心部门，陷入了职业生涯的第一次低谷。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角选择放弃揭露宏大阴谋，转而通过私人关系将“余烬”的身份信息进行篡改，使其在系统中彻底“消失”，主角为此耗尽了多年积攒的积蓄与人脉，生活质量大幅下降。",
+                  "main_conflict": "主角在边缘岗位上继续暗中调查，发现伦理庭内部存在大规模的记忆贩卖链条。主角试图搜集证据揭露真相，却发现自己保护的“余烬”竟是某位高层非法克隆的产物，若真相曝光，“余烬”将作为非法证据被彻底销毁。主角陷入了“揭露正义”还是“保全个体”的道德两难。 矛盾结束条件：主角选择放弃揭露宏大阴谋，转而通过私人关系将“余烬”的身份信息进行篡改，使其在系统中彻底“消失”，主角为此耗尽了多年积攒的积蓄与人脉，生活质量大幅下降。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角选择让“余烬”以普通人的身份隐姓埋名生活，自己则承担了所有违规责任，被永久吊销执照。结局中，主角在一家小店重逢了已失去大部分记忆、过着平凡生活的“余烬”，两人相视一笑，虽不再有交集，但彼此都获得了平静。 【主角规范信息】 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：青年 所属作品(中)：伦理庭的余烬 所属作品(英)：Embers of the Ethics Court 标志性外观关键词：黑框眼镜，略显凌乱的深棕色短发，常穿灰色工装衬衫，眼下有明显的黑眼圈，神情疲惫但眼神专注，袖口常卷起，习惯性摩挲指尖，身形瘦削，气质内敛且带有疏离感。 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决",
+                  "main_conflict": "最终审核日到来，伦理庭对主角的违规操作产生了怀疑。主角必须在最后的评估会议上，面对严苛的质询，同时还要处理“余烬”因记忆排异反应而即将崩溃的生理危机。主角需要做出最后的选择：是彻底暴露自己以换取“余烬”的彻底自由，还是在规则边缘游走，让其以平庸的身份在社会底层苟活。 矛盾结束条件：主角选择让“余烬”以普通人的身份隐姓埋名生活，自己则承担了所有违规责任，被永久吊销执照。结局中，主角在一家小店重逢了已失去大部分记忆、过着平凡生活的“余烬”，两人相视一笑，虽不再有交集，但彼此都获得了平静。 【主角规范信息】 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：青年 所属作品(中)：伦理庭的余烬 所属作品(英)：Embers of the Ethics Court 标志性外观关键词：黑框眼镜，略显凌乱的深棕色短发，常穿灰色工装衬衫，眼下有明显的黑眼圈，神情疲惫但眼神专注，袖口常卷起，习惯性摩挲指尖，身形瘦削，气质内敛且带有疏离感。 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为写实主义叙事游戏，采用冷峻克制的美术风格与沉浸式交互设计。通过琐碎的职场日常、压抑的都市景观与细腻的心理描写，构建出一个充满真实质感、拒绝宏大叙事，聚焦于个体在伦理夹缝中挣扎与妥协的现实主义世界。",
+              "main_quest": "主角的目标是完成对“代号：余烬”克隆体的最终审核，并决定其是否进入强制报废程序。玩家需通过日常走访、搜集克隆体生前的记忆碎片、应对伦理庭内部的官僚压力，逐步揭开“余烬”背后隐藏的非法记忆移植真相。挑战在于，主角必须在“维护法律权威以保住饭碗”与“保护一个拥有独立人格的克隆体”之间寻找平衡。最终，主角无法推翻整个伦理庭制度，但能通过伪造评估报告，让“余烬”以残缺的身份获得自由，代价是主角将失去职业资格并背负长期的审查监视，生活回归平庸与困顿。",
+              "protagonist_ability": "主角拥有一种名为“共感校准”的感知能力，源于其曾作为神经心理学家的职业背景。通过与克隆体的深度对话及生物反馈监测，主角能捕捉到对方记忆碎片中的情感波动。这种能力并非超能力，而是极度敏锐的观察与逻辑推演，但使用时会造成严重的精神疲劳，且受限于伦理庭的评估系统，主角无法改变既定的法律裁决，只能在规则内为克隆体争取微小的生存缓冲期。",
+              "world_basic_setting": "故事发生于近未来的东亚都市“新京”，这里是全球生物科技的中心。由于人口老龄化与劳动力短缺，名为“伦理庭”的机构合法化了有限制的“记忆备份克隆”技术，允许逝者或重症者通过克隆体延续社会职能。然而，克隆体并非单纯的容器，它们拥有独立的意识萌芽，却被法律定义为“财产”。社会被划分为“原体阶层”与“代行者阶层”，两者在就业、医疗与社会福利上存在巨大鸿沟。城市表面繁荣，实则充斥着对身份认同的焦虑。关键事件“零号法案”通过后，克隆体的服役期被强制延长，导致社会矛盾激化，而主角作为伦理庭的基层审核员，每日处理着关于克隆体是否具备“人格完整性”的枯燥评估，在冰冷的行政流程与克隆体卑微的求生欲之间，被迫审视生命的价值与代价。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "environment": {}
+            },
+            "game_id": "game_1777621477_fo283w",
+            "image_style": {
+              "type": "realistic"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "gender": "男性"
+            },
+            "tone": "normal_ending",
+            "user_theme": "克隆体伦理庭",
+            "_benchmark_profile": "fullready_strict",
+            "_benchmark_measurement": "fullready_nextturn",
+            "_benchmark_read_wait_s": 0.0
+          }
+        },
+        "start_ts": 1777621507.9065099,
+        "end_ts": 1777621567.9267685,
+        "provider_events": {
+          "event_count": 6,
+          "queue_wait_ms": {
+            "count": 6,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 4,
+            "min": 8713.0,
+            "max": 26816.0,
+            "mean": 16194.5,
+            "median": 14624.5,
+            "p95": 25448.6
+          },
+          "llm_success_count": 4,
+          "image_success_count": 0,
+          "request_thread_event_count": 0,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0
+        },
+        "request_error": "timeout",
+        "attempts": [
+          {
+            "http_status": null,
+            "elapsed_s": 60.02,
+            "response_json": {
+              "status": "timeout",
+              "message": "HTTPConnectionPool(host='127.0.0.1', port=5003): Read timed out. (read timeout=60)"
+            },
+            "request_payload": {
+              "option": "开始游戏",
+              "optionIndex": 0,
+              "sceneId": null,
+              "globalState": {
+                "core_worldview": {
+                  "chapters": {
+                    "chapter1": {
+                      "conflict_end_condition": "主角通过深入调查，确认了“余烬”记忆的真实性，并顶住压力签署了“暂缓报废”的申请，虽然保住了对方的性命，但主角因此被降职并调离核心部门，陷入了职业生涯的第一次低谷。",
+                      "main_conflict": "主角接手了“余烬”的审核案，发现其记忆中存在大量不符合逻辑的私人情感片段，这与伦理庭宣称的“克隆体仅为工具”的设定产生剧烈冲突。主角面临来自上司的KPI压力，要求其尽快签署报废协议，而“余烬”表现出的对平凡生活的渴望，让主角开始怀疑自己工作的正当性。 矛盾结束条件：主角通过深入调查，确认了“余烬”记忆的真实性，并顶住压力签署了“暂缓报废”的申请，虽然保住了对方的性命，但主角因此被降职并调离核心部门，陷入了职业生涯的第一次低谷。"
+                    },
+                    "chapter2": {
+                      "conflict_end_condition": "主角选择放弃揭露宏大阴谋，转而通过私人关系将“余烬”的身份信息进行篡改，使其在系统中彻底“消失”，主角为此耗尽了多年积攒的积蓄与人脉，生活质量大幅下降。",
+                      "main_conflict": "主角在边缘岗位上继续暗中调查，发现伦理庭内部存在大规模的记忆贩卖链条。主角试图搜集证据揭露真相，却发现自己保护的“余烬”竟是某位高层非法克隆的产物，若真相曝光，“余烬”将作为非法证据被彻底销毁。主角陷入了“揭露正义”还是“保全个体”的道德两难。 矛盾结束条件：主角选择放弃揭露宏大阴谋，转而通过私人关系将“余烬”的身份信息进行篡改，使其在系统中彻底“消失”，主角为此耗尽了多年积攒的积蓄与人脉，生活质量大幅下降。"
+                    },
+                    "chapter3": {
+                      "conflict_end_condition": "主角选择让“余烬”以普通人的身份隐姓埋名生活，自己则承担了所有违规责任，被永久吊销执照。结局中，主角在一家小店重逢了已失去大部分记忆、过着平凡生活的“余烬”，两人相视一笑，虽不再有交集，但彼此都获得了平静。 【主角规范信息】 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：青年 所属作品(中)：伦理庭的余烬 所属作品(英)：Embers of the Ethics Court 标志性外观关键词：黑框眼镜，略显凌乱的深棕色短发，常穿灰色工装衬衫，眼下有明显的黑眼圈，神情疲惫但眼神专注，袖口常卷起，习惯性摩挲指尖，身形瘦削，气质内敛且带有疏离感。 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决",
+                      "main_conflict": "最终审核日到来，伦理庭对主角的违规操作产生了怀疑。主角必须在最后的评估会议上，面对严苛的质询，同时还要处理“余烬”因记忆排异反应而即将崩溃的生理危机。主角需要做出最后的选择：是彻底暴露自己以换取“余烬”的彻底自由，还是在规则边缘游走，让其以平庸的身份在社会底层苟活。 矛盾结束条件：主角选择让“余烬”以普通人的身份隐姓埋名生活，自己则承担了所有违规责任，被永久吊销执照。结局中，主角在一家小店重逢了已失去大部分记忆、过着平凡生活的“余烬”，两人相视一笑，虽不再有交集，但彼此都获得了平静。 【主角规范信息】 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：青年 所属作品(中)：伦理庭的余烬 所属作品(英)：Embers of the Ethics Court 标志性外观关键词：黑框眼镜，略显凌乱的深棕色短发，常穿灰色工装衬衫，眼下有明显的黑眼圈，神情疲惫但眼神专注，袖口常卷起，习惯性摩挲指尖，身形瘦削，气质内敛且带有疏离感。 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决"
+                    }
+                  },
+                  "characters": {},
+                  "forces": {},
+                  "game_style": "本作为写实主义叙事游戏，采用冷峻克制的美术风格与沉浸式交互设计。通过琐碎的职场日常、压抑的都市景观与细腻的心理描写，构建出一个充满真实质感、拒绝宏大叙事，聚焦于个体在伦理夹缝中挣扎与妥协的现实主义世界。",
+                  "main_quest": "主角的目标是完成对“代号：余烬”克隆体的最终审核，并决定其是否进入强制报废程序。玩家需通过日常走访、搜集克隆体生前的记忆碎片、应对伦理庭内部的官僚压力，逐步揭开“余烬”背后隐藏的非法记忆移植真相。挑战在于，主角必须在“维护法律权威以保住饭碗”与“保护一个拥有独立人格的克隆体”之间寻找平衡。最终，主角无法推翻整个伦理庭制度，但能通过伪造评估报告，让“余烬”以残缺的身份获得自由，代价是主角将失去职业资格并背负长期的审查监视，生活回归平庸与困顿。",
+                  "protagonist_ability": "主角拥有一种名为“共感校准”的感知能力，源于其曾作为神经心理学家的职业背景。通过与克隆体的深度对话及生物反馈监测，主角能捕捉到对方记忆碎片中的情感波动。这种能力并非超能力，而是极度敏锐的观察与逻辑推演，但使用时会造成严重的精神疲劳，且受限于伦理庭的评估系统，主角无法改变既定的法律裁决，只能在规则内为克隆体争取微小的生存缓冲期。",
+                  "world_basic_setting": "故事发生于近未来的东亚都市“新京”，这里是全球生物科技的中心。由于人口老龄化与劳动力短缺，名为“伦理庭”的机构合法化了有限制的“记忆备份克隆”技术，允许逝者或重症者通过克隆体延续社会职能。然而，克隆体并非单纯的容器，它们拥有独立的意识萌芽，却被法律定义为“财产”。社会被划分为“原体阶层”与“代行者阶层”，两者在就业、医疗与社会福利上存在巨大鸿沟。城市表面繁荣，实则充斥着对身份认同的焦虑。关键事件“零号法案”通过后，克隆体的服役期被强制延长，导致社会矛盾激化，而主角作为伦理庭的基层审核员，每日处理着关于克隆体是否具备“人格完整性”的枯燥评估，在冰冷的行政流程与克隆体卑微的求生欲之间，被迫审视生命的价值与代价。"
+                },
+                "flow_worldline": {
+                  "characters": {},
+                  "environment": {}
+                },
+                "game_id": "game_1777621477_fo283w",
+                "image_style": {
+                  "type": "realistic"
+                },
+                "meta": {
+                  "detail_async": true
+                },
+                "protagonist_canonical": {
+                  "gender": "男性"
+                },
+                "tone": "normal_ending",
+                "user_theme": "克隆体伦理庭",
+                "_benchmark_profile": "fullready_strict",
+                "_benchmark_measurement": "fullready_nextturn",
+                "_benchmark_read_wait_s": 0.0
+              }
+            },
+            "start_ts": 1777621507.9065099,
+            "end_ts": 1777621567.9267685,
+            "provider_events": {
+              "event_count": 6,
+              "queue_wait_ms": {
+                "count": 6,
+                "min": 0.0,
+                "max": 0.0,
+                "mean": 0.0,
+                "median": 0.0,
+                "p95": 0.0
+              },
+              "latency_ms": {
+                "count": 4,
+                "min": 8713.0,
+                "max": 26816.0,
+                "mean": 16194.5,
+                "median": 14624.5,
+                "p95": 25448.6
+              },
+              "llm_success_count": 4,
+              "image_success_count": 0,
+              "request_thread_event_count": 0,
+              "provider_429_count": 0,
+              "provider_timeout_count": 0,
+              "shared_backoff_wait_ms_total": 0,
+              "retry_heavy_event_count": 0,
+              "main_character_event_count": 0,
+              "scene_image_event_count": 0
+            },
+            "request_error": "timeout"
+          }
+        ],
+        "attempt_count": 1,
+        "request_elapsed_s": 60.02,
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "timeout",
+        "has_scene": false,
+        "has_image": false
+      },
+      "second_click": {},
+      "full_ready": {},
+      "placeholder": false,
+      "transport_success": false,
+      "strict_success": false,
+      "failure_bucket": "first_click_timeout",
+      "cache_path_classification": "first_click_timeout",
+      "success": false
+    }
+  ]
+}

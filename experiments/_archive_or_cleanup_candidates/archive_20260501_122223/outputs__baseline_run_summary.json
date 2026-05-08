@@ -1,0 +1,49 @@
+[
+  {
+    "baseline": "sdm_v2",
+    "command": [
+      "C:\\Users\\User\\Desktop\\DN-main\\.venv\\Scripts\\python.exe",
+      "C:\\Users\\User\\Desktop\\DN-main\\scripts\\run_sdm_v2.py",
+      "--input",
+      "data\\input_samples.jsonl",
+      "--output_dir",
+      "outputs/image/sdm_v2"
+    ],
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Missing SDM-v2 dependencies. Install: pip install diffusers transformers accelerate safetensors torch. Original import error: No module named 'diffusers'\n",
+    "status": "failed"
+  },
+  {
+    "baseline": "storydiffusion",
+    "command": [
+      "C:\\Users\\User\\Desktop\\DN-main\\.venv\\Scripts\\python.exe",
+      "C:\\Users\\User\\Desktop\\DN-main\\scripts\\run_storydiffusion.py",
+      "--input",
+      "data\\input_samples.jsonl",
+      "--output_dir",
+      "outputs/image/StoryDiffusion",
+      "--prepare_only"
+    ],
+    "returncode": 0,
+    "stdout": "Wrote StoryDiffusion prepared manifest to outputs\\image\\StoryDiffusion\\index.jsonl\n",
+    "stderr": "",
+    "status": "passed"
+  },
+  {
+    "baseline": "iclora",
+    "command": [
+      "C:\\Users\\User\\Desktop\\DN-main\\.venv\\Scripts\\python.exe",
+      "C:\\Users\\User\\Desktop\\DN-main\\scripts\\run_iclora.py",
+      "--input",
+      "data\\input_samples.jsonl",
+      "--output_dir",
+      "outputs/image/In-Context-LoRA",
+      "--prepare_only"
+    ],
+    "returncode": 0,
+    "stdout": "Wrote IC-LoRA prepared manifest to outputs\\image\\In-Context-LoRA\\index.jsonl\n",
+    "stderr": "",
+    "status": "passed"
+  }
+]

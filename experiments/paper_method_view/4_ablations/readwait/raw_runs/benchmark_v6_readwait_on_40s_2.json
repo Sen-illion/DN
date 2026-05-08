@@ -1,0 +1,635 @@
+{
+  "summary": {
+    "experiment_name": "benchmark_v6_readwait_on_40s_2",
+    "sample_size": 2,
+    "read_wait_s": 40.0,
+    "suite_start_ts": 1776610832.5450063,
+    "suite_end_ts": 1776610988.2561045,
+    "second_click_elapsed_s": {
+      "count": 2,
+      "min": 0.01,
+      "max": 0.012,
+      "mean": 0.011,
+      "median": 0.011,
+      "p95": 0.012
+    },
+    "second_click_success_count": 2,
+    "likely_hit_count": 2,
+    "likely_hit_rate": 1.0
+  },
+  "runs": [
+    {
+      "benchmark_id": "DNQBV1_001",
+      "theme_id": 1,
+      "theme": "边陲驿站夜谈录",
+      "read_wait_s": 40.0,
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 66.558,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "通过协助司机修复车辆并进行深度夜谈，司机重拾面对家庭的勇气离去，主角也通过这次交流，意识到自己对驿站的执着源于对“被需要感”的渴望，从而开始正视驿站即将关闭的现实。",
+                  "main_conflict": "主角初到驿站，面对破败的设施与冷清的生意，内心充满对未来的迷茫。此时，一位急于赶路却因车辆故障滞留的货车司机，因家庭变故在深夜情绪失控，主角需在维持驿站基本运营的同时，安抚这位陷入绝望的陌生人，并处理自己对这份即将消失的工作的依恋。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角成功促成双方达成妥协，虽然补偿款并未达到预期，但维持了基本的体面。主角拒绝了旧友的邀请，选择留在驿站直到最后一刻，接受了自己性格中偏向安稳的一面，不再强求改变。",
+                  "main_conflict": "驿站面临拆迁补偿款的分配争议，主角作为中间人，需在固执的房东与急于撤离的租户之间斡旋。同时，主角昔日的旧友突然造访，试图劝说主角放弃现有的生活轨迹，前往大城市发展，这让主角在“安稳的遗憾”与“未知的冒险”之间陷入了剧烈的自我拉扯。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "老人找到了当年的遗迹，遗憾地发现故乡已变迁，两人在夜谈中达成和解。主角清理完驿站，在拆迁队到来前平静离开，虽未实现职业理想，但内心获得了平静，带着遗憾与对这段经历的珍视，迈向了平凡的未来。",
+                  "main_conflict": "驿站正式进入关闭倒计时，最后一位旅客是一位寻找故乡记忆的老人，主角需帮助老人找回一段模糊的往事。与此同时，主角必须面对自己多年来积攒的个人物品，决定哪些带走，哪些遗弃，这种物理上的清理过程映射出主角对过去人生阶段的告别与不舍。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为现实主义叙事风格，采用沉静的公路片质感与细腻的心理描写。画面色调偏向黄昏的暖调与深夜的冷灰，强调环境的颗粒感与生活气息。叙事节奏舒缓，通过碎片化的对话与环境交互，构建一种“在路上的孤独与共鸣”，旨在让玩家在平实的文字中感受到真实生活的重量与温度。",
+              "main_quest": "主角作为一名即将被裁撤的驿站管理员，需在驿站彻底关闭前的最后三十天里，为过往的五位关键旅客提供补给与心理疏导，并最终决定自己的去向。目标是整理驿站的账目与遗留物，同时通过与旅客的深度交流，解开自己对过去职业生涯的执念。挑战在于，主角必须在“完成工作职责”与“处理个人情感羁绊”之间寻找平衡，同时面对国道改线带来的现实压力。最终任务并非拯救他人，而是通过记录这些即将消散的夜谈，为这段被遗忘的时光留下最后的注脚，并坦然接受自己职业生涯的终结，带着遗憾与释然踏上新的旅程。",
+              "protagonist_ability": "主角拥有一种名为“共情倾听”的特质，这并非超能力，而是长期从事调解工作磨练出的敏锐感知力。通过观察对方的微表情、语调起伏与肢体习惯，主角能迅速捕捉到对方隐藏在客套话下的真实诉求与情感缺口。使用时需通过对话引导与环境互动来触发，限制在于主角无法改变他人的决定，且过度共情会消耗主角自身的情绪能量，导致其在面对自己的生活困境时产生严重的无力感与自我怀疑。",
+              "world_basic_setting": "故事背景设定在当代中国西北边陲的一条老旧国道线上。这里曾是繁华的物流枢纽，随着高速公路网的完善，这里逐渐被时代遗忘，沦为荒凉的“过路地带”。社会结构由留守的老人、疲惫的货车司机、寻找自我的流浪者以及极少数坚守的经营者构成。文化氛围呈现出一种粗粝的生存哲学：人们习惯了离别，也习惯了在漫长的等待中消耗时光。关键事件是“国道改线计划”的推进，这标志着这片区域最后的经济支柱即将断裂，所有留在此地的人都面临着“离开还是留下”的终极抉择。这里没有宏大的史诗，只有被风沙打磨过的、关于生计与归宿的琐碎日常，每个人都在试图在时代的缝隙中寻找属于自己的立足点。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1776610832_06y8zq",
+            "image_style": {
+              "type": "realistic"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "黑色短发、深色工装外套、眼神温和、略显疲惫、常戴一块旧手表、手指修长、不修边幅、沉稳、沉默寡言、背影单薄、常带笔记本、朴素。",
+              "work_en": "Night Talks at the Frontier Station",
+              "work_zh": "边陲驿站夜谈录"
+            },
+            "tone": "normal_ending",
+            "user_theme": "边陲驿站夜谈录"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "start_ts": 1776610832.5450099,
+        "end_ts": 1776610899.102704,
+        "provider_events": {
+          "event_count": 12,
+          "queue_wait_ms": {
+            "count": 12,
+            "min": 0.0,
+            "max": 1286892.0,
+            "mean": 246160.583,
+            "median": 59991.0,
+            "p95": 866882.85
+          },
+          "latency_ms": {
+            "count": 6,
+            "min": 8469.0,
+            "max": 67144.0,
+            "mean": 38266.667,
+            "median": 40912.0,
+            "p95": 65735.75
+          },
+          "llm_success_count": 4,
+          "image_success_count": 0,
+          "request_thread_event_count": 2
+        },
+        "status": "success",
+        "game_id": "game_1776610832_06y8zq"
+      },
+      "first_click": {
+        "http_status": 200,
+        "elapsed_s": 0.017,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "",
+              "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：冰冷的金属管道发出令人牙酸的摩擦声，我蹲在第7号温室的角落，护目镜上凝结着一层薄薄的雾气。空气中弥漫着酸性尘埃腐蚀金属后的铁锈味，与我指尖那株濒死的变异蕨类植物散发的清香交织在一起，显得格外刺鼻。温室的供水主管道裂开了一道狰狞的缝隙，珍贵的循环水正伴随着嘶嘶声不断渗入地下的废弃排污槽。我下意识地用布满细小伤痕的手掌覆盖住管道的裂口，掌心传来一阵刺骨的寒意，那是系统压力骤降的信号。\n\n“林远，别再做无谓的坚持了，管理部只给了你30分钟。”温室的自动门滑开，主管陈默穿着笔挺的制服站在门口，他厌恶地扫了一眼那些枯萎的观赏花卉，语气冷硬如铁，“要么拆除这排花架腾出空间维修管道，要么就等着整个温室因为缺水彻底停摆。你知道该怎么选，效率才是这里的生存法则。”\n\n我沉默地看着他，又低头看向那株在干旱中微微颤抖的蕨类，它叶脉里的水分正在迅速流失。我能感觉到它在向我发出微弱的求救，那是祖辈笔记里记载的、关于生命最后的挣扎。我深吸一口气，指尖在管道粗糙的表面摩挲，试图寻找那唯一的修复契机，但陈默的催促像是一把悬在头顶的铡刀，迫使我必须在职业信仰与现实生存之间做出抉择。"
+            },
+            "deep_background_links": {},
+            "flow_update": {},
+            "next_options": [
+              "拆除观赏花卉，利用腾出的空间与材料紧急修复供水管道。",
+              "拒绝拆除，尝试利用祖辈留下的简易工具在不破坏花架的前提下加固管道。"
+            ],
+            "plot_supporting_characters": [],
+            "scene": "冰冷的金属管道发出令人牙酸的摩擦声，我蹲在第7号温室的角落，护目镜上凝结着一层薄薄的雾气。空气中弥漫着酸性尘埃腐蚀金属后的铁锈味，与我指尖那株濒死的变异蕨类植物散发的清香交织在一起，显得格外刺鼻。温室的供水主管道裂开了一道狰狞的缝隙，珍贵的循环水正伴随着嘶嘶声不断渗入地下的废弃排污槽。我下意识地用布满细小伤痕的手掌覆盖住管道的裂口，掌心传来一阵刺骨的寒意，那是系统压力骤降的信号。\n\n“林远，别再做无谓的坚持了，管理部只给了你30分钟。”温室的自动门滑开，主管陈默穿着笔挺的制服站在门口，他厌恶地扫了一眼那些枯萎的观赏花卉，语气冷硬如铁，“要么拆除这排花架腾出空间维修管道，要么就等着整个温室因为缺水彻底停摆。你知道该怎么选，效率才是这里的生存法则。”\n\n我沉默地看着他，又低头看向那株在干旱中微微颤抖的蕨类，它叶脉里的水分正在迅速流失。我能感觉到它在向我发出微弱的求救，那是祖辈笔记里记载的、关于生命最后的挣扎。我深吸一口气，指尖在管道粗糙的表面摩挲，试图寻找那唯一的修复契机，但陈默的催促像是一把悬在头顶的铡刀，迫使我必须在职业信仰与现实生存之间做出抉择。",
+            "sceneId": "1939370006550829895_374600912616581677",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-greenhouse-conflict-lin-yuan, post-apocalyptic, industrial-decay, solitary-struggle, photorealistic, melancholy, cinematic realism, high-detail texture, dramatic chiaroscuro, muted color palette, young male protagonist Lin Yuan with a lean and emaciated build, focused and weary gaze behind protective goggles, hands covered in fine scars and grime from manual labor, expression of quiet, desperate determination, dirty, oil-stained industrial jumpsuit with reinforced patches, protective goggles with slightly fogged lenses, worn-out gloves with exposed fingertips, crouching low in the corner of a metallic greenhouse, one hand pressed firmly against a leaking pipe fissure, body turned slightly away from 陈默-配角1, kneeling posture protecting a fragile, dying fern, 8K detailed facial features showing signs of exhaustion, goggles covering eyes, reflecting dim industrial light, lip color naturally muted and pale, soft shadows highlighting the sharp jawline, skin texture showing realistic pores and faint dirt smudges, messy short black hair damp with condensation, root fixation coefficient 0.7, tip swing amplitude 5cm, color layering: main black #1A1A1A, secondary charcoal #2F2F2F, highlight #4A4A4A, shadow #000000, no wind effect, heavy and still atmosphere, wind speed 0.0m/s, turbulence intensity 0%, heavy-duty canvas jumpsuit with visible grease stains, frayed edges and metallic buckles, slight fabric tension at the shoulders from crouching, cramped greenhouse corner with rusted metal pipes and dripping water, faded, dying ferns in cracked plastic containers, dim ambient lighting filtering through dirty overhead glass panels, visible dust particles suspended in stagnant air, background features a sliding automatic door slightly ajar, 陈默-配角1 standing at the greenhouse doorway wearing a crisp, sterile-looking uniform, looking down with a cold, impatient expression, fine mist from leaking pipe, glistening water droplets on metallic surfaces, harsh shadow cast by the greenhouse structure, atmospheric haze of acid dust, desaturated iron-grey and rust-brown tones, faded sickly green from dying plants, metallic silver and cold steel blue, sterile white for 陈默-配角1 uniform, harsh overhead industrial fluorescent light, dim, cold light coming from the open doorway behind 陈默-配角1, deep shadows emphasizing the claustrophobic space, type eye-level shot, lens 35mm, aperture f/1.8, depth_of_field shallow focus on protagonist's hands and the plant, flash none, grain fine film grain, texture gritty industrial surfaces, protagonist centered in the foreground, 陈默-配角1 placed in the mid-ground near the open door, leading lines formed by the pipes pointing toward the plant, action constraints: protagonist shielding the plant, 陈默-配角1 gesturing impatiently, photorealistic industrial aesthetic, no text or symbols in image, no watermarks or labels, tense silence, oppressive atmosphere of survival, melancholy fragility, dilemma between duty and empathy, no text, no symbols, no garbled characters, no words",
+              "prompt_json": {
+                "camera": {
+                  "aperture": "f/1.8",
+                  "depth_of_field": "shallow focus on protagonist's hands and the plant",
+                  "flash": "none",
+                  "grain": "fine film grain",
+                  "lens": "35mm",
+                  "texture": "gritty industrial surfaces",
+                  "type": "eye-level shot"
+                },
+                "clothing_system": [
+                  "heavy-duty canvas jumpsuit with visible grease stains",
+                  "frayed edges and metallic buckles",
+                  "slight fabric tension at the shoulders from crouching"
+                ],
+                "color_restriction": [
+                  "desaturated iron-grey and rust-brown tones",
+                  "faded sickly green from dying plants",
+                  "metallic silver and cold steel blue",
+                  "sterile white for 陈默-配角1 uniform"
+                ],
+                "composition": [
+                  "protagonist centered in the foreground",
+                  "陈默-配角1 placed in the mid-ground near the open door",
+                  "leading lines formed by the pipes pointing toward the plant",
+                  "action constraints: protagonist shielding the plant, 陈默-配角1 gesturing impatiently"
+                ],
+                "environment": {
+                  "background": [
+                    "cramped greenhouse corner with rusted metal pipes and dripping water",
+                    "faded, dying ferns in cracked plastic containers",
+                    "dim ambient lighting filtering through dirty overhead glass panels",
+                    "visible dust particles suspended in stagnant air",
+                    "background features a sliding automatic door slightly ajar"
+                  ],
+                  "characters": [
+                    "陈默-配角1 standing at the greenhouse doorway wearing a crisp, sterile-looking uniform, looking down with a cold, impatient expression"
+                  ],
+                  "effects": [
+                    "fine mist from leaking pipe",
+                    "glistening water droplets on metallic surfaces",
+                    "harsh shadow cast by the greenhouse structure",
+                    "atmospheric haze of acid dust"
+                  ]
+                },
+                "face_system": [
+                  "8K detailed facial features showing signs of exhaustion",
+                  "goggles covering eyes, reflecting dim industrial light",
+                  "lip color naturally muted and pale",
+                  "soft shadows highlighting the sharp jawline",
+                  "skin texture showing realistic pores and faint dirt smudges"
+                ],
+                "hair_system": [
+                  "messy short black hair damp with condensation",
+                  "root fixation coefficient 0.7",
+                  "tip swing amplitude 5cm",
+                  "color layering: main black #1A1A1A, secondary charcoal #2F2F2F, highlight #4A4A4A, shadow #000000",
+                  "no wind effect, heavy and still atmosphere",
+                  "wind speed 0.0m/s",
+                  "turbulence intensity 0%"
+                ],
+                "label": "scene-greenhouse-conflict-lin-yuan",
+                "lighting": [
+                  "harsh overhead industrial fluorescent light",
+                  "dim, cold light coming from the open doorway behind 陈默-配角1",
+                  "deep shadows emphasizing the claustrophobic space"
+                ],
+                "mood": [
+                  "tense silence",
+                  "oppressive atmosphere of survival",
+                  "melancholy fragility",
+                  "dilemma between duty and empathy"
+                ],
+                "output_style": [
+                  "photorealistic industrial aesthetic",
+                  "no text or symbols in image",
+                  "no watermarks or labels"
+                ],
+                "style": [
+                  "cinematic realism",
+                  "high-detail texture",
+                  "dramatic chiaroscuro",
+                  "muted color palette"
+                ],
+                "subject": {
+                  "body_traits": [
+                    "young male protagonist Lin Yuan with a lean and emaciated build",
+                    "focused and weary gaze behind protective goggles",
+                    "hands covered in fine scars and grime from manual labor",
+                    "expression of quiet, desperate determination"
+                  ],
+                  "outfit": [
+                    "dirty, oil-stained industrial jumpsuit with reinforced patches",
+                    "protective goggles with slightly fogged lenses",
+                    "worn-out gloves with exposed fingertips"
+                  ],
+                  "pose": [
+                    "crouching low in the corner of a metallic greenhouse",
+                    "one hand pressed firmly against a leaking pipe fissure",
+                    "body turned slightly away from 陈默-配角1",
+                    "kneeling posture protecting a fragile, dying fern"
+                  ]
+                },
+                "tags": [
+                  "post-apocalyptic",
+                  "industrial-decay",
+                  "solitary-struggle",
+                  "photorealistic",
+                  "melancholy"
+                ]
+              },
+              "scene_text_hash": "1017b3e983ae120cf2860fc86cab3ecf",
+              "style": "default",
+              "url": "/image_cache/f99462a10dac600492888034859df9fb.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "start_ts": 1776610899.1187344,
+        "end_ts": 1776610899.135787,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "success",
+        "has_scene": true,
+        "has_image": true
+      },
+      "second_click": {
+        "http_status": 200,
+        "elapsed_s": 0.012,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "你正在执行任务：拆除观赏花卉，利用腾出的空间与材料紧急修复供水管道。",
+              "recap_text": "你选择了“拆除观赏花卉，利用腾出的空间与材料紧急修复供水管道。”。当前章节：chapter1。主线进展：你正在执行任务：拆除观赏花卉，利用腾出的空间与材料紧急修复供水管道。。最近剧情：你选择了：拆除观赏花卉，利用腾出的空间与材料紧急修复供水管道。。在你的努力下，你取得了一些进展。"
+            },
+            "deep_background_links": {},
+            "flow_update": {
+              "chapter_conflict_solved": false,
+              "characters": {},
+              "environment": {},
+              "quest_progress": "你正在执行任务：拆除观赏花卉，利用腾出的空间与材料紧急修复供水管道。"
+            },
+            "next_options": [
+              "继续前进",
+              "查看当前状态",
+              "返回上一步",
+              "探索周围环境"
+            ],
+            "scene": "你选择了：拆除观赏花卉，利用腾出的空间与材料紧急修复供水管道。。在你的努力下，你取得了一些进展。",
+            "sceneId": "9039114973550756506_-1313984671503898919"
+          },
+          "status": "success"
+        },
+        "start_ts": 1776610939.150617,
+        "end_ts": 1776610939.1626697,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "status": "success",
+        "has_scene": true,
+        "has_image": false,
+        "selected_option_index": 0,
+        "selected_option_text": "拆除观赏花卉，利用腾出的空间与材料紧急修复供水管道。",
+        "input_scene_id": "1939370006550829895_374600912616581677",
+        "inferred_cache_result": "likely_hit",
+        "is_placeholder": true,
+        "used_updated_flow_state": true
+      }
+    },
+    {
+      "benchmark_id": "DNQBV1_002",
+      "theme_id": 9,
+      "theme": "末日温室园丁",
+      "read_wait_s": 40.0,
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 9.012,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角成功修复核心水泵，虽然牺牲了部分珍贵的备用零件导致后续维护难度增加，但幼苗得以存活，主角保住了岗位，但也因违规操作被扣除了当月绩效。",
+                  "main_conflict": "温室灌溉系统因年久失修频繁故障，导致主角精心培育的幼苗大面积枯萎。主角必须在有限的配给额度内，通过拆解废弃零件进行修补，同时还要应对上级主管对“低效产出”的严厉警告，这种生存压力与对植物生命的责任感产生剧烈冲突。 矛盾结束条件：主角成功修复核心水泵，虽然牺牲了部分珍贵的备用零件导致后续维护难度增加，但幼苗得以存活，主角保住了岗位，但也因违规操作被扣除了当月绩效。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角选择折中方案，通过减少其他作物的灌溉量来维持实验植株，虽然实验取得突破，但温室整体产量下降，主角因此失去了晋升机会，并背负了同事的埋怨。",
+                  "main_conflict": "主角在实验中发现了一种具有极强生命力的变异植株，但该植株的生长需要消耗温室中仅存的优质水源。此时避难所面临饮用水短缺，高层下令削减温室供水，主角陷入了“保住实验成果”还是“保障避难所居民饮水”的道德与现实困境。 矛盾结束条件：主角选择折中方案，通过减少其他作物的灌溉量来维持实验植株，虽然实验取得突破，但温室整体产量下降，主角因此失去了晋升机会，并背负了同事的埋怨。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角最终选择将植株移交，换取了避难所的一份安稳养老合同，并在离职前偷偷将部分种子撒向了温室外的荒原。植株是否存活未知，主角带着遗憾与释然，平静地结束了园丁生涯。 【主角规范信息】 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：中年 所属作品(中)：灰烬温室 所属作品(英)：Ash Greenhouse 标志性外观关键词：粗糙的双手，深色工装，疲惫的眼神，灰白的鬓角，沉默寡言，总是带着泥土气息，背部微驼，眼神中藏着对绿色的执着。 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决",
+                  "main_conflict": "先驱植株终于成熟，但避难所高层决定将其作为展示品移交至核心区，而非用于地表绿化。主角意识到自己的奋斗成果将沦为政治筹码，而非改变世界的希望，这种理想与现实的巨大落差，让主角必须在“顺从体制”与“孤注一掷地私自播种”间抉择。 矛盾结束条件：主角最终选择将植株移交，换取了避难所的一份安稳养老合同，并在离职前偷偷将部分种子撒向了温室外的荒原。植株是否存活未知，主角带着遗憾与释然，平静地结束了园丁生涯。 【主角规范信息】 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：中年 所属作品(中)：灰烬温室 所属作品(英)：Ash Greenhouse 标志性外观关键词：粗糙的双手，深色工装，疲惫的眼神，灰白的鬓角，沉默寡言，总是带着泥土气息，背部微驼，眼神中藏着对绿色的执着。 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "沉浸式现实主义模拟，融合末世废土背景下的低饱和度视觉美学。强调细致的劳作交互与平实的叙事节奏，通过植物的生长周期映射人生的得失，营造一种在荒芜中寻找秩序、在有限生命里耕耘希望的静谧与苍凉感。",
+              "main_quest": "主角的目标是培育出一种能适应地表高辐射环境的“先驱植株”，以期在退休前完成避难所的生态扩建指标，并为自己争取到一份体面的养老津贴。任务分为三个阶段：首先是修复温室老旧的灌溉系统，解决资源匮乏的生存基础；其次是进行多轮杂交实验，在失败与挫折中筛选出抗性种子；最后是面对避难所高层对资源的强行征用，在保全实验成果与服从集体利益之间做出抉择。挑战在于，主角不仅要对抗物理环境的恶化，还要在日复一日的重复劳动中，应对孤独感与对未来不确定性的焦虑，最终在有限的资源与无限的期望中，达成属于自己的平凡使命。",
+              "protagonist_ability": "主角拥有一种名为“共感培育”的直觉，源于其家族世代从事植物育种的基因记忆与长期的劳作经验。通过指尖触碰，主角能感知植物微弱的生理反馈，如水分需求或病虫害预兆。此能力并非超自然力量，而是极度专注下的经验升华，限制在于其极度消耗体力，且无法改变土壤酸碱度与光照不足的客观物理限制，只能在既定恶劣条件下实现最优生长。",
+              "world_basic_setting": "故事发生于“灰烬纪元”后的地表，大气层因工业遗毒常年覆盖着铅灰色尘埃，阳光成为稀缺资源。人类退守至地下避难所，仅存的“穹顶温室”是维持生态循环与心理慰藉的最后防线。社会结构高度官僚化，资源分配严格按贡献度配给，温室园丁被视为维持文明火种的基层技术工。这里的文化核心是“存续”，人们对过去文明的记忆已模糊，只剩下对绿色的原始崇拜。关键事件“大枯萎”曾导致温室系统瘫痪，现今的园丁们不仅要面对土壤贫瘠、水源污染的物理困境，还要在避难所高层的KPI考核与自身对植物情感寄托之间寻找平衡。这是一个没有英雄的时代，每个人都在为了一盆花、一株苗的存活，在琐碎的劳作中消耗着有限的青春与热情。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "environment": {}
+            },
+            "game_id": "game_1776610939_xj222t",
+            "image_style": {
+              "type": "realistic"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "gender": "男性"
+            },
+            "tone": "normal_ending",
+            "user_theme": "末日温室园丁"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "start_ts": 1776610939.1767695,
+        "end_ts": 1776610948.1886559,
+        "provider_events": {
+          "event_count": 7,
+          "queue_wait_ms": {
+            "count": 7,
+            "min": 0.0,
+            "max": 5557.0,
+            "mean": 793.857,
+            "median": 0.0,
+            "p95": 3889.9
+          },
+          "latency_ms": {
+            "count": 3,
+            "min": 5555.0,
+            "max": 9003.0,
+            "mean": 7167.0,
+            "median": 6943.0,
+            "p95": 8797.0
+          },
+          "llm_success_count": 3,
+          "image_success_count": 0,
+          "request_thread_event_count": 2
+        },
+        "status": "success",
+        "game_id": "game_1776610939_xj222t"
+      },
+      "first_click": {
+        "http_status": 200,
+        "elapsed_s": 0.011,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "",
+              "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：穹顶之下的七号温室，空气中弥漫着一股潮湿的泥土腥味与陈旧的金属锈蚀感。我习惯性地拉紧了防尘口罩，遮住大半张脸，只露出一双布满血丝的眼睛。指尖传来一阵刺痛，那是刚才清理灌溉管道时，被锈蚀的金属边缘割开的细小伤口。我低头看着袖口磨损的工装，上面沾满了深褐色的泥土，那是这片土地唯一的馈赠。\n\n“林远，如果下个月产量再不达标，这片温室就要被自动化设备接管了。”主管老陈的声音从厚重的玻璃门后传来，他甚至没有走进来，只是冷冷地丢下这句话。我沉默着，没有回应，只是从口袋里掏出那把随身携带的旧剪刀，小心翼翼地修剪着一株枯萎的叶片。我的动作很专注，仿佛在进行一场神圣的仪式。温室的供水系统又发出了那种令人心悸的断续轰鸣，水流像是濒死者的喘息，时有时无。我深吸一口气，感受着肺部因空气过滤不彻底而产生的轻微刺痛，心中盘算着：如果不尽快修复那段主管道，这些作物撑不过这个周末。而如果它们死了，妹妹在医疗区的床位费就彻底断了。"
+            },
+            "deep_background_links": {},
+            "flow_update": {},
+            "next_options": [
+              "变卖积蓄购买零件，连夜手动疏通主管道。",
+              "询问老陈关于妹妹医疗申请的进度，试图争取更多时间。"
+            ],
+            "plot_supporting_characters": [],
+            "scene": "穹顶之下的七号温室，空气中弥漫着一股潮湿的泥土腥味与陈旧的金属锈蚀感。我习惯性地拉紧了防尘口罩，遮住大半张脸，只露出一双布满血丝的眼睛。指尖传来一阵刺痛，那是刚才清理灌溉管道时，被锈蚀的金属边缘割开的细小伤口。我低头看着袖口磨损的工装，上面沾满了深褐色的泥土，那是这片土地唯一的馈赠。\n\n“林远，如果下个月产量再不达标，这片温室就要被自动化设备接管了。”主管老陈的声音从厚重的玻璃门后传来，他甚至没有走进来，只是冷冷地丢下这句话。我沉默着，没有回应，只是从口袋里掏出那把随身携带的旧剪刀，小心翼翼地修剪着一株枯萎的叶片。我的动作很专注，仿佛在进行一场神圣的仪式。温室的供水系统又发出了那种令人心悸的断续轰鸣，水流像是濒死者的喘息，时有时无。我深吸一口气，感受着肺部因空气过滤不彻底而产生的轻微刺痛，心中盘算着：如果不尽快修复那段主管道，这些作物撑不过这个周末。而如果它们死了，妹妹在医疗区的床位费就彻底断了。",
+            "sceneId": "4746600872755923382_-5279199743413437544",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-greenhouse-maintenance-dystopia, post-apocalyptic, dystopian, gritty-realism, industrial-decay, melancholic-atmosphere, photorealistic, hyper-detailed, cinematic-lighting, low-saturation-color-palette, sharp-focus, young male protagonist Lin Yuan with exhausted but resolute expression, bloodshot eyes visible above mask, showing deep focus, gaunt and lean physique reflecting long-term labor, hands covered in fine scars and dirt, posture slightly hunched, leaning over a fragile plant, worn-out industrial jumpsuit with frayed cuffs, jumpsuit stained with dark brown soil and grease, protective dust mask covering lower face, old rusted metal shears held in right hand, crouching in a dim greenhouse, focused on pruning a withered plant leaf, body turned slightly away from the doorway where 老陈-配角1 stands, left hand gently supporting a delicate stem, 8K detailed facial features, bloodshot eyes with intense focus, skin texture showing signs of fatigue and grime, lip color naturally muted, soft shadows from the greenhouse lighting highlighting facial structure, messy black hair with dusty texture, root fixation coefficient 0.7, tip swing amplitude 5cm, color layering: main color #2D2D2D, secondary color #1A1A1A, highlight #404040, shadow #000000, still air with no visible wind effect, wind speed 0m/s, turbulence intensity 0%, thick industrial fabric with visible fiber fraying, heavy soil stains and metallic grease marks, slight fabric tension at elbows and knees from crouching, dimly lit greenhouse with rusted metal irrigation pipes, thick glass walls with condensation and artificial mist, faded, struggling vegetation in the background, cold blue light filtering through thick industrial glass, damp soil texture on the ground, 老陈-配角1 standing in the shadows behind the partially open heavy metal glass door, artificial mist swirling in the air, faint dust motes visible in the cold light, dull metallic sheen on pipes, shadows cast by the industrial lighting setup, desaturated cold blue tones, industrial steel grey, earthy dark brown for soil, muted sickly green for dying plants, harsh cold overhead industrial lighting, diffuse light filtering through thick dirty glass, deep shadows emphasizing the decay of the greenhouse, no warm or vibrant light sources, type close-up shot, lens 35mm, aperture f/1.8, depth_of_field shallow focus on Lin Yuan and the shears, flash none, grain fine film grain, texture industrial metallic and organic decay, Lin Yuan in the foreground, centered slightly to the left, 老陈-配角1 visible through the doorway in the background right, focus on the interaction between the shears and the plant leaf, action constraints: maintain intense focus, no eye contact with the background character, hyper-realistic photography, no text or symbols in image, no watermarks or artifacts, oppressive silence, fragile hope, melancholic exhaustion, quiet desperation, no text, no symbols, no garbled characters, no words",
+              "prompt_json": {
+                "camera": {
+                  "aperture": "f/1.8",
+                  "depth_of_field": "shallow focus on Lin Yuan and the shears",
+                  "flash": "none",
+                  "grain": "fine film grain",
+                  "lens": "35mm",
+                  "texture": "industrial metallic and organic decay",
+                  "type": "close-up shot"
+                },
+                "clothing_system": [
+                  "thick industrial fabric with visible fiber fraying",
+                  "heavy soil stains and metallic grease marks",
+                  "slight fabric tension at elbows and knees from crouching"
+                ],
+                "color_restriction": [
+                  "desaturated cold blue tones",
+                  "industrial steel grey",
+                  "earthy dark brown for soil",
+                  "muted sickly green for dying plants"
+                ],
+                "composition": [
+                  "Lin Yuan in the foreground, centered slightly to the left",
+                  "老陈-配角1 visible through the doorway in the background right",
+                  "focus on the interaction between the shears and the plant leaf",
+                  "action constraints: maintain intense focus, no eye contact with the background character"
+                ],
+                "environment": {
+                  "background": [
+                    "dimly lit greenhouse with rusted metal irrigation pipes",
+                    "thick glass walls with condensation and artificial mist",
+                    "faded, struggling vegetation in the background",
+                    "cold blue light filtering through thick industrial glass",
+                    "damp soil texture on the ground"
+                  ],
+                  "characters": [
+                    "老陈-配角1 standing in the shadows behind the partially open heavy metal glass door"
+                  ],
+                  "effects": [
+                    "artificial mist swirling in the air",
+                    "faint dust motes visible in the cold light",
+                    "dull metallic sheen on pipes",
+                    "shadows cast by the industrial lighting setup"
+                  ]
+                },
+                "face_system": [
+                  "8K detailed facial features",
+                  "bloodshot eyes with intense focus",
+                  "skin texture showing signs of fatigue and grime",
+                  "lip color naturally muted",
+                  "soft shadows from the greenhouse lighting highlighting facial structure"
+                ],
+                "hair_system": [
+                  "messy black hair with dusty texture",
+                  "root fixation coefficient 0.7",
+                  "tip swing amplitude 5cm",
+                  "color layering: main color #2D2D2D, secondary color #1A1A1A, highlight #404040, shadow #000000",
+                  "still air with no visible wind effect",
+                  "wind speed 0m/s",
+                  "turbulence intensity 0%"
+                ],
+                "label": "scene-greenhouse-maintenance-dystopia",
+                "lighting": [
+                  "harsh cold overhead industrial lighting",
+                  "diffuse light filtering through thick dirty glass",
+                  "deep shadows emphasizing the decay of the greenhouse",
+                  "no warm or vibrant light sources"
+                ],
+                "mood": [
+                  "oppressive silence",
+                  "fragile hope",
+                  "melancholic exhaustion",
+                  "quiet desperation"
+                ],
+                "output_style": [
+                  "hyper-realistic photography",
+                  "no text or symbols in image",
+                  "no watermarks or artifacts"
+                ],
+                "style": [
+                  "photorealistic",
+                  "hyper-detailed",
+                  "cinematic-lighting",
+                  "low-saturation-color-palette",
+                  "sharp-focus"
+                ],
+                "subject": {
+                  "body_traits": [
+                    "young male protagonist Lin Yuan with exhausted but resolute expression",
+                    "bloodshot eyes visible above mask, showing deep focus",
+                    "gaunt and lean physique reflecting long-term labor",
+                    "hands covered in fine scars and dirt",
+                    "posture slightly hunched, leaning over a fragile plant"
+                  ],
+                  "outfit": [
+                    "worn-out industrial jumpsuit with frayed cuffs",
+                    "jumpsuit stained with dark brown soil and grease",
+                    "protective dust mask covering lower face",
+                    "old rusted metal shears held in right hand"
+                  ],
+                  "pose": [
+                    "crouching in a dim greenhouse",
+                    "focused on pruning a withered plant leaf",
+                    "body turned slightly away from the doorway where 老陈-配角1 stands",
+                    "left hand gently supporting a delicate stem"
+                  ]
+                },
+                "tags": [
+                  "post-apocalyptic",
+                  "dystopian",
+                  "gritty-realism",
+                  "industrial-decay",
+                  "melancholic-atmosphere"
+                ]
+              },
+              "scene_text_hash": "c5ec708de8325e30ea3b6e473838f927",
+              "style": "default",
+              "url": "/image_cache/a7ae87eeb55e5ef919fd19b7c71ec461.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "start_ts": 1776610948.2046008,
+        "end_ts": 1776610948.2156515,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "success",
+        "has_scene": true,
+        "has_image": true
+      },
+      "second_click": {
+        "http_status": 200,
+        "elapsed_s": 0.01,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "成功完成了第一阶段任务“清理灌溉管道并恢复供水”，温室产量有望在下个月达标，为保住岗位争取到了关键时间，但因变卖积蓄导致经济状况陷入极度窘迫。",
+              "recap_text": "你选择了“变卖积蓄购买零件，连夜手动疏通主管道。”。当前章节：chapter1。主线进展：成功完成了第一阶段任务“清理灌溉管道并恢复供水”，温室产量有望在下个月达标，为保住岗位争取到了关键时间，但因变卖积蓄导致经济状况陷入极度窘迫。。最近剧情：我将最后一块积蓄换来的高压密封圈紧紧扣在主管道的裂口上，金属扳手在手中沉重得如同灌了铅。冰冷的合成水流顺着管道缝隙渗出，浸透了我那件满是泥土的工装，寒意顺着脊椎直冲脑门。我顾不上擦拭额头的汗水，强忍着肺部因吸入高浓度孢子而引发的剧烈咳嗽，一次次用力拧紧螺栓。随着最后一声沉闷的金属咬合声，断续的轰鸣终于转为平稳的流水声，温室顶端的喷淋系统重新开始运作，细密的水雾在昏暗的灯光下折射出微弱的光晕。我瘫坐在湿滑的地面上，摘下沾满污泥的防尘口罩，大口喘着粗气，看着那株枯萎的幼苗在水雾滋润下微微舒展了叶片。老陈不知何时站在了温室门口，他看着我那双布满细小伤痕、颤抖不止的手，沉默了许久，才低声说道：“林远，你这又是何必，为了这几株草，把下个月的药钱都搭进去了。”我没有抬头，只是用那把旧剪刀轻轻拨弄着土壤，声音沙哑地回应：“只要它们活着，医疗区的床位费就还有希望，这是我唯一能做的。”"
+            },
+            "deep_background_links": {
+              "1": "林远（主角）"
+            },
+            "flow_update": {
+              "chapter_conflict_solved": false,
+              "characters": {},
+              "environment": {},
+              "quest_progress": "成功完成了第一阶段任务“清理灌溉管道并恢复供水”，温室产量有望在下个月达标，为保住岗位争取到了关键时间，但因变卖积蓄导致经济状况陷入极度窘迫。"
+            },
+            "next_options": [
+              "询问老陈关于温室自动化裁撤计划的更多内幕细节。",
+              "翻看口袋里妹妹寄来的旧信件，回忆她曾经对温室的向往。"
+            ],
+            "plot_mentioned_only": [
+              "妹妹"
+            ],
+            "plot_supporting_characters": [],
+            "scene": "我将最后一块积蓄换来的高压密封圈紧紧扣在主管道的裂口上，金属扳手在手中沉重得如同灌了铅。冰冷的合成水流顺着管道缝隙渗出，浸透了我那件满是泥土的工装，寒意顺着脊椎直冲脑门。我顾不上擦拭额头的汗水，强忍着肺部因吸入高浓度孢子而引发的剧烈咳嗽，一次次用力拧紧螺栓。随着最后一声沉闷的金属咬合声，断续的轰鸣终于转为平稳的流水声，温室顶端的喷淋系统重新开始运作，细密的水雾在昏暗的灯光下折射出微弱的光晕。我瘫坐在湿滑的地面上，摘下沾满污泥的防尘口罩，大口喘着粗气，看着那株枯萎的幼苗在水雾滋润下微微舒展了叶片。老陈不知何时站在了温室门口，他看着我那双布满细小伤痕、颤抖不止的手，沉默了许久，才低声说道：“林远，你这又是何必，为了这几株草，把下个月的药钱都搭进去了。”我没有抬头，只是用那把旧剪刀轻轻拨弄着土壤，声音沙哑地回应：“只要它们活着，医疗区的床位费就还有希望，这是我唯一能做的。”",
+            "sceneId": "6689555215926111421_-5983619754429028370"
+          },
+          "status": "success"
+        },
+        "start_ts": 1776610988.2311578,
+        "end_ts": 1776610988.2411647,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "status": "success",
+        "has_scene": true,
+        "has_image": false,
+        "selected_option_index": 0,
+        "selected_option_text": "变卖积蓄购买零件，连夜手动疏通主管道。",
+        "input_scene_id": "4746600872755923382_-5279199743413437544",
+        "inferred_cache_result": "likely_hit",
+        "is_placeholder": false,
+        "used_updated_flow_state": true
+      }
+    }
+  ]
+}

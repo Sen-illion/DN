@@ -1,0 +1,44 @@
+[
+  {
+    "baseline_name": "iclora",
+    "rows_total": 100,
+    "generated_rows": 0,
+    "dn_reference_available": 77,
+    "comparable_pairs": 0,
+    "scored_pairs": 0,
+    "unscored_pairs": 0,
+    "dn_average": 0.0,
+    "baseline_average": 0.0,
+    "delta_baseline_minus_dn": 0.0,
+    "status": "unavailable",
+    "note": "Requires ComfyUI + FLUX + IC-LoRA weights; local wrapper prepares workflows only, no image generation was run."
+  },
+  {
+    "baseline_name": "sdm_v2",
+    "rows_total": 100,
+    "generated_rows": 100,
+    "dn_reference_available": 77,
+    "comparable_pairs": 77,
+    "scored_pairs": 77,
+    "unscored_pairs": 0,
+    "dn_average": 4.6753,
+    "baseline_average": 1.3139,
+    "delta_baseline_minus_dn": -3.3614,
+    "status": "completed",
+    "note": ""
+  },
+  {
+    "baseline_name": "storydiffusion",
+    "rows_total": 100,
+    "generated_rows": 0,
+    "dn_reference_available": 77,
+    "comparable_pairs": 0,
+    "scored_pairs": 0,
+    "unscored_pairs": 0,
+    "dn_average": 0.0,
+    "baseline_average": 0.0,
+    "delta_baseline_minus_dn": 0.0,
+    "status": "unavailable",
+    "note": "Official workflow is Gradio/Notebook-oriented; local wrapper prepares manifests only, no batch image CLI was run."
+  }
+]

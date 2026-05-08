@@ -1,0 +1,94 @@
+{
+  "mode": "smoke",
+  "model_name": "dinov2_vits14",
+  "device": "auto",
+  "records": [
+    {
+      "baseline": "AIDungeon",
+      "pairs_csv": "D:\\DN-main\\experiments\\baselines\\next_turn_visual_eval\\pairs\\aidungeon_pairs.csv",
+      "pair_count": 0,
+      "status": "skipped",
+      "reason": "no_local_image_artifacts_in_paper_method_view_dir",
+      "summary_path": null,
+      "jsonl_path": null
+    },
+    {
+      "baseline": "DOC",
+      "pairs_csv": "D:\\DN-main\\experiments\\baselines\\next_turn_visual_eval\\pairs\\doc_pairs.csv",
+      "pair_count": 0,
+      "status": "skipped",
+      "reason": "normalized_run_contains_text_or_manifest_without_local_images",
+      "summary_path": null,
+      "jsonl_path": null
+    },
+    {
+      "baseline": "GenAgents",
+      "pairs_csv": "D:\\DN-main\\experiments\\baselines\\next_turn_visual_eval\\pairs\\genagents_pairs.csv",
+      "pair_count": 0,
+      "status": "skipped",
+      "reason": "no_local_image_artifacts_in_paper_method_view_dir",
+      "summary_path": null,
+      "jsonl_path": null
+    },
+    {
+      "baseline": "IC-LoRA",
+      "pairs_csv": "D:\\DN-main\\experiments\\baselines\\next_turn_visual_eval\\pairs\\ic_lora_pairs.csv",
+      "pair_count": 90,
+      "status": "completed",
+      "return_code": 0,
+      "summary_path": "D:\\DN-main\\experiments\\baselines\\next_turn_visual_eval\\smoke\\results\\ic_lora\\summary.json",
+      "jsonl_path": "D:\\DN-main\\experiments\\baselines\\next_turn_visual_eval\\smoke\\results\\ic_lora\\scores.jsonl",
+      "stdout_tail": "25\\\\IC-LoRA\\\\game_1776417898_zthbu3\\\\seg_003.png\", \"game_id\": \"game_1776417898_zthbu3\", \"group\": \"IC-LoRA\", \"model_name\": \"dinov2_vits14\"}\n{\"pair_id\": \"game_1776417898_zthbu3_seg_003_to_004\", \"metric\": \"dinov2_cosine\", \"score\": 0.5481879115104675, \"ref\": \"D:\\\\DN-main\\\\outputs\\\\baseline_image_from_dn_text\\\\run_20260430_145825\\\\IC-LoRA\\\\game_1776417898_zthbu3\\\\seg_003.png\", \"candidate\": \"D:\\\\DN-main\\\\outputs\\\\baseline_image_from_dn_text\\\\run_20260430_145825\\\\IC-LoRA\\\\game_1776417898_zthbu3\\\\seg_004.png\", \"game_id\": \"game_1776417898_zthbu3\", \"group\": \"IC-LoRA\", \"model_name\": \"dinov2_vits14\"}\n{\"pair_id\": \"game_1776417898_zthbu3_seg_004_to_005\", \"metric\": \"dinov2_cosine\", \"score\": 0.37470781803131104, \"ref\": \"D:\\\\DN-main\\\\outputs\\\\baseline_image_from_dn_text\\\\run_20260430_145825\\\\IC-LoRA\\\\game_1776417898_zthbu3\\\\seg_004.png\", \"candidate\": \"D:\\\\DN-main\\\\outputs\\\\baseline_image_from_dn_text\\\\run_20260430_145825\\\\IC-LoRA\\\\game_1776417898_zthbu3\\\\seg_005.png\", \"game_id\": \"game_1776417898_zthbu3\", \"group\": \"IC-LoRA\", \"model_name\": \"dinov2_vits14\"}\n{\"pair_id\": \"game_1776417898_zthbu3_seg_005_to_006\", \"metric\": \"dinov2_cosine\", \"score\": 0.7908515930175781, \"ref\": \"D:\\\\DN-main\\\\outputs\\\\baseline_image_from_dn_text\\\\run_20260430_145825\\\\IC-LoRA\\\\game_1776417898_zthbu3\\\\seg_005.png\", \"candidate\": \"D:\\\\DN-main\\\\outputs\\\\baseline_image_from_dn_text\\\\run_20260430_145825\\\\IC-LoRA\\\\game_1776417898_zthbu3\\\\seg_006.png\", \"game_id\": \"game_1776417898_zthbu3\", \"group\": \"IC-LoRA\", \"model_name\": \"dinov2_vits14\"}\n{\"summary\": {\"metric\": \"dinov2_cosine\", \"model_name\": \"dinov2_vits14\", \"device\": \"cpu\", \"pairs_csv\": \"D:\\\\DN-main\\\\experiments\\\\baselines\\\\next_turn_visual_eval\\\\pairs\\\\ic_lora_pairs.csv\", \"out_jsonl\": \"D:\\\\DN-main\\\\experiments\\\\baselines\\\\next_turn_visual_eval\\\\smoke\\\\results\\\\ic_lora\\\\scores.jsonl\", \"processed_rows\": 5, \"missing_rows\": 0, \"score_mean\": 0.5946173071861267, \"score_std_population\": 0.1383437011454278, \"score_min\": 0.37470781803131104, \"score_max\": 0.7908515930175781}}\n",
+      "stderr_tail": "D:\\DN-main\\baselines\\consistency_detection\\repos\\dinov2\\dinov2\\layers\\swiglu_ffn.py:51: UserWarning: xFormers is not available (SwiGLU)\n  warnings.warn(\"xFormers is not available (SwiGLU)\")\nD:\\DN-main\\baselines\\consistency_detection\\repos\\dinov2\\dinov2\\layers\\attention.py:35: UserWarning: xFormers is not available (Attention)\n  warnings.warn(\"xFormers is not available (Attention)\")\nD:\\DN-main\\baselines\\consistency_detection\\repos\\dinov2\\dinov2\\layers\\block.py:42: UserWarning: xFormers is not available (Block)\n  warnings.warn(\"xFormers is not available (Block)\")\n"
+    },
+    {
+      "baseline": "LIGHT",
+      "pairs_csv": "D:\\DN-main\\experiments\\baselines\\next_turn_visual_eval\\pairs\\light_pairs.csv",
+      "pair_count": 0,
+      "status": "skipped",
+      "reason": "no_local_image_artifacts_in_paper_method_view_dir",
+      "summary_path": null,
+      "jsonl_path": null
+    },
+    {
+      "baseline": "Plan-Write-Revise",
+      "pairs_csv": "D:\\DN-main\\experiments\\baselines\\next_turn_visual_eval\\pairs\\plan_write_revise_pairs.csv",
+      "pair_count": 0,
+      "status": "skipped",
+      "reason": "no_local_image_artifacts_in_paper_method_view_dir",
+      "summary_path": null,
+      "jsonl_path": null
+    },
+    {
+      "baseline": "SDM-v2",
+      "pairs_csv": "D:\\DN-main\\experiments\\baselines\\next_turn_visual_eval\\pairs\\sdm_v2_pairs.csv",
+      "pair_count": 90,
+      "status": "completed",
+      "return_code": 0,
+      "summary_path": "D:\\DN-main\\experiments\\baselines\\next_turn_visual_eval\\smoke\\results\\sdm_v2\\summary.json",
+      "jsonl_path": "D:\\DN-main\\experiments\\baselines\\next_turn_visual_eval\\smoke\\results\\sdm_v2\\scores.jsonl",
+      "stdout_tail": "20260430_145825\\\\SDM-v2\\\\game_1776417898_zthbu3\\\\seg_003.png\", \"game_id\": \"game_1776417898_zthbu3\", \"group\": \"SDM-v2\", \"model_name\": \"dinov2_vits14\"}\n{\"pair_id\": \"game_1776417898_zthbu3_seg_003_to_004\", \"metric\": \"dinov2_cosine\", \"score\": 0.6082702279090881, \"ref\": \"D:\\\\DN-main\\\\outputs\\\\baseline_image_from_dn_text\\\\run_20260430_145825\\\\SDM-v2\\\\game_1776417898_zthbu3\\\\seg_003.png\", \"candidate\": \"D:\\\\DN-main\\\\outputs\\\\baseline_image_from_dn_text\\\\run_20260430_145825\\\\SDM-v2\\\\game_1776417898_zthbu3\\\\seg_004.png\", \"game_id\": \"game_1776417898_zthbu3\", \"group\": \"SDM-v2\", \"model_name\": \"dinov2_vits14\"}\n{\"pair_id\": \"game_1776417898_zthbu3_seg_004_to_005\", \"metric\": \"dinov2_cosine\", \"score\": 0.4528985023498535, \"ref\": \"D:\\\\DN-main\\\\outputs\\\\baseline_image_from_dn_text\\\\run_20260430_145825\\\\SDM-v2\\\\game_1776417898_zthbu3\\\\seg_004.png\", \"candidate\": \"D:\\\\DN-main\\\\outputs\\\\baseline_image_from_dn_text\\\\run_20260430_145825\\\\SDM-v2\\\\game_1776417898_zthbu3\\\\seg_005.png\", \"game_id\": \"game_1776417898_zthbu3\", \"group\": \"SDM-v2\", \"model_name\": \"dinov2_vits14\"}\n{\"pair_id\": \"game_1776417898_zthbu3_seg_005_to_006\", \"metric\": \"dinov2_cosine\", \"score\": 0.6699457168579102, \"ref\": \"D:\\\\DN-main\\\\outputs\\\\baseline_image_from_dn_text\\\\run_20260430_145825\\\\SDM-v2\\\\game_1776417898_zthbu3\\\\seg_005.png\", \"candidate\": \"D:\\\\DN-main\\\\outputs\\\\baseline_image_from_dn_text\\\\run_20260430_145825\\\\SDM-v2\\\\game_1776417898_zthbu3\\\\seg_006.png\", \"game_id\": \"game_1776417898_zthbu3\", \"group\": \"SDM-v2\", \"model_name\": \"dinov2_vits14\"}\n{\"summary\": {\"metric\": \"dinov2_cosine\", \"model_name\": \"dinov2_vits14\", \"device\": \"cpu\", \"pairs_csv\": \"D:\\\\DN-main\\\\experiments\\\\baselines\\\\next_turn_visual_eval\\\\pairs\\\\sdm_v2_pairs.csv\", \"out_jsonl\": \"D:\\\\DN-main\\\\experiments\\\\baselines\\\\next_turn_visual_eval\\\\smoke\\\\results\\\\sdm_v2\\\\scores.jsonl\", \"processed_rows\": 5, \"missing_rows\": 0, \"score_mean\": 0.4402714163064957, \"score_std_population\": 0.18185406643350535, \"score_min\": 0.23021964728832245, \"score_max\": 0.6699457168579102}}\n",
+      "stderr_tail": "D:\\DN-main\\baselines\\consistency_detection\\repos\\dinov2\\dinov2\\layers\\swiglu_ffn.py:51: UserWarning: xFormers is not available (SwiGLU)\n  warnings.warn(\"xFormers is not available (SwiGLU)\")\nD:\\DN-main\\baselines\\consistency_detection\\repos\\dinov2\\dinov2\\layers\\attention.py:35: UserWarning: xFormers is not available (Attention)\n  warnings.warn(\"xFormers is not available (Attention)\")\nD:\\DN-main\\baselines\\consistency_detection\\repos\\dinov2\\dinov2\\layers\\block.py:42: UserWarning: xFormers is not available (Block)\n  warnings.warn(\"xFormers is not available (Block)\")\n"
+    },
+    {
+      "baseline": "StoryDiffusion",
+      "pairs_csv": "D:\\DN-main\\experiments\\baselines\\next_turn_visual_eval\\pairs\\storydiffusion_pairs.csv",
+      "pair_count": 90,
+      "status": "completed",
+      "return_code": 0,
+      "summary_path": "D:\\DN-main\\experiments\\baselines\\next_turn_visual_eval\\smoke\\results\\storydiffusion\\summary.json",
+      "jsonl_path": "D:\\DN-main\\experiments\\baselines\\next_turn_visual_eval\\smoke\\results\\storydiffusion\\scores.jsonl",
+      "stdout_tail": "u3\", \"group\": \"StoryDiffusion\", \"model_name\": \"dinov2_vits14\"}\n{\"pair_id\": \"game_1776417898_zthbu3_seg_003_to_004\", \"metric\": \"dinov2_cosine\", \"score\": 0.5938388109207153, \"ref\": \"D:\\\\DN-main\\\\outputs\\\\baseline_image_from_dn_text\\\\run_20260430_145825\\\\StoryDiffusion\\\\game_1776417898_zthbu3\\\\seg_003.png\", \"candidate\": \"D:\\\\DN-main\\\\outputs\\\\baseline_image_from_dn_text\\\\run_20260430_145825\\\\StoryDiffusion\\\\game_1776417898_zthbu3\\\\seg_004.png\", \"game_id\": \"game_1776417898_zthbu3\", \"group\": \"StoryDiffusion\", \"model_name\": \"dinov2_vits14\"}\n{\"pair_id\": \"game_1776417898_zthbu3_seg_004_to_005\", \"metric\": \"dinov2_cosine\", \"score\": 0.4365786910057068, \"ref\": \"D:\\\\DN-main\\\\outputs\\\\baseline_image_from_dn_text\\\\run_20260430_145825\\\\StoryDiffusion\\\\game_1776417898_zthbu3\\\\seg_004.png\", \"candidate\": \"D:\\\\DN-main\\\\outputs\\\\baseline_image_from_dn_text\\\\run_20260430_145825\\\\StoryDiffusion\\\\game_1776417898_zthbu3\\\\seg_005.png\", \"game_id\": \"game_1776417898_zthbu3\", \"group\": \"StoryDiffusion\", \"model_name\": \"dinov2_vits14\"}\n{\"pair_id\": \"game_1776417898_zthbu3_seg_005_to_006\", \"metric\": \"dinov2_cosine\", \"score\": 0.7903913259506226, \"ref\": \"D:\\\\DN-main\\\\outputs\\\\baseline_image_from_dn_text\\\\run_20260430_145825\\\\StoryDiffusion\\\\game_1776417898_zthbu3\\\\seg_005.png\", \"candidate\": \"D:\\\\DN-main\\\\outputs\\\\baseline_image_from_dn_text\\\\run_20260430_145825\\\\StoryDiffusion\\\\game_1776417898_zthbu3\\\\seg_006.png\", \"game_id\": \"game_1776417898_zthbu3\", \"group\": \"StoryDiffusion\", \"model_name\": \"dinov2_vits14\"}\n{\"summary\": {\"metric\": \"dinov2_cosine\", \"model_name\": \"dinov2_vits14\", \"device\": \"cpu\", \"pairs_csv\": \"D:\\\\DN-main\\\\experiments\\\\baselines\\\\next_turn_visual_eval\\\\pairs\\\\storydiffusion_pairs.csv\", \"out_jsonl\": \"D:\\\\DN-main\\\\experiments\\\\baselines\\\\next_turn_visual_eval\\\\smoke\\\\results\\\\storydiffusion\\\\scores.jsonl\", \"processed_rows\": 5, \"missing_rows\": 0, \"score_mean\": 0.6295786023139953, \"score_std_population\": 0.11831561010511603, \"score_min\": 0.4365786910057068, \"score_max\": 0.7903913259506226}}\n",
+      "stderr_tail": "D:\\DN-main\\baselines\\consistency_detection\\repos\\dinov2\\dinov2\\layers\\swiglu_ffn.py:51: UserWarning: xFormers is not available (SwiGLU)\n  warnings.warn(\"xFormers is not available (SwiGLU)\")\nD:\\DN-main\\baselines\\consistency_detection\\repos\\dinov2\\dinov2\\layers\\attention.py:35: UserWarning: xFormers is not available (Attention)\n  warnings.warn(\"xFormers is not available (Attention)\")\nD:\\DN-main\\baselines\\consistency_detection\\repos\\dinov2\\dinov2\\layers\\block.py:42: UserWarning: xFormers is not available (Block)\n  warnings.warn(\"xFormers is not available (Block)\")\n"
+    },
+    {
+      "baseline": "WorldGeneration",
+      "pairs_csv": "D:\\DN-main\\experiments\\baselines\\next_turn_visual_eval\\pairs\\worldgeneration_pairs.csv",
+      "pair_count": 0,
+      "status": "skipped",
+      "reason": "no_local_image_artifacts_in_paper_method_view_dir",
+      "summary_path": null,
+      "jsonl_path": null
+    }
+  ]
+}

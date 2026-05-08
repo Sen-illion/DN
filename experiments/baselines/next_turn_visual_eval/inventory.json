@@ -1,0 +1,182 @@
+{
+  "protocol": "next_turn_continuity",
+  "pair_definition": {
+    "ref": "current/pre-turn image",
+    "candidate": "next-turn continuation image",
+    "current_repo_fallback": "adjacent segment pairing within the same game when only sequential baseline index files exist"
+  },
+  "inventory": [
+    {
+      "baseline": "AIDungeon",
+      "slug": "aidungeon",
+      "source_kind": "paper_metadata_only",
+      "artifact_roots": [
+        "D:\\DN-main\\experiments\\paper_method_view\\1_table1_main_visual_efficiency\\baselines\\baseline_aidungeon"
+      ],
+      "records_found": 0,
+      "games_found": 0,
+      "local_image_records": 0,
+      "candidate_next_turn_pairs": 0,
+      "evaluable_pairs": 0,
+      "evaluable_now": false,
+      "blocker": "no_local_image_artifacts_in_paper_method_view_dir",
+      "notes": [
+        "Protocol/raw_run/summaries exist, but no local images were found in the workspace."
+      ]
+    },
+    {
+      "baseline": "DOC",
+      "slug": "doc",
+      "source_kind": "normalized_run_metadata_only",
+      "artifact_roots": [
+        "D:\\DN-main\\experiments\\baseline_integration\\normalized_runs\\doc_yunwu\\formal20_first_playable_20260430",
+        "D:\\DN-main\\experiments\\baseline_integration\\normalized_runs\\doc_yunwu\\formal20_first_playable_20260430_complete",
+        "D:\\DN-main\\experiments\\baseline_integration\\normalized_runs\\doc_yunwu\\formal8_first_playable_20260430",
+        "D:\\DN-main\\experiments\\baseline_integration\\normalized_runs\\doc_yunwu\\formal8_first_playable_20260430_v2",
+        "D:\\DN-main\\experiments\\baseline_integration\\normalized_runs\\doc_yunwu\\retry_DNQBV1_008_20260430",
+        "D:\\DN-main\\experiments\\baseline_integration\\normalized_runs\\doc_yunwu\\smoke1_20260430"
+      ],
+      "records_found": 0,
+      "games_found": 0,
+      "local_image_records": 0,
+      "candidate_next_turn_pairs": 0,
+      "evaluable_pairs": 0,
+      "evaluable_now": false,
+      "blocker": "normalized_run_contains_text_or_manifest_without_local_images",
+      "notes": [
+        "Normalized run metadata exists, but no local image artifacts were found for visual evaluation."
+      ]
+    },
+    {
+      "baseline": "GenAgents",
+      "slug": "genagents",
+      "source_kind": "paper_metadata_only+normalized_run_metadata_only",
+      "artifact_roots": [
+        "D:\\DN-main\\experiments\\baseline_integration\\normalized_runs\\genagents_consistency_live_2026-04-26_dn_env_subset_v2.normalized.json",
+        "D:\\DN-main\\experiments\\baseline_integration\\normalized_runs\\genagents_smoke_2026-04-25.normalized.json",
+        "D:\\DN-main\\experiments\\paper_method_view\\1_table1_main_visual_efficiency\\baselines\\baseline_genagents"
+      ],
+      "records_found": 0,
+      "games_found": 0,
+      "local_image_records": 0,
+      "candidate_next_turn_pairs": 0,
+      "evaluable_pairs": 0,
+      "evaluable_now": false,
+      "blocker": "no_local_image_artifacts_in_paper_method_view_dir",
+      "notes": [
+        "Protocol/raw_run/summaries exist, but no local images were found in the workspace.",
+        "Normalized run metadata exists, but no local image artifacts were found for visual evaluation."
+      ]
+    },
+    {
+      "baseline": "IC-LoRA",
+      "slug": "ic_lora",
+      "source_kind": "image_sequence_index",
+      "artifact_roots": [
+        "D:\\DN-main\\outputs\\baseline_image_from_dn_text\\run_20260430_145825\\IC-LoRA\\index.jsonl"
+      ],
+      "records_found": 100,
+      "games_found": 10,
+      "local_image_records": 100,
+      "candidate_next_turn_pairs": 90,
+      "evaluable_pairs": 90,
+      "evaluable_now": true,
+      "blocker": null,
+      "notes": [
+        "Pairs are built as adjacent segments within the same game (seg_n -> seg_n+1)."
+      ]
+    },
+    {
+      "baseline": "LIGHT",
+      "slug": "light",
+      "source_kind": "paper_metadata_only",
+      "artifact_roots": [
+        "D:\\DN-main\\experiments\\paper_method_view\\1_table1_main_visual_efficiency\\baselines\\baseline_light"
+      ],
+      "records_found": 0,
+      "games_found": 0,
+      "local_image_records": 0,
+      "candidate_next_turn_pairs": 0,
+      "evaluable_pairs": 0,
+      "evaluable_now": false,
+      "blocker": "no_local_image_artifacts_in_paper_method_view_dir",
+      "notes": [
+        "Protocol/raw_run/summaries exist, but no local images were found in the workspace."
+      ]
+    },
+    {
+      "baseline": "Plan-Write-Revise",
+      "slug": "plan_write_revise",
+      "source_kind": "paper_metadata_only",
+      "artifact_roots": [
+        "D:\\DN-main\\experiments\\paper_method_view\\1_table1_main_visual_efficiency\\baselines\\baseline_plan_write_revise"
+      ],
+      "records_found": 0,
+      "games_found": 0,
+      "local_image_records": 0,
+      "candidate_next_turn_pairs": 0,
+      "evaluable_pairs": 0,
+      "evaluable_now": false,
+      "blocker": "no_local_image_artifacts_in_paper_method_view_dir",
+      "notes": [
+        "Protocol/raw_run/summaries exist, but no local images were found in the workspace."
+      ]
+    },
+    {
+      "baseline": "SDM-v2",
+      "slug": "sdm_v2",
+      "source_kind": "image_sequence_index",
+      "artifact_roots": [
+        "D:\\DN-main\\outputs\\baseline_image_from_dn_text\\run_20260430_145825\\SDM-v2\\index.jsonl"
+      ],
+      "records_found": 100,
+      "games_found": 10,
+      "local_image_records": 100,
+      "candidate_next_turn_pairs": 90,
+      "evaluable_pairs": 90,
+      "evaluable_now": true,
+      "blocker": null,
+      "notes": [
+        "Pairs are built as adjacent segments within the same game (seg_n -> seg_n+1)."
+      ]
+    },
+    {
+      "baseline": "StoryDiffusion",
+      "slug": "storydiffusion",
+      "source_kind": "image_sequence_index+paper_metadata_only",
+      "artifact_roots": [
+        "D:\\DN-main\\experiments\\paper_method_view\\1_table1_main_visual_efficiency\\baselines\\baseline_storydiffusion",
+        "D:\\DN-main\\outputs\\baseline_image_from_dn_text\\run_20260430_145825\\StoryDiffusion\\index.jsonl"
+      ],
+      "records_found": 100,
+      "games_found": 10,
+      "local_image_records": 100,
+      "candidate_next_turn_pairs": 90,
+      "evaluable_pairs": 90,
+      "evaluable_now": true,
+      "blocker": null,
+      "notes": [
+        "Pairs are built as adjacent segments within the same game (seg_n -> seg_n+1).",
+        "Protocol/raw_run/summaries exist, but no local images were found in the workspace."
+      ]
+    },
+    {
+      "baseline": "WorldGeneration",
+      "slug": "worldgeneration",
+      "source_kind": "paper_metadata_only",
+      "artifact_roots": [
+        "D:\\DN-main\\experiments\\paper_method_view\\1_table1_main_visual_efficiency\\baselines\\baseline_worldgeneration"
+      ],
+      "records_found": 0,
+      "games_found": 0,
+      "local_image_records": 0,
+      "candidate_next_turn_pairs": 0,
+      "evaluable_pairs": 0,
+      "evaluable_now": false,
+      "blocker": "no_local_image_artifacts_in_paper_method_view_dir",
+      "notes": [
+        "Protocol/raw_run/summaries exist, but no local images were found in the workspace."
+      ]
+    }
+  ]
+}

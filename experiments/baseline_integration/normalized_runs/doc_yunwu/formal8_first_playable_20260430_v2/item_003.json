@@ -1,0 +1,144 @@
+{
+  "baseline_id": "doc",
+  "benchmark_id": "DNQBV1_005",
+  "run_id": "formal8_first_playable_20260430_v2",
+  "mode": "first_playable",
+  "input_bundle": {
+    "original_dn_item": {
+      "benchmark_id": "DNQBV1_005",
+      "theme_id": 2,
+      "theme": "月球矿难七日",
+      "image_style": {
+        "type": "cyberpunk"
+      },
+      "expected_genre": "近未来科幻灾难",
+      "expected_tone": "高压、冷峻、技术感",
+      "must_have_constraints": [
+        "剧情需围绕月球矿难与生存风险展开",
+        "图像应体现赛博/科幻视觉元素",
+        "首段要有明确危机感与行动起点"
+      ],
+      "forbidden_issues": [
+        "出现古风或校园设定串场",
+        "图像 prompt 混入无关 IP 名称",
+        "选项与危机无关"
+      ],
+      "focus": "sci-fi reaction stability",
+      "_subset_focus": "sci-fi reaction stability"
+    },
+    "doc_prompt": "Premise seed: 月球矿难七日\nGenre: 近未来科幻灾难\nTone: 高压、冷峻、技术感\nWrite a long-form interactive story opening that could be expanded with a detailed outline.\nMust-have constraints:\n- 剧情需围绕月球矿难与生存风险展开\n- 图像应体现赛博/科幻视觉元素\n- 首段要有明确危机感与行动起点\nForbidden issues:\n- 出现古风或校园设定串场\n- 图像 prompt 混入无关 IP 名称\n- 选项与危机无关\n",
+    "outline_seed": [
+      "Opening setup for 月球矿难七日 in a 近未来科幻灾难 frame with a 高压、冷峻、技术感 tone.",
+      "Introduce the protagonist's immediate role, pressure, and conflict around: 剧情需围绕月球矿难与生存风险展开.",
+      "Reveal one concrete obstacle or tradeoff the player must respond to next.",
+      "End the first turn with 2-3 actionable next steps that can continue the story."
+    ],
+    "mode": "first_playable",
+    "baseline_params": {
+      "execution_mode": "cloud",
+      "doc_repo": "D:\\Projects\\DN\\baselines\\DOC",
+      "doc_data_dir": "D:\\Projects\\DN\\baselines\\DOC\\doc_data"
+    }
+  },
+  "raw_output": {
+    "execution_mode": "cloud",
+    "doc_upstream_executed": false,
+    "doc_api_adapter": "yunwu_chat_completions",
+    "provider": "yunwu",
+    "provider_config_prefix": "Origin_Segment_Analyst",
+    "provider_base_url": "https://yunwu.ai/v1",
+    "provider_model": "gemini-3.1-flash-lite-preview",
+    "request": {
+      "model": "gemini-3.1-flash-lite-preview",
+      "temperature": 0.7,
+      "top_p": 0.9,
+      "max_tokens": 900,
+      "response_format": {
+        "type": "json_object"
+      }
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are the DOC long-form story baseline adapted for DN playable-latency evaluation. Write concise, grounded, continuation-ready interactive fiction. Do not include debugging text, URLs, or commentary outside JSON."
+      },
+      {
+        "role": "user",
+        "content": "Convert this DN benchmark item into a DOC-style playable baseline output.\nPreserve DOC's premise -> outline -> story-opening semantics, but return only a playable first response.\nRun mode: first_playable\n\nDOC prompt:\nPremise seed: 月球矿难七日\nGenre: 近未来科幻灾难\nTone: 高压、冷峻、技术感\nWrite a long-form interactive story opening that could be expanded with a detailed outline.\nMust-have constraints:\n- 剧情需围绕月球矿难与生存风险展开\n- 图像应体现赛博/科幻视觉元素\n- 首段要有明确危机感与行动起点\nForbidden issues:\n- 出现古风或校园设定串场\n- 图像 prompt 混入无关 IP 名称\n- 选项与危机无关\n\nOutline seed:\n1. Opening setup for 月球矿难七日 in a 近未来科幻灾难 frame with a 高压、冷峻、技术感 tone.\n2. Introduce the protagonist's immediate role, pressure, and conflict around: 剧情需围绕月球矿难与生存风险展开.\n3. Reveal one concrete obstacle or tradeoff the player must respond to next.\n4. End the first turn with 2-3 actionable next steps that can continue the story.\n\nReturn strict JSON with this shape and no markdown fences:\n{\n  \"scene_setup\": \"string\",\n  \"player_state\": \"string\",\n  \"narrative_response\": \"string\",\n  \"candidate_actions\": [\n    \"string\"\n  ],\n  \"suggested_next_step\": \"string\",\n  \"supports_next_turn\": true\n}"
+      }
+    ],
+    "response": {
+      "id": "chatcmpl-20260430165343207674496XBYD3NG8",
+      "model": "gemini-3.1-flash-lite-preview",
+      "object": "chat.completion",
+      "created": 1777539242,
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"scene_setup\": \"月球背面，静海矿区。由于深层地壳坍塌引发的连锁地震，氦-3开采站的主支撑结构已断裂。空气监测器发出刺耳的蜂鸣，舱内气压正在以每分钟0.4个标准大气压的速度下降。窗外，被震碎的工业照明灯光在荒凉的月壤上投下诡异的阴影，远处破碎的货运飞船残骸还在冒着致命的金属蒸汽。\",\n  \"player_state\": \"你是一名驻守在此的矿区维修工程师。你的氧气罐仅剩15%储备，左腿被坠落的液压杆压住，通讯频道里全是嘈杂的电流声，唯有自动防御系统的红灯在黑暗中不断闪烁，提示着维生系统即将彻底瘫痪。\",\n  \"narrative_response\": \"剧烈的震动再次袭来，矿区主控室的穹顶裂缝扩大，尘埃如细针般渗入。你面前的控制台屏幕闪烁着最后的一点电量，显示着两个生死攸关的选项：一个是强制关闭所有舱室的密封闸，将逃生舱内的氧气供给锁定；另一个是尝试接入受损的地下管网，利用剩余的应急动力强行推开压在腿上的液压杆。但无论选择哪一个，你都必须在接下来的三分钟内做出决定，否则氧气耗尽将是不可逆的结局。\",\n  \"candidate_actions\": [\n    \"强制执行舱室密封协议，牺牲受损区域，换取生存空间。\",\n    \"接入地下管网动力，尝试手动顶开液压杆，但有极高概率引发二次坍塌。\",\n    \"向地球指挥中心发送紧急求救信号，赌那仅存的万分之一救援几率。\"\n  ],\n  \"suggested_next_step\": \"评估当前资源，决定采取激进自救还是防御性生存策略。\",\n  \"supports_next_turn\": true\n}"
+          },
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 406,
+        "completion_tokens": 451,
+        "total_tokens": 857,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "text_tokens": 406,
+          "audio_tokens": 0,
+          "image_tokens": 0
+        },
+        "completion_tokens_details": {
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0
+        },
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "input_tokens_details": null,
+        "claude_cache_creation_5_m_tokens": 0,
+        "claude_cache_creation_1_h_tokens": 0
+      }
+    }
+  },
+  "success": true,
+  "latency_s": 19.73,
+  "playable": true,
+  "playable_components": {
+    "scene_setup": true,
+    "player_state": true,
+    "advanceable_next_step": true,
+    "interaction_continuity": true
+  },
+  "normalized_response": {
+    "scene_setup": "月球背面，静海矿区。由于深层地壳坍塌引发的连锁地震，氦-3开采站的主支撑结构已断裂。空气监测器发出刺耳的蜂鸣，舱内气压正在以每分钟0.4个标准大气压的速度下降。窗外，被震碎的工业照明灯光在荒凉的月壤上投下诡异的阴影，远处破碎的货运飞船残骸还在冒着致命的金属蒸汽。",
+    "player_state": "你是一名驻守在此的矿区维修工程师。你的氧气罐仅剩15%储备，左腿被坠落的液压杆压住，通讯频道里全是嘈杂的电流声，唯有自动防御系统的红灯在黑暗中不断闪烁，提示着维生系统即将彻底瘫痪。",
+    "narrative_response": "剧烈的震动再次袭来，矿区主控室的穹顶裂缝扩大，尘埃如细针般渗入。你面前的控制台屏幕闪烁着最后的一点电量，显示着两个生死攸关的选项：一个是强制关闭所有舱室的密封闸，将逃生舱内的氧气供给锁定；另一个是尝试接入受损的地下管网，利用剩余的应急动力强行推开压在腿上的液压杆。但无论选择哪一个，你都必须在接下来的三分钟内做出决定，否则氧气耗尽将是不可逆的结局。",
+    "candidate_actions": [
+      "强制执行舱室密封协议，牺牲受损区域，换取生存空间。",
+      "接入地下管网动力，尝试手动顶开液压杆，但有极高概率引发二次坍塌。",
+      "向地球指挥中心发送紧急求救信号，赌那仅存的万分之一救援几率。"
+    ],
+    "suggested_next_step": "评估当前资源，决定采取激进自救还是防御性生存策略。",
+    "is_playable": true,
+    "request_start_ts": 1777539222.5448062,
+    "first_playable_ts": 1777539242.2747061,
+    "finish_ts": 1777539242.2747061,
+    "error": null
+  },
+  "failure_reason": null,
+  "notes": [
+    "DOC-style artifact generated through Yunwu OpenAI-compatible chat/completions API."
+  ],
+  "resource_usage": {
+    "execution_mode": "cloud"
+  },
+  "agent_profile": {
+    "runner": "run_doc.py",
+    "adapter_style": "doc_cloud_yunwu_v1"
+  }
+}

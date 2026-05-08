@@ -1,0 +1,30 @@
+{
+  "baseline_id": "doc",
+  "run_id": "formal20_first_playable_20260430_complete",
+  "mode": "first_playable",
+  "execution_mode": "cloud",
+  "subset": "D:\\Projects\\DN\\experiments\\baseline_integration\\subsets\\efficiency_playable_subset_v20.json",
+  "output_dir": "experiments\\baseline_integration\\normalized_runs\\doc_yunwu\\formal20_first_playable_20260430_complete",
+  "provider": {
+    "name": "yunwu",
+    "config_prefix": "Origin_Segment_Analyst",
+    "base_url": "https://yunwu.ai/v1",
+    "model": "gemini-3.1-flash-lite-preview",
+    "api_key_present": true
+  },
+  "environment": {
+    "python": "3.13.9",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "cwd": "D:\\Projects\\DN",
+    "hf_home": null,
+    "transformers_cache": null,
+    "hf_hub_cache": null,
+    "gpu": {
+      "available": false,
+      "name": null,
+      "count": 0,
+      "error": "ModuleNotFoundError(\"No module named 'torch'\")"
+    }
+  },
+  "completion_note": "item_007 DNQBV1_008 replaced from retry_DNQBV1_008_20260430 after transient cloud/proxy failure"
+}

@@ -3,14 +3,12 @@
 import re
 from typing import Dict
 
-# 前瞻边界：下一个字段名 / section 头 / 分隔线 / 文本结束（兼容 # 前缀）
-_LA = r"(?:[#]*\s*(?:世界观基础设定|主角核心能力|(?:游戏)?主线任务|游戏结束触发条件|总章节数|预计主线步数|第\d+章|主角规范信息)|##?\s*【|---+|$)"
-# 字段名后冒号可选、允许换行（兼容 "#### 游戏风格\n内容" 格式）
-_REGEX_GAME_STYLE = re.compile(r"[#]*\s*游戏风格[：:]?\s*\n?\s*(.+?)(?=\n\s*" + _LA + r")", re.UNICODE | re.DOTALL | re.MULTILINE)
-_REGEX_WORLD_BASIC = re.compile(r"[#]*\s*世界观基础设定[：:]?\s*\n?\s*(.+?)(?=\n\s*" + _LA + r")", re.UNICODE | re.DOTALL | re.MULTILINE)
-_REGEX_PROTAGONIST_ABILITY = re.compile(r"[#]*\s*主角核心能力[：:]?\s*\n?\s*(.+?)(?=\n\s*" + _LA + r")", re.UNICODE | re.DOTALL | re.MULTILINE)
-_REGEX_MAIN_QUEST = re.compile(r"[#]*\s*(?:游戏)?主线任务[：:]?\s*\n?\s*(.+?)(?=\n\s*" + _LA + r")", re.UNICODE | re.DOTALL | re.MULTILINE)
-_REGEX_END_TRIGGER = re.compile(r"[#]*\s*游戏结束触发条件[：:]?\s*\n?\s*(.+?)(?=\n\s*" + _LA + r")", re.UNICODE | re.DOTALL | re.MULTILINE)
+_LA = r"(?:世界观基础设定|主角核心能力|游戏主线任务|游戏结束触发条件|总章节数|预计主线步数|第\d+章|##\s*【|$)"
+_REGEX_GAME_STYLE = re.compile(r"游戏风格[：:]\s*(.+?)(?=\n\s*" + _LA + r")", re.UNICODE | re.DOTALL | re.MULTILINE)
+_REGEX_WORLD_BASIC = re.compile(r"世界观基础设定[：:]\s*(.+?)(?=\n\s*" + _LA + r")", re.UNICODE | re.DOTALL | re.MULTILINE)
+_REGEX_PROTAGONIST_ABILITY = re.compile(r"主角核心能力[：:]\s*(.+?)(?=\n\s*" + _LA + r")", re.UNICODE | re.DOTALL | re.MULTILINE)
+_REGEX_MAIN_QUEST = re.compile(r"游戏主线任务[：:]\s*(.+?)(?=\n\s*" + _LA + r")", re.UNICODE | re.DOTALL | re.MULTILINE)
+_REGEX_END_TRIGGER = re.compile(r"游戏结束触发条件[：:]\s*(.+?)(?=\n\s*" + _LA + r")", re.UNICODE | re.DOTALL | re.MULTILINE)
 _REGEX_CHAPTER = re.compile(r"第(\d+)章[：:]?", re.UNICODE)
 _REGEX_CHAPTER_CONFLICT = re.compile(r"(?:- )?核心矛盾[：:]\s*(.+)", re.UNICODE | re.MULTILINE | re.DOTALL)
 _REGEX_CHAPTER_END = re.compile(r"(?:- )?矛盾结束条件[：:]\s*(.+)", re.UNICODE | re.MULTILINE | re.DOTALL)
@@ -18,8 +16,6 @@ _REGEX_CHAPTER_END = re.compile(r"(?:- )?矛盾结束条件[：:]\s*(.+)", re.UN
 
 def _regex_fill_worldview(raw_text: str, core_worldview: Dict, chapters: Dict):
     """使用正则回填缺失的核心字段，避免因格式偏差导致解析失败"""
-    raw_text = raw_text.replace('**', '').replace('*', '')
-
     if not core_worldview.get("game_style"):
         m = _REGEX_GAME_STYLE.search(raw_text)
         if m:

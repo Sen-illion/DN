@@ -1,56 +1,33 @@
-# Secrets / local config
-.env
-*.env
-.codex_ssh/
-*.pem
-*.key
-
-# Python
+# Python-generated files
 __pycache__/
-*.py[cod]
-.pytest_cache/
-.mypy_cache/
-.ruff_cache/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info/
+
+# Virtual environments
 .venv/
-.venv2/
-myvenv/
-.tmp_pip/
 
-# Node / frontend
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+.working_dir/
+.trash/
 
-# IDE / editor
-.idea/
-.vscode/
-.cursor/
-
-# Runtime outputs / caches
+# Local generated media / caches
 .cache/
-logs/
-outputs/
-models/
-tmp/
+.cache/clip/
+images/
+videos/
+original_shots/
+video_dir/
+dir/
+worldview_cache/
+worldview_templates/
 image_cache/
 video_cache/
-worldview_cache/
 saves/
-initial/
-experiments/
-**/results/
-**/generated/
-**/artifacts/
 
-# External repos / downloaded baselines
-baselines/
-external/
-llm-council-master/
-
-# Generated transfer archives
-dn-main-src.tgz
-*.tgz
+# Logs & archives
+logs/*.log
 *.tar.gz
 *.zip
 *.rar
@@ -77,3 +54,4 @@ remote_baseline_results_20260430/
 
 # Human eval runtime outputs
 human_eval_site/collected_results/
+

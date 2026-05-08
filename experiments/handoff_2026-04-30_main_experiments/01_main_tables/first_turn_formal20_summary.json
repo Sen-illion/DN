@@ -1,0 +1,50 @@
+[
+  {
+    "baseline": "storydiffusion",
+    "mode": "first_turn",
+    "sample_size": 20,
+    "success_rate": 1.0,
+    "mean_latency_s": 7.69,
+    "p95_latency_s": 8.415,
+    "next_turn_time_mean_s": null,
+    "next_turn_p95_s": null,
+    "continuation_success_rate": null,
+    "interaction_continuity": null,
+    "mean_images_per_sample": 4,
+    "failed_ids": "",
+    "output_dir": "/root/autodl-tmp/outputs/storydiffusion_formal20/storydiffusion_formal20_unstable_20260430_1200",
+    "notes": "StoryDiffusion low-VRAM textual-description mode; 4 DN-style scene prompts per item by default."
+  },
+  {
+    "baseline": "sdmv2",
+    "mode": "first_turn",
+    "sample_size": 20,
+    "success_rate": 1.0,
+    "mean_latency_s": 2.847,
+    "p95_latency_s": 2.854,
+    "next_turn_time_mean_s": null,
+    "next_turn_p95_s": null,
+    "continuation_success_rate": null,
+    "interaction_continuity": null,
+    "mean_images_per_sample": 1,
+    "failed_ids": "",
+    "output_dir": "/root/autodl-tmp/outputs/sdmv2_local_formal20/sdmv2_sdmv2_local_formal20_20260430",
+    "notes": "SDM-v2 uses diffusers and generates one image per DN-style item; no character-consistency claim."
+  },
+  {
+    "baseline": "ic-lora",
+    "mode": "first_turn",
+    "sample_size": 20,
+    "success_rate": 1.0,
+    "mean_latency_s": 30.06,
+    "p95_latency_s": 30.063,
+    "next_turn_time_mean_s": null,
+    "next_turn_p95_s": null,
+    "continuation_success_rate": null,
+    "interaction_continuity": null,
+    "mean_images_per_sample": 1,
+    "failed_ids": "",
+    "output_dir": "/root/autodl-tmp/outputs/iclora_formal20_real/ic-lora_real_20260430_formal20",
+    "notes": "IC-LoRA attempts official ComfyUI workflow execution when assets and ComfyUI API are ready."
+  }
+]

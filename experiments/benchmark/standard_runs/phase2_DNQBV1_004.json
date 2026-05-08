@@ -1,0 +1,371 @@
+{
+  "summary": {
+    "experiment_name": "phase2_DNQBV1_004",
+    "profile": "fullready_strict",
+    "sample_size": 1,
+    "read_wait_s": 0.0,
+    "suite_start_ts": 1777623254.0260017,
+    "suite_end_ts": 1777623322.1660204,
+    "second_click_elapsed_s": {
+      "count": 0
+    },
+    "second_click_success_count": 0,
+    "transport_success_count": 0,
+    "strict_success_count": 0,
+    "likely_hit_count": 0,
+    "likely_hit_rate": 0.0,
+    "failure_bucket_counts": {
+      "first_click_timeout": 1
+    },
+    "placeholder_strict_fail_count": 0,
+    "cache_hit_reason_counts": {},
+    "cache_miss_reason_counts": {},
+    "global_state_key_drift_detected_count": 0,
+    "scene_id_mismatch_detected_count": 0,
+    "selected_option_mismatch_detected_count": 0,
+    "aborted": false,
+    "success_count": 0,
+    "text_ready_elapsed_s": {
+      "count": 0
+    },
+    "image_ready_elapsed_s": {
+      "count": 0
+    },
+    "full_ready_elapsed_s": {
+      "count": 0
+    },
+    "real_scene_count": 0,
+    "real_scene_rate": 0.0,
+    "direct_image_count": 0,
+    "async_image_count": 0,
+    "placeholder_count": 0,
+    "placeholder_rate": 0.0,
+    "direct_image_rate": 0.0,
+    "async_image_rate": 0.0,
+    "provider_retry_heavy_count": 0,
+    "provider_429_count": 0,
+    "provider_timeout_count": 0,
+    "provider_backoff_wait_ms_total": 0,
+    "main_character_contention_suspected_count": 0,
+    "notes": "phase2 cache diagnosis probe"
+  },
+  "runs": [
+    {
+      "benchmark_id": "DNQBV1_004",
+      "theme_id": 30,
+      "theme": "克隆体伦理庭",
+      "read_wait_s": 0.0,
+      "full_ready_mode": true,
+      "profile": "fullready_strict",
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 8.045,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过深入调查，发现该克隆体确实存在异常记忆，最终在法庭上提交了部分证据，迫使庭审延期，但代价是主角被调离核心部门，失去了接触关键档案的权限。",
+                  "main_conflict": "主角接手了一起克隆体“自我觉醒”的诉讼，对方要求获得独立公民权。然而，伦理庭内部压力巨大，上司暗示主角必须以“程序错误”为由快速结案，否则将影响其晋升。主角在维护法律公正的职业理想与维持生计的现实压力之间陷入挣扎，同时还要面对来自克隆体家属的哀求与威胁。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角在一次秘密会面中与导师对峙，最终选择保留证据作为制衡，迫使导师停止了该项目的运作，但两人从此分道扬镳，主角也因此失去了行业内的导师背书。",
+                  "main_conflict": "主角在边缘岗位调查时，意外发现“非法意识备份”的幕后黑手竟与自己的导师有关。导师曾教导主角坚持正义，如今却为了维护家族利益而参与非法实验。主角陷入了信仰崩塌的痛苦，同时还要在暗中搜集证据，既要保护导师不被彻底毁灭，又要阻止其继续作恶。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角选择以匿名方式将部分真相公之于众，引发了有限的社会讨论，受害者获得了合法的身份补偿，但真相的复杂性导致社会并未发生根本性变革，主角辞去公职，回归平凡生活。",
+                  "main_conflict": "最终案件爆发，主角必须在“公开真相导致社会动荡”与“隐瞒真相换取受害者安稳生活”之间做出选择。真相一旦公开，所有克隆体可能面临被强制销毁的命运；若隐瞒，则意味着正义永远无法得到伸张，受害者将永远活在阴影中。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为现实主义题材的叙事驱动型游戏，采用冷峻克制的美术风格与沉浸式交互叙事。通过琐碎的日常细节与压抑的职场环境，构建出一种“科技高度发达但个体价值被稀释”的真实质感，强调在不可抗力面前，个体选择的局限性与自我和解的心理过程。",
+              "main_quest": "主角作为伦理庭的一名初级审查官，目标是处理一起涉及“非法意识备份”的连环案件。主角需要通过查阅海量档案、走访旧城区克隆体黑市、与各方利益集团周旋，逐步揭开案件背后关于“自我定义”的真相。挑战在于，主角在调查过程中会发现自己的一位至亲也涉及其中，必须在职业操守、法律公正与个人情感之间做出艰难抉择。最终任务并非彻底推翻不公的制度，而是通过一系列取证与辩护，为受害者争取到有限的生存空间，并在这个过程中完成对自我身份的重新认知。",
+              "protagonist_ability": "主角拥有一种名为“共情溯源”的感知力，源于其长期接触克隆体档案而产生的神经敏感。通过触摸与案件相关的遗物，主角能短暂重现克隆体生前的一段模糊记忆片段。该能力并非超能力，而是一种高强度的心理投射，使用时会伴随剧烈的偏头痛与生理疲劳，且记忆片段往往碎片化、不可控，无法作为法庭上的直接证据，仅能辅助主角理解案件背后的真实动机。",
+              "world_basic_setting": "故事发生于近未来的大都市“新安城”，这里是全球克隆伦理审查的中心。社会高度依赖“生物备份技术”，即权贵阶层通过克隆体实现器官移植或意识延续，而底层民众则在“伦理庭”的监管下，为这些克隆体的合法性与人权边界进行繁琐的法律辩护。城市被划分为光鲜的行政区与阴暗的旧城区，空气中弥漫着工业废气与电子广告的冷光。关键事件“零号法案”通过后，克隆体被定义为“生物资产”，而非独立人格。这一设定导致社会阶层固化，人们在追求“备份生命”的虚假安全感中，逐渐丧失了对当下生活的真实感知。伦理庭作为社会矛盾的缓冲带，每天处理着无数关于身份归属、记忆归档与生命权重的案件，这里既是法律的圣殿，也是无数个体尊严被磨损的磨盘。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1777623254_sxr0x4",
+            "image_style": {
+              "type": "realistic"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "黑色碎发，黑框眼镜，略显疲惫的眼神，深灰色西装，常备止痛药，袖口磨损，清瘦，沉默寡言，习惯性揉太阳穴，衬衫领口总是扣到最上面。",
+              "work_en": "《Embers of the Ethics Court》",
+              "work_zh": "《伦理庭的余烬》"
+            },
+            "tone": "normal_ending",
+            "user_theme": "克隆体伦理庭"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "request_payload": {
+          "gameTheme": "克隆体伦理庭",
+          "protagonistAttr": {},
+          "difficulty": "normal",
+          "toneKey": "normal_ending",
+          "imageStyle": {
+            "type": "realistic"
+          },
+          "_benchmark_profile": "fullready_strict",
+          "_benchmark_measurement": "fullready_nextturn",
+          "_benchmark_read_wait_s": 0.0
+        },
+        "start_ts": 1777623254.0260077,
+        "end_ts": 1777623262.0712008,
+        "provider_events": {
+          "event_count": 4,
+          "queue_wait_ms": {
+            "count": 4,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 1,
+            "min": 8034.0,
+            "max": 8034.0,
+            "mean": 8034.0,
+            "median": 8034.0,
+            "p95": 8034.0
+          },
+          "llm_success_count": 1,
+          "image_success_count": 0,
+          "request_thread_event_count": 2,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0
+        },
+        "status": "success",
+        "game_id": "game_1777623254_sxr0x4"
+      },
+      "first_click": {
+        "http_status": null,
+        "elapsed_s": 60.013,
+        "response_json": {
+          "status": "timeout",
+          "message": "HTTPConnectionPool(host='127.0.0.1', port=5006): Read timed out. (read timeout=60)"
+        },
+        "request_payload": {
+          "option": "开始游戏",
+          "optionIndex": 0,
+          "sceneId": null,
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过深入调查，发现该克隆体确实存在异常记忆，最终在法庭上提交了部分证据，迫使庭审延期，但代价是主角被调离核心部门，失去了接触关键档案的权限。",
+                  "main_conflict": "主角接手了一起克隆体“自我觉醒”的诉讼，对方要求获得独立公民权。然而，伦理庭内部压力巨大，上司暗示主角必须以“程序错误”为由快速结案，否则将影响其晋升。主角在维护法律公正的职业理想与维持生计的现实压力之间陷入挣扎，同时还要面对来自克隆体家属的哀求与威胁。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角在一次秘密会面中与导师对峙，最终选择保留证据作为制衡，迫使导师停止了该项目的运作，但两人从此分道扬镳，主角也因此失去了行业内的导师背书。",
+                  "main_conflict": "主角在边缘岗位调查时，意外发现“非法意识备份”的幕后黑手竟与自己的导师有关。导师曾教导主角坚持正义，如今却为了维护家族利益而参与非法实验。主角陷入了信仰崩塌的痛苦，同时还要在暗中搜集证据，既要保护导师不被彻底毁灭，又要阻止其继续作恶。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角选择以匿名方式将部分真相公之于众，引发了有限的社会讨论，受害者获得了合法的身份补偿，但真相的复杂性导致社会并未发生根本性变革，主角辞去公职，回归平凡生活。",
+                  "main_conflict": "最终案件爆发，主角必须在“公开真相导致社会动荡”与“隐瞒真相换取受害者安稳生活”之间做出选择。真相一旦公开，所有克隆体可能面临被强制销毁的命运；若隐瞒，则意味着正义永远无法得到伸张，受害者将永远活在阴影中。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为现实主义题材的叙事驱动型游戏，采用冷峻克制的美术风格与沉浸式交互叙事。通过琐碎的日常细节与压抑的职场环境，构建出一种“科技高度发达但个体价值被稀释”的真实质感，强调在不可抗力面前，个体选择的局限性与自我和解的心理过程。",
+              "main_quest": "主角作为伦理庭的一名初级审查官，目标是处理一起涉及“非法意识备份”的连环案件。主角需要通过查阅海量档案、走访旧城区克隆体黑市、与各方利益集团周旋，逐步揭开案件背后关于“自我定义”的真相。挑战在于，主角在调查过程中会发现自己的一位至亲也涉及其中，必须在职业操守、法律公正与个人情感之间做出艰难抉择。最终任务并非彻底推翻不公的制度，而是通过一系列取证与辩护，为受害者争取到有限的生存空间，并在这个过程中完成对自我身份的重新认知。",
+              "protagonist_ability": "主角拥有一种名为“共情溯源”的感知力，源于其长期接触克隆体档案而产生的神经敏感。通过触摸与案件相关的遗物，主角能短暂重现克隆体生前的一段模糊记忆片段。该能力并非超能力，而是一种高强度的心理投射，使用时会伴随剧烈的偏头痛与生理疲劳，且记忆片段往往碎片化、不可控，无法作为法庭上的直接证据，仅能辅助主角理解案件背后的真实动机。",
+              "world_basic_setting": "故事发生于近未来的大都市“新安城”，这里是全球克隆伦理审查的中心。社会高度依赖“生物备份技术”，即权贵阶层通过克隆体实现器官移植或意识延续，而底层民众则在“伦理庭”的监管下，为这些克隆体的合法性与人权边界进行繁琐的法律辩护。城市被划分为光鲜的行政区与阴暗的旧城区，空气中弥漫着工业废气与电子广告的冷光。关键事件“零号法案”通过后，克隆体被定义为“生物资产”，而非独立人格。这一设定导致社会阶层固化，人们在追求“备份生命”的虚假安全感中，逐渐丧失了对当下生活的真实感知。伦理庭作为社会矛盾的缓冲带，每天处理着无数关于身份归属、记忆归档与生命权重的案件，这里既是法律的圣殿，也是无数个体尊严被磨损的磨盘。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1777623254_sxr0x4",
+            "image_style": {
+              "type": "realistic"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "黑色碎发，黑框眼镜，略显疲惫的眼神，深灰色西装，常备止痛药，袖口磨损，清瘦，沉默寡言，习惯性揉太阳穴，衬衫领口总是扣到最上面。",
+              "work_en": "《Embers of the Ethics Court》",
+              "work_zh": "《伦理庭的余烬》"
+            },
+            "tone": "normal_ending",
+            "user_theme": "克隆体伦理庭",
+            "_benchmark_profile": "fullready_strict",
+            "_benchmark_measurement": "fullready_nextturn",
+            "_benchmark_read_wait_s": 0.0
+          }
+        },
+        "start_ts": 1777623262.1142251,
+        "end_ts": 1777623322.1270626,
+        "provider_events": {
+          "event_count": 6,
+          "queue_wait_ms": {
+            "count": 6,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 4,
+            "min": 4132.0,
+            "max": 11870.0,
+            "mean": 7669.0,
+            "median": 7337.0,
+            "p95": 11259.65
+          },
+          "llm_success_count": 4,
+          "image_success_count": 0,
+          "request_thread_event_count": 0,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0
+        },
+        "request_error": "timeout",
+        "attempts": [
+          {
+            "http_status": null,
+            "elapsed_s": 60.013,
+            "response_json": {
+              "status": "timeout",
+              "message": "HTTPConnectionPool(host='127.0.0.1', port=5006): Read timed out. (read timeout=60)"
+            },
+            "request_payload": {
+              "option": "开始游戏",
+              "optionIndex": 0,
+              "sceneId": null,
+              "globalState": {
+                "core_worldview": {
+                  "chapters": {
+                    "chapter1": {
+                      "conflict_end_condition": "主角通过深入调查，发现该克隆体确实存在异常记忆，最终在法庭上提交了部分证据，迫使庭审延期，但代价是主角被调离核心部门，失去了接触关键档案的权限。",
+                      "main_conflict": "主角接手了一起克隆体“自我觉醒”的诉讼，对方要求获得独立公民权。然而，伦理庭内部压力巨大，上司暗示主角必须以“程序错误”为由快速结案，否则将影响其晋升。主角在维护法律公正的职业理想与维持生计的现实压力之间陷入挣扎，同时还要面对来自克隆体家属的哀求与威胁。"
+                    },
+                    "chapter2": {
+                      "conflict_end_condition": "主角在一次秘密会面中与导师对峙，最终选择保留证据作为制衡，迫使导师停止了该项目的运作，但两人从此分道扬镳，主角也因此失去了行业内的导师背书。",
+                      "main_conflict": "主角在边缘岗位调查时，意外发现“非法意识备份”的幕后黑手竟与自己的导师有关。导师曾教导主角坚持正义，如今却为了维护家族利益而参与非法实验。主角陷入了信仰崩塌的痛苦，同时还要在暗中搜集证据，既要保护导师不被彻底毁灭，又要阻止其继续作恶。"
+                    },
+                    "chapter3": {
+                      "conflict_end_condition": "主角选择以匿名方式将部分真相公之于众，引发了有限的社会讨论，受害者获得了合法的身份补偿，但真相的复杂性导致社会并未发生根本性变革，主角辞去公职，回归平凡生活。",
+                      "main_conflict": "最终案件爆发，主角必须在“公开真相导致社会动荡”与“隐瞒真相换取受害者安稳生活”之间做出选择。真相一旦公开，所有克隆体可能面临被强制销毁的命运；若隐瞒，则意味着正义永远无法得到伸张，受害者将永远活在阴影中。"
+                    }
+                  },
+                  "characters": {},
+                  "forces": {},
+                  "game_style": "本作为现实主义题材的叙事驱动型游戏，采用冷峻克制的美术风格与沉浸式交互叙事。通过琐碎的日常细节与压抑的职场环境，构建出一种“科技高度发达但个体价值被稀释”的真实质感，强调在不可抗力面前，个体选择的局限性与自我和解的心理过程。",
+                  "main_quest": "主角作为伦理庭的一名初级审查官，目标是处理一起涉及“非法意识备份”的连环案件。主角需要通过查阅海量档案、走访旧城区克隆体黑市、与各方利益集团周旋，逐步揭开案件背后关于“自我定义”的真相。挑战在于，主角在调查过程中会发现自己的一位至亲也涉及其中，必须在职业操守、法律公正与个人情感之间做出艰难抉择。最终任务并非彻底推翻不公的制度，而是通过一系列取证与辩护，为受害者争取到有限的生存空间，并在这个过程中完成对自我身份的重新认知。",
+                  "protagonist_ability": "主角拥有一种名为“共情溯源”的感知力，源于其长期接触克隆体档案而产生的神经敏感。通过触摸与案件相关的遗物，主角能短暂重现克隆体生前的一段模糊记忆片段。该能力并非超能力，而是一种高强度的心理投射，使用时会伴随剧烈的偏头痛与生理疲劳，且记忆片段往往碎片化、不可控，无法作为法庭上的直接证据，仅能辅助主角理解案件背后的真实动机。",
+                  "world_basic_setting": "故事发生于近未来的大都市“新安城”，这里是全球克隆伦理审查的中心。社会高度依赖“生物备份技术”，即权贵阶层通过克隆体实现器官移植或意识延续，而底层民众则在“伦理庭”的监管下，为这些克隆体的合法性与人权边界进行繁琐的法律辩护。城市被划分为光鲜的行政区与阴暗的旧城区，空气中弥漫着工业废气与电子广告的冷光。关键事件“零号法案”通过后，克隆体被定义为“生物资产”，而非独立人格。这一设定导致社会阶层固化，人们在追求“备份生命”的虚假安全感中，逐渐丧失了对当下生活的真实感知。伦理庭作为社会矛盾的缓冲带，每天处理着无数关于身份归属、记忆归档与生命权重的案件，这里既是法律的圣殿，也是无数个体尊严被磨损的磨盘。"
+                },
+                "flow_worldline": {
+                  "characters": {},
+                  "current_chapter": "chapter1",
+                  "environment": {}
+                },
+                "game_id": "game_1777623254_sxr0x4",
+                "image_style": {
+                  "type": "realistic"
+                },
+                "meta": {
+                  "detail_async": true
+                },
+                "protagonist_canonical": {
+                  "age_range": "青年",
+                  "gender": "男性",
+                  "name_en": "Lin Yuan",
+                  "name_zh": "林远",
+                  "signature_look_keywords": "黑色碎发，黑框眼镜，略显疲惫的眼神，深灰色西装，常备止痛药，袖口磨损，清瘦，沉默寡言，习惯性揉太阳穴，衬衫领口总是扣到最上面。",
+                  "work_en": "《Embers of the Ethics Court》",
+                  "work_zh": "《伦理庭的余烬》"
+                },
+                "tone": "normal_ending",
+                "user_theme": "克隆体伦理庭",
+                "_benchmark_profile": "fullready_strict",
+                "_benchmark_measurement": "fullready_nextturn",
+                "_benchmark_read_wait_s": 0.0
+              }
+            },
+            "start_ts": 1777623262.1142251,
+            "end_ts": 1777623322.1270626,
+            "provider_events": {
+              "event_count": 6,
+              "queue_wait_ms": {
+                "count": 6,
+                "min": 0.0,
+                "max": 0.0,
+                "mean": 0.0,
+                "median": 0.0,
+                "p95": 0.0
+              },
+              "latency_ms": {
+                "count": 4,
+                "min": 4132.0,
+                "max": 11870.0,
+                "mean": 7669.0,
+                "median": 7337.0,
+                "p95": 11259.65
+              },
+              "llm_success_count": 4,
+              "image_success_count": 0,
+              "request_thread_event_count": 0,
+              "provider_429_count": 0,
+              "provider_timeout_count": 0,
+              "shared_backoff_wait_ms_total": 0,
+              "retry_heavy_event_count": 0,
+              "main_character_event_count": 0,
+              "scene_image_event_count": 0
+            },
+            "request_error": "timeout"
+          }
+        ],
+        "attempt_count": 1,
+        "request_elapsed_s": 60.013,
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "timeout",
+        "has_scene": false,
+        "has_image": false
+      },
+      "second_click": {},
+      "full_ready": {},
+      "placeholder": false,
+      "transport_success": false,
+      "strict_success": false,
+      "failure_bucket": "first_click_timeout",
+      "cache_path_classification": "first_click_timeout",
+      "cache_hit_reason": null,
+      "cache_miss_reason": null,
+      "global_state_key_drift_detected": false,
+      "scene_id_mismatch_detected": false,
+      "selected_option_mismatch_detected": false,
+      "success": false
+    }
+  ]
+}

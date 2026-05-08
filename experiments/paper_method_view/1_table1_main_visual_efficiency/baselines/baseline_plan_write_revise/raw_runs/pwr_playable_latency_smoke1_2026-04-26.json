@@ -1,0 +1,101 @@
+{
+  "runs": [
+    {
+      "baseline_id": "plan_write_revise",
+      "benchmark_id": "DNQBV1_001",
+      "run_id": "plan_write_revise_DNQBV1_001_1f79d429",
+      "raw_output": {
+        "elapsed": "0.90",
+        "n_story": "a7f1a49d",
+        "storey_id": "a7f1a49d",
+        "system_2": "<h2>Storyline</h2>spent -&gt; wanted -&gt; friends -&gt; heard -&gt; received <h2>Story</h2> i spent a lot of time at the grocery store . <br> i wanted to buy some food . <br> my friends and i went to the grocery store . <br> i heard a loud knock on the door . <br> i received a phone call ."
+      },
+      "success": true,
+      "latency_s": 0.906,
+      "playable": true,
+      "playable_components": {
+        "scene_setup": true,
+        "player_state": true,
+        "advanceable_next_step": true,
+        "interaction_continuity": true
+      },
+      "normalized_response": {
+        "scene_setup": "i spent a lot of time at the grocery store .",
+        "player_state": "You are the acting protagonist inside the theme '边陲驿站夜谈录'. i spent a lot of time at the grocery store .",
+        "narrative_response": "i spent a lot of time at the grocery store .\ni wanted to buy some food .\nmy friends and i went to the grocery store .\ni heard a loud knock on the door .\ni received a phone call .",
+        "candidate_actions": [
+          "Investigate the immediate conflict around 边陲驿站夜谈录.",
+          "Secure the most fragile resource or ally in this 现实边陲叙事 scenario.",
+          "Confront the source of pressure before the situation worsens."
+        ],
+        "suggested_next_step": "Advance with one of the candidate actions while preserving the same storyline pressure.",
+        "is_playable": true,
+        "request_start_ts": 1777193958.0900042,
+        "first_playable_ts": 1777193958.9957633,
+        "finish_ts": 1777193958.9957633,
+        "error": null,
+        "notes": [
+          "You are producing a playable opening for an interactive narrative game. Return a grounded opening scene, the player state, and 2-4 concrete next actions.\n\nTheme: 边陲驿站夜谈录\nGenre: 现实边陲叙事\nTone: 克制、怀旧、微苦\nVisual style target: realistic\nMust-have constraints:\n- 世界观必须围绕边陲驿站生存与人情展开\n- 首段剧情应能自然引出一条可推进的现实冲突\n- 至少返回 2 个具体可执行选项\n- 场景图应与写实风格一致\nForbidden issues:\n- 现代互联网术语突兀混入\n- 调试文本或报错文本外泄\n- 图像 prompt 出现 URL 或 data:image\n- 人物设定串场到其他作品"
+        ]
+      },
+      "mode": "first_playable",
+      "input_bundle": {
+        "topic": "边陲驿站夜谈录 | 现实边陲叙事 | 克制、怀旧、微苦",
+        "system_id": "system_2"
+      }
+    },
+    {
+      "baseline_id": "plan_write_revise",
+      "benchmark_id": "DNQBV1_001",
+      "run_id": "plan_write_revise_DNQBV1_001_209fcf7f",
+      "raw_output": {
+        "storyline": {
+          "elapsed": "0.07",
+          "end_flag": true,
+          "new_phrase": "excited",
+          "request_id": "113af6d9"
+        },
+        "story": {
+          "elapsed": "0.79",
+          "request_id": "377fc236",
+          "story": "i spent a lot of time at the grocery store . <br> i wanted to buy some food . <br> my friends and i went to the grocery store . <br> i heard a loud knock on the door . <br> i received a phone call ."
+        }
+      },
+      "success": true,
+      "latency_s": 0.883,
+      "playable": true,
+      "playable_components": {
+        "scene_setup": false,
+        "player_state": true,
+        "advanceable_next_step": true,
+        "interaction_continuity": true
+      },
+      "normalized_response": {
+        "scene_setup": "",
+        "player_state": "You are the acting protagonist inside the theme '边陲驿站夜谈录'. i spent a lot of time at the grocery store .",
+        "narrative_response": "",
+        "candidate_actions": [
+          "Investigate the immediate conflict around 边陲驿站夜谈录.",
+          "Secure the most fragile resource or ally in this 现实边陲叙事 scenario.",
+          "Confront the source of pressure before the situation worsens."
+        ],
+        "suggested_next_step": "Chosen action was: Investigate the immediate conflict around 边陲驿站夜谈录.",
+        "is_playable": true,
+        "request_start_ts": 1777193958.9963915,
+        "first_playable_ts": 1777193959.8795435,
+        "finish_ts": 1777193959.8795435,
+        "error": null,
+        "notes": [
+          "Continue the same interactive narrative. Keep the same world, player identity, and stakes. Respond to the player action with the next playable turn.\n\nBenchmark brief:\nTheme: 边陲驿站夜谈录\nGenre: 现实边陲叙事\nTone: 克制、怀旧、微苦\nVisual style target: realistic\nMust-have constraints:\n- 世界观必须围绕边陲驿站生存与人情展开\n- 首段剧情应能自然引出一条可推进的现实冲突\n- 至少返回 2 个具体可执行选项\n- 场景图应与写实风格一致\nForbidden issues:\n- 现代互联网术语突兀混入\n- 调试文本或报错文本外泄\n- 图像 prompt 出现 URL 或 data:image\n- 人物设定串场到其他作品\n\nPrevious playable response:\n{\n  \"scene_setup\": \"i spent a lot of time at the grocery store .\",\n  \"player_state\": \"You are the acting protagonist inside the theme '边陲驿站夜谈录'. i spent a lot of time at the grocery store .\",\n  \"narrative_response\": \"i spent a lot of time at the grocery store .\\ni wanted to buy some food .\\nmy friends and i went to the grocery store .\\ni heard a loud knock on the door .\\ni received a phone call .\",\n  \"candidate_actions\": [\n    \"Investigate the immediate conflict around 边陲驿站夜谈录.\",\n    \"Secure the most fragile resource or ally in this 现实边陲叙事 scenario.\",\n    \"Confront the source of pressure before the situation worsens.\"\n  ],\n  \"suggested_next_step\": \"Advance with one of the candidate actions while preserving the same storyline pressure.\",\n  \"is_playable\": true,\n  \"request_start_ts\": 1777193958.0900042,\n  \"first_playable_ts\": 1777193958.9957633,\n  \"finish_ts\": 1777193958.9957633,\n  \"error\": null,\n  \"notes\": [\n    \"You are producing a playable opening for an interactive narrative game. Return a grounded opening scene, the player state, and 2-4 concrete next actions.\\n\\nTheme: 边陲驿站夜谈录\\nGenre: 现实边陲叙事\\nTone: 克制、怀旧、微苦\\nVisual style target: realistic\\nMust-have constraints:\\n- 世界观必须围绕边陲驿站生存与人情展开\\n- 首段剧情应能自然引出一条可推进的现实冲突\\n- 至少返回 2 个具体可执行选项\\n- 场景图应与写实风格一致\\nForbidden issues:\\n- 现代互联网术语突兀混入\\n- 调试文本或报错文本外泄\\n- 图像 prompt 出现 URL 或 data:image\\n- 人物设定串场到其他作品\"\n  ]\n}\n\nPlayer action: Investigate the immediate conflict around 边陲驿站夜谈录."
+        ]
+      },
+      "mode": "next_turn",
+      "input_bundle": {
+        "topic": "边陲驿站夜谈录 | 现实边陲叙事 | 克制、怀旧、微苦",
+        "system_id": "system_2",
+        "chosen_action": "Investigate the immediate conflict around 边陲驿站夜谈录.",
+        "storyline": "spent -> wanted -> friends -> heard -> received"
+      }
+    }
+  ]
+}

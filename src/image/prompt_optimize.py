@@ -981,32 +981,23 @@ def optimize_image_prompt_with_llm(
         protagonist_reference_section = ""
         if protagonist_reference_images and len(protagonist_reference_images) >= 1:
             n = len(protagonist_reference_images)
-            max_refs = 3 if n >= 3 else min(2, n)
-            lines = [
-                "Protagonist reference instructions (important):",
-                f"The image generator will receive between 1 and {max_refs} protagonist reference images for this scene. Use only the provided indices.",
-            ]
-            lines.append("- Image 0: protagonist front view portrait")
+            lines = ["【主角参考图说明（重要）】", "生图API根据本镜头需要仅传递 1～2 张主角参考图（如只需正面则只传正面），请根据剧情只引用需要的视角："]
+            lines.append("- Image 0：主角正面视图（Front view portrait of the protagonist）")
             if n >= 2:
-                lines.append("- Image 1: protagonist side view portrait")
+                lines.append("- Image 1：主角侧面视图（Side view portrait of the protagonist）")
             if n >= 3:
-                lines.append("- Image 2: protagonist back view portrait")
+                lines.append("- Image 2：主角背面视图（Back view portrait of the protagonist）")
             lines.append("")
-            lines.append(
-                f"In the final scene description, explicitly state which protagonist reference image is used. You may cite up to {max_refs} images."
-            )
-            lines.append("- Facing the camera -> use Image 0")
+            lines.append("在生成场景图片时，根据剧情中主角的视角明确说明主角使用哪张参考图（仅使用已提供的编号，最多引用 2 张）：")
+            lines.append("- 正面朝向镜头 → 主角使用 Image 0")
             if n >= 2:
-                lines.append("- Side profile -> use Image 1")
+                lines.append("- 侧面朝向镜头 → 主角使用 Image 1")
             if n >= 3:
-                lines.append("- Back facing the camera -> use Image 2")
+                lines.append("- 背面朝向镜头 → 主角使用 Image 2")
             if n >= 2:
-                if n >= 3:
-                    lines.append("- For mixed angles, you may reference Image 0, Image 1, and Image 2 together when needed")
-                else:
-                    lines.append("- For mixed angles, you may reference Image 0 and Image 1 together")
+                lines.append("- 其他角度可写「主角主要参考 Image 0 和 Image 1」等（最多 2 张）")
             lines.append("")
-            lines.append("Keep the protagonist appearance consistent with the selected reference images.")
+            lines.append("请在最终视觉描述中明确说明主角使用哪张参考图，确保主角形象与参考图一致。")
             protagonist_reference_section = "\n".join(lines) + "\n"
 
         supporting_role_reference_section = ""

@@ -1,0 +1,643 @@
+{
+  "summary": {
+    "experiment_name": "benchmark_v6_readwait_off_40s_2",
+    "sample_size": 2,
+    "read_wait_s": 40.0,
+    "suite_start_ts": 1776610657.6486561,
+    "suite_end_ts": 1776610784.6888978,
+    "second_click_elapsed_s": {
+      "count": 2,
+      "min": 0.01,
+      "max": 0.031,
+      "mean": 0.021,
+      "median": 0.021,
+      "p95": 0.03
+    },
+    "second_click_success_count": 2,
+    "likely_hit_count": 2,
+    "likely_hit_rate": 1.0
+  },
+  "runs": [
+    {
+      "benchmark_id": "DNQBV1_001",
+      "theme_id": 1,
+      "theme": "边陲驿站夜谈录",
+      "read_wait_s": 40.0,
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 19.288,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过筹办一场小型的“驿站告别晚宴”，让各方在酒桌上吐露心声，虽然拆迁事实无法改变，但大家达成了“体面离开”的共识，主角也初步明确了自己离开驿站的决心。",
+                  "main_conflict": "驿站面临拆迁预警，主角试图说服固执的老房东与几位长期租客接受现实，但大家对这片土地有着深厚的情感依赖，拒绝沟通。同时，主角自身也面临着是否要放弃祖业、前往大城市寻找职业发展的个人抉择，这种对未来的不确定性与对当下的留恋产生了剧烈冲突。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角通过整理驿站多年积累的旧账本与往来信件，还原了邻里间互助的历史，化解了误解，最终大家在补偿方案上达成一致，主角也在此过程中学会了如何处理复杂的人际关系。",
+                  "main_conflict": "拆迁补偿款分配引发了邻里间的信任危机，原本和谐的社区关系因利益纠葛变得紧张。主角作为中间人，不仅要应对繁琐的法律文书与行政流程，还要在邻居的猜忌中艰难维持公正，这种现实的琐碎与人性的复杂让主角感到身心俱疲，甚至一度想要放弃。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角在最后一台挖掘机进场前，亲手关上了驿站的大门，将钥匙埋在门前的老树下。主角没有获得大富大贵，也没有实现宏大的理想，但他带着一份平静与释然离开了驿站，走向了未知的下一站。",
+                  "main_conflict": "国道改线工程正式动工，驿站即将被推平。主角需在最后期限内完成所有人的搬迁工作，并处理好自己与驿站的最后告别。此时，主角发现自己曾经努力想要留住的某些东西（如老友的承诺、曾经的梦想）终究还是随着拆迁化为泡影，这种“努力却依然失去”的无力感达到顶峰。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为现实主义叙事模拟游戏，采用低饱和度的写实美术风格，强调光影在时间流逝中的质感。叙事节奏舒缓，通过环境细节与碎片化对话构建沉浸感，旨在通过琐碎的日常交互，探讨个体在时代洪流与个人选择间的妥协与释然。",
+              "main_quest": "主角作为“停云”驿站的接班人，目标是在国道改线工程彻底落地前，完成对驿站资产的清算与对老街坊的妥善安置。玩家需在三个月内，通过经营驿站维持生计，同时处理来自政府的拆迁通知、老邻居的搬迁抵触、以及自身对未来去向的迷茫。挑战在于，主角必须在“坚持守护旧日记忆”与“接受时代变迁并开启新生活”之间寻找平衡。每一步行动都将影响驿站的最终结局，玩家无法阻止驿站的拆除，但可以通过努力，让每一个在此驻足的人在离开时，能带走一份温暖的记忆，实现一种“虽有遗憾但无悔”的告别。",
+              "protagonist_ability": "主角拥有一种名为“共情倾听”的特质，这并非超自然能力，而是源于其长期在驿站经营生活所磨练出的敏锐洞察力。通过与NPC进行深度对话，主角能从对方的言语留白、肢体语言与生活习惯中，拼凑出对方未曾言说的真实困境与隐秘愿望。使用时需消耗主角的“精力值”，过度共情会导致主角陷入自我怀疑与疲惫，且该能力无法改变现实的物理困境，只能在心理层面为他人提供慰藉，或在关键抉择时提供更全面的信息参考。",
+              "world_basic_setting": "故事发生于二十一世纪初的中国西北边陲，一个因高速公路网延伸而逐渐被边缘化的旧式国道驿站。这里曾是长途货运的繁华中转站，如今仅剩几家修车铺、廉价旅馆与一家名为“停云”的深夜食堂。社会背景处于工业化向数字化转型的阵痛期，人口外流严重，留守者多为被时代抛下的中老年人与试图逃离都市压力的年轻人。地理上，这里被荒凉的戈壁与连绵的祁连山脉环绕，气候干燥，昼夜温差极大。文化上，这里是多种生活轨迹的交汇点，南来北往的卡车司机、寻找自我的背包客与本地居民在此短暂驻足。关键事件在于国道改线工程的推进，这标志着驿站彻底失去交通枢纽地位，所有人的生活轨迹被迫面临重组与告别。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1776610657_778qw3",
+            "image_style": {
+              "type": "realistic"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "黑色短发、洗得发白的牛仔外套、眼神清澈、略显疲惫、手腕戴着旧式机械表、常背帆布包、身形瘦削、沉稳、不善言辞、常带烟草味、温和、内敛",
+              "work_en": "The Frontier Station Night Tales",
+              "work_zh": "边陲驿站夜谈录"
+            },
+            "tone": "normal_ending",
+            "user_theme": "边陲驿站夜谈录"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "start_ts": 1776610657.6486583,
+        "end_ts": 1776610676.936449,
+        "provider_events": {
+          "event_count": 4,
+          "queue_wait_ms": {
+            "count": 4,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 1,
+            "min": 19257.0,
+            "max": 19257.0,
+            "mean": 19257.0,
+            "median": 19257.0,
+            "p95": 19257.0
+          },
+          "llm_success_count": 1,
+          "image_success_count": 0,
+          "request_thread_event_count": 2
+        },
+        "status": "success",
+        "game_id": "game_1776610657_778qw3"
+      },
+      "first_click": {
+        "http_status": 200,
+        "elapsed_s": 0.026,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "",
+              "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：南港的清晨带着一股潮湿的铁锈味，我推开通往天台的锈蚀铁门，刺眼的阳光穿过鸽舍的缝隙，在水泥地上投下斑驳的影。我下意识地摸了摸口袋里的哨子，指尖触碰到粗糙的羽毛屑，那是昨晚清理鸽舍留下的痕迹。还没等我站稳，物业经理王强那张写满不耐烦的脸就从楼梯口探了出来，他手里攥着一张盖着红章的通知单，纸张在风中发出细碎的声响。\n\n“林远，这已经是最后通牒了。”王强把通知单拍在鸽舍的木架上，语气冷硬得像这栋老楼的墙皮，“消防检查明天就到，你这些违章建筑必须拆掉，否则别怪我们直接断水断电。”\n\n我看着他身后那群瑟缩的鸽子，它们似乎感知到了空气中紧绷的敌意，不安地扑腾着翅膀。我深吸一口气，空气里混合着鸽粪的酸味和远处工业区的煤烟味。我低下头，看着自己那双洗得发白的工装外套袖口，沉默地攥紧了拳头。我知道，如果现在不做出妥协，这片我守了三年的天台，连同我的生活，都会被彻底清扫。"
+            },
+            "deep_background_links": {},
+            "flow_update": {},
+            "next_options": [
+              "向王强承诺立刻缩减鸽舍规模并缴纳整改费。",
+              "询问王强关于拆迁补偿的细节，试图探听楼栋的真实动向。"
+            ],
+            "plot_supporting_characters": [],
+            "scene": "南港的清晨带着一股潮湿的铁锈味，我推开通往天台的锈蚀铁门，刺眼的阳光穿过鸽舍的缝隙，在水泥地上投下斑驳的影。我下意识地摸了摸口袋里的哨子，指尖触碰到粗糙的羽毛屑，那是昨晚清理鸽舍留下的痕迹。还没等我站稳，物业经理王强那张写满不耐烦的脸就从楼梯口探了出来，他手里攥着一张盖着红章的通知单，纸张在风中发出细碎的声响。\n\n“林远，这已经是最后通牒了。”王强把通知单拍在鸽舍的木架上，语气冷硬得像这栋老楼的墙皮，“消防检查明天就到，你这些违章建筑必须拆掉，否则别怪我们直接断水断电。”\n\n我看着他身后那群瑟缩的鸽子，它们似乎感知到了空气中紧绷的敌意，不安地扑腾着翅膀。我深吸一口气，空气里混合着鸽粪的酸味和远处工业区的煤烟味。我低下头，看着自己那双洗得发白的工装外套袖口，沉默地攥紧了拳头。我知道，如果现在不做出妥协，这片我守了三年的天台，连同我的生活，都会被彻底清扫。",
+            "sceneId": "-788791309595671790_1206297475994827007",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-rooftop-confrontation-eviction-notice, realistic, urban-realism, melancholic, industrial-grit, cinematic-lighting, photorealistic, sharp-focus, high-detail-texture, cold-color-palette, fine-grain-film-look, male protagonist in his early thirties, tired but focused expression with subtle emotional tension, weathered skin showing traces of long-term outdoor work, dark brown eyes reflecting the surrounding concrete environment, tensed posture with clenched fists at sides, worn-out pale grey work jacket with visible stains, simple dark trousers with fabric texture, clothing showing signs of long-term wear and tear, standing on a rusty industrial rooftop, facing王强-配角1 with a defensive but resigned body language, body slightly angled towards the wooden pigeon coop, one hand hovering near the pocket where the whistle is hidden, 8K high-resolution facial features, subtle lines of exhaustion around the eyes, jawline clenched showing inner conflict, lip color naturally muted and pale, soft natural morning light casting shadows on the face, short messy dark hair with slight grit and dust, root fixation coefficient 0.7, tip swing amplitude 5cm, color layering: main color #2D2926, secondary color #4A4A4A, highlight #707070, shadow #1A1A1A, wind speed 1.2m/s, turbulence intensity 10%, hair slightly tousled by the morning breeze, work jacket with visible fabric flutter, worn texture with slight pilling, dull grey tone matching the industrial atmosphere, rusty rooftop with peeling paint and concrete texture, weathered wooden pigeon coop in the background, distant view of hazy industrial chimneys and smog-filled skyline, morning sun casting long, sharp shadows across the floor, scattered bird feathers and dust particles in the air, 王强-配角1 standing on the right side, wearing a cheap office vest and holding a red-stamped notice, dappled light filtering through the gaps of the pigeon coop, fine dust motes floating in the morning sunbeams, pigeons appearing restless and blurred in the background, hazy atmosphere with a hint of industrial smoke, low-saturation cold tones, concrete grey and rusted orange, muted blue morning sky, faded white and industrial coal black, harsh morning sunlight from the side, high contrast between sunlit areas and deep shadows, cool ambient light typical of an industrial city at dawn, type medium shot, lens 35mm, aperture f/4, depth_of_field sharp focus on the protagonist and the notice paper, flash none, grain fine 35mm film grain, texture realistic concrete and rusty metal texture, protagonist centered slightly to the left, 王强-配角1 positioned on the right, creating a visual confrontation, pigeon coop framing the background to emphasize the conflict, action constraints: focus on the interaction between the notice and the protagonist's hand, photorealistic urban drama, no text or symbols in image, no garbled characters or watermarks, oppressive urban pressure, melancholic resignation, latent tension, fading hope, realistic grit, no text, no symbols, no garbled characters, no words",
+              "prompt_json": {
+                "camera": {
+                  "aperture": "f/4",
+                  "depth_of_field": "sharp focus on the protagonist and the notice paper",
+                  "flash": "none",
+                  "grain": "fine 35mm film grain",
+                  "lens": "35mm",
+                  "texture": "realistic concrete and rusty metal texture",
+                  "type": "medium shot"
+                },
+                "clothing_system": [
+                  "work jacket with visible fabric flutter",
+                  "worn texture with slight pilling",
+                  "dull grey tone matching the industrial atmosphere"
+                ],
+                "color_restriction": [
+                  "low-saturation cold tones",
+                  "concrete grey and rusted orange",
+                  "muted blue morning sky",
+                  "faded white and industrial coal black"
+                ],
+                "composition": [
+                  "protagonist centered slightly to the left",
+                  "王强-配角1 positioned on the right, creating a visual confrontation",
+                  "pigeon coop framing the background to emphasize the conflict",
+                  "action constraints: focus on the interaction between the notice and the protagonist's hand"
+                ],
+                "environment": {
+                  "background": [
+                    "rusty rooftop with peeling paint and concrete texture",
+                    "weathered wooden pigeon coop in the background",
+                    "distant view of hazy industrial chimneys and smog-filled skyline",
+                    "morning sun casting long, sharp shadows across the floor",
+                    "scattered bird feathers and dust particles in the air"
+                  ],
+                  "characters": [
+                    "王强-配角1 standing on the right side, wearing a cheap office vest and holding a red-stamped notice"
+                  ],
+                  "effects": [
+                    "dappled light filtering through the gaps of the pigeon coop",
+                    "fine dust motes floating in the morning sunbeams",
+                    "pigeons appearing restless and blurred in the background",
+                    "hazy atmosphere with a hint of industrial smoke"
+                  ]
+                },
+                "face_system": [
+                  "8K high-resolution facial features",
+                  "subtle lines of exhaustion around the eyes",
+                  "jawline clenched showing inner conflict",
+                  "lip color naturally muted and pale",
+                  "soft natural morning light casting shadows on the face"
+                ],
+                "hair_system": [
+                  "short messy dark hair with slight grit and dust",
+                  "root fixation coefficient 0.7",
+                  "tip swing amplitude 5cm",
+                  "color layering: main color #2D2926, secondary color #4A4A4A, highlight #707070, shadow #1A1A1A",
+                  "wind speed 1.2m/s",
+                  "turbulence intensity 10%",
+                  "hair slightly tousled by the morning breeze"
+                ],
+                "label": "scene-rooftop-confrontation-eviction-notice",
+                "lighting": [
+                  "harsh morning sunlight from the side",
+                  "high contrast between sunlit areas and deep shadows",
+                  "cool ambient light typical of an industrial city at dawn"
+                ],
+                "mood": [
+                  "oppressive urban pressure",
+                  "melancholic resignation",
+                  "latent tension",
+                  "fading hope",
+                  "realistic grit"
+                ],
+                "output_style": [
+                  "photorealistic urban drama",
+                  "no text or symbols in image",
+                  "no garbled characters or watermarks"
+                ],
+                "style": [
+                  "photorealistic",
+                  "sharp-focus",
+                  "high-detail-texture",
+                  "cold-color-palette",
+                  "fine-grain-film-look"
+                ],
+                "subject": {
+                  "body_traits": [
+                    "male protagonist in his early thirties",
+                    "tired but focused expression with subtle emotional tension",
+                    "weathered skin showing traces of long-term outdoor work",
+                    "dark brown eyes reflecting the surrounding concrete environment",
+                    "tensed posture with clenched fists at sides"
+                  ],
+                  "outfit": [
+                    "worn-out pale grey work jacket with visible stains",
+                    "simple dark trousers with fabric texture",
+                    "clothing showing signs of long-term wear and tear"
+                  ],
+                  "pose": [
+                    "standing on a rusty industrial rooftop",
+                    "facing王强-配角1 with a defensive but resigned body language",
+                    "body slightly angled towards the wooden pigeon coop",
+                    "one hand hovering near the pocket where the whistle is hidden"
+                  ]
+                },
+                "tags": [
+                  "realistic",
+                  "urban-realism",
+                  "melancholic",
+                  "industrial-grit",
+                  "cinematic-lighting"
+                ]
+              },
+              "scene_text_hash": "18f3dba1ba1be58f68e26b18403479e8",
+              "style": "default",
+              "url": "/image_cache/669beed40338fcc02c1a72070ea20db9.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "start_ts": 1776610676.9515412,
+        "end_ts": 1776610676.9773998,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "success",
+        "has_scene": true,
+        "has_image": true
+      },
+      "second_click": {
+        "http_status": 200,
+        "elapsed_s": 0.031,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "你正在执行任务：向王强承诺立刻缩减鸽舍规模并缴纳整改费。",
+              "recap_text": "你选择了“向王强承诺立刻缩减鸽舍规模并缴纳整改费。”。当前章节：chapter1。主线进展：你正在执行任务：向王强承诺立刻缩减鸽舍规模并缴纳整改费。。最近剧情：你选择了：向王强承诺立刻缩减鸽舍规模并缴纳整改费。。在你的努力下，你取得了一些进展。"
+            },
+            "deep_background_links": {},
+            "flow_update": {
+              "chapter_conflict_solved": false,
+              "characters": {},
+              "environment": {},
+              "quest_progress": "你正在执行任务：向王强承诺立刻缩减鸽舍规模并缴纳整改费。"
+            },
+            "next_options": [
+              "继续前进",
+              "查看当前状态",
+              "返回上一步",
+              "探索周围环境"
+            ],
+            "scene": "你选择了：向王强承诺立刻缩减鸽舍规模并缴纳整改费。。在你的努力下，你取得了一些进展。",
+            "sceneId": "-8948349189237821629_-1313984671503898919"
+          },
+          "status": "success"
+        },
+        "start_ts": 1776610716.9921417,
+        "end_ts": 1776610717.0230618,
+        "provider_events": {
+          "event_count": 1,
+          "queue_wait_ms": {
+            "count": 1,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "status": "success",
+        "has_scene": true,
+        "has_image": false,
+        "selected_option_index": 0,
+        "selected_option_text": "向王强承诺立刻缩减鸽舍规模并缴纳整改费。",
+        "input_scene_id": "-788791309595671790_1206297475994827007",
+        "inferred_cache_result": "likely_hit",
+        "is_placeholder": true,
+        "used_updated_flow_state": true
+      }
+    },
+    {
+      "benchmark_id": "DNQBV1_002",
+      "theme_id": 9,
+      "theme": "末日温室园丁",
+      "read_wait_s": 40.0,
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 27.588,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过精打细算的资源分配，成功修复了核心灌溉管道，并收获了第一批勉强达标的合成作物，换取了维持家人下个月生存的医疗物资，但温室的设备磨损已达临界点。",
+                  "main_conflict": "主角接手了破败的三号生态舱，面对的是干涸的土壤与失效的供水系统。与此同时，家人的病情因空气质量恶化而加重，急需一笔高额的医疗费用。主角必须在有限的启动资金下，决定是优先修复灌溉系统以求长远，还是购买昂贵的成品营养液以换取短期收成，这种生存压力与理想规划的冲突贯穿始终。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角在一次严重的病虫害危机中，不得不放弃了部分珍贵的实验性植株以保全整体产量，虽然完成了指标，但与拾荒者的合作因理念不合而终结，留下了一段未竟的遗憾。",
+                  "main_conflict": "城市管理署下达了强制增产令，要求主角在不增加资源配给的前提下提升产量。主角试图通过改良土壤配方来应对，却发现这种激进做法会导致植物抗病性下降。此时，主角结识了一位同样在废墟中寻找旧时代种子的拾荒者，两人在合作与竞争中产生了微妙的羁绊，但拾荒者对生存的冷漠态度与主角对生命的执着产生了剧烈碰撞。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角最终选择留守温室，通过与管理署的博弈保住了舱室，但家人因无法迁往安全区而留在了污染区，主角收获了稳定的产出与内心的平静，却永远失去了改善家人生活环境的最好时机。",
+                  "main_conflict": "温室终于步入正轨，但城市面临能源危机，三号生态舱面临被强制征收的风险。主角必须在“放弃温室换取家人迁往安全区”与“坚守温室并承担被驱逐的风险”之间做出抉择。此时，主角培育出了一种能净化微量毒素的特殊植物，这本是改变现状的契机，却因缺乏推广资源而无法发挥应有的社会价值。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "沉浸式叙事模拟，强调微观视角的细腻情感与环境交互。画面呈现出一种带有工业锈迹的静谧美学，光影处理柔和且克制，配乐以低保真环境音为主，营造出一种在废墟之上缓慢生长的生活质感，让玩家在琐碎的劳作中感受时间的流逝与生命的韧性。",
+              "main_quest": "主角的目标是修复并运营一座被遗弃的“三号生态舱”，将其转化为能够产出高品质蔬果的微型农场，以换取足够的信用点，为患有慢性肺病的家人购买昂贵的净化滤芯。任务分为三个阶段：首先是清理废弃舱室的工业残留，修复破损的灌溉系统；其次是寻找并培育出适应高污染环境的变异种子，平衡产量与品质；最后是应对城市管理署的苛刻审查与资源配给缩减。挑战在于，主角必须在“高产出以换取生存”与“保护生态平衡以维持长久生计”之间做出艰难抉择，每一次的成功都伴随着对身体的过度消耗，而每一次的收获都无法完全填补现实的亏空。",
+              "protagonist_ability": "主角拥有一种名为“共感培育”的直觉，源于其家族世代从事园艺积累的经验与对植物微弱生理反应的敏锐感知。通过触摸叶片或观察土壤湿度变化，主角能精准判断植物的生长瓶颈，并利用有限的营养液进行最优配比。然而，这种能力受限于极度匮乏的资源，主角无法改变植物基因层面的脆弱性，也无法对抗环境污染带来的不可逆病变，只能在有限的条件下延长植物的生命周期，而非创造奇迹。",
+              "world_basic_setting": "故事发生于全球生态崩溃后的“灰烬纪元”。地表被不可逆的酸性尘埃覆盖，人类退守至由旧时代遗留的穹顶建筑改造而成的“温室城市”。社会阶层由对氧气与纯净水源的掌控力决定，资源高度配给化。温室园丁是城市中极少数能接触“土壤”的职业，负责在受控的生态舱内培育维持生存所需的合成作物。历史的伤痕体现在城市外围那些沉默的废弃工厂与干涸的河床，而文化则演变为一种对“旧时代绿色”的集体怀旧与对“生存指标”的极度务实。关键事件“绿洲计划”曾试图恢复地表生态，却因技术瓶颈与资金链断裂而搁浅，留下了大片半成品温室，成为了主角奋斗的舞台与现实困境的缩影。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1776610717_bt8vuw",
+            "image_style": {
+              "type": "realistic"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "黑色短发、沾染泥土的工装、眼神坚毅、消瘦、手指粗糙、常年佩戴防尘口罩、沉默寡言、背影单薄、带有旧时代气息的挂坠、工作靴",
+              "work_en": "Sprouts of Ash",
+              "work_zh": "灰烬之芽"
+            },
+            "tone": "normal_ending",
+            "user_theme": "末日温室园丁"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "start_ts": 1776610717.0374064,
+        "end_ts": 1776610744.6256654,
+        "provider_events": {
+          "event_count": 7,
+          "queue_wait_ms": {
+            "count": 7,
+            "min": 0.0,
+            "max": 1307696.0,
+            "mean": 299125.714,
+            "median": 0.0,
+            "p95": 1148322.5
+          },
+          "latency_ms": {
+            "count": 3,
+            "min": 17856.0,
+            "max": 28406.0,
+            "mean": 24611.667,
+            "median": 27573.0,
+            "p95": 28322.7
+          },
+          "llm_success_count": 2,
+          "image_success_count": 0,
+          "request_thread_event_count": 2
+        },
+        "status": "success",
+        "game_id": "game_1776610717_bt8vuw"
+      },
+      "first_click": {
+        "http_status": 200,
+        "elapsed_s": 0.008,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "",
+              "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：风蚀口小镇的黄昏总是带着一股陈旧的铁锈味。我站在老火车站的站台上，指尖摩挲着那台落满灰尘的旧式留声机，粗糙的金属质感透过指腹传来。风沙拍打着候车室破碎的窗棂，发出阵阵如呜咽般的声响。我习惯性地将手揣进深褐色工装外套的兜里，指尖触碰到了那块旧式机械表，表盘的指针正缓慢而坚定地走动着。\n\n“林远，这堆破烂儿还没清理完吗？”老乐师陈伯的声音从阴影里传来，他拄着拐杖，眼神里透着一种近乎执拗的疲惫。他走到我身边，目光扫过那台留声机，嘴角勾起一抹嘲讽的弧度，“这东西早就哑了，就像这个镇子一样，留着只会让人想起那些回不去的旧梦。”\n\n我看着他，眼神沉静，并没有急于反驳。我能感觉到这台留声机里沉淀着某种沉重的情绪，那是陈伯曾经在舞台上挥洒过的青春与如今落寞的对比。我轻轻拨动了一下唱针，指尖传来一阵细微的震动，仿佛触碰到了他内心深处那道未愈合的伤疤。\n\n“陈伯，它不是破烂，它是您当年最后一场演出的见证。”我低声说道，尽量让自己的声音听起来平稳，“如果就这么丢进废品站，那些旋律就真的彻底消失了。”\n\n陈伯冷哼一声，转过身去，背影显得有些佝偻：“消失了才好，省得夜里总在耳边响。”"
+            },
+            "deep_background_links": {},
+            "flow_update": {},
+            "next_options": [
+              "坚持修复留声机，试图通过音乐唤醒陈伯对往昔的温情回忆。",
+              "询问陈伯关于他年轻时在省城剧院的经历，试图从他深层的执念中寻找突破口。"
+            ],
+            "plot_supporting_characters": [],
+            "scene": "风蚀口小镇的黄昏总是带着一股陈旧的铁锈味。我站在老火车站的站台上，指尖摩挲着那台落满灰尘的旧式留声机，粗糙的金属质感透过指腹传来。风沙拍打着候车室破碎的窗棂，发出阵阵如呜咽般的声响。我习惯性地将手揣进深褐色工装外套的兜里，指尖触碰到了那块旧式机械表，表盘的指针正缓慢而坚定地走动着。\n\n“林远，这堆破烂儿还没清理完吗？”老乐师陈伯的声音从阴影里传来，他拄着拐杖，眼神里透着一种近乎执拗的疲惫。他走到我身边，目光扫过那台留声机，嘴角勾起一抹嘲讽的弧度，“这东西早就哑了，就像这个镇子一样，留着只会让人想起那些回不去的旧梦。”\n\n我看着他，眼神沉静，并没有急于反驳。我能感觉到这台留声机里沉淀着某种沉重的情绪，那是陈伯曾经在舞台上挥洒过的青春与如今落寞的对比。我轻轻拨动了一下唱针，指尖传来一阵细微的震动，仿佛触碰到了他内心深处那道未愈合的伤疤。\n\n“陈伯，它不是破烂，它是您当年最后一场演出的见证。”我低声说道，尽量让自己的声音听起来平稳，“如果就这么丢进废品站，那些旋律就真的彻底消失了。”\n\n陈伯冷哼一声，转过身去，背影显得有些佝偻：“消失了才好，省得夜里总在耳边响。”",
+            "sceneId": "-5698220852237953556_6469112560004534944",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-wind-eroded-station-lin-yuan-chen-bo, realistic, narrative-driven, atmospheric, melancholic, desolate-beauty, photorealistic, cinematic lighting, low saturation color palette, gritty texture, high detail, young male protagonist Lin Yuan with calm and steady eyes, slender build with a hint of fatigue, clean but rugged appearance, protagonist using Image 0 for facial and physical reference, expression showing deep empathy and quiet contemplation, dark brown heavy-duty work jacket, fingertips stained with fine dust, vintage mechanical watch visible on wrist, standing on a dilapidated train station platform, one hand habitually tucked into jacket pocket, other hand gently touching a dusty old phonograph, body slightly angled towards 陈伯-配角1, posture reflecting a sense of grounded stillness, 8K detailed facial features, calm and steady gaze with a trace of weary smile, skin texture showing subtle signs of desert dust, lip color naturally muted, soft shadows emphasizing depth and emotional maturity, short black hair with natural texture, root fixation coefficient 0.95, tip swing amplitude 5cm, color layering: main color #1A1A1A, secondary color #2F2F2F, highlight #404040, shadow #0D0D0D, wind speed 1.2m/s, turbulence intensity 5%, hair slightly tousled by the desert breeze, dark brown work jacket with visible fabric texture and slight wear, slight fabric flutter from wind, durable material with matte finish, abandoned train station platform in a remote desert town, broken window panes in the waiting room with dust blowing in, rusted metal structures and weathered walls, fading twilight casting long shadows, dusty air particles illuminated by dim sunset light, 陈伯-配角1 standing in the shadows to the left, leaning on a wooden cane, hunched posture, weary expression, dusty atmosphere with floating sand particles, rust and decay textures on the old phonograph, dim ambient light creating a sense of isolation, desaturated earthy tones, faded rust orange, slate grey and dusty brown, muted sunset gold for highlights, dim twilight ambient light, soft directional light from the setting sun hitting the platform, deep shadows in the station interior where the old musician stands, type medium shot, lens 35mm, aperture f/4, depth_of_field sharp focus on Lin Yuan and the phonograph, flash none, grain fine film grain, texture realistic gritty surface detail, Lin Yuan in the foreground center-right, 陈伯-配角1 in the background left, the old phonograph as a central point of interaction, wide depth of field capturing the desolate platform environment, cinematic realism, no text or symbols in image, nostalgic melancholy, quiet empathy, sense of loss and acceptance, heavy atmosphere of a forgotten era, no text, no symbols, no garbled characters, no words",
+              "prompt_json": {
+                "camera": {
+                  "aperture": "f/4",
+                  "depth_of_field": "sharp focus on Lin Yuan and the phonograph",
+                  "flash": "none",
+                  "grain": "fine film grain",
+                  "lens": "35mm",
+                  "texture": "realistic gritty surface detail",
+                  "type": "medium shot"
+                },
+                "clothing_system": [
+                  "dark brown work jacket with visible fabric texture and slight wear",
+                  "slight fabric flutter from wind",
+                  "durable material with matte finish"
+                ],
+                "color_restriction": [
+                  "desaturated earthy tones",
+                  "faded rust orange",
+                  "slate grey and dusty brown",
+                  "muted sunset gold for highlights"
+                ],
+                "composition": [
+                  "Lin Yuan in the foreground center-right",
+                  "陈伯-配角1 in the background left",
+                  "the old phonograph as a central point of interaction",
+                  "wide depth of field capturing the desolate platform environment"
+                ],
+                "environment": {
+                  "background": [
+                    "abandoned train station platform in a remote desert town",
+                    "broken window panes in the waiting room with dust blowing in",
+                    "rusted metal structures and weathered walls",
+                    "fading twilight casting long shadows",
+                    "dusty air particles illuminated by dim sunset light"
+                  ],
+                  "characters": [
+                    "陈伯-配角1 standing in the shadows to the left, leaning on a wooden cane, hunched posture, weary expression"
+                  ],
+                  "effects": [
+                    "dusty atmosphere with floating sand particles",
+                    "rust and decay textures on the old phonograph",
+                    "dim ambient light creating a sense of isolation"
+                  ]
+                },
+                "face_system": [
+                  "8K detailed facial features",
+                  "calm and steady gaze with a trace of weary smile",
+                  "skin texture showing subtle signs of desert dust",
+                  "lip color naturally muted",
+                  "soft shadows emphasizing depth and emotional maturity"
+                ],
+                "hair_system": [
+                  "short black hair with natural texture",
+                  "root fixation coefficient 0.95",
+                  "tip swing amplitude 5cm",
+                  "color layering: main color #1A1A1A, secondary color #2F2F2F, highlight #404040, shadow #0D0D0D",
+                  "wind speed 1.2m/s",
+                  "turbulence intensity 5%",
+                  "hair slightly tousled by the desert breeze"
+                ],
+                "label": "scene-wind-eroded-station-lin-yuan-chen-bo",
+                "lighting": [
+                  "dim twilight ambient light",
+                  "soft directional light from the setting sun hitting the platform",
+                  "deep shadows in the station interior where the old musician stands"
+                ],
+                "mood": [
+                  "nostalgic melancholy",
+                  "quiet empathy",
+                  "sense of loss and acceptance",
+                  "heavy atmosphere of a forgotten era"
+                ],
+                "output_style": [
+                  "cinematic realism",
+                  "no text or symbols in image"
+                ],
+                "style": [
+                  "photorealistic",
+                  "cinematic lighting",
+                  "low saturation color palette",
+                  "gritty texture",
+                  "high detail"
+                ],
+                "subject": {
+                  "body_traits": [
+                    "young male protagonist Lin Yuan with calm and steady eyes",
+                    "slender build with a hint of fatigue",
+                    "clean but rugged appearance",
+                    "protagonist using Image 0 for facial and physical reference",
+                    "expression showing deep empathy and quiet contemplation"
+                  ],
+                  "outfit": [
+                    "dark brown heavy-duty work jacket",
+                    "fingertips stained with fine dust",
+                    "vintage mechanical watch visible on wrist"
+                  ],
+                  "pose": [
+                    "standing on a dilapidated train station platform",
+                    "one hand habitually tucked into jacket pocket",
+                    "other hand gently touching a dusty old phonograph",
+                    "body slightly angled towards 陈伯-配角1",
+                    "posture reflecting a sense of grounded stillness"
+                  ]
+                },
+                "tags": [
+                  "realistic",
+                  "narrative-driven",
+                  "atmospheric",
+                  "melancholic",
+                  "desolate-beauty"
+                ]
+              },
+              "scene_text_hash": "a29897032bc8fb7da7af9cf2a4bcec59",
+              "style": "default",
+              "url": "/image_cache/b67157844121233b55623752c90507cd.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "start_ts": 1776610744.6408458,
+        "end_ts": 1776610744.6492875,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "success",
+        "has_scene": true,
+        "has_image": true
+      },
+      "second_click": {
+        "http_status": 200,
+        "elapsed_s": 0.01,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "你正在执行任务：坚持修复留声机，试图通过音乐唤醒陈伯对往昔的温情回忆。",
+              "recap_text": "你选择了“坚持修复留声机，试图通过音乐唤醒陈伯对往昔的温情回忆。”。当前章节：chapter1。主线进展：你正在执行任务：坚持修复留声机，试图通过音乐唤醒陈伯对往昔的温情回忆。。最近剧情：你选择了：坚持修复留声机，试图通过音乐唤醒陈伯对往昔的温情回忆。。在你的努力下，你取得了一些进展。"
+            },
+            "deep_background_links": {},
+            "flow_update": {
+              "chapter_conflict_solved": false,
+              "characters": {},
+              "environment": {},
+              "quest_progress": "你正在执行任务：坚持修复留声机，试图通过音乐唤醒陈伯对往昔的温情回忆。"
+            },
+            "next_options": [
+              "继续前进",
+              "查看当前状态",
+              "返回上一步",
+              "探索周围环境"
+            ],
+            "scene": "你选择了：坚持修复留声机，试图通过音乐唤醒陈伯对往昔的温情回忆。。在你的努力下，你取得了一些进展。",
+            "sceneId": "7159733448492834015_-1313984671503898919"
+          },
+          "status": "success"
+        },
+        "start_ts": 1776610784.6636746,
+        "end_ts": 1776610784.674123,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "status": "success",
+        "has_scene": true,
+        "has_image": false,
+        "selected_option_index": 0,
+        "selected_option_text": "坚持修复留声机，试图通过音乐唤醒陈伯对往昔的温情回忆。",
+        "input_scene_id": "-5698220852237953556_6469112560004534944",
+        "inferred_cache_result": "likely_hit",
+        "is_placeholder": true,
+        "used_updated_flow_state": true
+      }
+    }
+  ]
+}

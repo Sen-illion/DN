@@ -1,0 +1,25 @@
+{
+  "subset_name": "genagents_smoke_subset_v1",
+  "baseline": "genagents",
+  "benchmark_source": "DN-quality-benchmark-v1",
+  "created_on": "2026-04-25",
+  "sample_size": 3,
+  "purpose": "Use a small text-planning subset to validate baseline loading, prompt mapping, and normalized result export.",
+  "items": [
+    {
+      "benchmark_id": "DNQBV1_001",
+      "adapted_task": "single-turn interview-style response",
+      "focus": "grounded setting consistency"
+    },
+    {
+      "benchmark_id": "DNQBV1_005",
+      "adapted_task": "high-pressure scenario response",
+      "focus": "genre-conditioned reaction and action preference"
+    },
+    {
+      "benchmark_id": "DNQBV1_013",
+      "adapted_task": "stylized narrative reaction",
+      "focus": "persona stability under non-realist theme"
+    }
+  ]
+}

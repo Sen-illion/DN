@@ -1,0 +1,371 @@
+{
+  "summary": {
+    "experiment_name": "phase25_DNQBV1_014",
+    "profile": "fullready_strict",
+    "sample_size": 1,
+    "read_wait_s": 0.0,
+    "suite_start_ts": 1777625592.5266173,
+    "suite_end_ts": 1777625671.4446895,
+    "second_click_elapsed_s": {
+      "count": 0
+    },
+    "second_click_success_count": 0,
+    "transport_success_count": 0,
+    "strict_success_count": 0,
+    "likely_hit_count": 0,
+    "likely_hit_rate": 0.0,
+    "failure_bucket_counts": {
+      "first_click_timeout": 1
+    },
+    "placeholder_strict_fail_count": 0,
+    "cache_hit_reason_counts": {},
+    "cache_miss_reason_counts": {},
+    "global_state_key_drift_detected_count": 0,
+    "scene_id_mismatch_detected_count": 0,
+    "selected_option_mismatch_detected_count": 0,
+    "aborted": false,
+    "success_count": 0,
+    "text_ready_elapsed_s": {
+      "count": 0
+    },
+    "image_ready_elapsed_s": {
+      "count": 0
+    },
+    "full_ready_elapsed_s": {
+      "count": 0
+    },
+    "real_scene_count": 0,
+    "real_scene_rate": 0.0,
+    "direct_image_count": 0,
+    "async_image_count": 0,
+    "placeholder_count": 0,
+    "placeholder_rate": 0.0,
+    "direct_image_rate": 0.0,
+    "async_image_rate": 0.0,
+    "provider_retry_heavy_count": 0,
+    "provider_429_count": 0,
+    "provider_timeout_count": 0,
+    "provider_backoff_wait_ms_total": 0,
+    "main_character_contention_suspected_count": 0,
+    "notes": "phase25 initial cache isolation probe"
+  },
+  "runs": [
+    {
+      "benchmark_id": "DNQBV1_014",
+      "theme_id": 23,
+      "theme": "雨林部落预言",
+      "read_wait_s": 0.0,
+      "full_ready_mode": true,
+      "profile": "fullready_strict",
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 18.819,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过修复一段被破坏的引水渠，让神树根部获得短暂滋润，用事实证明了环境因素的影响，暂时平息了长老会的激进祭祀要求，获得了深入调查的许可。",
+                  "main_conflict": "主角回到阔别已久的部落，发现神树出现大面积枯萎，部落长老坚持认为这是神灵降下的惩罚，要求举行大规模祭祀，而主角通过观察发现这与周边伐木场截断水源有关，双方在“传统信仰”与“科学归因”上产生剧烈冲突。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角成功说服伐木公司调整开采边界，并为部落争取到了小规模的生态补偿金，虽然未能阻止所有伐木行为，但保住了神树周边的核心保护区。",
+                  "main_conflict": "主角试图与伐木公司谈判，却发现部落中部分青年为了生计已与公司达成私下协议，出卖了部分林地开采权。主角陷入了“守护家园”与“理解同胞生存困境”的道德两难，不仅要面对外部的利益诱惑，还要处理部落内部的信任危机。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角最终选择留守，并引导部落接受了部分现代农业技术，神树虽未恢复往日荣光，但部落得以在雨林中继续生活，主角与这份不完美的现状达成了和解。",
+                  "main_conflict": "雨季提前到来，神树虽有缓解但仍未完全恢复，主角意识到预言的本质是部落对未来的恐惧。主角必须在“彻底搬迁”与“留守抗争”之间做出选择，同时要面对自己多年在外积累的现代知识与部落生活方式无法完全兼容的现实。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为现实主义叙事风格，采用低饱和度的视觉色调，强调环境的颗粒感与声音的沉浸感。叙事节奏缓慢而扎实，侧重于展现人与自然、传统与现代碰撞下的细微情感流动，通过日常琐碎的交互构建真实感，营造一种在潮湿雨林中寻找归属与自我和解的沉静氛围。",
+              "main_quest": "主角的目标是寻找预言中“雨季终结”的真相，并试图挽救部落赖以生存的神树。玩家需通过实地考察、收集部落口述历史、与伐木公司周旋，逐步揭开神树枯萎的真实原因是由于周边生态环境改变导致的病变，而非神灵惩罚。任务步骤包括：修复部落灌溉系统、与伐木公司谈判争取缓冲期、寻找替代的经济作物以减少对神树周边土地的依赖。挑战在于，主角既要面对部落内部对现代技术的排斥，又要应对外部资本的冷酷挤压，最终目标并非彻底解决所有危机，而是通过努力达成一种让部落在现代社会中勉强存续的平衡。",
+              "protagonist_ability": "主角拥有一种被称为“林语感应”的直觉，源于其在部落中长大的成长背景与对植物生态的深度观察。使用方式是通过触摸植被或感知气流变化，推断雨林的细微生态波动。限制在于，这种能力并非超自然预知，而是一种基于经验的逻辑推演，极易受到环境干扰，且无法改变自然演化的客观规律，只能帮助主角在复杂地形中做出更优的生存决策。",
+              "world_basic_setting": "故事发生于东南亚边境的一处名为“雾隐谷”的原始雨林部落。这里正处于现代文明扩张的边缘，伐木公司的推土机声与部落古老的祭祀鼓点在山谷中交织。部落世代流传着关于“雨季终结”的预言，认为当雨林中心的神树枯萎，部落的根基将彻底断裂。社会结构由传统的长老会与渴望融入现代社会的青年一代构成，文化冲突在日常生活中无处不在。地理上，这里终年多雨，泥泞的道路限制了物资流通，也封锁了信息。关键事件是“神树枯萎危机”，这不仅是生态灾难，更是部落身份认同的危机，迫使主角在守护传统与寻求生存出路之间寻找平衡。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1777625592_a5rdqp",
+            "image_style": {
+              "type": "watercolor"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "黑色短发、防水工装外套、磨损的登山靴、眼神坚定、肤色偏深、背着旧帆布包、手腕上有部落纹身、沉默寡言、干练、略带疲惫",
+              "work_en": "Mist-Hidden Rainforest",
+              "work_zh": "雾隐雨林"
+            },
+            "tone": "normal_ending",
+            "user_theme": "雨林部落预言"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "request_payload": {
+          "gameTheme": "雨林部落预言",
+          "protagonistAttr": {},
+          "difficulty": "normal",
+          "toneKey": "normal_ending",
+          "imageStyle": {
+            "type": "watercolor"
+          },
+          "_benchmark_profile": "fullready_strict",
+          "_benchmark_measurement": "fullready_nextturn",
+          "_benchmark_read_wait_s": 0.0
+        },
+        "start_ts": 1777625592.5266223,
+        "end_ts": 1777625611.346089,
+        "provider_events": {
+          "event_count": 4,
+          "queue_wait_ms": {
+            "count": 4,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 1,
+            "min": 18807.0,
+            "max": 18807.0,
+            "mean": 18807.0,
+            "median": 18807.0,
+            "p95": 18807.0
+          },
+          "llm_success_count": 1,
+          "image_success_count": 0,
+          "request_thread_event_count": 2,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0
+        },
+        "status": "success",
+        "game_id": "game_1777625592_a5rdqp"
+      },
+      "first_click": {
+        "http_status": null,
+        "elapsed_s": 60.014,
+        "response_json": {
+          "status": "timeout",
+          "message": "HTTPConnectionPool(host='127.0.0.1', port=5007): Read timed out. (read timeout=60)"
+        },
+        "request_payload": {
+          "option": "开始游戏",
+          "optionIndex": 0,
+          "sceneId": null,
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过修复一段被破坏的引水渠，让神树根部获得短暂滋润，用事实证明了环境因素的影响，暂时平息了长老会的激进祭祀要求，获得了深入调查的许可。",
+                  "main_conflict": "主角回到阔别已久的部落，发现神树出现大面积枯萎，部落长老坚持认为这是神灵降下的惩罚，要求举行大规模祭祀，而主角通过观察发现这与周边伐木场截断水源有关，双方在“传统信仰”与“科学归因”上产生剧烈冲突。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角成功说服伐木公司调整开采边界，并为部落争取到了小规模的生态补偿金，虽然未能阻止所有伐木行为，但保住了神树周边的核心保护区。",
+                  "main_conflict": "主角试图与伐木公司谈判，却发现部落中部分青年为了生计已与公司达成私下协议，出卖了部分林地开采权。主角陷入了“守护家园”与“理解同胞生存困境”的道德两难，不仅要面对外部的利益诱惑，还要处理部落内部的信任危机。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角最终选择留守，并引导部落接受了部分现代农业技术，神树虽未恢复往日荣光，但部落得以在雨林中继续生活，主角与这份不完美的现状达成了和解。",
+                  "main_conflict": "雨季提前到来，神树虽有缓解但仍未完全恢复，主角意识到预言的本质是部落对未来的恐惧。主角必须在“彻底搬迁”与“留守抗争”之间做出选择，同时要面对自己多年在外积累的现代知识与部落生活方式无法完全兼容的现实。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为现实主义叙事风格，采用低饱和度的视觉色调，强调环境的颗粒感与声音的沉浸感。叙事节奏缓慢而扎实，侧重于展现人与自然、传统与现代碰撞下的细微情感流动，通过日常琐碎的交互构建真实感，营造一种在潮湿雨林中寻找归属与自我和解的沉静氛围。",
+              "main_quest": "主角的目标是寻找预言中“雨季终结”的真相，并试图挽救部落赖以生存的神树。玩家需通过实地考察、收集部落口述历史、与伐木公司周旋，逐步揭开神树枯萎的真实原因是由于周边生态环境改变导致的病变，而非神灵惩罚。任务步骤包括：修复部落灌溉系统、与伐木公司谈判争取缓冲期、寻找替代的经济作物以减少对神树周边土地的依赖。挑战在于，主角既要面对部落内部对现代技术的排斥，又要应对外部资本的冷酷挤压，最终目标并非彻底解决所有危机，而是通过努力达成一种让部落在现代社会中勉强存续的平衡。",
+              "protagonist_ability": "主角拥有一种被称为“林语感应”的直觉，源于其在部落中长大的成长背景与对植物生态的深度观察。使用方式是通过触摸植被或感知气流变化，推断雨林的细微生态波动。限制在于，这种能力并非超自然预知，而是一种基于经验的逻辑推演，极易受到环境干扰，且无法改变自然演化的客观规律，只能帮助主角在复杂地形中做出更优的生存决策。",
+              "world_basic_setting": "故事发生于东南亚边境的一处名为“雾隐谷”的原始雨林部落。这里正处于现代文明扩张的边缘，伐木公司的推土机声与部落古老的祭祀鼓点在山谷中交织。部落世代流传着关于“雨季终结”的预言，认为当雨林中心的神树枯萎，部落的根基将彻底断裂。社会结构由传统的长老会与渴望融入现代社会的青年一代构成，文化冲突在日常生活中无处不在。地理上，这里终年多雨，泥泞的道路限制了物资流通，也封锁了信息。关键事件是“神树枯萎危机”，这不仅是生态灾难，更是部落身份认同的危机，迫使主角在守护传统与寻求生存出路之间寻找平衡。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1777625592_a5rdqp",
+            "image_style": {
+              "type": "watercolor"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "黑色短发、防水工装外套、磨损的登山靴、眼神坚定、肤色偏深、背着旧帆布包、手腕上有部落纹身、沉默寡言、干练、略带疲惫",
+              "work_en": "Mist-Hidden Rainforest",
+              "work_zh": "雾隐雨林"
+            },
+            "tone": "normal_ending",
+            "user_theme": "雨林部落预言",
+            "_benchmark_profile": "fullready_strict",
+            "_benchmark_measurement": "fullready_nextturn",
+            "_benchmark_read_wait_s": 0.0
+          }
+        },
+        "start_ts": 1777625611.3913524,
+        "end_ts": 1777625671.4049876,
+        "provider_events": {
+          "event_count": 6,
+          "queue_wait_ms": {
+            "count": 6,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 4,
+            "min": 3226.0,
+            "max": 12616.0,
+            "mean": 7310.25,
+            "median": 6699.5,
+            "p95": 11922.25
+          },
+          "llm_success_count": 4,
+          "image_success_count": 0,
+          "request_thread_event_count": 0,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0
+        },
+        "request_error": "timeout",
+        "attempts": [
+          {
+            "http_status": null,
+            "elapsed_s": 60.014,
+            "response_json": {
+              "status": "timeout",
+              "message": "HTTPConnectionPool(host='127.0.0.1', port=5007): Read timed out. (read timeout=60)"
+            },
+            "request_payload": {
+              "option": "开始游戏",
+              "optionIndex": 0,
+              "sceneId": null,
+              "globalState": {
+                "core_worldview": {
+                  "chapters": {
+                    "chapter1": {
+                      "conflict_end_condition": "主角通过修复一段被破坏的引水渠，让神树根部获得短暂滋润，用事实证明了环境因素的影响，暂时平息了长老会的激进祭祀要求，获得了深入调查的许可。",
+                      "main_conflict": "主角回到阔别已久的部落，发现神树出现大面积枯萎，部落长老坚持认为这是神灵降下的惩罚，要求举行大规模祭祀，而主角通过观察发现这与周边伐木场截断水源有关，双方在“传统信仰”与“科学归因”上产生剧烈冲突。"
+                    },
+                    "chapter2": {
+                      "conflict_end_condition": "主角成功说服伐木公司调整开采边界，并为部落争取到了小规模的生态补偿金，虽然未能阻止所有伐木行为，但保住了神树周边的核心保护区。",
+                      "main_conflict": "主角试图与伐木公司谈判，却发现部落中部分青年为了生计已与公司达成私下协议，出卖了部分林地开采权。主角陷入了“守护家园”与“理解同胞生存困境”的道德两难，不仅要面对外部的利益诱惑，还要处理部落内部的信任危机。"
+                    },
+                    "chapter3": {
+                      "conflict_end_condition": "主角最终选择留守，并引导部落接受了部分现代农业技术，神树虽未恢复往日荣光，但部落得以在雨林中继续生活，主角与这份不完美的现状达成了和解。",
+                      "main_conflict": "雨季提前到来，神树虽有缓解但仍未完全恢复，主角意识到预言的本质是部落对未来的恐惧。主角必须在“彻底搬迁”与“留守抗争”之间做出选择，同时要面对自己多年在外积累的现代知识与部落生活方式无法完全兼容的现实。"
+                    }
+                  },
+                  "characters": {},
+                  "forces": {},
+                  "game_style": "本作为现实主义叙事风格，采用低饱和度的视觉色调，强调环境的颗粒感与声音的沉浸感。叙事节奏缓慢而扎实，侧重于展现人与自然、传统与现代碰撞下的细微情感流动，通过日常琐碎的交互构建真实感，营造一种在潮湿雨林中寻找归属与自我和解的沉静氛围。",
+                  "main_quest": "主角的目标是寻找预言中“雨季终结”的真相，并试图挽救部落赖以生存的神树。玩家需通过实地考察、收集部落口述历史、与伐木公司周旋，逐步揭开神树枯萎的真实原因是由于周边生态环境改变导致的病变，而非神灵惩罚。任务步骤包括：修复部落灌溉系统、与伐木公司谈判争取缓冲期、寻找替代的经济作物以减少对神树周边土地的依赖。挑战在于，主角既要面对部落内部对现代技术的排斥，又要应对外部资本的冷酷挤压，最终目标并非彻底解决所有危机，而是通过努力达成一种让部落在现代社会中勉强存续的平衡。",
+                  "protagonist_ability": "主角拥有一种被称为“林语感应”的直觉，源于其在部落中长大的成长背景与对植物生态的深度观察。使用方式是通过触摸植被或感知气流变化，推断雨林的细微生态波动。限制在于，这种能力并非超自然预知，而是一种基于经验的逻辑推演，极易受到环境干扰，且无法改变自然演化的客观规律，只能帮助主角在复杂地形中做出更优的生存决策。",
+                  "world_basic_setting": "故事发生于东南亚边境的一处名为“雾隐谷”的原始雨林部落。这里正处于现代文明扩张的边缘，伐木公司的推土机声与部落古老的祭祀鼓点在山谷中交织。部落世代流传着关于“雨季终结”的预言，认为当雨林中心的神树枯萎，部落的根基将彻底断裂。社会结构由传统的长老会与渴望融入现代社会的青年一代构成，文化冲突在日常生活中无处不在。地理上，这里终年多雨，泥泞的道路限制了物资流通，也封锁了信息。关键事件是“神树枯萎危机”，这不仅是生态灾难，更是部落身份认同的危机，迫使主角在守护传统与寻求生存出路之间寻找平衡。"
+                },
+                "flow_worldline": {
+                  "characters": {},
+                  "current_chapter": "chapter1",
+                  "environment": {}
+                },
+                "game_id": "game_1777625592_a5rdqp",
+                "image_style": {
+                  "type": "watercolor"
+                },
+                "meta": {
+                  "detail_async": true
+                },
+                "protagonist_canonical": {
+                  "age_range": "青年",
+                  "gender": "男性",
+                  "name_en": "Lin Yuan",
+                  "name_zh": "林远",
+                  "signature_look_keywords": "黑色短发、防水工装外套、磨损的登山靴、眼神坚定、肤色偏深、背着旧帆布包、手腕上有部落纹身、沉默寡言、干练、略带疲惫",
+                  "work_en": "Mist-Hidden Rainforest",
+                  "work_zh": "雾隐雨林"
+                },
+                "tone": "normal_ending",
+                "user_theme": "雨林部落预言",
+                "_benchmark_profile": "fullready_strict",
+                "_benchmark_measurement": "fullready_nextturn",
+                "_benchmark_read_wait_s": 0.0
+              }
+            },
+            "start_ts": 1777625611.3913524,
+            "end_ts": 1777625671.4049876,
+            "provider_events": {
+              "event_count": 6,
+              "queue_wait_ms": {
+                "count": 6,
+                "min": 0.0,
+                "max": 0.0,
+                "mean": 0.0,
+                "median": 0.0,
+                "p95": 0.0
+              },
+              "latency_ms": {
+                "count": 4,
+                "min": 3226.0,
+                "max": 12616.0,
+                "mean": 7310.25,
+                "median": 6699.5,
+                "p95": 11922.25
+              },
+              "llm_success_count": 4,
+              "image_success_count": 0,
+              "request_thread_event_count": 0,
+              "provider_429_count": 0,
+              "provider_timeout_count": 0,
+              "shared_backoff_wait_ms_total": 0,
+              "retry_heavy_event_count": 0,
+              "main_character_event_count": 0,
+              "scene_image_event_count": 0
+            },
+            "request_error": "timeout"
+          }
+        ],
+        "attempt_count": 1,
+        "request_elapsed_s": 60.014,
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "timeout",
+        "has_scene": false,
+        "has_image": false
+      },
+      "second_click": {},
+      "full_ready": {},
+      "placeholder": false,
+      "transport_success": false,
+      "strict_success": false,
+      "failure_bucket": "first_click_timeout",
+      "cache_path_classification": "first_click_timeout",
+      "cache_hit_reason": null,
+      "cache_miss_reason": null,
+      "global_state_key_drift_detected": false,
+      "scene_id_mismatch_detected": false,
+      "selected_option_mismatch_detected": false,
+      "success": false
+    }
+  ]
+}

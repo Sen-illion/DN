@@ -1,0 +1,1435 @@
+{
+  "summary": {
+    "experiment_name": "benchmark_v15_fullready_nextturn_pregen60s20",
+    "profile": "fullready_pregen60",
+    "sample_size": 1,
+    "read_wait_s": 60.0,
+    "suite_start_ts": 1777638799.3578994,
+    "suite_end_ts": 1777638916.9907186,
+    "first_click_elapsed_s": {
+      "count": 1,
+      "min": 47.28,
+      "max": 47.28,
+      "mean": 47.28,
+      "median": 47.28,
+      "p95": 47.28
+    },
+    "first_click_setup_success_count": 1,
+    "second_click_elapsed_s": {
+      "count": 1,
+      "min": 0.018,
+      "max": 0.018,
+      "mean": 0.018,
+      "median": 0.018,
+      "p95": 0.018
+    },
+    "second_click_success_count": 1,
+    "transport_success_count": 1,
+    "strict_success_count": 1,
+    "likely_hit_count": 1,
+    "likely_hit_rate": 1.0,
+    "failure_bucket_counts": {},
+    "placeholder_strict_fail_count": 0,
+    "cache_hit_reason_counts": {
+      "request_scene_completed_with_image": 1
+    },
+    "cache_miss_reason_counts": {},
+    "global_state_key_drift_detected_count": 1,
+    "scene_id_mismatch_detected_count": 1,
+    "selected_option_mismatch_detected_count": 0,
+    "aborted": false,
+    "success_count": 1,
+    "text_ready_elapsed_s": {
+      "count": 1,
+      "min": 0.018,
+      "max": 0.018,
+      "mean": 0.018,
+      "median": 0.018,
+      "p95": 0.018
+    },
+    "image_ready_elapsed_s": {
+      "count": 1,
+      "min": 0.018,
+      "max": 0.018,
+      "mean": 0.018,
+      "median": 0.018,
+      "p95": 0.018
+    },
+    "full_ready_elapsed_s": {
+      "count": 1,
+      "min": 0.018,
+      "max": 0.018,
+      "mean": 0.018,
+      "median": 0.018,
+      "p95": 0.018
+    },
+    "real_scene_count": 1,
+    "real_scene_rate": 1.0,
+    "direct_image_count": 1,
+    "async_image_count": 0,
+    "placeholder_count": 0,
+    "placeholder_rate": 0.0,
+    "direct_image_rate": 1.0,
+    "async_image_rate": 0.0,
+    "provider_retry_heavy_count": 0,
+    "provider_429_count": 0,
+    "provider_timeout_count": 0,
+    "provider_backoff_wait_ms_total": 0,
+    "main_character_contention_suspected_count": 0,
+    "notes": "v15 strict pregen60s20 keeps the same 60-second dwell interval but now uses the same strict-v2 split timeouts and block-for-image cutoff as normal20, so placeholder and async backfill long tails do not silently leak into the measured path."
+  },
+  "runs": [
+    {
+      "benchmark_id": "DNQBV1_005",
+      "theme_id": 2,
+      "theme": "月球矿难七日",
+      "read_wait_s": 60.0,
+      "full_ready_mode": true,
+      "profile": "fullready_pregen60",
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 10.191,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角成功修复了区域内的应急氧气循环系统，并利用维修技能强行接入了备用电源，确保了小队在短期内不会因窒息而亡，但代价是牺牲了该区域的通讯基站，彻底断绝了与外界的即时联系。",
+                  "main_conflict": "基地坍塌瞬间，主角被困于深层矿区，生命维持系统告急。此时，主角发现企业预设的自动救援程序优先保护矿石样本而非被困人员，主角必须在“抢救核心设备以换取救援优先级”与“优先修复同伴的氧气循环系统”之间做出选择，这种生存资源的极度匮乏与企业冷漠指令构成了初期最直接的道德困境。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角通过逻辑重构绕过了腐败导致的系统锁死，成功修复了部分逃生舱，但由于零件不足，逃生舱无法满载，主角被迫决定撤离名单，部分同伴因名额限制不得不留在基地等待后续救援。",
+                  "main_conflict": "主角带领幸存者向中转站撤离，途中遭遇了严重的结构性崩塌，导致撤离路线被封死。此时，主角发现基地内部存在严重的腐败与偷工减料，导致关键逃生舱无法启动。主角必须在“揭露真相以获取社会舆论支持”与“利用仅存的备用零件修复逃生舱”之间权衡，时间紧迫，任何决策都意味着部分人的牺牲。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角最终选择留守基地，利用自身技术引导救援船安全起飞，自己则在基地深处目送同伴离开。主角虽未随船返回地球，但通过手动操作确保了撤离任务的圆满，在孤独的月球基地中，主角与自己的平凡命运达成了最终的和解。",
+                  "main_conflict": "最终撤离时刻，主角抵达停机坪，却发现救援船只因能源危机拒绝超载。主角必须在“强行登船导致所有人面临坠毁风险”与“主动留守基地以减轻负重，确保大部分人安全撤离”之间做出抉择。这不仅是物理层面的博弈，更是主角对自己人生价值与奋斗意义的终极审视。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为硬核工业现实主义风格，采用冷峻的低饱和度视觉表现。叙事节奏克制，强调环境叙事与职场细节，通过对月球基地狭窄空间、机械故障与通讯延迟的刻画，营造出一种压抑但真实的生存质感，旨在探讨个体在宏大工业灾难下的渺小与尊严。",
+              "main_quest": "主角需在七日内从坍塌的矿区底层撤离至地表停机坪。任务分为三个阶段：首先是建立临时生存据点，修复生命维持系统以确保氧气供应；其次是搜集散落在各矿区的通讯模块，尝试向地球发送求救信号并获取撤离许可；最后是穿越受损严重的工业区，在有限的撤离名额中做出抉择。挑战在于，主角不仅要对抗恶劣的月球环境与不断恶化的基地设施，还要在企业下达的“优先保护资产”指令与同伴的生存需求之间寻找平衡，最终目标并非拯救所有人，而是尽可能多地带回生存的希望。",
+              "protagonist_ability": "主角拥有的核心能力是“精密工业诊断与逻辑重构”。这源于其长期的矿区维修经验与对基地底层代码的深度理解。在游戏中，主角通过手持终端扫描设备残骸，能迅速分析出故障逻辑并进行临时性修复。该能力受限于极低的资源储备与极高的体力消耗，且每次修复都会导致设备寿命不可逆的损耗，迫使主角在“修复关键生存设施”与“保留撤离通道”之间做出残酷的取舍。",
+              "world_basic_setting": "故事背景设定在2070年代，人类已实现月球氦-3资源的商业化开采。月球基地“静海-4号”是地球能源供应的核心枢纽，社会结构高度科层化，工人被严格划分为技术等级。由于长期超负荷运转，基地设施老化严重，但为了维持地球能源市场的稳定，企业高层长期隐瞒安全隐患。一场突发的月震导致基地核心矿区坍塌，通讯中继站损毁，百余名工人被困于地下深层。此时的月球社会，既有尖端科技带来的便利，也有资本逻辑下对个体生命的漠视。文化上，月球工人形成了独特的“舱室文化”，他们将基地视为临时的家，却又时刻渴望返回地球。关键事件“静海坍塌”不仅是一次工业事故，更是主角从一名普通技术员被迫卷入生存博弈的转折点，揭开了企业利益链条与底层生存现状的残酷真相。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1777638799_ggkqcr",
+            "image_style": {
+              "type": "cyberpunk"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "深灰色工装、护目镜、疲惫的眼神、沾染矿尘的短发、消瘦、左手腕处的维修终端、沉默寡言、坚毅的下颌线、实用主义者、沧桑感",
+              "work_en": "Seven Days of Lunar Collapse",
+              "work_zh": "月球矿难七日"
+            },
+            "tone": "normal_ending",
+            "user_theme": "月球矿难七日"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "request_payload": {
+          "gameTheme": "月球矿难七日",
+          "protagonistAttr": {},
+          "difficulty": "normal",
+          "toneKey": "normal_ending",
+          "imageStyle": {
+            "type": "cyberpunk"
+          },
+          "_benchmark_profile": "fullready_pregen60",
+          "_benchmark_measurement": "fullready_nextturn",
+          "_benchmark_read_wait_s": 60.0
+        },
+        "start_ts": 1777638799.3579032,
+        "end_ts": 1777638809.5493014,
+        "provider_events": {
+          "event_count": 4,
+          "queue_wait_ms": {
+            "count": 4,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 1,
+            "min": 10179.0,
+            "max": 10179.0,
+            "mean": 10179.0,
+            "median": 10179.0,
+            "p95": 10179.0
+          },
+          "llm_success_count": 1,
+          "image_success_count": 0,
+          "request_thread_event_count": 2,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0
+        },
+        "status": "success",
+        "game_id": "game_1777638799_ggkqcr"
+      },
+      "long_tail_attribution": {
+        "provider_429_count": 0,
+        "provider_timeout_count": 0,
+        "provider_retry_heavy_count": 0,
+        "provider_backoff_wait_ms_total": 0,
+        "main_character_event_count": 0,
+        "scene_image_event_count": 0,
+        "image_probe_attempt_count": 0,
+        "main_character_contention_suspected": false
+      },
+      "first_click": {
+        "http_status": 200,
+        "elapsed_s": 47.28,
+        "response_json": {
+          "benchmark_diagnostics": {
+            "cache_hit_reason": null,
+            "cache_miss_reason": null,
+            "current_options_key_drift_detected": false,
+            "global_state_key_drift_detected": false,
+            "placeholder": false,
+            "previous_scene_id": null,
+            "recomputed_scene_cache_exists": false,
+            "recomputed_scene_id": null,
+            "request_current_options_count": 0,
+            "request_current_options_hash": "d751713988987e9331980363e24189ce",
+            "request_flow_worldline_hash": "940e38d5f8372eaa58cfdaf4d70a0d30",
+            "request_global_state_hash": "1551e29d2d3745f84e04e6ce6cec54d7",
+            "request_option_at_index": null,
+            "request_option_index": 0,
+            "request_option_text": "开始游戏",
+            "request_scene_cache_exists": false,
+            "request_scene_id": null,
+            "resolution_path": null,
+            "response_has_image": true,
+            "response_has_scene": true,
+            "response_scene_id": "5059275084161753820_-4484205851559542536",
+            "response_status": "success",
+            "scene_id_mismatch_detected": false,
+            "selected_option_mismatch_detected": false
+          },
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "",
+              "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：刺耳的金属扭曲声在狭窄的矿道中回荡，震得我耳膜生疼。我猛地从昏迷中惊醒，护目镜的边缘被碎石划出一道裂痕，视野里满是灰蒙蒙的尘埃。左手腕处的维修终端发出急促的红光，屏幕上显示着生命维持系统压力骤降的警告。我挣扎着撑起消瘦的身体，深灰色的工装上沾满了冰冷的矿尘，每一次呼吸都像是在吞咽砂砾。\n\n“林远，你还活着吗？”不远处，老矿工张叔正捂着流血的额头，声音沙哑地在通讯频道里嘶吼，“矿区坍塌了，救援程序被锁定在‘优先保护矿石样本’的逻辑上，我们的氧气循环系统被切断了！”\n\n我看向四周，应急灯光闪烁不定，映照出他那张写满惊恐与疲惫的脸。我知道，如果不立即接入备用电源，我们撑不过半小时。但我手头的维修终端显示，若强行接入氧气循环，必须拆除该区域唯一的通讯基站模块。我看着那台闪烁着微弱蓝光的基站，那是我们与外界唯一的联系，也是我回到地球的最后希望。"
+            },
+            "deep_background_links": {},
+            "flow_update": {},
+            "next_options": [
+              "优先修复氧气循环系统，确保同伴存活。",
+              "尝试重构基站逻辑，寻找一线求援机会（关联张叔的深层背景）。"
+            ],
+            "scene": "刺耳的金属扭曲声在狭窄的矿道中回荡，震得我耳膜生疼。我猛地从昏迷中惊醒，护目镜的边缘被碎石划出一道裂痕，视野里满是灰蒙蒙的尘埃。左手腕处的维修终端发出急促的红光，屏幕上显示着生命维持系统压力骤降的警告。我挣扎着撑起消瘦的身体，深灰色的工装上沾满了冰冷的矿尘，每一次呼吸都像是在吞咽砂砾。\n\n“林远，你还活着吗？”不远处，老矿工张叔正捂着流血的额头，声音沙哑地在通讯频道里嘶吼，“矿区坍塌了，救援程序被锁定在‘优先保护矿石样本’的逻辑上，我们的氧气循环系统被切断了！”\n\n我看向四周，应急灯光闪烁不定，映照出他那张写满惊恐与疲惫的脸。我知道，如果不立即接入备用电源，我们撑不过半小时。但我手头的维修终端显示，若强行接入氧气循环，必须拆除该区域唯一的通讯基站模块。我看着那台闪烁着微弱蓝光的基站，那是我们与外界唯一的联系，也是我回到地球的最后希望。",
+            "sceneId": "5059275084161753820_-4484205851559542536",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-lunar-collapse-emergency-repair, cyberpunk, hard-sci-fi, industrial-realism, dystopian, claustrophobic, photorealistic, cinematic, low-saturation, high-contrast, industrial-grit, young male protagonist Lin Yuan using Image 0, gaunt and lean physique reflecting long-term malnutrition, determined jawline with visible fatigue, pale skin smeared with dark lunar dust, expression of intense focus mixed with desperation, worn deep-gray industrial jumpsuit covered in fine moon dust, scratched high-tech protective goggles pushed slightly up on forehead, complex wrist-mounted diagnostic terminal on left forearm, crouching in a narrow, debris-filled lunar mining tunnel, left hand interacting with the glowing terminal interface, looking at 张叔-配角1 with a mix of urgency and calculation, body stance tense, ready for technical intervention, 8K detailed facial features, exhausted eyes with subtle dark circles, short hair matted with gray mineral dust, lip color naturally muted and dry, sharp, determined expression, soft shadows from flickering emergency lights accentuating bone structure, short messy hair with sharp texture, root fixation coefficient 0.5, tip swing amplitude 2cm, color layering: main color charcoal black, secondary color ash gray, highlight metallic dust gray, shadow deep black, wind speed 0.1m/s, turbulence intensity 10%, static mineral dust particles clinging to hair, coarse fabric with visible wear and tear, slight metallic sheen on jumpsuit fabric, dust accumulation in fabric creases, mechanical straps and wires visible on jumpsuit, narrow, dark lunar mining tunnel with twisted metal beams, flickering red emergency strobe lights reflecting on metallic walls, scattered rocks and debris on the ground, a blue-glowing communication base station module in the background, dust floating in the air of the confined space, 张叔-配角1 sitting on the ground in the background, clutching a bleeding forehead, red alarm light pulses creating heavy shadows, blue holographic interface light from wrist terminal, atmospheric dust haze, sharp sparks from damaged electrical wires, dominant cold gray and charcoal tones, harsh crimson emergency light, vibrant tech-blue highlights from terminal, muted metallic silver and dark earth tones, low-key dramatic lighting, harsh red strobe light from tunnel walls, cool blue light source from diagnostic terminal on wrist, high contrast between deep shadows and glowing tech elements, type close-up shot, lens 35mm, aperture f/1.8, depth_of_field shallow focus on protagonist, blurred tunnel background, flash none, grain fine industrial film grain, texture gritty industrial surfaces, protagonist centered slightly to the left, 张叔-配角1 positioned in the mid-ground right, wrist terminal acting as a secondary light source and focal point, action constraints: protagonist focused on the terminal, background tunnel environment, cinematic realism, no text or symbols in image, oppressive industrial disaster, tense survival atmosphere, melancholic resignation, urgent technical pressure, no text, no symbols, no garbled characters, no words",
+              "prompt_json": {
+                "camera": {
+                  "aperture": "f/1.8",
+                  "depth_of_field": "shallow focus on protagonist, blurred tunnel background",
+                  "flash": "none",
+                  "grain": "fine industrial film grain",
+                  "lens": "35mm",
+                  "texture": "gritty industrial surfaces",
+                  "type": "close-up shot"
+                },
+                "clothing_system": [
+                  "coarse fabric with visible wear and tear",
+                  "slight metallic sheen on jumpsuit fabric",
+                  "dust accumulation in fabric creases",
+                  "mechanical straps and wires visible on jumpsuit"
+                ],
+                "color_restriction": [
+                  "dominant cold gray and charcoal tones",
+                  "harsh crimson emergency light",
+                  "vibrant tech-blue highlights from terminal",
+                  "muted metallic silver and dark earth tones"
+                ],
+                "composition": [
+                  "protagonist centered slightly to the left",
+                  "张叔-配角1 positioned in the mid-ground right",
+                  "wrist terminal acting as a secondary light source and focal point",
+                  "action constraints: protagonist focused on the terminal, background tunnel environment"
+                ],
+                "environment": {
+                  "background": [
+                    "narrow, dark lunar mining tunnel with twisted metal beams",
+                    "flickering red emergency strobe lights reflecting on metallic walls",
+                    "scattered rocks and debris on the ground",
+                    "a blue-glowing communication base station module in the background",
+                    "dust floating in the air of the confined space"
+                  ],
+                  "characters": [
+                    "张叔-配角1 sitting on the ground in the background, clutching a bleeding forehead"
+                  ],
+                  "effects": [
+                    "red alarm light pulses creating heavy shadows",
+                    "blue holographic interface light from wrist terminal",
+                    "atmospheric dust haze",
+                    "sharp sparks from damaged electrical wires"
+                  ]
+                },
+                "face_system": [
+                  "8K detailed facial features",
+                  "exhausted eyes with subtle dark circles",
+                  "short hair matted with gray mineral dust",
+                  "lip color naturally muted and dry",
+                  "sharp, determined expression",
+                  "soft shadows from flickering emergency lights accentuating bone structure"
+                ],
+                "hair_system": [
+                  "short messy hair with sharp texture",
+                  "root fixation coefficient 0.5",
+                  "tip swing amplitude 2cm",
+                  "color layering: main color charcoal black, secondary color ash gray, highlight metallic dust gray, shadow deep black",
+                  "wind speed 0.1m/s",
+                  "turbulence intensity 10%",
+                  "static mineral dust particles clinging to hair"
+                ],
+                "label": "scene-lunar-collapse-emergency-repair",
+                "lighting": [
+                  "low-key dramatic lighting",
+                  "harsh red strobe light from tunnel walls",
+                  "cool blue light source from diagnostic terminal on wrist",
+                  "high contrast between deep shadows and glowing tech elements"
+                ],
+                "mood": [
+                  "oppressive industrial disaster",
+                  "tense survival atmosphere",
+                  "melancholic resignation",
+                  "urgent technical pressure"
+                ],
+                "output_style": [
+                  "cinematic realism",
+                  "no text or symbols in image"
+                ],
+                "style": [
+                  "photorealistic",
+                  "cinematic",
+                  "low-saturation",
+                  "high-contrast",
+                  "industrial-grit"
+                ],
+                "subject": {
+                  "body_traits": [
+                    "young male protagonist Lin Yuan using Image 0",
+                    "gaunt and lean physique reflecting long-term malnutrition",
+                    "determined jawline with visible fatigue",
+                    "pale skin smeared with dark lunar dust",
+                    "expression of intense focus mixed with desperation"
+                  ],
+                  "outfit": [
+                    "worn deep-gray industrial jumpsuit covered in fine moon dust",
+                    "scratched high-tech protective goggles pushed slightly up on forehead",
+                    "complex wrist-mounted diagnostic terminal on left forearm"
+                  ],
+                  "pose": [
+                    "crouching in a narrow, debris-filled lunar mining tunnel",
+                    "left hand interacting with the glowing terminal interface",
+                    "looking at 张叔-配角1 with a mix of urgency and calculation",
+                    "body stance tense, ready for technical intervention"
+                  ]
+                },
+                "tags": [
+                  "cyberpunk",
+                  "hard-sci-fi",
+                  "industrial-realism",
+                  "dystopian",
+                  "claustrophobic"
+                ]
+              },
+              "scene_text_hash": "eda1b95aec59a18ef710a7f04e508c38",
+              "style": "default",
+              "url": "/image_cache/aeab8cc4244bade64d6a7377b0254402.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "request_payload": {
+          "option": "开始游戏",
+          "optionIndex": 0,
+          "sceneId": null,
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角成功修复了区域内的应急氧气循环系统，并利用维修技能强行接入了备用电源，确保了小队在短期内不会因窒息而亡，但代价是牺牲了该区域的通讯基站，彻底断绝了与外界的即时联系。",
+                  "main_conflict": "基地坍塌瞬间，主角被困于深层矿区，生命维持系统告急。此时，主角发现企业预设的自动救援程序优先保护矿石样本而非被困人员，主角必须在“抢救核心设备以换取救援优先级”与“优先修复同伴的氧气循环系统”之间做出选择，这种生存资源的极度匮乏与企业冷漠指令构成了初期最直接的道德困境。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角通过逻辑重构绕过了腐败导致的系统锁死，成功修复了部分逃生舱，但由于零件不足，逃生舱无法满载，主角被迫决定撤离名单，部分同伴因名额限制不得不留在基地等待后续救援。",
+                  "main_conflict": "主角带领幸存者向中转站撤离，途中遭遇了严重的结构性崩塌，导致撤离路线被封死。此时，主角发现基地内部存在严重的腐败与偷工减料，导致关键逃生舱无法启动。主角必须在“揭露真相以获取社会舆论支持”与“利用仅存的备用零件修复逃生舱”之间权衡，时间紧迫，任何决策都意味着部分人的牺牲。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角最终选择留守基地，利用自身技术引导救援船安全起飞，自己则在基地深处目送同伴离开。主角虽未随船返回地球，但通过手动操作确保了撤离任务的圆满，在孤独的月球基地中，主角与自己的平凡命运达成了最终的和解。",
+                  "main_conflict": "最终撤离时刻，主角抵达停机坪，却发现救援船只因能源危机拒绝超载。主角必须在“强行登船导致所有人面临坠毁风险”与“主动留守基地以减轻负重，确保大部分人安全撤离”之间做出抉择。这不仅是物理层面的博弈，更是主角对自己人生价值与奋斗意义的终极审视。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为硬核工业现实主义风格，采用冷峻的低饱和度视觉表现。叙事节奏克制，强调环境叙事与职场细节，通过对月球基地狭窄空间、机械故障与通讯延迟的刻画，营造出一种压抑但真实的生存质感，旨在探讨个体在宏大工业灾难下的渺小与尊严。",
+              "main_quest": "主角需在七日内从坍塌的矿区底层撤离至地表停机坪。任务分为三个阶段：首先是建立临时生存据点，修复生命维持系统以确保氧气供应；其次是搜集散落在各矿区的通讯模块，尝试向地球发送求救信号并获取撤离许可；最后是穿越受损严重的工业区，在有限的撤离名额中做出抉择。挑战在于，主角不仅要对抗恶劣的月球环境与不断恶化的基地设施，还要在企业下达的“优先保护资产”指令与同伴的生存需求之间寻找平衡，最终目标并非拯救所有人，而是尽可能多地带回生存的希望。",
+              "protagonist_ability": "主角拥有的核心能力是“精密工业诊断与逻辑重构”。这源于其长期的矿区维修经验与对基地底层代码的深度理解。在游戏中，主角通过手持终端扫描设备残骸，能迅速分析出故障逻辑并进行临时性修复。该能力受限于极低的资源储备与极高的体力消耗，且每次修复都会导致设备寿命不可逆的损耗，迫使主角在“修复关键生存设施”与“保留撤离通道”之间做出残酷的取舍。",
+              "world_basic_setting": "故事背景设定在2070年代，人类已实现月球氦-3资源的商业化开采。月球基地“静海-4号”是地球能源供应的核心枢纽，社会结构高度科层化，工人被严格划分为技术等级。由于长期超负荷运转，基地设施老化严重，但为了维持地球能源市场的稳定，企业高层长期隐瞒安全隐患。一场突发的月震导致基地核心矿区坍塌，通讯中继站损毁，百余名工人被困于地下深层。此时的月球社会，既有尖端科技带来的便利，也有资本逻辑下对个体生命的漠视。文化上，月球工人形成了独特的“舱室文化”，他们将基地视为临时的家，却又时刻渴望返回地球。关键事件“静海坍塌”不仅是一次工业事故，更是主角从一名普通技术员被迫卷入生存博弈的转折点，揭开了企业利益链条与底层生存现状的残酷真相。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1777638799_ggkqcr",
+            "image_style": {
+              "type": "cyberpunk"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "深灰色工装、护目镜、疲惫的眼神、沾染矿尘的短发、消瘦、左手腕处的维修终端、沉默寡言、坚毅的下颌线、实用主义者、沧桑感",
+              "work_en": "Seven Days of Lunar Collapse",
+              "work_zh": "月球矿难七日"
+            },
+            "tone": "normal_ending",
+            "user_theme": "月球矿难七日",
+            "_benchmark_profile": "fullready_pregen60",
+            "_benchmark_measurement": "fullready_nextturn",
+            "_benchmark_read_wait_s": 60.0
+          }
+        },
+        "start_ts": 1777638809.6023724,
+        "end_ts": 1777638856.8828614,
+        "provider_events": {
+          "event_count": 9,
+          "queue_wait_ms": {
+            "count": 9,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 5,
+            "min": 7436.0,
+            "max": 16444.0,
+            "mean": 9972.2,
+            "median": 8584.0,
+            "p95": 15081.2
+          },
+          "llm_success_count": 4,
+          "image_success_count": 0,
+          "request_thread_event_count": 0,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 2,
+          "scene_image_event_count": 0
+        },
+        "attempts": [
+          {
+            "http_status": 200,
+            "elapsed_s": 47.28,
+            "response_json": {
+              "benchmark_diagnostics": {
+                "cache_hit_reason": null,
+                "cache_miss_reason": null,
+                "current_options_key_drift_detected": false,
+                "global_state_key_drift_detected": false,
+                "placeholder": false,
+                "previous_scene_id": null,
+                "recomputed_scene_cache_exists": false,
+                "recomputed_scene_id": null,
+                "request_current_options_count": 0,
+                "request_current_options_hash": "d751713988987e9331980363e24189ce",
+                "request_flow_worldline_hash": "940e38d5f8372eaa58cfdaf4d70a0d30",
+                "request_global_state_hash": "1551e29d2d3745f84e04e6ce6cec54d7",
+                "request_option_at_index": null,
+                "request_option_index": 0,
+                "request_option_text": "开始游戏",
+                "request_scene_cache_exists": false,
+                "request_scene_id": null,
+                "resolution_path": null,
+                "response_has_image": true,
+                "response_has_scene": true,
+                "response_scene_id": "5059275084161753820_-4484205851559542536",
+                "response_status": "success",
+                "scene_id_mismatch_detected": false,
+                "selected_option_mismatch_detected": false
+              },
+              "message": "选项剧情生成成功！",
+              "optionData": {
+                "checkpoint_packet": {
+                  "chapter": "chapter1",
+                  "chapter_conflict_solved": false,
+                  "quest_delta": "",
+                  "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：刺耳的金属扭曲声在狭窄的矿道中回荡，震得我耳膜生疼。我猛地从昏迷中惊醒，护目镜的边缘被碎石划出一道裂痕，视野里满是灰蒙蒙的尘埃。左手腕处的维修终端发出急促的红光，屏幕上显示着生命维持系统压力骤降的警告。我挣扎着撑起消瘦的身体，深灰色的工装上沾满了冰冷的矿尘，每一次呼吸都像是在吞咽砂砾。\n\n“林远，你还活着吗？”不远处，老矿工张叔正捂着流血的额头，声音沙哑地在通讯频道里嘶吼，“矿区坍塌了，救援程序被锁定在‘优先保护矿石样本’的逻辑上，我们的氧气循环系统被切断了！”\n\n我看向四周，应急灯光闪烁不定，映照出他那张写满惊恐与疲惫的脸。我知道，如果不立即接入备用电源，我们撑不过半小时。但我手头的维修终端显示，若强行接入氧气循环，必须拆除该区域唯一的通讯基站模块。我看着那台闪烁着微弱蓝光的基站，那是我们与外界唯一的联系，也是我回到地球的最后希望。"
+                },
+                "deep_background_links": {},
+                "flow_update": {},
+                "next_options": [
+                  "优先修复氧气循环系统，确保同伴存活。",
+                  "尝试重构基站逻辑，寻找一线求援机会（关联张叔的深层背景）。"
+                ],
+                "scene": "刺耳的金属扭曲声在狭窄的矿道中回荡，震得我耳膜生疼。我猛地从昏迷中惊醒，护目镜的边缘被碎石划出一道裂痕，视野里满是灰蒙蒙的尘埃。左手腕处的维修终端发出急促的红光，屏幕上显示着生命维持系统压力骤降的警告。我挣扎着撑起消瘦的身体，深灰色的工装上沾满了冰冷的矿尘，每一次呼吸都像是在吞咽砂砾。\n\n“林远，你还活着吗？”不远处，老矿工张叔正捂着流血的额头，声音沙哑地在通讯频道里嘶吼，“矿区坍塌了，救援程序被锁定在‘优先保护矿石样本’的逻辑上，我们的氧气循环系统被切断了！”\n\n我看向四周，应急灯光闪烁不定，映照出他那张写满惊恐与疲惫的脸。我知道，如果不立即接入备用电源，我们撑不过半小时。但我手头的维修终端显示，若强行接入氧气循环，必须拆除该区域唯一的通讯基站模块。我看着那台闪烁着微弱蓝光的基站，那是我们与外界唯一的联系，也是我回到地球的最后希望。",
+                "sceneId": "5059275084161753820_-4484205851559542536",
+                "scene_image": {
+                  "cached": true,
+                  "height": 1080,
+                  "image_type": "story_scene",
+                  "prompt": "scene-lunar-collapse-emergency-repair, cyberpunk, hard-sci-fi, industrial-realism, dystopian, claustrophobic, photorealistic, cinematic, low-saturation, high-contrast, industrial-grit, young male protagonist Lin Yuan using Image 0, gaunt and lean physique reflecting long-term malnutrition, determined jawline with visible fatigue, pale skin smeared with dark lunar dust, expression of intense focus mixed with desperation, worn deep-gray industrial jumpsuit covered in fine moon dust, scratched high-tech protective goggles pushed slightly up on forehead, complex wrist-mounted diagnostic terminal on left forearm, crouching in a narrow, debris-filled lunar mining tunnel, left hand interacting with the glowing terminal interface, looking at 张叔-配角1 with a mix of urgency and calculation, body stance tense, ready for technical intervention, 8K detailed facial features, exhausted eyes with subtle dark circles, short hair matted with gray mineral dust, lip color naturally muted and dry, sharp, determined expression, soft shadows from flickering emergency lights accentuating bone structure, short messy hair with sharp texture, root fixation coefficient 0.5, tip swing amplitude 2cm, color layering: main color charcoal black, secondary color ash gray, highlight metallic dust gray, shadow deep black, wind speed 0.1m/s, turbulence intensity 10%, static mineral dust particles clinging to hair, coarse fabric with visible wear and tear, slight metallic sheen on jumpsuit fabric, dust accumulation in fabric creases, mechanical straps and wires visible on jumpsuit, narrow, dark lunar mining tunnel with twisted metal beams, flickering red emergency strobe lights reflecting on metallic walls, scattered rocks and debris on the ground, a blue-glowing communication base station module in the background, dust floating in the air of the confined space, 张叔-配角1 sitting on the ground in the background, clutching a bleeding forehead, red alarm light pulses creating heavy shadows, blue holographic interface light from wrist terminal, atmospheric dust haze, sharp sparks from damaged electrical wires, dominant cold gray and charcoal tones, harsh crimson emergency light, vibrant tech-blue highlights from terminal, muted metallic silver and dark earth tones, low-key dramatic lighting, harsh red strobe light from tunnel walls, cool blue light source from diagnostic terminal on wrist, high contrast between deep shadows and glowing tech elements, type close-up shot, lens 35mm, aperture f/1.8, depth_of_field shallow focus on protagonist, blurred tunnel background, flash none, grain fine industrial film grain, texture gritty industrial surfaces, protagonist centered slightly to the left, 张叔-配角1 positioned in the mid-ground right, wrist terminal acting as a secondary light source and focal point, action constraints: protagonist focused on the terminal, background tunnel environment, cinematic realism, no text or symbols in image, oppressive industrial disaster, tense survival atmosphere, melancholic resignation, urgent technical pressure, no text, no symbols, no garbled characters, no words",
+                  "prompt_json": {
+                    "camera": {
+                      "aperture": "f/1.8",
+                      "depth_of_field": "shallow focus on protagonist, blurred tunnel background",
+                      "flash": "none",
+                      "grain": "fine industrial film grain",
+                      "lens": "35mm",
+                      "texture": "gritty industrial surfaces",
+                      "type": "close-up shot"
+                    },
+                    "clothing_system": [
+                      "coarse fabric with visible wear and tear",
+                      "slight metallic sheen on jumpsuit fabric",
+                      "dust accumulation in fabric creases",
+                      "mechanical straps and wires visible on jumpsuit"
+                    ],
+                    "color_restriction": [
+                      "dominant cold gray and charcoal tones",
+                      "harsh crimson emergency light",
+                      "vibrant tech-blue highlights from terminal",
+                      "muted metallic silver and dark earth tones"
+                    ],
+                    "composition": [
+                      "protagonist centered slightly to the left",
+                      "张叔-配角1 positioned in the mid-ground right",
+                      "wrist terminal acting as a secondary light source and focal point",
+                      "action constraints: protagonist focused on the terminal, background tunnel environment"
+                    ],
+                    "environment": {
+                      "background": [
+                        "narrow, dark lunar mining tunnel with twisted metal beams",
+                        "flickering red emergency strobe lights reflecting on metallic walls",
+                        "scattered rocks and debris on the ground",
+                        "a blue-glowing communication base station module in the background",
+                        "dust floating in the air of the confined space"
+                      ],
+                      "characters": [
+                        "张叔-配角1 sitting on the ground in the background, clutching a bleeding forehead"
+                      ],
+                      "effects": [
+                        "red alarm light pulses creating heavy shadows",
+                        "blue holographic interface light from wrist terminal",
+                        "atmospheric dust haze",
+                        "sharp sparks from damaged electrical wires"
+                      ]
+                    },
+                    "face_system": [
+                      "8K detailed facial features",
+                      "exhausted eyes with subtle dark circles",
+                      "short hair matted with gray mineral dust",
+                      "lip color naturally muted and dry",
+                      "sharp, determined expression",
+                      "soft shadows from flickering emergency lights accentuating bone structure"
+                    ],
+                    "hair_system": [
+                      "short messy hair with sharp texture",
+                      "root fixation coefficient 0.5",
+                      "tip swing amplitude 2cm",
+                      "color layering: main color charcoal black, secondary color ash gray, highlight metallic dust gray, shadow deep black",
+                      "wind speed 0.1m/s",
+                      "turbulence intensity 10%",
+                      "static mineral dust particles clinging to hair"
+                    ],
+                    "label": "scene-lunar-collapse-emergency-repair",
+                    "lighting": [
+                      "low-key dramatic lighting",
+                      "harsh red strobe light from tunnel walls",
+                      "cool blue light source from diagnostic terminal on wrist",
+                      "high contrast between deep shadows and glowing tech elements"
+                    ],
+                    "mood": [
+                      "oppressive industrial disaster",
+                      "tense survival atmosphere",
+                      "melancholic resignation",
+                      "urgent technical pressure"
+                    ],
+                    "output_style": [
+                      "cinematic realism",
+                      "no text or symbols in image"
+                    ],
+                    "style": [
+                      "photorealistic",
+                      "cinematic",
+                      "low-saturation",
+                      "high-contrast",
+                      "industrial-grit"
+                    ],
+                    "subject": {
+                      "body_traits": [
+                        "young male protagonist Lin Yuan using Image 0",
+                        "gaunt and lean physique reflecting long-term malnutrition",
+                        "determined jawline with visible fatigue",
+                        "pale skin smeared with dark lunar dust",
+                        "expression of intense focus mixed with desperation"
+                      ],
+                      "outfit": [
+                        "worn deep-gray industrial jumpsuit covered in fine moon dust",
+                        "scratched high-tech protective goggles pushed slightly up on forehead",
+                        "complex wrist-mounted diagnostic terminal on left forearm"
+                      ],
+                      "pose": [
+                        "crouching in a narrow, debris-filled lunar mining tunnel",
+                        "left hand interacting with the glowing terminal interface",
+                        "looking at 张叔-配角1 with a mix of urgency and calculation",
+                        "body stance tense, ready for technical intervention"
+                      ]
+                    },
+                    "tags": [
+                      "cyberpunk",
+                      "hard-sci-fi",
+                      "industrial-realism",
+                      "dystopian",
+                      "claustrophobic"
+                    ]
+                  },
+                  "scene_text_hash": "eda1b95aec59a18ef710a7f04e508c38",
+                  "style": "default",
+                  "url": "/image_cache/aeab8cc4244bade64d6a7377b0254402.png",
+                  "width": 1920
+                }
+              },
+              "status": "success"
+            },
+            "request_payload": {
+              "option": "开始游戏",
+              "optionIndex": 0,
+              "sceneId": null,
+              "globalState": {
+                "core_worldview": {
+                  "chapters": {
+                    "chapter1": {
+                      "conflict_end_condition": "主角成功修复了区域内的应急氧气循环系统，并利用维修技能强行接入了备用电源，确保了小队在短期内不会因窒息而亡，但代价是牺牲了该区域的通讯基站，彻底断绝了与外界的即时联系。",
+                      "main_conflict": "基地坍塌瞬间，主角被困于深层矿区，生命维持系统告急。此时，主角发现企业预设的自动救援程序优先保护矿石样本而非被困人员，主角必须在“抢救核心设备以换取救援优先级”与“优先修复同伴的氧气循环系统”之间做出选择，这种生存资源的极度匮乏与企业冷漠指令构成了初期最直接的道德困境。"
+                    },
+                    "chapter2": {
+                      "conflict_end_condition": "主角通过逻辑重构绕过了腐败导致的系统锁死，成功修复了部分逃生舱，但由于零件不足，逃生舱无法满载，主角被迫决定撤离名单，部分同伴因名额限制不得不留在基地等待后续救援。",
+                      "main_conflict": "主角带领幸存者向中转站撤离，途中遭遇了严重的结构性崩塌，导致撤离路线被封死。此时，主角发现基地内部存在严重的腐败与偷工减料，导致关键逃生舱无法启动。主角必须在“揭露真相以获取社会舆论支持”与“利用仅存的备用零件修复逃生舱”之间权衡，时间紧迫，任何决策都意味着部分人的牺牲。"
+                    },
+                    "chapter3": {
+                      "conflict_end_condition": "主角最终选择留守基地，利用自身技术引导救援船安全起飞，自己则在基地深处目送同伴离开。主角虽未随船返回地球，但通过手动操作确保了撤离任务的圆满，在孤独的月球基地中，主角与自己的平凡命运达成了最终的和解。",
+                      "main_conflict": "最终撤离时刻，主角抵达停机坪，却发现救援船只因能源危机拒绝超载。主角必须在“强行登船导致所有人面临坠毁风险”与“主动留守基地以减轻负重，确保大部分人安全撤离”之间做出抉择。这不仅是物理层面的博弈，更是主角对自己人生价值与奋斗意义的终极审视。"
+                    }
+                  },
+                  "characters": {},
+                  "forces": {},
+                  "game_style": "本作为硬核工业现实主义风格，采用冷峻的低饱和度视觉表现。叙事节奏克制，强调环境叙事与职场细节，通过对月球基地狭窄空间、机械故障与通讯延迟的刻画，营造出一种压抑但真实的生存质感，旨在探讨个体在宏大工业灾难下的渺小与尊严。",
+                  "main_quest": "主角需在七日内从坍塌的矿区底层撤离至地表停机坪。任务分为三个阶段：首先是建立临时生存据点，修复生命维持系统以确保氧气供应；其次是搜集散落在各矿区的通讯模块，尝试向地球发送求救信号并获取撤离许可；最后是穿越受损严重的工业区，在有限的撤离名额中做出抉择。挑战在于，主角不仅要对抗恶劣的月球环境与不断恶化的基地设施，还要在企业下达的“优先保护资产”指令与同伴的生存需求之间寻找平衡，最终目标并非拯救所有人，而是尽可能多地带回生存的希望。",
+                  "protagonist_ability": "主角拥有的核心能力是“精密工业诊断与逻辑重构”。这源于其长期的矿区维修经验与对基地底层代码的深度理解。在游戏中，主角通过手持终端扫描设备残骸，能迅速分析出故障逻辑并进行临时性修复。该能力受限于极低的资源储备与极高的体力消耗，且每次修复都会导致设备寿命不可逆的损耗，迫使主角在“修复关键生存设施”与“保留撤离通道”之间做出残酷的取舍。",
+                  "world_basic_setting": "故事背景设定在2070年代，人类已实现月球氦-3资源的商业化开采。月球基地“静海-4号”是地球能源供应的核心枢纽，社会结构高度科层化，工人被严格划分为技术等级。由于长期超负荷运转，基地设施老化严重，但为了维持地球能源市场的稳定，企业高层长期隐瞒安全隐患。一场突发的月震导致基地核心矿区坍塌，通讯中继站损毁，百余名工人被困于地下深层。此时的月球社会，既有尖端科技带来的便利，也有资本逻辑下对个体生命的漠视。文化上，月球工人形成了独特的“舱室文化”，他们将基地视为临时的家，却又时刻渴望返回地球。关键事件“静海坍塌”不仅是一次工业事故，更是主角从一名普通技术员被迫卷入生存博弈的转折点，揭开了企业利益链条与底层生存现状的残酷真相。"
+                },
+                "flow_worldline": {
+                  "characters": {},
+                  "current_chapter": "chapter1",
+                  "environment": {}
+                },
+                "game_id": "game_1777638799_ggkqcr",
+                "image_style": {
+                  "type": "cyberpunk"
+                },
+                "meta": {
+                  "detail_async": true
+                },
+                "protagonist_canonical": {
+                  "age_range": "青年",
+                  "gender": "男性",
+                  "name_en": "Lin Yuan",
+                  "name_zh": "林远",
+                  "signature_look_keywords": "深灰色工装、护目镜、疲惫的眼神、沾染矿尘的短发、消瘦、左手腕处的维修终端、沉默寡言、坚毅的下颌线、实用主义者、沧桑感",
+                  "work_en": "Seven Days of Lunar Collapse",
+                  "work_zh": "月球矿难七日"
+                },
+                "tone": "normal_ending",
+                "user_theme": "月球矿难七日",
+                "_benchmark_profile": "fullready_pregen60",
+                "_benchmark_measurement": "fullready_nextturn",
+                "_benchmark_read_wait_s": 60.0
+              }
+            },
+            "start_ts": 1777638809.6023724,
+            "end_ts": 1777638856.8828614,
+            "provider_events": {
+              "event_count": 9,
+              "queue_wait_ms": {
+                "count": 9,
+                "min": 0.0,
+                "max": 0.0,
+                "mean": 0.0,
+                "median": 0.0,
+                "p95": 0.0
+              },
+              "latency_ms": {
+                "count": 5,
+                "min": 7436.0,
+                "max": 16444.0,
+                "mean": 9972.2,
+                "median": 8584.0,
+                "p95": 15081.2
+              },
+              "llm_success_count": 4,
+              "image_success_count": 0,
+              "request_thread_event_count": 0,
+              "provider_429_count": 0,
+              "provider_timeout_count": 0,
+              "shared_backoff_wait_ms_total": 0,
+              "retry_heavy_event_count": 0,
+              "main_character_event_count": 2,
+              "scene_image_event_count": 0
+            }
+          }
+        ],
+        "attempt_count": 1,
+        "request_elapsed_s": 47.28,
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "success",
+        "has_scene": true,
+        "has_image": true,
+        "setup_success": true
+      },
+      "second_click": {
+        "http_status": 200,
+        "elapsed_s": 0.018,
+        "response_json": {
+          "benchmark_diagnostics": {
+            "cache_hit_reason": "request_scene_completed_with_image",
+            "cache_miss_reason": null,
+            "current_options_key_drift_detected": false,
+            "global_state_key_drift_detected": true,
+            "placeholder": false,
+            "previous_scene_id": "initial",
+            "recomputed_scene_cache_exists": false,
+            "recomputed_scene_id": "-77720533647291966_-4484205851559542536",
+            "request_current_options_count": 2,
+            "request_current_options_hash": "9292127f2d37a223bfefea14ad9c507b",
+            "request_flow_worldline_hash": "0b7d2802f8e46ae104639ddbac325b51",
+            "request_global_state_hash": "4d0dd05702550d9b3993786b35a043da",
+            "request_option_at_index": "优先修复氧气循环系统，确保同伴存活。",
+            "request_option_index": 0,
+            "request_option_text": "优先修复氧气循环系统，确保同伴存活。",
+            "request_scene_cache_exists": true,
+            "request_scene_cache_meta": {
+              "canonical_scene_id": "-3858639511225030753_-4484205851559542536",
+              "current_options_hash": "9292127f2d37a223bfefea14ad9c507b",
+              "current_options_preview": [
+                "优先修复氧气循环系统，确保同伴存活。",
+                "尝试重构基站逻辑，寻找一线求援机会（关联张叔的深层背景）。"
+              ],
+              "flow_worldline_hash": "940e38d5f8372eaa58cfdaf4d70a0d30",
+              "global_state_hash": "b9ef4d293d331ce085295f0e7a9117b1",
+              "option_count": 2,
+              "parent_scene_id": null,
+              "scene_id": "5059275084161753820_-4484205851559542536"
+            },
+            "request_scene_generation_status": "completed",
+            "request_scene_id": "5059275084161753820_-4484205851559542536",
+            "resolution_path": "request_scene_cache_direct",
+            "response_has_image": true,
+            "response_has_scene": true,
+            "response_scene_id": "1464464255155864213_-2198186272590049491",
+            "response_status": "success",
+            "scene_id_mismatch_detected": true,
+            "selected_option_mismatch_detected": false
+          },
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "成功完成了第一阶段任务——修复生命维持系统，确保了同伴存活。当前主线目标已从“生存与求救”转向“寻找物理撤离路径”，通讯基站的牺牲使得后续必须依赖物理手段寻找中转站。",
+              "recap_text": "你选择了“优先修复氧气循环系统，确保同伴存活。”。当前章节：chapter1。主线进展：成功完成了第一阶段任务——修复生命维持系统，确保了同伴存活。当前主线目标已从“生存与求救”转向“寻找物理撤离路径”，通讯基站的牺牲使得后续必须依赖物理手段寻找中转站。。最近剧情：我深吸一口气，强忍着肺部因矿尘刺激而产生的灼烧感，将左手腕处的维修终端死死扣在氧气循环系统的控制面板上。终端屏幕上跳动着红色的警告代码，我熟练地避开那些被企业逻辑锁定的冗余指令，将基站模块的供电接口强行剥离。随着一声沉闷的金属断裂声，那台闪烁着微弱蓝光的通讯基站彻底熄灭，我与外界的最后一点联系就此中断。与此同时，备用电源的电流顺着我临时接驳的导线涌入循环系统，风扇发出低沉的嗡嗡声，浑浊的空气开始缓慢流动。张叔瘫坐在地，他那张满是矿尘的脸上露出一丝劫后余生的惨笑，他颤抖着手摸向额头的伤口，声音嘶哑地说道：“林远，你疯了……那是我们回家的唯一指望。但，谢谢你，至少现在我们不用在这儿变成冰冷的标本了。”我没有接话，只是默默地收起终端，看着那台彻底报废的基站，心中涌起一股难以言喻的沉重与释然。我知道，这不仅是通讯的断绝，更是我回归正常生活的某种可能性的终结。"
+            },
+            "deep_background_links": {
+              "0": "张叔（解锁其关于“静海-4号”早期建设的隐秘记忆）"
+            },
+            "flow_update": {
+              "chapter_conflict_solved": false,
+              "characters": {},
+              "environment": {},
+              "quest_progress": "成功完成了第一阶段任务——修复生命维持系统，确保了同伴存活。当前主线目标已从“生存与求救”转向“寻找物理撤离路径”，通讯基站的牺牲使得后续必须依赖物理手段寻找中转站。"
+            },
+            "next_options": [
+              "搜寻张叔随身携带的旧式维修手册，寻找备用通讯路径。",
+              "检查坍塌区边缘的应急舱门，确认是否有通往中转站的物理通道。"
+            ],
+            "plot_mentioned_only": [],
+            "plot_supporting_characters": [
+              [
+                "张叔",
+                "配角1"
+              ]
+            ],
+            "scene": "我深吸一口气，强忍着肺部因矿尘刺激而产生的灼烧感，将左手腕处的维修终端死死扣在氧气循环系统的控制面板上。终端屏幕上跳动着红色的警告代码，我熟练地避开那些被企业逻辑锁定的冗余指令，将基站模块的供电接口强行剥离。随着一声沉闷的金属断裂声，那台闪烁着微弱蓝光的通讯基站彻底熄灭，我与外界的最后一点联系就此中断。与此同时，备用电源的电流顺着我临时接驳的导线涌入循环系统，风扇发出低沉的嗡嗡声，浑浊的空气开始缓慢流动。张叔瘫坐在地，他那张满是矿尘的脸上露出一丝劫后余生的惨笑，他颤抖着手摸向额头的伤口，声音嘶哑地说道：“林远，你疯了……那是我们回家的唯一指望。但，谢谢你，至少现在我们不用在这儿变成冰冷的标本了。”我没有接话，只是默默地收起终端，看着那台彻底报废的基站，心中涌起一股难以言喻的沉重与释然。我知道，这不仅是通讯的断绝，更是我回归正常生活的某种可能性的终结。",
+            "sceneId": "1464464255155864213_-2198186272590049491",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-lunar-base-disconnection-lin-yuan, hardcore-industrial, cyberpunk, dystopian, claustrophobic, low-saturation, industrial realism, cinematic lighting, high-contrast, gritty texture, future-tech noir, young male protagonist Lin Yuan using Image 0, exhausted eyes with weary intensity, sharp jawline showing grit and determination, short hair covered in fine gray lunar dust, lean, athletic build hardened by manual labor, worn deep-gray industrial jumpsuit with reinforced patches, high-tech maintenance terminal strapped to left wrist, protective goggles pushed onto forehead, clothing covered in metallic dust and grease, kneeling before a damaged oxygen control panel, left hand with terminal pressed against the panel, body angled toward the terminal, focused and tense, facing away from 张叔-配角1, body partially shielding the console, 8K detailed facial features, pale skin stained with mineral dust, expression of grim relief and heavy resignation, lip color naturally muted by dehydration and fatigue, soft shadows emphasizing the structure of the face, short dark hair matted with lunar dust, root fixation coefficient 0.8, tip swing amplitude 2cm, color layering: main color #2D2D2D, secondary color #4A4A4A, highlight #666666, shadow #1A1A1A, wind speed 0.1m/s, turbulence intensity 1%, rough industrial fabric with slight tears, metallic sheen from grease and dust buildup, tight fitting around wrists and joints for safety, cramped lunar base corridor with exposed wiring and flickering conduits, damaged oxygen recycling system with exposed circuitry, dim, cold metallic walls showing signs of structural stress, a dark, non-functional communication station in the corner, faint, flickering neon warning lights in red and blue, 张叔-配角1 sitting on the floor in the background, face covered in dust, expression of painful relief, dust particles floating in the dim light, flickering red error code lights on the terminal screen, hazy atmosphere caused by poor air circulation, monochromatic palette with gray, slate, and charcoal, harsh red warning lights, faint, cold blue light from the terminal screen, no vibrant colors, strictly low saturation, harsh, directional light from the open maintenance panel, dim, flickering overhead industrial fluorescent light, sharp shadows enhancing the industrial texture, cold ambient light from the station interior, type medium close-up, lens 35mm, aperture f/2.0, depth_of_field shallow focus on Lin Yuan's hands and face, flash none, grain heavy film grain, cinematic grit, texture industrial metallic surfaces, Lin Yuan in the foreground, centered slightly to the left, 张叔-配角1 visible in the blurred background to the right, focal point on the terminal-panel interaction, action constraints: tense, calculated, and somber, hardcore industrial realism, no text or symbols in image, no watermarks or logos, oppressive industrial atmosphere, melancholy and finality, tense survivalism, weary resignation, no text, no symbols, no garbled characters, no words",
+              "scene_text_hash": "cff5ba2d00d8ccc1497aeb853bc43110",
+              "style": "default",
+              "url": "/image_cache/5dd563c5bc60dbef85acce888cce2612.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "request_payload": {
+          "option": "优先修复氧气循环系统，确保同伴存活。",
+          "optionIndex": 0,
+          "sceneId": "5059275084161753820_-4484205851559542536",
+          "currentOptions": [
+            "优先修复氧气循环系统，确保同伴存活。",
+            "尝试重构基站逻辑，寻找一线求援机会（关联张叔的深层背景）。"
+          ],
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角成功修复了区域内的应急氧气循环系统，并利用维修技能强行接入了备用电源，确保了小队在短期内不会因窒息而亡，但代价是牺牲了该区域的通讯基站，彻底断绝了与外界的即时联系。",
+                  "main_conflict": "基地坍塌瞬间，主角被困于深层矿区，生命维持系统告急。此时，主角发现企业预设的自动救援程序优先保护矿石样本而非被困人员，主角必须在“抢救核心设备以换取救援优先级”与“优先修复同伴的氧气循环系统”之间做出选择，这种生存资源的极度匮乏与企业冷漠指令构成了初期最直接的道德困境。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角通过逻辑重构绕过了腐败导致的系统锁死，成功修复了部分逃生舱，但由于零件不足，逃生舱无法满载，主角被迫决定撤离名单，部分同伴因名额限制不得不留在基地等待后续救援。",
+                  "main_conflict": "主角带领幸存者向中转站撤离，途中遭遇了严重的结构性崩塌，导致撤离路线被封死。此时，主角发现基地内部存在严重的腐败与偷工减料，导致关键逃生舱无法启动。主角必须在“揭露真相以获取社会舆论支持”与“利用仅存的备用零件修复逃生舱”之间权衡，时间紧迫，任何决策都意味着部分人的牺牲。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角最终选择留守基地，利用自身技术引导救援船安全起飞，自己则在基地深处目送同伴离开。主角虽未随船返回地球，但通过手动操作确保了撤离任务的圆满，在孤独的月球基地中，主角与自己的平凡命运达成了最终的和解。",
+                  "main_conflict": "最终撤离时刻，主角抵达停机坪，却发现救援船只因能源危机拒绝超载。主角必须在“强行登船导致所有人面临坠毁风险”与“主动留守基地以减轻负重，确保大部分人安全撤离”之间做出抉择。这不仅是物理层面的博弈，更是主角对自己人生价值与奋斗意义的终极审视。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为硬核工业现实主义风格，采用冷峻的低饱和度视觉表现。叙事节奏克制，强调环境叙事与职场细节，通过对月球基地狭窄空间、机械故障与通讯延迟的刻画，营造出一种压抑但真实的生存质感，旨在探讨个体在宏大工业灾难下的渺小与尊严。",
+              "main_quest": "主角需在七日内从坍塌的矿区底层撤离至地表停机坪。任务分为三个阶段：首先是建立临时生存据点，修复生命维持系统以确保氧气供应；其次是搜集散落在各矿区的通讯模块，尝试向地球发送求救信号并获取撤离许可；最后是穿越受损严重的工业区，在有限的撤离名额中做出抉择。挑战在于，主角不仅要对抗恶劣的月球环境与不断恶化的基地设施，还要在企业下达的“优先保护资产”指令与同伴的生存需求之间寻找平衡，最终目标并非拯救所有人，而是尽可能多地带回生存的希望。",
+              "protagonist_ability": "主角拥有的核心能力是“精密工业诊断与逻辑重构”。这源于其长期的矿区维修经验与对基地底层代码的深度理解。在游戏中，主角通过手持终端扫描设备残骸，能迅速分析出故障逻辑并进行临时性修复。该能力受限于极低的资源储备与极高的体力消耗，且每次修复都会导致设备寿命不可逆的损耗，迫使主角在“修复关键生存设施”与“保留撤离通道”之间做出残酷的取舍。",
+              "world_basic_setting": "故事背景设定在2070年代，人类已实现月球氦-3资源的商业化开采。月球基地“静海-4号”是地球能源供应的核心枢纽，社会结构高度科层化，工人被严格划分为技术等级。由于长期超负荷运转，基地设施老化严重，但为了维持地球能源市场的稳定，企业高层长期隐瞒安全隐患。一场突发的月震导致基地核心矿区坍塌，通讯中继站损毁，百余名工人被困于地下深层。此时的月球社会，既有尖端科技带来的便利，也有资本逻辑下对个体生命的漠视。文化上，月球工人形成了独特的“舱室文化”，他们将基地视为临时的家，却又时刻渴望返回地球。关键事件“静海坍塌”不仅是一次工业事故，更是主角从一名普通技术员被迫卷入生存博弈的转折点，揭开了企业利益链条与底层生存现状的残酷真相。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {},
+              "chapter_progress": 2.0
+            },
+            "game_id": "game_1777638799_ggkqcr",
+            "image_style": {
+              "type": "cyberpunk"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "深灰色工装、护目镜、疲惫的眼神、沾染矿尘的短发、消瘦、左手腕处的维修终端、沉默寡言、坚毅的下颌线、实用主义者、沧桑感",
+              "work_en": "Seven Days of Lunar Collapse",
+              "work_zh": "月球矿难七日"
+            },
+            "tone": "normal_ending",
+            "user_theme": "月球矿难七日",
+            "_benchmark_profile": "fullready_pregen60",
+            "_benchmark_measurement": "fullready_nextturn",
+            "_benchmark_read_wait_s": 60.0
+          },
+          "previousSceneId": "initial",
+          "previousSceneImage": {
+            "cached": true,
+            "height": 1080,
+            "image_type": "story_scene",
+            "prompt": "scene-lunar-collapse-emergency-repair, cyberpunk, hard-sci-fi, industrial-realism, dystopian, claustrophobic, photorealistic, cinematic, low-saturation, high-contrast, industrial-grit, young male protagonist Lin Yuan using Image 0, gaunt and lean physique reflecting long-term malnutrition, determined jawline with visible fatigue, pale skin smeared with dark lunar dust, expression of intense focus mixed with desperation, worn deep-gray industrial jumpsuit covered in fine moon dust, scratched high-tech protective goggles pushed slightly up on forehead, complex wrist-mounted diagnostic terminal on left forearm, crouching in a narrow, debris-filled lunar mining tunnel, left hand interacting with the glowing terminal interface, looking at 张叔-配角1 with a mix of urgency and calculation, body stance tense, ready for technical intervention, 8K detailed facial features, exhausted eyes with subtle dark circles, short hair matted with gray mineral dust, lip color naturally muted and dry, sharp, determined expression, soft shadows from flickering emergency lights accentuating bone structure, short messy hair with sharp texture, root fixation coefficient 0.5, tip swing amplitude 2cm, color layering: main color charcoal black, secondary color ash gray, highlight metallic dust gray, shadow deep black, wind speed 0.1m/s, turbulence intensity 10%, static mineral dust particles clinging to hair, coarse fabric with visible wear and tear, slight metallic sheen on jumpsuit fabric, dust accumulation in fabric creases, mechanical straps and wires visible on jumpsuit, narrow, dark lunar mining tunnel with twisted metal beams, flickering red emergency strobe lights reflecting on metallic walls, scattered rocks and debris on the ground, a blue-glowing communication base station module in the background, dust floating in the air of the confined space, 张叔-配角1 sitting on the ground in the background, clutching a bleeding forehead, red alarm light pulses creating heavy shadows, blue holographic interface light from wrist terminal, atmospheric dust haze, sharp sparks from damaged electrical wires, dominant cold gray and charcoal tones, harsh crimson emergency light, vibrant tech-blue highlights from terminal, muted metallic silver and dark earth tones, low-key dramatic lighting, harsh red strobe light from tunnel walls, cool blue light source from diagnostic terminal on wrist, high contrast between deep shadows and glowing tech elements, type close-up shot, lens 35mm, aperture f/1.8, depth_of_field shallow focus on protagonist, blurred tunnel background, flash none, grain fine industrial film grain, texture gritty industrial surfaces, protagonist centered slightly to the left, 张叔-配角1 positioned in the mid-ground right, wrist terminal acting as a secondary light source and focal point, action constraints: protagonist focused on the terminal, background tunnel environment, cinematic realism, no text or symbols in image, oppressive industrial disaster, tense survival atmosphere, melancholic resignation, urgent technical pressure, no text, no symbols, no garbled characters, no words",
+            "prompt_json": {
+              "camera": {
+                "aperture": "f/1.8",
+                "depth_of_field": "shallow focus on protagonist, blurred tunnel background",
+                "flash": "none",
+                "grain": "fine industrial film grain",
+                "lens": "35mm",
+                "texture": "gritty industrial surfaces",
+                "type": "close-up shot"
+              },
+              "clothing_system": [
+                "coarse fabric with visible wear and tear",
+                "slight metallic sheen on jumpsuit fabric",
+                "dust accumulation in fabric creases",
+                "mechanical straps and wires visible on jumpsuit"
+              ],
+              "color_restriction": [
+                "dominant cold gray and charcoal tones",
+                "harsh crimson emergency light",
+                "vibrant tech-blue highlights from terminal",
+                "muted metallic silver and dark earth tones"
+              ],
+              "composition": [
+                "protagonist centered slightly to the left",
+                "张叔-配角1 positioned in the mid-ground right",
+                "wrist terminal acting as a secondary light source and focal point",
+                "action constraints: protagonist focused on the terminal, background tunnel environment"
+              ],
+              "environment": {
+                "background": [
+                  "narrow, dark lunar mining tunnel with twisted metal beams",
+                  "flickering red emergency strobe lights reflecting on metallic walls",
+                  "scattered rocks and debris on the ground",
+                  "a blue-glowing communication base station module in the background",
+                  "dust floating in the air of the confined space"
+                ],
+                "characters": [
+                  "张叔-配角1 sitting on the ground in the background, clutching a bleeding forehead"
+                ],
+                "effects": [
+                  "red alarm light pulses creating heavy shadows",
+                  "blue holographic interface light from wrist terminal",
+                  "atmospheric dust haze",
+                  "sharp sparks from damaged electrical wires"
+                ]
+              },
+              "face_system": [
+                "8K detailed facial features",
+                "exhausted eyes with subtle dark circles",
+                "short hair matted with gray mineral dust",
+                "lip color naturally muted and dry",
+                "sharp, determined expression",
+                "soft shadows from flickering emergency lights accentuating bone structure"
+              ],
+              "hair_system": [
+                "short messy hair with sharp texture",
+                "root fixation coefficient 0.5",
+                "tip swing amplitude 2cm",
+                "color layering: main color charcoal black, secondary color ash gray, highlight metallic dust gray, shadow deep black",
+                "wind speed 0.1m/s",
+                "turbulence intensity 10%",
+                "static mineral dust particles clinging to hair"
+              ],
+              "label": "scene-lunar-collapse-emergency-repair",
+              "lighting": [
+                "low-key dramatic lighting",
+                "harsh red strobe light from tunnel walls",
+                "cool blue light source from diagnostic terminal on wrist",
+                "high contrast between deep shadows and glowing tech elements"
+              ],
+              "mood": [
+                "oppressive industrial disaster",
+                "tense survival atmosphere",
+                "melancholic resignation",
+                "urgent technical pressure"
+              ],
+              "output_style": [
+                "cinematic realism",
+                "no text or symbols in image"
+              ],
+              "style": [
+                "photorealistic",
+                "cinematic",
+                "low-saturation",
+                "high-contrast",
+                "industrial-grit"
+              ],
+              "subject": {
+                "body_traits": [
+                  "young male protagonist Lin Yuan using Image 0",
+                  "gaunt and lean physique reflecting long-term malnutrition",
+                  "determined jawline with visible fatigue",
+                  "pale skin smeared with dark lunar dust",
+                  "expression of intense focus mixed with desperation"
+                ],
+                "outfit": [
+                  "worn deep-gray industrial jumpsuit covered in fine moon dust",
+                  "scratched high-tech protective goggles pushed slightly up on forehead",
+                  "complex wrist-mounted diagnostic terminal on left forearm"
+                ],
+                "pose": [
+                  "crouching in a narrow, debris-filled lunar mining tunnel",
+                  "left hand interacting with the glowing terminal interface",
+                  "looking at 张叔-配角1 with a mix of urgency and calculation",
+                  "body stance tense, ready for technical intervention"
+                ]
+              },
+              "tags": [
+                "cyberpunk",
+                "hard-sci-fi",
+                "industrial-realism",
+                "dystopian",
+                "claustrophobic"
+              ]
+            },
+            "scene_text_hash": "eda1b95aec59a18ef710a7f04e508c38",
+            "style": "default",
+            "url": "/image_cache/aeab8cc4244bade64d6a7377b0254402.png",
+            "width": 1920
+          },
+          "previousSceneText": "刺耳的金属扭曲声在狭窄的矿道中回荡，震得我耳膜生疼。我猛地从昏迷中惊醒，护目镜的边缘被碎石划出一道裂痕，视野里满是灰蒙蒙的尘埃。左手腕处的维修终端发出急促的红光，屏幕上显示着生命维持系统压力骤降的警告。我挣扎着撑起消瘦的身体，深灰色的工装上沾满了冰冷的矿尘，每一次呼吸都像是在吞咽砂砾。\n\n“林远，你还活着吗？”不远处，老矿工张叔正捂着流血的额头，声音沙哑地在通讯频道里嘶吼，“矿区坍塌了，救援程序被锁定在‘优先保护矿石样本’的逻辑上，我们的氧气循环系统被切断了！”\n\n我看向四周，应急灯光闪烁不定，映照出他那张写满惊恐与疲惫的脸。我知道，如果不立即接入备用电源，我们撑不过半小时。但我手头的维修终端显示，若强行接入氧气循环，必须拆除该区域唯一的通讯基站模块。我看着那台闪烁着微弱蓝光的基站，那是我们与外界唯一的联系，也是我回到地球的最后希望。"
+        },
+        "start_ts": 1777638916.927781,
+        "end_ts": 1777638916.9457352,
+        "provider_events": {
+          "event_count": 1,
+          "queue_wait_ms": {
+            "count": 1,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0
+        },
+        "attempts": [
+          {
+            "http_status": 200,
+            "elapsed_s": 0.018,
+            "response_json": {
+              "benchmark_diagnostics": {
+                "cache_hit_reason": "request_scene_completed_with_image",
+                "cache_miss_reason": null,
+                "current_options_key_drift_detected": false,
+                "global_state_key_drift_detected": true,
+                "placeholder": false,
+                "previous_scene_id": "initial",
+                "recomputed_scene_cache_exists": false,
+                "recomputed_scene_id": "-77720533647291966_-4484205851559542536",
+                "request_current_options_count": 2,
+                "request_current_options_hash": "9292127f2d37a223bfefea14ad9c507b",
+                "request_flow_worldline_hash": "0b7d2802f8e46ae104639ddbac325b51",
+                "request_global_state_hash": "4d0dd05702550d9b3993786b35a043da",
+                "request_option_at_index": "优先修复氧气循环系统，确保同伴存活。",
+                "request_option_index": 0,
+                "request_option_text": "优先修复氧气循环系统，确保同伴存活。",
+                "request_scene_cache_exists": true,
+                "request_scene_cache_meta": {
+                  "canonical_scene_id": "-3858639511225030753_-4484205851559542536",
+                  "current_options_hash": "9292127f2d37a223bfefea14ad9c507b",
+                  "current_options_preview": [
+                    "优先修复氧气循环系统，确保同伴存活。",
+                    "尝试重构基站逻辑，寻找一线求援机会（关联张叔的深层背景）。"
+                  ],
+                  "flow_worldline_hash": "940e38d5f8372eaa58cfdaf4d70a0d30",
+                  "global_state_hash": "b9ef4d293d331ce085295f0e7a9117b1",
+                  "option_count": 2,
+                  "parent_scene_id": null,
+                  "scene_id": "5059275084161753820_-4484205851559542536"
+                },
+                "request_scene_generation_status": "completed",
+                "request_scene_id": "5059275084161753820_-4484205851559542536",
+                "resolution_path": "request_scene_cache_direct",
+                "response_has_image": true,
+                "response_has_scene": true,
+                "response_scene_id": "1464464255155864213_-2198186272590049491",
+                "response_status": "success",
+                "scene_id_mismatch_detected": true,
+                "selected_option_mismatch_detected": false
+              },
+              "message": "选项剧情生成成功！",
+              "optionData": {
+                "checkpoint_packet": {
+                  "chapter": "chapter1",
+                  "chapter_conflict_solved": false,
+                  "quest_delta": "成功完成了第一阶段任务——修复生命维持系统，确保了同伴存活。当前主线目标已从“生存与求救”转向“寻找物理撤离路径”，通讯基站的牺牲使得后续必须依赖物理手段寻找中转站。",
+                  "recap_text": "你选择了“优先修复氧气循环系统，确保同伴存活。”。当前章节：chapter1。主线进展：成功完成了第一阶段任务——修复生命维持系统，确保了同伴存活。当前主线目标已从“生存与求救”转向“寻找物理撤离路径”，通讯基站的牺牲使得后续必须依赖物理手段寻找中转站。。最近剧情：我深吸一口气，强忍着肺部因矿尘刺激而产生的灼烧感，将左手腕处的维修终端死死扣在氧气循环系统的控制面板上。终端屏幕上跳动着红色的警告代码，我熟练地避开那些被企业逻辑锁定的冗余指令，将基站模块的供电接口强行剥离。随着一声沉闷的金属断裂声，那台闪烁着微弱蓝光的通讯基站彻底熄灭，我与外界的最后一点联系就此中断。与此同时，备用电源的电流顺着我临时接驳的导线涌入循环系统，风扇发出低沉的嗡嗡声，浑浊的空气开始缓慢流动。张叔瘫坐在地，他那张满是矿尘的脸上露出一丝劫后余生的惨笑，他颤抖着手摸向额头的伤口，声音嘶哑地说道：“林远，你疯了……那是我们回家的唯一指望。但，谢谢你，至少现在我们不用在这儿变成冰冷的标本了。”我没有接话，只是默默地收起终端，看着那台彻底报废的基站，心中涌起一股难以言喻的沉重与释然。我知道，这不仅是通讯的断绝，更是我回归正常生活的某种可能性的终结。"
+                },
+                "deep_background_links": {
+                  "0": "张叔（解锁其关于“静海-4号”早期建设的隐秘记忆）"
+                },
+                "flow_update": {
+                  "chapter_conflict_solved": false,
+                  "characters": {},
+                  "environment": {},
+                  "quest_progress": "成功完成了第一阶段任务——修复生命维持系统，确保了同伴存活。当前主线目标已从“生存与求救”转向“寻找物理撤离路径”，通讯基站的牺牲使得后续必须依赖物理手段寻找中转站。"
+                },
+                "next_options": [
+                  "搜寻张叔随身携带的旧式维修手册，寻找备用通讯路径。",
+                  "检查坍塌区边缘的应急舱门，确认是否有通往中转站的物理通道。"
+                ],
+                "plot_mentioned_only": [],
+                "plot_supporting_characters": [
+                  [
+                    "张叔",
+                    "配角1"
+                  ]
+                ],
+                "scene": "我深吸一口气，强忍着肺部因矿尘刺激而产生的灼烧感，将左手腕处的维修终端死死扣在氧气循环系统的控制面板上。终端屏幕上跳动着红色的警告代码，我熟练地避开那些被企业逻辑锁定的冗余指令，将基站模块的供电接口强行剥离。随着一声沉闷的金属断裂声，那台闪烁着微弱蓝光的通讯基站彻底熄灭，我与外界的最后一点联系就此中断。与此同时，备用电源的电流顺着我临时接驳的导线涌入循环系统，风扇发出低沉的嗡嗡声，浑浊的空气开始缓慢流动。张叔瘫坐在地，他那张满是矿尘的脸上露出一丝劫后余生的惨笑，他颤抖着手摸向额头的伤口，声音嘶哑地说道：“林远，你疯了……那是我们回家的唯一指望。但，谢谢你，至少现在我们不用在这儿变成冰冷的标本了。”我没有接话，只是默默地收起终端，看着那台彻底报废的基站，心中涌起一股难以言喻的沉重与释然。我知道，这不仅是通讯的断绝，更是我回归正常生活的某种可能性的终结。",
+                "sceneId": "1464464255155864213_-2198186272590049491",
+                "scene_image": {
+                  "cached": true,
+                  "height": 1080,
+                  "image_type": "story_scene",
+                  "prompt": "scene-lunar-base-disconnection-lin-yuan, hardcore-industrial, cyberpunk, dystopian, claustrophobic, low-saturation, industrial realism, cinematic lighting, high-contrast, gritty texture, future-tech noir, young male protagonist Lin Yuan using Image 0, exhausted eyes with weary intensity, sharp jawline showing grit and determination, short hair covered in fine gray lunar dust, lean, athletic build hardened by manual labor, worn deep-gray industrial jumpsuit with reinforced patches, high-tech maintenance terminal strapped to left wrist, protective goggles pushed onto forehead, clothing covered in metallic dust and grease, kneeling before a damaged oxygen control panel, left hand with terminal pressed against the panel, body angled toward the terminal, focused and tense, facing away from 张叔-配角1, body partially shielding the console, 8K detailed facial features, pale skin stained with mineral dust, expression of grim relief and heavy resignation, lip color naturally muted by dehydration and fatigue, soft shadows emphasizing the structure of the face, short dark hair matted with lunar dust, root fixation coefficient 0.8, tip swing amplitude 2cm, color layering: main color #2D2D2D, secondary color #4A4A4A, highlight #666666, shadow #1A1A1A, wind speed 0.1m/s, turbulence intensity 1%, rough industrial fabric with slight tears, metallic sheen from grease and dust buildup, tight fitting around wrists and joints for safety, cramped lunar base corridor with exposed wiring and flickering conduits, damaged oxygen recycling system with exposed circuitry, dim, cold metallic walls showing signs of structural stress, a dark, non-functional communication station in the corner, faint, flickering neon warning lights in red and blue, 张叔-配角1 sitting on the floor in the background, face covered in dust, expression of painful relief, dust particles floating in the dim light, flickering red error code lights on the terminal screen, hazy atmosphere caused by poor air circulation, monochromatic palette with gray, slate, and charcoal, harsh red warning lights, faint, cold blue light from the terminal screen, no vibrant colors, strictly low saturation, harsh, directional light from the open maintenance panel, dim, flickering overhead industrial fluorescent light, sharp shadows enhancing the industrial texture, cold ambient light from the station interior, type medium close-up, lens 35mm, aperture f/2.0, depth_of_field shallow focus on Lin Yuan's hands and face, flash none, grain heavy film grain, cinematic grit, texture industrial metallic surfaces, Lin Yuan in the foreground, centered slightly to the left, 张叔-配角1 visible in the blurred background to the right, focal point on the terminal-panel interaction, action constraints: tense, calculated, and somber, hardcore industrial realism, no text or symbols in image, no watermarks or logos, oppressive industrial atmosphere, melancholy and finality, tense survivalism, weary resignation, no text, no symbols, no garbled characters, no words",
+                  "scene_text_hash": "cff5ba2d00d8ccc1497aeb853bc43110",
+                  "style": "default",
+                  "url": "/image_cache/5dd563c5bc60dbef85acce888cce2612.png",
+                  "width": 1920
+                }
+              },
+              "status": "success"
+            },
+            "request_payload": {
+              "option": "优先修复氧气循环系统，确保同伴存活。",
+              "optionIndex": 0,
+              "sceneId": "5059275084161753820_-4484205851559542536",
+              "currentOptions": [
+                "优先修复氧气循环系统，确保同伴存活。",
+                "尝试重构基站逻辑，寻找一线求援机会（关联张叔的深层背景）。"
+              ],
+              "globalState": {
+                "core_worldview": {
+                  "chapters": {
+                    "chapter1": {
+                      "conflict_end_condition": "主角成功修复了区域内的应急氧气循环系统，并利用维修技能强行接入了备用电源，确保了小队在短期内不会因窒息而亡，但代价是牺牲了该区域的通讯基站，彻底断绝了与外界的即时联系。",
+                      "main_conflict": "基地坍塌瞬间，主角被困于深层矿区，生命维持系统告急。此时，主角发现企业预设的自动救援程序优先保护矿石样本而非被困人员，主角必须在“抢救核心设备以换取救援优先级”与“优先修复同伴的氧气循环系统”之间做出选择，这种生存资源的极度匮乏与企业冷漠指令构成了初期最直接的道德困境。"
+                    },
+                    "chapter2": {
+                      "conflict_end_condition": "主角通过逻辑重构绕过了腐败导致的系统锁死，成功修复了部分逃生舱，但由于零件不足，逃生舱无法满载，主角被迫决定撤离名单，部分同伴因名额限制不得不留在基地等待后续救援。",
+                      "main_conflict": "主角带领幸存者向中转站撤离，途中遭遇了严重的结构性崩塌，导致撤离路线被封死。此时，主角发现基地内部存在严重的腐败与偷工减料，导致关键逃生舱无法启动。主角必须在“揭露真相以获取社会舆论支持”与“利用仅存的备用零件修复逃生舱”之间权衡，时间紧迫，任何决策都意味着部分人的牺牲。"
+                    },
+                    "chapter3": {
+                      "conflict_end_condition": "主角最终选择留守基地，利用自身技术引导救援船安全起飞，自己则在基地深处目送同伴离开。主角虽未随船返回地球，但通过手动操作确保了撤离任务的圆满，在孤独的月球基地中，主角与自己的平凡命运达成了最终的和解。",
+                      "main_conflict": "最终撤离时刻，主角抵达停机坪，却发现救援船只因能源危机拒绝超载。主角必须在“强行登船导致所有人面临坠毁风险”与“主动留守基地以减轻负重，确保大部分人安全撤离”之间做出抉择。这不仅是物理层面的博弈，更是主角对自己人生价值与奋斗意义的终极审视。"
+                    }
+                  },
+                  "characters": {},
+                  "forces": {},
+                  "game_style": "本作为硬核工业现实主义风格，采用冷峻的低饱和度视觉表现。叙事节奏克制，强调环境叙事与职场细节，通过对月球基地狭窄空间、机械故障与通讯延迟的刻画，营造出一种压抑但真实的生存质感，旨在探讨个体在宏大工业灾难下的渺小与尊严。",
+                  "main_quest": "主角需在七日内从坍塌的矿区底层撤离至地表停机坪。任务分为三个阶段：首先是建立临时生存据点，修复生命维持系统以确保氧气供应；其次是搜集散落在各矿区的通讯模块，尝试向地球发送求救信号并获取撤离许可；最后是穿越受损严重的工业区，在有限的撤离名额中做出抉择。挑战在于，主角不仅要对抗恶劣的月球环境与不断恶化的基地设施，还要在企业下达的“优先保护资产”指令与同伴的生存需求之间寻找平衡，最终目标并非拯救所有人，而是尽可能多地带回生存的希望。",
+                  "protagonist_ability": "主角拥有的核心能力是“精密工业诊断与逻辑重构”。这源于其长期的矿区维修经验与对基地底层代码的深度理解。在游戏中，主角通过手持终端扫描设备残骸，能迅速分析出故障逻辑并进行临时性修复。该能力受限于极低的资源储备与极高的体力消耗，且每次修复都会导致设备寿命不可逆的损耗，迫使主角在“修复关键生存设施”与“保留撤离通道”之间做出残酷的取舍。",
+                  "world_basic_setting": "故事背景设定在2070年代，人类已实现月球氦-3资源的商业化开采。月球基地“静海-4号”是地球能源供应的核心枢纽，社会结构高度科层化，工人被严格划分为技术等级。由于长期超负荷运转，基地设施老化严重，但为了维持地球能源市场的稳定，企业高层长期隐瞒安全隐患。一场突发的月震导致基地核心矿区坍塌，通讯中继站损毁，百余名工人被困于地下深层。此时的月球社会，既有尖端科技带来的便利，也有资本逻辑下对个体生命的漠视。文化上，月球工人形成了独特的“舱室文化”，他们将基地视为临时的家，却又时刻渴望返回地球。关键事件“静海坍塌”不仅是一次工业事故，更是主角从一名普通技术员被迫卷入生存博弈的转折点，揭开了企业利益链条与底层生存现状的残酷真相。"
+                },
+                "flow_worldline": {
+                  "characters": {},
+                  "current_chapter": "chapter1",
+                  "environment": {},
+                  "chapter_progress": 2.0
+                },
+                "game_id": "game_1777638799_ggkqcr",
+                "image_style": {
+                  "type": "cyberpunk"
+                },
+                "meta": {
+                  "detail_async": true
+                },
+                "protagonist_canonical": {
+                  "age_range": "青年",
+                  "gender": "男性",
+                  "name_en": "Lin Yuan",
+                  "name_zh": "林远",
+                  "signature_look_keywords": "深灰色工装、护目镜、疲惫的眼神、沾染矿尘的短发、消瘦、左手腕处的维修终端、沉默寡言、坚毅的下颌线、实用主义者、沧桑感",
+                  "work_en": "Seven Days of Lunar Collapse",
+                  "work_zh": "月球矿难七日"
+                },
+                "tone": "normal_ending",
+                "user_theme": "月球矿难七日",
+                "_benchmark_profile": "fullready_pregen60",
+                "_benchmark_measurement": "fullready_nextturn",
+                "_benchmark_read_wait_s": 60.0
+              },
+              "previousSceneId": "initial",
+              "previousSceneImage": {
+                "cached": true,
+                "height": 1080,
+                "image_type": "story_scene",
+                "prompt": "scene-lunar-collapse-emergency-repair, cyberpunk, hard-sci-fi, industrial-realism, dystopian, claustrophobic, photorealistic, cinematic, low-saturation, high-contrast, industrial-grit, young male protagonist Lin Yuan using Image 0, gaunt and lean physique reflecting long-term malnutrition, determined jawline with visible fatigue, pale skin smeared with dark lunar dust, expression of intense focus mixed with desperation, worn deep-gray industrial jumpsuit covered in fine moon dust, scratched high-tech protective goggles pushed slightly up on forehead, complex wrist-mounted diagnostic terminal on left forearm, crouching in a narrow, debris-filled lunar mining tunnel, left hand interacting with the glowing terminal interface, looking at 张叔-配角1 with a mix of urgency and calculation, body stance tense, ready for technical intervention, 8K detailed facial features, exhausted eyes with subtle dark circles, short hair matted with gray mineral dust, lip color naturally muted and dry, sharp, determined expression, soft shadows from flickering emergency lights accentuating bone structure, short messy hair with sharp texture, root fixation coefficient 0.5, tip swing amplitude 2cm, color layering: main color charcoal black, secondary color ash gray, highlight metallic dust gray, shadow deep black, wind speed 0.1m/s, turbulence intensity 10%, static mineral dust particles clinging to hair, coarse fabric with visible wear and tear, slight metallic sheen on jumpsuit fabric, dust accumulation in fabric creases, mechanical straps and wires visible on jumpsuit, narrow, dark lunar mining tunnel with twisted metal beams, flickering red emergency strobe lights reflecting on metallic walls, scattered rocks and debris on the ground, a blue-glowing communication base station module in the background, dust floating in the air of the confined space, 张叔-配角1 sitting on the ground in the background, clutching a bleeding forehead, red alarm light pulses creating heavy shadows, blue holographic interface light from wrist terminal, atmospheric dust haze, sharp sparks from damaged electrical wires, dominant cold gray and charcoal tones, harsh crimson emergency light, vibrant tech-blue highlights from terminal, muted metallic silver and dark earth tones, low-key dramatic lighting, harsh red strobe light from tunnel walls, cool blue light source from diagnostic terminal on wrist, high contrast between deep shadows and glowing tech elements, type close-up shot, lens 35mm, aperture f/1.8, depth_of_field shallow focus on protagonist, blurred tunnel background, flash none, grain fine industrial film grain, texture gritty industrial surfaces, protagonist centered slightly to the left, 张叔-配角1 positioned in the mid-ground right, wrist terminal acting as a secondary light source and focal point, action constraints: protagonist focused on the terminal, background tunnel environment, cinematic realism, no text or symbols in image, oppressive industrial disaster, tense survival atmosphere, melancholic resignation, urgent technical pressure, no text, no symbols, no garbled characters, no words",
+                "prompt_json": {
+                  "camera": {
+                    "aperture": "f/1.8",
+                    "depth_of_field": "shallow focus on protagonist, blurred tunnel background",
+                    "flash": "none",
+                    "grain": "fine industrial film grain",
+                    "lens": "35mm",
+                    "texture": "gritty industrial surfaces",
+                    "type": "close-up shot"
+                  },
+                  "clothing_system": [
+                    "coarse fabric with visible wear and tear",
+                    "slight metallic sheen on jumpsuit fabric",
+                    "dust accumulation in fabric creases",
+                    "mechanical straps and wires visible on jumpsuit"
+                  ],
+                  "color_restriction": [
+                    "dominant cold gray and charcoal tones",
+                    "harsh crimson emergency light",
+                    "vibrant tech-blue highlights from terminal",
+                    "muted metallic silver and dark earth tones"
+                  ],
+                  "composition": [
+                    "protagonist centered slightly to the left",
+                    "张叔-配角1 positioned in the mid-ground right",
+                    "wrist terminal acting as a secondary light source and focal point",
+                    "action constraints: protagonist focused on the terminal, background tunnel environment"
+                  ],
+                  "environment": {
+                    "background": [
+                      "narrow, dark lunar mining tunnel with twisted metal beams",
+                      "flickering red emergency strobe lights reflecting on metallic walls",
+                      "scattered rocks and debris on the ground",
+                      "a blue-glowing communication base station module in the background",
+                      "dust floating in the air of the confined space"
+                    ],
+                    "characters": [
+                      "张叔-配角1 sitting on the ground in the background, clutching a bleeding forehead"
+                    ],
+                    "effects": [
+                      "red alarm light pulses creating heavy shadows",
+                      "blue holographic interface light from wrist terminal",
+                      "atmospheric dust haze",
+                      "sharp sparks from damaged electrical wires"
+                    ]
+                  },
+                  "face_system": [
+                    "8K detailed facial features",
+                    "exhausted eyes with subtle dark circles",
+                    "short hair matted with gray mineral dust",
+                    "lip color naturally muted and dry",
+                    "sharp, determined expression",
+                    "soft shadows from flickering emergency lights accentuating bone structure"
+                  ],
+                  "hair_system": [
+                    "short messy hair with sharp texture",
+                    "root fixation coefficient 0.5",
+                    "tip swing amplitude 2cm",
+                    "color layering: main color charcoal black, secondary color ash gray, highlight metallic dust gray, shadow deep black",
+                    "wind speed 0.1m/s",
+                    "turbulence intensity 10%",
+                    "static mineral dust particles clinging to hair"
+                  ],
+                  "label": "scene-lunar-collapse-emergency-repair",
+                  "lighting": [
+                    "low-key dramatic lighting",
+                    "harsh red strobe light from tunnel walls",
+                    "cool blue light source from diagnostic terminal on wrist",
+                    "high contrast between deep shadows and glowing tech elements"
+                  ],
+                  "mood": [
+                    "oppressive industrial disaster",
+                    "tense survival atmosphere",
+                    "melancholic resignation",
+                    "urgent technical pressure"
+                  ],
+                  "output_style": [
+                    "cinematic realism",
+                    "no text or symbols in image"
+                  ],
+                  "style": [
+                    "photorealistic",
+                    "cinematic",
+                    "low-saturation",
+                    "high-contrast",
+                    "industrial-grit"
+                  ],
+                  "subject": {
+                    "body_traits": [
+                      "young male protagonist Lin Yuan using Image 0",
+                      "gaunt and lean physique reflecting long-term malnutrition",
+                      "determined jawline with visible fatigue",
+                      "pale skin smeared with dark lunar dust",
+                      "expression of intense focus mixed with desperation"
+                    ],
+                    "outfit": [
+                      "worn deep-gray industrial jumpsuit covered in fine moon dust",
+                      "scratched high-tech protective goggles pushed slightly up on forehead",
+                      "complex wrist-mounted diagnostic terminal on left forearm"
+                    ],
+                    "pose": [
+                      "crouching in a narrow, debris-filled lunar mining tunnel",
+                      "left hand interacting with the glowing terminal interface",
+                      "looking at 张叔-配角1 with a mix of urgency and calculation",
+                      "body stance tense, ready for technical intervention"
+                    ]
+                  },
+                  "tags": [
+                    "cyberpunk",
+                    "hard-sci-fi",
+                    "industrial-realism",
+                    "dystopian",
+                    "claustrophobic"
+                  ]
+                },
+                "scene_text_hash": "eda1b95aec59a18ef710a7f04e508c38",
+                "style": "default",
+                "url": "/image_cache/aeab8cc4244bade64d6a7377b0254402.png",
+                "width": 1920
+              },
+              "previousSceneText": "刺耳的金属扭曲声在狭窄的矿道中回荡，震得我耳膜生疼。我猛地从昏迷中惊醒，护目镜的边缘被碎石划出一道裂痕，视野里满是灰蒙蒙的尘埃。左手腕处的维修终端发出急促的红光，屏幕上显示着生命维持系统压力骤降的警告。我挣扎着撑起消瘦的身体，深灰色的工装上沾满了冰冷的矿尘，每一次呼吸都像是在吞咽砂砾。\n\n“林远，你还活着吗？”不远处，老矿工张叔正捂着流血的额头，声音沙哑地在通讯频道里嘶吼，“矿区坍塌了，救援程序被锁定在‘优先保护矿石样本’的逻辑上，我们的氧气循环系统被切断了！”\n\n我看向四周，应急灯光闪烁不定，映照出他那张写满惊恐与疲惫的脸。我知道，如果不立即接入备用电源，我们撑不过半小时。但我手头的维修终端显示，若强行接入氧气循环，必须拆除该区域唯一的通讯基站模块。我看着那台闪烁着微弱蓝光的基站，那是我们与外界唯一的联系，也是我回到地球的最后希望。"
+            },
+            "start_ts": 1777638916.927781,
+            "end_ts": 1777638916.9457352,
+            "provider_events": {
+              "event_count": 1,
+              "queue_wait_ms": {
+                "count": 1,
+                "min": 0.0,
+                "max": 0.0,
+                "mean": 0.0,
+                "median": 0.0,
+                "p95": 0.0
+              },
+              "latency_ms": {
+                "count": 0
+              },
+              "llm_success_count": 0,
+              "image_success_count": 0,
+              "request_thread_event_count": 0,
+              "provider_429_count": 0,
+              "provider_timeout_count": 0,
+              "shared_backoff_wait_ms_total": 0,
+              "retry_heavy_event_count": 0,
+              "main_character_event_count": 0,
+              "scene_image_event_count": 0
+            }
+          }
+        ],
+        "attempt_count": 1,
+        "request_elapsed_s": 0.018,
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "success",
+        "has_scene": true,
+        "has_image": true,
+        "selected_option_index": 0,
+        "selected_option_text": "优先修复氧气循环系统，确保同伴存活。",
+        "input_scene_id": "5059275084161753820_-4484205851559542536",
+        "inferred_cache_result": "likely_hit",
+        "used_updated_flow_state": true,
+        "cache_hit_reason": "request_scene_completed_with_image",
+        "cache_miss_reason": null,
+        "global_state_key_drift_detected": true,
+        "scene_id_mismatch_detected": true,
+        "selected_option_mismatch_detected": false,
+        "current_options_key_drift_detected": false,
+        "benchmark_diagnostics": {
+          "cache_hit_reason": "request_scene_completed_with_image",
+          "cache_miss_reason": null,
+          "current_options_key_drift_detected": false,
+          "global_state_key_drift_detected": true,
+          "placeholder": false,
+          "previous_scene_id": "initial",
+          "recomputed_scene_cache_exists": false,
+          "recomputed_scene_id": "-77720533647291966_-4484205851559542536",
+          "request_current_options_count": 2,
+          "request_current_options_hash": "9292127f2d37a223bfefea14ad9c507b",
+          "request_flow_worldline_hash": "0b7d2802f8e46ae104639ddbac325b51",
+          "request_global_state_hash": "4d0dd05702550d9b3993786b35a043da",
+          "request_option_at_index": "优先修复氧气循环系统，确保同伴存活。",
+          "request_option_index": 0,
+          "request_option_text": "优先修复氧气循环系统，确保同伴存活。",
+          "request_scene_cache_exists": true,
+          "request_scene_cache_meta": {
+            "canonical_scene_id": "-3858639511225030753_-4484205851559542536",
+            "current_options_hash": "9292127f2d37a223bfefea14ad9c507b",
+            "current_options_preview": [
+              "优先修复氧气循环系统，确保同伴存活。",
+              "尝试重构基站逻辑，寻找一线求援机会（关联张叔的深层背景）。"
+            ],
+            "flow_worldline_hash": "940e38d5f8372eaa58cfdaf4d70a0d30",
+            "global_state_hash": "b9ef4d293d331ce085295f0e7a9117b1",
+            "option_count": 2,
+            "parent_scene_id": null,
+            "scene_id": "5059275084161753820_-4484205851559542536"
+          },
+          "request_scene_generation_status": "completed",
+          "request_scene_id": "5059275084161753820_-4484205851559542536",
+          "resolution_path": "request_scene_cache_direct",
+          "response_has_image": true,
+          "response_has_scene": true,
+          "response_scene_id": "1464464255155864213_-2198186272590049491",
+          "response_status": "success",
+          "scene_id_mismatch_detected": true,
+          "selected_option_mismatch_detected": false
+        }
+      },
+      "full_ready": {
+        "text_ready_ts": 1777638916.9457352,
+        "text_ready_elapsed_s": 0.018,
+        "image_ready_ts": 1777638916.9457352,
+        "image_ready_elapsed_s": 0.018,
+        "full_ready_ts": 1777638916.9457352,
+        "full_ready_elapsed_s": 0.018,
+        "image_probe": {
+          "status": "success",
+          "source": "generate-option",
+          "image": {
+            "cached": true,
+            "height": 1080,
+            "image_type": "story_scene",
+            "prompt": "scene-lunar-base-disconnection-lin-yuan, hardcore-industrial, cyberpunk, dystopian, claustrophobic, low-saturation, industrial realism, cinematic lighting, high-contrast, gritty texture, future-tech noir, young male protagonist Lin Yuan using Image 0, exhausted eyes with weary intensity, sharp jawline showing grit and determination, short hair covered in fine gray lunar dust, lean, athletic build hardened by manual labor, worn deep-gray industrial jumpsuit with reinforced patches, high-tech maintenance terminal strapped to left wrist, protective goggles pushed onto forehead, clothing covered in metallic dust and grease, kneeling before a damaged oxygen control panel, left hand with terminal pressed against the panel, body angled toward the terminal, focused and tense, facing away from 张叔-配角1, body partially shielding the console, 8K detailed facial features, pale skin stained with mineral dust, expression of grim relief and heavy resignation, lip color naturally muted by dehydration and fatigue, soft shadows emphasizing the structure of the face, short dark hair matted with lunar dust, root fixation coefficient 0.8, tip swing amplitude 2cm, color layering: main color #2D2D2D, secondary color #4A4A4A, highlight #666666, shadow #1A1A1A, wind speed 0.1m/s, turbulence intensity 1%, rough industrial fabric with slight tears, metallic sheen from grease and dust buildup, tight fitting around wrists and joints for safety, cramped lunar base corridor with exposed wiring and flickering conduits, damaged oxygen recycling system with exposed circuitry, dim, cold metallic walls showing signs of structural stress, a dark, non-functional communication station in the corner, faint, flickering neon warning lights in red and blue, 张叔-配角1 sitting on the floor in the background, face covered in dust, expression of painful relief, dust particles floating in the dim light, flickering red error code lights on the terminal screen, hazy atmosphere caused by poor air circulation, monochromatic palette with gray, slate, and charcoal, harsh red warning lights, faint, cold blue light from the terminal screen, no vibrant colors, strictly low saturation, harsh, directional light from the open maintenance panel, dim, flickering overhead industrial fluorescent light, sharp shadows enhancing the industrial texture, cold ambient light from the station interior, type medium close-up, lens 35mm, aperture f/2.0, depth_of_field shallow focus on Lin Yuan's hands and face, flash none, grain heavy film grain, cinematic grit, texture industrial metallic surfaces, Lin Yuan in the foreground, centered slightly to the left, 张叔-配角1 visible in the blurred background to the right, focal point on the terminal-panel interaction, action constraints: tense, calculated, and somber, hardcore industrial realism, no text or symbols in image, no watermarks or logos, oppressive industrial atmosphere, melancholy and finality, tense survivalism, weary resignation, no text, no symbols, no garbled characters, no words",
+            "scene_text_hash": "cff5ba2d00d8ccc1497aeb853bc43110",
+            "style": "default",
+            "url": "/image_cache/5dd563c5bc60dbef85acce888cce2612.png",
+            "width": 1920
+          },
+          "attempt_count": 0
+        },
+        "ready_mode": "direct_in_generate_option",
+        "attribution": {
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "provider_retry_heavy_count": 0,
+          "provider_backoff_wait_ms_total": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0,
+          "image_probe_attempt_count": 0,
+          "main_character_contention_suspected": false
+        }
+      },
+      "placeholder": false,
+      "transport_success": true,
+      "strict_success": true,
+      "failure_bucket": null,
+      "cache_path_classification": "likely_hit_direct_image",
+      "cache_hit_reason": "request_scene_completed_with_image",
+      "cache_miss_reason": null,
+      "global_state_key_drift_detected": true,
+      "scene_id_mismatch_detected": true,
+      "selected_option_mismatch_detected": false,
+      "success": true
+    }
+  ]
+}

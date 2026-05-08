@@ -1,0 +1,1410 @@
+{
+  "summary": {
+    "experiment_name": "benchmark_v15_fullready_nextturn_normal20",
+    "profile": "fullready_strict",
+    "sample_size": 1,
+    "read_wait_s": 0.0,
+    "suite_start_ts": 1777644290.8924055,
+    "suite_end_ts": 1777644376.4449692,
+    "first_click_elapsed_s": {
+      "count": 1,
+      "min": 52.301,
+      "max": 52.301,
+      "mean": 52.301,
+      "median": 52.301,
+      "p95": 52.301
+    },
+    "first_click_setup_success_count": 1,
+    "second_click_elapsed_s": {
+      "count": 1,
+      "min": 24.711,
+      "max": 24.711,
+      "mean": 24.711,
+      "median": 24.711,
+      "p95": 24.711
+    },
+    "second_click_success_count": 1,
+    "transport_success_count": 1,
+    "strict_success_count": 1,
+    "likely_hit_count": 0,
+    "likely_hit_rate": 0.0,
+    "failure_bucket_counts": {},
+    "placeholder_strict_fail_count": 0,
+    "cache_hit_reason_counts": {
+      "waited_request_scene_text_completed_no_image": 1
+    },
+    "cache_miss_reason_counts": {
+      "request_scene_generation_in_progress": 1
+    },
+    "global_state_key_drift_detected_count": 1,
+    "scene_id_mismatch_detected_count": 1,
+    "selected_option_mismatch_detected_count": 0,
+    "aborted": false,
+    "success_count": 1,
+    "text_ready_elapsed_s": {
+      "count": 1,
+      "min": 24.711,
+      "max": 24.711,
+      "mean": 24.711,
+      "median": 24.711,
+      "p95": 24.711
+    },
+    "image_ready_elapsed_s": {
+      "count": 1,
+      "min": 24.711,
+      "max": 24.711,
+      "mean": 24.711,
+      "median": 24.711,
+      "p95": 24.711
+    },
+    "full_ready_elapsed_s": {
+      "count": 1,
+      "min": 24.711,
+      "max": 24.711,
+      "mean": 24.711,
+      "median": 24.711,
+      "p95": 24.711
+    },
+    "real_scene_count": 1,
+    "real_scene_rate": 1.0,
+    "direct_image_count": 1,
+    "async_image_count": 0,
+    "placeholder_count": 0,
+    "placeholder_rate": 0.0,
+    "direct_image_rate": 1.0,
+    "async_image_rate": 0.0,
+    "provider_retry_heavy_count": 0,
+    "provider_429_count": 0,
+    "provider_timeout_count": 0,
+    "provider_backoff_wait_ms_total": 0,
+    "main_character_contention_suspected_count": 0,
+    "notes": "v15 strict normal20 treats first click as setup with a separate timeout budget, while preserving 60s fail-fast guards for second-click request, scene-image wait, and the measured next-turn full-ready path."
+  },
+  "runs": [
+    {
+      "benchmark_id": "DNQBV1_015",
+      "theme_id": 5,
+      "theme": "魔法学院期末周",
+      "read_wait_s": 0.0,
+      "full_ready_mode": true,
+      "profile": "fullready_strict",
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 8.4,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过合理规划时间或完成一次高难度的课外委托，勉强追赶上课程进度，获得进入下一阶段考试的资格，但同时也因为过度劳累而错失了与好友的一次重要聚会，留下了小小的遗憾。",
+                  "main_conflict": "期末周伊始，主角发现自己因兼职导致复习进度严重滞后，同时还要应对学院内部小团体对资源的垄断。面对繁重的课业压力与即将到来的高难度实操考试，主角必须在“熬夜苦读”与“寻求他人协作”之间做出抉择，这种选择直接影响了后续的资源获取与人际关系走向。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角选择放弃激进的申诉，转而以更稳妥的方式完成补考，虽然保住了学业，但被迫承认了规则的不公，内心对学院的幻灭感加深，与曾经志同道合的伙伴产生分歧。",
+                  "main_conflict": "实操考试期间，主角发现学院的评分系统存在隐性偏见，自己的努力被系统判定为“低效”。主角试图通过“共鸣感知”能力寻找证据进行申诉，却发现这不仅会触怒导师，还可能导致自己被列入黑名单，从而彻底失去奖学金资格，陷入理想与生存的剧烈冲突。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角最终完成了考核，获得了毕业证书，但未能拿到奖学金。主角选择接受这份平凡的毕业，带着些许不甘与对未来的释然，踏入社会，与曾经的遗憾达成和解，开启一段普通却真实的人生。",
+                  "main_conflict": "最终考核前夕，主角面临家庭经济突变的打击，必须在“参加最终考核”与“立刻退学工作”之间做出抉择。同时，主角发现自己一直追求的奖学金名额被一名背景深厚的学生占据，无论如何努力都无法在分数上超越对方，必须面对“努力未必有对等回报”的残酷现实。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为现实主义魔幻风格，采用冷峻而克制的叙事笔触，通过细腻的日常细节构建一个魔法与平庸生活共存的社会。画面色调偏向低饱和度的写实感，强调光影的真实质感，旨在营造一种“魔法只是另一种繁重职业”的沉浸式体验，让玩家在琐碎的学业压力与现实困境中，感受个体在庞大规则下的挣扎与释然。",
+              "main_quest": "主角的目标是在期末周内，通过所有核心魔法课程的考核，并争取获得唯一的“优秀毕业生”奖学金，以减轻家庭沉重的债务负担。玩家需要通过分配有限的精力，在复习、兼职打工与处理人际关系之间寻找平衡。挑战在于，每一步选择都伴随着代价：为了复习而放弃兼职会导致经济危机，为了帮助同学而牺牲复习时间则会降低绩点。最终，主角将面临现实的审判——即便竭尽全力，也可能因为一次意外的实验失误或不可抗力的名额缩减，无法达成最初的完美目标，只能在获得学业认可与失去部分理想之间，接受一个虽不圆满但足以支撑生活的结局。",
+              "protagonist_ability": "主角拥有一种被称为“共鸣感知”的非典型魔法天赋。它并非毁天灭地的力量，而是能通过接触物体感知其残留的“情绪记忆”。在期末周的繁重学业中，主角利用此能力辅助修复损坏的实验器材或寻找丢失的笔记。然而，该能力极其消耗精神力，过度使用会导致严重的偏头痛，且无法改变既定的物理事实，只能作为一种辅助性的生存手段，在残酷的竞争中勉强维持自己的学术地位。",
+              "world_basic_setting": "故事发生在一个名为“奥瑞恩”的魔法工业化社会。在这里，魔法并非神秘的馈赠，而是被量化为生产力的社会资源。魔法学院是培养中产阶级技术官僚的温床，学生们不仅要学习复杂的咒语逻辑，更要面对高昂的学费、严苛的绩点考核以及毕业后即失业的社会焦虑。地理上，学院坐落于终年阴雨的工业重镇边缘，高耸的哥特式建筑与周围锈迹斑斑的工厂烟囱形成鲜明对比。社会文化推崇“效率至上”，魔法被拆解为标准化的符文公式，情感与天赋在严密的考核制度面前显得微不足道。关键事件“大停滞”发生于十年前，导致魔法能源价格飙升，使得底层学生必须通过透支精力的兼职来维持学业，这种结构性的不公构成了整个世界的底层逻辑。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1777644290_pvbcft",
+            "image_style": {
+              "type": "anime"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lynn",
+              "name_zh": "林恩",
+              "signature_look_keywords": "黑色短发，黑框眼镜，略显苍白的肤色，总是带着磨损的帆布包，袖口有墨迹，神情专注而疲惫，穿着洗得发白的校服，身形单薄，眼神中透着冷静的克制，常年佩戴一枚旧怀表。",
+              "work_en": "The Rainy Season of Orion",
+              "work_zh": "奥瑞恩的雨季"
+            },
+            "tone": "normal_ending",
+            "user_theme": "魔法学院期末周"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "request_payload": {
+          "gameTheme": "魔法学院期末周",
+          "protagonistAttr": {},
+          "difficulty": "normal",
+          "toneKey": "normal_ending",
+          "imageStyle": {
+            "type": "anime"
+          },
+          "_benchmark_profile": "fullready_strict",
+          "_benchmark_measurement": "fullready_nextturn",
+          "_benchmark_read_wait_s": 0.0
+        },
+        "start_ts": 1777644290.8924093,
+        "end_ts": 1777644299.2921474,
+        "provider_events": {
+          "event_count": 4,
+          "queue_wait_ms": {
+            "count": 4,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 1,
+            "min": 8387.0,
+            "max": 8387.0,
+            "mean": 8387.0,
+            "median": 8387.0,
+            "p95": 8387.0
+          },
+          "llm_success_count": 1,
+          "image_success_count": 0,
+          "request_thread_event_count": 2,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0
+        },
+        "status": "success",
+        "game_id": "game_1777644290_pvbcft"
+      },
+      "long_tail_attribution": {
+        "provider_429_count": 0,
+        "provider_timeout_count": 0,
+        "provider_retry_heavy_count": 0,
+        "provider_backoff_wait_ms_total": 0,
+        "main_character_event_count": 0,
+        "scene_image_event_count": 0,
+        "image_probe_attempt_count": 0,
+        "main_character_contention_suspected": false
+      },
+      "first_click": {
+        "http_status": 200,
+        "elapsed_s": 52.301,
+        "response_json": {
+          "benchmark_diagnostics": {
+            "cache_hit_reason": null,
+            "cache_miss_reason": null,
+            "current_options_key_drift_detected": false,
+            "global_state_key_drift_detected": false,
+            "placeholder": false,
+            "previous_scene_id": null,
+            "recomputed_scene_cache_exists": false,
+            "recomputed_scene_id": null,
+            "request_current_options_count": 0,
+            "request_current_options_hash": "d751713988987e9331980363e24189ce",
+            "request_flow_worldline_hash": "940e38d5f8372eaa58cfdaf4d70a0d30",
+            "request_global_state_hash": "c0c791d82f25691644211a6af7eac46f",
+            "request_option_at_index": null,
+            "request_option_index": 0,
+            "request_option_text": "开始游戏",
+            "request_scene_cache_exists": false,
+            "request_scene_id": null,
+            "resolution_path": null,
+            "response_has_image": true,
+            "response_has_scene": true,
+            "response_scene_id": "6529671028476185333_-8187703516807273939",
+            "response_status": "success",
+            "scene_id_mismatch_detected": false,
+            "selected_option_mismatch_detected": false
+          },
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "",
+              "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：潮湿的空气混合着铁锈与陈旧书页的味道，我推开图书馆沉重的橡木门，指尖触碰到门把手时，一阵刺骨的寒意顺着手臂蔓延。我低头看了一眼袖口，那里沾着昨晚兼职时留下的墨迹，在昏暗的灯光下显得格外刺眼。我习惯性地推了推鼻梁上的黑框眼镜，从磨损的帆布包里掏出那枚旧怀表，表盖上的划痕记录着我无数次在深夜奔波的疲惫。\n\n“林恩，你又迟到了，复习进度已经落后了整整两个章节。”图书馆管理员塞拉斯推了推眼镜，他那双浑浊的眼睛盯着我，语气里带着一丝不耐烦。我没有辩解，只是默默地将怀表塞回口袋，那种因为过度使用“共鸣感知”而引发的偏头痛正像细小的针尖一样刺入我的太阳穴。我环顾四周，周围的学生正埋头于复杂的符文公式中，那种对绩点的狂热压得人喘不过气。我必须在期末周结束前追赶上进度，否则那笔沉重的家庭债务将彻底压垮我。"
+            },
+            "deep_background_links": {},
+            "flow_update": {},
+            "next_options": [
+              "熬夜苦读，尝试通过共鸣感知强行解析高难度符文公式。",
+              "询问塞拉斯关于学院内部资源分配的隐秘规则，寻找捷径。"
+            ],
+            "scene": "潮湿的空气混合着铁锈与陈旧书页的味道，我推开图书馆沉重的橡木门，指尖触碰到门把手时，一阵刺骨的寒意顺着手臂蔓延。我低头看了一眼袖口，那里沾着昨晚兼职时留下的墨迹，在昏暗的灯光下显得格外刺眼。我习惯性地推了推鼻梁上的黑框眼镜，从磨损的帆布包里掏出那枚旧怀表，表盖上的划痕记录着我无数次在深夜奔波的疲惫。\n\n“林恩，你又迟到了，复习进度已经落后了整整两个章节。”图书馆管理员塞拉斯推了推眼镜，他那双浑浊的眼睛盯着我，语气里带着一丝不耐烦。我没有辩解，只是默默地将怀表塞回口袋，那种因为过度使用“共鸣感知”而引发的偏头痛正像细小的针尖一样刺入我的太阳穴。我环顾四周，周围的学生正埋头于复杂的符文公式中，那种对绩点的狂热压得人喘不过气。我必须在期末周结束前追赶上进度，否则那笔沉重的家庭债务将彻底压垮我。",
+            "sceneId": "6529671028476185333_-8187703516807273939",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-library-confrontation-lynn-silas, anime, digital-painting, semi-realistic, dramatic, melancholy, academic-atmosphere, high-detail japanese anime digital illustration, clean smooth contour line art, soft cel-shading with dramatic contrast, low-saturation color palette, no watercolor texture, no paper grain, young male protagonist Lynn, Image 0, slim build with a tired and focused expression, pale skin tone, black short hair, wearing black-rimmed glasses, carrying a worn canvas bag, ink stains visible on his sleeve, holding an old pocket watch in his hand, faded white school uniform shirt, worn canvas bag with visible fabric texture, Lynn standing in the library, front view, Lynn looking slightly down at his pocket watch, facing Silas-配角1 who stands to the right side of the frame, ultra-detailed anime facial features, tired eyes with dark circles under them, expression of suppressed stress and exhaustion, soft shadows highlighting the tired facial contours, black short hair with slight messy texture, root fixation coefficient 0.8, tip swing amplitude 0.2, main color black, secondary highlights in cool grey, no wind effect, school uniform with visible ink stains on the sleeve, slight fabric flutter due to the damp environment, detailed stitching on the worn canvas bag, dimly lit gothic library interior, towering bookshelves filled with old books, dusty air with faint light beams from high narrow windows, rusty iron pipes visible along the ceiling, Silas-配角1, a stern elderly librarian, standing on the right, wearing glasses, looking at Lynn with a judgmental expression, cold damp atmosphere, faint magical floating dust particles, dramatic shadows cast by the shelves, low saturation tones, dominated by cold greys, desaturated browns, and muted blues, no vivid or neon colors, low-key dramatic lighting, faint cool-toned light coming from the background windows, harsh artificial light from low-hanging lamps creating deep shadows on faces, type medium shot, lens 35mm, aperture f/2.8, depth_of_field sharp focus on Lynn, slightly blurred background library shelves, flash none, grain subtle clean digital texture, texture smooth digital brush finish, Lynn positioned on the left, Silas-配角1 on the right, leading lines from the library shelves drawing focus to the interaction, clear focus on Lynn's tired face and the pocket watch, high-detail japanese anime digital illustration, no text, no watermark, no signature, no logo in image, no symbols or random characters, 8K ultra-high resolution, perfect anime character anatomy, oppressive academic pressure, melancholic exhaustion, cold and detached realism, no text, no symbols, no garbled characters, no words",
+              "prompt_json": {
+                "camera": {
+                  "aperture": "f/2.8",
+                  "depth_of_field": "sharp focus on Lynn, slightly blurred background library shelves",
+                  "flash": "none",
+                  "grain": "subtle clean digital texture",
+                  "lens": "35mm",
+                  "texture": "smooth digital brush finish",
+                  "type": "medium shot"
+                },
+                "clothing_system": [
+                  "school uniform with visible ink stains on the sleeve",
+                  "slight fabric flutter due to the damp environment",
+                  "detailed stitching on the worn canvas bag"
+                ],
+                "color_restriction": [
+                  "low saturation tones",
+                  "dominated by cold greys, desaturated browns, and muted blues",
+                  "no vivid or neon colors"
+                ],
+                "composition": [
+                  "Lynn positioned on the left, Silas-配角1 on the right",
+                  "leading lines from the library shelves drawing focus to the interaction",
+                  "clear focus on Lynn's tired face and the pocket watch"
+                ],
+                "environment": {
+                  "background": [
+                    "dimly lit gothic library interior",
+                    "towering bookshelves filled with old books",
+                    "dusty air with faint light beams from high narrow windows",
+                    "rusty iron pipes visible along the ceiling"
+                  ],
+                  "characters": [
+                    "Silas-配角1, a stern elderly librarian, standing on the right, wearing glasses, looking at Lynn with a judgmental expression"
+                  ],
+                  "effects": [
+                    "cold damp atmosphere",
+                    "faint magical floating dust particles",
+                    "dramatic shadows cast by the shelves"
+                  ]
+                },
+                "face_system": [
+                  "ultra-detailed anime facial features",
+                  "tired eyes with dark circles under them",
+                  "expression of suppressed stress and exhaustion",
+                  "soft shadows highlighting the tired facial contours"
+                ],
+                "hair_system": [
+                  "black short hair with slight messy texture",
+                  "root fixation coefficient 0.8",
+                  "tip swing amplitude 0.2",
+                  "main color black, secondary highlights in cool grey",
+                  "no wind effect"
+                ],
+                "label": "scene-library-confrontation-lynn-silas",
+                "lighting": [
+                  "low-key dramatic lighting",
+                  "faint cool-toned light coming from the background windows",
+                  "harsh artificial light from low-hanging lamps creating deep shadows on faces"
+                ],
+                "mood": [
+                  "oppressive academic pressure",
+                  "melancholic exhaustion",
+                  "cold and detached realism"
+                ],
+                "output_style": [
+                  "high-detail japanese anime digital illustration",
+                  "no text, no watermark, no signature, no logo in image",
+                  "no symbols or random characters",
+                  "8K ultra-high resolution",
+                  "perfect anime character anatomy"
+                ],
+                "style": [
+                  "high-detail japanese anime digital illustration",
+                  "clean smooth contour line art",
+                  "soft cel-shading with dramatic contrast",
+                  "low-saturation color palette",
+                  "no watercolor texture, no paper grain"
+                ],
+                "subject": {
+                  "body_traits": [
+                    "young male protagonist Lynn, Image 0",
+                    "slim build with a tired and focused expression",
+                    "pale skin tone",
+                    "black short hair",
+                    "wearing black-rimmed glasses",
+                    "carrying a worn canvas bag",
+                    "ink stains visible on his sleeve",
+                    "holding an old pocket watch in his hand"
+                  ],
+                  "outfit": [
+                    "faded white school uniform shirt",
+                    "worn canvas bag with visible fabric texture"
+                  ],
+                  "pose": [
+                    "Lynn standing in the library, front view",
+                    "Lynn looking slightly down at his pocket watch",
+                    "facing Silas-配角1 who stands to the right side of the frame"
+                  ]
+                },
+                "tags": [
+                  "anime",
+                  "digital-painting",
+                  "semi-realistic",
+                  "dramatic",
+                  "melancholy",
+                  "academic-atmosphere"
+                ]
+              },
+              "scene_text_hash": "9253905c700f5e40b2b1db02cc7bc69d",
+              "style": "default",
+              "url": "/image_cache/dbfb8a43da07324251ed32ef98da05cc.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "request_payload": {
+          "option": "开始游戏",
+          "optionIndex": 0,
+          "sceneId": null,
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过合理规划时间或完成一次高难度的课外委托，勉强追赶上课程进度，获得进入下一阶段考试的资格，但同时也因为过度劳累而错失了与好友的一次重要聚会，留下了小小的遗憾。",
+                  "main_conflict": "期末周伊始，主角发现自己因兼职导致复习进度严重滞后，同时还要应对学院内部小团体对资源的垄断。面对繁重的课业压力与即将到来的高难度实操考试，主角必须在“熬夜苦读”与“寻求他人协作”之间做出抉择，这种选择直接影响了后续的资源获取与人际关系走向。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角选择放弃激进的申诉，转而以更稳妥的方式完成补考，虽然保住了学业，但被迫承认了规则的不公，内心对学院的幻灭感加深，与曾经志同道合的伙伴产生分歧。",
+                  "main_conflict": "实操考试期间，主角发现学院的评分系统存在隐性偏见，自己的努力被系统判定为“低效”。主角试图通过“共鸣感知”能力寻找证据进行申诉，却发现这不仅会触怒导师，还可能导致自己被列入黑名单，从而彻底失去奖学金资格，陷入理想与生存的剧烈冲突。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角最终完成了考核，获得了毕业证书，但未能拿到奖学金。主角选择接受这份平凡的毕业，带着些许不甘与对未来的释然，踏入社会，与曾经的遗憾达成和解，开启一段普通却真实的人生。",
+                  "main_conflict": "最终考核前夕，主角面临家庭经济突变的打击，必须在“参加最终考核”与“立刻退学工作”之间做出抉择。同时，主角发现自己一直追求的奖学金名额被一名背景深厚的学生占据，无论如何努力都无法在分数上超越对方，必须面对“努力未必有对等回报”的残酷现实。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为现实主义魔幻风格，采用冷峻而克制的叙事笔触，通过细腻的日常细节构建一个魔法与平庸生活共存的社会。画面色调偏向低饱和度的写实感，强调光影的真实质感，旨在营造一种“魔法只是另一种繁重职业”的沉浸式体验，让玩家在琐碎的学业压力与现实困境中，感受个体在庞大规则下的挣扎与释然。",
+              "main_quest": "主角的目标是在期末周内，通过所有核心魔法课程的考核，并争取获得唯一的“优秀毕业生”奖学金，以减轻家庭沉重的债务负担。玩家需要通过分配有限的精力，在复习、兼职打工与处理人际关系之间寻找平衡。挑战在于，每一步选择都伴随着代价：为了复习而放弃兼职会导致经济危机，为了帮助同学而牺牲复习时间则会降低绩点。最终，主角将面临现实的审判——即便竭尽全力，也可能因为一次意外的实验失误或不可抗力的名额缩减，无法达成最初的完美目标，只能在获得学业认可与失去部分理想之间，接受一个虽不圆满但足以支撑生活的结局。",
+              "protagonist_ability": "主角拥有一种被称为“共鸣感知”的非典型魔法天赋。它并非毁天灭地的力量，而是能通过接触物体感知其残留的“情绪记忆”。在期末周的繁重学业中，主角利用此能力辅助修复损坏的实验器材或寻找丢失的笔记。然而，该能力极其消耗精神力，过度使用会导致严重的偏头痛，且无法改变既定的物理事实，只能作为一种辅助性的生存手段，在残酷的竞争中勉强维持自己的学术地位。",
+              "world_basic_setting": "故事发生在一个名为“奥瑞恩”的魔法工业化社会。在这里，魔法并非神秘的馈赠，而是被量化为生产力的社会资源。魔法学院是培养中产阶级技术官僚的温床，学生们不仅要学习复杂的咒语逻辑，更要面对高昂的学费、严苛的绩点考核以及毕业后即失业的社会焦虑。地理上，学院坐落于终年阴雨的工业重镇边缘，高耸的哥特式建筑与周围锈迹斑斑的工厂烟囱形成鲜明对比。社会文化推崇“效率至上”，魔法被拆解为标准化的符文公式，情感与天赋在严密的考核制度面前显得微不足道。关键事件“大停滞”发生于十年前，导致魔法能源价格飙升，使得底层学生必须通过透支精力的兼职来维持学业，这种结构性的不公构成了整个世界的底层逻辑。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1777644290_pvbcft",
+            "image_style": {
+              "type": "anime"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lynn",
+              "name_zh": "林恩",
+              "signature_look_keywords": "黑色短发，黑框眼镜，略显苍白的肤色，总是带着磨损的帆布包，袖口有墨迹，神情专注而疲惫，穿着洗得发白的校服，身形单薄，眼神中透着冷静的克制，常年佩戴一枚旧怀表。",
+              "work_en": "The Rainy Season of Orion",
+              "work_zh": "奥瑞恩的雨季"
+            },
+            "tone": "normal_ending",
+            "user_theme": "魔法学院期末周",
+            "_benchmark_profile": "fullready_strict",
+            "_benchmark_measurement": "fullready_nextturn",
+            "_benchmark_read_wait_s": 0.0
+          }
+        },
+        "start_ts": 1777644299.338357,
+        "end_ts": 1777644351.639662,
+        "provider_events": {
+          "event_count": 9,
+          "queue_wait_ms": {
+            "count": 9,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 5,
+            "min": 4631.0,
+            "max": 14218.0,
+            "mean": 10397.8,
+            "median": 11812.0,
+            "p95": 13859.6
+          },
+          "llm_success_count": 4,
+          "image_success_count": 0,
+          "request_thread_event_count": 0,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 2,
+          "scene_image_event_count": 0
+        },
+        "attempts": [
+          {
+            "http_status": 200,
+            "elapsed_s": 52.301,
+            "response_json": {
+              "benchmark_diagnostics": {
+                "cache_hit_reason": null,
+                "cache_miss_reason": null,
+                "current_options_key_drift_detected": false,
+                "global_state_key_drift_detected": false,
+                "placeholder": false,
+                "previous_scene_id": null,
+                "recomputed_scene_cache_exists": false,
+                "recomputed_scene_id": null,
+                "request_current_options_count": 0,
+                "request_current_options_hash": "d751713988987e9331980363e24189ce",
+                "request_flow_worldline_hash": "940e38d5f8372eaa58cfdaf4d70a0d30",
+                "request_global_state_hash": "c0c791d82f25691644211a6af7eac46f",
+                "request_option_at_index": null,
+                "request_option_index": 0,
+                "request_option_text": "开始游戏",
+                "request_scene_cache_exists": false,
+                "request_scene_id": null,
+                "resolution_path": null,
+                "response_has_image": true,
+                "response_has_scene": true,
+                "response_scene_id": "6529671028476185333_-8187703516807273939",
+                "response_status": "success",
+                "scene_id_mismatch_detected": false,
+                "selected_option_mismatch_detected": false
+              },
+              "message": "选项剧情生成成功！",
+              "optionData": {
+                "checkpoint_packet": {
+                  "chapter": "chapter1",
+                  "chapter_conflict_solved": false,
+                  "quest_delta": "",
+                  "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：潮湿的空气混合着铁锈与陈旧书页的味道，我推开图书馆沉重的橡木门，指尖触碰到门把手时，一阵刺骨的寒意顺着手臂蔓延。我低头看了一眼袖口，那里沾着昨晚兼职时留下的墨迹，在昏暗的灯光下显得格外刺眼。我习惯性地推了推鼻梁上的黑框眼镜，从磨损的帆布包里掏出那枚旧怀表，表盖上的划痕记录着我无数次在深夜奔波的疲惫。\n\n“林恩，你又迟到了，复习进度已经落后了整整两个章节。”图书馆管理员塞拉斯推了推眼镜，他那双浑浊的眼睛盯着我，语气里带着一丝不耐烦。我没有辩解，只是默默地将怀表塞回口袋，那种因为过度使用“共鸣感知”而引发的偏头痛正像细小的针尖一样刺入我的太阳穴。我环顾四周，周围的学生正埋头于复杂的符文公式中，那种对绩点的狂热压得人喘不过气。我必须在期末周结束前追赶上进度，否则那笔沉重的家庭债务将彻底压垮我。"
+                },
+                "deep_background_links": {},
+                "flow_update": {},
+                "next_options": [
+                  "熬夜苦读，尝试通过共鸣感知强行解析高难度符文公式。",
+                  "询问塞拉斯关于学院内部资源分配的隐秘规则，寻找捷径。"
+                ],
+                "scene": "潮湿的空气混合着铁锈与陈旧书页的味道，我推开图书馆沉重的橡木门，指尖触碰到门把手时，一阵刺骨的寒意顺着手臂蔓延。我低头看了一眼袖口，那里沾着昨晚兼职时留下的墨迹，在昏暗的灯光下显得格外刺眼。我习惯性地推了推鼻梁上的黑框眼镜，从磨损的帆布包里掏出那枚旧怀表，表盖上的划痕记录着我无数次在深夜奔波的疲惫。\n\n“林恩，你又迟到了，复习进度已经落后了整整两个章节。”图书馆管理员塞拉斯推了推眼镜，他那双浑浊的眼睛盯着我，语气里带着一丝不耐烦。我没有辩解，只是默默地将怀表塞回口袋，那种因为过度使用“共鸣感知”而引发的偏头痛正像细小的针尖一样刺入我的太阳穴。我环顾四周，周围的学生正埋头于复杂的符文公式中，那种对绩点的狂热压得人喘不过气。我必须在期末周结束前追赶上进度，否则那笔沉重的家庭债务将彻底压垮我。",
+                "sceneId": "6529671028476185333_-8187703516807273939",
+                "scene_image": {
+                  "cached": true,
+                  "height": 1080,
+                  "image_type": "story_scene",
+                  "prompt": "scene-library-confrontation-lynn-silas, anime, digital-painting, semi-realistic, dramatic, melancholy, academic-atmosphere, high-detail japanese anime digital illustration, clean smooth contour line art, soft cel-shading with dramatic contrast, low-saturation color palette, no watercolor texture, no paper grain, young male protagonist Lynn, Image 0, slim build with a tired and focused expression, pale skin tone, black short hair, wearing black-rimmed glasses, carrying a worn canvas bag, ink stains visible on his sleeve, holding an old pocket watch in his hand, faded white school uniform shirt, worn canvas bag with visible fabric texture, Lynn standing in the library, front view, Lynn looking slightly down at his pocket watch, facing Silas-配角1 who stands to the right side of the frame, ultra-detailed anime facial features, tired eyes with dark circles under them, expression of suppressed stress and exhaustion, soft shadows highlighting the tired facial contours, black short hair with slight messy texture, root fixation coefficient 0.8, tip swing amplitude 0.2, main color black, secondary highlights in cool grey, no wind effect, school uniform with visible ink stains on the sleeve, slight fabric flutter due to the damp environment, detailed stitching on the worn canvas bag, dimly lit gothic library interior, towering bookshelves filled with old books, dusty air with faint light beams from high narrow windows, rusty iron pipes visible along the ceiling, Silas-配角1, a stern elderly librarian, standing on the right, wearing glasses, looking at Lynn with a judgmental expression, cold damp atmosphere, faint magical floating dust particles, dramatic shadows cast by the shelves, low saturation tones, dominated by cold greys, desaturated browns, and muted blues, no vivid or neon colors, low-key dramatic lighting, faint cool-toned light coming from the background windows, harsh artificial light from low-hanging lamps creating deep shadows on faces, type medium shot, lens 35mm, aperture f/2.8, depth_of_field sharp focus on Lynn, slightly blurred background library shelves, flash none, grain subtle clean digital texture, texture smooth digital brush finish, Lynn positioned on the left, Silas-配角1 on the right, leading lines from the library shelves drawing focus to the interaction, clear focus on Lynn's tired face and the pocket watch, high-detail japanese anime digital illustration, no text, no watermark, no signature, no logo in image, no symbols or random characters, 8K ultra-high resolution, perfect anime character anatomy, oppressive academic pressure, melancholic exhaustion, cold and detached realism, no text, no symbols, no garbled characters, no words",
+                  "prompt_json": {
+                    "camera": {
+                      "aperture": "f/2.8",
+                      "depth_of_field": "sharp focus on Lynn, slightly blurred background library shelves",
+                      "flash": "none",
+                      "grain": "subtle clean digital texture",
+                      "lens": "35mm",
+                      "texture": "smooth digital brush finish",
+                      "type": "medium shot"
+                    },
+                    "clothing_system": [
+                      "school uniform with visible ink stains on the sleeve",
+                      "slight fabric flutter due to the damp environment",
+                      "detailed stitching on the worn canvas bag"
+                    ],
+                    "color_restriction": [
+                      "low saturation tones",
+                      "dominated by cold greys, desaturated browns, and muted blues",
+                      "no vivid or neon colors"
+                    ],
+                    "composition": [
+                      "Lynn positioned on the left, Silas-配角1 on the right",
+                      "leading lines from the library shelves drawing focus to the interaction",
+                      "clear focus on Lynn's tired face and the pocket watch"
+                    ],
+                    "environment": {
+                      "background": [
+                        "dimly lit gothic library interior",
+                        "towering bookshelves filled with old books",
+                        "dusty air with faint light beams from high narrow windows",
+                        "rusty iron pipes visible along the ceiling"
+                      ],
+                      "characters": [
+                        "Silas-配角1, a stern elderly librarian, standing on the right, wearing glasses, looking at Lynn with a judgmental expression"
+                      ],
+                      "effects": [
+                        "cold damp atmosphere",
+                        "faint magical floating dust particles",
+                        "dramatic shadows cast by the shelves"
+                      ]
+                    },
+                    "face_system": [
+                      "ultra-detailed anime facial features",
+                      "tired eyes with dark circles under them",
+                      "expression of suppressed stress and exhaustion",
+                      "soft shadows highlighting the tired facial contours"
+                    ],
+                    "hair_system": [
+                      "black short hair with slight messy texture",
+                      "root fixation coefficient 0.8",
+                      "tip swing amplitude 0.2",
+                      "main color black, secondary highlights in cool grey",
+                      "no wind effect"
+                    ],
+                    "label": "scene-library-confrontation-lynn-silas",
+                    "lighting": [
+                      "low-key dramatic lighting",
+                      "faint cool-toned light coming from the background windows",
+                      "harsh artificial light from low-hanging lamps creating deep shadows on faces"
+                    ],
+                    "mood": [
+                      "oppressive academic pressure",
+                      "melancholic exhaustion",
+                      "cold and detached realism"
+                    ],
+                    "output_style": [
+                      "high-detail japanese anime digital illustration",
+                      "no text, no watermark, no signature, no logo in image",
+                      "no symbols or random characters",
+                      "8K ultra-high resolution",
+                      "perfect anime character anatomy"
+                    ],
+                    "style": [
+                      "high-detail japanese anime digital illustration",
+                      "clean smooth contour line art",
+                      "soft cel-shading with dramatic contrast",
+                      "low-saturation color palette",
+                      "no watercolor texture, no paper grain"
+                    ],
+                    "subject": {
+                      "body_traits": [
+                        "young male protagonist Lynn, Image 0",
+                        "slim build with a tired and focused expression",
+                        "pale skin tone",
+                        "black short hair",
+                        "wearing black-rimmed glasses",
+                        "carrying a worn canvas bag",
+                        "ink stains visible on his sleeve",
+                        "holding an old pocket watch in his hand"
+                      ],
+                      "outfit": [
+                        "faded white school uniform shirt",
+                        "worn canvas bag with visible fabric texture"
+                      ],
+                      "pose": [
+                        "Lynn standing in the library, front view",
+                        "Lynn looking slightly down at his pocket watch",
+                        "facing Silas-配角1 who stands to the right side of the frame"
+                      ]
+                    },
+                    "tags": [
+                      "anime",
+                      "digital-painting",
+                      "semi-realistic",
+                      "dramatic",
+                      "melancholy",
+                      "academic-atmosphere"
+                    ]
+                  },
+                  "scene_text_hash": "9253905c700f5e40b2b1db02cc7bc69d",
+                  "style": "default",
+                  "url": "/image_cache/dbfb8a43da07324251ed32ef98da05cc.png",
+                  "width": 1920
+                }
+              },
+              "status": "success"
+            },
+            "request_payload": {
+              "option": "开始游戏",
+              "optionIndex": 0,
+              "sceneId": null,
+              "globalState": {
+                "core_worldview": {
+                  "chapters": {
+                    "chapter1": {
+                      "conflict_end_condition": "主角通过合理规划时间或完成一次高难度的课外委托，勉强追赶上课程进度，获得进入下一阶段考试的资格，但同时也因为过度劳累而错失了与好友的一次重要聚会，留下了小小的遗憾。",
+                      "main_conflict": "期末周伊始，主角发现自己因兼职导致复习进度严重滞后，同时还要应对学院内部小团体对资源的垄断。面对繁重的课业压力与即将到来的高难度实操考试，主角必须在“熬夜苦读”与“寻求他人协作”之间做出抉择，这种选择直接影响了后续的资源获取与人际关系走向。"
+                    },
+                    "chapter2": {
+                      "conflict_end_condition": "主角选择放弃激进的申诉，转而以更稳妥的方式完成补考，虽然保住了学业，但被迫承认了规则的不公，内心对学院的幻灭感加深，与曾经志同道合的伙伴产生分歧。",
+                      "main_conflict": "实操考试期间，主角发现学院的评分系统存在隐性偏见，自己的努力被系统判定为“低效”。主角试图通过“共鸣感知”能力寻找证据进行申诉，却发现这不仅会触怒导师，还可能导致自己被列入黑名单，从而彻底失去奖学金资格，陷入理想与生存的剧烈冲突。"
+                    },
+                    "chapter3": {
+                      "conflict_end_condition": "主角最终完成了考核，获得了毕业证书，但未能拿到奖学金。主角选择接受这份平凡的毕业，带着些许不甘与对未来的释然，踏入社会，与曾经的遗憾达成和解，开启一段普通却真实的人生。",
+                      "main_conflict": "最终考核前夕，主角面临家庭经济突变的打击，必须在“参加最终考核”与“立刻退学工作”之间做出抉择。同时，主角发现自己一直追求的奖学金名额被一名背景深厚的学生占据，无论如何努力都无法在分数上超越对方，必须面对“努力未必有对等回报”的残酷现实。"
+                    }
+                  },
+                  "characters": {},
+                  "forces": {},
+                  "game_style": "本作为现实主义魔幻风格，采用冷峻而克制的叙事笔触，通过细腻的日常细节构建一个魔法与平庸生活共存的社会。画面色调偏向低饱和度的写实感，强调光影的真实质感，旨在营造一种“魔法只是另一种繁重职业”的沉浸式体验，让玩家在琐碎的学业压力与现实困境中，感受个体在庞大规则下的挣扎与释然。",
+                  "main_quest": "主角的目标是在期末周内，通过所有核心魔法课程的考核，并争取获得唯一的“优秀毕业生”奖学金，以减轻家庭沉重的债务负担。玩家需要通过分配有限的精力，在复习、兼职打工与处理人际关系之间寻找平衡。挑战在于，每一步选择都伴随着代价：为了复习而放弃兼职会导致经济危机，为了帮助同学而牺牲复习时间则会降低绩点。最终，主角将面临现实的审判——即便竭尽全力，也可能因为一次意外的实验失误或不可抗力的名额缩减，无法达成最初的完美目标，只能在获得学业认可与失去部分理想之间，接受一个虽不圆满但足以支撑生活的结局。",
+                  "protagonist_ability": "主角拥有一种被称为“共鸣感知”的非典型魔法天赋。它并非毁天灭地的力量，而是能通过接触物体感知其残留的“情绪记忆”。在期末周的繁重学业中，主角利用此能力辅助修复损坏的实验器材或寻找丢失的笔记。然而，该能力极其消耗精神力，过度使用会导致严重的偏头痛，且无法改变既定的物理事实，只能作为一种辅助性的生存手段，在残酷的竞争中勉强维持自己的学术地位。",
+                  "world_basic_setting": "故事发生在一个名为“奥瑞恩”的魔法工业化社会。在这里，魔法并非神秘的馈赠，而是被量化为生产力的社会资源。魔法学院是培养中产阶级技术官僚的温床，学生们不仅要学习复杂的咒语逻辑，更要面对高昂的学费、严苛的绩点考核以及毕业后即失业的社会焦虑。地理上，学院坐落于终年阴雨的工业重镇边缘，高耸的哥特式建筑与周围锈迹斑斑的工厂烟囱形成鲜明对比。社会文化推崇“效率至上”，魔法被拆解为标准化的符文公式，情感与天赋在严密的考核制度面前显得微不足道。关键事件“大停滞”发生于十年前，导致魔法能源价格飙升，使得底层学生必须通过透支精力的兼职来维持学业，这种结构性的不公构成了整个世界的底层逻辑。"
+                },
+                "flow_worldline": {
+                  "characters": {},
+                  "current_chapter": "chapter1",
+                  "environment": {}
+                },
+                "game_id": "game_1777644290_pvbcft",
+                "image_style": {
+                  "type": "anime"
+                },
+                "meta": {
+                  "detail_async": true
+                },
+                "protagonist_canonical": {
+                  "age_range": "青年",
+                  "gender": "男性",
+                  "name_en": "Lynn",
+                  "name_zh": "林恩",
+                  "signature_look_keywords": "黑色短发，黑框眼镜，略显苍白的肤色，总是带着磨损的帆布包，袖口有墨迹，神情专注而疲惫，穿着洗得发白的校服，身形单薄，眼神中透着冷静的克制，常年佩戴一枚旧怀表。",
+                  "work_en": "The Rainy Season of Orion",
+                  "work_zh": "奥瑞恩的雨季"
+                },
+                "tone": "normal_ending",
+                "user_theme": "魔法学院期末周",
+                "_benchmark_profile": "fullready_strict",
+                "_benchmark_measurement": "fullready_nextturn",
+                "_benchmark_read_wait_s": 0.0
+              }
+            },
+            "start_ts": 1777644299.338357,
+            "end_ts": 1777644351.639662,
+            "provider_events": {
+              "event_count": 9,
+              "queue_wait_ms": {
+                "count": 9,
+                "min": 0.0,
+                "max": 0.0,
+                "mean": 0.0,
+                "median": 0.0,
+                "p95": 0.0
+              },
+              "latency_ms": {
+                "count": 5,
+                "min": 4631.0,
+                "max": 14218.0,
+                "mean": 10397.8,
+                "median": 11812.0,
+                "p95": 13859.6
+              },
+              "llm_success_count": 4,
+              "image_success_count": 0,
+              "request_thread_event_count": 0,
+              "provider_429_count": 0,
+              "provider_timeout_count": 0,
+              "shared_backoff_wait_ms_total": 0,
+              "retry_heavy_event_count": 0,
+              "main_character_event_count": 2,
+              "scene_image_event_count": 0
+            }
+          }
+        ],
+        "attempt_count": 1,
+        "request_elapsed_s": 52.301,
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "success",
+        "has_scene": true,
+        "has_image": true,
+        "setup_success": true
+      },
+      "second_click": {
+        "http_status": 200,
+        "elapsed_s": 24.711,
+        "response_json": {
+          "benchmark_diagnostics": {
+            "cache_hit_reason": "waited_request_scene_text_completed_no_image",
+            "cache_miss_reason": "request_scene_generation_in_progress",
+            "current_options_key_drift_detected": false,
+            "global_state_key_drift_detected": true,
+            "placeholder": false,
+            "previous_scene_id": "initial",
+            "recomputed_scene_cache_exists": false,
+            "recomputed_scene_id": "-2446764304486248920_-8187703516807273939",
+            "request_current_options_count": 2,
+            "request_current_options_hash": "ba223ed8c6fa7e000d3ea664584f4593",
+            "request_flow_worldline_hash": "0b7d2802f8e46ae104639ddbac325b51",
+            "request_global_state_hash": "9c6d51f88fab6d53e4967acd0713a62e",
+            "request_option_at_index": "熬夜苦读，尝试通过共鸣感知强行解析高难度符文公式。",
+            "request_option_index": 0,
+            "request_option_text": "熬夜苦读，尝试通过共鸣感知强行解析高难度符文公式。",
+            "request_scene_cache_exists": true,
+            "request_scene_cache_meta": {
+              "canonical_scene_id": "-2001545688765421699_-8187703516807273939",
+              "current_options_hash": "ba223ed8c6fa7e000d3ea664584f4593",
+              "current_options_preview": [
+                "熬夜苦读，尝试通过共鸣感知强行解析高难度符文公式。",
+                "询问塞拉斯关于学院内部资源分配的隐秘规则，寻找捷径。"
+              ],
+              "flow_worldline_hash": "940e38d5f8372eaa58cfdaf4d70a0d30",
+              "global_state_hash": "1c85a5220371f46fd54cf40b8df83fe7",
+              "option_count": 2,
+              "parent_scene_id": null,
+              "scene_id": "6529671028476185333_-8187703516807273939"
+            },
+            "request_scene_id": "6529671028476185333_-8187703516807273939",
+            "resolution_path": "wait_for_request_scene_cache_text_only",
+            "response_has_image": true,
+            "response_has_scene": true,
+            "response_scene_id": "-7342117404163463240_2532298885127110597",
+            "response_status": "success",
+            "scene_id_mismatch_detected": true,
+            "selected_option_mismatch_detected": false
+          },
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "我成功解析了部分高难度符文逻辑，复习进度追赶上了一个课时，离期末考试的准入标准更近了一步，但身体状态的恶化成为了新的隐患。",
+              "recap_text": "你选择了“熬夜苦读，尝试通过共鸣感知强行解析高难度符文公式。”。当前章节：chapter1。主线进展：我成功解析了部分高难度符文逻辑，复习进度追赶上了一个课时，离期末考试的准入标准更近了一步，但身体状态的恶化成为了新的隐患。。最近剧情：图书馆的灯光在凌晨三点显得格外惨白，我推了推下滑的黑框眼镜，指尖因为长时间握笔而微微发颤。面前那本厚重的《符文逻辑导论》摊开着，复杂的公式如同扭曲的藤蔓，在我的视网膜上跳动。我深吸一口气，将右手按在书页上，强行催动那股被称为“共鸣感知”的天赋。刹那间，一股冰冷且带有金属锈味的记忆碎片如潮水般涌入脑海，那是前人书写这些公式时留下的焦灼与困惑。我的太阳穴开始剧烈跳动，仿佛有细小的针在反复穿刺，视线逐渐模糊，但我咬紧牙关，强迫自己捕捉那几个关键的逻辑节点。汗水顺着我苍白的脸颊滑落，滴在洗得发白的校服袖口上，墨迹晕染开来。就在我即将解析出公式核心的瞬间，管理员塞拉斯那双浑浊的眼睛突然出现在书架阴影处，他压低声音冷冷地说道：“林恩，别再透支你的精神力了，这种强行解析只会让你在期末考试前彻底崩溃，你的债务可不会因为你的努力而减少半分。”我没有抬头，只是死死盯着纸面，声音沙哑地回应：“如果不这么做，我连参加考试的资格都没有。”"
+            },
+            "deep_background_links": {
+              "1": "塞拉斯（管理员塞拉斯曾是学院的落魄研究员，与我家庭债务的源头有隐秘关联）"
+            },
+            "flow_update": {
+              "chapter_conflict_solved": false,
+              "characters": {},
+              "environment": {},
+              "quest_progress": "我成功解析了部分高难度符文逻辑，复习进度追赶上了一个课时，离期末考试的准入标准更近了一步，但身体状态的恶化成为了新的隐患。"
+            },
+            "next_options": [
+              "继续强行解析，争取在天亮前彻底攻克这一章节。",
+              "询问塞拉斯关于学院禁书区的传闻，试图寻找更高效的符文解法。"
+            ],
+            "plot_mentioned_only": [],
+            "plot_supporting_characters": [],
+            "scene": "图书馆的灯光在凌晨三点显得格外惨白，我推了推下滑的黑框眼镜，指尖因为长时间握笔而微微发颤。面前那本厚重的《符文逻辑导论》摊开着，复杂的公式如同扭曲的藤蔓，在我的视网膜上跳动。我深吸一口气，将右手按在书页上，强行催动那股被称为“共鸣感知”的天赋。刹那间，一股冰冷且带有金属锈味的记忆碎片如潮水般涌入脑海，那是前人书写这些公式时留下的焦灼与困惑。我的太阳穴开始剧烈跳动，仿佛有细小的针在反复穿刺，视线逐渐模糊，但我咬紧牙关，强迫自己捕捉那几个关键的逻辑节点。汗水顺着我苍白的脸颊滑落，滴在洗得发白的校服袖口上，墨迹晕染开来。就在我即将解析出公式核心的瞬间，管理员塞拉斯那双浑浊的眼睛突然出现在书架阴影处，他压低声音冷冷地说道：“林恩，别再透支你的精神力了，这种强行解析只会让你在期末考试前彻底崩溃，你的债务可不会因为你的努力而减少半分。”我没有抬头，只是死死盯着纸面，声音沙哑地回应：“如果不这么做，我连参加考试的资格都没有。”",
+            "sceneId": "-7342117404163463240_2532298885127110597",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-lynn-library-midnight-confrontation, anime, digital-painting, atmospheric, low-saturation, dramatic, cyber-magic-realism, high-detail japanese anime digital illustration, clean smooth contour line art, dramatic chiaroscuro lighting, subtle screen tone shading for texture, low-saturation color palette with industrial cold tones, young male protagonist Lynn, Image 0, slim and fragile build with pale skin, exhausted expression with dark circles under eyes, focused gaze, biting lip in concentration, worn out school uniform shirt in faded fabric, ink-stained cuffs with visible smudges, old canvas satchel slung across shoulder, hunched over a massive open book at a library desk, right hand pressed flat against the glowing rune-filled page, left hand clutching a pen with trembling fingers, body facing the library aisle, half-turned towards the shadow, ultra-detailed anime facial features consistent with Image 0, black-rimmed glasses slightly slipping down the bridge of nose, beads of sweat rolling down temple, expression of intense cognitive strain and suppressed pain, short messy black hair, root fixation coefficient 0.8, tip swing amplitude 0.2, main color deep black with subtle charcoal grey highlights, natural hair texture with soft shadow layering, fabric showing signs of heavy wear and frayed edges, natural fabric folds on sleeves and shoulders, ink stains on cuffs clearly visible, dimly lit gothic library at 3 AM, dusty bookshelves stretching into darkness, pale white moonlight filtering through high narrow windows, 塞拉斯-配角1 standing in the deep shadow of a bookshelf, only eyes and silhouette visible, faint ethereal blue light emanating from the book pages under hand, subtle distortion effect around the book to represent mental resonance, cold metallic mist lingering in the air, cool color scheme dominated by slate grey, midnight blue, and off-white, high contrast between the pale desk light and deep library shadows, no vibrant or warm colors, harsh cold overhead desk lamp casting sharp shadows, dramatic rim light on Lynn's silhouette, deep shadows concealing 塞拉斯-配角1, type over-the-shoulder medium shot, lens 35mm, aperture f/2.8, depth_of_field shallow focus on Lynn and the book, 塞拉斯-配角1 slightly blurred in background, flash none, grain fine cinematic grain, texture smooth digital finish, Lynn positioned in the center-left foreground, 塞拉斯-配角1 emerging from the right-side shadow, diagonal composition leading eyes from the book to the faces, high-detail japanese anime digital illustration, no text, no symbols, no watermarks, no logos in image, 8K resolution, sharp lines, no 3D render, no photorealistic, no messy paint strokes, oppressive academic anxiety, melancholic and cold, tense psychological atmosphere, no text, no symbols, no garbled characters, no words",
+              "scene_text_hash": "6276e9a15e82906a560a255822714178",
+              "style": "default",
+              "url": "/image_cache/a417dc714ec6c30e80f3a2eef80c9e7b.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "request_payload": {
+          "option": "熬夜苦读，尝试通过共鸣感知强行解析高难度符文公式。",
+          "optionIndex": 0,
+          "sceneId": "6529671028476185333_-8187703516807273939",
+          "currentOptions": [
+            "熬夜苦读，尝试通过共鸣感知强行解析高难度符文公式。",
+            "询问塞拉斯关于学院内部资源分配的隐秘规则，寻找捷径。"
+          ],
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过合理规划时间或完成一次高难度的课外委托，勉强追赶上课程进度，获得进入下一阶段考试的资格，但同时也因为过度劳累而错失了与好友的一次重要聚会，留下了小小的遗憾。",
+                  "main_conflict": "期末周伊始，主角发现自己因兼职导致复习进度严重滞后，同时还要应对学院内部小团体对资源的垄断。面对繁重的课业压力与即将到来的高难度实操考试，主角必须在“熬夜苦读”与“寻求他人协作”之间做出抉择，这种选择直接影响了后续的资源获取与人际关系走向。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角选择放弃激进的申诉，转而以更稳妥的方式完成补考，虽然保住了学业，但被迫承认了规则的不公，内心对学院的幻灭感加深，与曾经志同道合的伙伴产生分歧。",
+                  "main_conflict": "实操考试期间，主角发现学院的评分系统存在隐性偏见，自己的努力被系统判定为“低效”。主角试图通过“共鸣感知”能力寻找证据进行申诉，却发现这不仅会触怒导师，还可能导致自己被列入黑名单，从而彻底失去奖学金资格，陷入理想与生存的剧烈冲突。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角最终完成了考核，获得了毕业证书，但未能拿到奖学金。主角选择接受这份平凡的毕业，带着些许不甘与对未来的释然，踏入社会，与曾经的遗憾达成和解，开启一段普通却真实的人生。",
+                  "main_conflict": "最终考核前夕，主角面临家庭经济突变的打击，必须在“参加最终考核”与“立刻退学工作”之间做出抉择。同时，主角发现自己一直追求的奖学金名额被一名背景深厚的学生占据，无论如何努力都无法在分数上超越对方，必须面对“努力未必有对等回报”的残酷现实。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为现实主义魔幻风格，采用冷峻而克制的叙事笔触，通过细腻的日常细节构建一个魔法与平庸生活共存的社会。画面色调偏向低饱和度的写实感，强调光影的真实质感，旨在营造一种“魔法只是另一种繁重职业”的沉浸式体验，让玩家在琐碎的学业压力与现实困境中，感受个体在庞大规则下的挣扎与释然。",
+              "main_quest": "主角的目标是在期末周内，通过所有核心魔法课程的考核，并争取获得唯一的“优秀毕业生”奖学金，以减轻家庭沉重的债务负担。玩家需要通过分配有限的精力，在复习、兼职打工与处理人际关系之间寻找平衡。挑战在于，每一步选择都伴随着代价：为了复习而放弃兼职会导致经济危机，为了帮助同学而牺牲复习时间则会降低绩点。最终，主角将面临现实的审判——即便竭尽全力，也可能因为一次意外的实验失误或不可抗力的名额缩减，无法达成最初的完美目标，只能在获得学业认可与失去部分理想之间，接受一个虽不圆满但足以支撑生活的结局。",
+              "protagonist_ability": "主角拥有一种被称为“共鸣感知”的非典型魔法天赋。它并非毁天灭地的力量，而是能通过接触物体感知其残留的“情绪记忆”。在期末周的繁重学业中，主角利用此能力辅助修复损坏的实验器材或寻找丢失的笔记。然而，该能力极其消耗精神力，过度使用会导致严重的偏头痛，且无法改变既定的物理事实，只能作为一种辅助性的生存手段，在残酷的竞争中勉强维持自己的学术地位。",
+              "world_basic_setting": "故事发生在一个名为“奥瑞恩”的魔法工业化社会。在这里，魔法并非神秘的馈赠，而是被量化为生产力的社会资源。魔法学院是培养中产阶级技术官僚的温床，学生们不仅要学习复杂的咒语逻辑，更要面对高昂的学费、严苛的绩点考核以及毕业后即失业的社会焦虑。地理上，学院坐落于终年阴雨的工业重镇边缘，高耸的哥特式建筑与周围锈迹斑斑的工厂烟囱形成鲜明对比。社会文化推崇“效率至上”，魔法被拆解为标准化的符文公式，情感与天赋在严密的考核制度面前显得微不足道。关键事件“大停滞”发生于十年前，导致魔法能源价格飙升，使得底层学生必须通过透支精力的兼职来维持学业，这种结构性的不公构成了整个世界的底层逻辑。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {},
+              "chapter_progress": 2.0
+            },
+            "game_id": "game_1777644290_pvbcft",
+            "image_style": {
+              "type": "anime"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lynn",
+              "name_zh": "林恩",
+              "signature_look_keywords": "黑色短发，黑框眼镜，略显苍白的肤色，总是带着磨损的帆布包，袖口有墨迹，神情专注而疲惫，穿着洗得发白的校服，身形单薄，眼神中透着冷静的克制，常年佩戴一枚旧怀表。",
+              "work_en": "The Rainy Season of Orion",
+              "work_zh": "奥瑞恩的雨季"
+            },
+            "tone": "normal_ending",
+            "user_theme": "魔法学院期末周",
+            "_benchmark_profile": "fullready_strict",
+            "_benchmark_measurement": "fullready_nextturn",
+            "_benchmark_read_wait_s": 0.0
+          },
+          "previousSceneId": "initial",
+          "previousSceneImage": {
+            "cached": true,
+            "height": 1080,
+            "image_type": "story_scene",
+            "prompt": "scene-library-confrontation-lynn-silas, anime, digital-painting, semi-realistic, dramatic, melancholy, academic-atmosphere, high-detail japanese anime digital illustration, clean smooth contour line art, soft cel-shading with dramatic contrast, low-saturation color palette, no watercolor texture, no paper grain, young male protagonist Lynn, Image 0, slim build with a tired and focused expression, pale skin tone, black short hair, wearing black-rimmed glasses, carrying a worn canvas bag, ink stains visible on his sleeve, holding an old pocket watch in his hand, faded white school uniform shirt, worn canvas bag with visible fabric texture, Lynn standing in the library, front view, Lynn looking slightly down at his pocket watch, facing Silas-配角1 who stands to the right side of the frame, ultra-detailed anime facial features, tired eyes with dark circles under them, expression of suppressed stress and exhaustion, soft shadows highlighting the tired facial contours, black short hair with slight messy texture, root fixation coefficient 0.8, tip swing amplitude 0.2, main color black, secondary highlights in cool grey, no wind effect, school uniform with visible ink stains on the sleeve, slight fabric flutter due to the damp environment, detailed stitching on the worn canvas bag, dimly lit gothic library interior, towering bookshelves filled with old books, dusty air with faint light beams from high narrow windows, rusty iron pipes visible along the ceiling, Silas-配角1, a stern elderly librarian, standing on the right, wearing glasses, looking at Lynn with a judgmental expression, cold damp atmosphere, faint magical floating dust particles, dramatic shadows cast by the shelves, low saturation tones, dominated by cold greys, desaturated browns, and muted blues, no vivid or neon colors, low-key dramatic lighting, faint cool-toned light coming from the background windows, harsh artificial light from low-hanging lamps creating deep shadows on faces, type medium shot, lens 35mm, aperture f/2.8, depth_of_field sharp focus on Lynn, slightly blurred background library shelves, flash none, grain subtle clean digital texture, texture smooth digital brush finish, Lynn positioned on the left, Silas-配角1 on the right, leading lines from the library shelves drawing focus to the interaction, clear focus on Lynn's tired face and the pocket watch, high-detail japanese anime digital illustration, no text, no watermark, no signature, no logo in image, no symbols or random characters, 8K ultra-high resolution, perfect anime character anatomy, oppressive academic pressure, melancholic exhaustion, cold and detached realism, no text, no symbols, no garbled characters, no words",
+            "prompt_json": {
+              "camera": {
+                "aperture": "f/2.8",
+                "depth_of_field": "sharp focus on Lynn, slightly blurred background library shelves",
+                "flash": "none",
+                "grain": "subtle clean digital texture",
+                "lens": "35mm",
+                "texture": "smooth digital brush finish",
+                "type": "medium shot"
+              },
+              "clothing_system": [
+                "school uniform with visible ink stains on the sleeve",
+                "slight fabric flutter due to the damp environment",
+                "detailed stitching on the worn canvas bag"
+              ],
+              "color_restriction": [
+                "low saturation tones",
+                "dominated by cold greys, desaturated browns, and muted blues",
+                "no vivid or neon colors"
+              ],
+              "composition": [
+                "Lynn positioned on the left, Silas-配角1 on the right",
+                "leading lines from the library shelves drawing focus to the interaction",
+                "clear focus on Lynn's tired face and the pocket watch"
+              ],
+              "environment": {
+                "background": [
+                  "dimly lit gothic library interior",
+                  "towering bookshelves filled with old books",
+                  "dusty air with faint light beams from high narrow windows",
+                  "rusty iron pipes visible along the ceiling"
+                ],
+                "characters": [
+                  "Silas-配角1, a stern elderly librarian, standing on the right, wearing glasses, looking at Lynn with a judgmental expression"
+                ],
+                "effects": [
+                  "cold damp atmosphere",
+                  "faint magical floating dust particles",
+                  "dramatic shadows cast by the shelves"
+                ]
+              },
+              "face_system": [
+                "ultra-detailed anime facial features",
+                "tired eyes with dark circles under them",
+                "expression of suppressed stress and exhaustion",
+                "soft shadows highlighting the tired facial contours"
+              ],
+              "hair_system": [
+                "black short hair with slight messy texture",
+                "root fixation coefficient 0.8",
+                "tip swing amplitude 0.2",
+                "main color black, secondary highlights in cool grey",
+                "no wind effect"
+              ],
+              "label": "scene-library-confrontation-lynn-silas",
+              "lighting": [
+                "low-key dramatic lighting",
+                "faint cool-toned light coming from the background windows",
+                "harsh artificial light from low-hanging lamps creating deep shadows on faces"
+              ],
+              "mood": [
+                "oppressive academic pressure",
+                "melancholic exhaustion",
+                "cold and detached realism"
+              ],
+              "output_style": [
+                "high-detail japanese anime digital illustration",
+                "no text, no watermark, no signature, no logo in image",
+                "no symbols or random characters",
+                "8K ultra-high resolution",
+                "perfect anime character anatomy"
+              ],
+              "style": [
+                "high-detail japanese anime digital illustration",
+                "clean smooth contour line art",
+                "soft cel-shading with dramatic contrast",
+                "low-saturation color palette",
+                "no watercolor texture, no paper grain"
+              ],
+              "subject": {
+                "body_traits": [
+                  "young male protagonist Lynn, Image 0",
+                  "slim build with a tired and focused expression",
+                  "pale skin tone",
+                  "black short hair",
+                  "wearing black-rimmed glasses",
+                  "carrying a worn canvas bag",
+                  "ink stains visible on his sleeve",
+                  "holding an old pocket watch in his hand"
+                ],
+                "outfit": [
+                  "faded white school uniform shirt",
+                  "worn canvas bag with visible fabric texture"
+                ],
+                "pose": [
+                  "Lynn standing in the library, front view",
+                  "Lynn looking slightly down at his pocket watch",
+                  "facing Silas-配角1 who stands to the right side of the frame"
+                ]
+              },
+              "tags": [
+                "anime",
+                "digital-painting",
+                "semi-realistic",
+                "dramatic",
+                "melancholy",
+                "academic-atmosphere"
+              ]
+            },
+            "scene_text_hash": "9253905c700f5e40b2b1db02cc7bc69d",
+            "style": "default",
+            "url": "/image_cache/dbfb8a43da07324251ed32ef98da05cc.png",
+            "width": 1920
+          },
+          "previousSceneText": "潮湿的空气混合着铁锈与陈旧书页的味道，我推开图书馆沉重的橡木门，指尖触碰到门把手时，一阵刺骨的寒意顺着手臂蔓延。我低头看了一眼袖口，那里沾着昨晚兼职时留下的墨迹，在昏暗的灯光下显得格外刺眼。我习惯性地推了推鼻梁上的黑框眼镜，从磨损的帆布包里掏出那枚旧怀表，表盖上的划痕记录着我无数次在深夜奔波的疲惫。\n\n“林恩，你又迟到了，复习进度已经落后了整整两个章节。”图书馆管理员塞拉斯推了推眼镜，他那双浑浊的眼睛盯着我，语气里带着一丝不耐烦。我没有辩解，只是默默地将怀表塞回口袋，那种因为过度使用“共鸣感知”而引发的偏头痛正像细小的针尖一样刺入我的太阳穴。我环顾四周，周围的学生正埋头于复杂的符文公式中，那种对绩点的狂热压得人喘不过气。我必须在期末周结束前追赶上进度，否则那笔沉重的家庭债务将彻底压垮我。"
+        },
+        "start_ts": 1777644351.686959,
+        "end_ts": 1777644376.397918,
+        "provider_events": {
+          "event_count": 3,
+          "queue_wait_ms": {
+            "count": 3,
+            "min": 0.0,
+            "max": 5240.0,
+            "mean": 3493.333,
+            "median": 5240.0,
+            "p95": 5240.0
+          },
+          "latency_ms": {
+            "count": 2,
+            "min": 5239.0,
+            "max": 6185.0,
+            "mean": 5712.0,
+            "median": 5712.0,
+            "p95": 6137.7
+          },
+          "llm_success_count": 2,
+          "image_success_count": 0,
+          "request_thread_event_count": 0,
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "shared_backoff_wait_ms_total": 0,
+          "retry_heavy_event_count": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0
+        },
+        "attempts": [
+          {
+            "http_status": 200,
+            "elapsed_s": 24.711,
+            "response_json": {
+              "benchmark_diagnostics": {
+                "cache_hit_reason": "waited_request_scene_text_completed_no_image",
+                "cache_miss_reason": "request_scene_generation_in_progress",
+                "current_options_key_drift_detected": false,
+                "global_state_key_drift_detected": true,
+                "placeholder": false,
+                "previous_scene_id": "initial",
+                "recomputed_scene_cache_exists": false,
+                "recomputed_scene_id": "-2446764304486248920_-8187703516807273939",
+                "request_current_options_count": 2,
+                "request_current_options_hash": "ba223ed8c6fa7e000d3ea664584f4593",
+                "request_flow_worldline_hash": "0b7d2802f8e46ae104639ddbac325b51",
+                "request_global_state_hash": "9c6d51f88fab6d53e4967acd0713a62e",
+                "request_option_at_index": "熬夜苦读，尝试通过共鸣感知强行解析高难度符文公式。",
+                "request_option_index": 0,
+                "request_option_text": "熬夜苦读，尝试通过共鸣感知强行解析高难度符文公式。",
+                "request_scene_cache_exists": true,
+                "request_scene_cache_meta": {
+                  "canonical_scene_id": "-2001545688765421699_-8187703516807273939",
+                  "current_options_hash": "ba223ed8c6fa7e000d3ea664584f4593",
+                  "current_options_preview": [
+                    "熬夜苦读，尝试通过共鸣感知强行解析高难度符文公式。",
+                    "询问塞拉斯关于学院内部资源分配的隐秘规则，寻找捷径。"
+                  ],
+                  "flow_worldline_hash": "940e38d5f8372eaa58cfdaf4d70a0d30",
+                  "global_state_hash": "1c85a5220371f46fd54cf40b8df83fe7",
+                  "option_count": 2,
+                  "parent_scene_id": null,
+                  "scene_id": "6529671028476185333_-8187703516807273939"
+                },
+                "request_scene_id": "6529671028476185333_-8187703516807273939",
+                "resolution_path": "wait_for_request_scene_cache_text_only",
+                "response_has_image": true,
+                "response_has_scene": true,
+                "response_scene_id": "-7342117404163463240_2532298885127110597",
+                "response_status": "success",
+                "scene_id_mismatch_detected": true,
+                "selected_option_mismatch_detected": false
+              },
+              "message": "选项剧情生成成功！",
+              "optionData": {
+                "checkpoint_packet": {
+                  "chapter": "chapter1",
+                  "chapter_conflict_solved": false,
+                  "quest_delta": "我成功解析了部分高难度符文逻辑，复习进度追赶上了一个课时，离期末考试的准入标准更近了一步，但身体状态的恶化成为了新的隐患。",
+                  "recap_text": "你选择了“熬夜苦读，尝试通过共鸣感知强行解析高难度符文公式。”。当前章节：chapter1。主线进展：我成功解析了部分高难度符文逻辑，复习进度追赶上了一个课时，离期末考试的准入标准更近了一步，但身体状态的恶化成为了新的隐患。。最近剧情：图书馆的灯光在凌晨三点显得格外惨白，我推了推下滑的黑框眼镜，指尖因为长时间握笔而微微发颤。面前那本厚重的《符文逻辑导论》摊开着，复杂的公式如同扭曲的藤蔓，在我的视网膜上跳动。我深吸一口气，将右手按在书页上，强行催动那股被称为“共鸣感知”的天赋。刹那间，一股冰冷且带有金属锈味的记忆碎片如潮水般涌入脑海，那是前人书写这些公式时留下的焦灼与困惑。我的太阳穴开始剧烈跳动，仿佛有细小的针在反复穿刺，视线逐渐模糊，但我咬紧牙关，强迫自己捕捉那几个关键的逻辑节点。汗水顺着我苍白的脸颊滑落，滴在洗得发白的校服袖口上，墨迹晕染开来。就在我即将解析出公式核心的瞬间，管理员塞拉斯那双浑浊的眼睛突然出现在书架阴影处，他压低声音冷冷地说道：“林恩，别再透支你的精神力了，这种强行解析只会让你在期末考试前彻底崩溃，你的债务可不会因为你的努力而减少半分。”我没有抬头，只是死死盯着纸面，声音沙哑地回应：“如果不这么做，我连参加考试的资格都没有。”"
+                },
+                "deep_background_links": {
+                  "1": "塞拉斯（管理员塞拉斯曾是学院的落魄研究员，与我家庭债务的源头有隐秘关联）"
+                },
+                "flow_update": {
+                  "chapter_conflict_solved": false,
+                  "characters": {},
+                  "environment": {},
+                  "quest_progress": "我成功解析了部分高难度符文逻辑，复习进度追赶上了一个课时，离期末考试的准入标准更近了一步，但身体状态的恶化成为了新的隐患。"
+                },
+                "next_options": [
+                  "继续强行解析，争取在天亮前彻底攻克这一章节。",
+                  "询问塞拉斯关于学院禁书区的传闻，试图寻找更高效的符文解法。"
+                ],
+                "plot_mentioned_only": [],
+                "plot_supporting_characters": [],
+                "scene": "图书馆的灯光在凌晨三点显得格外惨白，我推了推下滑的黑框眼镜，指尖因为长时间握笔而微微发颤。面前那本厚重的《符文逻辑导论》摊开着，复杂的公式如同扭曲的藤蔓，在我的视网膜上跳动。我深吸一口气，将右手按在书页上，强行催动那股被称为“共鸣感知”的天赋。刹那间，一股冰冷且带有金属锈味的记忆碎片如潮水般涌入脑海，那是前人书写这些公式时留下的焦灼与困惑。我的太阳穴开始剧烈跳动，仿佛有细小的针在反复穿刺，视线逐渐模糊，但我咬紧牙关，强迫自己捕捉那几个关键的逻辑节点。汗水顺着我苍白的脸颊滑落，滴在洗得发白的校服袖口上，墨迹晕染开来。就在我即将解析出公式核心的瞬间，管理员塞拉斯那双浑浊的眼睛突然出现在书架阴影处，他压低声音冷冷地说道：“林恩，别再透支你的精神力了，这种强行解析只会让你在期末考试前彻底崩溃，你的债务可不会因为你的努力而减少半分。”我没有抬头，只是死死盯着纸面，声音沙哑地回应：“如果不这么做，我连参加考试的资格都没有。”",
+                "sceneId": "-7342117404163463240_2532298885127110597",
+                "scene_image": {
+                  "cached": true,
+                  "height": 1080,
+                  "image_type": "story_scene",
+                  "prompt": "scene-lynn-library-midnight-confrontation, anime, digital-painting, atmospheric, low-saturation, dramatic, cyber-magic-realism, high-detail japanese anime digital illustration, clean smooth contour line art, dramatic chiaroscuro lighting, subtle screen tone shading for texture, low-saturation color palette with industrial cold tones, young male protagonist Lynn, Image 0, slim and fragile build with pale skin, exhausted expression with dark circles under eyes, focused gaze, biting lip in concentration, worn out school uniform shirt in faded fabric, ink-stained cuffs with visible smudges, old canvas satchel slung across shoulder, hunched over a massive open book at a library desk, right hand pressed flat against the glowing rune-filled page, left hand clutching a pen with trembling fingers, body facing the library aisle, half-turned towards the shadow, ultra-detailed anime facial features consistent with Image 0, black-rimmed glasses slightly slipping down the bridge of nose, beads of sweat rolling down temple, expression of intense cognitive strain and suppressed pain, short messy black hair, root fixation coefficient 0.8, tip swing amplitude 0.2, main color deep black with subtle charcoal grey highlights, natural hair texture with soft shadow layering, fabric showing signs of heavy wear and frayed edges, natural fabric folds on sleeves and shoulders, ink stains on cuffs clearly visible, dimly lit gothic library at 3 AM, dusty bookshelves stretching into darkness, pale white moonlight filtering through high narrow windows, 塞拉斯-配角1 standing in the deep shadow of a bookshelf, only eyes and silhouette visible, faint ethereal blue light emanating from the book pages under hand, subtle distortion effect around the book to represent mental resonance, cold metallic mist lingering in the air, cool color scheme dominated by slate grey, midnight blue, and off-white, high contrast between the pale desk light and deep library shadows, no vibrant or warm colors, harsh cold overhead desk lamp casting sharp shadows, dramatic rim light on Lynn's silhouette, deep shadows concealing 塞拉斯-配角1, type over-the-shoulder medium shot, lens 35mm, aperture f/2.8, depth_of_field shallow focus on Lynn and the book, 塞拉斯-配角1 slightly blurred in background, flash none, grain fine cinematic grain, texture smooth digital finish, Lynn positioned in the center-left foreground, 塞拉斯-配角1 emerging from the right-side shadow, diagonal composition leading eyes from the book to the faces, high-detail japanese anime digital illustration, no text, no symbols, no watermarks, no logos in image, 8K resolution, sharp lines, no 3D render, no photorealistic, no messy paint strokes, oppressive academic anxiety, melancholic and cold, tense psychological atmosphere, no text, no symbols, no garbled characters, no words",
+                  "scene_text_hash": "6276e9a15e82906a560a255822714178",
+                  "style": "default",
+                  "url": "/image_cache/a417dc714ec6c30e80f3a2eef80c9e7b.png",
+                  "width": 1920
+                }
+              },
+              "status": "success"
+            },
+            "request_payload": {
+              "option": "熬夜苦读，尝试通过共鸣感知强行解析高难度符文公式。",
+              "optionIndex": 0,
+              "sceneId": "6529671028476185333_-8187703516807273939",
+              "currentOptions": [
+                "熬夜苦读，尝试通过共鸣感知强行解析高难度符文公式。",
+                "询问塞拉斯关于学院内部资源分配的隐秘规则，寻找捷径。"
+              ],
+              "globalState": {
+                "core_worldview": {
+                  "chapters": {
+                    "chapter1": {
+                      "conflict_end_condition": "主角通过合理规划时间或完成一次高难度的课外委托，勉强追赶上课程进度，获得进入下一阶段考试的资格，但同时也因为过度劳累而错失了与好友的一次重要聚会，留下了小小的遗憾。",
+                      "main_conflict": "期末周伊始，主角发现自己因兼职导致复习进度严重滞后，同时还要应对学院内部小团体对资源的垄断。面对繁重的课业压力与即将到来的高难度实操考试，主角必须在“熬夜苦读”与“寻求他人协作”之间做出抉择，这种选择直接影响了后续的资源获取与人际关系走向。"
+                    },
+                    "chapter2": {
+                      "conflict_end_condition": "主角选择放弃激进的申诉，转而以更稳妥的方式完成补考，虽然保住了学业，但被迫承认了规则的不公，内心对学院的幻灭感加深，与曾经志同道合的伙伴产生分歧。",
+                      "main_conflict": "实操考试期间，主角发现学院的评分系统存在隐性偏见，自己的努力被系统判定为“低效”。主角试图通过“共鸣感知”能力寻找证据进行申诉，却发现这不仅会触怒导师，还可能导致自己被列入黑名单，从而彻底失去奖学金资格，陷入理想与生存的剧烈冲突。"
+                    },
+                    "chapter3": {
+                      "conflict_end_condition": "主角最终完成了考核，获得了毕业证书，但未能拿到奖学金。主角选择接受这份平凡的毕业，带着些许不甘与对未来的释然，踏入社会，与曾经的遗憾达成和解，开启一段普通却真实的人生。",
+                      "main_conflict": "最终考核前夕，主角面临家庭经济突变的打击，必须在“参加最终考核”与“立刻退学工作”之间做出抉择。同时，主角发现自己一直追求的奖学金名额被一名背景深厚的学生占据，无论如何努力都无法在分数上超越对方，必须面对“努力未必有对等回报”的残酷现实。"
+                    }
+                  },
+                  "characters": {},
+                  "forces": {},
+                  "game_style": "本作为现实主义魔幻风格，采用冷峻而克制的叙事笔触，通过细腻的日常细节构建一个魔法与平庸生活共存的社会。画面色调偏向低饱和度的写实感，强调光影的真实质感，旨在营造一种“魔法只是另一种繁重职业”的沉浸式体验，让玩家在琐碎的学业压力与现实困境中，感受个体在庞大规则下的挣扎与释然。",
+                  "main_quest": "主角的目标是在期末周内，通过所有核心魔法课程的考核，并争取获得唯一的“优秀毕业生”奖学金，以减轻家庭沉重的债务负担。玩家需要通过分配有限的精力，在复习、兼职打工与处理人际关系之间寻找平衡。挑战在于，每一步选择都伴随着代价：为了复习而放弃兼职会导致经济危机，为了帮助同学而牺牲复习时间则会降低绩点。最终，主角将面临现实的审判——即便竭尽全力，也可能因为一次意外的实验失误或不可抗力的名额缩减，无法达成最初的完美目标，只能在获得学业认可与失去部分理想之间，接受一个虽不圆满但足以支撑生活的结局。",
+                  "protagonist_ability": "主角拥有一种被称为“共鸣感知”的非典型魔法天赋。它并非毁天灭地的力量，而是能通过接触物体感知其残留的“情绪记忆”。在期末周的繁重学业中，主角利用此能力辅助修复损坏的实验器材或寻找丢失的笔记。然而，该能力极其消耗精神力，过度使用会导致严重的偏头痛，且无法改变既定的物理事实，只能作为一种辅助性的生存手段，在残酷的竞争中勉强维持自己的学术地位。",
+                  "world_basic_setting": "故事发生在一个名为“奥瑞恩”的魔法工业化社会。在这里，魔法并非神秘的馈赠，而是被量化为生产力的社会资源。魔法学院是培养中产阶级技术官僚的温床，学生们不仅要学习复杂的咒语逻辑，更要面对高昂的学费、严苛的绩点考核以及毕业后即失业的社会焦虑。地理上，学院坐落于终年阴雨的工业重镇边缘，高耸的哥特式建筑与周围锈迹斑斑的工厂烟囱形成鲜明对比。社会文化推崇“效率至上”，魔法被拆解为标准化的符文公式，情感与天赋在严密的考核制度面前显得微不足道。关键事件“大停滞”发生于十年前，导致魔法能源价格飙升，使得底层学生必须通过透支精力的兼职来维持学业，这种结构性的不公构成了整个世界的底层逻辑。"
+                },
+                "flow_worldline": {
+                  "characters": {},
+                  "current_chapter": "chapter1",
+                  "environment": {},
+                  "chapter_progress": 2.0
+                },
+                "game_id": "game_1777644290_pvbcft",
+                "image_style": {
+                  "type": "anime"
+                },
+                "meta": {
+                  "detail_async": true
+                },
+                "protagonist_canonical": {
+                  "age_range": "青年",
+                  "gender": "男性",
+                  "name_en": "Lynn",
+                  "name_zh": "林恩",
+                  "signature_look_keywords": "黑色短发，黑框眼镜，略显苍白的肤色，总是带着磨损的帆布包，袖口有墨迹，神情专注而疲惫，穿着洗得发白的校服，身形单薄，眼神中透着冷静的克制，常年佩戴一枚旧怀表。",
+                  "work_en": "The Rainy Season of Orion",
+                  "work_zh": "奥瑞恩的雨季"
+                },
+                "tone": "normal_ending",
+                "user_theme": "魔法学院期末周",
+                "_benchmark_profile": "fullready_strict",
+                "_benchmark_measurement": "fullready_nextturn",
+                "_benchmark_read_wait_s": 0.0
+              },
+              "previousSceneId": "initial",
+              "previousSceneImage": {
+                "cached": true,
+                "height": 1080,
+                "image_type": "story_scene",
+                "prompt": "scene-library-confrontation-lynn-silas, anime, digital-painting, semi-realistic, dramatic, melancholy, academic-atmosphere, high-detail japanese anime digital illustration, clean smooth contour line art, soft cel-shading with dramatic contrast, low-saturation color palette, no watercolor texture, no paper grain, young male protagonist Lynn, Image 0, slim build with a tired and focused expression, pale skin tone, black short hair, wearing black-rimmed glasses, carrying a worn canvas bag, ink stains visible on his sleeve, holding an old pocket watch in his hand, faded white school uniform shirt, worn canvas bag with visible fabric texture, Lynn standing in the library, front view, Lynn looking slightly down at his pocket watch, facing Silas-配角1 who stands to the right side of the frame, ultra-detailed anime facial features, tired eyes with dark circles under them, expression of suppressed stress and exhaustion, soft shadows highlighting the tired facial contours, black short hair with slight messy texture, root fixation coefficient 0.8, tip swing amplitude 0.2, main color black, secondary highlights in cool grey, no wind effect, school uniform with visible ink stains on the sleeve, slight fabric flutter due to the damp environment, detailed stitching on the worn canvas bag, dimly lit gothic library interior, towering bookshelves filled with old books, dusty air with faint light beams from high narrow windows, rusty iron pipes visible along the ceiling, Silas-配角1, a stern elderly librarian, standing on the right, wearing glasses, looking at Lynn with a judgmental expression, cold damp atmosphere, faint magical floating dust particles, dramatic shadows cast by the shelves, low saturation tones, dominated by cold greys, desaturated browns, and muted blues, no vivid or neon colors, low-key dramatic lighting, faint cool-toned light coming from the background windows, harsh artificial light from low-hanging lamps creating deep shadows on faces, type medium shot, lens 35mm, aperture f/2.8, depth_of_field sharp focus on Lynn, slightly blurred background library shelves, flash none, grain subtle clean digital texture, texture smooth digital brush finish, Lynn positioned on the left, Silas-配角1 on the right, leading lines from the library shelves drawing focus to the interaction, clear focus on Lynn's tired face and the pocket watch, high-detail japanese anime digital illustration, no text, no watermark, no signature, no logo in image, no symbols or random characters, 8K ultra-high resolution, perfect anime character anatomy, oppressive academic pressure, melancholic exhaustion, cold and detached realism, no text, no symbols, no garbled characters, no words",
+                "prompt_json": {
+                  "camera": {
+                    "aperture": "f/2.8",
+                    "depth_of_field": "sharp focus on Lynn, slightly blurred background library shelves",
+                    "flash": "none",
+                    "grain": "subtle clean digital texture",
+                    "lens": "35mm",
+                    "texture": "smooth digital brush finish",
+                    "type": "medium shot"
+                  },
+                  "clothing_system": [
+                    "school uniform with visible ink stains on the sleeve",
+                    "slight fabric flutter due to the damp environment",
+                    "detailed stitching on the worn canvas bag"
+                  ],
+                  "color_restriction": [
+                    "low saturation tones",
+                    "dominated by cold greys, desaturated browns, and muted blues",
+                    "no vivid or neon colors"
+                  ],
+                  "composition": [
+                    "Lynn positioned on the left, Silas-配角1 on the right",
+                    "leading lines from the library shelves drawing focus to the interaction",
+                    "clear focus on Lynn's tired face and the pocket watch"
+                  ],
+                  "environment": {
+                    "background": [
+                      "dimly lit gothic library interior",
+                      "towering bookshelves filled with old books",
+                      "dusty air with faint light beams from high narrow windows",
+                      "rusty iron pipes visible along the ceiling"
+                    ],
+                    "characters": [
+                      "Silas-配角1, a stern elderly librarian, standing on the right, wearing glasses, looking at Lynn with a judgmental expression"
+                    ],
+                    "effects": [
+                      "cold damp atmosphere",
+                      "faint magical floating dust particles",
+                      "dramatic shadows cast by the shelves"
+                    ]
+                  },
+                  "face_system": [
+                    "ultra-detailed anime facial features",
+                    "tired eyes with dark circles under them",
+                    "expression of suppressed stress and exhaustion",
+                    "soft shadows highlighting the tired facial contours"
+                  ],
+                  "hair_system": [
+                    "black short hair with slight messy texture",
+                    "root fixation coefficient 0.8",
+                    "tip swing amplitude 0.2",
+                    "main color black, secondary highlights in cool grey",
+                    "no wind effect"
+                  ],
+                  "label": "scene-library-confrontation-lynn-silas",
+                  "lighting": [
+                    "low-key dramatic lighting",
+                    "faint cool-toned light coming from the background windows",
+                    "harsh artificial light from low-hanging lamps creating deep shadows on faces"
+                  ],
+                  "mood": [
+                    "oppressive academic pressure",
+                    "melancholic exhaustion",
+                    "cold and detached realism"
+                  ],
+                  "output_style": [
+                    "high-detail japanese anime digital illustration",
+                    "no text, no watermark, no signature, no logo in image",
+                    "no symbols or random characters",
+                    "8K ultra-high resolution",
+                    "perfect anime character anatomy"
+                  ],
+                  "style": [
+                    "high-detail japanese anime digital illustration",
+                    "clean smooth contour line art",
+                    "soft cel-shading with dramatic contrast",
+                    "low-saturation color palette",
+                    "no watercolor texture, no paper grain"
+                  ],
+                  "subject": {
+                    "body_traits": [
+                      "young male protagonist Lynn, Image 0",
+                      "slim build with a tired and focused expression",
+                      "pale skin tone",
+                      "black short hair",
+                      "wearing black-rimmed glasses",
+                      "carrying a worn canvas bag",
+                      "ink stains visible on his sleeve",
+                      "holding an old pocket watch in his hand"
+                    ],
+                    "outfit": [
+                      "faded white school uniform shirt",
+                      "worn canvas bag with visible fabric texture"
+                    ],
+                    "pose": [
+                      "Lynn standing in the library, front view",
+                      "Lynn looking slightly down at his pocket watch",
+                      "facing Silas-配角1 who stands to the right side of the frame"
+                    ]
+                  },
+                  "tags": [
+                    "anime",
+                    "digital-painting",
+                    "semi-realistic",
+                    "dramatic",
+                    "melancholy",
+                    "academic-atmosphere"
+                  ]
+                },
+                "scene_text_hash": "9253905c700f5e40b2b1db02cc7bc69d",
+                "style": "default",
+                "url": "/image_cache/dbfb8a43da07324251ed32ef98da05cc.png",
+                "width": 1920
+              },
+              "previousSceneText": "潮湿的空气混合着铁锈与陈旧书页的味道，我推开图书馆沉重的橡木门，指尖触碰到门把手时，一阵刺骨的寒意顺着手臂蔓延。我低头看了一眼袖口，那里沾着昨晚兼职时留下的墨迹，在昏暗的灯光下显得格外刺眼。我习惯性地推了推鼻梁上的黑框眼镜，从磨损的帆布包里掏出那枚旧怀表，表盖上的划痕记录着我无数次在深夜奔波的疲惫。\n\n“林恩，你又迟到了，复习进度已经落后了整整两个章节。”图书馆管理员塞拉斯推了推眼镜，他那双浑浊的眼睛盯着我，语气里带着一丝不耐烦。我没有辩解，只是默默地将怀表塞回口袋，那种因为过度使用“共鸣感知”而引发的偏头痛正像细小的针尖一样刺入我的太阳穴。我环顾四周，周围的学生正埋头于复杂的符文公式中，那种对绩点的狂热压得人喘不过气。我必须在期末周结束前追赶上进度，否则那笔沉重的家庭债务将彻底压垮我。"
+            },
+            "start_ts": 1777644351.686959,
+            "end_ts": 1777644376.397918,
+            "provider_events": {
+              "event_count": 3,
+              "queue_wait_ms": {
+                "count": 3,
+                "min": 0.0,
+                "max": 5240.0,
+                "mean": 3493.333,
+                "median": 5240.0,
+                "p95": 5240.0
+              },
+              "latency_ms": {
+                "count": 2,
+                "min": 5239.0,
+                "max": 6185.0,
+                "mean": 5712.0,
+                "median": 5712.0,
+                "p95": 6137.7
+              },
+              "llm_success_count": 2,
+              "image_success_count": 0,
+              "request_thread_event_count": 0,
+              "provider_429_count": 0,
+              "provider_timeout_count": 0,
+              "shared_backoff_wait_ms_total": 0,
+              "retry_heavy_event_count": 0,
+              "main_character_event_count": 0,
+              "scene_image_event_count": 0
+            }
+          }
+        ],
+        "attempt_count": 1,
+        "request_elapsed_s": 24.711,
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "success",
+        "has_scene": true,
+        "has_image": true,
+        "selected_option_index": 0,
+        "selected_option_text": "熬夜苦读，尝试通过共鸣感知强行解析高难度符文公式。",
+        "input_scene_id": "6529671028476185333_-8187703516807273939",
+        "inferred_cache_result": "likely_miss_or_partial",
+        "used_updated_flow_state": true,
+        "cache_hit_reason": "waited_request_scene_text_completed_no_image",
+        "cache_miss_reason": "request_scene_generation_in_progress",
+        "global_state_key_drift_detected": true,
+        "scene_id_mismatch_detected": true,
+        "selected_option_mismatch_detected": false,
+        "current_options_key_drift_detected": false,
+        "benchmark_diagnostics": {
+          "cache_hit_reason": "waited_request_scene_text_completed_no_image",
+          "cache_miss_reason": "request_scene_generation_in_progress",
+          "current_options_key_drift_detected": false,
+          "global_state_key_drift_detected": true,
+          "placeholder": false,
+          "previous_scene_id": "initial",
+          "recomputed_scene_cache_exists": false,
+          "recomputed_scene_id": "-2446764304486248920_-8187703516807273939",
+          "request_current_options_count": 2,
+          "request_current_options_hash": "ba223ed8c6fa7e000d3ea664584f4593",
+          "request_flow_worldline_hash": "0b7d2802f8e46ae104639ddbac325b51",
+          "request_global_state_hash": "9c6d51f88fab6d53e4967acd0713a62e",
+          "request_option_at_index": "熬夜苦读，尝试通过共鸣感知强行解析高难度符文公式。",
+          "request_option_index": 0,
+          "request_option_text": "熬夜苦读，尝试通过共鸣感知强行解析高难度符文公式。",
+          "request_scene_cache_exists": true,
+          "request_scene_cache_meta": {
+            "canonical_scene_id": "-2001545688765421699_-8187703516807273939",
+            "current_options_hash": "ba223ed8c6fa7e000d3ea664584f4593",
+            "current_options_preview": [
+              "熬夜苦读，尝试通过共鸣感知强行解析高难度符文公式。",
+              "询问塞拉斯关于学院内部资源分配的隐秘规则，寻找捷径。"
+            ],
+            "flow_worldline_hash": "940e38d5f8372eaa58cfdaf4d70a0d30",
+            "global_state_hash": "1c85a5220371f46fd54cf40b8df83fe7",
+            "option_count": 2,
+            "parent_scene_id": null,
+            "scene_id": "6529671028476185333_-8187703516807273939"
+          },
+          "request_scene_id": "6529671028476185333_-8187703516807273939",
+          "resolution_path": "wait_for_request_scene_cache_text_only",
+          "response_has_image": true,
+          "response_has_scene": true,
+          "response_scene_id": "-7342117404163463240_2532298885127110597",
+          "response_status": "success",
+          "scene_id_mismatch_detected": true,
+          "selected_option_mismatch_detected": false
+        }
+      },
+      "full_ready": {
+        "text_ready_ts": 1777644376.397918,
+        "text_ready_elapsed_s": 24.711,
+        "image_ready_ts": 1777644376.397918,
+        "image_ready_elapsed_s": 24.711,
+        "full_ready_ts": 1777644376.397918,
+        "full_ready_elapsed_s": 24.711,
+        "image_probe": {
+          "status": "success",
+          "source": "generate-option",
+          "image": {
+            "cached": true,
+            "height": 1080,
+            "image_type": "story_scene",
+            "prompt": "scene-lynn-library-midnight-confrontation, anime, digital-painting, atmospheric, low-saturation, dramatic, cyber-magic-realism, high-detail japanese anime digital illustration, clean smooth contour line art, dramatic chiaroscuro lighting, subtle screen tone shading for texture, low-saturation color palette with industrial cold tones, young male protagonist Lynn, Image 0, slim and fragile build with pale skin, exhausted expression with dark circles under eyes, focused gaze, biting lip in concentration, worn out school uniform shirt in faded fabric, ink-stained cuffs with visible smudges, old canvas satchel slung across shoulder, hunched over a massive open book at a library desk, right hand pressed flat against the glowing rune-filled page, left hand clutching a pen with trembling fingers, body facing the library aisle, half-turned towards the shadow, ultra-detailed anime facial features consistent with Image 0, black-rimmed glasses slightly slipping down the bridge of nose, beads of sweat rolling down temple, expression of intense cognitive strain and suppressed pain, short messy black hair, root fixation coefficient 0.8, tip swing amplitude 0.2, main color deep black with subtle charcoal grey highlights, natural hair texture with soft shadow layering, fabric showing signs of heavy wear and frayed edges, natural fabric folds on sleeves and shoulders, ink stains on cuffs clearly visible, dimly lit gothic library at 3 AM, dusty bookshelves stretching into darkness, pale white moonlight filtering through high narrow windows, 塞拉斯-配角1 standing in the deep shadow of a bookshelf, only eyes and silhouette visible, faint ethereal blue light emanating from the book pages under hand, subtle distortion effect around the book to represent mental resonance, cold metallic mist lingering in the air, cool color scheme dominated by slate grey, midnight blue, and off-white, high contrast between the pale desk light and deep library shadows, no vibrant or warm colors, harsh cold overhead desk lamp casting sharp shadows, dramatic rim light on Lynn's silhouette, deep shadows concealing 塞拉斯-配角1, type over-the-shoulder medium shot, lens 35mm, aperture f/2.8, depth_of_field shallow focus on Lynn and the book, 塞拉斯-配角1 slightly blurred in background, flash none, grain fine cinematic grain, texture smooth digital finish, Lynn positioned in the center-left foreground, 塞拉斯-配角1 emerging from the right-side shadow, diagonal composition leading eyes from the book to the faces, high-detail japanese anime digital illustration, no text, no symbols, no watermarks, no logos in image, 8K resolution, sharp lines, no 3D render, no photorealistic, no messy paint strokes, oppressive academic anxiety, melancholic and cold, tense psychological atmosphere, no text, no symbols, no garbled characters, no words",
+            "scene_text_hash": "6276e9a15e82906a560a255822714178",
+            "style": "default",
+            "url": "/image_cache/a417dc714ec6c30e80f3a2eef80c9e7b.png",
+            "width": 1920
+          },
+          "attempt_count": 0
+        },
+        "ready_mode": "direct_in_generate_option",
+        "attribution": {
+          "provider_429_count": 0,
+          "provider_timeout_count": 0,
+          "provider_retry_heavy_count": 0,
+          "provider_backoff_wait_ms_total": 0,
+          "main_character_event_count": 0,
+          "scene_image_event_count": 0,
+          "image_probe_attempt_count": 0,
+          "main_character_contention_suspected": false
+        }
+      },
+      "placeholder": false,
+      "transport_success": true,
+      "strict_success": true,
+      "failure_bucket": null,
+      "cache_path_classification": "direct_real_scene",
+      "cache_hit_reason": "waited_request_scene_text_completed_no_image",
+      "cache_miss_reason": "request_scene_generation_in_progress",
+      "global_state_key_drift_detected": true,
+      "scene_id_mismatch_detected": true,
+      "selected_option_mismatch_detected": false,
+      "success": true
+    }
+  ]
+}

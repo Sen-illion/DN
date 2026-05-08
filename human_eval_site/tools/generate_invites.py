@@ -23,6 +23,13 @@ def load_catalog() -> dict:
     return json.loads(THEME_CATALOG_PATH.read_text(encoding="utf-8-sig"))
 
 
+def load_existing_tokens() -> list[dict]:
+    if not INVITE_TOKENS_PATH.exists():
+        return []
+    payload = json.loads(INVITE_TOKENS_PATH.read_text(encoding="utf-8-sig"))
+    return list(payload.get("tokens", []))
+
+
 def build_invite(base_url: str, token: str) -> str:
     separator = "&" if "?" in base_url else "?"
     return f"{base_url}{separator}token={token}"
@@ -33,21 +40,32 @@ def main() -> None:
     parser.add_argument("--base-url", default="http://127.0.0.1:5000/", help="Base URL of the deployed or local site.")
     parser.add_argument("--raters-per-theme", type=int, default=1, help="How many invite links to generate for each theme.")
     parser.add_argument("--batch-id", default=None, help="Optional batch ID for bookkeeping.")
+    parser.add_argument(
+        "--mode",
+        choices=["image", "text"],
+        default="image",
+        help="Evaluation mode. image = token-bound theme image eval, text = shared text eval dataset.",
+    )
     args = parser.parse_args()
 
     catalog = load_catalog()
     batch_id = args.batch_id or f"batch_{utc_now_iso().replace(':', '-')}"
     created_at = utc_now_iso()
 
-    tokens = []
+    existing_tokens = load_existing_tokens()
+    new_tokens = []
     for theme in catalog["themes"]:
         for slot_index in range(1, args.raters_per_theme + 1):
             token = secrets.token_urlsafe(10)
-            tokens.append(
+            invite_url = build_invite(args.base_url.rstrip("/"), token)
+            if args.mode:
+                invite_url = f"{invite_url}&mode={args.mode}"
+            new_tokens.append(
                 {
                     "token": token,
                     "themeId": theme["themeId"],
                     "themeTitle": theme["title"],
+                    "mode": args.mode,
                     "slotIndex": slot_index,
                     "batchId": batch_id,
                     "createdAt": created_at,
@@ -55,15 +73,13 @@ def main() -> None:
                     "submittedAt": None,
                     "submissionCount": 0,
                     "evaluatorId": "",
-                    "inviteUrl": build_invite(args.base_url.rstrip("/"), token),
+                    "inviteUrl": invite_url,
                 }
             )
 
+    tokens = existing_tokens + new_tokens
     payload = {
-        "batchId": batch_id,
-        "createdAt": created_at,
-        "baseUrl": args.base_url,
-        "ratersPerTheme": args.raters_per_theme,
+        "updatedAt": created_at,
         "tokens": tokens,
     }
     INVITE_TOKENS_PATH.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
@@ -71,7 +87,7 @@ def main() -> None:
     with INVITE_LINKS_CSV.open("w", encoding="utf-8", newline="") as handle:
         writer = csv.DictWriter(
             handle,
-            fieldnames=["token", "themeId", "themeTitle", "slotIndex", "batchId", "inviteUrl"],
+            fieldnames=["token", "themeId", "themeTitle", "mode", "slotIndex", "batchId", "inviteUrl"],
         )
         writer.writeheader()
         for item in tokens:
@@ -80,6 +96,7 @@ def main() -> None:
                     "token": item["token"],
                     "themeId": item["themeId"],
                     "themeTitle": item["themeTitle"],
+                    "mode": item["mode"],
                     "slotIndex": item["slotIndex"],
                     "batchId": item["batchId"],
                     "inviteUrl": item["inviteUrl"],

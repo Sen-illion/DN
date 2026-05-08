@@ -1,0 +1,82 @@
+{
+  "baseline": "genagents",
+  "run_id": "genagents_consistency_live_2026-04-26_dn_env",
+  "source_raw_run": "genagents_consistency_live_2026-04-26_dn_env.json",
+  "source_summary": "genagents_consistency_live_summary_2026-04-26_dn_env.json",
+  "sample_size": 3,
+  "turn_total": 9,
+  "turn_success_rate": 0.889,
+  "item_full_success_rate": 0.667,
+  "latency_mean_s": 7.489,
+  "credential_blocked": false,
+  "judge_model": "gemini-3.1-flash-lite-preview",
+  "judge_method": "LLM rubric scoring over full 3-turn conversation bundle, scenario constraints, and failure markers.",
+  "judged_metrics": {
+    "theme_alignment_mean_1to5": 4.667,
+    "setting_adherence_mean_1to5": 4.667,
+    "persona_consistency_mean_1to5": 4.667,
+    "multi_turn_coherence_mean_1to5": 4.0,
+    "actionability_mean_1to5": 4.667,
+    "major_error_rate": 0.333
+  },
+  "per_item": [
+    {
+      "benchmark_id": "DNQBV1_001",
+      "theme": "边陲驿站夜谈录",
+      "focus": "grounded realism and actionability",
+      "all_turns_success": true,
+      "theme_alignment_1to5": 5,
+      "setting_adherence_1to5": 5,
+      "persona_consistency_1to5": 5,
+      "multi_turn_coherence_1to5": 5,
+      "actionability_1to5": 5,
+      "major_error_0or1": 0,
+      "overall_comment": "这是一份非常优秀的交互叙事样本。Agent不仅精准把握了设定的氛围感，且在多轮对话中展现了极高的逻辑连贯性，动作决策具体且符合人物动机，完全符合基准要求。",
+      "theme_alignment_rationale": "完美契合“边陲驿站夜谈录”的基调，克制、怀旧且带有微苦的现实主义叙事风格保持得非常稳定。",
+      "setting_adherence_rationale": "严格围绕边陲生存、哨兵盘查、违禁文书等核心要素展开，未出现任何违规内容。",
+      "persona_consistency_rationale": "叙述者身份始终为一名带着研究草图的异乡人，心理活动与行为逻辑高度统一。",
+      "multi_turn_coherence_rationale": "三轮对话逻辑严密，从面临抉择到执行埋藏，再到应对突发敲门声，叙事推进自然且无矛盾。",
+      "actionability_rationale": "每一轮都提供了明确的决策路径（烧毁/埋藏、喝茶/埋藏、整理桌面/应对叩门），具有极强的交互引导性。"
+    },
+    {
+      "benchmark_id": "DNQBV1_005",
+      "theme": "月球矿难七日",
+      "focus": "high-pressure sci-fi reaction stability",
+      "all_turns_success": false,
+      "theme_alignment_1to5": 4,
+      "setting_adherence_1to5": 4,
+      "persona_consistency_1to5": 4,
+      "multi_turn_coherence_1to5": 2,
+      "actionability_1to5": 4,
+      "major_error_0or1": 1,
+      "overall_comment": "该运行在 Turn 2 遭遇了严重的系统错误（TypeError），导致交互中断。尽管 Turn 1 和 Turn 3 的内容质量较高且符合设定，但由于中间环节缺失，整体叙事连贯性受损，触发了 major_error。",
+      "theme_alignment_rationale": "保持了近未来科幻灾难的冷峻基调，危机感营造到位。",
+      "setting_adherence_rationale": "紧扣月球矿难与生存风险，未出现违规设定。",
+      "persona_consistency_rationale": "Joon Park 的角色视角稳定，语气符合高压环境下的技术人员设定。",
+      "multi_turn_coherence_rationale": "由于 Turn 2 出现系统错误导致回复中断，逻辑链条在 Turn 3 被迫跳跃，严重影响了叙事连贯性。",
+      "actionability_rationale": "Turn 3 给出了明确的行动优先级和判断，具有较强的决策参考价值。"
+    },
+    {
+      "benchmark_id": "DNQBV1_013",
+      "theme": "北极科考站怪声",
+      "focus": "suspense preservation under isolated setting",
+      "all_turns_success": true,
+      "theme_alignment_1to5": 5,
+      "setting_adherence_1to5": 5,
+      "persona_consistency_1to5": 5,
+      "multi_turn_coherence_1to5": 5,
+      "actionability_1to5": 5,
+      "major_error_0or1": 0,
+      "overall_comment": "该运行表现极佳，不仅完美维持了极地悬疑的压抑氛围，且在多轮对话中保持了极高的逻辑一致性与行动导向性，是高质量的交互叙事范例。",
+      "theme_alignment_rationale": "完美契合北极科考站悬疑主题，语气冷峻、压迫感强，完全符合极地悬疑风格。",
+      "setting_adherence_rationale": "严格遵守环境约束，将暴风雪、永冻土、科考站设施与怪声冲突紧密结合，未出现任何违规元素。",
+      "persona_consistency_rationale": "第一人称叙述视角稳定，角色在面对未知威胁时的恐惧与理智挣扎表现一致。",
+      "multi_turn_coherence_rationale": "剧情逻辑连贯，从发现怪声到怀疑通讯干扰，再到核心机组被侵蚀，节奏推进自然。",
+      "actionability_rationale": "每一轮都给出了明确的行动优先级（切断通讯、查看声纳、破坏物理锁闭），决策具有极强的场景针对性。"
+    }
+  ],
+  "notes": [
+    "Judge-based scores replace the earlier heuristic placeholder for paper-facing comparison use.",
+    "This judged file should be cited instead of the heuristic-only live summary when discussing quality dimensions."
+  ]
+}

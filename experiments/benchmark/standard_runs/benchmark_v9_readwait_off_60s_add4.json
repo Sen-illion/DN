@@ -1,0 +1,1257 @@
+{
+  "summary": {
+    "experiment_name": "benchmark_v9_readwait_off_60s_add4",
+    "sample_size": 4,
+    "read_wait_s": 60.0,
+    "suite_start_ts": 1776653109.2909362,
+    "suite_end_ts": 1776653468.2843695,
+    "second_click_elapsed_s": {
+      "count": 4,
+      "min": 0.009,
+      "max": 0.033,
+      "mean": 0.018,
+      "median": 0.015,
+      "p95": 0.031
+    },
+    "second_click_success_count": 4,
+    "likely_hit_count": 4,
+    "likely_hit_rate": 1.0
+  },
+  "runs": [
+    {
+      "benchmark_id": "DNQBV1_009",
+      "theme_id": 3,
+      "theme": "茶肆说书人",
+      "read_wait_s": 60.0,
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 8.763,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过一次巧妙的即兴说书，将镇上的时事与古老传说结合，既保住了茶肆的格调，又吸引了部分年轻听众，暂时缓解了经济危机，但同时也意识到自己与时代脱节的鸿沟并未真正填平。",
+                  "main_conflict": "茶肆面临高额租金压力，主角必须在维持传统说书风格与迎合大众口味（如加入低俗段子）之间做出抉择。同时，主角发现自己一直引以为傲的“旧事”在年轻人眼中已变得陈旧乏味，这种身份认同的危机感与经济困境交织，让主角陷入了对职业价值的深刻怀疑。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角选择以一种隐晦且体面的方式在说书时重现了那段往事，既保留了真相的内核，又维护了班主的尊严，最终促成了义演的举行，但戏楼终究还是在推土机的轰鸣声中化为废墟。",
+                  "main_conflict": "镇上的戏楼正式宣布拆迁，主角试图联合戏班老艺人举办最后一场演出以留住记忆，却遭到开发商与部分急于变现的乡绅阻挠。主角在收集资料的过程中，发现了一段关于戏班班主不为人知的往事，这段往事涉及当年的恩怨，若公开则会毁掉班主的名声，若隐瞒则无法还原历史真相。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角最终选择留守小镇，将手稿封存于茶肆地窖，出版了一本删减版的文集以换取微薄的生计。好友离去，茶肆重归平静，主角在夕阳下继续说书，虽然记录不完整，但那些记忆已在心中扎根，达成了一种与遗憾共存的释然。",
+                  "main_conflict": "战火的阴影愈发浓重，主角的好友决定南下避难，并邀请主角同行。此时《临安旧闻录》的初稿已成，但出版商要求删减其中关于小镇真实苦难的部分，只保留风花雪月。主角面临着“完整记录”与“安全生存”的终极抉择，内心在坚守初心与随波逐流之间剧烈挣扎。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "沉浸式市井叙事，采用素雅的水墨写实画风，强调光影的流转与季节的更迭。通过细腻的音效（如茶盏碰撞、雨打芭蕉、街巷喧嚣）构建真实且具有烟火气的民国时期南方小镇，节奏舒缓，侧重于对平凡生活细节的捕捉与人物内心细微波动的刻画。",
+              "main_quest": "主角的目标是编撰并出版一本名为《临安旧闻录》的民间志，旨在记录小镇在时代巨变前的最后风貌。任务步骤包括：在茶肆中收集不同阶层人物的口述故事，整理散落在民间的古老戏本，以及在戏楼拆迁前完成最后一场大型义演。挑战在于，主角不仅要应对茶肆日益惨淡的经营压力，还要面对镇上保守派对“新式记录”的抵触，以及好友因战乱被迫离乡的现实。最终，主角将面临选择：是坚持记录那些注定被遗忘的琐碎，还是为了生计彻底转型，成为一名顺应时局的普通商贩。",
+              "protagonist_ability": "主角拥有一种名为“共情叙述”的感知力，源于多年说书练就的敏锐观察与对人性的深刻洞察。通过观察茶客的微表情、手部动作与言语停顿，主角能精准捕捉到对方隐藏的往事碎片。使用方式是在说书过程中，将这些碎片编织进故事，引发听众共鸣。限制在于，这种能力无法改变现实，只能揭示真相，且过度使用会加重主角的偏头痛，且无法窥探那些刻意封闭内心、拒绝交流者的真实意图。",
+              "world_basic_setting": "故事背景设定在二十世纪三十年代末，一座名为“临安”的南方水乡。这里正处于新旧交替的动荡前夜，战火虽未直接烧毁小镇，但外界的巨变已悄然渗透进每一条青石板路。茶肆“半日闲”是小镇的信息枢纽，也是各色人等避世的港湾。社会结构由传统的乡绅、手艺人与南下的新式知识分子构成，文化上呈现出旧戏曲与新思潮的激烈碰撞。关键事件是镇上唯一的戏楼因经营不善面临拆迁，而主角作为茶肆的说书人，试图通过整理镇上的口述历史与民间传说，在时代洪流中为这些即将消散的记忆寻找安放之处。这是一个关于“记录”与“遗忘”的故事，每个人都在为生计奔波，在理想与现实的夹缝中寻找平衡。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1776653109_0nw9yb",
+            "image_style": {
+              "type": "ink_painting"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Shen Qingqiu",
+              "name_zh": "沈清秋",
+              "signature_look_keywords": "清瘦、长衫、布鞋、眼神温和、手指修长、常带书卷气、略显疲惫、深色马褂、旧式眼镜、沉稳、内敛、书生气质",
+              "work_en": "The Storyteller of Half-Day Leisure",
+              "work_zh": "半日闲谈"
+            },
+            "tone": "normal_ending",
+            "user_theme": "茶肆说书人"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "start_ts": 1776653109.2909398,
+        "end_ts": 1776653118.0537508,
+        "provider_events": {
+          "event_count": 4,
+          "queue_wait_ms": {
+            "count": 4,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 1,
+            "min": 8751.0,
+            "max": 8751.0,
+            "mean": 8751.0,
+            "median": 8751.0,
+            "p95": 8751.0
+          },
+          "llm_success_count": 1,
+          "image_success_count": 0,
+          "request_thread_event_count": 2
+        },
+        "status": "success",
+        "game_id": "game_1776653109_0nw9yb"
+      },
+      "first_click": {
+        "http_status": 200,
+        "elapsed_s": 76.042,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "",
+              "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：临安的清晨，湿漉漉的青石板路透着一股陈旧的霉味。我推开“半日闲”茶肆那扇吱呀作响的木门，指尖触碰到门框上斑驳的漆皮，细碎的木屑簌簌落下。屋内光线昏暗，空气中浮动着陈年茶叶与潮湿水汽混合的味道。我理了理身上那件洗得发白的深色马褂，习惯性地推了推鼻梁上的旧式眼镜，视线扫过空荡荡的茶桌。账本压在柜台一角，上面那行“本月租金缺口”的字迹被墨水洇开，显得格外刺眼。\n\n“沈先生，这租金的事儿，您看……”茶肆的老房东王大伯不知何时站在了门口，他手里拎着个旱烟袋，眉头紧锁，眼神里透着一股不耐烦与无奈。他身后，几个年轻的茶客正低声谈论着城南新开的洋行，言语间满是对我这旧式说书场子的不屑。我深吸一口气，喉咙里泛起一阵干涩的苦味，那种长久以来的偏头痛隐隐作祟。我看着他，语气尽量保持平和：“王大伯，再宽限几日，我正筹备着新段子，定能把客流引回来。”"
+            },
+            "deep_background_links": {},
+            "flow_update": {},
+            "next_options": [
+              "尝试以时事入书，结合民间传说吸引年轻茶客。",
+              "询问王大伯关于戏楼拆迁的内幕，试图寻找转机。"
+            ],
+            "scene": "临安的清晨，湿漉漉的青石板路透着一股陈旧的霉味。我推开“半日闲”茶肆那扇吱呀作响的木门，指尖触碰到门框上斑驳的漆皮，细碎的木屑簌簌落下。屋内光线昏暗，空气中浮动着陈年茶叶与潮湿水汽混合的味道。我理了理身上那件洗得发白的深色马褂，习惯性地推了推鼻梁上的旧式眼镜，视线扫过空荡荡的茶桌。账本压在柜台一角，上面那行“本月租金缺口”的字迹被墨水洇开，显得格外刺眼。\n\n“沈先生，这租金的事儿，您看……”茶肆的老房东王大伯不知何时站在了门口，他手里拎着个旱烟袋，眉头紧锁，眼神里透着一股不耐烦与无奈。他身后，几个年轻的茶客正低声谈论着城南新开的洋行，言语间满是对我这旧式说书场子的不屑。我深吸一口气，喉咙里泛起一阵干涩的苦味，那种长久以来的偏头痛隐隐作祟。我看着他，语气尽量保持平和：“王大伯，再宽限几日，我正筹备着新段子，定能把客流引回来。”",
+            "sceneId": "3386619870795783100_-7973421644952956780",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-teahouse-morning-confrontation, republic-of-china-era, melancholy, realistic-narrative, atmospheric, southern-town-life, traditional-chinese-ink-wash-painting, monochromatic-with-subtle-sepia, wash-and-ink-techniques, expressive-brushstrokes, high-contrast-lighting, young male protagonist Shen Qingqiu using Image 0, slender build with bookish temperament, gentle and weary eyes reflecting hidden exhaustion, thin frame with a slight stoop of fatigue, refined long fingers with ink stains, faded dark-colored traditional Chinese long gown, old-fashioned spectacles with wire frames, simple worn-out cloth shoes, standing behind the wooden counter in the teahouse, body facing 王大伯-配角1, one hand adjusting wire-frame glasses, posture conveying a mix of composure and inner stress, 8K detailed facial features capturing scholarly yet tired expression, soft shadows emphasizing the brow lines of a headache, gentle eyes looking directly at the landlord, naturally muted lip color, subtle ink-wash texture on skin, neat short black hair with side parting, root fixation coefficient 0.95, tip swing amplitude 2cm, color layering: main color #2D2926, secondary color #1A1A1A, shadow #000000, wind speed 0.2m/s, turbulence intensity 1%, faded dark long gown with realistic fabric folds, slight fabric texture visible in ink style, worn texture on the sleeves and collar, dimly lit traditional wooden teahouse interior, weathered wooden counter with an ink-stained ledger, cracked plaster walls with signs of dampness, dim morning light filtering through wooden window lattices, dust particles floating in the shafts of light, 王大伯-配角1 standing at the teahouse entrance holding a traditional long-stemmed pipe, 王大伯-配角1 wearing a rough-textured coarse cloth jacket, 王大伯-配角1 with a furrowed brow and an impatient, weary expression, hazy morning mist lingering near the floor, damp texture on the wooden surfaces, dim and cool light atmosphere, monochromatic black white and grey palette, faded sepia highlights, ink black tones for furniture, neutral grey for background shadows, soft directional morning light from the doorway, diffused light creating deep shadows in the room corners, low-key lighting to enhance the melancholic mood, type medium shot, lens 35mm, aperture f/4, depth_of_field moderate focus on the protagonist and landlord, flash none, grain fine paper texture grain, texture ink-wash brushstroke texture, protagonist centered slightly to the left, 王大伯-配角1 positioned on the right side of the frame near the door, the ledger on the counter serves as a foreground anchor, action constraints: quiet tension between the two characters, traditional chinese ink wash painting style, no text or symbols in image, no watermarks, no chinese characters, quiet desperation, melancholic resilience, the weight of fading memories, stagnant yet tense atmosphere, no text, no symbols, no garbled characters, no words",
+              "prompt_json": {
+                "camera": {
+                  "aperture": "f/4",
+                  "depth_of_field": "moderate focus on the protagonist and landlord",
+                  "flash": "none",
+                  "grain": "fine paper texture grain",
+                  "lens": "35mm",
+                  "texture": "ink-wash brushstroke texture",
+                  "type": "medium shot"
+                },
+                "clothing_system": [
+                  "faded dark long gown with realistic fabric folds",
+                  "slight fabric texture visible in ink style",
+                  "worn texture on the sleeves and collar"
+                ],
+                "color_restriction": [
+                  "monochromatic black white and grey palette",
+                  "faded sepia highlights",
+                  "ink black tones for furniture",
+                  "neutral grey for background shadows"
+                ],
+                "composition": [
+                  "protagonist centered slightly to the left",
+                  "王大伯-配角1 positioned on the right side of the frame near the door",
+                  "the ledger on the counter serves as a foreground anchor",
+                  "action constraints: quiet tension between the two characters"
+                ],
+                "environment": {
+                  "background": [
+                    "dimly lit traditional wooden teahouse interior",
+                    "weathered wooden counter with an ink-stained ledger",
+                    "cracked plaster walls with signs of dampness",
+                    "dim morning light filtering through wooden window lattices",
+                    "dust particles floating in the shafts of light"
+                  ],
+                  "characters": [
+                    "王大伯-配角1 standing at the teahouse entrance holding a traditional long-stemmed pipe",
+                    "王大伯-配角1 wearing a rough-textured coarse cloth jacket",
+                    "王大伯-配角1 with a furrowed brow and an impatient, weary expression"
+                  ],
+                  "effects": [
+                    "hazy morning mist lingering near the floor",
+                    "damp texture on the wooden surfaces",
+                    "dim and cool light atmosphere"
+                  ]
+                },
+                "face_system": [
+                  "8K detailed facial features capturing scholarly yet tired expression",
+                  "soft shadows emphasizing the brow lines of a headache",
+                  "gentle eyes looking directly at the landlord",
+                  "naturally muted lip color",
+                  "subtle ink-wash texture on skin"
+                ],
+                "hair_system": [
+                  "neat short black hair with side parting",
+                  "root fixation coefficient 0.95",
+                  "tip swing amplitude 2cm",
+                  "color layering: main color #2D2926, secondary color #1A1A1A, shadow #000000",
+                  "wind speed 0.2m/s",
+                  "turbulence intensity 1%"
+                ],
+                "label": "scene-teahouse-morning-confrontation",
+                "lighting": [
+                  "soft directional morning light from the doorway",
+                  "diffused light creating deep shadows in the room corners",
+                  "low-key lighting to enhance the melancholic mood"
+                ],
+                "mood": [
+                  "quiet desperation",
+                  "melancholic resilience",
+                  "the weight of fading memories",
+                  "stagnant yet tense atmosphere"
+                ],
+                "output_style": [
+                  "traditional chinese ink wash painting style",
+                  "no text or symbols in image",
+                  "no watermarks",
+                  "no chinese characters"
+                ],
+                "style": [
+                  "traditional-chinese-ink-wash-painting",
+                  "monochromatic-with-subtle-sepia",
+                  "wash-and-ink-techniques",
+                  "expressive-brushstrokes",
+                  "high-contrast-lighting"
+                ],
+                "subject": {
+                  "body_traits": [
+                    "young male protagonist Shen Qingqiu using Image 0",
+                    "slender build with bookish temperament",
+                    "gentle and weary eyes reflecting hidden exhaustion",
+                    "thin frame with a slight stoop of fatigue",
+                    "refined long fingers with ink stains"
+                  ],
+                  "outfit": [
+                    "faded dark-colored traditional Chinese long gown",
+                    "old-fashioned spectacles with wire frames",
+                    "simple worn-out cloth shoes"
+                  ],
+                  "pose": [
+                    "standing behind the wooden counter in the teahouse",
+                    "body facing 王大伯-配角1",
+                    "one hand adjusting wire-frame glasses",
+                    "posture conveying a mix of composure and inner stress"
+                  ]
+                },
+                "tags": [
+                  "republic-of-china-era",
+                  "melancholy",
+                  "realistic-narrative",
+                  "atmospheric",
+                  "southern-town-life"
+                ]
+              },
+              "scene_text_hash": "0859a52d43ef7244e470845a81bca78a",
+              "style": "default",
+              "url": "/image_cache/92e96a0bcce5e1b74e4f01fc5b36e8e0.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "start_ts": 1776653118.0763535,
+        "end_ts": 1776653194.1183803,
+        "provider_events": {
+          "event_count": 8,
+          "queue_wait_ms": {
+            "count": 8,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 5,
+            "min": 4675.0,
+            "max": 13908.0,
+            "mean": 9087.6,
+            "median": 10237.0,
+            "p95": 13360.2
+          },
+          "llm_success_count": 4,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "success",
+        "has_scene": true,
+        "has_image": true
+      },
+      "second_click": {
+        "http_status": 200,
+        "elapsed_s": 0.033,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "你正在执行任务：尝试以时事入书，结合民间传说吸引年轻茶客。",
+              "recap_text": "你选择了“尝试以时事入书，结合民间传说吸引年轻茶客。”。当前章节：chapter1。主线进展：你正在执行任务：尝试以时事入书，结合民间传说吸引年轻茶客。。最近剧情：你选择了：尝试以时事入书，结合民间传说吸引年轻茶客。。在你的努力下，你取得了一些进展。"
+            },
+            "deep_background_links": {},
+            "flow_update": {
+              "chapter_conflict_solved": false,
+              "characters": {},
+              "environment": {},
+              "quest_progress": "你正在执行任务：尝试以时事入书，结合民间传说吸引年轻茶客。"
+            },
+            "next_options": [
+              "继续前进",
+              "查看当前状态",
+              "返回上一步",
+              "探索周围环境"
+            ],
+            "scene": "你选择了：尝试以时事入书，结合民间传说吸引年轻茶客。。在你的努力下，你取得了一些进展。",
+            "sceneId": "1035694903635506608_-1613140496275668320"
+          },
+          "status": "success"
+        },
+        "start_ts": 1776653254.1376023,
+        "end_ts": 1776653254.1704786,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "status": "success",
+        "has_scene": true,
+        "has_image": false,
+        "selected_option_index": 0,
+        "selected_option_text": "尝试以时事入书，结合民间传说吸引年轻茶客。",
+        "input_scene_id": "3386619870795783100_-7973421644952956780",
+        "inferred_cache_result": "likely_hit",
+        "is_placeholder": true,
+        "used_updated_flow_state": true
+      }
+    },
+    {
+      "benchmark_id": "DNQBV1_010",
+      "theme_id": 8,
+      "theme": "古刹钟楼秘藏",
+      "read_wait_s": 60.0,
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 13.244,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角成功修复了钟楼的一处关键木构，并在一件被丢弃的旧物中找到了关于契约的第一条线索，赢得了部分老镇民的初步认可，暂时缓解了敌对氛围。",
+                  "main_conflict": "主角回到阔别已久的故乡，发现钟楼已被列入拆迁名单，而镇民们为了补偿款各怀鬼胎，甚至有人暗中阻挠修复工作。主角试图通过修复钟楼的窗棂来唤起人们对古建筑的敬畏，却遭到邻里冷眼，这种“外来者”的疏离感与对故乡变迁的无力感交织，构成了主角初期的心理困境。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角在一次深夜的钟楼探险中，通过对榫卯结构的精准判断，避开了人为设置的陷阱，并确认了契约的存放位置，同时也看清了那些阻挠者背后卑微的生存逻辑。",
+                  "main_conflict": "随着调查深入，主角发现契约的真实存在可能影响到镇上几位权势人物的利益，他们开始通过行政手段施压，要求主角停止修复。主角在“坚持真相”与“安稳生活”之间摇摆，且其“共鸣感知”能力因过度劳累而出现幻觉，导致他开始怀疑自己对家族历史的执念是否只是为了逃避现实的失败。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角放弃了无谓的对抗，选择将契约内容整理成册留存，并记录下钟楼最后的样子。钟楼最终被拆除，主角带着释然离开小镇，虽然没能保住建筑，但他完成了与自我的和解，收获了内心的平静。",
+                  "main_conflict": "主角最终拿到了契约，却发现它已因受潮严重损毁，无法作为法律证据阻止拆迁。此时，钟楼拆除工程已进入倒计时，主角必须在“孤注一掷地公开残缺契约”与“接受现实并为钟楼留下影像记录”之间做出选择，这不仅是关于建筑的去留，更是主角与过去彻底告别的仪式。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为写实主义叙事游戏，采用沉浸式第一人称视角，美术风格偏向清冷克制的胶片质感。游戏通过环境叙事与细腻的心理描写，构建出一种“旧物余温”的氛围，强调在琐碎日常中捕捉时间的流逝感与人性的微光，拒绝宏大叙事，专注于个体在时代洪流下的真实抉择。",
+              "main_quest": "主角受托回乡修复古刹钟楼的残损木构，实则为了寻找那份能证明家族土地合法性的契约，以阻止钟楼被拆除。任务分为三个阶段：首先是深入镇民生活，通过修复旧物获取信任，收集关于钟楼的口述历史；其次是破解钟楼内部复杂的榫卯结构，在物理层面寻找隐藏的暗格；最后是面对现实的博弈，在法律、经济补偿与情感归属之间做出艰难的抉择。挑战在于，主角不仅要对抗时间的侵蚀，还要面对镇民对拆迁补偿的渴望与对传统守护的矛盾心理，最终目标并非彻底保住钟楼，而是为这段历史留下一个体面的注脚。",
+              "protagonist_ability": "主角拥有一种名为“共鸣感知”的特质，源于其作为古籍修复师的职业敏感与对家族历史的深厚情感。通过触摸承载历史的旧物，主角能捕捉到物体残留的微弱情绪波动与碎片化记忆。这种能力并非超自然力量，而是基于深厚专业知识与专注力带来的深度共情。限制在于，这种感知极度消耗精力，且无法改变既定事实，只能帮助主角在纷乱的线索中拼凑出被掩盖的真相，且过度使用会导致严重的偏头痛与现实认知模糊。",
+              "world_basic_setting": "故事发生于现代中国西南的一座半封闭式古镇“云隐镇”。这里曾是茶马古道的重要节点，如今却因交通重心的转移而陷入缓慢的衰败。镇中心矗立着一座始建于明代的古刹，其钟楼内藏有一份关于家族迁徙与土地归属的古老契约，被当地人视为守护镇子最后的尊严。社会背景设定在数字化浪潮冲击传统小镇的转型期，年轻人纷纷外流，留守者在坚守传统与追求现代生活之间挣扎。文化上，这里保留着浓厚的宗族观念与祭祀习俗，但随着老一辈的凋零，这些仪式正逐渐沦为旅游开发的噱头。关键事件是镇政府计划拆除钟楼以扩建公路，这一举动触发了主角对于家族记忆的守护本能，也揭开了小镇在现代化进程中被遗忘的真实历史。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1776653254_0k6m44",
+            "image_style": {
+              "type": "ink_painting"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "青年",
+              "gender": "男性",
+              "name_en": "Lin Yuan",
+              "name_zh": "林远",
+              "signature_look_keywords": "黑色冲锋衣、黑框眼镜、指尖薄茧、眼神清澈、略显疲惫、背着工具包、沉默寡言、清瘦、常穿深色系衣物、习惯性摩挲手腕、书卷气、冷静。",
+              "work_en": "Echoes of Cloud Town",
+              "work_zh": "云隐余温"
+            },
+            "tone": "normal_ending",
+            "user_theme": "古刹钟楼秘藏"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "start_ts": 1776653254.190337,
+        "end_ts": 1776653267.4340248,
+        "provider_events": {
+          "event_count": 4,
+          "queue_wait_ms": {
+            "count": 4,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 1,
+            "min": 13218.0,
+            "max": 13218.0,
+            "mean": 13218.0,
+            "median": 13218.0,
+            "p95": 13218.0
+          },
+          "llm_success_count": 1,
+          "image_success_count": 0,
+          "request_thread_event_count": 2
+        },
+        "status": "success",
+        "game_id": "game_1776653254_0k6m44"
+      },
+      "first_click": {
+        "http_status": 200,
+        "elapsed_s": 0.023,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "",
+              "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：临安的清晨，湿漉漉的青石板路透着一股陈旧的霉味。我推开“半日闲”茶肆那扇吱呀作响的木门，指尖触碰到门框上斑驳的漆皮，细碎的木屑簌簌落下。屋内光线昏暗，空气中浮动着陈年茶叶与潮湿水汽混合的味道。我理了理身上那件洗得发白的深色马褂，习惯性地推了推鼻梁上的旧式眼镜，视线扫过空荡荡的茶桌。账本压在柜台一角，上面那行“本月租金缺口”的字迹被墨水洇开，显得格外刺眼。\n\n“沈先生，这租金的事儿，您看……”茶肆的老房东王大伯不知何时站在了门口，他手里拎着个旱烟袋，眉头紧锁，眼神里透着一股不耐烦与无奈。他身后，几个年轻的茶客正低声谈论着城南新开的洋行，言语间满是对我这旧式说书场子的不屑。我深吸一口气，喉咙里泛起一阵干涩的苦味，那种长久以来的偏头痛隐隐作祟。我看着他，语气尽量保持平和：“王大伯，再宽限几日，我正筹备着新段子，定能把客流引回来。”"
+            },
+            "deep_background_links": {},
+            "flow_update": {},
+            "next_options": [
+              "尝试以时事入书，结合民间传说吸引年轻茶客。",
+              "询问王大伯关于戏楼拆迁的内幕，试图寻找转机。"
+            ],
+            "plot_supporting_characters": [],
+            "scene": "临安的清晨，湿漉漉的青石板路透着一股陈旧的霉味。我推开“半日闲”茶肆那扇吱呀作响的木门，指尖触碰到门框上斑驳的漆皮，细碎的木屑簌簌落下。屋内光线昏暗，空气中浮动着陈年茶叶与潮湿水汽混合的味道。我理了理身上那件洗得发白的深色马褂，习惯性地推了推鼻梁上的旧式眼镜，视线扫过空荡荡的茶桌。账本压在柜台一角，上面那行“本月租金缺口”的字迹被墨水洇开，显得格外刺眼。\n\n“沈先生，这租金的事儿，您看……”茶肆的老房东王大伯不知何时站在了门口，他手里拎着个旱烟袋，眉头紧锁，眼神里透着一股不耐烦与无奈。他身后，几个年轻的茶客正低声谈论着城南新开的洋行，言语间满是对我这旧式说书场子的不屑。我深吸一口气，喉咙里泛起一阵干涩的苦味，那种长久以来的偏头痛隐隐作祟。我看着他，语气尽量保持平和：“王大伯，再宽限几日，我正筹备着新段子，定能把客流引回来。”",
+            "sceneId": "3386619870795783100_-7973421644952956780",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-teahouse-morning-confrontation, republic-of-china-era, melancholy, realistic-narrative, atmospheric, southern-town-life, traditional-chinese-ink-wash-painting, monochromatic-with-subtle-sepia, wash-and-ink-techniques, expressive-brushstrokes, high-contrast-lighting, young male protagonist Shen Qingqiu using Image 0, slender build with bookish temperament, gentle and weary eyes reflecting hidden exhaustion, thin frame with a slight stoop of fatigue, refined long fingers with ink stains, faded dark-colored traditional Chinese long gown, old-fashioned spectacles with wire frames, simple worn-out cloth shoes, standing behind the wooden counter in the teahouse, body facing 王大伯-配角1, one hand adjusting wire-frame glasses, posture conveying a mix of composure and inner stress, 8K detailed facial features capturing scholarly yet tired expression, soft shadows emphasizing the brow lines of a headache, gentle eyes looking directly at the landlord, naturally muted lip color, subtle ink-wash texture on skin, neat short black hair with side parting, root fixation coefficient 0.95, tip swing amplitude 2cm, color layering: main color #2D2926, secondary color #1A1A1A, shadow #000000, wind speed 0.2m/s, turbulence intensity 1%, faded dark long gown with realistic fabric folds, slight fabric texture visible in ink style, worn texture on the sleeves and collar, dimly lit traditional wooden teahouse interior, weathered wooden counter with an ink-stained ledger, cracked plaster walls with signs of dampness, dim morning light filtering through wooden window lattices, dust particles floating in the shafts of light, 王大伯-配角1 standing at the teahouse entrance holding a traditional long-stemmed pipe, 王大伯-配角1 wearing a rough-textured coarse cloth jacket, 王大伯-配角1 with a furrowed brow and an impatient, weary expression, hazy morning mist lingering near the floor, damp texture on the wooden surfaces, dim and cool light atmosphere, monochromatic black white and grey palette, faded sepia highlights, ink black tones for furniture, neutral grey for background shadows, soft directional morning light from the doorway, diffused light creating deep shadows in the room corners, low-key lighting to enhance the melancholic mood, type medium shot, lens 35mm, aperture f/4, depth_of_field moderate focus on the protagonist and landlord, flash none, grain fine paper texture grain, texture ink-wash brushstroke texture, protagonist centered slightly to the left, 王大伯-配角1 positioned on the right side of the frame near the door, the ledger on the counter serves as a foreground anchor, action constraints: quiet tension between the two characters, traditional chinese ink wash painting style, no text or symbols in image, no watermarks, no chinese characters, quiet desperation, melancholic resilience, the weight of fading memories, stagnant yet tense atmosphere, no text, no symbols, no garbled characters, no words",
+              "prompt_json": {
+                "camera": {
+                  "aperture": "f/4",
+                  "depth_of_field": "moderate focus on the protagonist and landlord",
+                  "flash": "none",
+                  "grain": "fine paper texture grain",
+                  "lens": "35mm",
+                  "texture": "ink-wash brushstroke texture",
+                  "type": "medium shot"
+                },
+                "clothing_system": [
+                  "faded dark long gown with realistic fabric folds",
+                  "slight fabric texture visible in ink style",
+                  "worn texture on the sleeves and collar"
+                ],
+                "color_restriction": [
+                  "monochromatic black white and grey palette",
+                  "faded sepia highlights",
+                  "ink black tones for furniture",
+                  "neutral grey for background shadows"
+                ],
+                "composition": [
+                  "protagonist centered slightly to the left",
+                  "王大伯-配角1 positioned on the right side of the frame near the door",
+                  "the ledger on the counter serves as a foreground anchor",
+                  "action constraints: quiet tension between the two characters"
+                ],
+                "environment": {
+                  "background": [
+                    "dimly lit traditional wooden teahouse interior",
+                    "weathered wooden counter with an ink-stained ledger",
+                    "cracked plaster walls with signs of dampness",
+                    "dim morning light filtering through wooden window lattices",
+                    "dust particles floating in the shafts of light"
+                  ],
+                  "characters": [
+                    "王大伯-配角1 standing at the teahouse entrance holding a traditional long-stemmed pipe",
+                    "王大伯-配角1 wearing a rough-textured coarse cloth jacket",
+                    "王大伯-配角1 with a furrowed brow and an impatient, weary expression"
+                  ],
+                  "effects": [
+                    "hazy morning mist lingering near the floor",
+                    "damp texture on the wooden surfaces",
+                    "dim and cool light atmosphere"
+                  ]
+                },
+                "face_system": [
+                  "8K detailed facial features capturing scholarly yet tired expression",
+                  "soft shadows emphasizing the brow lines of a headache",
+                  "gentle eyes looking directly at the landlord",
+                  "naturally muted lip color",
+                  "subtle ink-wash texture on skin"
+                ],
+                "hair_system": [
+                  "neat short black hair with side parting",
+                  "root fixation coefficient 0.95",
+                  "tip swing amplitude 2cm",
+                  "color layering: main color #2D2926, secondary color #1A1A1A, shadow #000000",
+                  "wind speed 0.2m/s",
+                  "turbulence intensity 1%"
+                ],
+                "label": "scene-teahouse-morning-confrontation",
+                "lighting": [
+                  "soft directional morning light from the doorway",
+                  "diffused light creating deep shadows in the room corners",
+                  "low-key lighting to enhance the melancholic mood"
+                ],
+                "mood": [
+                  "quiet desperation",
+                  "melancholic resilience",
+                  "the weight of fading memories",
+                  "stagnant yet tense atmosphere"
+                ],
+                "output_style": [
+                  "traditional chinese ink wash painting style",
+                  "no text or symbols in image",
+                  "no watermarks",
+                  "no chinese characters"
+                ],
+                "style": [
+                  "traditional-chinese-ink-wash-painting",
+                  "monochromatic-with-subtle-sepia",
+                  "wash-and-ink-techniques",
+                  "expressive-brushstrokes",
+                  "high-contrast-lighting"
+                ],
+                "subject": {
+                  "body_traits": [
+                    "young male protagonist Shen Qingqiu using Image 0",
+                    "slender build with bookish temperament",
+                    "gentle and weary eyes reflecting hidden exhaustion",
+                    "thin frame with a slight stoop of fatigue",
+                    "refined long fingers with ink stains"
+                  ],
+                  "outfit": [
+                    "faded dark-colored traditional Chinese long gown",
+                    "old-fashioned spectacles with wire frames",
+                    "simple worn-out cloth shoes"
+                  ],
+                  "pose": [
+                    "standing behind the wooden counter in the teahouse",
+                    "body facing 王大伯-配角1",
+                    "one hand adjusting wire-frame glasses",
+                    "posture conveying a mix of composure and inner stress"
+                  ]
+                },
+                "tags": [
+                  "republic-of-china-era",
+                  "melancholy",
+                  "realistic-narrative",
+                  "atmospheric",
+                  "southern-town-life"
+                ]
+              },
+              "scene_text_hash": "0859a52d43ef7244e470845a81bca78a",
+              "style": "default",
+              "url": "/image_cache/92e96a0bcce5e1b74e4f01fc5b36e8e0.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "start_ts": 1776653267.4528239,
+        "end_ts": 1776653267.476015,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "success",
+        "has_scene": true,
+        "has_image": true
+      },
+      "second_click": {
+        "http_status": 200,
+        "elapsed_s": 0.009,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "你正在执行任务：尝试以时事入书，结合民间传说吸引年轻茶客。",
+              "recap_text": "你选择了“尝试以时事入书，结合民间传说吸引年轻茶客。”。当前章节：chapter1。主线进展：你正在执行任务：尝试以时事入书，结合民间传说吸引年轻茶客。。最近剧情：你选择了：尝试以时事入书，结合民间传说吸引年轻茶客。。在你的努力下，你取得了一些进展。"
+            },
+            "deep_background_links": {},
+            "flow_update": {
+              "chapter_conflict_solved": false,
+              "characters": {},
+              "environment": {},
+              "quest_progress": "你正在执行任务：尝试以时事入书，结合民间传说吸引年轻茶客。"
+            },
+            "next_options": [
+              "继续前进",
+              "查看当前状态",
+              "返回上一步",
+              "探索周围环境"
+            ],
+            "scene": "你选择了：尝试以时事入书，结合民间传说吸引年轻茶客。。在你的努力下，你取得了一些进展。",
+            "sceneId": "8948855966776308603_-1613140496275668320"
+          },
+          "status": "success"
+        },
+        "start_ts": 1776653327.4946065,
+        "end_ts": 1776653327.5031204,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "status": "success",
+        "has_scene": true,
+        "has_image": false,
+        "selected_option_index": 0,
+        "selected_option_text": "尝试以时事入书，结合民间传说吸引年轻茶客。",
+        "input_scene_id": "3386619870795783100_-7973421644952956780",
+        "inferred_cache_result": "likely_hit",
+        "is_placeholder": true,
+        "used_updated_flow_state": true
+      }
+    },
+    {
+      "benchmark_id": "DNQBV1_011",
+      "theme_id": 21,
+      "theme": "书院禁书风波",
+      "read_wait_s": 60.0,
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 11.547,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过巧妙的伪装将禁书藏入废弃的纸堆中，并成功通过了教谕的初步盘查，但代价是失去了原本可以晋升为助教的机会，且被同窗排挤。",
+                  "main_conflict": "书院突降搜查令，教谕要求所有学子自查书架，主角发现自己私藏的一本禁书正处于被发现的边缘。此时，主角面临着举报同窗以求自保，还是承担风险销毁证据的道德困境，同时还要应对来自同窗猜忌的社交压力。 - 矛盾结束条件：主角通过巧妙的伪装将禁书藏入废弃的纸堆中，并成功通过了教谕的初步盘查，但代价是失去了原本可以晋升为助教的机会，且被同窗排挤。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角利用深夜时间完成了禁书的修补，但因行踪可疑被教谕记过，导致其在书院的声誉受损，彻底失去了参与年度大考的资格。",
+                  "main_conflict": "巡查官进驻书院，开始对藏书阁进行地毯式搜查。主角发现禁书的纸张因受潮即将损毁，必须在严密的监控下寻找修复材料，同时还要面对家中寄来催促其考取功名的家书，内心在理想与现实责任间剧烈摇摆。 - 矛盾结束条件：主角利用深夜时间完成了禁书的修补，但因行踪可疑被教谕记过，导致其在书院的声誉受损，彻底失去了参与年度大考的资格。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角成功将禁书送出书院，但被当场抓获，最终被逐出书院。结局中，主角背着行囊离开小镇，虽然前程尽毁，但他在路边看到有人传阅那本禁书，内心感受到一种苦涩而踏实的释然。 【主角规范信息】 主角姓名(中)：沈清远 主角姓名(英)：Shen Qingyuan 性别：男性 年龄感：青年 所属作品(中)：书院残卷 所属作品(英)：The Academy Fragments 标志性外观关键词：清瘦、布衣、眼神沉静、手指布满墨迹、神情忧郁、书卷气、略显疲惫、发髻松散、朴素、坚毅 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决",
+                  "main_conflict": "搜查进入尾声，书院决定焚毁所有未登记的旧书。主角必须在最后时刻将修复好的禁书运出书院，但出口已被重兵把守，主角必须在“彻底销毁禁书以保全自身”与“冒死送出禁书但身败名裂”之间做出最终抉择。 - 矛盾结束条件：主角成功将禁书送出书院，但被当场抓获，最终被逐出书院。结局中，主角背着行囊离开小镇，虽然前程尽毁，但他在路边看到有人传阅那本禁书，内心感受到一种苦涩而踏实的释然。 【主角规范信息】 主角姓名(中)：沈清远 主角姓名(英)：Shen Qingyuan 性别：男性 年龄感：青年 所属作品(中)：书院残卷 所属作品(英)：The Academy Fragments 标志性外观关键词：清瘦、布衣、眼神沉静、手指布满墨迹、神情忧郁、书卷气、略显疲惫、发髻松散、朴素、坚毅 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为写实主义叙事游戏，采用低饱和度的视觉色调与沉浸式环境音效，强调对琐碎日常的细腻刻画。游戏节奏舒缓，通过对话选择与物品交互推进剧情，旨在构建一种“在尘埃中寻找微光”的真实生活质感，拒绝戏剧化的反转，专注于人物在时代洪流下的选择与妥协。",
+              "main_quest": "主角作为书院的一名普通抄书生，目标是在“禁书搜查令”的重压下，保护书院藏书阁中几部珍贵的孤本不被焚毁。玩家需在日常的抄书劳作中掩护禁书，通过与书院同僚、严苛教谕以及巡查官的周旋，逐步将禁书转移至安全地带。挑战在于，主角必须在“保全自己前程”与“守护思想火种”之间做出平衡。最终任务并非彻底推翻禁令，而是确保其中一部核心禁书得以流传，同时主角不得不接受自己因私藏禁书而被逐出书院、终身不得参加科举的现实，达成一种在失去社会地位与获得精神自由之间的平衡。",
+              "protagonist_ability": "主角拥有一种名为“残卷复刻”的特殊记忆力，源于其自幼临摹古籍练就的过目不忘之能。在游戏中，主角可通过观察残损的字迹与破碎的纸张，在脑海中重构禁书的逻辑脉络。此能力限制在于，每次使用都会消耗极大的精神力，且重构的内容往往带有主观偏差，无法还原禁书全貌，仅能获取片段信息，且过度使用会导致视力受损，象征着追求真相所付出的必然代价。",
+              "world_basic_setting": "故事背景设定在明代中叶的一座偏远书院，彼时朝廷推行严苛的“禁书令”，旨在通过思想管控巩固皇权。书院坐落于烟雨朦胧的江南小镇，这里既是学子求取功名的阶梯，也是各方势力博弈的暗礁。社会风气保守，士大夫阶层对禁书避之不及，而民间却流传着对自由思想的渴望。关键事件“禁书搜查令”突降，书院内人心惶惶，往日里清幽的藏书阁成了是非之地。这里没有宏大的救世叙事，只有在礼教束缚与个人求知欲之间挣扎的普通人。地理上，书院依山傍水，封闭的环境加剧了压抑感；文化上，儒家正统与异端思想的碰撞，构成了每个人物内心深处无法调和的矛盾。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "environment": {}
+            },
+            "game_id": "game_1776653327_kcklde",
+            "image_style": {
+              "type": "ink_painting"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "gender": "男性"
+            },
+            "tone": "normal_ending",
+            "user_theme": "书院禁书风波"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "start_ts": 1776653327.5222344,
+        "end_ts": 1776653339.0697174,
+        "provider_events": {
+          "event_count": 4,
+          "queue_wait_ms": {
+            "count": 4,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 1,
+            "min": 11527.0,
+            "max": 11527.0,
+            "mean": 11527.0,
+            "median": 11527.0,
+            "p95": 11527.0
+          },
+          "llm_success_count": 1,
+          "image_success_count": 0,
+          "request_thread_event_count": 2
+        },
+        "status": "success",
+        "game_id": "game_1776653327_kcklde"
+      },
+      "first_click": {
+        "http_status": 200,
+        "elapsed_s": 0.028,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "",
+              "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：临安的清晨，湿漉漉的青石板路透着一股陈旧的霉味。我推开“半日闲”茶肆那扇吱呀作响的木门，指尖触碰到门框上斑驳的漆皮，细碎的木屑簌簌落下。屋内光线昏暗，空气中浮动着陈年茶叶与潮湿水汽混合的味道。我理了理身上那件洗得发白的深色马褂，习惯性地推了推鼻梁上的旧式眼镜，视线扫过空荡荡的茶桌。账本压在柜台一角，上面那行“本月租金缺口”的字迹被墨水洇开，显得格外刺眼。\n\n“沈先生，这租金的事儿，您看……”茶肆的老房东王大伯不知何时站在了门口，他手里拎着个旱烟袋，眉头紧锁，眼神里透着一股不耐烦与无奈。他身后，几个年轻的茶客正低声谈论着城南新开的洋行，言语间满是对我这旧式说书场子的不屑。我深吸一口气，喉咙里泛起一阵干涩的苦味，那种长久以来的偏头痛隐隐作祟。我看着他，语气尽量保持平和：“王大伯，再宽限几日，我正筹备着新段子，定能把客流引回来。”"
+            },
+            "deep_background_links": {},
+            "flow_update": {},
+            "next_options": [
+              "尝试以时事入书，结合民间传说吸引年轻茶客。",
+              "询问王大伯关于戏楼拆迁的内幕，试图寻找转机。"
+            ],
+            "plot_supporting_characters": [],
+            "scene": "临安的清晨，湿漉漉的青石板路透着一股陈旧的霉味。我推开“半日闲”茶肆那扇吱呀作响的木门，指尖触碰到门框上斑驳的漆皮，细碎的木屑簌簌落下。屋内光线昏暗，空气中浮动着陈年茶叶与潮湿水汽混合的味道。我理了理身上那件洗得发白的深色马褂，习惯性地推了推鼻梁上的旧式眼镜，视线扫过空荡荡的茶桌。账本压在柜台一角，上面那行“本月租金缺口”的字迹被墨水洇开，显得格外刺眼。\n\n“沈先生，这租金的事儿，您看……”茶肆的老房东王大伯不知何时站在了门口，他手里拎着个旱烟袋，眉头紧锁，眼神里透着一股不耐烦与无奈。他身后，几个年轻的茶客正低声谈论着城南新开的洋行，言语间满是对我这旧式说书场子的不屑。我深吸一口气，喉咙里泛起一阵干涩的苦味，那种长久以来的偏头痛隐隐作祟。我看着他，语气尽量保持平和：“王大伯，再宽限几日，我正筹备着新段子，定能把客流引回来。”",
+            "sceneId": "3386619870795783100_-7973421644952956780",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-teahouse-morning-confrontation, republic-of-china-era, melancholy, realistic-narrative, atmospheric, southern-town-life, traditional-chinese-ink-wash-painting, monochromatic-with-subtle-sepia, wash-and-ink-techniques, expressive-brushstrokes, high-contrast-lighting, young male protagonist Shen Qingqiu using Image 0, slender build with bookish temperament, gentle and weary eyes reflecting hidden exhaustion, thin frame with a slight stoop of fatigue, refined long fingers with ink stains, faded dark-colored traditional Chinese long gown, old-fashioned spectacles with wire frames, simple worn-out cloth shoes, standing behind the wooden counter in the teahouse, body facing 王大伯-配角1, one hand adjusting wire-frame glasses, posture conveying a mix of composure and inner stress, 8K detailed facial features capturing scholarly yet tired expression, soft shadows emphasizing the brow lines of a headache, gentle eyes looking directly at the landlord, naturally muted lip color, subtle ink-wash texture on skin, neat short black hair with side parting, root fixation coefficient 0.95, tip swing amplitude 2cm, color layering: main color #2D2926, secondary color #1A1A1A, shadow #000000, wind speed 0.2m/s, turbulence intensity 1%, faded dark long gown with realistic fabric folds, slight fabric texture visible in ink style, worn texture on the sleeves and collar, dimly lit traditional wooden teahouse interior, weathered wooden counter with an ink-stained ledger, cracked plaster walls with signs of dampness, dim morning light filtering through wooden window lattices, dust particles floating in the shafts of light, 王大伯-配角1 standing at the teahouse entrance holding a traditional long-stemmed pipe, 王大伯-配角1 wearing a rough-textured coarse cloth jacket, 王大伯-配角1 with a furrowed brow and an impatient, weary expression, hazy morning mist lingering near the floor, damp texture on the wooden surfaces, dim and cool light atmosphere, monochromatic black white and grey palette, faded sepia highlights, ink black tones for furniture, neutral grey for background shadows, soft directional morning light from the doorway, diffused light creating deep shadows in the room corners, low-key lighting to enhance the melancholic mood, type medium shot, lens 35mm, aperture f/4, depth_of_field moderate focus on the protagonist and landlord, flash none, grain fine paper texture grain, texture ink-wash brushstroke texture, protagonist centered slightly to the left, 王大伯-配角1 positioned on the right side of the frame near the door, the ledger on the counter serves as a foreground anchor, action constraints: quiet tension between the two characters, traditional chinese ink wash painting style, no text or symbols in image, no watermarks, no chinese characters, quiet desperation, melancholic resilience, the weight of fading memories, stagnant yet tense atmosphere, no text, no symbols, no garbled characters, no words",
+              "prompt_json": {
+                "camera": {
+                  "aperture": "f/4",
+                  "depth_of_field": "moderate focus on the protagonist and landlord",
+                  "flash": "none",
+                  "grain": "fine paper texture grain",
+                  "lens": "35mm",
+                  "texture": "ink-wash brushstroke texture",
+                  "type": "medium shot"
+                },
+                "clothing_system": [
+                  "faded dark long gown with realistic fabric folds",
+                  "slight fabric texture visible in ink style",
+                  "worn texture on the sleeves and collar"
+                ],
+                "color_restriction": [
+                  "monochromatic black white and grey palette",
+                  "faded sepia highlights",
+                  "ink black tones for furniture",
+                  "neutral grey for background shadows"
+                ],
+                "composition": [
+                  "protagonist centered slightly to the left",
+                  "王大伯-配角1 positioned on the right side of the frame near the door",
+                  "the ledger on the counter serves as a foreground anchor",
+                  "action constraints: quiet tension between the two characters"
+                ],
+                "environment": {
+                  "background": [
+                    "dimly lit traditional wooden teahouse interior",
+                    "weathered wooden counter with an ink-stained ledger",
+                    "cracked plaster walls with signs of dampness",
+                    "dim morning light filtering through wooden window lattices",
+                    "dust particles floating in the shafts of light"
+                  ],
+                  "characters": [
+                    "王大伯-配角1 standing at the teahouse entrance holding a traditional long-stemmed pipe",
+                    "王大伯-配角1 wearing a rough-textured coarse cloth jacket",
+                    "王大伯-配角1 with a furrowed brow and an impatient, weary expression"
+                  ],
+                  "effects": [
+                    "hazy morning mist lingering near the floor",
+                    "damp texture on the wooden surfaces",
+                    "dim and cool light atmosphere"
+                  ]
+                },
+                "face_system": [
+                  "8K detailed facial features capturing scholarly yet tired expression",
+                  "soft shadows emphasizing the brow lines of a headache",
+                  "gentle eyes looking directly at the landlord",
+                  "naturally muted lip color",
+                  "subtle ink-wash texture on skin"
+                ],
+                "hair_system": [
+                  "neat short black hair with side parting",
+                  "root fixation coefficient 0.95",
+                  "tip swing amplitude 2cm",
+                  "color layering: main color #2D2926, secondary color #1A1A1A, shadow #000000",
+                  "wind speed 0.2m/s",
+                  "turbulence intensity 1%"
+                ],
+                "label": "scene-teahouse-morning-confrontation",
+                "lighting": [
+                  "soft directional morning light from the doorway",
+                  "diffused light creating deep shadows in the room corners",
+                  "low-key lighting to enhance the melancholic mood"
+                ],
+                "mood": [
+                  "quiet desperation",
+                  "melancholic resilience",
+                  "the weight of fading memories",
+                  "stagnant yet tense atmosphere"
+                ],
+                "output_style": [
+                  "traditional chinese ink wash painting style",
+                  "no text or symbols in image",
+                  "no watermarks",
+                  "no chinese characters"
+                ],
+                "style": [
+                  "traditional-chinese-ink-wash-painting",
+                  "monochromatic-with-subtle-sepia",
+                  "wash-and-ink-techniques",
+                  "expressive-brushstrokes",
+                  "high-contrast-lighting"
+                ],
+                "subject": {
+                  "body_traits": [
+                    "young male protagonist Shen Qingqiu using Image 0",
+                    "slender build with bookish temperament",
+                    "gentle and weary eyes reflecting hidden exhaustion",
+                    "thin frame with a slight stoop of fatigue",
+                    "refined long fingers with ink stains"
+                  ],
+                  "outfit": [
+                    "faded dark-colored traditional Chinese long gown",
+                    "old-fashioned spectacles with wire frames",
+                    "simple worn-out cloth shoes"
+                  ],
+                  "pose": [
+                    "standing behind the wooden counter in the teahouse",
+                    "body facing 王大伯-配角1",
+                    "one hand adjusting wire-frame glasses",
+                    "posture conveying a mix of composure and inner stress"
+                  ]
+                },
+                "tags": [
+                  "republic-of-china-era",
+                  "melancholy",
+                  "realistic-narrative",
+                  "atmospheric",
+                  "southern-town-life"
+                ]
+              },
+              "scene_text_hash": "0859a52d43ef7244e470845a81bca78a",
+              "style": "default",
+              "url": "/image_cache/92e96a0bcce5e1b74e4f01fc5b36e8e0.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "start_ts": 1776653339.0898128,
+        "end_ts": 1776653339.1173635,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "success",
+        "has_scene": true,
+        "has_image": true
+      },
+      "second_click": {
+        "http_status": 200,
+        "elapsed_s": 0.009,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "你正在执行任务：尝试以时事入书，结合民间传说吸引年轻茶客。",
+              "recap_text": "你选择了“尝试以时事入书，结合民间传说吸引年轻茶客。”。当前章节：chapter1。主线进展：你正在执行任务：尝试以时事入书，结合民间传说吸引年轻茶客。。最近剧情：你选择了：尝试以时事入书，结合民间传说吸引年轻茶客。。在你的努力下，你取得了一些进展。"
+            },
+            "deep_background_links": {},
+            "flow_update": {
+              "chapter_conflict_solved": false,
+              "characters": {},
+              "environment": {},
+              "quest_progress": "你正在执行任务：尝试以时事入书，结合民间传说吸引年轻茶客。"
+            },
+            "next_options": [
+              "继续前进",
+              "查看当前状态",
+              "返回上一步",
+              "探索周围环境"
+            ],
+            "scene": "你选择了：尝试以时事入书，结合民间传说吸引年轻茶客。。在你的努力下，你取得了一些进展。",
+            "sceneId": "-2132218620638965222_-1613140496275668320"
+          },
+          "status": "success"
+        },
+        "start_ts": 1776653399.1354082,
+        "end_ts": 1776653399.144321,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "status": "success",
+        "has_scene": true,
+        "has_image": false,
+        "selected_option_index": 0,
+        "selected_option_text": "尝试以时事入书，结合民间传说吸引年轻茶客。",
+        "input_scene_id": "3386619870795783100_-7973421644952956780",
+        "inferred_cache_result": "likely_hit",
+        "is_placeholder": true,
+        "used_updated_flow_state": true
+      }
+    },
+    {
+      "benchmark_id": "DNQBV1_012",
+      "theme_id": 4,
+      "theme": "深海信标失联",
+      "read_wait_s": 60.0,
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 9.01,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角成功修复了初步的通讯链路，虽然潜水艇外壳受损导致后续航程受限，但获得了第一笔紧急报酬，暂时缓解了经济危机，同时也确认了信标失联的真实原因。",
+                  "main_conflict": "主角接到强制派遣令，必须在台风过境前抵达深海作业区。此时主角的潜水艇“海燕号”因经费削减，导航系统存在严重偏差，且主角正面临家中医疗账单逾期的巨大经济压力。他必须在恶劣天气与设备失灵的双重威胁下，完成第一次深潜作业，这不仅是技术的考验，更是对生存意志的磨损。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "主角违抗了部分指令，通过高风险的手动操作暂时稳定了信标，但因违规操作被总部记录在案，失去了晋升机会，且身体因神经负荷过重留下了永久性的耳鸣后遗症。",
+                  "main_conflict": "深入深海后，主角发现“灯塔-07”的失联并非单纯的设备故障，而是因为地壳变动导致信标结构严重扭曲。此时总部下达了“放弃修复，直接回收核心部件”的冷酷指令，这意味着信标将彻底报废。主角面临职业道德与服从命令的冲突，他试图在有限时间内完成修复，却发现身体的“深潜共鸣”能力因过度使用开始出现幻听。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角最终选择了折中方案，丢弃了部分非关键数据，保全了核心信标记录并成功获救。他失去了高薪职位，但保住了性命与尊严，虽然生活依然拮据，但面对未来，他获得了一种与不完美现实和解的平静。",
+                  "main_conflict": "返航途中，主角遭遇了深海突发地质灾害，潜水艇动力系统几近瘫痪。他必须在氧气耗尽前做出最终选择：是抛弃采集到的珍贵地质数据以减轻重量逃生，还是带着数据在极度危险的情况下缓慢上浮。这不仅是生死抉择，更是他对自己多年职业生涯价值的最后审视。"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为写实主义深海科幻题材，采用冷峻克制的叙事基调。画面呈现工业时代的粗粝质感，强调深海高压环境下的幽闭感与孤独感。叙事侧重于职场压力、技术伦理与个体在庞大体制下的微小挣扎，通过对深海作业细节的极致还原，营造出一种沉浸式的、带有生活颗粒感的现实主义氛围。",
+              "main_quest": "主角受命前往失联的“灯塔-07”信标进行强制重启。目标并非揭开什么惊天阴谋，而是为了保住部门的绩效考核，从而换取给家中患病亲人支付高昂医疗费的资格。任务分为三个阶段：首先是穿越复杂的深海洋流区，在设备故障频发的情况下抵达目标点；其次是深入信标内部，在有限的氧气与电力限制下，通过手动修复核心逻辑板；最后是面对上层下达的“弃置指令”与个人职业良知的冲突，决定是否冒着被解雇的风险将信标数据完整备份并带回。挑战不仅来自深海的物理压力，更来自主角在“完成任务换取报酬”与“坚持职业操守”之间的艰难抉择，最终目标是完成修复，但代价是主角不得不接受职业生涯的终结或身体的永久性损伤。",
+              "protagonist_ability": "主角拥有一套名为“深潜共鸣”的神经接口技术，源于早期的深海作业员训练。使用时，主角能通过神经连接直接感知信标的电磁脉冲反馈，从而精准定位故障点。限制在于，该技术对神经系统有不可逆的损耗，长期使用会导致感官迟钝与严重的耳鸣。这并非超能力，而是一种以透支身体为代价的职业技能，是主角在行业内立足的唯一筹码，也是他逐渐失去正常生活感知力的根源。",
+              "world_basic_setting": "故事发生于近未来的近海资源开发时代，人类为了缓解陆地能源枯竭，在深海建立了名为“灯塔”的自动化能源采集网络。主角所在的“深海维护局”是负责维护这些信标的边缘部门。社会阶层固化，深海作业被视为高薪但高危的“流放式”工作。关键事件“深渊静默”发生后，全球深海信标网络出现大规模间歇性失联，并非外星入侵，而是由于深海地壳变动导致的电磁干扰与设备老化叠加。政府为了维持股价与社会稳定，要求维护员在极度压缩的预算与老旧设备下进行“低成本修复”。深海不仅是能源产地，更是被遗忘的工业废墟，这里没有英雄史诗，只有为了生计在深海与陆地之间往返的普通人，他们面对的是永恒的黑暗、高昂的维护成本以及被时代抛弃的无力感。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "current_chapter": "chapter1",
+              "environment": {}
+            },
+            "game_id": "game_1776653399_fi7r1c",
+            "image_style": {
+              "type": "watercolor"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "age_range": "中年",
+              "gender": "男性",
+              "name_en": "Lin Shen",
+              "name_zh": "林深",
+              "signature_look_keywords": "疲惫的眼神、胡茬、深蓝色工作服、手腕处的神经接口痕迹、消瘦、沉默寡言、总是带着耳塞、粗糙的双手、略显佝偻的背影、坚毅的嘴角、常年处于低光环境下的苍白肤色、旧式潜水表",
+              "work_en": "Echoes of the Abyss",
+              "work_zh": "深渊回响"
+            },
+            "tone": "normal_ending",
+            "user_theme": "深海信标失联"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "start_ts": 1776653399.1637084,
+        "end_ts": 1776653408.1736908,
+        "provider_events": {
+          "event_count": 4,
+          "queue_wait_ms": {
+            "count": 4,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 1,
+            "min": 8987.0,
+            "max": 8987.0,
+            "mean": 8987.0,
+            "median": 8987.0,
+            "p95": 8987.0
+          },
+          "llm_success_count": 1,
+          "image_success_count": 0,
+          "request_thread_event_count": 2
+        },
+        "status": "success",
+        "game_id": "game_1776653399_fi7r1c"
+      },
+      "first_click": {
+        "http_status": 200,
+        "elapsed_s": 0.006,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "",
+              "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：客运站的空气里弥漫着一股陈旧的柴油味，我背着沉重的工具包，习惯性地摩挲着手腕，黑框眼镜后的视线穿过灰蒙蒙的玻璃窗，落在了云隐镇那座标志性的钟楼轮廓上。它像是一根被时代遗忘的残木，在夕阳的余晖中显得格外萧瑟。我推开车站锈迹斑斑的铁门，一阵冷风夹杂着潮湿的泥土气息扑面而来，让我忍不住紧了紧身上的黑色冲锋衣。\n\n“小伙子，你是回乡的，还是来写生的？”一个声音突兀地响起，卖茶叶蛋的老伯正用那双布满老茧的手拨弄着锅里的热气，眼神浑浊却透着精明。我停下脚步，看着他那张写满岁月痕迹的脸，心中那股熟悉的疏离感再次升起。我没有直接回答，只是指了指远处钟楼的方向，低声问道：“那座钟楼，还没拆吗？”老伯冷哼一声，用铁勺敲了敲锅沿，发出刺耳的响声：“拆？上面贴了封条，镇里为了那点补偿款，这几天吵得不可开交。你若是为了那堆烂木头回来的，劝你趁早死心。”我沉默地看着他，指尖无意识地摩挲着工具包的边缘，那种作为古籍修复师的职业敏感，让我隐约察觉到空气中某种不安的震动。"
+            },
+            "deep_background_links": {},
+            "flow_update": {},
+            "next_options": [
+              "向老伯打听关于钟楼契约的传闻。",
+              "径直前往钟楼，查看木构损毁情况。"
+            ],
+            "plot_supporting_characters": [],
+            "scene": "客运站的空气里弥漫着一股陈旧的柴油味，我背着沉重的工具包，习惯性地摩挲着手腕，黑框眼镜后的视线穿过灰蒙蒙的玻璃窗，落在了云隐镇那座标志性的钟楼轮廓上。它像是一根被时代遗忘的残木，在夕阳的余晖中显得格外萧瑟。我推开车站锈迹斑斑的铁门，一阵冷风夹杂着潮湿的泥土气息扑面而来，让我忍不住紧了紧身上的黑色冲锋衣。\n\n“小伙子，你是回乡的，还是来写生的？”一个声音突兀地响起，卖茶叶蛋的老伯正用那双布满老茧的手拨弄着锅里的热气，眼神浑浊却透着精明。我停下脚步，看着他那张写满岁月痕迹的脸，心中那股熟悉的疏离感再次升起。我没有直接回答，只是指了指远处钟楼的方向，低声问道：“那座钟楼，还没拆吗？”老伯冷哼一声，用铁勺敲了敲锅沿，发出刺耳的响声：“拆？上面贴了封条，镇里为了那点补偿款，这几天吵得不可开交。你若是为了那堆烂木头回来的，劝你趁早死心。”我沉默地看着他，指尖无意识地摩挲着工具包的边缘，那种作为古籍修复师的职业敏感，让我隐约察觉到空气中某种不安的震动。",
+            "sceneId": "7424454144112123805_-7191388052083786875",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-arrival-yunyin-town-bus-station, realism, melancholy, cinematic-film-texture, traditional-chinese-ink-wash, nostalgic, traditional chinese ink wash painting style, monochromatic black and white ink tones, subtle grey gradients, expressive brushstrokes, film grain texture, Lin Yuan-Image 0, young male protagonist with a slender and lean build, calm and clear eyes behind black-rimmed glasses, expression showing deep fatigue and quiet contemplation, fingertips showing subtle calluses from specialized craft, standing with a reserved and scholarly posture, black windbreaker, functional and minimalist, carrying a worn tool bag across his shoulder, dark-toned clothing reflecting a somber personality, Lin Yuan-Image 0 standing in the center-left, body slightly turned toward the right, right hand habitually rubbing his wrist, gaze fixed on the distant silhouette of the bell tower, facing toward 老伯-配角1, maintaining a polite but distant stance, 8K detailed facial features, youthful yet weary countenance, clear eyes behind black-rimmed glasses, reflecting the dim light, lip color naturally muted, soft shadows emphasizing the structure of the face, short, neat black hair, root fixation coefficient 0.8, tip swing amplitude 5cm, color layering: main color #000000, secondary color #333333, shadow #1A1A1A, wind speed 1.2m/s, turbulence intensity 5%, natural messy texture consistent with travel, black windbreaker with slight fabric wrinkles, straps of the heavy tool bag resting on shoulder, subtle fabric flutter from the cold wind, dilapidated bus station with rusted iron gates, distant view of a Ming dynasty bell tower against a hazy sunset sky, steaming tea egg pot with swirling vapor on the right, misty, damp atmosphere of a decaying ancient town, 老伯-配角1, an elderly man with a weathered face and deep wrinkles, standing on the right side behind a tea egg stall, rising steam from the tea egg pot, cold wind blowing through the station, dull sunset light casting long, mournful shadows, monochromatic palette, shades of black, white, and charcoal gray, sepia undertones for aged atmosphere, dim, diffuse late afternoon light, soft light filtering through dusty windows, low-key lighting to emphasize the desolate mood, type first-person perspective, lens 35mm, aperture f/4, depth_of_field medium depth of field, keeping both protagonist and the elderly man in focus, flash none, grain heavy film grain, vintage aesthetic, texture rice paper texture with ink wash strokes, Lin Yuan-Image 0 positioned at the left third of the frame, 老伯-配角1 positioned at the right third of the frame, the bell tower visible in the background center through the window, action constraints: Lin Yuan is looking at the tower while interacting with the elderly man, traditional ink wash painting aesthetic, no text or symbols in image, no watermarks, melancholy, sense of time passing, quiet detachment, nostalgic decay, oppressive silence, no text, no symbols, no garbled characters, no words",
+              "prompt_json": {
+                "camera": {
+                  "aperture": "f/4",
+                  "depth_of_field": "medium depth of field, keeping both protagonist and the elderly man in focus",
+                  "flash": "none",
+                  "grain": "heavy film grain, vintage aesthetic",
+                  "lens": "35mm",
+                  "texture": "rice paper texture with ink wash strokes",
+                  "type": "first-person perspective"
+                },
+                "clothing_system": [
+                  "black windbreaker with slight fabric wrinkles",
+                  "straps of the heavy tool bag resting on shoulder",
+                  "subtle fabric flutter from the cold wind"
+                ],
+                "color_restriction": [
+                  "monochromatic palette",
+                  "shades of black, white, and charcoal gray",
+                  "sepia undertones for aged atmosphere"
+                ],
+                "composition": [
+                  "Lin Yuan-Image 0 positioned at the left third of the frame",
+                  "老伯-配角1 positioned at the right third of the frame",
+                  "the bell tower visible in the background center through the window",
+                  "action constraints: Lin Yuan is looking at the tower while interacting with the elderly man"
+                ],
+                "environment": {
+                  "background": [
+                    "dilapidated bus station with rusted iron gates",
+                    "distant view of a Ming dynasty bell tower against a hazy sunset sky",
+                    "steaming tea egg pot with swirling vapor on the right",
+                    "misty, damp atmosphere of a decaying ancient town"
+                  ],
+                  "characters": [
+                    "老伯-配角1, an elderly man with a weathered face and deep wrinkles, standing on the right side behind a tea egg stall"
+                  ],
+                  "effects": [
+                    "rising steam from the tea egg pot",
+                    "cold wind blowing through the station",
+                    "dull sunset light casting long, mournful shadows"
+                  ]
+                },
+                "face_system": [
+                  "8K detailed facial features",
+                  "youthful yet weary countenance",
+                  "clear eyes behind black-rimmed glasses, reflecting the dim light",
+                  "lip color naturally muted",
+                  "soft shadows emphasizing the structure of the face"
+                ],
+                "hair_system": [
+                  "short, neat black hair",
+                  "root fixation coefficient 0.8",
+                  "tip swing amplitude 5cm",
+                  "color layering: main color #000000, secondary color #333333, shadow #1A1A1A",
+                  "wind speed 1.2m/s",
+                  "turbulence intensity 5%",
+                  "natural messy texture consistent with travel"
+                ],
+                "label": "scene-arrival-yunyin-town-bus-station",
+                "lighting": [
+                  "dim, diffuse late afternoon light",
+                  "soft light filtering through dusty windows",
+                  "low-key lighting to emphasize the desolate mood"
+                ],
+                "mood": [
+                  "melancholy",
+                  "sense of time passing",
+                  "quiet detachment",
+                  "nostalgic decay",
+                  "oppressive silence"
+                ],
+                "output_style": [
+                  "traditional ink wash painting aesthetic",
+                  "no text or symbols in image",
+                  "no watermarks"
+                ],
+                "style": [
+                  "traditional chinese ink wash painting style",
+                  "monochromatic black and white ink tones",
+                  "subtle grey gradients",
+                  "expressive brushstrokes",
+                  "film grain texture"
+                ],
+                "subject": {
+                  "body_traits": [
+                    "Lin Yuan-Image 0, young male protagonist with a slender and lean build",
+                    "calm and clear eyes behind black-rimmed glasses",
+                    "expression showing deep fatigue and quiet contemplation",
+                    "fingertips showing subtle calluses from specialized craft",
+                    "standing with a reserved and scholarly posture"
+                  ],
+                  "outfit": [
+                    "black windbreaker, functional and minimalist",
+                    "carrying a worn tool bag across his shoulder",
+                    "dark-toned clothing reflecting a somber personality"
+                  ],
+                  "pose": [
+                    "Lin Yuan-Image 0 standing in the center-left, body slightly turned toward the right",
+                    "right hand habitually rubbing his wrist",
+                    "gaze fixed on the distant silhouette of the bell tower",
+                    "facing toward 老伯-配角1, maintaining a polite but distant stance"
+                  ]
+                },
+                "tags": [
+                  "realism",
+                  "melancholy",
+                  "cinematic-film-texture",
+                  "traditional-chinese-ink-wash",
+                  "nostalgic"
+                ]
+              },
+              "scene_text_hash": "d4e118569d2a0f530fb5da09e712a2e4",
+              "style": "default",
+              "url": "/image_cache/c42efb36c34d4278101cda1f02fd8fec.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "start_ts": 1776653408.193458,
+        "end_ts": 1776653408.1996531,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "success",
+        "has_scene": true,
+        "has_image": true
+      },
+      "second_click": {
+        "http_status": 200,
+        "elapsed_s": 0.021,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "你正在执行任务：向老伯打听关于钟楼契约的传闻。",
+              "recap_text": "你选择了“向老伯打听关于钟楼契约的传闻。”。当前章节：chapter1。主线进展：你正在执行任务：向老伯打听关于钟楼契约的传闻。。最近剧情：你选择了：向老伯打听关于钟楼契约的传闻。。在你的努力下，你取得了一些进展。"
+            },
+            "deep_background_links": {},
+            "flow_update": {
+              "chapter_conflict_solved": false,
+              "characters": {},
+              "environment": {},
+              "quest_progress": "你正在执行任务：向老伯打听关于钟楼契约的传闻。"
+            },
+            "next_options": [
+              "继续前进",
+              "查看当前状态",
+              "返回上一步",
+              "探索周围环境"
+            ],
+            "scene": "你选择了：向老伯打听关于钟楼契约的传闻。。在你的努力下，你取得了一些进展。",
+            "sceneId": "3135785730167745841_-1613140496275668320"
+          },
+          "status": "success"
+        },
+        "start_ts": 1776653468.2191098,
+        "end_ts": 1776653468.240023,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "status": "success",
+        "has_scene": true,
+        "has_image": false,
+        "selected_option_index": 0,
+        "selected_option_text": "向老伯打听关于钟楼契约的传闻。",
+        "input_scene_id": "7424454144112123805_-7191388052083786875",
+        "inferred_cache_result": "likely_hit",
+        "is_placeholder": true,
+        "used_updated_flow_state": true
+      }
+    }
+  ]
+}

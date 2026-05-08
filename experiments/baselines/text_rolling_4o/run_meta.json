@@ -1,0 +1,89 @@
+{
+  "baseline": "Rolling-4o",
+  "themes_file": "C:\\Users\\User\\Desktop\\DN-main\\game_themes_100.json",
+  "output_root": "C:\\Users\\User\\Desktop\\DN-main\\experiments\\baselines\\text_rolling_4o",
+  "theme_ids": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "model": "gpt-4o",
+  "base_url": "https://yunwu.ai/v1",
+  "segments": 10,
+  "temperature": 1.0,
+  "top_p": 0.99,
+  "finished_at": "2026-04-27T04:46:28.799787+00:00",
+  "elapsed_seconds": 814.2676572799683,
+  "success_count": 5,
+  "failure_count": 0,
+  "results": [
+    {
+      "theme_id": 1,
+      "theme": "边陲驿站夜谈录",
+      "status": "success",
+      "out_dir": "C:\\Users\\User\\Desktop\\DN-main\\experiments\\baselines\\text_rolling_4o\\theme_001_theme",
+      "manifest": "C:\\Users\\User\\Desktop\\DN-main\\experiments\\baselines\\text_rolling_4o\\theme_001_theme\\rolling_theme_001_manifest.json",
+      "elapsed_seconds": 142.24459147453308,
+      "usage": {
+        "prompt_tokens": 41087,
+        "completion_tokens": 7118,
+        "total_tokens": 48205
+      }
+    },
+    {
+      "theme_id": 2,
+      "theme": "月球矿难七日",
+      "status": "success",
+      "out_dir": "C:\\Users\\User\\Desktop\\DN-main\\experiments\\baselines\\text_rolling_4o\\theme_002_theme",
+      "manifest": "C:\\Users\\User\\Desktop\\DN-main\\experiments\\baselines\\text_rolling_4o\\theme_002_theme\\rolling_theme_002_manifest.json",
+      "elapsed_seconds": 184.42212915420532,
+      "usage": {
+        "prompt_tokens": 40982,
+        "completion_tokens": 7386,
+        "total_tokens": 48368
+      }
+    },
+    {
+      "theme_id": 3,
+      "theme": "茶肆说书人",
+      "status": "success",
+      "out_dir": "C:\\Users\\User\\Desktop\\DN-main\\experiments\\baselines\\text_rolling_4o\\theme_003_theme",
+      "manifest": "C:\\Users\\User\\Desktop\\DN-main\\experiments\\baselines\\text_rolling_4o\\theme_003_theme\\rolling_theme_003_manifest.json",
+      "elapsed_seconds": 183.90548419952393,
+      "usage": {
+        "prompt_tokens": 38364,
+        "completion_tokens": 6796,
+        "total_tokens": 45160
+      }
+    },
+    {
+      "theme_id": 4,
+      "theme": "深海信标失联",
+      "status": "success",
+      "out_dir": "C:\\Users\\User\\Desktop\\DN-main\\experiments\\baselines\\text_rolling_4o\\theme_004_theme",
+      "manifest": "C:\\Users\\User\\Desktop\\DN-main\\experiments\\baselines\\text_rolling_4o\\theme_004_theme\\rolling_theme_004_manifest.json",
+      "elapsed_seconds": 137.0647804737091,
+      "usage": {
+        "prompt_tokens": 39713,
+        "completion_tokens": 7150,
+        "total_tokens": 46863
+      }
+    },
+    {
+      "theme_id": 5,
+      "theme": "魔法学院期末周",
+      "status": "success",
+      "out_dir": "C:\\Users\\User\\Desktop\\DN-main\\experiments\\baselines\\text_rolling_4o\\theme_005_theme",
+      "manifest": "C:\\Users\\User\\Desktop\\DN-main\\experiments\\baselines\\text_rolling_4o\\theme_005_theme\\rolling_theme_005_manifest.json",
+      "elapsed_seconds": 166.60093021392822,
+      "usage": {
+        "prompt_tokens": 42924,
+        "completion_tokens": 7433,
+        "total_tokens": 50357
+      }
+    }
+  ],
+  "failures": []
+}

@@ -1,0 +1,144 @@
+{
+  "baseline_id": "doc",
+  "benchmark_id": "DNQBV1_013",
+  "run_id": "formal20_first_playable_20260430",
+  "mode": "first_playable",
+  "input_bundle": {
+    "original_dn_item": {
+      "benchmark_id": "DNQBV1_013",
+      "theme_id": 11,
+      "theme": "北极科考站怪声",
+      "image_style": {
+        "type": "watercolor"
+      },
+      "expected_genre": "极地悬疑",
+      "expected_tone": "寒冷、孤绝、压迫",
+      "must_have_constraints": [
+        "首段需要体现北极科考站环境压力",
+        "冲突应与怪声或未知风险相关",
+        "图像需匹配水彩寒地风格"
+      ],
+      "forbidden_issues": [
+        "轻松搞笑口吻",
+        "无关热带环境",
+        "剧情没有悬念"
+      ],
+      "focus": "full-set coverage: 极地悬疑",
+      "_subset_focus": "full-set coverage: 极地悬疑"
+    },
+    "doc_prompt": "Premise seed: 北极科考站怪声\nGenre: 极地悬疑\nTone: 寒冷、孤绝、压迫\nWrite a long-form interactive story opening that could be expanded with a detailed outline.\nMust-have constraints:\n- 首段需要体现北极科考站环境压力\n- 冲突应与怪声或未知风险相关\n- 图像需匹配水彩寒地风格\nForbidden issues:\n- 轻松搞笑口吻\n- 无关热带环境\n- 剧情没有悬念\n",
+    "outline_seed": [
+      "Opening setup for 北极科考站怪声 in a 极地悬疑 frame with a 寒冷、孤绝、压迫 tone.",
+      "Introduce the protagonist's immediate role, pressure, and conflict around: 首段需要体现北极科考站环境压力.",
+      "Reveal one concrete obstacle or tradeoff the player must respond to next.",
+      "End the first turn with 2-3 actionable next steps that can continue the story."
+    ],
+    "mode": "first_playable",
+    "baseline_params": {
+      "execution_mode": "cloud",
+      "doc_repo": "D:\\Projects\\DN\\baselines\\DOC",
+      "doc_data_dir": "D:\\Projects\\DN\\baselines\\DOC\\doc_data"
+    }
+  },
+  "raw_output": {
+    "execution_mode": "cloud",
+    "doc_upstream_executed": false,
+    "doc_api_adapter": "yunwu_chat_completions",
+    "provider": "yunwu",
+    "provider_config_prefix": "Origin_Segment_Analyst",
+    "provider_base_url": "https://yunwu.ai/v1",
+    "provider_model": "gemini-3.1-flash-lite-preview",
+    "request": {
+      "model": "gemini-3.1-flash-lite-preview",
+      "temperature": 0.7,
+      "top_p": 0.9,
+      "max_tokens": 900,
+      "response_format": {
+        "type": "json_object"
+      }
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are the DOC long-form story baseline adapted for DN playable-latency evaluation. Write concise, grounded, continuation-ready interactive fiction. Do not include debugging text, URLs, or commentary outside JSON."
+      },
+      {
+        "role": "user",
+        "content": "Convert this DN benchmark item into a DOC-style playable baseline output.\nPreserve DOC's premise -> outline -> story-opening semantics, but return only a playable first response.\nRun mode: first_playable\n\nDOC prompt:\nPremise seed: 北极科考站怪声\nGenre: 极地悬疑\nTone: 寒冷、孤绝、压迫\nWrite a long-form interactive story opening that could be expanded with a detailed outline.\nMust-have constraints:\n- 首段需要体现北极科考站环境压力\n- 冲突应与怪声或未知风险相关\n- 图像需匹配水彩寒地风格\nForbidden issues:\n- 轻松搞笑口吻\n- 无关热带环境\n- 剧情没有悬念\n\nOutline seed:\n1. Opening setup for 北极科考站怪声 in a 极地悬疑 frame with a 寒冷、孤绝、压迫 tone.\n2. Introduce the protagonist's immediate role, pressure, and conflict around: 首段需要体现北极科考站环境压力.\n3. Reveal one concrete obstacle or tradeoff the player must respond to next.\n4. End the first turn with 2-3 actionable next steps that can continue the story.\n\nReturn strict JSON with this shape and no markdown fences:\n{\n  \"scene_setup\": \"string\",\n  \"player_state\": \"string\",\n  \"narrative_response\": \"string\",\n  \"candidate_actions\": [\n    \"string\"\n  ],\n  \"suggested_next_step\": \"string\",\n  \"supports_next_turn\": true\n}"
+      }
+    ],
+    "response": {
+      "id": "chatcmpl-20260430170853552864052X2LBk3uX",
+      "model": "gemini-3.1-flash-lite-preview",
+      "object": "chat.completion",
+      "created": 1777540143,
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"scene_setup\": \"北极圈深处的‘极光’科考站，室外气温已降至零下六十度。暴风雪如砂纸般摩擦着金属外壳，发出令人牙酸的尖啸。站内供暖系统不堪重负，管道内壁结满冰霜，空气中弥漫着陈旧的燃油与金属锈蚀的气味。\",\n  \"player_state\": \"你作为驻站机械师，正独自在通讯室检修主控台。耳机里除了一成不变的白噪音外，刚才闪过了一阵极其规律的、如同深海生物般的低频震颤，那声音不像风声，更像是某种巨大的肢体在撞击冰层下的舱底。\",\n  \"narrative_response\": \"你摘下耳机，耳鸣声在死寂的房间里回荡。那震颤感不仅通过通讯设备传来，你甚至能感觉到脚底的金属地板在轻微战栗。如果那是冰层裂缝，站台的结构完整性将面临威胁；但如果是某种生物，这意味着你并非此处唯一的‘住客’。通讯面板上的红灯开始无规律闪烁，主控台显示外部传感器在刚才的一瞬间全部失灵，唯独底层的声呐阵列捕捉到了一个正在快速靠近的巨大热源。\",\n  \"candidate_actions\": [\n    \"前往底层舱室查看声呐阵列的物理接线。\",\n    \"尝试强制重启通讯系统，向总部发送紧急求救信号。\",\n    \"锁死所有舱门，并携带照明灯检查站点的外部气闸舱。\"\n  ],\n  \"suggested_next_step\": \"调查声呐阵列的异常来源，确认是否存在外部入侵。\",\n  \"supports_next_turn\": true\n}"
+          },
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 397,
+        "completion_tokens": 397,
+        "total_tokens": 794,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "text_tokens": 397,
+          "audio_tokens": 0,
+          "image_tokens": 0
+        },
+        "completion_tokens_details": {
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0
+        },
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "input_tokens_details": null,
+        "claude_cache_creation_5_m_tokens": 0,
+        "claude_cache_creation_1_h_tokens": 0
+      }
+    }
+  },
+  "success": true,
+  "latency_s": 12.332,
+  "playable": true,
+  "playable_components": {
+    "scene_setup": true,
+    "player_state": true,
+    "advanceable_next_step": true,
+    "interaction_continuity": true
+  },
+  "normalized_response": {
+    "scene_setup": "北极圈深处的‘极光’科考站，室外气温已降至零下六十度。暴风雪如砂纸般摩擦着金属外壳，发出令人牙酸的尖啸。站内供暖系统不堪重负，管道内壁结满冰霜，空气中弥漫着陈旧的燃油与金属锈蚀的气味。",
+    "player_state": "你作为驻站机械师，正独自在通讯室检修主控台。耳机里除了一成不变的白噪音外，刚才闪过了一阵极其规律的、如同深海生物般的低频震颤，那声音不像风声，更像是某种巨大的肢体在撞击冰层下的舱底。",
+    "narrative_response": "你摘下耳机，耳鸣声在死寂的房间里回荡。那震颤感不仅通过通讯设备传来，你甚至能感觉到脚底的金属地板在轻微战栗。如果那是冰层裂缝，站台的结构完整性将面临威胁；但如果是某种生物，这意味着你并非此处唯一的‘住客’。通讯面板上的红灯开始无规律闪烁，主控台显示外部传感器在刚才的一瞬间全部失灵，唯独底层的声呐阵列捕捉到了一个正在快速靠近的巨大热源。",
+    "candidate_actions": [
+      "前往底层舱室查看声呐阵列的物理接线。",
+      "尝试强制重启通讯系统，向总部发送紧急求救信号。",
+      "锁死所有舱门，并携带照明灯检查站点的外部气闸舱。"
+    ],
+    "suggested_next_step": "调查声呐阵列的异常来源，确认是否存在外部入侵。",
+    "is_playable": true,
+    "request_start_ts": 1777540131.6022239,
+    "first_playable_ts": 1777540143.9338171,
+    "finish_ts": 1777540143.9338171,
+    "error": null
+  },
+  "failure_reason": null,
+  "notes": [
+    "DOC-style artifact generated through Yunwu OpenAI-compatible chat/completions API."
+  ],
+  "resource_usage": {
+    "execution_mode": "cloud"
+  },
+  "agent_profile": {
+    "runner": "run_doc.py",
+    "adapter_style": "doc_cloud_yunwu_v1"
+  }
+}

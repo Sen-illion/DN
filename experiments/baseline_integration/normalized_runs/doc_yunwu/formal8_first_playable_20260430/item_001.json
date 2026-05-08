@@ -1,0 +1,143 @@
+{
+  "baseline_id": "doc",
+  "benchmark_id": "DNQBV1_002",
+  "run_id": "formal8_first_playable_20260430",
+  "mode": "first_playable",
+  "input_bundle": {
+    "original_dn_item": {
+      "benchmark_id": "DNQBV1_002",
+      "theme_id": 9,
+      "theme": "末日温室园丁",
+      "image_style": {
+        "type": "realistic"
+      },
+      "expected_genre": "末日生存",
+      "expected_tone": "压抑、坚韧、低饱和",
+      "must_have_constraints": [
+        "剧情必须围绕温室、生存或资源匮乏展开",
+        "场景需要体现末日环境压力",
+        "首轮剧情应建立明确任务目标",
+        "图像风格应保持写实与低饱和"
+      ],
+      "forbidden_issues": [
+        "出现轻喜剧化语气",
+        "无关的校园/都市设定混入",
+        "选项空泛无法推进",
+        "图片与文本完全不匹配"
+      ],
+      "focus": "resource scarcity planning",
+      "_subset_focus": "resource scarcity planning"
+    },
+    "doc_prompt": "Premise seed: 末日温室园丁\nGenre: 末日生存\nTone: 压抑、坚韧、低饱和\nWrite a long-form interactive story opening that could be expanded with a detailed outline.\nMust-have constraints:\n- 剧情必须围绕温室、生存或资源匮乏展开\n- 场景需要体现末日环境压力\n- 首轮剧情应建立明确任务目标\n- 图像风格应保持写实与低饱和\nForbidden issues:\n- 出现轻喜剧化语气\n- 无关的校园/都市设定混入\n- 选项空泛无法推进\n- 图片与文本完全不匹配\n",
+    "outline_seed": [
+      "Opening setup for 末日温室园丁 in a 末日生存 frame with a 压抑、坚韧、低饱和 tone.",
+      "Introduce the protagonist's immediate role, pressure, and conflict around: 剧情必须围绕温室、生存或资源匮乏展开.",
+      "Reveal one concrete obstacle or tradeoff the player must respond to next.",
+      "End the first turn with 2-3 actionable next steps that can continue the story."
+    ],
+    "mode": "first_playable",
+    "baseline_params": {
+      "execution_mode": "cloud",
+      "doc_repo": "D:\\Projects\\DN\\baselines\\DOC",
+      "doc_data_dir": "D:\\Projects\\DN\\baselines\\DOC\\doc_data"
+    }
+  },
+  "raw_output": {
+    "provider": "yunwu",
+    "provider_config_prefix": "Origin_Segment_Analyst",
+    "provider_base_url": "https://yunwu.ai/v1",
+    "provider_model": "gemini-3.1-flash-lite-preview",
+    "request": {
+      "model": "gemini-3.1-flash-lite-preview",
+      "temperature": 0.7,
+      "top_p": 0.9,
+      "max_tokens": 900,
+      "response_format": {
+        "type": "json_object"
+      }
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are the DOC long-form story baseline adapted for DN playable-latency evaluation. Write concise, grounded, continuation-ready interactive fiction. Do not include debugging text, URLs, or commentary outside JSON."
+      },
+      {
+        "role": "user",
+        "content": "Convert this DN benchmark item into a DOC-style playable baseline output.\nPreserve DOC's premise -> outline -> story-opening semantics, but return only a playable first response.\nRun mode: first_playable\n\nDOC prompt:\nPremise seed: 末日温室园丁\nGenre: 末日生存\nTone: 压抑、坚韧、低饱和\nWrite a long-form interactive story opening that could be expanded with a detailed outline.\nMust-have constraints:\n- 剧情必须围绕温室、生存或资源匮乏展开\n- 场景需要体现末日环境压力\n- 首轮剧情应建立明确任务目标\n- 图像风格应保持写实与低饱和\nForbidden issues:\n- 出现轻喜剧化语气\n- 无关的校园/都市设定混入\n- 选项空泛无法推进\n- 图片与文本完全不匹配\n\nOutline seed:\n1. Opening setup for 末日温室园丁 in a 末日生存 frame with a 压抑、坚韧、低饱和 tone.\n2. Introduce the protagonist's immediate role, pressure, and conflict around: 剧情必须围绕温室、生存或资源匮乏展开.\n3. Reveal one concrete obstacle or tradeoff the player must respond to next.\n4. End the first turn with 2-3 actionable next steps that can continue the story.\n\nReturn strict JSON with this shape and no markdown fences:\n{\n  \"scene_setup\": \"string\",\n  \"player_state\": \"string\",\n  \"narrative_response\": \"string\",\n  \"candidate_actions\": [\n    \"string\"\n  ],\n  \"suggested_next_step\": \"string\",\n  \"supports_next_turn\": true\n}"
+      }
+    ],
+    "response": {
+      "id": "chatcmpl-20260430165042691499516Ht6IycLT",
+      "model": "gemini-3.1-flash-lite-preview",
+      "object": "chat.completion",
+      "created": 1777539053,
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\n  \"scene_setup\": \"一座被酸雨腐蚀得斑驳的穹顶温室，孤零零地矗立在灰色的废土荒原上。天空中终年覆盖着厚重的铅灰色云层，空气中弥漫着金属锈蚀与腐烂的气息。温室内，仅存的几株变异叶菜在营养液匮乏的压力下枯萎发黄，维持生命循环的过滤系统发出濒死的尖锐嘶鸣。\",\n  \"player_state\": \"一名孤独的温室园丁，仅剩三单位的净化水储备，温室供氧系统电量显示仅余12%，生命维持系统即将进入强制休眠。\",\n  \"narrative_response\": \"你跪在早已干涸的育苗床旁，指尖触碰着泥土中残留的湿润。温室顶部的玻璃裂痕处，渗入的酸性雨滴正缓慢滴落在唯一的净水收集器中，发出单调的滴答声。过滤系统的指示灯闪烁着暗红色的警告，如果你不在供氧耗尽前修复循环泵，这些作物将彻底枯萎，而你也将在窒息中迎来终局。刚才的震动导致备用过滤器破裂，你必须在短时间内做出决定。\",\n  \"candidate_actions\": [\n    \"拆解仅剩的备用照明灯，获取铜丝尝试修复循环泵电路。\",\n    \"将最后的三单位净化水全部注入灌溉系统，试图催熟最后一批果实以换取生存物资。\",\n    \"冒险离开温室，前往百米外的废弃哨所搜寻可能残留的过滤网。\"\n  ],\n  \"suggested_next_step\": \"玩家需在修复设备、维持作物生命与风险搜寻之间做出抉择，这将直接影响后续生存资源的获取效率。\",\n  \"supports_next_turn\": true\n}"
+          },
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 422,
+        "completion_tokens": 416,
+        "total_tokens": 838,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "text_tokens": 422,
+          "audio_tokens": 0,
+          "image_tokens": 0
+        },
+        "completion_tokens_details": {
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0
+        },
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "input_tokens_details": null,
+        "claude_cache_creation_5_m_tokens": 0,
+        "claude_cache_creation_1_h_tokens": 0
+      }
+    }
+  },
+  "success": true,
+  "latency_s": 11.86,
+  "playable": true,
+  "playable_components": {
+    "scene_setup": true,
+    "player_state": true,
+    "advanceable_next_step": true,
+    "interaction_continuity": true
+  },
+  "normalized_response": {
+    "scene_setup": "一座被酸雨腐蚀得斑驳的穹顶温室，孤零零地矗立在灰色的废土荒原上。天空中终年覆盖着厚重的铅灰色云层，空气中弥漫着金属锈蚀与腐烂的气息。温室内，仅存的几株变异叶菜在营养液匮乏的压力下枯萎发黄，维持生命循环的过滤系统发出濒死的尖锐嘶鸣。",
+    "player_state": "一名孤独的温室园丁，仅剩三单位的净化水储备，温室供氧系统电量显示仅余12%，生命维持系统即将进入强制休眠。",
+    "narrative_response": "你跪在早已干涸的育苗床旁，指尖触碰着泥土中残留的湿润。温室顶部的玻璃裂痕处，渗入的酸性雨滴正缓慢滴落在唯一的净水收集器中，发出单调的滴答声。过滤系统的指示灯闪烁着暗红色的警告，如果你不在供氧耗尽前修复循环泵，这些作物将彻底枯萎，而你也将在窒息中迎来终局。刚才的震动导致备用过滤器破裂，你必须在短时间内做出决定。",
+    "candidate_actions": [
+      "拆解仅剩的备用照明灯，获取铜丝尝试修复循环泵电路。",
+      "将最后的三单位净化水全部注入灌溉系统，试图催熟最后一批果实以换取生存物资。",
+      "冒险离开温室，前往百米外的废弃哨所搜寻可能残留的过滤网。"
+    ],
+    "suggested_next_step": "玩家需在修复设备、维持作物生命与风险搜寻之间做出抉择，这将直接影响后续生存资源的获取效率。",
+    "is_playable": true,
+    "request_start_ts": 1777539041.9433067,
+    "first_playable_ts": 1777539053.803781,
+    "finish_ts": 1777539053.803781,
+    "error": null
+  },
+  "failure_reason": null,
+  "notes": [
+    "DOC-style artifact generated through Yunwu OpenAI-compatible chat/completions API."
+  ],
+  "resource_usage": {
+    "execution_mode": "cloud"
+  },
+  "agent_profile": {
+    "runner": "run_doc.py",
+    "adapter_style": "doc_fallback_v1"
+  }
+}

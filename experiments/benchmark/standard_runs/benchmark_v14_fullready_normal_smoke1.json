@@ -1,0 +1,917 @@
+{
+  "summary": {
+    "experiment_name": "benchmark_v14_fullready_normal_smoke1",
+    "sample_size": 1,
+    "read_wait_s": 0.0,
+    "suite_start_ts": 1777570906.058743,
+    "suite_end_ts": 1777571029.330343,
+    "second_click_elapsed_s": {
+      "count": 1,
+      "min": 0.027,
+      "max": 0.027,
+      "mean": 0.027,
+      "median": 0.027,
+      "p95": 0.027
+    },
+    "second_click_success_count": 1,
+    "likely_hit_count": 1,
+    "likely_hit_rate": 1.0,
+    "success_count": 1,
+    "text_ready_elapsed_s": {
+      "count": 1,
+      "min": 0.027,
+      "max": 0.027,
+      "mean": 0.027,
+      "median": 0.027,
+      "p95": 0.027
+    },
+    "image_ready_elapsed_s": {
+      "count": 1,
+      "min": 18.66,
+      "max": 18.66,
+      "mean": 18.66,
+      "median": 18.66,
+      "p95": 18.66
+    },
+    "full_ready_elapsed_s": {
+      "count": 1,
+      "min": 18.66,
+      "max": 18.66,
+      "mean": 18.66,
+      "median": 18.66,
+      "p95": 18.66
+    },
+    "real_scene_count": 0,
+    "real_scene_rate": 0.0,
+    "direct_image_count": 0,
+    "async_image_count": 1,
+    "notes": "smoke normal full-ready"
+  },
+  "runs": [
+    {
+      "benchmark_id": "DNQBV1_001",
+      "theme_id": 1,
+      "theme": "边陲驿站夜谈录",
+      "read_wait_s": 0.0,
+      "full_ready_mode": true,
+      "worldview": {
+        "http_status": 200,
+        "elapsed_s": 10.776,
+        "response_json": {
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过协助一名滞留的货车司机解决燃油危机，换取了必要的修缮材料，虽然驿站暂时保住了，但主角也意识到自己无力改变整体衰败的趋势，只能维持现状。",
+                  "main_conflict": "驿站因年久失修面临停业整顿，主角试图通过微薄的积蓄修缮屋顶与供暖系统，却遭遇了物资短缺与当地居民对拆迁补偿方案的意见分歧，主角在坚持留守的理想与现实生存的窘迫之间陷入了深深的自我怀疑。 - 矛盾结束条件：主角通过协助一名滞留的货车司机解决燃油危机，换取了必要的修缮材料，虽然驿站暂时保住了，但主角也意识到自己无力改变整体衰败的趋势，只能维持现状。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "年轻旅人最终决定踏上前往城市的列车，主角送别对方，虽然未能改变其命运，但通过这次对话，主角完成了对自己过去选择的某种程度的释然。",
+                  "main_conflict": "一名试图逃离家庭的年轻旅人闯入驿站，主角在与其相处的过程中，被迫面对自己当年放弃梦想留守此地的遗憾，主角试图劝导对方寻找更好的出路，却发现自己的建议显得苍白无力，甚至引发了对自身选择的二次否定。 - 矛盾结束条件：年轻旅人最终决定踏上前往城市的列车，主角送别对方，虽然未能改变其命运，但通过这次对话，主角完成了对自己过去选择的某种程度的释然。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角在最后一夜与老友进行了一场平静的告别，接受了驿站拆除的事实，带着整理好的记录册离开，虽然失去了家园，但内心获得了某种踏实的平静，走向了未知的下一站。 【主角规范信息】 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：青年 所属作品(中)：边陲驿站夜谈录 所属作品(英)：The Frontier Station Night Tales 标志性外观关键词：黑色短发、工装外套、眼神沉静、手部粗糙、常戴旧手表、身形单薄、气质内敛、略带疲惫、胡茬未刮、朴素、沉稳、孤独感 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决",
+                  "main_conflict": "拆迁令正式下达，驿站即将被夷为平地。主角必须在最后期限前处理完所有遗留物品，并决定自己的去向。面对即将消逝的归属感，主角在整理旧物时，不得不面对那些未竟的愿望与无法挽回的人际关系。 - 矛盾结束条件：主角在最后一夜与老友进行了一场平静的告别，接受了驿站拆除的事实，带着整理好的记录册离开，虽然失去了家园，但内心获得了某种踏实的平静，走向了未知的下一站。 【主角规范信息】 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：青年 所属作品(中)：边陲驿站夜谈录 所属作品(英)：The Frontier Station Night Tales 标志性外观关键词：黑色短发、工装外套、眼神沉静、手部粗糙、常戴旧手表、身形单薄、气质内敛、略带疲惫、胡茬未刮、朴素、沉稳、孤独感 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为写实主义叙事游戏，采用低饱和度的视觉色调与环境音效，强调沉浸式的慢节奏体验。通过细腻的日常对话与琐碎的劳作细节，构建出一种带有粗粝质感与烟火气息的边陲生活图景，旨在引导玩家在平淡的叙事中体悟生活的真实重量。",
+              "main_quest": "主角的目标是守护驿站直至最后一班列车停运，并在此期间为每一位过客提供妥善的安置与告别。任务分为三个阶段：首先是修缮破损的驿站设施，以应对日益恶劣的自然环境；其次是收集关于驿站历史的碎片信息，整理成册以留存记忆；最后是处理拆迁赔偿与个人去留问题。挑战在于，主角必须在“坚持理想的执念”与“现实生存的压力”之间寻找平衡，每一次选择都意味着失去一部分过去，同时获得通往未来的某种可能，最终达成一种与时代变迁和解的平衡状态。",
+              "protagonist_ability": "主角拥有一种名为“共情倾听”的特质，这并非超能力，而是源于其长期经营驿站积累的敏锐观察力与耐心。通过与旅人进行深度的夜谈，主角能从对方的只言片语中拼凑出其背后的生活轨迹与真实诉求。这种能力的使用受限于社交距离与对方的信任度，且无法改变他人的决定，只能在对话中提供情绪价值或微小的建议，帮助他人理清思绪，同时也让主角在倾听中逐渐认清自己的局限。",
+              "world_basic_setting": "故事发生在一座名为“断崖”的边陲驿站，这里是连接繁华内陆与荒凉戈壁的唯一补给点。历史背景设定在工业化进程放缓、资源匮乏的后现代时期，社会阶层固化，年轻人多选择前往大城市寻求机遇，而留守者则在衰败的城镇中维持着基本的生存秩序。驿站不仅是交通枢纽，更是各色旅人与留守者的情感交汇地。这里的文化由“迁徙”与“停驻”构成，人们在风沙中建立起脆弱的羁绊，又在下一次列车鸣笛时被迫离散。关键事件是驿站面临的拆迁危机，这不仅是物理空间的消失，更是当地人共同记忆与生活方式的终结，迫使每个人在去留之间做出符合现实逻辑的抉择。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "environment": {}
+            },
+            "game_id": "game_1777570906_gdrpp2",
+            "image_style": {
+              "type": "realistic"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "gender": "男性"
+            },
+            "tone": "normal_ending",
+            "user_theme": "边陲驿站夜谈录"
+          },
+          "message": "世界观生成成功！",
+          "status": "success"
+        },
+        "request_payload": {
+          "gameTheme": "边陲驿站夜谈录",
+          "protagonistAttr": {},
+          "difficulty": "normal",
+          "toneKey": "normal_ending",
+          "imageStyle": {
+            "type": "realistic"
+          }
+        },
+        "start_ts": 1777570906.0587456,
+        "end_ts": 1777570916.834379,
+        "provider_events": {
+          "event_count": 4,
+          "queue_wait_ms": {
+            "count": 4,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 1,
+            "min": 10760.0,
+            "max": 10760.0,
+            "mean": 10760.0,
+            "median": 10760.0,
+            "p95": 10760.0
+          },
+          "llm_success_count": 1,
+          "image_success_count": 0,
+          "request_thread_event_count": 2
+        },
+        "status": "success",
+        "game_id": "game_1777570906_gdrpp2"
+      },
+      "first_click": {
+        "http_status": 200,
+        "elapsed_s": 93.771,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "",
+              "recap_text": "你选择了“开始游戏”。当前章节：chapter1。主线进展：主线正在推进。。最近剧情：风沙拍打着驿站那扇早已锈迹斑斑的铁门，发出沉闷的撞击声。我站在柜台后，手里那块沾满油污的抹布机械地擦拭着桌面，指尖传来的粗糙触感提醒着我，这间名为“断崖”的驿站又熬过了一个寒冷的夜晚。屋顶的漏雨处用几块破旧的油毡布勉强遮盖，每当风起，那处便会发出令人心烦意乱的扑棱声。\n\n“林远，这地方真是一天不如一天了。”我低声自语，目光落在手腕上那块表盘磨损严重的旧手表上，指针跳动得缓慢而迟滞。驿站的供暖系统昨晚彻底罢工了，空气中弥漫着一股陈旧的灰尘味和淡淡的机油味。突然，一阵急促的刹车声穿透了风声，一辆满载货物的重型卡车停在了驿站门外。车门推开，一个穿着深蓝色工装、满脸胡茬的男人跳了下来，他一边咒骂着这鬼天气，一边用力拍打着驿站的玻璃门。我深吸一口气，整理了一下略显单薄的工装外套，快步走向门口。我知道，这不仅是一个过客，或许还是我修缮屋顶和供暖系统的唯一希望。"
+            },
+            "deep_background_links": {},
+            "flow_update": {},
+            "next_options": [
+              "询问货车司机的困境，尝试通过提供帮助换取修缮物资。",
+              "询问关于驿站拆迁的传闻，试图从司机的口中打听更多外部信息。"
+            ],
+            "scene": "风沙拍打着驿站那扇早已锈迹斑斑的铁门，发出沉闷的撞击声。我站在柜台后，手里那块沾满油污的抹布机械地擦拭着桌面，指尖传来的粗糙触感提醒着我，这间名为“断崖”的驿站又熬过了一个寒冷的夜晚。屋顶的漏雨处用几块破旧的油毡布勉强遮盖，每当风起，那处便会发出令人心烦意乱的扑棱声。\n\n“林远，这地方真是一天不如一天了。”我低声自语，目光落在手腕上那块表盘磨损严重的旧手表上，指针跳动得缓慢而迟滞。驿站的供暖系统昨晚彻底罢工了，空气中弥漫着一股陈旧的灰尘味和淡淡的机油味。突然，一阵急促的刹车声穿透了风声，一辆满载货物的重型卡车停在了驿站门外。车门推开，一个穿着深蓝色工装、满脸胡茬的男人跳了下来，他一边咒骂着这鬼天气，一边用力拍打着驿站的玻璃门。我深吸一口气，整理了一下略显单薄的工装外套，快步走向门口。我知道，这不仅是一个过客，或许还是我修缮屋顶和供暖系统的唯一希望。",
+            "sceneId": "7229917928630373973_-2120003285238287519",
+            "scene_image": {
+              "cached": true,
+              "height": 1080,
+              "image_type": "story_scene",
+              "prompt": "scene-cliffside-station-arrival-stranger, realistic, post-modern, gritty-realism, cinematic, low-saturation, photorealistic, high-detail cinematic photography, soft-shading with industrial texture, dramatic natural lighting, male protagonist using Image 0, tired but observant expression with deep empathy, mid-thirties male with slightly weathered skin, standing behind a worn wooden counter, attentive posture ready to greet the newcomer, simple rugged work jacket over a worn shirt, durable fabric with faint oil stains, neutral earth-tone clothing reflecting station environment, standing behind the service counter, facing toward the entrance door, body oriented toward 男人-配角1, hand holding a grease-stained rag, 8K highly detailed facial features, subtle wrinkles around eyes showing years of observation, calm and steady gaze looking at the entrance, lip color naturally muted, soft shadows from overhead dim lighting, short dark hair with natural texture, root fixation coefficient 0.95, tip swing amplitude 2cm, color layering: main color #2D2D2D, secondary color #1A1A1A, highlight #404040, shadow #000000, wind speed 0.2m/s, turbulence intensity 1%, rugged work jacket with visible fabric texture, slight fabric flutter near the door due to wind, matte finish fabric absorbing ambient light, interior of a dilapidated cliffside station, rusted iron door slightly ajar with sand blowing in, ceiling with patches of old tarpaulin cloth, cluttered counter with old mechanical objects and grease stains, dim, dusty atmosphere with floating particles, 男人-配角1 standing at the doorway, wearing deep blue work overalls, full of stubble, looking impatient, dust motes dancing in the dim light, faint haze of engine oil and desert sand, cold gray light filtering through the door gap, desaturated tones, muted grays and industrial browns, deep navy blue for the newcomer's uniform, weathered metallic rust orange, harsh cold daylight from the open door, dim indoor ambient light from flickering overhead bulb, low-contrast lighting to emphasize gritty texture, type medium shot, lens 35mm, aperture f/4.0, depth_of_field deep focus from counter to entrance, flash none, grain subtle film grain, texture realistic industrial grit, protagonist positioned on the left side of the counter, 男人-配角1 positioned at the doorway on the right, the counter serves as a leading line toward the newcomer, action constraints: protagonist walking toward the door, newcomer entering, cinematic realism, no text or symbols in image, melancholic, tense, weary, realistic, anticipatory, no text, no symbols, no garbled characters, no words",
+              "prompt_json": {
+                "camera": {
+                  "aperture": "f/4.0",
+                  "depth_of_field": "deep focus from counter to entrance",
+                  "flash": "none",
+                  "grain": "subtle film grain",
+                  "lens": "35mm",
+                  "texture": "realistic industrial grit",
+                  "type": "medium shot"
+                },
+                "clothing_system": [
+                  "rugged work jacket with visible fabric texture",
+                  "slight fabric flutter near the door due to wind",
+                  "matte finish fabric absorbing ambient light"
+                ],
+                "color_restriction": [
+                  "desaturated tones",
+                  "muted grays and industrial browns",
+                  "deep navy blue for the newcomer's uniform",
+                  "weathered metallic rust orange"
+                ],
+                "composition": [
+                  "protagonist positioned on the left side of the counter",
+                  "男人-配角1 positioned at the doorway on the right",
+                  "the counter serves as a leading line toward the newcomer",
+                  "action constraints: protagonist walking toward the door, newcomer entering"
+                ],
+                "environment": {
+                  "background": [
+                    "interior of a dilapidated cliffside station",
+                    "rusted iron door slightly ajar with sand blowing in",
+                    "ceiling with patches of old tarpaulin cloth",
+                    "cluttered counter with old mechanical objects and grease stains",
+                    "dim, dusty atmosphere with floating particles"
+                  ],
+                  "characters": [
+                    "男人-配角1 standing at the doorway, wearing deep blue work overalls, full of stubble, looking impatient"
+                  ],
+                  "effects": [
+                    "dust motes dancing in the dim light",
+                    "faint haze of engine oil and desert sand",
+                    "cold gray light filtering through the door gap"
+                  ]
+                },
+                "face_system": [
+                  "8K highly detailed facial features",
+                  "subtle wrinkles around eyes showing years of observation",
+                  "calm and steady gaze looking at the entrance",
+                  "lip color naturally muted",
+                  "soft shadows from overhead dim lighting"
+                ],
+                "hair_system": [
+                  "short dark hair with natural texture",
+                  "root fixation coefficient 0.95",
+                  "tip swing amplitude 2cm",
+                  "color layering: main color #2D2D2D, secondary color #1A1A1A, highlight #404040, shadow #000000",
+                  "wind speed 0.2m/s",
+                  "turbulence intensity 1%"
+                ],
+                "label": "scene-cliffside-station-arrival-stranger",
+                "lighting": [
+                  "harsh cold daylight from the open door",
+                  "dim indoor ambient light from flickering overhead bulb",
+                  "low-contrast lighting to emphasize gritty texture"
+                ],
+                "mood": [
+                  "melancholic",
+                  "tense",
+                  "weary",
+                  "realistic",
+                  "anticipatory"
+                ],
+                "output_style": [
+                  "cinematic realism",
+                  "no text or symbols in image"
+                ],
+                "style": [
+                  "photorealistic",
+                  "high-detail cinematic photography",
+                  "soft-shading with industrial texture",
+                  "dramatic natural lighting"
+                ],
+                "subject": {
+                  "body_traits": [
+                    "male protagonist using Image 0",
+                    "tired but observant expression with deep empathy",
+                    "mid-thirties male with slightly weathered skin",
+                    "standing behind a worn wooden counter",
+                    "attentive posture ready to greet the newcomer"
+                  ],
+                  "outfit": [
+                    "simple rugged work jacket over a worn shirt",
+                    "durable fabric with faint oil stains",
+                    "neutral earth-tone clothing reflecting station environment"
+                  ],
+                  "pose": [
+                    "standing behind the service counter",
+                    "facing toward the entrance door",
+                    "body oriented toward 男人-配角1",
+                    "hand holding a grease-stained rag"
+                  ]
+                },
+                "tags": [
+                  "realistic",
+                  "post-modern",
+                  "gritty-realism",
+                  "cinematic",
+                  "low-saturation"
+                ]
+              },
+              "scene_text_hash": "4a606be53c67803b857b83c4a8fa2916",
+              "style": "default",
+              "url": "/image_cache/86c20e0b8f1f3d312fac65a92b9dd32d.png",
+              "width": 1920
+            }
+          },
+          "status": "success"
+        },
+        "request_payload": {
+          "option": "开始游戏",
+          "optionIndex": 0,
+          "sceneId": null,
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过协助一名滞留的货车司机解决燃油危机，换取了必要的修缮材料，虽然驿站暂时保住了，但主角也意识到自己无力改变整体衰败的趋势，只能维持现状。",
+                  "main_conflict": "驿站因年久失修面临停业整顿，主角试图通过微薄的积蓄修缮屋顶与供暖系统，却遭遇了物资短缺与当地居民对拆迁补偿方案的意见分歧，主角在坚持留守的理想与现实生存的窘迫之间陷入了深深的自我怀疑。 - 矛盾结束条件：主角通过协助一名滞留的货车司机解决燃油危机，换取了必要的修缮材料，虽然驿站暂时保住了，但主角也意识到自己无力改变整体衰败的趋势，只能维持现状。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "年轻旅人最终决定踏上前往城市的列车，主角送别对方，虽然未能改变其命运，但通过这次对话，主角完成了对自己过去选择的某种程度的释然。",
+                  "main_conflict": "一名试图逃离家庭的年轻旅人闯入驿站，主角在与其相处的过程中，被迫面对自己当年放弃梦想留守此地的遗憾，主角试图劝导对方寻找更好的出路，却发现自己的建议显得苍白无力，甚至引发了对自身选择的二次否定。 - 矛盾结束条件：年轻旅人最终决定踏上前往城市的列车，主角送别对方，虽然未能改变其命运，但通过这次对话，主角完成了对自己过去选择的某种程度的释然。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角在最后一夜与老友进行了一场平静的告别，接受了驿站拆除的事实，带着整理好的记录册离开，虽然失去了家园，但内心获得了某种踏实的平静，走向了未知的下一站。 【主角规范信息】 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：青年 所属作品(中)：边陲驿站夜谈录 所属作品(英)：The Frontier Station Night Tales 标志性外观关键词：黑色短发、工装外套、眼神沉静、手部粗糙、常戴旧手表、身形单薄、气质内敛、略带疲惫、胡茬未刮、朴素、沉稳、孤独感 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决",
+                  "main_conflict": "拆迁令正式下达，驿站即将被夷为平地。主角必须在最后期限前处理完所有遗留物品，并决定自己的去向。面对即将消逝的归属感，主角在整理旧物时，不得不面对那些未竟的愿望与无法挽回的人际关系。 - 矛盾结束条件：主角在最后一夜与老友进行了一场平静的告别，接受了驿站拆除的事实，带着整理好的记录册离开，虽然失去了家园，但内心获得了某种踏实的平静，走向了未知的下一站。 【主角规范信息】 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：青年 所属作品(中)：边陲驿站夜谈录 所属作品(英)：The Frontier Station Night Tales 标志性外观关键词：黑色短发、工装外套、眼神沉静、手部粗糙、常戴旧手表、身形单薄、气质内敛、略带疲惫、胡茬未刮、朴素、沉稳、孤独感 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为写实主义叙事游戏，采用低饱和度的视觉色调与环境音效，强调沉浸式的慢节奏体验。通过细腻的日常对话与琐碎的劳作细节，构建出一种带有粗粝质感与烟火气息的边陲生活图景，旨在引导玩家在平淡的叙事中体悟生活的真实重量。",
+              "main_quest": "主角的目标是守护驿站直至最后一班列车停运，并在此期间为每一位过客提供妥善的安置与告别。任务分为三个阶段：首先是修缮破损的驿站设施，以应对日益恶劣的自然环境；其次是收集关于驿站历史的碎片信息，整理成册以留存记忆；最后是处理拆迁赔偿与个人去留问题。挑战在于，主角必须在“坚持理想的执念”与“现实生存的压力”之间寻找平衡，每一次选择都意味着失去一部分过去，同时获得通往未来的某种可能，最终达成一种与时代变迁和解的平衡状态。",
+              "protagonist_ability": "主角拥有一种名为“共情倾听”的特质，这并非超能力，而是源于其长期经营驿站积累的敏锐观察力与耐心。通过与旅人进行深度的夜谈，主角能从对方的只言片语中拼凑出其背后的生活轨迹与真实诉求。这种能力的使用受限于社交距离与对方的信任度，且无法改变他人的决定，只能在对话中提供情绪价值或微小的建议，帮助他人理清思绪，同时也让主角在倾听中逐渐认清自己的局限。",
+              "world_basic_setting": "故事发生在一座名为“断崖”的边陲驿站，这里是连接繁华内陆与荒凉戈壁的唯一补给点。历史背景设定在工业化进程放缓、资源匮乏的后现代时期，社会阶层固化，年轻人多选择前往大城市寻求机遇，而留守者则在衰败的城镇中维持着基本的生存秩序。驿站不仅是交通枢纽，更是各色旅人与留守者的情感交汇地。这里的文化由“迁徙”与“停驻”构成，人们在风沙中建立起脆弱的羁绊，又在下一次列车鸣笛时被迫离散。关键事件是驿站面临的拆迁危机，这不仅是物理空间的消失，更是当地人共同记忆与生活方式的终结，迫使每个人在去留之间做出符合现实逻辑的抉择。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "environment": {}
+            },
+            "game_id": "game_1777570906_gdrpp2",
+            "image_style": {
+              "type": "realistic"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "gender": "男性"
+            },
+            "tone": "normal_ending",
+            "user_theme": "边陲驿站夜谈录"
+          }
+        },
+        "start_ts": 1777570916.8574605,
+        "end_ts": 1777571010.6282263,
+        "provider_events": {
+          "event_count": 8,
+          "queue_wait_ms": {
+            "count": 8,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "median": 0.0,
+            "p95": 0.0
+          },
+          "latency_ms": {
+            "count": 5,
+            "min": 3010.0,
+            "max": 16969.0,
+            "mean": 10396.6,
+            "median": 9592.0,
+            "p95": 16158.8
+          },
+          "llm_success_count": 4,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "retry_count": 0,
+        "is_placeholder": false,
+        "status": "success",
+        "has_scene": true,
+        "has_image": true
+      },
+      "second_click": {
+        "http_status": 200,
+        "elapsed_s": 0.027,
+        "response_json": {
+          "message": "选项剧情生成成功！",
+          "optionData": {
+            "checkpoint_packet": {
+              "chapter": "chapter1",
+              "chapter_conflict_solved": false,
+              "quest_delta": "你正在执行任务：询问货车司机的困境，尝试通过提供帮助换取修缮物资。",
+              "recap_text": "你选择了“询问货车司机的困境，尝试通过提供帮助换取修缮物资。”。当前章节：chapter1。主线进展：你正在执行任务：询问货车司机的困境，尝试通过提供帮助换取修缮物资。。最近剧情：你选择了：询问货车司机的困境，尝试通过提供帮助换取修缮物资。。在你的努力下，你取得了一些进展。"
+            },
+            "deep_background_links": {},
+            "flow_update": {
+              "chapter_conflict_solved": false,
+              "characters": {},
+              "environment": {},
+              "quest_progress": "你正在执行任务：询问货车司机的困境，尝试通过提供帮助换取修缮物资。"
+            },
+            "next_options": [
+              "继续前进",
+              "查看当前状态",
+              "返回上一步",
+              "探索周围环境"
+            ],
+            "scene": "你选择了：询问货车司机的困境，尝试通过提供帮助换取修缮物资。。在你的努力下，你取得了一些进展。",
+            "sceneId": "6694645445763021490_8598250841071246145"
+          },
+          "status": "success"
+        },
+        "request_payload": {
+          "option": "询问货车司机的困境，尝试通过提供帮助换取修缮物资。",
+          "optionIndex": 0,
+          "sceneId": "7229917928630373973_-2120003285238287519",
+          "globalState": {
+            "core_worldview": {
+              "chapters": {
+                "chapter1": {
+                  "conflict_end_condition": "主角通过协助一名滞留的货车司机解决燃油危机，换取了必要的修缮材料，虽然驿站暂时保住了，但主角也意识到自己无力改变整体衰败的趋势，只能维持现状。",
+                  "main_conflict": "驿站因年久失修面临停业整顿，主角试图通过微薄的积蓄修缮屋顶与供暖系统，却遭遇了物资短缺与当地居民对拆迁补偿方案的意见分歧，主角在坚持留守的理想与现实生存的窘迫之间陷入了深深的自我怀疑。 - 矛盾结束条件：主角通过协助一名滞留的货车司机解决燃油危机，换取了必要的修缮材料，虽然驿站暂时保住了，但主角也意识到自己无力改变整体衰败的趋势，只能维持现状。"
+                },
+                "chapter2": {
+                  "conflict_end_condition": "年轻旅人最终决定踏上前往城市的列车，主角送别对方，虽然未能改变其命运，但通过这次对话，主角完成了对自己过去选择的某种程度的释然。",
+                  "main_conflict": "一名试图逃离家庭的年轻旅人闯入驿站，主角在与其相处的过程中，被迫面对自己当年放弃梦想留守此地的遗憾，主角试图劝导对方寻找更好的出路，却发现自己的建议显得苍白无力，甚至引发了对自身选择的二次否定。 - 矛盾结束条件：年轻旅人最终决定踏上前往城市的列车，主角送别对方，虽然未能改变其命运，但通过这次对话，主角完成了对自己过去选择的某种程度的释然。"
+                },
+                "chapter3": {
+                  "conflict_end_condition": "主角在最后一夜与老友进行了一场平静的告别，接受了驿站拆除的事实，带着整理好的记录册离开，虽然失去了家园，但内心获得了某种踏实的平静，走向了未知的下一站。 【主角规范信息】 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：青年 所属作品(中)：边陲驿站夜谈录 所属作品(英)：The Frontier Station Night Tales 标志性外观关键词：黑色短发、工装外套、眼神沉静、手部粗糙、常戴旧手表、身形单薄、气质内敛、略带疲惫、胡茬未刮、朴素、沉稳、孤独感 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决",
+                  "main_conflict": "拆迁令正式下达，驿站即将被夷为平地。主角必须在最后期限前处理完所有遗留物品，并决定自己的去向。面对即将消逝的归属感，主角在整理旧物时，不得不面对那些未竟的愿望与无法挽回的人际关系。 - 矛盾结束条件：主角在最后一夜与老友进行了一场平静的告别，接受了驿站拆除的事实，带着整理好的记录册离开，虽然失去了家园，但内心获得了某种踏实的平静，走向了未知的下一站。 【主角规范信息】 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：青年 所属作品(中)：边陲驿站夜谈录 所属作品(英)：The Frontier Station Night Tales 标志性外观关键词：黑色短发、工装外套、眼神沉静、手部粗糙、常戴旧手表、身形单薄、气质内敛、略带疲惫、胡茬未刮、朴素、沉稳、孤独感 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决"
+                }
+              },
+              "characters": {},
+              "forces": {},
+              "game_style": "本作为写实主义叙事游戏，采用低饱和度的视觉色调与环境音效，强调沉浸式的慢节奏体验。通过细腻的日常对话与琐碎的劳作细节，构建出一种带有粗粝质感与烟火气息的边陲生活图景，旨在引导玩家在平淡的叙事中体悟生活的真实重量。",
+              "main_quest": "主角的目标是守护驿站直至最后一班列车停运，并在此期间为每一位过客提供妥善的安置与告别。任务分为三个阶段：首先是修缮破损的驿站设施，以应对日益恶劣的自然环境；其次是收集关于驿站历史的碎片信息，整理成册以留存记忆；最后是处理拆迁赔偿与个人去留问题。挑战在于，主角必须在“坚持理想的执念”与“现实生存的压力”之间寻找平衡，每一次选择都意味着失去一部分过去，同时获得通往未来的某种可能，最终达成一种与时代变迁和解的平衡状态。",
+              "protagonist_ability": "主角拥有一种名为“共情倾听”的特质，这并非超能力，而是源于其长期经营驿站积累的敏锐观察力与耐心。通过与旅人进行深度的夜谈，主角能从对方的只言片语中拼凑出其背后的生活轨迹与真实诉求。这种能力的使用受限于社交距离与对方的信任度，且无法改变他人的决定，只能在对话中提供情绪价值或微小的建议，帮助他人理清思绪，同时也让主角在倾听中逐渐认清自己的局限。",
+              "world_basic_setting": "故事发生在一座名为“断崖”的边陲驿站，这里是连接繁华内陆与荒凉戈壁的唯一补给点。历史背景设定在工业化进程放缓、资源匮乏的后现代时期，社会阶层固化，年轻人多选择前往大城市寻求机遇，而留守者则在衰败的城镇中维持着基本的生存秩序。驿站不仅是交通枢纽，更是各色旅人与留守者的情感交汇地。这里的文化由“迁徙”与“停驻”构成，人们在风沙中建立起脆弱的羁绊，又在下一次列车鸣笛时被迫离散。关键事件是驿站面临的拆迁危机，这不仅是物理空间的消失，更是当地人共同记忆与生活方式的终结，迫使每个人在去留之间做出符合现实逻辑的抉择。"
+            },
+            "flow_worldline": {
+              "characters": {},
+              "environment": {},
+              "chapter_progress": 2.0
+            },
+            "game_id": "game_1777570906_gdrpp2",
+            "image_style": {
+              "type": "realistic"
+            },
+            "meta": {
+              "detail_async": true
+            },
+            "protagonist_canonical": {
+              "gender": "男性"
+            },
+            "tone": "normal_ending",
+            "user_theme": "边陲驿站夜谈录"
+          },
+          "previousSceneId": "initial",
+          "previousSceneImage": {
+            "cached": true,
+            "height": 1080,
+            "image_type": "story_scene",
+            "prompt": "scene-cliffside-station-arrival-stranger, realistic, post-modern, gritty-realism, cinematic, low-saturation, photorealistic, high-detail cinematic photography, soft-shading with industrial texture, dramatic natural lighting, male protagonist using Image 0, tired but observant expression with deep empathy, mid-thirties male with slightly weathered skin, standing behind a worn wooden counter, attentive posture ready to greet the newcomer, simple rugged work jacket over a worn shirt, durable fabric with faint oil stains, neutral earth-tone clothing reflecting station environment, standing behind the service counter, facing toward the entrance door, body oriented toward 男人-配角1, hand holding a grease-stained rag, 8K highly detailed facial features, subtle wrinkles around eyes showing years of observation, calm and steady gaze looking at the entrance, lip color naturally muted, soft shadows from overhead dim lighting, short dark hair with natural texture, root fixation coefficient 0.95, tip swing amplitude 2cm, color layering: main color #2D2D2D, secondary color #1A1A1A, highlight #404040, shadow #000000, wind speed 0.2m/s, turbulence intensity 1%, rugged work jacket with visible fabric texture, slight fabric flutter near the door due to wind, matte finish fabric absorbing ambient light, interior of a dilapidated cliffside station, rusted iron door slightly ajar with sand blowing in, ceiling with patches of old tarpaulin cloth, cluttered counter with old mechanical objects and grease stains, dim, dusty atmosphere with floating particles, 男人-配角1 standing at the doorway, wearing deep blue work overalls, full of stubble, looking impatient, dust motes dancing in the dim light, faint haze of engine oil and desert sand, cold gray light filtering through the door gap, desaturated tones, muted grays and industrial browns, deep navy blue for the newcomer's uniform, weathered metallic rust orange, harsh cold daylight from the open door, dim indoor ambient light from flickering overhead bulb, low-contrast lighting to emphasize gritty texture, type medium shot, lens 35mm, aperture f/4.0, depth_of_field deep focus from counter to entrance, flash none, grain subtle film grain, texture realistic industrial grit, protagonist positioned on the left side of the counter, 男人-配角1 positioned at the doorway on the right, the counter serves as a leading line toward the newcomer, action constraints: protagonist walking toward the door, newcomer entering, cinematic realism, no text or symbols in image, melancholic, tense, weary, realistic, anticipatory, no text, no symbols, no garbled characters, no words",
+            "prompt_json": {
+              "camera": {
+                "aperture": "f/4.0",
+                "depth_of_field": "deep focus from counter to entrance",
+                "flash": "none",
+                "grain": "subtle film grain",
+                "lens": "35mm",
+                "texture": "realistic industrial grit",
+                "type": "medium shot"
+              },
+              "clothing_system": [
+                "rugged work jacket with visible fabric texture",
+                "slight fabric flutter near the door due to wind",
+                "matte finish fabric absorbing ambient light"
+              ],
+              "color_restriction": [
+                "desaturated tones",
+                "muted grays and industrial browns",
+                "deep navy blue for the newcomer's uniform",
+                "weathered metallic rust orange"
+              ],
+              "composition": [
+                "protagonist positioned on the left side of the counter",
+                "男人-配角1 positioned at the doorway on the right",
+                "the counter serves as a leading line toward the newcomer",
+                "action constraints: protagonist walking toward the door, newcomer entering"
+              ],
+              "environment": {
+                "background": [
+                  "interior of a dilapidated cliffside station",
+                  "rusted iron door slightly ajar with sand blowing in",
+                  "ceiling with patches of old tarpaulin cloth",
+                  "cluttered counter with old mechanical objects and grease stains",
+                  "dim, dusty atmosphere with floating particles"
+                ],
+                "characters": [
+                  "男人-配角1 standing at the doorway, wearing deep blue work overalls, full of stubble, looking impatient"
+                ],
+                "effects": [
+                  "dust motes dancing in the dim light",
+                  "faint haze of engine oil and desert sand",
+                  "cold gray light filtering through the door gap"
+                ]
+              },
+              "face_system": [
+                "8K highly detailed facial features",
+                "subtle wrinkles around eyes showing years of observation",
+                "calm and steady gaze looking at the entrance",
+                "lip color naturally muted",
+                "soft shadows from overhead dim lighting"
+              ],
+              "hair_system": [
+                "short dark hair with natural texture",
+                "root fixation coefficient 0.95",
+                "tip swing amplitude 2cm",
+                "color layering: main color #2D2D2D, secondary color #1A1A1A, highlight #404040, shadow #000000",
+                "wind speed 0.2m/s",
+                "turbulence intensity 1%"
+              ],
+              "label": "scene-cliffside-station-arrival-stranger",
+              "lighting": [
+                "harsh cold daylight from the open door",
+                "dim indoor ambient light from flickering overhead bulb",
+                "low-contrast lighting to emphasize gritty texture"
+              ],
+              "mood": [
+                "melancholic",
+                "tense",
+                "weary",
+                "realistic",
+                "anticipatory"
+              ],
+              "output_style": [
+                "cinematic realism",
+                "no text or symbols in image"
+              ],
+              "style": [
+                "photorealistic",
+                "high-detail cinematic photography",
+                "soft-shading with industrial texture",
+                "dramatic natural lighting"
+              ],
+              "subject": {
+                "body_traits": [
+                  "male protagonist using Image 0",
+                  "tired but observant expression with deep empathy",
+                  "mid-thirties male with slightly weathered skin",
+                  "standing behind a worn wooden counter",
+                  "attentive posture ready to greet the newcomer"
+                ],
+                "outfit": [
+                  "simple rugged work jacket over a worn shirt",
+                  "durable fabric with faint oil stains",
+                  "neutral earth-tone clothing reflecting station environment"
+                ],
+                "pose": [
+                  "standing behind the service counter",
+                  "facing toward the entrance door",
+                  "body oriented toward 男人-配角1",
+                  "hand holding a grease-stained rag"
+                ]
+              },
+              "tags": [
+                "realistic",
+                "post-modern",
+                "gritty-realism",
+                "cinematic",
+                "low-saturation"
+              ]
+            },
+            "scene_text_hash": "4a606be53c67803b857b83c4a8fa2916",
+            "style": "default",
+            "url": "/image_cache/86c20e0b8f1f3d312fac65a92b9dd32d.png",
+            "width": 1920
+          },
+          "previousSceneText": "风沙拍打着驿站那扇早已锈迹斑斑的铁门，发出沉闷的撞击声。我站在柜台后，手里那块沾满油污的抹布机械地擦拭着桌面，指尖传来的粗糙触感提醒着我，这间名为“断崖”的驿站又熬过了一个寒冷的夜晚。屋顶的漏雨处用几块破旧的油毡布勉强遮盖，每当风起，那处便会发出令人心烦意乱的扑棱声。\n\n“林远，这地方真是一天不如一天了。”我低声自语，目光落在手腕上那块表盘磨损严重的旧手表上，指针跳动得缓慢而迟滞。驿站的供暖系统昨晚彻底罢工了，空气中弥漫着一股陈旧的灰尘味和淡淡的机油味。突然，一阵急促的刹车声穿透了风声，一辆满载货物的重型卡车停在了驿站门外。车门推开，一个穿着深蓝色工装、满脸胡茬的男人跳了下来，他一边咒骂着这鬼天气，一边用力拍打着驿站的玻璃门。我深吸一口气，整理了一下略显单薄的工装外套，快步走向门口。我知道，这不仅是一个过客，或许还是我修缮屋顶和供暖系统的唯一希望。"
+        },
+        "start_ts": 1777571010.6491885,
+        "end_ts": 1777571010.676363,
+        "provider_events": {
+          "event_count": 0,
+          "queue_wait_ms": {
+            "count": 0
+          },
+          "latency_ms": {
+            "count": 0
+          },
+          "llm_success_count": 0,
+          "image_success_count": 0,
+          "request_thread_event_count": 0
+        },
+        "status": "success",
+        "has_scene": true,
+        "has_image": false,
+        "selected_option_index": 0,
+        "selected_option_text": "询问货车司机的困境，尝试通过提供帮助换取修缮物资。",
+        "input_scene_id": "7229917928630373973_-2120003285238287519",
+        "inferred_cache_result": "likely_hit",
+        "is_placeholder": true,
+        "used_updated_flow_state": true
+      },
+      "full_ready": {
+        "text_ready_ts": 1777571010.676363,
+        "text_ready_elapsed_s": 0.027,
+        "image_ready_ts": 1777571029.3093731,
+        "image_ready_elapsed_s": 18.66,
+        "full_ready_ts": 1777571029.3093731,
+        "full_ready_elapsed_s": 18.66,
+        "image_probe": {
+          "status": "success",
+          "source": "generate-scene-image",
+          "attempt_count": 1,
+          "attempts": [
+            {
+              "http_status": 200,
+              "elapsed_s": 18.612,
+              "response_json": {
+                "image": {
+                  "cached": true,
+                  "height": 1080,
+                  "prompt": "scene-cliffside-station-negotiation-with-trucker, realistic, post-modern, gritty-realism, cinematic, low-saturation, narrative-driven, photorealistic, high-detail cinematic photography, soft-shading with industrial texture, dramatic natural lighting, male protagonist using Image 0, mid-thirties, weathered skin, observant eyes showing deep empathy and patience, calm but focused expression, listening intently, standing with a posture of professional readiness, hands partially visible, one hand gesturing slightly to encourage dialogue, simple rugged work jacket over a worn shirt, durable fabric with faint oil stains, neutral earth-tone clothing reflecting the station environment, standing behind the service counter, body oriented toward 货车司机-配角1, slight forward lean to establish social connection, head tilted slightly to signal active listening, 8K detailed facial features, subtle wrinkles around eyes showing years of observation, lip color naturally muted, soft shadows from dim overhead lighting, expression of thoughtful negotiation and empathy, short dark hair with natural texture, root fixation coefficient 0.95, tip swing amplitude 2cm, color layering: main color #2D2D2D, secondary color #1A1A1A, highlight #404040, shadow #000000, wind speed 0.1m/s, turbulence intensity 1%, rugged work jacket with visible fabric weave, slight fabric tension at the shoulders, no text or symbols on clothing, interior of a decaying, dust-filled station building, worn wooden counter with scratches and oil stains, blurred background showing rusted metal frames and dim station lights, faint dust motes visible in the slanted light, 货车司机-配角1 standing on the other side of the counter, wearing a stained deep-blue industrial jumpsuit, looking frustrated and tired, hazy atmosphere with floating dust, dim, low-contrast lighting emphasizing the gritty reality, muted earth tones, faded blue of the industrial jumpsuit, dull wood browns and iron greys, low-saturation overall palette, directional light from a high, dirty window, soft ambient shadows filling the room, subtle high-contrast rim lighting on the protagonist's profile, type medium shot, lens 35mm, aperture f/2.0, depth_of_field focus on the interaction between protagonist and 货车司机-配角1, flash none, grain fine film grain, texture realistic industrial surfaces, protagonist positioned on the left, facing 货车司机-配角1, 货车司机-配角1 positioned on the right, slightly out of focus, the counter acts as a visual barrier between the two, action constraints: protagonist's body language conveys empathetic listening, cinematic realism, no text or symbols in image, no watermarks or logos, solemn and realistic, the weight of survival, fragile human connection, contemplative and grounded, no text, no symbols, no garbled characters, no words, consistent character design, consistent outfit and key props, consistent color palette and lighting",
+                  "style": "realistic",
+                  "url": "/image_cache/35b178b96c4b6438a8e79e13c319133b.png",
+                  "width": 1920
+                },
+                "prompt_json": {
+                  "camera": {
+                    "aperture": "f/2.0",
+                    "depth_of_field": "focus on the interaction between protagonist and 货车司机-配角1",
+                    "flash": "none",
+                    "grain": "fine film grain",
+                    "lens": "35mm",
+                    "texture": "realistic industrial surfaces",
+                    "type": "medium shot"
+                  },
+                  "clothing_system": [
+                    "rugged work jacket with visible fabric weave",
+                    "slight fabric tension at the shoulders",
+                    "no text or symbols on clothing"
+                  ],
+                  "color_restriction": [
+                    "muted earth tones",
+                    "faded blue of the industrial jumpsuit",
+                    "dull wood browns and iron greys",
+                    "low-saturation overall palette"
+                  ],
+                  "composition": [
+                    "protagonist positioned on the left, facing 货车司机-配角1",
+                    "货车司机-配角1 positioned on the right, slightly out of focus",
+                    "the counter acts as a visual barrier between the two",
+                    "action constraints: protagonist's body language conveys empathetic listening"
+                  ],
+                  "environment": {
+                    "background": [
+                      "interior of a decaying, dust-filled station building",
+                      "worn wooden counter with scratches and oil stains",
+                      "blurred background showing rusted metal frames and dim station lights",
+                      "faint dust motes visible in the slanted light"
+                    ],
+                    "characters": [
+                      "货车司机-配角1 standing on the other side of the counter, wearing a stained deep-blue industrial jumpsuit, looking frustrated and tired"
+                    ],
+                    "effects": [
+                      "hazy atmosphere with floating dust",
+                      "dim, low-contrast lighting emphasizing the gritty reality"
+                    ]
+                  },
+                  "face_system": [
+                    "8K detailed facial features",
+                    "subtle wrinkles around eyes showing years of observation",
+                    "lip color naturally muted",
+                    "soft shadows from dim overhead lighting",
+                    "expression of thoughtful negotiation and empathy"
+                  ],
+                  "hair_system": [
+                    "short dark hair with natural texture",
+                    "root fixation coefficient 0.95",
+                    "tip swing amplitude 2cm",
+                    "color layering: main color #2D2D2D, secondary color #1A1A1A, highlight #404040, shadow #000000",
+                    "wind speed 0.1m/s",
+                    "turbulence intensity 1%"
+                  ],
+                  "label": "scene-cliffside-station-negotiation-with-trucker",
+                  "lighting": [
+                    "directional light from a high, dirty window",
+                    "soft ambient shadows filling the room",
+                    "subtle high-contrast rim lighting on the protagonist's profile"
+                  ],
+                  "mood": [
+                    "solemn and realistic",
+                    "the weight of survival",
+                    "fragile human connection",
+                    "contemplative and grounded"
+                  ],
+                  "output_style": [
+                    "cinematic realism",
+                    "no text or symbols in image",
+                    "no watermarks or logos"
+                  ],
+                  "style": [
+                    "photorealistic",
+                    "high-detail cinematic photography",
+                    "soft-shading with industrial texture",
+                    "dramatic natural lighting"
+                  ],
+                  "subject": {
+                    "body_traits": [
+                      "male protagonist using Image 0, mid-thirties, weathered skin",
+                      "observant eyes showing deep empathy and patience",
+                      "calm but focused expression, listening intently",
+                      "standing with a posture of professional readiness",
+                      "hands partially visible, one hand gesturing slightly to encourage dialogue"
+                    ],
+                    "outfit": [
+                      "simple rugged work jacket over a worn shirt",
+                      "durable fabric with faint oil stains",
+                      "neutral earth-tone clothing reflecting the station environment"
+                    ],
+                    "pose": [
+                      "standing behind the service counter",
+                      "body oriented toward 货车司机-配角1",
+                      "slight forward lean to establish social connection",
+                      "head tilted slightly to signal active listening"
+                    ]
+                  },
+                  "tags": [
+                    "realistic",
+                    "post-modern",
+                    "gritty-realism",
+                    "cinematic",
+                    "low-saturation",
+                    "narrative-driven"
+                  ]
+                },
+                "status": "success"
+              },
+              "request_payload": {
+                "sceneDescription": "你选择了：询问货车司机的困境，尝试通过提供帮助换取修缮物资。。在你的努力下，你取得了一些进展。",
+                "globalState": {
+                  "core_worldview": {
+                    "chapters": {
+                      "chapter1": {
+                        "conflict_end_condition": "主角通过协助一名滞留的货车司机解决燃油危机，换取了必要的修缮材料，虽然驿站暂时保住了，但主角也意识到自己无力改变整体衰败的趋势，只能维持现状。",
+                        "main_conflict": "驿站因年久失修面临停业整顿，主角试图通过微薄的积蓄修缮屋顶与供暖系统，却遭遇了物资短缺与当地居民对拆迁补偿方案的意见分歧，主角在坚持留守的理想与现实生存的窘迫之间陷入了深深的自我怀疑。 - 矛盾结束条件：主角通过协助一名滞留的货车司机解决燃油危机，换取了必要的修缮材料，虽然驿站暂时保住了，但主角也意识到自己无力改变整体衰败的趋势，只能维持现状。"
+                      },
+                      "chapter2": {
+                        "conflict_end_condition": "年轻旅人最终决定踏上前往城市的列车，主角送别对方，虽然未能改变其命运，但通过这次对话，主角完成了对自己过去选择的某种程度的释然。",
+                        "main_conflict": "一名试图逃离家庭的年轻旅人闯入驿站，主角在与其相处的过程中，被迫面对自己当年放弃梦想留守此地的遗憾，主角试图劝导对方寻找更好的出路，却发现自己的建议显得苍白无力，甚至引发了对自身选择的二次否定。 - 矛盾结束条件：年轻旅人最终决定踏上前往城市的列车，主角送别对方，虽然未能改变其命运，但通过这次对话，主角完成了对自己过去选择的某种程度的释然。"
+                      },
+                      "chapter3": {
+                        "conflict_end_condition": "主角在最后一夜与老友进行了一场平静的告别，接受了驿站拆除的事实，带着整理好的记录册离开，虽然失去了家园，但内心获得了某种踏实的平静，走向了未知的下一站。 【主角规范信息】 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：青年 所属作品(中)：边陲驿站夜谈录 所属作品(英)：The Frontier Station Night Tales 标志性外观关键词：黑色短发、工装外套、眼神沉静、手部粗糙、常戴旧手表、身形单薄、气质内敛、略带疲惫、胡茬未刮、朴素、沉稳、孤独感 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决",
+                        "main_conflict": "拆迁令正式下达，驿站即将被夷为平地。主角必须在最后期限前处理完所有遗留物品，并决定自己的去向。面对即将消逝的归属感，主角在整理旧物时，不得不面对那些未竟的愿望与无法挽回的人际关系。 - 矛盾结束条件：主角在最后一夜与老友进行了一场平静的告别，接受了驿站拆除的事实，带着整理好的记录册离开，虽然失去了家园，但内心获得了某种踏实的平静，走向了未知的下一站。 【主角规范信息】 主角姓名(中)：林远 主角姓名(英)：Lin Yuan 性别：男性 年龄感：青年 所属作品(中)：边陲驿站夜谈录 所属作品(英)：The Frontier Station Night Tales 标志性外观关键词：黑色短发、工装外套、眼神沉静、手部粗糙、常戴旧手表、身形单薄、气质内敛、略带疲惫、胡茬未刮、朴素、沉稳、孤独感 【初始世界线】 当前章节：chapter1 主线进度：初始主线进度 章节矛盾：未解决"
+                      }
+                    },
+                    "characters": {},
+                    "forces": {},
+                    "game_style": "本作为写实主义叙事游戏，采用低饱和度的视觉色调与环境音效，强调沉浸式的慢节奏体验。通过细腻的日常对话与琐碎的劳作细节，构建出一种带有粗粝质感与烟火气息的边陲生活图景，旨在引导玩家在平淡的叙事中体悟生活的真实重量。",
+                    "main_quest": "主角的目标是守护驿站直至最后一班列车停运，并在此期间为每一位过客提供妥善的安置与告别。任务分为三个阶段：首先是修缮破损的驿站设施，以应对日益恶劣的自然环境；其次是收集关于驿站历史的碎片信息，整理成册以留存记忆；最后是处理拆迁赔偿与个人去留问题。挑战在于，主角必须在“坚持理想的执念”与“现实生存的压力”之间寻找平衡，每一次选择都意味着失去一部分过去，同时获得通往未来的某种可能，最终达成一种与时代变迁和解的平衡状态。",
+                    "protagonist_ability": "主角拥有一种名为“共情倾听”的特质，这并非超能力，而是源于其长期经营驿站积累的敏锐观察力与耐心。通过与旅人进行深度的夜谈，主角能从对方的只言片语中拼凑出其背后的生活轨迹与真实诉求。这种能力的使用受限于社交距离与对方的信任度，且无法改变他人的决定，只能在对话中提供情绪价值或微小的建议，帮助他人理清思绪，同时也让主角在倾听中逐渐认清自己的局限。",
+                    "world_basic_setting": "故事发生在一座名为“断崖”的边陲驿站，这里是连接繁华内陆与荒凉戈壁的唯一补给点。历史背景设定在工业化进程放缓、资源匮乏的后现代时期，社会阶层固化，年轻人多选择前往大城市寻求机遇，而留守者则在衰败的城镇中维持着基本的生存秩序。驿站不仅是交通枢纽，更是各色旅人与留守者的情感交汇地。这里的文化由“迁徙”与“停驻”构成，人们在风沙中建立起脆弱的羁绊，又在下一次列车鸣笛时被迫离散。关键事件是驿站面临的拆迁危机，这不仅是物理空间的消失，更是当地人共同记忆与生活方式的终结，迫使每个人在去留之间做出符合现实逻辑的抉择。"
+                  },
+                  "flow_worldline": {
+                    "characters": {},
+                    "environment": {},
+                    "chapter_progress": 2.0
+                  },
+                  "game_id": "game_1777570906_gdrpp2",
+                  "image_style": {
+                    "type": "realistic"
+                  },
+                  "meta": {
+                    "detail_async": true
+                  },
+                  "protagonist_canonical": {
+                    "gender": "男性"
+                  },
+                  "tone": "normal_ending",
+                  "user_theme": "边陲驿站夜谈录",
+                  "_visual_context": {
+                    "sceneId": "7229917928630373973_-2120003285238287519",
+                    "previousSceneImage": {
+                      "cached": true,
+                      "height": 1080,
+                      "image_type": "story_scene",
+                      "prompt": "scene-cliffside-station-arrival-stranger, realistic, post-modern, gritty-realism, cinematic, low-saturation, photorealistic, high-detail cinematic photography, soft-shading with industrial texture, dramatic natural lighting, male protagonist using Image 0, tired but observant expression with deep empathy, mid-thirties male with slightly weathered skin, standing behind a worn wooden counter, attentive posture ready to greet the newcomer, simple rugged work jacket over a worn shirt, durable fabric with faint oil stains, neutral earth-tone clothing reflecting station environment, standing behind the service counter, facing toward the entrance door, body oriented toward 男人-配角1, hand holding a grease-stained rag, 8K highly detailed facial features, subtle wrinkles around eyes showing years of observation, calm and steady gaze looking at the entrance, lip color naturally muted, soft shadows from overhead dim lighting, short dark hair with natural texture, root fixation coefficient 0.95, tip swing amplitude 2cm, color layering: main color #2D2D2D, secondary color #1A1A1A, highlight #404040, shadow #000000, wind speed 0.2m/s, turbulence intensity 1%, rugged work jacket with visible fabric texture, slight fabric flutter near the door due to wind, matte finish fabric absorbing ambient light, interior of a dilapidated cliffside station, rusted iron door slightly ajar with sand blowing in, ceiling with patches of old tarpaulin cloth, cluttered counter with old mechanical objects and grease stains, dim, dusty atmosphere with floating particles, 男人-配角1 standing at the doorway, wearing deep blue work overalls, full of stubble, looking impatient, dust motes dancing in the dim light, faint haze of engine oil and desert sand, cold gray light filtering through the door gap, desaturated tones, muted grays and industrial browns, deep navy blue for the newcomer's uniform, weathered metallic rust orange, harsh cold daylight from the open door, dim indoor ambient light from flickering overhead bulb, low-contrast lighting to emphasize gritty texture, type medium shot, lens 35mm, aperture f/4.0, depth_of_field deep focus from counter to entrance, flash none, grain subtle film grain, texture realistic industrial grit, protagonist positioned on the left side of the counter, 男人-配角1 positioned at the doorway on the right, the counter serves as a leading line toward the newcomer, action constraints: protagonist walking toward the door, newcomer entering, cinematic realism, no text or symbols in image, melancholic, tense, weary, realistic, anticipatory, no text, no symbols, no garbled characters, no words",
+                      "prompt_json": {
+                        "camera": {
+                          "aperture": "f/4.0",
+                          "depth_of_field": "deep focus from counter to entrance",
+                          "flash": "none",
+                          "grain": "subtle film grain",
+                          "lens": "35mm",
+                          "texture": "realistic industrial grit",
+                          "type": "medium shot"
+                        },
+                        "clothing_system": [
+                          "rugged work jacket with visible fabric texture",
+                          "slight fabric flutter near the door due to wind",
+                          "matte finish fabric absorbing ambient light"
+                        ],
+                        "color_restriction": [
+                          "desaturated tones",
+                          "muted grays and industrial browns",
+                          "deep navy blue for the newcomer's uniform",
+                          "weathered metallic rust orange"
+                        ],
+                        "composition": [
+                          "protagonist positioned on the left side of the counter",
+                          "男人-配角1 positioned at the doorway on the right",
+                          "the counter serves as a leading line toward the newcomer",
+                          "action constraints: protagonist walking toward the door, newcomer entering"
+                        ],
+                        "environment": {
+                          "background": [
+                            "interior of a dilapidated cliffside station",
+                            "rusted iron door slightly ajar with sand blowing in",
+                            "ceiling with patches of old tarpaulin cloth",
+                            "cluttered counter with old mechanical objects and grease stains",
+                            "dim, dusty atmosphere with floating particles"
+                          ],
+                          "characters": [
+                            "男人-配角1 standing at the doorway, wearing deep blue work overalls, full of stubble, looking impatient"
+                          ],
+                          "effects": [
+                            "dust motes dancing in the dim light",
+                            "faint haze of engine oil and desert sand",
+                            "cold gray light filtering through the door gap"
+                          ]
+                        },
+                        "face_system": [
+                          "8K highly detailed facial features",
+                          "subtle wrinkles around eyes showing years of observation",
+                          "calm and steady gaze looking at the entrance",
+                          "lip color naturally muted",
+                          "soft shadows from overhead dim lighting"
+                        ],
+                        "hair_system": [
+                          "short dark hair with natural texture",
+                          "root fixation coefficient 0.95",
+                          "tip swing amplitude 2cm",
+                          "color layering: main color #2D2D2D, secondary color #1A1A1A, highlight #404040, shadow #000000",
+                          "wind speed 0.2m/s",
+                          "turbulence intensity 1%"
+                        ],
+                        "label": "scene-cliffside-station-arrival-stranger",
+                        "lighting": [
+                          "harsh cold daylight from the open door",
+                          "dim indoor ambient light from flickering overhead bulb",
+                          "low-contrast lighting to emphasize gritty texture"
+                        ],
+                        "mood": [
+                          "melancholic",
+                          "tense",
+                          "weary",
+                          "realistic",
+                          "anticipatory"
+                        ],
+                        "output_style": [
+                          "cinematic realism",
+                          "no text or symbols in image"
+                        ],
+                        "style": [
+                          "photorealistic",
+                          "high-detail cinematic photography",
+                          "soft-shading with industrial texture",
+                          "dramatic natural lighting"
+                        ],
+                        "subject": {
+                          "body_traits": [
+                            "male protagonist using Image 0",
+                            "tired but observant expression with deep empathy",
+                            "mid-thirties male with slightly weathered skin",
+                            "standing behind a worn wooden counter",
+                            "attentive posture ready to greet the newcomer"
+                          ],
+                          "outfit": [
+                            "simple rugged work jacket over a worn shirt",
+                            "durable fabric with faint oil stains",
+                            "neutral earth-tone clothing reflecting station environment"
+                          ],
+                          "pose": [
+                            "standing behind the service counter",
+                            "facing toward the entrance door",
+                            "body oriented toward 男人-配角1",
+                            "hand holding a grease-stained rag"
+                          ]
+                        },
+                        "tags": [
+                          "realistic",
+                          "post-modern",
+                          "gritty-realism",
+                          "cinematic",
+                          "low-saturation"
+                        ]
+                      },
+                      "scene_text_hash": "4a606be53c67803b857b83c4a8fa2916",
+                      "style": "default",
+                      "url": "/image_cache/86c20e0b8f1f3d312fac65a92b9dd32d.png",
+                      "width": 1920
+                    },
+                    "previousSceneText": "风沙拍打着驿站那扇早已锈迹斑斑的铁门，发出沉闷的撞击声。我站在柜台后，手里那块沾满油污的抹布机械地擦拭着桌面，指尖传来的粗糙触感提醒着我，这间名为“断崖”的驿站又熬过了一个寒冷的夜晚。屋顶的漏雨处用几块破旧的油毡布勉强遮盖，每当风起，那处便会发出令人心烦意乱的扑棱声。\n\n“林远，这地方真是一天不如一天了。”我低声自语，目光落在手腕上那块表盘磨损严重的旧手表上，指针跳动得缓慢而迟滞。驿站的供暖系统昨晚彻底罢工了，空气中弥漫着一股陈旧的灰尘味和淡淡的机油味。突然，一阵急促的刹车声穿透了风声，一辆满载货物的重型卡车停在了驿站门外。车门推开，一个穿着深蓝色工装、满脸胡茬的男人跳了下来，他一边咒骂着这鬼天气，一边用力拍打着驿站的玻璃门。我深吸一口气，整理了一下略显单薄的工装外套，快步走向门口。我知道，这不仅是一个过客，或许还是我修缮屋顶和供暖系统的唯一希望。"
+                  }
+                },
+                "style": "realistic"
+              },
+              "start_ts": 1777571010.6973722,
+              "end_ts": 1777571029.3093731,
+              "provider_events": {
+                "event_count": 0,
+                "queue_wait_ms": {
+                  "count": 0
+                },
+                "latency_ms": {
+                  "count": 0
+                },
+                "llm_success_count": 0,
+                "image_success_count": 0,
+                "request_thread_event_count": 0
+              }
+            }
+          ],
+          "image_ready_ts": 1777571029.3093731,
+          "image_ready_elapsed_s": 18.66,
+          "image": {
+            "cached": true,
+            "height": 1080,
+            "prompt": "scene-cliffside-station-negotiation-with-trucker, realistic, post-modern, gritty-realism, cinematic, low-saturation, narrative-driven, photorealistic, high-detail cinematic photography, soft-shading with industrial texture, dramatic natural lighting, male protagonist using Image 0, mid-thirties, weathered skin, observant eyes showing deep empathy and patience, calm but focused expression, listening intently, standing with a posture of professional readiness, hands partially visible, one hand gesturing slightly to encourage dialogue, simple rugged work jacket over a worn shirt, durable fabric with faint oil stains, neutral earth-tone clothing reflecting the station environment, standing behind the service counter, body oriented toward 货车司机-配角1, slight forward lean to establish social connection, head tilted slightly to signal active listening, 8K detailed facial features, subtle wrinkles around eyes showing years of observation, lip color naturally muted, soft shadows from dim overhead lighting, expression of thoughtful negotiation and empathy, short dark hair with natural texture, root fixation coefficient 0.95, tip swing amplitude 2cm, color layering: main color #2D2D2D, secondary color #1A1A1A, highlight #404040, shadow #000000, wind speed 0.1m/s, turbulence intensity 1%, rugged work jacket with visible fabric weave, slight fabric tension at the shoulders, no text or symbols on clothing, interior of a decaying, dust-filled station building, worn wooden counter with scratches and oil stains, blurred background showing rusted metal frames and dim station lights, faint dust motes visible in the slanted light, 货车司机-配角1 standing on the other side of the counter, wearing a stained deep-blue industrial jumpsuit, looking frustrated and tired, hazy atmosphere with floating dust, dim, low-contrast lighting emphasizing the gritty reality, muted earth tones, faded blue of the industrial jumpsuit, dull wood browns and iron greys, low-saturation overall palette, directional light from a high, dirty window, soft ambient shadows filling the room, subtle high-contrast rim lighting on the protagonist's profile, type medium shot, lens 35mm, aperture f/2.0, depth_of_field focus on the interaction between protagonist and 货车司机-配角1, flash none, grain fine film grain, texture realistic industrial surfaces, protagonist positioned on the left, facing 货车司机-配角1, 货车司机-配角1 positioned on the right, slightly out of focus, the counter acts as a visual barrier between the two, action constraints: protagonist's body language conveys empathetic listening, cinematic realism, no text or symbols in image, no watermarks or logos, solemn and realistic, the weight of survival, fragile human connection, contemplative and grounded, no text, no symbols, no garbled characters, no words, consistent character design, consistent outfit and key props, consistent color palette and lighting",
+            "style": "realistic",
+            "url": "/image_cache/35b178b96c4b6438a8e79e13c319133b.png",
+            "width": 1920
+          },
+          "request_key": null
+        },
+        "ready_mode": "async_generate_scene_image"
+      },
+      "success": true
+    }
+  ]
+}

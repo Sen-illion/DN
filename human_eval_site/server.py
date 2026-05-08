@@ -19,6 +19,7 @@ else:
 DATA_ROOT = SITE_ROOT / "data"
 RESULTS_ROOT = SITE_ROOT / "collected_results"
 THEME_CATALOG_PATH = DATA_ROOT / "theme_catalog.json"
+TEXT_DATASET_PATH = DATA_ROOT / "dataset.json"
 INVITE_TOKENS_PATH = DATA_ROOT / "invite_tokens.json"
 WRITE_LOCK = threading.Lock()
 
@@ -62,6 +63,15 @@ def load_theme_catalog() -> dict[str, Any]:
     return catalog
 
 
+def load_text_dataset() -> dict[str, Any]:
+    dataset = load_json(TEXT_DATASET_PATH, {})
+    if not dataset or not dataset.get("cases"):
+        raise FileNotFoundError(
+            "dataset.json is missing. Place a text-eval dataset at human_eval_site/data/dataset.json."
+        )
+    return dataset
+
+
 def load_invites() -> dict[str, Any]:
     invites = load_json(INVITE_TOKENS_PATH, {})
     if not invites or not invites.get("tokens"):
@@ -92,6 +102,53 @@ def get_dataset_for_theme(theme_id: str) -> dict[str, Any]:
     raise KeyError(f"Unknown theme: {theme_id}")
 
 
+def build_text_eval_dataset() -> dict[str, Any]:
+    raw = load_text_dataset()
+    text_dimensions = []
+    for dim in raw.get("dimensions", []):
+        dim_id = str(dim.get("id") or "")
+        if dim_id.startswith("text_") or dim_id in {"overall", "sequence_consistency"}:
+            text_dimensions.append(dim)
+    if not text_dimensions:
+        text_dimensions = raw.get("dimensions", [])
+
+    cases = []
+    for item in raw.get("cases", []):
+        candidates = []
+        for candidate in item.get("candidates", []):
+            text_payload = candidate.get("text")
+            if isinstance(text_payload, list):
+                candidate_text = [str(part) for part in text_payload]
+            elif isinstance(text_payload, str) and text_payload.strip():
+                candidate_text = [candidate["text"].strip()]
+            else:
+                candidate_text = []
+            candidates.append(
+                {
+                    "system": candidate.get("system", "unknown"),
+                    "text": candidate_text,
+                    "images": [],
+                }
+            )
+        cases.append(
+            {
+                "id": item.get("id", "unknown_case"),
+                "title": item.get("title", ""),
+                "prompt": item.get("prompt", []),
+                "context": item.get("context", []),
+                "storySegments": item.get("storySegments", []),
+                "candidates": candidates,
+            }
+        )
+
+    return {
+        "studyTitle": raw.get("studyTitle", "Text Consistency Evaluation"),
+        "instructions": raw.get("instructions", []),
+        "dimensions": text_dimensions,
+        "cases": cases,
+    }
+
+
 def append_jsonl(path: Path, payload: dict[str, Any]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("a", encoding="utf-8") as handle:
@@ -112,6 +169,7 @@ def session():
         return ("", 204)
 
     token = str(request.args.get("token") or "").strip()
+    requested_mode = str(request.args.get("mode") or "").strip().lower()
     if not token:
         return jsonify({"error": "Missing token"}), 400
 
@@ -124,7 +182,14 @@ def session():
                 break
         if assignment is None:
             raise KeyError(f"Unknown token: {token}")
-        dataset = get_dataset_for_theme(assignment["themeId"])
+        mode = str(assignment.get("mode") or requested_mode or "image").strip().lower()
+        if mode == "text":
+            assignment["mode"] = "text"
+            dataset = build_text_eval_dataset()
+        else:
+            mode = "image"
+            dataset = get_dataset_for_theme(assignment["themeId"])
+            assignment["mode"] = mode
     except FileNotFoundError as exc:
         return jsonify({"error": str(exc)}), 500
     except KeyError as exc:
@@ -146,6 +211,7 @@ def session():
                 "submittedAt": assignment.get("submittedAt"),
                 "submissionCount": assignment.get("submissionCount", 0),
                 "evaluatorId": assignment.get("evaluatorId", ""),
+                "mode": assignment.get("mode", requested_mode or "image"),
             },
             "dataset": dataset,
         }
@@ -168,7 +234,6 @@ def submit():
         return jsonify({"error": "Missing payload"}), 400
 
     try:
-        catalog = load_theme_catalog()
         invites = load_invites()
     except FileNotFoundError as exc:
         return jsonify({"error": str(exc)}), 500
@@ -181,6 +246,10 @@ def submit():
     if assignment is None:
         return jsonify({"error": f"Unknown token: {token}"}), 404
 
+    mode = str(assignment.get("mode") or payload.get("assignment", {}).get("mode") or "image").lower()
+    if mode not in {"text", "image"}:
+        mode = "image"
+
     theme_id = assignment.get("themeId") or payload.get("assignment", {}).get("themeId") or "unknown_theme"
     theme_title = assignment.get("themeTitle") or theme_id
     saved_at = utc_now_iso()
@@ -190,6 +259,7 @@ def submit():
         "token": token,
         "themeId": theme_id,
         "themeTitle": theme_title,
+        "mode": mode,
         "evaluatorId": evaluator_id,
         "remoteAddr": request.headers.get("X-Forwarded-For", request.remote_addr),
         "userAgent": request.headers.get("User-Agent", ""),
@@ -197,10 +267,10 @@ def submit():
     }
 
     timestamp_label = saved_at.replace(":", "-")
-    result_dir = RESULTS_ROOT / sanitize_segment(theme_id)
+    result_dir = RESULTS_ROOT / sanitize_segment(mode) / sanitize_segment(theme_id)
     result_path = result_dir / f"{timestamp_label}__{sanitize_segment(token)}.json"
-    index_path = RESULTS_ROOT / "submissions_index.jsonl"
-    summary_path = RESULTS_ROOT / "latest_submission_summary.json"
+    index_path = RESULTS_ROOT / sanitize_segment(mode) / "submissions_index.jsonl"
+    summary_path = RESULTS_ROOT / sanitize_segment(mode) / "latest_submission_summary.json"
 
     with WRITE_LOCK:
         result_dir.mkdir(parents=True, exist_ok=True)
@@ -210,6 +280,7 @@ def submit():
             "token": token,
             "themeId": theme_id,
             "themeTitle": theme_title,
+            "mode": mode,
             "evaluatorId": evaluator_id,
             "file": display_path(result_path),
         })
@@ -225,15 +296,20 @@ def submit():
             summary_path,
             {
                 "updatedAt": saved_at,
-                "themeCount": len(catalog.get("themes", [])),
+                "mode": mode,
                 "tokenCount": len(invites.get("tokens", [])),
-                "submittedCount": sum(1 for item in invites["tokens"] if item.get("submittedAt")),
+                "submittedCount": sum(
+                    1
+                    for item in invites["tokens"]
+                    if item.get("submittedAt") and str(item.get("mode") or "image").lower() == mode
+                ),
                 "latestSubmission": {
                     "token": token,
                     "themeId": theme_id,
                     "themeTitle": theme_title,
+                    "mode": mode,
                     "evaluatorId": evaluator_id,
-                        "file": display_path(result_path),
+                    "file": display_path(result_path),
                 },
             },
         )
@@ -243,6 +319,7 @@ def submit():
             "ok": True,
             "savedAt": saved_at,
             "themeId": theme_id,
+            "mode": mode,
             "file": display_path(result_path),
         }
     )
