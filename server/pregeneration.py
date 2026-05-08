@@ -34,6 +34,45 @@ def _is_strict_fullready_benchmark(global_state) -> bool:
     return bool(global_state.get("_benchmark_profile", "") in {"fullready_strict", "fullready_pregen60"})
 
 
+def _benchmark_fixed_path_depth(global_state) -> int:
+    raw = os.getenv("DN_BENCHMARK_PREGEN_DEPTH", "").strip()
+    if isinstance(global_state, dict):
+        local_raw = global_state.get("_benchmark_pregen_depth")
+        if local_raw is not None and str(local_raw).strip() != "":
+            raw = str(local_raw).strip()
+    if not raw:
+        return 0
+    try:
+        depth = int(raw)
+    except Exception:
+        return 0
+    return max(0, min(8, depth))
+
+
+def _benchmark_fixed_path_enabled(global_state) -> bool:
+    if not isinstance(global_state, dict):
+        return False
+    semantics = str(
+        global_state.get("_benchmark_pregen_semantics")
+        or os.getenv("DN_BENCHMARK_PREGEN_SEMANTICS", "")
+    ).strip().lower()
+    if semantics != "fixed_path":
+        return False
+    selection = str(
+        global_state.get("_benchmark_selection_policy")
+        or os.getenv("DN_BENCHMARK_SELECTION_POLICY", "first_option")
+    ).strip().lower()
+    if selection != "first_option":
+        return False
+    return _benchmark_fixed_path_depth(global_state) > 0
+
+
+def _benchmark_selected_option_index(global_state) -> int:
+    if _benchmark_fixed_path_enabled(global_state):
+        return 0
+    return -1
+
+
 def _canonicalize_for_cache_key(value):
     if isinstance(value, dict):
         normalized = {}
@@ -83,6 +122,10 @@ def _attach_cache_metadata(cache_entry, global_state, current_options, scene_id)
         "benchmark_profile": (global_state or {}).get("_benchmark_profile") if isinstance(global_state, dict) else None,
         "benchmark_measurement": (global_state or {}).get("_benchmark_measurement") if isinstance(global_state, dict) else None,
         "benchmark_read_wait_s": (global_state or {}).get("_benchmark_read_wait_s") if isinstance(global_state, dict) else None,
+        "benchmark_pregen_depth": (global_state or {}).get("_benchmark_pregen_depth") if isinstance(global_state, dict) else None,
+        "benchmark_turn_index": (global_state or {}).get("_benchmark_turn_index") if isinstance(global_state, dict) else None,
+        "benchmark_selection_policy": (global_state or {}).get("_benchmark_selection_policy") if isinstance(global_state, dict) else None,
+        "benchmark_path_trace": (global_state or {}).get("_benchmark_path_trace") if isinstance(global_state, dict) else None,
         "parent_scene_id": (visual_context or {}).get("sceneId") if isinstance(visual_context, dict) else None,
     }
 
@@ -121,6 +164,22 @@ def _pregenerate_next_layers_logic(global_state, current_options, scene_id):
         return scene_id
 
     
+    fixed_path_enabled = _benchmark_fixed_path_enabled(global_state)
+    fixed_path_depth = _benchmark_fixed_path_depth(global_state) if fixed_path_enabled else 0
+    fixed_path_selected_index = _benchmark_selected_option_index(global_state)
+    benchmark_turn_index = 0
+    if isinstance(global_state, dict):
+        try:
+            benchmark_turn_index = int(global_state.get("_benchmark_turn_index", 0) or 0)
+        except Exception:
+            benchmark_turn_index = 0
+    if fixed_path_enabled:
+        print(
+            f"🔧 benchmark fixed-path pregen enabled: scene_id={scene_id}, "
+            f"depth={fixed_path_depth}, selected_option_index={fixed_path_selected_index}, "
+            f"turn_index={benchmark_turn_index}"
+        )
+
     print(f"🔄 开始预生成场景 {scene_id} 的两层内容（优先级策略）...")
     
     # 在后台线程中异步执行预生成，不阻塞响应
@@ -274,6 +333,117 @@ def _pregenerate_next_layers_logic(global_state, current_options, scene_id):
                     print(f"❌ 选项 {opt_idx} 的 layer2 预生成失败: {e}")
                     import traceback
                     traceback.print_exc()
+
+            def run_fixed_path_depth_for_branch(
+                base_global_state,
+                base_path_trace,
+                layer1_option_data,
+                depth_remaining,
+            ):
+                if depth_remaining <= 0:
+                    return
+                next_options = layer1_option_data.get("next_options", [])
+                if not next_options:
+                    return
+                selected_child_index = 0
+                updated_global_state = json.loads(json.dumps(base_global_state or {}, ensure_ascii=False))
+                updated_global_state.setdefault("flow_worldline", {})
+                flow_update = layer1_option_data.get("flow_update", {})
+                if flow_update:
+                    updated_global_state["flow_worldline"].update(flow_update)
+                path_trace = list(base_path_trace or [])
+                path_trace.append(selected_child_index)
+                updated_global_state["_benchmark_pregen_depth"] = fixed_path_depth
+                updated_global_state["_benchmark_pregen_semantics"] = "fixed_path"
+                updated_global_state["_benchmark_selection_policy"] = "first_option"
+                updated_global_state["_benchmark_path_trace"] = path_trace
+                try:
+                    updated_global_state["_benchmark_turn_index"] = int(
+                        updated_global_state.get("_benchmark_turn_index", benchmark_turn_index)
+                    ) + 1
+                except Exception:
+                    updated_global_state["_benchmark_turn_index"] = benchmark_turn_index + 1
+
+                next_scene_id = generate_scene_id(str(updated_global_state), str(next_options))
+                try:
+                    layer_data = generate_all_options(updated_global_state, next_options, skip_images=True)
+                    if not layer_data:
+                        return
+                    with cache_lock:
+                        if next_scene_id not in pregeneration_cache:
+                            pregeneration_cache[next_scene_id] = {
+                                "layer1": {},
+                                "layer2": {},
+                                "generation_status": {},
+                                "generation_events": {},
+                                "should_cancel": False,
+                                "current_generating_index": None,
+                                "layer2_generating": False,
+                                "layer2_cancel": False,
+                                "layer2_selected_option": None,
+                                "layer2_thread": None,
+                                "current_layer2_option": None,
+                                "text_only_mode": True,
+                            }
+                        next_cache_entry = pregeneration_cache[next_scene_id]
+                        _attach_cache_metadata(
+                            next_cache_entry,
+                            updated_global_state,
+                            next_options,
+                            next_scene_id,
+                        )
+                        for child_idx, child_data in layer_data.items():
+                            next_cache_entry.setdefault("layer1", {})[child_idx] = child_data
+                            next_cache_entry.setdefault("generation_status", {})[child_idx] = "text_only"
+                            events = next_cache_entry.setdefault("generation_events", {})
+                            if child_idx not in events:
+                                events[child_idx] = threading.Event()
+                            events[child_idx].set()
+                    selected_child_data = layer_data.get(selected_child_index)
+                    if not isinstance(selected_child_data, dict):
+                        return
+                    selected_scene_text = str(selected_child_data.get("scene") or "").strip()
+                    if selected_scene_text and not _skip_low_priority_pregen("image"):
+                        if isinstance(updated_global_state, dict):
+                            updated_global_state["_plot_supporting_characters"] = selected_child_data.get(
+                                "plot_supporting_characters", []
+                            )
+                        image = generate_scene_image(
+                            selected_scene_text,
+                            updated_global_state,
+                            "default",
+                            use_cache=True,
+                            cache_key_suffix=f"{next_scene_id}_opt{selected_child_index}",
+                        )
+                        if image and isinstance(image, dict) and image.get("url"):
+                            image_data = {
+                                "url": image.get("url"),
+                                "prompt": image.get("prompt", ""),
+                                "style": image.get("style", "default"),
+                                "width": image.get("width", 1024),
+                                "height": image.get("height", 1024),
+                                "cached": image.get("cached", True),
+                                "image_type": "story_scene",
+                                "scene_text_hash": hashlib.md5(selected_scene_text.encode("utf-8")).hexdigest(),
+                            }
+                            with cache_lock:
+                                ne = pregeneration_cache.get(next_scene_id)
+                                if isinstance(ne, dict):
+                                    if selected_child_index in ne.get("layer1", {}):
+                                        ne["layer1"][selected_child_index]["scene_image"] = image_data
+                                    ne.setdefault("generation_status", {})[selected_child_index] = "completed"
+                                    ev = ne.get("generation_events", {}).get(selected_child_index)
+                                    if ev:
+                                        ev.set()
+                    if depth_remaining > 1:
+                        run_fixed_path_depth_for_branch(
+                            updated_global_state,
+                            path_trace,
+                            selected_child_data,
+                            depth_remaining - 1,
+                        )
+                except Exception as ex:
+                    print(f"⚠️ fixed-path depth pregen exception: {ex}")
             
             # 定义单个选项的生成任务函数
             def generate_single_option_task(opt_idx, option):
@@ -432,9 +602,34 @@ def _pregenerate_next_layers_logic(global_state, current_options, scene_id):
                             else:
                                 print(f"⚠️ [第一层预生成] scene_id {scene_id} 不在缓存中，无法写入选项 {opt_idx} 的数据")
                     
-                    # 流水线：本层该选项文本一写完，立即启动该分支的 layer2（先文本后图）
+                    # 流水线：本层该选项文本一写完后，按模式触发下一层预生成
                     if option_data and option_data.get('next_options'):
-                        if _is_strict_fullready_benchmark(global_state):
+                        if fixed_path_enabled:
+                            if opt_idx == fixed_path_selected_index and fixed_path_depth >= 2:
+                                base_state = json.loads(json.dumps(global_state or {}, ensure_ascii=False))
+                                base_state["_benchmark_pregen_depth"] = fixed_path_depth
+                                base_state["_benchmark_pregen_semantics"] = "fixed_path"
+                                base_state["_benchmark_selection_policy"] = "first_option"
+                                base_state["_benchmark_turn_index"] = benchmark_turn_index
+                                base_state["_benchmark_path_trace"] = list(
+                                    (base_state.get("_benchmark_path_trace") or [])
+                                )
+                                threading.Thread(
+                                    target=run_fixed_path_depth_for_branch,
+                                    args=(
+                                        base_state,
+                                        base_state["_benchmark_path_trace"],
+                                        option_data.copy(),
+                                        fixed_path_depth - 1,
+                                    ),
+                                    daemon=True,
+                                ).start()
+                            else:
+                                print(
+                                    f"⏭️ benchmark fixed-path: skip branch pregen for option {opt_idx}; "
+                                    f"selected={fixed_path_selected_index}, depth={fixed_path_depth}"
+                                )
+                        elif _is_strict_fullready_benchmark(global_state):
                             print(
                                 f"⏭️ strict benchmark: skip eager branch layer2 pregen for option {opt_idx}; "
                                 "focus current budget on first-layer candidate texts/images"
@@ -448,7 +643,9 @@ def _pregenerate_next_layers_logic(global_state, current_options, scene_id):
                     
                     # 为当前场景生成图片（限速由 yunwu 全局限速锁 + IMAGE_SUBMIT_DELAY 控制）
                     # 图片生成完成后更新缓存
-                    if scene_for_image and option_data:
+                    if scene_for_image and option_data and (
+                        (not fixed_path_enabled) or (opt_idx == fixed_path_selected_index)
+                    ):
                         try:
                             print(f"🎨 [第一层预生成] 开始为选项 {opt_idx + 1} 生成图片...")
                             # 传入剧情模型输出的本段出场配角（有则名单，无则[]），图片流程以剧情为准不推断
@@ -609,6 +806,16 @@ def _pregenerate_next_layers_logic(global_state, current_options, scene_id):
                             print(f"⚠️ 选项 {opt_idx + 1} 场景图片生成异常：{img_err}，将按需补图")
                             import traceback
                             traceback.print_exc()
+                    elif scene_for_image and option_data and fixed_path_enabled:
+                        print(
+                            f"⏭️ benchmark fixed-path: skip layer1 image for non-selected option {opt_idx}; "
+                            f"selected={fixed_path_selected_index}"
+                        )
+                    elif scene_for_image and option_data and fixed_path_enabled:
+                        print(
+                            f"⏭️ benchmark fixed-path: skip layer1 image for non-selected option {opt_idx}; "
+                            f"selected={fixed_path_selected_index}"
+                        )
                     elif not option_data:
                         print(f"⚠️ [第一层预生成] 选项 {opt_idx} 的 option_data 为空，无法写入缓存")
                         # 即使 option_data 为空，也要更新状态，避免一直处于 generating
