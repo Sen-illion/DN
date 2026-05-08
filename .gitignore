@@ -53,3 +53,27 @@ dn-main-src.tgz
 *.tgz
 *.tar.gz
 *.zip
+*.rar
+*.7z
+
+# Local lockfile
+uv.lock
+
+# secrets
+.env
+
+# Experiment artifacts (keep folders, ignore generated contents)
+DN-experiment/
+DN-experiment-2.0/
+DN-experiment/game_*/
+initial/main_character/game_*/
+initial/character_references/game_*/
+experiments/external_baselines/*/.venv-*/
+experiments/_archive/
+remote_baseline_results_20260430/
+
+# Repo metadata
+.gitattributes
+
+# Human eval runtime outputs
+human_eval_site/collected_results/
