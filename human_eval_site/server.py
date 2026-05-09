@@ -1,12 +1,16 @@
 from __future__ import annotations
 
 import json
+import os
+import secrets
 import threading
+import zipfile
 from datetime import datetime, timezone
+from io import BytesIO
 from pathlib import Path
 from typing import Any
 
-from flask import Flask, jsonify, request, send_from_directory
+from flask import Flask, jsonify, request, send_file, send_from_directory
 
 
 CURRENT_DIR = Path(__file__).resolve().parent
@@ -155,10 +159,33 @@ def append_jsonl(path: Path, payload: dict[str, Any]) -> None:
         handle.write(json.dumps(payload, ensure_ascii=False) + "\n")
 
 
+def get_admin_export_key() -> str:
+    return str(os.environ.get("HUMAN_EVAL_ADMIN_KEY") or os.environ.get("EXPORT_RESULTS_KEY") or "").strip()
+
+
+def request_admin_key() -> str:
+    bearer_prefix = "Bearer "
+    auth_header = str(request.headers.get("Authorization") or "").strip()
+    if auth_header.startswith(bearer_prefix):
+        return auth_header[len(bearer_prefix):].strip()
+    return str(request.headers.get("X-Admin-Key") or request.args.get("key") or "").strip()
+
+
+def require_admin_export_key():
+    expected_key = get_admin_export_key()
+    if not expected_key:
+        return jsonify({
+            "error": "Admin export is disabled. Set HUMAN_EVAL_ADMIN_KEY in Render environment variables."
+        }), 503
+    if not secrets.compare_digest(request_admin_key(), expected_key):
+        return jsonify({"error": "Unauthorized"}), 401
+    return None
+
+
 @app.after_request
 def add_cors_headers(response):
     response.headers["Access-Control-Allow-Origin"] = "*"
-    response.headers["Access-Control-Allow-Headers"] = "Content-Type"
+    response.headers["Access-Control-Allow-Headers"] = "Content-Type, Authorization, X-Admin-Key"
     response.headers["Access-Control-Allow-Methods"] = "GET,POST,OPTIONS"
     return response
 
@@ -328,6 +355,60 @@ def submit():
 @app.route("/api/health", methods=["GET"])
 def health():
     return jsonify({"ok": True, "time": utc_now_iso()})
+
+
+@app.route("/api/admin/export-results", methods=["GET", "OPTIONS"])
+def export_results():
+    if request.method == "OPTIONS":
+        return ("", 204)
+
+    auth_error = require_admin_export_key()
+    if auth_error:
+        return auth_error
+
+    timestamp_label = utc_now_iso().replace(":", "-")
+    archive = BytesIO()
+    file_count = 0
+
+    with WRITE_LOCK:
+        with zipfile.ZipFile(archive, mode="w", compression=zipfile.ZIP_DEFLATED) as zip_file:
+            if RESULTS_ROOT.exists():
+                for path in sorted(RESULTS_ROOT.rglob("*")):
+                    if not path.is_file() or path.is_symlink():
+                        continue
+                    try:
+                        arcname = path.relative_to(RESULTS_ROOT).as_posix()
+                    except ValueError:
+                        continue
+                    zip_file.write(path, arcname)
+                    file_count += 1
+
+            if file_count == 0:
+                zip_file.writestr(
+                    "README.txt",
+                    "No result files were found in human_eval_site/collected_results.\n",
+                )
+
+            zip_file.writestr(
+                "EXPORT_MANIFEST.json",
+                json.dumps(
+                    {
+                        "exportedAt": utc_now_iso(),
+                        "resultsRoot": display_path(RESULTS_ROOT),
+                        "fileCount": file_count,
+                    },
+                    ensure_ascii=False,
+                    indent=2,
+                ),
+            )
+
+    archive.seek(0)
+    return send_file(
+        archive,
+        mimetype="application/zip",
+        as_attachment=True,
+        download_name=f"human-eval-results-{timestamp_label}.zip",
+    )
 
 
 @app.route("/outputs/<path:filename>", methods=["GET"])
