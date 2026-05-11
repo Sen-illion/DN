@@ -1,0 +1,27 @@
+{
+  "run_id": "protagonist_ref_run_20260425_full_fix",
+  "generated_at_utc": "2026-04-25T12:06:59.714851+00:00",
+  "dataset_manifest_path": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0\\ablations\\protagonist_ref_ablation\\datasets\\protagonist_ref_dataset_20260425_093411\\dataset_manifest.jsonl",
+  "judge_models": "gpt-4o",
+  "skip_scoring": false,
+  "max_samples": 0,
+  "smoke_segments": 0,
+  "group_specs": [
+    {
+      "group_id": "protagonist_ref_0",
+      "label": "No protagonist reference",
+      "expected_protagonist_ref_count": 0
+    },
+    {
+      "group_id": "protagonist_ref_1",
+      "label": "Front protagonist reference only",
+      "expected_protagonist_ref_count": 1
+    },
+    {
+      "group_id": "protagonist_ref_3",
+      "label": "Front side back protagonist references",
+      "expected_protagonist_ref_count": 3
+    }
+  ],
+  "config_path": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0\\ablations\\protagonist_ref_ablation\\configs\\protagonist_ref_ablation_config.json"
+}

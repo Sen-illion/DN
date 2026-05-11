@@ -1,0 +1,11 @@
+\section{Visual Quality Evaluation}
+\label{sec:visual-quality}
+
+\paragraph{Evaluation goal.}
+This section focuses on whether the delivered images are usable for narrative play, not only on speed. To avoid fragmented reporting, visual findings are now represented through the Image Consistency rows in Table~\ref{tab:main-results-3in1}.
+
+\paragraph{Current evidence and reporting policy.}
+We keep two image-consistency channels in the unified table schema: an LLM-based score (Qwen3) and a feature-model score (DINO-v2 cosine). Both are currently marked as TODO because the cross-system runs still need to be frozen under a single evaluator pipeline. Until that freeze is complete, we avoid introducing additional standalone visual tables and keep all visual claims scoped to the same main-results structure.
+
+\paragraph{Interpretation.}
+This consolidation ensures that visual consistency is interpreted side by side with latency and text consistency, so later updates can be compared on a common baseline axis rather than across heterogeneous table layouts.

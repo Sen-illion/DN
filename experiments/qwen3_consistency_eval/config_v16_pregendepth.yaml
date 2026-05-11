@@ -1,0 +1,24 @@
+model:
+  embedding_model: Qwen/Qwen3-Embedding-0.6B
+  reranker_model: Qwen/Qwen3-Reranker-0.6B
+  hf_endpoint: https://hf-mirror.com
+  device: auto
+  embedding_batch_size: 2
+  reranker_batch_size: 1
+  max_length: 128
+  cache_dir: D:/DN-main/.hf-cache
+
+inputs:
+  benchmark_csv: experiments/benchmark/dn_quality_benchmark_v1_flat.csv
+  standard_runs_glob: experiments/benchmark/standard_runs/benchmark_v16_pregendepth_d*_turn4_rw60_formal20.json
+  rolling_baseline_glob: experiments/qwen3_consistency_eval/noop/theme_*_theme
+  normalized_baseline_glob: experiments/qwen3_consistency_eval/noop/**/*.json
+  summary_globs: []
+
+outputs:
+  out_dir: experiments/qwen3_consistency_eval/outputs_v16_pregendepth
+
+scoring:
+  normalize_embeddings: true
+  min_text_chars: 80
+  max_text_chars: 500

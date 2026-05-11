@@ -1,0 +1,65 @@
+{
+  "run_id": "prompt_optimizer_pilot_3games_2segments",
+  "dataset_manifest": "C:/Users/User/Desktop/DN-main/DN-experiment-2.0/ablations/prompt_optimizer_ablation/results/datasets/pilot_seed20260425_t3_s2_prompt_optimizer/dataset_manifest.json",
+  "run_dir": "C:/Users/User/Desktop/DN-main/DN-experiment-2.0/ablations/prompt_optimizer_ablation/results/runs/prompt_optimizer_pilot_3games_2segments",
+  "build_dataset": false,
+  "score_existing_run": true,
+  "scale": "pilot",
+  "seed": null,
+  "skip_image_generation": false,
+  "skip_scoring": false,
+  "dry_run_scoring": false,
+  "judge_models": "gpt-4o",
+  "config": {
+    "dataset": {
+      "seed": 20260425,
+      "scale_presets": {
+        "pilot": {
+          "theme_count": 2,
+          "segments_per_theme": 2
+        },
+        "standard": {
+          "theme_count": 6,
+          "segments_per_theme": 4
+        },
+        "full": {
+          "theme_count": 12,
+          "segments_per_theme": 6
+        }
+      },
+      "text_generation": {
+        "worldview_constraint": "on",
+        "prev_scene_feedback": "on"
+      }
+    },
+    "generation": {
+      "chain_previous_image": true,
+      "use_cache": true,
+      "skip_cache_lookup": false,
+      "skip_protagonist_reference": true
+    },
+    "scoring": {
+      "failure_score_threshold": 3.0
+    }
+  },
+  "dataset_summary": {
+    "dataset_id": "pilot_seed20260425_t3_s2_prompt_optimizer",
+    "scale": "pilot",
+    "seed": 20260425,
+    "themes_file": "C:/Users/User/Desktop/DN-main/game_themes_100.json",
+    "theme_count": 3,
+    "segments_per_theme": 2,
+    "manifest_row_count": 12,
+    "source_root": "C:/Users/User/Desktop/DN-main/DN-experiment-2.0/ablations/prompt_optimizer_ablation/results/datasets/pilot_seed20260425_t3_s2_prompt_optimizer/source_text_dataset",
+    "dataset_dir": "C:/Users/User/Desktop/DN-main/DN-experiment-2.0/ablations/prompt_optimizer_ablation/results/datasets/pilot_seed20260425_t3_s2_prompt_optimizer",
+    "optimizer_groups": [
+      "prompt_optimizer_off",
+      "prompt_optimizer_on"
+    ],
+    "selected_theme_ids": [
+      1,
+      2,
+      3
+    ]
+  }
+}

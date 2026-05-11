@@ -1,0 +1,28 @@
+{
+  "run_id": "protagonist_ref_hard_identity_run_20260426_040417",
+  "dataset_variant": "hard_identity",
+  "generated_at_utc": "2026-04-26T08:32:49.834130+00:00",
+  "dataset_manifest_path": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0\\ablations\\protagonist_ref_ablation\\datasets\\hard_identity\\latest_hard_identity_dataset_manifest.jsonl",
+  "judge_models": "gpt-4o",
+  "skip_scoring": false,
+  "max_samples": 0,
+  "smoke_segments": 0,
+  "group_specs": [
+    {
+      "group_id": "protagonist_ref_0",
+      "label": "No protagonist reference",
+      "expected_protagonist_ref_count": 0
+    },
+    {
+      "group_id": "protagonist_ref_1",
+      "label": "Front protagonist reference only",
+      "expected_protagonist_ref_count": 1
+    },
+    {
+      "group_id": "protagonist_ref_3",
+      "label": "Front side back protagonist references",
+      "expected_protagonist_ref_count": 3
+    }
+  ],
+  "config_path": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0\\ablations\\protagonist_ref_ablation\\configs\\protagonist_ref_ablation_config.json"
+}

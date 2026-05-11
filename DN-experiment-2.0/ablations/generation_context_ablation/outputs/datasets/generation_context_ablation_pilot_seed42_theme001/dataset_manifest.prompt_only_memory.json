@@ -1,0 +1,256 @@
+{
+  "summary": {
+    "generated_at_utc": "2026-04-27T04:30:44.456720+00:00",
+    "dataset_name": "generation_context_ablation_pilot_seed42_theme001",
+    "scale": "pilot",
+    "seed": 42,
+    "source_experiment_root": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0",
+    "themes_path": "C:\\Users\\User\\Desktop\\DN-main\\game_themes_100.json",
+    "theme_ids_filter": [
+      1
+    ],
+    "available_source_games": 1,
+    "eligible_source_games": 1,
+    "selected_games": 1,
+    "selected_eval_samples": 1,
+    "selected_tasks": 1,
+    "group_order": [
+      "naive_t2i",
+      "prompt_only_memory",
+      "visual_bible",
+      "prompt_plus_prev_image"
+    ],
+    "scale_config": {
+      "max_games": 1,
+      "max_eval_segments_per_game": 1
+    },
+    "selection_config": {
+      "min_eval_segment_index": 2,
+      "require_source_prompt": true,
+      "require_source_images": true,
+      "require_previous_image": true
+    },
+    "group_filter": "prompt_only_memory",
+    "group_specific_export": true
+  },
+  "config_snapshot": {
+    "experiment_name": "paper_image_consistency_baselines",
+    "groups": {
+      "naive_t2i": {
+        "label": "Naive T2I",
+        "prompt_strategy": "scene_only",
+        "use_previous_image": false,
+        "description": "Weak baseline. Generate each image from only the current scene text, theme, and style key."
+      },
+      "prompt_only_memory": {
+        "label": "Prompt-only Visual Memory",
+        "prompt_strategy": "provided",
+        "use_previous_image": false,
+        "description": "Recommended baseline. Use the stored rich image prompt, but pass no previous image or character reference images."
+      },
+      "visual_bible": {
+        "label": "Visual Bible",
+        "prompt_strategy": "visual_bible",
+        "use_previous_image": false,
+        "description": "Strong no-GPU baseline. Use a fixed text-only visual bible anchored by the first source prompt plus the current scene."
+      },
+      "prompt_plus_prev_image": {
+        "label": "Prompt plus previous image",
+        "prompt_strategy": "provided",
+        "use_previous_image": true,
+        "description": "Upper reference ablation. Use the rich prompt plus the previously generated image, still without protagonist reference images."
+      }
+    },
+    "scales": {
+      "pilot": {
+        "max_games": 3,
+        "max_eval_segments_per_game": 3
+      },
+      "standard": {
+        "max_games": 10,
+        "max_eval_segments_per_game": 5
+      },
+      "full": {
+        "max_games": 0,
+        "max_eval_segments_per_game": 0
+      }
+    },
+    "selection": {
+      "min_eval_segment_index": 2,
+      "require_source_prompt": true,
+      "require_source_images": true,
+      "require_previous_image": true
+    },
+    "runtime": {
+      "minimal_prompt_instruction": "Generate the next story scene image for the same game world. Use the reference image as the main continuity context. Keep character appearance, outfit, palette, lighting, and key props as consistent as possible. No text, no watermark, no symbols, no garbled characters, no words.",
+      "skip_cache_lookup": true,
+      "use_cache": true,
+      "skip_protagonist_reference": true,
+      "default_style": "default"
+    },
+    "outputs": {
+      "dataset_dir_name": "datasets",
+      "run_dir_name": "runs"
+    }
+  },
+  "selected_games": [
+    {
+      "theme_id": 1,
+      "theme": "边陲驿站夜谈录",
+      "game_id": "game_1776417898_zthbu3",
+      "eval_segment_indexes": [
+        2
+      ],
+      "warmup_segment_range": "1-2",
+      "source_folder": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0\\theme_001_game_1776417898_zthbu3",
+      "source_manifest": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0\\theme_001_game_1776417898_zthbu3\\game_1776417898_zthbu3_manifest.json"
+    }
+  ],
+  "tasks": [
+    {
+      "task_id": "game_1776417898_zthbu3_seg_002__prompt_only_memory",
+      "sample_id": "game_1776417898_zthbu3_seg_002",
+      "dataset_name": "generation_context_ablation_pilot_seed42_theme001",
+      "group": "prompt_only_memory",
+      "theme_id": 1,
+      "theme": "边陲驿站夜谈录",
+      "style_label_zh": "写实风格",
+      "image_style": {
+        "type": "realistic"
+      },
+      "game_id": "game_1776417898_zthbu3",
+      "segment_index": 2,
+      "previous_segment_index": 1,
+      "needs_previous_image": false,
+      "source_folder": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0\\theme_001_game_1776417898_zthbu3",
+      "source_manifest": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0\\theme_001_game_1776417898_zthbu3\\game_1776417898_zthbu3_manifest.json",
+      "source_segment_json": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0\\theme_001_game_1776417898_zthbu3\\game_1776417898_zthbu3_002.json",
+      "source_segment_image": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0\\theme_001_game_1776417898_zthbu3\\game_1776417898_zthbu3_002.png",
+      "source_previous_segment_json": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0\\theme_001_game_1776417898_zthbu3\\game_1776417898_zthbu3_001.json",
+      "source_previous_segment_image": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0\\theme_001_game_1776417898_zthbu3\\game_1776417898_zthbu3_001.png",
+      "source_prompt": "scene-2-yumen-post-main-house-account-checking, historical, western regions frontier, realistic, desolate, responsibility theme, ancient post station, photorealistic, hyper-detailed, cinematic realism, fine texture rendering, realistic lighting and shadow, young male protagonist in his early twenties, expression serious with furrowed brows showing deep concern about the post station situation, fingers pinching the edge of the account book tightly, pale skin slightly rough blown by northwest cold wind, worn indigo linen robe suitable for northwest frontier travel, thick cotton sash tied around the waist, worn leather boots covered in loess dust, standing beside the crude wooden table full of account books and official documents, body slightly leaning forward as he browses the contents of the account book, one hand holding the account book, the other pointing at the record line on the page, 8K detailed facial features, furrowed brows showing obvious worry, lips pressed tightly showing inner pressure, soft facial shadows cast by warm oil lamp light, slight flush on cheekbones from the cold wind outside, short black hair slightly messy, root fixation coefficient 0.8, tip swing amplitude 1cm, color layering: main color #1A1A1A, secondary color #333333, highlight #4D4D4D, shadow #000000, wind speed 0.2m/s, turbulence intensity 1%, worn indigo linen robe with obvious creases from long time wearing, no obvious fabric flutter as indoor wind is weak, fabric stained with faint dust from previous outdoor travel, crude solid wood table piled with thick yellowed account books and official documents, several lit oil lamps placed around the table emitting warm dim yellow light, rough earthen walls of the post station main house with faint water stains, empty warehouse corner visible in the distance with tattered wooden boxes scattered, 张叔-配角1 standing on the right side of the frame, wearing a worn gray linen jacket, face full of deep wrinkles with worried expression, one finger pointing at the account book on the table, tiny dust particles floating in the air visible under the oil lamp light, dim deep shadows in the corners of the room, warm yellow light halo surrounding the oil lamps, warm yellow as main light tone, dark indigo for protagonist's robe, dark gray for 张叔-配角1's clothing, dark yellowish brown for wooden table and old account books, dim dark gray for the shadow areas of the room, warm yellow oil lamp light as main light source from the table surface, soft low-brightness ambient light filling the room, dim cold shadow in the corners of the room, soft focused light illuminating the account book in the protagonist's hand, type medium shot, lens 35mm, aperture f/2.2, depth_of_field shallow focus on protagonist and the account book in his hand, flash none, grain subtle fine film grain, texture realistic fine material texture, protagonist positioned in the left-center of the frame, 张叔-配角1 positioned on the right side of the frame, the account book in protagonist's hand as the central focal element, action constraints: protagonist browses the account book with furrowed brows, 张叔-配角1 stands beside to explain the account details, realistic hyper-detailed style, no text, symbols or random characters in the image, heavy and worried atmosphere, strong sense of responsibility pressure on the protagonist, shabby and desolate post station vibe, calm atmosphere before making decisions to solve the dilemma, no text, no symbols, no garbled characters, no words, consistent character design, consistent outfit and key props, consistent color palette and lighting",
+      "source_prompt_json": {
+        "label": "scene-2-yumen-post-main-house-account-checking",
+        "tags": [
+          "historical",
+          "western regions frontier",
+          "realistic",
+          "desolate",
+          "responsibility theme",
+          "ancient post station"
+        ],
+        "style": [
+          "photorealistic",
+          "hyper-detailed",
+          "cinematic realism",
+          "fine texture rendering",
+          "realistic lighting and shadow"
+        ],
+        "subject": {
+          "body_traits": [
+            "young male protagonist in his early twenties",
+            "expression serious with furrowed brows showing deep concern about the post station situation",
+            "fingers pinching the edge of the account book tightly",
+            "pale skin slightly rough blown by northwest cold wind"
+          ],
+          "outfit": [
+            "worn indigo linen robe suitable for northwest frontier travel",
+            "thick cotton sash tied around the waist",
+            "worn leather boots covered in loess dust"
+          ],
+          "pose": [
+            "standing beside the crude wooden table full of account books and official documents",
+            "body slightly leaning forward as he browses the contents of the account book",
+            "one hand holding the account book, the other pointing at the record line on the page"
+          ]
+        },
+        "face_system": [
+          "8K detailed facial features",
+          "furrowed brows showing obvious worry",
+          "lips pressed tightly showing inner pressure",
+          "soft facial shadows cast by warm oil lamp light",
+          "slight flush on cheekbones from the cold wind outside"
+        ],
+        "hair_system": [
+          "short black hair slightly messy",
+          "root fixation coefficient 0.8",
+          "tip swing amplitude 1cm",
+          "color layering: main color #1A1A1A, secondary color #333333, highlight #4D4D4D, shadow #000000",
+          "wind speed 0.2m/s",
+          "turbulence intensity 1%"
+        ],
+        "clothing_system": [
+          "worn indigo linen robe with obvious creases from long time wearing",
+          "no obvious fabric flutter as indoor wind is weak",
+          "fabric stained with faint dust from previous outdoor travel"
+        ],
+        "environment": {
+          "background": [
+            "crude solid wood table piled with thick yellowed account books and official documents",
+            "several lit oil lamps placed around the table emitting warm dim yellow light",
+            "rough earthen walls of the post station main house with faint water stains",
+            "empty warehouse corner visible in the distance with tattered wooden boxes scattered"
+          ],
+          "characters": [
+            "张叔-配角1 standing on the right side of the frame, wearing a worn gray linen jacket, face full of deep wrinkles with worried expression, one finger pointing at the account book on the table"
+          ],
+          "effects": [
+            "tiny dust particles floating in the air visible under the oil lamp light",
+            "dim deep shadows in the corners of the room",
+            "warm yellow light halo surrounding the oil lamps"
+          ]
+        },
+        "color_restriction": [
+          "warm yellow as main light tone",
+          "dark indigo for protagonist's robe",
+          "dark gray for 张叔-配角1's clothing",
+          "dark yellowish brown for wooden table and old account books",
+          "dim dark gray for the shadow areas of the room"
+        ],
+        "lighting": [
+          "warm yellow oil lamp light as main light source from the table surface",
+          "soft low-brightness ambient light filling the room",
+          "dim cold shadow in the corners of the room",
+          "soft focused light illuminating the account book in the protagonist's hand"
+        ],
+        "camera": {
+          "type": "medium shot",
+          "lens": "35mm",
+          "aperture": "f/2.2",
+          "depth_of_field": "shallow focus on protagonist and the account book in his hand",
+          "flash": "none",
+          "grain": "subtle fine film grain",
+          "texture": "realistic fine material texture"
+        },
+        "composition": [
+          "protagonist positioned in the left-center of the frame",
+          "张叔-配角1 positioned on the right side of the frame",
+          "the account book in protagonist's hand as the central focal element",
+          "action constraints: protagonist browses the account book with furrowed brows, 张叔-配角1 stands beside to explain the account details"
+        ],
+        "mood": [
+          "heavy and worried atmosphere",
+          "strong sense of responsibility pressure on the protagonist",
+          "shabby and desolate post station vibe",
+          "calm atmosphere before making decisions to solve the dilemma"
+        ],
+        "output_style": [
+          "realistic hyper-detailed style",
+          "no text, symbols or random characters in the image"
+        ]
+      },
+      "source_scene": "我推开驿站主屋的门，昏黄的油灯光线下，桌案上堆满了账册和文书。空气中弥漫着陈旧纸张的味道，夹杂着淡淡的墨香。我点亮了几盏油灯，将它们摆在桌案周围，整个房间顿时亮堂了许多。\n\n张叔跟在我身后，看到我要查账，连忙说道：\"林驿丞，账册都在这里，不过老李走得急，有些地方记得不太清楚。\"他指了指桌上那本厚厚的账册，\"这是今年的流水账，这本是库存清单。\"\n\n我拿起账册，翻开第一页。父亲工整的字迹映入眼帘，但从三个月前开始，字迹变成了老李潦草的笔迹。我仔细翻阅着，眉头越皱越紧。朝廷的月例银子从原来的二十两减到了十两，而驿站的日常开销却没有相应减少。马料、柴火、粮食、油盐，每一项都是必需的支出。\n\n\"张叔，这里写着上个月买了三石粮食，现在还剩多少？\"我指着账册上的一行字问道。\n\n张叔想了想，\"大概还有一石多吧，不过质量不太好，有些已经生虫了。冬天快到了，这点粮食恐怕撑不了多久。\"\n\n我继续翻看库存清单。马厩里现在只有四匹马，其中一匹还有些跛脚。茶叶所剩无几，酒水更是早就见底了。最让我担心的是，账册显示我们已经欠了镇上几家商户的货款，总共有十五两银子。\n\n\"这些欠款\"我指着账册上用红笔标注的数字。\n\n\"都是老李赊的账，说是等朝廷的银子到了就还。\"张叔叹了口气，\"可现在银子少了一半，这些债主隔三差五就来催债。\"\n\n我放下账册，走到库房门前。推开门，一股霉味扑面而来。库房里空空荡荡，几个破旧的木箱散落在角落，里面装着一些杂七杂八的物品。我打开其中一个箱子，里面是一些破损的马具和生锈的铁器。\n\n\"小翠呢？她现在在做什么？\"我问道。\n\n\"在后厨收拾，今天来了两个过路的商人，她正准备给他们做晚饭。\"张叔回答，\"不过咱们的米面都不多了，她说只能做些简单的。\"\n\n我心中一沉。这种状况下，别说度过冬天，就连下个月都成问题。我必须尽快想出办法，否则驿站真的要关门了。",
+      "source_previous_scene": "深秋的黄昏，玉门驿笼罩在一片萧瑟的金黄中。我站在驿站大门前，手中紧握着父亲留下的那枚铜制印信，上面\"玉门驿丞\"四个字在夕阳下泛着暗淡的光。\n\n风从山谷间呼啸而过，卷起地上的枯叶，发出窸窸窣窣的声响。驿站的木门在风中轻微摇摆，发出\"吱呀吱呀\"的呻吟声，仿佛在诉说着什么。空气中弥漫着干燥的尘土味，夹杂着远处炊烟的淡淡香气，但更多的是一种说不出的荒凉感。\n\n我深吸一口气，感受着胸口那种沉甸甸的压迫感。父亲去世已经三个月了，而我，林守诚，一个从未独自管理过驿站的青年，现在却要承担起这个重任。手心微微出汗，不知是因为紧张还是因为那枚印信的重量。\n\n\"林驿丞，您终于回来了。\"一个苍老的声音从身后传来。我转身看到老马夫张叔，他的脸上满是忧虑，\"您不在的这几天，又走了两个人。现在驿站里就剩下我和小翠了。\"\n\n\"走了？\"我皱起眉头，\"是谁？\"\n\n\"账房老李和厨子王大，都说驿站撑不下去了，要另谋出路。\"张叔叹了口气，\"昨天州府还来了人，说那个胡商队伍投诉咱们服务不周，要是再不改善，就要撤销驿站的资格了。\"\n\n我感到一阵眩晕。父亲在世时，驿站虽然清苦，但至少还能正常运转。现在朝廷削减补给，人员流失，声誉受损，这简直是四面楚歌。我握紧拳头，指甲几乎嵌进掌心。\n\n\"林驿丞，您看这\"张叔欲言又止，目光中透着期待和不安。\n\n夜色渐深，驿站内只有几盏昏黄的油灯在摇曳。我知道，今晚我必须做出决定。是迎难而上，还是另寻出路？而眼前这个摇摇欲坠的驿站，承载着的不仅是父亲的遗志，更是这条古道上无数旅人的希望。",
+      "run_parameters_snapshot": {
+        "scale": "pilot",
+        "seed": 42,
+        "group": "prompt_only_memory",
+        "prompt_strategy": "provided",
+        "use_previous_image": false,
+        "skip_cache_lookup": true,
+        "use_cache": true,
+        "default_style": "default"
+      }
+    }
+  ]
+}

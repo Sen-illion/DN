@@ -1,0 +1,52 @@
+{
+  "metric": "dinov2_cosine",
+  "model_name": "dinov2_vits14",
+  "device": "cpu",
+  "output_dir": "D:\\DN-main\\experiments\\benchmark\\dinov2_eval\\v16_pregendepth_turn4_rw60_formal20",
+  "records": [
+    {
+      "depth": 1,
+      "status": "completed",
+      "return_code": 0,
+      "pairs_csv": "D:\\DN-main\\experiments\\benchmark\\dinov2_eval\\v16_pregendepth_turn4_rw60_formal20\\pairs\\d1_pairs.csv",
+      "pair_count": 60,
+      "summary_path": "D:\\DN-main\\experiments\\benchmark\\dinov2_eval\\v16_pregendepth_turn4_rw60_formal20\\results\\d1\\summary.json",
+      "jsonl_path": "D:\\DN-main\\experiments\\benchmark\\dinov2_eval\\v16_pregendepth_turn4_rw60_formal20\\results\\d1\\scores.jsonl",
+      "stdout_tail": "{\"metric\": \"dinov2_cosine\", \"model_name\": \"dinov2_vits14\", \"device\": \"cpu\", \"processed_rows\": 60, \"unique_image_count\": 80, \"score_mean\": 0.5815405145287513, \"score_std_population\": 0.1575201258443792, \"score_min\": 0.18776223063468933, \"score_max\": 0.8356270790100098}\n",
+      "stderr_tail": "Using cache found in C:\\Users\\User/.cache\\torch\\hub\\facebookresearch_dinov2_main\nC:\\Users\\User/.cache\\torch\\hub\\facebookresearch_dinov2_main\\dinov2\\layers\\swiglu_ffn.py:51: UserWarning: xFormers is not available (SwiGLU)\n  warnings.warn(\"xFormers is not available (SwiGLU)\")\nC:\\Users\\User/.cache\\torch\\hub\\facebookresearch_dinov2_main\\dinov2\\layers\\attention.py:33: UserWarning: xFormers is not available (Attention)\n  warnings.warn(\"xFormers is not available (Attention)\")\nC:\\Users\\User/.cache\\torch\\hub\\facebookresearch_dinov2_main\\dinov2\\layers\\block.py:40: UserWarning: xFormers is not available (Block)\n  warnings.warn(\"xFormers is not available (Block)\")\n"
+    },
+    {
+      "depth": 2,
+      "status": "completed",
+      "return_code": 0,
+      "pairs_csv": "D:\\DN-main\\experiments\\benchmark\\dinov2_eval\\v16_pregendepth_turn4_rw60_formal20\\pairs\\d2_pairs.csv",
+      "pair_count": 60,
+      "summary_path": "D:\\DN-main\\experiments\\benchmark\\dinov2_eval\\v16_pregendepth_turn4_rw60_formal20\\results\\d2\\summary.json",
+      "jsonl_path": "D:\\DN-main\\experiments\\benchmark\\dinov2_eval\\v16_pregendepth_turn4_rw60_formal20\\results\\d2\\scores.jsonl",
+      "stdout_tail": "{\"metric\": \"dinov2_cosine\", \"model_name\": \"dinov2_vits14\", \"device\": \"cpu\", \"processed_rows\": 60, \"unique_image_count\": 80, \"score_mean\": 0.5433715251584847, \"score_std_population\": 0.13016130002412096, \"score_min\": 0.2358710616827011, \"score_max\": 0.7716376185417175}\n",
+      "stderr_tail": "Using cache found in C:\\Users\\User/.cache\\torch\\hub\\facebookresearch_dinov2_main\nC:\\Users\\User/.cache\\torch\\hub\\facebookresearch_dinov2_main\\dinov2\\layers\\swiglu_ffn.py:51: UserWarning: xFormers is not available (SwiGLU)\n  warnings.warn(\"xFormers is not available (SwiGLU)\")\nC:\\Users\\User/.cache\\torch\\hub\\facebookresearch_dinov2_main\\dinov2\\layers\\attention.py:33: UserWarning: xFormers is not available (Attention)\n  warnings.warn(\"xFormers is not available (Attention)\")\nC:\\Users\\User/.cache\\torch\\hub\\facebookresearch_dinov2_main\\dinov2\\layers\\block.py:40: UserWarning: xFormers is not available (Block)\n  warnings.warn(\"xFormers is not available (Block)\")\n"
+    },
+    {
+      "depth": 3,
+      "status": "completed",
+      "return_code": 0,
+      "pairs_csv": "D:\\DN-main\\experiments\\benchmark\\dinov2_eval\\v16_pregendepth_turn4_rw60_formal20\\pairs\\d3_pairs.csv",
+      "pair_count": 60,
+      "summary_path": "D:\\DN-main\\experiments\\benchmark\\dinov2_eval\\v16_pregendepth_turn4_rw60_formal20\\results\\d3\\summary.json",
+      "jsonl_path": "D:\\DN-main\\experiments\\benchmark\\dinov2_eval\\v16_pregendepth_turn4_rw60_formal20\\results\\d3\\scores.jsonl",
+      "stdout_tail": "{\"metric\": \"dinov2_cosine\", \"model_name\": \"dinov2_vits14\", \"device\": \"cpu\", \"processed_rows\": 60, \"unique_image_count\": 80, \"score_mean\": 0.5458176746964455, \"score_std_population\": 0.14164626092147845, \"score_min\": 0.11591118574142456, \"score_max\": 0.8228746056556702}\n",
+      "stderr_tail": "Using cache found in C:\\Users\\User/.cache\\torch\\hub\\facebookresearch_dinov2_main\nC:\\Users\\User/.cache\\torch\\hub\\facebookresearch_dinov2_main\\dinov2\\layers\\swiglu_ffn.py:51: UserWarning: xFormers is not available (SwiGLU)\n  warnings.warn(\"xFormers is not available (SwiGLU)\")\nC:\\Users\\User/.cache\\torch\\hub\\facebookresearch_dinov2_main\\dinov2\\layers\\attention.py:33: UserWarning: xFormers is not available (Attention)\n  warnings.warn(\"xFormers is not available (Attention)\")\nC:\\Users\\User/.cache\\torch\\hub\\facebookresearch_dinov2_main\\dinov2\\layers\\block.py:40: UserWarning: xFormers is not available (Block)\n  warnings.warn(\"xFormers is not available (Block)\")\n"
+    },
+    {
+      "depth": 4,
+      "status": "completed",
+      "return_code": 0,
+      "pairs_csv": "D:\\DN-main\\experiments\\benchmark\\dinov2_eval\\v16_pregendepth_turn4_rw60_formal20\\pairs\\d4_pairs.csv",
+      "pair_count": 60,
+      "summary_path": "D:\\DN-main\\experiments\\benchmark\\dinov2_eval\\v16_pregendepth_turn4_rw60_formal20\\results\\d4\\summary.json",
+      "jsonl_path": "D:\\DN-main\\experiments\\benchmark\\dinov2_eval\\v16_pregendepth_turn4_rw60_formal20\\results\\d4\\scores.jsonl",
+      "stdout_tail": "{\"metric\": \"dinov2_cosine\", \"model_name\": \"dinov2_vits14\", \"device\": \"cpu\", \"processed_rows\": 60, \"unique_image_count\": 80, \"score_mean\": 0.5948352624972661, \"score_std_population\": 0.1254376922038545, \"score_min\": 0.25347819924354553, \"score_max\": 0.836912214756012}\n",
+      "stderr_tail": "Using cache found in C:\\Users\\User/.cache\\torch\\hub\\facebookresearch_dinov2_main\nC:\\Users\\User/.cache\\torch\\hub\\facebookresearch_dinov2_main\\dinov2\\layers\\swiglu_ffn.py:51: UserWarning: xFormers is not available (SwiGLU)\n  warnings.warn(\"xFormers is not available (SwiGLU)\")\nC:\\Users\\User/.cache\\torch\\hub\\facebookresearch_dinov2_main\\dinov2\\layers\\attention.py:33: UserWarning: xFormers is not available (Attention)\n  warnings.warn(\"xFormers is not available (Attention)\")\nC:\\Users\\User/.cache\\torch\\hub\\facebookresearch_dinov2_main\\dinov2\\layers\\block.py:40: UserWarning: xFormers is not available (Block)\n  warnings.warn(\"xFormers is not available (Block)\")\n"
+    }
+  ]
+}

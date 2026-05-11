@@ -1,0 +1,702 @@
+{
+  "summary": {
+    "generated_at_utc": "2026-04-25T10:40:54.385170+00:00",
+    "dataset_name": "generation_context_ablation_full_seed42_theme003",
+    "scale": "full",
+    "seed": 42,
+    "source_experiment_root": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0",
+    "themes_path": "C:\\Users\\User\\Desktop\\DN-main\\game_themes_100.json",
+    "theme_ids_filter": [
+      3
+    ],
+    "available_source_games": 1,
+    "eligible_source_games": 1,
+    "selected_games": 1,
+    "selected_eval_samples": 4,
+    "selected_tasks": 4,
+    "group_order": [
+      "prompt_only",
+      "prev_image_only",
+      "prompt_plus_prev_image"
+    ],
+    "scale_config": {
+      "max_games": 1,
+      "max_eval_segments_per_game": 4
+    },
+    "selection_config": {
+      "min_eval_segment_index": 2,
+      "require_source_prompt": true,
+      "require_source_images": true,
+      "require_previous_image": true
+    },
+    "group_filter": "prompt_only",
+    "group_specific_export": true
+  },
+  "config_snapshot": {
+    "experiment_name": "generation_context_ablation",
+    "groups": {
+      "prompt_only": {
+        "label": "Prompt only",
+        "prompt_strategy": "provided",
+        "use_previous_image": false,
+        "description": "Use only the stored LLM-generated image prompt and do not pass the previous scene image."
+      },
+      "prev_image_only": {
+        "label": "Prev image only",
+        "prompt_strategy": "minimal_base",
+        "use_previous_image": true,
+        "description": "Use the previous scene image plus a minimal base instruction, without the full rich LLM prompt."
+      },
+      "prompt_plus_prev_image": {
+        "label": "Prompt plus prev image",
+        "prompt_strategy": "provided",
+        "use_previous_image": true,
+        "description": "Use both the stored LLM-generated image prompt and the previous scene image."
+      }
+    },
+    "scales": {
+      "pilot": {
+        "max_games": 3,
+        "max_eval_segments_per_game": 3
+      },
+      "standard": {
+        "max_games": 6,
+        "max_eval_segments_per_game": 5
+      },
+      "full": {
+        "max_games": 0,
+        "max_eval_segments_per_game": 0
+      }
+    },
+    "selection": {
+      "min_eval_segment_index": 2,
+      "require_source_prompt": true,
+      "require_source_images": true,
+      "require_previous_image": true
+    },
+    "runtime": {
+      "minimal_prompt_instruction": "Generate the next story scene image for the same game world. Use the reference image as the main continuity context. Keep character appearance, outfit, palette, lighting, and key props as consistent as possible. No text, no watermark, no symbols, no garbled characters, no words.",
+      "skip_cache_lookup": true,
+      "use_cache": true,
+      "skip_protagonist_reference": true,
+      "default_style": "default"
+    },
+    "outputs": {
+      "dataset_dir_name": "datasets",
+      "run_dir_name": "runs"
+    }
+  },
+  "selected_games": [
+    {
+      "theme_id": 3,
+      "theme": "茶肆说书人",
+      "game_id": "game_1776418475_uho8y4",
+      "eval_segment_indexes": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "warmup_segment_range": "1-5",
+      "source_folder": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0\\theme_003_game_1776418475_uho8y4",
+      "source_manifest": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0\\theme_003_game_1776418475_uho8y4\\game_1776418475_uho8y4_manifest.json"
+    }
+  ],
+  "tasks": [
+    {
+      "task_id": "game_1776418475_uho8y4_seg_002__prompt_only",
+      "sample_id": "game_1776418475_uho8y4_seg_002",
+      "dataset_name": "generation_context_ablation_full_seed42_theme003",
+      "group": "prompt_only",
+      "theme_id": 3,
+      "theme": "茶肆说书人",
+      "style_label_zh": "水墨画风格",
+      "image_style": {
+        "type": "ink_painting"
+      },
+      "game_id": "game_1776418475_uho8y4",
+      "segment_index": 2,
+      "previous_segment_index": 1,
+      "needs_previous_image": false,
+      "source_folder": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0\\theme_003_game_1776418475_uho8y4",
+      "source_manifest": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0\\theme_003_game_1776418475_uho8y4\\game_1776418475_uho8y4_manifest.json",
+      "source_segment_json": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0\\theme_003_game_1776418475_uho8y4\\game_1776418475_uho8y4_002.json",
+      "source_segment_image": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0\\theme_003_game_1776418475_uho8y4\\game_1776418475_uho8y4_002.png",
+      "source_previous_segment_json": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0\\theme_003_game_1776418475_uho8y4\\game_1776418475_uho8y4_001.json",
+      "source_previous_segment_image": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0\\theme_003_game_1776418475_uho8y4\\game_1776418475_uho8y4_001.png",
+      "source_prompt": "scene-qinghezhen-street-postrain-elder-intro-teahouses, jiangnan-water-town, republic-of-china-era, nostalgic, literati-atmosphere, folk-market-vibe, traditional Chinese ink wash painting, freehand brushwork, soft ink diffusion effect, atmospheric perspective, gentle ink gradation, black white grey monochrome, young male protagonist, player perspective, calm expression mixed with thoughtful contemplation and gratitude, fair skin with soft ink rendering, upright standing posture, worn cyan cotton long gown, slightly damp fabric from previous drizzle, traditional literati style clothing, standing opposite 张老头-配角1, upper body slightly bent in a polite greeting gesture, eyes looking at 张老头-配角1 attentively, posture showing focused listening and gratitude, 8K detailed facial features with soft ink rendering, clear and gentle literati facial lines, bright eyes with focused attentive look, polite and grateful expression, subtle hazy shadow on face from residual rain mist, lip color naturally muted, black long hair tied up in traditional literati topknot, root fixation coefficient 0.95, tip swing amplitude 2cm, color layering: main color #1A1A1A, secondary color #333333, highlight #4D4D4D, shadow #000000, wind speed 0.3m/s, turbulence intensity 1%, slight loose strands blown by gentle breeze, slightly crumpled fabric at gown hem from drizzle, subtle damp texture on shoulder area, soft natural drape of cotton fabric, no excessive fabric flutter, wet bluestone street in Qinghe town after rain, white walls and black tiled Jiangnan style buildings on both sides, few scattered pedestrians walking in the distance, residual rain mist lingering in the air, distant street view extending into town depth, 张老头-配角1 standing on the right side of the frame opposite the protagonist, 张老头-配角1 with white hair, wearing old dark linen robe, 张老头-配角1 holding folded oil paper umbrella in one hand, 张老头-配角1 with kind smiling expression, pointing to town depth with the other hand, soft ink diffusion effect of residual rain mist, wet bluestone surface with subtle ink reflection, hazy distant view created by atmospheric perspective, monochrome black white grey color palette, subtle ink gradation only, no saturated colors, dark ink for building outlines, light grey for mist and wet ground, soft diffused overcast natural light after rain, no harsh shadows, gentle light transitions, subtle light reflection on wet bluestone surface, type medium shot, lens 50mm, aperture f/4, depth_of_field medium focus on protagonist and 张老头-配角1, distant background slightly blurred, flash none, grain subtle rice paper texture, texture ink wash brushstroke texture, protagonist positioned on left half of the frame, 张老头-配角1 positioned on right half of the frame, central focal point on the two interacting characters, action constraints: protagonist in polite greeting posture, 张老头-配角1 pointing to town depth with kind smile, traditional Chinese ink wash freehand style, no text, symbols or random characters in image, soft ink diffusion artistic effect, nostalgic Jiangnan folk atmosphere, gentle warm feeling of stranger's kindness, subtle sense of uncertainty about future mixed with expectation, calm quiet post-rain atmosphere, no text, no symbols, no garbled characters, no words, consistent character design, consistent outfit and key props, consistent color palette and lighting",
+      "source_prompt_json": {
+        "label": "scene-qinghezhen-street-postrain-elder-intro-teahouses",
+        "tags": [
+          "jiangnan-water-town",
+          "republic-of-china-era",
+          "nostalgic",
+          "literati-atmosphere",
+          "folk-market-vibe"
+        ],
+        "style": [
+          "traditional Chinese ink wash painting",
+          "freehand brushwork",
+          "soft ink diffusion effect",
+          "atmospheric perspective",
+          "gentle ink gradation",
+          "black white grey monochrome"
+        ],
+        "subject": {
+          "body_traits": [
+            "young male protagonist, player perspective",
+            "calm expression mixed with thoughtful contemplation and gratitude",
+            "fair skin with soft ink rendering",
+            "upright standing posture"
+          ],
+          "outfit": [
+            "worn cyan cotton long gown",
+            "slightly damp fabric from previous drizzle",
+            "traditional literati style clothing"
+          ],
+          "pose": [
+            "standing opposite 张老头-配角1",
+            "upper body slightly bent in a polite greeting gesture",
+            "eyes looking at 张老头-配角1 attentively",
+            "posture showing focused listening and gratitude"
+          ]
+        },
+        "face_system": [
+          "8K detailed facial features with soft ink rendering",
+          "clear and gentle literati facial lines",
+          "bright eyes with focused attentive look",
+          "polite and grateful expression",
+          "subtle hazy shadow on face from residual rain mist",
+          "lip color naturally muted"
+        ],
+        "hair_system": [
+          "black long hair tied up in traditional literati topknot",
+          "root fixation coefficient 0.95",
+          "tip swing amplitude 2cm",
+          "color layering: main color #1A1A1A, secondary color #333333, highlight #4D4D4D, shadow #000000",
+          "wind speed 0.3m/s",
+          "turbulence intensity 1%",
+          "slight loose strands blown by gentle breeze"
+        ],
+        "clothing_system": [
+          "slightly crumpled fabric at gown hem from drizzle",
+          "subtle damp texture on shoulder area",
+          "soft natural drape of cotton fabric",
+          "no excessive fabric flutter"
+        ],
+        "environment": {
+          "background": [
+            "wet bluestone street in Qinghe town after rain",
+            "white walls and black tiled Jiangnan style buildings on both sides",
+            "few scattered pedestrians walking in the distance",
+            "residual rain mist lingering in the air",
+            "distant street view extending into town depth"
+          ],
+          "characters": [
+            "张老头-配角1 standing on the right side of the frame opposite the protagonist",
+            "张老头-配角1 with white hair, wearing old dark linen robe",
+            "张老头-配角1 holding folded oil paper umbrella in one hand",
+            "张老头-配角1 with kind smiling expression, pointing to town depth with the other hand"
+          ],
+          "effects": [
+            "soft ink diffusion effect of residual rain mist",
+            "wet bluestone surface with subtle ink reflection",
+            "hazy distant view created by atmospheric perspective"
+          ]
+        },
+        "color_restriction": [
+          "monochrome black white grey color palette",
+          "subtle ink gradation only, no saturated colors",
+          "dark ink for building outlines, light grey for mist and wet ground"
+        ],
+        "lighting": [
+          "soft diffused overcast natural light after rain",
+          "no harsh shadows, gentle light transitions",
+          "subtle light reflection on wet bluestone surface"
+        ],
+        "camera": {
+          "type": "medium shot",
+          "lens": "50mm",
+          "aperture": "f/4",
+          "depth_of_field": "medium focus on protagonist and 张老头-配角1, distant background slightly blurred",
+          "flash": "none",
+          "grain": "subtle rice paper texture",
+          "texture": "ink wash brushstroke texture"
+        },
+        "composition": [
+          "protagonist positioned on left half of the frame",
+          "张老头-配角1 positioned on right half of the frame",
+          "central focal point on the two interacting characters",
+          "action constraints: protagonist in polite greeting posture, 张老头-配角1 pointing to town depth with kind smile"
+        ],
+        "mood": [
+          "nostalgic Jiangnan folk atmosphere",
+          "gentle warm feeling of stranger's kindness",
+          "subtle sense of uncertainty about future mixed with expectation",
+          "calm quiet post-rain atmosphere"
+        ],
+        "output_style": [
+          "traditional Chinese ink wash freehand style",
+          "no text, symbols or random characters in image",
+          "soft ink diffusion artistic effect"
+        ]
+      },
+      "source_scene": "\"三家茶肆？\"我连忙追问，\"老丈，能否详细说说它们的情况？\"\n\n老者看了看天色，雨势渐小，便收起油纸伞，饶有兴致地说道：\"既然你是说书的，那我就好好跟你说说。\"他指向镇子深处，\"听雨轩在镇东，是咱们清河镇最有名的茶肆，开了快三十年了。老板娘柳如烟是个有见识的女人，茶肆里的摆设都是上等货色，来的客人多是镇上的士绅商贾。那里的说书台也最讲究，红木雕花，配着上好的紫砂壶。\"\n\n\"不过\"老者话锋一转，\"听雨轩的规矩也最严，说书人要经过考核才能上台，而且听众挑剔得很。现在那里有个叫王文轩的说书人，功底深厚，在镇上很有名气。你要想在那里立足，可不容易。\"\n\n我点点头，心中暗自盘算。老者继续说道：\"时新茶社在镇西，是这两年新开的，老板是个从上海回来的年轻人，叫林志远。那里什么都讲究个'新'字，不光茶具是洋式的，连说书的内容都要求有新意。听说还准备引进留声机呢。\"\n\n\"至于聚贤堂\"老者摇摇头，\"在镇南的码头边上，客人多是些码头工人、小商贩，消费不高。老板胡大海是个实在人，对说书人也不苛刻，但赚的银子确实有限。\"\n\n雨停了，街上开始有行人走动。我感激地向老者行了一礼：\"多谢老丈指点，敢问您贵姓？\"\n\n\"免贵姓张，大家都叫我张老头。\"老者笑道，\"年轻人，这年头说书不好做，你可要想清楚了。\"",
+      "source_previous_scene": "细雨如丝，打湿了青石板路。我拖着沉重的行李箱，踏进了清河镇的石牌坊。师父留下的那把折扇在怀中轻颤，仿佛在提醒我这里，就是我要重新开始的地方。\n\n街道两旁的建筑透着岁月的痕迹，白墙黛瓦间夹杂着几处西式洋房，新旧交融得有些突兀。空气中弥漫着淡淡的茶香和烟火气，远处传来叮叮当当的铜锣声，似乎有戏班在演出。我深吸一口气，雨水的清冽混合着陌生土地的气息，让我既紧张又期待。\n\n\"这位先生，是外地来的吧？\"一个苍老的声音在身后响起。我回头，看见一位白发老者撑着油纸伞，正打量着我。他的眼神很犀利，像是能看透人心。\n\n\"是的，老丈。\"我整理了一下青布长衫，礼貌地回答，\"在下陈书云，是个说书的。\"\n\n老者的眼中闪过一丝意外，随即露出了玩味的笑容：\"说书的？有趣。这清河镇可是有好几家茶肆呢，听雨轩、时新茶社、聚贤堂，各有各的门道。不过\"他顿了顿，\"现在这年头，说书人的日子可不好过啊。\"\n\n我心中一沉。师父临终前的话还在耳边回响：\"书云，去清河镇吧，那里还有人记得我们这一行的好。\"可眼前这位老者的话，却让我感到了前所未有的压力。\n\n雨越下越大，我需要尽快找个落脚的地方。师父留下的那点盘缠不多，必须精打细算。而更重要的是，我需要了解这个镇子的情况，找到属于自己的位置。",
+      "run_parameters_snapshot": {
+        "scale": "full",
+        "seed": 42,
+        "group": "prompt_only",
+        "prompt_strategy": "provided",
+        "use_previous_image": false,
+        "skip_cache_lookup": true,
+        "use_cache": true,
+        "default_style": "default"
+      }
+    },
+    {
+      "task_id": "game_1776418475_uho8y4_seg_003__prompt_only",
+      "sample_id": "game_1776418475_uho8y4_seg_003",
+      "dataset_name": "generation_context_ablation_full_seed42_theme003",
+      "group": "prompt_only",
+      "theme_id": 3,
+      "theme": "茶肆说书人",
+      "style_label_zh": "水墨画风格",
+      "image_style": {
+        "type": "ink_painting"
+      },
+      "game_id": "game_1776418475_uho8y4",
+      "segment_index": 3,
+      "previous_segment_index": 2,
+      "needs_previous_image": false,
+      "source_folder": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0\\theme_003_game_1776418475_uho8y4",
+      "source_manifest": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0\\theme_003_game_1776418475_uho8y4\\game_1776418475_uho8y4_manifest.json",
+      "source_segment_json": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0\\theme_003_game_1776418475_uho8y4\\game_1776418475_uho8y4_003.json",
+      "source_segment_image": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0\\theme_003_game_1776418475_uho8y4\\game_1776418475_uho8y4_003.png",
+      "source_previous_segment_json": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0\\theme_003_game_1776418475_uho8y4\\game_1776418475_uho8y4_002.json",
+      "source_previous_segment_image": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0\\theme_003_game_1776418475_uho8y4\\game_1776418475_uho8y4_002.png",
+      "source_prompt": "scene-qinghezhen-street-zhang-intro-wangwenxuan, jiangnan-water-town, republic-of-china-era, folk-market-vibe, literati-atmosphere, nostalgic, contemplative, traditional Chinese ink wash painting, freehand brushwork, soft ink diffusion effect, atmospheric perspective, gentle ink gradation, young male protagonist, player perspective, fair skin with soft ink rendering, focused and contemplative expression, upright standing posture, worn cyan cotton long gown, slightly damp fabric from residual drizzle, traditional literati style clothing, standing opposite to 张老头-配角1, body slightly leaning forward in attentive listening posture, eyes fixed on 张老头-配角1, posture showing focused curiosity, 8K detailed facial features with soft ink rendering, clear and gentle literati facial lines, bright eyes with focused attentive look, lip color naturally muted, subtle hazy shadow on face from residual rain mist, black long hair tied up in traditional literati topknot, root fixation coefficient 0.95, tip swing amplitude 2cm, color layering: main color #1A1A1A, secondary color #333333, highlight #4D4D4D, shadow #0D0D0D, wind speed 0.5m/s, turbulence intensity 2%, gentle breeze effect, slight natural fabric wrinkles, subtle damp texture on fabric surface, soft drape of cotton long gown, post-rain jiangnan water town street, damp bluestone pavement with faint water reflections, low traditional folk houses in distant background, slightly dim evening sky, 张老头-配角1 standing opposite the protagonist, on the right side of the frame, worn grey cotton long gown, holding his beard with one hand, eyes with complicated expression, posture showing he is about to leave after finishing talking, subtle residual rain mist filling the air, soft ink diffusion haze around the scene, monochrome black white grey tones only, no other bright colors, ink gradation ranging from deep black to light grey, soft diffused evening natural light, even gentle illumination without harsh shadows, subtle light reflection on damp pavement, type medium shot, lens 50mm, aperture f/2.8, depth_of_field shallow focus on protagonist and 张老头-配角1, flash none, grain subtle ink wash paper texture, texture traditional rice paper texture, protagonist positioned on left side of the frame, 张老头-配角1 positioned on right side of the frame, central focal point on the interaction between the two characters, action constraints: protagonist in attentive listening pose, 张老头-配角1 in beard-stroking pose, traditional Chinese freehand ink wash painting style, no text, symbols or messy codes in image, contemplative daily folk atmosphere, nostalgic republic of china era vibe, calm and tranquil post-rain mood, subtle sense of uncertainty about the future, no text, no symbols, no garbled characters, no words, consistent character design, consistent outfit and key props, consistent color palette and lighting",
+      "source_prompt_json": {
+        "label": "scene-qinghezhen-street-zhang-intro-wangwenxuan",
+        "tags": [
+          "jiangnan-water-town",
+          "republic-of-china-era",
+          "folk-market-vibe",
+          "literati-atmosphere",
+          "nostalgic",
+          "contemplative"
+        ],
+        "style": [
+          "traditional Chinese ink wash painting",
+          "freehand brushwork",
+          "soft ink diffusion effect",
+          "atmospheric perspective",
+          "gentle ink gradation"
+        ],
+        "subject": {
+          "body_traits": [
+            "young male protagonist, player perspective",
+            "fair skin with soft ink rendering",
+            "focused and contemplative expression",
+            "upright standing posture"
+          ],
+          "outfit": [
+            "worn cyan cotton long gown",
+            "slightly damp fabric from residual drizzle",
+            "traditional literati style clothing"
+          ],
+          "pose": [
+            "standing opposite to 张老头-配角1",
+            "body slightly leaning forward in attentive listening posture",
+            "eyes fixed on 张老头-配角1",
+            "posture showing focused curiosity"
+          ]
+        },
+        "face_system": [
+          "8K detailed facial features with soft ink rendering",
+          "clear and gentle literati facial lines",
+          "bright eyes with focused attentive look",
+          "lip color naturally muted",
+          "subtle hazy shadow on face from residual rain mist"
+        ],
+        "hair_system": [
+          "black long hair tied up in traditional literati topknot",
+          "root fixation coefficient 0.95",
+          "tip swing amplitude 2cm",
+          "color layering: main color #1A1A1A, secondary color #333333, highlight #4D4D4D, shadow #0D0D0D",
+          "wind speed 0.5m/s",
+          "turbulence intensity 2%",
+          "gentle breeze effect"
+        ],
+        "clothing_system": [
+          "slight natural fabric wrinkles",
+          "subtle damp texture on fabric surface",
+          "soft drape of cotton long gown"
+        ],
+        "environment": {
+          "background": [
+            "post-rain jiangnan water town street",
+            "damp bluestone pavement with faint water reflections",
+            "low traditional folk houses in distant background",
+            "slightly dim evening sky"
+          ],
+          "characters": [
+            "张老头-配角1 standing opposite the protagonist, on the right side of the frame",
+            "worn grey cotton long gown",
+            "holding his beard with one hand, eyes with complicated expression",
+            "posture showing he is about to leave after finishing talking"
+          ],
+          "effects": [
+            "subtle residual rain mist filling the air",
+            "soft ink diffusion haze around the scene"
+          ]
+        },
+        "color_restriction": [
+          "monochrome black white grey tones only",
+          "no other bright colors",
+          "ink gradation ranging from deep black to light grey"
+        ],
+        "lighting": [
+          "soft diffused evening natural light",
+          "even gentle illumination without harsh shadows",
+          "subtle light reflection on damp pavement"
+        ],
+        "camera": {
+          "type": "medium shot",
+          "lens": "50mm",
+          "aperture": "f/2.8",
+          "depth_of_field": "shallow focus on protagonist and 张老头-配角1",
+          "flash": "none",
+          "grain": "subtle ink wash paper texture",
+          "texture": "traditional rice paper texture"
+        },
+        "composition": [
+          "protagonist positioned on left side of the frame",
+          "张老头-配角1 positioned on right side of the frame",
+          "central focal point on the interaction between the two characters",
+          "action constraints: protagonist in attentive listening pose, 张老头-配角1 in beard-stroking pose"
+        ],
+        "mood": [
+          "contemplative daily folk atmosphere",
+          "nostalgic republic of china era vibe",
+          "calm and tranquil post-rain mood",
+          "subtle sense of uncertainty about the future"
+        ],
+        "output_style": [
+          "traditional Chinese freehand ink wash painting style",
+          "no text, symbols or messy codes in image"
+        ]
+      },
+      "source_scene": "我听到王文轩这个名字时，心中一动。既然要在听雨轩立足，了解这位本地说书人的情况确实重要。我向张老头深深一揖：\"张老丈，能否详细说说这位王文轩先生？他的说书风格如何？\"\n\n张老头捋了捋胡须，眼中闪过一丝复杂的神色：\"王文轩啊，那可是个有故事的人。他今年三十出头，说书已有十五年了。当年也是从外地来的，跟你一样。\"他顿了顿，\"王文轩的嗓音浑厚，最擅长说《三国演义》和《水浒传》，每到关键处，那声音能让整个茶肆的人都屏住呼吸。\"\n\n\"不过\"张老头压低了声音，\"这人性子有些孤傲，不太愿意与同行交往。听说他师父当年在京城也是有名的说书人，传给他不少独门技巧。但也有人说，他之所以来清河镇，是因为在别处得罪了什么人。\"\n\n我仔细听着，心中暗自思量。一个有实力但性格孤傲的同行，这既是挑战也是机会。如果能与他建立良好关系，或许能学到不少东西；但若处理不当，可能会成为我在听雨轩立足的最大障碍。\n\n\"王文轩平日里都在听雨轩说书吗？\"我问道。\n\n\"基本如此，柳如烟对他很器重。不过最近听说他身体有些不适，偶尔会请假。\"张老头看了看天色，\"年轻人，天色不早了，我该回家了。你若真想了解王文轩，不如直接去听雨轩看看，今日下午他应该会在那里说书。\"",
+      "source_previous_scene": "\"三家茶肆？\"我连忙追问，\"老丈，能否详细说说它们的情况？\"\n\n老者看了看天色，雨势渐小，便收起油纸伞，饶有兴致地说道：\"既然你是说书的，那我就好好跟你说说。\"他指向镇子深处，\"听雨轩在镇东，是咱们清河镇最有名的茶肆，开了快三十年了。老板娘柳如烟是个有见识的女人，茶肆里的摆设都是上等货色，来的客人多是镇上的士绅商贾。那里的说书台也最讲究，红木雕花，配着上好的紫砂壶。\"\n\n\"不过\"老者话锋一转，\"听雨轩的规矩也最严，说书人要经过考核才能上台，而且听众挑剔得很。现在那里有个叫王文轩的说书人，功底深厚，在镇上很有名气。你要想在那里立足，可不容易。\"\n\n我点点头，心中暗自盘算。老者继续说道：\"时新茶社在镇西，是这两年新开的，老板是个从上海回来的年轻人，叫林志远。那里什么都讲究个'新'字，不光茶具是洋式的，连说书的内容都要求有新意。听说还准备引进留声机呢。\"\n\n\"至于聚贤堂\"老者摇摇头，\"在镇南的码头边上，客人多是些码头工人、小商贩，消费不高。老板胡大海是个实在人，对说书人也不苛刻，但赚的银子确实有限。\"\n\n雨停了，街上开始有行人走动。我感激地向老者行了一礼：\"多谢老丈指点，敢问您贵姓？\"\n\n\"免贵姓张，大家都叫我张老头。\"老者笑道，\"年轻人，这年头说书不好做，你可要想清楚了。\"",
+      "run_parameters_snapshot": {
+        "scale": "full",
+        "seed": 42,
+        "group": "prompt_only",
+        "prompt_strategy": "provided",
+        "use_previous_image": false,
+        "skip_cache_lookup": true,
+        "use_cache": true,
+        "default_style": "default"
+      }
+    },
+    {
+      "task_id": "game_1776418475_uho8y4_seg_004__prompt_only",
+      "sample_id": "game_1776418475_uho8y4_seg_004",
+      "dataset_name": "generation_context_ablation_full_seed42_theme003",
+      "group": "prompt_only",
+      "theme_id": 3,
+      "theme": "茶肆说书人",
+      "style_label_zh": "水墨画风格",
+      "image_style": {
+        "type": "ink_painting"
+      },
+      "game_id": "game_1776418475_uho8y4",
+      "segment_index": 4,
+      "previous_segment_index": 3,
+      "needs_previous_image": false,
+      "source_folder": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0\\theme_003_game_1776418475_uho8y4",
+      "source_manifest": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0\\theme_003_game_1776418475_uho8y4\\game_1776418475_uho8y4_manifest.json",
+      "source_segment_json": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0\\theme_003_game_1776418475_uho8y4\\game_1776418475_uho8y4_004.json",
+      "source_segment_image": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0\\theme_003_game_1776418475_uho8y4\\game_1776418475_uho8y4_004.png",
+      "source_previous_segment_json": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0\\theme_003_game_1776418475_uho8y4\\game_1776418475_uho8y4_003.json",
+      "source_previous_segment_image": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0\\theme_003_game_1776418475_uho8y4\\game_1776418475_uho8y4_003.png",
+      "source_prompt": "scene-tingyuxuan-wangwenxuan-storytelling, republic-of-china-era, traditional-teahouse, storytelling-scene, jiangnan-style, nostalgic, literary-atmosphere, traditional Chinese ink wash painting, freehand brushwork, soft ink diffusion effect, atmospheric perspective, gentle ink gradation, monochromatic black white gray tones, young male protagonist (player perspective), fair skin rendered with soft ink texture, expression mixed with expectation and anxiety, calm literati temperament, worn cyan cotton long gown, traditional literati style clothing, sitting at the corner against the teahouse wall, body and eyes facing towards the storytelling platform, posture of quietly observing the storytelling performance, one hand resting lightly on the teapot beside him, 8K detailed facial features with soft ink rendering, clear and gentle literati facial lines, bright eyes with focused observant look, lip color naturally muted, subtle soft shadow on face from teahouse ambient light, black long hair tied up in traditional literati topknot, root fixation coefficient 0.95, tip swing amplitude 2cm, color layering: main color #1A1A1A, secondary color #333333, highlight #4D4D4D, shadow #0D0D0D, wind speed 0.5m/s, turbulence intensity 2%, gentle breeze effect from teahouse air flow, cyan long gown with natural soft drape, subtle slight fabric creases from sitting posture, matte cotton fabric texture rendered with ink, interior of traditional Jiangnan style teahouse, crowded with seated guests all over the space, bluestone floor with dappled light spots, high hanging wooden plaque above the entrance, wooden couplet boards on both sides of the door, central raised storytelling platform in the middle of the teahouse, wooden square tables and benches scattered around the space, 王文轩-配角2 standing on the central storytelling platform, 王文轩-配角2 is a tall sturdy middle-aged man wearing dark blue long robe, 王文轩-配角2 holding a folding fan in one hand, making expressive gestures while storytelling, other teahouse guests sitting at tables around the platform, several elder guests showing moved expressions while listening, soft diffused ink mist filling the air to represent the faint scent of tea and tobacco, dappled sunlight spots filtering through window lattices falling on the ground and tables, subtle ink diffusion effect at the edges of the scene to create far-reaching artistic conception, monochromatic black white gray as main color palette, subtle desaturated cyan for protagonist's long gown, subtle desaturated dark blue for 王文轩-配角2's robe, no other bright colors allowed, soft afternoon natural light filtering through teahouse window lattices, warm ambient indoor light highlighting the storytelling platform, gentle light and shadow contrast rendered with ink gradations, type medium shot, lens 35mm, aperture f/4, depth_of_field shallow focus on protagonist and 王文轩-配角2, background guests slightly blurred, flash none, grain subtle rice paper texture, texture traditional ink wash brushstrokes, protagonist positioned at left side of the frame, sitting against the wall, 王文轩-配角2 positioned at the center of the frame on the raised platform, central focal point on both protagonist and 王文轩-配角2, action constraints: protagonist keeps quiet observing posture, 王文轩-配角2 makes expressive storytelling gestures, traditional Chinese ink wash painting style, no text, symbols or garbled characters in the image, rich ink gradation and freehand brushwork effect, nostalgic Republic of China era atmosphere, warm lively teahouse folk vibe, subtle contemplative and apprehensive mood from protagonist, far-reaching traditional literati artistic conception, realistic yet slightly sentimental vibe matching the NE ending tone, no text, no symbols, no garbled characters, no words, consistent character design, consistent outfit and key props, consistent color palette and lighting",
+      "source_prompt_json": {
+        "label": "scene-tingyuxuan-wangwenxuan-storytelling",
+        "tags": [
+          "republic-of-china-era",
+          "traditional-teahouse",
+          "storytelling-scene",
+          "jiangnan-style",
+          "nostalgic",
+          "literary-atmosphere"
+        ],
+        "style": [
+          "traditional Chinese ink wash painting",
+          "freehand brushwork",
+          "soft ink diffusion effect",
+          "atmospheric perspective",
+          "gentle ink gradation",
+          "monochromatic black white gray tones"
+        ],
+        "subject": {
+          "body_traits": [
+            "young male protagonist (player perspective)",
+            "fair skin rendered with soft ink texture",
+            "expression mixed with expectation and anxiety",
+            "calm literati temperament"
+          ],
+          "outfit": [
+            "worn cyan cotton long gown",
+            "traditional literati style clothing"
+          ],
+          "pose": [
+            "sitting at the corner against the teahouse wall",
+            "body and eyes facing towards the storytelling platform",
+            "posture of quietly observing the storytelling performance",
+            "one hand resting lightly on the teapot beside him"
+          ]
+        },
+        "face_system": [
+          "8K detailed facial features with soft ink rendering",
+          "clear and gentle literati facial lines",
+          "bright eyes with focused observant look",
+          "lip color naturally muted",
+          "subtle soft shadow on face from teahouse ambient light"
+        ],
+        "hair_system": [
+          "black long hair tied up in traditional literati topknot",
+          "root fixation coefficient 0.95",
+          "tip swing amplitude 2cm",
+          "color layering: main color #1A1A1A, secondary color #333333, highlight #4D4D4D, shadow #0D0D0D",
+          "wind speed 0.5m/s",
+          "turbulence intensity 2%",
+          "gentle breeze effect from teahouse air flow"
+        ],
+        "clothing_system": [
+          "cyan long gown with natural soft drape",
+          "subtle slight fabric creases from sitting posture",
+          "matte cotton fabric texture rendered with ink"
+        ],
+        "environment": {
+          "background": [
+            "interior of traditional Jiangnan style teahouse",
+            "crowded with seated guests all over the space",
+            "bluestone floor with dappled light spots",
+            "high hanging wooden plaque above the entrance",
+            "wooden couplet boards on both sides of the door",
+            "central raised storytelling platform in the middle of the teahouse",
+            "wooden square tables and benches scattered around the space"
+          ],
+          "characters": [
+            "王文轩-配角2 standing on the central storytelling platform",
+            "王文轩-配角2 is a tall sturdy middle-aged man wearing dark blue long robe",
+            "王文轩-配角2 holding a folding fan in one hand, making expressive gestures while storytelling",
+            "other teahouse guests sitting at tables around the platform",
+            "several elder guests showing moved expressions while listening"
+          ],
+          "effects": [
+            "soft diffused ink mist filling the air to represent the faint scent of tea and tobacco",
+            "dappled sunlight spots filtering through window lattices falling on the ground and tables",
+            "subtle ink diffusion effect at the edges of the scene to create far-reaching artistic conception"
+          ]
+        },
+        "color_restriction": [
+          "monochromatic black white gray as main color palette",
+          "subtle desaturated cyan for protagonist's long gown",
+          "subtle desaturated dark blue for 王文轩-配角2's robe",
+          "no other bright colors allowed"
+        ],
+        "lighting": [
+          "soft afternoon natural light filtering through teahouse window lattices",
+          "warm ambient indoor light highlighting the storytelling platform",
+          "gentle light and shadow contrast rendered with ink gradations"
+        ],
+        "camera": {
+          "type": "medium shot",
+          "lens": "35mm",
+          "aperture": "f/4",
+          "depth_of_field": "shallow focus on protagonist and 王文轩-配角2, background guests slightly blurred",
+          "flash": "none",
+          "grain": "subtle rice paper texture",
+          "texture": "traditional ink wash brushstrokes"
+        },
+        "composition": [
+          "protagonist positioned at left side of the frame, sitting against the wall",
+          "王文轩-配角2 positioned at the center of the frame on the raised platform",
+          "central focal point on both protagonist and 王文轩-配角2",
+          "action constraints: protagonist keeps quiet observing posture, 王文轩-配角2 makes expressive storytelling gestures"
+        ],
+        "mood": [
+          "nostalgic Republic of China era atmosphere",
+          "warm lively teahouse folk vibe",
+          "subtle contemplative and apprehensive mood from protagonist",
+          "far-reaching traditional literati artistic conception",
+          "realistic yet slightly sentimental vibe matching the NE ending tone"
+        ],
+        "output_style": [
+          "traditional Chinese ink wash painting style",
+          "no text, symbols or garbled characters in the image",
+          "rich ink gradation and freehand brushwork effect"
+        ]
+      },
+      "source_scene": "我向张老头道别后，便径直朝听雨轩走去。下午的阳光透过梧桐叶片洒在青石板路上，远远就能听到从听雨轩传来的阵阵掌声和叫好声。我放慢脚步，心中既有期待又有忐忑。\n\n听雨轩的门楣高悬着一块黑底金字的匾额，两侧贴着工整的对联：\"说古道今传千载，品茶论史话百年。\"我在门口稍作停留，整理了一下青布长衫，然后轻步走了进去。\n\n茶肆内座无虚席，空气中弥漫着淡淡的茶香和烟草味。正中央的说书台上，一个身材魁梧的中年男子正在慷慨激昂地讲述着《三国演义》中赤壁之战的片段。这便是王文轩了。他身着一袭深蓝色长袍，手持折扇，声音浑厚有力，每一个字都清晰地传达到茶肆的每个角落。\n\n\"却说孔明借得东风，周瑜火攻赤壁，曹操败走华容道\"王文轩的声音时而低沉如雷，时而高亢激昂，配合着恰到好处的手势，将听众完全带入了那个金戈铁马的年代。我注意到他的眼神犀利，能够准确捕捉到每一位听众的反应，适时调整语调和节奏。\n\n我找了个靠墙的角落坐下，要了壶茶，静静观察着王文轩的表演。他的技艺确实精湛，无论是人物刻画还是场面描述都极为生动。特别是在描述关羽义释曹操时，他的声音中带着一种复杂的情感，让在场的听众都为之动容。\n\n\"好！说得好！\"台下不时传来喝彩声，我看到几位老茶客眼中闪烁着泪光。王文轩微微一笑，继续他的精彩演绎。",
+      "source_previous_scene": "我听到王文轩这个名字时，心中一动。既然要在听雨轩立足，了解这位本地说书人的情况确实重要。我向张老头深深一揖：\"张老丈，能否详细说说这位王文轩先生？他的说书风格如何？\"\n\n张老头捋了捋胡须，眼中闪过一丝复杂的神色：\"王文轩啊，那可是个有故事的人。他今年三十出头，说书已有十五年了。当年也是从外地来的，跟你一样。\"他顿了顿，\"王文轩的嗓音浑厚，最擅长说《三国演义》和《水浒传》，每到关键处，那声音能让整个茶肆的人都屏住呼吸。\"\n\n\"不过\"张老头压低了声音，\"这人性子有些孤傲，不太愿意与同行交往。听说他师父当年在京城也是有名的说书人，传给他不少独门技巧。但也有人说，他之所以来清河镇，是因为在别处得罪了什么人。\"\n\n我仔细听着，心中暗自思量。一个有实力但性格孤傲的同行，这既是挑战也是机会。如果能与他建立良好关系，或许能学到不少东西；但若处理不当，可能会成为我在听雨轩立足的最大障碍。\n\n\"王文轩平日里都在听雨轩说书吗？\"我问道。\n\n\"基本如此，柳如烟对他很器重。不过最近听说他身体有些不适，偶尔会请假。\"张老头看了看天色，\"年轻人，天色不早了，我该回家了。你若真想了解王文轩，不如直接去听雨轩看看，今日下午他应该会在那里说书。\"",
+      "run_parameters_snapshot": {
+        "scale": "full",
+        "seed": 42,
+        "group": "prompt_only",
+        "prompt_strategy": "provided",
+        "use_previous_image": false,
+        "skip_cache_lookup": true,
+        "use_cache": true,
+        "default_style": "default"
+      }
+    },
+    {
+      "task_id": "game_1776418475_uho8y4_seg_005__prompt_only",
+      "sample_id": "game_1776418475_uho8y4_seg_005",
+      "dataset_name": "generation_context_ablation_full_seed42_theme003",
+      "group": "prompt_only",
+      "theme_id": 3,
+      "theme": "茶肆说书人",
+      "style_label_zh": "水墨画风格",
+      "image_style": {
+        "type": "ink_painting"
+      },
+      "game_id": "game_1776418475_uho8y4",
+      "segment_index": 5,
+      "previous_segment_index": 4,
+      "needs_previous_image": false,
+      "source_folder": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0\\theme_003_game_1776418475_uho8y4",
+      "source_manifest": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0\\theme_003_game_1776418475_uho8y4\\game_1776418475_uho8y4_manifest.json",
+      "source_segment_json": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0\\theme_003_game_1776418475_uho8y4\\game_1776418475_uho8y4_005.json",
+      "source_segment_image": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0\\theme_003_game_1776418475_uho8y4\\game_1776418475_uho8y4_005.png",
+      "source_previous_segment_json": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0\\theme_003_game_1776418475_uho8y4\\game_1776418475_uho8y4_004.json",
+      "source_previous_segment_image": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0\\theme_003_game_1776418475_uho8y4\\game_1776418475_uho8y4_004.png",
+      "source_prompt": "scene-tingyuxuan-storytelling-conclusion-applause, republic-of-china-era, jiangnan-traditional-teahouse, storytelling-scene, nostalgic, literary-atmosphere, ink-wash-aesthetic, traditional Chinese ink wash painting, freehand brushwork, soft ink diffusion effect, atmospheric perspective, gentle ink gradation, monochromatic black white gray tones, young male protagonist (player perspective), soft ink textured skin, focused and admiring expression, calm literati temperament, worn cyan cotton long gown, traditional literati style clothing, sitting at the corner against the teahouse wall, body and eyes facing towards the storytelling platform, one hand resting lightly on the teapot beside him, posture of intently observing the storyteller's performance, 8K detailed facial features with soft ink rendering, clear and gentle literati facial lines, bright eyes with focused observant and admiring look, lip color naturally muted, subtle soft shadow on face from teahouse ambient light, black long hair tied up in traditional literati topknot, root fixation coefficient 0.95, tip swing amplitude 2cm, color layering: main color #1A1A1A, secondary color #333333, highlight #4D4D4D, shadow #0D0D0D, wind speed 0.2m/s, turbulence intensity 1%, wind direction from weak cross wind inside teahouse, cyan long gown with natural fabric drape, slight fabric wrinkles from sitting for a long time, minor fabric flutter from weak teahouse wind, republic of China era Jiangnan style traditional teahouse, fully occupied audience seats, soft ink diffusion effect rendering faint tea smoke in the air, wooden storytelling platform located in the center of the teahouse, 王文轩-配角1 standing on the central storytelling platform, having just put away his folding fan, bowing deeply to the audience, wearing dark blue long robe, with a faint smile on his face, 白须老人-配角2 sitting in the front row of the audience, with long white beard, nodding in approval with a satisfied expression, soft ink hazy atmosphere, subtle ink strokes rendering the lively atmosphere of applause, only black, white and gray tones allowed, no other colors, traditional ink wash monochrome palette, soft natural light filtering through teahouse wooden lattice windows, slightly brighter light on the storytelling platform to highlight the storyteller, soft ambient light inside the teahouse casting gentle ink shadows, type medium shot, lens 35mm, aperture f/4, depth_of_field shallow focus on protagonist and 王文轩-配角1, background audience slightly blurred, flash none, grain subtle rice paper texture, texture ink wash brushstroke texture, protagonist positioned on the left side of the frame against the wall, 王文轩-配角1 positioned in the center of the frame on the storytelling platform, 白须老人-配角2 positioned on the right side of the frame in the front audience row, focus falls on the interaction between the storyteller and the audience, action constraints: 王文轩-配角1 keeps bowing posture, protagonist keeps observing posture, profound artistic conception of traditional Chinese ink painting, no text, symbols or garbled characters in image, nostalgic and warm atmosphere, lingering charm after wonderful storytelling performance, regretful yet satisfying ordinary ending atmosphere matching NE tone, quiet admiration from the protagonist, no text, no symbols, no garbled characters, no words, consistent character design, consistent outfit and key props, consistent color palette and lighting",
+      "source_prompt_json": {
+        "label": "scene-tingyuxuan-storytelling-conclusion-applause",
+        "tags": [
+          "republic-of-china-era",
+          "jiangnan-traditional-teahouse",
+          "storytelling-scene",
+          "nostalgic",
+          "literary-atmosphere",
+          "ink-wash-aesthetic"
+        ],
+        "style": [
+          "traditional Chinese ink wash painting",
+          "freehand brushwork",
+          "soft ink diffusion effect",
+          "atmospheric perspective",
+          "gentle ink gradation",
+          "monochromatic black white gray tones"
+        ],
+        "subject": {
+          "body_traits": [
+            "young male protagonist (player perspective)",
+            "soft ink textured skin",
+            "focused and admiring expression",
+            "calm literati temperament"
+          ],
+          "outfit": [
+            "worn cyan cotton long gown",
+            "traditional literati style clothing"
+          ],
+          "pose": [
+            "sitting at the corner against the teahouse wall",
+            "body and eyes facing towards the storytelling platform",
+            "one hand resting lightly on the teapot beside him",
+            "posture of intently observing the storyteller's performance"
+          ]
+        },
+        "face_system": [
+          "8K detailed facial features with soft ink rendering",
+          "clear and gentle literati facial lines",
+          "bright eyes with focused observant and admiring look",
+          "lip color naturally muted",
+          "subtle soft shadow on face from teahouse ambient light"
+        ],
+        "hair_system": [
+          "black long hair tied up in traditional literati topknot",
+          "root fixation coefficient 0.95",
+          "tip swing amplitude 2cm",
+          "color layering: main color #1A1A1A, secondary color #333333, highlight #4D4D4D, shadow #0D0D0D",
+          "wind speed 0.2m/s",
+          "turbulence intensity 1%",
+          "wind direction from weak cross wind inside teahouse"
+        ],
+        "clothing_system": [
+          "cyan long gown with natural fabric drape",
+          "slight fabric wrinkles from sitting for a long time",
+          "minor fabric flutter from weak teahouse wind"
+        ],
+        "environment": {
+          "background": [
+            "republic of China era Jiangnan style traditional teahouse",
+            "fully occupied audience seats",
+            "soft ink diffusion effect rendering faint tea smoke in the air",
+            "wooden storytelling platform located in the center of the teahouse"
+          ],
+          "characters": [
+            "王文轩-配角1 standing on the central storytelling platform, having just put away his folding fan, bowing deeply to the audience, wearing dark blue long robe, with a faint smile on his face",
+            "白须老人-配角2 sitting in the front row of the audience, with long white beard, nodding in approval with a satisfied expression"
+          ],
+          "effects": [
+            "soft ink hazy atmosphere",
+            "subtle ink strokes rendering the lively atmosphere of applause"
+          ]
+        },
+        "color_restriction": [
+          "only black, white and gray tones allowed, no other colors",
+          "traditional ink wash monochrome palette"
+        ],
+        "lighting": [
+          "soft natural light filtering through teahouse wooden lattice windows",
+          "slightly brighter light on the storytelling platform to highlight the storyteller",
+          "soft ambient light inside the teahouse casting gentle ink shadows"
+        ],
+        "camera": {
+          "type": "medium shot",
+          "lens": "35mm",
+          "aperture": "f/4",
+          "depth_of_field": "shallow focus on protagonist and 王文轩-配角1, background audience slightly blurred",
+          "flash": "none",
+          "grain": "subtle rice paper texture",
+          "texture": "ink wash brushstroke texture"
+        },
+        "composition": [
+          "protagonist positioned on the left side of the frame against the wall",
+          "王文轩-配角1 positioned in the center of the frame on the storytelling platform",
+          "白须老人-配角2 positioned on the right side of the frame in the front audience row",
+          "focus falls on the interaction between the storyteller and the audience",
+          "action constraints: 王文轩-配角1 keeps bowing posture, protagonist keeps observing posture"
+        ],
+        "mood": [
+          "nostalgic and warm atmosphere",
+          "lingering charm after wonderful storytelling performance",
+          "regretful yet satisfying ordinary ending atmosphere matching NE tone",
+          "quiet admiration from the protagonist"
+        ],
+        "output_style": [
+          "profound artistic conception of traditional Chinese ink painting",
+          "no text, symbols or garbled characters in image"
+        ]
+      },
+      "source_scene": "我继续专注地观察着王文轩的表演，运用师父教导的\"观人察心\"之法，仔细留意他的每一个细节。王文轩在讲到关羽放走曹操时，声音忽然放缓，眼神扫视全场，我注意到他的目光在几位年长的听众脸上停留得更久一些。\n\n\"关云长义薄云天，念及昔日恩情，终是放了曹孟德一马。\"王文轩的声音中带着一丝感慨，\"这便是我辈中人的情义所在啊。\"\n\n我发现他说到这里时，右手轻抚胸口，这个细微的动作让在座的几位老者都点头称是。一位白须老人甚至轻声说道：\"说得好，情义二字，重如泰山。\"\n\n王文轩微微一笑，接着话锋一转：\"却说曹操逃至华容道，心中正自庆幸，不料前方又有一彪人马拦路。\"他的声音陡然提高，手中折扇一挥，\"为首一将，豹头环眼，燕颔虎须，手持丈八蛇矛，乃是燕人张翼德张飞是也！\"\n\n台下顿时响起一片叫好声。我注意到王文轩在描述张飞时，整个人的气质都变了，原本儒雅的神态瞬间变得威猛，仿佛真的化身为那位莽撞的燕人。这种瞬间转换角色的能力，确实令人叹服。\n\n更让我印象深刻的是，他能够准确把握听众的情绪节奏。当气氛过于紧张时，他会适时加入一些幽默的细节；当听众注意力有所分散时，他又能用突然的高潮将所有人的心神重新抓回来。\n\n\"今日便说到这里，明日且听下回分解。\"王文轩收起折扇，向台下深深一揖。掌声如雷，不少听众都意犹未尽地议论着刚才的精彩片段。",
+      "source_previous_scene": "我向张老头道别后，便径直朝听雨轩走去。下午的阳光透过梧桐叶片洒在青石板路上，远远就能听到从听雨轩传来的阵阵掌声和叫好声。我放慢脚步，心中既有期待又有忐忑。\n\n听雨轩的门楣高悬着一块黑底金字的匾额，两侧贴着工整的对联：\"说古道今传千载，品茶论史话百年。\"我在门口稍作停留，整理了一下青布长衫，然后轻步走了进去。\n\n茶肆内座无虚席，空气中弥漫着淡淡的茶香和烟草味。正中央的说书台上，一个身材魁梧的中年男子正在慷慨激昂地讲述着《三国演义》中赤壁之战的片段。这便是王文轩了。他身着一袭深蓝色长袍，手持折扇，声音浑厚有力，每一个字都清晰地传达到茶肆的每个角落。\n\n\"却说孔明借得东风，周瑜火攻赤壁，曹操败走华容道\"王文轩的声音时而低沉如雷，时而高亢激昂，配合着恰到好处的手势，将听众完全带入了那个金戈铁马的年代。我注意到他的眼神犀利，能够准确捕捉到每一位听众的反应，适时调整语调和节奏。\n\n我找了个靠墙的角落坐下，要了壶茶，静静观察着王文轩的表演。他的技艺确实精湛，无论是人物刻画还是场面描述都极为生动。特别是在描述关羽义释曹操时，他的声音中带着一种复杂的情感，让在场的听众都为之动容。\n\n\"好！说得好！\"台下不时传来喝彩声，我看到几位老茶客眼中闪烁着泪光。王文轩微微一笑，继续他的精彩演绎。",
+      "run_parameters_snapshot": {
+        "scale": "full",
+        "seed": 42,
+        "group": "prompt_only",
+        "prompt_strategy": "provided",
+        "use_previous_image": false,
+        "skip_cache_lookup": true,
+        "use_cache": true,
+        "default_style": "default"
+      }
+    }
+  ]
+}

@@ -1,0 +1,409 @@
+from __future__ import annotations
+
+import argparse
+import csv
+import json
+import subprocess
+import sys
+from pathlib import Path
+from statistics import mean
+from typing import Any
+
+
+REPO_ROOT = Path(__file__).resolve().parents[2]
+STANDARD_RUNS_DIR = REPO_ROOT / "experiments" / "benchmark" / "standard_runs"
+DEFAULT_OUTPUT_DIR = REPO_ROOT / "experiments" / "benchmark" / "dinov2_eval" / "v16_pregendepth_turn4_rw60_formal20"
+DEFAULT_DINOV2_SCRIPT = REPO_ROOT / "baselines" / "consistency_detection" / "scripts" / "run_dinov2_eval.py"
+DEFAULT_RUNS = {
+    1: STANDARD_RUNS_DIR / "benchmark_v16_pregendepth_d1_turn4_rw60_formal20.json",
+    2: STANDARD_RUNS_DIR / "benchmark_v16_pregendepth_d2_turn4_rw60_formal20.json",
+    3: STANDARD_RUNS_DIR / "benchmark_v16_pregendepth_d3_turn4_rw60_formal20.json",
+    4: STANDARD_RUNS_DIR / "benchmark_v16_pregendepth_d4_turn4_rw60_formal20.json",
+}
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(
+        description=(
+            "Build adjacent-turn image pairs from DN v16 pregeneration-depth benchmark runs "
+            "and run DINOv2 cosine evaluation on each depth."
+        )
+    )
+    parser.add_argument("--d1", default=str(DEFAULT_RUNS[1]))
+    parser.add_argument("--d2", default=str(DEFAULT_RUNS[2]))
+    parser.add_argument("--d3", default=str(DEFAULT_RUNS[3]))
+    parser.add_argument("--d4", default=str(DEFAULT_RUNS[4]))
+    parser.add_argument("--output-dir", default=str(DEFAULT_OUTPUT_DIR))
+    parser.add_argument("--device", default="auto")
+    parser.add_argument("--model-name", default="dinov2_vits14")
+    parser.add_argument("--limit", type=int, default=0, help="Optional max pairs per depth. 0 means all pairs.")
+    parser.add_argument("--skip-scoring", action="store_true", help="Only write pair CSVs and summaries.")
+    parser.add_argument("--auto-clone", action="store_true")
+    return parser.parse_args()
+
+
+def load_json(path: Path) -> dict[str, Any]:
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def write_json(path: Path, payload: Any) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+
+
+def write_csv(path: Path, rows: list[dict[str, Any]], fieldnames: list[str]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=fieldnames)
+        writer.writeheader()
+        for row in rows:
+            writer.writerow({field: row.get(field, "") for field in fieldnames})
+
+
+def normalize_url_path(value: str) -> str:
+    return value.split("?", 1)[0].split("#", 1)[0]
+
+
+def resolve_image_path(value: str | None) -> Path | None:
+    if not value:
+        return None
+    cleaned = normalize_url_path(str(value).strip())
+    if not cleaned or cleaned.startswith(("http://", "https://", "data:")):
+        return None
+
+    candidate = Path(cleaned)
+    if candidate.is_absolute() and candidate.drive:
+        return candidate
+    if cleaned.startswith(("/", "\\")):
+        return (REPO_ROOT / cleaned.lstrip("/\\")).resolve()
+    return (REPO_ROOT / cleaned).resolve()
+
+
+def nested_get(obj: dict[str, Any], path: tuple[str, ...]) -> Any:
+    current: Any = obj
+    for key in path:
+        if not isinstance(current, dict):
+            return None
+        current = current.get(key)
+    return current
+
+
+def first_turn_image_value(turn: dict[str, Any]) -> str | None:
+    candidates = [
+        ("scene_image_url",),
+        ("image_url",),
+        ("scene_image", "image_url"),
+        ("click", "response_json", "optionData", "scene_image", "image_url"),
+        ("click", "response_json", "optionData", "scene_image_url"),
+    ]
+    for path in candidates:
+        value = nested_get(turn, path)
+        if isinstance(value, str) and value.strip():
+            return value
+    return None
+
+
+def find_first_key(obj: Any, key: str) -> Any:
+    if isinstance(obj, dict):
+        if key in obj and obj[key] not in (None, ""):
+            return obj[key]
+        for value in obj.values():
+            found = find_first_key(value, key)
+            if found not in (None, ""):
+                return found
+    elif isinstance(obj, list):
+        for value in obj:
+            found = find_first_key(value, key)
+            if found not in (None, ""):
+                return found
+    return None
+
+
+def build_pairs_for_run(run_json: Path, depth: int) -> tuple[list[dict[str, Any]], list[dict[str, Any]], dict[str, Any]]:
+    payload = load_json(run_json)
+    summary = payload.get("summary") or {}
+    group = f"DN-pregen-d{depth}"
+    candidate_pairs: list[dict[str, Any]] = []
+
+    for run_index, run in enumerate(payload.get("runs", []), start=1):
+        benchmark_id = str(run.get("benchmark_id") or f"run_{run_index:03d}")
+        theme_id = run.get("theme_id", "")
+        theme = run.get("theme", "")
+        game_id = str(run.get("game_id") or find_first_key(run, "game_id") or benchmark_id)
+
+        turn_images: list[dict[str, Any]] = []
+        for turn in run.get("turns", []):
+            turn_index = turn.get("turn_index")
+            if turn_index is None:
+                continue
+            image_value = first_turn_image_value(turn)
+            image_path = resolve_image_path(image_value)
+            turn_images.append(
+                {
+                    "turn_index": int(turn_index),
+                    "image_value": image_value or "",
+                    "image_path": image_path,
+                    "image_exists": bool(image_path and image_path.is_file()),
+                }
+            )
+
+        ordered = sorted(turn_images, key=lambda row: row["turn_index"])
+        for left, right in zip(ordered, ordered[1:]):
+            pair_id = f"{benchmark_id}_turn_{left['turn_index']:02d}_to_{right['turn_index']:02d}"
+            candidate_pairs.append(
+                {
+                    "pair_id": pair_id,
+                    "benchmark_id": benchmark_id,
+                    "theme_id": theme_id,
+                    "theme": theme,
+                    "game_id": game_id,
+                    "group": group,
+                    "ref": str(left["image_path"] or ""),
+                    "candidate": str(right["image_path"] or ""),
+                    "ref_turn_index": left["turn_index"],
+                    "candidate_turn_index": right["turn_index"],
+                    "ref_exists": left["image_exists"],
+                    "candidate_exists": right["image_exists"],
+                    "ref_image_value": left["image_value"],
+                    "candidate_image_value": right["image_value"],
+                    "source_run_json": str(run_json),
+                    "pair_type": "adjacent_turn_continuity",
+                    "metric_protocol": "dinov2_cosine_on_adjacent_turn_scene_images",
+                }
+            )
+
+    valid_pairs = [row for row in candidate_pairs if row["ref_exists"] and row["candidate_exists"]]
+    pair_summary = {
+        "depth": depth,
+        "group": group,
+        "run_json": str(run_json),
+        "experiment_name": summary.get("experiment_name"),
+        "sample_size": summary.get("sample_size"),
+        "turn_count": summary.get("turn_count"),
+        "candidate_pairs": len(candidate_pairs),
+        "valid_pairs": len(valid_pairs),
+        "missing_pairs": len(candidate_pairs) - len(valid_pairs),
+        "pair_definition": "ref=turn_n scene image, candidate=turn_n+1 scene image for the same DN benchmark item",
+    }
+    return candidate_pairs, valid_pairs, pair_summary
+
+
+def run_dinov2(
+    pairs_csv: Path,
+    out_jsonl: Path,
+    out_summary: Path,
+    args: argparse.Namespace,
+) -> subprocess.CompletedProcess[str]:
+    command = [
+        sys.executable,
+        str(DEFAULT_DINOV2_SCRIPT),
+        "--pairs-csv",
+        str(pairs_csv),
+        "--out-jsonl",
+        str(out_jsonl),
+        "--out-summary",
+        str(out_summary),
+        "--device",
+        args.device,
+        "--model-name",
+        args.model_name,
+        "--skip-missing",
+    ]
+    if args.auto_clone:
+        command.append("--auto-clone")
+    if args.limit > 0:
+        command.extend(["--limit", str(args.limit)])
+    return subprocess.run(command, capture_output=True, text=True)
+
+
+def load_summary_if_exists(path: Path) -> dict[str, Any] | None:
+    if not path.is_file():
+        return None
+    return load_json(path)
+
+
+def write_report(path: Path, comparison_rows: list[dict[str, Any]]) -> None:
+    lines = [
+        "# DN v16 DINOv2 Adjacent-Turn Evaluation",
+        "",
+        "- Metric: `dinov2_cosine`",
+        "- Pair definition: turn_n scene image vs turn_n+1 scene image within the same benchmark item.",
+        "",
+        "| depth | pairs | mean | std | min | max |",
+        "| ---: | ---: | ---: | ---: | ---: | ---: |",
+    ]
+    for row in comparison_rows:
+        lines.append(
+            f"| {row['pregeneration_rounds']} | {row['scored_pairs']} | {row['mean']} | "
+            f"{row['std']} | {row['min']} | {row['max']} |"
+        )
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def main() -> int:
+    args = parse_args()
+    output_dir = Path(args.output_dir)
+    pairs_dir = output_dir / "pairs"
+    results_dir = output_dir / "results"
+    comparison_dir = output_dir / "comparison"
+    run_paths = {
+        1: Path(args.d1),
+        2: Path(args.d2),
+        3: Path(args.d3),
+        4: Path(args.d4),
+    }
+
+    pair_summaries: list[dict[str, Any]] = []
+    manifest_records: list[dict[str, Any]] = []
+    comparison_rows: list[dict[str, Any]] = []
+    failures = 0
+
+    candidate_fields = [
+        "pair_id",
+        "benchmark_id",
+        "theme_id",
+        "theme",
+        "game_id",
+        "group",
+        "ref",
+        "candidate",
+        "ref_turn_index",
+        "candidate_turn_index",
+        "ref_exists",
+        "candidate_exists",
+        "ref_image_value",
+        "candidate_image_value",
+        "source_run_json",
+        "pair_type",
+        "metric_protocol",
+    ]
+    valid_fields = [
+        "pair_id",
+        "benchmark_id",
+        "theme_id",
+        "theme",
+        "game_id",
+        "group",
+        "ref",
+        "candidate",
+        "ref_turn_index",
+        "candidate_turn_index",
+        "pair_type",
+        "metric_protocol",
+    ]
+
+    for depth, run_json in run_paths.items():
+        candidate_pairs, valid_pairs, pair_summary = build_pairs_for_run(run_json=run_json, depth=depth)
+        pair_summaries.append(pair_summary)
+        write_csv(pairs_dir / f"d{depth}_pair_candidates.csv", candidate_pairs, candidate_fields)
+        write_csv(pairs_dir / f"d{depth}_pairs.csv", valid_pairs, valid_fields)
+
+        depth_result_dir = results_dir / f"d{depth}"
+        out_jsonl = depth_result_dir / "scores.jsonl"
+        out_summary = depth_result_dir / "summary.json"
+
+        if args.skip_scoring:
+            manifest_records.append(
+                {
+                    "depth": depth,
+                    "status": "pairs_built",
+                    "pairs_csv": str(pairs_dir / f"d{depth}_pairs.csv"),
+                    "pair_count": len(valid_pairs),
+                    "summary_path": None,
+                    "jsonl_path": None,
+                }
+            )
+            continue
+
+        completed = run_dinov2(
+            pairs_csv=pairs_dir / f"d{depth}_pairs.csv",
+            out_jsonl=out_jsonl,
+            out_summary=out_summary,
+            args=args,
+        )
+        status = "completed" if completed.returncode == 0 else "failed"
+        if completed.returncode != 0:
+            failures += 1
+        record = {
+            "depth": depth,
+            "status": status,
+            "return_code": completed.returncode,
+            "pairs_csv": str(pairs_dir / f"d{depth}_pairs.csv"),
+            "pair_count": len(valid_pairs),
+            "summary_path": str(out_summary) if out_summary.exists() else None,
+            "jsonl_path": str(out_jsonl) if out_jsonl.exists() else None,
+            "stdout_tail": completed.stdout[-2000:],
+            "stderr_tail": completed.stderr[-2000:],
+        }
+        if completed.returncode != 0:
+            record["reason"] = "dinov2_eval_command_failed"
+        manifest_records.append(record)
+
+        summary_payload = load_summary_if_exists(out_summary)
+        if summary_payload:
+            comparison_rows.append(
+                {
+                    "pregeneration_rounds": depth,
+                    "group": f"DN-pregen-d{depth}",
+                    "candidate_pairs": pair_summary["candidate_pairs"],
+                    "valid_pairs": pair_summary["valid_pairs"],
+                    "scored_pairs": summary_payload.get("processed_rows"),
+                    "mean": summary_payload.get("score_mean"),
+                    "std": summary_payload.get("score_std_population"),
+                    "min": summary_payload.get("score_min"),
+                    "max": summary_payload.get("score_max"),
+                    "unique_image_count": summary_payload.get("unique_image_count"),
+                    "summary_path": str(out_summary),
+                    "scores_path": str(out_jsonl),
+                }
+            )
+
+    write_json(output_dir / "pair_build_summary.json", {"records": pair_summaries})
+    write_json(
+        output_dir / "run_manifest.json",
+        {
+            "metric": "dinov2_cosine",
+            "model_name": args.model_name,
+            "device": args.device,
+            "output_dir": str(output_dir),
+            "records": manifest_records,
+        },
+    )
+
+    comparison_fields = [
+        "pregeneration_rounds",
+        "group",
+        "candidate_pairs",
+        "valid_pairs",
+        "scored_pairs",
+        "mean",
+        "std",
+        "min",
+        "max",
+        "unique_image_count",
+        "summary_path",
+        "scores_path",
+    ]
+    write_csv(comparison_dir / "comparison_table.csv", comparison_rows, comparison_fields)
+    write_report(comparison_dir / "report.md", comparison_rows)
+    write_json(
+        comparison_dir / "summary.json",
+        {
+            "metric": "dinov2_cosine",
+            "protocol": "adjacent_turn_continuity",
+            "depth_count": len(comparison_rows),
+            "mean_of_depth_means": mean([row["mean"] for row in comparison_rows if row["mean"] is not None])
+            if comparison_rows
+            else None,
+            "rows": comparison_rows,
+        },
+    )
+
+    print(json.dumps({"output_dir": str(output_dir), "failures": failures}, ensure_ascii=False))
+    return 1 if failures else 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
+

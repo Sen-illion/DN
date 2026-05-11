@@ -1,0 +1,27 @@
+\section{Ablation and Mechanism Analysis}
+\label{sec:ablation}
+
+\paragraph{Evaluation scope.}
+The ablation study isolates whether key mechanisms contribute to both responsiveness and consistency. We compare the full system against variants that remove one mechanism at a time.
+
+\begin{table*}[t]
+\centering
+\small
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lcccc}
+\toprule
+Variant & Mean Latency (s) & P95 Latency (s) & Image Consistency (Qwen3, 1--5) & Text Consistency (Qwen3, 1--5) \\
+\midrule
+Full model & 5.299 & 27.150 & TODO & TODO \\
+$-$ pregen & 27.095 & 46.196 & TODO & TODO \\
+$-$ council & TODO & TODO & TODO & TODO \\
+$-$ readwait & TODO & TODO & TODO & TODO \\
+\bottomrule
+\end{tabular}
+}
+\caption{Ablation summary for mechanism contribution. The table isolates the effect of pregeneration, council planning, and read-wait strategy under aligned metrics. Pending artifact path: \texttt{[PATH\_TO\_ABLATION\_SUMMARY\_CSV]}.}
+\label{tab:ablation-main}
+\end{table*}
+
+\paragraph{Interpretation.}
+Table~\ref{tab:ablation-main} keeps the ablation axis directly aligned with the main-results metrics so each mechanism can be discussed in terms of both efficiency and consistency. The currently filled rows already show the dominant contribution of pregeneration to latency reduction, while remaining TODO entries are reserved for the same evaluation contract once the council and read-wait reruns are finalized.

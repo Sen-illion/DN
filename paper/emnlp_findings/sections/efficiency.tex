@@ -1,0 +1,38 @@
+\section{Efficiency Evaluation}
+\label{sec:efficiency}
+
+\paragraph{Evaluation goal.}
+We evaluate whether \dn can deliver next-turn content with practical latency while preserving consistent multimodal outputs. To keep one unified comparison surface, we report efficiency and consistency metrics in a single main table across the same baseline set.
+
+\paragraph{Protocol and metrics.}
+The current efficiency values use the formal20 setup with strict full-ready timing for \dn and next-turn image or workflow latency for image baselines. Consistency fields are kept in the same table schema but are marked as TODO until the Qwen3-based and DINO-v2-based runs are fully frozen under one script.
+
+\begin{table*}[t]
+\centering
+\small
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{llcccc}
+\toprule
+Group & Metric & DN & StoryDiffusion & SDM-v2 & IC-LoRA \\
+\midrule
+\multicolumn{6}{l}{\textbf{Efficiency} (lower is better, except Success Rate)} \\
+& Mean Latency (s) & 5.299 & 8.495 & 2.827 & 30.057 \\
+& P95 Latency (s) & 27.150 & 8.900 & 2.831 & 30.059 \\
+& Success Rate & 1.000 & 1.000 & 1.000 & 1.000 \\
+\midrule
+\multicolumn{6}{l}{\textbf{Image Consistency} (higher is better)} \\
+& LLM-based (Qwen3, 1--5) & TODO & TODO & TODO & TODO \\
+& Model-based (DINO-v2 cosine) & TODO & TODO & TODO & TODO \\
+\midrule
+\multicolumn{6}{l}{\textbf{Text Consistency} (higher is better)} \\
+& LLM-based (Qwen3, 1--5) & TODO & TODO & TODO & TODO \\
+& Model-based (domain model) & N/A & N/A & N/A & N/A \\
+\bottomrule
+\end{tabular}
+}
+\caption{Main results under a unified protocol. Efficiency rows are populated from the latest formal20 summary. Consistency rows are placeholders pending unified evaluation artifacts: \texttt{[PATH\_TO\_QWEN3\_CONSISTENCY\_RESULTS]} and \texttt{[PATH\_TO\_DINO\_CONSISTENCY\_RESULTS]}.}
+\label{tab:main-results-3in1}
+\end{table*}
+
+\paragraph{Main takeaways.}
+Table~\ref{tab:main-results-3in1} is the paper's primary result table and replaces the previous split-table layout. The efficiency block already shows that \dn remains competitive under a heavier output scope, while the consistency blocks reserve fixed slots for Qwen3 and DINO-v2 so later updates can be filled without changing table structure or interpretation logic.

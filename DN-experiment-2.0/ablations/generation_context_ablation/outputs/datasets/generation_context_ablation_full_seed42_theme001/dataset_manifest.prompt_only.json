@@ -1,0 +1,714 @@
+{
+  "summary": {
+    "generated_at_utc": "2026-04-25T09:55:03.307604+00:00",
+    "dataset_name": "generation_context_ablation_full_seed42_theme001",
+    "scale": "full",
+    "seed": 42,
+    "source_experiment_root": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0",
+    "themes_path": "C:\\Users\\User\\Desktop\\DN-main\\game_themes_100.json",
+    "theme_ids_filter": [
+      1
+    ],
+    "available_source_games": 1,
+    "eligible_source_games": 1,
+    "selected_games": 1,
+    "selected_eval_samples": 4,
+    "selected_tasks": 4,
+    "group_order": [
+      "prompt_only",
+      "prev_image_only",
+      "prompt_plus_prev_image"
+    ],
+    "scale_config": {
+      "max_games": 1,
+      "max_eval_segments_per_game": 4
+    },
+    "selection_config": {
+      "min_eval_segment_index": 2,
+      "require_source_prompt": true,
+      "require_source_images": true,
+      "require_previous_image": true
+    },
+    "group_filter": "prompt_only",
+    "group_specific_export": true
+  },
+  "config_snapshot": {
+    "experiment_name": "generation_context_ablation",
+    "groups": {
+      "prompt_only": {
+        "label": "Prompt only",
+        "prompt_strategy": "provided",
+        "use_previous_image": false,
+        "description": "Use only the stored LLM-generated image prompt and do not pass the previous scene image."
+      },
+      "prev_image_only": {
+        "label": "Prev image only",
+        "prompt_strategy": "minimal_base",
+        "use_previous_image": true,
+        "description": "Use the previous scene image plus a minimal base instruction, without the full rich LLM prompt."
+      },
+      "prompt_plus_prev_image": {
+        "label": "Prompt plus prev image",
+        "prompt_strategy": "provided",
+        "use_previous_image": true,
+        "description": "Use both the stored LLM-generated image prompt and the previous scene image."
+      }
+    },
+    "scales": {
+      "pilot": {
+        "max_games": 3,
+        "max_eval_segments_per_game": 3
+      },
+      "standard": {
+        "max_games": 6,
+        "max_eval_segments_per_game": 5
+      },
+      "full": {
+        "max_games": 0,
+        "max_eval_segments_per_game": 0
+      }
+    },
+    "selection": {
+      "min_eval_segment_index": 2,
+      "require_source_prompt": true,
+      "require_source_images": true,
+      "require_previous_image": true
+    },
+    "runtime": {
+      "minimal_prompt_instruction": "Generate the next story scene image for the same game world. Use the reference image as the main continuity context. Keep character appearance, outfit, palette, lighting, and key props as consistent as possible. No text, no watermark, no symbols, no garbled characters, no words.",
+      "skip_cache_lookup": true,
+      "use_cache": true,
+      "skip_protagonist_reference": true,
+      "default_style": "default"
+    },
+    "outputs": {
+      "dataset_dir_name": "datasets",
+      "run_dir_name": "runs"
+    }
+  },
+  "selected_games": [
+    {
+      "theme_id": 1,
+      "theme": "边陲驿站夜谈录",
+      "game_id": "game_1776417898_zthbu3",
+      "eval_segment_indexes": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "warmup_segment_range": "1-5",
+      "source_folder": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0\\theme_001_game_1776417898_zthbu3",
+      "source_manifest": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0\\theme_001_game_1776417898_zthbu3\\game_1776417898_zthbu3_manifest.json"
+    }
+  ],
+  "tasks": [
+    {
+      "task_id": "game_1776417898_zthbu3_seg_002__prompt_only",
+      "sample_id": "game_1776417898_zthbu3_seg_002",
+      "dataset_name": "generation_context_ablation_full_seed42_theme001",
+      "group": "prompt_only",
+      "theme_id": 1,
+      "theme": "边陲驿站夜谈录",
+      "style_label_zh": "写实风格",
+      "image_style": {
+        "type": "realistic"
+      },
+      "game_id": "game_1776417898_zthbu3",
+      "segment_index": 2,
+      "previous_segment_index": 1,
+      "needs_previous_image": false,
+      "source_folder": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0\\theme_001_game_1776417898_zthbu3",
+      "source_manifest": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0\\theme_001_game_1776417898_zthbu3\\game_1776417898_zthbu3_manifest.json",
+      "source_segment_json": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0\\theme_001_game_1776417898_zthbu3\\game_1776417898_zthbu3_002.json",
+      "source_segment_image": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0\\theme_001_game_1776417898_zthbu3\\game_1776417898_zthbu3_002.png",
+      "source_previous_segment_json": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0\\theme_001_game_1776417898_zthbu3\\game_1776417898_zthbu3_001.json",
+      "source_previous_segment_image": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0\\theme_001_game_1776417898_zthbu3\\game_1776417898_zthbu3_001.png",
+      "source_prompt": "scene-2-yumen-post-main-house-account-checking, historical, western regions frontier, realistic, desolate, responsibility theme, ancient post station, photorealistic, hyper-detailed, cinematic realism, fine texture rendering, realistic lighting and shadow, young male protagonist in his early twenties, expression serious with furrowed brows showing deep concern about the post station situation, fingers pinching the edge of the account book tightly, pale skin slightly rough blown by northwest cold wind, worn indigo linen robe suitable for northwest frontier travel, thick cotton sash tied around the waist, worn leather boots covered in loess dust, standing beside the crude wooden table full of account books and official documents, body slightly leaning forward as he browses the contents of the account book, one hand holding the account book, the other pointing at the record line on the page, 8K detailed facial features, furrowed brows showing obvious worry, lips pressed tightly showing inner pressure, soft facial shadows cast by warm oil lamp light, slight flush on cheekbones from the cold wind outside, short black hair slightly messy, root fixation coefficient 0.8, tip swing amplitude 1cm, color layering: main color #1A1A1A, secondary color #333333, highlight #4D4D4D, shadow #000000, wind speed 0.2m/s, turbulence intensity 1%, worn indigo linen robe with obvious creases from long time wearing, no obvious fabric flutter as indoor wind is weak, fabric stained with faint dust from previous outdoor travel, crude solid wood table piled with thick yellowed account books and official documents, several lit oil lamps placed around the table emitting warm dim yellow light, rough earthen walls of the post station main house with faint water stains, empty warehouse corner visible in the distance with tattered wooden boxes scattered, 张叔-配角1 standing on the right side of the frame, wearing a worn gray linen jacket, face full of deep wrinkles with worried expression, one finger pointing at the account book on the table, tiny dust particles floating in the air visible under the oil lamp light, dim deep shadows in the corners of the room, warm yellow light halo surrounding the oil lamps, warm yellow as main light tone, dark indigo for protagonist's robe, dark gray for 张叔-配角1's clothing, dark yellowish brown for wooden table and old account books, dim dark gray for the shadow areas of the room, warm yellow oil lamp light as main light source from the table surface, soft low-brightness ambient light filling the room, dim cold shadow in the corners of the room, soft focused light illuminating the account book in the protagonist's hand, type medium shot, lens 35mm, aperture f/2.2, depth_of_field shallow focus on protagonist and the account book in his hand, flash none, grain subtle fine film grain, texture realistic fine material texture, protagonist positioned in the left-center of the frame, 张叔-配角1 positioned on the right side of the frame, the account book in protagonist's hand as the central focal element, action constraints: protagonist browses the account book with furrowed brows, 张叔-配角1 stands beside to explain the account details, realistic hyper-detailed style, no text, symbols or random characters in the image, heavy and worried atmosphere, strong sense of responsibility pressure on the protagonist, shabby and desolate post station vibe, calm atmosphere before making decisions to solve the dilemma, no text, no symbols, no garbled characters, no words, consistent character design, consistent outfit and key props, consistent color palette and lighting",
+      "source_prompt_json": {
+        "label": "scene-2-yumen-post-main-house-account-checking",
+        "tags": [
+          "historical",
+          "western regions frontier",
+          "realistic",
+          "desolate",
+          "responsibility theme",
+          "ancient post station"
+        ],
+        "style": [
+          "photorealistic",
+          "hyper-detailed",
+          "cinematic realism",
+          "fine texture rendering",
+          "realistic lighting and shadow"
+        ],
+        "subject": {
+          "body_traits": [
+            "young male protagonist in his early twenties",
+            "expression serious with furrowed brows showing deep concern about the post station situation",
+            "fingers pinching the edge of the account book tightly",
+            "pale skin slightly rough blown by northwest cold wind"
+          ],
+          "outfit": [
+            "worn indigo linen robe suitable for northwest frontier travel",
+            "thick cotton sash tied around the waist",
+            "worn leather boots covered in loess dust"
+          ],
+          "pose": [
+            "standing beside the crude wooden table full of account books and official documents",
+            "body slightly leaning forward as he browses the contents of the account book",
+            "one hand holding the account book, the other pointing at the record line on the page"
+          ]
+        },
+        "face_system": [
+          "8K detailed facial features",
+          "furrowed brows showing obvious worry",
+          "lips pressed tightly showing inner pressure",
+          "soft facial shadows cast by warm oil lamp light",
+          "slight flush on cheekbones from the cold wind outside"
+        ],
+        "hair_system": [
+          "short black hair slightly messy",
+          "root fixation coefficient 0.8",
+          "tip swing amplitude 1cm",
+          "color layering: main color #1A1A1A, secondary color #333333, highlight #4D4D4D, shadow #000000",
+          "wind speed 0.2m/s",
+          "turbulence intensity 1%"
+        ],
+        "clothing_system": [
+          "worn indigo linen robe with obvious creases from long time wearing",
+          "no obvious fabric flutter as indoor wind is weak",
+          "fabric stained with faint dust from previous outdoor travel"
+        ],
+        "environment": {
+          "background": [
+            "crude solid wood table piled with thick yellowed account books and official documents",
+            "several lit oil lamps placed around the table emitting warm dim yellow light",
+            "rough earthen walls of the post station main house with faint water stains",
+            "empty warehouse corner visible in the distance with tattered wooden boxes scattered"
+          ],
+          "characters": [
+            "张叔-配角1 standing on the right side of the frame, wearing a worn gray linen jacket, face full of deep wrinkles with worried expression, one finger pointing at the account book on the table"
+          ],
+          "effects": [
+            "tiny dust particles floating in the air visible under the oil lamp light",
+            "dim deep shadows in the corners of the room",
+            "warm yellow light halo surrounding the oil lamps"
+          ]
+        },
+        "color_restriction": [
+          "warm yellow as main light tone",
+          "dark indigo for protagonist's robe",
+          "dark gray for 张叔-配角1's clothing",
+          "dark yellowish brown for wooden table and old account books",
+          "dim dark gray for the shadow areas of the room"
+        ],
+        "lighting": [
+          "warm yellow oil lamp light as main light source from the table surface",
+          "soft low-brightness ambient light filling the room",
+          "dim cold shadow in the corners of the room",
+          "soft focused light illuminating the account book in the protagonist's hand"
+        ],
+        "camera": {
+          "type": "medium shot",
+          "lens": "35mm",
+          "aperture": "f/2.2",
+          "depth_of_field": "shallow focus on protagonist and the account book in his hand",
+          "flash": "none",
+          "grain": "subtle fine film grain",
+          "texture": "realistic fine material texture"
+        },
+        "composition": [
+          "protagonist positioned in the left-center of the frame",
+          "张叔-配角1 positioned on the right side of the frame",
+          "the account book in protagonist's hand as the central focal element",
+          "action constraints: protagonist browses the account book with furrowed brows, 张叔-配角1 stands beside to explain the account details"
+        ],
+        "mood": [
+          "heavy and worried atmosphere",
+          "strong sense of responsibility pressure on the protagonist",
+          "shabby and desolate post station vibe",
+          "calm atmosphere before making decisions to solve the dilemma"
+        ],
+        "output_style": [
+          "realistic hyper-detailed style",
+          "no text, symbols or random characters in the image"
+        ]
+      },
+      "source_scene": "我推开驿站主屋的门，昏黄的油灯光线下，桌案上堆满了账册和文书。空气中弥漫着陈旧纸张的味道，夹杂着淡淡的墨香。我点亮了几盏油灯，将它们摆在桌案周围，整个房间顿时亮堂了许多。\n\n张叔跟在我身后，看到我要查账，连忙说道：\"林驿丞，账册都在这里，不过老李走得急，有些地方记得不太清楚。\"他指了指桌上那本厚厚的账册，\"这是今年的流水账，这本是库存清单。\"\n\n我拿起账册，翻开第一页。父亲工整的字迹映入眼帘，但从三个月前开始，字迹变成了老李潦草的笔迹。我仔细翻阅着，眉头越皱越紧。朝廷的月例银子从原来的二十两减到了十两，而驿站的日常开销却没有相应减少。马料、柴火、粮食、油盐，每一项都是必需的支出。\n\n\"张叔，这里写着上个月买了三石粮食，现在还剩多少？\"我指着账册上的一行字问道。\n\n张叔想了想，\"大概还有一石多吧，不过质量不太好，有些已经生虫了。冬天快到了，这点粮食恐怕撑不了多久。\"\n\n我继续翻看库存清单。马厩里现在只有四匹马，其中一匹还有些跛脚。茶叶所剩无几，酒水更是早就见底了。最让我担心的是，账册显示我们已经欠了镇上几家商户的货款，总共有十五两银子。\n\n\"这些欠款\"我指着账册上用红笔标注的数字。\n\n\"都是老李赊的账，说是等朝廷的银子到了就还。\"张叔叹了口气，\"可现在银子少了一半，这些债主隔三差五就来催债。\"\n\n我放下账册，走到库房门前。推开门，一股霉味扑面而来。库房里空空荡荡，几个破旧的木箱散落在角落，里面装着一些杂七杂八的物品。我打开其中一个箱子，里面是一些破损的马具和生锈的铁器。\n\n\"小翠呢？她现在在做什么？\"我问道。\n\n\"在后厨收拾，今天来了两个过路的商人，她正准备给他们做晚饭。\"张叔回答，\"不过咱们的米面都不多了，她说只能做些简单的。\"\n\n我心中一沉。这种状况下，别说度过冬天，就连下个月都成问题。我必须尽快想出办法，否则驿站真的要关门了。",
+      "source_previous_scene": "深秋的黄昏，玉门驿笼罩在一片萧瑟的金黄中。我站在驿站大门前，手中紧握着父亲留下的那枚铜制印信，上面\"玉门驿丞\"四个字在夕阳下泛着暗淡的光。\n\n风从山谷间呼啸而过，卷起地上的枯叶，发出窸窸窣窣的声响。驿站的木门在风中轻微摇摆，发出\"吱呀吱呀\"的呻吟声，仿佛在诉说着什么。空气中弥漫着干燥的尘土味，夹杂着远处炊烟的淡淡香气，但更多的是一种说不出的荒凉感。\n\n我深吸一口气，感受着胸口那种沉甸甸的压迫感。父亲去世已经三个月了，而我，林守诚，一个从未独自管理过驿站的青年，现在却要承担起这个重任。手心微微出汗，不知是因为紧张还是因为那枚印信的重量。\n\n\"林驿丞，您终于回来了。\"一个苍老的声音从身后传来。我转身看到老马夫张叔，他的脸上满是忧虑，\"您不在的这几天，又走了两个人。现在驿站里就剩下我和小翠了。\"\n\n\"走了？\"我皱起眉头，\"是谁？\"\n\n\"账房老李和厨子王大，都说驿站撑不下去了，要另谋出路。\"张叔叹了口气，\"昨天州府还来了人，说那个胡商队伍投诉咱们服务不周，要是再不改善，就要撤销驿站的资格了。\"\n\n我感到一阵眩晕。父亲在世时，驿站虽然清苦，但至少还能正常运转。现在朝廷削减补给，人员流失，声誉受损，这简直是四面楚歌。我握紧拳头，指甲几乎嵌进掌心。\n\n\"林驿丞，您看这\"张叔欲言又止，目光中透着期待和不安。\n\n夜色渐深，驿站内只有几盏昏黄的油灯在摇曳。我知道，今晚我必须做出决定。是迎难而上，还是另寻出路？而眼前这个摇摇欲坠的驿站，承载着的不仅是父亲的遗志，更是这条古道上无数旅人的希望。",
+      "run_parameters_snapshot": {
+        "scale": "full",
+        "seed": 42,
+        "group": "prompt_only",
+        "prompt_strategy": "provided",
+        "use_previous_image": false,
+        "skip_cache_lookup": true,
+        "use_cache": true,
+        "default_style": "default"
+      }
+    },
+    {
+      "task_id": "game_1776417898_zthbu3_seg_003__prompt_only",
+      "sample_id": "game_1776417898_zthbu3_seg_003",
+      "dataset_name": "generation_context_ablation_full_seed42_theme001",
+      "group": "prompt_only",
+      "theme_id": 1,
+      "theme": "边陲驿站夜谈录",
+      "style_label_zh": "写实风格",
+      "image_style": {
+        "type": "realistic"
+      },
+      "game_id": "game_1776417898_zthbu3",
+      "segment_index": 3,
+      "previous_segment_index": 2,
+      "needs_previous_image": false,
+      "source_folder": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0\\theme_001_game_1776417898_zthbu3",
+      "source_manifest": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0\\theme_001_game_1776417898_zthbu3\\game_1776417898_zthbu3_manifest.json",
+      "source_segment_json": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0\\theme_001_game_1776417898_zthbu3\\game_1776417898_zthbu3_003.json",
+      "source_segment_image": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0\\theme_001_game_1776417898_zthbu3\\game_1776417898_zthbu3_003.png",
+      "source_previous_segment_json": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0\\theme_001_game_1776417898_zthbu3\\game_1776417898_zthbu3_002.json",
+      "source_previous_segment_image": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0\\theme_001_game_1776417898_zthbu3\\game_1776417898_zthbu3_002.png",
+      "source_prompt": "scene-3-yumen-post-kitchen-grain-check, historical, western-frontier, ancient-post-station, realistic, desolate, responsibility-theme, realistic-normal-ending, photorealistic, hyper-detailed, cinematic-realism, fine-texture-rendering, realistic-light-and-shadow, lifelike-detail-depiction, young male protagonist in his early twenties, pale skin slightly rough blown by northwest cold wind, serious and worried expression with furrowed brows, standing in the kitchen surveying the surrounding environment, worn indigo linen robe suitable for northwest frontier travel, thick cotton sash tied around the waist, worn leather boots covered in loess dust, standing in front of the kitchen storage rack, one hand resting on the edge of the storage rack, body turned slightly toward 小翠-配角1, posture showing heavy concern about the food shortage situation, 8K detailed facial features, furrowed brows showing obvious worry, lips pressed tightly showing inner pressure, soft facial shadows cast by warm stove light, slight flush on cheekbones from the cold wind outside, short black hair slightly messy, root fixation coefficient 0.8, tip swing amplitude 1cm, color layering: main color #1A1A1A, secondary color #2D2D2D, highlight #404040, shadow #0D0D0D, wind speed 0.2m/s, turbulence intensity 2%, wind direction from the kitchen door gap, worn linen robe with slight creases from long-term wear, small dust particles attached to the hem of the robe, no obvious fabric flutter as the kitchen is sheltered, fabric showing obvious wear traces at the cuffs and collar, late night ancient frontier post station kitchen, several blackened large iron pots on the brick stove, small pile of firewood stacked beside the stove, half-empty rice vat against the corner, shabby wooden storage rack with a few sparse earthen jars placed on it, faint dark night scenery visible through the kitchen door crack, 小翠-配角1 standing beside the rice vat at the left side of the frame, 小翠-配角1 wearing worn light gray coarse cloth maid outfit, 小翠-配角1 one hand holding the rice vat lid, the other pointing to the rice inside the vat, 小翠-配角1 expression apologetic and helpless, warm steam mixed with rice and firewood aroma diffusing in the air, faint smoke drifting from the stove fire, fine dust particles floating under the light, warm orange-yellow stove light as main tone, dark gray and dark brown as main color of kitchen utensils, indigo blue for protagonist's robe, light gray for 小翠-配角1's outfit, dark deep blue for the night outside the door, warm orange light emitted from the stove fire and oil lamp in the kitchen, faint cold moonlight coming in through the kitchen door gap, soft shadows cast by kitchen utensils and characters, low overall brightness conforming to late night environment, type medium shot, lens 35mm, aperture f/4, depth_of_field moderate focus on protagonist, 小翠-配角1 and rice vat, flash none, grain subtle film grain to enhance realistic texture, texture fine realistic texture of wood, pottery and fabric, protagonist positioned on the right half of the frame, 小翠-配角1 positioned on the left half of the frame, rice vat placed between the two characters as the core focal element, action constraints: protagonist surveying the kitchen with worried expression, 小翠-配角1 pointing to the rice inside the vat, hyper-realistic photo style, no text, symbols or messy codes in the image, heavy and helpless atmosphere, sense of urgency due to food shortage, realistic bleak feeling of frontier post station, quiet anxious atmosphere between the two characters, no text, no symbols, no garbled characters, no words, consistent character design, consistent outfit and key props, consistent color palette and lighting",
+      "source_prompt_json": {
+        "label": "scene-3-yumen-post-kitchen-grain-check",
+        "tags": [
+          "historical",
+          "western-frontier",
+          "ancient-post-station",
+          "realistic",
+          "desolate",
+          "responsibility-theme",
+          "realistic-normal-ending"
+        ],
+        "style": [
+          "photorealistic",
+          "hyper-detailed",
+          "cinematic-realism",
+          "fine-texture-rendering",
+          "realistic-light-and-shadow",
+          "lifelike-detail-depiction"
+        ],
+        "subject": {
+          "body_traits": [
+            "young male protagonist in his early twenties",
+            "pale skin slightly rough blown by northwest cold wind",
+            "serious and worried expression with furrowed brows",
+            "standing in the kitchen surveying the surrounding environment"
+          ],
+          "outfit": [
+            "worn indigo linen robe suitable for northwest frontier travel",
+            "thick cotton sash tied around the waist",
+            "worn leather boots covered in loess dust"
+          ],
+          "pose": [
+            "standing in front of the kitchen storage rack",
+            "one hand resting on the edge of the storage rack",
+            "body turned slightly toward 小翠-配角1",
+            "posture showing heavy concern about the food shortage situation"
+          ]
+        },
+        "face_system": [
+          "8K detailed facial features",
+          "furrowed brows showing obvious worry",
+          "lips pressed tightly showing inner pressure",
+          "soft facial shadows cast by warm stove light",
+          "slight flush on cheekbones from the cold wind outside"
+        ],
+        "hair_system": [
+          "short black hair slightly messy",
+          "root fixation coefficient 0.8",
+          "tip swing amplitude 1cm",
+          "color layering: main color #1A1A1A, secondary color #2D2D2D, highlight #404040, shadow #0D0D0D",
+          "wind speed 0.2m/s",
+          "turbulence intensity 2%",
+          "wind direction from the kitchen door gap"
+        ],
+        "clothing_system": [
+          "worn linen robe with slight creases from long-term wear",
+          "small dust particles attached to the hem of the robe",
+          "no obvious fabric flutter as the kitchen is sheltered",
+          "fabric showing obvious wear traces at the cuffs and collar"
+        ],
+        "environment": {
+          "background": [
+            "late night ancient frontier post station kitchen",
+            "several blackened large iron pots on the brick stove",
+            "small pile of firewood stacked beside the stove",
+            "half-empty rice vat against the corner",
+            "shabby wooden storage rack with a few sparse earthen jars placed on it",
+            "faint dark night scenery visible through the kitchen door crack"
+          ],
+          "characters": [
+            "小翠-配角1 standing beside the rice vat at the left side of the frame",
+            "小翠-配角1 wearing worn light gray coarse cloth maid outfit",
+            "小翠-配角1 one hand holding the rice vat lid, the other pointing to the rice inside the vat",
+            "小翠-配角1 expression apologetic and helpless"
+          ],
+          "effects": [
+            "warm steam mixed with rice and firewood aroma diffusing in the air",
+            "faint smoke drifting from the stove fire",
+            "fine dust particles floating under the light"
+          ]
+        },
+        "color_restriction": [
+          "warm orange-yellow stove light as main tone",
+          "dark gray and dark brown as main color of kitchen utensils",
+          "indigo blue for protagonist's robe",
+          "light gray for 小翠-配角1's outfit",
+          "dark deep blue for the night outside the door"
+        ],
+        "lighting": [
+          "warm orange light emitted from the stove fire and oil lamp in the kitchen",
+          "faint cold moonlight coming in through the kitchen door gap",
+          "soft shadows cast by kitchen utensils and characters",
+          "low overall brightness conforming to late night environment"
+        ],
+        "camera": {
+          "type": "medium shot",
+          "lens": "35mm",
+          "aperture": "f/4",
+          "depth_of_field": "moderate focus on protagonist, 小翠-配角1 and rice vat",
+          "flash": "none",
+          "grain": "subtle film grain to enhance realistic texture",
+          "texture": "fine realistic texture of wood, pottery and fabric"
+        },
+        "composition": [
+          "protagonist positioned on the right half of the frame",
+          "小翠-配角1 positioned on the left half of the frame",
+          "rice vat placed between the two characters as the core focal element",
+          "action constraints: protagonist surveying the kitchen with worried expression, 小翠-配角1 pointing to the rice inside the vat"
+        ],
+        "mood": [
+          "heavy and helpless atmosphere",
+          "sense of urgency due to food shortage",
+          "realistic bleak feeling of frontier post station",
+          "quiet anxious atmosphere between the two characters"
+        ],
+        "output_style": [
+          "hyper-realistic photo style",
+          "no text, symbols or messy codes in the image"
+        ]
+      },
+      "source_scene": "我离开主屋，穿过院子走向后厨。夜色渐深，厨房里透出微弱的灯光，还能听到锅碗瓢盆碰撞的声音。推开厨房的门，一股热气扑面而来，夹杂着淡淡的米香和柴火味。\n\n小翠正蹲在灶台前添柴，听到脚步声回过头来。\"林驿丞，您怎么来了？\"她连忙站起身，拍了拍手上的灰尘。\n\n我环顾四周，厨房比我想象中还要简陋。几口大铁锅已经有些发黑，灶台边堆着不多的柴火，墙角的米缸看起来空了大半。\"小翠，我想了解一下咱们厨房的情况，现在还有多少粮食？\"\n\n小翠走到米缸边，掀开盖子让我看。\"米只剩这么点了，大概还能用三四天。面粉更少，就剩一小袋。\"她指了指角落的布袋，\"盐和油还有一些，但是肉已经好几天没买了，只能用些咸菜下饭。\"\n\n\"那些过路的客人呢？他们的伙食怎么办？\"我问道。\n\n\"今天来的两个商人，我只能给他们做白米粥配咸菜，再煎个鸡蛋。\"小翠有些不好意思地说，\"鸡蛋还是我自己养的那几只鸡下的，要不是这样，连鸡蛋都没有。\"\n\n我走到储物架前，看到上面稀稀拉拉摆着几个坛子。打开一看，里面装的都是一些干菜和腌制品，分量也不多。\"调料呢？\"\n\n\"胡椒和香料早就用完了，现在只有些粗盐和醋。\"小翠叹了口气，\"以前老爷在的时候，厨房里什么都不缺，现在\"她没有继续说下去。\n\n我心中更加沉重。连基本的伙食都成问题，这样下去别说招待客人，就连我们自己都要挨饿了。\"小翠，你觉得最少需要多少银子才能把厨房重新置办起来？\"\n\n小翠想了想，\"如果要保证基本的伙食，买些米面、油盐、肉菜，至少需要五两银子。要是想做得像样一些，能招待客人的话，怎么也得十两。\"",
+      "source_previous_scene": "我推开驿站主屋的门，昏黄的油灯光线下，桌案上堆满了账册和文书。空气中弥漫着陈旧纸张的味道，夹杂着淡淡的墨香。我点亮了几盏油灯，将它们摆在桌案周围，整个房间顿时亮堂了许多。\n\n张叔跟在我身后，看到我要查账，连忙说道：\"林驿丞，账册都在这里，不过老李走得急，有些地方记得不太清楚。\"他指了指桌上那本厚厚的账册，\"这是今年的流水账，这本是库存清单。\"\n\n我拿起账册，翻开第一页。父亲工整的字迹映入眼帘，但从三个月前开始，字迹变成了老李潦草的笔迹。我仔细翻阅着，眉头越皱越紧。朝廷的月例银子从原来的二十两减到了十两，而驿站的日常开销却没有相应减少。马料、柴火、粮食、油盐，每一项都是必需的支出。\n\n\"张叔，这里写着上个月买了三石粮食，现在还剩多少？\"我指着账册上的一行字问道。\n\n张叔想了想，\"大概还有一石多吧，不过质量不太好，有些已经生虫了。冬天快到了，这点粮食恐怕撑不了多久。\"\n\n我继续翻看库存清单。马厩里现在只有四匹马，其中一匹还有些跛脚。茶叶所剩无几，酒水更是早就见底了。最让我担心的是，账册显示我们已经欠了镇上几家商户的货款，总共有十五两银子。\n\n\"这些欠款\"我指着账册上用红笔标注的数字。\n\n\"都是老李赊的账，说是等朝廷的银子到了就还。\"张叔叹了口气，\"可现在银子少了一半，这些债主隔三差五就来催债。\"\n\n我放下账册，走到库房门前。推开门，一股霉味扑面而来。库房里空空荡荡，几个破旧的木箱散落在角落，里面装着一些杂七杂八的物品。我打开其中一个箱子，里面是一些破损的马具和生锈的铁器。\n\n\"小翠呢？她现在在做什么？\"我问道。\n\n\"在后厨收拾，今天来了两个过路的商人，她正准备给他们做晚饭。\"张叔回答，\"不过咱们的米面都不多了，她说只能做些简单的。\"\n\n我心中一沉。这种状况下，别说度过冬天，就连下个月都成问题。我必须尽快想出办法，否则驿站真的要关门了。",
+      "run_parameters_snapshot": {
+        "scale": "full",
+        "seed": 42,
+        "group": "prompt_only",
+        "prompt_strategy": "provided",
+        "use_previous_image": false,
+        "skip_cache_lookup": true,
+        "use_cache": true,
+        "default_style": "default"
+      }
+    },
+    {
+      "task_id": "game_1776417898_zthbu3_seg_004__prompt_only",
+      "sample_id": "game_1776417898_zthbu3_seg_004",
+      "dataset_name": "generation_context_ablation_full_seed42_theme001",
+      "group": "prompt_only",
+      "theme_id": 1,
+      "theme": "边陲驿站夜谈录",
+      "style_label_zh": "写实风格",
+      "image_style": {
+        "type": "realistic"
+      },
+      "game_id": "game_1776417898_zthbu3",
+      "segment_index": 4,
+      "previous_segment_index": 3,
+      "needs_previous_image": false,
+      "source_folder": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0\\theme_001_game_1776417898_zthbu3",
+      "source_manifest": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0\\theme_001_game_1776417898_zthbu3\\game_1776417898_zthbu3_manifest.json",
+      "source_segment_json": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0\\theme_001_game_1776417898_zthbu3\\game_1776417898_zthbu3_004.json",
+      "source_segment_image": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0\\theme_001_game_1776417898_zthbu3\\game_1776417898_zthbu3_004.png",
+      "source_previous_segment_json": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0\\theme_001_game_1776417898_zthbu3\\game_1776417898_zthbu3_003.json",
+      "source_previous_segment_image": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0\\theme_001_game_1776417898_zthbu3\\game_1776417898_zthbu3_003.png",
+      "source_prompt": "scene-4-yumen-post-kitchen-credit-discussion, historical, western-frontier, ancient-post-station, desolate, responsibility-theme, realistic-normal-ending, post-station-daily-life, photorealistic, hyper-detailed, cinematic realism, fine texture rendering, realistic light and shadow, lifelike detail depiction, young male protagonist in his early twenties, pale skin slightly rough blown by northwest cold wind, pensive thoughtful expression with slightly furrowed brows, focused state as he weighs the feasibility of buying goods on credit, worn indigo linen robe suitable for northwest frontier travel, thick cotton sash tied around the waist, worn leather boots covered in loess dust, standing in front of the kitchen storage rack, one hand resting on the edge of the storage rack, body turned toward 小翠-配角1, listening intently to her response, posture showing he is carefully calculating available options, 8K detailed facial features, slightly furrowed brows showing careful consideration, lips pressed slightly showing inner weighing of options, soft facial shadows cast by warm stove light, slight flush on cheekbones from the cold wind outside, eyes focused on 小翠-配角1 with serious attentive expression, short black hair slightly messy, root fixation coefficient 0.8, tip swing amplitude 1cm, color layering: main color #1A1A1A, secondary color #333333, highlight #4D4D4D, shadow #000000, wind speed 0.2m/s, turbulence intensity 1%, no obvious wind direction as scene is enclosed indoor space, worn indigo linen robe with slight fraying at cuffs, small patches of loess dust on hem of robe and leather boots, no fabric flutter as scene is enclosed kitchen, thick cotton sash tied firmly around waist, crude ancient northwest frontier post station kitchen, blackened large iron woks on brick stove with faint orange flame burning inside, small pile of firewood stacked beside the stove, half-empty rice jar in the corner of the kitchen, storage rack with a few scattered jars of dried and pickled vegetables, faint steam rising from the pot on the stove, 小翠-配角1 standing beside the rice jar on the left side of the frame, 小翠-配角1 wearing plain coarse linen blouse, worn cotton apron tied around waist, 小翠-配角1 has slightly hesitant expression, one hand rubbing the edge of her apron as she speaks, warm orange light emanating from the stove fire, tiny dust particles floating in the air illuminated by the stove light, faint wispy steam rising from kitchenware, main tone of warm earthy brown and dark yellow for kitchen environment, indigo blue for protagonist's robe, plain light gray for 小翠-配角1's linen clothes, warm orange for stove fire light, muted dark tones for worn kitchen utensils, warm orange soft light from burning stove as main light source, faint cool dim moonlight seeping through kitchen door gap as secondary light, soft natural shadow casting to create realistic depth, type medium shot, lens 50mm, aperture f/2.8, depth_of_field shallow focus on protagonist and 小翠-配角1, flash none, grain subtle film grain for realistic texture, texture photorealistic fine texture, protagonist positioned on the right side of the frame, 小翠-配角1 positioned on the left side of the frame, focal point on the interaction between the two characters, action constraints: protagonist listening intently, 小翠-配角1 speaking with hesitant expression, photorealistic cinematic realism, no text, symbols or garbled characters in image, heavy yet slightly hopeful atmosphere, realistic mundane feeling of frontier post station life, calm yet anxious atmosphere as they discuss solving food shortage, regretful yet warm tone matching the normal ending setting, no text, no symbols, no garbled characters, no words, consistent character design, consistent outfit and key props, consistent color palette and lighting",
+      "source_prompt_json": {
+        "label": "scene-4-yumen-post-kitchen-credit-discussion",
+        "tags": [
+          "historical",
+          "western-frontier",
+          "ancient-post-station",
+          "desolate",
+          "responsibility-theme",
+          "realistic-normal-ending",
+          "post-station-daily-life"
+        ],
+        "style": [
+          "photorealistic",
+          "hyper-detailed",
+          "cinematic realism",
+          "fine texture rendering",
+          "realistic light and shadow",
+          "lifelike detail depiction"
+        ],
+        "subject": {
+          "body_traits": [
+            "young male protagonist in his early twenties",
+            "pale skin slightly rough blown by northwest cold wind",
+            "pensive thoughtful expression with slightly furrowed brows",
+            "focused state as he weighs the feasibility of buying goods on credit"
+          ],
+          "outfit": [
+            "worn indigo linen robe suitable for northwest frontier travel",
+            "thick cotton sash tied around the waist",
+            "worn leather boots covered in loess dust"
+          ],
+          "pose": [
+            "standing in front of the kitchen storage rack",
+            "one hand resting on the edge of the storage rack",
+            "body turned toward 小翠-配角1, listening intently to her response",
+            "posture showing he is carefully calculating available options"
+          ]
+        },
+        "face_system": [
+          "8K detailed facial features",
+          "slightly furrowed brows showing careful consideration",
+          "lips pressed slightly showing inner weighing of options",
+          "soft facial shadows cast by warm stove light",
+          "slight flush on cheekbones from the cold wind outside",
+          "eyes focused on 小翠-配角1 with serious attentive expression"
+        ],
+        "hair_system": [
+          "short black hair slightly messy",
+          "root fixation coefficient 0.8",
+          "tip swing amplitude 1cm",
+          "color layering: main color #1A1A1A, secondary color #333333, highlight #4D4D4D, shadow #000000",
+          "wind speed 0.2m/s",
+          "turbulence intensity 1%",
+          "no obvious wind direction as scene is enclosed indoor space"
+        ],
+        "clothing_system": [
+          "worn indigo linen robe with slight fraying at cuffs",
+          "small patches of loess dust on hem of robe and leather boots",
+          "no fabric flutter as scene is enclosed kitchen",
+          "thick cotton sash tied firmly around waist"
+        ],
+        "environment": {
+          "background": [
+            "crude ancient northwest frontier post station kitchen",
+            "blackened large iron woks on brick stove with faint orange flame burning inside",
+            "small pile of firewood stacked beside the stove",
+            "half-empty rice jar in the corner of the kitchen",
+            "storage rack with a few scattered jars of dried and pickled vegetables",
+            "faint steam rising from the pot on the stove"
+          ],
+          "characters": [
+            "小翠-配角1 standing beside the rice jar on the left side of the frame",
+            "小翠-配角1 wearing plain coarse linen blouse, worn cotton apron tied around waist",
+            "小翠-配角1 has slightly hesitant expression, one hand rubbing the edge of her apron as she speaks"
+          ],
+          "effects": [
+            "warm orange light emanating from the stove fire",
+            "tiny dust particles floating in the air illuminated by the stove light",
+            "faint wispy steam rising from kitchenware"
+          ]
+        },
+        "color_restriction": [
+          "main tone of warm earthy brown and dark yellow for kitchen environment",
+          "indigo blue for protagonist's robe",
+          "plain light gray for 小翠-配角1's linen clothes",
+          "warm orange for stove fire light",
+          "muted dark tones for worn kitchen utensils"
+        ],
+        "lighting": [
+          "warm orange soft light from burning stove as main light source",
+          "faint cool dim moonlight seeping through kitchen door gap as secondary light",
+          "soft natural shadow casting to create realistic depth"
+        ],
+        "camera": {
+          "type": "medium shot",
+          "lens": "50mm",
+          "aperture": "f/2.8",
+          "depth_of_field": "shallow focus on protagonist and 小翠-配角1",
+          "flash": "none",
+          "grain": "subtle film grain for realistic texture",
+          "texture": "photorealistic fine texture"
+        },
+        "composition": [
+          "protagonist positioned on the right side of the frame",
+          "小翠-配角1 positioned on the left side of the frame",
+          "focal point on the interaction between the two characters",
+          "action constraints: protagonist listening intently, 小翠-配角1 speaking with hesitant expression"
+        ],
+        "mood": [
+          "heavy yet slightly hopeful atmosphere",
+          "realistic mundane feeling of frontier post station life",
+          "calm yet anxious atmosphere as they discuss solving food shortage",
+          "regretful yet warm tone matching the normal ending setting"
+        ],
+        "output_style": [
+          "photorealistic cinematic realism",
+          "no text, symbols or garbled characters in image"
+        ]
+      },
+      "source_scene": "我看着小翠期待的眼神，心中盘算着现有的资源。赊账买食材确实是个现实的选择，但我需要了解具体的可行性。\"小翠，你在这里工作这么久，知道附近哪些商家愿意赊账吗？\"\n\n小翠擦了擦手，想了想说：\"林驿丞，镇上的张记粮铺老板张叔人还不错，以前老爷在的时候偶尔也会赊账，不过那时候驿站名声好，他也放心。\"她顿了顿，\"还有李家肉铺，老板娘李婶子心软，但她家生意也不太好，可能赊不了太多。\"\n\n\"那现在呢？他们还愿意给咱们赊账吗？\"我追问道。\n\n小翠有些犹豫地说：\"这个自从老爷去世后，我就没去问过。不过前些日子我去买盐，张叔还问起驿站的情况，看起来还是关心的。只是\"她欲言又止。\n\n\"只是什么？\"\n\n\"只是镇上也有些风言风语，说咱们驿站快撑不下去了，有些商家可能会担心收不回账。\"小翠低声说道，\"不过我觉得张叔和李婶子应该还是信得过咱们的，毕竟这么多年的交情在那里。\"\n\n我点点头，心中有了些眉目。看来还是有一些可能的，关键是要选择合适的方式去谈。\"除了这两家，还有别的选择吗？\"\n\n\"还有王家杂货铺，不过王老板比较精明，可能不太容易说服。\"小翠想了想，\"对了，还有个办法，镇上有个叫胡三的小贩，专门收购山货，有时候也卖些粮食蔬菜，价格便宜些，但质量就\"",
+      "source_previous_scene": "我离开主屋，穿过院子走向后厨。夜色渐深，厨房里透出微弱的灯光，还能听到锅碗瓢盆碰撞的声音。推开厨房的门，一股热气扑面而来，夹杂着淡淡的米香和柴火味。\n\n小翠正蹲在灶台前添柴，听到脚步声回过头来。\"林驿丞，您怎么来了？\"她连忙站起身，拍了拍手上的灰尘。\n\n我环顾四周，厨房比我想象中还要简陋。几口大铁锅已经有些发黑，灶台边堆着不多的柴火，墙角的米缸看起来空了大半。\"小翠，我想了解一下咱们厨房的情况，现在还有多少粮食？\"\n\n小翠走到米缸边，掀开盖子让我看。\"米只剩这么点了，大概还能用三四天。面粉更少，就剩一小袋。\"她指了指角落的布袋，\"盐和油还有一些，但是肉已经好几天没买了，只能用些咸菜下饭。\"\n\n\"那些过路的客人呢？他们的伙食怎么办？\"我问道。\n\n\"今天来的两个商人，我只能给他们做白米粥配咸菜，再煎个鸡蛋。\"小翠有些不好意思地说，\"鸡蛋还是我自己养的那几只鸡下的，要不是这样，连鸡蛋都没有。\"\n\n我走到储物架前，看到上面稀稀拉拉摆着几个坛子。打开一看，里面装的都是一些干菜和腌制品，分量也不多。\"调料呢？\"\n\n\"胡椒和香料早就用完了，现在只有些粗盐和醋。\"小翠叹了口气，\"以前老爷在的时候，厨房里什么都不缺，现在\"她没有继续说下去。\n\n我心中更加沉重。连基本的伙食都成问题，这样下去别说招待客人，就连我们自己都要挨饿了。\"小翠，你觉得最少需要多少银子才能把厨房重新置办起来？\"\n\n小翠想了想，\"如果要保证基本的伙食，买些米面、油盐、肉菜，至少需要五两银子。要是想做得像样一些，能招待客人的话，怎么也得十两。\"",
+      "run_parameters_snapshot": {
+        "scale": "full",
+        "seed": 42,
+        "group": "prompt_only",
+        "prompt_strategy": "provided",
+        "use_previous_image": false,
+        "skip_cache_lookup": true,
+        "use_cache": true,
+        "default_style": "default"
+      }
+    },
+    {
+      "task_id": "game_1776417898_zthbu3_seg_005__prompt_only",
+      "sample_id": "game_1776417898_zthbu3_seg_005",
+      "dataset_name": "generation_context_ablation_full_seed42_theme001",
+      "group": "prompt_only",
+      "theme_id": 1,
+      "theme": "边陲驿站夜谈录",
+      "style_label_zh": "写实风格",
+      "image_style": {
+        "type": "realistic"
+      },
+      "game_id": "game_1776417898_zthbu3",
+      "segment_index": 5,
+      "previous_segment_index": 4,
+      "needs_previous_image": false,
+      "source_folder": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0\\theme_001_game_1776417898_zthbu3",
+      "source_manifest": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0\\theme_001_game_1776417898_zthbu3\\game_1776417898_zthbu3_manifest.json",
+      "source_segment_json": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0\\theme_001_game_1776417898_zthbu3\\game_1776417898_zthbu3_005.json",
+      "source_segment_image": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0\\theme_001_game_1776417898_zthbu3\\game_1776417898_zthbu3_005.png",
+      "source_previous_segment_json": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0\\theme_001_game_1776417898_zthbu3\\game_1776417898_zthbu3_004.json",
+      "source_previous_segment_image": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0\\theme_001_game_1776417898_zthbu3\\game_1776417898_zthbu3_004.png",
+      "source_prompt": "scene-5-yumen-town-grain-shop-negotiation, historical, western-frontier, ancient-post-station, responsibility-theme, realistic-normal-ending, town-daily-life, photorealistic, hyper-detailed, cinematic realism, fine texture rendering, realistic light and shadow, lifelike detail depiction, young male protagonist in his early twenties, pale skin slightly rough blown by northwest cold wind, calm yet slightly tentative expression, eyes focused on 张叔-配角2 with polite gratitude, worn indigo linen robe suitable for northwest frontier travel, thick cotton sash tied around the waist with official post station seal hanging, worn leather boots covered in loess dust, standing just inside the entrance of Zhangji grain shop, hands raised in a traditional polite greeting gesture, body turned toward 张叔-配角2, posture showing sincere request intention, 8K detailed facial features, slightly furrowed brows showing slight concern about the negotiation, lip corners slightly raised to maintain polite smile, soft facial shadows cast by afternoon sunlight through shop door, slight flush on cheekbones from the autumn wind outside, eyes focused on 张叔-配角2 with attentive and sincere gaze, short black hair tied up in a traditional male topknot with a plain wooden hairpin, root fixation coefficient 0.95, tip swing amplitude 2cm, color layering: main color #1A1A1A, secondary color #2D2D2D, highlight #404040, shadow #0D0D0D, slight wind ruffled effect from walking outside, wind speed 0.5m/s, turbulence intensity 2%, wind direction from shop entrance, indigo linen robe with slight wear marks at cuffs and hem, slight fabric flutter from the wind at the shop entrance, thick cotton sash with faint dust stains, leather boots with obvious loess dust traces, interior of neatly organized Zhangji grain shop at western frontier Yumen town, wooden shelves lined with burlap sacks of grains on both sides, abacus and account books placed on the solid wooden counter, several sacks of newly harvested wheat stacked outside the shop door, gray stone street of the town visible through the open shop door, autumn afternoon sunlight filtering through thin clouds into the shop, 张叔-配角2 standing behind the counter, fifty-something stout middle-aged man, wearing plain brown linen short robe, face with kind smile, just putting down the abacus to greet the protagonist, 张叔-配角2 positioned on the right side of the frame, looking toward the protagonist with concerned yet kind expression, fine grain dust particles floating in the sunlight beam coming through the door, warm autumn sunlight filtering through the shop entrance, warm golden autumn sunlight tones, indigo blue for protagonist's robe, brown linen for 张叔-配角2's clothes, natural earthy tones of grain sacks and wooden furniture, light gray of the street stone slabs, warm autumn afternoon sunlight from the open shop door on the left, soft ambient light inside the grain shop, slight shadow cast on the counter by the abacus and account books, natural light and shadow transition between indoor and outdoor space, type medium shot, lens 35mm, aperture f/2.2, depth_of_field shallow focus on protagonist and 张叔-配角2, flash none, grain subtle realistic film grain, texture fine realistic material texture, protagonist positioned on the left side of the frame, just entering the shop, 张叔-配角2 positioned on the right side of the frame behind the counter, central focal point on the interaction between protagonist and 张叔-配角2, action constraints: protagonist in greeting gesture, 张叔-配角2 in welcoming gesture, hyper-realistic lifelike rendering, no text, symbols or garbled characters in image, slightly tense yet warm polite atmosphere, sense of realistic dilemma mixed with human kindness, calm and pragmatic negotiation atmosphere, slight underlying anxiety about the post station's predicament, no text, no symbols, no garbled characters, no words, consistent character design, consistent outfit and key props, consistent color palette and lighting",
+      "source_prompt_json": {
+        "label": "scene-5-yumen-town-grain-shop-negotiation",
+        "tags": [
+          "historical",
+          "western-frontier",
+          "ancient-post-station",
+          "responsibility-theme",
+          "realistic-normal-ending",
+          "town-daily-life"
+        ],
+        "style": [
+          "photorealistic",
+          "hyper-detailed",
+          "cinematic realism",
+          "fine texture rendering",
+          "realistic light and shadow",
+          "lifelike detail depiction"
+        ],
+        "subject": {
+          "body_traits": [
+            "young male protagonist in his early twenties",
+            "pale skin slightly rough blown by northwest cold wind",
+            "calm yet slightly tentative expression",
+            "eyes focused on 张叔-配角2 with polite gratitude"
+          ],
+          "outfit": [
+            "worn indigo linen robe suitable for northwest frontier travel",
+            "thick cotton sash tied around the waist with official post station seal hanging",
+            "worn leather boots covered in loess dust"
+          ],
+          "pose": [
+            "standing just inside the entrance of Zhangji grain shop",
+            "hands raised in a traditional polite greeting gesture",
+            "body turned toward 张叔-配角2",
+            "posture showing sincere request intention"
+          ]
+        },
+        "face_system": [
+          "8K detailed facial features",
+          "slightly furrowed brows showing slight concern about the negotiation",
+          "lip corners slightly raised to maintain polite smile",
+          "soft facial shadows cast by afternoon sunlight through shop door",
+          "slight flush on cheekbones from the autumn wind outside",
+          "eyes focused on 张叔-配角2 with attentive and sincere gaze"
+        ],
+        "hair_system": [
+          "short black hair tied up in a traditional male topknot with a plain wooden hairpin",
+          "root fixation coefficient 0.95",
+          "tip swing amplitude 2cm",
+          "color layering: main color #1A1A1A, secondary color #2D2D2D, highlight #404040, shadow #0D0D0D",
+          "slight wind ruffled effect from walking outside",
+          "wind speed 0.5m/s",
+          "turbulence intensity 2%",
+          "wind direction from shop entrance"
+        ],
+        "clothing_system": [
+          "indigo linen robe with slight wear marks at cuffs and hem",
+          "slight fabric flutter from the wind at the shop entrance",
+          "thick cotton sash with faint dust stains",
+          "leather boots with obvious loess dust traces"
+        ],
+        "environment": {
+          "background": [
+            "interior of neatly organized Zhangji grain shop at western frontier Yumen town",
+            "wooden shelves lined with burlap sacks of grains on both sides",
+            "abacus and account books placed on the solid wooden counter",
+            "several sacks of newly harvested wheat stacked outside the shop door",
+            "gray stone street of the town visible through the open shop door",
+            "autumn afternoon sunlight filtering through thin clouds into the shop"
+          ],
+          "characters": [
+            "张叔-配角2 standing behind the counter, fifty-something stout middle-aged man, wearing plain brown linen short robe, face with kind smile, just putting down the abacus to greet the protagonist",
+            "张叔-配角2 positioned on the right side of the frame, looking toward the protagonist with concerned yet kind expression"
+          ],
+          "effects": [
+            "fine grain dust particles floating in the sunlight beam coming through the door",
+            "warm autumn sunlight filtering through the shop entrance"
+          ]
+        },
+        "color_restriction": [
+          "warm golden autumn sunlight tones",
+          "indigo blue for protagonist's robe",
+          "brown linen for 张叔-配角2's clothes",
+          "natural earthy tones of grain sacks and wooden furniture",
+          "light gray of the street stone slabs"
+        ],
+        "lighting": [
+          "warm autumn afternoon sunlight from the open shop door on the left",
+          "soft ambient light inside the grain shop",
+          "slight shadow cast on the counter by the abacus and account books",
+          "natural light and shadow transition between indoor and outdoor space"
+        ],
+        "camera": {
+          "type": "medium shot",
+          "lens": "35mm",
+          "aperture": "f/2.2",
+          "depth_of_field": "shallow focus on protagonist and 张叔-配角2",
+          "flash": "none",
+          "grain": "subtle realistic film grain",
+          "texture": "fine realistic material texture"
+        },
+        "composition": [
+          "protagonist positioned on the left side of the frame, just entering the shop",
+          "张叔-配角2 positioned on the right side of the frame behind the counter",
+          "central focal point on the interaction between protagonist and 张叔-配角2",
+          "action constraints: protagonist in greeting gesture, 张叔-配角2 in welcoming gesture"
+        ],
+        "mood": [
+          "slightly tense yet warm polite atmosphere",
+          "sense of realistic dilemma mixed with human kindness",
+          "calm and pragmatic negotiation atmosphere",
+          "slight underlying anxiety about the post station's predicament"
+        ],
+        "output_style": [
+          "hyper-realistic lifelike rendering",
+          "no text, symbols or garbled characters in image"
+        ]
+      },
+      "source_scene": "我听完小翠的话，心中已有了决断。张记粮铺的张叔既然人品不错，又有过往的交情基础，确实是个不错的突破口。\"那就先去找张叔谈谈吧。\"我整理了一下衣衫，检查了腰间的驿站印信，\"小翠，你继续准备午饭，我去镇上走一趟。\"\n\n秋日的午后阳光透过薄云洒在石板路上，我沿着熟悉的街道向镇中心走去。玉门镇不大，从驿站到张记粮铺也就一刻钟的路程。路上偶遇几个熟面孔，他们看到我都会点头致意，但眼神中多少带着些许同情和担忧，显然关于驿站困境的传言已经在镇上流传开了。\n\n张记粮铺坐落在镇子最繁华的十字街口，门面虽不算大，但收拾得整洁有序。门前堆放着几袋新收的麦子，散发着淡淡的谷物香味。我深吸一口气，推门而入。\n\n\"哟，这不是林驿丞吗！\"张叔正在算账，抬头看到我，立刻放下手中的算盘，热情地迎了过来。他是个五十多岁的中年汉子，身材敦实，脸上总是挂着和善的笑容。\"好久不见啊，最近身体还好吧？\"\n\n\"张叔，您身体硬朗就好。\"我拱手回礼，心中暗暗观察着他的神情。从他的眼神和语调来看，确实还保持着往日的友善，这让我稍微放下了心。\n\n\"唉，自从你父亲走了，我就一直惦记着驿站的情况。\"张叔叹了口气，\"听说最近日子不太好过？有什么需要帮忙的尽管开口，咱们这么多年的交情，能帮的一定帮。\"\n\n我心中一暖，但也知道接下来的话题会比较敏感。\"张叔，实不相瞒，驿站确实遇到了些困难。朝廷的补给削减了不少，而冬季又快到了，需要储备大量物资。我想问问，能否先赊一些粮食，等过了这个冬天，一定如数奉还。\"\n\n张叔的表情变得严肃起来，他沉思了片刻，然后缓缓说道：\"林驿丞，不是我不愿意帮忙，只是这生意也不好做啊。最近粮价一直在涨，我这里的流动资金也紧张得很。\"",
+      "source_previous_scene": "我看着小翠期待的眼神，心中盘算着现有的资源。赊账买食材确实是个现实的选择，但我需要了解具体的可行性。\"小翠，你在这里工作这么久，知道附近哪些商家愿意赊账吗？\"\n\n小翠擦了擦手，想了想说：\"林驿丞，镇上的张记粮铺老板张叔人还不错，以前老爷在的时候偶尔也会赊账，不过那时候驿站名声好，他也放心。\"她顿了顿，\"还有李家肉铺，老板娘李婶子心软，但她家生意也不太好，可能赊不了太多。\"\n\n\"那现在呢？他们还愿意给咱们赊账吗？\"我追问道。\n\n小翠有些犹豫地说：\"这个自从老爷去世后，我就没去问过。不过前些日子我去买盐，张叔还问起驿站的情况，看起来还是关心的。只是\"她欲言又止。\n\n\"只是什么？\"\n\n\"只是镇上也有些风言风语，说咱们驿站快撑不下去了，有些商家可能会担心收不回账。\"小翠低声说道，\"不过我觉得张叔和李婶子应该还是信得过咱们的，毕竟这么多年的交情在那里。\"\n\n我点点头，心中有了些眉目。看来还是有一些可能的，关键是要选择合适的方式去谈。\"除了这两家，还有别的选择吗？\"\n\n\"还有王家杂货铺，不过王老板比较精明，可能不太容易说服。\"小翠想了想，\"对了，还有个办法，镇上有个叫胡三的小贩，专门收购山货，有时候也卖些粮食蔬菜，价格便宜些，但质量就\"",
+      "run_parameters_snapshot": {
+        "scale": "full",
+        "seed": 42,
+        "group": "prompt_only",
+        "prompt_strategy": "provided",
+        "use_previous_image": false,
+        "skip_cache_lookup": true,
+        "use_cache": true,
+        "default_style": "default"
+      }
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "generated_at_utc": "2026-04-25T11:29:11.135200+00:00",
+  "input_jsonl": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0\\ablations\\protagonist_ref_ablation\\results\\protagonist_ref_run_20260425_full_fix\\scoring\\protagonist_ref_1\\latest_per_game_image_scores.jsonl",
+  "config": "C:\\Users\\User\\Desktop\\DN-main\\DN-experiment-2.0\\ablations\\protagonist_ref_ablation\\configs\\protagonist_ref_ablation_config.json",
+  "summary": {
+    "total_rows": 12,
+    "unique_samples": 12,
+    "unique_models": 1,
+    "overall_score_mean": 5.0,
+    "judge_disagreement_mean": 0.0,
+    "dimension_summary": {
+      "semantic_consistency": {
+        "mean": null,
+        "count": 0
+      },
+      "subject_attribute_consistency": {
+        "mean": null,
+        "count": 0
+      },
+      "spatial_consistency": {
+        "mean": null,
+        "count": 0
+      },
+      "style_lighting_consistency": {
+        "mean": null,
+        "count": 0
+      },
+      "detail_integrity": {
+        "mean": null,
+        "count": 0
+      }
+    },
+    "model_summary": {
+      "gpt-4o": {
+        "mean_overall": 5.0,
+        "count": 12
+      }
+    },
+    "weights": {
+      "semantic_consistency": 0.2,
+      "subject_attribute_consistency": 0.2,
+      "spatial_consistency": 0.2,
+      "style_lighting_consistency": 0.2,
+      "detail_integrity": 0.2
+    }
+  },
+  "checks": {
+    "overall_ok": true,
+    "disagreement_ok": true,
+    "pass": true
+  },
+  "conclusion": "Multi-view consistency looks acceptable under current thresholds."
+}

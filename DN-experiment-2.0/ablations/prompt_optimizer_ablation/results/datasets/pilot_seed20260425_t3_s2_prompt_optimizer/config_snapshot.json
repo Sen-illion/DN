@@ -1,0 +1,32 @@
+{
+  "dataset": {
+    "seed": 20260425,
+    "scale_presets": {
+      "pilot": {
+        "theme_count": 2,
+        "segments_per_theme": 2
+      },
+      "standard": {
+        "theme_count": 6,
+        "segments_per_theme": 4
+      },
+      "full": {
+        "theme_count": 12,
+        "segments_per_theme": 6
+      }
+    },
+    "text_generation": {
+      "worldview_constraint": "on",
+      "prev_scene_feedback": "on"
+    }
+  },
+  "generation": {
+    "chain_previous_image": true,
+    "use_cache": true,
+    "skip_cache_lookup": false,
+    "skip_protagonist_reference": true
+  },
+  "scoring": {
+    "failure_score_threshold": 3.0
+  }
+}
