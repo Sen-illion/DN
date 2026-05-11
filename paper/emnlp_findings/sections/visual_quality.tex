@@ -1,4 +1,33 @@
 ﻿\section{Visual Quality Evaluation}
 \label{sec:visual-quality}
 
-This section is reserved for the visual quality experiments. It will evaluate whether generated images are visually faithful to the benchmark theme, consistent across turns, and free from obvious artifacts. Planned metrics include visual fidelity, theme alignment, character or scene consistency, next-turn visual continuity, and artifact rate. This section complements Section~\ref{sec:efficiency}: the efficiency evaluation measures how quickly content is delivered, while the visual quality evaluation will measure whether the delivered images are useful for narrative play.
+This section evaluates whether the images delivered by each system are usable for interactive narrative play. While Section~\ref{sec:efficiency} measures how quickly a system can deliver the next playable state, visual quality measures whether the delivered image follows the requested narrative theme and whether the visual world remains aesthetically stable across turns.
+
+\paragraph{Protocol.}
+We evaluate the same formal20 benchmark used in the efficiency study. For DN, we use the pre-generation full-ready outputs from the main setting. For StoryDiffusion, SDM-v2, and IC-LoRA, we use their existing formal20 first-turn and next-turn image outputs. No image is regenerated for this evaluation. Each system contributes three image records per benchmark item: the first-turn image, the current image used for the next-turn continuation, and the next-turn image. This yields 60 image-level records per system and 240 image-level records in total.
+
+\paragraph{Instruction following and theme alignment.}
+For each image, a vision-language judge scores whether the visual output follows the benchmark theme, the current scene text, the requested image style, and visually checkable must-have constraints. The judge also records forbidden-issue violations such as visible watermarks, unintended text, style drift, or theme leakage. The primary holistic score is \emph{Instruction Following}, reported on a 1--5 scale.
+
+\paragraph{Aesthetic consistency.}
+For each system--benchmark-item group, the judge scores the three associated images jointly. The rubric covers style and lighting consistency, subject-attribute consistency, scene-world consistency, composition quality, and artifact severity. The primary holistic score is \emph{Aesthetic Consistency}, also reported on a 1--5 scale. This group-level evaluation is intentionally distinct from single-image appeal: it asks whether the same system preserves a coherent visual identity as the narrative advances.
+
+\begin{table*}[t]
+\centering
+\small
+\begin{tabular}{lrrrrr}
+\toprule
+System & $N_{\mathrm{img}}$ & $N_{\mathrm{grp}}$ & Instruction Following & Aesthetic Consistency & Theme Violation Rate \\
+\midrule
+DN & 60 & 20 & 4.386 & 4.619 & 0.033 \\
+StoryDiffusion & 60 & 20 & 3.620 & 4.485 & 0.017 \\
+SDM-v2 & 59 & 20 & 3.008 & 4.764 & 0.136 \\
+IC-LoRA & 60 & 20 & 2.351 & 4.403 & 0.467 \\
+\bottomrule
+\end{tabular}
+\caption{Automatic CLIP+CV proxy visual-quality summary on the formal20 benchmark. Instruction Following is scored per image; Aesthetic Consistency is scored per system--benchmark group. Scores range from 1 to 5. SDM-v2 has one invalid zero-byte first-turn image, so its image-level count is 59. These automatic proxy scores should be replaced or confirmed by VLM/human judging before final submission.}
+\label{tab:visual-quality-main}
+\end{table*}
+
+\paragraph{Current status.}
+The evaluation manifest has been built from existing formal20 artifacts. Image validation found one invalid zero-byte SDM-v2 first-turn image; all other image records are readable. Table~\ref{tab:visual-quality-main} reports a reproducible automatic proxy based on CLIP image--text similarity, zero-shot style ranking, cross-turn image-embedding consistency, color-histogram consistency, and low-level artifact checks. Because this proxy does not replace direct semantic inspection, the final version should confirm these numbers with VLM or human judges.

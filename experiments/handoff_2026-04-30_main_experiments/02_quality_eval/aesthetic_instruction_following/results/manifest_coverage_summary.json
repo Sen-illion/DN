@@ -1,0 +1,45 @@
+{
+  "manifest_path": "experiments/handoff_2026-04-30_main_experiments/02_quality_eval/aesthetic_instruction_following/results/quality_eval_manifest_formal20_v1.jsonl",
+  "missing_path": "experiments/handoff_2026-04-30_main_experiments/02_quality_eval/aesthetic_instruction_following/results/missing_or_invalid_images.csv",
+  "group_count": 80,
+  "image_record_count": 239,
+  "missing_count": 1,
+  "systems": {
+    "DN": {
+      "image_records": 60,
+      "benchmark_count": 20,
+      "turn_types": [
+        "first_turn",
+        "next_turn_current",
+        "next_turn_next"
+      ]
+    },
+    "IC-LoRA": {
+      "image_records": 60,
+      "benchmark_count": 20,
+      "turn_types": [
+        "first_turn",
+        "next_turn_current",
+        "next_turn_next"
+      ]
+    },
+    "SDM-v2": {
+      "image_records": 59,
+      "benchmark_count": 20,
+      "turn_types": [
+        "first_turn",
+        "next_turn_current",
+        "next_turn_next"
+      ]
+    },
+    "StoryDiffusion": {
+      "image_records": 60,
+      "benchmark_count": 20,
+      "turn_types": [
+        "first_turn",
+        "next_turn_current",
+        "next_turn_next"
+      ]
+    }
+  }
+}
