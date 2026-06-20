@@ -341,7 +341,7 @@
     <!-- ══════════════════════════════════════
          核心剧情交互界面
          ══════════════════════════════════════ -->
-    <div id="gameplay-screen" class="screen hidden flex flex-col h-screen relative z-10" role="region" aria-labelledby="current-chapter">
+    <div id="gameplay-screen" class="screen hidden flex flex-col h-screen relative z-10" role="region" aria-label="剧情界面">
         <div id="image-loading" class="fixed inset-0 flex items-center justify-center bg-black/30 z-50" style="display: none;">
             <div class="text-center">
                 <div class="ink-spinner mx-auto mb-4"></div>
@@ -352,14 +352,6 @@
         <button id="end-game-btn" class="end-game-btn fixed top-4 right-4 w-[44px] h-[44px] rounded-full flex items-center justify-center z-50 transition-all duration-300 border border-[var(--crimson)]/50 bg-[var(--crimson)]/60 hover:bg-[var(--crimson)] text-[var(--parchment)]" title="结束游戏" aria-label="结束游戏">
             ✕
         </button>
-        
-        <div class="progress-bar-container h-[50px] flex items-center px-8" role="banner">
-            <div id="current-chapter" class="current-chapter text-sm font-medium mr-6" style="font-family:'Noto Serif SC',serif">第一章：初入江湖</div>
-            <div class="progress-bar w-[300px] h-[3px] bg-[var(--ink-subtle)] rounded overflow-hidden mr-6" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="章节进度">
-                <div class="progress-fill h-full bg-[var(--amber)] rounded transition-all duration-300" style="width: 0%"></div>
-            </div>
-            <div class="core-conflict text-xs text-[var(--text-muted)]" role="status">核心矛盾：寻找失窃的玉佩，揭穿反派阴谋</div>
-        </div>
         
         <video 
             id="scene-video" 
@@ -477,7 +469,7 @@
         </div>
     </div>
 
-    <script src="script-modular.js?v=mixed-content-fix-3"></script>
+    <script src="script-modular.js?v=api-base-fix-1"></script>
     <script src="accessibility.js"></script>
     <script src="typewriter.js"></script>
 </body>

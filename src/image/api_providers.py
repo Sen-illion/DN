@@ -8,6 +8,7 @@ import random
 import hashlib
 import requests
 import threading
+import sys
 from pathlib import Path
 from datetime import datetime
 from typing import Dict, List, Optional
@@ -37,6 +38,13 @@ from src.characters.supporting import (
     update_supporting_role_aliases_from_plot,
 )
 
+if sys.platform == "win32":
+    try:
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+        sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
+
 # 主角三视图 prompt 模板
 prompt_template_front = """
 Generate a full-body, front-view portrait of character {identifier} based on the following description, with a pure white background. The character should be centered in the image, occupying most of the frame. Gazing straight ahead. Standing with arms relaxed at sides. Natural expression.
@@ -54,6 +62,185 @@ prompt_template_back = """
 Generate a full-body, back-view portrait of character {identifier} based on the provided front-view portrait, with a pure white background. The character should be centered in the image, occupying most of the frame. No facial features should be visible.
 No text, no symbols, no watermark, no garbled characters, no words.
 """.strip()
+
+def resolve_protagonist_reference_views(game_id: str) -> Dict[str, str]:
+    """Return existing protagonist reference view paths for a game."""
+    if not game_id:
+        return {"front": "", "side": "", "back": ""}
+    main_character_dir = ensure_main_character_dir(game_id)
+    view_files = {
+        "front": main_character_dir / "main_character.png",
+        "side": main_character_dir / "main_character_side.png",
+        "back": main_character_dir / "main_character_back.png",
+    }
+    return {view: str(path.resolve()) if path.exists() else "" for view, path in view_files.items()}
+
+def _gemini_story_image_generation_config(aspect_ratio: str = "16:9") -> Dict:
+    """Native Gemini image config for story scene aspect ratio."""
+    return {
+        "responseModalities": ["IMAGE"],
+        "responseFormat": {
+            "image": {
+                "aspectRatio": aspect_ratio,
+            }
+        },
+    }
+
+def _is_gemini_image_model(model: str) -> bool:
+    model_l = (model or "").lower()
+    return "gemini" in model_l and "image" in model_l
+
+def _is_gpt_image_model(model: str) -> bool:
+    model_l = (model or "").lower().replace("_", "-")
+    return model_l.startswith("gpt-image") or model_l in {"image2", "gpt-image2"}
+
+def _is_seedream_image_model(model: str) -> bool:
+    model_l = (model or "").lower().replace("_", "-")
+    return "seedream" in model_l
+
+def _uses_images_generation_api(model: str) -> bool:
+    return _is_gpt_image_model(model) or _is_seedream_image_model(model)
+
+def _gpt_image_size(width: int = None, height: int = None, aspect_ratio: str = None) -> str:
+    """Pick a GPT Image API size. 1536x864 is exact 16:9 and divisible by 16."""
+    if aspect_ratio == "16:9":
+        return "1536x864"
+    if width and height:
+        if width > height:
+            return "1536x864"
+        if height > width:
+            return "1024x1536"
+    return "1024x1024"
+
+def _seedream_image_size(request_type: str = "scene_image") -> str:
+    """Pick a Seedream size token accepted by Yunwu/Volcengine-compatible routes."""
+    env_key = "SEEDREAM_SCENE_IMAGE_SIZE" if request_type == "scene_image" else "SEEDREAM_IMAGE_SIZE"
+    configured = os.getenv(env_key, "").strip() or os.getenv("SEEDREAM_IMAGE_SIZE", "").strip()
+    if configured:
+        return configured
+    return "2K"
+
+def _extract_openai_image_result(result: Dict) -> str:
+    """Extract image URL or base64 data URI from OpenAI-compatible Images API response."""
+    if not isinstance(result, dict):
+        return ""
+    payload = result.get("data", result)
+    if isinstance(payload, dict):
+        payload = payload.get("data", payload)
+    if isinstance(payload, list) and payload:
+        first = payload[0] if isinstance(payload[0], dict) else {}
+        b64 = first.get("b64_json")
+        if isinstance(b64, str) and b64.strip():
+            return f"data:image/png;base64,{b64.strip()}"
+        url = first.get("url")
+        if isinstance(url, str) and url.strip():
+            return url.strip()
+    for key in ("b64_json", "image_base64", "image_url", "url"):
+        value = result.get(key)
+        if isinstance(value, str) and value.strip():
+            if key in ("b64_json", "image_base64"):
+                return f"data:image/png;base64,{value.strip()}"
+            return value.strip()
+    return ""
+
+def _is_image_safety_rejection(response) -> bool:
+    """Detect image API safety/moderation rejections that should use a safer prompt."""
+    try:
+        text = (response.text or "").lower()
+    except Exception:
+        text = ""
+    return (
+        getattr(response, "status_code", None) in (400, 415)
+        and (
+            "sensitive content" in text
+            or "output content is empty" in text
+            or "invalid_parameter" in text
+            or "内容安全" in text
+            or "敏感" in text
+        )
+    )
+
+def _seedream_safe_prompt(prompt: str, aggressive: bool = False) -> str:
+    """Make a Seedream prompt less likely to hit safety filters while preserving scene intent."""
+    text = (prompt or "").strip()
+    replacements = [
+        (r"\bbloodshot\b", "subtle tired-eye detail"),
+        (r"\bblood\b", "deep red accent"),
+        (r"\bgore\b", "dramatic debris"),
+        (r"\bcorpse\b", "fallen silhouette"),
+        (r"\bkill(?:ing|ed)?\b", "confronting"),
+        (r"\bmurder\b", "conflict"),
+        (r"\bsuicide\b", "despair"),
+        (r"\btorture\b", "pressure"),
+        (r"\bweapon\b", "equipment"),
+        (r"\bgun\b", "device"),
+        (r"\bknife\b", "tool"),
+        (r"\bpsychological thriller\b", "intense dramatic atmosphere"),
+        (r"\bhorror\b", "dark suspense"),
+        (r"\bdystopian\b", "austere futuristic"),
+        (r"\bNERV\b", "futuristic research agency"),
+        (r"\bEVA\b", "giant experimental machine"),
+        (r"\bEvangelion\b", "original mecha-inspired setting"),
+        (r"\bShinji\b", "young male protagonist"),
+        (r"\bAsuka\b", "red-haired pilot"),
+        (r"\bRei\b", "quiet pale-haired pilot"),
+        (r"\bMisato\b", "female commander"),
+        (r"\bGendo\b", "stern commander"),
+        (r"赤木律子博士", "female scientist"),
+        (r"NERV logo", "abstract agency insignia"),
+        (r"EVA mysteries", "experimental machine mysteries"),
+        (r"Image\s+\d+\s*(?:uses|参考|：|:)?", "protagonist reference"),
+    ]
+    for pattern, repl in replacements:
+        text = re.sub(pattern, repl, text, flags=re.IGNORECASE)
+
+    cn_replacements = {
+        "血腥": "强烈戏剧张力",
+        "流血": "深红色光影",
+        "鲜血": "深红色视觉点缀",
+        "尸体": "倒下的剪影",
+        "杀死": "制服",
+        "杀害": "冲突",
+        "自杀": "绝望情绪",
+        "酷刑": "压迫感",
+        "武器": "装备",
+        "枪": "装置",
+        "刀": "工具",
+        "黑深残": "沉郁严肃",
+        "恐怖": "悬疑",
+    }
+    for src, dst in cn_replacements.items():
+        text = text.replace(src, dst)
+
+    if aggressive:
+        text = re.sub(r"\b[A-Z][A-Za-z0-9_-]{2,}\b", "original", text)
+        text = re.sub(r"[\u4e00-\u9fff]{2,}(?:博士|司令|少尉|上尉|配角\d+)", "original character", text)
+        text = _clip_text(text, 1400)
+        text += (
+            "\n\nSafe visual rewrite: original fictional characters only, generic fictional setting, "
+            "family-friendly non-violent presentation, no readable text in the image."
+        )
+    else:
+        text = _clip_text(text, 2200)
+        text += (
+            "\n\nSafety constraints: original fictional characters, generic fictional setting, "
+            "family-friendly non-violent presentation, no readable text."
+        )
+    return text
+
+def _seedream_minimal_safe_prompt(request_type: str, size: str) -> str:
+    """Fallback prompt for Seedream when a rich story prompt trips content filters."""
+    if request_type == "scene_image":
+        return (
+            "横向宽幅插画，明亮的室内空间，年轻人物站在画面中部，远处有窗户和柔和光线，"
+            "构图为宽屏横向画面，色彩干净，细节清晰。"
+        )
+    return (
+        "人物立绘，年轻人物站立姿态，明亮背景，干净线条，色彩清晰。"
+    )
+
+def _seedream_fallback_model() -> str:
+    return os.getenv("SEEDREAM_FALLBACK_MODEL", "gemini-3-pro-image-preview").strip()
 
 def call_image_api_with_custom_size(
     prompt: str,
@@ -105,8 +292,9 @@ def call_image_api_with_custom_size(
     if provider == "yunwu":
         # yunwu.ai可能不支持自定义尺寸，先尝试标准调用
         # 在提示词中添加尺寸要求
-        size_prompt = f"{prompt}, aspect ratio {width}:{height}, portrait orientation"
-        return call_yunwu_image_api(size_prompt, "default", request_type=request_type)
+        orientation = "landscape orientation, wide horizontal frame" if width >= height else "portrait orientation"
+        size_prompt = f"{prompt}, aspect ratio {width}:{height}, {orientation}"
+        return call_yunwu_image_api(size_prompt, "default", request_type=request_type, width=width, height=height)
     elif provider == "replicate":
         return call_replicate_api(prompt, "default")
     elif provider == "openai":
@@ -730,14 +918,14 @@ def generate_main_character_image(
                 img = None
                 use_img2img = False
                 model = IMAGE_GENERATION_CONFIG.get("yunwu_model", "gemini-3-pro-image-preview")
-                if "gemini" in model.lower() and "image" in model.lower():
-                    print(f"🔄 尝试使用 Gemini 图生图（{model}）生成{view_name}视图...")
+                if _is_gemini_image_model(model) or _is_gpt_image_model(model):
+                    print(f"🔄 尝试使用图生图模型（{model}）生成{view_name}视图...")
                     img = call_gemini_img2img(prompt_text, reference_front_path, cache_key_suffix=reference_front_path)
                     use_img2img = True
                     if img:
-                        print(f"✅ Gemini 图生图成功")
+                        print(f"✅ 图生图成功")
                     else:
-                        print(f"⚠️ Gemini 图生图失败，回退到文生图")
+                        print(f"⚠️ 图生图失败，回退到文生图")
                 
                 # 如果图生图失败，回退到文生图
                 if not img:
@@ -885,7 +1073,7 @@ def generate_main_character_image(
         if reference_image_url and isinstance(reference_image_url, str) and reference_image_url.strip():
             all_main_refs.append(reference_image_url.strip())
 
-        if is_anime and all_main_refs and provider == "yunwu" and "gemini" in (model or "").lower() and "image" in (model or "").lower():
+        if is_anime and all_main_refs and provider == "yunwu" and (_is_gemini_image_model(model) or _is_gpt_image_model(model)):
             prefix_lines = []
             if reference_image_url and reference_image_url.strip():
                 prefix_lines.append("Image 0: Reference for the protagonist appearance (match this character).")
@@ -1163,7 +1351,6 @@ def generate_scene_image(
     if not skip_prot_ref:
         skip_prot_ref = os.getenv("EXPERIMENT_SKIP_PROTAGONIST_REF", "").strip().lower() in ("1", "true", "yes")
     if game_id and not skip_prot_ref:
-        from pathlib import Path
         main_character_dir = Path("initial") / "main_character" / game_id
         front_path = main_character_dir / "main_character.png"
         side_path = main_character_dir / "main_character_side.png"
@@ -1376,7 +1563,10 @@ def generate_scene_image(
             image_url = None
             try:
                 # yunwu.ai可能不支持自定义尺寸，在提示词中添加尺寸要求
-                size_prompt = f"{prompt}, aspect ratio {image_width}:{image_height}"
+                size_prompt = (
+                    f"{prompt}, aspect ratio {image_width}:{image_height}, "
+                    "16:9 landscape orientation, wide horizontal cinematic frame"
+                )
                 
                 # 参考图顺序：主角（按需1～2张）→ 配角 → 上一张剧情图（若有）；不再使用质感参考图
                 model = IMAGE_GENERATION_CONFIG.get("yunwu_model", "gemini-3-pro-image-preview")
@@ -1417,10 +1607,10 @@ def generate_scene_image(
                     all_reference_images.append(previous_scene_image_path)
                     print(f"🖼️ 已将上一张剧情图加入参考图（共{len(all_reference_images)}张）")
                 if all_reference_images and len(all_reference_images) >= 1:
-                    if "gemini" in model.lower() and "image" in model.lower():
+                    if _is_gemini_image_model(model) or _is_gpt_image_model(model):
                         n_prot = len(protagonist_refs_to_send)
                         n_prev = 1 if previous_scene_image_path else 0
-                        print(f"🎨 使用 Gemini 图生图，传递{len(all_reference_images)}张参考图（主角{n_prot}张+配角{len(supporting_role_images or [])}张+上一张剧情图{n_prev}张）")
+                        print(f"🎨 使用图生图模型 {model}，传递{len(all_reference_images)}张参考图（主角{n_prot}张+配角{len(supporting_role_images or [])}张+上一张剧情图{n_prev}张）")
                         prefix_lines = []
                         view_labels = ["Front view portrait of the protagonist", "Side view portrait of the protagonist", "Back view portrait of the protagonist"]
                         for j in range(n_prot):
@@ -1433,15 +1623,25 @@ def generate_scene_image(
                         if previous_scene_image_path:
                             prefix_lines.append(f"Image {len(prefix_lines)}: Previous scene image (for visual continuity - maintain consistent style, lighting, and character appearance).")
                         prefix_prompt = "\n".join(prefix_lines) + "\n\n"
-                        full_prompt = prefix_prompt + prompt_renumbered + f", aspect ratio {image_width}:{image_height}"
+                        full_prompt = (
+                            prefix_prompt
+                            + prompt_renumbered
+                            + f", aspect ratio {image_width}:{image_height}, "
+                            "16:9 landscape orientation, wide horizontal cinematic frame"
+                        )
                         # 传入 cache_key_suffix，使里层 save_base64_image 也按选项区分，避免“上一次的图当成本次的”
-                        image_url = call_gemini_img2img(full_prompt, all_reference_images, cache_key_suffix=cache_key_suffix)
+                        image_url = call_gemini_img2img(
+                            full_prompt,
+                            all_reference_images,
+                            cache_key_suffix=cache_key_suffix,
+                            aspect_ratio="16:9",
+                        )
                     else:
                         print(f"⚠️ 当前模型 {model} 不支持多张参考图，使用文生图")
-                        image_url = call_yunwu_image_api(size_prompt, style)
+                        image_url = call_yunwu_image_api(size_prompt, style, width=image_width, height=image_height)
                 else:
                     # 没有参考图，使用普通文生图
-                    image_url = call_yunwu_image_api(size_prompt, style)
+                    image_url = call_yunwu_image_api(size_prompt, style, width=image_width, height=image_height)
             except Exception as e:
                 print(f"⚠️ yunwu.ai 生图失败，将尝试兜底（如已配置）：{str(e)}")
                 image_url = None
@@ -1475,7 +1675,6 @@ def generate_scene_image(
         if use_cache and image_url:
             try:
                 import hashlib
-                from pathlib import Path
                 
                 MAX_DOWNLOAD_BYTES = 10 * 1024 * 1024  # 10MB 防止超大文件拖垮内存/磁盘
                 VALID_IMAGE_PREFIX = "image/"
@@ -1718,13 +1917,278 @@ def generate_scene_image(
         traceback.print_exc()
         return None
 
-def call_gemini_img2img(prompt: str, reference_image_path, additional_reference_images: List[str] = None, cache_key_suffix: str = None) -> str:
+def call_yunwu_gpt_image_generation(
+    prompt: str,
+    width: int = None,
+    height: int = None,
+    request_type: str = "scene_image",
+    cache_key_suffix: str = None,
+) -> str:
+    """Use Yunwu's OpenAI-compatible Images API for image generation models."""
+    api_key = IMAGE_GENERATION_CONFIG.get("yunwu_api_key")
+    base_url = IMAGE_GENERATION_CONFIG.get("yunwu_base_url", "https://yunwu.ai/v1").rstrip("/")
+    model = IMAGE_GENERATION_CONFIG.get("yunwu_model", "gpt-image-2")
+    if not api_key:
+        raise ValueError("yunwu.ai API Key未配置")
+
+    original_prompt = prompt
+    is_seedream = _is_seedream_image_model(model)
+    size = _seedream_image_size(request_type) if is_seedream else _gpt_image_size(width, height, "16:9" if request_type == "scene_image" else None)
+    request_prompt = _seedream_safe_prompt(prompt, aggressive=False) if is_seedream else prompt
+    if is_seedream:
+        request_body = {
+            "model": model,
+            "prompt": request_prompt,
+            "size": size,
+            "response_format": os.getenv("SEEDREAM_RESPONSE_FORMAT", "url").strip() or "url",
+            "output_format": os.getenv("SEEDREAM_OUTPUT_FORMAT", "png").strip() or "png",
+        }
+        watermark = os.getenv("SEEDREAM_WATERMARK", "false").strip().lower()
+        if watermark in ("true", "1", "yes"):
+            request_body["watermark"] = True
+        elif watermark in ("false", "0", "no"):
+            request_body["watermark"] = False
+    else:
+        request_body = {
+            "model": model,
+            "prompt": request_prompt,
+            "size": size,
+            "n": 1,
+        }
+    if _is_gpt_image_model(model):
+        request_body["quality"] = os.getenv("GPT_IMAGE_QUALITY", "high").strip() or "high"
+    headers = {"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"}
+    policy = _get_yunwu_request_policy(request_type)
+    request_timeout = int(policy["timeout_seconds"])
+    max_retries = int(policy["max_retries"])
+    min_interval = float(policy["min_interval_seconds"])
+    base_wait = float(policy["base_wait_seconds"])
+    safe_retry_used = False
+
+    def fallback_after_seedream_failure(reason: str) -> str:
+        fallback_model = _seedream_fallback_model()
+        if not fallback_model:
+            return None
+        if _uses_images_generation_api(fallback_model):
+            print(f"⚠️ Seedream 失败后配置的 fallback 模型仍是 Images API 模型，跳过兜底：{fallback_model}")
+            return None
+        print(f"🛟 Seedream 生图失败（{reason}），改用兜底模型 {fallback_model} 继续生成图片")
+        return call_yunwu_image_api(
+            original_prompt,
+            "default",
+            request_type=request_type,
+            width=width,
+            height=height,
+            model_override=fallback_model,
+        )
+
+    for attempt in range(max_retries):
+        try:
+            global _YUNWU_LAST_CALL_TS
+            with _YUNWU_RATE_LOCK:
+                now = time.time()
+                delta = now - _YUNWU_LAST_CALL_TS
+                if delta < min_interval:
+                    sleep_s = (min_interval - delta) + random.random() * 0.5
+                    print(f"⏳ images/generations 限速：等待 {sleep_s:.1f}s")
+                    time.sleep(sleep_s)
+                _YUNWU_LAST_CALL_TS = time.time()
+
+            print("🔍 ========== 发送给 Images API 的请求内容 ==========")
+            print(f"🔍 API端点: {base_url}/images/generations")
+            print(f"🔍 模型: {model}")
+            print(json.dumps(request_body, ensure_ascii=False, indent=2)[:2000])
+            print("🔍 ================================================")
+
+            with provider_request_slot(
+                "image",
+                "yunwu",
+                request_type,
+                attempt=attempt + 1,
+                model=model,
+            ) as slot:
+                start_request_time = time.time()
+                response = requests.post(
+                    f"{base_url}/images/generations",
+                    headers=headers,
+                    json=request_body,
+                    timeout=request_timeout,
+                )
+                elapsed_time = time.time() - start_request_time
+                log_provider_event(
+                    "image",
+                    "yunwu",
+                    request_type,
+                    "response",
+                    attempt=attempt + 1,
+                    status_code=response.status_code,
+                    latency_ms=int(elapsed_time * 1000),
+                    queue_wait_ms=slot["queue_wait_ms"],
+                )
+            print(f"✅ Images API请求完成，耗时：{elapsed_time:.2f}秒")
+
+            if response.status_code != 200:
+                err_text = response.text[:500] if response.text else ""
+                print(f"❌ Images API 错误 {response.status_code}: {err_text}")
+                if is_seedream and _is_image_safety_rejection(response) and not safe_retry_used:
+                    safe_retry_used = True
+                    request_body["prompt"] = _seedream_minimal_safe_prompt(request_type, size)
+                    print("🧯 Seedream 内容安全拦截，已改用最小安全场景提示词重试")
+                    continue
+                if 400 <= response.status_code < 500:
+                    if is_seedream:
+                        return fallback_after_seedream_failure(f"HTTP {response.status_code}")
+                    return None
+                if attempt < max_retries - 1:
+                    wait_s = min(60.0, base_wait * (2 ** attempt) + random.random())
+                    time.sleep(wait_s)
+                    continue
+                return None
+
+            image_result = _extract_openai_image_result(response.json())
+            if image_result:
+                if image_result.startswith("data:image"):
+                    return save_base64_image(image_result, original_prompt, cache_key_suffix=cache_key_suffix)
+                return image_result
+            print("⚠️ Images API 响应中未找到图片数据")
+            if is_seedream:
+                return fallback_after_seedream_failure("响应中没有图片数据")
+            return None
+        except Exception as e:
+            print(f"⚠️ Images API 调用异常（尝试 {attempt + 1}/{max_retries}）：{str(e)[:200]}")
+            if attempt < max_retries - 1:
+                wait_s = min(60.0, base_wait * (2 ** attempt) + random.random())
+                time.sleep(wait_s)
+                continue
+            if is_seedream:
+                return fallback_after_seedream_failure("调用异常")
+            return None
+    return None
+
+def call_yunwu_gpt_image_edit(
+    prompt: str,
+    image_data_uris: List[str],
+    aspect_ratio: str = None,
+    cache_key_suffix: str = None,
+    request_type: str = "scene_image",
+) -> str:
+    """Use Yunwu's OpenAI-compatible Images Edit API for GPT Image references."""
+    import base64
+    import io
+
+    api_key = IMAGE_GENERATION_CONFIG.get("yunwu_api_key")
+    base_url = IMAGE_GENERATION_CONFIG.get("yunwu_base_url", "https://yunwu.ai/v1").rstrip("/")
+    model = IMAGE_GENERATION_CONFIG.get("yunwu_model", "gpt-image-2")
+    if not api_key:
+        raise ValueError("yunwu.ai API Key未配置")
+
+    files = []
+    for idx, data_uri in enumerate(image_data_uris or []):
+        if not isinstance(data_uri, str) or not data_uri.startswith("data:image") or "," not in data_uri:
+            continue
+        header, b64 = data_uri.split(",", 1)
+        mime = "image/png"
+        m = re.search(r"data:(image/[^;]+)", header)
+        if m:
+            mime = m.group(1)
+        ext = mime.split("/")[-1].replace("jpeg", "jpg")
+        image_bytes = base64.b64decode(b64)
+        field_name = "image[]" if len(image_data_uris) > 1 else "image"
+        files.append((field_name, (f"reference_{idx}.{ext}", io.BytesIO(image_bytes), mime)))
+
+    if not files:
+        print("⚠️ GPT Image 编辑未拿到可用参考图")
+        return None
+
+    data = {
+        "model": model,
+        "prompt": prompt,
+        "size": _gpt_image_size(aspect_ratio=aspect_ratio),
+        "quality": os.getenv("GPT_IMAGE_QUALITY", "high").strip() or "high",
+        "n": "1",
+    }
+    headers = {"Authorization": f"Bearer {api_key}"}
+    request_timeout = int(os.getenv("YUNWU_IMAGE_TIMEOUT_SECONDS", "180"))
+    min_interval = float(os.getenv("YUNWU_MIN_INTERVAL_SECONDS", "12"))
+    max_retries = int(os.getenv("YUNWU_GEMINI_MAX_RETRIES", "3"))
+    backoff_base = float(os.getenv("YUNWU_GEMINI_RETRY_BACKOFF_SECONDS", "2"))
+
+    for attempt in range(max_retries):
+        try:
+            global _YUNWU_LAST_CALL_TS
+            with _YUNWU_RATE_LOCK:
+                now = time.time()
+                delta = now - _YUNWU_LAST_CALL_TS
+                if delta < min_interval:
+                    sleep_s = (min_interval - delta) + random.random() * 0.5
+                    print(f"⏳ gpt-image 编辑限速：等待 {sleep_s:.1f}s")
+                    time.sleep(sleep_s)
+                _YUNWU_LAST_CALL_TS = time.time()
+
+            print(f"🔄 调用 GPT Image 编辑 API（{model}，{len(files)}张参考图，size={data['size']}，尝试 {attempt + 1}/{max_retries}）...")
+            for _, file_tuple in files:
+                try:
+                    file_tuple[1].seek(0)
+                except Exception:
+                    pass
+            response = requests.post(
+                f"{base_url}/images/edits",
+                headers=headers,
+                data=data,
+                files=files,
+                timeout=request_timeout,
+            )
+            if response.status_code != 200:
+                err_text = response.text[:500] if response.text else ""
+                print(f"❌ GPT Image 编辑 API 错误 {response.status_code}: {err_text}")
+                if 400 <= response.status_code < 500:
+                    return None
+                if attempt < max_retries - 1:
+                    sleep_s = min(30.0, backoff_base * (2 ** attempt) + random.random())
+                    time.sleep(sleep_s)
+                    continue
+                break
+
+            image_result = _extract_openai_image_result(response.json())
+            if image_result:
+                if image_result.startswith("data:image"):
+                    return save_base64_image(image_result, prompt, cache_key_suffix=cache_key_suffix)
+                return image_result
+            print("⚠️ GPT Image 编辑响应中未找到图片数据")
+            break
+        except Exception as e:
+            print(f"⚠️ GPT Image 编辑调用异常（尝试 {attempt + 1}/{max_retries}）：{str(e)[:200]}")
+            if attempt < max_retries - 1:
+                sleep_s = min(30.0, backoff_base * (2 ** attempt) + random.random())
+                time.sleep(sleep_s)
+                continue
+            break
+
+    if request_type == "scene_image":
+        print("⚠️ GPT Image 编辑接口失败，兜底改用 gpt-image-2 文生图生成 16:9 剧情图（不使用参考图）")
+        return call_yunwu_gpt_image_generation(
+            prompt,
+            width=1536,
+            height=864,
+            request_type=request_type,
+            cache_key_suffix=cache_key_suffix,
+        )
+    return None
+
+def call_gemini_img2img(
+    prompt: str,
+    reference_image_path,
+    additional_reference_images: List[str] = None,
+    cache_key_suffix: str = None,
+    aspect_ratio: Optional[str] = None,
+) -> str:
     """
     使用 Gemini 图生图模型（由 Image_Generation_MODEL 配置，如 gemini-3-pro-image-preview）进行图生图，支持多张参考图
     :param prompt: 文本提示词
     :param reference_image_path: 参考图片路径（本地路径或 data URI），可以是字符串或字符串列表
     :param additional_reference_images: 额外的参考图片路径列表（可选）
     :param cache_key_suffix: 可选，参与 base64 缓存 key（如参考图路径），避免不同游戏复用同一缓存
+    :param aspect_ratio: 可选，Gemini 原生出图比例；剧情图传 16:9，角色立绘不传
     :return: 生成的图片 URL 或 base64 数据，失败返回 None
     """
     import time
@@ -1741,9 +2205,9 @@ def call_gemini_img2img(prompt: str, reference_image_path, additional_reference_
         print("⚠️ Gemini 图生图：API Key未配置")
         return None
     
-    # 检查模型是否为 Gemini 图生图类（名称含 gemini 且含 image）
-    if "gemini" not in model.lower() or "image" not in model.lower():
-        print(f"⚠️ 当前模型 {model} 不是 Gemini 图生图模型，跳过图生图")
+    # 检查模型是否为支持参考图的图生图类
+    if not (_is_gemini_image_model(model) or _is_gpt_image_model(model)):
+        print(f"⚠️ 当前模型 {model} 不是支持参考图的图生图模型，跳过图生图")
         return None
     
     # 处理参考图片：支持单个路径或路径列表
@@ -1776,6 +2240,15 @@ def call_gemini_img2img(prompt: str, reference_image_path, additional_reference_
     if not image_data_uris:
         print("⚠️ 所有参考图片加载失败")
         return None
+
+    if _is_gpt_image_model(model):
+        return call_yunwu_gpt_image_edit(
+            prompt,
+            image_data_uris,
+            aspect_ratio=aspect_ratio,
+            cache_key_suffix=cache_key_suffix,
+            request_type="scene_image" if aspect_ratio == "16:9" else "main_character",
+        )
     
     headers = {
         "Authorization": f"Bearer {api_key}",
@@ -1837,6 +2310,8 @@ def call_gemini_img2img(prompt: str, reference_image_path, additional_reference_
         "temperature": 0.1,
         "max_tokens": 4000
     }
+    if aspect_ratio:
+        request_body["generationConfig"] = _gemini_story_image_generation_config(aspect_ratio)
 
     request_timeout = int(os.getenv("YUNWU_IMAGE_TIMEOUT_SECONDS", "180"))
     min_interval = float(os.getenv("YUNWU_MIN_INTERVAL_SECONDS", "12"))
@@ -2063,7 +2538,14 @@ def _get_yunwu_request_policy(request_type: str) -> Dict[str, float]:
     return policy
 
 
-def call_yunwu_image_api(prompt: str, style: str, request_type: str = "scene_image") -> str:
+def call_yunwu_image_api(
+    prompt: str,
+    style: str,
+    request_type: str = "scene_image",
+    width: int = None,
+    height: int = None,
+    model_override: str = None,
+) -> str:
     """调用yunwu.ai图片生成API（带重试机制处理速率限制）"""
     import time
 
@@ -2075,10 +2557,18 @@ def call_yunwu_image_api(prompt: str, style: str, request_type: str = "scene_ima
 
     api_key = IMAGE_GENERATION_CONFIG.get("yunwu_api_key")
     base_url = IMAGE_GENERATION_CONFIG.get("yunwu_base_url", "https://yunwu.ai/v1")
-    model = IMAGE_GENERATION_CONFIG.get("yunwu_model", "sora_image")
+    model = (model_override or "").strip() or IMAGE_GENERATION_CONFIG.get("yunwu_model", "sora_image")
 
     if not api_key:
         raise ValueError("yunwu.ai API Key未配置")
+
+    if _uses_images_generation_api(model):
+        return call_yunwu_gpt_image_generation(
+            prompt,
+            width=width,
+            height=height,
+            request_type=request_type,
+        )
 
     headers = {
         "Authorization": f"Bearer {api_key}",
@@ -2139,6 +2629,9 @@ def call_yunwu_image_api(prompt: str, style: str, request_type: str = "scene_ima
             "max_tokens": 2000
         }
     
+    if "gemini" in model.lower() and "image" in model.lower() and request_type == "scene_image":
+        request_body["generationConfig"] = _gemini_story_image_generation_config("16:9")
+
     # 注意：Gemini 图生模型不支持 response_format 参数，不要添加
     # 如果模型是 sora_image 或其他支持 JSON 模式的模型，可以尝试添加
     

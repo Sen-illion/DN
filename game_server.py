@@ -328,6 +328,15 @@ def generate_worldview():
             
             # 保存游戏ID到global_state
             global_state['game_id'] = game_id
+            for key in (
+                "_benchmark_profile",
+                "_benchmark_measurement",
+                "_benchmark_read_wait_s",
+                "_benchmark_text_only",
+                "_skip_protagonist_reference",
+            ):
+                if key in data:
+                    global_state[key] = data[key]
 
             # 🔑 保存用户输入的主题（用于现实题材/IP检索命中率）
             # 注意：core_worldview.game_style 往往是较长的“风格描述”，不一定等同于用户输入主题名。
@@ -346,6 +355,11 @@ def generate_worldview():
                     "message": f"AI生成功能未配置：{error_msg}\n\n请检查.env文件，确保配置了以下环境变量：\n- Camera_Analyst_API_KEY\n- Camera_Analyst_BASE_URL\n- Camera_Analyst_MODEL"
                 })
             raise  # 其他ValueError继续抛出
+
+        benchmark_text_only = bool(
+            (isinstance(global_state, dict) and global_state.get("_benchmark_text_only"))
+            or os.getenv("DN_BENCHMARK_TEXT_ONLY", "").strip().lower() in ("1", "true", "yes")
+        )
 
         # ✅ 世界观生成完成后：立刻启动主角形象生成（后台线程，不阻塞响应）
         # 目的：用户正在查看世界观时并行生图；并将完整世界观文本/结构传入提示词LLM。
@@ -373,13 +387,16 @@ def generate_worldview():
                     import traceback
                     traceback.print_exc()
 
-            gs_snapshot = copy.deepcopy(global_state) if isinstance(global_state, dict) else global_state
-            threading.Thread(
-                target=generate_main_character_after_worldview_async,
-                args=(gs_snapshot, game_id),
-                daemon=True
-            ).start()
-            print("✅ 主角形象生成任务已启动（世界观生成完成后触发，后台并行）")
+            if benchmark_text_only:
+                print("benchmark text-only mode: skip async front main-character generation")
+            else:
+                gs_snapshot = copy.deepcopy(global_state) if isinstance(global_state, dict) else global_state
+                threading.Thread(
+                    target=generate_main_character_after_worldview_async,
+                    args=(gs_snapshot, game_id),
+                    daemon=True
+                ).start()
+                print("✅ 主角形象生成任务已启动（世界观生成完成后触发，后台并行）")
         except Exception as e:
             print(f"⚠️ 启动主角形象生成任务失败：{str(e)}")
         
@@ -457,7 +474,8 @@ def generate_worldview():
                     else:
                         print(f"⚠️ 初始场景没有图片数据（因使用默认剧情，AI 未返回【场景】格式）")
                         # 默认剧情时补生成一张场景图，保证首次进入也有图
-                        if initial_scene and initial_scene.strip():
+                        text_only_benchmark = os.getenv("DN_BENCHMARK_TEXT_ONLY", "").strip().lower() in ("1", "true", "yes")
+                        if initial_scene and initial_scene.strip() and not text_only_benchmark:
                             try:
                                 img = generate_scene_image(initial_scene, global_state, "default", use_cache=True)
                                 if img and img.get("url"):
@@ -1450,6 +1468,13 @@ def generate_scene_image_api():
         style = data.get('style', 'default')
         viewport_width = data.get('viewportWidth', None)
         viewport_height = data.get('viewportHeight', None)
+        logging.info(
+            "📥 /generate-scene-image received pid=%s scene_len=%s viewport=%sx%s",
+            os.getpid(),
+            len(scene_description or ""),
+            viewport_width,
+            viewport_height,
+        )
         if viewport_width is not None:
             try:
                 viewport_width = int(viewport_width)
@@ -1473,23 +1498,28 @@ def generate_scene_image_api():
             _cleanup_scene_image_recent()
             recent = _SCENE_IMAGE_RECENT.get(request_key)
             if recent:
+                logging.info("✅ /generate-scene-image recent-cache hit request_key=%s", request_key[:12])
                 return jsonify(recent["payload"])
 
             inflight = _SCENE_IMAGE_REQUESTS.get(request_key)
             if inflight:
                 wait_event = inflight["event"]
                 is_leader = False
+                logging.info("⏳ /generate-scene-image waiting for inflight request_key=%s", request_key[:12])
             else:
                 wait_event = threading.Event()
                 _SCENE_IMAGE_REQUESTS[request_key] = {"event": wait_event}
                 is_leader = True
+                logging.info("🎨 /generate-scene-image start leader request_key=%s", request_key[:12])
 
         if not is_leader:
             waited = wait_event.wait(timeout=float(os.getenv("SCENE_IMAGE_WAIT_TIMEOUT_SECONDS", "90")))
             with _SCENE_IMAGE_REQUESTS_LOCK:
                 recent = _SCENE_IMAGE_RECENT.get(request_key)
             if waited and recent:
+                logging.info("✅ /generate-scene-image inflight completed request_key=%s", request_key[:12])
                 return jsonify(recent["payload"])
+            logging.info("⌛ /generate-scene-image still pending request_key=%s", request_key[:12])
             return jsonify({
                 "status": "pending",
                 "message": "图片仍在生成中，请稍后重试",
@@ -1670,10 +1700,15 @@ def frontend_files(filename):
 
 # 启动服务
 if __name__ == "__main__":
+    server_port = int(os.getenv("DN_SERVER_PORT", "5001"))
     print("=== 文本冒险游戏API服务器 ===")
+    print(f"进程 PID: {os.getpid()}")
+    print(f"Python: {sys.executable}")
+    print(f"工作目录: {Path.cwd()}")
+    print(f"后端日志文件: {_LOG_FILE}")
     print("请在浏览器地址栏输入（务必包含 http://）：")
-    print("  http://127.0.0.1:5001")
-    print("不要只输入 127.0.0.1:5001，否则会被当成搜索，无法打开游戏页面。")
+    print(f"  http://127.0.0.1:{server_port}")
+    print(f"不要只输入 127.0.0.1:{server_port}，否则会被当成搜索，无法打开游戏页面。")
     print("API端点：")
     print("  POST /generate-worldview - 生成游戏世界观")
     print("  POST /generate-option - 生成单个选项对应的剧情（支持缓存）")
@@ -1689,4 +1724,4 @@ if __name__ == "__main__":
     # print("  GET /video-status/<task_id> - 查询视频生成状态")  # 已禁用
     print("  GET /image_cache/<filename> - 获取缓存的图片")
     print("===============================")
-    app.run(host='0.0.0.0', port=5001, debug=False, use_reloader=False)
+    app.run(host='0.0.0.0', port=server_port, debug=False, use_reloader=False)

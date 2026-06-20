@@ -68,6 +68,10 @@ const API_BASE = (() => {
     return 'http://127.0.0.1:5001';
 })();
 
+function getApiBase() {
+    return API_BASE;
+}
+
 /** 静态资源根（剧情图 /image_cache、主角 /initial 等）；与 API 不同源时设 window.GAME_ASSET_BASE */
 const _CONFIGURED_ASSET_BASE =
     typeof window !== 'undefined' && window.GAME_ASSET_BASE
@@ -2174,7 +2178,9 @@ const Game = (() => {
             elements.content.loadingPercent.textContent = `${progress}%`;
             
             // 进度条动画
-            elements.content.progressFill.style.width = `${progress}%`;
+            if (elements.content.progressFill) {
+                elements.content.progressFill.style.width = `${progress}%`;
+            }
             
             // 切换加载文本
             if (progress % 25 === 0 && currentStep < loadingSteps.length - 1) {
@@ -2223,7 +2229,9 @@ const Game = (() => {
         const loadingInterval = setInterval(() => {
             progress += 2;
             elements.content.loadingPercent.textContent = `${progress}%`;
-            elements.content.progressFill.style.width = `${progress}%`;
+            if (elements.content.progressFill) {
+                elements.content.progressFill.style.width = `${progress}%`;
+            }
             
             if (progress === 100) {
                 clearInterval(loadingInterval);
@@ -4116,8 +4124,10 @@ const Game = (() => {
     // 更新章节进度
     function updateChapterProgress(percent) {
         gameState.chapterProgress = percent;
-        elements.content.progressFill.style.width = `${percent}%`;
-        elements.content.progressFill.style.transition = 'width 300ms ease';
+        if (elements.content.progressFill) {
+            elements.content.progressFill.style.width = `${percent}%`;
+            elements.content.progressFill.style.transition = 'width 300ms ease';
+        }
         
         // 进度状态标识
         let statusText = '';
